@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    filesystemwatcher.h
+    systrayicon.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2007 Klarälvdalens Datakonsult AB
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,54 +30,46 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
-#define __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+#ifndef __KLEOPATRA_SYSTRAYICON_H__
+#define __KLEOPATRA_SYSTRAYICON_H__
 
-#include <QObject>
+#include <utils/systemtrayicon.h>
 
 #include <utils/pimpl_ptr.h>
 
-class QString;
-class QStringList;
+class MainWindow;
+class QDialog;
 
-namespace Kleo {
+class SysTrayIcon : public Kleo::SystemTrayIcon {
+    Q_OBJECT
+public:
+    explicit SysTrayIcon( QObject * parent=0 );
+    ~SysTrayIcon();
 
-    class FileSystemWatcher : public QObject {
-        Q_OBJECT
-    public:
-        explicit FileSystemWatcher( QObject* parent = 0 );
-        explicit FileSystemWatcher( const QStringList& paths, QObject* parent = 0 );
-        ~FileSystemWatcher();
+    MainWindow * mainWindow() const;
+    QDialog * attentionWindow() const;
 
-        void setDelay( int ms );
-        int delay() const;
+public Q_SLOTS:
+    void openOrRaiseMainWindow();
+    void openOrRaiseConfigDialog();
+    void setAnyCardHasNullPin( bool );
+    void setAnyCardCanLearnKeys( bool );
 
-        void setEnabled( bool enable );
-        bool isEnabled() const;
+private:
+    /* reimp */ void doMainWindowClosed( QWidget * );
+    /* reimp */ void doActivated();
+    /* reimp */ void slotEnableDisableActions();
 
-        void addPaths( const QStringList& paths );
-        void addPath( const QString& path );
+private:
+    class Private;
+    kdtools::pimpl_ptr<Private> d;
+    Q_PRIVATE_SLOT( d, void slotAbout() )
+    Q_PRIVATE_SLOT( d, void slotEncryptClipboard() )
+    Q_PRIVATE_SLOT( d, void slotOpenPGPSignClipboard() )
+    Q_PRIVATE_SLOT( d, void slotSMIMESignClipboard() )
+    Q_PRIVATE_SLOT( d, void slotDecryptVerifyClipboard() )
+    Q_PRIVATE_SLOT( d, void slotSetInitialPin() )
+    Q_PRIVATE_SLOT( d, void slotLearnCertificates() )
+};
 
-        void blacklistFiles( const QStringList & patterns );
-        void whitelistFiles( const QStringList & patterns );
-
-        QStringList directories() const;
-        QStringList files() const;
-        void removePaths( const QStringList& path );
-        void removePath( const QString& path );
-
-    Q_SIGNALS:
-        void directoryChanged( const QString& path );
-        void fileChanged( const QString& path );
-        void triggered();
-
-    private:
-        class Private;
-        kdtools::pimpl_ptr<Private> d;
-        Q_PRIVATE_SLOT( d, void onFileChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onDirectoryChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onTimeout() )
-    };
-}
-
-#endif // __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+#endif /* __KLEOPATRA_SYSTRAYICON_H__ */

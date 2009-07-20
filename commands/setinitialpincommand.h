@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    filesystemwatcher.h
+    commands/setinitialpincommand.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2009 Klarälvdalens Datakonsult AB
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,54 +30,39 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
-#define __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+#ifndef __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
+#define __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
 
-#include <QObject>
-
-#include <utils/pimpl_ptr.h>
-
-class QString;
-class QStringList;
+#include <commands/command.h>
 
 namespace Kleo {
+namespace Commands {
 
-    class FileSystemWatcher : public QObject {
+    class SetInitialPinCommand : public Command {
         Q_OBJECT
     public:
-        explicit FileSystemWatcher( QObject* parent = 0 );
-        explicit FileSystemWatcher( const QStringList& paths, QObject* parent = 0 );
-        ~FileSystemWatcher();
+	SetInitialPinCommand();
+	~SetInitialPinCommand();
 
-        void setDelay( int ms );
-        int delay() const;
+        /* reimp */ static Restrictions restrictions() { return AnyCardHasNullPin; }
 
-        void setEnabled( bool enable );
-        bool isEnabled() const;
+        QDialog * dialog() const;
 
-        void addPaths( const QStringList& paths );
-        void addPath( const QString& path );
-
-        void blacklistFiles( const QStringList & patterns );
-        void whitelistFiles( const QStringList & patterns );
-
-        QStringList directories() const;
-        QStringList files() const;
-        void removePaths( const QStringList& path );
-        void removePath( const QString& path );
-
-    Q_SIGNALS:
-        void directoryChanged( const QString& path );
-        void fileChanged( const QString& path );
-        void triggered();
+    private:
+	/* reimp */ void doStart();
+	/* reimp */ void doCancel();
 
     private:
         class Private;
-        kdtools::pimpl_ptr<Private> d;
-        Q_PRIVATE_SLOT( d, void onFileChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onDirectoryChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onTimeout() )
+        inline Private * d_func();
+        inline const Private * d_func() const;
+        Q_PRIVATE_SLOT( d_func(), void slotDialogRejected() )
+        Q_PRIVATE_SLOT( d_func(), void slotDialogAccepted() )
+        Q_PRIVATE_SLOT( d_func(), void slotNksPinRequested() )
+        Q_PRIVATE_SLOT( d_func(), void slotSigGPinRequested() )
     };
+
+}
 }
 
-#endif // __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+#endif /* __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__ */

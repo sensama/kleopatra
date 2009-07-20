@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    filesystemwatcher.h
+    systemtrayicon.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2007,2009 Klarälvdalens Datakonsult AB
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,54 +30,55 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
-#define __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+#ifndef __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__
+#define __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__
 
-#include <QObject>
+#include <QSystemTrayIcon>
 
 #include <utils/pimpl_ptr.h>
 
-class QString;
-class QStringList;
-
 namespace Kleo {
 
-    class FileSystemWatcher : public QObject {
-        Q_OBJECT
-    public:
-        explicit FileSystemWatcher( QObject* parent = 0 );
-        explicit FileSystemWatcher( const QStringList& paths, QObject* parent = 0 );
-        ~FileSystemWatcher();
+class SystemTrayIcon : public QSystemTrayIcon {
+    Q_OBJECT
+public:
+    explicit SystemTrayIcon( QObject * parent=0 );
+    explicit SystemTrayIcon( const QIcon & icon, QObject * parent=0 );
+    ~SystemTrayIcon();
 
-        void setDelay( int ms );
-        int delay() const;
+    void setMainWindow( QWidget * w );
+    QWidget * mainWindow() const;
 
-        void setEnabled( bool enable );
-        bool isEnabled() const;
+    void setAttentionWindow( QWidget * w );
+    QWidget * attentionWindow() const;
 
-        void addPaths( const QStringList& paths );
-        void addPath( const QString& path );
+    QIcon attentionIcon() const;
+    QIcon normalIcon() const;
+    bool attentionWanted() const;
 
-        void blacklistFiles( const QStringList & patterns );
-        void whitelistFiles( const QStringList & patterns );
+public Q_SLOTS:
+    void setAttentionIcon( const QIcon & icon );
+    void setNormalIcon( const QIcon & icon );
+    void setAttentionWanted( bool );
 
-        QStringList directories() const;
-        QStringList files() const;
-        void removePaths( const QStringList& path );
-        void removePath( const QString& path );
+protected Q_SLOTS:
+    virtual void slotEnableDisableActions() = 0;
 
-    Q_SIGNALS:
-        void directoryChanged( const QString& path );
-        void fileChanged( const QString& path );
-        void triggered();
+private:
+    virtual void doMainWindowClosed( QWidget * );
+    virtual void doAttentionWindowClosed( QWidget * );
+    virtual void doActivated() = 0;
 
-    private:
-        class Private;
-        kdtools::pimpl_ptr<Private> d;
-        Q_PRIVATE_SLOT( d, void onFileChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onDirectoryChanged( QString ) )
-        Q_PRIVATE_SLOT( d, void onTimeout() )
-    };
-}
+private:
+    /* reimp */ bool eventFilter( QObject *, QEvent * );
 
-#endif // __KLEOPATRA_UTILS_FILESYSTEMWATCHER_H__
+private:
+    class Private;
+    kdtools::pimpl_ptr<Private> d;
+    Q_PRIVATE_SLOT( d, void slotAttentionAnimationTimerTimout() )
+    Q_PRIVATE_SLOT( d, void slotActivated( QSystemTrayIcon::ActivationReason ) )
+};
+
+} // namespace Kleo
+
+#endif /* __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__ */

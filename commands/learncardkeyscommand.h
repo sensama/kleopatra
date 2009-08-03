@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/changepassphrasecommand.h
+    commands/learncardkeyscommand.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
@@ -30,23 +30,25 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
+#ifndef __KLEOPATRA_COMMMANDS_LEARNCARDKEYSCOMMAND_H__
+#define __KLEOPATRA_COMMMANDS_LEARNCARDKEYSCOMMAND_H__
 
 #include <commands/gnupgprocesscommand.h>
+
+#include <gpgme++/global.h>
 
 namespace Kleo {
 namespace Commands {
 
-    class ChangePassphraseCommand : public GnuPGProcessCommand {
+    class LearnCardKeysCommand : public GnuPGProcessCommand {
         Q_OBJECT
     public:
-        explicit ChangePassphraseCommand( QAbstractItemView * view, KeyListController * parent );
-        explicit ChangePassphraseCommand( KeyListController * parent );
-        explicit ChangePassphraseCommand( const GpgME::Key & key );
-        ~ChangePassphraseCommand();
+        explicit LearnCardKeysCommand( GpgME::Protocol proto );
+        ~LearnCardKeysCommand();
 
-        /* reimp */ static Restrictions restrictions() { return OnlyOneKey|NeedSecretKey; }
+        GpgME::Protocol protocol() const;
+
+        /* reimp */ static Restrictions restrictions() { return AnyCardCanLearnKeys; }
 
     private:
         /* reimp */ QStringList arguments() const;
@@ -57,9 +59,13 @@ namespace Commands {
         /* reimp */ QString crashExitMessage( const QStringList & ) const;
         /* reimp */ QString errorExitMessage( const QStringList & ) const;
         /* reimp */ QString successMessage( const QStringList & ) const;
+
+        /* reimp */ void postSuccessHook( QWidget * );
+    private:
+        GpgME::Protocol m_protocol;
     };
 
 }
 }
 
-#endif // __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
+#endif // __KLEOPATRA_COMMMANDS_LEARNCARDKEYSCOMMAND_H__

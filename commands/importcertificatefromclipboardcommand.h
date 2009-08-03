@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/changepassphrasecommand.h
+    importcertificatefromclipboardcommand.h
 
-    This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    This clipboard is part of Kleopatra, the KDE keymanager
+    Copyright (c) 2007 Klarälvdalens Datakonsult AB
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,42 +24,40 @@
     of Qt that use the same license as Qt), and distribute linked
     combinations including the two.  You must obey the GNU General
     Public License in all respects for all of the code used other than
-    Qt.  If you modify this file, you may extend this exception to
-    your version of the file, but you are not obligated to do so.  If
+    Qt.  If you modify this clipboard, you may extend this exception to
+    your version of the clipboard, but you are not obligated to do so.  If
     you do not wish to do so, delete this exception statement from
     your version.
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
+#ifndef __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
+#define __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
 
-#include <commands/gnupgprocesscommand.h>
+#include "importcertificatescommand.h"
+
+class QStringList;
 
 namespace Kleo {
-namespace Commands {
 
-    class ChangePassphraseCommand : public GnuPGProcessCommand {
+    class ImportCertificateFromClipboardCommand : public ImportCertificatesCommand {
         Q_OBJECT
     public:
-        explicit ChangePassphraseCommand( QAbstractItemView * view, KeyListController * parent );
-        explicit ChangePassphraseCommand( KeyListController * parent );
-        explicit ChangePassphraseCommand( const GpgME::Key & key );
-        ~ChangePassphraseCommand();
+        explicit ImportCertificateFromClipboardCommand( KeyListController * parent );
+        explicit ImportCertificateFromClipboardCommand( QAbstractItemView * view, KeyListController * parent );
+        ~ImportCertificateFromClipboardCommand();
 
-        /* reimp */ static Restrictions restrictions() { return OnlyOneKey|NeedSecretKey; }
+        static bool canImportCurrentClipboard();
 
     private:
-        /* reimp */ QStringList arguments() const;
+        /* reimp */ void doStart();
 
-        /* reimp */ QString errorCaption() const;
-        /* reimp */ QString successCaption() const;
-
-        /* reimp */ QString crashExitMessage( const QStringList & ) const;
-        /* reimp */ QString errorExitMessage( const QStringList & ) const;
-        /* reimp */ QString successMessage( const QStringList & ) const;
+    private:
+        class Private;
+        inline Private * d_func();
+        inline const Private * d_func() const;
     };
-
-}
 }
 
-#endif // __KLEOPATRA_COMMMANDS_CHANGEPASSPHRASECOMMAND_H__
+#endif // __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
+
+

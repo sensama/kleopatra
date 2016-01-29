@@ -237,7 +237,9 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments,
     if (!err.isEmpty()) {
         KMessageBox::sorry(NULL, err.toHtmlEscaped(), i18n("Failed to execute command"));
         Q_EMIT setExitValue(1);
+        return;
     }
+    Q_EMIT setExitValue(0);
 }
 
 QString KleopatraApplication::newInstance(const QCommandLineParser &parser,

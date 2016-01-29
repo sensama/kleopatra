@@ -23,3 +23,6 @@
 
 /* Mirrored from cmake option */
 #cmakedefine KLEO_STATIC_KCMODULES 1
+
+/* DBus available */
+#cmakedefine01 HAVE_QDBUS

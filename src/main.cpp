@@ -43,6 +43,7 @@
 
 #include <utils/gnupg-helper.h>
 #include <utils/archivedefinition.h>
+#include "utils/kuniqueservice.h"
 
 #ifdef HAVE_USABLE_ASSUAN
 # include <uiserver/uiserver.h>
@@ -73,8 +74,6 @@ class UiServer;
 
 #include "kleopatra_debug.h"
 #include "kleopatra_options.h"
-
-#include <KDBusService>
 
 #include <KLocalizedString>
 #include <kiconloader.h>
@@ -213,8 +212,8 @@ int main(int argc, char **argv)
 
     KLocalizedString::setApplicationDomain("kleopatra");
 
-    KDBusService service(KDBusService::Unique);
-    QObject::connect(&service, &KDBusService::activateRequested,
+    KUniqueService service;
+    QObject::connect(&service, &KUniqueService::activateRequested,
                      &app, &KleopatraApplication::slotActivateRequested);
     QObject::connect(&app, &KleopatraApplication::setExitValue,
     &service, [&service](int i) {

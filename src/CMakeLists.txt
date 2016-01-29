@@ -83,6 +83,7 @@ set(_kleopatra_SRCS
   utils/archivedefinition.cpp
   utils/auditlog.cpp
   utils/clipboardmenu.cpp
+  utils/kuniqueservice.cpp
 
   selftest/selftest.cpp
   selftest/enginecheck.cpp
@@ -266,10 +267,10 @@ target_link_libraries(kleopatra_bin
   KF5::XmlGui
   KF5::IconThemes
   KF5::WindowSystem
-  KF5::DBusAddons
   Qt5::Network
   Qt5::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}
+  ${_kleopatra_dbusaddons_libs}
   kleopatraclientcore
 )
 

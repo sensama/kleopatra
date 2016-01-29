@@ -1,8 +1,8 @@
 /*
-    main.cpp
+    kuniqueservice_dbus.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2001,2002,2004 Klarälvdalens Datakonsult AB
+    Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,42 +30,33 @@
     your version.
 */
 
-#include <config-kleopatra.h>
+#include "kuniqueservice.h"
+#include <KDBusService>
 
-#include "aboutdata.h"
-#include "kwatchgnupgmainwin.h"
-#include <kdelibs4configmigrator.h>
-#include "utils/kuniqueservice.h"
-
-#include <kmessagebox.h>
-#include <KLocalizedString>
-#include "kwatchgnupg_debug.h"
-#include <QCommandLineParser>
-#include <QApplication>
-
-int main(int argc, char **argv)
+class KUniqueService::KUniqueServicePrivate
 {
-    QApplication app(argc, argv);
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kwatchgnupg"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kwatchgnupgrc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kwatchgnupgui.rc"));
-    migrate.migrate();
+    Q_DISABLE_COPY(KUniqueServicePrivate)
 
-    KLocalizedString::setApplicationDomain("kwatchgnupg");
-    AboutData aboutData;
+public:
+    KUniqueServicePrivate(KUniqueService *q) : mService(KDBusService::Unique)
+    {
+        QObject::connect(&mService, &KDBusService::activateRequested,
+                         q, &KUniqueService::activateRequested);
+    }
 
-    KAboutData::setApplicationData(aboutData);
-    QCommandLineParser parser;
-    parser.addVersionOption();
-    parser.addHelpOption();
-    aboutData.setupCommandLine(&parser);
-    parser.process(app);
-    aboutData.processCommandLine(&parser);
+    void setExitValue(int code)
+    {
+        mService.setExitValue(code);
+    }
 
-    KUniqueService service;
+private:
+    KDBusService mService;
+};
 
-    KWatchGnuPGMainWindow *mMainWin = new KWatchGnuPGMainWindow();
-    mMainWin->show();
-    return app.exec();
+KUniqueService::KUniqueService() : d_ptr(new KUniqueServicePrivate(this)) {}
+
+void KUniqueService::setExitValue(int code)
+{
+    Q_D(KUniqueService);
+    d->setExitValue(code);
 }

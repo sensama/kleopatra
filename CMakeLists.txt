@@ -32,7 +32,6 @@ include(ECMQtDeclareLoggingCategory)
 
 # Find KF5 packages
 find_package(KF5Codecs ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5Config ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5I18n ${KF5_VERSION} CONFIG REQUIRED)
@@ -44,6 +43,22 @@ find_package(KF5TextWidgets ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5DocTools ${KF5_VERSION} CONFIG)
 
 set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" TYPE OPTIONAL PURPOSE "Required to generate Kleopatra documentation.")
+
+# Optional packages
+if (WIN32)
+  # Only a replacement available for Windows so this
+  # is required on other platforms.
+  find_package(KF5DBusAddons ${KF5_VERSION} CONFIG)
+  set_package_properties(KF5DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
+                         PURPOSE "DBus session integration"
+                         URL "http://inqlude.org/libraries/kdbusaddons.html"
+                         TYPE OPTIONAL)
+else()
+  find_package(KF5DBusAddons ${KF5_VERSION} CONFIG REQUIRED)
+  set(_kleopatra_dbusaddons_libs KF5::DBusAddons)
+endif()
+
+set(HAVE_QDBUS ${Qt5DBus_FOUND})
 
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
@@ -116,6 +131,7 @@ add_subdirectory(src)
 
 if(BUILD_TESTING)
     add_subdirectory(tests)
+    add_subdirectory(autotests)
 endif()
 install( FILES kleopatra.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
 

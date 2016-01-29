@@ -2,6 +2,7 @@ set(kwatchgnupg_SRCS
   ../utils/kdlogtextwidget.cpp
   ../utils/gnupg-helper.cpp
   ../utils/hex.cpp
+  ../utils/kuniqueservice.cpp
   ../kleopatra_debug.cpp
   kwatchgnupgmainwin.cpp
   kwatchgnupgconfig.cpp
@@ -9,6 +10,7 @@ set(kwatchgnupg_SRCS
   tray.cpp
   main.cpp
 )
+
 ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME log_kwatchgnupg)
 qt5_add_resources(kwatchgnupg_SRCS kwatchgnupg.qrc)
 

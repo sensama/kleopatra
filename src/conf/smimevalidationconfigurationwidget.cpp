@@ -44,7 +44,9 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <QDBusConnection>
+#if HAVE_QDBUS
+# include <QDBusConnection>
+#endif
 
 using namespace Kleo;
 using namespace Kleo::Config;
@@ -59,7 +61,9 @@ public:
           customHTTPProxyWritable(false),
           ui(q)
     {
+#if HAVE_QDBUS
         QDBusConnection::sessionBus().connect(QString(), QString(), QStringLiteral("org.kde.kleo.CryptoConfig"), QStringLiteral("changed"), q, SLOT(load()));
+#endif
     }
 
     bool customHTTPProxyWritable;

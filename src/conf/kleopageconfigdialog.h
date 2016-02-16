@@ -1,10 +1,7 @@
 /*
-    configuredialog.h
+    kleopageconfigdialog.h.h
 
     This file is part of Kleopatra
-    Copyright (C) 2000 Espen Sand, espen@kde.org
-    Copyright (C) 2001-2002 Marc Mutz <mutz@kde.org>
-    Copyright (c) 2004 Klarälvdalens Datakonsult AB
     Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or
@@ -32,33 +29,45 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
-#define __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
+#ifndef __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__
+#define __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__
 
-#include "config-kleopatra.h"
+#include <KPageDialog>
+#include <QList>
+
+class KCModule;
+class KPageWidgetItem;
 
 /**
- * This is a small wrapper class that holds common code between
- * the KCM Config dialog (which is used when KCMUtils are available)
- * and the KleoPageConfigDialog. Which is just a KPageView
- * with the neccessary bits of the KCMultiDialog behavior.
- */
-#if HAVE_KCMUTILS
-# include <KCMultiDialog>
-class ConfigureDialog : public KCMultiDialog
-#else
-# include "kleopageconfigdialog.h"
-class ConfigureDialog : public KleoPageConfigDialog
-#endif
+ * KPageDialog based config dialog to be used when
+ * KCMUtils are not available. */
+class KleoPageConfigDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    explicit ConfigureDialog(QWidget *parent = Q_NULLPTR);
-    ~ConfigureDialog();
+    explicit KleoPageConfigDialog(QWidget *parent = Q_NULLPTR);
 
-protected:
-    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    void addModule(const QString &module);
 
+Q_SIGNALS:
+    void configCommitted();
+
+protected Q_SLOTS:
+    void slotDefaultClicked();
+    void slotUser1Clicked();
+    void slotApplyClicked();
+    void slotOkClicked();
+    void slotHelpClicked();
+    void slotCurrentPageChanged(KPageWidgetItem *current, KPageWidgetItem *previous);
+    void moduleChanged(bool value);
+
+private:
+    void clientChanged();
+    void apply();
+
+    QList<KCModule *> mModules;
+    QList<KCModule *> mChangedModules;
+    QMap<QString, QString> mHelpUrls;
 };
 
-#endif /* __KLEOPATRA_CONF_CONFIGUREDIALOG_H__ */
+#endif /* __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__ */

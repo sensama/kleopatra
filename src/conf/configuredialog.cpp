@@ -31,53 +31,43 @@
     your version.
 */
 
-#include <config-kleopatra.h>
+#include "config-kleopatra.h"
 
 #include "configuredialog.h"
-#include <kwindowsystem.h>
-#include <kconfig.h>
-#include <kiconloader.h>
-#include <kcmultidialog.h>
+
+#include <KWindowSystem>
+#include <KConfig>
+#include <KIconLoader>
 #include <KLocalizedString>
-#include <kconfiggroup.h>
-#include <QApplication>
+#include <KConfigGroup>
 #include <KSharedConfig>
+
+#include <QApplication>
 #include <QIcon>
 
-#ifdef KLEO_STATIC_KCMODULES
-# include <KDesktopFile>
-# define KCM_IMPORT_PLUGIN( x ) extern "C" KCModule * create_##x( QWidget * parent = Q_NULLPTR, const QVariantList & args=QVariantList() );
-# define addMyModule( x ) addModule( KCModuleInfo( KDesktopFile( "services", QLatin1String(#x) + QLatin1String(".desktop") ) ), create_##x() )
-#else // KLEO_STATIC_KCMODULES
-# define KCM_IMPORT_PLUGIN( x )
-# define addMyModule( x ) addModule( QLatin1String(#x) )
-#endif // KLEO_STATIC_KCMODULES
-
-KCM_IMPORT_PLUGIN(kleopatra_config_dirserv)
-KCM_IMPORT_PLUGIN(kleopatra_config_appear)
-#ifdef HAVE_KLEOPATRACLIENT_LIBRARY
-KCM_IMPORT_PLUGIN(kleopatra_config_cryptooperations)
-KCM_IMPORT_PLUGIN(kleopatra_config_smimevalidation)
+#if HAVE_KCMUTILS
+# include <KCMultiDialog>
+#else
+# include "kleopageconfigdialog.h"
 #endif
-KCM_IMPORT_PLUGIN(kleopatra_config_gnupgsystem)
 
 ConfigureDialog::ConfigureDialog(QWidget *parent)
+#if HAVE_KCMUTILS
     : KCMultiDialog(parent)
+#else
+    : KleoPageConfigDialog(parent)
+#endif
 {
     setFaceType(KPageDialog::List);
     setWindowTitle(i18n("Configure"));
     KWindowSystem::setIcons(winId(), qApp->windowIcon().pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)),
                             qApp->windowIcon().pixmap(IconSize(KIconLoader::Small), IconSize(KIconLoader::Small)));
-    //QT5 showButton( User1, true );
 
-    addMyModule(kleopatra_config_dirserv);
-    addMyModule(kleopatra_config_appear);
-#ifdef HAVE_KLEOPATRACLIENT_LIBRARY
-    addMyModule(kleopatra_config_cryptooperations);
-    addMyModule(kleopatra_config_smimevalidation);
-#endif
-    addMyModule(kleopatra_config_gnupgsystem);
-
+    addModule(QStringLiteral("kleopatra_config_dirserv"));
+    addModule(QStringLiteral("kleopatra_config_appear"));
+    addModule(QStringLiteral("kleopatra_config_cryptooperations"));
+    addModule(QStringLiteral("kleopatra_config_smimevalidation"));
+    addModule(QStringLiteral("kleopatra_config_gnupgsystem"));
     // We store the minimum size of the dialog on hide, because otherwise
     // the KCMultiDialog starts with the size of the first kcm, not
     // the largest one. This way at least after the first showing of
@@ -96,13 +86,14 @@ void ConfigureDialog::hideEvent(QHideEvent *e)
     KConfigGroup geometry(KSharedConfig::openConfig(), "Geometry");
     geometry.writeEntry("ConfigureDialogWidth", minSize.width());
     geometry.writeEntry("ConfigureDialogHeight", minSize.height());
+#if HAVE_KCMUTILS
     KCMultiDialog::hideEvent(e);
+#else
+    KleoPageConfigDialog::hideEvent(e);
+#endif
 }
 
 ConfigureDialog::~ConfigureDialog()
 {
 }
-
-#undef addMyModule
-#undef KCM_IMPORT_PLUGIN
 

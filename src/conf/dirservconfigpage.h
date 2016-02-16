@@ -33,7 +33,7 @@
 #ifndef DIRSERVCONFIGPAGE_H
 #define DIRSERVCONFIGPAGE_H
 
-#include <kcmodule.h>
+#include <KCModule>
 
 #include "Libkleo/CryptoConfig"
 

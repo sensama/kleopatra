@@ -47,6 +47,10 @@ else()
   endif()
 endif()
 
+if(HAVE_KCMUTILS)
+  set (_kleopatra_extra_libs KF5::KCMUtils)
+endif()
+
 if(HAVE_GPG_ERR_SOURCE_KLEO)
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
 else()
@@ -203,6 +207,7 @@ set(_kleopatra_SRCS
   ${_kleopatra_uiserver_files}
 
   conf/configuredialog.cpp
+  conf/kleopageconfigdialog.cpp
 
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp
@@ -262,7 +267,6 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_extra_libs}
   KF5::Libkleo
   KF5::Mime
-  KF5::KCMUtils
   KF5::I18n
   KF5::XmlGui
   KF5::IconThemes

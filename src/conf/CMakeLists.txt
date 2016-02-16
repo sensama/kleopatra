@@ -54,25 +54,24 @@ kconfig_add_kcfg_files(kcm_kleopatra_PART_SRCS
   ${kleopatra_SOURCE_DIR}/src/kcfg/fileoperationspreferences.kcfgc
 )
 
-if(KLEO_STATIC_KCMODULES)
-  add_library(kcm_kleopatra MODULE STATIC ${kcm_kleopatra_PART_SRCS})
-else()
-  add_library(kcm_kleopatra MODULE ${kcm_kleopatra_PART_SRCS})
+add_library(kcm_kleopatra MODULE ${kcm_kleopatra_PART_SRCS})
+
+if(HAVE_KCMUTILS)
+  set (_kcm_kleopatra_extra_libs KF5::KCMUtils)
 endif()
 
 target_link_libraries(kcm_kleopatra
   KF5::Libkleo
-  KF5::KCMUtils
   KF5::IconThemes
   KF5::I18n
-  Qt5::DBus
+  KF5::WidgetsAddons
+  KF5::ConfigWidgets
   ${_kcm_kleopatra_extra_libs}
+  ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
 )
 
-if(NOT KLEO_STATIC_KCMODULES)
-  install(TARGETS kcm_kleopatra DESTINATION ${KDE_INSTALL_PLUGINDIR})
-endif()
+install(TARGETS kcm_kleopatra DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############
 

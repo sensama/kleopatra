@@ -41,8 +41,8 @@
 
 #include <Libkleo/Exception>
 
-#include "../utils/wsastarter.h"
-#include "../utils/hex.h"
+#include "utils/wsastarter.h"
+#include "utils/hex.h"
 
 #ifndef Q_OS_WIN32
 # include <unistd.h>

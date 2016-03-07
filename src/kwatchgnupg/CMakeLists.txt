@@ -16,8 +16,6 @@ if(WIN32)
   set(kwatchgnupg_SRCS ${kwatchgnupg_SRCS} ../utils/gnupg-registry.c)
 endif()
 
-include_directories(..)
-
 add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
 
 

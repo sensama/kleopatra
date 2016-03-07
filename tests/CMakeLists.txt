@@ -2,8 +2,8 @@ add_subdirectory(gnupg_home)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(
-  ${CMAKE_SOURCE_DIR}/kleopatra
-  ${CMAKE_BINARY_DIR}/kleopatra
+  ${CMAKE_SOURCE_DIR}/src/
+  ${CMAKE_BINARY_DIR}/src/
   ${Boost_INCLUDE_DIR}
   ${GPGME_INCLUDES}
 )
@@ -13,14 +13,14 @@ include_directories(
 if(PORT_ME_AWAY_FROM_EVENT_LOOPS)
   set(test_keylistmodels_SRCS
     test_keylistmodels.cpp
-    ../models/keylistmodel.cpp
-    ../models/keylistsortfilterproxymodel.cpp
-    ../utils/formatting.cpp
+    ${CMAKE_SOURCE_DIR}/src/models/keylistmodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/models/keylistsortfilterproxymodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/formatting.cpp
   )
   if(KLEO_MODEL_TEST)
     set(test_keylistmodels_SRCS
       ${test_keylistmodels_SRCS}
-      ../models/modeltest.cpp
+      ${CMAKE_SOURCE_DIR}/src/models/modeltest.cpp
     )
   endif()
 
@@ -32,13 +32,13 @@ if(PORT_ME_AWAY_FROM_EVENT_LOOPS)
 
   set(test_useridlistmodels_SRCS
     test_useridlistmodels.cpp
-    ../models/useridlistmodel.cpp
-    ../utils/formatting.cpp
+    ${CMAKE_SOURCE_DIR}/src/models/useridlistmodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/formatting.cpp
   )
   if(KLEO_MODEL_TEST)
     set(test_useridlistmodels_SRCS
       ${test_useridlistmodels_SRCS}
-      ../models/modeltest.cpp
+      ${CMAKE_SOURCE_DIR}/src/models/modeltest.cpp
     )
   endif()
 
@@ -77,7 +77,8 @@ if(USABLE_ASSUAN_FOUND)
 
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_2)
 
-  set(test_uiserver_SRCS test_uiserver.cpp ../utils/wsastarter.cpp ../utils/hex.cpp)
+  set(test_uiserver_SRCS test_uiserver.cpp ${CMAKE_SOURCE_DIR}/src/utils/wsastarter.cpp
+                                           ${CMAKE_SOURCE_DIR}/src/utils/hex.cpp)
 
 #FIXME: omitting TEST makes test_uiserver print output again on a Win32 console;
 # find a better fix for this issue

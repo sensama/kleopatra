@@ -41,6 +41,9 @@ find_package(KF5Notifications ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5WindowSystem ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5TextWidgets ${KF5_VERSION} CONFIG REQUIRED)
+find_package(KF5DocTools REQUIRED)
+
+set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" TYPE OPTIONAL PURPOSE "Required to generate Kleopatra documentation.")
 
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
@@ -115,3 +118,7 @@ if(BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 install( FILES kleopatra.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+
+if(KF5DocTools_FOUND)
+    add_subdirectory(doc)
+endif()

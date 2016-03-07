@@ -35,6 +35,8 @@
 #ifndef __KLEOPATRA_UISERVER_CLASSIFY_H__
 #define __KLEOPATRA_UISERVER_CLASSIFY_H__
 
+#include <QByteArray>
+
 class QString;
 class QStringList;
 

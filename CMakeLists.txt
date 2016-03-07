@@ -60,7 +60,7 @@ if(NOT Boost_TOPOLOGICAL_SORT_DIR)
     message(FATAL_ERROR "The Boost Topological_sort header was NOT found. Should be part of Boost graph module.")
 endif()
 
-set(kleopatra_version 2.2.0)
+set(kleopatra_version 2.3.0)
 set(kleopatra_release FALSE)
 
 if(NOT kleopatra_release)

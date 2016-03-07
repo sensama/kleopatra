@@ -1,0 +1,44 @@
+Kleopatra packaging notes
+=========================
+
+The build dependencies should be fairly straightforward (see CMakeLists.txt)
+
+Runtime Dependencies
+====================
+
+Kleopatra is a GUI for GnuPG so it needs a working GnuPG setup.
+
+- gnupg2
+-- gnupg-agent (part of gnupg2 sources)
+-- dirmngr (part of gnupg2 sources)
+-- gpgsm (part of gnupg2 sources)
+
+- Pinentry (Qt / Gtk / Gnome)
+
+For Pinentry preferably pinentry-qt alternatively pinentry-gtk2 and
+pinentry-gnome also work. Pinentry-curses does not work for Kleopatra.
+
+Kleopatra may work with gnupg 1, too but the selftest will
+warn about this and some functionality will be unavailable. It should
+depend on gnupg2. GnuPG 2.1.x is supported, too.
+
+You can use Kleopatra's selftest to check your packaging it should
+show no errors.
+
+Downstream Dependers
+====================
+
+- Dolphin
+Kleopatra provided crypto integration for Dolphin through installed
+desktop files. You might want to suggest / recommend it.
+
+- Kontact / KMail / KDEPIM
+While Kontact / KMail crypto works without Kleopatra it should
+be installed with KMail as it provides Crypto Configuration GUI.
+It also provides Certificate Details. This should probably be
+recommended and part of a kdepim meta package.
+
+- GnuPG itself
+GnuPG can, of course, be used without Kleopatra. In GUI
+environments you might want to weakly suggest Kleopatra as
+a GUI for GnuPG (especially GpgSM)

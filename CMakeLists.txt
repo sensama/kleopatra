@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 # Standalone build. Find / include everything neccessary.
 set(KF5_VERSION "5.17.0")
-set(GPGMEPP_VERSION "5.1.40")
+set(GPGMEPP_VERSION "5.1.41")
 set(KMIME_VERSION "5.1.40")
 set(LIBKLEO_VERSION "5.1.41")
 set(QT_REQUIRED_VERSION "5.4.0")

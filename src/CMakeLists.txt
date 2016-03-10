@@ -278,7 +278,7 @@ install(
   PROGRAMS data/org.kde.kleopatra.desktop data/kleopatra_import.desktop
   DESTINATION ${KDE_INSTALL_APPDIR}
 )
-install(FILES data/kleopatra.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES data/org.kde.kleopatra.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(
   FILES data/kleopatra_signencryptfiles.desktop
         data/kleopatra_signencryptfolders.desktop

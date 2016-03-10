@@ -412,10 +412,8 @@ void ImportCertificatesCommand::Private::tryToFinish()
                     showError(err, ids[i]);
                 }
     } else {
-
         //iterate over all imported certificates
         Q_FOREACH (const ImportResult &result, results) {
-
             //when a new certificate got a secret key
             if (result.numSecretKeysImported() >= 1) {
                 const char *fingerPr = result.imports()[0].fingerprint();
@@ -434,49 +432,38 @@ void ImportCertificatesCommand::Private::tryToFinish()
                     return;
                 }
 
-                QString uids;
+                QStringList uids;
                 Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
-                    uids.append(Formatting::prettyUserID(uid) +
-                        QString::fromUtf8("<br />"));
+                    uids << Formatting::prettyNameAndEMail(uid);
                 }
 
-                const QString str = i18n(
-                    "You imported a secret key with the following properties:\
-                    <br /><br />\
-                    Fingerprint : <br />\
-                    %1<br />\
-                    UIDs:<br />\
-                    %2\
-                    <br />\
-                    Is this your own key?",
+                const QString str = xi18nc("@info",
+                    "<title>You have imported a Secret Key.</title>"
+                    "<para>The key has the fingerprint:<nl/>"
+                    "<numid>%1</numid>"
+                    "</para>"
+                    "<para>And claims the User IDs:"
+                    "<list><item>%2</item></list>"
+                    "</para>"
+                    "Is this your own key? (Set trust level to ultimate)",
                     QString::fromUtf8(fingerPr),
-                    uids);
+                    uids.join(QStringLiteral("</item><item>")));
 
-                int k = KMessageBox::questionYesNo(
-                    0, //parent
-                    str, //message
-                    i18n("New Secret Key") //name
-                );
+                int k = KMessageBox::questionYesNo(Q_NULLPTR, str, i18nc("@title:window",
+                                                                   "Secret key imported"));
 
                 if (k == KMessageBox::Yes) {
                     //To use the ChangeOwnerTrustJob over
                     //the CryptoBackendFactory
                     const CryptoBackend::Protocol *const backend =
-                        CryptoBackendFactory::instance()->
-                        protocol(Protocol::OpenPGP);
+                        CryptoBackendFactory::instance()->protocol(Protocol::OpenPGP);
 
                     if (!backend){
-                        qCWarning(KLEOPATRA_LOG) <<
-                            "Failed to get CryptoBackend";
+                        qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
                         return;
                     }
 
-                    ChangeOwnerTrustJob *const j = backend->
-                        changeOwnerTrustJob();
-
-                    connect(j, &Job::progress,
-                            q, &Command::progress);
-
+                    ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
                     j->start(toTrustOwner, Key::Ultimate);
                 }
             }

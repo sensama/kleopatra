@@ -35,6 +35,7 @@
 
 #include "importcertificatescommand.h"
 #include "importcertificatescommand_p.h"
+#include "kleopatra_debug.h"
 
 #include <models/keylistsortfilterproxymodel.h>
 #include <Libkleo/Predicates>
@@ -45,9 +46,11 @@
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/ImportJob>
 #include <Libkleo/ImportFromKeyserverJob>
+#include <Libkleo/ChangeOwnerTrustJob>
 
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
+#include <gpgme++/context.h>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -409,6 +412,75 @@ void ImportCertificatesCommand::Private::tryToFinish()
                     showError(err, ids[i]);
                 }
     } else {
+
+        //iterate over all imported certificates
+        Q_FOREACH (const ImportResult &result, results) {
+
+            //when a new certificate got a secret key
+            if (result.numSecretKeysImported() >= 1) {
+                const char *fingerPr = result.imports()[0].fingerprint();
+                GpgME::Error err;
+                QScopedPointer<Context>
+                    ctx(Context::createForProtocol(Protocol::OpenPGP));
+
+                if (!ctx){
+                    qCWarning(KLEOPATRA_LOG) << "Failed to get context";
+                    continue;
+                }
+
+                const Key toTrustOwner = ctx->key(fingerPr, err , false);
+
+                if (toTrustOwner.isNull()) {
+                    return;
+                }
+
+                QString uids;
+                Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
+                    uids.append(Formatting::prettyUserID(uid) +
+                        QString::fromUtf8("<br />"));
+                }
+
+                const QString str = i18n(
+                    "You imported a secret key with the following properties:\
+                    <br /><br />\
+                    Fingerprint : <br />\
+                    %1<br />\
+                    UIDs:<br />\
+                    %2\
+                    <br />\
+                    Is this your own key?",
+                    QString::fromUtf8(fingerPr),
+                    uids);
+
+                int k = KMessageBox::questionYesNo(
+                    0, //parent
+                    str, //message
+                    i18n("New Secret Key") //name
+                );
+
+                if (k == KMessageBox::Yes) {
+                    //To use the ChangeOwnerTrustJob over
+                    //the CryptoBackendFactory
+                    const CryptoBackend::Protocol *const backend =
+                        CryptoBackendFactory::instance()->
+                        protocol(Protocol::OpenPGP);
+
+                    if (!backend){
+                        qCWarning(KLEOPATRA_LOG) <<
+                            "Failed to get CryptoBackend";
+                        return;
+                    }
+
+                    ChangeOwnerTrustJob *const j = backend->
+                        changeOwnerTrustJob();
+
+                    connect(j, &Job::progress,
+                            q, &Command::progress);
+
+                    j->start(toTrustOwner, Key::Ultimate);
+                }
+            }
+        }
         showDetails(results, ids);
     }
     finished();

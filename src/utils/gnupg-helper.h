@@ -33,6 +33,8 @@
 #ifndef __KLEOPATRA_GNUPGHELPER_H__
 #define __KLEOPATRA_GNUPGHELPER_H__
 
+#include <gpgme++/engineinfo.h>
+
 class QString;
 class QStringList;
 
@@ -52,6 +54,8 @@ QString gnupgInstallPath();
 QStringList gnupgFileWhitelist();
 
 int makeGnuPGError(int code);
+
+bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
 }
 
 #endif // __KLEOPATRA_GNUPGHELPER_H__

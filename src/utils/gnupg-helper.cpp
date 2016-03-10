@@ -37,6 +37,7 @@
 #include "utils/hex.h"
 
 #include <gpgme++/engineinfo.h>
+#include <gpgme++/error.h>
 
 #include "kleopatra_debug.h"
 
@@ -52,6 +53,11 @@
 #ifdef Q_OS_WIN
 #include "gnupg-registry.h"
 #endif // Q_OS_WIN
+
+#include <algorithm>
+#include <array>
+
+using namespace GpgME;
 
 QString Kleo::gnupgHomeDirectory()
 {
@@ -177,4 +183,44 @@ QString Kleo::gpgConfListDir(const char *which)
     qCDebug(KLEOPATRA_LOG) << "gpgConfListDir(): didn't find '" << which << "'"
                            << "entry in output:" << endl << gpgConf.readAllStandardError().constData();
     return QString();
+}
+
+bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
+{
+    static QMap<Engine, std::array<int, 3> > cachedVersions;
+    const int required_version[] = {major, minor, patch};
+    // Gpgconf means spawning processes which is expensive on windows.
+    std::array<int, 3> actual_version;
+    if (!cachedVersions.contains(engine)) {
+        const Error err = checkEngine(engine);
+        if (err.code() == GPG_ERR_INV_ENGINE) {
+            qCDebug(KLEOPATRA_LOG) << "isVersion: invalid engine. '";
+            return false;
+        }
+
+        const char *actual = GpgME::engineInfo(engine).version();
+        QRegExp rx(QStringLiteral("(\\d+)\\.(\\d+)\\.(\\d+)(?:-svn\\d+)?.*"));
+        if (!rx.exactMatch(QString::fromUtf8(actual))) {
+            qCDebug(KLEOPATRA_LOG) << "Can't parse version " << actual;
+            return false;
+        }
+        bool ok;
+        for (int i = 0; i < 3; ++i) {
+            ok = false;
+            actual_version[i] = rx.cap(i + 1).toUInt(&ok);
+            assert(ok);
+        }
+
+        qCDebug(KLEOPATRA_LOG) << "Parsed" << actual << "as: "
+                               << actual_version[0] << '.'
+                               << actual_version[1] << '.'
+                               << actual_version[2] << '.';
+        cachedVersions.insert(engine, actual_version);
+    } else {
+        actual_version = cachedVersions.value(engine);
+    }
+
+    // return ! ( actual_version < required_version )
+    return !std::lexicographical_compare(std::begin(actual_version), std::end(actual_version),
+                                         std::begin(required_version), std::end(required_version));
 }

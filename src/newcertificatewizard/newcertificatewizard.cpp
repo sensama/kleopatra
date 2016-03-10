@@ -3,6 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
+                  2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,6 +52,7 @@
 #include <utils/formatting.h>
 #include <utils/validation.h>
 #include <utils/filedialog.h>
+#include "utils/gnupg-helper.h"
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Dn>
@@ -101,12 +103,31 @@ static const char ELG_KEYSIZE_LABELS_ENTRY[] = "ELGKeySizeLabels";
 static const char PGP_KEY_TYPE_ENTRY[] = "PGPKeyType";
 static const char CMS_KEY_TYPE_ENTRY[] = "CMSKeyType";
 
+// We need to be build gpgme with ECC support and GnuPG 2.1 at runtime.
+#if GPGME_VERSION_NUMBER > 0x010300
+# define GPGME_ECDSA_ECDH_SUPPORT
+#endif
+
+// This should come from gpgme in the future
+// For now we only support the basic 2.1 curves and check
+// for GnuPG 2.1. The whole subkey / usage generation needs
+// new api and a reworked dialog. (ah 10.3.16)
+// EDDSA should be supported, too.
+static const QStringList curveNames {
+    { QStringLiteral("brainpoolP256r1") },
+    { QStringLiteral("brainpoolP384r1") },
+    { QStringLiteral("brainpoolP512r1") },
+    { QStringLiteral("NIST P-256") },
+    { QStringLiteral("NIST P-384") },
+    { QStringLiteral("NIST P-521") },
+};
+
 static void set_tab_order(const QList<QWidget *> &wl)
 {
     kdtools::for_each_adjacent_pair(wl, &QWidget::setTabOrder);
 }
 
-enum KeyAlgo { RSA, DSA, ELG };
+enum KeyAlgo { RSA, DSA, ELG, ECDSA, ECDH };
 
 static bool is_algo(gpgme_pubkey_algo_t algo, KeyAlgo what)
 {
@@ -120,6 +141,12 @@ static bool is_algo(gpgme_pubkey_algo_t algo, KeyAlgo what)
         return what == ELG;
     case GPGME_PK_DSA:
         return what == DSA;
+#ifdef GPGME_ECDSA_ECDH_SUPPORT
+    case GPGME_PK_ECDSA:
+        return what == ECDSA;
+    case GPGME_PK_ECDH:
+        return what == ECDH;
+#endif
     default:
         break;
     }
@@ -139,6 +166,26 @@ static bool is_dsa(unsigned int algo)
 static bool is_elg(unsigned int algo)
 {
     return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ELG);
+}
+
+static bool is_ecdsa(unsigned int algo)
+{
+#ifdef GPGME_ECDSA_ECDH_SUPPORT
+    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ECDSA);
+#else
+    Q_UNUSED(algo);
+    return false;
+#endif
+}
+
+static bool is_ecdh(unsigned int algo)
+{
+#ifdef GPGME_ECDSA_ECDH_SUPPORT
+    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ECDH);
+#else
+    Q_UNUSED(algo);
+    return false;
+#endif
 }
 
 static void force_set_checked(QAbstractButton *b, bool on)
@@ -172,6 +219,27 @@ static unsigned int get_keysize(const QComboBox *cb)
         return 0;
     }
     return cb->itemData(idx).toInt();
+}
+
+static void set_curve(QComboBox *cb, const QString &curve)
+{
+    if (!cb) {
+        return;
+    }
+    const int idx = cb->findData(curve);
+    if (idx < 0) {
+        // Can't happen as we don't have them configurable.
+        qCWarning(KLEOPATRA_LOG) << "curve " << curve << " not allowed";
+    }
+    cb->setCurrentIndex(idx);
+}
+
+static QString get_curve(const QComboBox *cb)
+{
+    if (!cb) {
+        return QString();
+    }
+    return cb->currentText();
 }
 
 namespace Kleo
@@ -230,9 +298,11 @@ protected:
 
     FIELD(int, keyType)
     FIELD(int, keyStrength)
+    FIELD(QString, keyCurve);
 
     FIELD(int, subkeyType)
     FIELD(int, subkeyStrength)
+    FIELD(QString, subkeyCurve);
 
     FIELD(QDate, expiryDate)
 
@@ -264,7 +334,9 @@ class AdvancedSettingsDialog : public QDialog
     Q_PROPERTY(QStringList uris READ uris WRITE setUris)
     Q_PROPERTY(uint keyStrength READ keyStrength WRITE setKeyStrength)
     Q_PROPERTY(uint keyType READ keyType WRITE setKeyType)
+    Q_PROPERTY(QString keyCurve READ keyCurve WRITE setKeyCurve)
     Q_PROPERTY(uint subkeyStrength READ subkeyStrength WRITE setSubkeyStrength)
+    Q_PROPERTY(QString subkeyCurve READ keyCurve WRITE setSubkeyCurve)
     Q_PROPERTY(uint subkeyType READ subkeyType WRITE setSubkeyType)
     Q_PROPERTY(bool signingAllowed READ signingAllowed WRITE setSigningAllowed)
     Q_PROPERTY(bool encryptionAllowed READ encryptionAllowed WRITE setEncryptionAllowed)
@@ -278,7 +350,8 @@ public:
           pgpDefaultAlgorithm(GPGME_PK_ELG_E),
           cmsDefaultAlgorithm(GPGME_PK_RSA),
           keyTypeImmutable(false),
-          ui()
+          ui(),
+          mECCSupported(engineIsVersion(2, 1, 0))
     {
         ui.setupUi(this);
         const QDate today = QDate::currentDate();
@@ -352,7 +425,8 @@ public:
     {
         QRadioButton *const rb =
             is_rsa(algo) ? ui.rsaRB :
-            is_dsa(algo) ? ui.dsaRB : 0;
+            is_dsa(algo) ? ui.dsaRB :
+            is_ecdsa(algo) ? ui.ecdsaRB : Q_NULLPTR;
         if (rb) {
             rb->setChecked(true);
         }
@@ -362,13 +436,27 @@ public:
         return
             ui.dsaRB->isChecked() ? GPGME_PK_DSA :
             ui.rsaRB->isChecked() ? GPGME_PK_RSA :
+#ifdef GPGME_ECDSA_ECDH_SUPPORT
+            ui.ecdsaRB->isChecked() ? GPGME_PK_ECDSA :
+#endif
             0;
+    }
+
+    void setKeyCurve(const QString &curve)
+    {
+        set_curve(ui.ecdsaKeyCurvesCB, curve);
+    }
+
+    QString keyCurve() const
+    {
+        return get_curve(ui.ecdsaKeyCurvesCB);
     }
 
     void setSubkeyType(unsigned int algo)
     {
         ui.elgCB->setChecked(is_elg(algo));
         ui.rsaSubCB->setChecked(is_rsa(algo));
+        ui.ecdhCB->setChecked(is_ecdh(algo));
     }
     unsigned int subkeyType() const
     {
@@ -376,8 +464,22 @@ public:
             return GPGME_PK_ELG_E;
         } else if (ui.rsaSubCB->isChecked()) {
             return GPGME_PK_RSA;
+#ifdef GPGME_ECDSA_ECDH_SUPPORT
+        } else if (ui.ecdhCB->isChecked()) {
+            return GPGME_PK_ECDH;
+#endif
         }
         return 0;
+    }
+
+    void setSubkeyCurve(const QString &curve)
+    {
+        set_curve(ui.ecdhKeyCurvesCB, curve);
+    }
+
+    QString subkeyCurve() const
+    {
+        return get_curve(ui.ecdhKeyCurvesCB);
     }
 
     void setSubkeyStrength(unsigned int strength)
@@ -453,11 +555,16 @@ private Q_SLOTS:
     {
         const unsigned int algo = keyType();
         const unsigned int sk_algo = subkeyType();
+
         if (protocol == OpenPGP) {
             if (!keyTypeImmutable) {
                 ui.elgCB->setEnabled(is_dsa(algo));
-                if (sender() == ui.dsaRB || sender() == ui.rsaRB) {
+                ui.rsaSubCB->setEnabled(is_rsa(algo));
+                ui.ecdhCB->setEnabled(is_ecdsa(algo));
+                if (sender() == ui.dsaRB || sender() == ui.rsaRB || sender() == ui.ecdsaRB) {
                     ui.elgCB->setChecked(is_dsa(algo));
+                    ui.ecdhCB->setChecked(is_ecdsa(algo));
+                    ui.rsaSubCB->setChecked(is_rsa(algo));
                 }
                 if (is_rsa(algo)) {
                     ui.encryptionCB->setEnabled(true);
@@ -478,6 +585,12 @@ private Q_SLOTS:
                     } else {
                         ui.encryptionCB->setChecked(false);
                     }
+                } else if (is_ecdsa(algo)) {
+                    ui.signingCB->setEnabled(true);
+                    ui.signingCB->setChecked(true);
+                    ui.authenticationCB->setEnabled(true);
+                    ui.encryptionCB->setEnabled(false);
+                    ui.encryptionCB->setChecked(is_ecdh(sk_algo));
                 }
             }
         } else {
@@ -509,6 +622,7 @@ private:
     unsigned int cmsDefaultAlgorithm;
     bool keyTypeImmutable;
     Ui_AdvancedSettingsDialog ui;
+    bool mECCSupported;
 };
 
 class ChooseProtocolPage : public WizardPage
@@ -1435,7 +1549,8 @@ QStringList KeyCreationPage::keyUsages() const
     if (signingAllowed()) {
         usages << QStringLiteral("sign");
     }
-    if (encryptionAllowed() && !is_dsa(keyType()) && !is_rsa(subkeyType())) {
+    if (encryptionAllowed() && !is_ecdh(subkeyType()) &&
+        !is_dsa(keyType()) && !is_rsa(subkeyType())) {
         usages << QStringLiteral("encrypt");
     }
     if (0)   // not needed in pgp (implied) and not supported in cms
@@ -1454,7 +1569,8 @@ QStringList OverviewPage::i18nKeyUsages() const
     if (signingAllowed()) {
         usages << i18n("Sign");
     }
-    if (encryptionAllowed() && !is_dsa(keyType()) && !is_rsa(subkeyType())) {
+    if (encryptionAllowed() && !is_ecdh(subkeyType()) &&
+        !is_dsa(keyType()) && !is_rsa(subkeyType())) {
         usages << i18n("Encrypt");
     }
     if (0)   // not needed in pgp (implied) and not supported in cms
@@ -1470,7 +1586,8 @@ QStringList OverviewPage::i18nKeyUsages() const
 QStringList KeyCreationPage::subkeyUsages() const
 {
     QStringList usages;
-    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()))) {
+    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
+                                is_ecdh(subkeyType()))) {
         assert(subkeyType());
         usages << QStringLiteral("encrypt");
     }
@@ -1480,7 +1597,8 @@ QStringList KeyCreationPage::subkeyUsages() const
 QStringList OverviewPage::i18nSubkeyUsages() const
 {
     QStringList usages;
-    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()))) {
+    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
+                                is_ecdh(subkeyType()))) {
         assert(subkeyType());
         usages << i18n("Encrypt");
     }
@@ -1530,7 +1648,9 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
     }
     if (details) {
         s         << Row<        >(i18n("Key Type:"),          QLatin1String(gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(keyType()))));
-        if (const unsigned int strength = keyStrength()) {
+        if (is_ecdsa(keyType())) {
+            s     << Row<        >(i18n("Key Curve:"),         keyCurve());
+        } else if (const unsigned int strength = keyStrength()) {
             s     << Row<        >(i18n("Key Strength:"),      i18np("1 bit", "%1 bits", strength));
         } else {
             s     << Row<        >(i18n("Key Strength:"),      i18n("default"));
@@ -1538,7 +1658,9 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
         s         << Row<        >(i18n("Certificate Usage:"), i18nCombinedKeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
         if (const unsigned int subkey = subkeyType()) {
             s     << Row<        >(i18n("Subkey Type:"),       QLatin1String(gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(subkey))));
-            if (const unsigned int strength = subkeyStrength()) {
+            if (is_ecdh(subkeyType())) {
+                s << Row<        >(i18n("Key Curve:"),         subkeyCurve());
+            } else if (const unsigned int strength = subkeyStrength()) {
                 s << Row<        >(i18n("Subkey Strength:"),   i18np("1 bit", "%1 bits", strength));
             } else {
                 s << Row<        >(i18n("Subkey Strength:"),   i18n("default"));
@@ -1586,13 +1708,19 @@ QString KeyCreationPage::createGnupgKeyParms() const
         s << "%ask-passphrase"                             << endl;
     }
     s     << "key-type:      " << gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(keyType())) << endl;
-    if (const unsigned int strength = keyStrength()) {
+    if (is_ecdsa(keyType())) {
+        s << "key-curve:     " << keyCurve() << endl;
+
+    } else if (const unsigned int strength = keyStrength()) {
         s << "key-length:    " << strength                 << endl;
     }
     s     << "key-usage:     " << keyUsages().join(QStringLiteral(" "))    << endl;
     if (const unsigned int subkey = subkeyType()) {
         s << "subkey-type:   " << gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(subkey)) << endl;
-        if (const unsigned int strength = subkeyStrength()) {
+
+        if (is_ecdh(subkeyType())) {
+            s << "subkey-curve: " << subkeyCurve()         << endl;
+        } else if (const unsigned int strength = subkeyStrength()) {
             s << "subkey-length: " << strength             << endl;
         }
         s << "subkey-usage:  " << subkeyUsages().join(QStringLiteral(" ")) << endl;
@@ -1658,7 +1786,8 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
     fill_combobox(*ui.rsaKeyStrengthSubCB, rsaKeySizes, rsaKeySizeLabels);
     fill_combobox(*ui.dsaKeyStrengthCB, dsaKeySizes, dsaKeySizeLabels);
     fill_combobox(*ui.elgKeyStrengthCB, elgKeySizes, elgKeySizeLabels);
-
+    ui.ecdhKeyCurvesCB->addItems(curveNames);
+    ui.ecdsaKeyCurvesCB->addItems(curveNames);
 }
 
 void AdvancedSettingsDialog::loadDefaultKeyType()
@@ -1710,17 +1839,26 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui.emailGB->setVisible(protocol == CMS);
     ui.dnsGB->setVisible(protocol == CMS);
     ui.uriGB->setVisible(protocol == CMS);
+
+    ui.ecdhCB->setVisible(mECCSupported);
+    ui.ecdhKeyCurvesCB->setVisible(mECCSupported);
+    ui.ecdsaKeyCurvesCB->setVisible(mECCSupported);
+    ui.ecdsaRB->setVisible(mECCSupported);
     // Technical Details Page
     if (keyTypeImmutable) {
         ui.rsaRB->setEnabled(false);
         ui.rsaSubCB->setEnabled(false);
         ui.dsaRB->setEnabled(false);
         ui.elgCB->setEnabled(false);
+        ui.ecdsaRB->setEnabled(false);
+        ui.ecdhCB->setEnabled(false);
     } else {
         ui.rsaRB->setEnabled(true);
         ui.rsaSubCB->setEnabled(protocol == OpenPGP);
         ui.dsaRB->setEnabled(protocol == OpenPGP);
         ui.elgCB->setEnabled(protocol == OpenPGP);
+        ui.ecdsaRB->setEnabled(protocol == OpenPGP);
+        ui.ecdhCB->setEnabled(protocol == OpenPGP);
     }
     ui.certificationCB->setVisible(protocol == OpenPGP);   // gpgsm limitation?
     ui.authenticationCB->setVisible(protocol == OpenPGP);

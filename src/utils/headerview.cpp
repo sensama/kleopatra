@@ -80,6 +80,7 @@ inline typename T_container::value_type lookup(const T_container &c, unsigned in
 
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0) // provided by Qt since 5.7
 template <typename T, typename A>
 QDebug operator<<(QDebug debug, const std::vector<T, A> &v)
 {
@@ -93,6 +94,7 @@ QDebug operator<<(QDebug debug, const std::vector<T, A> &v)
     debug << ")";
     return debug.space();
 }
+#endif
 
 class HeaderView::Private
 {

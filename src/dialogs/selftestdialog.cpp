@@ -39,10 +39,12 @@
 #include <selftest/selftest.h>
 
 #include <KLocalizedString>
+#include <KColorScheme>
 
 #include <QAbstractTableModel>
 #include <QHeaderView>
 #include <QSortFilterProxyModel>
+#include <QApplication>
 #include "kleopatra_debug.h"
 
 #include <boost/shared_ptr.hpp>
@@ -112,9 +114,10 @@ public:
                 }
                 break;
             case Qt::BackgroundRole:
-                return QColor(m_tests[row]->skipped() ? Qt::yellow :
-                              m_tests[row]->passed()  ? Qt::green  :
-                              Qt::red);
+                KColorScheme scheme(qApp->palette().currentColorGroup());
+                return (m_tests[row]->skipped() ? scheme.background(KColorScheme::NeutralBackground) :
+                        m_tests[row]->passed()  ? scheme.background(KColorScheme::PositiveBackground) :
+                        scheme.background(KColorScheme::NegativeBackground)).color();
             }
         return QVariant();
     }

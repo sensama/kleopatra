@@ -37,6 +37,7 @@
 
 class QStringList;
 class QString;
+class QProcess;
 
 namespace Kleo
 {
@@ -61,11 +62,11 @@ private:
     virtual QStringList arguments() const = 0;
 
     virtual QString errorCaption() const = 0;
-    virtual QString successCaption() const = 0;
+    virtual QString successCaption() const;
 
     virtual QString crashExitMessage(const QStringList &args) const = 0;
     virtual QString errorExitMessage(const QStringList &args) const = 0;
-    virtual QString successMessage(const QStringList &args) const = 0;
+    virtual QString successMessage(const QStringList &args) const;
 
     virtual void postSuccessHook(QWidget *parentWidget);
 
@@ -75,6 +76,8 @@ protected:
     bool ignoresSuccessOrFailure() const;
     void setShowsOutputWindow(bool show);
     bool showsOutputWindow() const;
+
+    QProcess *process();
 
 private:
     void doStart() Q_DECL_OVERRIDE;

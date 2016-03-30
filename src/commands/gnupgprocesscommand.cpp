@@ -308,10 +308,12 @@ void GnuPGProcessCommand::Private::slotProcessFinished(int code, QProcess::ExitS
         } else {
             q->postSuccessHook(parentWidgetOrView());
             const QString successMessage = q->successMessage(arguments);
-            if (dialog) {
-                message(successMessage);
-            } else {
-                information(successMessage, q->successCaption());
+            if (!successMessage.isNull()) {
+                if (dialog) {
+                    message(successMessage);
+                } else {
+                    information(successMessage, q->successCaption());
+                }
             }
         }
     }
@@ -368,6 +370,22 @@ void GnuPGProcessCommand::setShowsOutputWindow(bool show)
 bool GnuPGProcessCommand::showsOutputWindow() const
 {
     return d->showsOutputWindow;
+}
+
+QProcess *GnuPGProcessCommand::process()
+{
+    return &d->process;
+}
+
+QString GnuPGProcessCommand::successCaption() const
+{
+    return QString();
+}
+
+QString GnuPGProcessCommand::successMessage(const QStringList &args) const
+{
+    Q_UNUSED(args);
+    return QString();
 }
 
 #undef d

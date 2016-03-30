@@ -39,7 +39,6 @@
 #include <utils/kdlogtextwidget.h>
 
 #include "kleopatra_debug.h"
-#include <KProcess>
 #include <KLocalizedString>
 #include <KWindowSystem>
 
@@ -52,6 +51,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QPointer>
+#include <QProcess>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
 
@@ -178,7 +178,7 @@ private:
     void slotProcessReadyReadStandardError();
 
 private:
-    KProcess process;
+    QProcess process;
     QPointer<OutputDialog> dialog;
     QStringList arguments;
     QByteArray errorBuffer;
@@ -208,8 +208,8 @@ GnuPGProcessCommand::Private::Private(GnuPGProcessCommand *qq, KeyListController
       showsOutputWindow(false),
       canceled(false)
 {
-    process.setOutputChannelMode(KProcess::OnlyStderrChannel);
-    process.setReadChannel(KProcess::StandardError);
+    process.setProcessChannelMode(QProcess::ForwardedErrorChannel);
+    process.setReadChannel(QProcess::StandardError);
 }
 
 GnuPGProcessCommand::Private::~Private() {}
@@ -267,7 +267,8 @@ void GnuPGProcessCommand::doStart()
 
     d->arguments = arguments();
 
-    d->process << d->arguments;
+    d->process.setProgram(d->arguments.takeFirst());
+    d->process.setArguments(d->arguments);
 
     d->process.start();
 

@@ -50,7 +50,7 @@ find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_VERSION} CONFIG REQUIRED)
 find_package(KF5Gpgmepp ${GPGMEPP_VERSION} CONFIG REQUIRED)
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network)
+find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
 
 find_package(Boost 1.34.0 REQUIRED)

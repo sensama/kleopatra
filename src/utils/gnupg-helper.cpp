@@ -3,6 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
+                  2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -223,4 +224,10 @@ bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
     // return ! ( actual_version < required_version )
     return !std::lexicographical_compare(std::begin(actual_version), std::end(actual_version),
                                          std::begin(required_version), std::end(required_version));
+}
+
+const QString& Kleo::paperKeyInstallPath()
+{
+    static const QString pkPath = QStandardPaths::findExecutable("paperkey");
+    return pkPath;
 }

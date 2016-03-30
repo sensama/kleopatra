@@ -15,6 +15,8 @@ Kleopatra is a GUI for GnuPG so it needs a working GnuPG setup.
 
 - Pinentry (Qt / Gtk / Gnome)
 
+- PaperKey (http://www.jabberwocky.com/software/paperkey/)
+
 For Pinentry preferably pinentry-qt alternatively pinentry-gtk2 and
 pinentry-gnome also work. Pinentry-curses does not work for Kleopatra.
 
@@ -24,6 +26,10 @@ depend on gnupg2. GnuPG 2.1.x is supported, too.
 
 You can use Kleopatra's selftest to check your packaging it should
 show no errors.
+
+PaperKey is not checked in selftest but users will get a warning
+and a failure if they try to "Print Secret Key" if paperkey is
+not installed.
 
 Downstream Dependers
 ====================

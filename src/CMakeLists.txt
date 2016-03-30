@@ -198,6 +198,7 @@ set(_kleopatra_SRCS
   commands/learncardkeyscommand.cpp
   commands/checksumcreatefilescommand.cpp
   commands/checksumverifyfilescommand.cpp
+  commands/exportpaperkeycommand.cpp
 
   ${_kleopatra_uiserver_files}
 
@@ -268,6 +269,7 @@ target_link_libraries(kleopatra_bin
   KF5::WindowSystem
   KF5::DBusAddons
   Qt5::Network
+  Qt5::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}
   kleopatraclientcore
 )

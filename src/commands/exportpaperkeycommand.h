@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    utils/gnupg-helper.h
+    commands/exportsecretkeycommand.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,33 +30,52 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_GNUPGHELPER_H__
-#define __KLEOPATRA_GNUPGHELPER_H__
+#ifndef __KLEOPATRA_COMMMANDS_EXPORTPAPERKEYCOMMAND_H__
+#define __KLEOPATRA_COMMMANDS_EXPORTPAPERKEYCOMMAND_H__
 
-#include <gpgme++/engineinfo.h>
+#include <commands/gnupgprocesscommand.h>
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QProcess>
+
+class QWidget;
 
 namespace Kleo
 {
+namespace Commands
+{
 
-QString gnupgHomeDirectory();
+class ExportPaperKeyCommand : public GnuPGProcessCommand
+{
+    Q_OBJECT
 
-QString gpgConfPath();
-QString gpgSmPath();
-QString gpgPath();
+public:
+    explicit ExportPaperKeyCommand(QAbstractItemView *view,
+                                   KeyListController *parent);
 
-QString gpgConfListDir(const char *which);
-QString gpg4winInstallPath();
-QString gnupgInstallPath();
-const QString& paperKeyInstallPath();
+    static Restrictions restrictions()
+    {
+        return OnlyOneKey | NeedSecretKey | MustBeOpenPGP;
+    }
 
-QStringList gnupgFileWhitelist();
+protected Q_SLOTS:
+    void pkProcFinished(int code, QProcess::ExitStatus status);
 
-int makeGnuPGError(int code);
+private:
+    QStringList arguments() const Q_DECL_OVERRIDE;
+    bool preStartHook(QWidget *parentWidget) const Q_DECL_OVERRIDE;
 
-bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
+    QString errorCaption() const Q_DECL_OVERRIDE;
+
+    QString crashExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
+    QString errorExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
+
+private:
+    QWidget *mParent;
+    QProcess mPkProc;
+};
+
+}
 }
 
-#endif // __KLEOPATRA_GNUPGHELPER_H__
+#endif // __KLEOPATRA_COMMMANDS_EXPORTPAPERKEYCOMMAND_H__

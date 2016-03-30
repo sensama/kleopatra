@@ -70,6 +70,7 @@
 #include "commands/newcertificatecommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/checksumcreatefilescommand.h"
+#include "commands/exportpaperkeycommand.h"
 
 #include <Libkleo/Stl_Util>
 
@@ -381,6 +382,10 @@ void KeyListController::createActions(KActionCollection *coll)
             "view-certificate-export-secret", 0, 0, QString(), false, true
         },
         {
+            "file_export_paper_key", i18n("Print Secret Key..."), QString(),
+            "view-certificate-export-secret", 0, 0, QString(), false, true
+        },
+        {
             "file_lookup_certificates", i18n("Lookup Certificates on Server..."), QString(),
             "edit-find", 0, 0, QStringLiteral("Shift+Ctrl+I"), false, true
         },
@@ -495,6 +500,7 @@ void KeyListController::createActions(KActionCollection *coll)
     //---
     registerActionForCommand<ExportCertificateCommand>(coll->action(QStringLiteral("file_export_certificates")));
     registerActionForCommand<ExportSecretKeyCommand>(coll->action(QStringLiteral("file_export_secret_keys")));
+    registerActionForCommand<ExportPaperKeyCommand>(coll->action(QStringLiteral("file_export_paper_key")));
     registerActionForCommand<ExportOpenPGPCertsToServerCommand>(coll->action(QStringLiteral("file_export_certificates_to_server")));
     //---
     registerActionForCommand<DecryptVerifyFilesCommand>(coll->action(QStringLiteral("file_decrypt_verify_files")));

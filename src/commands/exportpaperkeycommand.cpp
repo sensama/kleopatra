@@ -85,7 +85,7 @@ bool ExportPaperKeyCommand::preStartHook(QWidget *parent) const
 {
     if (paperKeyInstallPath().isNull()) {
         KMessageBox::sorry(parent, xi18nc("@info", "<para><application>Kleopatra</application> uses "
-                                                   "<application>PaperKey</application> to create a minimzied and"
+                                                   "<application>PaperKey</application> to create a minimized and"
                                                    " printable version of your secret key.</para>"
                                                    "<para>Please make sure it is installed.</para>"),
                            i18nc("@title", "Failed to find PaperKey executable."));

@@ -143,12 +143,12 @@ QString SignEncryptFilesController::Private::titleForOperation(unsigned int op)
 {
     const bool signDisallowed = (op & SignMask) == SignDisallowed;
     const bool encryptDisallowed = (op & EncryptMask) == EncryptDisallowed;
-    const bool archiveForced = (op & ArchiveMask) == ArchiveForced;
+    const bool archiveSelected = (op & ArchiveMask) == ArchiveSelected;
 
     kleo_assert(!signDisallowed || !encryptDisallowed);
 
     if (!signDisallowed && encryptDisallowed) {
-        if (archiveForced) {
+        if (archiveSelected) {
             return i18n("Archive and Sign Files");
         } else {
             return i18n("Sign Files");
@@ -156,14 +156,14 @@ QString SignEncryptFilesController::Private::titleForOperation(unsigned int op)
     }
 
     if (signDisallowed && !encryptDisallowed) {
-        if (archiveForced) {
+        if (archiveSelected) {
             return i18n("Archive and Encrypt Files");
         } else {
             return i18n("Encrypt Files");
         }
     }
 
-    if (archiveForced) {
+    if (archiveSelected) {
         return i18n("Archive and Sign/Encrypt Files");
     } else {
         return i18n("Sign/Encrypt Files");
@@ -210,13 +210,13 @@ void SignEncryptFilesController::Private::assertValidOperation(unsigned int op)
 {
     kleo_assert((op & SignMask)    == SignDisallowed    ||
                 (op & SignMask)    == SignAllowed       ||
-                (op & SignMask)    == SignForced);
+                (op & SignMask)    == SignSelected);
     kleo_assert((op & EncryptMask) == EncryptDisallowed ||
                 (op & EncryptMask) == EncryptAllowed    ||
-                (op & EncryptMask) == EncryptForced);
+                (op & EncryptMask) == EncryptSelected);
     kleo_assert((op & ArchiveMask) == ArchiveDisallowed ||
                 (op & ArchiveMask) == ArchiveAllowed    ||
-                (op & ArchiveMask) == ArchiveForced);
+                (op & ArchiveMask) == ArchiveSelected);
     kleo_assert((op & ~(SignMask | EncryptMask | ArchiveMask)) == 0);
 }
 
@@ -224,7 +224,7 @@ void SignEncryptFilesController::setOperationMode(unsigned int mode)
 {
     Private::assertValidOperation(mode);
     if (contains_dir(d->files)) {
-        mode = (mode & ~ArchiveMask) | ArchiveForced;
+        mode = (mode & ~ArchiveMask) | ArchiveSelected;
     }
     d->operation = mode;
     d->updateWizardMode();
@@ -247,7 +247,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setSigningUserMutable(true);
         wizard->setSigningPreset(false);
 
-        if (signOp == SignForced) {
+        if (signOp == SignSelected) {
             wizard->setSigningPreset(true);
         }
     }
@@ -259,7 +259,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setEncryptionUserMutable(true);
         wizard->setEncryptionPreset(false);
 
-        if (encrOp == EncryptForced) {
+        if (encrOp == EncryptSelected) {
             wizard->setEncryptionPreset(true);
         }
     }
@@ -271,7 +271,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setCreateArchiveUserMutable(true);
         wizard->setCreateArchivePreset(false);
 
-        if (archOp == ArchiveForced) {
+        if (archOp == ArchiveSelected) {
             wizard->setCreateArchivePreset(true);
         }
     }
@@ -287,7 +287,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
     kleo_assert(!files.empty());
     d->files = files;
     if (contains_dir(files)) {
-        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
+        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveSelected);
     }
     d->ensureWizardCreated();
     d->wizard->setFiles(files);

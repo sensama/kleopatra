@@ -64,21 +64,21 @@ public:
     enum Operation {
         SignDisallowed = 0,
         SignAllowed = 1,
-        SignForced  = 2,
+        SignSelected  = 2,
 
-        SignMask = SignAllowed | SignForced,
+        SignMask = SignAllowed | SignSelected,
 
         EncryptDisallowed = 0,
         EncryptAllowed = 4,
-        EncryptForced = 8,
+        EncryptSelected = 8,
 
-        EncryptMask = EncryptAllowed | EncryptForced,
+        EncryptMask = EncryptAllowed | EncryptSelected,
 
         ArchiveDisallowed = 0,
         ArchiveAllowed = 16,
-        ArchiveForced = 32,
+        ArchiveSelected = 32,
 
-        ArchiveMask = ArchiveAllowed | ArchiveForced
+        ArchiveMask = ArchiveAllowed | ArchiveSelected
     };
     void setOperationMode(unsigned int mode);
     unsigned int operationMode() const;

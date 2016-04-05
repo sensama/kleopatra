@@ -50,21 +50,21 @@ protected:
     enum Operation {
         SignDisallowed = 0,
         SignAllowed = 1,
-        SignForced  = 2,
+        SignSelected  = 2,
 
-        SignMask = SignAllowed | SignForced,
+        SignMask = SignAllowed | SignSelected,
 
         EncryptDisallowed = 0,
         EncryptAllowed = 4,
-        EncryptForced = 8,
+        EncryptSelected = 8,
 
-        EncryptMask = EncryptAllowed | EncryptForced
+        EncryptMask = EncryptAllowed | EncryptSelected
     };
 
 private:
     virtual unsigned int operation() const
     {
-        return SignForced | EncryptForced;
+        return SignSelected | EncryptSelected;
     }
 private:
     int doStart() Q_DECL_OVERRIDE;
@@ -98,7 +98,7 @@ public:
     }
     unsigned int operation() const Q_DECL_OVERRIDE
     {
-        return SignAllowed | EncryptForced;
+        return SignAllowed | EncryptSelected;
     }
 };
 
@@ -111,7 +111,7 @@ public:
     }
     unsigned int operation() const Q_DECL_OVERRIDE
     {
-        return SignForced | EncryptAllowed;
+        return SignSelected | EncryptAllowed;
     }
 };
 

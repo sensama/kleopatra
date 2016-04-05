@@ -383,7 +383,7 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         {
             "file_export_paper_key", i18n("Print Secret Key..."), QString(),
-            "view-certificate-export-secret", 0, 0, QString(), false, true
+            "document-print", 0, 0, QString(), false, true
         },
         {
             "file_lookup_certificates", i18n("Lookup Certificates on Server..."), QString(),

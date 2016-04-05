@@ -64,7 +64,7 @@ protected:
 private:
     virtual unsigned int operation() const
     {
-        return SignAllowed | EncryptAllowed;
+        return SignForced | EncryptForced;
     }
 private:
     int doStart() Q_DECL_OVERRIDE;

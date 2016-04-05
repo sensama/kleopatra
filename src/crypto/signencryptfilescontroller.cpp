@@ -239,45 +239,42 @@ void SignEncryptFilesController::Private::updateWizardMode()
     const unsigned int signOp = (operation & SignMask);
     const unsigned int encrOp = (operation & EncryptMask);
     const unsigned int archOp = (operation & ArchiveMask);
-    switch (signOp) {
-    case SignForced:
-    case SignDisallowed:
-        wizard->setSigningPreset(signOp == SignForced);
+
+    if (signOp == SignDisallowed) {
         wizard->setSigningUserMutable(false);
-        break;
-    default:
-        assert(!"Should not happen");
-    case SignAllowed:
-        wizard->setSigningPreset(encrOp == EncryptDisallowed);
+        wizard->setSigningPreset(false);
+    } else {
         wizard->setSigningUserMutable(true);
-        break;
+        wizard->setSigningPreset(false);
+
+        if (signOp == SignForced) {
+            wizard->setSigningPreset(true);
+        }
     }
-    switch (encrOp) {
-    case EncryptForced:
-    case EncryptDisallowed:
-        wizard->setEncryptionPreset(encrOp == EncryptForced);
+
+    if (encrOp == EncryptDisallowed) {
+        wizard->setEncryptionPreset(false);
         wizard->setEncryptionUserMutable(false);
-        break;
-    default:
-        assert(!"Should not happen");
-    case EncryptAllowed:
-        wizard->setEncryptionPreset(true);
+    } else {
         wizard->setEncryptionUserMutable(true);
-        break;
+        wizard->setEncryptionPreset(false);
+
+        if (encrOp == EncryptForced) {
+            wizard->setEncryptionPreset(true);
+        }
     }
-    switch (archOp) {
-    case ArchiveForced:
-    case ArchiveDisallowed:
-        wizard->setCreateArchivePreset(archOp == ArchiveForced);
-        wizard->setCreateArchiveUserMutable(false);
-        break;
-    default:
-        assert(!"Shouldn't happen");
-    case ArchiveAllowed:
+
+    if (archOp == ArchiveDisallowed) {
         wizard->setCreateArchivePreset(false);
-        wizard->setEncryptionUserMutable(true);
-        break;
-    };
+        wizard->setCreateArchiveUserMutable(false);
+    } else {
+        wizard->setCreateArchiveUserMutable(true);
+        wizard->setCreateArchivePreset(false);
+
+        if (archOp == ArchiveForced) {
+            wizard->setCreateArchivePreset(true);
+        }
+    }
 }
 
 unsigned int SignEncryptFilesController::operationMode() const

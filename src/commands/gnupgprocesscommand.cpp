@@ -208,7 +208,6 @@ GnuPGProcessCommand::Private::Private(GnuPGProcessCommand *qq, KeyListController
       showsOutputWindow(false),
       canceled(false)
 {
-    process.setProcessChannelMode(QProcess::ForwardedErrorChannel);
     process.setReadChannel(QProcess::StandardError);
 }
 

@@ -123,6 +123,7 @@ QString importMetaData(const GpgME::Import &import);
 QString importMetaData(const GpgME::Import &import, const QStringList &sources);
 
 QString formatOverview(const GpgME::Key &key);
+QString usageString(const GpgME::Subkey &subkey);
 }
 }
 

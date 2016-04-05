@@ -734,3 +734,21 @@ QString Formatting::formatOverview(const Key &key)
 {
     return toolTip(key, AllOptions);
 }
+
+QString Formatting::usageString(const Subkey &sub)
+{
+    QStringList usageStrings;
+    if (sub.canCertify()) {
+        usageStrings << i18n("Certify");
+    }
+    if (sub.canSign()) {
+        usageStrings << i18n("Sign");
+    }
+    if (sub.canEncrypt()) {
+        usageStrings << i18n("Encrypt");
+    }
+    if (sub.canAuthenticate()) {
+        usageStrings << i18n("Authenticate");
+    }
+    return usageStrings.join(QStringLiteral(", "));
+}

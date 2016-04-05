@@ -63,6 +63,7 @@ public:
         ValidUntil,
         Status,
         Strength,
+        Usage,
 
         NumColumns,
         Icon = ID // which column shall the icon be displayed in?

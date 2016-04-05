@@ -173,6 +173,7 @@ QVariant SubkeyListModel::headerData(int section, Qt::Orientation o, int role) c
             case ValidUntil: return i18n("Valid Until");
             case Status:     return i18n("Status");
             case Strength:   return i18n("Strength");
+            case Usage:      return i18n("Usage");
             case NumColumns:;
             }
     return QVariant();
@@ -209,6 +210,8 @@ QVariant SubkeyListModel::data(const QModelIndex &idx, int role) const
         }
     case Status:
         return Formatting::validityShort(subkey);
+    case Usage:
+        return Formatting::usageString(subkey);
     case Strength:
         const QString algName = QString::fromStdString(subkey.algoName());
         // For ECC keys the algo name is something like bp512 and directly

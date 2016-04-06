@@ -55,21 +55,14 @@ struct action_data {
 };
 
 void make_actions_from_data(const action_data *data, unsigned int numData, KActionCollection *collection);
-void make_actions_from_data(const action_data *data, unsigned int numData, QObject *parent);
 
 template <unsigned int N>
 inline void make_actions_from_data(const action_data(&data)[N], KActionCollection *collection)
 {
     make_actions_from_data(data, N, collection);
 }
-template <unsigned int N>
-inline void make_actions_from_data(const action_data(&data)[N], QObject *parent)
-{
-    make_actions_from_data(data, N, parent);
-}
 
-QAction *make_action_from_data(const action_data &data, QObject *parent);
-QAction *make_action_from_data_with_collection(const action_data &ad, KActionCollection *coll);
+QAction *make_action_from_data(const action_data &ad, KActionCollection *coll);
 QAction *createAction(const action_data &ad, QObject *parent);
 }
 

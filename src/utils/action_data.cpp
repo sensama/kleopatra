@@ -63,16 +63,7 @@ QAction *Kleo::createAction(const action_data &ad, QObject *parent)
     return a;
 }
 
-QAction *Kleo::make_action_from_data(const action_data &ad, QObject *parent)
-{
-    QAction *const a = createAction(ad, parent);
-    if (!ad.shortcut.isEmpty()) {
-        a->setShortcut(QKeySequence(ad.shortcut));
-    }
-    return a;
-}
-
-QAction *Kleo::make_action_from_data_with_collection(const action_data &ad, KActionCollection *coll)
+QAction *Kleo::make_action_from_data(const action_data &ad, KActionCollection *coll)
 {
 
     QAction *const a = createAction(ad, coll);
@@ -82,16 +73,9 @@ QAction *Kleo::make_action_from_data_with_collection(const action_data &ad, KAct
     return a;
 }
 
-void Kleo::make_actions_from_data(const action_data *ads, unsigned int size, QObject *parent)
-{
-    for (unsigned int i = 0; i < size; ++i) {
-        make_action_from_data(ads[i], parent);
-    }
-}
-
 void Kleo::make_actions_from_data(const action_data *ads, unsigned int size, KActionCollection *coll)
 {
     for (unsigned int i = 0; i < size; ++i) {
-        coll->addAction(QLatin1String(ads[i].name), make_action_from_data_with_collection(ads[i], coll));
+        coll->addAction(QLatin1String(ads[i].name), make_action_from_data(ads[i], coll));
     }
 }

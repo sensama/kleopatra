@@ -444,64 +444,6 @@ TabWidget::Private::Private(TabWidget *qq)
         slotContextMenu(p);
     });
 
-    const action_data actionDataNew = {
-        "window_new_tab", i18n("New Tab"), i18n("Open a new tab"),
-        "tab-new-background", q, SLOT(slotNewTab()), QStringLiteral("CTRL+SHIFT+N"), false, true
-    };
-
-    newAction = make_action_from_data(actionDataNew, q);
-
-    struct action_data actionData[NumPageActions] = {
-        {
-            "window_rename_tab", i18n("Rename Tab..."), i18n("Rename this tab"),
-            "edit-rename", q, SLOT(slotRenameCurrentTab()), QStringLiteral("CTRL+SHIFT+R"), false, false
-        },
-        {
-            "window_duplicate_tab", i18n("Duplicate Tab"), i18n("Duplicate this tab"),
-            "tab-duplicate", q, SLOT(slotDuplicateCurrentTab()), QStringLiteral("CTRL+SHIFT+D"), false, true
-        },
-        {
-            "window_close_tab", i18n("Close Tab"), i18n("Close this tab"),
-            "tab-close", q, SLOT(slotCloseCurrentTab()), QStringLiteral("CTRL+SHIFT+W"), false, false
-        }, // ### CTRL-W when available
-        {
-            "window_move_tab_left", i18n("Move Tab Left"), QString(),
-            0, q, SLOT(slotMoveCurrentTabLeft()), QStringLiteral("CTRL+SHIFT+LEFT"), false, false
-        },
-        {
-            "window_move_tab_right", i18n("Move Tab Right"), QString(),
-            0, q, SLOT(slotMoveCurrentTabRight()), QStringLiteral("CTRL+SHIFT+RIGHT"), false, false
-        },
-        {
-            "window_view_hierarchical", i18n("Hierarchical Certificate List"), QString(),
-            0, q, SLOT(slotToggleHierarchicalView(bool)), QString(), true, false
-        },
-        {
-            "window_expand_all", i18n("Expand All"), QString(),
-            0, q, SLOT(slotExpandAll()), QStringLiteral("CTRL+."), false, false
-        },
-        {
-            "window_collapse_all", i18n("Collapse All"), QString(),
-            0, q, SLOT(slotCollapseAll()), QStringLiteral("CTRL+,"), false, false
-        },
-    };
-
-    for (unsigned int i = 0; i < NumPageActions; ++i) {
-        currentPageActions[i] = make_action_from_data(actionData[i], q);
-    }
-
-    for (unsigned int i = 0; i < NumPageActions; ++i) {
-        action_data ad = actionData[i];
-        assert(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
-        ad.name = ad.name + strlen("window_");
-        ad.tooltip.clear();
-        ad.receiver = 0;
-        ad.shortcut.clear();
-        otherPageActions[i] = make_action_from_data(ad, q);
-    }
-
-    setCornerAction(newAction,                 Qt::TopLeftCorner);
-    setCornerAction(currentPageActions[Close], Qt::TopRightCorner);
 }
 
 void TabWidget::Private::slotContextMenu(const QPoint &p)
@@ -811,11 +753,64 @@ void TabWidget::createActions(KActionCollection *coll)
     if (!coll) {
         return;
     }
-    coll->addAction(d->newAction->objectName(), d->newAction);
-    for (unsigned int i = 0; i < Private::NumPageActions; ++i) {
-        QAction *a = d->currentPageActions[i];
-        coll->addAction(a->objectName(), a);
+    const action_data actionDataNew = {
+        "window_new_tab", i18n("New Tab"), i18n("Open a new tab"),
+        "tab-new-background", this, SLOT(slotNewTab()), QStringLiteral("CTRL+SHIFT+N"), false, true
+    };
+
+    d->newAction = make_action_from_data(actionDataNew, coll);
+
+    struct action_data actionData[] = {
+        {
+            "window_rename_tab", i18n("Rename Tab..."), i18n("Rename this tab"),
+            "edit-rename", this, SLOT(slotRenameCurrentTab()), QStringLiteral("CTRL+SHIFT+R"), false, false
+        },
+        {
+            "window_duplicate_tab", i18n("Duplicate Tab"), i18n("Duplicate this tab"),
+            "tab-duplicate", this, SLOT(slotDuplicateCurrentTab()), QStringLiteral("CTRL+SHIFT+D"), false, true
+        },
+        {
+            "window_close_tab", i18n("Close Tab"), i18n("Close this tab"),
+            "tab-close", this, SLOT(slotCloseCurrentTab()), QStringLiteral("CTRL+SHIFT+W"), false, false
+        }, // ### CTRL-W when available
+        {
+            "window_move_tab_left", i18n("Move Tab Left"), i18n("Move this tab left"),
+            0, this, SLOT(slotMoveCurrentTabLeft()), QStringLiteral("CTRL+SHIFT+LEFT"), false, false
+        },
+        {
+            "window_move_tab_right", i18n("Move Tab Right"), i18n("Move this tab right"),
+            0, this, SLOT(slotMoveCurrentTabRight()), QStringLiteral("CTRL+SHIFT+RIGHT"), false, false
+        },
+        {
+            "window_view_hierarchical", i18n("Hierarchical Certificate List"), QString(),
+            0, this, SLOT(slotToggleHierarchicalView(bool)), QString(), true, false
+        },
+        {
+            "window_expand_all", i18n("Expand All"), QString(),
+            0, this, SLOT(slotExpandAll()), QStringLiteral("CTRL+."), false, false
+        },
+        {
+            "window_collapse_all", i18n("Collapse All"), QString(),
+            0, this, SLOT(slotCollapseAll()), QStringLiteral("CTRL+,"), false, false
+        },
+    };
+
+    for (int i = 0; i < d->NumPageActions; ++i) {
+        d->currentPageActions[i] = make_action_from_data(actionData[i], coll);
     }
+
+    for (int i = 0; i < d->NumPageActions; ++i) {
+        action_data ad = actionData[i];
+        assert(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
+        ad.name = ad.name + strlen("window_");
+        ad.tooltip.clear();
+        ad.receiver = 0;
+        ad.shortcut.clear();
+        d->otherPageActions[i] = make_action_from_data(ad, coll);
+    }
+
+    d->setCornerAction(d->newAction,                 Qt::TopLeftCorner);
+    d->setCornerAction(d->currentPageActions[d->Close], Qt::TopRightCorner);
 }
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)

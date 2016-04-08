@@ -76,6 +76,7 @@ static const struct _classification {
     { "p7m", CMS    | Binary  | CipherText },
     { "p7s", CMS    | Binary  | AnySignature },
     { "pem", CMS    |  Ascii  | AnyType | ExamineContentHint },
+    { "pfx", CMS    | Binary  | Certificate },
     { "pgp", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType },
     { "sig", OpenPGP | AnyFormat | DetachedSignature },
 };

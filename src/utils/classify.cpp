@@ -66,6 +66,7 @@ static const struct _classification {
     // ordered by extension
     { "arl", CMS    | Binary  | CertificateRevocationList },
     { "asc", OpenPGP |  Ascii  | OpaqueSignature | DetachedSignature | CipherText | AnyCertStoreType | ExamineContentHint },
+    { "cer", CMS    | Binary  | Certificate },
     { "crl", CMS    | Binary  | CertificateRevocationList },
     { "crt", CMS    | Binary  | Certificate },
     { "der", CMS    | Binary  | Certificate | CertificateRevocationList },

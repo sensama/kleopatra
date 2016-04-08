@@ -153,16 +153,6 @@ static QStringList find_new_files(const QStringList &current, const std::set<QSt
 
 void FileSystemWatcher::Private::onDirectoryChanged(const QString &path)
 {
-    const QFileInfo fi(path);
-    if (is_blacklisted(fi.fileName(), m_blacklist)) {
-        return;
-    }
-    if (!is_whitelisted(fi.fileName(), m_whitelist)) {
-        return;
-    }
-
-    qCDebug(KLEOPATRA_LOG) << path;
-
     const QStringList newFiles = find_new_files(list_dir_absolute(path, m_blacklist, m_whitelist), m_seenPaths);
 
     if (newFiles.empty()) {

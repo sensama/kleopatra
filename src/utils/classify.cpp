@@ -36,14 +36,20 @@
 
 #include "fileoperationspreferences.h"
 
+#include "kleopatra_debug.h"
+
 #include <QString>
 #include <QStringList>
 #include <QFile>
 #include <QFileInfo>
 #include <QtAlgorithms>
 #include <QByteArrayMatcher>
+#include <QMap>
 
 #include <boost/range.hpp>
+
+#include <gpgme++/data.h>
+#include <qgpgme/dataprovider.h>
 
 #ifdef __GLIBCXX__
 # include <ext/algorithm>
@@ -80,6 +86,17 @@ static const struct _classification {
     { "pfx", CMS    | Binary  | Certificate },
     { "pgp", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType },
     { "sig", OpenPGP | AnyFormat | DetachedSignature },
+};
+
+static const QMap<GpgME::Data::Type, unsigned int> gpgmeTypeMap {
+    { GpgME::Data::PGPSigned, OpenPGP | AnySignature },
+    { GpgME::Data::PGPOther, OpenPGP | CipherText },
+    { GpgME::Data::PGPKey, OpenPGP | Certificate },
+    { GpgME::Data::CMSSigned, CMS | AnySignature },
+    { GpgME::Data::CMSEncrypted, CMS | CipherText },
+    { GpgME::Data::CMSOther, CMS | CipherText }, // ? This is weird.
+    { GpgME::Data::X509Cert, CMS | Certificate},
+    { GpgME::Data::PKCS12, CMS | Binary | ExportedPSM }
 };
 
 static const unsigned int defaultClassification = NoClass;
@@ -186,7 +203,7 @@ unsigned int Kleo::classify(const QString &filename)
         /* else */                   : it->classification;
 
     QFile file(filename);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::ReadOnly)) {
         return bestGuess;
     }
 
@@ -198,7 +215,7 @@ unsigned int Kleo::classify(const QString &filename)
     }
 }
 
-unsigned int Kleo::classifyContent(const QByteArray &data)
+static unsigned int classifyContentInteral(const QByteArray &data)
 {
 #ifdef __GLIBCXX__
     assert(__gnu_cxx::is_sorted(begin(content_classifications), end(content_classifications), ByContent<std::less>(100)));
@@ -226,11 +243,28 @@ unsigned int Kleo::classifyContent(const QByteArray &data)
         = qBinaryFind(begin(content_classifications), end(content_classifications),
                       data.data() + pos, ByContent<std::less>(epos - pos));
 
-    if (cit == end(content_classifications)) {
-        return defaultClassification;
-    } else {
+    if (cit != end(content_classifications)) {
         return cit->classification | (pgp ? OpenPGP : CMS);
     }
+    return defaultClassification;
+}
+
+unsigned int Kleo::classifyContent(const QByteArray &data)
+{
+    /* As of Version 1.6.0 GpgME does not distinguish between detached
+     * signatures and signatures. So we prefer kleo's classification and
+     * only use gpgme as fallback.
+     * See https://bugs.gnupg.org/gnupg/issue2314
+     */
+    unsigned int ourClassification = classifyContentInteral(data);
+    if (ourClassification != defaultClassification) {
+        return ourClassification;
+    }
+    QGpgME::QByteArrayDataProvider dp(data);
+    GpgME::Data gpgmeData(&dp);
+    GpgME::Data::Type type = gpgmeData.type();
+
+    return gpgmeTypeMap.value(type, defaultClassification);
 }
 
 QString Kleo::printableClassification(unsigned int classification)

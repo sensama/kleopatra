@@ -312,7 +312,7 @@ int main(int argc, char **argv)
         }
 #endif
         if (!selfCheck(splash)) {
-            return 1;
+            return EXIT_FAILURE;
         }
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
 
@@ -333,7 +333,7 @@ int main(int argc, char **argv)
             const QString err = app.newInstance(parser);
             if (!err.isEmpty()) {
                 std::cerr << i18n("Invalid arguments: %1", err).toLocal8Bit().constData() << "\n";
-                exit(1);
+                return EXIT_FAILURE;
             }
             qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: new instance created";
 #ifndef QT_NO_SPLASHSCREEN

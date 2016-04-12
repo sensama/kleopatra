@@ -83,6 +83,13 @@ public:
     bool ignoreNewInstance() const;
     void toggleMainWindowVisibility();
     void restoreMainWindow();
+    /** Classify the file and start the most appropiate command.
+     *
+     * @param fileName: The filename of the file.
+     *
+     * @returns null QString on success. Error message otherwise.
+     */
+    QString startCommandForFile(const QString &fileName);
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();

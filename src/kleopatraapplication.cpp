@@ -45,6 +45,7 @@
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
 #include <utils/getpid.h>
+#include "utils/classify.h"
 
 #include <gpgme++/key.h>
 #include <models/keycache.h>
@@ -359,7 +360,14 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 openOrRaiseMainWindow();
             }
         } else {
-            return i18n("No command provided but arguments present");
+            QStringList errors;
+            Q_FOREACH (const QString& fileName, files) {
+                const QString err = startCommandForFile(fileName);
+                if (!err.isEmpty()) {
+                    errors << err;
+                }
+            }
+            return errors.join("\n");
         }
     }
 
@@ -551,3 +559,40 @@ bool KleopatraApplication::ignoreNewInstance() const
     return d->ignoreNewInstance;
 }
 
+QString KleopatraApplication::startCommandForFile(const QString &fileName)
+{
+    unsigned int classification = classify(fileName);
+
+    GpgME::Protocol proto = GpgME::UnknownProtocol;
+    if (classification & Class::CMS) {
+        proto = GpgME::CMS;
+    } else if (classification & Class::OpenPGP) {
+        proto = GpgME::OpenPGP;
+    }
+
+    const QStringList files = QStringList() << fileName;
+
+    if (classification & Class::CipherText) {
+        decryptFiles(files, proto);
+    } else if (classification & Class::DetachedSignature) {
+        verifyFiles(files, proto);
+    } else if (classification & Class::AnySignature) {
+        decryptVerifyFiles(files, proto);
+    } else if (classification & Class::AnyCertStoreType) {
+        importCertificatesFromFile(files, proto);
+    } else if (classification & Class::AnyMessageType) {
+        // For any message we decrypt as this also verifies
+        decryptFiles(files, proto);
+    } else {
+        QFileInfo fi(fileName);
+        if (fi.isReadable()) {
+            encryptFiles(files, proto);
+        } else {
+            // Not using the <filename> tag and i18nc here because
+            // the string might be printed on the console.
+            return i18n("Cannot read \"%1\"", fileName);
+        }
+    }
+
+    return QString();
+}

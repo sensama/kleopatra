@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/gui/newsignencryptfileswizard.cpp
+    crypto/gui/signencryptfileswizard.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2009 Klarälvdalens Datakonsult AB
@@ -32,7 +32,7 @@
 
 #include <config-kleopatra.h>
 
-#include "newsignencryptfileswizard.h"
+#include "signencryptfileswizard.h"
 
 #include "newresultpage.h"
 #include "signingcertificateselectionwidget.h"
@@ -151,7 +151,7 @@ public:
         hlay.addWidget(&listWidget);
         hlay.addWidget(&buttonBox);
 
-        connect(&buttonBox, &QDialogButtonBox::rejected, this, &NewSignEncryptFilesWizard::reject);
+        connect(&buttonBox, &QDialogButtonBox::rejected, this, &SignEncryptFilesWizard::reject);
     }
 
 private:
@@ -920,9 +920,9 @@ public:
         if (QWizard *wiz = wizard())
         {
             // need to do this here, since wizard() == 0 in the ctor
-            const NewSignEncryptFilesWizard *filesWizard = qobject_cast<NewSignEncryptFilesWizard *>(wiz);
-            disconnect(filesWizard, &NewSignEncryptFilesWizard::operationPrepared, this, &SignerPage::slotCommitSigningPreferences);
-            connect(filesWizard, &NewSignEncryptFilesWizard::operationPrepared, this, &SignerPage::slotCommitSigningPreferences);
+            const SignEncryptFilesWizard *filesWizard = qobject_cast<SignEncryptFilesWizard *>(wiz);
+            disconnect(filesWizard, &SignEncryptFilesWizard::operationPrepared, this, &SignerPage::slotCommitSigningPreferences);
+            connect(filesWizard, &SignEncryptFilesWizard::operationPrepared, this, &SignerPage::slotCommitSigningPreferences);
         }
 
         bool pgp = effectiveProtocol() == OpenPGP;
@@ -979,8 +979,8 @@ private:
     const std::vector<Key> &resolvedRecipients() const
     {
         assert(wizard());
-        assert(qobject_cast<NewSignEncryptFilesWizard *>(wizard()) == static_cast<NewSignEncryptFilesWizard *>(wizard()));
-        return static_cast<NewSignEncryptFilesWizard *>(wizard())->resolvedRecipients();
+        assert(qobject_cast<SignEncryptFilesWizard *>(wizard()) == static_cast<SignEncryptFilesWizard *>(wizard()));
+        return static_cast<SignEncryptFilesWizard *>(wizard())->resolvedRecipients();
     }
 
 private Q_SLOTS:
@@ -1021,12 +1021,12 @@ public:
 
 }
 
-class NewSignEncryptFilesWizard::Private
+class SignEncryptFilesWizard::Private
 {
-    friend class ::Kleo::Crypto::Gui::NewSignEncryptFilesWizard;
-    NewSignEncryptFilesWizard *const q;
+    friend class ::Kleo::Crypto::Gui::SignEncryptFilesWizard;
+    SignEncryptFilesWizard *const q;
 public:
-    explicit Private(NewSignEncryptFilesWizard *qq)
+    explicit Private(SignEncryptFilesWizard *qq)
         : q(qq),
           operationPage(new OperationPage(q)),
           recipientsPage(new RecipientsPage(q)),
@@ -1099,25 +1099,25 @@ private:
     bool encryptionUserMutable : 1;
 };
 
-NewSignEncryptFilesWizard::NewSignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
+SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
     : QWizard(parent, f), d(new Private(this))
 {
 
 }
 
-NewSignEncryptFilesWizard::~NewSignEncryptFilesWizard()
+SignEncryptFilesWizard::~SignEncryptFilesWizard()
 {
     qCDebug(KLEOPATRA_LOG);
 }
 
-void NewSignEncryptFilesWizard::setPresetProtocol(Protocol proto)
+void SignEncryptFilesWizard::setPresetProtocol(Protocol proto)
 {
     d->operationPage->setPresetProtocol(proto);
     d->recipientsPage->setPresetProtocol(proto);
     d->signerPage->setPresetProtocol(proto);
 }
 
-void NewSignEncryptFilesWizard::setCreateArchivePreset(bool preset)
+void SignEncryptFilesWizard::setCreateArchivePreset(bool preset)
 {
     if (preset == d->createArchivePreset && preset == isCreateArchiveSelected()) {
         return;
@@ -1127,7 +1127,7 @@ void NewSignEncryptFilesWizard::setCreateArchivePreset(bool preset)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setCreateArchiveUserMutable(bool mut)
+void SignEncryptFilesWizard::setCreateArchiveUserMutable(bool mut)
 {
     if (mut == d->createArchiveUserMutable) {
         return;
@@ -1137,12 +1137,12 @@ void NewSignEncryptFilesWizard::setCreateArchiveUserMutable(bool mut)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setArchiveDefinitionId(const QString &id)
+void SignEncryptFilesWizard::setArchiveDefinitionId(const QString &id)
 {
     d->operationPage->setArchiveDefinition(id);
 }
 
-void NewSignEncryptFilesWizard::setSigningPreset(bool preset)
+void SignEncryptFilesWizard::setSigningPreset(bool preset)
 {
     if (preset == d->signingPreset) {
         return;
@@ -1152,7 +1152,7 @@ void NewSignEncryptFilesWizard::setSigningPreset(bool preset)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setSigningUserMutable(bool mut)
+void SignEncryptFilesWizard::setSigningUserMutable(bool mut)
 {
     if (mut == d->signingUserMutable) {
         return;
@@ -1162,7 +1162,7 @@ void NewSignEncryptFilesWizard::setSigningUserMutable(bool mut)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setEncryptionPreset(bool preset)
+void SignEncryptFilesWizard::setEncryptionPreset(bool preset)
 {
     if (preset == d->encryptionPreset) {
         return;
@@ -1172,7 +1172,7 @@ void NewSignEncryptFilesWizard::setEncryptionPreset(bool preset)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setEncryptionUserMutable(bool mut)
+void SignEncryptFilesWizard::setEncryptionUserMutable(bool mut)
 {
     if (mut == d->encryptionUserMutable) {
         return;
@@ -1182,55 +1182,55 @@ void NewSignEncryptFilesWizard::setEncryptionUserMutable(bool mut)
     d->updateStartId();
 }
 
-void NewSignEncryptFilesWizard::setFiles(const QStringList &files)
+void SignEncryptFilesWizard::setFiles(const QStringList &files)
 {
     setField(QStringLiteral("files"), files);
 }
 
-bool NewSignEncryptFilesWizard::isSigningSelected() const
+bool SignEncryptFilesWizard::isSigningSelected() const
 {
     return field(QStringLiteral("sign")).toBool() || field(QStringLiteral("signencrypt")).toBool();
 }
 
-bool NewSignEncryptFilesWizard::isEncryptionSelected() const
+bool SignEncryptFilesWizard::isEncryptionSelected() const
 {
     return field(QStringLiteral("encrypt")).toBool() || field(QStringLiteral("signencrypt")).toBool();
 }
 
-bool NewSignEncryptFilesWizard::isAsciiArmorEnabled() const
+bool SignEncryptFilesWizard::isAsciiArmorEnabled() const
 {
     return field(QStringLiteral("armor")).toBool();
 }
 
-bool NewSignEncryptFilesWizard::isCreateArchiveSelected() const
+bool SignEncryptFilesWizard::isCreateArchiveSelected() const
 {
     return field(QStringLiteral("archive")).toBool();
 }
 
-shared_ptr<ArchiveDefinition> NewSignEncryptFilesWizard::selectedArchiveDefinition() const
+shared_ptr<ArchiveDefinition> SignEncryptFilesWizard::selectedArchiveDefinition() const
 {
     return d->operationPage->archiveDefinition();
 }
 
-QString NewSignEncryptFilesWizard::archiveFileName(Protocol p) const
+QString SignEncryptFilesWizard::archiveFileName(Protocol p) const
 {
     return d->/*any page*/operationPage->archiveName(p);
 }
 
-const std::vector<Key> &NewSignEncryptFilesWizard::resolvedRecipients() const
+const std::vector<Key> &SignEncryptFilesWizard::resolvedRecipients() const
 {
     return d->recipientsPage->keys();
 }
 
-std::vector<Key> NewSignEncryptFilesWizard::resolvedSigners() const
+std::vector<Key> SignEncryptFilesWizard::resolvedSigners() const
 {
     return d->signerPage->keys();
 }
 
-void NewSignEncryptFilesWizard::setTaskCollection(const shared_ptr<TaskCollection> &coll)
+void SignEncryptFilesWizard::setTaskCollection(const shared_ptr<TaskCollection> &coll)
 {
     d->resultPage->setTaskCollection(coll);
 }
 
-#include "moc_newsignencryptfileswizard.cpp"
-#include "newsignencryptfileswizard.moc"
+#include "moc_signencryptfileswizard.cpp"
+#include "signencryptfileswizard.moc"

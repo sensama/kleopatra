@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/gui/newsignencryptfileswizard.h
+    crypto/gui/signencryptfileswizard.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2009 Klarälvdalens Datakonsult AB
@@ -74,12 +74,12 @@ namespace Crypto
 namespace Gui
 {
 
-class NewSignEncryptFilesWizard : public QWizard
+class SignEncryptFilesWizard : public QWizard
 {
     Q_OBJECT
 public:
-    explicit NewSignEncryptFilesWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
-    ~NewSignEncryptFilesWizard();
+    explicit SignEncryptFilesWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    ~SignEncryptFilesWizard();
 
     // Inputs
 

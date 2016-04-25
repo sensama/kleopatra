@@ -37,7 +37,7 @@
 #include "signencryptfilestask.h"
 #include "certificateresolver.h"
 
-#include <crypto/gui/newsignencryptfileswizard.h>
+#include <crypto/gui/signencryptfileswizard.h>
 #include <crypto/taskcollection.h>
 
 #include <utils/input.h>
@@ -115,7 +115,7 @@ private:
 private:
     std::vector< shared_ptr<SignEncryptFilesTask> > runnable, completed;
     shared_ptr<SignEncryptFilesTask> cms, openpgp;
-    QPointer<NewSignEncryptFilesWizard> wizard;
+    QPointer<SignEncryptFilesWizard> wizard;
     QStringList files;
     unsigned int operation;
     Protocol protocol;
@@ -609,7 +609,7 @@ void SignEncryptFilesController::Private::ensureWizardCreated()
         return;
     }
 
-    std::unique_ptr<NewSignEncryptFilesWizard> w(new NewSignEncryptFilesWizard);
+    std::unique_ptr<SignEncryptFilesWizard> w(new SignEncryptFilesWizard);
     w->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);

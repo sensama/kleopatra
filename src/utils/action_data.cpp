@@ -40,10 +40,10 @@
 #include <QIcon>
 #include <QKeySequence>
 
-QAction *Kleo::createAction(const action_data &ad, QObject *parent)
+QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
 {
 
-    QAction *const a = ad.toggle ? new KToggleAction(parent) : new QAction(parent);
+    QAction *const a = ad.toggle ? new KToggleAction(coll) : new QAction(coll);
     a->setObjectName(QLatin1String(ad.name));
     a->setText(ad.text);
     if (!ad.tooltip.isEmpty()) {
@@ -60,6 +60,7 @@ QAction *Kleo::createAction(const action_data &ad, QObject *parent)
         }
     }
     a->setEnabled(ad.enabled);
+    coll->addAction(QLatin1String(ad.name), a);
     return a;
 }
 

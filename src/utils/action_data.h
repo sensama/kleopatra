@@ -63,7 +63,7 @@ inline void make_actions_from_data(const action_data(&data)[N], KActionCollectio
 }
 
 QAction *make_action_from_data(const action_data &ad, KActionCollection *coll);
-QAction *createAction(const action_data &ad, QObject *parent);
+QAction *createAction(const action_data &ad, KActionCollection *coll);
 }
 
 #endif /* __KLEOPATRA_UTILS_ACTIONDATA_H__ */

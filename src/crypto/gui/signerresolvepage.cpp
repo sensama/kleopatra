@@ -273,7 +273,6 @@ private:
     QLabel *signerLabel;
     QGroupBox *encryptBox;
     QCheckBox *textArmorCO;
-    QCheckBox *removeUnencryptedCO;
     QPushButton *selectCertificatesButton;
     SigningProtocolSelectionWidget *signingProtocolSelectionWidget;
     ReadOnlyProtocolSelectionWidget *readOnlyProtocolSelectionWidget;
@@ -333,10 +332,6 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
     textArmorCO = new QCheckBox;
     textArmorCO->setText(i18n("Text output (ASCII armor)"));
     encryptLayout->addWidget(textArmorCO);
-    removeUnencryptedCO = new QCheckBox;
-    removeUnencryptedCO->setText(i18n("Remove unencrypted original file when done"));
-    removeUnencryptedCO->setChecked(false);
-    encryptLayout->addWidget(removeUnencryptedCO);
     layout->addWidget(encryptBox);
 
     signingCertificateBox = new QGroupBox;
@@ -672,16 +667,6 @@ bool SignerResolvePage::isAsciiArmorEnabled() const
 void SignerResolvePage::setAsciiArmorEnabled(bool enabled)
 {
     d->textArmorCO->setChecked(enabled);
-}
-
-bool SignerResolvePage::removeUnencryptedFile() const
-{
-    return d->removeUnencryptedCO->isChecked();
-}
-
-void SignerResolvePage::setRemoveUnencryptedFile(bool remove)
-{
-    d->removeUnencryptedCO->setChecked(remove);
 }
 
 void SignerResolvePage::setSigningPreferences(const boost::shared_ptr<SigningPreferences> &prefs)

@@ -80,7 +80,6 @@ public:
 
     void setSign(bool sign);
     void setEncrypt(bool encrypt);
-    void setRemoveInputFileOnSuccess(bool);
     void setDetachedSignature(bool detached);
 
     void setOverwritePolicy(const boost::shared_ptr<OverwritePolicy> &policy);

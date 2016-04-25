@@ -69,10 +69,10 @@ using namespace GpgME;
 namespace
 {
 
-QString formatInputOutputLabel(const QString &input, const QString &output, bool inputDeleted, bool outputDeleted)
+QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted)
 {
     return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2",
-                 inputDeleted ? QStringLiteral("<s>%1</s>").arg(input.toHtmlEscaped()) : input.toHtmlEscaped(),
+                 input.toHtmlEscaped(),
                  outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
 }
 
@@ -113,14 +113,13 @@ private:
 class SignEncryptFilesResult : public Task::Result
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool inputRemoved, bool outputCreated, const AuditLog &auditLog)
+    SignEncryptFilesResult(const SigningResult &sr, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
         : Task::Result(),
           m_sresult(sr),
           m_inputLabel(input ? input->label() : QString()),
           m_inputErrorString(input ? input->errorString() : QString()),
           m_outputLabel(output ? output->label() : QString()),
           m_outputErrorString(output ? output->errorString() : QString()),
-          m_inputRemoved(inputRemoved),
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
@@ -129,14 +128,13 @@ public:
                                << "outputError:" << m_outputErrorString;
         assert(!m_sresult.isNull());
     }
-    SignEncryptFilesResult(const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool inputRemoved, bool outputCreated, const AuditLog &auditLog)
+    SignEncryptFilesResult(const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
         : Task::Result(),
           m_eresult(er),
           m_inputLabel(input ? input->label() : QString()),
           m_inputErrorString(input ? input->errorString() : QString()),
           m_outputLabel(output ? output->label() : QString()),
           m_outputErrorString(output ? output->errorString() : QString()),
-          m_inputRemoved(inputRemoved),
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
@@ -145,7 +143,7 @@ public:
                                << "outputError:" << m_outputErrorString;
         assert(!m_eresult.isNull());
     }
-    SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool inputRemoved, bool outputCreated,  const AuditLog &auditLog)
+    SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated,  const AuditLog &auditLog)
         : Task::Result(),
           m_sresult(sr),
           m_eresult(er),
@@ -153,7 +151,6 @@ public:
           m_inputErrorString(input ? input->errorString() : QString()),
           m_outputLabel(output ? output->label() : QString()),
           m_outputErrorString(output ? output->errorString() : QString()),
-          m_inputRemoved(inputRemoved),
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
@@ -177,7 +174,6 @@ private:
     const QString m_inputErrorString;
     const QString m_outputLabel;
     const QString m_outputErrorString;
-    const bool m_inputRemoved;
     const bool m_outputCreated;
     const AuditLog m_auditLog;
 };
@@ -284,7 +280,7 @@ QString ErrorResult::overview() const
 {
     assert(m_error || m_error.isCanceled());
     assert(m_sign || m_encrypt);
-    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, false, true);
+    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true);
     const bool canceled = m_error.isCanceled();
     if (m_sign && m_encrypt) {
         return canceled ? i18n("%1: <b>Sign/encrypt canceled.</b>", label) : i18n(" %1: Sign/encrypt failed.", label);
@@ -327,7 +323,6 @@ private:
     bool sign     : 1;
     bool encrypt  : 1;
     bool detached : 1;
-    bool removeInput : 1;
 
     QPointer<Kleo::Job> job;
     shared_ptr<OverwritePolicy> m_overwritePolicy;
@@ -344,7 +339,6 @@ SignEncryptFilesTask::Private::Private(SignEncryptFilesTask *qq)
       sign(true),
       encrypt(true),
       detached(false),
-      removeInput(false),
       job(0),
       m_overwritePolicy(new OverwritePolicy(0))
 {
@@ -420,12 +414,6 @@ void SignEncryptFilesTask::setEncrypt(bool encrypt)
 {
     kleo_assert(!d->job);
     d->encrypt = encrypt;
-}
-
-void SignEncryptFilesTask::setRemoveInputFileOnSuccess(bool remove)
-{
-    kleo_assert(!d->job);
-    d->removeInput = remove;
 }
 
 void SignEncryptFilesTask::setDetachedSignature(bool detached)
@@ -556,7 +544,6 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &result)
 {
     const Job *const job = qobject_cast<const Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
-    bool inputRemoved = false;
     bool outputCreated = false;
     if (result.error().code()) {
         output->cancel();
@@ -566,25 +553,19 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &result)
             output->finalize();
             outputCreated = true;
             input->finalize();
-            if (removeInput)
-                try {
-                    kdtools::for_each(inputFileNames, recursivelyRemovePath);
-                    inputRemoved = true;
-                } catch (...) {}
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         }
     }
 
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, inputRemoved, outputCreated, auditLog)));
+    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
 }
 
 void SignEncryptFilesTask::Private::slotResult(const SigningResult &sresult, const EncryptionResult &eresult)
 {
     const Job *const job = qobject_cast<const Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
-    bool inputRemoved = false;
     bool outputCreated = false;
     if (sresult.error().code() || eresult.error().code()) {
         output->cancel();
@@ -594,25 +575,19 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &sresult, con
             output->finalize();
             outputCreated = true;
             input->finalize();
-            if (removeInput)
-                try {
-                    kdtools::for_each(inputFileNames, recursivelyRemovePath);
-                    inputRemoved = true;
-                } catch (...) {}
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         }
     }
 
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, input, output, inputRemoved, outputCreated, auditLog)));
+    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, input, output, outputCreated, auditLog)));
 }
 
 void SignEncryptFilesTask::Private::slotResult(const EncryptionResult &result)
 {
     const Job *const job = qobject_cast<const Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
-    bool inputRemoved = false;
     bool outputCreated = false;
     if (result.error().code()) {
         output->cancel();
@@ -622,22 +597,17 @@ void SignEncryptFilesTask::Private::slotResult(const EncryptionResult &result)
             output->finalize();
             outputCreated = true;
             input->finalize();
-            if (removeInput)
-                try {
-                    kdtools::for_each(inputFileNames, recursivelyRemovePath);
-                    inputRemoved = true;
-                } catch (...) {}
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         }
     }
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, inputRemoved, outputCreated, auditLog)));
+    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
 }
 
 QString SignEncryptFilesResult::overview() const
 {
-    const QString files = formatInputOutputLabel(m_inputLabel, m_outputLabel, m_inputRemoved, !m_outputCreated);
+    const QString files = formatInputOutputLabel(m_inputLabel, m_outputLabel, !m_outputCreated);
     return files + QLatin1String(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
 

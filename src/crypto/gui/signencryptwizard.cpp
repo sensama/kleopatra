@@ -257,16 +257,6 @@ void SignEncryptWizard::setAsciiArmorEnabled(bool enabled)
     d->signerResolvePage->setAsciiArmorEnabled(enabled);
 }
 
-bool SignEncryptWizard::removeUnencryptedFile() const
-{
-    return d->signerResolvePage->removeUnencryptedFile();
-}
-
-void SignEncryptWizard::setRemoveUnencryptedFile(bool remove)
-{
-    d->signerResolvePage->setRemoveUnencryptedFile(remove);
-}
-
 bool SignEncryptWizard::recipientsUserMutable() const
 {
     return d->recipientResolvePage->recipientsUserMutable();

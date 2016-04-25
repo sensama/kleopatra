@@ -88,9 +88,6 @@ public:
     bool isAsciiArmorEnabled() const;
     void setAsciiArmorEnabled(bool enabled);
 
-    bool removeUnencryptedFile() const;
-    void setRemoveUnencryptedFile(bool remove);
-
     void setPresetProtocol(GpgME::Protocol protocol);
     void setPresetProtocols(const std::vector<GpgME::Protocol> &protocols);
 

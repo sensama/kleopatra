@@ -108,7 +108,6 @@ public:
     bool isEncryptionSelected() const;
 
     bool isAsciiArmorEnabled() const;
-    bool isRemoveUnencryptedFilesEnabled() const;
 
     const std::vector<GpgME::Key> &resolvedRecipients() const;
     std::vector<GpgME::Key> resolvedSigners() const;

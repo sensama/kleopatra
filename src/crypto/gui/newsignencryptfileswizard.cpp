@@ -315,11 +315,6 @@ public:
         return field(p == OpenPGP ? QStringLiteral("archive-name-pgp") : QStringLiteral("archive-name-cms")).toString();
     }
 
-    bool isRemoveUnencryptedFilesEnabled() const
-    {
-        return field(QStringLiteral("remove")).toBool();
-    }
-
     bool isSignOnlySelected() const
     {
         return field(QStringLiteral("sign")).toBool();
@@ -398,7 +393,6 @@ public:
           m_encrypt(i18n("Encrypt"), this),
           m_sign(i18n("Sign"), this),
           m_armor(i18n("Text output (ASCII armor)"), this),
-          m_removeSource(i18n("Remove unencrypted original file when done"), this),
           m_signingUserMutable(true),
           m_encryptionUserMutable(true),
           m_archiveUserMutable(true),
@@ -420,7 +414,6 @@ public:
         KDAB_SET_OBJECT_NAME(m_archiveNameCmsLB);
         KDAB_SET_OBJECT_NAME(m_archiveNameCms);
         KDAB_SET_OBJECT_NAME(m_armor);
-        KDAB_SET_OBJECT_NAME(m_removeSource);
 
         QGridLayout *glay = new QGridLayout;
         glay->addWidget(&m_archiveCB,        0, 0);
@@ -438,7 +431,6 @@ public:
         vlay->addWidget(&m_sign);
         vlay->addStretch(1);
         vlay->addWidget(&m_armor);
-        vlay->addWidget(&m_removeSource);
 
         m_archiveNamePgpLB.setAlignment(Qt::AlignRight);
         m_archiveNamePgpLB.setBuddy(&m_archiveNamePgp);
@@ -466,7 +458,6 @@ public:
         registerField(QStringLiteral("sign"), &m_sign);
 
         registerField(QStringLiteral("armor"), &m_armor);
-        registerField(QStringLiteral("remove"), &m_removeSource);
 
         registerField(QStringLiteral("archive"), &m_archiveCB);
         registerField(QStringLiteral("archive-id"), &m_archive);
@@ -487,8 +478,6 @@ public:
         connect(&m_archiveNamePgp, &FileNameRequester::fileNameChanged, this, &QWizardPage::completeChanged);
         connect(&m_archiveNameCms, &FileNameRequester::fileNameChanged, this, &QWizardPage::completeChanged);
 
-        connect(&m_sign, &QAbstractButton::toggled,
-                &m_removeSource, &QWidget::setDisabled);
         connect(&m_archiveCB, &QAbstractButton::toggled,
                 &m_archive, &QWidget::setEnabled);
         connect(&m_archiveCB, &QAbstractButton::toggled,
@@ -680,7 +669,7 @@ private:
     QLabel m_archiveNameCmsLB;
     ArchiveFileNameRequester m_archiveNameCms;
     QRadioButton m_signencrypt, m_encrypt, m_sign;
-    QCheckBox m_armor, m_removeSource;
+    QCheckBox m_armor;
     bool m_signingUserMutable, m_encryptionUserMutable, m_archiveUserMutable;
     bool m_signingPreset, m_encryptionPreset;
     const std::vector< shared_ptr<ArchiveDefinition> > m_archiveDefinitions;
@@ -818,18 +807,7 @@ public:
             QStringLiteral("warn-encrypt-to-non-self"), KMessageBox::Notify | KMessageBox::Dangerous)
             == KMessageBox::Cancel) {
                 return false;
-            } else if (isRemoveUnencryptedFilesEnabled())
-                if (KMessageBox::warningContinueCancel(this,
-                                                       xi18nc("@info",
-                                                               "<para>You have requested the unencrypted data to be removed after encryption.</para>"
-                                                               "<para>Are you really sure you do not need to access the data anymore in decrypted form?</para>"),
-                                                       i18nc("@title:window", "Encrypt-To-Self Warning"),
-                                                       KStandardGuiItem::cont(),
-                                                       KStandardGuiItem::cancel(),
-                                                       QStringLiteral("warn-encrypt-to-non-self-destructive"), KMessageBox::Notify | KMessageBox::Dangerous)
-                        == KMessageBox::Cancel) {
-                    return false;
-                }
+            }
         }
         return true;
     }
@@ -1222,11 +1200,6 @@ bool NewSignEncryptFilesWizard::isEncryptionSelected() const
 bool NewSignEncryptFilesWizard::isAsciiArmorEnabled() const
 {
     return field(QStringLiteral("armor")).toBool();
-}
-
-bool NewSignEncryptFilesWizard::isRemoveUnencryptedFilesEnabled() const
-{
-    return isEncryptionSelected() && field(QStringLiteral("remove")).toBool();
 }
 
 bool NewSignEncryptFilesWizard::isCreateArchiveSelected() const

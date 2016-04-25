@@ -33,17 +33,23 @@
 #include <config-kleopatra.h>
 
 #include "cryptooperationsconfigwidget.h"
-#include "ui_cryptooperationsconfigwidget.h"
 
 #include "emailoperationspreferences.h"
 #include "fileoperationspreferences.h"
 
 #include <Libkleo/ChecksumDefinition>
 
-#include <kconfig.h>
-#include <kconfiggroup.h>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
 
+#include <QCheckBox>
+#include <QComboBox>
 #include <QLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
 
 #include <boost/shared_ptr.hpp>
 
@@ -51,40 +57,48 @@ using namespace Kleo;
 using namespace Kleo::Config;
 using namespace boost;
 
-class CryptoOperationsConfigWidget::Private
-{
-    friend class ::Kleo::Config::CryptoOperationsConfigWidget;
-    CryptoOperationsConfigWidget *const q;
-public:
-    explicit Private(CryptoOperationsConfigWidget *qq)
-        : q(qq), ui(q) {}
-
-private:
-    struct UI : Ui_CryptoOperationsConfigWidget {
-
-        explicit UI(CryptoOperationsConfigWidget *q)
-            : Ui_CryptoOperationsConfigWidget()
-        {
-            setupUi(q);
-
-            if (QLayout *const l = q->layout()) {
-                l->setMargin(0);
-            }
-
-            connect(quickSignCB, &QCheckBox::toggled, q, &CryptoOperationsConfigWidget::changed);
-            connect(quickEncryptCB, &QCheckBox::toggled, q, &CryptoOperationsConfigWidget::changed);
-            connect(checksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), q, &CryptoOperationsConfigWidget::changed);
-            connect(pgpFileExtCB, &QCheckBox::toggled, q, &CryptoOperationsConfigWidget::changed);
-        }
-
-    } ui;
-
-};
-
 CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f), d(new Private(this))
+    : QWidget(p, f)
 {
-//    load();
+    setupGui();
+}
+
+void CryptoOperationsConfigWidget::setupGui()
+{
+    QVBoxLayout *baseLay = new QVBoxLayout;
+
+    QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
+    QVBoxLayout *mailGrpLayout = new QVBoxLayout;
+    mQuickSignCB = new QCheckBox(i18n("Don't confirm signing certificate if there are is only one valid certificate for the identity"));
+    mQuickEncryptCB = new QCheckBox(i18n("Don't confirm encryption certificates if there is exactly one valid certificate for each recipient"));
+    mailGrpLayout->addWidget(mQuickSignCB);
+    mailGrpLayout->addWidget(mQuickEncryptCB);
+    mailGrp->setLayout(mailGrpLayout);
+    baseLay->addWidget(mailGrp);
+
+    QGroupBox *fileGrp = new QGroupBox(i18n("File Operations"));
+    QVBoxLayout *fileGrpLay = new QVBoxLayout;
+    mPGPFileExtCB = new QCheckBox(i18n("Create OpenPGP encrypted files with \".pgp\" file extensions instead of \".gpg\""));
+    fileGrpLay->addWidget(mPGPFileExtCB);
+    QHBoxLayout *chkLay = new QHBoxLayout;
+    QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
+    chkLay->addWidget(chkLabel);
+    mChecksumDefinitionCB = new QComboBox;
+    chkLay->addWidget(mChecksumDefinitionCB);
+    chkLay->addStretch(1);
+    fileGrpLay->addLayout(chkLay);
+    fileGrp->setLayout(fileGrpLay);
+    baseLay->addWidget(fileGrp);
+
+    baseLay->addStretch(1);
+
+    setLayout(baseLay);
+
+    connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &CryptoOperationsConfigWidget::changed);
+    connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
@@ -93,15 +107,15 @@ void CryptoOperationsConfigWidget::defaults()
 {
     EMailOperationsPreferences emailPrefs;
     emailPrefs.setDefaults();
-    d->ui.quickSignCB->setChecked(emailPrefs.quickSignEMail());
-    d->ui.quickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
+    mQuickSignCB->setChecked(emailPrefs.quickSignEMail());
+    mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
 
     FileOperationsPreferences filePrefs;
     filePrefs.setDefaults();
-    d->ui.pgpFileExtCB->setChecked(filePrefs.usePGPFileExt());
+    mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
 
-    if (d->ui.checksumDefinitionCB->count()) {
-        d->ui.checksumDefinitionCB->setCurrentIndex(0);
+    if (mChecksumDefinitionCB->count()) {
+        mChecksumDefinitionCB->setCurrentIndex(0);
     }
 }
 
@@ -111,21 +125,21 @@ void CryptoOperationsConfigWidget::load()
 {
 
     const EMailOperationsPreferences emailPrefs;
-    d->ui.quickSignCB   ->setChecked(emailPrefs.quickSignEMail());
-    d->ui.quickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
+    mQuickSignCB   ->setChecked(emailPrefs.quickSignEMail());
+    mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
 
     const FileOperationsPreferences filePrefs;
-    d->ui.pgpFileExtCB->setChecked(filePrefs.usePGPFileExt());
+    mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
 
     const std::vector< shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
     const shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
 
-    d->ui.checksumDefinitionCB->clear();
+    mChecksumDefinitionCB->clear();
 
     Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, cds) {
-        d->ui.checksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
+        mChecksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
         if (cd == default_cd) {
-            d->ui.checksumDefinitionCB->setCurrentIndex(d->ui.checksumDefinitionCB->count() - 1);
+            mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
         }
     }
 }
@@ -134,19 +148,19 @@ void CryptoOperationsConfigWidget::save()
 {
 
     EMailOperationsPreferences emailPrefs;
-    emailPrefs.setQuickSignEMail(d->ui.quickSignCB   ->isChecked());
-    emailPrefs.setQuickEncryptEMail(d->ui.quickEncryptCB->isChecked());
+    emailPrefs.setQuickSignEMail(mQuickSignCB   ->isChecked());
+    emailPrefs.setQuickEncryptEMail(mQuickEncryptCB->isChecked());
     emailPrefs.save();
 
     FileOperationsPreferences filePrefs;
-    filePrefs.setUsePGPFileExt(d->ui.pgpFileExtCB->isChecked());
+    filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
     filePrefs.save();
 
-    const int idx = d->ui.checksumDefinitionCB->currentIndex();
+    const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx < 0) {
         return;    // ### pick first?
     }
-    const shared_ptr<ChecksumDefinition> cd = qvariant_cast< shared_ptr<ChecksumDefinition> >(d->ui.checksumDefinitionCB->itemData(idx));
+    const shared_ptr<ChecksumDefinition> cd = qvariant_cast< shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
     ChecksumDefinition::setDefaultChecksumDefinition(cd);
 
 }

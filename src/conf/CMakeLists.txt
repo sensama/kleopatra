@@ -11,7 +11,6 @@ if(BUILD_libkleopatraclient)
 
   ki18n_wrap_ui(_kcm_kleopatra_libkleopatraclient_extra_SRCS
     smimevalidationconfigurationwidget.ui
-    cryptooperationsconfigwidget.ui
   )
 
   kconfig_add_kcfg_files(_kcm_kleopatra_libkleopatraclient_extra_SRCS

@@ -37,6 +37,9 @@
 
 #include <utils/pimpl_ptr.h>
 
+class QCheckBox;
+class QComboBox;
+
 namespace Kleo
 {
 namespace Config
@@ -58,8 +61,11 @@ Q_SIGNALS:
     void changed();
 
 private:
-    class Private;
-    kdtools::pimpl_ptr<Private> d;
+    void setupGui();
+    QCheckBox *mQuickEncryptCB,
+              *mQuickSignCB,
+              *mPGPFileExtCB;
+    QComboBox *mChecksumDefinitionCB;
 };
 
 }

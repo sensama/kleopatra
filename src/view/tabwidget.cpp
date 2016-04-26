@@ -419,6 +419,7 @@ private:
     QAction *newAction;
     QAction *currentPageActions[NumPageActions];
     QAction *otherPageActions[NumPageActions];
+    bool actionsCreated;
 };
 
 TabWidget::Private::Private(TabWidget *qq)
@@ -426,7 +427,8 @@ TabWidget::Private::Private(TabWidget *qq)
       flatModel(0),
       hierarchicalModel(0),
       tabWidget(q),
-      layout(q)
+      layout(q),
+      actionsCreated(false)
 {
     KDAB_SET_OBJECT_NAME(tabWidget);
     KDAB_SET_OBJECT_NAME(layout);
@@ -811,6 +813,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
     d->setCornerAction(d->newAction,                 Qt::TopLeftCorner);
     d->setCornerAction(d->currentPageActions[d->Close], Qt::TopRightCorner);
+    d->actionsCreated = true;
 }
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
@@ -836,6 +839,11 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
 {
     if (!page) {
         return 0;
+    }
+
+    if (!actionsCreated) {
+        KActionCollection *coll = new KActionCollection(q);
+        q->createActions(coll);
     }
 
     page->setFlatModel(flatModel);

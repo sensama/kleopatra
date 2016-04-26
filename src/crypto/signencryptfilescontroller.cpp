@@ -62,7 +62,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace Kleo::Crypto::Gui;
 using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
@@ -197,7 +196,6 @@ void SignEncryptFilesController::setProtocol(Protocol proto)
                 d->protocol == proto);
     d->protocol = proto;
     d->ensureWizardCreated();
-    d->wizard->setPresetProtocol(proto);
 }
 
 Protocol SignEncryptFilesController::protocol() const
@@ -238,7 +236,6 @@ void SignEncryptFilesController::Private::updateWizardMode()
     wizard->setWindowTitle(titleForOperation(operation));
     const unsigned int signOp = (operation & SignMask);
     const unsigned int encrOp = (operation & EncryptMask);
-    const unsigned int archOp = (operation & ArchiveMask);
 
     if (signOp == SignDisallowed) {
         wizard->setSigningUserMutable(false);
@@ -263,17 +260,6 @@ void SignEncryptFilesController::Private::updateWizardMode()
             wizard->setEncryptionPreset(true);
         }
     }
-
-    if (archOp == ArchiveDisallowed) {
-        wizard->setCreateArchivePreset(false);
-        wizard->setCreateArchiveUserMutable(false);
-    } else if (archOp == ArchiveForced) {
-        wizard->setCreateArchiveUserMutable(false);
-        wizard->setCreateArchivePreset(true);
-    } else {
-        wizard->setCreateArchiveUserMutable(true);
-        wizard->setCreateArchivePreset(false);
-    }
 }
 
 unsigned int SignEncryptFilesController::operationMode() const
@@ -289,7 +275,6 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
         setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
     }
     d->ensureWizardCreated();
-    d->wizard->setFiles(files);
 }
 
 void SignEncryptFilesController::Private::slotWizardCanceled()
@@ -320,17 +305,17 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
 }
 
 static shared_ptr<SignEncryptFilesTask>
-createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool pgp, bool sign, bool encrypt, bool ascii, const std::vector<Key> &recipients, const std::vector<Key> &signers)
+createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool pgp, bool ascii, const std::vector<Key> &recipients, const std::vector<Key> &signers)
 {
     const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
-    task->setSign(sign);
-    task->setEncrypt(encrypt);
     task->setAsciiArmor(ascii);
-    if (sign) {
+    if (!signers.empty()) {
+        task->setSign(true);
         task->setSigners(signers);
         task->setDetachedSignature(true);
     }
-    if (encrypt) {
+    if (!recipients.empty()) {
+        task->setEncrypt(true);
         task->setRecipients(recipients);
     }
 
@@ -338,7 +323,7 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool pgp, bool sign, bool 
     task->setInputFileName(input);
     task->setInput(Input::createFromFile(input));
 
-    const char *const ext = extension(pgp, sign, encrypt, ascii, true);
+    const char *const ext = extension(pgp, !signers.empty(), !recipients.empty(), ascii, true);
     kleo_assert(ext);
 
     const QString output = input + QLatin1Char('.') + QLatin1String(ext);
@@ -379,25 +364,21 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files, const QString &ou
 }
 
 static std::vector< shared_ptr<SignEncryptFilesTask> >
-createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool sign, bool encrypt, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners)
+createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners)
 {
     std::vector< shared_ptr<SignEncryptFilesTask> > result;
 
-    const bool shallPgpSign = sign && !pgpSigners.empty();
-    const bool shallPgpEncrypt = encrypt && !pgpRecipients.empty();
-    const bool pgp = (shallPgpEncrypt && (!sign || shallPgpSign)) || (!encrypt && shallPgpSign);
+    const bool pgp = !pgpSigners.empty() || !pgpRecipients.empty();
 
-    const bool shallCmsSign = sign && !cmsSigners.empty();
-    const bool shallCmsEncrypt = encrypt && !cmsRecipients.empty();
-    const bool cms = (shallCmsEncrypt && (!sign || shallCmsSign)) || (!encrypt && shallCmsSign);
+    const bool cms = !cmsSigners.empty() || !cmsRecipients.empty();
 
     result.reserve(pgp + cms);
 
     if (pgp) {
-        result.push_back(createSignEncryptTaskForFileInfo(fi, true, sign, encrypt, ascii, pgpRecipients, pgpSigners));
+        result.push_back(createSignEncryptTaskForFileInfo(fi, true, ascii, pgpRecipients, pgpSigners));
     }
     if (cms) {
-        result.push_back(createSignEncryptTaskForFileInfo(fi, false, sign, encrypt, ascii, cmsRecipients, cmsSigners));
+        result.push_back(createSignEncryptTaskForFileInfo(fi, false, ascii, cmsRecipients, cmsSigners));
     }
 
     return result;
@@ -432,37 +413,31 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
 {
 
     try {
-
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = wizard->isCreateArchiveSelected();
+        const bool archive = files.size() > 1;
 
-        const bool sign = wizard->isSigningSelected();
-        const bool encrypt = wizard->isEncryptionSelected();
+        const QVector<Key> recipients = wizard->resolvedRecipients();
+        const QVector<Key> signers = wizard->resolvedSigners();
 
-        const bool ascii = wizard->isAsciiArmorEnabled();
+        const bool ascii = false; /* TODO andre config */
 
-        std::vector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
-        if (encrypt) {
-            const std::vector<Key> recipients = wizard->resolvedRecipients();
-            kdtools::copy_if(recipients.begin(), recipients.end(),
-                             std::back_inserter(pgpRecipients),
-                             boost::bind(&Key::protocol, _1) == GpgME::OpenPGP);
-            kdtools::copy_if(recipients.begin(), recipients.end(),
-                             std::back_inserter(cmsRecipients),
-                             boost::bind(&Key::protocol, _1) == GpgME::CMS);
-            kleo_assert(pgpRecipients.size() + cmsRecipients.size() == recipients.size());
+        QVector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
+        Q_FOREACH (const Key k, recipients) {
+            if (k.protocol() == GpgME::OpenPGP) {
+                pgpRecipients << k;
+            } else {
+                cmsRecipients << k;
+            }
         }
-        if (sign) {
-            const std::vector<Key> signers = wizard->resolvedSigners();
-            kdtools::copy_if(signers.begin(), signers.end(),
-                             std::back_inserter(pgpSigners),
-                             boost::bind(&Key::protocol, _1) == GpgME::OpenPGP);
-            kdtools::copy_if(signers.begin(), signers.end(),
-                             std::back_inserter(cmsSigners),
-                             boost::bind(&Key::protocol, _1) == GpgME::CMS);
-            kleo_assert(pgpSigners.size() + cmsSigners.size() == signers.size());
+
+        Q_FOREACH (Key k, signers) {
+            if (k.protocol() == GpgME::OpenPGP) {
+                pgpSigners << k;
+            } else {
+                cmsSigners << k;
+            }
         }
 
         std::vector< shared_ptr<SignEncryptFilesTask> > tasks;
@@ -470,19 +445,27 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             tasks.reserve(files.size());
         }
 
-        if (archive)
+        if (archive) {
+            /* TODO Andre Port
             tasks = createArchiveSignEncryptTasksForFiles(files,
                     wizard->archiveFileName(OpenPGP),
                     wizard->archiveFileName(CMS),
                     wizard->selectedArchiveDefinition(),
                     sign, encrypt, ascii,
                     pgpRecipients, pgpSigners, cmsRecipients, cmsSigners);
-        else
+
+         */
+        } else {
             Q_FOREACH (const QString &file, files) {
                 const std::vector< shared_ptr<SignEncryptFilesTask> > created =
-                    createSignEncryptTasksForFileInfo(QFileInfo(file), sign, encrypt, ascii, pgpRecipients, pgpSigners, cmsRecipients, cmsSigners);
+                    createSignEncryptTasksForFileInfo(QFileInfo(file), ascii,
+                            pgpRecipients.toStdVector(),
+                            pgpSigners.toStdVector(),
+                            cmsRecipients.toStdVector(),
+                            cmsSigners.toStdVector());
                 tasks.insert(tasks.end(), created.begin(), created.end());
             }
+        }
 
         const shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
         Q_FOREACH (const shared_ptr<SignEncryptFilesTask> &i, tasks) {
@@ -497,7 +480,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             q->connectTask(task);
         }
 
-        shared_ptr<TaskCollection> coll(new TaskCollection);
+        boost::shared_ptr<TaskCollection> coll(new TaskCollection);
+
         std::vector<shared_ptr<Task> > tmp;
         std::copy(runnable.begin(), runnable.end(), std::back_inserter(tmp));
         coll->setTasks(tmp);

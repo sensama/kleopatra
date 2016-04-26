@@ -168,6 +168,7 @@ set(_kleopatra_SRCS
   crypto/gui/signerresolvepage.cpp
   crypto/gui/encryptemailwizard.cpp
   crypto/gui/signemailwizard.cpp
+  crypto/gui/signencryptwidget.cpp
   crypto/gui/signencryptwizard.cpp
   crypto/gui/certificateselectionwidget.cpp
 

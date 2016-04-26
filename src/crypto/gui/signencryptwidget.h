@@ -1,8 +1,7 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/gui/signencryptfileswizard.h
+/*  crypto/signencryptwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2009 Klarälvdalens Datakonsult AB
+    Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,77 +28,52 @@
     you do not wish to do so, delete this exception statement from
     your version.
 */
+#ifndef CRYPTO_GUI_SIGNENCRYPTWIDGET_H
+#define CRYPTO_GUI_SIGNENCRYPTWIDGET_H
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTFILESWIZARD_H__
-#define __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTFILESWIZARD_H__
-
-#include <utils/pimpl_ptr.h>
-
-#include <gpgme++/global.h>
-
-#include <QWizard>
-
+#include <QWidget>
 #include <QVector>
-
-#include <boost/shared_ptr.hpp>
-
-class QStringList;
-
-namespace GpgME
-{
-class Key;
-}
+#include <gpgme++/key.h>
 
 namespace Kleo
 {
-namespace Crypto
-{
-class TaskCollection;
-}
-}
+class CertificateSelectionWidget;
 
-class ResultPage;
-class SigEncPage;
-
-namespace Kleo
-{
-class SignEncryptWidget;
-
-class SignEncryptFilesWizard : public QWizard
+class SignEncryptWidget: public QWidget
 {
     Q_OBJECT
 public:
-    explicit SignEncryptFilesWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
-    ~SignEncryptFilesWizard();
+    explicit SignEncryptWidget(QWidget *parent = Q_NULLPTR);
 
-    // Inputs
-    void setSigningPreset(bool preset);
-    void setSigningUserMutable(bool mut);
+    /** Returns the list of recipients selected in the dialog
+     * or an empty list if encryption is disabled */
+    QVector <GpgME::Key> recipients() const;
 
-    void setEncryptionPreset(bool preset);
-    void setEncryptionUserMutable(bool mut);
+    /** Returns the selected signing key or a null key if signing
+     * is disabled. */
+    GpgME::Key signKey() const;
 
-    void setTaskCollection(const boost::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
+    /** Returns the selected encrypt to self key or a null key if
+     * encrypt to self is disabled. */
+    GpgME::Key selfKey() const;
 
-    // Outputs
-    QVector<GpgME::Key> resolvedRecipients() const;
-    QVector<GpgME::Key> resolvedSigners() const;
+    /** Returns the operation based on the current selection or
+     * a null string if nothing would happen. */
+    QString currentOp() const;
+
+protected Q_SLOTS:
+    void updateOp();
 
 Q_SIGNALS:
-    void operationPrepared();
-
-private Q_SLOTS:
-    void slotCurrentIdChanged(int);
+    /* Emitted when the certificate selection changed the operation
+     * with that selection. e.g. "Sign" or "Sign/Encrypt".
+     * If no crypto operation is selected this returns a null string. */
+    void operationChanged(const QString &op);
 
 private:
-    SigEncPage *mSigEncPage;
-    ResultPage *mResultPage;
-    bool mSigningPreset,
-         mSigningUserMutable,
-         mEncryptionUserMutable,
-         mEncryptionPreset;
+    CertificateSelectionWidget *mSigSelect,
+                               *mEncSelect;
+    QString mOp;
 };
-
-}
-
-#endif /* __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTFILESWIZARD_H__ */
+} // namespace Kleo
+#endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

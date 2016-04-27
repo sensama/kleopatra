@@ -59,6 +59,7 @@
 #include <QMenu>
 #include <QVBoxLayout>
 #include <QRegularExpression>
+#include <QAbstractProxyModel>
 
 #include <map>
 #include <vector>
@@ -734,6 +735,19 @@ QAbstractItemView *TabWidget::currentView() const
     } else {
         return 0;
     }
+}
+
+KeyListModelInterface *TabWidget::currentModel() const
+{
+    const QAbstractItemView *const view = currentView();
+    if (!view) {
+        return Q_NULLPTR;
+    }
+    QAbstractProxyModel *const proxy = qobject_cast<QAbstractProxyModel *>(view->model());
+    if (!proxy) {
+        return Q_NULLPTR;
+    }
+    return dynamic_cast<KeyListModelInterface *>(proxy);
 }
 
 unsigned int TabWidget::count() const

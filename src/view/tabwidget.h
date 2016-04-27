@@ -53,6 +53,7 @@ namespace Kleo
 class AbstractKeyListModel;
 class AbstractKeyListSortFilterProxyModel;
 class KeyFilter;
+class KeyListModelInterface;
 
 class TabWidget : public QWidget
 {
@@ -75,6 +76,7 @@ public:
 
     std::vector<QAbstractItemView *> views() const;
     QAbstractItemView *currentView() const;
+    KeyListModelInterface *currentModel() const;
 
     unsigned int count() const;
 

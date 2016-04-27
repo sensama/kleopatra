@@ -1,8 +1,7 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    models/keylistmodelinterface.h
+/*  models/keyrearangecolumnsproxymodel.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,60 +28,54 @@
     you do not wish to do so, delete this exception statement from
     your version.
 */
+#include "keyrearangecolumnsproxymodel.h"
 
-#ifndef __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__
-#define __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__
+#include <gpgme++/key.h>
+#include <cassert>
 
-#include <vector>
+using namespace Kleo;
+using namespace GpgME;
 
-namespace GpgME
+KeyRearangeColumnsProxyModel::KeyRearangeColumnsProxyModel(QObject *parent) :
+    KRearrangeColumnsProxyModel(parent),
+    KeyListModelInterface()
 {
-class Key;
-}
-
-class QModelIndex;
-template <typename T> class QList;
-
-namespace Kleo
-{
-
-class KeyListModelInterface
-{
-public:
-    virtual ~KeyListModelInterface() {}
-
-    static const int FingerprintRole = 0xF1;
-    static const int KeyRole = 0xF2;
-
-    enum Columns {
-        PrettyName,
-        PrettyEMail,
-        ValidFrom,
-        ValidUntil,
-        TechnicalDetails,
-        /* OpenPGP only, really */
-        ShortKeyID,
-        Summary, // Short summary line
-#if 0
-        Fingerprint,
-        LongKeyID,
-        /* X509 only, really */
-        Issuer,
-        Subject,
-        SerialNumber,
-#endif
-
-        NumColumns,
-        Icon = PrettyName // which column shall the icon be displayed in?
-    };
-
-    virtual GpgME::Key key(const QModelIndex &idx) const = 0;
-    virtual std::vector<GpgME::Key> keys(const QList<QModelIndex> &idxs) const = 0;
-
-    virtual QModelIndex index(const GpgME::Key &key) const = 0;
-    virtual QList<QModelIndex> indexes(const std::vector<GpgME::Key> &keys) const = 0;
-};
 
 }
 
-#endif /* __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__ */
+KeyListModelInterface *KeyRearangeColumnsProxyModel::klm() const
+{
+    KeyListModelInterface *ret = dynamic_cast<KeyListModelInterface *>(sourceModel());
+    assert(ret);
+    return ret;
+}
+
+Key KeyRearangeColumnsProxyModel::key(const QModelIndex &idx) const
+{
+    return klm()->key(mapToSource(idx));
+}
+
+std::vector<GpgME::Key> KeyRearangeColumnsProxyModel::keys(const QList<QModelIndex> &idxs) const
+{
+    QList<QModelIndex> srcIdxs;
+    Q_FOREACH (const QModelIndex idx, idxs) {
+        srcIdxs << mapToSource(idx);
+    }
+    return klm()->keys(srcIdxs);
+}
+
+
+QModelIndex KeyRearangeColumnsProxyModel::index(const GpgME::Key &key) const
+{
+    return mapFromSource(klm()->index(key));
+}
+
+QList<QModelIndex> KeyRearangeColumnsProxyModel::indexes(const std::vector<GpgME::Key> &keys) const
+{
+    QList<QModelIndex> myIdxs;
+    const QList <QModelIndex> srcIdxs = klm()->indexes(keys);
+    Q_FOREACH (const QModelIndex idx, srcIdxs) {
+        myIdxs << mapFromSource(idx);
+    }
+    return myIdxs;
+}

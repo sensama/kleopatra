@@ -73,6 +73,8 @@
 using namespace GpgME;
 using namespace Kleo;
 
+Q_DECLARE_METATYPE(Key);
+
 /****************************************************************************
 **
 ** Copyright (C) 2008 Nokia Corporation and/or its subsidiary(-ies).
@@ -300,7 +302,7 @@ QVariant AbstractKeyListModel::data(const QModelIndex &index, int role) const
 
     const int column = index.column();
 
-    if (role == Qt::DisplayRole || role == Qt::EditRole)
+    if (role == Qt::DisplayRole || role == Qt::EditRole) {
         switch (column) {
         case PrettyName:
             return Formatting::prettyName(key);
@@ -331,10 +333,12 @@ QVariant AbstractKeyListModel::data(const QModelIndex &index, int role) const
             return Formatting::type(key);
         case ShortKeyID:
             return QString::fromLatin1(key.shortKeyID());
+        case Summary:
+            return Formatting::summaryLine(key);
         case NumColumns:
             break;
         }
-    else if (role == Qt::ToolTipRole) {
+    } else if (role == Qt::ToolTipRole) {
         return Formatting::toolTip(key, toolTipOptions());
     } else if (role == Qt::FontRole) {
         return KeyFilterManager::instance()->font(key, (column == ShortKeyID) ? QFont(QStringLiteral("courier")) : QFont());
@@ -346,6 +350,8 @@ QVariant AbstractKeyListModel::data(const QModelIndex &index, int role) const
         return returnIfValid(KeyFilterManager::instance()->fgColor(key));
     } else if (role == FingerprintRole) {
         return QString::fromLatin1(key.primaryFingerprint());
+    } else if (role == KeyRole) {
+        return QVariant::fromValue(key);
     }
     return QVariant();
 }

@@ -752,3 +752,8 @@ QString Formatting::usageString(const Subkey &sub)
     }
     return usageStrings.join(QStringLiteral(", "));
 }
+
+QString Formatting::summaryLine(const Key &key)
+{
+    return keyToString(key) + QStringLiteral(" (%1 - %2)").arg(key.shortKeyID()).arg(displayName(key.protocol()));
+}

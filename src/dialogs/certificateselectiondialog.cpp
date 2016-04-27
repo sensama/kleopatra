@@ -243,7 +243,7 @@ void CertificateSelectionDialog::selectCertificates(const std::vector<Key> &keys
     if (!view) {
         return;
     }
-    const KeyListModelInterface *const model = dynamic_cast<KeyListModelInterface *>(view->model());
+    const auto *const model = d->ui.tabWidget.currentModel();
     assert(model);
     QItemSelectionModel *const sm = view->selectionModel();
     assert(sm);
@@ -265,7 +265,7 @@ std::vector<Key> CertificateSelectionDialog::selectedCertificates() const
     if (!view) {
         return std::vector<Key>();
     }
-    const KeyListModelInterface *const model = dynamic_cast<KeyListModelInterface *>(view->model());
+    const auto *const model = d->ui.tabWidget.currentModel();
     assert(model);
     const QItemSelectionModel *const sm = view->selectionModel();
     assert(sm);
@@ -368,7 +368,7 @@ void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &i
 {
     QAbstractItemView *const view = ui.tabWidget.currentView();
     assert(view);
-    const KeyListModelInterface *const model = dynamic_cast<KeyListModelInterface *>(view->model());
+    const auto *const model = ui.tabWidget.currentModel();
     assert(model);
     Q_UNUSED(model);
     QItemSelectionModel *const sm = view->selectionModel();

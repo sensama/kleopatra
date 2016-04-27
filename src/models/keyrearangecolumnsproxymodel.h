@@ -1,8 +1,7 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    models/keylistmodelinterface.h
+/*  models/keyrearangecolumnsproxymodel.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,60 +28,30 @@
     you do not wish to do so, delete this exception statement from
     your version.
 */
+#ifndef KEYREARANGECOLUMNSPROXYMODEL_H
+#define KEYREARANGECOLUMNSPROXYMODEL_H
 
-#ifndef __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__
-#define __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__
-
-#include <vector>
-
-namespace GpgME
-{
-class Key;
-}
-
-class QModelIndex;
-template <typename T> class QList;
+#include "keylistmodelinterface.h"
+#include <KRearrangeColumnsProxyModel>
 
 namespace Kleo
 {
-
-class KeyListModelInterface
+/** KRearangeColumnsProxymodel that implements the KeyListModelInterface. */
+class KeyRearangeColumnsProxyModel: public KRearrangeColumnsProxyModel,
+                                    public KeyListModelInterface
 {
 public:
-    virtual ~KeyListModelInterface() {}
+    explicit KeyRearangeColumnsProxyModel(QObject *parent = Q_NULLPTR);
 
-    static const int FingerprintRole = 0xF1;
-    static const int KeyRole = 0xF2;
+    GpgME::Key key(const QModelIndex &idx) const Q_DECL_OVERRIDE;
+    std::vector<GpgME::Key> keys(const QList<QModelIndex> &idxs) const Q_DECL_OVERRIDE;
 
-    enum Columns {
-        PrettyName,
-        PrettyEMail,
-        ValidFrom,
-        ValidUntil,
-        TechnicalDetails,
-        /* OpenPGP only, really */
-        ShortKeyID,
-        Summary, // Short summary line
-#if 0
-        Fingerprint,
-        LongKeyID,
-        /* X509 only, really */
-        Issuer,
-        Subject,
-        SerialNumber,
-#endif
+    using KRearrangeColumnsProxyModel::index;
 
-        NumColumns,
-        Icon = PrettyName // which column shall the icon be displayed in?
-    };
-
-    virtual GpgME::Key key(const QModelIndex &idx) const = 0;
-    virtual std::vector<GpgME::Key> keys(const QList<QModelIndex> &idxs) const = 0;
-
-    virtual QModelIndex index(const GpgME::Key &key) const = 0;
-    virtual QList<QModelIndex> indexes(const std::vector<GpgME::Key> &keys) const = 0;
+    QModelIndex index(const GpgME::Key &key) const Q_DECL_OVERRIDE;
+    QList<QModelIndex> indexes(const std::vector<GpgME::Key> &keys) const Q_DECL_OVERRIDE;
+private:
+    KeyListModelInterface *klm() const;
 };
-
-}
-
-#endif /* __KLEOPATRA_MODELS_KEYLISTMODELINTERFACE_H__ */
+} // namespace Kleo
+#endif // KEYREARANGECOLUMNSPROXYMODEL_H

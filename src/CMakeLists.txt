@@ -98,6 +98,7 @@ set(_kleopatra_SRCS
   models/keycache.cpp
   models/keylistmodel.cpp
   models/keylistsortfilterproxymodel.cpp
+  models/keyrearangecolumnsproxymodel.cpp
   models/subkeylistmodel.cpp
   models/useridlistmodel.cpp
 
@@ -279,6 +280,7 @@ target_link_libraries(kleopatra_bin
   KF5::IconThemes
   KF5::WindowSystem
   KF5::CoreAddons
+  KF5::ItemModels
   Qt5::Network
   Qt5::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}

@@ -34,8 +34,9 @@
 
 #include "keytreeview.h"
 
-#include <models/keylistmodel.h>
-#include <models/keylistsortfilterproxymodel.h>
+#include "models/keylistmodel.h"
+#include "models/keylistsortfilterproxymodel.h"
+#include "models/keyrearangecolumnsproxymodel.h"
 #include <Libkleo/Predicates>
 
 #include <utils/headerview.h>
@@ -200,7 +201,16 @@ void KeyTreeView::init()
     }
     m_proxy->setFilterFixedString(m_stringFilter);
     m_proxy->setKeyFilter(m_keyFilter);
-    m_view->setModel(m_proxy);
+    KeyRearangeColumnsProxyModel *rearangingModel = new KeyRearangeColumnsProxyModel(this);
+    rearangingModel->setSourceModel(m_proxy);
+    /* TODO: Make this configurable by the user. E.g. kdepim/src/todo/todoview.cpp */
+    rearangingModel->setSourceColumns(QVector<int>() << KeyListModelInterface::PrettyName
+                                                     << KeyListModelInterface::PrettyEMail
+                                                     << KeyListModelInterface::ValidFrom
+                                                     << KeyListModelInterface::ValidUntil
+                                                     << KeyListModelInterface::TechnicalDetails
+                                                     << KeyListModelInterface::ShortKeyID);
+    m_view->setModel(rearangingModel);
 }
 
 KeyTreeView::~KeyTreeView() {}

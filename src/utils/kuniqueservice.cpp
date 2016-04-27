@@ -31,9 +31,11 @@
 */
 #include "config-kleopatra.h"
 
+#include <QtGlobal>
+
 // Includes the real implementation
 
-#if !HAVE_QDBUS && defined(WIN32)
+#if !HAVE_QDBUS && defined(Q_OS_WIN)
 # include "kuniqueservice_win.cpp"
 #elif HAVE_QDBUS
 # include "kuniqueservice_dbus.cpp"

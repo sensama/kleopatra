@@ -37,12 +37,10 @@
 #include <crypto/sender.h>
 #include <crypto/recipient.h>
 
-#include <dialogs/certificateselectiondialog.h>
-
-#include <Libkleo/Predicates>
+#include "dialogs/certificateselectiondialog.h"
+#include "certificateselectionline.h"
 
 #include <utils/gui-helper.h>
-#include <utils/formatting.h>
 #include <utils/kleo_assert.h>
 #include <utils/kdsignalblocker.h>
 
@@ -64,8 +62,6 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QPushButton>
-#include <QStylePainter>
-#include <QStyle>
 #include <QPointer>
 
 #include <boost/shared_ptr.hpp>
@@ -82,320 +78,6 @@ using namespace boost;
 
 Q_DECLARE_METATYPE(GpgME::Key)
 Q_DECLARE_METATYPE(GpgME::UserID)
-
-namespace
-{
-
-// A QComboBox with an initial text (as known from web browsers)
-//
-// only works with read-only QComboBoxen, doesn't affect sizeHint
-// as it should...
-//
-class ComboBox : public QComboBox
-{
-    Q_OBJECT
-    Q_PROPERTY(QString initialText READ initialText WRITE setInitialText)
-    Q_PROPERTY(QIcon initialIcon READ initialIcon WRITE setInitialIcon)
-public:
-    explicit ComboBox(QWidget *parent = Q_NULLPTR)
-        : QComboBox(parent),
-          m_initialText(),
-          m_initialIcon()
-    {
-
-    }
-
-    explicit ComboBox(const QString &initialText, QWidget *parent = Q_NULLPTR)
-        : QComboBox(parent),
-          m_initialText(initialText),
-          m_initialIcon()
-    {
-
-    }
-
-    explicit ComboBox(const QIcon &initialIcon, const QString &initialText, QWidget *parent = Q_NULLPTR)
-        : QComboBox(parent),
-          m_initialText(initialText),
-          m_initialIcon(initialIcon)
-    {
-
-    }
-
-    QString initialText() const
-    {
-        return m_initialText;
-    }
-    QIcon initialIcon() const
-    {
-        return m_initialIcon;
-    }
-
-public Q_SLOTS:
-    void setInitialText(const QString &txt)
-    {
-        if (txt == m_initialText) {
-            return;
-        }
-        m_initialText = txt;
-        if (currentIndex() == -1) {
-            update();
-        }
-    }
-    void setInitialIcon(const QIcon &icon)
-    {
-        if (icon.cacheKey() == m_initialIcon.cacheKey()) {
-            return;
-        }
-        m_initialIcon = icon;
-        if (currentIndex() == -1) {
-            update();
-        }
-    }
-
-protected:
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE {
-        QStylePainter p(this);
-        p.setPen(palette().color(QPalette::Text));
-        QStyleOptionComboBox opt;
-        initStyleOption(&opt);
-        p.drawComplexControl(QStyle::CC_ComboBox, opt);
-
-        if (currentIndex() == -1)
-        {
-            opt.currentText = m_initialText;
-            opt.currentIcon = m_initialIcon;
-        }
-        p.drawControl(QStyle::CE_ComboBoxLabel, opt);
-    }
-
-private:
-    QString m_initialText;
-    QIcon m_initialIcon;
-};
-
-static QString make_initial_text(const std::vector<Key> &keys)
-{
-    if (keys.empty()) {
-        return i18n("(no matching certificates found)");
-    } else {
-        return i18n("Please select a certificate");
-    }
-}
-
-class KeysComboBox : public ComboBox
-{
-    Q_OBJECT
-public:
-    explicit KeysComboBox(QWidget *parent = Q_NULLPTR)
-        : ComboBox(parent) {}
-    explicit KeysComboBox(const QString &initialText, QWidget *parent = Q_NULLPTR)
-        : ComboBox(initialText, parent) {}
-    explicit KeysComboBox(const std::vector<Key> &keys, QWidget *parent = Q_NULLPTR)
-        : ComboBox(make_initial_text(keys), parent)
-    {
-        setKeys(keys);
-    }
-
-    void setKeys(const std::vector<Key> &keys)
-    {
-        clear();
-        Q_FOREACH (const Key &key, keys) {
-            addItem(Formatting::formatForComboBox(key), qVariantFromValue(key));
-        }
-    }
-
-    std::vector<Key> keys() const
-    {
-        std::vector<Key> result;
-        result.reserve(count());
-        for (int i = 0, end = count(); i != end; ++i) {
-            result.push_back(qvariant_cast<Key>(itemData(i)));
-        }
-        return result;;
-    }
-
-    int findOrAdd(const Key &key)
-    {
-        for (int i = 0, end = count(); i != end; ++i)
-            if (_detail::ByFingerprint<std::equal_to>()(key, qvariant_cast<Key>(itemData(i)))) {
-                return i;
-            }
-        insertItem(0, Formatting::formatForComboBox(key), qVariantFromValue(key));
-        return 0;
-    }
-
-    void addAndSelectCertificate(const Key &key)
-    {
-        setCurrentIndex(findOrAdd(key));
-    }
-
-    Key currentKey() const
-    {
-        return qvariant_cast<Key>(itemData(currentIndex()));
-    }
-
-};
-
-class Line
-{
-public:
-    static const unsigned int NumColumns = 4;
-
-    Line(const QString &toFrom, const QString &mailbox, const std::vector<Key> &pgp, bool pgpAmbig, const std::vector<Key> &cms, bool cmsAmbig, QWidget *q, QGridLayout &glay)
-        : pgpAmbiguous(pgpAmbig),
-          cmsAmbiguous(cmsAmbig),
-          toFromLB(new QLabel(toFrom, q)),
-          mailboxLB(new QLabel(mailbox, q)),
-          sbox(new QStackedWidget(q)),
-          pgpCB(new KeysComboBox(pgp, sbox)),
-          cmsCB(new KeysComboBox(cms, sbox)),
-          noProtocolCB(new KeysComboBox(i18n("(please choose between OpenPGP and S/MIME first)"), sbox)),
-          toolTB(new QToolButton(q))
-    {
-        KDAB_SET_OBJECT_NAME(toFromLB);
-        KDAB_SET_OBJECT_NAME(mailboxLB);
-        KDAB_SET_OBJECT_NAME(noProtocolCB);
-        KDAB_SET_OBJECT_NAME(pgpCB);
-        KDAB_SET_OBJECT_NAME(cmsCB);
-        KDAB_SET_OBJECT_NAME(sbox);
-        KDAB_SET_OBJECT_NAME(toolTB);
-
-        QFont bold;
-        bold.setBold(true);
-        toFromLB->setFont(bold);
-
-        mailboxLB->setTextFormat(Qt::PlainText);
-        toolTB->setText(i18n("..."));
-
-        pgpCB->setEnabled(!pgp.empty());
-        cmsCB->setEnabled(!cms.empty());
-        noProtocolCB->setEnabled(false);
-
-        pgpCB->setKeys(pgp);
-        if (pgpAmbiguous) {
-            pgpCB->setCurrentIndex(-1);
-        }
-
-        cmsCB->setKeys(cms);
-        if (cmsAmbiguous) {
-            cmsCB->setCurrentIndex(-1);
-        }
-
-        sbox->addWidget(pgpCB);
-        sbox->addWidget(cmsCB);
-        sbox->addWidget(noProtocolCB);
-        sbox->setCurrentWidget(noProtocolCB);
-
-        const int row = glay.rowCount();
-        unsigned int col = 0;
-        glay.addWidget(toFromLB,  row, col++);
-        glay.addWidget(mailboxLB, row, col++);
-        glay.addWidget(sbox,      row, col++);
-        glay.addWidget(toolTB,    row, col++);
-        assert(col == NumColumns);
-
-        q->connect(pgpCB, SIGNAL(currentIndexChanged(int)), SLOT(slotCompleteChanged()));
-        q->connect(cmsCB, SIGNAL(currentIndexChanged(int)), SLOT(slotCompleteChanged()));
-        q->connect(toolTB, SIGNAL(clicked()), SLOT(slotCertificateSelectionDialogRequested()));
-    }
-
-    KeysComboBox *comboBox(Protocol proto) const
-    {
-        if (proto == OpenPGP) {
-            return pgpCB;
-        }
-        if (proto == CMS) {
-            return cmsCB;
-        }
-        return 0;
-    }
-
-    QString mailboxText() const
-    {
-        return mailboxLB->text();
-    }
-
-    void addAndSelectCertificate(const Key &key) const
-    {
-        if (KeysComboBox *const cb = comboBox(key.protocol())) {
-            cb->addAndSelectCertificate(key);
-            cb->setEnabled(true);
-        }
-    }
-
-    void showHide(Protocol proto, bool &first, bool showAll, bool op) const
-    {
-        if (op && (showAll || wasInitiallyAmbiguous(proto))) {
-
-            toFromLB->setVisible(first);
-            first = false;
-
-            QFont font = mailboxLB->font();
-            font.setBold(wasInitiallyAmbiguous(proto));
-            mailboxLB->setFont(font);
-
-            sbox->setCurrentIndex(proto);
-
-            mailboxLB->show();
-            sbox->show();
-            toolTB->show();
-        } else {
-            toFromLB->hide();
-            mailboxLB->hide();
-            sbox->hide();
-            toolTB->hide();
-        }
-
-    }
-
-    bool wasInitiallyAmbiguous(Protocol proto) const
-    {
-        return (proto == OpenPGP && pgpAmbiguous)
-               || (proto == CMS     && cmsAmbiguous);
-    }
-
-    bool isStillAmbiguous(Protocol proto) const
-    {
-        kleo_assert(proto == OpenPGP || proto == CMS);
-        const KeysComboBox *const cb = comboBox(proto);
-        return cb->currentIndex() == -1;
-    }
-
-    Key key(Protocol proto) const
-    {
-        kleo_assert(proto == OpenPGP || proto == CMS);
-        const KeysComboBox *const cb = comboBox(proto);
-        return cb->currentKey();
-    }
-
-    const QToolButton *toolButton() const
-    {
-        return toolTB;
-    }
-
-    void kill()
-    {
-        delete toFromLB;
-        delete mailboxLB;
-        delete sbox;
-        delete toolTB;
-    }
-
-private:
-    bool pgpAmbiguous : 1;
-    bool cmsAmbiguous : 1;
-
-    QLabel *toFromLB;
-    QLabel *mailboxLB;
-    QStackedWidget *sbox;
-    KeysComboBox *pgpCB;
-    KeysComboBox *cmsCB;
-    KeysComboBox *noProtocolCB;
-    QToolButton *toolTB;
-
-};
-
-}
 
 static CertificateSelectionDialog *
 create_certificate_selection_dialog(QWidget *parent, Protocol proto)
@@ -498,13 +180,13 @@ private:
 
         bool first;
         first = true;
-        Q_FOREACH (const Line &line, ui.signers) {
+        Q_FOREACH (const CertificateSelectionLine &line, ui.signers) {
             line.showHide(proto, first, showAll, sign);
         }
         ui.selectSigningCertificatesGB.setVisible(sign && (showAll || !first));
 
         first = true;
-        Q_FOREACH (const Line &line, ui.recipients) {
+        Q_FOREACH (const CertificateSelectionLine &line, ui.recipients) {
             line.showHide(proto, first, showAll, encrypt);
         }
         ui.selectEncryptionCertificatesGB.setVisible(encrypt && (showAll || !first));
@@ -513,12 +195,12 @@ private:
     bool needShowAllRecipients(Protocol proto) const
     {
         if (sign)
-            if (const unsigned int num = kdtools::count_if(ui.signers, boost::bind(&Line::wasInitiallyAmbiguous, _1, proto)))
+            if (const unsigned int num = kdtools::count_if(ui.signers, boost::bind(&CertificateSelectionLine::wasInitiallyAmbiguous, _1, proto)))
                 if (num != ui.signers.size()) {
                     return true;
                 }
         if (encrypt)
-            if (const unsigned int num = kdtools::count_if(ui.recipients, boost::bind(&Line::wasInitiallyAmbiguous, _1, proto)))
+            if (const unsigned int num = kdtools::count_if(ui.recipients, boost::bind(&CertificateSelectionLine::wasInitiallyAmbiguous, _1, proto)))
                 if (num != ui.recipients.size()) {
                     return true;
                 }
@@ -598,7 +280,7 @@ private:
         const QObject *const s = q->sender();
         const Protocol proto = q->selectedProtocol();
         QPointer<CertificateSelectionDialog> dlg;
-        Q_FOREACH (const Line &l, ui.signers)
+        Q_FOREACH (const CertificateSelectionLine &l, ui.signers)
             if (s == l.toolButton()) {
                 dlg = create_signing_certificate_selection_dialog(q, proto, l.mailboxText());
                 if (dlg->exec()) {
@@ -607,7 +289,7 @@ private:
                 // ### switch to key.protocol(), in case proto == UnknownProtocol
                 break;
             }
-        Q_FOREACH (const Line &l, ui.recipients)
+        Q_FOREACH (const CertificateSelectionLine &l, ui.recipients)
             if (s == l.toolButton()) {
                 dlg = create_encryption_certificate_selection_dialog(q, proto, l.mailboxText());
                 if (dlg->exec()) {
@@ -639,7 +321,7 @@ private:
         QVBoxLayout vlay;
         QHBoxLayout  hlay;
         QGridLayout  glay;
-        std::vector<Line> signers, recipients;
+        std::vector<CertificateSelectionLine> signers, recipients;
 
         void setOkButtonEnabled(bool enable)
         {
@@ -719,29 +401,29 @@ private:
 
         void clearSendersAndRecipients()
         {
-            std::vector<Line> sig, enc;
+            std::vector<CertificateSelectionLine> sig, enc;
             sig.swap(signers);
             enc.swap(recipients);
-            kdtools::for_each(sig, mem_fn(&Line::kill));
-            kdtools::for_each(enc, mem_fn(&Line::kill));
+            kdtools::for_each(sig, mem_fn(&CertificateSelectionLine::kill));
+            kdtools::for_each(enc, mem_fn(&CertificateSelectionLine::kill));
             glay.removeWidget(&selectSigningCertificatesGB);
             glay.removeWidget(&selectEncryptionCertificatesGB);
         }
 
         void addSelectSigningCertificatesGB()
         {
-            glay.addWidget(&selectSigningCertificatesGB,    glay.rowCount(), 0, 1, Line::NumColumns);
+            glay.addWidget(&selectSigningCertificatesGB,    glay.rowCount(), 0, 1, CertificateSelectionLine::NumColumns);
         }
         void addSelectEncryptionCertificatesGB()
         {
-            glay.addWidget(&selectEncryptionCertificatesGB, glay.rowCount(), 0, 1, Line::NumColumns);
+            glay.addWidget(&selectEncryptionCertificatesGB, glay.rowCount(), 0, 1, CertificateSelectionLine::NumColumns);
         }
 
         void addSigner(const QString &mailbox,
                        const std::vector<Key> &pgp, bool pgpAmbiguous,
                        const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
         {
-            Line line(i18n("From:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
+            CertificateSelectionLine line(i18n("From:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
             signers.push_back(line);
         }
 
@@ -749,7 +431,7 @@ private:
                           const std::vector<Key> &pgp, bool pgpAmbiguous,
                           const std::vector<Key> &cms, bool cmsAmbiguous, QWidget *q)
         {
-            Line line(i18n("To:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
+            CertificateSelectionLine line(i18n("To:"), mailbox, pgp, pgpAmbiguous, cms, cmsAmbiguous, q, glay);
             recipients.push_back(line);
         }
 
@@ -866,12 +548,12 @@ bool SignEncryptEMailConflictDialog::isComplete() const
 
 bool SignEncryptEMailConflictDialog::Private::isComplete(Protocol proto) const
 {
-    return (!sign    || kdtools::none_of(ui.signers,    boost::bind(&Line::isStillAmbiguous, _1, proto)))
-           && (!encrypt || kdtools::none_of(ui.recipients, boost::bind(&Line::isStillAmbiguous, _1, proto)))
+    return (!sign    || kdtools::none_of(ui.signers,    boost::bind(&CertificateSelectionLine::isStillAmbiguous, _1, proto)))
+           && (!encrypt || kdtools::none_of(ui.recipients, boost::bind(&CertificateSelectionLine::isStillAmbiguous, _1, proto)))
            ;
 }
 
-static std::vector<Key> get_keys(const std::vector<Line> &lines, Protocol proto)
+static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &lines, Protocol proto)
 {
     if (proto == UnknownProtocol) {
         return std::vector<Key>();
@@ -881,7 +563,7 @@ static std::vector<Key> get_keys(const std::vector<Line> &lines, Protocol proto)
     std::vector<Key> keys;
     keys.reserve(lines.size());
     kdtools::transform(lines, std::back_inserter(keys),
-                       boost::bind(&Line::key, _1, proto));
+                       boost::bind(&CertificateSelectionLine::key, _1, proto));
     kleo_assert(kdtools::none_of(keys, mem_fn(&Key::isNull)));
     return keys;
 }

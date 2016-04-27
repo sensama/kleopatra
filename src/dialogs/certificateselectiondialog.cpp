@@ -107,7 +107,6 @@ private:
     {
         return !keys.empty();
     }
-    void filterAllowedKeys(std::vector<Key> &keys);
     void updateLabelText()
     {
         ui.label.setText(!customLabelText.isEmpty() ? customLabelText :
@@ -291,7 +290,7 @@ void CertificateSelectionDialog::Private::slotKeysMayHaveChanged()
 {
     q->setEnabled(true);
     std::vector<Key> keys = (options & SecretKeys) ? KeyCache::instance()->secretKeys() : KeyCache::instance()->keys();
-    filterAllowedKeys(keys);
+    q->filterAllowedKeys(keys, options);
     const std::vector<Key> selected = q->selectedCertificates();
     if (AbstractKeyListModel *const model = ui.tabWidget.flatModel()) {
         model->setKeys(keys);
@@ -302,7 +301,7 @@ void CertificateSelectionDialog::Private::slotKeysMayHaveChanged()
     q->selectCertificates(selected);
 }
 
-void CertificateSelectionDialog::Private::filterAllowedKeys(std::vector<Key> &keys)
+void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int options)
 {
     std::vector<Key>::iterator end = keys.end();
 

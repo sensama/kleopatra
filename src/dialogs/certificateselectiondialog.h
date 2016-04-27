@@ -96,6 +96,8 @@ public:
     std::vector<GpgME::Key> selectedCertificates() const;
     GpgME::Key selectedCertificate() const;
 
+    static void filterAllowedKeys(std::vector<GpgME::Key> &keys, int options);
+
 public Q_SLOTS:
     void setStringFilter(const QString &text);
     void setKeyFilter(const boost::shared_ptr<Kleo::KeyFilter> &filter);

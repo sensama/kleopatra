@@ -145,6 +145,7 @@ set(_kleopatra_SRCS
   crypto/gui/wizardpage.cpp
 
   crypto/gui/certificateselectionline.cpp
+  crypto/gui/certificateselectionwidget.cpp
   crypto/gui/certificatecombobox.cpp
   crypto/gui/signingcertificateselectionwidget.cpp
   crypto/gui/signingcertificateselectiondialog.cpp
@@ -168,6 +169,7 @@ set(_kleopatra_SRCS
   crypto/gui/encryptemailwizard.cpp
   crypto/gui/signemailwizard.cpp
   crypto/gui/signencryptwizard.cpp
+  crypto/gui/certificateselectionwidget.cpp
 
   crypto/gui/verifychecksumsdialog.cpp
 

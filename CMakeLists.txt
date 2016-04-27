@@ -46,7 +46,6 @@ find_package(KF5I18n ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5IconThemes ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5XmlGui ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5WindowSystem ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5TextWidgets ${KF5_VERSION} CONFIG REQUIRED)
 find_package(KF5DocTools ${KF5_VERSION} CONFIG)
 
 set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" TYPE OPTIONAL PURPOSE "Required to generate Kleopatra documentation.")

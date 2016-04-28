@@ -49,10 +49,6 @@ else()
   endif()
 endif()
 
-if(HAVE_KCMUTILS)
-  set (_kleopatra_extra_libs KF5::KCMUtils)
-endif()
-
 if(HAVE_GPG_ERR_SOURCE_KLEO)
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
 else()
@@ -209,7 +205,6 @@ set(_kleopatra_SRCS
   ${_kleopatra_uiserver_files}
 
   conf/configuredialog.cpp
-  conf/kleopageconfigdialog.cpp
 
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp
@@ -222,6 +217,12 @@ set(_kleopatra_SRCS
   mainwindow.cpp
   main.cpp
 )
+
+if(HAVE_KCMUTILS)
+  set (_kleopatra_extra_libs KF5::KCMUtils)
+else()
+  set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
+endif()
 
 ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME log_kleopatra)
 

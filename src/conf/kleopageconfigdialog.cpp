@@ -53,7 +53,6 @@
 */
 
 #include "config-kleopatra.h"
-#if !HAVE_KCMUTILS
 
 #include "kleopageconfigdialog.h"
 
@@ -304,4 +303,3 @@ void KleoPageConfigDialog::clientChanged()
         applyButton->setEnabled(change);
     }
 }
-#endif

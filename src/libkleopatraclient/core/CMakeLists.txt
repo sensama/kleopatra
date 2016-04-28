@@ -1,7 +1,7 @@
 if(ASSUAN2_FOUND)
-  include_directories(${ASSUAN2_INCLUDES} ${CMAKE_SOURCE_DIR}/kleopatra)
+  include_directories(${ASSUAN2_INCLUDES})
 else()
-  include_directories(${ASSUAN_INCLUDES} ${CMAKE_SOURCE_DIR}/kleopatra)
+  include_directories(${ASSUAN_INCLUDES})
 endif()
 
 add_definitions(

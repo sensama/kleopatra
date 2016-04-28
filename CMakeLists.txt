@@ -113,7 +113,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURR
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_BINARY_DIR}/libkleopatraclient/core/
     ${Boost_INCLUDE_DIR}
     ${GPGME_INCLUDES}
     )

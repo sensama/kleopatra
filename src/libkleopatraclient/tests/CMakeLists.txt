@@ -1,7 +1,5 @@
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
 
-include_directories(${CMAKE_SOURCE_DIR}/kleopatra)
-
 set(kleoclient_TESTS
   test_signencryptfilescommand
   test_decryptverifyfilescommand

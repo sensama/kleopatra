@@ -46,7 +46,7 @@ class QStackedWidget;
 namespace Kleo
 {
 
-class KeysComboBox;
+class MyCertificateComboBox;
 
 class CertificateSelectionLine
 {
@@ -92,7 +92,7 @@ public:
 
     void kill();
 
-    KeysComboBox *comboBox(GpgME::Protocol proto) const;
+    MyCertificateComboBox *comboBox(GpgME::Protocol proto) const;
 
 private:
     bool pgpAmbiguous : 1;
@@ -101,7 +101,7 @@ private:
     QLabel *mToFromLB;
     QLabel *mMailboxLB;
     QStackedWidget *mSbox;
-    KeysComboBox *mPgpCB,
+    MyCertificateComboBox *mPgpCB,
                  *mCmsCB,
                  *noProtocolCB;
     QToolButton *mToolTB;

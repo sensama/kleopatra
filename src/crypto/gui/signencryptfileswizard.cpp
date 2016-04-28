@@ -95,6 +95,7 @@ public:
         connect(mWidget, &SignEncryptWidget::operationChanged, this,
                 &SigEncPage::updateCommitButton);
         setLayout(vLay);
+        updateCommitButton(mWidget->currentOp());
     }
 
     bool isComplete() const Q_DECL_OVERRIDE
@@ -160,7 +161,12 @@ public:
 private Q_SLOTS:
     void updateCommitButton(const QString &label)
     {
-        setButtonText(QWizard::CommitButton, label);
+        if (!label.isEmpty()) {
+            setButtonText(QWizard::CommitButton, label);
+        } else {
+            setButtonText(QWizard::CommitButton, i18n("Next"));
+        }
+        Q_EMIT completeChanged();
     }
 
 private:

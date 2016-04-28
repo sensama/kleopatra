@@ -1,4 +1,4 @@
-/*  crypto/signencryptwidget.h
+/*  crypto/gui/signencryptwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2016 Intevation GmbH
@@ -35,6 +35,8 @@
 #include <QVector>
 #include <gpgme++/key.h>
 
+class QVBoxLayout;
+
 namespace Kleo
 {
 class CertificateSelectionWidget;
@@ -63,6 +65,10 @@ public:
 
 protected Q_SLOTS:
     void updateOp();
+    void recipientsChanged();
+
+protected:
+    void addRecipient();
 
 Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation
@@ -72,7 +78,9 @@ Q_SIGNALS:
 
 private:
     CertificateSelectionWidget *mSigSelect,
-                               *mEncSelect;
+                               *mSelfSelect;
+    QVector<CertificateSelectionWidget *> mRecpWidgets;
+    QVBoxLayout *mRecpLayout;
     QString mOp;
 };
 } // namespace Kleo

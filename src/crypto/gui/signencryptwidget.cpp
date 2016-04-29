@@ -127,7 +127,6 @@ void SignEncryptWidget::addRecipient()
                                                                          true);
     mRecpWidgets << certSel;
     mRecpLayout->insertWidget(mRecpLayout->count() - 1, certSel);
-    qCDebug(KLEOPATRA_LOG) << "Adding recipient widget.";
     connect(certSel, &CertificateSelectionWidget::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
 }
@@ -144,6 +143,7 @@ void SignEncryptWidget::recipientsChanged()
     if (!oneEmpty) {
         addRecipient();
     }
+    updateOp();
 }
 
 Key SignEncryptWidget::signKey() const
@@ -186,6 +186,7 @@ void SignEncryptWidget::updateOp()
 {
     const Key sigKey = signKey();
     const QVector<Key> recp = recipients();
+
     QString newOp;
     if (!sigKey.isNull() && !recp.isEmpty()) {
         newOp = i18nc("@action", "Sign / Encrypt");
@@ -200,6 +201,7 @@ void SignEncryptWidget::updateOp()
         mOp = newOp;
         Q_EMIT operationChanged(mOp);
     }
+    Q_EMIT keysChanged();
 }
 
 QString SignEncryptWidget::currentOp() const

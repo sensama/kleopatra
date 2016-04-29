@@ -33,6 +33,7 @@
 
 #include <QWidget>
 #include <QVector>
+#include <QMap>
 #include <gpgme++/key.h>
 
 class QVBoxLayout;
@@ -75,6 +76,9 @@ Q_SIGNALS:
      * with that selection. e.g. "Sign" or "Sign/Encrypt".
      * If no crypto operation is selected this returns a null string. */
     void operationChanged(const QString &op);
+
+    /* Emitted when the certificate selection might be changed. */
+    void keysChanged();
 
 private:
     CertificateSelectionWidget *mSigSelect,

@@ -40,6 +40,7 @@
 #include <QWizard>
 
 #include <QVector>
+#include <QMap>
 
 #include <boost/shared_ptr.hpp>
 
@@ -69,6 +70,14 @@ class SignEncryptFilesWizard : public QWizard
 {
     Q_OBJECT
 public:
+    enum KindNames{
+        SignatureCMS,
+        CombinedPGP,
+        EncryptedPGP,
+        EncryptedCMS,
+        SignaturePGP
+    };
+
     explicit SignEncryptFilesWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
     ~SignEncryptFilesWizard();
 
@@ -78,6 +87,9 @@ public:
 
     void setEncryptionPreset(bool preset);
     void setEncryptionUserMutable(bool mut);
+
+    void setOutputNames(const QMap<int, QString> &nameMap) const;
+    QMap<int, QString> outputNames() const;
 
     void setTaskCollection(const boost::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
 

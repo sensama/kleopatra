@@ -42,8 +42,13 @@
 #include <KMessageBox>
 
 #include "kleopatra_debug.h"
+
+#include <Libkleo/FileNameRequester>
 #include <QVBoxLayout>
 #include <QWizardPage>
+#include <QGroupBox>
+#include <QLabel>
+#include <QIcon>
 
 #include <QPointer>
 
@@ -84,18 +89,31 @@ FIXME: Either show this warning or fix detached signatures for archives.
 class SigEncPage: public QWizardPage
 {
     Q_OBJECT
+
 public:
     explicit SigEncPage(QWidget *parent = Q_NULLPTR)
         : QWizardPage(parent),
-          mWidget(new SignEncryptWidget)
+          mWidget(new SignEncryptWidget),
+          mOutLayout(new QVBoxLayout)
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
-        QVBoxLayout *vLay = new QVBoxLayout(this);
+        auto vLay = new QVBoxLayout(this);
         vLay->addWidget(mWidget);
         connect(mWidget, &SignEncryptWidget::operationChanged, this,
                 &SigEncPage::updateCommitButton);
+        connect(mWidget, &SignEncryptWidget::keysChanged, this,
+                &SigEncPage::updateFileWidgets);
         setLayout(vLay);
         updateCommitButton(mWidget->currentOp());
+
+        auto outputGrp = new QGroupBox(i18n("Output"));
+        outputGrp->setLayout(mOutLayout);
+
+        mPlaceholderWidget = new QLabel(i18n("Please select an action."));
+        mOutLayout->addWidget(mPlaceholderWidget);
+
+        vLay->addWidget(outputGrp);
+        setMinimumHeight(480);
     }
 
     bool isComplete() const Q_DECL_OVERRIDE
@@ -108,11 +126,13 @@ public:
         return ResultPageId;
     }
 
-    void initializePage() Q_DECL_OVERRIDE {
+    void initializePage() Q_DECL_OVERRIDE
+    {
         setCommitPage(true);
     }
 
-    bool validatePage() Q_DECL_OVERRIDE {
+    bool validatePage() Q_DECL_OVERRIDE
+    {
         if (!mWidget->selfKey().isNull()) {
             return true;
         }
@@ -158,6 +178,57 @@ public:
         return ret;
     }
 
+private:
+    QWidget *createRequester(int forKind, QBoxLayout *lay) {
+        static const QMap <int, QString> icons = {
+            { SignEncryptFilesWizard::SignatureCMS, QStringLiteral("document-sign") },
+            { SignEncryptFilesWizard::SignaturePGP, QStringLiteral("document-sign") },
+            { SignEncryptFilesWizard::CombinedPGP,  QStringLiteral("document-edit-sign-encrypt") },
+            { SignEncryptFilesWizard::EncryptedPGP, QStringLiteral("document-encrypt") },
+            { SignEncryptFilesWizard::EncryptedCMS, QStringLiteral("document-encrypt") }
+        };
+        static const QMap <int, QString> toolTips = {
+            { SignEncryptFilesWizard::SignatureCMS, i18n("The S/MIME signature.") },
+            { SignEncryptFilesWizard::SignaturePGP, i18n("The signature.") },
+            { SignEncryptFilesWizard::CombinedPGP,  i18n("The signed and encrypted file.") },
+            { SignEncryptFilesWizard::EncryptedPGP, i18n("The encrypted file.") },
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("The S/MIME encrypted file.") }
+        };
+
+        FileNameRequester *req = new FileNameRequester(QDir::Files, this);
+        req->setFileName(mOutNames[forKind]);
+        QHBoxLayout *hLay = new QHBoxLayout;
+        QLabel *iconLabel = new QLabel;
+        QWidget *ret = new QWidget;
+        iconLabel->setPixmap(QIcon::fromTheme(icons[forKind]).pixmap(32,32));
+        hLay->addWidget(iconLabel);
+        iconLabel->setToolTip(toolTips[forKind]);
+        req->setToolTip(toolTips[forKind]);
+        hLay->addWidget(req);
+        ret->setLayout(hLay);
+        lay->addWidget(ret);
+
+        connect (req, &FileNameRequester::fileNameChanged, this,
+                 [this, forKind](const QString &newName) {
+                    mOutNames[forKind] = newName;
+                 });
+        return ret;
+    }
+
+public:
+    void setOutputNames(const QMap<int, QString> &names) {
+        assert(mOutNames.isEmpty());
+        mOutNames = names;
+        Q_FOREACH (int i, mOutNames.keys()) {
+            mRequester[i] = createRequester(i, mOutLayout);
+        }
+        updateFileWidgets();
+    }
+
+    QMap <int, QString> outputNames() const {
+        return mOutNames;
+    }
+
 private Q_SLOTS:
     void updateCommitButton(const QString &label)
     {
@@ -169,8 +240,42 @@ private Q_SLOTS:
         Q_EMIT completeChanged();
     }
 
+    void updateFileWidgets()
+    {
+        if (mRequester.isEmpty()) {
+            return;
+        }
+        const QVector<Key> recipients = mWidget->recipients();
+        const Key sigKey = mWidget->signKey();
+        bool pgp = false;
+        bool cms = false;
+
+        Q_FOREACH (const Key k, recipients) {
+            if (pgp && cms) {
+                break;
+            }
+            if (k.protocol() == Protocol::OpenPGP) {
+                pgp = true;
+            } else {
+                cms = true;
+            }
+        }
+        mOutLayout->setEnabled(false);
+        mPlaceholderWidget->setVisible(!cms && !pgp);
+        mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(sigKey.protocol() == Protocol::CMS);
+        mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(cms);
+        mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(sigKey.protocol() == Protocol::OpenPGP && pgp);
+        mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(pgp && sigKey.protocol() != Protocol::OpenPGP);
+        mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(sigKey.protocol() == Protocol::OpenPGP && !pgp);
+        mOutLayout->setEnabled(true);
+    }
+
 private:
     SignEncryptWidget *mWidget;
+    QMap <int, QString> mOutNames;
+    QMap <int, QWidget *> mRequester;
+    QVBoxLayout *mOutLayout;
+    QWidget *mPlaceholderWidget;
 };
 
 class ResultPage : public NewResultPage
@@ -259,6 +364,16 @@ QVector<Key> SignEncryptFilesWizard::resolvedSigners() const
 void SignEncryptFilesWizard::setTaskCollection(const boost::shared_ptr<Kleo::Crypto::TaskCollection> &coll)
 {
     mResultPage->setTaskCollection(coll);
+}
+
+void SignEncryptFilesWizard::setOutputNames(const QMap<int, QString> &map) const
+{
+    mSigEncPage->setOutputNames(map);
+}
+
+QMap<int, QString> SignEncryptFilesWizard::outputNames() const
+{
+    return mSigEncPage->outputNames();
 }
 
 #include "signencryptfileswizard.moc"

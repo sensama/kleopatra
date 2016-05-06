@@ -37,6 +37,8 @@
 
 #include <newcertificatewizard/newcertificatewizard.h>
 
+#include <cassert>
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;

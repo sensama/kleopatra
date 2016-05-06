@@ -57,6 +57,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cassert>
 
 using namespace GpgME;
 

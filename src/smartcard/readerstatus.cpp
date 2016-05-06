@@ -64,6 +64,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/range.hpp>
 #include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include <vector>
 #include <set>

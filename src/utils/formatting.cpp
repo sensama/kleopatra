@@ -50,6 +50,7 @@
 #include <QDateTime>
 #include <QTextDocument> // for Qt::escape
 #include <QLocale>
+#include <QIcon>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -756,4 +757,23 @@ QString Formatting::usageString(const Subkey &sub)
 QString Formatting::summaryLine(const Key &key)
 {
     return keyToString(key) + QStringLiteral(" (%1 - %2)").arg(key.shortKeyID()).arg(displayName(key.protocol()));
+}
+
+// Icon for certificate selection indication
+QIcon Formatting::iconForUid(const UserID &uid)
+{
+    switch (uid.validity()) {
+        case UserID::Ultimate:
+            return QIcon::fromTheme(QStringLiteral("emblem-favorite"));
+        case UserID::Full:
+            return QIcon::fromTheme(QStringLiteral("emblem-success"));
+        case UserID::Marginal:
+            return QIcon::fromTheme(QStringLiteral("emblem-information"));
+        case UserID::Never:
+            return QIcon::fromTheme(QStringLiteral("emblem-error"));
+        case UserID::Undefined:
+        case UserID::Unknown:
+        default:
+            return QIcon::fromTheme(QStringLiteral("emblem-warning"));
+    }
 }

@@ -34,6 +34,8 @@
 
 #include "keylistsortfilterproxymodel.h"
 
+#include "kleopatra_debug.h"
+
 #include "keylistmodel.h"
 
 #include <Libkleo/KeyFilter>
@@ -177,21 +179,30 @@ bool KeyListSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelI
         }
 
     //
-    // 1. Check that name or email matches filterRegExp
+    // 1. Check filterRegExp
     //
     const int role = filterRole();
-
-    const QModelIndex nameIndex = sourceModel()->index(source_row, PrettyName, source_parent);
-    const QString name = nameIndex.data(role).toString();
-
-    const QModelIndex emailIndex = sourceModel()->index(source_row, PrettyEMail, source_parent);
-    const QString email = emailIndex.data(role).toString();
-
+    const int col = filterKeyColumn();
     const QRegExp rx = filterRegExp();
-    if (!name.contains(rx))
-        if (!email.contains(rx)) {
+    const QModelIndex nameIndex = sourceModel()->index(source_row, PrettyName, source_parent);
+
+    if (col) {
+        const QModelIndex colIdx = sourceModel()->index(source_row, col, source_parent);
+        const QString content = colIdx.data(role).toString();
+        if (!content.contains(rx)) {
             return false;
         }
+    } else {
+        // By default match name and email
+        const QString name = nameIndex.data(role).toString();
+
+        const QModelIndex emailIndex = sourceModel()->index(source_row, PrettyEMail, source_parent);
+        const QString email = emailIndex.data(role).toString();
+
+        if (!name.contains(rx) && !email.contains(rx)) {
+            return false;
+        }
+    }
 
     //
     // 2. Check that key filters match (if any are defined)

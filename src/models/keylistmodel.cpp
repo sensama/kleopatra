@@ -33,6 +33,7 @@
 #include <config-kleopatra.h>
 
 #include "keylistmodel.h"
+#include "keycache.h"
 #include "Libkleo/Predicates"
 
 #ifdef KLEO_MODEL_TEST
@@ -151,9 +152,14 @@ static inline uint qHash(const char *data)
 class AbstractKeyListModel::Private
 {
 public:
-    Private() : m_toolTipOptions(Formatting::Validity) {}
+    Private() :
+        m_toolTipOptions(Formatting::Validity),
+        m_useKeyCache(false),
+        m_secretOnly(false) {}
     int m_toolTipOptions;
     mutable QHash<const char *, QVariant> prettyEMailCache;
+    bool m_useKeyCache;
+    bool m_secretOnly;
 };
 AbstractKeyListModel::AbstractKeyListModel(QObject *p)
     : QAbstractItemModel(p), KeyListModelInterface(), d(new Private)
@@ -953,6 +959,23 @@ void HierarchicalKeyListModel::doRemoveKey(const Key &key)
         }
     }
     endRemoveRows();
+}
+
+void AbstractKeyListModel::useKeyCache(bool value, bool secretOnly)
+{
+    d->m_secretOnly = secretOnly;
+    d->m_useKeyCache = value;
+    if (value) {
+        setKeys(d->m_secretOnly ? KeyCache::instance()->secretKeys() : KeyCache::instance()->keys());
+    } else {
+        setKeys(std::vector<Key>());
+    }
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
+            this, [this] {
+            if (d->m_useKeyCache) {
+                setKeys(d->m_secretOnly ? KeyCache::instance()->secretKeys() : KeyCache::instance()->keys());
+            }
+        });
 }
 
 // static

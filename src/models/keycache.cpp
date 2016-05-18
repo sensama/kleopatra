@@ -105,7 +105,7 @@ class KeyCache::Private
     friend class ::Kleo::KeyCache;
     KeyCache *const q;
 public:
-    explicit Private(KeyCache *qq) : q(qq)
+    explicit Private(KeyCache *qq) : q(qq), m_initalized(false)
     {
         connect(&m_autoKeyListingTimer, SIGNAL(timeout()), q, SLOT(startKeyListing()));
         updateAutoKeyListingTimer();
@@ -199,6 +199,7 @@ private:
         std::vector< std::pair<std::string, Key> > email;
         std::vector<Subkey> subkeyid;
     } by;
+    bool m_initalized;
 };
 
 shared_ptr<const KeyCache> KeyCache::instance()
@@ -273,6 +274,7 @@ void KeyCache::Private::refreshJobDone(const KeyListResult &result)
 {
     Q_EMIT q->keyListingDone(result);
     q->enableFileSystemWatcher(true);
+    m_initalized = true;
 }
 
 const Key &KeyCache::findByFingerprint(const char *fpr) const
@@ -1057,6 +1059,11 @@ Error KeyCache::RefreshKeysJob::Private::startKeyListing(const char *backend)
         ++m_jobsPending;
     }
     return error;
+}
+
+bool KeyCache::initialized() const
+{
+    return d->m_initalized;
 }
 
 #include "moc_keycache_p.cpp"

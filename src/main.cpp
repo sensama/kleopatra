@@ -77,7 +77,6 @@ class UiServer;
 
 #include <KLocalizedString>
 #include <kiconloader.h>
-#include <QSplashScreen>
 #include <kmessagebox.h>
 
 #include <QTextDocument> // for Qt::escape
@@ -98,8 +97,6 @@ class UiServer;
 
 using namespace boost;
 
-static const int SPLASHSCREEN_TIMEOUT = 5000; // 5s
-
 namespace
 {
 template <typename T>
@@ -109,97 +106,31 @@ boost::shared_ptr<T> make_shared_ptr(T *t)
 }
 }
 
-static QPixmap UserIcon_nocached(const char *name)
+static bool selfCheck()
 {
-    // KIconLoader insists on caching all pixmaps. Since the splash
-    // screen is a particularly large 'icon' and used only once,
-    // caching is unneccesary and just hurts startup performance.
-    KIconLoader *const il = KIconLoader::global();
-    assert(il);
-    const QString iconPath = il->iconPath(QLatin1String(name), KIconLoader::User);
-    return iconPath.isEmpty() ? il->unknown() : QPixmap(iconPath);
-}
-
-#ifndef QT_NO_SPLASHSCREEN
-class SplashScreen : public QSplashScreen
-{
-    QBasicTimer m_timer;
-public:
-    SplashScreen()
-        : QSplashScreen(UserIcon_nocached("kleopatra_splashscreen"), Qt::WindowStaysOnTopHint),
-          m_timer()
-    {
-        m_timer.start(SPLASHSCREEN_TIMEOUT, this);
-    }
-
-protected:
-    void timerEvent(QTimerEvent *ev) Q_DECL_OVERRIDE {
-        if (ev->timerId() == m_timer.timerId())
-        {
-            m_timer.stop();
-            hide();
-        } else {
-            QSplashScreen::timerEvent(ev);
-        }
-    }
-
-};
-#else
-class SplashScreen {};
-#endif // QT_NO_SPLASHSCREEN
-
-static bool selfCheck(SplashScreen &splash)
-{
-#ifndef QT_NO_SPLASHSCREEN
-    splash.showMessage(i18n("Performing Self-Check..."));
-#endif
     Kleo::Commands::SelfTestCommand cmd(0);
     cmd.setAutoDelete(false);
     cmd.setAutomaticMode(true);
-#ifndef QT_NO_SPLASHSCREEN
-    cmd.setSplashScreen(&splash);
-#endif
     QEventLoop loop;
     QObject::connect(&cmd, &Kleo::Commands::SelfTestCommand::finished, &loop, &QEventLoop::quit);
-#ifndef QT_NO_SPLASHSCREEN
-    QObject::connect(&cmd, SIGNAL(info(QString)), &splash, SLOT(showMessage(QString)));
-#endif
     QTimer::singleShot(0, &cmd, &Kleo::Command::start);   // start() may Q_EMIT finished()...
     loop.exec();
     if (cmd.isCanceled()) {
-#ifndef QT_NO_SPLASHSCREEN
-        splash.showMessage(i18nc("did not pass", "Self-Check Failed"));
-#endif
         return false;
     } else {
-#ifndef QT_NO_SPLASHSCREEN
-        splash.showMessage(i18n("Self-Check Passed"));
-#endif
         return true;
     }
 }
 
-static void fillKeyCache(SplashScreen *splash, Kleo::UiServer *server)
+static void fillKeyCache(Kleo::UiServer *server)
 {
-
-    QEventLoop loop;
     Kleo::ReloadKeysCommand *cmd = new Kleo::ReloadKeysCommand(0);
-    QObject::connect(cmd, &Kleo::Commands::SelfTestCommand::finished, &loop, &QEventLoop::quit);
 #ifdef HAVE_USABLE_ASSUAN
     QObject::connect(cmd, SIGNAL(finished()), server, SLOT(enableCryptoCommands()));
 #else
     Q_UNUSED(server);
 #endif
-#ifndef QT_NO_SPLASHSCREEN
-    splash->showMessage(i18n("Loading certificate cache..."));
-#else
-    Q_UNUSED(splash);
-#endif
     cmd->start();
-    loop.exec();
-#ifndef QT_NO_SPLASHSCREEN
-    splash->showMessage(i18n("Certificate cache loaded."));
-#endif
 }
 
 int main(int argc, char **argv)
@@ -256,8 +187,6 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    SplashScreen splash;
-
     Kleo::ChecksumDefinition::setInstallPath(Kleo::gpg4winInstallPath());
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
@@ -304,24 +233,16 @@ int main(int argc, char **argv)
             app.restoreMainWindow();
         }
 
-#ifndef QT_NO_SPLASHSCREEN
-        // Don't show splash screen if daemon or session restore
-        if (!(daemon || app.isSessionRestored())) {
-            splash.show();
-        }
-#endif
-        if (!selfCheck(splash)) {
+        if (!selfCheck()) {
             return EXIT_FAILURE;
         }
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
 
 #ifdef HAVE_USABLE_ASSUAN
-        fillKeyCache(&splash, &server);
+        fillKeyCache(&server);
 #else
-        fillKeyCache(&splash, 0);
+        fillKeyCache(Q_NULLPTR);
 #endif
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: KeyCache loaded";
-
 #ifndef QT_NO_SYSTEMTRAYICON
         app.startMonitoringSmartCard();
 #endif
@@ -335,9 +256,6 @@ int main(int argc, char **argv)
                 return EXIT_FAILURE;
             }
             qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: new instance created";
-#ifndef QT_NO_SPLASHSCREEN
-            splash.finish(app.mainWindow());
-#endif // QT_NO_SPLASHSCREEN
         }
 
         rc = app.exec();

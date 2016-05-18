@@ -105,6 +105,7 @@ set(_kleopatra_SRCS
   view/keytreeview.cpp
   view/searchbar.cpp
   view/tabwidget.cpp
+  view/keycacheoverlay.cpp
 
   dialogs/certificateselectiondialog.cpp
   dialogs/expirydialog.cpp

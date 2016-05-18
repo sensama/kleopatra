@@ -312,6 +312,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         if (query.isEmpty()) {
             return i18n("No fingerprint argument specified for --query");
         }
+        waitForKeyCache();
         auto cmd = Command::commandForQuery(query);
         cmd->setParentWId(parentId);
         cmd->start();
@@ -551,4 +552,16 @@ void KleopatraApplication::setIgnoreNewInstance(bool ignore)
 bool KleopatraApplication::ignoreNewInstance() const
 {
     return d->ignoreNewInstance;
+}
+
+void KleopatraApplication::waitForKeyCache() const
+{
+    if (!KeyCache::instance()->initialized()) {
+        QEventLoop loop;
+        loop.connect(KeyCache::instance().get(), &KeyCache::keyListingDone,
+                     &loop, &QEventLoop::quit);
+        qCDebug(KLEOPATRA_LOG) << "Waiting for keycache.";
+        loop.exec();
+        qCDebug(KLEOPATRA_LOG) << "Keycache available.";
+    }
 }

@@ -41,6 +41,7 @@
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
 #include "view/keylistcontroller.h"
+#include "view/keycacheoverlay.h"
 
 #include "commands/selftestcommand.h"
 #include "commands/importcrlcommand.h"
@@ -252,6 +253,7 @@ MainWindow::Private::UI::UI(MainWindow *q)
     vbox->addWidget(searchBar);
     tabWidget.connectSearchBar(searchBar);
     vbox->addWidget(&tabWidget);
+    new KeyCacheOverlay(mainWidget, q);
 
     q->setCentralWidget(mainWidget);
 }

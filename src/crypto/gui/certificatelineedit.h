@@ -1,4 +1,4 @@
-/*  crypto/gui/certificateselectionwidget.h
+/*  crypto/gui/certificatelineedit.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2016 Intevation GmbH
@@ -28,64 +28,89 @@
     you do not wish to do so, delete this exception statement from
     your version.
 */
-#ifndef CRYPTO_GUI_CERTIFICATESELECTIONWIDGET_H
-#define CRYPTO_GUI_CERTIFICATESELECTIONWIDGET_H
+#ifndef CRYPTO_GUI_CERTIFICATELINEEDIT_H
+#define CRYPTO_GUI_CERTIFICATELINEEDIT_H
 
 class QLineEdit;
 
 #include <QWidget>
 #include <QString>
 
+#include <gpgme++/key.h>
+#include <boost/shared_ptr.hpp>
+
 #include "dialogs/certificateselectiondialog.h"
+
+class QLabel;
+class QAction;
 
 namespace Kleo
 {
 class AbstractKeyListModel;
+class KeyFilter;
 class KeyListSortFilterProxyModel;
-class CertificateComboBox;
 
-/** Generic Certificate Selection Widget.
+/** Line edit and completion based Certificate Selection Widget.
  *
- * This class does not care about protocols. By default it will
- * prefer OpenPGP. Uses the KeyCache directly to fill the choices for
- * the selected capabilities.
+ * Shows the status of the selection with a status label and icon.
  *
  * The widget will use a single line HBox Layout. For larger dialog
  * see certificateslectiondialog.
  */
-class CertificateSelectionWidget: public QWidget
+class CertificateLineEdit: public QWidget
 {
     Q_OBJECT
 public:
     /** Create the certificate selection line.
      *
+     * If parent is not NULL the model is not taken
+     * over but the parent arugment used as the parent of the model.
+     *
+     * @param model: The keylistmodel to use.
      * @param parent: The usual widget parent.
      * @param options: The options to use. See certificateselectiondialog.
-     * @param mailbox: If a mailbox entry should be shown.
-     * @param defaultFpr: The default fingerprint to fill this with.
      */
-    CertificateSelectionWidget(QWidget *parent = Q_NULLPTR,
-                               int otions = Dialogs::CertificateSelectionDialog::AnyFormat,
-                               bool mailbox = true,
-                               const QString &defaultFpr = QString());
+    CertificateLineEdit(AbstractKeyListModel *model,
+                        QWidget *parent = Q_NULLPTR,
+                        KeyFilter *filter = Q_NULLPTR);
 
     /** Get the selected key */
     GpgME::Key key() const;
 
+    /** Check if the text is empty */
+    bool isEmpty() const;
+
+    /** Set the preselected Key for this widget. */
+    void setKey(const GpgME::Key &key);
+
 Q_SIGNALS:
-    /** Emited when the selected key changed. */
+    /** Emitted when the selected key changed. */
     void keyChanged();
 
+    /** Emitted when the entry is empty and editing is finished. */
+    void wantsRemoval(CertificateLineEdit *w);
+
+    /** Emitted when the entry is no longer empty. */
+    void editingStarted();
+
+    /** Emitted when the certselectiondialog resulted in multiple certificates. */
+    void addRequested(const GpgME::Key &key);
+
 private Q_SLOTS:
-    void keysMayHaveChanged();
-    void mailEntryChanged();
+    void updateKey();
+    void dialogRequested();
+    void editChanged();
 
 private:
-    CertificateComboBox *mCombo;
-    QLineEdit *mMailEntry;
-    int mOptions;
-    AbstractKeyListModel *mModel;
+    QLineEdit *mEdit;
     KeyListSortFilterProxyModel *mFilterModel;
+    QLabel *mStatusLabel,
+           *mStatusIcon;
+    GpgME::Key mKey;
+    boost::shared_ptr<KeyFilter> mFilter;
+    bool mEditStarted,
+         mEditFinished;
+    QAction *mLineAction;
 };
 }
-#endif // CRYPTO_GUI_CERTIFICATESELECTIONWIDGET_H
+#endif

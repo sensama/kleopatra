@@ -36,11 +36,13 @@
 #include <QMap>
 #include <gpgme++/key.h>
 
-class QVBoxLayout;
+class QGridLayout;
 
 namespace Kleo
 {
-class CertificateSelectionWidget;
+class CertificateLineEdit;
+class CertificateComboBox;
+class AbstractKeyListModel;
 
 class SignEncryptWidget: public QWidget
 {
@@ -67,9 +69,9 @@ public:
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
-
-protected:
+    void recpRemovalRequested(CertificateLineEdit *w);
     void addRecipient();
+    void addRecipient(const GpgME::Key &key);
 
 Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation
@@ -81,11 +83,12 @@ Q_SIGNALS:
     void keysChanged();
 
 private:
-    CertificateSelectionWidget *mSigSelect,
-                               *mSelfSelect;
-    QVector<CertificateSelectionWidget *> mRecpWidgets;
-    QVBoxLayout *mRecpLayout;
+    CertificateComboBox *mSigSelect,
+                        *mSelfSelect;
+    QVector<CertificateLineEdit *> mRecpWidgets;
+    QGridLayout *mRecpLayout;
     QString mOp;
+    AbstractKeyListModel *mModel;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

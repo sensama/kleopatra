@@ -111,6 +111,8 @@ QString ownerTrustShort(GpgME::Key::OwnerTrust trust);
 QString validityShort(const GpgME::Subkey &subkey);
 QString validityShort(const GpgME::UserID &uid);
 QString validityShort(const GpgME::UserID::Signature &sig);
+/* A sentence about the validity of the UserID */
+QString validity(const GpgME::UserID &uid);
 
 QString formatForComboBox(const GpgME::Key &key);
 

@@ -33,7 +33,8 @@
 
 #include "kleopatra_debug.h"
 
-#include "certificateselectionwidget.h"
+#include "certificatecombobox.h"
+#include "certificatelineedit.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -41,45 +42,92 @@
 #include <QCheckBox>
 #include <QScrollArea>
 
-#include <Libkleo/KeyRequester>
+#include <Libkleo/DefaultKeyFilter>
 
 #include <KLocalizedString>
 #include <KSharedConfig>
+
+#include "models/keylistmodel.h"
+#include "models/keylistsortfilterproxymodel.h"
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
+namespace {
+class SignCertificateFilter: public DefaultKeyFilter
+{
+public:
+    SignCertificateFilter() : DefaultKeyFilter()
+    {
+        setRevoked(DefaultKeyFilter::NotSet);
+        setExpired(DefaultKeyFilter::NotSet);
+        setHasSecret(DefaultKeyFilter::Set);
+        setCanSign(DefaultKeyFilter::Set);
+    }
+};
+class EncryptCertificateFilter: public DefaultKeyFilter
+{
+public:
+    EncryptCertificateFilter(): DefaultKeyFilter()
+    {
+        setRevoked(DefaultKeyFilter::NotSet);
+        setExpired(DefaultKeyFilter::NotSet);
+        setCanEncrypt(DefaultKeyFilter::Set);
+    }
+};
+class EncryptSelfCertificateFilter: public EncryptCertificateFilter
+{
+public:
+    EncryptSelfCertificateFilter(): EncryptCertificateFilter()
+    {
+        setRevoked(DefaultKeyFilter::NotSet);
+        setExpired(DefaultKeyFilter::NotSet);
+        setCanEncrypt(DefaultKeyFilter::Set);
+        setHasSecret(DefaultKeyFilter::Set);
+    }
+};
+}
+
 SignEncryptWidget::SignEncryptWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      mModel(AbstractKeyListModel::createFlatKeyListModel(this))
 {
     QVBoxLayout *lay = new QVBoxLayout;
+    setContentsMargins(-6,-6,-6,-6);
+
+    mModel->useKeyCache(true, false);
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
-    QCheckBox *sigChk = new QCheckBox(i18nc("@action", "Sign"));
+    QGroupBox *sigGrp = new QGroupBox(i18nc("@label", "Prove authenticity (sign)"));
+    QCheckBox *sigChk = new QCheckBox(i18nc("@label", "Sign as:"));
     sigChk->setChecked(true);
-    mSigSelect = new CertificateSelectionWidget(this,
-                                                CertificateSelectionDialog::SignOnly |
-                                                CertificateSelectionDialog::SecretKeys |
-                                                CertificateSelectionDialog::AnyFormat,
-                                                false);
+
+    KeyListSortFilterProxyModel *sigModel = new KeyListSortFilterProxyModel(this);
+    sigModel->setKeyFilter(boost::shared_ptr<KeyFilter>(new SignCertificateFilter()));
+    sigModel->setSourceModel(mModel);
+    mModel->setParent(this);
+
+    mSigSelect = new CertificateComboBox(i18n("No valid secret keys found."));
+    mSigSelect->setModel(sigModel);
+    mSigSelect->setModelColumn(KeyListModelInterface::Summary);
+
     sigLay->addWidget(sigChk);
+    sigLay->addStretch(1);
     sigLay->addWidget(mSigSelect);
-    lay->addLayout(sigLay);
+    sigGrp->setLayout(sigLay);
+    lay->addWidget(sigGrp);
 
     connect(sigChk, &QCheckBox::toggled, mSigSelect, &QWidget::setEnabled);
     connect(sigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSigSelect, &CertificateSelectionWidget::keyChanged,
+    connect(mSigSelect, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &SignEncryptWidget::updateOp);
 
     /* Recipient selection */
-    mRecpLayout = new QVBoxLayout;
+    mRecpLayout = new QGridLayout;
     mRecpLayout->setAlignment(Qt::AlignTop);
-    mRecpLayout->addStretch(1);
     QGroupBox *encBox = new QGroupBox(i18nc("@action", "Encrypt"));
-    encBox->setCheckable(true);
-    encBox->setChecked(true);
     encBox->setAlignment(Qt::AlignLeft);
     QVBoxLayout *encBoxLay = new QVBoxLayout;
     encBox->setLayout(encBoxLay);
@@ -97,11 +145,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     QHBoxLayout *encSelfLay = new QHBoxLayout;
     QCheckBox *encSelfChk = new QCheckBox(i18nc("@label", "Own certificate:"));
     encSelfChk->setChecked(true);
-    mSelfSelect = new CertificateSelectionWidget(this,
-                                                CertificateSelectionDialog::EncryptOnly |
-                                                CertificateSelectionDialog::SecretKeys |
-                                                CertificateSelectionDialog::AnyFormat,
-                                                false);
+
+    KeyListSortFilterProxyModel *encModel = new KeyListSortFilterProxyModel(this);
+    encModel->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
+    encModel->setSourceModel(mModel);
+    mModel->setParent(this);
+
+    mSelfSelect = new CertificateComboBox(i18n("No valid secret keys found."));
+    mSelfSelect->setModel(encModel);
+    mSelfSelect->setModelColumn(KeyListModelInterface::Summary);
     encSelfLay->addWidget(encSelfChk);
     encSelfLay->addWidget(mSelfSelect);
 
@@ -109,7 +161,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     connect(encSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
     connect(encSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSelfSelect, &CertificateSelectionWidget::keyChanged,
+    connect(mSelfSelect, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &SignEncryptWidget::updateOp);
 
     lay->addWidget(encBox);
@@ -121,20 +173,34 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
 void SignEncryptWidget::addRecipient()
 {
-    CertificateSelectionWidget *certSel = new CertificateSelectionWidget(this,
-                                                                         CertificateSelectionDialog::EncryptOnly |
-                                                                         CertificateSelectionDialog::AnyFormat,
-                                                                         true);
+    addRecipient(Key());
+}
+
+void SignEncryptWidget::addRecipient(const Key &key)
+{
+    CertificateLineEdit *certSel = new CertificateLineEdit(mModel, this,
+                                                           new EncryptCertificateFilter());
     mRecpWidgets << certSel;
-    mRecpLayout->insertWidget(mRecpLayout->count() - 1, certSel);
-    connect(certSel, &CertificateSelectionWidget::keyChanged,
+
+    mRecpLayout->addWidget(certSel, mRecpLayout->rowCount(), 0);
+    connect(certSel, &CertificateLineEdit::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
+    connect(certSel, &CertificateLineEdit::wantsRemoval,
+            this, &SignEncryptWidget::recpRemovalRequested);
+    connect(certSel, &CertificateLineEdit::editingStarted,
+            this, static_cast<void (SignEncryptWidget::*)()>(&SignEncryptWidget::addRecipient));
+    connect(certSel, &CertificateLineEdit::addRequested,
+            this, static_cast<void (SignEncryptWidget::*)(const Key&)>(&SignEncryptWidget::addRecipient));
+
+    if (!key.isNull()) {
+        certSel->setKey(key);
+    }
 }
 
 void SignEncryptWidget::recipientsChanged()
 {
     bool oneEmpty = false;
-    Q_FOREACH (const CertificateSelectionWidget *w, mRecpWidgets) {
+    Q_FOREACH (const CertificateLineEdit *w, mRecpWidgets) {
         if (w->key().isNull()) {
             oneEmpty = true;
             break;
@@ -165,7 +231,7 @@ Key SignEncryptWidget::selfKey() const
 QVector <Key> SignEncryptWidget::recipients() const
 {
     QVector<Key> ret;
-    Q_FOREACH (const CertificateSelectionWidget *w, mRecpWidgets) {
+    Q_FOREACH (const CertificateLineEdit *w, mRecpWidgets) {
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
             break;
@@ -207,4 +273,22 @@ void SignEncryptWidget::updateOp()
 QString SignEncryptWidget::currentOp() const
 {
     return mOp;
+}
+
+void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
+{
+    if (!w) {
+        return;
+    }
+    int emptyEdits = 0;
+    Q_FOREACH (const CertificateLineEdit *edit, mRecpWidgets) {
+        if (edit->isEmpty()) {
+            emptyEdits++;
+        }
+        if (emptyEdits > 1) {
+            mRecpLayout->removeWidget(w);
+            mRecpWidgets.removeAll(w);
+            return;
+        }
+    }
 }

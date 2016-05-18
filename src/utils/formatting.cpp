@@ -756,7 +756,10 @@ QString Formatting::usageString(const Subkey &sub)
 
 QString Formatting::summaryLine(const Key &key)
 {
-    return keyToString(key) + QStringLiteral(" (%1 - %2)").arg(key.shortKeyID()).arg(displayName(key.protocol()));
+    return keyToString(key) + QStringLiteral(" ") +
+           i18nc("First arg is the Key Protocol OpenPGP or S/MIME, second arg is the creation date.",
+                 "(%1 - created: %2)", displayName(key.protocol()) ,
+                 Formatting::creationDateString(key));
 }
 
 // Icon for certificate selection indication
@@ -764,16 +767,32 @@ QIcon Formatting::iconForUid(const UserID &uid)
 {
     switch (uid.validity()) {
         case UserID::Ultimate:
-            return QIcon::fromTheme(QStringLiteral("emblem-favorite"));
         case UserID::Full:
-            return QIcon::fromTheme(QStringLiteral("emblem-success"));
         case UserID::Marginal:
-            return QIcon::fromTheme(QStringLiteral("emblem-information"));
+            return QIcon::fromTheme(QStringLiteral("emblem-success"));
         case UserID::Never:
             return QIcon::fromTheme(QStringLiteral("emblem-error"));
         case UserID::Undefined:
         case UserID::Unknown:
         default:
-            return QIcon::fromTheme(QStringLiteral("emblem-warning"));
+            return QIcon::fromTheme(QStringLiteral("emblem-information"));
+    }
+}
+
+QString Formatting::validity(const UserID &uid)
+{
+    switch (uid.validity()) {
+        case UserID::Ultimate:
+            return i18n("The certificate is marked as your own.");
+        case UserID::Full:
+            return i18n("The certificate belongs to this recipient.");
+        case UserID::Marginal:
+            return i18n("The trust model indicates marginally that the certificate belongs to this recipient.");
+        case UserID::Never:
+            return i18n("This certificate should not be used.");
+        case UserID::Undefined:
+        case UserID::Unknown:
+        default:
+            return i18n("There is no indication that this certificate belongs to this recipient.");
     }
 }

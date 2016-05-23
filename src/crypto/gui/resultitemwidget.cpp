@@ -34,7 +34,9 @@
 
 #include "resultitemwidget.h"
 
-#include <utils/auditlog.h>
+#include "utils/auditlog.h"
+#include "utils/classify.h"
+#include "commands/command.h"
 
 #include <libkleo/messagebox.h>
 
@@ -189,12 +191,19 @@ bool ResultItemWidget::hasErrorResult() const
 void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 {
     assert(m_result);
+    qCDebug(KLEOPATRA_LOG) << "Link activated: " << link;
     if (link.startsWith(QStringLiteral("key:"))) {
-        const QStringList split = link.split(QLatin1Char(':'));
-        if (split.size() == 3 || m_result->nonce() != split.value(1)) {
-            Q_EMIT q->linkActivated(QLatin1String("key://") + split.value(2));
+        auto split = link.split(QLatin1Char(':'));
+        auto fpr = split.value(1);
+        if (split.size() == 2 && isFingerprint(fpr)) {
+            /* There might be a security consideration here if somehow
+             * a short keyid is used in a link and it collides with another.
+             * So we additionally check that it really is a fingerprint. */
+            auto cmd = Command::commandForQuery(fpr);
+            cmd->setParentWId(q->effectiveWinId());
+            cmd->start();
         } else {
-            qCWarning(KLEOPATRA_LOG) << "key link invalid, or nonce not matching! link=" << link << " nonce" << m_result->nonce();
+            qCWarning(KLEOPATRA_LOG) << "key link invalid " << link;
         }
         return;
     }

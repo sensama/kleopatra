@@ -308,24 +308,13 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Check for --query command
     if (parser.isSet(QStringLiteral("query"))) {
-        const QString fingerPrint = parser.value(QStringLiteral("query"));
-        if (fingerPrint.isEmpty()) {
+        const QString query = parser.value(QStringLiteral("query"));
+        if (query.isEmpty()) {
             return i18n("No fingerprint argument specified for --query");
         }
-
-        // Search for local keys
-        const GpgME::Key &key = Kleo::KeyCache::instance()->findByKeyIDOrFingerprint(fingerPrint.toLocal8Bit().data());
-        if (key.isNull()) {
-            // Show external search dialog
-            LookupCertificatesCommand *const cmd = new LookupCertificatesCommand(fingerPrint, 0);
-            cmd->setParentWId(parentId);
-            cmd->start();
-        } else {
-            // show local detail
-            DetailsCommand *const cmd = new DetailsCommand(key, 0);
-            cmd->setParentWId(parentId);
-            cmd->start();
-        }
+        auto cmd = Command::commandForQuery(query);
+        cmd->setParentWId(parentId);
+        cmd->start();
         return QString();
     }
 
@@ -364,9 +353,12 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         } else {
             QStringList errors;
             Q_FOREACH (const QString& fileName, files) {
-                const QString err = startCommandForFile(fileName);
-                if (!err.isEmpty()) {
-                    errors << err;
+                auto cmd = Command::commandForFile(fileName);
+                if (cmd) {
+                    cmd->setParentWId(parentId);
+                    cmd->start();
+                } else {
+                    errors << i18n("Cannot read \"%1\"", fileName);
                 }
             }
             return errors.join("\n");
@@ -559,42 +551,4 @@ void KleopatraApplication::setIgnoreNewInstance(bool ignore)
 bool KleopatraApplication::ignoreNewInstance() const
 {
     return d->ignoreNewInstance;
-}
-
-QString KleopatraApplication::startCommandForFile(const QString &fileName)
-{
-    unsigned int classification = classify(fileName);
-
-    GpgME::Protocol proto = GpgME::UnknownProtocol;
-    if (classification & Class::CMS) {
-        proto = GpgME::CMS;
-    } else if (classification & Class::OpenPGP) {
-        proto = GpgME::OpenPGP;
-    }
-
-    const QStringList files = QStringList() << fileName;
-
-    if (classification & Class::CipherText) {
-        decryptFiles(files, proto);
-    } else if (classification & Class::DetachedSignature) {
-        verifyFiles(files, proto);
-    } else if (classification & Class::AnySignature) {
-        decryptVerifyFiles(files, proto);
-    } else if (classification & Class::AnyCertStoreType) {
-        importCertificatesFromFile(files, proto);
-    } else if (classification & Class::AnyMessageType) {
-        // For any message we decrypt as this also verifies
-        decryptFiles(files, proto);
-    } else {
-        QFileInfo fi(fileName);
-        if (fi.isReadable()) {
-            encryptFiles(files, proto);
-        } else {
-            // Not using the <filename> tag and i18nc here because
-            // the string might be printed on the console.
-            return i18n("Cannot read \"%1\"", fileName);
-        }
-    }
-
-    return QString();
 }

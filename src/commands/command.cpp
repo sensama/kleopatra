@@ -35,14 +35,25 @@
 #include "command.h"
 #include "command_p.h"
 
+#include "signencryptfilescommand.h"
+#include "importcertificatefromfilecommand.h"
+#include "decryptverifyfilescommand.h"
+#include "detailscommand.h"
+#include "lookupcertificatescommand.h"
+
+#include "models/keycache.h"
+#include "utils/classify.h"
+
 #include <view/tabwidget.h>
 
 #include "kleopatra_debug.h"
 #include <KWindowSystem>
 
 #include <QAbstractItemView>
+#include <QFileInfo>
 
 using namespace Kleo;
+using namespace Kleo::Commands;
 using namespace GpgME;
 
 Command::Private::Private(Command *qq, KeyListController *controller)
@@ -237,5 +248,40 @@ void Command::applyWindowID(QWidget *w) const
         } else {
             w->setParent(d->parentWidgetOrView(), w->windowFlags());
         }
+    }
+}
+
+// static
+Command *Command::commandForFile(const QString &fileName)
+{
+    unsigned int classification = classify(fileName);
+
+    const QStringList files = QStringList() << fileName;
+
+    Command *cmd = Q_NULLPTR;
+
+    if (classification & Class::AnyCertStoreType) {
+        cmd = new ImportCertificateFromFileCommand(files, Q_NULLPTR);
+    } else if (classification & Class::AnyMessageType) {
+        // For any message we decrypt / verify. This includes
+        // the class CipherText
+        cmd = new DecryptVerifyFilesCommand(files, Q_NULLPTR);
+    } else {
+        QFileInfo fi(fileName);
+        if (fi.isReadable()) {
+            cmd = new SignEncryptFilesCommand(files, Q_NULLPTR);
+        }
+    }
+    return cmd;
+}
+
+// static
+Command *Command::commandForQuery(const QString &query)
+{
+    const GpgME::Key &key = Kleo::KeyCache::instance()->findByKeyIDOrFingerprint(query.toLocal8Bit().data());
+    if (key.isNull()) {
+        return new LookupCertificatesCommand(query, 0);
+    } else {
+        return new DetailsCommand(key, 0);
     }
 }

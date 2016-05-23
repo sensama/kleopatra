@@ -97,6 +97,20 @@ public:
         return NoRestriction;
     }
 
+    /** Classify the file and return the most appropiate command.
+     *
+     * @param fileName: The filename of the file.
+     *
+     * @returns null QString on success. Error message otherwise.
+     */
+    static Command *commandForFile(const QString &fileName);
+
+    /** Get a command for a query.
+     *
+     * @param query: A keyid / fingerprint or any string to use in the search.
+     */
+    static Command *commandForQuery(const QString &query);
+
     void setParentWidget(QWidget *widget);
     void setParentWId(WId wid);
     void setView(QAbstractItemView *view);

@@ -96,6 +96,9 @@ QString findSignedData(const QString &signatureFileName);
 QStringList findSignatures(const QString &signedDataFileName);
 QString outputFileName(const QString &input);
 
+/** Check if a string looks like a fingerprint (SHA1 sum) */
+bool isFingerprint(const QString &fpr);
+
 const char *outputFileExtension(unsigned int classification);
 
 QString printableClassification(unsigned int classification);

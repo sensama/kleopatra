@@ -45,6 +45,7 @@
 #include <QtAlgorithms>
 #include <QByteArrayMatcher>
 #include <QMap>
+#include <QRegularExpression>
 
 #include <boost/range.hpp>
 
@@ -380,4 +381,10 @@ const char *Kleo::outputFileExtension(unsigned int classification)
             return classifications[i].extension;
         }
     return 0;
+}
+
+bool Kleo::isFingerprint(const QString &fpr)
+{
+    static QRegularExpression fprRegex("[0-9a-fA-F]{40}");
+    return fprRegex.match(fpr).hasMatch();
 }

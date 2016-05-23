@@ -198,7 +198,6 @@ DecryptVerifyFilesWizard::Private::Private(DecryptVerifyFilesWizard *qq)
 {
     q->setPage(DecryptVerifyFilesWizard::OperationsPage, &operationsPage);
     q->setPage(DecryptVerifyFilesWizard::ResultPage, &resultPage);
-    connect(&resultPage, &Gui::ResultPage::linkActivated, q, &DecryptVerifyFilesWizard::linkActivated);
 
     std::vector<int> order;
     order.push_back(DecryptVerifyFilesWizard::OperationsPage);

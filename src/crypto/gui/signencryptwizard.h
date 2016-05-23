@@ -145,7 +145,6 @@ Q_SIGNALS:
     void signersResolved();
     void objectsResolved();
     void recipientsResolved();
-    void linkActivated(const QString &link);
 
 protected:
     Gui::SignerResolvePage *signerResolvePage();

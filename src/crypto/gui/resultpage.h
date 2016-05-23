@@ -65,9 +65,6 @@ public:
     bool keepOpenWhenDone() const;
     void setKeepOpenWhenDone(bool keep);
 
-Q_SIGNALS:
-    void linkActivated(const QString &link);
-
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;

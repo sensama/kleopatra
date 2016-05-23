@@ -77,7 +77,7 @@ static const struct _classification {
     { "crl", CMS    | Binary  | CertificateRevocationList },
     { "crt", CMS    | Binary  | Certificate },
     { "der", CMS    | Binary  | Certificate | CertificateRevocationList },
-    { "gpg", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType },
+    { "gpg", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType | ExamineContentHint},
     { "p10", CMS    |  Ascii  | CertificateRequest },
     { "p12", CMS    | Binary  | ExportedPSM },
     { "p7c", CMS    | Binary  | Certificate  },
@@ -85,7 +85,7 @@ static const struct _classification {
     { "p7s", CMS    | Binary  | AnySignature },
     { "pem", CMS    |  Ascii  | AnyType | ExamineContentHint },
     { "pfx", CMS    | Binary  | Certificate },
-    { "pgp", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType },
+    { "pgp", OpenPGP | Binary  | OpaqueSignature | CipherText | AnyCertStoreType | ExamineContentHint},
     { "sig", OpenPGP | AnyFormat | DetachedSignature },
 };
 

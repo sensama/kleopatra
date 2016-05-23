@@ -211,25 +211,14 @@ shared_ptr<Task::Result> Task::makeErrorResult(int errCode, const QString &detai
     return shared_ptr<Task::Result>(new ErrorResult(errCode, details));
 }
 
-static QString makeNonce()
-{
-    // ### make better
-    return QString::number(qrand(), 16);
-}
-
 class Task::Result::Private
 {
 public:
     Private() {}
 };
 
-Task::Result::Result() : m_nonce(makeNonce()), d(new Private()) {}
+Task::Result::Result() : d(new Private()) {}
 Task::Result::~Result() {}
-
-QString Task::Result::formatKeyLink(const char *fpr, const QString &content) const
-{
-    return QLatin1String("<a href=\"key:") + m_nonce + QLatin1Char(':') + QLatin1String(fpr) + QLatin1String("\">") + content + QLatin1String("</a>");
-}
 
 bool Task::Result::hasError() const
 {

@@ -146,7 +146,6 @@ public:
 
 protected:
     static QString iconPath(VisualCode code);
-    QString formatKeyLink(const char *fingerprint, const QString &content) const;
     static QString makeOverview(const QString &msg);
 
 private:

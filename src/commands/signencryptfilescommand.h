@@ -64,8 +64,14 @@ public:
     void setEncryptionPolicy(Policy force);
     Policy encryptionPolicy() const;
 
+    void setArchivePolicy(Policy force);
+    Policy archivePolicy() const;
+
     void setProtocol(GpgME::Protocol protocol);
     GpgME::Protocol protocol() const;
+
+protected:
+    virtual QStringList selectFiles() const;
 
 private:
     void doStart() Q_DECL_OVERRIDE;

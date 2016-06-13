@@ -230,6 +230,41 @@ Policy SignEncryptFilesCommand::encryptionPolicy() const
     }
 }
 
+void SignEncryptFilesCommand::setArchivePolicy(Policy policy)
+{
+    unsigned int mode = d->controller.operationMode();
+    mode &= ~SignEncryptFilesController::ArchiveMask;
+    switch (policy) {
+    case NoPolicy:
+    case Allow:
+        mode |= SignEncryptFilesController::ArchiveAllowed;
+        break;
+    case Deny:
+        mode |= SignEncryptFilesController::ArchiveDisallowed;
+        break;
+    case Force:
+        mode |= SignEncryptFilesController::ArchiveForced;
+        break;
+    }
+    d->controller.setOperationMode(mode);
+}
+
+Policy SignEncryptFilesCommand::archivePolicy() const
+{
+    const unsigned int mode = d->controller.operationMode();
+    switch (mode & SignEncryptFilesController::ArchiveMask) {
+    case SignEncryptFilesController::ArchiveAllowed:
+        return Allow;
+    case SignEncryptFilesController::ArchiveForced:
+        return Force;
+    case SignEncryptFilesController::ArchiveDisallowed:
+        return Deny;
+    default:
+        assert(!"This should not happen!");
+        return NoPolicy;
+    }
+}
+
 void SignEncryptFilesCommand::setProtocol(GpgME::Protocol proto)
 {
     d->controller.setProtocol(proto);
@@ -246,7 +281,7 @@ void SignEncryptFilesCommand::doStart()
     try {
 
         if (d->files.empty()) {
-            d->files = d->selectFiles();
+            d->files = selectFiles();
         }
         if (d->files.empty()) {
             d->finished();
@@ -270,9 +305,9 @@ void SignEncryptFilesCommand::doCancel()
     d->controller.cancel();
 }
 
-QStringList SignEncryptFilesCommand::Private::selectFiles() const
+QStringList SignEncryptFilesCommand::selectFiles() const
 {
-    return FileDialog::getOpenFileNames(parentWidgetOrView(), i18n("Select One or More Files to Sign and/or Encrypt"), QStringLiteral("enc"));
+    return FileDialog::getOpenFileNames(d->parentWidgetOrView(), i18n("Select One or More Files to Sign and/or Encrypt"), QStringLiteral("enc"));
 }
 
 #undef d

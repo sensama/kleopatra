@@ -76,9 +76,9 @@ public:
 
         ArchiveDisallowed = 0,
         ArchiveAllowed = 16,
-        ArchiveSelected = 32,
+        ArchiveForced = 32,
 
-        ArchiveMask = ArchiveAllowed | ArchiveSelected
+        ArchiveMask = ArchiveAllowed | ArchiveForced
     };
     void setOperationMode(unsigned int mode);
     unsigned int operationMode() const;

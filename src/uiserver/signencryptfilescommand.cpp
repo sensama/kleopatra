@@ -123,7 +123,7 @@ int SignEncryptFilesCommand::doStart()
 
     unsigned int op = operation();
     if (hasOption("archive")) {
-        op |= SignEncryptFilesController::ArchiveSelected;
+        op |= SignEncryptFilesController::ArchiveForced;
     } else {
         op |= SignEncryptFilesController::ArchiveAllowed;
     }

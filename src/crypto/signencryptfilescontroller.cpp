@@ -143,7 +143,7 @@ QString SignEncryptFilesController::Private::titleForOperation(unsigned int op)
 {
     const bool signDisallowed = (op & SignMask) == SignDisallowed;
     const bool encryptDisallowed = (op & EncryptMask) == EncryptDisallowed;
-    const bool archiveSelected = (op & ArchiveMask) == ArchiveSelected;
+    const bool archiveSelected = (op & ArchiveMask) == ArchiveForced;
 
     kleo_assert(!signDisallowed || !encryptDisallowed);
 
@@ -216,7 +216,7 @@ void SignEncryptFilesController::Private::assertValidOperation(unsigned int op)
                 (op & EncryptMask) == EncryptSelected);
     kleo_assert((op & ArchiveMask) == ArchiveDisallowed ||
                 (op & ArchiveMask) == ArchiveAllowed    ||
-                (op & ArchiveMask) == ArchiveSelected);
+                (op & ArchiveMask) == ArchiveForced);
     kleo_assert((op & ~(SignMask | EncryptMask | ArchiveMask)) == 0);
 }
 
@@ -224,7 +224,7 @@ void SignEncryptFilesController::setOperationMode(unsigned int mode)
 {
     Private::assertValidOperation(mode);
     if (contains_dir(d->files)) {
-        mode = (mode & ~ArchiveMask) | ArchiveSelected;
+        mode = (mode & ~ArchiveMask) | ArchiveForced;
     }
     d->operation = mode;
     d->updateWizardMode();
@@ -267,13 +267,12 @@ void SignEncryptFilesController::Private::updateWizardMode()
     if (archOp == ArchiveDisallowed) {
         wizard->setCreateArchivePreset(false);
         wizard->setCreateArchiveUserMutable(false);
+    } else if (archOp == ArchiveForced) {
+        wizard->setCreateArchiveUserMutable(false);
+        wizard->setCreateArchivePreset(true);
     } else {
         wizard->setCreateArchiveUserMutable(true);
         wizard->setCreateArchivePreset(false);
-
-        if (archOp == ArchiveSelected) {
-            wizard->setCreateArchivePreset(true);
-        }
     }
 }
 
@@ -287,7 +286,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
     kleo_assert(!files.empty());
     d->files = files;
     if (contains_dir(files)) {
-        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveSelected);
+        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
     }
     d->ensureWizardCreated();
     d->wizard->setFiles(files);

@@ -179,6 +179,7 @@ set(_kleopatra_SRCS
   commands/deletecertificatescommand.cpp
   commands/decryptverifyfilescommand.cpp
   commands/signencryptfilescommand.cpp
+  commands/signencryptfoldercommand.cpp
   commands/encryptclipboardcommand.cpp
   commands/signclipboardcommand.cpp
   commands/decryptverifyclipboardcommand.cpp

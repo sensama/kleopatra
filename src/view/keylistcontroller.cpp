@@ -58,6 +58,7 @@
 #include "commands/deletecertificatescommand.h"
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/signencryptfilescommand.h"
+#include "commands/signencryptfoldercommand.h"
 #include "commands/clearcrlcachecommand.h"
 #include "commands/dumpcrlcachecommand.h"
 #include "commands/dumpcertificatecommand.h"
@@ -402,6 +403,10 @@ void KeyListController::createActions(KActionCollection *coll)
             "document-edit-sign-encrypt", 0, 0, QString(), false, true
         },
         {
+            "file_sign_encrypt_folder", i18n("Sign/Encrypt Folder..."), QString(),
+            0/*"folder-edit-sign-encrypt"*/, 0, 0, QString(), false, true
+        },
+        {
             "file_checksum_create_files", i18n("Create Checksum Files..."), QString(),
             0/*"document-checksum-create"*/, 0, 0, QString(), false, true
         },
@@ -505,6 +510,7 @@ void KeyListController::createActions(KActionCollection *coll)
     //---
     registerActionForCommand<DecryptVerifyFilesCommand>(coll->action(QStringLiteral("file_decrypt_verify_files")));
     registerActionForCommand<SignEncryptFilesCommand>(coll->action(QStringLiteral("file_sign_encrypt_files")));
+    registerActionForCommand<SignEncryptFolderCommand>(coll->action(QStringLiteral("file_sign_encrypt_folder")));
     //---
     registerActionForCommand<ChecksumCreateFilesCommand>(coll->action(QStringLiteral("file_checksum_create_files")));
     registerActionForCommand<ChecksumVerifyFilesCommand>(coll->action(QStringLiteral("file_checksum_verify_files")));

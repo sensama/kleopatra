@@ -79,6 +79,7 @@
 #include <QFile>
 #include <QUrl>
 #include <QDesktopServices>
+#include <QUrlQuery>
 
 #include <boost/range.hpp>
 
@@ -1040,16 +1041,19 @@ private Q_SLOTS:
 
         // RFC 2368 says body's linebreaks need to be encoded as
         // "%0D%0A", so normalize body to CRLF:
-        body.replace(QLatin1Char('\n'), QStringLiteral("\r\n")).remove(QStringLiteral("\r\r"));
+        //body.replace(QLatin1Char('\n'), QStringLiteral("\r\n")).remove(QStringLiteral("\r\r"));
 
-        QByteArray encoded = "mailto:?to=" + QUrl::toPercentEncoding(to)
-                             + "&subject=" + QUrl::toPercentEncoding(subject)
-                             + "&body=" + QUrl::toPercentEncoding(body);
+        QUrlQuery query;
+        query.addQueryItem(QStringLiteral("subject"), subject);
+        query.addQueryItem(QStringLiteral("body"), body);
         if (!attachment.isEmpty()) {
-            encoded += "&attach=" + ol_quote(QUrl::toPercentEncoding(QFileInfo(attachment).absoluteFilePath()));
+            query.addQueryItem(QStringLiteral("attach"), attachment);
         }
-        qCDebug(KLEOPATRA_LOG) << "openUrl" << QUrl::fromEncoded(encoded);
-        QDesktopServices::openUrl(QUrl::fromEncoded(encoded));
+        QUrl url;
+        url.setScheme(QStringLiteral("mailto"));
+        url.setQuery(query);
+        qCDebug(KLEOPATRA_LOG) << "openUrl" << url;
+        QDesktopServices::openUrl(url);
         KMessageBox::information(this,
                                  xi18nc("@info",
                                         "<para><application>Kleopatra</application> tried to send a mail via your default mail client.</para>"

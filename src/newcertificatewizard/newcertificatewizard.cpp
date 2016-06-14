@@ -299,11 +299,11 @@ protected:
 
     FIELD(int, keyType)
     FIELD(int, keyStrength)
-    FIELD(QString, keyCurve);
+    FIELD(QString, keyCurve)
 
     FIELD(int, subkeyType)
     FIELD(int, subkeyStrength)
-    FIELD(QString, subkeyCurve);
+    FIELD(QString, subkeyCurve)
 
     FIELD(QDate, expiryDate)
 

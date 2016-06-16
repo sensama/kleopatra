@@ -191,6 +191,10 @@ unsigned int Kleo::classify(const QString &filename)
 
     const QFileInfo fi(filename);
 
+    if (!fi.exists()) {
+        return 0;
+    }
+
     const _classification *const it = qBinaryFind(begin(classifications), end(classifications),
                                       fi.suffix().toLatin1().constData(),
                                       ByExtension<std::less>());

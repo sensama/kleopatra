@@ -176,31 +176,22 @@ DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq)
 
 void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 {
-    try {
-        ensureWizardCreated();
-        std::vector<shared_ptr<Task> > tasks = buildTasks(m_filesAfterPreparation, shared_ptr<OverwritePolicy>(new OverwritePolicy(m_wizard)));
-        kleo_assert(m_runnableTasks.empty());
-        m_runnableTasks.swap(tasks);
-
-        shared_ptr<TaskCollection> coll(new TaskCollection);
-        Q_FOREACH (const shared_ptr<Task> &i, m_runnableTasks) {
-            q->connectTask(i);
-        }
-        coll->setTasks(m_runnableTasks);
-        m_wizard->setTaskCollection(coll);
-
-        QTimer::singleShot(0, q, SLOT(schedule()));
-
-    } catch (const Kleo::Exception &e) {
-        reportError(e.error().encodedError(), e.message());
-    } catch (const std::exception &e) {
-        reportError(gpg_error(GPG_ERR_UNEXPECTED),
-                    i18n("Caught unexpected exception in DecryptVerifyFilesController::Private::slotWizardOperationPrepared: %1",
-                         QString::fromLocal8Bit(e.what())));
-    } catch (...) {
-        reportError(gpg_error(GPG_ERR_UNEXPECTED),
-                    i18n("Caught unknown exception in DecryptVerifyFilesController::Private::slotWizardOperationPrepared"));
+    ensureWizardCreated();
+    std::vector<shared_ptr<Task> > tasks = buildTasks(m_filesAfterPreparation, shared_ptr<OverwritePolicy>(new OverwritePolicy(m_wizard)));
+    if (tasks.empty()) {
+        reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), i18n("No usable inputs found"));
     }
+    kleo_assert(m_runnableTasks.empty());
+    m_runnableTasks.swap(tasks);
+
+    shared_ptr<TaskCollection> coll(new TaskCollection);
+    Q_FOREACH (const shared_ptr<Task> &i, m_runnableTasks) {
+        q->connectTask(i);
+    }
+    coll->setTasks(m_runnableTasks);
+    m_wizard->setTaskCollection(coll);
+
+    QTimer::singleShot(0, q, SLOT(schedule()));
 }
 
 void DecryptVerifyFilesController::Private::slotWizardCanceled()
@@ -389,10 +380,6 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
     }
 
     kleo_assert(counter == static_cast<unsigned>(fileNames.size()));
-
-    if (!counter) {
-        throw Kleo::Exception(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), i18n("No usable inputs found"));
-    }
 
     m_wizard->setOutputDirectory(heuristicBaseDirectory(m_passedFiles));
     return fileNames;

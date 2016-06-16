@@ -293,23 +293,6 @@ const Key &KeyCache::findByFingerprint(const std::string &fpr) const
     return findByFingerprint(fpr.c_str());
 }
 
-std::vector<Key> KeyCache::findByFingerprint(const std::vector<std::string> &fprs) const
-{
-    std::vector<std::string> sorted;
-    sorted.reserve(fprs.size());
-    std::remove_copy_if(fprs.begin(), fprs.end(), std::back_inserter(sorted),
-                        boost::bind(is_string_empty(), boost::bind(&std::string::c_str, _1)));
-
-    std::sort(sorted.begin(), sorted.end(), _detail::ByFingerprint<std::less>());
-
-    std::vector<Key> result;
-    kdtools::set_intersection(d->by.fpr.begin(), d->by.fpr.end(),
-                              sorted.begin(), sorted.end(),
-                              std::back_inserter(result),
-                              _detail::ByFingerprint<std::less>());
-    return result;
-}
-
 std::vector<Key> KeyCache::findByEMailAddress(const char *email) const
 {
     const std::pair <

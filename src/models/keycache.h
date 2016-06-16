@@ -95,8 +95,6 @@ public:
     const GpgME::Key &findByFingerprint(const char *fpr) const;
     const GpgME::Key &findByFingerprint(const std::string &fpr) const;
 
-    std::vector<GpgME::Key> findByFingerprint(const std::vector<std::string> &fprs) const;
-
     std::vector<GpgME::Key> findByEMailAddress(const char *email) const;
     std::vector<GpgME::Key> findByEMailAddress(const std::string &email) const;
 

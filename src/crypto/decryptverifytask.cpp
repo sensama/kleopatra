@@ -1428,11 +1428,27 @@ unsigned long long VerifyDetachedTask::inputSize() const
 
 QString VerifyDetachedTask::label() const
 {
+    if (d->m_signedData) {
+        return xi18nc("Verification of a detached signature in progress. The first file contains the data."
+                      "The second file is the signature file.",
+                      "Verifying: <filename>%1</filename> with <filename>%2</filename>...",
+                      d->m_signedData->label(),
+                      d->m_input->label());
+
+    }
     return i18n("Verifying signature: %1...", d->m_input->label());
 }
 
 QString VerifyDetachedTask::inputLabel() const
 {
+    if (d->m_signedData && d->m_input) {
+        return xi18nc("Verification of a detached signature summary. The first file contains the data."
+                      "The second file is signature.",
+                      "Verified <filename>%1</filename> with <filename>%2</filename>",
+                      d->m_signedData->label(),
+                      d->m_input->label());
+
+    }
     return d->m_input ? d->m_input->label() : QString();
 }
 

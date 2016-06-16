@@ -105,10 +105,6 @@ Q_SIGNALS:
     void setExitValue(int value);
 
 private:
-    /** Blocks until the keycache is initalized. */
-    void waitForKeyCache() const;
-
-private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 };

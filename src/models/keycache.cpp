@@ -35,6 +35,8 @@
 #include "keycache.h"
 #include "keycache_p.h"
 
+#include "kleopatra_debug.h"
+
 #include "Libkleo/Predicates"
 
 #include "smimevalidationpreferences.h"
@@ -114,6 +116,7 @@ public:
     template < template <template <typename U> class Op> class Comp>
     std::vector<Key>::const_iterator find(const std::vector<Key> &keys, const char *key) const
     {
+        ensureCachePopulated();
         const std::vector<Key>::const_iterator it =
             std::lower_bound(keys.begin(), keys.end(), key, Comp<std::less>());
         if (it == keys.end() || Comp<std::equal_to>()(*it, key)) {
@@ -126,6 +129,7 @@ public:
     template < template <template <typename U> class Op> class Comp>
     std::vector<Subkey>::const_iterator find(const std::vector<Subkey> &keys, const char *key) const
     {
+        ensureCachePopulated();
         const std::vector<Subkey>::const_iterator it =
             std::lower_bound(keys.begin(), keys.end(), key, Comp<std::less>());
         if (it == keys.end() || Comp<std::equal_to>()(*it, key)) {
@@ -144,6 +148,7 @@ public:
         std::vector< std::pair<std::string, Key> >::const_iterator >
         find_email(const char *email) const
     {
+        ensureCachePopulated();
         return std::equal_range(by.email.begin(), by.email.end(),
                                 email, ByEMail<std::less>());
     }
@@ -170,6 +175,7 @@ public:
         std::vector<Key>::const_iterator
         > find_subjects(const char *chain_id) const
     {
+        ensureCachePopulated();
         return std::equal_range(by.chainid.begin(), by.chainid.end(),
                                 chain_id, _detail::ByChainID<std::less>());
     }
@@ -188,6 +194,8 @@ public:
             m_autoKeyListingTimer.start();
         }
     }
+
+    void ensureCachePopulated() const;
 
 private:
     QPointer<RefreshKeysJob> m_refreshJob;
@@ -363,6 +371,7 @@ std::vector<Key> KeyCache::findByKeyIDOrFingerprint(const std::vector<std::strin
 
     std::vector<Key> result;
     result.reserve(keyids.size());   // dups shouldn't happen
+    d->ensureCachePopulated();
 
     kdtools::set_intersection(d->by.fpr.begin(), d->by.fpr.end(),
                               keyids.begin(), keyids.end(),
@@ -396,6 +405,7 @@ std::vector<Subkey> KeyCache::findSubkeysByKeyID(const std::vector<std::string> 
     std::sort(sorted.begin(), sorted.end(), _detail::ByKeyID<std::less>());
 
     std::vector<Subkey> result;
+    d->ensureCachePopulated();
     kdtools::set_intersection(d->by.subkeyid.begin(), d->by.subkeyid.end(),
                               sorted.begin(), sorted.end(),
                               std::back_inserter(result),
@@ -620,6 +630,8 @@ std::vector<Key> KeyCache::findIssuers(std::vector<Key>::const_iterator first, s
 
     std::vector<Key> result;
     result.reserve(lastUniqueChainID - chainIDs.begin());
+
+    d->ensureCachePopulated();
 
     kdtools::set_intersection(d->by.fpr.begin(), d->by.fpr.end(),
                               chainIDs.begin(), lastUniqueChainID,
@@ -1047,6 +1059,18 @@ Error KeyCache::RefreshKeysJob::Private::startKeyListing(const char *backend)
 bool KeyCache::initialized() const
 {
     return d->m_initalized;
+}
+
+void KeyCache::Private::ensureCachePopulated() const
+{
+    if (!m_initalized) {
+        QEventLoop loop;
+        loop.connect(q, &KeyCache::keyListingDone,
+                     &loop, &QEventLoop::quit);
+        qCDebug(KLEOPATRA_LOG) << "Waiting for keycache.";
+        loop.exec();
+        qCDebug(KLEOPATRA_LOG) << "Keycache available.";
+    }
 }
 
 #include "moc_keycache_p.cpp"

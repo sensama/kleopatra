@@ -65,9 +65,10 @@ public:
     unsigned int m_nCompleted;
     QString m_lastProgressMessage;
     bool m_errorOccurred;
+    bool m_doneEmitted;
 };
 
-TaskCollection::Private::Private(TaskCollection *qq) : q(qq), m_totalSize(0), m_processedSize(0), m_nCompleted(0), m_errorOccurred(false)
+TaskCollection::Private::Private(TaskCollection *qq) : q(qq), m_totalSize(0), m_processedSize(0), m_nCompleted(0), m_errorOccurred(false), m_doneEmitted(false)
 {
 }
 
@@ -101,8 +102,9 @@ void TaskCollection::Private::taskResult(const shared_ptr<const Task::Result> &r
     m_lastProgressMessage.clear();
     calculateAndEmitProgress();
     Q_EMIT q->result(result);
-    if (q->allTasksCompleted()) {
+    if (!m_doneEmitted && q->allTasksCompleted()) {
         Q_EMIT q->done();
+        m_doneEmitted = true;
     }
 }
 

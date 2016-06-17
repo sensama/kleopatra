@@ -50,6 +50,7 @@
 #include <QUrl>
 #include <QVBoxLayout>
 #include <KGuiItem>
+#include <KColorScheme>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -58,20 +59,35 @@ using namespace boost;
 
 namespace
 {
-//### TODO move outta here, make colors configurable
+// TODO move out of here
 static QColor colorForVisualCode(Task::Result::VisualCode code)
 {
     switch (code) {
     case Task::Result::AllGood:
-        return QColor(0x3E, 0xAC, 0x31); //green
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color();
     case Task::Result::NeutralError:
     case Task::Result::Warning:
-        return QColor(0xE1, 0xB6, 0x13); //yellow
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NeutralBackground).color();
     case Task::Result::Danger:
-        return QColor(0xD4, 0x23, 0x23); //red
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color();
     case Task::Result::NeutralSuccess:
     default:
-        return Qt::blue;
+        return QColor(0x00, 0x80, 0xFF); // light blue
+    }
+}
+static QColor txtColorForVisualCode(Task::Result::VisualCode code)
+{
+    switch (code) {
+    case Task::Result::AllGood:
+        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
+    case Task::Result::NeutralError:
+    case Task::Result::Warning:
+        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NeutralText).color();
+    case Task::Result::Danger:
+        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
+    case Task::Result::NeutralSuccess:
+    default:
+        return QColor(0xFF, 0xFF, 0xFF); // white
     }
 }
 }
@@ -115,12 +131,16 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
 ResultItemWidget::ResultItemWidget(const shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
 {
     const QColor color = colorForVisualCode(d->m_result->code());
-    setStyleSheet(QStringLiteral("* { background-color: %1; margin: 0px; } QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 2px } QLabel { padding: 5px; border-radius: 3px }").arg(color.lighter(150).name(), color.name()));
+    const QColor txtColor = txtColorForVisualCode(d->m_result->code());
+    const QString styleSheet = QStringLiteral("* { background-color: %1; margin: 0px; }"
+                                              "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
+                                              "QLabel { color: %3; padding: 5px; border-radius: 3px }").arg(color.name()).arg(color.darker(150).name()).arg(txtColor.name());
     QVBoxLayout *topLayout = new QVBoxLayout(this);
     topLayout->setMargin(0);
     topLayout->setSpacing(0);
     QFrame *frame = new QFrame;
     frame->setObjectName(QStringLiteral("resultFrame"));
+    frame->setStyleSheet(styleSheet);
     topLayout->addWidget(frame);
     QVBoxLayout *layout = new QVBoxLayout(frame);
     layout->setMargin(0);
@@ -134,6 +154,7 @@ ResultItemWidget::ResultItemWidget(const shared_ptr<const Task::Result> &result,
     overview->setTextFormat(Qt::RichText);
     overview->setText(d->m_result->overview());
     overview->setFocusPolicy(Qt::StrongFocus);
+    overview->setStyleSheet(styleSheet);
     connect(overview, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
 
     hlay->addWidget(overview, 1, Qt::AlignTop);
@@ -147,6 +168,7 @@ ResultItemWidget::ResultItemWidget(const shared_ptr<const Task::Result> &result,
     d->m_showDetailsLabel->setVisible(!details.isEmpty());
     d->m_showDetailsLabel->setFocusPolicy(Qt::StrongFocus);
     d->m_showDetailsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    d->m_showDetailsLabel->setStyleSheet(styleSheet);
 
     d->m_detailsLabel = new QLabel;
     d->m_detailsLabel->setWordWrap(true);
@@ -154,6 +176,7 @@ ResultItemWidget::ResultItemWidget(const shared_ptr<const Task::Result> &result,
     d->m_detailsLabel->setText(details);
     d->m_detailsLabel->setFocusPolicy(Qt::StrongFocus);
     d->m_detailsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    d->m_detailsLabel->setStyleSheet(styleSheet);
     connect(d->m_detailsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
     layout->addWidget(d->m_detailsLabel);
 

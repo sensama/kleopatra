@@ -353,13 +353,14 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         } else {
             QStringList errors;
             Q_FOREACH (const QString& fileName, files) {
-                auto cmd = Command::commandForFile(fileName);
-                if (cmd) {
-                    cmd->setParentWId(parentId);
-                    cmd->start();
-                } else {
+                QFileInfo fi(fileName);
+                if (!fi.isReadable()) {
                     errors << i18n("Cannot read \"%1\"", fileName);
                 }
+            }
+            Q_FOREACH (Command *cmd, Command::commandsForFiles(files)) {
+                cmd->setParentWId(parentId);
+                cmd->start();
             }
             return errors.join("\n");
         }

@@ -97,13 +97,13 @@ public:
         return NoRestriction;
     }
 
-    /** Classify the file and return the most appropiate command.
+    /** Classify the files and return the most appropiate commands.
      *
-     * @param fileName: The filename of the file.
+     * @param files: A list of files.
      *
      * @returns null QString on success. Error message otherwise.
      */
-    static Command *commandForFile(const QString &fileName);
+    static QVector<Command *>commandsForFiles(const QStringList &files);
 
     /** Get a command for a query.
      *

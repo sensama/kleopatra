@@ -252,27 +252,36 @@ void Command::applyWindowID(QWidget *w) const
 }
 
 // static
-Command *Command::commandForFile(const QString &fileName)
+QVector <Command *> Command::commandsForFiles(const QStringList &files)
 {
-    unsigned int classification = classify(fileName);
+    QStringList importFiles, decryptFiles, encryptFiles;
+    QVector <Command *> cmds;
+    Q_FOREACH (const QString &fileName, files) {
+        unsigned int classification = classify(fileName);
 
-    const QStringList files = QStringList() << fileName;
-
-    Command *cmd = Q_NULLPTR;
-
-    if (classification & Class::AnyCertStoreType) {
-        cmd = new ImportCertificateFromFileCommand(files, Q_NULLPTR);
-    } else if (classification & Class::AnyMessageType) {
-        // For any message we decrypt / verify. This includes
-        // the class CipherText
-        cmd = new DecryptVerifyFilesCommand(files, Q_NULLPTR);
-    } else {
-        QFileInfo fi(fileName);
-        if (fi.isReadable()) {
-            cmd = new SignEncryptFilesCommand(files, Q_NULLPTR);
+        if (classification & Class::AnyCertStoreType) {
+            importFiles << fileName;
+        } else if (classification & Class::AnyMessageType) {
+            // For any message we decrypt / verify. This includes
+            // the class CipherText
+            decryptFiles << fileName;
+        } else {
+            QFileInfo fi(fileName);
+            if (fi.isReadable()) {
+                encryptFiles << fileName;
+            }
         }
     }
-    return cmd;
+    if (!importFiles.isEmpty()) {
+        cmds << new ImportCertificateFromFileCommand(importFiles, Q_NULLPTR);
+    }
+    if (!decryptFiles.isEmpty()) {
+        cmds << new DecryptVerifyFilesCommand(decryptFiles, Q_NULLPTR);
+    }
+    if (!encryptFiles.isEmpty()) {
+        cmds << new SignEncryptFilesCommand(encryptFiles, Q_NULLPTR);
+    }
+    return cmds;
 }
 
 // static

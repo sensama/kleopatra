@@ -98,8 +98,10 @@ void Controller::setLastError(int err, const QString &msg)
 
 void Controller::emitDoneOrError()
 {
-    if (d->lastError != 0) {
+    if (d->lastError) {
         Q_EMIT error(d->lastError, d->lastErrorString);
+        d->lastError = 0;
+        d->lastErrorString = QString();
     } else {
         Q_EMIT done();
     }

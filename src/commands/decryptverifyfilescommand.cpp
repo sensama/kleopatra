@@ -74,8 +74,9 @@ private:
     {
         finished();
     }
-    void slotControllerError(int, const QString &)
+    void slotControllerError(int, const QString &msg)
     {
+        KMessageBox::error(parentWidgetOrView(), msg, i18n("Decrypt/Verify Failed"));
         finished();
     }
 

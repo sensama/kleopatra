@@ -126,6 +126,7 @@ if(USABLE_ASSUAN_FOUND)
 endif()
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")

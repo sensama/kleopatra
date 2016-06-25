@@ -208,7 +208,7 @@ static QList<QUrl> string2urls(const QString &str)
     if (str.isEmpty()) {
         return ret;
     }
-    ret << QUrl::fromPercentEncoding(str.toLocal8Bit());
+    ret << QUrl::fromEncoded(str.toLocal8Bit());
     return ret;
 }
 

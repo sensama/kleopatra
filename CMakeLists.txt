@@ -7,7 +7,7 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything neccessary.
 set(KF5_VERSION "5.17.0")
-set(GPGMEPP_VERSION "5.1.42")
+set(GPGMEPP_VERSION "5.2.81")
 set(KMIME_VERSION "5.1.40")
 set(LIBKLEO_VERSION "5.1.41")
 set(QT_REQUIRED_VERSION "5.4.0")
@@ -107,23 +107,12 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kleopatra.h.cmake ${CMAKE_CUR
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 include (ConfigureChecks.cmake)
 
-find_package(Gpgme REQUIRED)
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kleopatra.h)
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${Boost_INCLUDE_DIR}
-    ${GPGME_INCLUDES}
     )
-
-if(USABLE_ASSUAN_FOUND)
-    if(ASSUAN2_FOUND)
-        include_directories(${ASSUAN2_INCLUDES})
-    else()
-        include_directories(${ASSUAN_INCLUDES})
-    endif()
-endif()
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)

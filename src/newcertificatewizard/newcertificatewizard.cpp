@@ -63,7 +63,6 @@
 
 #include <gpgme++/global.h>
 #include <gpgme++/keygenerationresult.h>
-#include <gpgme.h>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -104,11 +103,6 @@ static const char ELG_KEYSIZE_LABELS_ENTRY[] = "ELGKeySizeLabels";
 static const char PGP_KEY_TYPE_ENTRY[] = "PGPKeyType";
 static const char CMS_KEY_TYPE_ENTRY[] = "CMSKeyType";
 
-// We need to be build gpgme with ECC support and GnuPG 2.1 at runtime.
-#if GPGME_VERSION_NUMBER > 0x010300
-# define GPGME_ECDSA_ECDH_SUPPORT
-#endif
-
 // This should come from gpgme in the future
 // For now we only support the basic 2.1 curves and check
 // for GnuPG 2.1. The whole subkey / usage generation needs
@@ -130,63 +124,51 @@ static void set_tab_order(const QList<QWidget *> &wl)
 
 enum KeyAlgo { RSA, DSA, ELG, ECDSA, ECDH };
 
-static bool is_algo(gpgme_pubkey_algo_t algo, KeyAlgo what)
+static bool is_algo(Subkey::PubkeyAlgo algo, KeyAlgo what)
 {
     switch (algo) {
-    case GPGME_PK_RSA:
-    case GPGME_PK_RSA_E:
-    case GPGME_PK_RSA_S:
-        return what == RSA;
-    case GPGME_PK_ELG_E:
-    case GPGME_PK_ELG:
-        return what == ELG;
-    case GPGME_PK_DSA:
-        return what == DSA;
-#ifdef GPGME_ECDSA_ECDH_SUPPORT
-    case GPGME_PK_ECDSA:
-        return what == ECDSA;
-    case GPGME_PK_ECDH:
-        return what == ECDH;
-#endif
-    default:
-        break;
+        case Subkey::AlgoRSA:
+        case Subkey::AlgoRSA_E:
+        case Subkey::AlgoRSA_S:
+            return what == RSA;
+        case Subkey::AlgoELG_E:
+        case Subkey::AlgoELG:
+            return what == ELG;
+        case Subkey::AlgoDSA:
+            return what == DSA;
+        case Subkey::AlgoECDSA:
+            return what == ECDSA;
+        case Subkey::AlgoECDH:
+            return what == ECDH;
+        default:
+            break;
     }
     return false;
 }
 
 static bool is_rsa(unsigned int algo)
 {
-    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), RSA);
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), RSA);
 }
 
 static bool is_dsa(unsigned int algo)
 {
-    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), DSA);
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), DSA);
 }
 
 static bool is_elg(unsigned int algo)
 {
-    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ELG);
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), ELG);
 }
 
 static bool is_ecdsa(unsigned int algo)
 {
-#ifdef GPGME_ECDSA_ECDH_SUPPORT
-    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ECDSA);
-#else
-    Q_UNUSED(algo);
-    return false;
-#endif
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), ECDSA);
 }
 
 static bool is_ecdh(unsigned int algo)
 {
-#ifdef GPGME_ECDSA_ECDH_SUPPORT
-    return is_algo(static_cast<gpgme_pubkey_algo_t>(algo), ECDH);
-#else
-    Q_UNUSED(algo);
-    return false;
-#endif
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), ECDH);
 }
 
 static void force_set_checked(QAbstractButton *b, bool on)
@@ -243,6 +225,7 @@ static QString get_curve(const QComboBox *cb)
     return cb->currentText();
 }
 
+Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo);
 namespace Kleo
 {
 namespace NewCertificateUi
@@ -297,11 +280,11 @@ protected:
     FIELD(QString, comment)
     FIELD(QString, dn)
 
-    FIELD(int, keyType)
+    FIELD(Subkey::PubkeyAlgo, keyType)
     FIELD(int, keyStrength)
     FIELD(QString, keyCurve)
 
-    FIELD(int, subkeyType)
+    FIELD(Subkey::PubkeyAlgo, subkeyType)
     FIELD(int, subkeyStrength)
     FIELD(QString, subkeyCurve)
 
@@ -334,11 +317,11 @@ class AdvancedSettingsDialog : public QDialog
     Q_PROPERTY(QStringList dnsNames READ dnsNames WRITE setDnsNames)
     Q_PROPERTY(QStringList uris READ uris WRITE setUris)
     Q_PROPERTY(uint keyStrength READ keyStrength WRITE setKeyStrength)
-    Q_PROPERTY(uint keyType READ keyType WRITE setKeyType)
+    Q_PROPERTY(Subkey::PubkeyAlgo keyType READ keyType WRITE setKeyType)
     Q_PROPERTY(QString keyCurve READ keyCurve WRITE setKeyCurve)
     Q_PROPERTY(uint subkeyStrength READ subkeyStrength WRITE setSubkeyStrength)
     Q_PROPERTY(QString subkeyCurve READ keyCurve WRITE setSubkeyCurve)
-    Q_PROPERTY(uint subkeyType READ subkeyType WRITE setSubkeyType)
+    Q_PROPERTY(Subkey::PubkeyAlgo subkeyType READ subkeyType WRITE setSubkeyType)
     Q_PROPERTY(bool signingAllowed READ signingAllowed WRITE setSigningAllowed)
     Q_PROPERTY(bool encryptionAllowed READ encryptionAllowed WRITE setEncryptionAllowed)
     Q_PROPERTY(bool certificationAllowed READ certificationAllowed WRITE setCertificationAllowed)
@@ -348,12 +331,13 @@ public:
     explicit AdvancedSettingsDialog(QWidget *parent = Q_NULLPTR)
         : QDialog(parent),
           protocol(UnknownProtocol),
-          pgpDefaultAlgorithm(GPGME_PK_ELG_E),
-          cmsDefaultAlgorithm(GPGME_PK_RSA),
+          pgpDefaultAlgorithm(Subkey::AlgoELG_E),
+          cmsDefaultAlgorithm(Subkey::AlgoRSA),
           keyTypeImmutable(false),
           ui(),
           mECCSupported(engineIsVersion(2, 1, 0))
     {
+        qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
         ui.setupUi(this);
         const QDate today = QDate::currentDate();
         ui.expiryDE->setMinimumDate(today);
@@ -422,7 +406,7 @@ public:
             ui.rsaRB->isChecked() ? get_keysize(ui.rsaKeyStrengthCB) : 0;
     }
 
-    void setKeyType(unsigned int algo)
+    void setKeyType(Subkey::PubkeyAlgo algo)
     {
         QRadioButton *const rb =
             is_rsa(algo) ? ui.rsaRB :
@@ -432,15 +416,13 @@ public:
             rb->setChecked(true);
         }
     }
-    unsigned int keyType() const
+    Subkey::PubkeyAlgo keyType() const
     {
         return
-            ui.dsaRB->isChecked() ? GPGME_PK_DSA :
-            ui.rsaRB->isChecked() ? GPGME_PK_RSA :
-#ifdef GPGME_ECDSA_ECDH_SUPPORT
-            ui.ecdsaRB->isChecked() ? GPGME_PK_ECDSA :
-#endif
-            0;
+            ui.dsaRB->isChecked() ? Subkey::AlgoDSA :
+            ui.rsaRB->isChecked() ? Subkey::AlgoRSA :
+            ui.ecdsaRB->isChecked() ? Subkey::AlgoECDSA :
+            Subkey::AlgoUnknown;
     }
 
     void setKeyCurve(const QString &curve)
@@ -453,24 +435,22 @@ public:
         return get_curve(ui.ecdsaKeyCurvesCB);
     }
 
-    void setSubkeyType(unsigned int algo)
+    void setSubkeyType(Subkey::PubkeyAlgo algo)
     {
         ui.elgCB->setChecked(is_elg(algo));
         ui.rsaSubCB->setChecked(is_rsa(algo));
         ui.ecdhCB->setChecked(is_ecdh(algo));
     }
-    unsigned int subkeyType() const
+    Subkey::PubkeyAlgo subkeyType() const
     {
         if (ui.elgCB->isChecked()) {
-            return GPGME_PK_ELG_E;
+            return Subkey::AlgoELG_E;
         } else if (ui.rsaSubCB->isChecked()) {
-            return GPGME_PK_RSA;
-#ifdef GPGME_ECDSA_ECDH_SUPPORT
+            return Subkey::AlgoRSA;
         } else if (ui.ecdhCB->isChecked()) {
-            return GPGME_PK_ECDH;
-#endif
+            return Subkey::AlgoECDH;
         }
-        return 0;
+        return Subkey::AlgoUnknown;
     }
 
     void setSubkeyCurve(const QString &curve)
@@ -485,7 +465,7 @@ public:
 
     void setSubkeyStrength(unsigned int strength)
     {
-        if (subkeyType() == GPGME_PK_RSA) {
+        if (subkeyType() == Subkey::AlgoRSA) {
             set_keysize(ui.rsaKeyStrengthSubCB, strength);
         } else {
             set_keysize(ui.elgKeyStrengthCB, strength);
@@ -493,7 +473,7 @@ public:
     }
     unsigned int subkeyStrength() const
     {
-        if (subkeyType() == GPGME_PK_RSA) {
+        if (subkeyType() == Subkey::AlgoRSA) {
             return get_keysize(ui.rsaKeyStrengthSubCB);
         }
         return get_keysize(ui.elgKeyStrengthCB);
@@ -1651,7 +1631,7 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
         s         << Row<        >(i18n("Subject-DN:"),        DN(dn()).dn(QStringLiteral(",<br>")));
     }
     if (details) {
-        s         << Row<        >(i18n("Key Type:"),          QLatin1String(gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(keyType()))));
+        s         << Row<        >(i18n("Key Type:"),          QLatin1String(Subkey::publicKeyAlgorithmAsString(keyType())));
         if (is_ecdsa(keyType())) {
             s     << Row<        >(i18n("Key Curve:"),         keyCurve());
         } else if (const unsigned int strength = keyStrength()) {
@@ -1660,8 +1640,8 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
             s     << Row<        >(i18n("Key Strength:"),      i18n("default"));
         }
         s         << Row<        >(i18n("Certificate Usage:"), i18nCombinedKeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
-        if (const unsigned int subkey = subkeyType()) {
-            s     << Row<        >(i18n("Subkey Type:"),       QLatin1String(gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(subkey))));
+        if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
+            s     << Row<        >(i18n("Subkey Type:"),       QLatin1String(Subkey::publicKeyAlgorithmAsString(subkey)));
             if (is_ecdh(subkeyType())) {
                 s << Row<        >(i18n("Key Curve:"),         subkeyCurve());
             } else if (const unsigned int strength = subkeyStrength()) {
@@ -1711,7 +1691,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
     if (pgp()) {
         s << "%ask-passphrase"                             << endl;
     }
-    s     << "key-type:      " << gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(keyType())) << endl;
+    s     << "key-type:      " << Subkey::publicKeyAlgorithmAsString(keyType()) << endl;
     if (is_ecdsa(keyType())) {
         s << "key-curve:     " << keyCurve() << endl;
 
@@ -1719,8 +1699,8 @@ QString KeyCreationPage::createGnupgKeyParms() const
         s << "key-length:    " << strength                 << endl;
     }
     s     << "key-usage:     " << keyUsages().join(QStringLiteral(" "))    << endl;
-    if (const unsigned int subkey = subkeyType()) {
-        s << "subkey-type:   " << gpgme_pubkey_algo_name(static_cast<gpgme_pubkey_algo_t>(subkey)) << endl;
+    if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
+        s << "subkey-type:   " << Subkey::publicKeyAlgorithmAsString(subkey) << endl;
 
         if (is_ecdh(subkeyType())) {
             s << "subkey-curve: " << subkeyCurve()         << endl;
@@ -1807,18 +1787,18 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
     const QString keyType = config.readEntry(entry).trimmed().toUpper();
 
     if (protocol == OpenPGP && keyType == QLatin1String("DSA")) {
-        setKeyType(GPGME_PK_DSA);
-        setSubkeyType(0);
+        setKeyType(Subkey::AlgoDSA);
+        setSubkeyType(Subkey::AlgoUnknown);
     } else if (protocol == OpenPGP && keyType == QLatin1String("DSA+ELG")) {
-        setKeyType(GPGME_PK_DSA);
-        setSubkeyType(GPGME_PK_ELG_E);
+        setKeyType(Subkey::AlgoDSA);
+        setSubkeyType(Subkey::AlgoELG_E);
     } else {
         if (!keyType.isEmpty() && keyType != QLatin1String("RSA"))
             qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType)
                                      << "\" for entry \"[CertificateCreationWizard]"
                                      << qPrintable(entry) << "\"";
-        setKeyType(GPGME_PK_RSA);
-        setSubkeyType(GPGME_PK_RSA);
+        setKeyType(Subkey::AlgoRSA);
+        setSubkeyType(Subkey::AlgoRSA);
     }
 
     keyTypeImmutable = config.isEntryImmutable(entry);

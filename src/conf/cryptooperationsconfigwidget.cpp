@@ -39,6 +39,8 @@
 
 #include <Libkleo/ChecksumDefinition>
 
+#include <gpgme++/context.h>
+
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -79,7 +81,9 @@ void CryptoOperationsConfigWidget::setupGui()
     QGroupBox *fileGrp = new QGroupBox(i18n("File Operations"));
     QVBoxLayout *fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n("Create OpenPGP encrypted files with \".pgp\" file extensions instead of \".gpg\""));
+    mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     fileGrpLay->addWidget(mPGPFileExtCB);
+    fileGrpLay->addWidget(mAutoDecryptVerifyCB);
     QHBoxLayout *chkLay = new QHBoxLayout;
     QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
     chkLay->addWidget(chkLabel);
@@ -94,11 +98,18 @@ void CryptoOperationsConfigWidget::setupGui()
 
     setLayout(baseLay);
 
+    if (!GpgME::hasFeature(0, GpgME::BinaryAndFineGrainedIdentify)) {
+        /* Auto handling requires a working identify in GpgME.
+         * so that classify in kleoaptra can correctly detect the input.*/
+        mAutoDecryptVerifyCB->setVisible(false);
+    }
+
     connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
@@ -113,6 +124,7 @@ void CryptoOperationsConfigWidget::defaults()
     FileOperationsPreferences filePrefs;
     filePrefs.setDefaults();
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
+    mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
 
     if (mChecksumDefinitionCB->count()) {
         mChecksumDefinitionCB->setCurrentIndex(0);
@@ -130,6 +142,7 @@ void CryptoOperationsConfigWidget::load()
 
     const FileOperationsPreferences filePrefs;
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
+    mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
 
     const std::vector< shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
     const shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
@@ -154,6 +167,7 @@ void CryptoOperationsConfigWidget::save()
 
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
+    filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
     filePrefs.save();
 
     const int idx = mChecksumDefinitionCB->currentIndex();

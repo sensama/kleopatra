@@ -64,7 +64,8 @@ private:
     void setupGui();
     QCheckBox *mQuickEncryptCB,
               *mQuickSignCB,
-              *mPGPFileExtCB;
+              *mPGPFileExtCB,
+              *mAutoDecryptVerifyCB;
     QComboBox *mChecksumDefinitionCB;
 };
 

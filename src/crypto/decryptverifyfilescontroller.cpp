@@ -197,7 +197,6 @@ void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 void DecryptVerifyFilesController::Private::slotWizardCanceled()
 {
     qCDebug(KLEOPATRA_LOG);
-    reportError(gpg_error(GPG_ERR_CANCELED), i18n("User canceled"));
 }
 
 void DecryptVerifyFilesController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)

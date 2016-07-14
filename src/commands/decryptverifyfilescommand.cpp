@@ -34,9 +34,11 @@
 
 #include "decryptverifyfilescommand.h"
 
+#include "fileoperationspreferences.h"
 #include "command_p.h"
 
-#include <crypto/decryptverifyfilescontroller.h>
+#include "crypto/decryptverifyfilescontroller.h"
+#include "crypto/autodecryptverifyfilescontroller.h"
 
 #include <utils/filedialog.h>
 
@@ -62,7 +64,8 @@ class DecryptVerifyFilesCommand::Private : public Command::Private
         return static_cast<DecryptVerifyFilesCommand *>(q);
     }
 public:
-    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c);
+    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c,
+                     bool forceManualMode=false);
     ~Private();
 
     QStringList selectFiles() const;
@@ -83,7 +86,7 @@ private:
 private:
     QStringList files;
     shared_ptr<const ExecutionContext> shared_qq;
-    DecryptVerifyFilesController controller;
+    DecryptVerifyFilesController *mController;
 };
 
 DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func()
@@ -98,17 +101,26 @@ const DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func() co
 #define d d_func()
 #define q q_func()
 
-DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c)
+DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode)
     : Command::Private(qq, c),
       files(),
-      shared_qq(qq, kdtools::nodelete()),
-      controller()
+      shared_qq(qq, kdtools::nodelete())
 {
+    FileOperationsPreferences prefs;
+    if (!forceManualMode &&
+        GpgME::hasFeature(0, GpgME::BinaryAndFineGrainedIdentify) &&
+        prefs.autoDecryptVerify()) {
+        mController = new AutoDecryptVerifyFilesController();
+    } else {
+        mController = new DecryptVerifyFilesController();
+    }
+
 }
 
 DecryptVerifyFilesCommand::Private::~Private()
 {
     qCDebug(KLEOPATRA_LOG);
+    delete mController;
 }
 
 DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(KeyListController *c)
@@ -123,8 +135,8 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(QAbstractItemView *v, KeyLi
     d->init();
 }
 
-DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, KeyListController *c)
-    : Command(new Private(this, c))
+DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, KeyListController *c, bool forceManualMode)
+    : Command(new Private(this, c, forceManualMode))
 {
     d->init();
     d->files = files;
@@ -139,9 +151,9 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, Q
 
 void DecryptVerifyFilesCommand::Private::init()
 {
-    controller.setExecutionContext(shared_qq);
-    connect(&controller, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(&controller, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    mController->setExecutionContext(shared_qq);
+    connect(mController, SIGNAL(done()), q, SLOT(slotControllerDone()));
+    connect(mController, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
 }
 
 DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand()
@@ -157,13 +169,13 @@ void DecryptVerifyFilesCommand::setFiles(const QStringList &files)
 void DecryptVerifyFilesCommand::setOperation(DecryptVerifyOperation op)
 {
     try {
-        d->controller.setOperation(op);
+        d->mController->setOperation(op);
     } catch (...) {}
 }
 
 DecryptVerifyOperation DecryptVerifyFilesCommand::operation() const
 {
-    return d->controller.operation();
+    return d->mController->operation();
 }
 
 void DecryptVerifyFilesCommand::doStart()
@@ -178,8 +190,8 @@ void DecryptVerifyFilesCommand::doStart()
             d->finished();
             return;
         }
-        d->controller.setFiles(d->files);
-        d->controller.start();
+        d->mController->setFiles(d->files);
+        d->mController->start();
 
     } catch (const std::exception &e) {
         d->information(i18n("An error occurred: %1",
@@ -192,7 +204,7 @@ void DecryptVerifyFilesCommand::doStart()
 void DecryptVerifyFilesCommand::doCancel()
 {
     qCDebug(KLEOPATRA_LOG);
-    d->controller.cancel();
+    d->mController->cancel();
 }
 
 QStringList DecryptVerifyFilesCommand::Private::selectFiles() const

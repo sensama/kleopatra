@@ -1,8 +1,9 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/decryptverifyfilescommand.h
+    autodecryptverifyfilescontroller.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
+                  2016 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,48 +31,57 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_DECRYPTVERIFYFILESCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_DECRYPTVERIFYFILESCOMMAND_H__
+#ifndef __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__
+#define __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__
 
-#include "commands/command.h"
+#include "crypto/decryptverifyfilescontroller.h"
 
-#include "utils/types.h"
+#include <utils/types.h>
 
-class QStringList;
+#include <QMetaType>
+
+#include<boost/shared_ptr.hpp>
+
+#include <vector>
+
+namespace GpgME
+{
+class VerificationResult;
+}
 
 namespace Kleo
 {
-namespace Commands
+namespace Crypto
 {
 
-class DecryptVerifyFilesCommand : public Command
+class AutoDecryptVerifyFilesController : public DecryptVerifyFilesController
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyFilesCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit DecryptVerifyFilesCommand(KeyListController *parent);
-    explicit DecryptVerifyFilesCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
-    explicit DecryptVerifyFilesCommand(const QStringList &files, KeyListController *parent, bool forceManualMode = false);
-    ~DecryptVerifyFilesCommand();
+    explicit AutoDecryptVerifyFilesController(QObject *parent = Q_NULLPTR);
+    explicit AutoDecryptVerifyFilesController(const boost::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
 
-    void setFiles(const QStringList &files);
+    ~AutoDecryptVerifyFilesController();
 
-    void setOperation(DecryptVerifyOperation operation);
-    DecryptVerifyOperation operation() const;
+    void setFiles(const QStringList &files) Q_DECL_OVERRIDE;
+    void setOperation(DecryptVerifyOperation op) Q_DECL_OVERRIDE;
+    DecryptVerifyOperation operation() const Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
+
+public Q_SLOTS:
+    void cancel() Q_DECL_OVERRIDE;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    void doCancel() Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
 
 private:
     class Private;
-    inline Private *d_func();
-    inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotControllerDone())
-    Q_PRIVATE_SLOT(d_func(), void slotControllerError(int, QString))
+    kdtools::pimpl_ptr<Private> d;
+    Q_PRIVATE_SLOT(d, void slotDialogCanceled())
+    Q_PRIVATE_SLOT(d, void schedule())
 };
 
 }
 }
 
-#endif // __KLEOPATRA_COMMMANDS_DECRYPTVERIFYFILESCOMMAND_H__
+#endif // __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__

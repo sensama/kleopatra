@@ -129,6 +129,7 @@ set(_kleopatra_SRCS
   crypto/decryptverifytask.cpp
   crypto/decryptverifyemailcontroller.cpp
   crypto/decryptverifyfilescontroller.cpp
+  crypto/autodecryptverifyfilescontroller.cpp
   crypto/encryptemailtask.cpp
   crypto/encryptemailcontroller.cpp
   crypto/newsignencryptemailcontroller.cpp
@@ -156,6 +157,7 @@ set(_kleopatra_SRCS
 
   crypto/gui/decryptverifyoperationwidget.cpp
   crypto/gui/decryptverifyfileswizard.cpp
+  crypto/gui/decryptverifyfilesdialog.cpp
 
   crypto/gui/objectspage.cpp
   crypto/gui/resolverecipientspage.cpp

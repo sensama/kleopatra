@@ -58,6 +58,7 @@
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/lookupcertificatescommand.h"
 #include "commands/checksumcreatefilescommand.h"
+#include "commands/checksumverifyfilescommand.h"
 #include "commands/detailscommand.h"
 
 #include <KIconLoader>
@@ -548,8 +549,24 @@ void KleopatraApplication::decryptVerifyFiles(const QStringList &files, GpgME::P
 
 void KleopatraApplication::checksumFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    auto *const cmd = new ChecksumCreateFilesCommand(files, 0);
-    cmd->start();
+    QStringList verifyFiles, createFiles;
+
+    Q_FOREACH (const QString &file, files) {
+        if (isChecksumFile(file)) {
+            verifyFiles << file;
+        } else {
+            createFiles << file;
+        }
+    }
+
+    if (!verifyFiles.isEmpty()) {
+        auto *const cmd = new ChecksumVerifyFilesCommand(verifyFiles, 0);
+        cmd->start();
+    }
+    if (!createFiles.isEmpty()) {
+        auto *const cmd = new ChecksumCreateFilesCommand(createFiles, 0);
+        cmd->start();
+    }
 }
 
 void KleopatraApplication::setIgnoreNewInstance(bool ignore)

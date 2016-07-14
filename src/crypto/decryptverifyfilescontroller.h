@@ -33,13 +33,14 @@
 #ifndef __KLEOPATRA_CRYPTO_DECRYPTVERIFYFILESCONTROLLER_H__
 #define __KLEOPATRA_CRYPTO_DECRYPTVERIFYFILESCONTROLLER_H__
 
-#include <crypto/controller.h>
+#include "crypto/controller.h"
 
-#include <utils/types.h>
+#include "utils/types.h"
+#include "utils/archivedefinition.h"
 
 #include <QMetaType>
 
-#include<boost/shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include <vector>
 
@@ -62,16 +63,20 @@ public:
 
     ~DecryptVerifyFilesController();
 
-    void setFiles(const QStringList &files);
-    void setOperation(DecryptVerifyOperation op);
-    DecryptVerifyOperation operation() const;
-    void start();
+    virtual void setFiles(const QStringList &files);
+    virtual void setOperation(DecryptVerifyOperation op);
+    virtual DecryptVerifyOperation operation() const;
+    virtual void start();
 
 public Q_SLOTS:
-    void cancel();
+    virtual void cancel();
+
+protected:
+    boost::shared_ptr<ArchiveDefinition> pick_archive_definition(GpgME::Protocol proto,
+            const std::vector< boost::shared_ptr<ArchiveDefinition> > &ads, const QString &filename);
 
 Q_SIGNALS:
-    void verificationResult(const GpgME::VerificationResult &);
+    virtual void verificationResult(const GpgME::VerificationResult &);
 
 private:
     void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;

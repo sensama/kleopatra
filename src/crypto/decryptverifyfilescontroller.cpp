@@ -274,7 +274,7 @@ struct FindExtension : std::unary_function<shared_ptr<ArchiveDefinition>, bool> 
 };
 }
 
-shared_ptr<ArchiveDefinition> pick_archive_definition(GpgME::Protocol proto, const std::vector< shared_ptr<ArchiveDefinition> > &ads, const QString &filename)
+shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto, const std::vector< shared_ptr<ArchiveDefinition> > &ads, const QString &filename)
 {
     const QFileInfo fi(outputFileName(filename));
     QString extension = fi.completeSuffix();
@@ -334,7 +334,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
             }
             // ### end FIXME
             else if (mayBeOpaqueSignature(classification) || mayBeCipherText(classification)) {
-                op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, pick_archive_definition(proto, archiveDefinitions, fname));
+                op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, q->pick_archive_definition(proto, archiveDefinitions, fname));
             } else {
                 op->setMode(DecryptVerifyOperationWidget::VerifyDetachedWithSignature);
             }
@@ -357,7 +357,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
                 DecryptVerifyOperationWidget *const op = m_wizard->operationWidget(counter++);
                 kleo_assert(op != 0);
                 op->setArchiveDefinitions(archiveDefinitions);
-                op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, pick_archive_definition(proto, archiveDefinitions, fname));
+                op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, q->pick_archive_definition(proto, archiveDefinitions, fname));
                 op->setInputFileName(fname);
                 fileNames.push_back(fname);
             } else {

@@ -54,10 +54,11 @@
 # include <uiserver/uiserver.h>
 #endif
 
-#include <commands/signencryptfilescommand.h>
-#include <commands/decryptverifyfilescommand.h>
-#include <commands/lookupcertificatescommand.h>
-#include <commands/detailscommand.h>
+#include "commands/signencryptfilescommand.h"
+#include "commands/decryptverifyfilescommand.h"
+#include "commands/lookupcertificatescommand.h"
+#include "commands/checksumcreatefilescommand.h"
+#include "commands/detailscommand.h"
 
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -326,7 +327,8 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         { QStringLiteral("sign-encrypt"), &KleopatraApplication::signEncryptFiles },
         { QStringLiteral("decrypt"), &KleopatraApplication::decryptFiles },
         { QStringLiteral("verify"), &KleopatraApplication::verifyFiles },
-        { QStringLiteral("decrypt-verify"), &KleopatraApplication::decryptVerifyFiles }
+        { QStringLiteral("decrypt-verify"), &KleopatraApplication::decryptVerifyFiles },
+        { QStringLiteral("checksum"), &KleopatraApplication::checksumFiles },
     };
 
     QString found;
@@ -541,6 +543,12 @@ void KleopatraApplication::verifyFiles(const QStringList &files, GpgME::Protocol
 void KleopatraApplication::decryptVerifyFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
     DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, 0);
+    cmd->start();
+}
+
+void KleopatraApplication::checksumFiles(const QStringList &files, GpgME::Protocol /*proto*/)
+{
+    auto *const cmd = new ChecksumCreateFilesCommand(files, 0);
     cmd->start();
 }
 

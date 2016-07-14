@@ -80,6 +80,8 @@ static void kleopatra_options(QCommandLineParser *parser)
             << QCommandLineOption(QStringList() << QStringLiteral("search"),
                                   i18n("Search for a certificate on a keyserver"),
                                   QStringLiteral("search string"))
+            << QCommandLineOption(QStringList() << QStringLiteral("checksum"),
+                                  i18n("Create or check a checksum file"))
             << QCommandLineOption(QStringList() << QStringLiteral("query")
                                   << QStringLiteral("q"),
                                   i18nc("If a certificate is already known it shows the certificate details dialog."

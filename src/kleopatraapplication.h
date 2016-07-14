@@ -97,6 +97,7 @@ public Q_SLOTS:
     void decryptFiles(const QStringList &files, GpgME::Protocol proto);
     void verifyFiles(const QStringList &files, GpgME::Protocol proto);
     void decryptVerifyFiles(const QStringList &files, GpgME::Protocol proto);
+    void checksumFiles(const QStringList &files, GpgME::Protocol /* unused */);
     void slotActivateRequested(const QStringList &arguments, const QString &workingDirectory);
 
 Q_SIGNALS:

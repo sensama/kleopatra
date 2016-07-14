@@ -58,6 +58,8 @@
 
 #include <functional>
 
+#include <Libkleo/ChecksumDefinition>
+
 using namespace boost;
 using namespace Kleo::Class;
 
@@ -420,4 +422,36 @@ bool Kleo::isFingerprint(const QString &fpr)
 {
     static QRegularExpression fprRegex("[0-9a-fA-F]{40}");
     return fprRegex.match(fpr).hasMatch();
+}
+
+bool Kleo::isChecksumFile(const QString &file)
+{
+    static bool initialized;
+    static QList<QRegExp> patterns;
+    const QFileInfo fi(file);
+    if (!fi.exists()) {
+        return false;
+    }
+    if (!initialized) {
+        Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, ChecksumDefinition::getChecksumDefinitions()) {
+            if (cd) {
+                Q_FOREACH (const QString &pattern, cd->patterns()) {
+#ifdef Q_OS_WIN
+                    patterns << QRegExp(pattern, Qt::CaseInsensitive);
+#else
+                    patterns << QRegExp(pattern, Qt::CaseSensitive);
+#endif
+                }
+            }
+        }
+        initialized = true;
+    }
+
+    const QString fileName = fi.fileName();
+    Q_FOREACH (const QRegExp &pattern, patterns) {
+        if (pattern.exactMatch(fileName)) {
+            return true;
+        }
+    }
+    return false;
 }

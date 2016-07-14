@@ -99,6 +99,9 @@ QString outputFileName(const QString &input);
 /** Check if a string looks like a fingerprint (SHA1 sum) */
 bool isFingerprint(const QString &fpr);
 
+/** Check if a filename matches a ChecksumDefinition pattern */
+bool isChecksumFile(const QString &file);
+
 const char *outputFileExtension(unsigned int classification);
 
 QString printableClassification(unsigned int classification);

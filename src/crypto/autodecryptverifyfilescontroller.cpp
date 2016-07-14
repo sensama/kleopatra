@@ -207,6 +207,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
         }
     }
     q->emitDoneOrError();
+    delete m_dialog;
+    m_dialog = Q_NULLPTR;
     return;
 }
 

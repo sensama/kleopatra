@@ -62,6 +62,7 @@ class DecryptVerifyFilesDialog : public QDialog
 public:
     explicit DecryptVerifyFilesDialog(const boost::shared_ptr<TaskCollection> &coll,
                                       QWidget *parent = Q_NULLPTR);
+    ~DecryptVerifyFilesDialog();
 
     void setOutputLocation(const QString &dir);
     QString outputLocation() const;
@@ -72,6 +73,10 @@ protected Q_SLOTS:
     void allDone();
     void btnClicked(QAbstractButton *btn);
     void checkAccept();
+
+protected:
+    void readConfig();
+    void writeConfig();
 
 protected:
     QLabel *labelForTag(const QString &tag);

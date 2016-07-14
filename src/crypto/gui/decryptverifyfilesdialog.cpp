@@ -52,6 +52,8 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KConfigGroup>
+#include <KSharedConfig>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -60,6 +62,7 @@ using namespace Kleo::Crypto::Gui;
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskCollection> &coll, QWidget *parent)
     : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox)
 {
+    readConfig();
     auto vLay = new QVBoxLayout(this);
     auto labels = new QWidget;
     auto outputLayout = new QHBoxLayout;
@@ -79,8 +82,6 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskC
     vLay->addWidget(m_progressBar);
     m_resultList = new ResultListWidget;
     vLay->addWidget(m_resultList);
-
-    resize(QSize(640, 480));
 
     m_tasks = coll;
     assert(m_tasks);
@@ -117,6 +118,12 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskC
     }
     m_buttonBox->addButton(m_okButton);
     m_buttonBox->button(m_okButton)->setEnabled(false);
+}
+
+DecryptVerifyFilesDialog::~DecryptVerifyFilesDialog()
+{
+    qCDebug(KLEOPATRA_LOG);
+    writeConfig();
 }
 
 void DecryptVerifyFilesDialog::allDone()
@@ -217,4 +224,22 @@ void DecryptVerifyFilesDialog::checkAccept() {
 
     KMessageBox::information(this, i18n("Please select a different output folder."),
                              i18n("Invalid output folder."));
+}
+
+void DecryptVerifyFilesDialog::readConfig()
+{
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "DecryptVerifyFilesDialog");
+    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
+    if (!geom.isEmpty()) {
+        restoreGeometry(geom);
+        return;
+    }
+    resize(QSize(640, 480));
+}
+
+void DecryptVerifyFilesDialog::writeConfig()
+{
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "DecryptVerifyFilesDialog");
+    cfgGroup.writeEntry("geometry", saveGeometry());
+    cfgGroup.sync();
 }

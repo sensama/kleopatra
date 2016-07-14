@@ -44,7 +44,7 @@
 
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
-#include <QSaveFile>
+#include <QTemporaryFile>
 #include <KConfigGroup>
 #include <KSharedConfig>
 
@@ -595,21 +595,19 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
 static QString process(const Dir &dir, bool *fatal)
 {
     const QString absFilePath = dir.dir.absoluteFilePath(dir.sumFile);
-    QSaveFile file(absFilePath);
-    if (!file.open(QIODevice::WriteOnly))
-        return i18n("Failed to open file \"%1\" for reading and writing: %2",
-                    dir.dir.absoluteFilePath(file.fileName()),
-                    file.errorString());
+    QTemporaryFile out;
     QProcess p;
+    if (!out.open()) {
+        return QStringLiteral("Faile to open Temporary file.");
+    }
     p.setWorkingDirectory(dir.dir.absolutePath());
-    p.setStandardOutputFile(dir.dir.absoluteFilePath(file.fileName() /*!sic*/));
+    p.setStandardOutputFile(out.fileName());
     const QString program = dir.checksumDefinition->createCommand();
     dir.checksumDefinition->startCreateCommand(&p, dir.inputFiles);
     p.waitForFinished();
     qCDebug(KLEOPATRA_LOG) << "[" << &p << "] Exit code " << p.exitCode();
 
     if (p.exitStatus() != QProcess::NormalExit || p.exitCode() != 0) {
-        file.cancelWriting();
         if (fatal && p.error() == QProcess::FailedToStart) {
             *fatal = true;
         }
@@ -621,11 +619,13 @@ static QString process(const Dir &dir, bool *fatal)
         }
     }
 
-    if (!file.commit())
-        return i18n("Failed to move file %1 to its final destination, %2: %3",
-                    file.fileName(), dir.sumFile, file.errorString());
+    QFileInfo fi(absFilePath);
+    if (!(fi.exists() && !QFile::remove(absFilePath)) && QFile::rename(out.fileName(), absFilePath)) {
+        out.setAutoRemove(false);
+        return QString();
+    }
 
-    return QString();
+    return xi18n("Failed to overwrite <filename>%1</filename>.", dir.sumFile);
 }
 
 namespace

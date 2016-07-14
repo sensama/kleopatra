@@ -40,6 +40,7 @@
 #include "decryptverifyfilescommand.h"
 #include "detailscommand.h"
 #include "lookupcertificatescommand.h"
+#include "checksumverifyfilescommand.h"
 
 #include "models/keycache.h"
 #include "utils/classify.h"
@@ -254,7 +255,7 @@ void Command::applyWindowID(QWidget *w) const
 // static
 QVector <Command *> Command::commandsForFiles(const QStringList &files)
 {
-    QStringList importFiles, decryptFiles, encryptFiles;
+    QStringList importFiles, decryptFiles, encryptFiles, checksumFiles;
     QVector <Command *> cmds;
     Q_FOREACH (const QString &fileName, files) {
         const unsigned int classification = classify(fileName);
@@ -265,6 +266,8 @@ QVector <Command *> Command::commandsForFiles(const QStringList &files)
             // For any message we decrypt / verify. This includes
             // the class CipherText
             decryptFiles << fileName;
+        } else if (isChecksumFile(fileName)) {
+            checksumFiles << fileName;
         } else {
             QFileInfo fi(fileName);
             if (fi.isReadable()) {
@@ -280,6 +283,9 @@ QVector <Command *> Command::commandsForFiles(const QStringList &files)
     }
     if (!encryptFiles.isEmpty()) {
         cmds << new SignEncryptFilesCommand(encryptFiles, Q_NULLPTR);
+    }
+    if (!checksumFiles.isEmpty()) {
+        cmds << new ChecksumVerifyFilesCommand(checksumFiles, Q_NULLPTR);
     }
     return cmds;
 }

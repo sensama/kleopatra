@@ -257,7 +257,7 @@ QVector <Command *> Command::commandsForFiles(const QStringList &files)
     QStringList importFiles, decryptFiles, encryptFiles;
     QVector <Command *> cmds;
     Q_FOREACH (const QString &fileName, files) {
-        unsigned int classification = classify(fileName);
+        const unsigned int classification = classify(fileName);
 
         if (classification & Class::AnyCertStoreType) {
             importFiles << fileName;

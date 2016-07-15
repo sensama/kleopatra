@@ -71,7 +71,7 @@ void CryptoOperationsConfigWidget::setupGui()
 
     QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
     QVBoxLayout *mailGrpLayout = new QVBoxLayout;
-    mQuickSignCB = new QCheckBox(i18n("Don't confirm signing certificate if there are is only one valid certificate for the identity"));
+    mQuickSignCB = new QCheckBox(i18n("Don't confirm signing certificate if there is only one valid certificate for the identity"));
     mQuickEncryptCB = new QCheckBox(i18n("Don't confirm encryption certificates if there is exactly one valid certificate for each recipient"));
     mailGrpLayout->addWidget(mQuickSignCB);
     mailGrpLayout->addWidget(mQuickEncryptCB);

@@ -761,6 +761,7 @@ void KeyCache::remove(const std::vector<Key> &keys)
 
 const std::vector<GpgME::Key> &KeyCache::keys() const
 {
+    d->ensureCachePopulated();
     return d->by.fpr;
 }
 
@@ -1021,7 +1022,7 @@ void KeyCache::RefreshKeysJob::Private::doStart()
 
 void KeyCache::RefreshKeysJob::Private::updateKeyCache()
 {
-    std::vector<Key> cachedKeys = m_cache->keys();
+    std::vector<Key> cachedKeys = m_cache->initialized() ? m_cache->keys() : std::vector<Key>();
     std::sort(cachedKeys.begin(), cachedKeys.end(), _detail::ByFingerprint<std::less>());
     std::vector<Key> keysToRemove;
     std::set_difference(cachedKeys.begin(), cachedKeys.end(),

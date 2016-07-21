@@ -264,7 +264,9 @@ void KeyListController::setFlatModel(AbstractKeyListModel *model)
 
     if (model) {
         model->clear();
-        model->addKeys(KeyCache::instance()->keys());
+        if (KeyCache::instance()->initialized()) {
+            model->addKeys(KeyCache::instance()->keys());
+        }
         model->setToolTipOptions(d->toolTipOptions());
     }
 }
@@ -279,7 +281,9 @@ void KeyListController::setHierarchicalModel(AbstractKeyListModel *model)
 
     if (model) {
         model->clear();
-        model->addKeys(KeyCache::instance()->keys());
+        if (KeyCache::instance()->initialized()) {
+            model->addKeys(KeyCache::instance()->keys());
+        }
         model->setToolTipOptions(d->toolTipOptions());
     }
 }

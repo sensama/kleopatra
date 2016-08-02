@@ -78,6 +78,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 {
     auto *hLay = new QHBoxLayout;
     mEdit->setPlaceholderText(i18n("Please enter a name or email address..."));
+    mEdit->setClearButtonEnabled(true);
     hLay->addWidget(mEdit, -1);
     mEdit->addAction(mLineAction, QLineEdit::LeadingPosition);
 

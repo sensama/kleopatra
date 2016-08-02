@@ -14,6 +14,7 @@ set(QT_REQUIRED_VERSION "5.4.0")
 
 find_package(ECM ${KF5_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
 include(ECMOptionalAddSubdirectory)
 include(ECMInstallIcons)
@@ -74,6 +75,7 @@ find_package(KF5Gpgmepp ${GPGMEPP_VERSION} CONFIG REQUIRED)
 
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
+find_package(Assuan2)
 
 set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
 
@@ -105,7 +107,6 @@ endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/version-kleopatra.h)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 include (ConfigureChecks.cmake)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kleopatra.h)

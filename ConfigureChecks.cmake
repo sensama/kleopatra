@@ -1,7 +1,6 @@
 # assuan configure checks
 include(CheckFunctionExists)
 
-find_package(Assuan2)
 if ( ASSUAN2_FOUND )
   set ( ASSUAN_SUFFIX "2" )
 else ( ASSUAN2_FOUND )

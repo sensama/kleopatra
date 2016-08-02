@@ -36,12 +36,12 @@
 #include <QStackedWidget>
 #include <QComboBox>
 
-#include "utils/formatting.h"
 #include "utils/kleo_assert.h"
 #include "certificatecombobox.h"
 
 #include <KLocalizedString>
 
+#include <Libkleo/Formatting>
 #include <Libkleo/Predicates>
 
 using namespace Kleo;

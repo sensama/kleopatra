@@ -34,13 +34,13 @@
 
 #include "signencryptfilestask.h"
 
-#include <utils/formatting.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/path-helper.h>
 #include <utils/kleo_assert.h>
 #include <utils/auditlog.h>
 
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
 #include <Libkleo/CryptoBackendFactory>

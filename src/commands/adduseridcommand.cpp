@@ -38,8 +38,7 @@
 
 #include <dialogs/adduseriddialog.h>
 
-#include <utils/formatting.h>
-
+#include <Libkleo/Formatting>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/AddUserIDJob>

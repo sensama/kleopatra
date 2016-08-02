@@ -42,7 +42,8 @@
 #include "lookupcertificatescommand.h"
 #include "checksumverifyfilescommand.h"
 
-#include "models/keycache.h"
+#include <Libkleo/KeyCache>
+
 #include "utils/classify.h"
 
 #include <view/tabwidget.h>

@@ -41,14 +41,15 @@
 #include <conf/configuredialog.h>
 
 #include <utils/gnupg-helper.h>
-#include <utils/filesystemwatcher.h>
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
 #include <utils/getpid.h>
 #include "utils/classify.h"
 
 #include <gpgme++/key.h>
-#include <models/keycache.h>
+
+#include <Libkleo/FileSystemWatcher>
+#include <Libkleo/KeyCache>
 
 #ifdef HAVE_USABLE_ASSUAN
 # include <uiserver/uiserver.h>

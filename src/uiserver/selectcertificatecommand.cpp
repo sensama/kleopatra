@@ -36,12 +36,11 @@
 
 #include <dialogs/certificateselectiondialog.h>
 
-#include <models/keycache.h>
-
 #include <boost/mem_fn.hpp>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
+#include <Libkleo/KeyCache>
 
 #include <gpgme++/key.h>
 

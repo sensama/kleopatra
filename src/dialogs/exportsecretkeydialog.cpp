@@ -36,7 +36,7 @@
 
 #include "ui_exportsecretkeydialog.h"
 
-#include <utils/formatting.h>
+#include <Libkleo/Formatting>
 
 #include <gpgme++/key.h>
 

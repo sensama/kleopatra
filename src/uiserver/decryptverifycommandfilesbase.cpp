@@ -38,9 +38,6 @@
 
 #include <crypto/decryptverifyfilescontroller.h>
 
-#include <models/keycache.h>
-
-#include <utils/formatting.h>
 #include <utils/hex.h>
 #include <utils/input.h>
 #include <utils/output.h>
@@ -48,6 +45,8 @@
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 
 #include <gpgme++/error.h>
 #include <gpgme++/key.h>

@@ -35,7 +35,7 @@
 #include "sender.h"
 
 #include <Libkleo/Predicates>
-#include <models/keycache.h>
+#include <Libkleo/KeyCache>
 
 #include <utils/kleo_assert.h>
 #include <utils/cached.h>
@@ -85,8 +85,9 @@ public:
         // ### also fill up to a certain number of keys with those
         // ### that don't match, for the case where there's a low
         // ### total number of keys
-        const std::vector<Key> signers = KeyCache::instance()->findSigningKeysByMailbox(mb);
-        const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(mb);
+        const QString email = mb.addrSpec().asString();
+        const std::vector<Key> signers = KeyCache::instance()->findSigningKeysByMailbox(email);
+        const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(email);
         kdtools::separate_if(signers,
                              std::back_inserter(pgpSigners), std::back_inserter(cmsSigners),
                              boost::bind(&Key::protocol, _1) == OpenPGP);

@@ -38,8 +38,7 @@
 
 #include <dialogs/ownertrustdialog.h>
 
-#include <utils/formatting.h>
-
+#include <Libkleo/Formatting>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/ChangeOwnerTrustJob>

@@ -37,8 +37,8 @@
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
 
-#include <models/keylistmodel.h>
-#include <models/keycache.h>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyCache>
 
 #include <commands/reloadkeyscommand.h>
 #include <commands/lookupcertificatescommand.h>

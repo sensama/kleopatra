@@ -43,8 +43,6 @@
 #include "assuancommand.h"
 #include "sessiondata.h"
 
-#include <models/keycache.h> // :(
-
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/gnupg-helper.h>
@@ -56,6 +54,7 @@
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
+#include <Libkleo/KeyCache>
 
 #include <gpgme++/data.h>
 #include <gpgme++/key.h>

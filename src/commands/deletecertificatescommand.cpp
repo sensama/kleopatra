@@ -38,7 +38,7 @@
 
 #include <dialogs/deletecertificatesdialog.h>
 
-#include <models/keycache.h>
+#include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
 
 #include <Libkleo/Stl_Util>

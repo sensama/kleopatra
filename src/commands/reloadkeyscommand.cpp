@@ -35,7 +35,7 @@
 #include "reloadkeyscommand.h"
 #include "command_p.h"
 
-#include <models/keycache.h>
+#include <Libkleo/KeyCache>
 
 #include "kleopatra_debug.h"
 

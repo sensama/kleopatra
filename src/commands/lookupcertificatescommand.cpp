@@ -40,8 +40,7 @@
 
 #include <dialogs/lookupcertificatesdialog.h>
 
-#include <utils/formatting.h>
-
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/ImportFromKeyserverJob>
 #include <Libkleo/KeyListJob>

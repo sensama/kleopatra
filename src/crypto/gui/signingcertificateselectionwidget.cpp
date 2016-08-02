@@ -36,10 +36,8 @@
 
 #include "ui_signingcertificateselectionwidget.h"
 
-#include <models/keycache.h>
-
-#include <utils/formatting.h>
-
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
 #include <QByteArray>

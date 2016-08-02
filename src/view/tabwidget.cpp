@@ -35,14 +35,14 @@
 #include "tabwidget.h"
 #include "keytreeview.h"
 
-#include <models/keylistmodel.h>
-#include <models/keylistsortfilterproxymodel.h>
 
 #include <utils/action_data.h>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyFilterManager>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
 
 #include <gpgme++/key.h>
 

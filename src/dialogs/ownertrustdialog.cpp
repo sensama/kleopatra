@@ -35,7 +35,7 @@
 #include "ownertrustdialog.h"
 #include "ui_ownertrustdialog.h"
 
-#include <utils/formatting.h>
+#include <Libkleo/Formatting>
 
 #include <KLocalizedString>
 

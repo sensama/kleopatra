@@ -39,10 +39,8 @@
 
 #include <dialogs/certifycertificatedialog.h>
 
-#include <models/keycache.h>
-
-#include <utils/formatting.h>
-
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/SignKeyJob>

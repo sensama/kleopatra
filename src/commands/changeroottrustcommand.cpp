@@ -35,7 +35,7 @@
 #include "changeroottrustcommand.h"
 #include "command_p.h"
 
-#include <models/keycache.h>
+#include <Libkleo/KeyCache>
 
 #include <utils/gnupg-helper.h>
 

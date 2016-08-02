@@ -44,13 +44,13 @@
 
 #include "kleopatra_debug.h"
 
-#include "models/keylistmodel.h"
-#include "models/keylistsortfilterproxymodel.h"
 #include "dialogs/certificateselectiondialog.h"
-#include "utils/formatting.h"
 #include "commands/detailscommand.h"
 
 #include <Libkleo/KeyFilter>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
+#include <Libkleo/Formatting>
 
 #include <KLocalizedString>
 #include <KIconLoader>

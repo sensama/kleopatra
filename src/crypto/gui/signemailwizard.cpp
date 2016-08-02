@@ -36,7 +36,7 @@
 
 #include "signerresolvepage.h"
 
-#include <utils/formatting.h>
+#include <Libkleo/Formatting>
 
 #include <KLocalizedString>
 

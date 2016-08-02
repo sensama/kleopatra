@@ -30,7 +30,8 @@
 */
 
 #include "certificatecombobox.h"
-#include "models/keylistmodelinterface.h"
+
+#include <Libkleo/KeyListModelInterface>
 
 #include <QStylePainter>
 #include <QStyleOptionComboBox>

@@ -30,7 +30,8 @@
 */
 
 #include "keycacheoverlay.h"
-#include "models/keycache.h"
+
+#include <Libkleo/KeyCache>
 
 #include "kleopatra_debug.h"
 

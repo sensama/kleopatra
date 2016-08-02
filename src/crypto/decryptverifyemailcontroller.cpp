@@ -41,13 +41,13 @@
 #include <crypto/taskcollection.h>
 
 #include <utils/classify.h>
-#include <utils/formatting.h>
 #include <utils/gnupg-helper.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/CryptoBackendFactory>
+#include <Libkleo/Formatting>
 
 #include <kmime/kmime_header_parsing.h>
 

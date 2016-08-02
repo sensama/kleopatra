@@ -43,13 +43,10 @@
 
 #include "ui_advancedsettingsdialog.h"
 
-#include <models/keycache.h>
-
 #include <commands/exportsecretkeycommand.h>
 #include <commands/exportopenpgpcertstoservercommand.h>
 #include <commands/exportcertificatecommand.h>
 
-#include <utils/formatting.h>
 #include <utils/validation.h>
 #include <utils/filedialog.h>
 #include "utils/gnupg-helper.h"
@@ -60,6 +57,8 @@
 #include <Libkleo/KeyGenerationJob>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 
 #include <gpgme++/global.h>
 #include <gpgme++/keygenerationresult.h>

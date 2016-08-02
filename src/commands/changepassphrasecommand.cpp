@@ -36,8 +36,7 @@
 
 #include "command_p.h"
 
-#include <utils/formatting.h>
-
+#include <Libkleo/Formatting>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/ChangePasswdJob>

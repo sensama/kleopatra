@@ -35,7 +35,8 @@
 
 #include "command.h"
 #include "view/keylistcontroller.h"
-#include "models/keylistmodel.h"
+
+#include <Libkleo/KeyListModel>
 
 #include <KMessageBox>
 

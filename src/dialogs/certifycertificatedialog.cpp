@@ -36,9 +36,9 @@
 
 #include "certifycertificatedialog_p.h"
 
-#include <utils/formatting.h>
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>

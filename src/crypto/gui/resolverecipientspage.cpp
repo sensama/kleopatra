@@ -39,9 +39,8 @@
 
 #include <crypto/certificateresolver.h>
 
-#include <models/keycache.h>
-
-#include <utils/formatting.h>
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 
 #include <kmime/kmime_header_parsing.h>
 

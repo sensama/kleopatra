@@ -37,10 +37,6 @@
 
 #include "ui_certificatedetailsdialog.h"
 
-#include <models/useridlistmodel.h>
-#include <models/subkeylistmodel.h>
-#include <models/keycache.h>
-
 #include <commands/changepassphrasecommand.h>
 #include <commands/changeownertrustcommand.h>
 #include <commands/changeexpirycommand.h>
@@ -48,9 +44,12 @@
 #include <commands/certifycertificatecommand.h>
 #include <commands/dumpcertificatecommand.h>
 
-#include <utils/formatting.h>
 #include <utils/gnupg-helper.h>
 
+#include <Libkleo/UserIDListModel>
+#include <Libkleo/SubkeyListModel>
+#include <Libkleo/KeyCache>
+#include <Libkleo/Formatting>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/KeyListJob>

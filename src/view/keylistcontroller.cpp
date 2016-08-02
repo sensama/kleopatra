@@ -35,12 +35,8 @@
 #include "keylistcontroller.h"
 #include "tabwidget.h"
 
-#include <models/keycache.h>
-#include <models/keylistmodel.h>
-
 #include <smartcard/readerstatus.h>
 
-#include <utils/formatting.h>
 #include <utils/action_data.h>
 
 #include "tooltippreferences.h"
@@ -74,6 +70,10 @@
 #include "commands/exportpaperkeycommand.h"
 
 #include <Libkleo/Stl_Util>
+#include <Libkleo/KeyCache>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/Formatting>
+
 
 #include <gpgme++/key.h>
 

@@ -35,8 +35,8 @@
 #include "deletecertificatesdialog.h"
 
 #include <view/keytreeview.h>
-#include <models/keylistmodel.h>
 
+#include <Libkleo/KeyListModel>
 #include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>

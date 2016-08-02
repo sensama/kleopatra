@@ -36,8 +36,8 @@
 
 #include <utils/gnupg-helper.h>
 #include <utils/kdsignalblocker.h>
-#include <utils/filesystemwatcher.h>
 
+#include <Libkleo/FileSystemWatcher>
 #include <Libkleo/Stl_Util>
 
 #include <gpgme++/context.h>

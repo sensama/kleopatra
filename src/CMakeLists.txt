@@ -59,7 +59,6 @@ ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwid
 
 set(_kleopatra_SRCS
   utils/gnupg-helper.cpp
-  utils/filesystemwatcher.cpp
   utils/filedialog.cpp
   utils/kdpipeiodevice.cpp
   utils/kdlogtextwidget.cpp
@@ -74,7 +73,6 @@ set(_kleopatra_SRCS
   utils/path-helper.cpp
   utils/input.cpp
   utils/output.cpp
-  utils/formatting.cpp
   utils/validation.cpp
   utils/wsastarter.cpp
   utils/classify.cpp
@@ -94,13 +92,6 @@ set(_kleopatra_SRCS
   selftest/libkleopatrarccheck.cpp
 
   ${_kleopatra_extra_SRCS}
-
-  models/keycache.cpp
-  models/keylistmodel.cpp
-  models/keylistsortfilterproxymodel.cpp
-  models/keyrearangecolumnsproxymodel.cpp
-  models/subkeylistmodel.cpp
-  models/useridlistmodel.cpp
 
   view/keylistcontroller.cpp
   view/keytreeview.cpp

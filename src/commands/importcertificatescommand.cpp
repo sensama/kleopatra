@@ -37,11 +37,9 @@
 #include "importcertificatescommand_p.h"
 #include "kleopatra_debug.h"
 
-#include <models/keylistsortfilterproxymodel.h>
+#include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Predicates>
-
-#include <utils/formatting.h>
-
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/ImportJob>

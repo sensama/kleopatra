@@ -35,9 +35,6 @@
 #include "mainwindow.h"
 #include "aboutdata.h"
 
-#include "models/keylistmodel.h"
-#include "models/keylistsortfilterproxymodel.h"
-
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
 #include "view/keylistcontroller.h"
@@ -82,10 +79,12 @@
 #include <QVBoxLayout>
 #include <QMimeData>
 
-#include <Libkleo/CryptoBackendFactory>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
 #include <libkleo/cryptoconfigdialog.h>
 #include <Libkleo/CryptoConfig>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/CryptoBackendFactory>
 
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>

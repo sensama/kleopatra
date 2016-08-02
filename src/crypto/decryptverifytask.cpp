@@ -42,15 +42,14 @@
 #include <Libkleo/Dn>
 #include <Libkleo/Exception>
 #include <Libkleo/Stl_Util>
-
-#include <models/keycache.h>
+#include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
+#include <Libkleo/Formatting>
 
 #include <utils/detail_p.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/classify.h>
-#include <utils/formatting.h>
 #include <utils/kleo_assert.h>
 #include <utils/auditlog.h>
 

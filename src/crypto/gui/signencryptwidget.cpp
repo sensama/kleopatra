@@ -43,12 +43,11 @@
 #include <QScrollArea>
 
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
 
 #include <KLocalizedString>
 #include <KSharedConfig>
-
-#include "models/keylistmodel.h"
-#include "models/keylistsortfilterproxymodel.h"
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;

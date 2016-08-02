@@ -36,11 +36,10 @@
 
 #include "ui_lookupcertificatesdialog.h"
 
-#include <models/keylistmodel.h>
-#include <models/keylistsortfilterproxymodel.h>
-
 #include <utils/headerview.h>
 
+#include <Libkleo/KeyListModel>
+#include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Stl_Util>
 #include <KConfigGroup>
 #include <gpgme++/key.h>

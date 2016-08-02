@@ -94,14 +94,16 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
       mModel(AbstractKeyListModel::createFlatKeyListModel(this))
 {
     QVBoxLayout *lay = new QVBoxLayout;
+    // FIXME: Fix layouting together with the Output area.
     setContentsMargins(-6,-6,-6,-6);
 
     mModel->useKeyCache(true, false);
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
-    QGroupBox *sigGrp = new QGroupBox(i18nc("@label", "Prove authenticity (sign)"));
-    QCheckBox *sigChk = new QCheckBox(i18nc("@label", "Sign as:"));
+    // FIXME: i18n after deliberation
+    QGroupBox *sigGrp = new QGroupBox(QStringLiteral("Prove authenticity (sign)"));
+    QCheckBox *sigChk = new QCheckBox(QStringLiteral("Sign as:"));
     sigChk->setChecked(true);
 
     KeyListSortFilterProxyModel *sigModel = new KeyListSortFilterProxyModel(this);
@@ -143,7 +145,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     /* Self certificate */
     QHBoxLayout *encSelfLay = new QHBoxLayout;
-    QCheckBox *encSelfChk = new QCheckBox(i18nc("@label", "Own certificate:"));
+    // FIXME i18n
+    QCheckBox *encSelfChk = new QCheckBox(QStringLiteral("Own certificate:"));
     encSelfChk->setChecked(true);
 
     KeyListSortFilterProxyModel *encModel = new KeyListSortFilterProxyModel(this);

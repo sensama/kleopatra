@@ -298,7 +298,7 @@ static QMap <int, QString> buildOutputNames(const QStringList &files)
         assert(!ads.empty());
         // TODO read from config
         boost::shared_ptr<ArchiveDefinition> ad = ads.front();
-        baseName += QStringLiteral(".") + ad->extensions(GpgME::CMS).first();
+        baseName += QStringLiteral(".") + ad->extensions(GpgME::CMS).first() + QStringLiteral(".");
     } else {
         baseName = files.first() + QStringLiteral(".");
     }
@@ -333,9 +333,12 @@ void SignEncryptFilesController::start()
 }
 
 static shared_ptr<SignEncryptFilesTask>
-createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool pgp, bool ascii, const std::vector<Key> &recipients, const std::vector<Key> &signers)
+createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
+                                 const std::vector<Key> &recipients, const std::vector<Key> &signers,
+                                 const QString &outputName)
 {
     const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
+    Q_ASSERT(!signers.empty() || !recipients.empty());
     task->setAsciiArmor(ascii);
     if (!signers.empty()) {
         task->setSign(true);
@@ -347,27 +350,27 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool pgp, bool ascii, cons
     if (!recipients.empty()) {
         task->setEncrypt(true);
         task->setRecipients(recipients);
+        task->setDetachedSignature(false);
     } else {
         task->setSign(false);
     }
-
     const QString input = fi.absoluteFilePath();
     task->setInputFileName(input);
     task->setInput(Input::createFromFile(input));
 
-    const char *const ext = extension(pgp, !signers.empty(), !recipients.empty(), ascii, true);
-    kleo_assert(ext);
-
-    const QString output = input + QLatin1Char('.') + QLatin1String(ext);
-    task->setOutputFileName(output);
+    task->setOutputFileName(outputName);
 
     return task;
 }
 
 static shared_ptr<SignEncryptFilesTask>
-createArchiveSignEncryptTaskForFiles(const QStringList &files, const QString &outputName, const shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii, const std::vector<Key> &recipients, const std::vector<Key> &signers)
+createArchiveSignEncryptTaskForFiles(const QStringList &files,
+                                     const shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii,
+                                     const std::vector<Key> &recipients, const std::vector<Key> &signers,
+                                     const QString& outputName)
 {
     const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
+    Q_ASSERT(!signers.empty() || !recipients.empty());
     task->setAsciiArmor(ascii);
     if (!signers.empty()) {
         task->setSign(true);
@@ -396,7 +399,8 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files, const QString &ou
 }
 
 static std::vector< shared_ptr<SignEncryptFilesTask> >
-createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outNames)
+createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners,
+                                  const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outputNames)
 {
     std::vector< shared_ptr<SignEncryptFilesTask> > result;
 
@@ -406,18 +410,39 @@ createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::ve
 
     result.reserve(pgp + cms);
 
+
     if (pgp) {
-        result.push_back(createSignEncryptTaskForFileInfo(fi, true, ascii, pgpRecipients, pgpSigners));
+        int outKind = 0;
+        if (!pgpRecipients.empty() && !pgpSigners.empty()) {
+            outKind = SignEncryptFilesWizard::CombinedPGP;
+        } else if (!pgpRecipients.empty()) {
+            outKind = SignEncryptFilesWizard::EncryptedPGP;
+        } else {
+            outKind = SignEncryptFilesWizard::SignaturePGP;
+        }
+        result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, pgpRecipients, pgpSigners, outputNames[outKind]));
     }
     if (cms) {
-        result.push_back(createSignEncryptTaskForFileInfo(fi, false, ascii, cmsRecipients, cmsSigners));
+        // There is no combined sign / encrypt in gpgsm so we create one sign task
+        // and one encrypt task. Which leaves us with the age old dilemma, encrypt
+        // then sign, or sign then encrypt. Ugly.
+        if (!cmsSigners.empty()) {
+            result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, std::vector<Key>(),
+                                                              cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS]));
+        } else {
+            result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, cmsRecipients,
+                                                              std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS]));
+        }
     }
 
     return result;
 }
 
 static std::vector< shared_ptr<SignEncryptFilesTask> >
-createArchiveSignEncryptTasksForFiles(const QStringList &files, const QString &pgpOutputFileName, const QString &cmsOutputFileName, const shared_ptr<ArchiveDefinition> &ad, bool sign, bool encrypt, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners)
+createArchiveSignEncryptTasksForFiles(const QStringList &files, const shared_ptr<ArchiveDefinition> &ad,
+                                      bool ascii, const std::vector<Key> &pgpRecipients,
+                                      const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners,
+                                      const QMap<int, QString> outputNames)
 {
     std::vector< shared_ptr<SignEncryptFilesTask> > result;
 
@@ -428,10 +453,24 @@ createArchiveSignEncryptTasksForFiles(const QStringList &files, const QString &p
     result.reserve(pgp + cms);
 
     if (pgp) {
-        result.push_back(createArchiveSignEncryptTaskForFiles(files, pgpOutputFileName, ad, true,  ascii, pgpRecipients, pgpSigners));
+        int outKind = 0;
+        if (!pgpRecipients.empty() && !pgpSigners.empty()) {
+            outKind = SignEncryptFilesWizard::CombinedPGP;
+        } else if (!pgpRecipients.empty()) {
+            outKind = SignEncryptFilesWizard::EncryptedPGP;
+        } else {
+            outKind = SignEncryptFilesWizard::SignaturePGP;
+        }
+        result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, true,  ascii, pgpRecipients, pgpSigners, outputNames[outKind]));
     }
     if (cms) {
-        result.push_back(createArchiveSignEncryptTaskForFiles(files, cmsOutputFileName, ad, false, ascii, cmsRecipients, cmsSigners));
+        if (!cmsSigners.empty()) {
+            result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
+                                                                  std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS]));
+        } else {
+            result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
+                                                                  cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS]));
+        }
     }
 
     return result;
@@ -473,16 +512,19 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             tasks.reserve(files.size());
         }
 
+        std::vector<boost::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
+        assert(!ads.empty());
         if (archive) {
-            /* TODO Andre Port
             tasks = createArchiveSignEncryptTasksForFiles(files,
-                    wizard->archiveFileName(OpenPGP),
-                    wizard->archiveFileName(CMS),
-                    wizard->selectedArchiveDefinition(),
-                    sign, encrypt, ascii,
-                    pgpRecipients, pgpSigners, cmsRecipients, cmsSigners);
+                    // TODO read from config
+                    ads.front(),
+                    ascii,
+                    pgpRecipients.toStdVector(),
+                    pgpSigners.toStdVector(),
+                    cmsRecipients.toStdVector(),
+                    cmsSigners.toStdVector(),
+                    wizard->outputNames());
 
-         */
         } else {
             Q_FOREACH (const QString &file, files) {
                 const std::vector< shared_ptr<SignEncryptFilesTask> > created =

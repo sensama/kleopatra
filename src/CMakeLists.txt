@@ -41,6 +41,7 @@ set(_kleopatra_uiserver_SRCS
 
 if(ASSUAN2_FOUND)
   set(_kleopatra_uiserver_extra_libs ${ASSUAN2_LIBRARIES})
+  include_directories(${ASSUAN2_INCLUDES})
 else()
   if(WIN32)
     set(_kleopatra_uiserver_extra_libs ${ASSUAN_VANILLA_LIBRARIES})

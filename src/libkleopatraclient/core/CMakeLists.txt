@@ -1,9 +1,3 @@
-if(ASSUAN2_FOUND)
-  include_directories(${ASSUAN2_INCLUDES})
-else()
-  include_directories(${ASSUAN_INCLUDES})
-endif()
-
 add_definitions(
   -D_ASSUAN_ONLY_GPG_ERRORS
   -DQT_NO_CAST_FROM_ASCII -DQT_NO_KEYWORDS -DQT_NO_CAST_TO_ASCII

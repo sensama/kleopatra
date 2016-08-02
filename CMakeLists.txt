@@ -114,6 +114,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${Boost_INCLUDE_DIR}
+    ${ASSUAN2_INCLUDES}
     )
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)

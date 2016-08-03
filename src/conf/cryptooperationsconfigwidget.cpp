@@ -38,6 +38,7 @@
 #include "fileoperationspreferences.h"
 
 #include <Libkleo/ChecksumDefinition>
+#include <Libkleo/CryptoBackendFactory>
 
 #include <gpgme++/context.h>
 
@@ -52,6 +53,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QRegularExpression>
 
 #include <boost/shared_ptr.hpp>
 
@@ -85,13 +87,19 @@ void CryptoOperationsConfigWidget::setupGui()
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     fileGrpLay->addWidget(mPGPFileExtCB);
     fileGrpLay->addWidget(mAutoDecryptVerifyCB);
-    QHBoxLayout *chkLay = new QHBoxLayout;
+
+    QGridLayout *comboLay = new QGridLayout;
     QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
-    chkLay->addWidget(chkLabel);
+    comboLay->addWidget(chkLabel, 0, 0);
     mChecksumDefinitionCB = new QComboBox;
-    chkLay->addWidget(mChecksumDefinitionCB);
-    chkLay->addStretch(1);
-    fileGrpLay->addLayout(chkLay);
+    comboLay->addWidget(mChecksumDefinitionCB, 0, 1);
+
+    QLabel *archLabel = new QLabel(i18n("Archive command to use when archiving files:"));
+    comboLay->addWidget(archLabel, 1, 0);
+    mArchiveDefinitionCB = new QComboBox;
+    comboLay->addWidget(mArchiveDefinitionCB, 1, 1);
+    fileGrpLay->addLayout(comboLay);
+
     fileGrp->setLayout(fileGrpLay);
     baseLay->addWidget(fileGrp);
 
@@ -108,6 +116,8 @@ void CryptoOperationsConfigWidget::setupGui()
     connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+            this, &CryptoOperationsConfigWidget::changed);
+    connect(mArchiveDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
@@ -130,6 +140,10 @@ void CryptoOperationsConfigWidget::defaults()
     if (mChecksumDefinitionCB->count()) {
         mChecksumDefinitionCB->setCurrentIndex(0);
     }
+
+    if (mArchiveDefinitionCB->count()) {
+        mArchiveDefinitionCB->setCurrentIndex(0);
+    }
 }
 
 Q_DECLARE_METATYPE(boost::shared_ptr<Kleo::ChecksumDefinition>)
@@ -149,12 +163,32 @@ void CryptoOperationsConfigWidget::load()
     const shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
 
     mChecksumDefinitionCB->clear();
+    mArchiveDefinitionCB->clear();
 
     Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, cds) {
         mChecksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
         if (cd == default_cd) {
             mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
         }
+    }
+
+    const QString ad_default_id = filePrefs.archiveCommand();
+
+    // This is a weird hack but because we are a KCM we can't link
+    // against ArchiveDefinition which pulls in loads of other classes.
+    // So we do the parsing which archive definitions exist here ourself.
+    if (KConfig *config = CryptoBackendFactory::instance()->configObject()) {
+        const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
+        Q_FOREACH (const QString &group, groups) {
+            const KConfigGroup cGroup(config, group);
+            const QString id = cGroup.readEntryUntranslated(QStringLiteral("id"));
+            const QString name = cGroup.readEntry("Name");
+            mArchiveDefinitionCB->addItem(name, QVariant(id));
+            if (id == ad_default_id) {
+                mArchiveDefinitionCB->setCurrentIndex(mArchiveDefinitionCB->count() - 1);
+            }
+        }
+
     }
 }
 
@@ -169,14 +203,18 @@ void CryptoOperationsConfigWidget::save()
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
     filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
-    filePrefs.save();
 
     const int idx = mChecksumDefinitionCB->currentIndex();
-    if (idx < 0) {
-        return;    // ### pick first?
+    if (idx >= 0) {
+        const shared_ptr<ChecksumDefinition> cd = qvariant_cast< shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
+        ChecksumDefinition::setDefaultChecksumDefinition(cd);
     }
-    const shared_ptr<ChecksumDefinition> cd = qvariant_cast< shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
-    ChecksumDefinition::setDefaultChecksumDefinition(cd);
 
+    const int aidx = mArchiveDefinitionCB->currentIndex();
+    if (aidx >= 0) {
+        const QString id = mArchiveDefinitionCB->itemData(aidx).toString();
+        filePrefs.setArchiveCommand(id);
+    }
+    filePrefs.save();
 }
 

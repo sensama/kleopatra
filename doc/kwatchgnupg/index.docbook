@@ -3,9 +3,6 @@
   <!ENTITY gnupg "<acronym>GnuPG</acronym>">
   <!ENTITY gpgconf "<application>GPGConf</application>">
   <!ENTITY watchgnupg "<application>WatchGnuPG</application>">
-  <!ENTITY kwatchgnupg "<application>KWatchGnuPG</application>">
-  <!ENTITY kappname "&kwatchgnupg;">
-  <!ENTITY package "kdepim">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
 ]>
@@ -46,8 +43,8 @@
 
 <legalnotice>&GPLNotice;</legalnotice>
 
-<date>2013-07-03</date>
-<releaseinfo>1.0 (&kde; 4.11)</releaseinfo>
+<date>2016-07-26</date>
+<releaseinfo>1.0 (Applications 16.08)</releaseinfo>
 
 <abstract>
 <para>
@@ -58,7 +55,6 @@
 
 <keywordset>
 <keyword>KDE</keyword>
-<keyword>Kapp</keyword>
 <keyword>gpg</keyword>
 <keyword>gpgsm</keyword>
 <keyword>GnuPG</keyword>
@@ -70,7 +66,7 @@
 <chapter id="introduction"> <title>Introduction</title> 
 
 <para>&kwatchgnupg; is simple &gnupg; log viewer for the 
-&gnupg; versions 1.4 and 2.0. It works as a &GUI;
+&gnupg; versions 1.4, 2.0 and 2.1. It works as a &GUI;
 wrapper around the command line tool &watchgnupg;, which listens on a
 socket for log lines from the &gnupg; backend applications. See
 <userinput>info watchgnupg</userinput> for more information about
@@ -83,11 +79,9 @@ line. The &kwatchgnupg; executable is named
 <userinput>kwatchgnupg</userinput>.
 </para>
 
-</chapter>
+<sect1 id="mainfunc"><title>Main Functions</title>
 
-<chapter id="mainfunc"><title>Main Functions</title>
-
-<sect1 id="mainfunc.viewing"><title>Viewing the Log</title>
+<sect2 id="mainfunc.viewing"><title>Viewing the Log</title>
 
 <para>
 &kwatchgnupg;'s main function is of course to present the &gnupg;
@@ -114,9 +108,9 @@ limited to 10000 lines. You can configure the history size in the
 configuration dialog.
 </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="mainfunc.saving">
+<sect2 id="mainfunc.saving">
 <title>Saving the Contents of the Log Window to a File</title>
 
 <para>
@@ -140,9 +134,9 @@ just like any other text. You should make sure, though, that lines are
 not broken, since this reduces the readability of the log.
 </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="mainfunc.clear"><title>Clearing the Log Window</title>
+<sect2 id="mainfunc.clear"><title>Clearing the Log Window</title>
 
 <para>
 For convenience, you can instruct &kwatchgnupg; to clear the log
@@ -163,7 +157,7 @@ Clearing the log discards any previous log window contents. If you are
 unsure about whether you'll need the current contents afterwards, you
 should save them to a file (see above) before clearing.
 </para>
-
+</sect2>
 </sect1>
 
 </chapter>
@@ -178,7 +172,9 @@ icon. &kwatchgnupg;'s configure dialog is divided into two parts, each
 of which will be described below.
 </para>
 
-<sect1 id="configure.watchgnupg"><title>&watchgnupg; Settings</title>
+<sect1 id="configure.dialog"><title>Settings Dialog</title>
+
+<sect2 id="configure.watchgnupg"><title>&watchgnupg; Settings</title>
 
 <para>
 &watchgnupg; is the process that actually monitors the logging socket
@@ -214,9 +210,9 @@ your &gnupg; config files have another <varname>log-level</varname>
 set.
 </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="configure.logwindow"><title>Log Window Settings</title>
+<sect2 id="configure.logwindow"><title>Log Window Settings</title>
 
 <para>
 Here, you can configure the size of the history buffer, &ie; the
@@ -234,6 +230,8 @@ displays. If you use an unlimited history size, then make sure to run
 &kwatchgnupg; only for short operations, or regularly clear the
 history manually.
 </para>
+
+</sect2>
 
 </sect1>
 

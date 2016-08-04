@@ -61,6 +61,7 @@
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/detailscommand.h"
+#include "commands/newcertificatecommand.h"
 
 #include <KIconLoader>
 #include <KLocalizedString>
@@ -317,6 +318,15 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         }
         auto cmd = Command::commandForQuery(query);
         cmd->setParentWId(parentId);
+        cmd->start();
+        return QString();
+    }
+
+    // Check for --gen-key command
+    if (parser.isSet("gen-key")) {
+        auto cmd = new NewCertificateCommand(Q_NULLPTR);
+        cmd->setParentWId(parentId);
+        cmd->setProtocol(protocol);
         cmd->start();
         return QString();
     }

@@ -89,6 +89,8 @@ static void kleopatra_options(QCommandLineParser *parser)
                                         "Show details of a local certificate or search for it on a keyserver"
                                         " by fingerprint"),
                                   QStringLiteral("fingerprint"))
+            << QCommandLineOption(QStringList() << QStringLiteral("gen-key"),
+                                  i18n("Create a new key pair or certificate signing request"))
             << QCommandLineOption(QStringLiteral("parent-windowid"),
                                   i18n("Parent Window Id for dialogs"),
                                   QStringLiteral("windowId"));

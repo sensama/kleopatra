@@ -36,6 +36,8 @@
 
 #include <utils/multivalidator.h>
 
+#include <KEmailAddress>
+
 #include "kleopatra_debug.h"
 
 #include <QRegExp>
@@ -45,7 +47,6 @@
 
 using namespace Kleo;
 
-static const QString email_rx = QStringLiteral("[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
 // these are modeled after gnupg/g10/keygen.c:ask_user_id:
 static const QString name_rx = QStringLiteral("[^0-9<>][^<>@]{4,}");
 static const QString comment_rx = QStringLiteral("[^()]*");
@@ -55,81 +56,17 @@ namespace
 
 class EMailValidator : public QValidator
 {
-    QRegExp rx;
 public:
-    explicit EMailValidator(QObject *parent = Q_NULLPTR) : QValidator(parent), rx(QRegExp(email_rx)) {}
-
-    void fixup(QString &) const Q_DECL_OVERRIDE {}
+    explicit EMailValidator(QObject *parent = Q_NULLPTR) : QValidator(parent) {}
 
     State validate(QString &str, int &pos) const Q_DECL_OVERRIDE
     {
-        const int atIdx = str.lastIndexOf(QLatin1Char('@'));
-        if (atIdx < 0 || str.endsWith(QLatin1Char('@'))) {
-            return regexValidate(str, pos);
-        }
-
-        // toAce/fromAce doesn't like intermediate domain names,
-        // so we fix them up with something innocuous to help it
-        // along, and which we strip again afterwards
-
-        QString domain = str.mid(atIdx + 1).toLower();
-        const int dotIndex = domain.lastIndexOf(QLatin1Char('.'));
-        const bool needsOrgAdded = domain.endsWith(QLatin1Char('.'));
-        // during typing, the domain might end with '-', which is okay
-        // yeah, foo.s also disrupts fromAce, during typing this is okay
-        const bool needsDotOrgAdded = !needsOrgAdded && (dotIndex < 0 || dotIndex == domain.size() - 2 || domain.endsWith(QLatin1Char('-')));
-        if (needsOrgAdded) {
-            domain += QLatin1String("org");
-        }
-        if (needsDotOrgAdded) {
-            domain += QLatin1String("tmp.org");
-        }
-        const QByteArray domainEncoded = QUrl::toAce(domain);
-        const QString domainRestored = QUrl::fromAce(domainEncoded);
-        QString encoded = str.left(atIdx) + QLatin1Char('@') + QString::fromLatin1(domainEncoded);
-        if (needsDotOrgAdded) {
-            assert(encoded.endsWith(QStringLiteral("tmp.org")));
-            encoded.chop(7);
-        }
-        if (needsOrgAdded) {
-            assert(encoded.endsWith(QStringLiteral(".org")));
-            encoded.chop(3);   // '.' was part of domain before
-        }
-        qCDebug(KLEOPATRA_LOG) << "\n str           :" << str
-                               << "\n domain        :" << domain
-                               << "\n domainEncoded :" << domainEncoded
-                               << "\n domainRestored:" << domainRestored
-                               << "\n encoded       :" << encoded;
-        if (domain != domainRestored) {
-            return Invalid;
-        }
-
-        // there's no difference between 'encoded' and 'str' at
-        // least up to and including 'atIdx', and we need the
-        // position for the fixed Intermediate state in
-        // regexValidate (e.g. adding a . after marc in
-        // marc@kdab.com, intending to eventually arrive at
-        // marc.mutz@kdab.com)
-        int adjustedPos = pos <= atIdx ? pos : encoded.size();
-        return regexValidate(encoded, adjustedPos);
-    }
-
-private:
-    State regexValidate(QString &input, int &pos) const
-    {
-        // fixed version of QRegExpValidator::validate():
-        if (rx.exactMatch(input)) {
+        Q_UNUSED(pos);
+        if (KEmailAddress::isValidSimpleAddress(str)) {
             return Acceptable;
-        } else {
-            if (const_cast<QRegExp &>(rx).matchedLength() >= /*input.size()*/pos) {
-                return Intermediate;
-            } else {
-                pos = input.size();
-                return Invalid;
-            }
         }
+        return Intermediate;
     }
-
 };
 
 }

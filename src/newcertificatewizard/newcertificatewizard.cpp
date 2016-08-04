@@ -1711,14 +1711,15 @@ QString KeyCreationPage::createGnupgKeyParms() const
     if (pgp() && expiryDate().isValid()) {
         s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << endl;
     }
-    s     << "name-email:    " << encode_email(email())  << endl;
     if (pgp()) {
         s << "name-real:     " << name()                   << endl;
+        s << "name-email:    " << email()                  << endl;
         if (!comment().isEmpty()) {
             s << "name-comment:  " << comment()            << endl;
         }
     } else {
         s << "name-dn:       " << dn()                     << endl;
+        s << "name-email:    " << encode_email(email())    << endl;
         Q_FOREACH (const QString &email, additionalEMailAddresses()) {
             s << "name-email:    " << encode_email(email) << endl;
         }

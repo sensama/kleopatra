@@ -75,7 +75,7 @@ find_package(KF5Gpgmepp ${GPGMEPP_VERSION} CONFIG REQUIRED)
 
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
-find_package(Assuan2)
+find_package(Assuan2 REQUIRED)
 
 set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
 

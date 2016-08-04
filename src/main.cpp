@@ -45,30 +45,23 @@
 #include <utils/archivedefinition.h>
 #include "utils/kuniqueservice.h"
 
-#ifdef HAVE_USABLE_ASSUAN
-# include <uiserver/uiserver.h>
-# include <uiserver/assuancommand.h>
-# include <uiserver/echocommand.h>
-# include <uiserver/decryptcommand.h>
-# include <uiserver/verifycommand.h>
-# include <uiserver/decryptverifyfilescommand.h>
-# include <uiserver/decryptfilescommand.h>
-# include <uiserver/verifyfilescommand.h>
-# include <uiserver/prepencryptcommand.h>
-# include <uiserver/prepsigncommand.h>
-# include <uiserver/encryptcommand.h>
-# include <uiserver/signcommand.h>
-# include <uiserver/signencryptfilescommand.h>
-# include <uiserver/selectcertificatecommand.h>
-# include <uiserver/importfilescommand.h>
-# include <uiserver/createchecksumscommand.h>
-# include <uiserver/verifychecksumscommand.h>
-#else
-namespace Kleo
-{
-class UiServer;
-}
-#endif
+#include <uiserver/uiserver.h>
+#include <uiserver/assuancommand.h>
+#include <uiserver/echocommand.h>
+#include <uiserver/decryptcommand.h>
+#include <uiserver/verifycommand.h>
+#include <uiserver/decryptverifyfilescommand.h>
+#include <uiserver/decryptfilescommand.h>
+#include <uiserver/verifyfilescommand.h>
+#include <uiserver/prepencryptcommand.h>
+#include <uiserver/prepsigncommand.h>
+#include <uiserver/encryptcommand.h>
+#include <uiserver/signcommand.h>
+#include <uiserver/signencryptfilescommand.h>
+#include <uiserver/selectcertificatecommand.h>
+#include <uiserver/importfilescommand.h>
+#include <uiserver/createchecksumscommand.h>
+#include <uiserver/verifychecksumscommand.h>
 
 #include <Libkleo/ChecksumDefinition>
 
@@ -125,11 +118,7 @@ static bool selfCheck()
 static void fillKeyCache(Kleo::UiServer *server)
 {
     Kleo::ReloadKeysCommand *cmd = new Kleo::ReloadKeysCommand(0);
-#ifdef HAVE_USABLE_ASSUAN
     QObject::connect(cmd, SIGNAL(finished()), server, SLOT(enableCryptoCommands()));
-#else
-    Q_UNUSED(server);
-#endif
     cmd->start();
 }
 
@@ -191,7 +180,6 @@ int main(int argc, char **argv)
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
     int rc;
-#ifdef HAVE_USABLE_ASSUAN
     try {
         Kleo::UiServer server(parser.value(QStringLiteral("uiserver-socket")));
 
@@ -217,16 +205,13 @@ int main(int argc, char **argv)
         REGISTER(SignCommand);
         REGISTER(SignEncryptFilesCommand);
         REGISTER(SignFilesCommand);
-#ifndef QT_NO_DIRMODEL
         REGISTER(VerifyChecksumsCommand);
-#endif // QT_NO_DIRMODEL
         REGISTER(VerifyCommand);
         REGISTER(VerifyFilesCommand);
 #undef REGISTER
 
         server.start();
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer started";
-#endif
 
         const bool daemon = parser.isSet(QStringLiteral("daemon"));
         if (!daemon && app.isSessionRestored()) {
@@ -238,15 +223,10 @@ int main(int argc, char **argv)
         }
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
 
-#ifdef HAVE_USABLE_ASSUAN
         fillKeyCache(&server);
-#else
-        fillKeyCache(Q_NULLPTR);
-#endif
 #ifndef QT_NO_SYSTEMTRAYICON
         app.startMonitoringSmartCard();
 #endif
-
         app.setIgnoreNewInstance(false);
 
         if (!daemon) {
@@ -260,7 +240,6 @@ int main(int argc, char **argv)
 
         rc = app.exec();
 
-#ifdef HAVE_USABLE_ASSUAN
         app.setIgnoreNewInstance(true);
         QObject::disconnect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
         QObject::disconnect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
@@ -274,14 +253,11 @@ int main(int argc, char **argv)
                                       "You can use Kleopatra as a certificate manager, but cryptographic plugins that "
                                       "rely on a GPG UI Server being present might not work correctly, or at all.</qt>",
                                       QString::fromUtf8(e.what()).toHtmlEscaped()));
-#ifndef QT_NO_SYSTEMTRAYICON
         app.startMonitoringSmartCard();
-#endif
         app.setIgnoreNewInstance(false);
         rc = app.exec();
         app.setIgnoreNewInstance(true);
     }
-#endif
 
     return rc;
 }

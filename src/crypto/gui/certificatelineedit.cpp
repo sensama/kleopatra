@@ -61,7 +61,7 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
-Q_DECLARE_METATYPE(Key);
+Q_DECLARE_METATYPE(GpgME::Key);
 
 #define MINIMUM_WIDTH_STR "Short Short<LongLong@MiddleDomain.co.uk> (12345678 - OpenPGP)"
 

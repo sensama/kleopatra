@@ -180,9 +180,8 @@ int main(int argc, char **argv)
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
     int rc;
+    Kleo::UiServer server(parser.value(QStringLiteral("uiserver-socket")));
     try {
-        Kleo::UiServer server(parser.value(QStringLiteral("uiserver-socket")));
-
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer created";
 
         QObject::connect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
@@ -212,52 +211,53 @@ int main(int argc, char **argv)
 
         server.start();
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer started";
-
-        const bool daemon = parser.isSet(QStringLiteral("daemon"));
-        if (!daemon && app.isSessionRestored()) {
-            app.restoreMainWindow();
-        }
-
-        if (!selfCheck()) {
-            return EXIT_FAILURE;
-        }
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
-
-        fillKeyCache(&server);
-#ifndef QT_NO_SYSTEMTRAYICON
-        app.startMonitoringSmartCard();
-#endif
-        app.setIgnoreNewInstance(false);
-
-        if (!daemon) {
-            const QString err = app.newInstance(parser);
-            if (!err.isEmpty()) {
-                std::cerr << i18n("Invalid arguments: %1", err).toLocal8Bit().constData() << "\n";
-                return EXIT_FAILURE;
-            }
-            qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: new instance created";
-        }
-
-        rc = app.exec();
-
-        app.setIgnoreNewInstance(true);
-        QObject::disconnect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
-        QObject::disconnect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
-
-        server.stop();
-        server.waitForStopped();
     } catch (const std::exception &e) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
+#ifdef Q_OS_WIN
+        // Once there actually is a plugin for other systems then Windows this
+        // error should probably be shown, too. But currently only Windows users need
+        // to care.
         QMessageBox::information(0, i18n("GPG UI Server Error"),
                                  i18n("<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>"
                                       "The error given was: <b>%1</b><br/>"
                                       "You can use Kleopatra as a certificate manager, but cryptographic plugins that "
                                       "rely on a GPG UI Server being present might not work correctly, or at all.</qt>",
                                       QString::fromUtf8(e.what()).toHtmlEscaped()));
-        app.startMonitoringSmartCard();
-        app.setIgnoreNewInstance(false);
-        rc = app.exec();
-        app.setIgnoreNewInstance(true);
+#endif
     }
+    const bool daemon = parser.isSet(QStringLiteral("daemon"));
+    if (!daemon && app.isSessionRestored()) {
+        app.restoreMainWindow();
+    }
+
+    if (!selfCheck()) {
+        return EXIT_FAILURE;
+    }
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
+
+    fillKeyCache(&server);
+#ifndef QT_NO_SYSTEMTRAYICON
+    app.startMonitoringSmartCard();
+#endif
+    app.setIgnoreNewInstance(false);
+
+    if (!daemon) {
+        const QString err = app.newInstance(parser);
+        if (!err.isEmpty()) {
+            std::cerr << i18n("Invalid arguments: %1", err).toLocal8Bit().constData() << "\n";
+            return EXIT_FAILURE;
+        }
+        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: new instance created";
+    }
+
+    rc = app.exec();
+
+    app.setIgnoreNewInstance(true);
+    QObject::disconnect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
+    QObject::disconnect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
+
+    server.stop();
+    server.waitForStopped();
 
     return rc;
 }

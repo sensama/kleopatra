@@ -138,6 +138,10 @@ private:
 #if defined(Q_OS_WIN)
         //Q_EMIT q->info( i18n("Checking Windows Registry...") );
         tests.push_back(makeGpgProgramRegistryCheckSelfTest());
+#if defined(HAVE_KLEOPATRACLIENT_LIBRARY)
+        //Q_EMIT q->info( i18n("Checking Ui Server connectivity...") );
+        tests.push_back(makeUiServerConnectivitySelfTest());
+#endif
 #endif
         //Q_EMIT q->info( i18n("Checking gpg installation...") );
         tests.push_back(makeGpgEngineCheckSelfTest());
@@ -149,10 +153,6 @@ private:
             //Q_EMIT q->info( i18n("Checking %1 configuration...", components[i]) );
             tests.push_back(makeGpgConfCheckConfigurationSelfTest(components[i]));
         }
-#if defined( HAVE_KLEOPATRACLIENT_LIBRARY )
-        //Q_EMIT q->info( i18n("Checking Ui Server connectivity...") );
-        tests.push_back(makeUiServerConnectivitySelfTest());
-#endif
 #ifndef Q_OS_WIN
         tests.push_back(makeGpgAgentConnectivitySelfTest());
 #endif

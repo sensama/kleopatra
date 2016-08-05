@@ -93,8 +93,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
       mModel(AbstractKeyListModel::createFlatKeyListModel(this))
 {
     QVBoxLayout *lay = new QVBoxLayout;
-    // FIXME: Fix layouting together with the Output area.
-    setContentsMargins(-6,-6,-6,-6);
+    lay->setMargin(0);
 
     mModel->useKeyCache(true, false);
 

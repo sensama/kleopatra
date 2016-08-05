@@ -98,6 +98,7 @@ public:
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
+        vLay->setMargin(0);
         vLay->addWidget(mWidget);
         connect(mWidget, &SignEncryptWidget::operationChanged, this,
                 &SigEncPage::updateCommitButton);

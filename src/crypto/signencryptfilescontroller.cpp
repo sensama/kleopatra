@@ -370,7 +370,7 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
         task->setRecipients(recipients);
         task->setDetachedSignature(false);
     } else {
-        task->setSign(false);
+        task->setEncrypt(false);
     }
     const QString input = fi.absoluteFilePath();
     task->setInputFileName(input);

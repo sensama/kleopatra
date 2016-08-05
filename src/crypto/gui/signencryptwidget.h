@@ -41,7 +41,7 @@ class QGridLayout;
 namespace Kleo
 {
 class CertificateLineEdit;
-class CertificateComboBox;
+class KeySelectionCombo;
 class AbstractKeyListModel;
 
 class SignEncryptWidget: public QWidget
@@ -83,8 +83,8 @@ Q_SIGNALS:
     void keysChanged();
 
 private:
-    CertificateComboBox *mSigSelect,
-                        *mSelfSelect;
+    KeySelectionCombo *mSigSelect,
+                      *mSelfSelect;
     QVector<CertificateLineEdit *> mRecpWidgets;
     QGridLayout *mRecpLayout;
     QString mOp;

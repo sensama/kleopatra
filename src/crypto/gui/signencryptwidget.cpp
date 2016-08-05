@@ -33,7 +33,6 @@
 
 #include "kleopatra_debug.h"
 
-#include "certificatecombobox.h"
 #include "certificatelineedit.h"
 
 #include <QVBoxLayout>
@@ -44,6 +43,7 @@
 
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyListModel>
+#include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
 #include <KLocalizedString>
@@ -105,14 +105,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     QCheckBox *sigChk = new QCheckBox(QStringLiteral("Sign as:"));
     sigChk->setChecked(true);
 
-    KeyListSortFilterProxyModel *sigModel = new KeyListSortFilterProxyModel(this);
-    sigModel->setKeyFilter(boost::shared_ptr<KeyFilter>(new SignCertificateFilter()));
-    sigModel->setSourceModel(mModel);
-    mModel->setParent(this);
-
-    mSigSelect = new CertificateComboBox(i18n("No valid secret keys found."));
-    mSigSelect->setModel(sigModel);
-    mSigSelect->setModelColumn(KeyListModelInterface::Summary);
+    mSigSelect = new KeySelectionCombo();
+    mSigSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new SignCertificateFilter()));
 
     sigLay->addWidget(sigChk);
     sigLay->addStretch(1);
@@ -122,7 +116,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     connect(sigChk, &QCheckBox::toggled, mSigSelect, &QWidget::setEnabled);
     connect(sigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSigSelect, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mSigSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
     /* Recipient selection */
@@ -148,14 +142,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     QCheckBox *encSelfChk = new QCheckBox(QStringLiteral("Own certificate:"));
     encSelfChk->setChecked(true);
 
-    KeyListSortFilterProxyModel *encModel = new KeyListSortFilterProxyModel(this);
-    encModel->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
-    encModel->setSourceModel(mModel);
-    mModel->setParent(this);
-
-    mSelfSelect = new CertificateComboBox(i18n("No valid secret keys found."));
-    mSelfSelect->setModel(encModel);
-    mSelfSelect->setModelColumn(KeyListModelInterface::Summary);
+    mSelfSelect = new KeySelectionCombo();
     encSelfLay->addWidget(encSelfChk);
     encSelfLay->addWidget(mSelfSelect);
 
@@ -163,7 +150,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     connect(encSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
     connect(encSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSelfSelect, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
     lay->addWidget(encBox);
@@ -217,7 +204,7 @@ void SignEncryptWidget::recipientsChanged()
 Key SignEncryptWidget::signKey() const
 {
     if (mSigSelect->isEnabled()) {
-        return mSigSelect->key();
+        return mSigSelect->currentKey();
     }
     return Key();
 }
@@ -225,7 +212,7 @@ Key SignEncryptWidget::signKey() const
 Key SignEncryptWidget::selfKey() const
 {
     if (mSelfSelect->isEnabled()) {
-        return mSelfSelect->key();
+        return mSelfSelect->currentKey();
     }
     return Key();
 }

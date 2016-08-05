@@ -35,9 +35,11 @@
 #include <QLabel>
 #include <QStackedWidget>
 #include <QComboBox>
+#include <QStylePainter>
+#include <QStyleOptionComboBox>
+#include <QStyle>
 
 #include "utils/kleo_assert.h"
-#include "certificatecombobox.h"
 
 #include <KLocalizedString>
 
@@ -61,18 +63,104 @@ static QString make_initial_text(const std::vector<Key> &keys)
     }
 }
 
-}
+// A QComboBox with an initial text (as known from web browsers)
+//
+// only works with read-only QComboBoxen, doesn't affect sizeHint
+// as it should...
+//
+class ComboBox : public QComboBox
+{
+    Q_OBJECT
+    Q_PROPERTY(QString initialText READ initialText WRITE setInitialText)
+    Q_PROPERTY(QIcon initialIcon READ initialIcon WRITE setInitialIcon)
+public:
+    explicit ComboBox(QWidget *parent = Q_NULLPTR)
+        : QComboBox(parent),
+          m_initialText(),
+          m_initialIcon()
+    {
 
-class Kleo::MyCertificateComboBox : public CertificateComboBox
+    }
+
+    explicit ComboBox(const QString &initialText, QWidget *parent = Q_NULLPTR)
+        : QComboBox(parent),
+          m_initialText(initialText),
+          m_initialIcon()
+    {
+
+    }
+
+    explicit ComboBox(const QIcon &initialIcon, const QString &initialText, QWidget *parent = Q_NULLPTR)
+        : QComboBox(parent),
+          m_initialText(initialText),
+          m_initialIcon(initialIcon)
+    {
+
+    }
+
+    QString initialText() const
+    {
+        return m_initialText;
+    }
+    QIcon initialIcon() const
+    {
+        return m_initialIcon;
+    }
+
+public Q_SLOTS:
+    void setInitialText(const QString &txt)
+    {
+        if (txt == m_initialText) {
+            return;
+        }
+        m_initialText = txt;
+        if (currentIndex() == -1) {
+            update();
+        }
+    }
+    void setInitialIcon(const QIcon &icon)
+    {
+        if (icon.cacheKey() == m_initialIcon.cacheKey()) {
+            return;
+        }
+        m_initialIcon = icon;
+        if (currentIndex() == -1) {
+            update();
+        }
+    }
+
+protected:
+    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE {
+        QStylePainter p(this);
+        p.setPen(palette().color(QPalette::Text));
+        QStyleOptionComboBox opt;
+        initStyleOption(&opt);
+        p.drawComplexControl(QStyle::CC_ComboBox, opt);
+
+        if (currentIndex() == -1)
+        {
+            opt.currentText = m_initialText;
+            opt.currentIcon = m_initialIcon;
+        }
+        p.drawControl(QStyle::CE_ComboBoxLabel, opt);
+    }
+
+private:
+    QString m_initialText;
+    QIcon m_initialIcon;
+};
+} // anonymous namespace
+
+class Kleo::KeysComboBox : public ComboBox
 {
     Q_OBJECT
 public:
-    explicit MyCertificateComboBox(QWidget *parent = Q_NULLPTR)
-        : CertificateComboBox(parent) {}
-    explicit MyCertificateComboBox(const QString &initialText, QWidget *parent = Q_NULLPTR)
-        : CertificateComboBox(initialText, parent) {}
-    explicit MyCertificateComboBox(const std::vector<Key> &keys, QWidget *parent = Q_NULLPTR)
-        : CertificateComboBox(make_initial_text(keys), parent)
+    explicit KeysComboBox(QWidget *parent = Q_NULLPTR)
+        : ComboBox(parent) {}
+    explicit KeysComboBox(const QString &initialText, QWidget *parent = Q_NULLPTR)
+        : ComboBox(initialText, parent) {}
+    explicit KeysComboBox(const std::vector<Key> &keys, QWidget *parent = Q_NULLPTR)
+        : ComboBox(make_initial_text(keys), parent)
     {
         setKeys(keys);
     }
@@ -123,9 +211,9 @@ CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom, const 
           mToFromLB(new QLabel(toFrom, q)),
           mMailboxLB(new QLabel(mailbox, q)),
           mSbox(new QStackedWidget(q)),
-          mPgpCB(new MyCertificateComboBox(pgp, mSbox)),
-          mCmsCB(new MyCertificateComboBox(cms, mSbox)),
-          noProtocolCB(new MyCertificateComboBox(i18n("(please choose between OpenPGP and S/MIME first)"), mSbox)),
+          mPgpCB(new KeysComboBox(pgp, mSbox)),
+          mCmsCB(new KeysComboBox(cms, mSbox)),
+          noProtocolCB(new KeysComboBox(i18n("(please choose between OpenPGP and S/MIME first)"), mSbox)),
           mToolTB(new QToolButton(q))
 {
     QFont bold;
@@ -174,7 +262,7 @@ QString CertificateSelectionLine::mailboxText() const
 
 void CertificateSelectionLine::addAndSelectCertificate(const Key &key) const
 {
-    if (MyCertificateComboBox *const cb = comboBox(key.protocol())) {
+    if (KeysComboBox *const cb = comboBox(key.protocol())) {
         cb->addAndSelectCertificate(key);
         cb->setEnabled(true);
     }
@@ -214,14 +302,14 @@ bool CertificateSelectionLine::wasInitiallyAmbiguous(Protocol proto) const
 bool CertificateSelectionLine::isStillAmbiguous(Protocol proto) const
 {
     kleo_assert(proto == OpenPGP || proto == CMS);
-    const MyCertificateComboBox *const cb = comboBox(proto);
+    const KeysComboBox *const cb = comboBox(proto);
     return cb->currentIndex() == -1;
 }
 
 Key CertificateSelectionLine::key(Protocol proto) const
 {
     kleo_assert(proto == OpenPGP || proto == CMS);
-    const MyCertificateComboBox *const cb = comboBox(proto);
+    const KeysComboBox *const cb = comboBox(proto);
     return cb->currentKey();
 }
 
@@ -238,7 +326,7 @@ void CertificateSelectionLine::kill()
     delete mToolTB;
 }
 
-MyCertificateComboBox *CertificateSelectionLine::comboBox(Protocol proto) const
+KeysComboBox *CertificateSelectionLine::comboBox(Protocol proto) const
 {
     if (proto == OpenPGP) {
         return mPgpCB;

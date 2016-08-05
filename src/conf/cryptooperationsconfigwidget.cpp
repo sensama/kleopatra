@@ -68,6 +68,7 @@ CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::Windo
 void CryptoOperationsConfigWidget::setupGui()
 {
     QVBoxLayout *baseLay = new QVBoxLayout;
+    baseLay->setMargin(0);
 
     QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
     QVBoxLayout *mailGrpLayout = new QVBoxLayout;

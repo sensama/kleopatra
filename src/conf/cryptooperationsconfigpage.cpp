@@ -45,6 +45,7 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *pa
     : KCModule(parent, args)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
+    lay->setMargin(0);
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
     connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));

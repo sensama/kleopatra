@@ -31,9 +31,7 @@
 #ifndef CRYPTO_GUI_CERTIFICATELINEEDIT_H
 #define CRYPTO_GUI_CERTIFICATELINEEDIT_H
 
-class QLineEdit;
-
-#include <QWidget>
+#include <QLineEdit>
 #include <QString>
 
 #include <gpgme++/key.h>
@@ -57,7 +55,7 @@ class KeyListSortFilterProxyModel;
  * The widget will use a single line HBox Layout. For larger dialog
  * see certificateslectiondialog.
  */
-class CertificateLineEdit: public QWidget
+class CertificateLineEdit: public QLineEdit
 {
     Q_OBJECT
 public:
@@ -102,7 +100,6 @@ private Q_SLOTS:
     void editChanged();
 
 private:
-    QLineEdit *mEdit;
     KeyListSortFilterProxyModel *mFilterModel;
     QLabel *mStatusLabel,
            *mStatusIcon;

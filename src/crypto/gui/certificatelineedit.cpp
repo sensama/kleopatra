@@ -63,27 +63,21 @@ using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key);
 
-#define MINIMUM_WIDTH_STR "Short Short<LongLong@MiddleDomain.co.uk> (12345678 - OpenPGP)"
-
 CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          QWidget *parent,
                                          KeyFilter *filter)
-    : QWidget(parent),
-      mEdit(new QLineEdit()),
+    : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
       mFilter(boost::shared_ptr<KeyFilter>(filter)),
       mEditStarted(false),
       mEditFinished(false),
       mLineAction(new QAction(Q_NULLPTR))
 {
-    auto *hLay = new QHBoxLayout;
-    mEdit->setPlaceholderText(i18n("Please enter a name or email address..."));
-    mEdit->setClearButtonEnabled(true);
-    hLay->addWidget(mEdit, -1);
-    mEdit->addAction(mLineAction, QLineEdit::LeadingPosition);
+    setPlaceholderText(i18n("Please enter a name or email address..."));
+    setClearButtonEnabled(true);
+    addAction(mLineAction, QLineEdit::LeadingPosition);
 
     QFontMetrics fm(font());
-    mEdit->setMinimumWidth(fm.width(QStringLiteral(MINIMUM_WIDTH_STR)));
 
     auto *completer = new QCompleter(this);
     auto *completeFilterModel = new KeyListSortFilterProxyModel(completer);
@@ -93,7 +87,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     completer->setCompletionColumn(KeyListModelInterface::Summary);
     completer->setFilterMode(Qt::MatchContains);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
-    mEdit->setCompleter(completer);
+    setCompleter(completer);
     mFilterModel->setSourceModel(model);
     mFilterModel->setFilterKeyColumn(KeyListModelInterface::Summary);
     if (filter) {
@@ -102,14 +96,13 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 
     connect(model, &QAbstractItemModel::dataChanged,
             this, &CertificateLineEdit::updateKey);
-    connect(mEdit, &QLineEdit::editingFinished,
+    connect(this, &QLineEdit::editingFinished,
             this, &CertificateLineEdit::updateKey);
-    connect(mEdit, &QLineEdit::textChanged,
+    connect(this, &QLineEdit::textChanged,
             this, &CertificateLineEdit::editChanged);
     connect(mLineAction, &QAction::triggered,
             this, &CertificateLineEdit::dialogRequested);
 
-    setLayout(hLay);
     updateKey();
 
     /* Take ownership of the model to prevent double deletion when the
@@ -129,7 +122,7 @@ void CertificateLineEdit::editChanged()
 
 void CertificateLineEdit::updateKey()
 {
-    const auto mailText = mEdit->text();
+    const auto mailText = text();
     auto newKey = Key();
     if (mailText.isEmpty()) {
         Q_EMIT wantsRemoval(this);
@@ -156,9 +149,9 @@ void CertificateLineEdit::updateKey()
     mKey = newKey;
 
     if (mKey.isNull()) {
-        mEdit->setToolTip(QString());
+        setToolTip(QString());
     } else {
-        mEdit->setToolTip(Formatting::toolTip(newKey, Formatting::ToolTipOption::AllOptions));
+        setToolTip(Formatting::toolTip(newKey, Formatting::ToolTipOption::AllOptions));
     }
 
     Q_EMIT keyChanged();
@@ -166,7 +159,11 @@ void CertificateLineEdit::updateKey()
 
 Key CertificateLineEdit::key() const
 {
-    return mKey;
+    if (isEnabled()) {
+        return mKey;
+    } else {
+        return Key();
+    }
 }
 
 void CertificateLineEdit::dialogRequested()
@@ -201,10 +198,11 @@ void CertificateLineEdit::setKey(const Key &k)
 {
     QSignalBlocker blocky(this);
     qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(k);
-    mEdit->setText(Formatting::summaryLine(k));
+    setText(Formatting::summaryLine(k));
+    updateKey();
 }
 
 bool CertificateLineEdit::isEmpty() const
 {
-    return mEdit->text().isEmpty();
+    return text().isEmpty();
 }

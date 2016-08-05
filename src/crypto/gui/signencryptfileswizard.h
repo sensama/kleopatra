@@ -88,6 +88,8 @@ public:
     void setEncryptionPreset(bool preset);
     void setEncryptionUserMutable(bool mut);
 
+    void setArchiveForced(bool archive);
+
     void setOutputNames(const QMap<int, QString> &nameMap) const;
     QMap<int, QString> outputNames() const;
 

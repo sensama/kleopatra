@@ -65,27 +65,6 @@ enum Page {
     NumPages
 };
 
-/*
-FIXME: Either show this warning or fix detached signatures for archives.
-    bool validatePage() Q_DECL_OVERRIDE {
-        if (isSignOnlySelected() && isArchiveRequested())
-            return KMessageBox::warningContinueCancel(this,
-            xi18nc("@info",
-            "<para>Archiving in combination with sign-only currently requires what are known as opaque signatures - "
-            "unlike detached ones, these embed the content in the signature.</para>"
-            "<para>This format is rather unusual. You might want to archive the files separately, "
-            "and then sign the archive as one file with Kleopatra.</para>"
-            "<para>Future versions of Kleopatra are expected to also support detached signatures in this case.</para>"),
-            i18nc("@title:window", "Unusual Signature Warning"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(),
-            QStringLiteral("signencryptfileswizard-archive+sign-only-warning"))
-            == KMessageBox::Continue;
-        else {
-            return true;
-        }
-    }
-*/
-
 class SigEncPage: public QWizardPage
 {
     Q_OBJECT
@@ -94,7 +73,8 @@ public:
     explicit SigEncPage(QWidget *parent = Q_NULLPTR)
         : QWizardPage(parent),
           mWidget(new SignEncryptWidget),
-          mOutLayout(new QVBoxLayout)
+          mOutLayout(new QVBoxLayout),
+          mArchive(false)
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
@@ -132,8 +112,32 @@ public:
         setCommitPage(true);
     }
 
+    void setArchiveForced(bool archive)
+    {
+        mArchive = archive;
+    }
+
     bool validatePage() Q_DECL_OVERRIDE
     {
+        bool sign = !mWidget->signKey().isNull();
+        bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
+
+        if (sign && !encrypt && mArchive) {
+            return KMessageBox::warningContinueCancel(this,
+            xi18nc("@info",
+            "<para>Archiving in combination with sign-only currently requires what are known as opaque signatures - "
+            "unlike detached ones, these embed the content in the signature.</para>"
+            "<para>This format is rather unusual. You might want to archive the files separately, "
+            "and then sign the archive as one file with Kleopatra.</para>"
+            "<para>Future versions of Kleopatra are expected to also support detached signatures in this case.</para>"),
+            i18nc("@title:window", "Unusual Signature Warning"),
+            KStandardGuiItem::cont(), KStandardGuiItem::cancel(),
+            QStringLiteral("signencryptfileswizard-archive+sign-only-warning"))
+            == KMessageBox::Continue;
+        } else if (sign && !encrypt) {
+            return true;
+        }
+
         if (!mWidget->selfKey().isNull()) {
             return true;
         }
@@ -277,6 +281,7 @@ private:
     QMap <int, QWidget *> mRequester;
     QVBoxLayout *mOutLayout;
     QWidget *mPlaceholderWidget;
+    bool mArchive;
 };
 
 class ResultPage : public NewResultPage
@@ -350,6 +355,11 @@ void SignEncryptFilesWizard::setEncryptionUserMutable(bool mut)
         return;
     }
     mEncryptionUserMutable = mut;
+}
+
+void SignEncryptFilesWizard::setArchiveForced(bool archive)
+{
+    mSigEncPage->setArchiveForced(archive);
 }
 
 QVector<Key> SignEncryptFilesWizard::resolvedRecipients() const

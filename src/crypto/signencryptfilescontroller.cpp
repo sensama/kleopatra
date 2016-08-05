@@ -225,9 +225,6 @@ void SignEncryptFilesController::Private::assertValidOperation(unsigned int op)
 void SignEncryptFilesController::setOperationMode(unsigned int mode)
 {
     Private::assertValidOperation(mode);
-    if (contains_dir(d->files)) {
-        mode = (mode & ~ArchiveMask) | ArchiveForced;
-    }
     d->operation = mode;
     d->updateWizardMode();
 }
@@ -240,6 +237,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
     wizard->setWindowTitle(titleForOperation(operation));
     const unsigned int signOp = (operation & SignMask);
     const unsigned int encrOp = (operation & EncryptMask);
+    const unsigned int archOp = (operation & ArchiveMask);
 
     if (signOp == SignDisallowed) {
         wizard->setSigningUserMutable(false);
@@ -264,6 +262,8 @@ void SignEncryptFilesController::Private::updateWizardMode()
             wizard->setEncryptionPreset(true);
         }
     }
+
+    wizard->setArchiveForced(archOp == ArchiveForced);
 }
 
 unsigned int SignEncryptFilesController::operationMode() const
@@ -332,7 +332,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
 {
     kleo_assert(!files.empty());
     d->files = files;
-    if (contains_dir(files)) {
+    if (contains_dir(files) || files.size() > 1) {
         setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
     }
     d->ensureWizardCreated();

@@ -142,6 +142,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     encSelfChk->setChecked(true);
 
     mSelfSelect = new KeySelectionCombo();
+    mSelfSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
     encSelfLay->addWidget(encSelfChk);
     encSelfLay->addWidget(mSelfSelect);
 

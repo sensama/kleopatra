@@ -121,6 +121,7 @@ public:
     {
         bool sign = !mWidget->signKey().isNull();
         bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
+        mWidget->saveOwnKeys();
 
         if (sign && !encrypt && mArchive) {
             return KMessageBox::warningContinueCancel(this,

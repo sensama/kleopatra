@@ -42,11 +42,13 @@
 #include <QScrollArea>
 
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
 #include <KLocalizedString>
+#include <KConfigGroup>
 #include <KSharedConfig>
 
 using namespace Kleo;
@@ -181,6 +183,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     lay->addWidget(encBox);
 
+    loadKeys();
     setLayout(lay);
     addRecipient(Key());
     updateOp();
@@ -318,4 +321,31 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
 bool SignEncryptWidget::symEncrypt() const
 {
     return mSymetric->isChecked();
+}
+
+void SignEncryptWidget::loadKeys()
+{
+    KConfigGroup keys(KSharedConfig::openConfig(), "SignEncryptKeys");
+    auto cache = KeyCache::instance();
+    const auto sigFpr = keys.readEntry("SigningKey", QString());
+    const auto encFpr = keys.readEntry("EncryptKey", QString());
+    if (!sigFpr.isEmpty()) {
+        mSigSelect->setCurrentKey(cache->findByFingerprint(sigFpr.toUtf8().constData()));
+    }
+    if (!encFpr.isEmpty()) {
+        mSelfSelect->setCurrentKey(cache->findByFingerprint(encFpr.toUtf8().constData()));
+    }
+}
+
+void SignEncryptWidget::saveOwnKeys() const
+{
+    KConfigGroup keys(KSharedConfig::openConfig(), "SignEncryptKeys");
+    auto sigKey = mSigSelect->currentKey();
+    auto encKey = mSelfSelect->currentKey();
+    if (!sigKey.isNull()) {
+        keys.writeEntry("SigningKey", sigKey.primaryFingerprint());
+    }
+    if (!encKey.isNull()) {
+        keys.writeEntry("EncryptKey", encKey.primaryFingerprint());
+    }
 }

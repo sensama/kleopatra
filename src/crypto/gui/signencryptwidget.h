@@ -70,12 +70,18 @@ public:
     /** Wether or not symetric encryption should also be used. */
     bool symEncrypt() const;
 
+    /** Save the currently selected signing and encrypt to self keys. */
+    void saveOwnKeys() const;
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
     void addRecipient();
     void addRecipient(const GpgME::Key &key);
+
+protected:
+    void loadKeys();
 
 Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation

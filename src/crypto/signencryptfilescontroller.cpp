@@ -47,6 +47,8 @@
 #include "utils/archivedefinition.h"
 #include "utils/path-helper.h"
 
+#include "fileoperationspreferences.h"
+
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
 
@@ -285,28 +287,44 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
     }
 }
 
+static boost::shared_ptr<ArchiveDefinition> getDefaultAd()
+{
+    std::vector<boost::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
+    assert(!ads.empty());
+    boost::shared_ptr<ArchiveDefinition> ad = ads.front();
+    const FileOperationsPreferences prefs;
+    Q_FOREACH (const boost::shared_ptr<ArchiveDefinition> toCheck, ads) {
+        if (toCheck->id() == prefs.archiveCommand()) {
+            ad = toCheck;
+            break;
+        }
+    }
+    return ad;
+}
+
 static QMap <int, QString> buildOutputNames(const QStringList &files)
 {
     QMap <int, QString> nameMap;
 
     // Build the default names for the wizard.
-    QString baseName;
+    QString baseNameCms;
+    QString baseNamePgp;
     if (files.size() > 1) {
+        QString baseName;
         baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(
                 i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive"));
-        std::vector<boost::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
-        assert(!ads.empty());
-        // TODO read from config
-        boost::shared_ptr<ArchiveDefinition> ad = ads.front();
-        baseName += QStringLiteral(".") + ad->extensions(GpgME::CMS).first() + QStringLiteral(".");
+
+        const auto ad = getDefaultAd();
+        baseNamePgp = baseName + QStringLiteral(".") + ad->extensions(GpgME::OpenPGP).first() + QStringLiteral(".");
+        baseNameCms = baseName + QStringLiteral(".") + ad->extensions(GpgME::CMS).first() + QStringLiteral(".");
     } else {
-        baseName = files.first() + QStringLiteral(".");
+        baseNameCms = baseNamePgp = files.first() + QStringLiteral(".");
     }
-    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseName + extension(false, true, false, false, true));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + extension(false, false, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseName + extension(true, true, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseName + extension(true, false, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseName + extension(true, true, false, false, true));
+    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, false, true));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, false, false));
+    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseNamePgp + extension(true, true, true, false, false));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, false, false));
+    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, false, true));
     return nameMap;
 }
 
@@ -512,12 +530,9 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             tasks.reserve(files.size());
         }
 
-        std::vector<boost::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
-        assert(!ads.empty());
         if (archive) {
             tasks = createArchiveSignEncryptTasksForFiles(files,
-                    // TODO read from config
-                    ads.front(),
+                    getDefaultAd(),
                     ascii,
                     pgpRecipients.toStdVector(),
                     pgpSigners.toStdVector(),

@@ -37,6 +37,7 @@
 #include <gpgme++/key.h>
 
 class QGridLayout;
+class QCheckBox;
 
 namespace Kleo
 {
@@ -66,6 +67,9 @@ public:
      * a null string if nothing would happen. */
     QString currentOp() const;
 
+    /** Wether or not symetric encryption should also be used. */
+    bool symEncrypt() const;
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
@@ -89,6 +93,7 @@ private:
     QGridLayout *mRecpLayout;
     QString mOp;
     AbstractKeyListModel *mModel;
+    QCheckBox *mSymetric;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

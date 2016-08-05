@@ -262,7 +262,7 @@ private Q_SLOTS:
             }
         }
         mOutLayout->setEnabled(false);
-        mPlaceholderWidget->setVisible(!cms && !pgp);
+        mPlaceholderWidget->setVisible(!cms && !pgp && sigKey.isNull());
         mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(sigKey.protocol() == Protocol::CMS);
         mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(cms);
         mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(sigKey.protocol() == Protocol::OpenPGP && pgp);

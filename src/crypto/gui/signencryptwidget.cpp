@@ -99,17 +99,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
-    // FIXME: i18n after deliberation
-    QGroupBox *sigGrp = new QGroupBox(QStringLiteral("Prove authenticity (sign)"));
-    QCheckBox *sigChk = new QCheckBox(QStringLiteral("Sign as:"));
+    QGroupBox *sigGrp = new QGroupBox(i18n("Prove authenticity (sign)"));
+    QCheckBox *sigChk = new QCheckBox(i18n("Sign as:"));
     sigChk->setChecked(true);
 
     mSigSelect = new KeySelectionCombo();
     mSigSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new SignCertificateFilter()));
 
     sigLay->addWidget(sigChk);
-    sigLay->addStretch(1);
-    sigLay->addWidget(mSigSelect);
+    sigLay->addWidget(mSigSelect, 1);
     sigGrp->setLayout(sigLay);
     lay->addWidget(sigGrp);
 
@@ -118,45 +116,73 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     connect(mSigSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
-    /* Recipient selection */
+    // Recipient selection
     mRecpLayout = new QGridLayout;
     mRecpLayout->setAlignment(Qt::AlignTop);
-    QGroupBox *encBox = new QGroupBox(i18nc("@action", "Encrypt"));
-    encBox->setAlignment(Qt::AlignLeft);
     QVBoxLayout *encBoxLay = new QVBoxLayout;
+    QGroupBox *encBox = new QGroupBox(i18nc("@action", "Encrypt"));
     encBox->setLayout(encBoxLay);
+    encBox->setAlignment(Qt::AlignLeft);
+
+    // Own key
+    mSelfSelect = new KeySelectionCombo();
+    mSelfSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
+    QCheckBox *encSelfChk = new QCheckBox(i18n("Encrypt for me:"));
+    encSelfChk->setChecked(true);
+    mRecpLayout->addWidget(encSelfChk, 0, 0);
+    mRecpLayout->addWidget(mSelfSelect, 0, 1);
+
+    // Checkbox for other keys
+    QCheckBox *encOtherChk = new QCheckBox(i18n("Encrypt for others:"));
+    mRecpLayout->addWidget(encOtherChk, 1, 0);
+    encOtherChk->setChecked(true);
+    connect(encOtherChk, &QCheckBox::toggled, this,
+        [this](bool toggled) {
+            Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
+                edit->setEnabled(toggled);
+            }
+            updateOp();
+        });
+
+    // Scroll area for other keys
     QWidget *recipientWidget = new QWidget;
     QScrollArea *recipientScroll = new QScrollArea;
     recipientWidget->setLayout(mRecpLayout);
     recipientScroll->setWidget(recipientWidget);
     recipientScroll->setWidgetResizable(true);
     recipientScroll->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
+    recipientScroll->setFrameStyle(QFrame::NoFrame);
+    mRecpLayout->setMargin(0);
     encBoxLay->addWidget(recipientScroll, 1);
+
+
+    // Checkbox for password
+    mSymetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
+    mSymetric->setToolTip(i18nc("Tooltip information for symetric encryption",
+                                 "Additionally to the keys of the recipients you can encrypt your data with a password. "
+                                 "Anyone who has the password can read the data without any secret key."
+                                 "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
+    encBoxLay->addWidget(mSymetric);
+
+    // TODO: Enable when functional
+    mSymetric->setEnabled(false);
+
+    // Connect it
     connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);
     connect(encBox, &QGroupBox::toggled, this, &SignEncryptWidget::updateOp);
-
-    /* Self certificate */
-    QHBoxLayout *encSelfLay = new QHBoxLayout;
-    // FIXME i18n
-    QCheckBox *encSelfChk = new QCheckBox(QStringLiteral("Own certificate:"));
-    encSelfChk->setChecked(true);
-
-    mSelfSelect = new KeySelectionCombo();
-    mSelfSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
-    encSelfLay->addWidget(encSelfChk);
-    encSelfLay->addWidget(mSelfSelect);
-
-    encBoxLay->addLayout(encSelfLay);
-
     connect(encSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
     connect(encSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(mSymetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
+
+    // Ensure that the sigChk is aligned togehter with the encryption check boxes.
+    sigChk->setMinimumWidth(qMax(encOtherChk->width(), encSelfChk->width()));
 
     lay->addWidget(encBox);
 
     setLayout(lay);
-    addRecipient();
+    addRecipient(Key());
     updateOp();
 }
 
@@ -171,7 +197,14 @@ void SignEncryptWidget::addRecipient(const Key &key)
                                                            new EncryptCertificateFilter());
     mRecpWidgets << certSel;
 
-    mRecpLayout->addWidget(certSel, mRecpLayout->rowCount(), 0);
+    if (!mRecpLayout->itemAtPosition(mRecpLayout->rowCount() - 1, 1)) {
+        // First widget. Should align with the row above that
+        // contians the encrypt for others checkbox.
+        mRecpLayout->addWidget(certSel, mRecpLayout->rowCount() - 1, 1);
+    } else {
+        mRecpLayout->addWidget(certSel, mRecpLayout->rowCount(), 1);
+    }
+
     connect(certSel, &CertificateLineEdit::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::wantsRemoval,
@@ -243,9 +276,9 @@ void SignEncryptWidget::updateOp()
     const QVector<Key> recp = recipients();
 
     QString newOp;
-    if (!sigKey.isNull() && !recp.isEmpty()) {
+    if (!sigKey.isNull() && (!recp.isEmpty() || symEncrypt())) {
         newOp = i18nc("@action", "Sign / Encrypt");
-    } else if (!recp.isEmpty()) {
+    } else if (!recp.isEmpty() || symEncrypt()) {
         newOp = i18nc("@action", "Encrypt");
     } else if (!sigKey.isNull()) {
         newOp = i18nc("@action", "Sign");
@@ -280,4 +313,9 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
             return;
         }
     }
+}
+
+bool SignEncryptWidget::symEncrypt() const
+{
+    return mSymetric->isChecked();
 }

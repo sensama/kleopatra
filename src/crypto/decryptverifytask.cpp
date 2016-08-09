@@ -45,11 +45,11 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
+#include <Libkleo/Classify>
 
 #include <utils/detail_p.h>
 #include <utils/input.h>
 #include <utils/output.h>
-#include <utils/classify.h>
 #include <utils/kleo_assert.h>
 #include <utils/auditlog.h>
 

@@ -44,12 +44,12 @@
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
 #include <utils/getpid.h>
-#include "utils/classify.h"
 
 #include <gpgme++/key.h>
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Classify>
 
 #ifdef HAVE_USABLE_ASSUAN
 # include <uiserver/uiserver.h>

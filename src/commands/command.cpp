@@ -43,8 +43,8 @@
 #include "checksumverifyfilescommand.h"
 
 #include <Libkleo/KeyCache>
+#include <Libkleo/Classify>
 
-#include "utils/classify.h"
 
 #include <view/tabwidget.h>
 

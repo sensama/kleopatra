@@ -33,17 +33,18 @@
 #include <config-kleopatra.h>
 
 #include "exportcertificatecommand.h"
+#include "fileoperationspreferences.h"
 
 #include "command_p.h"
 
 #include <dialogs/exportcertificatesdialog.h>
 
-#include <utils/classify.h>
 #include <utils/filedialog.h>
 
 #include <Libkleo/CryptoBackend>
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/ExportJob>
+#include <Libkleo/Classify>
 
 #include <gpgme++/key.h>
 
@@ -208,14 +209,16 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
     }
 
     QString proposedFileName;
-    if (keys().size() == 1)
+    if (keys().size() == 1) {
+        const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
         proposedFileName
             = QString::fromLatin1(keys().front().primaryFingerprint())
               + QLatin1Char('.')
               + QString::fromLatin1(outputFileExtension(protocol == OpenPGP
                                     ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                                    : Class::CMS | Class::Ascii | Class::Certificate))
+                                    : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt))
               ;
+    }
 
     const QString fname = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
                           i18n("Export Certificates"),

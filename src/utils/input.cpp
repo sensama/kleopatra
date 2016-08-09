@@ -35,13 +35,13 @@
 #include "input.h"
 
 #include "detail_p.h"
-#include "classify.h"
 #include "kdpipeiodevice.h"
 #include "log.h"
 #include "kleo_assert.h"
 #include "cached.h"
 
 #include <Libkleo/Exception>
+#include <Libkleo/Classify>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>

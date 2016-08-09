@@ -75,7 +75,6 @@ set(_kleopatra_SRCS
   utils/output.cpp
   utils/validation.cpp
   utils/wsastarter.cpp
-  utils/classify.cpp
   utils/iodevicelogger.cpp
   utils/log.cpp
   utils/action_data.cpp

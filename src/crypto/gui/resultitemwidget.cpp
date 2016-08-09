@@ -35,10 +35,10 @@
 #include "resultitemwidget.h"
 
 #include "utils/auditlog.h"
-#include "utils/classify.h"
 #include "commands/command.h"
 
 #include <libkleo/messagebox.h>
+#include <Libkleo/Classify>
 
 #include <KLocalizedString>
 #include <QPushButton>

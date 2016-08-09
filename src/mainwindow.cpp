@@ -49,7 +49,6 @@
 #include "utils/detail_p.h"
 #include "utils/gnupg-helper.h"
 #include "utils/action_data.h"
-#include "utils/classify.h"
 #include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"
 
@@ -85,6 +84,7 @@
 #include <Libkleo/CryptoConfig>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/CryptoBackendFactory>
+#include <Libkleo/Classify>
 
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>

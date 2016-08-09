@@ -35,11 +35,11 @@
 #include "importcertificatefromfilecommand.h"
 #include "importcertificatescommand_p.h"
 
-#include "utils/classify.h"
 #include "utils/filedialog.h"
 
 #include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/ImportJob>
+#include <Libkleo/Classify>
 
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>

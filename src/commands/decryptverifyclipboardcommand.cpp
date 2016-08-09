@@ -43,10 +43,11 @@
 #include <utils/input.h>
 #include <utils/output.h>
 
-#include <utils/classify.h>
+
 #include <utils/types.h>
 
 #include <Libkleo/Stl_Util>
+#include <Libkleo/Classify>
 
 #include <KLocalizedString>
 #include "kleopatra_debug.h"

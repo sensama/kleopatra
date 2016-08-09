@@ -40,11 +40,11 @@
 
 #include <utils/input.h>
 #include <utils/output.h>
-#include <utils/classify.h>
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/ChecksumDefinition>
+#include <Libkleo/Classify>
 
 #include <KLocalizedString>
 

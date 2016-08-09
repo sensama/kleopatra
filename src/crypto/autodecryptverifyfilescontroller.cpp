@@ -42,13 +42,14 @@
 
 #include "commands/decryptverifyfilescommand.h"
 
-#include <utils/classify.h>
 #include <utils/gnupg-helper.h>
 #include <utils/path-helper.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 #include <utils/archivedefinition.h>
+
+#include <Libkleo/Classify>
 
 #include <KLocalizedString>
 #include <KMessageBox>

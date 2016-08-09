@@ -38,7 +38,7 @@
 
 #include "importcertificatescommand_p.h"
 
-#include "utils/classify.h"
+#include <Libkleo/Classify>
 
 #include <gpgme++/global.h>
 

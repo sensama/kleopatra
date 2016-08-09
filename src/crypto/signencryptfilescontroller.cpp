@@ -40,9 +40,10 @@
 #include "crypto/gui/signencryptfileswizard.h"
 #include "crypto/taskcollection.h"
 
+#include "fileoperationspreferences.h"
+
 #include "utils/input.h"
 #include "utils/output.h"
-#include "utils/classify.h"
 #include "utils/kleo_assert.h"
 #include "utils/archivedefinition.h"
 #include "utils/path-helper.h"
@@ -51,6 +52,7 @@
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
+#include <Libkleo/Classify>
 
 #include <kmime/kmime_header_parsing.h>
 
@@ -280,7 +282,8 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
         cls |= detached ? Class::DetachedSignature : Class::OpaqueSignature;
     }
     cls |= ascii ? Class::Ascii : Class::Binary;
-    if (const char *const ext = outputFileExtension(cls)) {
+    const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
+    if (const char *const ext = outputFileExtension(cls, usePGPFileExt)) {
         return ext;
     } else {
         return "out";

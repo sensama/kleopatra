@@ -301,6 +301,10 @@ public:
 
 SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
     : QWizard(parent, f)
+    , mSigningPreset(false)
+    , mSigningUserMutable(false)
+    , mEncryptionUserMutable(false)
+    , mEncryptionPreset(false)
 {
     mSigEncPage = new SigEncPage(this);
     mResultPage = new ResultPage(this);

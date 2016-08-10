@@ -326,14 +326,8 @@ void SignEncryptWidget::loadKeys()
 {
     KConfigGroup keys(KSharedConfig::openConfig(), "SignEncryptKeys");
     auto cache = KeyCache::instance();
-    const auto sigFpr = keys.readEntry("SigningKey", QString());
-    const auto encFpr = keys.readEntry("EncryptKey", QString());
-    if (!sigFpr.isEmpty()) {
-        mSigSelect->setCurrentKey(cache->findByFingerprint(sigFpr.toUtf8().constData()));
-    }
-    if (!encFpr.isEmpty()) {
-        mSelfSelect->setCurrentKey(cache->findByFingerprint(encFpr.toUtf8().constData()));
-    }
+    mSigSelect->setDefaultKey(keys.readEntry("SigningKey", QString()));
+    mSelfSelect->setDefaultKey(keys.readEntry("EncryptKey", QString()));
 }
 
 void SignEncryptWidget::saveOwnKeys() const

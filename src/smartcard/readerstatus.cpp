@@ -144,7 +144,7 @@ static QByteArray read_file(const QString &fileName)
 
 static unsigned int parseFileName(const QString &fileName, bool *ok)
 {
-    QRegExp rx(QStringLiteral("reader_(\\d+)\\.status"));
+    QRegExp rx(QLatin1String("reader_(\\d+)\\.status"));
     if (ok) {
         *ok = false;
     }

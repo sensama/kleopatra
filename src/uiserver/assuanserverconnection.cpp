@@ -388,7 +388,7 @@ private:
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         const QString str = QString::fromUtf8(line);
-        QRegExp rx(QStringLiteral("(\\d+)(?:\\s+(.*))?"));
+        QRegExp rx(QLatin1String("(\\d+)(?:\\s+(.*))?"));
         if (!rx.exactMatch(str)) {
             static const QString errorString = i18n("Parse error");
             return assuan_process_done_msg(ctx_, gpg_error(GPG_ERR_ASS_SYNTAX), errorString);

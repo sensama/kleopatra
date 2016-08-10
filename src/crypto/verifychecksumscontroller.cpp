@@ -316,7 +316,7 @@ static std::vector<File> parse_sum_file(const QString &fileName)
     QFile f(fileName);
     if (f.open(QIODevice::ReadOnly)) {
         QTextStream s(&f);
-        QRegExp rx(QStringLiteral("(\\?)([a-f0-9A-F]+) ([ *])([^\n]+)\n*"));
+        QRegExp rx(QLatin1String("(\\?)([a-f0-9A-F]+) ([ *])([^\n]+)\n*"));
         while (!s.atEnd()) {
             const QString line = s.readLine();
             if (rx.exactMatch(line)) {

@@ -431,7 +431,7 @@ bool LookupCertificatesCommand::Private::checkConfig() const
 
 void LookupCertificatesCommand::Private::showHexPrefixInfo() const
 {
-    const QRegExp rx(QStringLiteral("(?:0x|0X)?[0-9a-fA-F]{6,}"));
+    const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
     if (rx.exactMatch(query)) {
         information(query.startsWith(QStringLiteral("0x"), Qt::CaseInsensitive)
                     ? i18n("<p>You seem to be searching for a fingerPrint or a key-id.</p>"

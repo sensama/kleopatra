@@ -201,7 +201,7 @@ bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
         }
 
         const char *actual = GpgME::engineInfo(engine).version();
-        QRegExp rx(QStringLiteral("(\\d+)\\.(\\d+)\\.(\\d+)(?:-svn\\d+)?.*"));
+        QRegExp rx(QLatin1String("(\\d+)\\.(\\d+)\\.(\\d+)(?:-svn\\d+)?.*"));
         if (!rx.exactMatch(QString::fromUtf8(actual))) {
             qCDebug(KLEOPATRA_LOG) << "Can't parse version " << actual;
             return false;

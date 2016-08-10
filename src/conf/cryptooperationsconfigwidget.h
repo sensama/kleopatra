@@ -65,7 +65,8 @@ private:
     QCheckBox *mQuickEncryptCB,
               *mQuickSignCB,
               *mPGPFileExtCB,
-              *mAutoDecryptVerifyCB;
+              *mAutoDecryptVerifyCB,
+              *mASCIIArmorCB;
     QComboBox *mChecksumDefinitionCB,
               *mArchiveDefinitionCB;
 };

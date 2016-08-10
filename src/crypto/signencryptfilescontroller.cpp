@@ -323,11 +323,14 @@ static QMap <int, QString> buildOutputNames(const QStringList &files)
     } else {
         baseNameCms = baseNamePgp = files.first() + QStringLiteral(".");
     }
-    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, false, true));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseNamePgp + extension(true, true, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, false, false));
-    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, false, true));
+    const FileOperationsPreferences prefs;
+    const bool ascii = prefs.addASCIIArmor();
+
+    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, ascii, true));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::CombinedPGP,  baseNamePgp + extension(true, true, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, ascii, true));
     return nameMap;
 }
 
@@ -517,7 +520,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         const QVector<Key> recipients = wizard->resolvedRecipients();
         const QVector<Key> signers = wizard->resolvedSigners();
 
-        const bool ascii = false; /* TODO andre config */
+        const FileOperationsPreferences prefs;
+        const bool ascii = prefs.addASCIIArmor();
 
         QVector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
         Q_FOREACH (const Key k, recipients) {

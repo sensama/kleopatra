@@ -21,5 +21,10 @@
    <whatsthis>When encrypting multiple files or a folder Kleopatra creates an encrypted archive with this command.</whatsthis>
    <default>tar</default>
  </entry>
+ <entry name="AddASCIIArmor" key="ascii-armor" type="Bool">
+   <label>Create signed and or encrypted files as text files.</label>
+   <whatsthis>Set this option to encode encrypted and or signed files as base64 encoded text. So that they can be opened with an editor or sent in a mail body. This will increase file size by one third.</whatsthis>
+   <default>false</default>
+ </entry>
  </group>
 </kcfg>

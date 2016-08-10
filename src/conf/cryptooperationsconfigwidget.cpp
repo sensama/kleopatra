@@ -84,9 +84,14 @@ void CryptoOperationsConfigWidget::setupGui()
     QGroupBox *fileGrp = new QGroupBox(i18n("File Operations"));
     QVBoxLayout *fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n("Create OpenPGP encrypted files with \".pgp\" file extensions instead of \".gpg\""));
+    mASCIIArmorCB = new QCheckBox(i18n("Create signed and or encrypted files as text files."));
+    mASCIIArmorCB->setToolTip(i18nc("@info", "Set this option to encode encrypted and or signed files as base64 encoded text. "
+                                             "So that they can be opened with an editor or sent in a mail body. "
+                                             "This will increase file size by one third."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     fileGrpLay->addWidget(mPGPFileExtCB);
     fileGrpLay->addWidget(mAutoDecryptVerifyCB);
+    fileGrpLay->addWidget(mASCIIArmorCB);
 
     QGridLayout *comboLay = new QGridLayout;
     QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
@@ -121,6 +126,7 @@ void CryptoOperationsConfigWidget::setupGui()
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mASCIIArmorCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
@@ -158,6 +164,7 @@ void CryptoOperationsConfigWidget::load()
     const FileOperationsPreferences filePrefs;
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
+    mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
 
     const std::vector< shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
     const shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
@@ -203,6 +210,7 @@ void CryptoOperationsConfigWidget::save()
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
     filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
+    filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
 
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {

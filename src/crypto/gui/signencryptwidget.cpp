@@ -159,22 +159,21 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
 
     // Checkbox for password
-    mSymetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
-    mSymetric->setToolTip(i18nc("Tooltip information for symetric encryption",
+    mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
+    mSymmetric->setToolTip(i18nc("Tooltip information for symetric encryption",
                                  "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
-    encBoxLay->addWidget(mSymetric);
+    encBoxLay->addWidget(mSymmetric);
 
-    // TODO: Enable when functional
-    mSymetric->setEnabled(false);
+    mSymmetric->setVisible(GpgME::hasFeature(0, GpgME::EncryptSymmetric));
 
     // Connect it
     connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);
     connect(encBox, &QGroupBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(encSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
     connect(encSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSymetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
@@ -279,9 +278,9 @@ void SignEncryptWidget::updateOp()
     const QVector<Key> recp = recipients();
 
     QString newOp;
-    if (!sigKey.isNull() && (!recp.isEmpty() || symEncrypt())) {
+    if (!sigKey.isNull() && (!recp.isEmpty() || encryptSymmetric())) {
         newOp = i18nc("@action", "Sign / Encrypt");
-    } else if (!recp.isEmpty() || symEncrypt()) {
+    } else if (!recp.isEmpty() || encryptSymmetric()) {
         newOp = i18nc("@action", "Encrypt");
     } else if (!sigKey.isNull()) {
         newOp = i18nc("@action", "Sign");
@@ -318,9 +317,9 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
     }
 }
 
-bool SignEncryptWidget::symEncrypt() const
+bool SignEncryptWidget::encryptSymmetric() const
 {
-    return mSymetric->isChecked();
+    return mSymmetric->isChecked();
 }
 
 void SignEncryptWidget::loadKeys()

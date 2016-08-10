@@ -149,8 +149,7 @@ public:
                 break;
             }
         }
-        if (!hasSecret)
-        {
+        if (!hasSecret && !mWidget->encryptSymmetric()) {
             if (KMessageBox::warningContinueCancel(this,
             xi18nc("@info",
             "<para>None of the recipients you are encrypting to seems to be your own.</para>"
@@ -235,6 +234,11 @@ public:
         return mOutNames;
     }
 
+    bool encryptSymmetric() const
+    {
+        return mWidget->encryptSymmetric();
+    }
+
 private Q_SLOTS:
     void updateCommitButton(const QString &label)
     {
@@ -253,7 +257,7 @@ private Q_SLOTS:
         }
         const QVector<Key> recipients = mWidget->recipients();
         const Key sigKey = mWidget->signKey();
-        bool pgp = false;
+        bool pgp = mWidget->encryptSymmetric();
         bool cms = false;
 
         Q_FOREACH (const Key k, recipients) {
@@ -390,6 +394,11 @@ void SignEncryptFilesWizard::setOutputNames(const QMap<int, QString> &map) const
 QMap<int, QString> SignEncryptFilesWizard::outputNames() const
 {
     return mSigEncPage->outputNames();
+}
+
+bool SignEncryptFilesWizard::encryptSymmetric() const
+{
+    return mSigEncPage->encryptSymmetric();
 }
 
 #include "signencryptfileswizard.moc"

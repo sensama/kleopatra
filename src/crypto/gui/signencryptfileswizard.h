@@ -98,6 +98,7 @@ public:
     // Outputs
     QVector<GpgME::Key> resolvedRecipients() const;
     QVector<GpgME::Key> resolvedSigners() const;
+    bool encryptSymmetric() const;
 
 Q_SIGNALS:
     void operationPrepared();

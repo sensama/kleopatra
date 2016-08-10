@@ -356,10 +356,10 @@ void SignEncryptFilesController::start()
 static shared_ptr<SignEncryptFilesTask>
 createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
                                  const std::vector<Key> &recipients, const std::vector<Key> &signers,
-                                 const QString &outputName)
+                                 const QString &outputName, bool symmetric)
 {
     const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
-    Q_ASSERT(!signers.empty() || !recipients.empty());
+    Q_ASSERT(!signers.empty() || !recipients.empty() || symmetric);
     task->setAsciiArmor(ascii);
     if (!signers.empty()) {
         task->setSign(true);
@@ -375,6 +375,7 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
     } else {
         task->setEncrypt(false);
     }
+    task->setEncryptSymmetric(symmetric);
     const QString input = fi.absoluteFilePath();
     task->setInputFileName(input);
     task->setInput(Input::createFromFile(input));
@@ -388,10 +389,11 @@ static shared_ptr<SignEncryptFilesTask>
 createArchiveSignEncryptTaskForFiles(const QStringList &files,
                                      const shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii,
                                      const std::vector<Key> &recipients, const std::vector<Key> &signers,
-                                     const QString& outputName)
+                                     const QString& outputName, bool symmetric)
 {
     const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
-    Q_ASSERT(!signers.empty() || !recipients.empty());
+    task->setEncryptSymmetric(symmetric);
+    Q_ASSERT(!signers.empty() || !recipients.empty() || symmetric);
     task->setAsciiArmor(ascii);
     if (!signers.empty()) {
         task->setSign(true);
@@ -421,7 +423,8 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files,
 
 static std::vector< shared_ptr<SignEncryptFilesTask> >
 createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners,
-                                  const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outputNames)
+                                  const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outputNames,
+                                  bool symmetric)
 {
     std::vector< shared_ptr<SignEncryptFilesTask> > result;
 
@@ -432,16 +435,17 @@ createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::ve
     result.reserve(pgp + cms);
 
 
-    if (pgp) {
+    if (pgp || symmetric) {
+        // Symmetric encryption is only supported for PGP
         int outKind = 0;
-        if (!pgpRecipients.empty() && !pgpSigners.empty()) {
+        if ((!pgpRecipients.empty() || symmetric)&& !pgpSigners.empty()) {
             outKind = SignEncryptFilesWizard::CombinedPGP;
-        } else if (!pgpRecipients.empty()) {
+        } else if (!pgpRecipients.empty() || symmetric) {
             outKind = SignEncryptFilesWizard::EncryptedPGP;
         } else {
             outKind = SignEncryptFilesWizard::SignaturePGP;
         }
-        result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, pgpRecipients, pgpSigners, outputNames[outKind]));
+        result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, pgpRecipients, pgpSigners, outputNames[outKind], symmetric));
     }
     if (cms) {
         // There is no combined sign / encrypt in gpgsm so we create one sign task
@@ -449,10 +453,12 @@ createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::ve
         // then sign, or sign then encrypt. Ugly.
         if (!cmsSigners.empty()) {
             result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, std::vector<Key>(),
-                                                              cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS]));
+                                                              cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS],
+                                                              false));
         } else {
             result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, cmsRecipients,
-                                                              std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS]));
+                                                              std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS],
+                                                              false));
         }
     }
 
@@ -463,7 +469,7 @@ static std::vector< shared_ptr<SignEncryptFilesTask> >
 createArchiveSignEncryptTasksForFiles(const QStringList &files, const shared_ptr<ArchiveDefinition> &ad,
                                       bool ascii, const std::vector<Key> &pgpRecipients,
                                       const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners,
-                                      const QMap<int, QString> outputNames)
+                                      const QMap<int, QString> outputNames, bool symmetric)
 {
     std::vector< shared_ptr<SignEncryptFilesTask> > result;
 
@@ -473,24 +479,26 @@ createArchiveSignEncryptTasksForFiles(const QStringList &files, const shared_ptr
 
     result.reserve(pgp + cms);
 
-    if (pgp) {
+    if (pgp || symmetric) {
         int outKind = 0;
-        if (!pgpRecipients.empty() && !pgpSigners.empty()) {
+        if ((!pgpRecipients.empty() || symmetric) && !pgpSigners.empty()) {
             outKind = SignEncryptFilesWizard::CombinedPGP;
-        } else if (!pgpRecipients.empty()) {
+        } else if (!pgpRecipients.empty() || symmetric) {
             outKind = SignEncryptFilesWizard::EncryptedPGP;
         } else {
             outKind = SignEncryptFilesWizard::SignaturePGP;
         }
-        result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, true,  ascii, pgpRecipients, pgpSigners, outputNames[outKind]));
+        result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, true,  ascii, pgpRecipients, pgpSigners, outputNames[outKind], symmetric));
     }
     if (cms) {
         if (!cmsSigners.empty()) {
             result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
-                                                                  std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS]));
+                                                                  std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS],
+                                                                  false));
         } else {
             result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
-                                                                  cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS]));
+                                                                  cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS],
+                                                                  false));
         }
     }
 
@@ -541,7 +549,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
                     pgpSigners.toStdVector(),
                     cmsRecipients.toStdVector(),
                     cmsSigners.toStdVector(),
-                    wizard->outputNames());
+                    wizard->outputNames(),
+                    wizard->encryptSymmetric());
 
         } else {
             Q_FOREACH (const QString &file, files) {
@@ -551,7 +560,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
                             pgpSigners.toStdVector(),
                             cmsRecipients.toStdVector(),
                             cmsSigners.toStdVector(),
-                            wizard->outputNames());
+                            wizard->outputNames(),
+                            wizard->encryptSymmetric());
                 tasks.insert(tasks.end(), created.begin(), created.end());
             }
         }

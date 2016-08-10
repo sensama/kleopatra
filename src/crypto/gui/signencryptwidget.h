@@ -67,8 +67,8 @@ public:
      * a null string if nothing would happen. */
     QString currentOp() const;
 
-    /** Wether or not symetric encryption should also be used. */
-    bool symEncrypt() const;
+    /** Wether or not symmetric encryption should also be used. */
+    bool encryptSymmetric() const;
 
     /** Save the currently selected signing and encrypt to self keys. */
     void saveOwnKeys() const;
@@ -99,7 +99,7 @@ private:
     QGridLayout *mRecpLayout;
     QString mOp;
     AbstractKeyListModel *mModel;
-    QCheckBox *mSymetric;
+    QCheckBox *mSymmetric;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

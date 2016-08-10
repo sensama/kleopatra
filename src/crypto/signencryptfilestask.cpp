@@ -323,6 +323,7 @@ private:
     bool sign     : 1;
     bool encrypt  : 1;
     bool detached : 1;
+    bool symmetric: 1;
 
     QPointer<Kleo::Job> job;
     shared_ptr<OverwritePolicy> m_overwritePolicy;
@@ -422,12 +423,18 @@ void SignEncryptFilesTask::setDetachedSignature(bool detached)
     d->detached = detached;
 }
 
+void SignEncryptFilesTask::setEncryptSymmetric(bool symmetric)
+{
+    kleo_assert(!d->job);
+    d->symmetric = symmetric;
+}
+
 Protocol SignEncryptFilesTask::protocol() const
 {
     if (d->sign && !d->signers.empty()) {
         return d->signers.front().protocol();
     }
-    if (d->encrypt) {
+    if (d->encrypt || d->symmetric) {
         if (!d->recipients.empty()) {
             return d->recipients.front().protocol();
         } else {
@@ -463,24 +470,29 @@ void SignEncryptFilesTask::doStart()
     kleo_assert(d->input);
     d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
 
-    if (d->encrypt)
+    if (d->encrypt || d->symmetric) {
+        Context::EncryptionFlags flags = Context::AlwaysTrust;
+        if (d->symmetric) {
+            flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
+            qDebug() << "Adding symmetric flag";
+        }
         if (d->sign) {
             std::unique_ptr<Kleo::SignEncryptJob> job = d->createSignEncryptJob(protocol());
             kleo_assert(job.get());
 
             job->start(d->signers, d->recipients,
-                       d->input->ioDevice(), d->output->ioDevice(), true);
+                       d->input->ioDevice(), d->output->ioDevice(), flags);
 
             d->job = job.release();
         } else {
             std::unique_ptr<Kleo::EncryptJob> job = d->createEncryptJob(protocol());
             kleo_assert(job.get());
 
-            job->start(d->recipients, d->input->ioDevice(), d->output->ioDevice(), true);
+            job->start(d->recipients, d->input->ioDevice(), d->output->ioDevice(), flags);
 
             d->job = job.release();
         }
-    else if (d->sign) {
+    } else if (d->sign) {
         std::unique_ptr<Kleo::SignJob> job = d->createSignJob(protocol());
         kleo_assert(job.get());
 
@@ -490,7 +502,7 @@ void SignEncryptFilesTask::doStart()
 
         d->job = job.release();
     } else {
-        kleo_assert(!"Either 'sign' or 'encrypt' must be set!");
+        kleo_assert(!"Either 'sign' or 'encrypt' or 'symmetric' must be set!");
     }
 }
 

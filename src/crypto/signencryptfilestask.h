@@ -81,6 +81,7 @@ public:
     void setSign(bool sign);
     void setEncrypt(bool encrypt);
     void setDetachedSignature(bool detached);
+    void setEncryptSymmetric(bool symmetric);
 
     void setOverwritePolicy(const boost::shared_ptr<OverwritePolicy> &policy);
     GpgME::Protocol protocol() const Q_DECL_OVERRIDE;

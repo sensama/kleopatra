@@ -301,7 +301,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
     qCDebug(KLEOPATRA_LOG) << qPrintable(key) << " -> " << qPrintable(keyColon);
 
     //               ( 1)    (                         2                           )    (  3  )( 4)
-    QRegExp rx(QStringLiteral("\\s*(!?)\\s*([a-fA-F0-9]{40}|(?:[a-fA-F0-9]{2}:){19}[a-fA-F0-9]{2})\\s*([SsPp*])(.*)"));
+    QRegExp rx(QLatin1String("\\s*(!?)\\s*([a-fA-F0-9]{40}|(?:[a-fA-F0-9]{2}:){19}[a-fA-F0-9]{2})\\s*([SsPp*])(.*)"));
     bool found = false;
 
     Q_FOREACH (const QByteArray &rawLine, trustListFileContents) {

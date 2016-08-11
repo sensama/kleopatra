@@ -312,6 +312,10 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     , mEncryptionUserMutable(false)
     , mEncryptionPreset(false)
 {
+#ifdef Q_OS_WIN
+    // Enforce modern style to avoid vista style uglyness.
+    setWizardStyle(QWizard::ModernStyle);
+#endif
     mSigEncPage = new SigEncPage(this);
     mResultPage = new ResultPage(this);
 

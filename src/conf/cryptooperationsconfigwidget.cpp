@@ -84,8 +84,8 @@ void CryptoOperationsConfigWidget::setupGui()
     QGroupBox *fileGrp = new QGroupBox(i18n("File Operations"));
     QVBoxLayout *fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n("Create OpenPGP encrypted files with \".pgp\" file extensions instead of \".gpg\""));
-    mASCIIArmorCB = new QCheckBox(i18n("Create signed and or encrypted files as text files."));
-    mASCIIArmorCB->setToolTip(i18nc("@info", "Set this option to encode encrypted and or signed files as base64 encoded text. "
+    mASCIIArmorCB = new QCheckBox(i18n("Create signed or encrypted files as text files."));
+    mASCIIArmorCB->setToolTip(i18nc("@info", "Set this option to encode encrypted or signed files as base64 encoded text. "
                                              "So that they can be opened with an editor or sent in a mail body. "
                                              "This will increase file size by one third."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));

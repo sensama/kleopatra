@@ -125,7 +125,6 @@ void CertificateLineEdit::updateKey()
     const auto mailText = text();
     auto newKey = Key();
     if (mailText.isEmpty()) {
-        Q_EMIT wantsRemoval(this);
         mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
         mLineAction->setToolTip(i18n("Please select a certificate."));
     } else {
@@ -155,6 +154,10 @@ void CertificateLineEdit::updateKey()
     }
 
     Q_EMIT keyChanged();
+
+    if (mailText.isEmpty()) {
+        Q_EMIT wantsRemoval(this);
+    }
 }
 
 Key CertificateLineEdit::key() const

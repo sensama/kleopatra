@@ -100,6 +100,7 @@ private:
     QString mOp;
     AbstractKeyListModel *mModel;
     QCheckBox *mSymmetric;
+    int mRecpRowCount;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

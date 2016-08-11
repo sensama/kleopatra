@@ -92,7 +92,8 @@ public:
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     : QWidget(parent),
-      mModel(AbstractKeyListModel::createFlatKeyListModel(this))
+      mModel(AbstractKeyListModel::createFlatKeyListModel(this)),
+      mRecpRowCount(2)
 {
     QVBoxLayout *lay = new QVBoxLayout;
     lay->setMargin(0);
@@ -199,12 +200,12 @@ void SignEncryptWidget::addRecipient(const Key &key)
                                                            new EncryptCertificateFilter());
     mRecpWidgets << certSel;
 
-    if (!mRecpLayout->itemAtPosition(mRecpLayout->rowCount() - 1, 1)) {
+    if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
         // First widget. Should align with the row above that
         // contians the encrypt for others checkbox.
-        mRecpLayout->addWidget(certSel, mRecpLayout->rowCount() - 1, 1);
+        mRecpLayout->addWidget(certSel, mRecpRowCount - 1, 1);
     } else {
-        mRecpLayout->addWidget(certSel, mRecpLayout->rowCount(), 1);
+        mRecpLayout->addWidget(certSel, mRecpRowCount++, 1);
     }
 
     connect(certSel, &CertificateLineEdit::keyChanged,
@@ -310,8 +311,23 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
             emptyEdits++;
         }
         if (emptyEdits > 1) {
+            int row, col, rspan, cspan;
+            mRecpLayout->getItemPosition(mRecpLayout->indexOf(w), &row, &col, &rspan, &cspan);
             mRecpLayout->removeWidget(w);
             mRecpWidgets.removeAll(w);
+            // The row count of the grid layout does not reflect the actual
+            // items so we keep our internal count.
+            mRecpRowCount--;
+            for (int i = row + 1; i <= mRecpRowCount; i++) {
+                // move widgets one up
+                auto item = mRecpLayout->itemAtPosition(i, 1);
+                if (!item) {
+                    break;
+                }
+                mRecpLayout->removeItem(item);
+                mRecpLayout->addItem(item, i - 1, 1);
+            }
+            w->deleteLater();
             return;
         }
     }

@@ -38,6 +38,8 @@
 #include "newresultpage.h"
 
 #include <KLocalizedString>
+#include <KSharedConfig>
+#include <KConfigGroup>
 
 #include <KMessageBox>
 
@@ -320,6 +322,13 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     setOptions(QWizard::IndependentPages |
                QWizard::NoBackButtonOnLastPage |
                QWizard::NoBackButtonOnStartPage);
+
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
+    if (!geom.isEmpty()) {
+        restoreGeometry(geom);
+        return;
+    }
 }
 
 void SignEncryptFilesWizard::slotCurrentIdChanged(int id)
@@ -332,6 +341,9 @@ void SignEncryptFilesWizard::slotCurrentIdChanged(int id)
 SignEncryptFilesWizard::~SignEncryptFilesWizard()
 {
     qCDebug(KLEOPATRA_LOG);
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+    cfgGroup.writeEntry("geometry", saveGeometry());
+    cfgGroup.sync();
 }
 
 void SignEncryptFilesWizard::setSigningPreset(bool preset)

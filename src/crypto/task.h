@@ -73,8 +73,8 @@ public:
     virtual QString tag() const;
 
     QString progressLabel() const;
-    unsigned long long processedSize() const;
-    unsigned long long totalSize() const;
+    int currentProgress() const;
+    int totalProgress() const;
 
     int id() const;
 

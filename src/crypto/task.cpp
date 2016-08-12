@@ -32,6 +32,8 @@
 
 #include <config-kleopatra.h>
 
+#include "kleopatra_debug.h"
+
 #include "task.h"
 #include "task_p.h"
 
@@ -104,7 +106,8 @@ public:
 
 private:
     QString m_progressLabel;
-    double m_processedPercent;
+    int m_progress;
+    int m_totalProgress;
     bool m_asciiArmor;
     int m_id;
 };
@@ -115,7 +118,7 @@ static int nextTaskId = 0;
 }
 
 Task::Private::Private(Task *qq)
-    : q(qq), m_progressLabel(), m_processedPercent(0.0), m_asciiArmor(false), m_id(nextTaskId++)
+    : q(qq), m_progressLabel(), m_progress(0), m_totalProgress(0), m_asciiArmor(false), m_id(nextTaskId++)
 {
 
 }
@@ -150,14 +153,14 @@ int Task::id() const
     return d->m_id;
 }
 
-unsigned long long Task::processedSize() const
+int Task::currentProgress() const
 {
-    return qRound(d->m_processedPercent * totalSize());
+    return d->m_progress;
 }
 
-unsigned long long Task::totalSize() const
+int Task::totalProgress() const
 {
-    return inputSize();
+    return d->m_totalProgress;
 }
 
 QString Task::tag() const
@@ -172,10 +175,10 @@ QString Task::progressLabel() const
 
 void Task::setProgress(const QString &label, int processed, int total)
 {
-    const double percent = total > 0 ? static_cast<double>(processed) / total : 0.0;
-    d->m_processedPercent = percent;
+    d->m_progress = processed;
+    d->m_totalProgress = total;
     d->m_progressLabel = label;
-    Q_EMIT progress(label, processedSize(), totalSize());
+    Q_EMIT progress(label, processed, total);
 }
 
 void Task::start()
@@ -201,8 +204,8 @@ void Task::emitError(int errCode, const QString &details)
 
 void Task::emitResult(const shared_ptr<const Task::Result> &r)
 {
-    d->m_processedPercent = 1.0;
-    Q_EMIT progress(progressLabel(), processedSize(), totalSize());
+    d->m_progress = d->m_totalProgress;
+    Q_EMIT progress(progressLabel(), currentProgress(), totalProgress());
     Q_EMIT result(r);
 }
 

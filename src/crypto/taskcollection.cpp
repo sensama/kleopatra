@@ -32,9 +32,12 @@
 
 #include <config-kleopatra.h>
 
+#include "kleopatra_debug.h"
+
 #include "taskcollection.h"
 
-#include <crypto/task.h>
+#include "crypto/task.h"
+#include "utils/gnupg-helper.h"
 
 #include <boost/bind.hpp>
 
@@ -60,15 +63,15 @@ public:
     void calculateAndEmitProgress();
 
     std::map<int, shared_ptr<Task> > m_tasks;
-    mutable int m_totalSize;
-    mutable int m_processedSize;
+    mutable quint64 m_totalProgress;
+    mutable quint64 m_progress;
     unsigned int m_nCompleted;
     QString m_lastProgressMessage;
     bool m_errorOccurred;
     bool m_doneEmitted;
 };
 
-TaskCollection::Private::Private(TaskCollection *qq) : q(qq), m_totalSize(0), m_processedSize(0), m_nCompleted(0), m_errorOccurred(false), m_doneEmitted(false)
+TaskCollection::Private::Private(TaskCollection *qq) : q(qq), m_totalProgress(0), m_progress(0), m_nCompleted(0), m_errorOccurred(false), m_doneEmitted(false)
 {
 }
 
@@ -121,34 +124,51 @@ void TaskCollection::Private::calculateAndEmitProgress()
 {
     typedef std::map<int, shared_ptr<Task> >::const_iterator ConstIterator;
 
-    int total = 0;
-    int processed = 0;
-    uint knownSize = m_tasks.size();
+    quint64 total = 0;
+    quint64 processed = 0;
 
-    for (ConstIterator it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
-        const shared_ptr<Task> &i = it->second;
-        assert(i);
-        if (i->totalSize() == 0) {
-            --knownSize;
+    static bool haveWorkingProgress = hasFeature(0, GpgME::ProgressForCallbacks) && engineIsVersion(2, 1, 15);
+    if (!haveWorkingProgress) {
+        // GnuPG before 2.1.15 would overflow on progress values > max int.
+        // and did not emit a total for our Qt data types.
+        // As we can't know if it overflowed or what the total is we just knight
+        // rider in that case
+        if (m_doneEmitted) {
+            Q_EMIT q->progress(m_lastProgressMessage, 1, 1);
+        } else {
+            Q_EMIT q->progress(m_lastProgressMessage, 0, 0);
         }
-        processed += i->processedSize();
-        total += i->totalSize();
-    }
-    // use the average of the known sizes to estimate the unknown ones:
-    if (knownSize > 0) {
-        total += static_cast<int>(std::ceil((m_tasks.size() - knownSize) * (static_cast<double>(total) / knownSize)));
-    }
-    if (m_totalSize == total && m_processedSize == processed) {
         return;
     }
-    m_totalSize = total;
-    m_processedSize = processed;
-    if (processed) {
-        Q_EMIT q->progress(m_lastProgressMessage, processed, total);
-    } else
-        // use knight-rider mode until we have some progress
-    {
-        Q_EMIT q->progress(m_lastProgressMessage, processed, 0);
+
+    bool unknowable = false;
+    for (ConstIterator it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
+        // Sum up progress and totals
+        const shared_ptr<Task> &i = it->second;
+        assert(i);
+        if (!i->totalProgress()) {
+            // There still might be jobs for which we don't know the progress.
+            qCDebug(KLEOPATRA_LOG) << "Task: " << i->label() << " has no total progress set. ";
+            unknowable = true;
+            break;
+        }
+        processed += i->currentProgress();
+        total += i->totalProgress();
+    }
+
+    m_totalProgress = total;
+    m_progress = processed;
+    if (!unknowable && processed && total >= processed) {
+        // Scale down to a promille value to avoid range issues.
+        int scaled = 1000 * (m_progress / static_cast<double>(m_totalProgress));
+        qCDebug(KLEOPATRA_LOG) << "Collection Progress: " << scaled << " total: " << 1000;
+        Q_EMIT q->progress(m_lastProgressMessage, scaled, 1000);
+    } else {
+        if (total < processed) {
+            qCDebug(KLEOPATRA_LOG) << "Total progress is smaller then current progress.";
+        }
+        // Knight rider.
+        Q_EMIT q->progress(m_lastProgressMessage, 0, 0);
     }
 }
 

@@ -110,23 +110,10 @@ NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex
 void NewResultPage::Private::progress(const QString &msg, int progress, int total)
 {
     Q_UNUSED(msg);
-    // FIXME as of 07 2016 GpgME / GnuPG's progress is broken.
-    // Older versions overflow for files larger 2^31 bytes
-    // GnuPG 2.1.14 does not overflow but scales down the progress
-    // after more then 1024*1024 bytes are processed. Which is nearly
-    // unhandable. Total is always zero unless the job is completed
-    // for QGpgME as it internally uses memory based dataproviders
-    // and without the patch in https://bugs.gnupg.org/gnupg/issue2368
-    // has no way to handle this.
-    //
-    // See BKO #365931
-    if (progress && progress == total) {
-        m_progressBar->setRange(0, 1);
-        m_progressBar->setValue(1);
-    } else {
-        m_progressBar->setRange(0, 0);
-        m_progressBar->setValue(0);
-    }
+    Q_ASSERT(progress >= 0);
+    Q_ASSERT(total >= 0);
+    m_progressBar->setRange(0, total);
+    m_progressBar->setValue(progress);
 }
 
 void NewResultPage::Private::keepOpenWhenDone(bool)

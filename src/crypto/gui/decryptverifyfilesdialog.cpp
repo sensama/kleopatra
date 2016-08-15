@@ -60,7 +60,7 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskCollection> &coll, QWidget *parent)
-    : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox)
+    : QDialog(parent), m_tasks(coll), m_saveButton(QDialogButtonBox::NoButton), m_buttonBox(new QDialogButtonBox)
 {
     readConfig();
     auto vLay = new QVBoxLayout(this);
@@ -105,19 +105,20 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskC
     }
     if (hasOutputs) {
         setWindowTitle(i18n("Decrypt/Verify Files"));
-        m_okButton = QDialogButtonBox::SaveAll;
+        m_saveButton = QDialogButtonBox::SaveAll;
         m_buttonBox->addButton(QDialogButtonBox::Discard);
         connect(m_buttonBox, &QDialogButtonBox::accepted, this, &DecryptVerifyFilesDialog::checkAccept);
     } else {
         outLabel->setVisible(false);
         m_outputLocationFNR->setVisible(false);
         setWindowTitle(i18n("Verify Files"));
-        m_okButton = QDialogButtonBox::Ok;
         m_buttonBox->addButton(QDialogButtonBox::Close);
-        connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accepted);
+        connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     }
-    m_buttonBox->addButton(m_okButton);
-    m_buttonBox->button(m_okButton)->setEnabled(false);
+    if (m_saveButton) {
+        m_buttonBox->addButton(m_saveButton);
+        m_buttonBox->button(m_saveButton)->setEnabled(false);
+    }
 }
 
 DecryptVerifyFilesDialog::~DecryptVerifyFilesDialog()
@@ -140,7 +141,12 @@ void DecryptVerifyFilesDialog::allDone()
             m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
         }
     }
-    m_buttonBox->button(m_okButton)->setEnabled(true);
+    if (m_saveButton != QDialogButtonBox::NoButton) {
+        m_buttonBox->button(m_saveButton)->setEnabled(true);
+    } else {
+        m_buttonBox->removeButton(m_buttonBox->button(QDialogButtonBox::Close));
+        m_buttonBox->addButton(QDialogButtonBox::Ok);
+    }
 }
 
 void DecryptVerifyFilesDialog::started(const boost::shared_ptr<Task> &task)

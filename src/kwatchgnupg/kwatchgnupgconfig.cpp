@@ -75,18 +75,13 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18n("Configure KWatchGnuPG"));
-    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+
+    mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KWatchGnuPGConfig::reject);
-    okButton->setDefault(true);
-
-    // tmp vars:
-    QGridLayout *glay;
-    QGroupBox *group;
 
     QWidget *top = new QWidget;
     mainLayout->addWidget(top);
@@ -95,10 +90,10 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     QVBoxLayout *vlay = new QVBoxLayout(top);
     vlay->setMargin(0);
 
-    group = new QGroupBox(i18n("WatchGnuPG"), top);
+    QGroupBox *group = new QGroupBox(i18n("WatchGnuPG"), top);
     vlay->addWidget(group);
 
-    glay = new QGridLayout(group);
+    QGridLayout *glay = new QGridLayout(group);
     glay->setColumnStretch(1, 1);
 
     int row = -1;

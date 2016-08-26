@@ -106,17 +106,22 @@ public:
         : q(qq),
           ignoreNewInstance(true)
     {
+    }
+    ~Private() {
+        delete sysTray;
+    }
+    void init()
+    {
         KDAB_SET_OBJECT_NAME(readerStatus);
 #ifndef QT_NO_SYSTEMTRAYICON
-        KDAB_SET_OBJECT_NAME(sysTray);
-
-        sysTray.setAnyCardHasNullPin(readerStatus.anyCardHasNullPin());
-        sysTray.setAnyCardCanLearnKeys(readerStatus.anyCardCanLearnKeys());
+        sysTray = new SysTrayIcon();
+        sysTray->setAnyCardHasNullPin(readerStatus.anyCardHasNullPin());
+        sysTray->setAnyCardCanLearnKeys(readerStatus.anyCardCanLearnKeys());
 
         connect(&readerStatus, &SmartCard::ReaderStatus::anyCardHasNullPinChanged,
-                &sysTray, &SysTrayIcon::setAnyCardHasNullPin);
+                sysTray, &SysTrayIcon::setAnyCardHasNullPin);
         connect(&readerStatus, &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged,
-                &sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
+                sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
 #endif
     }
 
@@ -140,7 +145,7 @@ public:
     QPointer<MainWindow> mainWindow;
     SmartCard::ReaderStatus readerStatus;
 #ifndef QT_NO_SYSTEMTRAYICON
-    SysTrayIcon sysTray;
+    SysTrayIcon *sysTray;
 #endif
     shared_ptr<KeyCache> keyCache;
     shared_ptr<Log> log;
@@ -197,11 +202,16 @@ public:
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     : QApplication(argc, argv), d(new Private(this))
 {
+}
+
+void KleopatraApplication::init()
+{
+    d->init();
     add_resources();
     d->setupKeyCache();
     d->setupLogging();
 #ifndef QT_NO_SYSTEMTRAYICON
-    d->sysTray.show();
+    d->sysTray->show();
 #endif
     setQuitOnLastWindowClosed(false);
     KWindowSystem::allowExternalProcessWindowActivation();
@@ -386,12 +396,12 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 #ifndef QT_NO_SYSTEMTRAYICON
 const SysTrayIcon *KleopatraApplication::sysTrayIcon() const
 {
-    return &d->sysTray;
+    return d->sysTray;
 }
 
 SysTrayIcon *KleopatraApplication::sysTrayIcon()
 {
-    return &d->sysTray;
+    return d->sysTray;
 }
 #endif
 
@@ -415,7 +425,7 @@ void KleopatraApplication::setMainWindow(MainWindow *mainWindow)
 
     d->mainWindow = mainWindow;
 #ifndef QT_NO_SYSTEMTRAYICON
-    d->sysTray.setMainWindow(mainWindow);
+    d->sysTray->setMainWindow(mainWindow);
 #endif
 
     d->connectConfigureDialog();

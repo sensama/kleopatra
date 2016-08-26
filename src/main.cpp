@@ -139,6 +139,12 @@ int main(int argc, char **argv)
     &service, [&service](int i) {
         service.setExitValue(i);
     });
+    // Delay init after KUniqueservice call as this might already
+    // have terminated us and so we can avoid overhead (e.g. keycache
+    // setup / systray icon).
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Service created";
+    app.init();
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application initialized";
 
     AboutData aboutData;
 

@@ -47,8 +47,18 @@ class KleopatraApplication : public QApplication
 {
     Q_OBJECT
 public:
+    /** Create a new Application obejct. You have to
+     * make sure to call init afterwards to get a valid object.
+     * This is to delay initialisation after the UniqueService
+     * call is done and our init / call might be forwarded to
+     * another instance. */
     KleopatraApplication(int &argc, char *argv[]);
     ~KleopatraApplication();
+
+    /** Initialize the application. Without calling init any
+     * other call to KleopatraApplication will result in undefined behavior
+     * and likely crash. */
+    void init();
 
     static KleopatraApplication *instance()
     {

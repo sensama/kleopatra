@@ -71,7 +71,6 @@ public:
     void result(const shared_ptr<const Task::Result> &result);
     void started(const shared_ptr<Task> &result);
     void allDone();
-    void keepOpenWhenDone(bool keep);
     QLabel *labelForTag(const QString &tag);
 
     std::vector< shared_ptr<TaskCollection> > m_collections;
@@ -81,7 +80,6 @@ public:
     QVBoxLayout *m_progressLabelLayout;
     int m_lastErrorItemIndex;
     ResultListWidget *m_resultList;
-    QCheckBox *m_keepOpenCB;
 };
 
 NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex(0)
@@ -98,11 +96,6 @@ NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex
     m_resultList = new ResultListWidget;
     connect(m_resultList, &ResultListWidget::linkActivated, q, &NewResultPage::linkActivated);
     layout->addWidget(m_resultList, 1);
-    m_keepOpenCB = new QCheckBox;
-    m_keepOpenCB->setText(i18n("Keep open after operation completed"));
-    m_keepOpenCB->setChecked(true);
-    connect(m_keepOpenCB, &QAbstractButton::toggled, q, &NewResultPage::keepOpenWhenDone);
-    layout->addWidget(m_keepOpenCB);
 
     connect(&m_hideProgressTimer, &QTimer::timeout, m_progressBar, &QProgressBar::hide);
 }
@@ -116,10 +109,6 @@ void NewResultPage::Private::progress(const QString &msg, int progress, int tota
     m_progressBar->setValue(progress);
 }
 
-void NewResultPage::Private::keepOpenWhenDone(bool)
-{
-}
-
 void NewResultPage::Private::allDone()
 {
     assert(!m_collections.empty());
@@ -128,8 +117,6 @@ void NewResultPage::Private::allDone()
     }
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
-    const bool errorOccurred =
-        kdtools::any(m_collections, mem_fn(&TaskCollection::errorOccurred));
     m_collections.clear();
     Q_FOREACH (const QString &i, m_progressLabelByTag.keys()) {
         if (!i.isEmpty()) {
@@ -142,11 +129,6 @@ void NewResultPage::Private::allDone()
         cancel->setEnabled(false);
     }
     Q_EMIT q->completeChanged();
-    if (!m_keepOpenCB->isChecked() && !errorOccurred)
-        if (QWizard *wiz = q->wizard())
-            if (QAbstractButton *btn = wiz->button(QWizard::FinishButton)) {
-                QTimer::singleShot(500, btn, SLOT(animateClick()));
-            }
     m_hideProgressTimer.start();
 }
 
@@ -174,24 +156,6 @@ NewResultPage::NewResultPage(QWidget *parent) : QWizardPage(parent), d(new Priva
 
 NewResultPage::~NewResultPage()
 {
-}
-
-bool NewResultPage::keepOpenWhenDone() const
-{
-    return d->m_keepOpenCB->isChecked();
-}
-
-void NewResultPage::setKeepOpenWhenDone(bool keep)
-{
-    d->m_keepOpenCB->setChecked(keep);
-}
-
-void NewResultPage::setKeepOpenWhenDoneShown(bool on)
-{
-    d->m_keepOpenCB->setVisible(on);
-    if (!on) {
-        d->m_keepOpenCB->setChecked(true);
-    }
 }
 
 void NewResultPage::setTaskCollection(const shared_ptr<TaskCollection> &coll)

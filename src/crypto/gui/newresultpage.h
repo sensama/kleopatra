@@ -70,11 +70,6 @@ public:
 
     bool isComplete() const Q_DECL_OVERRIDE;
 
-    bool keepOpenWhenDone() const;
-    void setKeepOpenWhenDone(bool keep);
-
-    void setKeepOpenWhenDoneShown(bool on);
-
 Q_SIGNALS:
     void linkActivated(const QString &link);
 
@@ -84,7 +79,6 @@ private:
     Q_PRIVATE_SLOT(d, void progress(QString, int, int))
     Q_PRIVATE_SLOT(d, void result(boost::shared_ptr<const Kleo::Crypto::Task::Result>))
     Q_PRIVATE_SLOT(d, void started(boost::shared_ptr<Kleo::Crypto::Task>))
-    Q_PRIVATE_SLOT(d, void keepOpenWhenDone(bool))
     Q_PRIVATE_SLOT(d, void allDone())
 };
 

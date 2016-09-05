@@ -229,6 +229,8 @@ bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
 
 const QString& Kleo::paperKeyInstallPath()
 {
-    static const QString pkPath = QStandardPaths::findExecutable("paperkey");
+    static const QString pkPath = QStandardPaths::findExecutable("paperkey", QStringList() << QCoreApplication::applicationDirPath()).isEmpty() ?
+                                  QStandardPaths::findExecutable("paperkey") :
+                                  QStandardPaths::findExecutable("paperkey", QStringList() << QCoreApplication::applicationDirPath());
     return pkPath;
 }

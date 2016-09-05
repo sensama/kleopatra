@@ -50,7 +50,6 @@
 
 #include "fileoperationspreferences.h"
 
-#include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
 #include <Libkleo/Classify>
 
@@ -71,23 +70,6 @@ using namespace Kleo::Crypto;
 using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
-
-namespace
-{
-
-struct is_dir : std::unary_function<QString, bool> {
-    bool operator()(const QString &file) const
-    {
-        return QFileInfo(file).isDir();
-    }
-};
-
-}
-
-static bool contains_dir(const QStringList &files)
-{
-    return kdtools::any(files, is_dir());
-}
 
 class SignEncryptFilesController::Private
 {
@@ -305,17 +287,19 @@ static boost::shared_ptr<ArchiveDefinition> getDefaultAd()
     return ad;
 }
 
-static QMap <int, QString> buildOutputNames(const QStringList &files)
+static QMap <int, QString> buildOutputNames(const QStringList &files, const bool archive)
 {
     QMap <int, QString> nameMap;
 
     // Build the default names for the wizard.
     QString baseNameCms;
     QString baseNamePgp;
-    if (files.size() > 1) {
+    const QFileInfo firstFile(files.first());
+    if (archive) {
         QString baseName;
-        baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(
-                i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive"));
+        baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(files.size() > 1 ?
+                i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive") :
+                firstFile.baseName());
 
         const auto ad = getDefaultAd();
         baseNamePgp = baseName + QStringLiteral(".") + ad->extensions(GpgME::OpenPGP).first() + QStringLiteral(".");
@@ -338,11 +322,13 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
 {
     kleo_assert(!files.empty());
     d->files = files;
-    if (contains_dir(files) || files.size() > 1) {
+    bool archive = false;
+    if (files.size() > 1 || QFileInfo(files.first()).isDir()) {
         setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
+        archive = true;
     }
     d->ensureWizardCreated();
-    d->wizard->setOutputNames(buildOutputNames(files));
+    d->wizard->setOutputNames(buildOutputNames(files, archive));
 }
 
 void SignEncryptFilesController::Private::slotWizardCanceled()
@@ -515,7 +501,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = files.size() > 1;
+        const bool archive = (operation & ArchiveMask) == ArchiveForced;
 
         const QVector<Key> recipients = wizard->resolvedRecipients();
         const QVector<Key> signers = wizard->resolvedSigners();

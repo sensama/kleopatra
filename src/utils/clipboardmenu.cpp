@@ -20,8 +20,6 @@
 #include "kdtoolsglobal.h"
 #include "mainwindow.h"
 
-#include <utils/kdsignalblocker.h>
-
 #include <commands/importcertificatefromclipboardcommand.h>
 #include <commands/encryptclipboardcommand.h>
 #include <commands/signclipboardcommand.h>
@@ -33,6 +31,7 @@
 #include <QAction>
 #include <QApplication>
 #include <QClipboard>
+#include <QSignalBlocker>
 
 using namespace Kleo;
 
@@ -119,7 +118,7 @@ void ClipboardMenu::slotDecryptVerifyClipboard()
 
 void ClipboardMenu::slotEnableDisableActions()
 {
-    const KDSignalBlocker blocker(QApplication::clipboard());
+    const QSignalBlocker blocker(QApplication::clipboard());
     mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
     mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
     mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());

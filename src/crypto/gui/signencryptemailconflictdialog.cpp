@@ -42,7 +42,6 @@
 
 #include <utils/gui-helper.h>
 #include <utils/kleo_assert.h>
-#include <utils/kdsignalblocker.h>
 
 #include <Libkleo/Stl_Util>
 
@@ -63,6 +62,7 @@
 #include <QRadioButton>
 #include <QPushButton>
 #include <QPointer>
+#include <QSignalBlocker>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
@@ -451,8 +451,8 @@ void SignEncryptEMailConflictDialog::setPresetProtocol(Protocol p)
     if (p == d->presetProtocol) {
         return;
     }
-    const KDSignalBlocker pgpBlocker(d->ui.pgpRB);
-    const KDSignalBlocker cmsBlocker(d->ui.cmsRB);
+    const QSignalBlocker pgpBlocker(d->ui.pgpRB);
+    const QSignalBlocker cmsBlocker(d->ui.cmsRB);
     really_check(d->ui.pgpRB, p == OpenPGP);
     really_check(d->ui.cmsRB, p == CMS);
     d->presetProtocol = p;

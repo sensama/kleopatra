@@ -35,7 +35,6 @@
 #include "readerstatus.h"
 
 #include <utils/gnupg-helper.h>
-#include <utils/kdsignalblocker.h>
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/Stl_Util>

@@ -41,7 +41,6 @@
 
 #include <smartcard/readerstatus.h>
 
-#include <utils/kdsignalblocker.h>
 #include <utils/clipboardmenu.h>
 
 #include <commands/importcertificatefromclipboardcommand.h>
@@ -63,6 +62,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QPointer>
+#include <QSignalBlocker>
 
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
@@ -101,7 +101,7 @@ private:
     {
         //work around a Qt bug (seen with Qt 4.4.0, Windows): QClipBoard->mimeData() triggers QClipboard::changed(),
         //triggering slotEnableDisableActions again
-        const KDSignalBlocker blocker(QApplication::clipboard());
+        const QSignalBlocker blocker(QApplication::clipboard());
         openCertificateManagerAction.setEnabled(!q->mainWindow() || !q->mainWindow()->isVisible());
         setInitialPinAction.setEnabled(anyCardHasNullPin);
         learnCertificatesAction.setEnabled(anyCardCanLearnKeys);

@@ -223,7 +223,7 @@ else()
   set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
 endif()
 
-ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME log_kleopatra)
+ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
 
 if(KLEO_MODEL_TEST)
   add_definitions(-DKLEO_MODEL_TEST)

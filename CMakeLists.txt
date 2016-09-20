@@ -133,7 +133,7 @@ if(BUILD_TESTING)
     add_subdirectory(tests)
     add_subdirectory(autotests)
 endif()
-install( FILES kleopatra.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
+install( FILES kleopatra.renamecategories kleopatra.categories DESTINATION ${KDE_INSTALL_CONFDIR} )
 
 if(KF5DocTools_FOUND)
     add_subdirectory(doc)

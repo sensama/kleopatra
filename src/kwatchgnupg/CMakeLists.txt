@@ -15,7 +15,7 @@ set(kwatchgnupg_SRCS
   main.cpp
 )
 
-ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME log_kwatchgnupg)
+ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME org.kde.pim.kwatchgnupg)
 qt5_add_resources(kwatchgnupg_SRCS kwatchgnupg.qrc)
 
 if(WIN32)

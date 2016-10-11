@@ -57,13 +57,9 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 
@@ -84,12 +80,12 @@ private:
     void cancelAllTasks();
 
     void schedule();
-    shared_ptr<EncryptEMailTask> takeRunnable(GpgME::Protocol proto);
+    std::shared_ptr<EncryptEMailTask> takeRunnable(GpgME::Protocol proto);
 
 private:
     const Mode mode;
-    std::vector< shared_ptr<EncryptEMailTask> > runnable, completed;
-    shared_ptr<EncryptEMailTask> cms, openpgp;
+    std::vector< std::shared_ptr<EncryptEMailTask> > runnable, completed;
+    std::shared_ptr<EncryptEMailTask> cms, openpgp;
     mutable QPointer<EncryptEMailWizard> wizard;
 };
 
@@ -104,7 +100,7 @@ EncryptEMailController::Private::Private(Mode m, EncryptEMailController *qq)
 
 }
 
-EncryptEMailController::EncryptEMailController(const shared_ptr<ExecutionContext> &xc, Mode mode, QObject *p)
+EncryptEMailController::EncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *p)
     : Controller(xc, p), d(new Private(mode, this))
 {
 
@@ -179,18 +175,18 @@ void EncryptEMailController::Private::slotWizardCanceled()
     q->emitDoneOrError();
 }
 
-void EncryptEMailController::setInputAndOutput(const shared_ptr<Input> &input, const shared_ptr<Output> &output)
+void EncryptEMailController::setInputAndOutput(const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output)
 {
-    setInputsAndOutputs(std::vector< shared_ptr<Input> >(1, input), std::vector< shared_ptr<Output> >(1, output));
+    setInputsAndOutputs(std::vector< std::shared_ptr<Input> >(1, input), std::vector< std::shared_ptr<Output> >(1, output));
 }
 
-void EncryptEMailController::setInputsAndOutputs(const std::vector< shared_ptr<Input> > &inputs, const std::vector< shared_ptr<Output> > &outputs)
+void EncryptEMailController::setInputsAndOutputs(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
 {
 
     kleo_assert(!inputs.empty());
     kleo_assert(outputs.size() == inputs.size());
 
-    std::vector< shared_ptr<EncryptEMailTask> > tasks;
+    std::vector< std::shared_ptr<EncryptEMailTask> > tasks;
     tasks.reserve(inputs.size());
 
     d->ensureWizardCreated();
@@ -200,7 +196,7 @@ void EncryptEMailController::setInputsAndOutputs(const std::vector< shared_ptr<I
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
 
-        const shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
+        const std::shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
         task->setInput(inputs[i]);
         task->setOutput(outputs[i]);
         if (d->mode == ClipboardMode) {
@@ -216,13 +212,13 @@ void EncryptEMailController::setInputsAndOutputs(const std::vector< shared_ptr<I
 
 void EncryptEMailController::start()
 {
-    shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<shared_ptr<Task> > tmp;
+    std::shared_ptr<TaskCollection> coll(new TaskCollection);
+    std::vector<std::shared_ptr<Task> > tmp;
     std::copy(d->runnable.begin(), d->runnable.end(), std::back_inserter(tmp));
     coll->setTasks(tmp);
     d->ensureWizardCreated();
     d->wizard->setTaskCollection(coll);
-    Q_FOREACH (const shared_ptr<Task> &t, tmp) {
+    Q_FOREACH (const std::shared_ptr<Task> &t, tmp) {
         connectTask(t);
     }
     d->schedule();
@@ -232,13 +228,13 @@ void EncryptEMailController::Private::schedule()
 {
 
     if (!cms)
-        if (const shared_ptr<EncryptEMailTask> t = takeRunnable(CMS)) {
+        if (const std::shared_ptr<EncryptEMailTask> t = takeRunnable(CMS)) {
             t->start();
             cms = t;
         }
 
     if (!openpgp)
-        if (const shared_ptr<EncryptEMailTask> t = takeRunnable(OpenPGP)) {
+        if (const std::shared_ptr<EncryptEMailTask> t = takeRunnable(OpenPGP)) {
             t->start();
             openpgp = t;
         }
@@ -250,21 +246,22 @@ void EncryptEMailController::Private::schedule()
     q->emitDoneOrError();
 }
 
-shared_ptr<EncryptEMailTask> EncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
+std::shared_ptr<EncryptEMailTask> EncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< shared_ptr<EncryptEMailTask> >::iterator it
-        = std::find_if(runnable.begin(), runnable.end(),
-                       boost::bind(&Task::protocol, _1) == proto);
+    const auto it = std::find_if(runnable.begin(), runnable.end(),
+                       [proto](const std::shared_ptr<Kleo::Crypto::EncryptEMailTask> &task) {
+                           return task->protocol() == proto;
+                       });
     if (it == runnable.end()) {
-        return shared_ptr<EncryptEMailTask>();
+        return std::shared_ptr<EncryptEMailTask>();
     }
 
-    const shared_ptr<EncryptEMailTask> result = *it;
+    const std::shared_ptr<EncryptEMailTask> result = *it;
     runnable.erase(it);
     return result;
 }
 
-void EncryptEMailController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)
+void EncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_UNUSED(result);
     assert(task);

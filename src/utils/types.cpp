@@ -37,22 +37,18 @@
 #include <QWidget>
 #include <QVector>
 
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
 
 using namespace Kleo;
-using namespace boost;
 
 class ExecutionContextUser::Private
 {
     friend class ::Kleo::ExecutionContextUser;
     ExecutionContextUser *const q;
 public:
-    explicit Private(const shared_ptr<const ExecutionContext> &ctx, ExecutionContextUser *qq)
+    explicit Private(const std::shared_ptr<const ExecutionContext> &ctx, ExecutionContextUser *qq)
         : q(qq),
           executionContext(ctx),
           idApplied()
@@ -64,7 +60,7 @@ private:
     void applyWindowID(QWidget *w);
 
 private:
-    weak_ptr<const ExecutionContext> executionContext;
+    std::weak_ptr<const ExecutionContext> executionContext;
     QVector<QWidget *> idApplied;
 };
 
@@ -73,19 +69,19 @@ void ExecutionContextUser::applyWindowID(QWidget *wid)
     if (d->idApplied.contains(wid)) {
         return;
     }
-    if (const shared_ptr<const ExecutionContext> ctx = d->executionContext.lock()) {
+    if (const std::shared_ptr<const ExecutionContext> ctx = d->executionContext.lock()) {
         ctx->applyWindowID(wid);
         d->idApplied.append(wid);
     }
 }
 
 ExecutionContextUser::ExecutionContextUser()
-    : d(new Private(shared_ptr<const ExecutionContext>(), this))
+    : d(new Private(std::shared_ptr<const ExecutionContext>(), this))
 {
 
 }
 
-ExecutionContextUser::ExecutionContextUser(const shared_ptr<const ExecutionContext> &ctx)
+ExecutionContextUser::ExecutionContextUser(const std::shared_ptr<const ExecutionContext> &ctx)
     : d(new Private(ctx, this))
 {
 
@@ -93,13 +89,13 @@ ExecutionContextUser::ExecutionContextUser(const shared_ptr<const ExecutionConte
 
 ExecutionContextUser::~ExecutionContextUser() {}
 
-void ExecutionContextUser::setExecutionContext(const shared_ptr<const ExecutionContext> &ctx)
+void ExecutionContextUser::setExecutionContext(const std::shared_ptr<const ExecutionContext> &ctx)
 {
     d->executionContext = ctx;
     d->idApplied.clear();
 }
 
-shared_ptr<const ExecutionContext> ExecutionContextUser::executionContext() const
+std::shared_ptr<const ExecutionContext> ExecutionContextUser::executionContext() const
 {
     return d->executionContext.lock();
 }

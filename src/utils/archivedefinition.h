@@ -40,13 +40,9 @@
 #include <gpgme++/global.h> // GpgME::Protocol
 
 #include <vector>
+#include <memory>
 
 class QDir;
-
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
 
 namespace Kleo
 {
@@ -87,21 +83,21 @@ public:
         return m_extensions[p];
     }
 
-    boost::shared_ptr<Input> createInputFromPackCommand(GpgME::Protocol p, const QStringList &files) const;
+    std::shared_ptr<Input> createInputFromPackCommand(GpgME::Protocol p, const QStringList &files) const;
     ArgumentPassingMethod packCommandArgumentPassingMethod(GpgME::Protocol p) const
     {
         checkProtocol(p);
         return m_packCommandMethod[p];
     }
 
-    boost::shared_ptr<Output> createOutputFromUnpackCommand(GpgME::Protocol p, const QString &file, const QDir &wd) const;
+    std::shared_ptr<Output> createOutputFromUnpackCommand(GpgME::Protocol p, const QString &file, const QDir &wd) const;
     // unpack-command must use CommandLine ArgumentPassingMethod
 
     static QString installPath();
     static void setInstallPath(const QString &ip);
 
-    static std::vector< boost::shared_ptr<ArchiveDefinition> > getArchiveDefinitions();
-    static std::vector< boost::shared_ptr<ArchiveDefinition> > getArchiveDefinitions(QStringList &errors);
+    static std::vector< std::shared_ptr<ArchiveDefinition> > getArchiveDefinitions();
+    static std::vector< std::shared_ptr<ArchiveDefinition> > getArchiveDefinitions(QStringList &errors);
 
 protected:
     void setPackCommandArgumentPassingMethod(GpgME::Protocol p, ArgumentPassingMethod method)
@@ -132,7 +128,7 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(boost::shared_ptr<Kleo::ArchiveDefinition>)
+Q_DECLARE_METATYPE(std::shared_ptr<Kleo::ArchiveDefinition>)
 
 #endif /* __KLEOPATRA_UTILS_ARCHIVEDEFINITION_H__ */
 

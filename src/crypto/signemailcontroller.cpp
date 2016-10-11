@@ -56,12 +56,10 @@
 #include <QTimer>
 
 #include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 
@@ -83,12 +81,12 @@ private:
     void cancelAllJobs();       // ### extract to base
 
     void schedule();            // ### extract to base
-    shared_ptr<SignEMailTask> takeRunnable(GpgME::Protocol proto);   // ### extract to base
+    std::shared_ptr<SignEMailTask> takeRunnable(GpgME::Protocol proto);   // ### extract to base
 
 private:
     const Mode mode;
-    std::vector< shared_ptr<SignEMailTask> > runnable, completed; // ### extract to base
-    shared_ptr<SignEMailTask> cms, openpgp; // ### extract to base
+    std::vector< std::shared_ptr<SignEMailTask> > runnable, completed; // ### extract to base
+    std::shared_ptr<SignEMailTask> cms, openpgp; // ### extract to base
     QPointer<SignEMailWizard> wizard; // ### extract to base
     Protocol protocol;                  // ### extract to base
     bool detached : 1;
@@ -115,7 +113,7 @@ SignEMailController::SignEMailController(Mode mode, QObject *p)
 
 }
 
-SignEMailController::SignEMailController(const boost::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *p)
+SignEMailController::SignEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *p)
     : Controller(xc, p), d(new Private(mode, this))
 {
 
@@ -192,18 +190,18 @@ void SignEMailController::Private::slotWizardCanceled()
     q->emitDoneOrError();
 }
 
-void SignEMailController::setInputAndOutput(const shared_ptr<Input> &input, const shared_ptr<Output> &output)
+void SignEMailController::setInputAndOutput(const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output)
 {
-    setInputsAndOutputs(std::vector< shared_ptr<Input> >(1, input), std::vector< shared_ptr<Output> >(1, output));
+    setInputsAndOutputs(std::vector< std::shared_ptr<Input> >(1, input), std::vector< std::shared_ptr<Output> >(1, output));
 }
 
 // ### extract to base
-void SignEMailController::setInputsAndOutputs(const std::vector< shared_ptr<Input> > &inputs, const std::vector< shared_ptr<Output> > &outputs)
+void SignEMailController::setInputsAndOutputs(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
 {
     kleo_assert(!inputs.empty());
     kleo_assert(!outputs.empty());
 
-    std::vector< shared_ptr<SignEMailTask> > tasks;
+    std::vector< std::shared_ptr<SignEMailTask> > tasks;
     tasks.reserve(inputs.size());
 
     d->ensureWizardCreated();
@@ -213,7 +211,7 @@ void SignEMailController::setInputsAndOutputs(const std::vector< shared_ptr<Inpu
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
 
-        const shared_ptr<SignEMailTask> task(new SignEMailTask);
+        const std::shared_ptr<SignEMailTask> task(new SignEMailTask);
         task->setInput(inputs[i]);
         task->setOutput(outputs[i]);
         task->setSigners(keys);
@@ -235,13 +233,13 @@ void SignEMailController::setInputsAndOutputs(const std::vector< shared_ptr<Inpu
 // ### extract to base
 void SignEMailController::start()
 {
-    shared_ptr<TaskCollection> coll(new TaskCollection);
-    std::vector<shared_ptr<Task> > tmp;
+    std::shared_ptr<TaskCollection> coll(new TaskCollection);
+    std::vector<std::shared_ptr<Task> > tmp;
     std::copy(d->runnable.begin(), d->runnable.end(), std::back_inserter(tmp));
     coll->setTasks(tmp);
     d->ensureWizardCreated();
     d->wizard->setTaskCollection(coll);
-    Q_FOREACH (const shared_ptr<Task> &t, tmp) {
+    Q_FOREACH (const std::shared_ptr<Task> &t, tmp) {
         connectTask(t);
     }
 
@@ -253,13 +251,13 @@ void SignEMailController::Private::schedule()
 {
 
     if (!cms)
-        if (const shared_ptr<SignEMailTask> t = takeRunnable(CMS)) {
+        if (const std::shared_ptr<SignEMailTask> t = takeRunnable(CMS)) {
             t->start();
             cms = t;
         }
 
     if (!openpgp)
-        if (const shared_ptr<SignEMailTask> t = takeRunnable(OpenPGP)) {
+        if (const std::shared_ptr<SignEMailTask> t = takeRunnable(OpenPGP)) {
             t->start();
             openpgp = t;
         }
@@ -267,7 +265,7 @@ void SignEMailController::Private::schedule()
     if (!cms && !openpgp) {
         kleo_assert(runnable.empty());
         QPointer<QObject> Q = q;
-        Q_FOREACH (const shared_ptr<SignEMailTask> t, completed) {
+        Q_FOREACH (const std::shared_ptr<SignEMailTask> t, completed) {
             Q_EMIT q->reportMicAlg(t->micAlg());
             if (!Q) {
                 return;
@@ -278,22 +276,22 @@ void SignEMailController::Private::schedule()
 }
 
 // ### extract to base
-shared_ptr<SignEMailTask> SignEMailController::Private::takeRunnable(GpgME::Protocol proto)
+std::shared_ptr<SignEMailTask> SignEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< shared_ptr<SignEMailTask> >::iterator it
+    const std::vector< std::shared_ptr<SignEMailTask> >::iterator it
         = std::find_if(runnable.begin(), runnable.end(),
                        boost::bind(&Task::protocol, _1) == proto);
     if (it == runnable.end()) {
-        return shared_ptr<SignEMailTask>();
+        return std::shared_ptr<SignEMailTask>();
     }
 
-    const shared_ptr<SignEMailTask> result = *it;
+    const std::shared_ptr<SignEMailTask> result = *it;
     runnable.erase(it);
     return result;
 }
 
 // ### extract to base
-void SignEMailController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)
+void SignEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_UNUSED(result);
     assert(task);

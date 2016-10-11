@@ -57,7 +57,6 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class DecryptVerifyClipboardCommand::Private : public Command::Private
 {
@@ -83,8 +82,8 @@ private:
     }
 
 private:
-    shared_ptr<const ExecutionContext> shared_qq;
-    shared_ptr<Input> input;
+    std::shared_ptr<const ExecutionContext> shared_qq;
+    std::shared_ptr<Input> input;
     DecryptVerifyEMailController controller;
 };
 
@@ -153,7 +152,7 @@ void DecryptVerifyClipboardCommand::doStart()
 
     try {
 
-        const shared_ptr<Input> input = Input::createFromClipboard();
+        const std::shared_ptr<Input> input = Input::createFromClipboard();
 
         const unsigned int classification = input->classification();
 

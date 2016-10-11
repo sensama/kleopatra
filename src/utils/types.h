@@ -35,12 +35,9 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QWidget;
+#include <memory>
 
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
+class QWidget;
 
 namespace Kleo
 {
@@ -75,11 +72,11 @@ class ExecutionContextUser
 {
 public:
     ExecutionContextUser();
-    explicit ExecutionContextUser(const boost::shared_ptr<const ExecutionContext> &ec);
+    explicit ExecutionContextUser(const std::shared_ptr<const ExecutionContext> &ec);
     virtual ~ExecutionContextUser();
 
-    void setExecutionContext(const boost::shared_ptr<const ExecutionContext> &ec);
-    boost::shared_ptr<const ExecutionContext> executionContext() const;
+    void setExecutionContext(const std::shared_ptr<const ExecutionContext> &ec);
+    std::shared_ptr<const ExecutionContext> executionContext() const;
 
 protected:
     void bringToForeground(QWidget *wid);

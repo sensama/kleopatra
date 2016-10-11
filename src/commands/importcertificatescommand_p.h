@@ -47,7 +47,7 @@ class ImportResult;
 class Error;
 }
 
-namespace Kleo
+namespace QGpgME
 {
 class AbstractImportJob;
 }
@@ -87,7 +87,7 @@ private:
     bool waitForMoreJobs;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::map<QObject *, QString> idsByJob;
-    std::vector<Kleo::AbstractImportJob *> jobs;
+    std::vector<QGpgME::AbstractImportJob *> jobs;
     std::vector<GpgME::ImportResult> results;
     QStringList ids;
 };

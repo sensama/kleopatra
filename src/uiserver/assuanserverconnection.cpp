@@ -120,8 +120,8 @@ static void my_assuan_release(assuan_context_t ctx)
 }
 
 #endif
-// shared_ptr for assuan_context_t w/ deleter enforced to assuan_deinit_server:
-typedef shared_ptr< remove_pointer<assuan_context_t>::type > AssuanContextBase;
+// std::shared_ptr for assuan_context_t w/ deleter enforced to assuan_deinit_server:
+typedef std::shared_ptr< remove_pointer<assuan_context_t>::type > AssuanContextBase;
 struct AssuanContext : AssuanContextBase {
     AssuanContext() : AssuanContextBase() {}
 #ifndef HAVE_ASSUAN2
@@ -258,7 +258,7 @@ class AssuanServerConnection::Private : public QObject
     friend class ::Kleo::AssuanCommand;
     AssuanServerConnection *const q;
 public:
-    Private(assuan_fd_t fd_, const std::vector< shared_ptr<AssuanCommandFactory> > &factories_, AssuanServerConnection *qq);
+    Private(assuan_fd_t fd_, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories_, AssuanServerConnection *qq);
     ~Private();
 
 Q_SIGNALS:
@@ -291,9 +291,9 @@ public Q_SLOTS:
 private:
     void nohupDone(AssuanCommand *cmd)
     {
-        const std::vector< shared_ptr<AssuanCommand> >::iterator it
+        const std::vector< std::shared_ptr<AssuanCommand> >::iterator it
             = std::find_if(nohupedCommands.begin(), nohupedCommands.end(),
-                           boost::bind(&shared_ptr<AssuanCommand>::get, _1) == cmd);
+                           boost::bind(&std::shared_ptr<AssuanCommand>::get, _1) == cmd);
         assert(it != nohupedCommands.end());
         nohupedCommands.erase(it);
         if (nohupedCommands.empty() && closed) {
@@ -536,7 +536,7 @@ private:
                 throw gpg_error(GPG_ERR_ASS_SYNTAX);
             }
 
-            shared_ptr< typename Input_or_Output<in>::type > io;
+            std::shared_ptr< typename Input_or_Output<in>::type > io;
 
             if (options.count("FD")) {
 
@@ -829,7 +829,7 @@ private:
     QByteArray dumpMementos() const
     {
         QByteArray result;
-        for (std::map< QByteArray, shared_ptr<AssuanCommand::Memento> >::const_iterator it = mementos.begin(), end = mementos.end(); it != end; ++it) {
+        for (std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> >::const_iterator it = mementos.begin(), end = mementos.end(); it != end; ++it) {
             char buf[2 + 2 * sizeof(void *) + 2];
             sprintf(buf, "0x%p\n", (void *)it->second.get());
             buf[sizeof(buf) - 1] = '\0';
@@ -878,16 +878,16 @@ private:
     GpgME::Protocol bias;
     QString sessionTitle;
     unsigned int sessionId;
-    std::vector< shared_ptr<QSocketNotifier> > notifiers;
-    std::vector< shared_ptr<AssuanCommandFactory> > factories; // sorted: _detail::ByName<std::less>
-    shared_ptr<AssuanCommand> currentCommand;
-    std::vector< shared_ptr<AssuanCommand> > nohupedCommands;
+    std::vector< std::shared_ptr<QSocketNotifier> > notifiers;
+    std::vector< std::shared_ptr<AssuanCommandFactory> > factories; // sorted: _detail::ByName<std::less>
+    std::shared_ptr<AssuanCommand> currentCommand;
+    std::vector< std::shared_ptr<AssuanCommand> > nohupedCommands;
     std::map<std::string, QVariant> options;
     std::vector<KMime::Types::Mailbox> senders, recipients;
-    std::vector< shared_ptr<Input> > inputs, messages;
-    std::vector< shared_ptr<Output> > outputs;
+    std::vector< std::shared_ptr<Input> > inputs, messages;
+    std::vector< std::shared_ptr<Output> > outputs;
     std::vector<QString> files;
-    std::map< QByteArray, shared_ptr<AssuanCommand::Memento> > mementos;
+    std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> > mementos;
 };
 
 void AssuanServerConnection::Private::cleanup()
@@ -902,7 +902,7 @@ void AssuanServerConnection::Private::cleanup()
     fd = ASSUAN_INVALID_FD;
 }
 
-AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< shared_ptr<AssuanCommandFactory> > &factories_, AssuanServerConnection *qq)
+AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories_, AssuanServerConnection *qq)
     : QObject(),
       q(qq),
       fd(fd_),
@@ -955,14 +955,14 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< sha
     assert(numFDs != -1);   // == 1
 
     if (!numFDs || fds[0] != fd) {
-        const shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fd, QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
+        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fd, QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
         connect(sn.get(), &QSocketNotifier::activated, this, &Private::slotReadActivity);
         notifiers.push_back(sn);
     }
 
     notifiers.reserve(notifiers.size() + numFDs);
     for (int i = 0; i < numFDs; ++i) {
-        const shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fds[i], QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
+        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fds[i], QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
         connect(sn.get(), &QSocketNotifier::activated, this, &Private::slotReadActivity);
         notifiers.push_back(sn);
     }
@@ -994,7 +994,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< sha
         throw Exception(err, "register \"FILE\" handler");
 
     // register user-defined commands:
-    Q_FOREACH (shared_ptr<AssuanCommandFactory> fac, factories)
+    Q_FOREACH (std::shared_ptr<AssuanCommandFactory> fac, factories)
 #ifndef HAVE_ASSUAN2
         if (const gpg_error_t err = assuan_register_command(ctx.get(), fac->name(), fac->_handler()))
 #else
@@ -1069,7 +1069,7 @@ AssuanServerConnection::Private::~Private()
     cleanup();
 }
 
-AssuanServerConnection::AssuanServerConnection(assuan_fd_t fd, const std::vector< shared_ptr<AssuanCommandFactory> > &factories, QObject *p)
+AssuanServerConnection::AssuanServerConnection(assuan_fd_t fd, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories, QObject *p)
     : QObject(p), d(new Private(fd, factories, this))
 {
 
@@ -1169,8 +1169,8 @@ public:
     }
 
     std::map<std::string, QVariant> options;
-    std::vector< shared_ptr<Input> > inputs, messages;
-    std::vector< shared_ptr<Output> > outputs;
+    std::vector< std::shared_ptr<Input> > inputs, messages;
+    std::vector< std::shared_ptr<Output> > outputs;
     std::vector<QString> files;
     std::vector<KMime::Types::Mailbox> recipients, senders;
     bool informativeRecipients, informativeSenders;
@@ -1271,7 +1271,7 @@ std::vector<U> keys(const std::map<U, V> &map)
 }
 }
 
-const std::map< QByteArray, shared_ptr<AssuanCommand::Memento> > &AssuanCommand::mementos() const
+const std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> > &AssuanCommand::mementos() const
 {
     // oh, hack :(
     assert(assuan_get_pointer(d->ctx.get()));
@@ -1288,31 +1288,31 @@ bool AssuanCommand::hasMemento(const QByteArray &tag) const
     }
 }
 
-shared_ptr<AssuanCommand::Memento> AssuanCommand::memento(const QByteArray &tag) const
+std::shared_ptr<AssuanCommand::Memento> AssuanCommand::memento(const QByteArray &tag) const
 {
     if (const unsigned int id = sessionId()) {
-        const shared_ptr<SessionDataHandler> sdh = SessionDataHandler::instance();
-        const shared_ptr<SessionData> sd = sdh->sessionData(id);
-        const std::map< QByteArray, shared_ptr<Memento> >::const_iterator it = sd->mementos.find(tag);
+        const std::shared_ptr<SessionDataHandler> sdh = SessionDataHandler::instance();
+        const std::shared_ptr<SessionData> sd = sdh->sessionData(id);
+        const std::map< QByteArray, std::shared_ptr<Memento> >::const_iterator it = sd->mementos.find(tag);
         if (it != sd->mementos.end()) {
             return it->second;
         }
     }
-    const std::map< QByteArray, shared_ptr<Memento> >::const_iterator it = mementos().find(tag);
+    const std::map< QByteArray, std::shared_ptr<Memento> >::const_iterator it = mementos().find(tag);
     if (it == mementos().end()) {
-        return shared_ptr<Memento>();
+        return std::shared_ptr<Memento>();
     } else {
         return it->second;
     }
 }
 
-QByteArray AssuanCommand::registerMemento(const shared_ptr<Memento> &mem)
+QByteArray AssuanCommand::registerMemento(const std::shared_ptr<Memento> &mem)
 {
     const QByteArray tag = QByteArray::number(reinterpret_cast<qulonglong>(mem.get()), 36);
     return registerMemento(tag, mem);
 }
 
-QByteArray AssuanCommand::registerMemento(const QByteArray &tag, const shared_ptr<Memento> &mem)
+QByteArray AssuanCommand::registerMemento(const QByteArray &tag, const std::shared_ptr<Memento> &mem)
 {
     // oh, hack :(
     assert(assuan_get_pointer(d->ctx.get()));
@@ -1338,17 +1338,17 @@ void AssuanCommand::removeMemento(const QByteArray &tag)
     }
 }
 
-const std::vector< shared_ptr<Input> > &AssuanCommand::inputs() const
+const std::vector< std::shared_ptr<Input> > &AssuanCommand::inputs() const
 {
     return d->inputs;
 }
 
-const std::vector< shared_ptr<Input> > &AssuanCommand::messages() const
+const std::vector< std::shared_ptr<Input> > &AssuanCommand::messages() const
 {
     return d->messages;
 }
 
-const std::vector< shared_ptr<Output> > &AssuanCommand::outputs() const
+const std::vector< std::shared_ptr<Output> > &AssuanCommand::outputs() const
 {
     return d->outputs;
 }
@@ -1531,13 +1531,13 @@ gpg_error_t AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, cons
 
     try {
 
-        const std::vector< shared_ptr<AssuanCommandFactory> >::const_iterator it
+        const std::vector< std::shared_ptr<AssuanCommandFactory> >::const_iterator it
             = std::lower_bound(conn.factories.begin(), conn.factories.end(), commandName, _detail::ByName<std::less>());
         kleo_assert(it != conn.factories.end());
         kleo_assert(*it);
         kleo_assert(qstricmp((*it)->name(), commandName) == 0);
 
-        const shared_ptr<AssuanCommand> cmd = (*it)->create();
+        const std::shared_ptr<AssuanCommand> cmd = (*it)->create();
         kleo_assert(cmd);
 
         cmd->d->ctx     = conn.ctx;
@@ -1593,7 +1593,7 @@ int AssuanServerConnection::Private::startCommandBottomHalf()
         return 0;
     }
 
-    const shared_ptr<AssuanCommand> cmd = currentCommand;
+    const std::shared_ptr<AssuanCommand> cmd = currentCommand;
     if (!cmd) {
         return 0;
     }

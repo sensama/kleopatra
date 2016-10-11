@@ -33,9 +33,10 @@
 #include <config-kleopatra.h>
 
 #include "dirservconfigpage.h"
-#include "Libkleo/DirectoryServicesWidget"
-#include "Libkleo/CryptoConfigModule"
-#include "Libkleo/CryptoBackendFactory"
+#include <Libkleo/DirectoryServicesWidget>
+#include <Libkleo/CryptoConfigModule>
+
+#include <QGpgME/Protocol>
 
 #include <kmessagebox.h>
 #include <KLocalizedString>
@@ -157,7 +158,7 @@ static const char s_addnewservers_entryName[] = "add-servers";
 DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    mConfig = Kleo::CryptoBackendFactory::instance()->config();
+    mConfig = QGpgME::cryptoConfig();
     QGridLayout *glay = new QGridLayout(this);
     glay->setMargin(0);
 
@@ -219,17 +220,17 @@ void DirectoryServicesConfigurationPage::load()
 
     // gpgsm/Configuration/keyserver is not provided by older gpgconf versions;
     if ((mX509ServicesEntry = configEntry(s_x509services_new_componentName, s_x509services_new_groupName, s_x509services_new_entryName,
-                                          Kleo::CryptoConfigEntry::ArgType_LDAPURL, /*isList=*/true, /*showError=*/false))) {
+                                          QGpgME::CryptoConfigEntry::ArgType_LDAPURL, /*isList=*/true, /*showError=*/false))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     } else if ((mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_groupName, s_x509services_entryName,
-                                     Kleo::CryptoConfigEntry::ArgType_LDAPURL, true))) {
+                                     QGpgME::CryptoConfigEntry::ArgType_LDAPURL, true))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     }
 
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
 
     mOpenPGPServiceEntry = configEntry(s_pgpservice_componentName, s_pgpservice_groupName, s_pgpservice_entryName,
-                                       Kleo::CryptoConfigEntry::ArgType_String, false);
+                                       QGpgME::CryptoConfigEntry::ArgType_String, false);
     if (mOpenPGPServiceEntry) {
         mWidget->addOpenPGPServices(string2urls(parseKeyserver(mOpenPGPServiceEntry->stringValue()).url));
     }
@@ -253,14 +254,14 @@ void DirectoryServicesConfigurationPage::load()
         readOnlyProtocols = DirectoryServicesWidget::X509Protocol;
     }
 
-    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, Kleo::CryptoConfigEntry::ArgType_UInt, false);
+    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, false);
     if (mTimeoutConfigEntry) {
         QTime time = QTime().addSecs(mTimeoutConfigEntry->uintValue());
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
         mTimeout->setTime(time);
     }
 
-    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName, Kleo::CryptoConfigEntry::ArgType_UInt, false);
+    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, false);
     if (mMaxItemsConfigEntry) {
         mMaxItems->blockSignals(true);   // KNumInput emits valueChanged from setValue!
         mMaxItems->setValue(mMaxItemsConfigEntry->uintValue());
@@ -271,7 +272,7 @@ void DirectoryServicesConfigurationPage::load()
     mMaxItemsLabel->setEnabled(maxItemsEnabled);
 
 #ifdef NOT_USEFUL_CURRENTLY
-    mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, Kleo::CryptoConfigEntry::ArgType_None, false);
+    mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, QGpgME::CryptoConfigEntry::ArgType_None, false);
     if (mAddNewServersConfigEntry) {
         mAddNewServersCB->setChecked(mAddNewServersConfigEntry->boolValue());
     }
@@ -367,14 +368,14 @@ extern "C"
 }
 
 // Find config entry for ldap servers. Implements runtime checks on the configuration option.
-Kleo::CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *componentName,
+QGpgME::CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *componentName,
         const char *groupName,
         const char *entryName,
-        Kleo::CryptoConfigEntry::ArgType argType,
+        QGpgME::CryptoConfigEntry::ArgType argType,
         bool isList,
         bool showError)
 {
-    Kleo::CryptoConfigEntry *entry = mConfig->entry(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
+    QGpgME::CryptoConfigEntry *entry = mConfig->entry(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
 
     if (!entry) {
         if (showError) {

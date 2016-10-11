@@ -47,9 +47,7 @@
 
 #include <qwindowdefs.h> // for WId
 
-#include <boost/shared_ptr.hpp>
-#include <boost/enable_shared_from_this.hpp>
-
+#include <memory>
 #include <string>
 #include <map>
 #include <vector>
@@ -208,7 +206,7 @@ class AssuanCommandFactory;
   \endcode
 
 */
-class AssuanCommand : public ExecutionContext, public boost::enable_shared_from_this<AssuanCommand>
+class AssuanCommand : public ExecutionContext, public std::enable_shared_from_this<AssuanCommand>
 {
     // defined in assuanserverconnection.cpp!
 public:
@@ -244,9 +242,9 @@ public:
     };
 
     template <typename T>
-    static boost::shared_ptr< TypedMemento<T> > make_typed_memento(const T &t)
+    static std::shared_ptr< TypedMemento<T> > make_typed_memento(const T &t)
     {
-        return boost::shared_ptr< TypedMemento<T> >(new TypedMemento<T>(t));
+        return std::shared_ptr< TypedMemento<T> >(new TypedMemento<T>(t));
     }
 
     static int makeError(int code);
@@ -281,19 +279,19 @@ public:
     const std::vector<KMime::Types::Mailbox> &senders() const;
 
     bool hasMemento(const QByteArray &tag) const;
-    boost::shared_ptr<Memento> memento(const QByteArray &tag) const;
+    std::shared_ptr<Memento> memento(const QByteArray &tag) const;
     template <typename T>
-    boost::shared_ptr<T> mementoAs(const QByteArray &tag) const
+    std::shared_ptr<T> mementoAs(const QByteArray &tag) const
     {
-        return boost::dynamic_pointer_cast<T>(this->memento(tag));
+        return std::dynamic_pointer_cast<T>(this->memento(tag));
     }
-    QByteArray registerMemento(const boost::shared_ptr<Memento> &mem);
-    QByteArray registerMemento(const QByteArray &tag, const boost::shared_ptr<Memento> &mem);
+    QByteArray registerMemento(const std::shared_ptr<Memento> &mem);
+    QByteArray registerMemento(const QByteArray &tag, const std::shared_ptr<Memento> &mem);
     void removeMemento(const QByteArray &tag);
     template <typename T>
     T mementoContent(const QByteArray &tag) const
     {
-        if (boost::shared_ptr< TypedMemento<T> > m = mementoAs< TypedMemento<T> >(tag)) {
+        if (std::shared_ptr< TypedMemento<T> > m = mementoAs< TypedMemento<T> >(tag)) {
             return m->get();
         } else {
             return T();
@@ -304,9 +302,9 @@ public:
     QVariant option(const char *opt) const;
     const std::map<std::string, QVariant> &options() const;
 
-    const std::vector< boost::shared_ptr<Input> > &inputs() const;
-    const std::vector< boost::shared_ptr<Input> > &messages() const;
-    const std::vector< boost::shared_ptr<Output> > &outputs() const;
+    const std::vector< std::shared_ptr<Input> > &inputs() const;
+    const std::vector< std::shared_ptr<Input> > &messages() const;
+    const std::vector< std::shared_ptr<Output> > &outputs() const;
 
     QStringList fileNames() const;
     unsigned int numFiles() const;
@@ -336,7 +334,7 @@ private:
     void doApplyWindowID(QWidget *w) const;
 
 private:
-    const std::map< QByteArray, boost::shared_ptr<Memento> > &mementos() const;
+    const std::map< QByteArray, std::shared_ptr<Memento> > &mementos() const;
 
 private:
     friend class ::Kleo::AssuanCommandFactory;
@@ -349,7 +347,7 @@ class AssuanCommandFactory
 public:
     virtual ~AssuanCommandFactory() {}
 
-    virtual boost::shared_ptr<AssuanCommand> create() const = 0;
+    virtual std::shared_ptr<AssuanCommand> create() const = 0;
     virtual const char *name() const = 0;
 
 #ifndef HAVE_ASSUAN2
@@ -382,7 +380,7 @@ class GenericAssuanCommandFactory : public AssuanCommandFactory
 #endif
         return AssuanCommandFactory::_handle(_ctx, _line, Command::staticName());
     }
-    boost::shared_ptr<AssuanCommand> create() const Q_DECL_OVERRIDE
+    std::shared_ptr<AssuanCommand> create() const Q_DECL_OVERRIDE
     {
         return make();
     }
@@ -391,9 +389,9 @@ class GenericAssuanCommandFactory : public AssuanCommandFactory
         return Command::staticName();
     }
 public:
-    static boost::shared_ptr<Command> make()
+    static std::shared_ptr<Command> make()
     {
-        return boost::shared_ptr<Command>(new Command);
+        return std::shared_ptr<Command>(new Command);
     }
 };
 

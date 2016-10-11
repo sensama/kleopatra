@@ -35,7 +35,7 @@
 
 #include <KCModule>
 
-#include "Libkleo/CryptoConfig"
+#include <QGpgME/CryptoConfig>
 
 class QCheckBox;
 class QLabel;
@@ -43,8 +43,6 @@ class QTimeEdit;
 class QSpinBox;
 namespace Kleo
 {
-class CryptoConfig;
-class CryptoConfigEntry;
 class DirectoryServicesWidget;
 }
 
@@ -64,12 +62,12 @@ public:
     void defaults() Q_DECL_OVERRIDE;
 
 private:
-    Kleo::CryptoConfigEntry *configEntry(const char *componentName,
-                                         const char *groupName,
-                                         const char *entryName,
-                                         Kleo::CryptoConfigEntry::ArgType argType,
-                                         bool isList,
-                                         bool showError = true);
+    QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
+                                           const char *groupName,
+                                           const char *entryName,
+                                           QGpgME::CryptoConfigEntry::ArgType argType,
+                                           bool isList,
+                                           bool showError = true);
 
     Kleo::DirectoryServicesWidget *mWidget;
     QTimeEdit *mTimeout;
@@ -77,13 +75,13 @@ private:
     QLabel *mMaxItemsLabel;
     QCheckBox *mAddNewServersCB;
 
-    Kleo::CryptoConfigEntry *mX509ServicesEntry;
-    Kleo::CryptoConfigEntry *mOpenPGPServiceEntry;
-    Kleo::CryptoConfigEntry *mTimeoutConfigEntry;
-    Kleo::CryptoConfigEntry *mMaxItemsConfigEntry;
-    Kleo::CryptoConfigEntry *mAddNewServersConfigEntry;
+    QGpgME::CryptoConfigEntry *mX509ServicesEntry;
+    QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry;
+    QGpgME::CryptoConfigEntry *mTimeoutConfigEntry;
+    QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry;
+    QGpgME::CryptoConfigEntry *mAddNewServersConfigEntry;
 
-    Kleo::CryptoConfig *mConfig;
+    QGpgME::CryptoConfig *mConfig;
 };
 
 #endif

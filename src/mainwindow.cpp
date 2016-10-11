@@ -81,10 +81,10 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <libkleo/cryptoconfigdialog.h>
-#include <Libkleo/CryptoConfig>
 #include <Libkleo/Stl_Util>
-#include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/Classify>
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
 
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
@@ -366,7 +366,7 @@ void MainWindow::Private::setupActions()
 
 void MainWindow::Private::configureBackend()
 {
-    Kleo::CryptoConfig *const config = Kleo::CryptoBackendFactory::instance()->config();
+    QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         KMessageBox::error(q, i18n("Could not configure the cryptography backend (gpgconf tool not found)"), i18n("Configuration Error"));
         return;

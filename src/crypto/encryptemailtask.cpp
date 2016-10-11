@@ -40,9 +40,8 @@
 #include <utils/auditlog.h>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/EncryptJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/EncryptJob>
 
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
@@ -52,11 +51,8 @@
 #include <QPointer>
 #include <QTextDocument> // for Qt::escape
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -103,17 +99,17 @@ public:
     explicit Private(EncryptEMailTask *qq);
 
 private:
-    std::unique_ptr<Kleo::EncryptJob> createJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::EncryptJob> createJob(GpgME::Protocol proto);
 
 private:
     void slotResult(const EncryptionResult &);
 
 private:
-    shared_ptr<Input> input;
-    shared_ptr<Output> output;
+    std::shared_ptr<Input> input;
+    std::shared_ptr<Output> output;
     std::vector<Key> recipients;
 
-    QPointer<Kleo::EncryptJob> job;
+    QPointer<QGpgME::EncryptJob> job;
 };
 
 EncryptEMailTask::Private::Private(EncryptEMailTask *qq)
@@ -133,14 +129,14 @@ EncryptEMailTask::EncryptEMailTask(QObject *p)
 
 EncryptEMailTask::~EncryptEMailTask() {}
 
-void EncryptEMailTask::setInput(const shared_ptr<Input> &input)
+void EncryptEMailTask::setInput(const std::shared_ptr<Input> &input)
 {
     kleo_assert(!d->job);
     kleo_assert(input);
     d->input = input;
 }
 
-void EncryptEMailTask::setOutput(const shared_ptr<Output> &output)
+void EncryptEMailTask::setOutput(const std::shared_ptr<Output> &output)
 {
     kleo_assert(!d->job);
     kleo_assert(output);
@@ -177,7 +173,7 @@ void EncryptEMailTask::doStart()
     kleo_assert(d->output);
     kleo_assert(!d->recipients.empty());
 
-    std::unique_ptr<Kleo::EncryptJob> job = d->createJob(protocol());
+    std::unique_ptr<QGpgME::EncryptJob> job = d->createJob(protocol());
     kleo_assert(job.get());
 
     job->start(d->recipients,
@@ -194,12 +190,12 @@ void EncryptEMailTask::cancel()
     }
 }
 
-std::unique_ptr<Kleo::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::Protocol proto)
+std::unique_ptr<QGpgME::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::Protocol proto)
 {
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
     bool shouldArmor = (proto == OpenPGP || q->asciiArmor()) && !output->binaryOpt();
-    std::unique_ptr<Kleo::EncryptJob> encryptJob(backend->encryptJob(shouldArmor, /*textmode=*/false));
+    std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(shouldArmor, /*textmode=*/false));
     kleo_assert(encryptJob.get());
     if (proto == CMS && !q->asciiArmor() && !output->binaryOpt()) {
         encryptJob->setOutputIsBase64Encoded(true);
@@ -213,13 +209,13 @@ std::unique_ptr<Kleo::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::Pr
 
 void EncryptEMailTask::Private::slotResult(const EncryptionResult &result)
 {
-    const Job *const job = qobject_cast<const Job *>(q->sender());
+    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     if (result.error().code()) {
         output->cancel();
     } else {
         output->finalize();
     }
-    q->emitResult(shared_ptr<Result>(new EncryptEMailResult(result, AuditLog::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new EncryptEMailResult(result, AuditLog::fromJob(job))));
 }
 
 QString EncryptEMailResult::overview() const

@@ -39,8 +39,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -53,7 +52,7 @@ class AssuanServerConnection : public QObject
 {
     Q_OBJECT
 public:
-    AssuanServerConnection(assuan_fd_t fd, const std::vector< boost::shared_ptr<AssuanCommandFactory> > &factories, QObject *parent = Q_NULLPTR);
+    AssuanServerConnection(assuan_fd_t fd, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories, QObject *parent = Q_NULLPTR);
     ~AssuanServerConnection();
 
 public Q_SLOTS:

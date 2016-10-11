@@ -56,6 +56,8 @@
 
 #include <gpgme++/key.h>
 
+#include <cassert>
+
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -397,7 +399,7 @@ QVector<Key> SignEncryptFilesWizard::resolvedSigners() const
     return mSigEncPage->signers();
 }
 
-void SignEncryptFilesWizard::setTaskCollection(const boost::shared_ptr<Kleo::Crypto::TaskCollection> &coll)
+void SignEncryptFilesWizard::setTaskCollection(const std::shared_ptr<Kleo::Crypto::TaskCollection> &coll)
 {
     mResultPage->setTaskCollection(coll);
 }

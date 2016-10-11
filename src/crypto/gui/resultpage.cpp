@@ -53,7 +53,6 @@
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 class ResultPage::Private
 {
@@ -62,13 +61,13 @@ public:
     explicit Private(ResultPage *qq);
 
     void progress(const QString &msg, int progress, int total);
-    void result(const shared_ptr<const Task::Result> &result);
-    void started(const shared_ptr<Task> &result);
+    void result(const std::shared_ptr<const Task::Result> &result);
+    void started(const std::shared_ptr<Task> &result);
     void allDone();
     void keepOpenWhenDone(bool keep);
     QLabel *labelForTag(const QString &tag);
 
-    shared_ptr<TaskCollection> m_tasks;
+    std::shared_ptr<TaskCollection> m_tasks;
     QProgressBar *m_progressBar;
     QHash<QString, QLabel *> m_progressLabelByTag;
     QVBoxLayout *m_progressLabelLayout;
@@ -124,11 +123,11 @@ void ResultPage::Private::allDone()
     Q_EMIT q->completeChanged();
 }
 
-void ResultPage::Private::result(const shared_ptr<const Task::Result> &)
+void ResultPage::Private::result(const std::shared_ptr<const Task::Result> &)
 {
 }
 
-void ResultPage::Private::started(const shared_ptr<Task> &task)
+void ResultPage::Private::started(const std::shared_ptr<Task> &task)
 {
     assert(task);
     const QString tag = task->tag();
@@ -160,7 +159,7 @@ void ResultPage::setKeepOpenWhenDone(bool keep)
     d->m_keepOpenCB->setChecked(keep);
 }
 
-void ResultPage::setTaskCollection(const shared_ptr<TaskCollection> &coll)
+void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     assert(!d->m_tasks);
     if (d->m_tasks == coll) {
@@ -173,12 +172,12 @@ void ResultPage::setTaskCollection(const shared_ptr<TaskCollection> &coll)
             this, SLOT(progress(QString,int,int)));
     connect(d->m_tasks.get(), SIGNAL(done()),
             this, SLOT(allDone()));
-    connect(d->m_tasks.get(), SIGNAL(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(d->m_tasks.get(), SIGNAL(started(boost::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(boost::shared_ptr<Kleo::Crypto::Task>)));
+    connect(d->m_tasks.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this, SLOT(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(d->m_tasks.get(), SIGNAL(started(boost::std::shared_ptr<Kleo::Crypto::Task>)),
+            this, SLOT(started(boost::std::shared_ptr<Kleo::Crypto::Task>)));
 
-    Q_FOREACH (const shared_ptr<Task> &i, d->m_tasks->tasks()) {    // create labels for all tags in collection
+    Q_FOREACH (const std::shared_ptr<Task> &i, d->m_tasks->tasks()) {    // create labels for all tags in collection
         assert(i && d->labelForTag(i->tag()));
         Q_UNUSED(i);
     }

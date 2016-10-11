@@ -48,7 +48,7 @@
 #include <algorithm>
 
 using namespace Kleo;
-using namespace boost;
+
 
 class ImportFilesCommand::Private
 {

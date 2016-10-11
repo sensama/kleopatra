@@ -39,7 +39,7 @@
 
 #include <gpgme++/verificationresult.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace KMime
 {
@@ -82,17 +82,17 @@ public:
     void setInformativeSender(const KMime::Types::Mailbox &senders);
 
 Q_SIGNALS:
-    void decryptVerifyResult(const boost::shared_ptr<const Kleo::Crypto::DecryptVerifyResult> &);
+    void decryptVerifyResult(const std::shared_ptr<const Kleo::Crypto::DecryptVerifyResult> &);
 
 protected:
-    boost::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLog &auditLog);
-    boost::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
 
     virtual QString inputLabel() const = 0;
     virtual QString outputLabel() const = 0;
@@ -109,8 +109,8 @@ public:
     explicit DecryptTask(QObject *parent = Q_NULLPTR);
     ~DecryptTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setOutput(const boost::shared_ptr<Output> &output);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput() Q_DECL_OVERRIDE;
@@ -141,8 +141,8 @@ public:
     explicit VerifyDetachedTask(QObject *parent = Q_NULLPTR);
     ~VerifyDetachedTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setSignedData(const boost::shared_ptr<Input> &signedData);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setSignedData(const std::shared_ptr<Input> &signedData);
 
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput() Q_DECL_OVERRIDE;
@@ -173,8 +173,8 @@ public:
     explicit VerifyOpaqueTask(QObject *parent = Q_NULLPTR);
     ~VerifyOpaqueTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setOutput(const boost::shared_ptr<Output> &output);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput()Q_DECL_OVERRIDE;
@@ -204,9 +204,9 @@ public:
     explicit DecryptVerifyTask(QObject *parent = Q_NULLPTR);
     ~DecryptVerifyTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setSignedData(const boost::shared_ptr<Input> &signedData);
-    void setOutput(const boost::shared_ptr<Output> &output);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setSignedData(const std::shared_ptr<Input> &signedData);
+    void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
     void autodetectProtocolFromInput() Q_DECL_OVERRIDE;

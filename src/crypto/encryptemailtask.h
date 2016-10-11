@@ -39,8 +39,6 @@
 
 #include <gpgme++/global.h>
 
-#include <boost/shared_ptr.hpp>
-
 #include <vector>
 
 namespace GpgME
@@ -66,8 +64,8 @@ public:
     explicit EncryptEMailTask(QObject *parent = Q_NULLPTR);
     ~EncryptEMailTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setOutput(const boost::shared_ptr<Output> &output);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setOutput(const std::shared_ptr<Output> &output);
     void setRecipients(const std::vector<GpgME::Key> &recipients);
 
     GpgME::Protocol protocol() const Q_DECL_OVERRIDE;

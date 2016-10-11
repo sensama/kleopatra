@@ -40,7 +40,7 @@
 #include <utils/pimpl_ptr.h>
 #include <utils/types.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Kleo
 {
@@ -52,7 +52,7 @@ class Controller : public QObject, protected ExecutionContextUser
     Q_OBJECT
 public:
     explicit Controller(QObject *parent = Q_NULLPTR);
-    explicit Controller(const boost::shared_ptr<const ExecutionContext> &cmd, QObject *parent = Q_NULLPTR);
+    explicit Controller(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = Q_NULLPTR);
     ~Controller();
 
     using ExecutionContextUser::setExecutionContext;
@@ -63,12 +63,12 @@ Q_SIGNALS:
 protected:
     void emitDoneOrError();
     void setLastError(int err, const QString &details);
-    void connectTask(const boost::shared_ptr<Task> &task);
+    void connectTask(const std::shared_ptr<Task> &task);
 
-    virtual void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &result);
+    virtual void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result);
 
 protected Q_SLOTS:
-    void taskDone(const boost::shared_ptr<const Kleo::Crypto::Task::Result> &);
+    void taskDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &);
 
 Q_SIGNALS:
 

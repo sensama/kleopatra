@@ -42,7 +42,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class SignEncryptFilesCommand::Private : public QObject
 {
@@ -66,7 +65,7 @@ private Q_SLOTS:
     void slotError(int, const QString &);
 
 private:
-    shared_ptr<SignEncryptFilesController> controller;
+    std::shared_ptr<SignEncryptFilesController> controller;
 };
 
 SignEncryptFilesCommand::SignEncryptFilesCommand()

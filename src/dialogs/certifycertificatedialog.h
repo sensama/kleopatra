@@ -35,7 +35,7 @@
 
 #include <QWizard>
 
-#include <Libkleo/SignKeyJob>
+#include <QGpgME/SignKeyJob>
 
 #include <gpgme++/key.h>
 
@@ -48,7 +48,6 @@ class Error;
 
 namespace Kleo
 {
-class SignKeyJob;
 
 namespace Dialogs
 {
@@ -78,7 +77,7 @@ public:
 
     void setCertificateToCertify(const GpgME::Key &key);
 
-    void connectJob(Kleo::SignKeyJob *job);
+    void connectJob(QGpgME::SignKeyJob *job);
     void setError(const GpgME::Error &error);
 
 Q_SIGNALS:

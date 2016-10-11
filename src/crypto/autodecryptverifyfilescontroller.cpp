@@ -63,12 +63,9 @@
 #include <QFileDialog>
 #include <QTemporaryDir>
 
-#include <boost/shared_ptr.hpp>
-
 #include <memory>
 #include <vector>
 
-using namespace boost;
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -85,7 +82,7 @@ public:
     void schedule();
 
     void exec();
-    std::vector<shared_ptr<Task> > buildTasks(const QStringList &, QStringList &);
+    std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, QStringList &);
 
     void reportError(int err, const QString &details)
     {
@@ -95,9 +92,9 @@ public:
     void cancelAllTasks();
 
     QStringList m_passedFiles, m_filesAfterPreparation;
-    std::vector<shared_ptr<const DecryptVerifyResult> > m_results;
-    std::vector<shared_ptr<Task> > m_runnableTasks, m_completedTasks;
-    shared_ptr<Task> m_runningTask;
+    std::vector<std::shared_ptr<const DecryptVerifyResult> > m_results;
+    std::vector<std::shared_ptr<Task> > m_runnableTasks, m_completedTasks;
+    std::shared_ptr<Task> m_runningTask;
     bool m_errorDetected;
     DecryptVerifyOperation m_operation;
     DecryptVerifyFilesDialog *m_dialog;
@@ -120,14 +117,14 @@ void AutoDecryptVerifyFilesController::Private::slotDialogCanceled()
 void AutoDecryptVerifyFilesController::Private::schedule()
 {
     if (!m_runningTask && !m_runnableTasks.empty()) {
-        const shared_ptr<Task> t = m_runnableTasks.back();
+        const std::shared_ptr<Task> t = m_runnableTasks.back();
         m_runnableTasks.pop_back();
         t->start();
         m_runningTask = t;
     }
     if (!m_runningTask) {
         kleo_assert(m_runnableTasks.empty());
-        Q_FOREACH (const shared_ptr<const DecryptVerifyResult> &i, m_results) {
+        Q_FOREACH (const std::shared_ptr<const DecryptVerifyResult> &i, m_results) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
     }
@@ -138,7 +135,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     Q_ASSERT(!m_dialog);
 
     QStringList undetected;
-    std::vector<shared_ptr<Task> > tasks = buildTasks(m_passedFiles, undetected);
+    std::vector<std::shared_ptr<Task> > tasks = buildTasks(m_passedFiles, undetected);
 
     if (!undetected.isEmpty()) {
         // Since GpgME 1.7.0 Classification is supposed to be reliable
@@ -157,8 +154,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
     Q_ASSERT(m_runnableTasks.empty());
     m_runnableTasks.swap(tasks);
 
-    shared_ptr<TaskCollection> coll(new TaskCollection);
-    Q_FOREACH (const shared_ptr<Task> &i, m_runnableTasks) {
+    std::shared_ptr<TaskCollection> coll(new TaskCollection);
+    Q_FOREACH (const std::shared_ptr<Task> &i, m_runnableTasks) {
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);
@@ -213,9 +210,9 @@ void AutoDecryptVerifyFilesController::Private::exec()
     return;
 }
 
-std::vector< shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
+std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
-    std::vector<shared_ptr<Task> > tasks;
+    std::vector<std::shared_ptr<Task> > tasks;
     Q_FOREACH (const QString &fName, fileNames) {
         const auto classification = classify(fName);
         const auto proto = findProtocol(classification);
@@ -244,7 +241,7 @@ std::vector< shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::build
                 continue;
             }
             qCDebug(KLEOPATRA_LOG) << "Detached verify: " << fName << " Data: " << signedDataFileName;
-            shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+            std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
             t->setInput(Input::createFromFile(fName));
             t->setSignedData(Input::createFromFile(signedDataFileName));
             t->setProtocol(proto);
@@ -255,7 +252,7 @@ std::vector< shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::build
             if (!signatures.empty()) {
                 Q_FOREACH (const QString &sig, signatures) {
                     qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << fName;
-                    shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+                    std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
                     t->setInput(Input::createFromFile(sig));
                     t->setSignedData(Input::createFromFile(fName));
                     t->setProtocol(proto);
@@ -280,7 +277,7 @@ std::vector< shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::build
 
             if (isOpaqueSignature(classification)) {
                 qCDebug(KLEOPATRA_LOG) << "creating a VerifyOpaqueTask";
-                shared_ptr<VerifyOpaqueTask> t(new VerifyOpaqueTask);
+                std::shared_ptr<VerifyOpaqueTask> t(new VerifyOpaqueTask);
                 t->setInput(input);
                 t->setOutput(output);
                 t->setProtocol(proto);
@@ -290,7 +287,7 @@ std::vector< shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::build
                 // decrypted. Verify we always do because we can't know if
                 // an encrypted message is also signed.
                 qCDebug(KLEOPATRA_LOG) << "creating a DecryptVerifyTask";
-                shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
+                std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
                 t->setInput(input);
                 t->setOutput(output);
                 t->setProtocol(proto);
@@ -312,7 +309,7 @@ AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(QObject *pare
 {
 }
 
-AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const shared_ptr<const ExecutionContext> &ctx, QObject *parent) :
+AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent) :
     DecryptVerifyFilesController(ctx, parent), d(new Private(this))
 {
 }
@@ -364,7 +361,7 @@ void AutoDecryptVerifyFilesController::cancel()
     }
 }
 
-void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)
+void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     assert(task);
     assert(task == d->m_runningTask.get());
@@ -378,7 +375,7 @@ void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const shared
     d->m_completedTasks.push_back(d->m_runningTask);
     d->m_runningTask.reset();
 
-    if (const shared_ptr<const DecryptVerifyResult> &dvr = boost::dynamic_pointer_cast<const DecryptVerifyResult>(result)) {
+    if (const std::shared_ptr<const DecryptVerifyResult> &dvr = std::dynamic_pointer_cast<const DecryptVerifyResult>(result)) {
         d->m_results.push_back(dvr);
     }
 

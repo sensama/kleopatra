@@ -49,7 +49,7 @@ class SimpleTask : public Task
 public:
     explicit SimpleTask(const QString &label) : m_result(), m_label(label) {}
 
-    void setResult(const boost::shared_ptr<const Task::Result> &res)
+    void setResult(const std::shared_ptr<const Task::Result> &res)
     {
         m_result = res;
     }
@@ -77,7 +77,7 @@ private Q_SLOTS:
         emitResult(m_result);
     }
 private:
-    boost::shared_ptr<const Task::Result> m_result;
+    std::shared_ptr<const Task::Result> m_result;
     QString m_label;
 };
 }

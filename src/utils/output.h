@@ -37,7 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 class QIODevice;
 class QString;
@@ -77,7 +77,7 @@ public:
 
     virtual void setLabel(const QString &label) = 0;
     virtual QString label() const = 0;
-    virtual boost::shared_ptr<QIODevice> ioDevice() const = 0;
+    virtual std::shared_ptr<QIODevice> ioDevice() const = 0;
     virtual QString errorString() const = 0;
     virtual bool isFinalized() const = 0;
     virtual void finalize() = 0;
@@ -85,14 +85,14 @@ public:
     virtual bool binaryOpt() const = 0;
     virtual void setBinaryOpt(bool value) = 0;
 
-    static boost::shared_ptr<Output> createFromFile(const QString &fileName, const boost::shared_ptr<OverwritePolicy> &);
-    static boost::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);
-    static boost::shared_ptr<Output> createFromPipeDevice(assuan_fd_t fd, const QString &label);
-    static boost::shared_ptr<Output> createFromProcessStdIn(const QString &command);
-    static boost::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args);
-    static boost::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &workingDirectory);
+    static std::shared_ptr<Output> createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &);
+    static std::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);
+    static std::shared_ptr<Output> createFromPipeDevice(assuan_fd_t fd, const QString &label);
+    static std::shared_ptr<Output> createFromProcessStdIn(const QString &command);
+    static std::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args);
+    static std::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &workingDirectory);
 #ifndef QT_NO_CLIPBOARD
-    static boost::shared_ptr<Output> createFromClipboard();
+    static std::shared_ptr<Output> createFromClipboard();
 #endif
 };
 }

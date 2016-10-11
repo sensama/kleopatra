@@ -36,7 +36,6 @@
 
 #include <cassert>
 
-using namespace boost;
 using namespace Kleo;
 
 class IODeviceLogger::Private
@@ -44,9 +43,9 @@ class IODeviceLogger::Private
     IODeviceLogger *const q;
 public:
 
-    static bool write(const shared_ptr<QIODevice> &dev, const char *data, qint64 max);
+    static bool write(const std::shared_ptr<QIODevice> &dev, const char *data, qint64 max);
 
-    explicit Private(const shared_ptr<QIODevice> &io_, IODeviceLogger *qq) : q(qq), io(io_), writeLog(), readLog()
+    explicit Private(const std::shared_ptr<QIODevice> &io_, IODeviceLogger *qq) : q(qq), io(io_), writeLog(), readLog()
     {
         assert(io);
         connect(io.get(), &QIODevice::aboutToClose, q, &QIODevice::aboutToClose);
@@ -59,12 +58,12 @@ public:
     {
     }
 
-    const shared_ptr<QIODevice> io;
-    shared_ptr<QIODevice> writeLog;
-    shared_ptr<QIODevice> readLog;
+    const std::shared_ptr<QIODevice> io;
+    std::shared_ptr<QIODevice> writeLog;
+    std::shared_ptr<QIODevice> readLog;
 };
 
-bool IODeviceLogger::Private::write(const shared_ptr<QIODevice> &dev, const char *data, qint64 max)
+bool IODeviceLogger::Private::write(const std::shared_ptr<QIODevice> &dev, const char *data, qint64 max)
 {
     assert(dev);
     assert(data);
@@ -80,7 +79,7 @@ bool IODeviceLogger::Private::write(const shared_ptr<QIODevice> &dev, const char
     return true;
 }
 
-IODeviceLogger::IODeviceLogger(const shared_ptr<QIODevice> &iod, QObject *parent) : QIODevice(parent), d(new Private(iod, this))
+IODeviceLogger::IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent) : QIODevice(parent), d(new Private(iod, this))
 {
 }
 
@@ -88,12 +87,12 @@ IODeviceLogger::~IODeviceLogger()
 {
 }
 
-void IODeviceLogger::setWriteLogDevice(const shared_ptr<QIODevice> &dev)
+void IODeviceLogger::setWriteLogDevice(const std::shared_ptr<QIODevice> &dev)
 {
     d->writeLog = dev;
 }
 
-void IODeviceLogger::setReadLogDevice(const shared_ptr<QIODevice> &dev)
+void IODeviceLogger::setReadLogDevice(const std::shared_ptr<QIODevice> &dev)
 {
     d->readLog = dev;
 }

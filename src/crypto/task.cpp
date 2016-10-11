@@ -141,9 +141,9 @@ bool Task::asciiArmor() const
     return d->m_asciiArmor;
 }
 
-shared_ptr<Task> Task::makeErrorTask(int code, const QString &details, const QString &label)
+std::shared_ptr<Task> Task::makeErrorTask(int code, const QString &details, const QString &label)
 {
-    const shared_ptr<SimpleTask> t(new SimpleTask(label));
+    const std::shared_ptr<SimpleTask> t(new SimpleTask(label));
     t->setResult(t->makeErrorResult(code, details));
     return t;
 }
@@ -202,16 +202,16 @@ void Task::emitError(int errCode, const QString &details)
     emitResult(makeErrorResult(errCode, details));
 }
 
-void Task::emitResult(const shared_ptr<const Task::Result> &r)
+void Task::emitResult(const std::shared_ptr<const Task::Result> &r)
 {
     d->m_progress = d->m_totalProgress;
     Q_EMIT progress(progressLabel(), currentProgress(), totalProgress());
     Q_EMIT result(r);
 }
 
-shared_ptr<Task::Result> Task::makeErrorResult(int errCode, const QString &details)
+std::shared_ptr<Task::Result> Task::makeErrorResult(int errCode, const QString &details)
 {
-    return shared_ptr<Task::Result>(new ErrorResult(errCode, details));
+    return std::shared_ptr<Task::Result>(new ErrorResult(errCode, details));
 }
 
 class Task::Result::Private

@@ -41,9 +41,9 @@
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/SignKeyJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/SignKeyJob>
 
 #include <gpgme++/key.h>
 
@@ -56,6 +56,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
+using namespace QGpgME;
 
 class CertifyCertificateCommand::Private : public Command::Private
 {
@@ -82,7 +83,7 @@ private:
 private:
     std::vector<UserID> uids;
     QPointer<CertifyCertificateDialog> dialog;
-    QPointer<SignKeyJob> job;
+    QPointer<QGpgME::SignKeyJob> job;
 };
 
 CertifyCertificateCommand::Private *CertifyCertificateCommand::d_func()
@@ -290,7 +291,7 @@ void CertifyCertificateCommand::Private::createJob()
     assert(!job);
 
     assert(key().protocol() == OpenPGP);
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(key().protocol());
+    const auto backend = QGpgME::openpgp();
     if (!backend) {
         return;
     }

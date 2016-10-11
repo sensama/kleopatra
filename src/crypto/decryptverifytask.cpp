@@ -34,11 +34,12 @@
 
 #include "decryptverifytask.h"
 
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/VerifyOpaqueJob>
-#include <Libkleo/VerifyDetachedJob>
-#include <Libkleo/DecryptJob>
-#include <Libkleo/DecryptVerifyJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/VerifyOpaqueJob>
+#include <QGpgME/VerifyDetachedJob>
+#include <QGpgME/DecryptJob>
+#include <QGpgME/DecryptVerifyJob>
+
 #include <Libkleo/Dn>
 #include <Libkleo/Exception>
 #include <Libkleo/Stl_Util>
@@ -93,7 +94,7 @@ static Error make_error(const gpg_err_code_t code)
 
 static AuditLog auditLogFromSender(QObject *sender)
 {
-    return AuditLog::fromJob(qobject_cast<const Job *>(sender));
+    return AuditLog::fromJob(qobject_cast<const QGpgME::Job *>(sender));
 }
 
 static bool addrspec_equal(const AddrSpec &lhs, const AddrSpec &rhs, Qt::CaseSensitivity cs)
@@ -645,9 +646,9 @@ DecryptVerifyResult::SenderInfo DecryptVerifyResult::Private::makeSenderInfo() c
     return SenderInfo(m_informativeSender, KeyCache::instance()->findSigners(m_verificationResult));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Decrypt,
             VerificationResult(),
             dr,
@@ -660,9 +661,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(con
             informativeSender()));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Decrypt,
             VerificationResult(),
             DecryptionResult(err),
@@ -675,9 +676,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(con
             informativeSender()));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             DecryptVerify,
             vr,
             dr,
@@ -690,9 +691,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResu
             informativeSender()));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             DecryptVerify,
             VerificationResult(),
             DecryptionResult(err),
@@ -705,9 +706,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResu
             informativeSender()));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
             vr,
             DecryptionResult(),
@@ -719,9 +720,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResul
             auditLog,
             informativeSender()));
 }
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
             VerificationResult(err),
             DecryptionResult(),
@@ -734,9 +735,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResul
             informativeSender()));
 }
 
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
             vr,
             DecryptionResult(),
@@ -748,9 +749,9 @@ shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedRes
             auditLog,
             informativeSender()));
 }
-shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
 {
-    return shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
+    return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
             VerificationResult(err),
             DecryptionResult(),
@@ -877,7 +878,7 @@ public:
 
     void slotResult(const DecryptionResult &, const VerificationResult &, const QByteArray &);
 
-    void registerJob(DecryptVerifyJob *job)
+    void registerJob(QGpgME::DecryptVerifyJob *job)
     {
         q->connect(job, SIGNAL(result(GpgME::DecryptionResult,GpgME::VerificationResult,QByteArray)),
                    q, SLOT(slotResult(GpgME::DecryptionResult,GpgME::VerificationResult,QByteArray)));
@@ -885,15 +886,15 @@ public:
                    q, SLOT(setProgress(QString,int,int)));
     }
 
-    void emitResult(const shared_ptr<DecryptVerifyResult> &result);
+    void emitResult(const std::shared_ptr<DecryptVerifyResult> &result);
 
-    shared_ptr<Input> m_input;
-    shared_ptr<Output> m_output;
-    const CryptoBackend::Protocol *m_backend;
+    std::shared_ptr<Input> m_input;
+    std::shared_ptr<Output> m_output;
+    const QGpgME::Protocol *m_backend;
     Protocol m_protocol;
 };
 
-void DecryptVerifyTask::Private::emitResult(const shared_ptr<DecryptVerifyResult> &result)
+void DecryptVerifyTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
     Q_EMIT q->decryptVerifyResult(result);
@@ -942,13 +943,13 @@ DecryptVerifyTask::~DecryptVerifyTask()
 {
 }
 
-void DecryptVerifyTask::setInput(const shared_ptr<Input> &input)
+void DecryptVerifyTask::setInput(const std::shared_ptr<Input> &input)
 {
     d->m_input = input;
     kleo_assert(d->m_input && d->m_input->ioDevice());
 }
 
-void DecryptVerifyTask::setOutput(const shared_ptr<Output> &output)
+void DecryptVerifyTask::setOutput(const std::shared_ptr<Output> &output)
 {
     d->m_output = output;
     kleo_assert(d->m_output && d->m_output->ioDevice());
@@ -958,7 +959,7 @@ void DecryptVerifyTask::setProtocol(Protocol prot)
 {
     kleo_assert(prot != UnknownProtocol);
     d->m_protocol = prot;
-    d->m_backend = CryptoBackendFactory::instance()->protocol(prot);
+    d->m_backend = prot == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(d->m_backend);
 }
 
@@ -1008,7 +1009,7 @@ void DecryptVerifyTask::doStart()
 {
     kleo_assert(d->m_backend);
     try {
-        DecryptVerifyJob *const job = d->m_backend->decryptVerifyJob();
+        QGpgME::DecryptVerifyJob *const job = d->m_backend->decryptVerifyJob();
         kleo_assert(job);
         d->registerJob(job);
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
@@ -1030,7 +1031,7 @@ public:
 
     void slotResult(const DecryptionResult &, const QByteArray &);
 
-    void registerJob(DecryptJob *job)
+    void registerJob(QGpgME::DecryptJob *job)
     {
         q->connect(job, SIGNAL(result(GpgME::DecryptionResult,QByteArray)),
                    q, SLOT(slotResult(GpgME::DecryptionResult,QByteArray)));
@@ -1038,15 +1039,15 @@ public:
                    q, SLOT(setProgress(QString,int,int)));
     }
 
-    void emitResult(const shared_ptr<DecryptVerifyResult> &result);
+    void emitResult(const std::shared_ptr<DecryptVerifyResult> &result);
 
-    shared_ptr<Input> m_input;
-    shared_ptr<Output> m_output;
-    const CryptoBackend::Protocol *m_backend;
+    std::shared_ptr<Input> m_input;
+    std::shared_ptr<Output> m_output;
+    const QGpgME::Protocol *m_backend;
     Protocol m_protocol;
 };
 
-void DecryptTask::Private::emitResult(const shared_ptr<DecryptVerifyResult> &result)
+void DecryptTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
     Q_EMIT q->decryptVerifyResult(result);
@@ -1096,13 +1097,13 @@ DecryptTask::~DecryptTask()
 {
 }
 
-void DecryptTask::setInput(const shared_ptr<Input> &input)
+void DecryptTask::setInput(const std::shared_ptr<Input> &input)
 {
     d->m_input = input;
     kleo_assert(d->m_input && d->m_input->ioDevice());
 }
 
-void DecryptTask::setOutput(const shared_ptr<Output> &output)
+void DecryptTask::setOutput(const std::shared_ptr<Output> &output)
 {
     d->m_output = output;
     kleo_assert(d->m_output && d->m_output->ioDevice());
@@ -1112,7 +1113,7 @@ void DecryptTask::setProtocol(Protocol prot)
 {
     kleo_assert(prot != UnknownProtocol);
     d->m_protocol = prot;
-    d->m_backend = CryptoBackendFactory::instance()->protocol(prot);
+    d->m_backend = (prot == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(d->m_backend);
 }
 
@@ -1164,7 +1165,7 @@ void DecryptTask::doStart()
     kleo_assert(d->m_backend);
 
     try {
-        DecryptJob *const job = d->m_backend->decryptJob();
+        QGpgME::DecryptJob *const job = d->m_backend->decryptJob();
         kleo_assert(job);
         d->registerJob(job);
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
@@ -1185,7 +1186,7 @@ public:
 
     void slotResult(const VerificationResult &, const QByteArray &);
 
-    void registerJob(VerifyOpaqueJob *job)
+    void registerJob(QGpgME::VerifyOpaqueJob *job)
     {
         q->connect(job, SIGNAL(result(GpgME::VerificationResult,QByteArray)),
                    q, SLOT(slotResult(GpgME::VerificationResult,QByteArray)));
@@ -1193,15 +1194,15 @@ public:
                    q, SLOT(setProgress(QString,int,int)));
     }
 
-    void emitResult(const shared_ptr<DecryptVerifyResult> &result);
+    void emitResult(const std::shared_ptr<DecryptVerifyResult> &result);
 
-    shared_ptr<Input> m_input;
-    shared_ptr<Output> m_output;
-    const CryptoBackend::Protocol *m_backend;
+    std::shared_ptr<Input> m_input;
+    std::shared_ptr<Output> m_output;
+    const QGpgME::Protocol *m_backend;
     Protocol m_protocol;
 };
 
-void VerifyOpaqueTask::Private::emitResult(const shared_ptr<DecryptVerifyResult> &result)
+void VerifyOpaqueTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
     Q_EMIT q->decryptVerifyResult(result);
@@ -1251,13 +1252,13 @@ VerifyOpaqueTask::~VerifyOpaqueTask()
 {
 }
 
-void VerifyOpaqueTask::setInput(const shared_ptr<Input> &input)
+void VerifyOpaqueTask::setInput(const std::shared_ptr<Input> &input)
 {
     d->m_input = input;
     kleo_assert(d->m_input && d->m_input->ioDevice());
 }
 
-void VerifyOpaqueTask::setOutput(const shared_ptr<Output> &output)
+void VerifyOpaqueTask::setOutput(const std::shared_ptr<Output> &output)
 {
     d->m_output = output;
     kleo_assert(d->m_output && d->m_output->ioDevice());
@@ -1267,7 +1268,7 @@ void VerifyOpaqueTask::setProtocol(Protocol prot)
 {
     kleo_assert(prot != UnknownProtocol);
     d->m_protocol = prot;
-    d->m_backend = CryptoBackendFactory::instance()->protocol(prot);
+    d->m_backend = (prot == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(d->m_backend);
 }
 
@@ -1318,10 +1319,10 @@ void VerifyOpaqueTask::doStart()
     kleo_assert(d->m_backend);
 
     try {
-        VerifyOpaqueJob *const job = d->m_backend->verifyOpaqueJob();
+        QGpgME::VerifyOpaqueJob *const job = d->m_backend->verifyOpaqueJob();
         kleo_assert(job);
         d->registerJob(job);
-        job->start(d->m_input->ioDevice(), d->m_output ? d->m_output->ioDevice() : shared_ptr<QIODevice>());
+        job->start(d->m_input->ioDevice(), d->m_output ? d->m_output->ioDevice() : std::shared_ptr<QIODevice>());
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
     } catch (const std::exception &e) {
@@ -1339,7 +1340,7 @@ public:
 
     void slotResult(const VerificationResult &);
 
-    void registerJob(VerifyDetachedJob *job)
+    void registerJob(QGpgME::VerifyDetachedJob *job)
     {
         q->connect(job, SIGNAL(result(GpgME::VerificationResult)),
                    q, SLOT(slotResult(GpgME::VerificationResult)));
@@ -1347,14 +1348,14 @@ public:
                    q, SLOT(setProgress(QString,int,int)));
     }
 
-    void emitResult(const shared_ptr<DecryptVerifyResult> &result);
+    void emitResult(const std::shared_ptr<DecryptVerifyResult> &result);
 
-    shared_ptr<Input> m_input, m_signedData;
-    const CryptoBackend::Protocol *m_backend;
+    std::shared_ptr<Input> m_input, m_signedData;
+    const QGpgME::Protocol *m_backend;
     Protocol m_protocol;
 };
 
-void VerifyDetachedTask::Private::emitResult(const shared_ptr<DecryptVerifyResult> &result)
+void VerifyDetachedTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
     Q_EMIT q->decryptVerifyResult(result);
@@ -1388,13 +1389,13 @@ VerifyDetachedTask::~VerifyDetachedTask()
 {
 }
 
-void VerifyDetachedTask::setInput(const shared_ptr<Input> &input)
+void VerifyDetachedTask::setInput(const std::shared_ptr<Input> &input)
 {
     d->m_input = input;
     kleo_assert(d->m_input && d->m_input->ioDevice());
 }
 
-void VerifyDetachedTask::setSignedData(const shared_ptr<Input> &signedData)
+void VerifyDetachedTask::setSignedData(const std::shared_ptr<Input> &signedData)
 {
     d->m_signedData = signedData;
     kleo_assert(d->m_signedData && d->m_signedData->ioDevice());
@@ -1404,7 +1405,7 @@ void VerifyDetachedTask::setProtocol(Protocol prot)
 {
     kleo_assert(prot != UnknownProtocol);
     d->m_protocol = prot;
-    d->m_backend = CryptoBackendFactory::instance()->protocol(prot);
+    d->m_backend = (prot == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(d->m_backend);
 }
 
@@ -1471,7 +1472,7 @@ void VerifyDetachedTask::doStart()
 {
     kleo_assert(d->m_backend);
     try {
-        VerifyDetachedJob *const job = d->m_backend->verifyDetachedJob();
+        QGpgME::VerifyDetachedJob *const job = d->m_backend->verifyDetachedJob();
         kleo_assert(job);
         d->registerJob(job);
         job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());

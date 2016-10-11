@@ -38,7 +38,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Kleo
 {
@@ -58,7 +58,7 @@ public:
     explicit ResultPage(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
     ~ResultPage();
 
-    void setTaskCollection(const boost::shared_ptr<TaskCollection> &coll);
+    void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
     bool isComplete() const Q_DECL_OVERRIDE;
 
@@ -69,8 +69,8 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void progress(QString, int, int))
-    Q_PRIVATE_SLOT(d, void result(boost::shared_ptr<const Kleo::Crypto::Task::Result>))
-    Q_PRIVATE_SLOT(d, void started(boost::shared_ptr<Kleo::Crypto::Task>))
+    Q_PRIVATE_SLOT(d, void result(std::shared_ptr<const Kleo::Crypto::Task::Result>))
+    Q_PRIVATE_SLOT(d, void started(std::shared_ptr<Kleo::Crypto::Task>))
     Q_PRIVATE_SLOT(d, void keepOpenWhenDone(bool))
     Q_PRIVATE_SLOT(d, void allDone())
 };

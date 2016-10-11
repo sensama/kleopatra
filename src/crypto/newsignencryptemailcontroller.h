@@ -39,6 +39,7 @@
 
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 #include <utility>
 
@@ -52,11 +53,6 @@ class Mailbox;
 
 namespace GpgME
 {
-}
-
-namespace boost
-{
-template <typename T> class shared_ptr;
 }
 
 namespace Kleo
@@ -73,7 +69,7 @@ class NewSignEncryptEMailController : public Controller
     Q_OBJECT
 public:
     explicit NewSignEncryptEMailController(QObject *parent = Q_NULLPTR);
-    explicit NewSignEncryptEMailController(const boost::shared_ptr<ExecutionContext> &xc, QObject *parent = Q_NULLPTR);
+    explicit NewSignEncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, QObject *parent = Q_NULLPTR);
     ~NewSignEncryptEMailController();
 
     static const char *mementoName()
@@ -103,11 +99,11 @@ public:
 
     void setDetachedSignature(bool detached);
 
-    void startSigning(const std::vector< boost::shared_ptr<Kleo::Input> > &inputs,
-                      const std::vector< boost::shared_ptr<Kleo::Output> > &outputs);
+    void startSigning(const std::vector< std::shared_ptr<Kleo::Input> > &inputs,
+                      const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
 
-    void startEncryption(const std::vector< boost::shared_ptr<Kleo::Input> > &inputs,
-                         const std::vector< boost::shared_ptr<Kleo::Output> > &outputs);
+    void startEncryption(const std::vector< std::shared_ptr<Kleo::Input> > &inputs,
+                         const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
 
 public Q_SLOTS:
     void cancel();
@@ -118,7 +114,7 @@ Q_SIGNALS:
 
 private:
 
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Kleo::Crypto::Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) Q_DECL_OVERRIDE;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

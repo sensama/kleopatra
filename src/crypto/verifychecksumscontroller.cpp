@@ -103,10 +103,10 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 }
 #endif
 
-static QList<QRegExp> get_patterns(const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     QList<QRegExp> result;
-    Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns()) {
                 result.push_back(QRegExp(pattern, fs_cs));
@@ -168,7 +168,7 @@ private:
 private:
     QPointer<VerifyChecksumsDialog> dialog;
     mutable QMutex mutex;
-    const std::vector< shared_ptr<ChecksumDefinition> > checksumDefinitions;
+    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions;
     QStringList files;
     QStringList errors;
     volatile bool canceled;
@@ -200,7 +200,7 @@ VerifyChecksumsController::VerifyChecksumsController(QObject *p)
 
 }
 
-VerifyChecksumsController::VerifyChecksumsController(const shared_ptr<const ExecutionContext> &ctx, QObject *p)
+VerifyChecksumsController::VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *p)
     : Controller(ctx, p), d(new Private(this))
 {
 
@@ -262,7 +262,7 @@ struct SumFile {
     QDir dir;
     QString sumFile;
     quint64 totalSize;
-    shared_ptr<ChecksumDefinition> checksumDefinition;
+    std::shared_ptr<ChecksumDefinition> checksumDefinition;
 };
 
 }
@@ -342,16 +342,16 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
     return n;
 }
 
-static shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
-        const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
+        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns())
                 if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
                     return cd;
                 }
-    return shared_ptr<ChecksumDefinition>();
+    return std::shared_ptr<ChecksumDefinition>();
 }
 
 namespace
@@ -438,7 +438,7 @@ static QStringList find_base_directiories(const QStringList &files)
 
 static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, QStringList &errors,
         const function<void(int)> &progress,
-        const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     const QList<QRegExp> patterns = get_patterns(checksumDefinitions);
 
@@ -615,7 +615,7 @@ void VerifyChecksumsController::Private::run()
     QMutexLocker locker(&mutex);
 
     const QStringList files = this->files;
-    const std::vector< shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
+    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
 
     locker.unlock();
 

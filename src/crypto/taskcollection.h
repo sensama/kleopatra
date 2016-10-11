@@ -39,7 +39,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 #include <vector>
 
@@ -55,10 +55,10 @@ public:
     explicit TaskCollection(QObject *parent = Q_NULLPTR);
     ~TaskCollection();
 
-    std::vector<boost::shared_ptr<Task> > tasks() const;
-    boost::shared_ptr<Task> taskById(int id) const;
+    std::vector<std::shared_ptr<Task> > tasks() const;
+    std::shared_ptr<Task> taskById(int id) const;
 
-    void setTasks(const std::vector<boost::shared_ptr<Task> > &tasks);
+    void setTasks(const std::vector<std::shared_ptr<Task> > &tasks);
 
     bool isEmpty() const;
     size_t size() const;
@@ -69,15 +69,15 @@ public:
 
 Q_SIGNALS:
     void progress(const QString &msg, int processed, int total);
-    void result(const boost::shared_ptr<const Kleo::Crypto::Task::Result> &result);
-    void started(const boost::shared_ptr<Kleo::Crypto::Task> &task);
+    void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result);
+    void started(const std::shared_ptr<Kleo::Crypto::Task> &task);
     void done();
 
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void taskProgress(QString, int, int))
-    Q_PRIVATE_SLOT(d, void taskResult(boost::shared_ptr<const Kleo::Crypto::Task::Result>))
+    Q_PRIVATE_SLOT(d, void taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>))
     Q_PRIVATE_SLOT(d, void taskStarted())
 };
 }

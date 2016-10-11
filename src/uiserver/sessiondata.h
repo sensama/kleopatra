@@ -39,8 +39,7 @@
 
 #include <QTimer>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <map>
 
 namespace Kleo
@@ -52,7 +51,7 @@ class SessionData
 {
 public:
 
-    std::map< QByteArray, boost::shared_ptr<AssuanCommand::Memento> > mementos;
+    std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> > mementos;
 
 private:
     friend class ::Kleo::SessionDataHandler;
@@ -65,12 +64,12 @@ class SessionDataHandler : public QObject
 {
 public:
 
-    static boost::shared_ptr<SessionDataHandler> instance();
+    static std::shared_ptr<SessionDataHandler> instance();
 
     void enterSession(unsigned int id);
     void exitSession(unsigned int id);
 
-    boost::shared_ptr<SessionData> sessionData(unsigned int) const;
+    std::shared_ptr<SessionData> sessionData(unsigned int) const;
 
     void clear();
 
@@ -78,11 +77,11 @@ private Q_SLOTS:
     void slotCollectGarbage();
 
 private:
-    mutable std::map< unsigned int, boost::shared_ptr<SessionData> > data;
+    mutable std::map< unsigned int, std::shared_ptr<SessionData> > data;
     QTimer timer;
 
 private:
-    boost::shared_ptr<SessionData> sessionDataInternal(unsigned int) const;
+    std::shared_ptr<SessionData> sessionDataInternal(unsigned int) const;
     SessionDataHandler();
 };
 

@@ -40,8 +40,7 @@
 #include <gpgme++/global.h>
 #include <kmime/kmime_header_parsing.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -124,11 +123,11 @@ public:
         virtual QString customWindowTitle() const = 0;
     };
 
-    void setValidator(const boost::shared_ptr<Validator> &);
-    boost::shared_ptr<Validator> validator() const;
+    void setValidator(const std::shared_ptr<Validator> &);
+    std::shared_ptr<Validator> validator() const;
 
-    void setSigningPreferences(const boost::shared_ptr<SigningPreferences> &prefs);
-    boost::shared_ptr<SigningPreferences> signingPreferences() const;
+    void setSigningPreferences(const std::shared_ptr<SigningPreferences> &prefs);
+    std::shared_ptr<SigningPreferences> signingPreferences() const;
 
 private:
     void onNext() Q_DECL_OVERRIDE;

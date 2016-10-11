@@ -54,13 +54,11 @@
 #include <QFileInfo>
 #include <QTimer>
 
-#include <boost/bind.hpp>
 #include <KSharedConfig>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 
@@ -92,8 +90,8 @@ SignEncryptWizard::Private::Private(SignEncryptWizard *qq)
     q->setPage(SignEncryptWizard::ResolveRecipientsPage, recipientResolvePage);
     q->setPage(SignEncryptWizard::ResultPage, resultPage);
     //TODO: move the RecipientPreferences creation out of here, don't create a new instance for each wizard
-    recipientResolvePage->setRecipientPreferences(shared_ptr<RecipientPreferences>(new KConfigBasedRecipientPreferences(KSharedConfig::openConfig())));
-    signerResolvePage->setSigningPreferences(shared_ptr<SigningPreferences>(new KConfigBasedSigningPreferences(KSharedConfig::openConfig())));
+    recipientResolvePage->setRecipientPreferences(std::shared_ptr<RecipientPreferences>(new KConfigBasedRecipientPreferences(KSharedConfig::openConfig())));
+    signerResolvePage->setSigningPreferences(std::shared_ptr<SigningPreferences>(new KConfigBasedSigningPreferences(KSharedConfig::openConfig())));
     q->resize(QSize(640, 480).expandedTo(q->sizeHint()));
 }
 
@@ -230,7 +228,7 @@ void SignEncryptWizard::setSignersAndCandidates(const std::vector<Mailbox> &sign
     d->signerResolvePage->setSignersAndCandidates(signers, keys);
 }
 
-void SignEncryptWizard::setTaskCollection(const shared_ptr<TaskCollection> &coll)
+void SignEncryptWizard::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     kleo_assert(coll);
     d->resultPage->setTaskCollection(coll);
@@ -266,7 +264,7 @@ void SignEncryptWizard::setRecipientsUserMutable(bool isMutable)
     d->recipientResolvePage->setRecipientsUserMutable(isMutable);
 }
 
-void SignEncryptWizard::setSignerResolvePageValidator(const boost::shared_ptr<SignerResolvePage::Validator> &validator)
+void SignEncryptWizard::setSignerResolvePageValidator(const std::shared_ptr<SignerResolvePage::Validator> &validator)
 {
     d->signerResolvePage->setValidator(validator);
 }

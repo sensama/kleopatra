@@ -48,7 +48,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class SignCommand::Private : public QObject
 {
@@ -73,7 +72,7 @@ private Q_SLOTS:
     void slotError(int, const QString &);
 
 private:
-    shared_ptr<NewSignEncryptEMailController> controller;
+    std::shared_ptr<NewSignEncryptEMailController> controller;
 };
 
 SignCommand::SignCommand()
@@ -107,7 +106,7 @@ void SignCommand::Private::checkForErrors() const
         throw Exception(makeError(GPG_ERR_INV_VALUE),
                         i18n("MESSAGE command is not allowed before SIGN"));
 
-    const shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (m && m->isSigning()) {
 
@@ -145,7 +144,7 @@ int SignCommand::doStart()
 
     d->checkForErrors();
 
-    const shared_ptr<NewSignEncryptEMailController> seec = mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
@@ -181,13 +180,13 @@ int SignCommand::doStart()
 
 void SignCommand::Private::slotSignersResolved()
 {
-    //hold local shared_ptr to member as q->done() deletes *this
-    const shared_ptr<NewSignEncryptEMailController> cont(controller);
+    //hold local std::shared_ptr to member as q->done() deletes *this
+    const std::shared_ptr<NewSignEncryptEMailController> cont(controller);
 
     try {
         const QString sessionTitle = q->sessionTitle();
         if (!sessionTitle.isEmpty())
-            Q_FOREACH (const shared_ptr<Input> &i, q->inputs()) {
+            Q_FOREACH (const std::shared_ptr<Input> &i, q->inputs()) {
                 i->setLabel(sessionTitle);
             }
 
@@ -211,8 +210,8 @@ void SignCommand::Private::slotSignersResolved()
 
 void SignCommand::Private::slotMicAlgDetermined(const QString &micalg)
 {
-    //hold local shared_ptr to member as q->done() deletes *this
-    const shared_ptr<NewSignEncryptEMailController> cont(controller);
+    //hold local std::shared_ptr to member as q->done() deletes *this
+    const std::shared_ptr<NewSignEncryptEMailController> cont(controller);
 
     try {
 

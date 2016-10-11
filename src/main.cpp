@@ -82,22 +82,10 @@
 #include <gpgme++/global.h>
 #include <gpgme++/error.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <cassert>
 #include <iostream>
 #include <QCommandLineParser>
-
-using namespace boost;
-
-namespace
-{
-template <typename T>
-boost::shared_ptr<T> make_shared_ptr(T *t)
-{
-    return t ? boost::shared_ptr<T>(t) : boost::shared_ptr<T>();
-}
-}
 
 static bool selfCheck()
 {
@@ -194,7 +182,7 @@ int main(int argc, char **argv)
 
         QObject::connect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
 
-#define REGISTER( Command ) server.registerCommandFactory( boost::shared_ptr<Kleo::AssuanCommandFactory>( new Kleo::GenericAssuanCommandFactory<Kleo::Command> ) )
+#define REGISTER( Command ) server.registerCommandFactory( std::shared_ptr<Kleo::AssuanCommandFactory>( new Kleo::GenericAssuanCommandFactory<Kleo::Command> ) )
         REGISTER(CreateChecksumsCommand);
         REGISTER(DecryptCommand);
         REGISTER(DecryptFilesCommand);

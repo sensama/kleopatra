@@ -42,8 +42,7 @@
 #include <gpgme++/global.h>
 #include <kmime/kmime_header_parsing.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace Kleo
@@ -56,7 +55,7 @@ class VerifyChecksumsController : public Controller
     Q_OBJECT
 public:
     explicit VerifyChecksumsController(QObject *parent = Q_NULLPTR);
-    explicit VerifyChecksumsController(const boost::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
     ~VerifyChecksumsController();
 
     void setFiles(const QStringList &files);

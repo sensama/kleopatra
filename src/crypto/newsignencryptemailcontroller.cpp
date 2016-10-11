@@ -63,7 +63,6 @@
 #include <QTimer>
 
 #include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -238,7 +237,7 @@ private:
     void startSigning();
     void startEncryption();
     void schedule();
-    shared_ptr<Task> takeRunnable(GpgME::Protocol proto);
+    std::shared_ptr<Task> takeRunnable(GpgME::Protocol proto);
 
 private:
     bool sign : 1;
@@ -248,8 +247,8 @@ private:
     bool detached : 1;
     Protocol presetProtocol;
     std::vector<Key> signers, recipients;
-    std::vector< shared_ptr<Task> > runnable, completed;
-    shared_ptr<Task> cms, openpgp;
+    std::vector< std::shared_ptr<Task> > runnable, completed;
+    std::shared_ptr<Task> cms, openpgp;
     QPointer<SignEncryptEMailConflictDialog> dialog;
 };
 
@@ -277,7 +276,7 @@ NewSignEncryptEMailController::Private::~Private()
     delete dialog;
 }
 
-NewSignEncryptEMailController::NewSignEncryptEMailController(const shared_ptr<ExecutionContext> &xc, QObject *p)
+NewSignEncryptEMailController::NewSignEncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, QObject *p)
     : Controller(xc, p), d(new Private(this))
 {
 
@@ -419,7 +418,7 @@ void NewSignEncryptEMailController::Private::slotDialogRejected()
                               Q_ARG(QString, i18n("User cancel")));
 }
 
-void NewSignEncryptEMailController::startEncryption(const std::vector< shared_ptr<Input> > &inputs, const std::vector< shared_ptr<Output> > &outputs)
+void NewSignEncryptEMailController::startEncryption(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
 {
 
     kleo_assert(d->encrypt);
@@ -428,14 +427,14 @@ void NewSignEncryptEMailController::startEncryption(const std::vector< shared_pt
     kleo_assert(!inputs.empty());
     kleo_assert(outputs.size() == inputs.size());
 
-    std::vector< shared_ptr<Task> > tasks;
+    std::vector< std::shared_ptr<Task> > tasks;
     tasks.reserve(inputs.size());
 
     kleo_assert(!d->recipients.empty());
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
 
-        const shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
+        const std::shared_ptr<EncryptEMailTask> task(new EncryptEMailTask);
 
         task->setInput(inputs[i]);
         task->setOutput(outputs[i]);
@@ -452,22 +451,22 @@ void NewSignEncryptEMailController::startEncryption(const std::vector< shared_pt
 
 void NewSignEncryptEMailController::Private::startEncryption()
 {
-    shared_ptr<TaskCollection> coll(new TaskCollection);
-    const std::vector<shared_ptr<Task> > tmp
-        = kdtools::copy< std::vector<shared_ptr<Task> > >(runnable);
+    std::shared_ptr<TaskCollection> coll(new TaskCollection);
+    const std::vector<std::shared_ptr<Task> > tmp
+        = kdtools::copy< std::vector<std::shared_ptr<Task> > >(runnable);
     coll->setTasks(tmp);
 #if 0
 #warning use a new result dialog
     // ### use a new result dialog
     dialog->setTaskCollection(coll);
 #endif
-    Q_FOREACH (const shared_ptr<Task> &t, tmp) {
+    Q_FOREACH (const std::shared_ptr<Task> &t, tmp) {
         q->connectTask(t);
     }
     schedule();
 }
 
-void NewSignEncryptEMailController::startSigning(const std::vector< shared_ptr<Input> > &inputs, const std::vector< shared_ptr<Output> > &outputs)
+void NewSignEncryptEMailController::startSigning(const std::vector< std::shared_ptr<Input> > &inputs, const std::vector< std::shared_ptr<Output> > &outputs)
 {
 
     kleo_assert(d->sign);
@@ -476,7 +475,7 @@ void NewSignEncryptEMailController::startSigning(const std::vector< shared_ptr<I
     kleo_assert(!inputs.empty());
     kleo_assert(!outputs.empty());
 
-    std::vector< shared_ptr<Task> > tasks;
+    std::vector< std::shared_ptr<Task> > tasks;
     tasks.reserve(inputs.size());
 
     kleo_assert(!d->signers.empty());
@@ -484,7 +483,7 @@ void NewSignEncryptEMailController::startSigning(const std::vector< shared_ptr<I
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
 
-        const shared_ptr<SignEMailTask> task(new SignEMailTask);
+        const std::shared_ptr<SignEMailTask> task(new SignEMailTask);
 
         task->setInput(inputs[i]);
         task->setOutput(outputs[i]);
@@ -502,16 +501,16 @@ void NewSignEncryptEMailController::startSigning(const std::vector< shared_ptr<I
 
 void NewSignEncryptEMailController::Private::startSigning()
 {
-    shared_ptr<TaskCollection> coll(new TaskCollection);
-    const std::vector<shared_ptr<Task> > tmp
-        = kdtools::copy< std::vector<shared_ptr<Task> > >(runnable);
+    std::shared_ptr<TaskCollection> coll(new TaskCollection);
+    const std::vector<std::shared_ptr<Task> > tmp
+        = kdtools::copy< std::vector<std::shared_ptr<Task> > >(runnable);
     coll->setTasks(tmp);
 #if 0
 #warning use a new result dialog
     // ### use a new result dialog
     dialog->setTaskCollection(coll);
 #endif
-    Q_FOREACH (const shared_ptr<Task> &t, tmp) {
+    Q_FOREACH (const std::shared_ptr<Task> &t, tmp) {
         q->connectTask(t);
     }
     schedule();
@@ -521,13 +520,13 @@ void NewSignEncryptEMailController::Private::schedule()
 {
 
     if (!cms)
-        if (const shared_ptr<Task> t = takeRunnable(CMS)) {
+        if (const std::shared_ptr<Task> t = takeRunnable(CMS)) {
             t->start();
             cms = t;
         }
 
     if (!openpgp)
-        if (const shared_ptr<Task> t = takeRunnable(OpenPGP)) {
+        if (const std::shared_ptr<Task> t = takeRunnable(OpenPGP)) {
             t->start();
             openpgp = t;
         }
@@ -539,21 +538,21 @@ void NewSignEncryptEMailController::Private::schedule()
     q->emitDoneOrError();
 }
 
-shared_ptr<Task> NewSignEncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
+std::shared_ptr<Task> NewSignEncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< shared_ptr<Task> >::iterator it
+    const std::vector< std::shared_ptr<Task> >::iterator it
         = std::find_if(runnable.begin(), runnable.end(),
                        boost::bind(&Task::protocol, _1) == proto);
     if (it == runnable.end()) {
-        return shared_ptr<Task>();
+        return std::shared_ptr<Task>();
     }
 
-    const shared_ptr<Task> result = *it;
+    const std::shared_ptr<Task> result = *it;
     runnable.erase(it);
     return result;
 }
 
-void NewSignEncryptEMailController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)
+void NewSignEncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     assert(task);
 

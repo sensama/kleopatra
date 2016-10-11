@@ -39,8 +39,6 @@
 #include "crypto/task.h"
 #include "utils/gnupg-helper.h"
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <map>
 
@@ -49,7 +47,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class TaskCollection::Private
 {
@@ -58,11 +55,11 @@ public:
     explicit Private(TaskCollection *qq);
 
     void taskProgress(const QString &, int, int);
-    void taskResult(const shared_ptr<const Task::Result> &);
+    void taskResult(const std::shared_ptr<const Task::Result> &);
     void taskStarted();
     void calculateAndEmitProgress();
 
-    std::map<int, shared_ptr<Task> > m_tasks;
+    std::map<int, std::shared_ptr<Task> > m_tasks;
     mutable quint64 m_totalProgress;
     mutable quint64 m_progress;
     unsigned int m_nCompleted;
@@ -97,7 +94,7 @@ void TaskCollection::Private::taskProgress(const QString &msg, int, int)
     calculateAndEmitProgress();
 }
 
-void TaskCollection::Private::taskResult(const shared_ptr<const Task::Result> &result)
+void TaskCollection::Private::taskResult(const std::shared_ptr<const Task::Result> &result)
 {
     assert(result);
     ++m_nCompleted;
@@ -122,12 +119,16 @@ void TaskCollection::Private::taskStarted()
 
 void TaskCollection::Private::calculateAndEmitProgress()
 {
-    typedef std::map<int, shared_ptr<Task> >::const_iterator ConstIterator;
+    typedef std::map<int, std::shared_ptr<Task> >::const_iterator ConstIterator;
 
     quint64 total = 0;
     quint64 processed = 0;
 
+#if 0
     static bool haveWorkingProgress = hasFeature(0, GpgME::ProgressForCallbacks) && engineIsVersion(2, 1, 15);
+#endif
+#warning PORTME_GPGME
+    static bool haveWorkingProgress = true && engineIsVersion(2, 1, 15);
     if (!haveWorkingProgress) {
         // GnuPG before 2.1.15 would overflow on progress values > max int.
         // and did not emit a total for our Qt data types.
@@ -144,7 +145,7 @@ void TaskCollection::Private::calculateAndEmitProgress()
     bool unknowable = false;
     for (ConstIterator it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
         // Sum up progress and totals
-        const shared_ptr<Task> &i = it->second;
+        const std::shared_ptr<Task> &i = it->second;
         assert(i);
         if (!i->totalProgress()) {
             // There still might be jobs for which we don't know the progress.
@@ -190,16 +191,16 @@ bool TaskCollection::errorOccurred() const
     return d->m_errorOccurred;
 }
 
-shared_ptr<Task> TaskCollection::taskById(int id) const
+std::shared_ptr<Task> TaskCollection::taskById(int id) const
 {
-    const std::map<int, shared_ptr<Task> >::const_iterator it = d->m_tasks.find(id);
-    return it != d->m_tasks.end() ? it->second : shared_ptr<Task>();
+    const std::map<int, std::shared_ptr<Task> >::const_iterator it = d->m_tasks.find(id);
+    return it != d->m_tasks.end() ? it->second : std::shared_ptr<Task>();
 }
 
-std::vector<shared_ptr<Task> > TaskCollection::tasks() const
+std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
 {
-    typedef std::map<int, shared_ptr<Task> >::const_iterator ConstIterator;
-    std::vector<shared_ptr<Task> > res;
+    typedef std::map<int, std::shared_ptr<Task> >::const_iterator ConstIterator;
+    std::vector<std::shared_ptr<Task> > res;
     res.reserve(d->m_tasks.size());
     for (ConstIterator it = d->m_tasks.begin(), end = d->m_tasks.end(); it != end; ++it) {
         res.push_back(it->second);
@@ -207,15 +208,15 @@ std::vector<shared_ptr<Task> > TaskCollection::tasks() const
     return res;
 }
 
-void TaskCollection::setTasks(const std::vector<shared_ptr<Task> > &tasks)
+void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
 {
-    Q_FOREACH (const shared_ptr<Task> &i, tasks) {
+    Q_FOREACH (const std::shared_ptr<Task> &i, tasks) {
         assert(i);
         d->m_tasks[i->id()] = i;
         connect(i.get(), SIGNAL(progress(QString,int,int)),
                 this, SLOT(taskProgress(QString,int,int)));
-        connect(i.get(), SIGNAL(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)),
-                this, SLOT(taskResult(boost::shared_ptr<const Kleo::Crypto::Task::Result>)));
+        connect(i.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+                this, SLOT(taskResult(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
         connect(i.get(), SIGNAL(started()),
                 this, SLOT(taskStarted()));
     }

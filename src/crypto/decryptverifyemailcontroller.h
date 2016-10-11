@@ -41,8 +41,7 @@
 
 #include <QMetaType>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace KMime
@@ -71,18 +70,18 @@ class DecryptVerifyEMailController : public Controller
     Q_OBJECT
 public:
     explicit DecryptVerifyEMailController(QObject *parent = Q_NULLPTR);
-    explicit DecryptVerifyEMailController(const boost::shared_ptr<const ExecutionContext> &cmd, QObject *parent = Q_NULLPTR);
+    explicit DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = Q_NULLPTR);
 
     ~DecryptVerifyEMailController();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setInputs(const std::vector<boost::shared_ptr<Input> > &inputs);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setInputs(const std::vector<std::shared_ptr<Input> > &inputs);
 
-    void setSignedData(const boost::shared_ptr<Input> &data);
-    void setSignedData(const std::vector<boost::shared_ptr<Input> > &data);
+    void setSignedData(const std::shared_ptr<Input> &data);
+    void setSignedData(const std::vector<std::shared_ptr<Input> > &data);
 
-    void setOutput(const boost::shared_ptr<Output> &output);
-    void setOutputs(const std::vector<boost::shared_ptr<Output> > &outputs);
+    void setOutput(const std::shared_ptr<Output> &output);
+    void setOutputs(const std::vector<std::shared_ptr<Output> > &outputs);
 
     void setInformativeSenders(const std::vector<KMime::Types::Mailbox> &senders);
 
@@ -103,7 +102,7 @@ Q_SIGNALS:
     void verificationResult(const GpgME::VerificationResult &);
 
 private:
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &result) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result) Q_DECL_OVERRIDE;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

@@ -167,7 +167,10 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
     encBoxLay->addWidget(mSymmetric);
 
+#warning GPGME_PORT
+#if 0
     mSymmetric->setVisible(GpgME::hasFeature(0, GpgME::EncryptSymmetric));
+#endif
 
     // Connect it
     connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);

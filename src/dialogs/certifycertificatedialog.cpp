@@ -443,7 +443,7 @@ unsigned int CertifyCertificateDialog::selectedCheckLevel() const
     return 0;
 }
 
-void CertifyCertificateDialog::connectJob(SignKeyJob *job)
+void CertifyCertificateDialog::connectJob(QGpgME::SignKeyJob *job)
 {
     connect(job, SIGNAL(result(GpgME::Error)), this, SLOT(certificationResult(GpgME::Error)));
     d->summaryPage->setSummary(d->createSummary());

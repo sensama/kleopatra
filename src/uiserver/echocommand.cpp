@@ -49,9 +49,9 @@
 
 #include <string>
 #include <algorithm>
+#include <cassert>
 
 using namespace Kleo;
-using namespace boost;
 
 static const char option_prefix[] = "prefix";
 
@@ -72,8 +72,8 @@ EchoCommand::~EchoCommand() {}
 int EchoCommand::doStart()
 {
 
-    const std::vector< shared_ptr<Input> > in = inputs(), msg = messages();
-    const std::vector< shared_ptr<Output> > out = outputs();
+    const std::vector< std::shared_ptr<Input> > in = inputs(), msg = messages();
+    const std::vector< std::shared_ptr<Output> > out = outputs();
 
     if (!in.empty() && out.empty()) {
         return makeError(GPG_ERR_NOT_SUPPORTED);
@@ -113,8 +113,8 @@ int EchoCommand::doStart()
     }
 
     // 3. if INPUT was given, start the data pump for input->output
-    if (const shared_ptr<QIODevice> i = in.at(0)->ioDevice()) {
-        const shared_ptr<QIODevice> o = out.at(0)->ioDevice();
+    if (const std::shared_ptr<QIODevice> i = in.at(0)->ioDevice()) {
+        const std::shared_ptr<QIODevice> o = out.at(0)->ioDevice();
 
         ++d->operationsInFlight;
 
@@ -167,7 +167,7 @@ void EchoCommand::slotInquireData(int rc, const QByteArray &data)
 
 void EchoCommand::slotInputReadyRead()
 {
-    const shared_ptr<QIODevice> in = inputs().at(0)->ioDevice();
+    const std::shared_ptr<QIODevice> in = inputs().at(0)->ioDevice();
     assert(in);
 
     QByteArray buffer;
@@ -189,7 +189,7 @@ void EchoCommand::slotInputReadyRead()
 
 void EchoCommand::slotOutputBytesWritten()
 {
-    const shared_ptr<QIODevice> out = outputs().at(0)->ioDevice();
+    const std::shared_ptr<QIODevice> out = outputs().at(0)->ioDevice();
     assert(out);
 
     if (!d->buffer.isEmpty()) {

@@ -42,11 +42,11 @@
 
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
-#include <Libkleo/ImportFromKeyserverJob>
-#include <Libkleo/KeyListJob>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/CryptoConfig>
+
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/ImportFromKeyserverJob>
 
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
@@ -71,6 +71,7 @@ using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace boost;
+using namespace QGpgME;
 
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
 {
@@ -109,12 +110,12 @@ private:
     void createDialog();
     KeyListJob *createKeyListJob(GpgME::Protocol proto) const
     {
-        const CryptoBackend::Protocol *const cbp = CryptoBackendFactory::instance()->protocol(proto);
+        const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->keyListJob(true) : 0;
     }
     ImportFromKeyserverJob *createImportJob(GpgME::Protocol proto) const
     {
-        const CryptoBackend::Protocol *const cbp = CryptoBackendFactory::instance()->protocol(proto);
+        const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->importFromKeyserverJob() : 0;
     }
     void startKeyListJob(GpgME::Protocol proto, const QString &str);
@@ -394,21 +395,21 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
 
 static bool haveOpenPGPKeyserverConfigured()
 {
-    const Kleo::CryptoConfig *const config = Kleo::CryptoBackendFactory::instance()->config();
+    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         return false;
     }
-    const Kleo::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
+    const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
     return entry && !entry->stringValue().isEmpty();
 }
 
 static bool haveX509DirectoryServerConfigured()
 {
-    const Kleo::CryptoConfig *const config = Kleo::CryptoBackendFactory::instance()->config();
+    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         return false;
     }
-    const Kleo::CryptoConfigEntry *entry = config->entry(QStringLiteral("dirmngr"), QStringLiteral("LDAP"), QStringLiteral("LDAP Server"));
+    const QGpgME::CryptoConfigEntry *entry = config->entry(QStringLiteral("dirmngr"), QStringLiteral("LDAP"), QStringLiteral("LDAP Server"));
     bool entriesExist = entry && !entry->urlValueList().empty();
     entry = config->entry(QStringLiteral("gpgsm"), QStringLiteral("Configuration"), QStringLiteral("keyserver"));
     entriesExist |= entry && !entry->urlValueList().empty();

@@ -52,10 +52,11 @@
 #include <KGuiItem>
 #include <KColorScheme>
 
+#include <cassert>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 namespace
 {
@@ -96,7 +97,7 @@ class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
 public:
-    explicit Private(const shared_ptr<const Task::Result> result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(0), m_showDetailsLabel(0), m_closeButton(0)
+    explicit Private(const std::shared_ptr<const Task::Result> result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(0), m_showDetailsLabel(0), m_closeButton(0)
     {
         assert(m_result);
     }
@@ -104,7 +105,7 @@ public:
     void slotLinkActivated(const QString &);
     void updateShowDetailsLabel();
 
-    const shared_ptr<const Task::Result> m_result;
+    const std::shared_ptr<const Task::Result> m_result;
     QLabel *m_detailsLabel;
     QLabel *m_showDetailsLabel;
     QPushButton *m_closeButton;
@@ -128,7 +129,7 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
     m_showDetailsLabel->setAccessibleDescription(detailsVisible ? i18n("Hide Details") : i18n("Show Details"));
 }
 
-ResultItemWidget::ResultItemWidget(const shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
+ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
 {
     const QColor color = colorForVisualCode(d->m_result->code());
     const QColor txtColor = txtColorForVisualCode(d->m_result->code());

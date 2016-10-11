@@ -39,7 +39,6 @@
 #include <utils/getpid.h>
 
 #include <gpgme++/context.h>
-#include <gpgme++/assuanresult.h>
 #include <gpgme++/gpgagentgetinfoassuantransaction.h>
 
 #include <QTextDocument> // for Qt::escape
@@ -90,7 +89,7 @@ public:
         } else {
 
             Error error;
-            const std::auto_ptr<Context> ctx = Context::createForEngine(AssuanEngine, &error);
+            const std::unique_ptr<Context> ctx = Context::createForEngine(AssuanEngine, &error);
             if (!ctx.get()) {
                 m_error = i18n("GpgME does not support gpg-agent");
                 m_explaination = xi18nc("@info",
@@ -104,24 +103,15 @@ public:
 
                 m_skipped = false;
 
-                const AssuanResult result = ctx->assuanTransact("GETINFO version");
-                if (result.error()) {
-                    m_passed = false;
-                    m_error = i18n("not reachable");
-                    m_explaination = xi18nc("@info",
-                                            "Could not connect to GpgAgent: <message>%1</message>",
-                                            QString::fromLocal8Bit(result.error().asString()).toHtmlEscaped());
-                    m_proposedFix = xi18nc("@info",
-                                           "<para>Check that gpg-agent is running and that the "
-                                           "<environment>GPG_AGENT_INFO</environment> variable is set and up-to-date.</para>");
-                } else if (result.assuanError()) {
+                const Error error = ctx->assuanTransact("GETINFO version");
+                if (error) {
                     m_passed = false;
                     m_error = i18n("unexpected error");
                     m_explaination = xi18nc("@info",
                                             "<para>Unexpected error while asking <application>gpg-agent</application> "
                                             "for its version.</para>"
                                             "<para>The error returned was: <message>%1</message>.</para>",
-                                            QString::fromLocal8Bit(result.assuanError().asString()).toHtmlEscaped());
+                                            QString::fromLocal8Bit(error.asString()).toHtmlEscaped());
                     // PENDING(marc) proposed fix?
                 } else {
                     m_passed = true;

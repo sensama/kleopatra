@@ -34,9 +34,10 @@
 
 #include "controller.h"
 
+#include <cassert>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class Controller::Private
 {
@@ -62,7 +63,7 @@ Controller::Controller(QObject *parent)
 
 }
 
-Controller::Controller(const shared_ptr<const ExecutionContext> &ctx, QObject *parent)
+Controller::Controller(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
     : QObject(parent), ExecutionContextUser(ctx), d(new Private(this))
 {
 
@@ -70,7 +71,7 @@ Controller::Controller(const shared_ptr<const ExecutionContext> &ctx, QObject *p
 
 Controller::~Controller() {}
 
-void Controller::taskDone(const boost::shared_ptr<const Task::Result> &result)
+void Controller::taskDone(const std::shared_ptr<const Task::Result> &result)
 {
     if (result->hasError()) {
         d->lastError = result->errorCode();
@@ -81,9 +82,9 @@ void Controller::taskDone(const boost::shared_ptr<const Task::Result> &result)
     doTaskDone(task, result);
 }
 
-void Controller::doTaskDone(const Task *, const shared_ptr<const Task::Result> &) {}
+void Controller::doTaskDone(const Task *, const std::shared_ptr<const Task::Result> &) {}
 
-void Controller::connectTask(const shared_ptr<Task> &task)
+void Controller::connectTask(const std::shared_ptr<Task> &task)
 {
     assert(task);
     connect(task.get(), SIGNAL(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)),

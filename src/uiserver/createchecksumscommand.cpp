@@ -42,7 +42,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class CreateChecksumsCommand::Private
 {
@@ -61,7 +60,7 @@ private:
     void checkForErrors() const;
 
 private:
-    shared_ptr<CreateChecksumsController> controller;
+    std::shared_ptr<CreateChecksumsController> controller;
 };
 
 CreateChecksumsCommand::CreateChecksumsCommand()

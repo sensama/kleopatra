@@ -39,9 +39,9 @@
 #include <dialogs/expirydialog.h>
 
 #include <Libkleo/Formatting>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/ChangeExpiryJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/ChangeExpiryJob>
 
 #include <gpgme++/key.h>
 
@@ -56,6 +56,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
+using namespace QGpgME;
 
 class ChangeExpiryCommand::Private : public Command::Private
 {
@@ -226,7 +227,7 @@ void ChangeExpiryCommand::Private::createJob()
 {
     assert(!job);
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(key.protocol());
+    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {
         return;
     }

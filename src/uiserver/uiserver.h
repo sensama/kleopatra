@@ -37,8 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <cstdio>
 
 class QString;
@@ -57,7 +56,7 @@ public:
 
     static void setLogStream(FILE *file);
 
-    bool registerCommandFactory(const boost::shared_ptr<AssuanCommandFactory> &cmdFactory);
+    bool registerCommandFactory(const std::shared_ptr<AssuanCommandFactory> &cmdFactory);
 
     bool waitForStopped(unsigned int ms = 0xFFFFFFFF);
 

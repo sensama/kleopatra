@@ -40,8 +40,7 @@
 #include <gpgme++/global.h>
 #include <kmime/kmime_header_parsing.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace Kleo
@@ -54,7 +53,7 @@ class SignEncryptFilesController : public Controller
     Q_OBJECT
 public:
     explicit SignEncryptFilesController(QObject *parent = Q_NULLPTR);
-    explicit SignEncryptFilesController(const boost::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit SignEncryptFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
     ~SignEncryptFilesController();
 
     void setProtocol(GpgME::Protocol proto);
@@ -91,7 +90,7 @@ public Q_SLOTS:
     void cancel();
 
 private:
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

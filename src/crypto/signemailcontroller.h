@@ -39,6 +39,7 @@
 
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 
 namespace KMime
@@ -47,11 +48,6 @@ namespace Types
 {
 class Mailbox;
 }
-}
-
-namespace boost
-{
-template <typename T> class shared_ptr;
 }
 
 namespace Kleo
@@ -75,7 +71,7 @@ public:
     };
 
     explicit SignEMailController(Mode mode, QObject *parent = Q_NULLPTR);
-    explicit SignEMailController(const boost::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = Q_NULLPTR);
+    explicit SignEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = Q_NULLPTR);
     ~SignEMailController();
 
     Mode mode() const;
@@ -89,10 +85,10 @@ public:
 
     void setDetachedSignature(bool detached);
 
-    void setInputAndOutput(const boost::shared_ptr<Kleo::Input>   &input,
-                           const boost::shared_ptr<Kleo::Output> &output);
-    void setInputsAndOutputs(const std::vector< boost::shared_ptr<Kleo::Input> >   &inputs,
-                             const std::vector< boost::shared_ptr<Kleo::Output> > &outputs);
+    void setInputAndOutput(const std::shared_ptr<Kleo::Input>   &input,
+                           const std::shared_ptr<Kleo::Output> &output);
+    void setInputsAndOutputs(const std::vector< std::shared_ptr<Kleo::Input> >   &inputs,
+                             const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
 
     void start();
 
@@ -104,7 +100,7 @@ Q_SIGNALS:
     void reportMicAlg(const QString &micalg);
 
 private:
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &result) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result) Q_DECL_OVERRIDE;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

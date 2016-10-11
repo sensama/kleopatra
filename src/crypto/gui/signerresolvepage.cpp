@@ -68,7 +68,6 @@ using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 namespace
 {
@@ -284,8 +283,8 @@ private:
     bool multipleProtocolsAllowed;
     bool protocolSelectionUserMutable;
     QMap<GpgME::Protocol, GpgME::Key> certificates;
-    shared_ptr<SignerResolvePage::Validator> validator;
-    shared_ptr<SigningPreferences> signingPreferences;
+    std::shared_ptr<SignerResolvePage::Validator> validator;
+    std::shared_ptr<SigningPreferences> signingPreferences;
 };
 
 bool SignerResolvePage::Private::protocolSelectionActuallyUserMutable() const
@@ -363,14 +362,14 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
     layout->addStretch();
 }
 
-void SignerResolvePage::setValidator(const boost::shared_ptr<SignerResolvePage::Validator> &validator)
+void SignerResolvePage::setValidator(const std::shared_ptr<SignerResolvePage::Validator> &validator)
 {
     assert(validator);
     d->validator = validator;
     d->updateUi();
 }
 
-shared_ptr<SignerResolvePage::Validator> SignerResolvePage::validator() const
+std::shared_ptr<SignerResolvePage::Validator> SignerResolvePage::validator() const
 {
     return d->validator;
 }
@@ -669,7 +668,7 @@ void SignerResolvePage::setAsciiArmorEnabled(bool enabled)
     d->textArmorCO->setChecked(enabled);
 }
 
-void SignerResolvePage::setSigningPreferences(const boost::shared_ptr<SigningPreferences> &prefs)
+void SignerResolvePage::setSigningPreferences(const std::shared_ptr<SigningPreferences> &prefs)
 {
     d->signingPreferences = prefs;
     QMap<Protocol, Key> map;
@@ -678,7 +677,7 @@ void SignerResolvePage::setSigningPreferences(const boost::shared_ptr<SigningPre
     d->setCertificates(map);
 }
 
-shared_ptr<SigningPreferences> SignerResolvePage::signingPreferences() const
+std::shared_ptr<SigningPreferences> SignerResolvePage::signingPreferences() const
 {
     return d->signingPreferences;
 }

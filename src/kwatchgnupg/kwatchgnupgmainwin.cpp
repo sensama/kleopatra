@@ -37,8 +37,8 @@
 #include "kwatchgnupg.h"
 #include "tray.h"
 
-#include "Libkleo/CryptoBackendFactory"
-#include "Libkleo/CryptoConfig"
+#include <QGpgME/Protocol>
+#include <QGpgME/CryptoConfig>
 
 #include "utils/kdlogtextwidget.h"
 
@@ -162,7 +162,7 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
 {
     QStringList logclients;
     // Get config object
-    Kleo::CryptoConfig *cconfig = Kleo::CryptoBackendFactory::instance()->config();
+    QGpgME::CryptoConfig *cconfig = QGpgME::cryptoConfig();
     if (!cconfig) {
         return;
     }
@@ -170,12 +170,12 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
     KConfigGroup config(KSharedConfig::openConfig(), "WatchGnuPG");
     const QStringList comps = cconfig->componentList();
     for (QStringList::const_iterator it = comps.constBegin(); it != comps.constEnd(); ++it) {
-        Kleo::CryptoConfigComponent *comp = cconfig->component(*it);
+        QGpgME::CryptoConfigComponent *comp = cconfig->component(*it);
         Q_ASSERT(comp);
         // Look for log-file entry in Debug group
-        Kleo::CryptoConfigGroup *group = comp->group(QStringLiteral("Debug"));
+        QGpgME::CryptoConfigGroup *group = comp->group(QStringLiteral("Debug"));
         if (group) {
-            Kleo::CryptoConfigEntry *entry = group->entry(QStringLiteral("log-file"));
+            QGpgME::CryptoConfigEntry *entry = group->entry(QStringLiteral("log-file"));
             if (entry) {
                 entry->setStringValue(QLatin1String("socket://") + config.readEntry("Socket", WATCHGNUPGSOCKET));
                 logclients << QStringLiteral("%1 (%2)").arg(*it, comp->description());

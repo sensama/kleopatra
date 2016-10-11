@@ -32,10 +32,11 @@
 
 #include "kleo_test.h"
 
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/VerifyDetachedJob>
-#include <Libkleo/KeyListJob>
-#include <Libkleo/DecryptVerifyJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/VerifyDetachedJob>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/DecryptVerifyJob>
+
 #include <KAboutData>
 
 #include <gpgme++/error.h>
@@ -60,21 +61,21 @@ private:
     // Data shared with all tests
     QByteArray mSignature;
     QByteArray mSignedData;
-    const Kleo::CryptoBackend::Protocol *mBackend;
+    const QGpgME::Protocol *mBackend;
     QEventLoop mEventLoop;
 
     // Data for testParallelVerifyAndKeyListJobs()
-    QList<Kleo::VerifyDetachedJob *> mParallelVerifyJobs;
-    QList<Kleo::KeyListJob *> mParallelKeyListJobs;
+    QList<QGpgME::VerifyDetachedJob *> mParallelVerifyJobs;
+    QList<QGpgME::KeyListJob *> mParallelKeyListJobs;
 
     // Data for testMixedParallelJobs()
-    QList<Kleo::Job *> mRunningJobs;
+    QList<QGpgME::Job *> mRunningJobs;
     int mJobsStarted;
 
 public Q_SLOTS:
     void slotParallelKeyListJobFinished()
     {
-        mParallelKeyListJobs.removeAll(static_cast<Kleo::KeyListJob *>(sender()));
+        mParallelKeyListJobs.removeAll(static_cast<QGpgME::KeyListJob *>(sender()));
 
         // When all jobs are done, quit the event loop
         if (mParallelVerifyJobs.isEmpty() && mParallelKeyListJobs.isEmpty()) {
@@ -85,14 +86,14 @@ public Q_SLOTS:
     void slotParallelVerifyJobFinished(GpgME::VerificationResult result)
     {
         // Verify the result of the job is correct
-        QVERIFY(mParallelVerifyJobs.contains(static_cast<Kleo::VerifyDetachedJob *>(sender())));
+        QVERIFY(mParallelVerifyJobs.contains(static_cast<QGpgME::VerifyDetachedJob *>(sender())));
         QCOMPARE(result.signature(0).validity(), GpgME::Signature::Full);
-        mParallelVerifyJobs.removeAll(static_cast<Kleo::VerifyDetachedJob *>(sender()));
+        mParallelVerifyJobs.removeAll(static_cast<QGpgME::VerifyDetachedJob *>(sender()));
 
         // Start a key list job
-        Kleo::KeyListJob *job = mBackend->keyListJob();
+        QGpgME::KeyListJob *job = mBackend->keyListJob();
         mParallelKeyListJobs.append(job);
-        connect(job, &Kleo::Job::done,
+        connect(job, &QGpgME::Job::done,
                 this, &VerifyTest::slotParallelKeyListJobFinished);
         QVERIFY(!job->start(QStringList()));
     }
@@ -100,7 +101,7 @@ public Q_SLOTS:
     void someJobDone()
     {
         // Don't bother checking any results here
-        mRunningJobs.removeAll(static_cast<Kleo::Job *>(sender()));
+        mRunningJobs.removeAll(static_cast<QGpgME::Job *>(sender()));
     }
 
     void startAnotherJob()
@@ -114,18 +115,18 @@ public Q_SLOTS:
         }
 
         // Randomly either start a keylist or a verify job
-        Kleo::Job *job;
+        QGpgME::Job *job;
         if (counter % 2 == 0) {
-            Kleo::VerifyDetachedJob *vdj = mBackend->verifyDetachedJob();
+            QGpgME::VerifyDetachedJob *vdj = mBackend->verifyDetachedJob();
             QVERIFY(!vdj->start(mSignature, mSignedData));
             job = vdj;
         } else {
-            Kleo::KeyListJob *klj = mBackend->keyListJob();
+            QGpgME::KeyListJob *klj = mBackend->keyListJob();
             QVERIFY(!klj->start(QStringList()));
             job = klj;
         }
         mRunningJobs.append(job);
-        connect(job, &Kleo::Job::done, this, &VerifyTest::someJobDone);
+        connect(job, &QGpgME::Job::done, this, &VerifyTest::someJobDone);
 
         // Quit after 2500 jobs, that should be enough
         mJobsStarted++;
@@ -152,12 +153,12 @@ private Q_SLOTS:
         mSignature = sigFile.readAll();
         mSignedData = dataFile.readAll();
 
-        mBackend = Kleo::CryptoBackendFactory::instance()->protocol("openpgp");
+        mBackend = QGpgME::openpgp();
     }
 
     void testVerify()
     {
-        Kleo::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
+        QGpgME::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
         QSignalSpy spy(job, SIGNAL(result(GpgME::VerificationResult)));
         QVERIFY(spy.isValid());
         GpgME::Error err = job->start(mSignature, mSignedData);
@@ -186,7 +187,7 @@ private Q_SLOTS:
         QVERIFY(sigFile.open(QFile::ReadOnly));
         const QByteArray ciphertext = sigFile.readAll();
 
-        Kleo::DecryptVerifyJob *job = mBackend->decryptVerifyJob();
+        QGpgME::DecryptVerifyJob *job = mBackend->decryptVerifyJob();
         result = job->exec(ciphertext, plaintext);
         QVERIFY(result.first.error().code());
 
@@ -209,7 +210,7 @@ private Q_SLOTS:
         // ^ This should also be reevaluated if the underlying bug in gpgme
         // is fixed.
         for (int i = 0; i < 10; ++i) {
-            Kleo::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
+            QGpgME::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
             mParallelVerifyJobs.append(job);
             QVERIFY(!job->start(mSignature, mSignedData));
             connect(job, SIGNAL(result(GpgME::VerificationResult)),

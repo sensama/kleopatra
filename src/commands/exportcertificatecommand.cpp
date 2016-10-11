@@ -41,10 +41,10 @@
 
 #include <utils/filedialog.h>
 
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/ExportJob>
 #include <Libkleo/Classify>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/ExportJob>
 
 #include <gpgme++/key.h>
 
@@ -63,6 +63,7 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace boost;
+using namespace QGpgME;
 
 class ExportCertificateCommand::Private : public Command::Private
 {
@@ -79,7 +80,7 @@ public:
     void exportResult(const GpgME::Error &, const QByteArray &);
     void showError(const GpgME::Error &error);
 
-    bool requestFileNames(Protocol prot);
+    bool requestFileNames(GpgME::Protocol prot);
     void finishedIfLastJob();
 
 private:
@@ -235,7 +236,7 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
 {
     assert(protocol != GpgME::UnknownProtocol);
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(protocol);
+    const QGpgME::Protocol *const backend = (protocol == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     assert(backend);
     const QString fileName = fileNames[protocol];
     const bool binary = protocol == GpgME::OpenPGP

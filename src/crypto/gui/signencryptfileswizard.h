@@ -42,7 +42,7 @@
 #include <QVector>
 #include <QMap>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 class QStringList;
 
@@ -93,7 +93,7 @@ public:
     void setOutputNames(const QMap<int, QString> &nameMap) const;
     QMap<int, QString> outputNames() const;
 
-    void setTaskCollection(const boost::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
+    void setTaskCollection(const std::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
 
     // Outputs
     QVector<GpgME::Key> resolvedRecipients() const;

@@ -50,10 +50,10 @@
 #include <Libkleo/SubkeyListModel>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/KeyListJob>
 #include <Libkleo/Dn>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/KeyListJob>
 
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
@@ -244,11 +244,11 @@ private:
         if (keyListJob) {
             return;
         }
-        const CryptoBackend::Protocol *const protocol = CryptoBackendFactory::instance()->protocol(key.protocol());
+        const QGpgME::Protocol *const protocol = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         if (!protocol) {
             return;
         }
-        KeyListJob *const job = protocol->keyListJob(/*remote*/false, /*includeSigs*/true, /*validate*/true);
+        QGpgME::KeyListJob *const job = protocol->keyListJob(/*remote*/false, /*includeSigs*/true, /*validate*/true);
         if (!job) {
             return;
         }
@@ -463,7 +463,7 @@ private:
 
     QPointer<DumpCertificateCommand> dumpCertificateCommand;
 
-    QPointer<KeyListJob> keyListJob;
+    QPointer<QGpgME::KeyListJob> keyListJob;
 
     struct UI : public Ui_CertificateDetailsDialog {
         explicit UI(Dialogs::CertificateDetailsDialog *qq)

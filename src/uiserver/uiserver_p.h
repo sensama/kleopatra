@@ -46,6 +46,7 @@
 
 #include <boost/bind.hpp>
 
+#include <memory>
 #include <algorithm>
 #include <vector>
 
@@ -86,8 +87,8 @@ private Q_SLOTS:
 
 private:
     QFile file;
-    std::vector< boost::shared_ptr<AssuanCommandFactory> > factories;
-    std::vector< boost::shared_ptr<AssuanServerConnection> > connections;
+    std::vector< std::shared_ptr<AssuanCommandFactory> > factories;
+    std::vector< std::shared_ptr<AssuanServerConnection> > connections;
     QString suggestedSocketName;
     QString actualSocketName;
     assuan_sock_nonce_t nonce;

@@ -37,7 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Kleo
 {
@@ -46,11 +46,11 @@ class IODeviceLogger : public QIODevice
 {
     Q_OBJECT
 public:
-    explicit IODeviceLogger(const boost::shared_ptr<QIODevice> &iod, QObject *parent = Q_NULLPTR);
+    explicit IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent = Q_NULLPTR);
     ~IODeviceLogger();
 
-    void setWriteLogDevice(const boost::shared_ptr<QIODevice> &dev);
-    void setReadLogDevice(const boost::shared_ptr<QIODevice> &dev);
+    void setWriteLogDevice(const std::shared_ptr<QIODevice> &dev);
+    void setReadLogDevice(const std::shared_ptr<QIODevice> &dev);
 
     bool atEnd() const Q_DECL_OVERRIDE;
     qint64 bytesAvailable() const Q_DECL_OVERRIDE;

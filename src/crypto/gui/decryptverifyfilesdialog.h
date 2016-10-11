@@ -32,8 +32,6 @@
 #ifndef CRYPTO_GUI_DECRYPTVERIFYFILESDIALOG_H
 #define CRYPTO_GUI_DECRYPTVERIFYFILESDIALOG_H
 
-#include <boost/shared_ptr.hpp>
-
 #include <QDialog>
 #include <QString>
 #include <QDialogButtonBox>
@@ -60,7 +58,7 @@ class DecryptVerifyFilesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyFilesDialog(const boost::shared_ptr<TaskCollection> &coll,
+    explicit DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll,
                                       QWidget *parent = Q_NULLPTR);
     ~DecryptVerifyFilesDialog();
 
@@ -69,7 +67,7 @@ public:
 
 protected Q_SLOTS:
     void progress(const QString &msg, int progress, int total);
-    void started(const boost::shared_ptr<Task> &result);
+    void started(const std::shared_ptr<Task> &result);
     void allDone();
     void btnClicked(QAbstractButton *btn);
     void checkAccept();
@@ -82,7 +80,7 @@ protected:
     QLabel *labelForTag(const QString &tag);
 
 private:
-    boost::shared_ptr<TaskCollection> m_tasks;
+    std::shared_ptr<TaskCollection> m_tasks;
     QProgressBar *m_progressBar;
     QHash<QString, QLabel *> m_progressLabelByTag;
     QVBoxLayout *m_progressLabelLayout;

@@ -43,11 +43,11 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/SignJob>
-#include <Libkleo/SignEncryptJob>
-#include <Libkleo/EncryptJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/SignJob>
+#include <QGpgME/SignEncryptJob>
+#include <QGpgME/EncryptJob>
 
 #include <gpgme++/signingresult.h>
 #include <gpgme++/encryptionresult.h>
@@ -59,11 +59,8 @@
 #include <QPointer>
 #include <QTextDocument> // for Qt::escape
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -113,7 +110,7 @@ private:
 class SignEncryptFilesResult : public Task::Result
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
+    SignEncryptFilesResult(const SigningResult &sr, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
         : Task::Result(),
           m_sresult(sr),
           m_inputLabel(input ? input->label() : QString()),
@@ -128,7 +125,7 @@ public:
                                << "outputError:" << m_outputErrorString;
         assert(!m_sresult.isNull());
     }
-    SignEncryptFilesResult(const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
+    SignEncryptFilesResult(const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
         : Task::Result(),
           m_eresult(er),
           m_inputLabel(input ? input->label() : QString()),
@@ -143,7 +140,7 @@ public:
                                << "outputError:" << m_outputErrorString;
         assert(!m_eresult.isNull());
     }
-    SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const shared_ptr<Input> &input, const shared_ptr<Output> &output, bool outputCreated,  const AuditLog &auditLog)
+    SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated,  const AuditLog &auditLog)
         : Task::Result(),
           m_sresult(sr),
           m_eresult(er),
@@ -302,10 +299,10 @@ public:
     explicit Private(SignEncryptFilesTask *qq);
 
 private:
-    std::unique_ptr<Kleo::SignJob> createSignJob(GpgME::Protocol proto);
-    std::unique_ptr<Kleo::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
-    std::unique_ptr<Kleo::EncryptJob> createEncryptJob(GpgME::Protocol proto);
-    shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLog &auditLog);
+    std::unique_ptr<QGpgME::SignJob> createSignJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::EncryptJob> createEncryptJob(GpgME::Protocol proto);
+    std::shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLog &auditLog);
 
 private:
     void slotResult(const SigningResult &);
@@ -313,8 +310,8 @@ private:
     void slotResult(const EncryptionResult &);
 
 private:
-    shared_ptr<Input> input;
-    shared_ptr<Output> output;
+    std::shared_ptr<Input> input;
+    std::shared_ptr<Output> output;
     QStringList inputFileNames;
     QString outputFileName;
     std::vector<Key> signers;
@@ -325,8 +322,8 @@ private:
     bool detached : 1;
     bool symmetric: 1;
 
-    QPointer<Kleo::Job> job;
-    shared_ptr<OverwritePolicy> m_overwritePolicy;
+    QPointer<QGpgME::Job> job;
+    std::shared_ptr<OverwritePolicy> m_overwritePolicy;
 };
 
 SignEncryptFilesTask::Private::Private(SignEncryptFilesTask *qq)
@@ -346,9 +343,9 @@ SignEncryptFilesTask::Private::Private(SignEncryptFilesTask *qq)
     q->setAsciiArmor(true);
 }
 
-shared_ptr<const Task::Result> SignEncryptFilesTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLog &auditLog)
+std::shared_ptr<const Task::Result> SignEncryptFilesTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLog &auditLog)
 {
-    return shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, input->label(), output->label(), auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, input->label(), output->label(), auditLog));
 }
 
 SignEncryptFilesTask::SignEncryptFilesTask(QObject *p)
@@ -373,7 +370,7 @@ void SignEncryptFilesTask::setInputFileNames(const QStringList &fileNames)
     d->inputFileNames = fileNames;
 }
 
-void SignEncryptFilesTask::setInput(const shared_ptr<Input> &input)
+void SignEncryptFilesTask::setInput(const std::shared_ptr<Input> &input)
 {
     kleo_assert(!d->job);
     kleo_assert(input);
@@ -399,7 +396,7 @@ void SignEncryptFilesTask::setRecipients(const std::vector<Key> &recipients)
     d->recipients = recipients;
 }
 
-void SignEncryptFilesTask::setOverwritePolicy(const shared_ptr<OverwritePolicy> &policy)
+void SignEncryptFilesTask::setOverwritePolicy(const std::shared_ptr<OverwritePolicy> &policy)
 {
     kleo_assert(!d->job);
     d->m_overwritePolicy = policy;
@@ -477,7 +474,7 @@ void SignEncryptFilesTask::doStart()
             qDebug() << "Adding symmetric flag";
         }
         if (d->sign) {
-            std::unique_ptr<Kleo::SignEncryptJob> job = d->createSignEncryptJob(protocol());
+            std::unique_ptr<QGpgME::SignEncryptJob> job = d->createSignEncryptJob(protocol());
             kleo_assert(job.get());
 
             job->start(d->signers, d->recipients,
@@ -485,7 +482,7 @@ void SignEncryptFilesTask::doStart()
 
             d->job = job.release();
         } else {
-            std::unique_ptr<Kleo::EncryptJob> job = d->createEncryptJob(protocol());
+            std::unique_ptr<QGpgME::EncryptJob> job = d->createEncryptJob(protocol());
             kleo_assert(job.get());
 
             job->start(d->recipients, d->input->ioDevice(), d->output->ioDevice(), flags);
@@ -493,7 +490,7 @@ void SignEncryptFilesTask::doStart()
             d->job = job.release();
         }
     } else if (d->sign) {
-        std::unique_ptr<Kleo::SignJob> job = d->createSignJob(protocol());
+        std::unique_ptr<QGpgME::SignJob> job = d->createSignJob(protocol());
         kleo_assert(job.get());
 
         job->start(d->signers,
@@ -513,11 +510,11 @@ void SignEncryptFilesTask::cancel()
     }
 }
 
-std::unique_ptr<Kleo::SignJob> SignEncryptFilesTask::Private::createSignJob(GpgME::Protocol proto)
+std::unique_ptr<QGpgME::SignJob> SignEncryptFilesTask::Private::createSignJob(GpgME::Protocol proto)
 {
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
-    std::unique_ptr<Kleo::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
+    std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signJob.get());
     connect(signJob.get(), SIGNAL(progress(QString,int,int)),
             q, SLOT(setProgress(QString,int,int)));
@@ -526,11 +523,11 @@ std::unique_ptr<Kleo::SignJob> SignEncryptFilesTask::Private::createSignJob(GpgM
     return signJob;
 }
 
-std::unique_ptr<Kleo::SignEncryptJob> SignEncryptFilesTask::Private::createSignEncryptJob(GpgME::Protocol proto)
+std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptFilesTask::Private::createSignEncryptJob(GpgME::Protocol proto)
 {
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
-    std::unique_ptr<Kleo::SignEncryptJob> signEncryptJob(backend->signEncryptJob(q->asciiArmor(), /*textmode=*/false));
+    std::unique_ptr<QGpgME::SignEncryptJob> signEncryptJob(backend->signEncryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signEncryptJob.get());
     connect(signEncryptJob.get(), SIGNAL(progress(QString,int,int)),
             q, SLOT(setProgress(QString,int,int)));
@@ -539,11 +536,11 @@ std::unique_ptr<Kleo::SignEncryptJob> SignEncryptFilesTask::Private::createSignE
     return signEncryptJob;
 }
 
-std::unique_ptr<Kleo::EncryptJob> SignEncryptFilesTask::Private::createEncryptJob(GpgME::Protocol proto)
+std::unique_ptr<QGpgME::EncryptJob> SignEncryptFilesTask::Private::createEncryptJob(GpgME::Protocol proto)
 {
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
-    std::unique_ptr<Kleo::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
+    std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(encryptJob.get());
     connect(encryptJob.get(), SIGNAL(progress(QString,int,int)),
             q, SLOT(setProgress(QString,int,int)));
@@ -554,7 +551,7 @@ std::unique_ptr<Kleo::EncryptJob> SignEncryptFilesTask::Private::createEncryptJo
 
 void SignEncryptFilesTask::Private::slotResult(const SigningResult &result)
 {
-    const Job *const job = qobject_cast<const Job *>(q->sender());
+    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (result.error().code()) {
@@ -571,12 +568,12 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &result)
         }
     }
 
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
+    q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
 }
 
 void SignEncryptFilesTask::Private::slotResult(const SigningResult &sresult, const EncryptionResult &eresult)
 {
-    const Job *const job = qobject_cast<const Job *>(q->sender());
+    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (sresult.error().code() || eresult.error().code()) {
@@ -593,12 +590,12 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &sresult, con
         }
     }
 
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, input, output, outputCreated, auditLog)));
+    q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, input, output, outputCreated, auditLog)));
 }
 
 void SignEncryptFilesTask::Private::slotResult(const EncryptionResult &result)
 {
-    const Job *const job = qobject_cast<const Job *>(q->sender());
+    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (result.error().code()) {
@@ -614,7 +611,7 @@ void SignEncryptFilesTask::Private::slotResult(const EncryptionResult &result)
             return;
         }
     }
-    q->emitResult(shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
+    q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(result, input, output, outputCreated, auditLog)));
 }
 
 QString SignEncryptFilesResult::overview() const

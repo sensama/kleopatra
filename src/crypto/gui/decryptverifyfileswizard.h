@@ -37,7 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Kleo
 {
@@ -66,7 +66,7 @@ public:
     QString outputDirectory() const;
     bool useOutputDirectory() const;
 
-    void setTaskCollection(const boost::shared_ptr<TaskCollection> &coll);
+    void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
     DecryptVerifyOperationWidget *operationWidget(unsigned int idx);
 

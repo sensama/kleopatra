@@ -45,11 +45,8 @@
 #include <QStackedLayout>
 #include <QComboBox>
 
-#include <boost/shared_ptr.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 class DecryptVerifyOperationWidget::Private
 {
@@ -167,20 +164,20 @@ DecryptVerifyOperationWidget::DecryptVerifyOperationWidget(QWidget *p)
 
 DecryptVerifyOperationWidget::~DecryptVerifyOperationWidget() {}
 
-void DecryptVerifyOperationWidget::setArchiveDefinitions(const std::vector< shared_ptr<ArchiveDefinition> > &archiveDefinitions)
+void DecryptVerifyOperationWidget::setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &archiveDefinitions)
 {
     d->ui.archivesCB.clear();
-    Q_FOREACH (const shared_ptr<ArchiveDefinition> &ad, archiveDefinitions) {
+    Q_FOREACH (const std::shared_ptr<ArchiveDefinition> &ad, archiveDefinitions) {
         d->ui.archivesCB.addItem(ad->label(), qVariantFromValue(ad));
     }
 }
 
 void DecryptVerifyOperationWidget::setMode(Mode mode)
 {
-    setMode(mode, shared_ptr<ArchiveDefinition>());
+    setMode(mode, std::shared_ptr<ArchiveDefinition>());
 }
 
-void DecryptVerifyOperationWidget::setMode(Mode mode, const shared_ptr<ArchiveDefinition> &ad)
+void DecryptVerifyOperationWidget::setMode(Mode mode, const std::shared_ptr<ArchiveDefinition> &ad)
 {
     d->ui.verifyDetachedCB.setChecked(mode != DecryptVerifyOpaque);
 
@@ -202,7 +199,7 @@ void DecryptVerifyOperationWidget::setMode(Mode mode, const shared_ptr<ArchiveDe
 
     d->ui.archiveCB.setChecked(ad.get() != 0);
     for (int i = 0, end = d->ui.archivesCB.count(); i != end; ++i)
-        if (ad == d->ui.archivesCB.itemData(i).value< shared_ptr<ArchiveDefinition> >()) {
+        if (ad == d->ui.archivesCB.itemData(i).value< std::shared_ptr<ArchiveDefinition> >()) {
             d->ui.archivesCB.setCurrentIndex(i);
             return;
         }
@@ -251,12 +248,12 @@ QString DecryptVerifyOperationWidget::signedDataFileName() const
     }
 }
 
-shared_ptr<ArchiveDefinition> DecryptVerifyOperationWidget::selectedArchiveDefinition() const
+std::shared_ptr<ArchiveDefinition> DecryptVerifyOperationWidget::selectedArchiveDefinition() const
 {
     if (mode() == DecryptVerifyOpaque && d->ui.archiveCB.isChecked()) {
-        return d->ui.archivesCB.itemData(d->ui.archivesCB.currentIndex()).value< shared_ptr<ArchiveDefinition> >();
+        return d->ui.archivesCB.itemData(d->ui.archivesCB.currentIndex()).value< std::shared_ptr<ArchiveDefinition> >();
     } else {
-        return shared_ptr<ArchiveDefinition>();
+        return std::shared_ptr<ArchiveDefinition>();
     }
 }
 

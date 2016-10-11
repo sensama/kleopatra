@@ -40,7 +40,7 @@
 
 #include <gpgme++/global.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace Kleo
 {
@@ -78,7 +78,7 @@ public:
 
     int id() const;
 
-    static boost::shared_ptr<Task> makeErrorTask(int code, const QString &details, const QString &label);
+    static std::shared_ptr<Task> makeErrorTask(int code, const QString &details, const QString &label);
 
 public Q_SLOTS:
     virtual void cancel() = 0;
@@ -91,13 +91,13 @@ private: // don't tell moc, but those signals are in fact private
 #endif
 #endif
     void progress(const QString &what, int processed, int total);
-    void result(const boost::shared_ptr<const Kleo::Crypto::Task::Result> &);
+    void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &);
     void started();
 
 protected:
-    boost::shared_ptr<Result> makeErrorResult(int errCode, const QString &details);
+    std::shared_ptr<Result> makeErrorResult(int errCode, const QString &details);
 
-    void emitResult(const boost::shared_ptr<const Task::Result> &result);
+    void emitResult(const std::shared_ptr<const Task::Result> &result);
 
 protected Q_SLOTS:
     void setProgress(const QString &msg, int processed, int total);

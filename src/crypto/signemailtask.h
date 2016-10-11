@@ -39,8 +39,7 @@
 
 #include <gpgme++/global.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -66,8 +65,8 @@ public:
     explicit SignEMailTask(QObject *parent = Q_NULLPTR);
     ~SignEMailTask();
 
-    void setInput(const boost::shared_ptr<Input> &input);
-    void setOutput(const boost::shared_ptr<Output> &output);
+    void setInput(const std::shared_ptr<Input> &input);
+    void setOutput(const std::shared_ptr<Output> &output);
     void setSigners(const std::vector<GpgME::Key> &recipients);
 
     void setDetachedSignature(bool detached);

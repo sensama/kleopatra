@@ -42,10 +42,10 @@
 #include <Libkleo/Predicates>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/MultiDeleteJob>
-#include <Libkleo/DeleteJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/MultiDeleteJob>
+#include <QGpgME/DeleteJob>
 
 #include <gpgme++/key.h>
 
@@ -64,6 +64,7 @@ using namespace boost;
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
+using namespace QGpgME;
 
 class DeleteCertificatesCommand::Private : public Command::Private
 {
@@ -85,7 +86,7 @@ public:
 
     bool canDelete(GpgME::Protocol proto) const
     {
-        if (const CryptoBackend::Protocol *const cbp = CryptoBackendFactory::instance()->protocol(proto))
+        if (const auto cbp = (proto == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime()))
             if (DeleteJob *const job = cbp->deleteJob()) {
                 job->slotCancel();
                 return true;
@@ -364,7 +365,7 @@ void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol
 
     const std::vector<Key> &keys = protocol == CMS ? cmsKeys : pgpKeys;
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(protocol);
+    const auto backend = (protocol == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     assert(backend);
 
     std::unique_ptr<MultiDeleteJob> job(new MultiDeleteJob(backend));

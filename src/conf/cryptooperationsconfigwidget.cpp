@@ -38,13 +38,15 @@
 #include "fileoperationspreferences.h"
 
 #include <Libkleo/ChecksumDefinition>
-#include <Libkleo/CryptoBackendFactory>
+
+#include <QGpgME/Protocol>
 
 #include <gpgme++/context.h>
 
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
+#include <KSharedConfig>
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -55,11 +57,10 @@
 #include <QLabel>
 #include <QRegularExpression>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 using namespace Kleo;
 using namespace Kleo::Config;
-using namespace boost;
 
 CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::WindowFlags f)
     : QWidget(p, f)
@@ -152,7 +153,7 @@ void CryptoOperationsConfigWidget::defaults()
     }
 }
 
-Q_DECLARE_METATYPE(boost::shared_ptr<Kleo::ChecksumDefinition>)
+Q_DECLARE_METATYPE(std::shared_ptr<Kleo::ChecksumDefinition>)
 
 void CryptoOperationsConfigWidget::load()
 {
@@ -166,13 +167,13 @@ void CryptoOperationsConfigWidget::load()
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
     mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
 
-    const std::vector< shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
-    const shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
+    const std::vector< std::shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
+    const std::shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
 
     mChecksumDefinitionCB->clear();
     mArchiveDefinitionCB->clear();
 
-    Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, cds) {
+    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, cds) {
         mChecksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
         if (cd == default_cd) {
             mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
@@ -184,7 +185,7 @@ void CryptoOperationsConfigWidget::load()
     // This is a weird hack but because we are a KCM we can't link
     // against ArchiveDefinition which pulls in loads of other classes.
     // So we do the parsing which archive definitions exist here ourself.
-    if (KConfig *config = CryptoBackendFactory::instance()->configObject()) {
+    if (KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"))) {
         const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
         Q_FOREACH (const QString &group, groups) {
             const KConfigGroup cGroup(config, group);
@@ -214,7 +215,7 @@ void CryptoOperationsConfigWidget::save()
 
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {
-        const shared_ptr<ChecksumDefinition> cd = qvariant_cast< shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
+        const std::shared_ptr<ChecksumDefinition> cd = qvariant_cast< std::shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
         ChecksumDefinition::setDefaultChecksumDefinition(cd);
     }
 

@@ -39,9 +39,9 @@
 #include <utils/path-helper.h>
 #include <utils/kleo_assert.h>
 
-#include <Libkleo/Exception>
-#include <Libkleo/CryptoBackendFactory>
+#include <gpgme++/exception.h>
 
+#include <KSharedConfig>
 #include <KConfigGroup>
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
@@ -55,12 +55,10 @@
 #include <QCoreApplication>
 #include <QRegularExpression>
 
-#include <boost/shared_ptr.hpp>
 #include <QStandardPaths>
 
 using namespace GpgME;
 using namespace Kleo;
-using namespace boost;
 
 static QMutex installPathMutex;
 Q_GLOBAL_STATIC(QString, _installPath)
@@ -301,19 +299,19 @@ public:
     }
 
 private:
-    QString doGetPackCommand(Protocol p) const Q_DECL_OVERRIDE
+    QString doGetPackCommand(GpgME::Protocol p) const Q_DECL_OVERRIDE
     {
         return m_packCommand[p];
     }
-    QString doGetUnpackCommand(Protocol p) const Q_DECL_OVERRIDE
+    QString doGetUnpackCommand(GpgME::Protocol p) const Q_DECL_OVERRIDE
     {
         return m_unpackCommand[p];
     }
-    QStringList doGetPackArguments(Protocol p, const QStringList &files) const Q_DECL_OVERRIDE
+    QStringList doGetPackArguments(GpgME::Protocol p, const QStringList &files) const Q_DECL_OVERRIDE
     {
         return m_packPrefixArguments[p] + files + m_packPostfixArguments[p];
     }
-    QStringList doGetUnpackArguments(Protocol p, const QString &file) const Q_DECL_OVERRIDE
+    QStringList doGetUnpackArguments(GpgME::Protocol p, const QString &file) const Q_DECL_OVERRIDE
     {
         QStringList copy = m_unpackArguments[p];
         copy.replaceInStrings(FILE_PLACEHOLDER, file);
@@ -332,7 +330,7 @@ ArchiveDefinition::ArchiveDefinition(const QString &id, const QString &label)
     : m_id(id),
       m_label(label)
 {
-    m_packCommandMethod[OpenPGP]   = m_packCommandMethod[CMS] = CommandLine;
+    m_packCommandMethod[GpgME::OpenPGP]   = m_packCommandMethod[GpgME::CMS] = CommandLine;
 }
 
 ArchiveDefinition::~ArchiveDefinition() {}
@@ -347,7 +345,7 @@ static QByteArray make_input(const QStringList &files, char sep)
     return result;
 }
 
-shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Protocol p, const QStringList &files) const
+std::shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Protocol p, const QStringList &files) const
 {
     checkProtocol(p);
     const QString base = heuristicBaseDirectory(files);
@@ -375,10 +373,10 @@ shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Protocol 
     case NumArgumentPassingMethods:
         assert(!"Should not happen");
     }
-    return shared_ptr<Input>(); // make compiler happy
+    return std::shared_ptr<Input>(); // make compiler happy
 }
 
-shared_ptr<Output> ArchiveDefinition::createOutputFromUnpackCommand(GpgME::Protocol p, const QString &file, const QDir &wd) const
+std::shared_ptr<Output> ArchiveDefinition::createOutputFromUnpackCommand(GpgME::Protocol p, const QString &file, const QDir &wd) const
 {
     checkProtocol(p);
     const QFileInfo fi(file);
@@ -388,34 +386,33 @@ shared_ptr<Output> ArchiveDefinition::createOutputFromUnpackCommand(GpgME::Proto
 }
 
 // static
-std::vector< shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions()
+std::vector< std::shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions()
 {
     QStringList errors;
     return getArchiveDefinitions(errors);
 }
 
 // static
-std::vector< shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions(QStringList &errors)
+std::vector< std::shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveDefinitions(QStringList &errors)
 {
-    std::vector< shared_ptr<ArchiveDefinition> > result;
-    if (KConfig *config = CryptoBackendFactory::instance()->configObject()) {
-        const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
-        result.reserve(groups.size());
-        Q_FOREACH (const QString &group, groups)
-            try {
-                const shared_ptr<ArchiveDefinition> ad(new KConfigBasedArchiveDefinition(KConfigGroup(config, group)));
-                result.push_back(ad);
-            } catch (const std::exception &e) {
-                qCDebug(KLEOPATRA_LOG) << e.what();
-                errors.push_back(QString::fromLocal8Bit(e.what()));
-            } catch (...) {
-                errors.push_back(i18n("Caught unknown exception in group %1", group));
-            }
-    }
+    std::vector< std::shared_ptr<ArchiveDefinition> > result;
+    KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
+    const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
+    result.reserve(groups.size());
+    Q_FOREACH (const QString &group, groups)
+        try {
+            const std::shared_ptr<ArchiveDefinition> ad(new KConfigBasedArchiveDefinition(KConfigGroup(config, group)));
+            result.push_back(ad);
+        } catch (const std::exception &e) {
+            qCDebug(KLEOPATRA_LOG) << e.what();
+            errors.push_back(QString::fromLocal8Bit(e.what()));
+        } catch (...) {
+            errors.push_back(i18n("Caught unknown exception in group %1", group));
+        }
     return result;
 }
 
-void ArchiveDefinition::checkProtocol(Protocol p) const
+void ArchiveDefinition::checkProtocol(GpgME::Protocol p) const
 {
-    kleo_assert(p == OpenPGP || p == CMS);
+    kleo_assert(p == GpgME::OpenPGP || p == GpgME::CMS);
 }

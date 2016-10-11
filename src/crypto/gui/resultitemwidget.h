@@ -39,7 +39,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 class QString;
 
@@ -57,7 +57,7 @@ class ResultItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultItemWidget(const boost::shared_ptr<const Task::Result> &result, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
+    explicit ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
     ~ResultItemWidget();
 
     bool detailsVisible() const;

@@ -40,9 +40,9 @@
 #include <utils/auditlog.h>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/SignJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/SignJob>
 
 #include <gpgme++/signingresult.h>
 #include <gpgme++/key.h>
@@ -103,21 +103,21 @@ public:
     explicit Private(SignEMailTask *qq);
 
 private:
-    std::unique_ptr<Kleo::SignJob> createJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::SignJob> createJob(GpgME::Protocol proto);
 
 private:
     void slotResult(const SigningResult &);
 
 private:
-    shared_ptr<Input> input;
-    shared_ptr<Output> output;
+    std::shared_ptr<Input> input;
+    std::shared_ptr<Output> output;
     std::vector<Key> signers;
     bool detached;
     bool clearsign;
 
     QString micAlg;
 
-    QPointer<Kleo::SignJob> job;
+    QPointer<QGpgME::SignJob> job;
 };
 
 SignEMailTask::Private::Private(SignEMailTask *qq)
@@ -141,14 +141,14 @@ SignEMailTask::SignEMailTask(QObject *p)
 
 SignEMailTask::~SignEMailTask() {}
 
-void SignEMailTask::setInput(const shared_ptr<Input> &input)
+void SignEMailTask::setInput(const std::shared_ptr<Input> &input)
 {
     kleo_assert(!d->job);
     kleo_assert(input);
     d->input = input;
 }
 
-void SignEMailTask::setOutput(const shared_ptr<Output> &output)
+void SignEMailTask::setOutput(const std::shared_ptr<Output> &output)
 {
     kleo_assert(!d->job);
     kleo_assert(output);
@@ -202,7 +202,7 @@ void SignEMailTask::doStart()
 
     d->micAlg.clear();
 
-    std::unique_ptr<Kleo::SignJob> job = d->createJob(protocol());
+    std::unique_ptr<QGpgME::SignJob> job = d->createJob(protocol());
     kleo_assert(job.get());
 
     job->start(d->signers,
@@ -219,12 +219,12 @@ void SignEMailTask::cancel()
     }
 }
 
-std::unique_ptr<Kleo::SignJob> SignEMailTask::Private::createJob(GpgME::Protocol proto)
+std::unique_ptr<QGpgME::SignJob> SignEMailTask::Private::createJob(GpgME::Protocol proto)
 {
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     kleo_assert(backend);
     bool shouldArmor = (proto == OpenPGP || q->asciiArmor()) && !output->binaryOpt();
-    std::unique_ptr<Kleo::SignJob> signJob(backend->signJob(/*armor=*/ shouldArmor, /*textmode=*/false));
+    std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(/*armor=*/ shouldArmor, /*textmode=*/false));
     kleo_assert(signJob.get());
     if (proto == CMS && !q->asciiArmor() && !output->binaryOpt()) {
         signJob->setOutputIsBase64Encoded(true);
@@ -260,14 +260,14 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
 
 void SignEMailTask::Private::slotResult(const SigningResult &result)
 {
-    const Job *const job = qobject_cast<const Job *>(q->sender());
+    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     if (result.error().code()) {
         output->cancel();
     } else {
         output->finalize();
         micAlg = collect_micalgs(result, q->protocol());
     }
-    q->emitResult(shared_ptr<Result>(new SignEMailResult(result, AuditLog::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new SignEMailResult(result, AuditLog::fromJob(job))));
 }
 
 QString SignEMailTask::micAlg() const

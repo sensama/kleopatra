@@ -67,7 +67,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 
@@ -95,13 +94,13 @@ private:
     }
 
     void schedule();
-    shared_ptr<SignEncryptFilesTask> takeRunnable(GpgME::Protocol proto);
+    std::shared_ptr<SignEncryptFilesTask> takeRunnable(GpgME::Protocol proto);
 
     static void assertValidOperation(unsigned int);
     static QString titleForOperation(unsigned int op);
 private:
-    std::vector< shared_ptr<SignEncryptFilesTask> > runnable, completed;
-    shared_ptr<SignEncryptFilesTask> cms, openpgp;
+    std::vector< std::shared_ptr<SignEncryptFilesTask> > runnable, completed;
+    std::shared_ptr<SignEncryptFilesTask> cms, openpgp;
     QPointer<SignEncryptFilesWizard> wizard;
     QStringList files;
     unsigned int operation;
@@ -163,7 +162,7 @@ SignEncryptFilesController::SignEncryptFilesController(QObject *p)
 
 }
 
-SignEncryptFilesController::SignEncryptFilesController(const shared_ptr<const ExecutionContext> &ctx, QObject *p)
+SignEncryptFilesController::SignEncryptFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *p)
     : Controller(ctx, p), d(new Private(this))
 {
 
@@ -272,13 +271,13 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
     }
 }
 
-static boost::shared_ptr<ArchiveDefinition> getDefaultAd()
+static std::shared_ptr<ArchiveDefinition> getDefaultAd()
 {
-    std::vector<boost::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
+    std::vector<std::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
     assert(!ads.empty());
-    boost::shared_ptr<ArchiveDefinition> ad = ads.front();
+    std::shared_ptr<ArchiveDefinition> ad = ads.front();
     const FileOperationsPreferences prefs;
-    Q_FOREACH (const boost::shared_ptr<ArchiveDefinition> toCheck, ads) {
+    Q_FOREACH (const std::shared_ptr<ArchiveDefinition> toCheck, ads) {
         if (toCheck->id() == prefs.archiveCommand()) {
             ad = toCheck;
             break;
@@ -342,12 +341,12 @@ void SignEncryptFilesController::start()
     d->ensureWizardVisible();
 }
 
-static shared_ptr<SignEncryptFilesTask>
+static std::shared_ptr<SignEncryptFilesTask>
 createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
                                  const std::vector<Key> &recipients, const std::vector<Key> &signers,
                                  const QString &outputName, bool symmetric)
 {
-    const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
+    const std::shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
     Q_ASSERT(!signers.empty() || !recipients.empty() || symmetric);
     task->setAsciiArmor(ascii);
     if (!signers.empty()) {
@@ -374,13 +373,13 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
     return task;
 }
 
-static shared_ptr<SignEncryptFilesTask>
+static std::shared_ptr<SignEncryptFilesTask>
 createArchiveSignEncryptTaskForFiles(const QStringList &files,
-                                     const shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii,
+                                     const std::shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii,
                                      const std::vector<Key> &recipients, const std::vector<Key> &signers,
                                      const QString& outputName, bool symmetric)
 {
-    const shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
+    const std::shared_ptr<SignEncryptFilesTask> task(new SignEncryptFilesTask);
     task->setEncryptSymmetric(symmetric);
     Q_ASSERT(!signers.empty() || !recipients.empty() || symmetric);
     task->setAsciiArmor(ascii);
@@ -410,12 +409,12 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files,
     return task;
 }
 
-static std::vector< shared_ptr<SignEncryptFilesTask> >
+static std::vector< std::shared_ptr<SignEncryptFilesTask> >
 createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners,
                                   const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outputNames,
                                   bool symmetric)
 {
-    std::vector< shared_ptr<SignEncryptFilesTask> > result;
+    std::vector< std::shared_ptr<SignEncryptFilesTask> > result;
 
     const bool pgp = !pgpSigners.empty() || !pgpRecipients.empty();
 
@@ -454,13 +453,13 @@ createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::ve
     return result;
 }
 
-static std::vector< shared_ptr<SignEncryptFilesTask> >
-createArchiveSignEncryptTasksForFiles(const QStringList &files, const shared_ptr<ArchiveDefinition> &ad,
+static std::vector< std::shared_ptr<SignEncryptFilesTask> >
+createArchiveSignEncryptTasksForFiles(const QStringList &files, const std::shared_ptr<ArchiveDefinition> &ad,
                                       bool ascii, const std::vector<Key> &pgpRecipients,
                                       const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners,
                                       const QMap<int, QString> outputNames, bool symmetric)
 {
-    std::vector< shared_ptr<SignEncryptFilesTask> > result;
+    std::vector< std::shared_ptr<SignEncryptFilesTask> > result;
 
     const bool pgp = !pgpSigners.empty() || !pgpRecipients.empty();
 
@@ -526,7 +525,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        std::vector< shared_ptr<SignEncryptFilesTask> > tasks;
+        std::vector< std::shared_ptr<SignEncryptFilesTask> > tasks;
         if (!archive) {
             tasks.reserve(files.size());
         }
@@ -544,7 +543,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
 
         } else {
             Q_FOREACH (const QString &file, files) {
-                const std::vector< shared_ptr<SignEncryptFilesTask> > created =
+                const std::vector< std::shared_ptr<SignEncryptFilesTask> > created =
                     createSignEncryptTasksForFileInfo(QFileInfo(file), ascii,
                             pgpRecipients.toStdVector(),
                             pgpSigners.toStdVector(),
@@ -556,8 +555,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        const shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
-        Q_FOREACH (const shared_ptr<SignEncryptFilesTask> &i, tasks) {
+        const std::shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
+        Q_FOREACH (const std::shared_ptr<SignEncryptFilesTask> &i, tasks) {
             i->setOverwritePolicy(overwritePolicy);
         }
 
@@ -565,13 +564,13 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
 
         runnable.swap(tasks);
 
-        Q_FOREACH (const shared_ptr<Task> &task, runnable) {
+        Q_FOREACH (const std::shared_ptr<Task> &task, runnable) {
             q->connectTask(task);
         }
 
-        boost::shared_ptr<TaskCollection> coll(new TaskCollection);
+        std::shared_ptr<TaskCollection> coll(new TaskCollection);
 
-        std::vector<shared_ptr<Task> > tmp;
+        std::vector<std::shared_ptr<Task> > tmp;
         std::copy(runnable.begin(), runnable.end(), std::back_inserter(tmp));
         coll->setTasks(tmp);
         wizard->setTaskCollection(coll);
@@ -594,13 +593,13 @@ void SignEncryptFilesController::Private::schedule()
 {
 
     if (!cms)
-        if (const shared_ptr<SignEncryptFilesTask> t = takeRunnable(CMS)) {
+        if (const std::shared_ptr<SignEncryptFilesTask> t = takeRunnable(CMS)) {
             t->start();
             cms = t;
         }
 
     if (!openpgp)
-        if (const shared_ptr<SignEncryptFilesTask> t = takeRunnable(OpenPGP)) {
+        if (const std::shared_ptr<SignEncryptFilesTask> t = takeRunnable(OpenPGP)) {
             t->start();
             openpgp = t;
         }
@@ -611,21 +610,21 @@ void SignEncryptFilesController::Private::schedule()
     }
 }
 
-shared_ptr<SignEncryptFilesTask> SignEncryptFilesController::Private::takeRunnable(GpgME::Protocol proto)
+std::shared_ptr<SignEncryptFilesTask> SignEncryptFilesController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< shared_ptr<SignEncryptFilesTask> >::iterator it
+    const std::vector< std::shared_ptr<SignEncryptFilesTask> >::iterator it
         = std::find_if(runnable.begin(), runnable.end(),
                        boost::bind(&Task::protocol, _1) == proto);
     if (it == runnable.end()) {
-        return shared_ptr<SignEncryptFilesTask>();
+        return std::shared_ptr<SignEncryptFilesTask>();
     }
 
-    const shared_ptr<SignEncryptFilesTask> result = *it;
+    const std::shared_ptr<SignEncryptFilesTask> result = *it;
     runnable.erase(it);
     return result;
 }
 
-void SignEncryptFilesController::doTaskDone(const Task *task, const shared_ptr<const Task::Result> &result)
+void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_UNUSED(result)
     assert(task);

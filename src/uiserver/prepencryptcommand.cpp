@@ -44,7 +44,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class PrepEncryptCommand::Private : public QObject
 {
@@ -64,7 +63,7 @@ public Q_SLOTS:
     void slotError(int, const QString &);
 
 private:
-    shared_ptr<NewSignEncryptEMailController> controller;
+    std::shared_ptr<NewSignEncryptEMailController> controller;
 };
 
 PrepEncryptCommand::PrepEncryptCommand()
@@ -129,8 +128,8 @@ int PrepEncryptCommand::doStart()
 
 void PrepEncryptCommand::Private::slotRecipientsResolved()
 {
-    //hold local shared_ptr to member as q->done() deletes *this
-    const shared_ptr<NewSignEncryptEMailController> cont = controller;
+    //hold local std::shared_ptr to member as q->done() deletes *this
+    const std::shared_ptr<NewSignEncryptEMailController> cont = controller;
     QPointer<Private> that(this);
 
     try {

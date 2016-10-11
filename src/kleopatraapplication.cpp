@@ -148,7 +148,7 @@ public:
     SysTrayIcon *sysTray;
 #endif
     shared_ptr<KeyCache> keyCache;
-    shared_ptr<Log> log;
+    std::shared_ptr<Log> log;
     shared_ptr<FileSystemWatcher> watcher;
 
 public:

@@ -47,7 +47,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class PrepSignCommand::Private : public QObject
 {
@@ -67,7 +66,7 @@ public Q_SLOTS:
     void slotError(int, const QString &);
 
 private:
-    shared_ptr<NewSignEncryptEMailController> controller;
+    std::shared_ptr<NewSignEncryptEMailController> controller;
 };
 
 PrepSignCommand::PrepSignCommand()
@@ -93,7 +92,7 @@ void PrepSignCommand::Private::checkForErrors() const
         throw Exception(makeError(GPG_ERR_CONFLICT),
                         i18n("No SENDER given"));
 
-    const shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (m && m->isSigning()) {
 
@@ -121,7 +120,7 @@ int PrepSignCommand::doStart()
 
     d->checkForErrors();
 
-    const shared_ptr<NewSignEncryptEMailController> seec = mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
@@ -159,8 +158,8 @@ int PrepSignCommand::doStart()
 
 void PrepSignCommand::Private::slotSignersResolved()
 {
-    //hold local shared_ptr to member as q->done() deletes *this
-    const shared_ptr<NewSignEncryptEMailController> cont = controller;
+    //hold local std::shared_ptr to member as q->done() deletes *this
+    const std::shared_ptr<NewSignEncryptEMailController> cont = controller;
     QPointer<Private> that(this);
 
     try {

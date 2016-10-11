@@ -85,7 +85,7 @@ private:
 
 private:
     QStringList files;
-    shared_ptr<const ExecutionContext> shared_qq;
+    std::shared_ptr<const ExecutionContext> shared_qq;
     DecryptVerifyFilesController *mController;
 };
 

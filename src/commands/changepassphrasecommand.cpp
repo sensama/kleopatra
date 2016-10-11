@@ -37,9 +37,9 @@
 #include "command_p.h"
 
 #include <Libkleo/Formatting>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/ChangePasswdJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/ChangePasswdJob>
 
 #include <gpgme++/key.h>
 
@@ -53,6 +53,7 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
+using namespace QGpgME;
 
 class ChangePassphraseCommand::Private : public Command::Private
 {
@@ -186,7 +187,7 @@ void ChangePassphraseCommand::Private::createJob()
 {
     assert(!job);
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(key.protocol());
+    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {
         return;
     }

@@ -67,8 +67,8 @@ class ResultListWidget::Private
 public:
     explicit Private(ResultListWidget *qq);
 
-    void result(const shared_ptr<const Task::Result> &result);
-    void started(const shared_ptr<Task> &task);
+    void result(const std::shared_ptr<const Task::Result> &result);
+    void started(const std::shared_ptr<Task> &task);
     void detailsToggled(bool);
     void allTasksDone();
 
@@ -77,7 +77,7 @@ public:
     void setupMulti();
     void resizeIfStandalone();
 
-    std::vector< shared_ptr<TaskCollection> > m_collections;
+    std::vector< std::shared_ptr<TaskCollection> > m_collections;
     bool m_standaloneMode;
     int m_lastErrorItemIndex;
     ScrollArea *m_scrollArea;
@@ -177,7 +177,7 @@ void ResultListWidget::Private::allTasksDone()
     Q_EMIT q->completeChanged();
 }
 
-void ResultListWidget::Private::result(const shared_ptr<const Task::Result> &result)
+void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result> &result)
 {
     assert(result);
     assert(kdtools::any(m_collections, !boost::bind(&TaskCollection::isEmpty, _1)));
@@ -203,20 +203,20 @@ unsigned int ResultListWidget::numberOfCompletedTasks() const
     return kdtools::accumulate_transform(d->m_collections, mem_fn(&TaskCollection::numberOfCompletedTasks), 0U);
 }
 
-void ResultListWidget::setTaskCollection(const shared_ptr<TaskCollection> &coll)
+void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     //clear(); ### PENDING(marc) implement
     addTaskCollection(coll);
 }
 
-void ResultListWidget::addTaskCollection(const shared_ptr<TaskCollection> &coll)
+void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     assert(coll); assert(!coll->isEmpty());
     d->m_collections.push_back(coll);
-    connect(coll.get(), SIGNAL(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(coll.get(), SIGNAL(started(boost::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(boost::shared_ptr<Kleo::Crypto::Task>)));
+    connect(coll.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this, SLOT(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(coll.get(), SIGNAL(started(boost::std::shared_ptr<Kleo::Crypto::Task>)),
+            this, SLOT(started(boost::std::shared_ptr<Kleo::Crypto::Task>)));
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
     d->setupMulti();
     setStandaloneMode(d->m_standaloneMode);
@@ -227,7 +227,7 @@ void ResultListWidget::Private::detailsToggled(bool)
     resizeIfStandalone();
 }
 
-void ResultListWidget::Private::started(const shared_ptr<Task> &task)
+void ResultListWidget::Private::started(const std::shared_ptr<Task> &task)
 {
     assert(task);
     assert(m_progressLabel);

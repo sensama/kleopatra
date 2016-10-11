@@ -116,7 +116,7 @@ UiServer::~UiServer()
     }
 }
 
-bool UiServer::registerCommandFactory(const shared_ptr<AssuanCommandFactory> &cf)
+bool UiServer::registerCommandFactory(const std::shared_ptr<AssuanCommandFactory> &cf)
 {
     if (cf && empty(std::equal_range(d->factories.begin(), d->factories.end(), cf, _detail::ByName<std::less>()))) {
         d->factories.push_back(cf);
@@ -198,7 +198,7 @@ void UiServer::Private::slotConnectionClosed(Kleo::AssuanServerConnection *conn)
 {
     qCDebug(KLEOPATRA_LOG) << "UiServer: connection " << (void *)conn << " closed";
     connections.erase(std::remove_if(connections.begin(), connections.end(),
-                                     boost::bind(&boost::shared_ptr<AssuanServerConnection>::get, _1) == conn),
+                                     boost::bind(&std::shared_ptr<AssuanServerConnection>::get, _1) == conn),
                       connections.end());
     if (q->isStopped()) {
         SessionDataHandler::instance()->clear();
@@ -217,7 +217,7 @@ void UiServer::Private::incomingConnection(qintptr fd)
             return;
         }
 #endif
-        const shared_ptr<AssuanServerConnection> c(new AssuanServerConnection((assuan_fd_t)fd, factories));
+        const std::shared_ptr<AssuanServerConnection> c(new AssuanServerConnection((assuan_fd_t)fd, factories));
         connect(c.get(), &AssuanServerConnection::closed,
                 this, &Private::slotConnectionClosed);
         connect(c.get(), &AssuanServerConnection::startKeyManagerRequested,

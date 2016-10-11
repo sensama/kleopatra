@@ -37,17 +37,12 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <memory>
 #include <vector>
 
 namespace Kleo
 {
 class ArchiveDefinition;
-}
-
-namespace boost
-{
-template <typename T>
-class shared_ptr;
 }
 
 namespace Kleo
@@ -73,7 +68,7 @@ public:
         VerifyDetachedWithSignedData,
         DecryptVerifyOpaque
     };
-    void setMode(Mode mode, const boost::shared_ptr<ArchiveDefinition> &ad);
+    void setMode(Mode mode, const std::shared_ptr<ArchiveDefinition> &ad);
     void setMode(Mode mode);
     Mode mode() const;
 
@@ -83,8 +78,8 @@ public:
     void setSignedDataFileName(const QString &name);
     QString signedDataFileName() const;
 
-    void setArchiveDefinitions(const std::vector< boost::shared_ptr<ArchiveDefinition> > &ads);
-    boost::shared_ptr<ArchiveDefinition> selectedArchiveDefinition() const;
+    void setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &ads);
+    std::shared_ptr<ArchiveDefinition> selectedArchiveDefinition() const;
 
 private:
     class Private;

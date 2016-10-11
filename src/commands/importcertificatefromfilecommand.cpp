@@ -37,8 +37,9 @@
 
 #include "utils/filedialog.h"
 
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/ImportJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/ImportJob>
+
 #include <Libkleo/Classify>
 
 #include <gpgme++/global.h>
@@ -60,6 +61,7 @@
 
 using namespace GpgME;
 using namespace Kleo;
+using namespace QGpgME;
 
 class ImportCertificateFromFileCommand::Private : public ImportCertificatesCommand::Private
 {

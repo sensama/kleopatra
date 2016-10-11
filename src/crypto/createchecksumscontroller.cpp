@@ -187,10 +187,10 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
     return result;
 }
 
-static QList<QRegExp> get_patterns(const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     QList<QRegExp> result;
-    Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns()) {
                 result.push_back(QRegExp(pattern, fs_cs));
@@ -260,8 +260,8 @@ private:
     QPointer<QProgressDialog> progressDialog;
 #endif
     mutable QMutex mutex;
-    const std::vector< shared_ptr<ChecksumDefinition> > checksumDefinitions;
-    shared_ptr<ChecksumDefinition> checksumDefinition;
+    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions;
+    std::shared_ptr<ChecksumDefinition> checksumDefinition;
     QStringList files;
     QStringList errors, created;
     bool allowAddition;
@@ -301,7 +301,7 @@ CreateChecksumsController::CreateChecksumsController(QObject *p)
 
 }
 
-CreateChecksumsController::CreateChecksumsController(const shared_ptr<const ExecutionContext> &ctx, QObject *p)
+CreateChecksumsController::CreateChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *p)
     : Controller(ctx, p), d(new Private(this))
 {
 
@@ -377,7 +377,7 @@ struct Dir {
     QString sumFile;
     QStringList inputFiles;
     quint64 totalSize;
-    shared_ptr<ChecksumDefinition> checksumDefinition;
+    std::shared_ptr<ChecksumDefinition> checksumDefinition;
 };
 
 }
@@ -459,21 +459,21 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
     return n;
 }
 
-static shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
-        const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
+        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    Q_FOREACH (const shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns())
                 if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
                     return cd;
                 }
-    return shared_ptr<ChecksumDefinition>();
+    return std::shared_ptr<ChecksumDefinition>();
 }
 
 static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool allowAddition,
         const function<void(int)> &progress,
-        const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
 
     const QList<QRegExp> patterns = get_patterns(checksumDefinitions);
@@ -527,9 +527,9 @@ struct less_dir : std::binary_function<QDir, QDir, bool> {
 };
 }
 
-static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const shared_ptr<ChecksumDefinition> &checksumDefinition, bool allowAddition,
+static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const std::shared_ptr<ChecksumDefinition> &checksumDefinition, bool allowAddition,
         const function<void(int)> &progress,
-        const std::vector< shared_ptr<ChecksumDefinition> > &checksumDefinitions)
+        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     Q_UNUSED(allowAddition);
     if (!checksumDefinition) {
@@ -642,8 +642,8 @@ void CreateChecksumsController::Private::run()
     QMutexLocker locker(&mutex);
 
     const QStringList files = this->files;
-    const std::vector< shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
-    const shared_ptr<ChecksumDefinition> checksumDefinition = this->checksumDefinition;
+    const std::vector< std::shared_ptr<ChecksumDefinition> > checksumDefinitions = this->checksumDefinitions;
+    const std::shared_ptr<ChecksumDefinition> checksumDefinition = this->checksumDefinition;
     const bool allowAddition = this->allowAddition;
 
     locker.unlock();

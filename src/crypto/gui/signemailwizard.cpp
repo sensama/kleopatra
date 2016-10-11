@@ -129,7 +129,7 @@ SignEMailWizard::Private::Private(SignEMailWizard *qq)
     q->setWindowTitle(i18n("Sign Mail Message"));
 
     std::vector<int> pageOrder;
-    q->setSignerResolvePageValidator(boost::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(q->signerResolvePage())));
+    q->setSignerResolvePageValidator(std::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(q->signerResolvePage())));
     pageOrder.push_back(SignEncryptWizard::ResolveSignerPage);
     pageOrder.push_back(SignEncryptWizard::ResultPage);
     q->setPageOrder(pageOrder);

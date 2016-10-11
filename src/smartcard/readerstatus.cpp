@@ -40,7 +40,6 @@
 #include <Libkleo/Stl_Util>
 
 #include <gpgme++/context.h>
-#include <gpgme++/assuanresult.h>
 #include <gpgme++/defaultassuantransaction.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
@@ -63,8 +62,8 @@
 #include <boost/static_assert.hpp>
 #include <boost/range.hpp>
 #include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
 
+#include <memory>
 #include <vector>
 #include <set>
 #include <list>
@@ -155,17 +154,6 @@ static unsigned int parseFileName(const QString &fileName, bool *ok)
 
 namespace
 {
-template <typename T_Target, typename T_Source>
-std::auto_ptr<T_Target> dynamic_pointer_cast(std::auto_ptr<T_Source> &in)
-{
-    if (T_Target *const target = dynamic_cast<T_Target *>(in.get())) {
-        in.release();
-        return std::auto_ptr<T_Target>(target);
-    } else {
-        return std::auto_ptr<T_Target>();
-    }
-}
-
 template <typename T>
 const T &_trace__impl(const T &t, const char *msg)
 {
@@ -227,16 +215,12 @@ static ReaderStatus::PinState parse_pin_state(const std::string &s)
     }
 }
 
-static std::auto_ptr<DefaultAssuanTransaction> gpgagent_transact(shared_ptr<Context> &gpgAgent, const char *command, Error &err)
+static std::unique_ptr<DefaultAssuanTransaction> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
 {
 #ifdef DEBUG_SCREADER
     qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
 #endif
-    const AssuanResult res = gpgAgent->assuanTransact(command);
-    err = res.error();
-    if (!err.code()) {
-        err = res.assuanError();
-    }
+    err = gpgAgent->assuanTransact(command);
     if (err.code()) {
 #ifdef DEBUG_SCREADER
         qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "):" << QString::fromLocal8Bit(err.asString());
@@ -245,18 +229,18 @@ static std::auto_ptr<DefaultAssuanTransaction> gpgagent_transact(shared_ptr<Cont
             qCDebug(KLEOPATRA_LOG) << "Assuan problem, killing context";
             gpgAgent.reset();
         }
-        return std::auto_ptr<DefaultAssuanTransaction>();
+        return std::unique_ptr<DefaultAssuanTransaction>();
     }
-    std::auto_ptr<AssuanTransaction> t = gpgAgent->takeLastAssuanTransaction();
-    return dynamic_pointer_cast<DefaultAssuanTransaction>(t);
+    std::unique_ptr<AssuanTransaction> t = gpgAgent->takeLastAssuanTransaction();
+    return std::unique_ptr<DefaultAssuanTransaction>(dynamic_cast<DefaultAssuanTransaction*>(t.release()));
 }
 
 // returns const std::string so template deduction in boost::split works, and we don't need a temporary
-static const std::string scd_getattr_status(shared_ptr<Context> &gpgAgent, const char *what, Error &err)
+static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
 {
     std::string cmd = "SCD GETATTR ";
     cmd += what;
-    const std::auto_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, cmd.c_str(), err);
+    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, cmd.c_str(), err);
     if (t.get()) {
         qCDebug(KLEOPATRA_LOG) << "scd_getattr_status(" << what << "): got" << t->statusLines();
         return t->firstStatusLine(what);
@@ -275,10 +259,10 @@ static unsigned int parse_event_counter(const std::string &str)
     return -1;
 }
 
-static unsigned int get_event_counter(shared_ptr<Context> &gpgAgent)
+static unsigned int get_event_counter(std::shared_ptr<Context> &gpgAgent)
 {
     Error err;
-    const std::auto_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, "GETEVENTCOUNTER", err);
+    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, "GETEVENTCOUNTER", err);
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "get_event_counter(): got error" << err.asString();
     }
@@ -294,9 +278,9 @@ static unsigned int get_event_counter(shared_ptr<Context> &gpgAgent)
 }
 
 // returns const std::string so template deduction in boost::split works, and we don't need a temporary
-static const std::string gpgagent_data(shared_ptr<Context> &gpgAgent, const char *what, Error &err)
+static const std::string gpgagent_data(std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
 {
-    const std::auto_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, what, err);
+    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, what, err);
     if (t.get()) {
         return t->data();
     } else {
@@ -328,7 +312,7 @@ static bool parse_keypairinfo_and_lookup_key(Context *ctx, const std::string &kp
     return !e && !key.isNull();
 }
 
-static CardInfo get_card_status(const QString &fileName, unsigned int idx, shared_ptr<Context> &gpg_agent)
+static CardInfo get_card_status(const QString &fileName, unsigned int idx, std::shared_ptr<Context> &gpg_agent)
 {
 #ifdef DEBUG_SCREADER
     qCDebug(KLEOPATRA_LOG) << "get_card_status(" << fileName << ',' << idx << ',' << gpg_agent.get() << ')';
@@ -381,7 +365,7 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, share
     }
 
     // check for keys to learn:
-    const std::auto_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
+    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code() || !result.get()) {
         return ci;
     }
@@ -391,7 +375,7 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, share
     }
 
     // check that any of the
-    const std::auto_ptr<Context> klc(Context::createForProtocol(CMS));     // what about OpenPGP?
+    const std::unique_ptr<Context> klc(Context::createForProtocol(CMS));     // what about OpenPGP?
     if (!klc.get()) {
         return ci;
     }
@@ -408,7 +392,7 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, share
     return ci;
 }
 
-static std::vector<CardInfo> update_cardinfo(const QString &gnupgHomePath, shared_ptr<Context> &gpgAgent)
+static std::vector<CardInfo> update_cardinfo(const QString &gnupgHomePath, std::shared_ptr<Context> &gpgAgent)
 {
 #ifdef DEBUG_SCREADER
     qCDebug(KLEOPATRA_LOG) << "<update_cardinfo>";
@@ -425,7 +409,7 @@ static std::vector<CardInfo> update_cardinfo(const QString &gnupgHomePath, share
     return std::vector<CardInfo>(1, ci);
 }
 
-static bool check_event_counter_changed(shared_ptr<Context> &gpg_agent, unsigned int &counter)
+static bool check_event_counter_changed(std::shared_ptr<Context> &gpg_agent, unsigned int &counter)
 {
     const unsigned int oldCounter = counter;
     counter = get_event_counter(gpg_agent);
@@ -564,7 +548,7 @@ private Q_SLOTS:
 private:
     void run() Q_DECL_OVERRIDE {
 
-        shared_ptr<Context> gpgAgent;
+        std::shared_ptr<Context> gpgAgent;
         unsigned int eventCounter = -1;
 
         while (true)
@@ -577,11 +561,11 @@ private:
 
             if (!gpgAgent) {
                 Error err;
-                std::auto_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
+                std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
                 if (err.code() == GPG_ERR_NOT_SUPPORTED) {
                     return;
                 }
-                gpgAgent = c;
+                gpgAgent = std::shared_ptr<Context>(c.release());
             }
 
             KDAB_SYNCHRONIZED(m_mutex) {

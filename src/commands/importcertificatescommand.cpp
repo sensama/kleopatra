@@ -41,10 +41,11 @@
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/ImportJob>
-#include <Libkleo/ImportFromKeyserverJob>
-#include <Libkleo/ChangeOwnerTrustJob>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/ImportJob>
+#include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/ChangeOwnerTrustJob>
 
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
@@ -71,6 +72,7 @@
 using namespace GpgME;
 using namespace Kleo;
 using namespace boost;
+using namespace QGpgME;
 
 namespace
 {
@@ -417,7 +419,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 const char *fingerPr = result.imports()[0].fingerprint();
                 GpgME::Error err;
                 QScopedPointer<Context>
-                    ctx(Context::createForProtocol(Protocol::OpenPGP));
+                    ctx(Context::createForProtocol(GpgME::Protocol::OpenPGP));
 
                 if (!ctx){
                     qCWarning(KLEOPATRA_LOG) << "Failed to get context";
@@ -453,8 +455,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 if (k == KMessageBox::Yes) {
                     //To use the ChangeOwnerTrustJob over
                     //the CryptoBackendFactory
-                    const CryptoBackend::Protocol *const backend =
-                        CryptoBackendFactory::instance()->protocol(Protocol::OpenPGP);
+                    const QGpgME::Protocol *const backend = QGpgME::openpgp();
 
                     if (!backend){
                         qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
@@ -474,7 +475,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
 static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
 {
     assert(protocol != UnknownProtocol);
-    if (const Kleo::CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(protocol)) {
+    if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         return std::unique_ptr<ImportJob>(backend->importJob());
     } else {
         return std::unique_ptr<ImportJob>();
@@ -515,7 +516,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 static std::unique_ptr<ImportFromKeyserverJob> get_import_from_keyserver_job(GpgME::Protocol protocol)
 {
     assert(protocol != UnknownProtocol);
-    if (const Kleo::CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(protocol)) {
+    if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         return std::unique_ptr<ImportFromKeyserverJob>(backend->importFromKeyserverJob());
     } else {
         return std::unique_ptr<ImportFromKeyserverJob>();

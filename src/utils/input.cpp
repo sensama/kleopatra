@@ -59,7 +59,6 @@
 #include <errno.h>
 
 using namespace Kleo;
-using namespace boost;
 
 namespace
 {
@@ -105,7 +104,7 @@ public:
 private:
     virtual QString doErrorString() const
     {
-        if (const shared_ptr<QIODevice> io = ioDevice()) {
+        if (const std::shared_ptr<QIODevice> io = ioDevice()) {
             return io->errorString();
         } else {
             return i18n("No input device");
@@ -123,7 +122,7 @@ class PipeInput : public InputImplBase
 public:
     explicit PipeInput(assuan_fd_t fd);
 
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_io;
     }
@@ -134,7 +133,7 @@ public:
     }
 
 private:
-    shared_ptr<QIODevice> m_io;
+    std::shared_ptr<QIODevice> m_io;
 };
 
 class ProcessStdOutInput : public InputImplBase
@@ -142,7 +141,7 @@ class ProcessStdOutInput : public InputImplBase
 public:
     explicit ProcessStdOutInput(const QString &cmd, const QStringList &args, const QDir &wd, const QByteArray &stdin_ = QByteArray());
 
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_proc;
     }
@@ -162,20 +161,20 @@ private:
 private:
     const QString m_command;
     const QStringList m_arguments;
-    const shared_ptr<Process> m_proc;
+    const std::shared_ptr<Process> m_proc;
 };
 
 class FileInput : public InputImplBase
 {
 public:
     explicit FileInput(const QString &fileName);
-    explicit FileInput(const shared_ptr<QFile> &file);
+    explicit FileInput(const std::shared_ptr<QFile> &file);
 
     QString label() const Q_DECL_OVERRIDE
     {
         return m_io ? QFileInfo(m_fileName).fileName() : InputImplBase::label();
     }
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_io;
     }
@@ -186,7 +185,7 @@ public:
     }
 
 private:
-    shared_ptr<QIODevice> m_io;
+    std::shared_ptr<QIODevice> m_io;
     QString m_fileName;
 };
 
@@ -198,7 +197,7 @@ public:
 
     void setLabel(const QString &label) Q_DECL_OVERRIDE;
     QString label() const Q_DECL_OVERRIDE;
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_buffer;
     }
@@ -214,15 +213,15 @@ public:
 
 private:
     const QClipboard::Mode m_mode;
-    shared_ptr<QBuffer> m_buffer;
+    std::shared_ptr<QBuffer> m_buffer;
 };
 #endif // QT_NO_CLIPBOARD
 
 }
 
-shared_ptr<Input> Input::createFromPipeDevice(assuan_fd_t fd, const QString &label)
+std::shared_ptr<Input> Input::createFromPipeDevice(assuan_fd_t fd, const QString &label)
 {
-    shared_ptr<PipeInput> po(new PipeInput(fd));
+    std::shared_ptr<PipeInput> po(new PipeInput(fd));
     po->setDefaultLabel(label);
     return po;
 }
@@ -231,7 +230,7 @@ PipeInput::PipeInput(assuan_fd_t fd)
     : InputImplBase(),
       m_io()
 {
-    shared_ptr<KDPipeIODevice> kdp(new KDPipeIODevice);
+    std::shared_ptr<KDPipeIODevice> kdp(new KDPipeIODevice);
     errno = 0;
     if (!kdp->open(fd, QIODevice::ReadOnly))
         throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
@@ -246,21 +245,21 @@ unsigned int PipeInput::classification() const
     return 0;
 }
 
-shared_ptr<Input> Input::createFromFile(const QString &fileName, bool)
+std::shared_ptr<Input> Input::createFromFile(const QString &fileName, bool)
 {
-    return shared_ptr<Input>(new FileInput(fileName));
+    return std::shared_ptr<Input>(new FileInput(fileName));
 }
 
-shared_ptr<Input> Input::createFromFile(const shared_ptr<QFile> &file)
+std::shared_ptr<Input> Input::createFromFile(const std::shared_ptr<QFile> &file)
 {
-    return shared_ptr<Input>(new FileInput(file));
+    return std::shared_ptr<Input>(new FileInput(file));
 }
 
 FileInput::FileInput(const QString &fileName)
     : InputImplBase(),
       m_io(), m_fileName(fileName)
 {
-    shared_ptr<QFile> file(new QFile(fileName));
+    std::shared_ptr<QFile> file(new QFile(fileName));
 
     errno = 0;
     if (!file->open(QIODevice::ReadOnly))
@@ -270,7 +269,7 @@ FileInput::FileInput(const QString &fileName)
 
 }
 
-FileInput::FileInput(const shared_ptr<QFile> &file)
+FileInput::FileInput(const std::shared_ptr<QFile> &file)
     : InputImplBase(),
       m_io(), m_fileName(file->fileName())
 {
@@ -290,34 +289,34 @@ unsigned int FileInput::classification() const
     return classify(m_fileName);
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current()));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current()));
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current()));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current()));
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, args, wd));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, wd));
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QByteArray &stdin_)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QByteArray &stdin_)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current(), stdin_));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current(), stdin_));
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QByteArray &stdin_)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QByteArray &stdin_)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current(), stdin_));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current(), stdin_));
 }
 
-shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd, const QByteArray &stdin_)
+std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd, const QByteArray &stdin_)
 {
-    return shared_ptr<Input>(new ProcessStdOutInput(command, args, wd, stdin_));
+    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, wd, stdin_));
 }
 
 namespace
@@ -390,9 +389,9 @@ QString ProcessStdOutInput::doErrorString() const
 }
 
 #ifndef QT_NO_CLIPBOARD
-shared_ptr<Input> Input::createFromClipboard()
+std::shared_ptr<Input> Input::createFromClipboard()
 {
-    return shared_ptr<Input>(new ClipboardInput(QClipboard::Clipboard));
+    return std::shared_ptr<Input>(new ClipboardInput(QClipboard::Clipboard));
 }
 
 static QByteArray dataFromClipboard(QClipboard::Mode mode)
@@ -444,7 +443,7 @@ Input::~Input() {}
 
 void Input::finalize()
 {
-    if (const shared_ptr<QIODevice> io = ioDevice())
+    if (const std::shared_ptr<QIODevice> io = ioDevice())
         if (io->isOpen()) {
             io->close();
         }

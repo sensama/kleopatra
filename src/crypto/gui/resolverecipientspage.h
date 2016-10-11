@@ -39,8 +39,7 @@
 
 #include <gpgme++/global.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -107,8 +106,8 @@ public:
     void setRecipients(const std::vector<KMime::Types::Mailbox> &recipients, const std::vector<KMime::Types::Mailbox> &encryptToSelfRecipients);
     std::vector<GpgME::Key> resolvedCertificates() const;
 
-    boost::shared_ptr<RecipientPreferences> recipientPreferences() const;
-    void setRecipientPreferences(const boost::shared_ptr<RecipientPreferences> &prefs);
+    std::shared_ptr<RecipientPreferences> recipientPreferences() const;
+    void setRecipientPreferences(const std::shared_ptr<RecipientPreferences> &prefs);
 
 Q_SIGNALS:
     void selectedProtocolChanged();

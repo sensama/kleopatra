@@ -40,8 +40,7 @@
 
 #include <QMetaType>
 
-#include<boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -59,7 +58,7 @@ class AutoDecryptVerifyFilesController : public DecryptVerifyFilesController
     Q_OBJECT
 public:
     explicit AutoDecryptVerifyFilesController(QObject *parent = Q_NULLPTR);
-    explicit AutoDecryptVerifyFilesController(const boost::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
 
     ~AutoDecryptVerifyFilesController();
 
@@ -72,7 +71,7 @@ public Q_SLOTS:
     void cancel() Q_DECL_OVERRIDE;
 
 private:
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
 
 private:
     class Private;

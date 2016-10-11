@@ -57,7 +57,6 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class EncryptClipboardCommand::Private : public Command::Private
 {
@@ -84,8 +83,8 @@ private:
     }
 
 private:
-    shared_ptr<const ExecutionContext> shared_qq;
-    shared_ptr<Input> input;
+    std::shared_ptr<const ExecutionContext> shared_qq;
+    std::shared_ptr<Input> input;
     EncryptEMailController controller;
 };
 

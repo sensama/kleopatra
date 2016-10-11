@@ -39,6 +39,7 @@
 
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 
 class QString;
@@ -52,11 +53,6 @@ namespace Kleo
 {
 class OverwritePolicy;
 class Input;
-}
-
-namespace boost
-{
-template <typename T> class shared_ptr;
 }
 
 namespace Kleo
@@ -73,7 +69,7 @@ public:
 
     void setInputFileName(const QString &fileName);
     void setInputFileNames(const QStringList &fileNames);
-    void setInput(const boost::shared_ptr<Input> &input);
+    void setInput(const std::shared_ptr<Input> &input);
     void setOutputFileName(const QString &fileName);
     void setSigners(const std::vector<GpgME::Key> &singners);
     void setRecipients(const std::vector<GpgME::Key> &recipients);
@@ -83,7 +79,7 @@ public:
     void setDetachedSignature(bool detached);
     void setEncryptSymmetric(bool symmetric);
 
-    void setOverwritePolicy(const boost::shared_ptr<OverwritePolicy> &policy);
+    void setOverwritePolicy(const std::shared_ptr<OverwritePolicy> &policy);
     GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
 
     void cancel() Q_DECL_OVERRIDE;

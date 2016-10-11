@@ -48,7 +48,7 @@
 #include <QPushButton>
 
 #include <vector>
-#include <boost/shared_ptr.hpp>
+#include <cassert>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -59,7 +59,7 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
-DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskCollection> &coll, QWidget *parent)
+DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent)
     : QDialog(parent), m_tasks(coll), m_saveButton(QDialogButtonBox::NoButton), m_buttonBox(new QDialogButtonBox)
 {
     readConfig();
@@ -97,7 +97,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const boost::shared_ptr<TaskC
     layout()->addWidget(m_buttonBox);
 
     bool hasOutputs = false;
-    Q_FOREACH (const boost::shared_ptr<Task> t, coll->tasks()) {
+    Q_FOREACH (const std::shared_ptr<Task> t, coll->tasks()) {
         if (!qobject_cast<VerifyDetachedTask *>(t.get())) {
             hasOutputs = true;
             break;
@@ -149,7 +149,7 @@ void DecryptVerifyFilesDialog::allDone()
     }
 }
 
-void DecryptVerifyFilesDialog::started(const boost::shared_ptr<Task> &task)
+void DecryptVerifyFilesDialog::started(const std::shared_ptr<Task> &task)
 {
     Q_ASSERT(task);
     const auto tag = task->tag();

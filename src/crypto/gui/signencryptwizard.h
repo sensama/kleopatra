@@ -42,8 +42,7 @@
 #include <gpgme++/global.h>
 #include <kmime/kmime_header_parsing.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace GpgME
@@ -125,7 +124,7 @@ public:
 
     void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers, const std::vector< std::vector<GpgME::Key> > &keys);
 
-    void setTaskCollection(const boost::shared_ptr<TaskCollection> &tasks);
+    void setTaskCollection(const std::shared_ptr<TaskCollection> &tasks);
 
     std::vector<GpgME::Key> resolvedCertificates() const;
     std::vector<GpgME::Key> resolvedSigners() const;
@@ -153,7 +152,7 @@ protected:
     Gui::ResultPage *resultPage();
     Gui::ResolveRecipientsPage *resolveRecipientsPage();
 
-    void setSignerResolvePageValidator(const boost::shared_ptr<SignerResolvePage::Validator> &validator);
+    void setSignerResolvePageValidator(const std::shared_ptr<SignerResolvePage::Validator> &validator);
 
 private:
     class Private;

@@ -48,7 +48,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class EncryptCommand::Private : public QObject
 {
@@ -73,7 +72,7 @@ private Q_SLOTS:
     void slotRecipientsResolved();
 
 private:
-    shared_ptr<NewSignEncryptEMailController> controller;
+    std::shared_ptr<NewSignEncryptEMailController> controller;
 };
 
 EncryptCommand::EncryptCommand()
@@ -111,7 +110,7 @@ void EncryptCommand::Private::checkForErrors() const
         throw Exception(makeError(GPG_ERR_INV_VALUE),
                         i18n("MESSAGE command is not allowed before ENCRYPT"));
 
-    const shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
     kleo_assert(m);
 
     if (m && m->isEncrypting()) {
@@ -151,7 +150,7 @@ int EncryptCommand::doStart()
 
     d->checkForErrors();
 
-    const shared_ptr<NewSignEncryptEMailController> seec = mementoContent< shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const std::shared_ptr<NewSignEncryptEMailController> seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isEncrypting()) {
         // reuse the controller from a previous PREP_ENCRYPT, if available:
@@ -185,13 +184,13 @@ int EncryptCommand::doStart()
 
 void EncryptCommand::Private::slotRecipientsResolved()
 {
-    //hold local shared_ptr to member as q->done() deletes *this
-    const shared_ptr<NewSignEncryptEMailController> cont(controller);
+    //hold local std::shared_ptr to member as q->done() deletes *this
+    const std::shared_ptr<NewSignEncryptEMailController> cont(controller);
 
     try {
         const QString sessionTitle = q->sessionTitle();
         if (!sessionTitle.isEmpty())
-            Q_FOREACH (const shared_ptr<Input> &i, q->inputs()) {
+            Q_FOREACH (const std::shared_ptr<Input> &i, q->inputs()) {
                 i->setLabel(sessionTitle);
             }
 

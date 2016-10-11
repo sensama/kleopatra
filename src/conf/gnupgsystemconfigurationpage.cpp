@@ -35,8 +35,8 @@
 #include "gnupgsystemconfigurationpage.h"
 
 #include <libkleo/cryptoconfigmodule.h>
-#include <Libkleo/CryptoConfig>
-#include <Libkleo/CryptoBackendFactory>
+#include <QGpgME/Protocol>
+#include <QGpgME/CryptoConfig>
 
 #include <QVBoxLayout>
 
@@ -48,7 +48,7 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setMargin(0);
 
-    CryptoConfig *const config = CryptoBackendFactory::instance()->config();
+    QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 
     mWidget = new CryptoConfigModule(config,
                                      CryptoConfigModule::TabbedLayout,
@@ -63,7 +63,7 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
 GnuPGSystemConfigurationPage::~GnuPGSystemConfigurationPage()
 {
     // ### correct here?
-    if (CryptoConfig *const config = CryptoBackendFactory::instance()->config()) {
+    if (QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig()) {
         config->clear();
     }
 }

@@ -39,7 +39,7 @@
 
 class QUrl;
 
-namespace Kleo
+namespace QGpgME
 {
 class Job;
 }
@@ -56,7 +56,7 @@ public:
     AuditLog(const QString &text, const GpgME::Error &error)
         : m_text(text), m_error(error) {}
 
-    static AuditLog fromJob(const Job *);
+    static AuditLog fromJob(const QGpgME::Job *);
 
     GpgME::Error error() const
     {

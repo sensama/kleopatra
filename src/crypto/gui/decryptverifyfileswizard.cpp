@@ -57,15 +57,12 @@
 #include <QTimer>
 #include <QTreeView>
 
-#include <boost/bind.hpp>
-
 #include <vector>
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 namespace
 {
@@ -185,7 +182,7 @@ void DecryptVerifyFilesWizard::onNext(int id)
     Wizard::onNext(id);
 }
 
-void DecryptVerifyFilesWizard::setTaskCollection(const shared_ptr<TaskCollection> &coll)
+void DecryptVerifyFilesWizard::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     kleo_assert(coll);
     d->resultPage.setTaskCollection(coll);

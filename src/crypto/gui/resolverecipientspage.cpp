@@ -60,13 +60,9 @@
 #include <QStringList>
 #include <QVBoxLayout>
 
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace GpgME;
-using namespace boost;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace Kleo::Crypto;
@@ -399,7 +395,7 @@ private:
     Protocol m_presetProtocol;
     Protocol m_selectedProtocol;
     bool m_multipleProtocolsAllowed;
-    boost::shared_ptr<RecipientPreferences> m_recipientPreferences;
+    std::shared_ptr<RecipientPreferences> m_recipientPreferences;
 };
 
 ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
@@ -453,7 +449,10 @@ void ResolveRecipientsPage::Private::completeChangedInternal()
 {
     const bool isComplete = q->isComplete();
     const std::vector<Key> keys = q->resolvedCertificates();
-    const bool haveSecret = std::find_if(keys.begin(), keys.end(), boost::bind(&Key::hasSecret, _1)) != keys.end();
+    const bool haveSecret = std::find_if(keys.begin(), keys.end(),
+                                         [](const Key &key) {
+                                             return key.hasSecret();
+                                        }) != keys.end();
     if (isComplete && !haveSecret) {
         q->setExplanation(i18n("<b>Warning:</b> None of the selected certificates seem to be your own. You will not be able to decrypt the encrypted data again."));
     } else {
@@ -592,7 +591,7 @@ void ResolveRecipientsPage::Private::addRecipient()
 namespace
 {
 
-std::vector<Key> makeSuggestions(const boost::shared_ptr<RecipientPreferences> &prefs, const Mailbox &mb, GpgME::Protocol prot)
+std::vector<Key> makeSuggestions(const std::shared_ptr<RecipientPreferences> &prefs, const Mailbox &mb, GpgME::Protocol prot)
 {
     std::vector<Key> suggestions;
     const Key remembered = prefs ? prefs->preferredCertificate(mb, prot) : Key();
@@ -688,12 +687,12 @@ bool ResolveRecipientsPage::recipientsUserMutable() const
     return d->m_addButton->isVisible();
 }
 
-boost::shared_ptr<RecipientPreferences> ResolveRecipientsPage::recipientPreferences() const
+std::shared_ptr<RecipientPreferences> ResolveRecipientsPage::recipientPreferences() const
 {
     return d->m_recipientPreferences;
 }
 
-void ResolveRecipientsPage::setRecipientPreferences(const boost::shared_ptr<RecipientPreferences> &prefs)
+void ResolveRecipientsPage::setRecipientPreferences(const std::shared_ptr<RecipientPreferences> &prefs)
 {
     d->m_recipientPreferences = prefs;
 }

@@ -45,11 +45,9 @@
 #include <QFile>
 #include <QString>
 
-#include <boost/weak_ptr.hpp>
 #include <cassert>
 #include <cstdio>
 
-using namespace boost;
 using namespace Kleo;
 
 class Log::Private
@@ -94,18 +92,18 @@ void Log::messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QS
     fflush(file);
 }
 
-shared_ptr<const Log> Log::instance()
+std::shared_ptr<const Log> Log::instance()
 {
     return mutableInstance();
 }
 
-shared_ptr<Log> Log::mutableInstance()
+std::shared_ptr<Log> Log::mutableInstance()
 {
-    static weak_ptr<Log> self;
+    static std::weak_ptr<Log> self;
     try {
-        return shared_ptr<Log>(self);
-    } catch (const bad_weak_ptr &) {
-        const shared_ptr<Log> s(new Log);
+        return std::shared_ptr<Log>(self);
+    } catch (const std::bad_weak_ptr &) {
+        const std::shared_ptr<Log> s(new Log);
         self = s;
         return s;
     }
@@ -151,18 +149,18 @@ void Log::setOutputDirectory(const QString &path)
     assert(d->m_logFile);
 }
 
-shared_ptr<QIODevice> Log::createIOLogger(const shared_ptr<QIODevice> &io, const QString &prefix, OpenMode mode) const
+std::shared_ptr<QIODevice> Log::createIOLogger(const std::shared_ptr<QIODevice> &io, const QString &prefix, OpenMode mode) const
 {
     if (!d->m_ioLoggingEnabled) {
         return io;
     }
 
-    shared_ptr<IODeviceLogger> logger(new IODeviceLogger(io));
+    std::shared_ptr<IODeviceLogger> logger(new IODeviceLogger(io));
 
     const QString timestamp = QDateTime::currentDateTime().toString(QStringLiteral("yyMMdd-hhmmss"));
 
     const QString fn = d->m_outputDirectory + QLatin1Char('/') + prefix + QLatin1Char('-') + timestamp + QLatin1Char('-') + KRandom::randomString(4);
-    shared_ptr<QFile> file(new QFile(fn));
+    std::shared_ptr<QFile> file(new QFile(fn));
 
     if (!file->open(QIODevice::WriteOnly)) {
         throw Exception(gpg_error(GPG_ERR_EIO), i18n("Log Error: Could not open log file \"%1\" for writing.", fn));

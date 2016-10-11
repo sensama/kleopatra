@@ -36,22 +36,23 @@
 
 #include <utils/gnupg-helper.h>
 
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoConfig>
+#include <QGpgME/Protocol>
+#include <QGpgME/CryptoConfig>
 
 #include <KLocalizedString>
 #include <KMessageBox>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
+using namespace QGpgME;
 
 static bool haveKeyserverConfigured()
 {
-    const Kleo::CryptoConfig *const config = Kleo::CryptoBackendFactory::instance()->config();
+    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         return false;
     }
-    const Kleo::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
+    const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
     return entry && !entry->stringValue().isEmpty();
 }
 

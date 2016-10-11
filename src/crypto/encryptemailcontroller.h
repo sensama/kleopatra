@@ -39,6 +39,7 @@
 
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 
 namespace KMime
@@ -47,11 +48,6 @@ namespace Types
 {
 class Mailbox;
 }
-}
-
-namespace boost
-{
-template <typename T> class shared_ptr;
 }
 
 namespace Kleo
@@ -75,7 +71,7 @@ public:
     };
 
     explicit EncryptEMailController(Mode mode, QObject *parent = Q_NULLPTR);
-    explicit EncryptEMailController(const boost::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = Q_NULLPTR);
+    explicit EncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = Q_NULLPTR);
     ~EncryptEMailController();
 
     Mode mode() const;
@@ -92,10 +88,10 @@ public:
     void startResolveRecipients();
     void startResolveRecipients(const std::vector<KMime::Types::Mailbox> &recipients, const std::vector<KMime::Types::Mailbox> &senders);
 
-    void setInputAndOutput(const boost::shared_ptr<Kleo::Input>   &input,
-                           const boost::shared_ptr<Kleo::Output> &output);
-    void setInputsAndOutputs(const std::vector< boost::shared_ptr<Kleo::Input> >   &inputs,
-                             const std::vector< boost::shared_ptr<Kleo::Output> > &outputs);
+    void setInputAndOutput(const std::shared_ptr<Kleo::Input>   &input,
+                           const std::shared_ptr<Kleo::Output> &output);
+    void setInputsAndOutputs(const std::vector< std::shared_ptr<Kleo::Input> >   &inputs,
+                             const std::vector< std::shared_ptr<Kleo::Output> > &outputs);
 
     void start();
 
@@ -107,7 +103,7 @@ Q_SIGNALS:
 
 private:
 
-    void doTaskDone(const Task *task, const boost::shared_ptr<const Kleo::Crypto::Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) Q_DECL_OVERRIDE;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

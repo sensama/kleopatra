@@ -34,7 +34,7 @@
 
 #include "auditlog.h"
 
-#include <Libkleo/Job>
+#include <QGpgME/Job>
 
 #include <QUrl>
 #include <QUrlQuery>
@@ -43,7 +43,7 @@
 
 using namespace Kleo;
 
-AuditLog AuditLog::fromJob(const Job *job)
+AuditLog AuditLog::fromJob(const QGpgME::Job *job)
 {
     if (job) {
         return AuditLog(job->auditLogAsHtml(), job->auditLogError());

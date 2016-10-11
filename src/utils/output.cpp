@@ -66,7 +66,6 @@
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 
 static const int PROCESS_MAX_RUNTIME_TIMEOUT = -1;     // no timeout
 static const int PROCESS_TERMINATE_TIMEOUT   = 5 * 1000; // 5s
@@ -265,7 +264,7 @@ public:
 private:
     virtual QString doErrorString() const
     {
-        if (shared_ptr<QIODevice> io = ioDevice()) {
+        if (std::shared_ptr<QIODevice> io = ioDevice()) {
             return io->errorString();
         } else {
             return i18n("No output device");
@@ -289,7 +288,7 @@ class PipeOutput : public OutputImplBase
 public:
     explicit PipeOutput(assuan_fd_t fd);
 
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_io;
     }
@@ -300,7 +299,7 @@ public:
         doFinalize();
     }
 private:
-    shared_ptr< inhibit_close<KDPipeIODevice> > m_io;
+    std::shared_ptr< inhibit_close<KDPipeIODevice> > m_io;
 };
 
 class ProcessStdInOutput : public OutputImplBase
@@ -308,7 +307,7 @@ class ProcessStdInOutput : public OutputImplBase
 public:
     explicit ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd);
 
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_proc;
     }
@@ -343,13 +342,13 @@ private:
 private:
     const QString m_command;
     const QStringList m_arguments;
-    const shared_ptr< redirect_close<QProcess> > m_proc;
+    const std::shared_ptr< redirect_close<QProcess> > m_proc;
 };
 
 class FileOutput : public OutputImplBase
 {
 public:
-    explicit FileOutput(const QString &fileName, const shared_ptr<OverwritePolicy> &policy);
+    explicit FileOutput(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy);
     ~FileOutput()
     {
         qCDebug(KLEOPATRA_LOG) << this;
@@ -359,7 +358,7 @@ public:
     {
         return QFileInfo(m_fileName).fileName();
     }
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_tmpFile;
     }
@@ -372,8 +371,8 @@ private:
 
 private:
     const QString m_fileName;
-    shared_ptr< TemporaryFile > m_tmpFile;
-    const shared_ptr<OverwritePolicy> m_policy;
+    std::shared_ptr< TemporaryFile > m_tmpFile;
+    const std::shared_ptr<OverwritePolicy> m_policy;
 };
 
 #ifndef QT_NO_CLIPBOARD
@@ -383,7 +382,7 @@ public:
     explicit ClipboardOutput(QClipboard::Mode mode);
 
     QString label() const Q_DECL_OVERRIDE;
-    shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
     {
         return m_buffer;
     }
@@ -397,15 +396,15 @@ private:
     }
 private:
     const QClipboard::Mode m_mode;
-    shared_ptr<QBuffer> m_buffer;
+    std::shared_ptr<QBuffer> m_buffer;
 };
 #endif // QT_NO_CLIPBOARD
 
 }
 
-shared_ptr<Output> Output::createFromPipeDevice(assuan_fd_t fd, const QString &label)
+std::shared_ptr<Output> Output::createFromPipeDevice(assuan_fd_t fd, const QString &label)
 {
-    shared_ptr<PipeOutput> po(new PipeOutput(fd));
+    std::shared_ptr<PipeOutput> po(new PipeOutput(fd));
     po->setDefaultLabel(label);
     return po;
 }
@@ -421,19 +420,19 @@ PipeOutput::PipeOutput(assuan_fd_t fd)
                              assuanFD2int(fd)));
 }
 
-shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
+std::shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
 {
-    return createFromFile(fileName, shared_ptr<OverwritePolicy>(new OverwritePolicy(0, forceOverwrite ? OverwritePolicy::Allow : OverwritePolicy::Deny)));
+    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(0, forceOverwrite ? OverwritePolicy::Allow : OverwritePolicy::Deny)));
 
 }
-shared_ptr<Output> Output::createFromFile(const QString &fileName, const shared_ptr<OverwritePolicy> &policy)
+std::shared_ptr<Output> Output::createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)
 {
-    shared_ptr<FileOutput> fo(new FileOutput(fileName, policy));
+    std::shared_ptr<FileOutput> fo(new FileOutput(fileName, policy));
     qCDebug(KLEOPATRA_LOG) << fo.get();
     return fo;
 }
 
-FileOutput::FileOutput(const QString &fileName, const shared_ptr<OverwritePolicy> &policy)
+FileOutput::FileOutput(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)
     : OutputImplBase(),
       m_fileName(fileName),
       m_tmpFile(new TemporaryFile(fileName)),
@@ -488,7 +487,7 @@ void FileOutput::doFinalize()
     m_tmpFile->setAutoRemove(false);
     QPointer<QObject> guard = m_tmpFile.get();
     m_tmpFile.reset(); // really close the file - needed on Windows for renaming :/
-    kleo_assert(!guard);   // if this triggers, we need to audit for holder of shared_ptr<QIODevice>s.
+    kleo_assert(!guard);   // if this triggers, we need to audit for holder of std::shared_ptr<QIODevice>s.
 
     qCDebug(KLEOPATRA_LOG) << this << " renaming " << tmpFileName << "->" << m_fileName;
 
@@ -523,19 +522,19 @@ void FileOutput::doFinalize()
                          tmpFileName, m_fileName));
 }
 
-shared_ptr<Output> Output::createFromProcessStdIn(const QString &command)
+std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command)
 {
-    return shared_ptr<Output>(new ProcessStdInOutput(command, QStringList(), QDir::current()));
+    return std::shared_ptr<Output>(new ProcessStdInOutput(command, QStringList(), QDir::current()));
 }
 
-shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args)
+std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args)
 {
-    return shared_ptr<Output>(new ProcessStdInOutput(command, args, QDir::current()));
+    return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, QDir::current()));
 }
 
-shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &wd)
+std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &wd)
 {
-    return shared_ptr<Output>(new ProcessStdInOutput(command, args, wd));
+    return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, wd));
 }
 
 ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd)
@@ -585,9 +584,9 @@ QString ProcessStdInOutput::doErrorString() const
 }
 
 #ifndef QT_NO_CLIPBOARD
-shared_ptr<Output> Output::createFromClipboard()
+std::shared_ptr<Output> Output::createFromClipboard()
 {
-    return shared_ptr<Output>(new ClipboardOutput(QClipboard::Clipboard));
+    return std::shared_ptr<Output>(new ClipboardOutput(QClipboard::Clipboard));
 }
 
 ClipboardOutput::ClipboardOutput(QClipboard::Mode mode)

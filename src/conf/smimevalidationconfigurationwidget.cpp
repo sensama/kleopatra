@@ -38,8 +38,8 @@
 
 #include "smimevalidationpreferences.h"
 
-#include <Libkleo/CryptoConfig>
-#include <Libkleo/CryptoBackendFactory>
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
 
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
@@ -50,6 +50,7 @@
 
 using namespace Kleo;
 using namespace Kleo::Config;
+using namespace QGpgME;
 
 class SMimeValidationConfigurationWidget::Private
 {
@@ -222,7 +223,7 @@ void SMimeValidationConfigurationWidget::load()
     d->ui.intervalRefreshCB->setChecked(refreshInterval > 0);
     d->ui.intervalRefreshSB->setValue(refreshInterval);
 
-    CryptoConfig *const config = CryptoBackendFactory::instance()->config();
+    CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         setEnabled(false);
         return;
@@ -321,7 +322,7 @@ static void saveCheckBoxToKleoEntry(QCheckBox *cb, CryptoConfigEntry *entry)
 
 void SMimeValidationConfigurationWidget::save() const
 {
-    CryptoConfig *const config = CryptoBackendFactory::instance()->config();
+    CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {
         return;
     }

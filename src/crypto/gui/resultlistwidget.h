@@ -39,7 +39,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 class QString;
 
@@ -60,8 +60,8 @@ public:
     explicit ResultListWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
     ~ResultListWidget();
 
-    void setTaskCollection(const boost::shared_ptr<TaskCollection> &coll);
-    void addTaskCollection(const boost::shared_ptr<TaskCollection> &coll);
+    void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
+    void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
     void setStandaloneMode(bool standalone);
 
@@ -77,8 +77,8 @@ Q_SIGNALS:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void result(boost::shared_ptr<const Kleo::Crypto::Task::Result>))
-    Q_PRIVATE_SLOT(d, void started(boost::shared_ptr<Kleo::Crypto::Task>))
+    Q_PRIVATE_SLOT(d, void result(std::shared_ptr<const Kleo::Crypto::Task::Result>))
+    Q_PRIVATE_SLOT(d, void started(std::shared_ptr<Kleo::Crypto::Task>))
     Q_PRIVATE_SLOT(d, void detailsToggled(bool))
     Q_PRIVATE_SLOT(d, void allTasksDone())
 };

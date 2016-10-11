@@ -39,9 +39,8 @@
 #include <dialogs/adduseriddialog.h>
 
 #include <Libkleo/Formatting>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
-#include <Libkleo/AddUserIDJob>
+#include <QGpgME/Protocol>
+#include <QGpgME/AddUserIDJob>
 
 #include <gpgme++/key.h>
 
@@ -82,7 +81,7 @@ private:
 private:
     GpgME::Key key;
     QPointer<AddUserIDDialog> dialog;
-    QPointer<AddUserIDJob> job;
+    QPointer<QGpgME::AddUserIDJob> job;
 };
 
 AddUserIDCommand::Private *AddUserIDCommand::d_func()
@@ -223,17 +222,17 @@ void AddUserIDCommand::Private::createJob()
 {
     assert(!job);
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(key.protocol());
+    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {
         return;
     }
 
-    AddUserIDJob *const j = backend->addUserIDJob();
+    QGpgME::AddUserIDJob *const j = backend->addUserIDJob();
     if (!j) {
         return;
     }
 
-    connect(j, &Job::progress,
+    connect(j, &QGpgME::Job::progress,
             q, &Command::progress);
     connect(j, SIGNAL(result(GpgME::Error)),
             q, SLOT(slotResult(GpgME::Error)));

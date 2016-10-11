@@ -43,9 +43,10 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Exception>
-#include <Libkleo/CryptoBackendFactory>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+
+#include <QGpgME/Protocol>
 
 #include <gpgme++/error.h>
 #include <gpgme++/key.h>
@@ -97,7 +98,7 @@ public Q_SLOTS:
 public:
 
 private:
-    shared_ptr<DecryptVerifyEMailController> controller;
+    std::shared_ptr<DecryptVerifyEMailController> controller;
 };
 
 DecryptVerifyCommandEMailBase::DecryptVerifyCommandEMailBase()
@@ -117,7 +118,7 @@ int DecryptVerifyCommandEMailBase::doStart()
 
     const QString st = sessionTitle();
     if (!st.isEmpty())
-        Q_FOREACH (const shared_ptr<Input> &i, inputs()) {
+        Q_FOREACH (const std::shared_ptr<Input> &i, inputs()) {
             i->setLabel(st);
         }
 
@@ -199,7 +200,7 @@ void DecryptVerifyCommandEMailBase::Private::checkForErrors() const
 
     kleo_assert(proto != UnknownProtocol);
 
-    const CryptoBackend::Protocol *const backend = CryptoBackendFactory::instance()->protocol(proto);
+    const auto backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend)
         throw Kleo::Exception(q->makeError(GPG_ERR_UNSUPPORTED_PROTOCOL),
                               proto == OpenPGP ? i18n("No backend support for OpenPGP") :

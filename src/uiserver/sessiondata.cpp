@@ -40,6 +40,8 @@
 
 #include <boost/bind.hpp>
 
+#include <cassert>
+
 using namespace Kleo;
 using namespace boost;
 
@@ -56,11 +58,11 @@ SessionData::SessionData()
 }
 
 // static
-shared_ptr<SessionDataHandler> SessionDataHandler::instance()
+std::shared_ptr<SessionDataHandler> SessionDataHandler::instance()
 {
     mutex.lock();
     static SessionDataHandler handler;
-    return shared_ptr<SessionDataHandler>(&handler, boost::bind(&QMutex::unlock, &mutex));
+    return std::shared_ptr<SessionDataHandler>(&handler, boost::bind(&QMutex::unlock, &mutex));
 }
 
 SessionDataHandler::SessionDataHandler()
@@ -75,7 +77,7 @@ SessionDataHandler::SessionDataHandler()
 void SessionDataHandler::enterSession(unsigned int id)
 {
     qCDebug(KLEOPATRA_LOG) << id;
-    const shared_ptr<SessionData> sd = sessionDataInternal(id);
+    const std::shared_ptr<SessionData> sd = sessionDataInternal(id);
     assert(sd);
     ++sd->ref;
     sd->ripe = false;
@@ -84,7 +86,7 @@ void SessionDataHandler::enterSession(unsigned int id)
 void SessionDataHandler::exitSession(unsigned int id)
 {
     qCDebug(KLEOPATRA_LOG) << id;
-    const shared_ptr<SessionData> sd = sessionDataInternal(id);
+    const std::shared_ptr<SessionData> sd = sessionDataInternal(id);
     assert(sd);
     if (--sd->ref <= 0) {
         sd->ref = 0;
@@ -95,18 +97,18 @@ void SessionDataHandler::exitSession(unsigned int id)
     }
 }
 
-shared_ptr<SessionData> SessionDataHandler::sessionDataInternal(unsigned int id) const
+std::shared_ptr<SessionData> SessionDataHandler::sessionDataInternal(unsigned int id) const
 {
-    std::map< unsigned int, shared_ptr<SessionData> >::iterator
+    std::map< unsigned int, std::shared_ptr<SessionData> >::iterator
     it = data.lower_bound(id);
     if (it == data.end() || it->first != id) {
-        const shared_ptr<SessionData> sd(new SessionData);
+        const std::shared_ptr<SessionData> sd(new SessionData);
         it = data.insert(it, std::make_pair(id, sd));
     }
     return it->second;
 }
 
-shared_ptr<SessionData> SessionDataHandler::sessionData(unsigned int id) const
+std::shared_ptr<SessionData> SessionDataHandler::sessionData(unsigned int id) const
 {
     return sessionDataInternal(id);
 }
@@ -120,7 +122,7 @@ void SessionDataHandler::slotCollectGarbage()
 {
     const QMutexLocker locker(&mutex);
     unsigned int alive = 0;
-    std::map< unsigned int, shared_ptr<SessionData> >::iterator it = data.begin(), end = data.end();
+    std::map< unsigned int, std::shared_ptr<SessionData> >::iterator it = data.begin(), end = data.end();
     while (it != end)
         if (it->second->ripe) {
             data.erase(it++);

@@ -54,11 +54,11 @@
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Dn>
 #include <Libkleo/OidMap>
-#include <Libkleo/KeyGenerationJob>
-#include <Libkleo/CryptoBackendFactory>
-#include <Libkleo/CryptoBackend>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+
+#include <QGpgME/KeyGenerationJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/global.h>
 #include <gpgme++/keygenerationresult.h>
@@ -781,11 +781,11 @@ public:
 private:
     void startJob()
     {
-        const CryptoBackend::Protocol *const proto = CryptoBackendFactory::instance()->protocol(pgp() ? OpenPGP : CMS);
+        const auto proto = (pgp() == OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         if (!proto) {
             return;
         }
-        KeyGenerationJob *const j = proto->keyGenerationJob();
+        QGpgME::KeyGenerationJob *const j = proto->keyGenerationJob();
         if (!j) {
             return;
         }
@@ -840,7 +840,7 @@ private Q_SLOTS:
     }
 
 private:
-    QPointer<KeyGenerationJob> job;
+    QPointer<QGpgME::KeyGenerationJob> job;
     Ui_KeyCreationPage ui;
 };
 

@@ -35,7 +35,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include  <memory>
 
 #include <cstdio>
 
@@ -57,8 +57,8 @@ public:
     static void messageHandler(QtMsgType type, const QMessageLogContext &ctx,
                                const QString &msg);
 
-    static boost::shared_ptr<const Log> instance();
-    static boost::shared_ptr<Log> mutableInstance();
+    static std::shared_ptr<const Log> instance();
+    static std::shared_ptr<Log> mutableInstance();
 
     ~Log();
 
@@ -68,7 +68,7 @@ public:
     QString outputDirectory() const;
     void setOutputDirectory(const QString &path);
 
-    boost::shared_ptr<QIODevice> createIOLogger(const boost::shared_ptr<QIODevice> &wrapped, const QString &prefix, OpenMode mode) const;
+    std::shared_ptr<QIODevice> createIOLogger(const std::shared_ptr<QIODevice> &wrapped, const QString &prefix, OpenMode mode) const;
 
     FILE *logFile() const;
 

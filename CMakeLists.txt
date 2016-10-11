@@ -7,9 +7,8 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything neccessary.
 set(KF5_VERSION "5.17.0")
-set(GPGMEPP_VERSION "5.3.43")
 set(KMIME_VERSION "5.1.40")
-set(LIBKLEO_VERSION "5.3.44")
+set(LIBKLEO_VERSION "5.3.46")
 set(QT_REQUIRED_VERSION "5.4.0")
 
 find_package(ECM ${KF5_VERSION} REQUIRED NO_MODULE)
@@ -68,16 +67,19 @@ endif()
 
 set(HAVE_QDBUS ${Qt5DBus_FOUND})
 
+find_package(Gpgmepp "1.7.1" CONFIG REQUIRED)
+
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_VERSION} CONFIG REQUIRED)
-find_package(KF5Gpgmepp ${GPGMEPP_VERSION} CONFIG REQUIRED)
 
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
 find_package(Assuan2 REQUIRED)
 
 set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
+
+
 
 find_package(Boost 1.34.0 REQUIRED)
 

@@ -38,7 +38,7 @@
 
 #include "tooltippreferences.h"
 
-#include "Libkleo/CryptoBackendFactory"
+#include <QGpgME/Protocol>
 #include "Libkleo/KeyFilterManager"
 #include "Libkleo/Dn"
 #include "Libkleo/DNAttributeOrderConfigWidget"
@@ -463,7 +463,7 @@ void AppearanceConfigWidget::load()
     d->dnOrderWidget->load();
 
     d->categoriesLV->clear();
-    KConfig *const config = CryptoBackendFactory::instance()->configObject();
+    KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     if (!config) {
         return;
     }
@@ -490,7 +490,7 @@ void AppearanceConfigWidget::save()
     prefs.setShowCertificateDetails(d->tooltipDetailsCheckBox->isChecked());
     prefs.save();
 
-    KConfig *const config = CryptoBackendFactory::instance()->configObject();
+    KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     if (!config) {
         return;
     }

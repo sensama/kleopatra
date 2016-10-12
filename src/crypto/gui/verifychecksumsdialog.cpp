@@ -68,7 +68,7 @@ static Qt::GlobalColor statusColor[] = {
     Qt::red,      // Failed
     Qt::darkRed,  // Error
 };
-static_assert(sizeof statusColor / sizeof * statusColor == VerifyChecksumsDialog::NumStatii);
+static_assert((sizeof(statusColor) / sizeof(*statusColor)) == VerifyChecksumsDialog::NumStatii, "");
 
 class ColorizedFileSystemModel : public QDirModel
 {

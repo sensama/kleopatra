@@ -35,19 +35,16 @@
 
 #include <selftest/selftest.h>
 
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
+#include <memory>
 
 namespace Kleo
 {
 
 class SelfTest;
 
-boost::shared_ptr<SelfTest> makeGpgEngineCheckSelfTest();
-boost::shared_ptr<SelfTest> makeGpgSmEngineCheckSelfTest();
-boost::shared_ptr<SelfTest> makeGpgConfEngineCheckSelfTest();
+std::shared_ptr<SelfTest> makeGpgEngineCheckSelfTest();
+std::shared_ptr<SelfTest> makeGpgSmEngineCheckSelfTest();
+std::shared_ptr<SelfTest> makeGpgConfEngineCheckSelfTest();
 
 }
 

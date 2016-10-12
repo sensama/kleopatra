@@ -41,11 +41,6 @@
 
 #include <vector>
 
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
-
 namespace GpgME
 {
 class Key;

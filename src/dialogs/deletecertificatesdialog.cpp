@@ -56,14 +56,11 @@
 
 #include <gpgme++/key.h>
 
-#include <boost/mem_fn.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 
 class DeleteCertificatesDialog::Private
 {
@@ -205,8 +202,8 @@ void DeleteCertificatesDialog::accept()
     const std::vector<Key> sel = d->ui.selectedKTV.keys();
     const std::vector<Key> uns = d->ui.unselectedKTV.keys();
 
-    const uint secret = kdtools::count_if(sel, mem_fn(&Key::hasSecret))
-                        + kdtools::count_if(uns, mem_fn(&Key::hasSecret));
+    const uint secret = std::count_if(sel.cbegin(), sel.cend(), std::mem_fn(&Key::hasSecret))
+                        + std::count_if(uns.cbegin(), uns.cend(), std::mem_fn(&Key::hasSecret));
     const uint total  = sel.size() + uns.size();
 
     int ret = KMessageBox::Continue;

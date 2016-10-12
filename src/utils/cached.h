@@ -33,7 +33,7 @@
 #ifndef __KLEOPATRA_UTILS_CACHED_H__
 #define __KLEOPATRA_UTILS_CACHED_H__
 
-#include <boost/call_traits.hpp>
+#include <type_traits>
 
 namespace Kleo
 {
@@ -43,16 +43,19 @@ class cached
 {
     T m_value;
     bool m_dirty;
+
+    using CallType = const typename std::conditional<std::is_pod<T>::value, T, T&>::type;
+
 public:
     cached() : m_value(), m_dirty(true) {}
-    /* implicit */ cached(typename boost::call_traits<T>::param_type value) : m_value(value), m_dirty(false) {}
+    /* implicit */ cached(const CallType value) : m_value(value), m_dirty(false) {}
 
-    operator typename boost::call_traits<T>::param_type() const
+    operator T() const
     {
         return m_value;
     }
 
-    cached &operator=(typename boost::call_traits<T>::param_type value)
+    cached &operator=(T value)
     {
         m_value = value;
         m_dirty = false;
@@ -63,7 +66,8 @@ public:
     {
         return m_dirty;
     }
-    typename boost::call_traits<T>::param_type value() const
+
+    T value() const
     {
         return m_value;
     }

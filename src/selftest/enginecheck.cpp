@@ -49,15 +49,12 @@
 #include <QFile>
 #include <QRegExp>
 
-#include <boost/shared_ptr.hpp>
-
 #include <algorithm>
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
 using namespace GpgME;
-using namespace boost;
 
 static QString engine_name(GpgME::Engine eng)
 {
@@ -144,19 +141,19 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgEngineCheckSelfTest()
+std::shared_ptr<SelfTest> Kleo::makeGpgEngineCheckSelfTest()
 {
-    return shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgEngine));
+    return std::shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgEngine));
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgSmEngineCheckSelfTest()
+std::shared_ptr<SelfTest> Kleo::makeGpgSmEngineCheckSelfTest()
 {
-    return shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgSMEngine));
+    return std::shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgSMEngine));
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgConfEngineCheckSelfTest()
+std::shared_ptr<SelfTest> Kleo::makeGpgConfEngineCheckSelfTest()
 {
-    return shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgConfEngine));
+    return std::shared_ptr<SelfTest>(new EngineCheck(GpgME::GpgConfEngine));
 }
 
 //

@@ -36,6 +36,7 @@
 
 #include <Libkleo/Predicates>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Stl_Util>
 
 #include <utils/kleo_assert.h>
 #include <utils/cached.h>
@@ -44,11 +45,12 @@
 
 #include <gpgme++/key.h>
 
+#include <algorithm>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace KMime::Types;
 using namespace GpgME;
-using namespace boost;
 
 namespace KMime
 {
@@ -88,12 +90,12 @@ public:
         const QString email = mb.addrSpec().asString();
         const std::vector<Key> signers = KeyCache::instance()->findSigningKeysByMailbox(email);
         const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(email);
-        kdtools::separate_if(signers,
+        kdtools::separate_if(signers.cbegin(), signers.cend(),
                              std::back_inserter(pgpSigners), std::back_inserter(cmsSigners),
-                             boost::bind(&Key::protocol, _1) == OpenPGP);
-        kdtools::separate_if(encrypt,
+                             [](const Key &key) { return key.protocol() == OpenPGP; });
+        kdtools::separate_if(encrypt.cbegin(), encrypt.cend(),
                              std::back_inserter(pgpEncryptToSelfKeys), std::back_inserter(cmsEncryptToSelfKeys),
-                             boost::bind(&Key::protocol, _1) == OpenPGP);
+                             [](const Key &key) { return key.protocol() == OpenPGP; });
     }
 
 private:
@@ -126,10 +128,14 @@ bool Sender::deepEquals(const Sender &other) const
            && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey)
            && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent())
            && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id()) == 0
-           && kdtools::equal(d->pgpSigners, other.d->pgpSigners, compare)
-           && kdtools::equal(d->cmsSigners, other.d->cmsSigners, compare)
-           && kdtools::equal(d->pgpEncryptToSelfKeys, other.d->pgpEncryptToSelfKeys, compare)
-           && kdtools::equal(d->cmsEncryptToSelfKeys, other.d->cmsEncryptToSelfKeys, compare)
+           && std::equal(d->pgpSigners.cbegin(), d->pgpSigners.cend(),
+                         other.d->pgpSigners.cbegin(), compare)
+           && std::equal(d->cmsSigners.cbegin(), d->cmsSigners.cend(),
+                         other.d->cmsSigners.cbegin(), compare)
+           && std::equal(d->pgpEncryptToSelfKeys.cbegin(), d->pgpEncryptToSelfKeys.cend(),
+                         other.d->pgpEncryptToSelfKeys.cbegin(), compare)
+           && std::equal(d->cmsEncryptToSelfKeys.cbegin(), d->cmsEncryptToSelfKeys.cend(),
+                         other.d->cmsEncryptToSelfKeys.cbegin(), compare)
            ;
 }
 

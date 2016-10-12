@@ -52,15 +52,11 @@
 #include <QTimer>
 #include <QFile>
 
-#include <boost/range/empty.hpp>
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <cassert>
 #include <cerrno>
 
 using namespace Kleo;
-using namespace boost;
 
 // static
 void UiServer::setLogStream(FILE *stream)
@@ -116,6 +112,14 @@ UiServer::~UiServer()
     }
 }
 
+namespace {
+using Iterator = std::vector<std::shared_ptr<AssuanCommandFactory>>::iterator;
+static bool empty(const std::pair<Iterator, Iterator> &iters)
+{
+    return iters.first == iters.second;
+}
+}
+
 bool UiServer::registerCommandFactory(const std::shared_ptr<AssuanCommandFactory> &cf)
 {
     if (cf && empty(std::equal_range(d->factories.begin(), d->factories.end(), cf, _detail::ByName<std::less>()))) {
@@ -160,8 +164,10 @@ void UiServer::enableCryptoCommands(bool on)
         return;
     }
     d->cryptoCommandsEnabled = on;
-    kdtools::for_each(d->connections,
-                      boost::bind(&AssuanServerConnection::enableCryptoCommands, _1, on));
+    std::for_each(d->connections.cbegin(), d->connections.cend(),
+                  [on](std::shared_ptr<AssuanServerConnection> conn) {
+                      conn->enableCryptoCommands(on);
+                  });
 }
 
 QString UiServer::socketName() const
@@ -198,7 +204,9 @@ void UiServer::Private::slotConnectionClosed(Kleo::AssuanServerConnection *conn)
 {
     qCDebug(KLEOPATRA_LOG) << "UiServer: connection " << (void *)conn << " closed";
     connections.erase(std::remove_if(connections.begin(), connections.end(),
-                                     boost::bind(&std::shared_ptr<AssuanServerConnection>::get, _1) == conn),
+                                     [conn](const std::shared_ptr<AssuanServerConnection> &other) {
+                                         return conn == other.get();
+                                     }),
                       connections.end());
     if (q->isStopped()) {
         SessionDataHandler::instance()->clear();

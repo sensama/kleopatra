@@ -124,11 +124,7 @@ void TaskCollection::Private::calculateAndEmitProgress()
     quint64 total = 0;
     quint64 processed = 0;
 
-#if 0
-    static bool haveWorkingProgress = hasFeature(0, GpgME::ProgressForCallbacks) && engineIsVersion(2, 1, 15);
-#endif
-#warning PORTME_GPGME
-    static bool haveWorkingProgress = true && engineIsVersion(2, 1, 15);
+    static bool haveWorkingProgress = engineIsVersion(2, 1, 15);
     if (!haveWorkingProgress) {
         // GnuPG before 2.1.15 would overflow on progress values > max int.
         // and did not emit a total for our Qt data types.
@@ -215,8 +211,8 @@ void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
         d->m_tasks[i->id()] = i;
         connect(i.get(), SIGNAL(progress(QString,int,int)),
                 this, SLOT(taskProgress(QString,int,int)));
-        connect(i.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-                this, SLOT(taskResult(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+        connect(i.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+                this, SLOT(taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
         connect(i.get(), SIGNAL(started()),
                 this, SLOT(taskStarted()));
     }

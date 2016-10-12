@@ -52,12 +52,11 @@
 #include <QPointer>
 #include <QTextDocument> // for Qt::escape
 
-#include <boost/bind.hpp>
-#include <boost/mem_fn.hpp>
+#include <algorithm>
+#include <functional>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -159,7 +158,7 @@ void SignEMailTask::setSigners(const std::vector<Key> &signers)
 {
     kleo_assert(!d->job);
     kleo_assert(!signers.empty());
-    kleo_assert(kdtools::none_of(signers, mem_fn(&Key::isNull)));
+    kleo_assert(std::none_of(signers.cbegin(), signers.cend(), std::mem_fn(&Key::isNull)));
     d->signers = signers;
 }
 
@@ -240,15 +239,11 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
 {
     const std::vector<GpgME::CreatedSignature> css = result.createdSignatures();
     QStringList micalgs;
-#ifndef DASHBOT_HAS_STABLE_COMPILER
-    Q_FOREACH (const GpgME::CreatedSignature &sig, css) {
-        micalgs.push_back(QString::fromLatin1(sig.hashAlgorithmAsString()).toLower());
-    }
-#else
     std::transform(css.begin(), css.end(),
                    std::back_inserter(micalgs),
-                   boost::bind(&QString::toLower, boost::bind(&QString::fromLatin1, boost::bind(&GpgME::CreatedSignature::hashAlgorithmAsString, _1), -1)));
-#endif
+                   [](const GpgME::CreatedSignature &sig) {
+                       return QString::fromLatin1(sig.hashAlgorithmAsString()).toLower();
+                   });
     if (proto == GpgME::OpenPGP)
         for (QStringList::iterator it = micalgs.begin(), end = micalgs.end(); it != end; ++it) {
             it->prepend(QStringLiteral("pgp-"));

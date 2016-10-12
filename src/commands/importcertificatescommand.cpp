@@ -60,9 +60,6 @@
 #include <QTreeView>
 #include <QTextDocument> // for Qt::escape
 
-#include <boost/bind.hpp>
-#include <boost/mem_fn.hpp>
-
 #include <memory>
 #include <algorithm>
 #include <cassert>
@@ -71,7 +68,6 @@
 
 using namespace GpgME;
 using namespace Kleo;
-using namespace boost;
 using namespace QGpgME;
 
 namespace
@@ -118,7 +114,11 @@ protected:
         if (it == m_importsByFingerprint.end()) {
             return AbstractKeyListSortFilterProxyModel::data(index, role);
         } else {
-            return Formatting::importMetaData(*it, kdtools::copy<QStringList>(m_idsByFingerprint[it->fingerprint()]));
+            QStringList rv;
+            const auto ids = m_idsByFingerprint[it->fingerprint()];
+            rv.reserve(ids.size());
+            std::copy(ids.cbegin(), ids.cend(), std::back_inserter(rv));
+            return Formatting::importMetaData(*it, rv);
         }
     }
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE
@@ -231,7 +231,7 @@ static QString make_tooltip(const QStringList &ids)
 
 void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResult> &results, const QStringList &ids)
 {
-    if (kdtools::none_of(results, mem_fn(&ImportResult::numConsidered))) {
+    if (std::none_of(results.cbegin(), results.cend(), std::mem_fn(&ImportResult::numConsidered))) {
         return;
     }
     q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"),
@@ -244,7 +244,7 @@ void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::ve
 
 int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
 {
-    return kdtools::accumulate_transform(res.begin(), res.end(), mem_fn(fun), 0);
+    return kdtools::accumulate_transform(res.begin(), res.end(), std::mem_fn(fun), 0);
 }
 
 static QString make_report(const std::vector<ImportResult> &res, const QString &id = QString())
@@ -402,15 +402,23 @@ void ImportCertificatesCommand::Private::tryToFinish()
         return;
     }
 
-    if (kdtools::any(results, boost::bind(&Error::code, boost::bind(&ImportResult::error, _1)))) {
+    if (std::any_of(results.cbegin(), results.cend(),
+                    [](const GpgME::ImportResult &result) {
+                        return result.error().code();
+                    })) {
         setImportResultProxyModel(results, ids);
-        if (kdtools::all(results, boost::bind(&Error::isCanceled, boost::bind(&ImportResult::error, _1)))) {
+        if (std::all_of(results.cbegin(), results.cend(),
+                        [](const GpgME::ImportResult &result) {
+                            return result.error().isCanceled();
+                        })) {
             Q_EMIT q->canceled();
-        } else
+        } else {
             for (unsigned int i = 0, end = results.size(); i != end; ++i)
                 if (const Error err = results[i].error()) {
                     showError(err, ids[i]);
                 }
+                
+        }
     } else {
         //iterate over all imported certificates
         Q_FOREACH (const ImportResult &result, results) {
@@ -486,7 +494,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 {
     assert(protocol != UnknownProtocol);
 
-    if (kdtools::contains(nonWorkingProtocols, protocol)) {
+    if (std::find(nonWorkingProtocols.cbegin(), nonWorkingProtocols.cend(), protocol) != nonWorkingProtocols.cend()) {
         return;
     }
 
@@ -527,7 +535,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 {
     assert(protocol != UnknownProtocol);
 
-    if (kdtools::contains(nonWorkingProtocols, protocol)) {
+    if (std::find(nonWorkingProtocols.cbegin(), nonWorkingProtocols.cend(), protocol) != nonWorkingProtocols.cend()) {
         return;
     }
 
@@ -556,7 +564,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
 void ImportCertificatesCommand::doCancel()
 {
-    kdtools::for_each(d->jobs, mem_fn(&Job::slotCancel));
+    std::for_each(d->jobs.begin(), d->jobs.end(), [](Job *job) { job->slotCancel(); });
 }
 
 #undef d

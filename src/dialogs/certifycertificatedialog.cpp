@@ -53,13 +53,10 @@
 
 #include <QTextDocument> // Qt::escape
 
-#include <boost/bind.hpp>
-
 #include <gpg-error.h>
 
 #include <cassert>
 
-using namespace boost;
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -82,9 +79,10 @@ void UserIDModel::setCertificateToCertify(const Key &key)
 
 void UserIDModel::setCheckedUserIDs(const std::vector<unsigned int> &uids)
 {
-    const std::vector<unsigned int> sorted = kdtools::sorted(uids);
+    std::vector<unsigned int> sorted = uids;
+    std::sort(sorted.begin(), sorted.end());
     for (unsigned int i = 0, end = rowCount(); i != end; ++i) {
-        item(i)->setCheckState(kdtools::binary_search(sorted, i) ? Qt::Checked : Qt::Unchecked);
+        item(i)->setCheckState(std::binary_search(sorted.begin(), sorted.end(), i) ? Qt::Checked : Qt::Unchecked);
     }
 }
 
@@ -468,14 +466,12 @@ void CertifyCertificateDialog::Private::certificationResult(const Error &err)
 
 namespace
 {
-struct UidEqual : std::binary_function<UserID, UserID, bool> {
-    bool operator()(const UserID &lhs, const UserID &rhs) const
-    {
-        return qstrcmp(lhs.parent().primaryFingerprint(),
-                       rhs.parent().primaryFingerprint()) == 0
-               && qstrcmp(lhs.id(), rhs.id()) == 0;
-    }
-};
+static bool uidEqual(const UserID &lhs, const UserID &rhs)
+{
+    return qstrcmp(lhs.parent().primaryFingerprint(),
+                    rhs.parent().primaryFingerprint()) == 0
+            && qstrcmp(lhs.id(), rhs.id()) == 0;
+}
 }
 
 void CertifyCertificateDialog::setSelectedUserIDs(const std::vector<UserID> &uids)
@@ -491,7 +487,8 @@ void CertifyCertificateDialog::setSelectedUserIDs(const std::vector<UserID> &uid
     Q_FOREACH (const UserID &uid, uids) {
         kleo_assert(qstrcmp(uid.parent().primaryFingerprint(), fpr) == 0);
         const unsigned int idx =
-            std::distance(all.begin(), kdtools::find_if(all, boost::bind(UidEqual(), _1, uid)));
+            std::distance(all.cbegin(), std::find_if(all.cbegin(), all.cend(),
+                                                     [uid](const UserID &other) { return uidEqual(uid, other); }));
         if (idx < all.size()) {
             indexes.push_back(idx);
         }

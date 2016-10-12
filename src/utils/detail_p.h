@@ -35,8 +35,6 @@
 
 #include <kleo-assuan.h>
 
-#include <boost/shared_ptr.hpp>
-
 #include <QByteArray>
 
 #ifdef _WIN32

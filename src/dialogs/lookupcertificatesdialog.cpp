@@ -49,15 +49,12 @@
 #include <QPushButton>
 #include <QHeaderView>
 
-#include <boost/bind.hpp>
-
 #include <cassert>
 #include <KSharedConfig>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 
 static const int minimalSearchTextLength = 2; // ### TODO: make that KIOSK-able
 

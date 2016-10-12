@@ -41,13 +41,10 @@
 
 #include <QSettings>
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 
 static QString gnupg_path = QStringLiteral("HKEY_LOCAL_MACHINE\\Software\\GNU\\GnuPG");
 static QString gnupg_key = QStringLiteral("gpgProgram");
@@ -124,7 +121,7 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgProgramRegistryCheckSelfTest()
+std::shared_ptr<SelfTest> Kleo::makeGpgProgramRegistryCheckSelfTest()
 {
-    return shared_ptr<SelfTest>(new RegistryCheck);
+    return std::shared_ptr<SelfTest>(new RegistryCheck);
 }

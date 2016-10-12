@@ -51,11 +51,8 @@
 
 #include <QString>
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -178,7 +175,7 @@ void Task::setProgress(const QString &label, int processed, int total)
     d->m_progress = processed;
     d->m_totalProgress = total;
     d->m_progressLabel = label;
-    Q_EMIT progress(label, processed, total);
+    Q_EMIT progress(label, processed, total, QPrivateSignal());
 }
 
 void Task::start()
@@ -194,7 +191,7 @@ void Task::start()
     } catch (...) {
         QMetaObject::invokeMethod(this, "emitError", Qt::QueuedConnection, Q_ARG(int, makeGnuPGError(GPG_ERR_UNEXPECTED)), Q_ARG(QString, i18n("Unknown exception in Task::start()")));
     }
-    Q_EMIT started();
+    Q_EMIT started(QPrivateSignal());
 }
 
 void Task::emitError(int errCode, const QString &details)
@@ -205,8 +202,8 @@ void Task::emitError(int errCode, const QString &details)
 void Task::emitResult(const std::shared_ptr<const Task::Result> &r)
 {
     d->m_progress = d->m_totalProgress;
-    Q_EMIT progress(progressLabel(), currentProgress(), totalProgress());
-    Q_EMIT result(r);
+    Q_EMIT progress(progressLabel(), currentProgress(), totalProgress(), QPrivateSignal());
+    Q_EMIT result(r, QPrivateSignal());
 }
 
 std::shared_ptr<Task::Result> Task::makeErrorResult(int errCode, const QString &details)

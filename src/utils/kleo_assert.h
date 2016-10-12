@@ -35,16 +35,18 @@
 
 #include <libkleo/exception.h>
 
-#include <boost/preprocessor/stringize.hpp>
-
 #include <assert.h>
+
+#define S(x) #x
+#define S_(x) S(x)
+#define S_LINE S_(__LINE__)
 
 #define kleo_assert_fail_impl( cond, file, line )                       \
     throw Kleo::Exception( gpg_error( GPG_ERR_INTERNAL ),               \
-                           "assertion \"" #cond "\" failed at " file ":" BOOST_PP_STRINGIZE( line ) )
+                           "assertion \"" #cond "\" failed at " file ":" line )
 #define kleo_assert_fail_impl_func( cond, file, line, func )            \
     throw Kleo::Exception( gpg_error( GPG_ERR_INTERNAL ),               \
-                           std::string( "assertion \"" #cond "\" failed in " ) + func + " (" file ":" BOOST_PP_STRINGIZE( line ) ")" )
+                           std::string( "assertion \"" #cond "\" failed in " ) + func + " (" file ":" line ")" )
 
 #define kleo_assert_impl( cond, file, line )                  \
     if ( cond ) {}                                            \
@@ -69,23 +71,23 @@
 #endif
 
 #if KLEO_GNUC_PREREQ(2, 6)
-# define kleo_assert( cond ) kleo_assert_impl_func( cond, __FILE__, __LINE__, __PRETTY_FUNCTION__ )
-# define kleo_assert_fail( cond ) kleo_assert_fail_impl_func( cond, __FILE__, __LINE__, __PRETTY_FUNCTION__ )
+# define kleo_assert( cond ) kleo_assert_impl_func( cond, __FILE__, S_LINE, __PRETTY_FUNCTION__ )
+# define kleo_assert_fail( cond ) kleo_assert_fail_impl_func( cond, __FILE__, S_LINE, __PRETTY_FUNCTION__ )
 # define notImplemented() throw Exception( gpg_error( GPG_ERR_NOT_IMPLEMENTED ), __PRETTY_FUNCTION__ )
 #elif defined __STDC_VERSION__ && __STDC_VERSION__ >= 199901L
-# define kleo_assert( cond ) kleo_assert_impl_func( cond, __FILE__, __LINE__, __func__ )
-# define kleo_assert_fail( cond ) kleo_assert_fail_impl_func( cond, __FILE__, __LINE__, __func__ )
+# define kleo_assert( cond ) kleo_assert_impl_func( cond, __FILE__, S_LINE, __func__ )
+# define kleo_assert_fail( cond ) kleo_assert_fail_impl_func( cond, __FILE__, S_LINE, __func__ )
 # define notImplemented() throw Exception( gpg_error( GPG_ERR_NOT_IMPLEMENTED ), __func__ )
 #endif
 
 #undef KLEO_GNUC_PREREQ
 
 #ifndef kleo_assert
-# define kleo_assert( cond ) kleo_assert_impl( cond, __FILE__, __LINE__ )
+# define kleo_assert( cond ) kleo_assert_impl( cond, __FILE__, S_LINE )
 #endif
 
 #ifndef kleo_assert_fail
-# define kleo_assert_fail( cond ) kleo_assert_fail_impl( cond, __FILE__, __LINE__ )
+# define kleo_assert_fail( cond ) kleo_assert_fail_impl( cond, __FILE__, S_LINE )
 #endif
 
 #ifndef notImplemented

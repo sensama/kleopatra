@@ -102,7 +102,7 @@ const SignClipboardCommand::Private *SignClipboardCommand::d_func() const
 
 SignClipboardCommand::Private::Private(SignClipboardCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      shared_qq(qq, kdtools::nodelete()),
+      shared_qq(qq, [](SignClipboardCommand*){}),
       input(),
       controller(SignEMailController::ClipboardMode)
 {

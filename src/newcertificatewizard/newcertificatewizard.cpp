@@ -79,9 +79,9 @@
 #include <QDesktopServices>
 #include <QUrlQuery>
 
-#include <boost/range.hpp>
-
 #include <algorithm>
+#include <cassert>
+
 #include <KSharedConfig>
 #include <QLocale>
 
@@ -89,7 +89,6 @@ using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace Kleo::Commands;
 using namespace GpgME;
-using namespace boost;
 
 static const char RSA_KEYSIZES_ENTRY[] = "RSAKeySizes";
 static const char DSA_KEYSIZES_ENTRY[] = "DSAKeySizes";
@@ -118,7 +117,7 @@ static const QStringList curveNames {
 
 static void set_tab_order(const QList<QWidget *> &wl)
 {
-    kdtools::for_each_adjacent_pair(wl, &QWidget::setTabOrder);
+    kdtools::for_each_adjacent_pair(wl.begin(), wl.end(), &QWidget::setTabOrder);
 }
 
 enum KeyAlgo { RSA, DSA, ELG, ECDSA, ECDH };
@@ -1430,7 +1429,8 @@ void EnterDetailsPage::updateForm()
 
     // create lineList in visual order, so requirementsAreMet()
     // complains from top to bottom:
-    lineList = kdtools::copy< QVector<Line> >(lines);
+    lineList.reserve(lines.count());
+    std::copy(lines.cbegin(), lines.cend(), std::back_inserter(lineList));
 
     widgets.push_back(ui.resultLE);
     widgets.push_back(ui.addEmailToDnCB);

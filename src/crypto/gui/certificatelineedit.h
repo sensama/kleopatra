@@ -35,9 +35,10 @@
 #include <QString>
 
 #include <gpgme++/key.h>
-#include <boost/shared_ptr.hpp>
 
 #include "dialogs/certificateselectiondialog.h"
+
+#include <memory>
 
 class QLabel;
 class QAction;
@@ -104,7 +105,7 @@ private:
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;
-    boost::shared_ptr<KeyFilter> mFilter;
+    std::shared_ptr<KeyFilter> mFilter;
     bool mEditStarted,
          mEditFinished;
     QAction *mLineAction;

@@ -36,8 +36,6 @@
 
 #include <dialogs/certificateselectiondialog.h>
 
-#include <boost/mem_fn.hpp>
-
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
 #include <Libkleo/KeyCache>
@@ -58,7 +56,6 @@
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 
 class SelectCertificateCommand::Private
 {
@@ -150,7 +147,10 @@ void SelectCertificateCommand::Private::slotSelectedCertificates(int err, const 
     if (err) {
         return;
     }
-    const std::vector<std::string> fprs = kdtools::transform< std::vector<std::string> >(data.split('\n'), mem_fn(&QByteArray::constData));
+    const auto split = data.split('\n');
+    std::vector<std::string> fprs;
+    fprs.reserve(split.size());
+    std::transform(split.cbegin(), split.cend(), std::back_inserter(fprs), std::mem_fn(&QByteArray::constData));
     const std::vector<Key> keys = KeyCache::instance()->findByKeyIDOrFingerprint(fprs);
     Q_FOREACH (const Key &key, keys) {
         qCDebug(KLEOPATRA_LOG) << "found key " << key.userID(0).id();

@@ -101,7 +101,7 @@ const DecryptVerifyClipboardCommand::Private *DecryptVerifyClipboardCommand::d_f
 
 DecryptVerifyClipboardCommand::Private::Private(DecryptVerifyClipboardCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      shared_qq(qq, kdtools::nodelete()),
+      shared_qq(qq, [](DecryptVerifyClipboardCommand*){}),
       input(),
       controller()
 {

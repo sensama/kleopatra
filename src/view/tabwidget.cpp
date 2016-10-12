@@ -66,7 +66,6 @@
 #include <cassert>
 
 using namespace Kleo;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -89,7 +88,7 @@ public:
 
     void setHierarchicalView(bool hierarchical) Q_DECL_OVERRIDE;
     void setStringFilter(const QString &filter) Q_DECL_OVERRIDE;
-    void setKeyFilter(const shared_ptr<KeyFilter> &filter) Q_DECL_OVERRIDE;
+    void setKeyFilter(const std::shared_ptr<KeyFilter> &filter) Q_DECL_OVERRIDE;
 
     QString title() const
     {
@@ -205,7 +204,11 @@ Page::Page(const KConfigGroup &group, QWidget *parent)
 {
     init();
     setHierarchicalView(group.readEntry(HIERARCHICAL_VIEW_ENTRY, true));
-    setColumnSizes(kdtools::copy< std::vector<int> >(group.readEntry(COLUMN_SIZES, QList<int>())));
+    const QList<int> settings = group.readEntry(COLUMN_SIZES, QList<int>());
+    std::vector<int> sizes;
+    sizes.reserve(settings.size());
+    std::copy(settings.cbegin(), settings.cend(), std::back_inserter(sizes));
+    setColumnSizes(sizes);
     setSortColumn(group.readEntry(SORT_COLUMN, 0),
                   group.readEntry(SORT_DESCENDING, true) ? Qt::DescendingOrder : Qt::AscendingOrder);
 }
@@ -224,7 +227,11 @@ void Page::saveTo(KConfigGroup &group) const
     group.writeEntry(STRING_FILTER_ENTRY, stringFilter());
     group.writeEntry(KEY_FILTER_ENTRY,    keyFilter() ? keyFilter()->id() : QString());
     group.writeEntry(HIERARCHICAL_VIEW_ENTRY, isHierarchicalView());
-    group.writeEntry(COLUMN_SIZES,        kdtools::copy< QList<int> >(columnSizes()));
+    QList<int> settings;
+    const auto sizes = columnSizes();
+    settings.reserve(sizes.size());
+    std::copy(sizes.cbegin(), sizes.cend(), std::back_inserter(settings));
+    group.writeEntry(COLUMN_SIZES,        settings);
     group.writeEntry(SORT_COLUMN,         sortColumn());
     group.writeEntry(SORT_DESCENDING,     sortOrder() == Qt::DescendingOrder);
 }
@@ -237,7 +244,7 @@ void Page::setStringFilter(const QString &filter)
     KeyTreeView::setStringFilter(filter);
 }
 
-void Page::setKeyFilter(const shared_ptr<KeyFilter> &filter)
+void Page::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     if (!canChangeKeyFilter()) {
         return;
@@ -297,7 +304,7 @@ void Page::setTemporary(bool on)
     }
     m_isTemporary = on;
     if (on) {
-        setKeyFilter(shared_ptr<KeyFilter>());
+        setKeyFilter(std::shared_ptr<KeyFilter>());
     }
 }
 
@@ -319,7 +326,7 @@ private:
     void slotContextMenu(const QPoint &p);
     void currentIndexChanged(int index);
     void slotPageTitleChanged(const QString &title);
-    void slotPageKeyFilterChanged(const shared_ptr<KeyFilter> &filter);
+    void slotPageKeyFilterChanged(const std::shared_ptr<KeyFilter> &filter);
     void slotPageStringFilterChanged(const QString &filter);
     void slotPageHierarchyChanged(bool on);
 
@@ -497,7 +504,7 @@ void TabWidget::Private::currentIndexChanged(int index)
 {
     const Page *const page = this->page(index);
     Q_EMIT q->currentViewChanged(page ? page->view() : 0);
-    Q_EMIT q->keyFilterChanged(page ? page->keyFilter() : shared_ptr<KeyFilter>());
+    Q_EMIT q->keyFilterChanged(page ? page->keyFilter() : std::shared_ptr<KeyFilter>());
     Q_EMIT q->stringFilterChanged(page ? page->stringFilter() : QString());
     enableDisableCurrentPageActions();
 }
@@ -540,7 +547,7 @@ void TabWidget::Private::slotPageTitleChanged(const QString &)
     }
 }
 
-void TabWidget::Private::slotPageKeyFilterChanged(const shared_ptr<KeyFilter> &kf)
+void TabWidget::Private::slotPageKeyFilterChanged(const std::shared_ptr<KeyFilter> &kf)
 {
     if (isSenderCurrentPage()) {
         Q_EMIT q->keyFilterChanged(kf);
@@ -709,7 +716,7 @@ void TabWidget::setStringFilter(const QString &filter)
     }
 }
 
-void TabWidget::setKeyFilter(const shared_ptr<KeyFilter> &filter)
+void TabWidget::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     if (Page *const page = d->currentPage()) {
         page->setKeyFilter(filter);
@@ -864,7 +871,7 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     page->setHierarchicalModel(hierarchicalModel);
 
     connect(page, SIGNAL(titleChanged(QString)), q, SLOT(slotPageTitleChanged(QString)));
-    connect(page, SIGNAL(keyFilterChanged(boost::shared_ptr<Kleo::KeyFilter>)), q, SLOT(slotPageKeyFilterChanged(boost::shared_ptr<Kleo::KeyFilter>)));
+    connect(page, SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)), q, SLOT(slotPageKeyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)));
     connect(page, SIGNAL(stringFilterChanged(QString)), q, SLOT(slotPageStringFilterChanged(QString)));
     connect(page, SIGNAL(hierarchicalChanged(bool)), q, SLOT(slotPageHierarchyChanged(bool)));
 
@@ -948,8 +955,8 @@ void TabWidget::connectSearchBar(QObject *sb)
 {
     xconnect(sb, SIGNAL(stringFilterChanged(QString)),
              this, SLOT(setStringFilter(QString)));
-    xconnect(sb, SIGNAL(keyFilterChanged(boost::shared_ptr<Kleo::KeyFilter>)),
-             this, SLOT(setKeyFilter(boost::shared_ptr<Kleo::KeyFilter>)));
+    xconnect(sb, SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)),
+             this, SLOT(setKeyFilter(std::shared_ptr<Kleo::KeyFilter>)));
     connect(this, SIGNAL(enableChangeStringFilter(bool)),
             sb, SLOT(setChangeStringFilterEnabled(bool)));
     connect(this, SIGNAL(enableChangeKeyFilter(bool)),

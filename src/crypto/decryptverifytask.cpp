@@ -72,8 +72,6 @@
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <cassert>
 #include <sstream>
@@ -81,7 +79,6 @@
 using namespace Kleo::Crypto;
 using namespace Kleo;
 using namespace GpgME;
-using namespace boost;
 using namespace KMime::Types;
 
 namespace
@@ -177,12 +174,18 @@ static std::vector<Mailbox> extractMailboxes(const std::vector<Key> &signers)
 static bool keyContainsMailbox(const Key &key, const Mailbox &mbox)
 {
     const std::vector<Mailbox> mbxs = extractMailboxes(key);
-    return std::find_if(mbxs.begin(), mbxs.end(), boost::bind(mailbox_equal, mbox, _1, Qt::CaseInsensitive)) != mbxs.end();
+    return std::find_if(mbxs.cbegin(), mbxs.cend(), 
+                        [mbox](const Mailbox &m) {
+                            return mailbox_equal(mbox, m, Qt::CaseInsensitive);
+                        }) != mbxs.cend();
 }
 
 static bool keysContainMailbox(const std::vector<Key> &keys, const Mailbox &mbox)
 {
-    return std::find_if(keys.begin(), keys.end(), boost::bind(keyContainsMailbox, _1, mbox)) != keys.end();
+    return std::find_if(keys.cbegin(), keys.cend(), 
+                        [mbox](const Key &key) {
+                            return keyContainsMailbox(key, mbox);
+                        }) != keys.cend();
 }
 
 static bool relevantInDecryptVerifyContext(const VerificationResult &r)
@@ -376,7 +379,7 @@ public:
     }
     bool hasKeys() const
     {
-        return kdtools::any(signers, !boost::bind(&Key::isNull, _1));
+        return std::any_of(signers.cbegin(), signers.cend(), [](const Key &key) { return !key.isNull(); });
     }
     std::vector<Mailbox> signerMailboxes() const
     {
@@ -430,11 +433,11 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
         return i18n("<b>No signatures found.</b>");
     }
 
-    const uint bad = std::count_if(sigs.begin(), sigs.end(), IsBad);
+    const uint bad = std::count_if(sigs.cbegin(), sigs.cend(), IsBad);
     if (bad > 0) {
         return i18np("<b>Invalid signature.</b>", "<b>%1 invalid signatures.</b>", bad);
     }
-    const uint warn = std::count_if(sigs.begin(), sigs.end(), !boost::bind(IsGoodOrValid, _1));
+    const uint warn = std::count_if(sigs.cbegin(), sigs.cend(), [](const Signature &sig) { return !IsGoodOrValid(sig); });
     if (warn > 0) {
         return i18np("<b>Not enough information to check signature validity.</b>", "<b>%1 signatures could not be verified.</b>", warn);
     }
@@ -499,7 +502,10 @@ static QString formatSignature(const Signature &sig, const Key &key, const Decry
 static QStringList format(const std::vector<Mailbox> &mbxs)
 {
     QStringList res;
-    std::transform(mbxs.begin(), mbxs.end(), std::back_inserter(res), boost::bind(&Mailbox::prettyAddress, _1));
+    std::transform(mbxs.cbegin(), mbxs.cend(), std::back_inserter(res),
+                   [](const Mailbox &mbox) {
+                       return mbox.prettyAddress();
+                   });
     return res;
 }
 

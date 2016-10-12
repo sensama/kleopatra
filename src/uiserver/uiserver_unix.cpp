@@ -49,7 +49,6 @@
 #include <cstring>
 
 using namespace Kleo;
-using namespace boost;
 
 QString UiServer::Private::systemErrorString()
 {

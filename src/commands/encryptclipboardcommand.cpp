@@ -102,7 +102,7 @@ const EncryptClipboardCommand::Private *EncryptClipboardCommand::d_func() const
 
 EncryptClipboardCommand::Private::Private(EncryptClipboardCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      shared_qq(qq, kdtools::nodelete()),
+      shared_qq(qq, [](EncryptClipboardCommand*){}),
       input(),
       controller(EncryptEMailController::ClipboardMode)
 {

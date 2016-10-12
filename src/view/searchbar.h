@@ -37,7 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 class QLineEdit;
 
@@ -54,7 +54,7 @@ public:
     ~SearchBar();
 
     QString stringFilter() const;
-    const boost::shared_ptr<KeyFilter> &keyFilter() const;
+    const std::shared_ptr<KeyFilter> &keyFilter() const;
 
     QLineEdit *lineEdit() const;
 
@@ -62,14 +62,14 @@ public:
 
 public Q_SLOTS:
     void setStringFilter(const QString &text);
-    void setKeyFilter(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
 
     void setChangeStringFilterEnabled(bool enable);
     void setChangeKeyFilterEnabled(bool enable);
 
 Q_SIGNALS:
     void stringFilterChanged(const QString &text);
-    void keyFilterChanged(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void keyFilterChanged(const std::shared_ptr<Kleo::KeyFilter> &filter);
 
 private:
     class Private;

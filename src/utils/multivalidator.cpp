@@ -36,15 +36,10 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <boost/lambda/lambda.hpp>
-#include <boost/lambda/bind.hpp>
-
 #include <vector>
 #include <iterator>
 
 using namespace Kleo;
-using namespace boost;
-using namespace boost::lambda;
 
 MultiValidator::~MultiValidator() {}
 
@@ -62,7 +57,8 @@ void MultiValidator::addValidator(QValidator *vali)
 
 void MultiValidator::addValidators(const QList<QValidator *> &valis)
 {
-    kdtools::for_each(valis, bind(&MultiValidator::addValidator, this, _1));
+    std::for_each(valis.cbegin(), valis.cend(),
+                  [this](QValidator *val) { addValidator(val); });
 }
 
 void MultiValidator::removeValidator(QValidator *vali)
@@ -80,12 +76,14 @@ void MultiValidator::removeValidator(QValidator *vali)
 
 void MultiValidator::removeValidators(const QList<QValidator *> &valis)
 {
-    kdtools::for_each(valis, bind(&MultiValidator::removeValidator, this, _1));
+    std::for_each(valis.cbegin(), valis.cend(),
+                  [this](QValidator *val) { removeValidator(val); });
 }
 
 void MultiValidator::fixup(QString &str) const
 {
-    kdtools::for_each(m_validators, bind(&QValidator::fixup, _1, ref(str)));
+    std::for_each(m_validators.begin(), m_validators.end(),
+                  [&str](QValidator *val) { val->fixup(str); });
 }
 
 QValidator::State MultiValidator::validate(QString &str, int &pos) const
@@ -94,11 +92,15 @@ QValidator::State MultiValidator::validate(QString &str, int &pos) const
     states.reserve(m_validators.size());
     std::transform(m_validators.begin(), m_validators.end(),
                    std::back_inserter(states),
-                   bind(&QValidator::validate, _1, ref(str), ref(pos)));
-    if (kdtools::any(states, _1 == Invalid)) {
+                   [&str, &pos](QValidator *val) {
+                       return val->validate(str, pos);
+                   });
+    if (std::any_of(states.cbegin(), states.cend(),
+                    [](State state) { return state == Invalid; })) {
         return Invalid;
     }
-    if (kdtools::all(states, _1 == Acceptable)) {
+    if (std::all_of(states.cbegin(), states.cend(),
+                    [](State state) { return state == Acceptable; })) {
         return Acceptable;
     }
     return Intermediate;

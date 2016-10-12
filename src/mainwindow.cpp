@@ -86,15 +86,11 @@
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-
 #include <vector>
 #include <KSharedConfig>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace boost;
 using namespace GpgME;
 
 static KGuiItem KStandardGuiItem_quit()
@@ -475,9 +471,9 @@ static QStringList extract_local_files(const QMimeData *data)
     QStringList result;
     std::transform(urls.begin(), end,
                    std::back_inserter(result),
-                   boost::bind(&QUrl::toLocalFile, _1));
+                   std::mem_fn(&QUrl::toLocalFile));
     result.erase(std::remove_if(result.begin(), result.end(),
-                                boost::bind(&QString::isEmpty, _1)), result.end());
+                                std::mem_fn(&QString::isEmpty)), result.end());
     return result;
 }
 

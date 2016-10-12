@@ -58,9 +58,6 @@
 
 #include <QRegExp>
 
-#include <boost/bind.hpp>
-#include <boost/shared_ptr.hpp>
-
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -70,7 +67,6 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 using namespace QGpgME;
 
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
@@ -320,7 +316,7 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     dialog = 0;
 
     assert(!keys.empty());
-    assert(kdtools::none_of(keys, mem_fn(&Key::isNull)));
+    assert(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
 
     std::vector<Key> pgp, cms;
     pgp.reserve(keys.size());
@@ -328,7 +324,9 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     kdtools::separate_if(keys.begin(), keys.end(),
                          std::back_inserter(pgp),
                          std::back_inserter(cms),
-                         boost::bind(&Key::protocol, _1) == OpenPGP);
+                         [](const Key &key) {
+                             return key.protocol() == GpgME::OpenPGP;
+                         });
 
     setWaitForMoreJobs(true);
     if (!pgp.empty())

@@ -66,8 +66,6 @@
 #include <QPointer>
 #include <QHeaderView>
 
-#include <boost/mem_fn.hpp>
-
 #include <algorithm>
 #include <cassert>
 #include <KSharedConfig>
@@ -77,11 +75,10 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace Kleo::Commands;
 using namespace GpgME;
-using namespace boost;
 
 static bool own(const QVector<UserID::Signature> &sigs)
 {
-    const shared_ptr<const KeyCache> kc = KeyCache::instance();
+    const std::shared_ptr<const KeyCache> kc = KeyCache::instance();
     Q_FOREACH (const UserID::Signature &sig, sigs) {
         const Key signer = kc->findByKeyIDOrFingerprint(sig.signerKeyID());
         if (signer.isNull() || !signer.hasSecret()) {

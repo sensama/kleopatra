@@ -53,14 +53,11 @@
 #include <QHeaderView>
 #include "kleopatra_debug.h"
 
-#include <boost/static_assert.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 namespace
 {
@@ -71,7 +68,7 @@ static Qt::GlobalColor statusColor[] = {
     Qt::red,      // Failed
     Qt::darkRed,  // Error
 };
-BOOST_STATIC_ASSERT((sizeof statusColor / sizeof * statusColor == VerifyChecksumsDialog::NumStatii));
+static_assert(sizeof statusColor / sizeof * statusColor == VerifyChecksumsDialog::NumStatii);
 
 class ColorizedFileSystemModel : public QDirModel
 {

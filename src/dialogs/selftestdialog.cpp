@@ -47,14 +47,11 @@
 #include <QApplication>
 #include "kleopatra_debug.h"
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 #include <vector>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
-using namespace boost;
 
 namespace
 {
@@ -77,13 +74,13 @@ public:
         NumColumns
     };
 
-    const shared_ptr<SelfTest> &fromModelIndex(const QModelIndex &idx) const
+    const std::shared_ptr<SelfTest> &fromModelIndex(const QModelIndex &idx) const
     {
         const unsigned int row = idx.row();
         if (row < m_tests.size()) {
             return m_tests[row];
         }
-        static const shared_ptr<SelfTest> null;
+        static const std::shared_ptr<SelfTest> null;
         return null;
     }
 
@@ -144,7 +141,7 @@ public:
         endRemoveRows();
     }
 
-    void append(const std::vector< shared_ptr<SelfTest> > &tests)
+    void append(const std::vector<std::shared_ptr<SelfTest>> &tests)
     {
         if (tests.empty()) {
             return;
@@ -161,13 +158,13 @@ public:
         }
     }
 
-    const shared_ptr<SelfTest> &at(unsigned int idx) const
+    const std::shared_ptr<SelfTest> &at(unsigned int idx) const
     {
         return m_tests.at(idx);
     }
 
 private:
-    std::vector< shared_ptr<SelfTest> > m_tests;
+    std::vector<std::shared_ptr<SelfTest>> m_tests;
 };
 
 class Proxy : public QSortFilterProxyModel
@@ -208,7 +205,7 @@ private:
         if (const Model *const model = qobject_cast<Model *>(sourceModel())) {
             if (!src_parent.isValid() && src_row >= 0 &&
                     src_row < model->rowCount(src_parent)) {
-                if (const shared_ptr<SelfTest> &t = model->at(src_row)) {
+                if (const std::shared_ptr<SelfTest> &t = model->at(src_row)) {
                     return !t->passed();
                 } else {
                     qCWarning(KLEOPATRA_LOG) <<  "NULL test??";
@@ -273,7 +270,7 @@ private:
             ui.detailsGB->hide();
             ui.proposedCorrectiveActionGB->hide();
         } else {
-            const shared_ptr<SelfTest> &t = model.at(row);
+            const std::shared_ptr<SelfTest> &t = model.at(row);
             ui.detailsLB->setText(t->longError());
             ui.detailsGB->setVisible(!t->passed());
             const QString action = t->proposedFix();
@@ -284,7 +281,7 @@ private:
     }
     void slotDoItClicked()
     {
-        if (const shared_ptr<SelfTest> st = model.fromModelIndex(selectedRow()))
+        if (const std::shared_ptr<SelfTest> st = model.fromModelIndex(selectedRow()))
             if (st->fix()) {
                 model.reloadData();
             }
@@ -340,7 +337,7 @@ SelfTestDialog::SelfTestDialog(QWidget *p, Qt::WindowFlags f)
     setAutomaticMode(false);
 }
 
-SelfTestDialog::SelfTestDialog(const std::vector< shared_ptr<SelfTest> > &tests, QWidget *p, Qt::WindowFlags f)
+SelfTestDialog::SelfTestDialog(const std::vector<std::shared_ptr<SelfTest>> &tests, QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f), d(new Private(this))
 {
     addSelfTests(tests);
@@ -354,13 +351,13 @@ void SelfTestDialog::clear()
     d->model.clear();
 }
 
-void SelfTestDialog::addSelfTest(const shared_ptr<SelfTest> &test)
+void SelfTestDialog::addSelfTest(const std::shared_ptr<SelfTest> &test)
 {
-    d->model.append(std::vector< shared_ptr<SelfTest> >(1, test));
+    d->model.append(std::vector<std::shared_ptr<SelfTest>>(1, test));
     d->updateColumnSizes();
 }
 
-void SelfTestDialog::addSelfTests(const std::vector< shared_ptr<SelfTest> > &tests)
+void SelfTestDialog::addSelfTests(const std::vector<std::shared_ptr<SelfTest>> &tests)
 {
     d->model.append(tests);
     d->updateColumnSizes();

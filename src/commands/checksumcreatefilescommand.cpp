@@ -52,7 +52,6 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class ChecksumCreateFilesCommand::Private : public Command::Private
 {
@@ -100,7 +99,7 @@ const ChecksumCreateFilesCommand::Private *ChecksumCreateFilesCommand::d_func() 
 ChecksumCreateFilesCommand::Private::Private(ChecksumCreateFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
       files(),
-      shared_qq(qq, kdtools::nodelete()),
+      shared_qq(qq, [](ChecksumCreateFilesCommand*){}),
       controller()
 {
     controller.setAllowAddition(true);

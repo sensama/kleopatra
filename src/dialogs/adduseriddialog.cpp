@@ -232,7 +232,7 @@ private:
                 lines[row] = line;
             }
 
-            lineList = kdtools::copy< QVector<Line> >(lines);
+            std::copy(lines.begin(), lines.end(), std::back_inserter(lineList));
         }
 
         QPushButton *okPB() const

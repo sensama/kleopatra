@@ -44,8 +44,6 @@
 
 #include <kleo-assuan.h>
 
-#include <boost/bind.hpp>
-
 #include <memory>
 #include <algorithm>
 #include <vector>

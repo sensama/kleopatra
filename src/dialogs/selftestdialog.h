@@ -37,12 +37,8 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <memory>
 #include <vector>
-
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
 
 namespace Kleo
 {
@@ -58,13 +54,13 @@ class SelfTestDialog : public QDialog
     Q_PROPERTY(bool runAtStartUp READ runAtStartUp WRITE setRunAtStartUp)
 public:
     explicit SelfTestDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
-    explicit SelfTestDialog(const std::vector< boost::shared_ptr<SelfTest> > &tests, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit SelfTestDialog(const std::vector<std::shared_ptr<SelfTest>> &tests, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
     ~SelfTestDialog();
 
     void setAutomaticMode(bool automatic);
 
-    void addSelfTest(const boost::shared_ptr<SelfTest> &test);
-    void addSelfTests(const std::vector< boost::shared_ptr<SelfTest> > &tests);
+    void addSelfTest(const std::shared_ptr<SelfTest> &test);
+    void addSelfTests(const std::vector<std::shared_ptr<SelfTest>> &tests);
 
     void setRunAtStartUp(bool run);
     bool runAtStartUp() const;

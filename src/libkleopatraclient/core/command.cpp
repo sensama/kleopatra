@@ -45,15 +45,13 @@
 #include <assuan.h>
 #include <gpg-error.h>
 
-#include <boost/shared_ptr.hpp>
-#include <boost/type_traits/remove_pointer.hpp>
-
 #include <algorithm>
 #include <string>
 #include <sstream>
+#include <memory>
+#include <type_traits>
 
 using namespace KleopatraClientCopy;
-using namespace boost;
 
 // copied from kleopatra/utils/hex.cpp
 static std::string hexencode(const std::string &in)
@@ -389,7 +387,7 @@ static void my_assuan_release(assuan_context_t ctx)
 }
 #endif
 
-typedef shared_ptr< remove_pointer<assuan_context_t>::type > AssuanContextBase;
+typedef std::shared_ptr<std::remove_pointer<assuan_context_t>::type > AssuanContextBase;
 namespace
 {
 struct AssuanClientContext : AssuanContextBase {

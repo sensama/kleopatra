@@ -44,8 +44,6 @@
 
 #include <gpgme++/error.h>
 
-#include <boost/static_assert.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
@@ -72,8 +70,8 @@ const char *icons[] = {
     "security-low",              // Failed
 };
 
-BOOST_STATIC_ASSERT((sizeof icons / sizeof(*icons) == NumStates));
-BOOST_STATIC_ASSERT((sizeof("movie-") == 7));
+static_assert(sizeof icons / sizeof(*icons) == NumStates, "");
+static_assert(sizeof("movie-") == 7, "");
 
 static void update_widget(State state, bool delay, QLabel *resultLB, QLabel *lb, QPushButton *pb, QLabel *statusLB)
 {

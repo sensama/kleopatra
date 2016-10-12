@@ -59,15 +59,11 @@
 #include <QFontDialog>
 #include <QRegularExpression>
 
-#include <boost/range.hpp>
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Config;
-using namespace boost;
 
 enum {
     HasNameRole = Qt::UserRole + 0x1234, /*!< Records that the user has assigned a name (to avoid comparing with i18n-strings) */
@@ -244,7 +240,7 @@ static void set_default_appearance(QListWidgetItem *item)
         MayChangeBoldRole,
         MayChangeStrikeOutRole,
     };
-    erase_if_allowed(item, fontRoles, size(fontRoles), fontAllowRoles, size(fontAllowRoles));
+    erase_if_allowed(item, fontRoles, sizeof(fontRoles) / sizeof(int), fontAllowRoles, sizeof(fontAllowRoles) / sizeof(int));
 }
 
 static void writeOrDelete(KConfigGroup &group, const char *key, const QVariant &value)

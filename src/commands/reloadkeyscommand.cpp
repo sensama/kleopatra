@@ -41,10 +41,7 @@
 
 #include <gpgme++/keylistresult.h>
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
-using namespace boost;
 using namespace GpgME;
 
 class ReloadKeysCommand::Private : public Command::Private

@@ -59,13 +59,13 @@
 
 #include <gpg-error.h>
 
+#include <memory>
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Formatting;
 using namespace GpgME;
-using namespace boost;
 
 class DecryptVerifyCommandFilesBase::Private : public QObject
 {
@@ -101,7 +101,7 @@ public Q_SLOTS:
 public:
 
 private:
-    shared_ptr<DecryptVerifyFilesController> controller;
+    std::shared_ptr<DecryptVerifyFilesController> controller;
 };
 
 DecryptVerifyCommandFilesBase::DecryptVerifyCommandFilesBase()
@@ -173,7 +173,7 @@ void DecryptVerifyCommandFilesBase::Private::checkForErrors() const
     if (fileNames.empty())
         throw Exception(makeError(GPG_ERR_ASS_NO_INPUT),
                         i18n("At least one FILE must be present"));
-    if (!kdtools::all(fileNames, is_file()))
+    if (!std::all_of(fileNames.cbegin(), fileNames.cend(), is_file()))
         throw Exception(makeError(GPG_ERR_INV_ARG),
                         i18n("DECRYPT/VERIFY_FILES cannot use directories as input"));
 

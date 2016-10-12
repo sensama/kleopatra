@@ -50,16 +50,12 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include <boost/bind.hpp>
-#include <boost/mem_fn.hpp>
-
 #include <cassert>
 #include <KGuiItem>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 class ResultListWidget::Private
 {
@@ -155,7 +151,8 @@ void ResultListWidget::Private::setupMulti()
 void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
 {
     assert(widget);
-    assert(kdtools::any(m_collections, !boost::bind(&TaskCollection::isEmpty, _1)));
+    assert(std::any_of(m_collections.cbegin(), m_collections.cend(),
+                       [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
 
     assert(m_scrollArea);
     assert(m_scrollArea->widget());
@@ -180,7 +177,8 @@ void ResultListWidget::Private::allTasksDone()
 void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result> &result)
 {
     assert(result);
-    assert(kdtools::any(m_collections, !boost::bind(&TaskCollection::isEmpty, _1)));
+    assert(std::any_of(m_collections.cbegin(), m_collections.cend(),
+                       [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
     ResultItemWidget *wid = new ResultItemWidget(result);
     q->connect(wid, SIGNAL(detailsToggled(bool)), q, SLOT(detailsToggled(bool)));
     q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
@@ -190,17 +188,21 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
 
 bool ResultListWidget::isComplete() const
 {
-    return kdtools::all(d->m_collections, mem_fn(&TaskCollection::allTasksCompleted));
+    return std::all_of(d->m_collections.cbegin(), d->m_collections.cend(),
+                       std::mem_fn(&TaskCollection::allTasksCompleted));
 }
 
 unsigned int ResultListWidget::totalNumberOfTasks() const
 {
-    return kdtools::accumulate_transform(d->m_collections, mem_fn(&TaskCollection::size), 0U);
+    return kdtools::accumulate_transform(d->m_collections.cbegin(),
+                                         d->m_collections.cend(),
+                                         std::mem_fn(&TaskCollection::size), 0U);
 }
 
 unsigned int ResultListWidget::numberOfCompletedTasks() const
 {
-    return kdtools::accumulate_transform(d->m_collections, mem_fn(&TaskCollection::numberOfCompletedTasks), 0U);
+    return kdtools::accumulate_transform(d->m_collections.cbegin(), d->m_collections.cend(),
+                                         std::mem_fn(&TaskCollection::numberOfCompletedTasks), 0U);
 }
 
 void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
@@ -213,10 +215,10 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
 {
     assert(coll); assert(!coll->isEmpty());
     d->m_collections.push_back(coll);
-    connect(coll.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(coll.get(), SIGNAL(started(boost::std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(boost::std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
+            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
     d->setupMulti();
     setStandaloneMode(d->m_standaloneMode);

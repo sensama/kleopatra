@@ -37,16 +37,12 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <memory>
 #include <vector>
 
 namespace GpgME
 {
 class Key;
-}
-
-namespace boost
-{
-template <typename T> class shared_ptr;
 }
 
 namespace Kleo
@@ -100,7 +96,7 @@ public:
 
 public Q_SLOTS:
     void setStringFilter(const QString &text);
-    void setKeyFilter(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
     void accept() Q_DECL_OVERRIDE;
 
 protected:

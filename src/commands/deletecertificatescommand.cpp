@@ -54,13 +54,10 @@
 #include <QPointer>
 #include <QAbstractItemView>
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <vector>
 #include <cassert>
 
-using namespace boost;
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -281,13 +278,13 @@ void DeleteCertificatesCommand::doStart()
         return;
     }
 
-    kdtools::sort(selected, _detail::ByFingerprint<std::less>());
+    std::sort(selected.begin(), selected.end(), _detail::ByFingerprint<std::less>());
 
     // Calculate the closure of the selected keys (those that need to
     // be deleted with them, though not selected themselves):
 
     std::vector<Key> toBeDeleted = KeyCache::instance()->findSubjects(selected);
-    kdtools::sort(toBeDeleted, _detail::ByFingerprint<std::less>());
+    std::sort(toBeDeleted.begin(), toBeDeleted.end(), _detail::ByFingerprint<std::less>());
 
     std::vector<Key> unselected;
     unselected.reserve(toBeDeleted.size());
@@ -310,12 +307,13 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
     std::vector<Key> keys = dialog->keys();
     assert(!keys.empty());
 
-    std::vector<Key>::iterator
-    pgpBegin = keys.begin(),
-    pgpEnd = std::stable_partition(pgpBegin, keys.end(),
-                                   boost::bind(&GpgME::Key::protocol, _1) != CMS),
-             cmsBegin = pgpEnd,
-             cmsEnd = keys.end();
+    auto pgpBegin = keys.begin();
+    auto pgpEnd = std::stable_partition(pgpBegin, keys.end(),
+                                        [](const GpgME::Key &key) {
+                                            return key.protocol() != GpgME::CMS;
+                                        });
+    auto cmsBegin = pgpEnd;
+    auto cmsEnd = keys.end();
 
     std::vector<Key> openpgp(pgpBegin, pgpEnd);
     std::vector<Key>     cms(cmsBegin, cmsEnd);

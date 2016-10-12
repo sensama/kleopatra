@@ -45,13 +45,10 @@
 
 #include <KLocalizedString>
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -123,7 +120,7 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgAgentConnectivitySelfTest()
+std::shared_ptr<SelfTest> Kleo::makeGpgAgentConnectivitySelfTest()
 {
-    return shared_ptr<SelfTest>(new GpgAgentCheck);
+    return std::shared_ptr<SelfTest>(new GpgAgentCheck);
 }

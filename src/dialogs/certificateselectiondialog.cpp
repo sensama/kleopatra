@@ -58,14 +58,12 @@
 #include <QPointer>
 #include <QVBoxLayout>
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
+#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace Kleo::Commands;
-using namespace boost;
 using namespace GpgME;
 
 class CertificateSelectionDialog::Private
@@ -231,7 +229,7 @@ void CertificateSelectionDialog::setStringFilter(const QString &filter)
     d->ui.tabWidget.setStringFilter(filter);
 }
 
-void CertificateSelectionDialog::setKeyFilter(const shared_ptr<KeyFilter> &filter)
+void CertificateSelectionDialog::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     d->ui.tabWidget.setKeyFilter(filter);
 }
@@ -307,10 +305,10 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
     switch (options & AnyFormat) {
     case OpenPGPFormat:
-        end = std::remove_if(keys.begin(), end, boost::bind(&Key::protocol, _1) != GpgME::OpenPGP);
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return key.protocol() != OpenPGP; });
         break;
     case CMSFormat:
-        end = std::remove_if(keys.begin(), end, boost::bind(&Key::protocol, _1) != GpgME::CMS);
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return key.protocol() != CMS; });
         break;
     default:
     case AnyFormat:
@@ -319,10 +317,10 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
     switch (options & AnyCertificate) {
     case SignOnly:
-        end = std::remove_if(keys.begin(), end, !boost::bind(&Key::canReallySign, _1));
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canReallySign(); });
         break;
     case EncryptOnly:
-        end = std::remove_if(keys.begin(), end, !boost::bind(&Key::canEncrypt, _1));
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canEncrypt(); });
         break;
     default:
     case AnyCertificate:
@@ -330,7 +328,7 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
     }
 
     if (options & SecretKeys) {
-        end = std::remove_if(keys.begin(), end, !boost::bind(&Key::hasSecret, _1));
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.hasSecret(); });
     }
 
     keys.erase(end, keys.end());

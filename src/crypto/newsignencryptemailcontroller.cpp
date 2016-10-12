@@ -62,12 +62,9 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 
@@ -114,54 +111,46 @@ using namespace KMime::Types;
 namespace
 {
 
-struct count_signing_certificates {
-    typedef size_t result_type;
-    const Protocol proto;
-    explicit count_signing_certificates(Protocol proto) : proto(proto) {}
-    size_t operator()(const Sender &sender) const
-    {
-        const size_t result = sender.signingCertificateCandidates(proto).size();
-        qDebug("count_signing_certificates( %9s %20s ) == %2lu",
-               proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
-               qPrintable(sender.mailbox().prettyAddress()), result);
-        return result;
-    }
-};
+static size_t count_signing_certificates(Protocol proto, const Sender &sender)
+{
+    const size_t result = sender.signingCertificateCandidates(proto).size();
+    qDebug("count_signing_certificates( %9s %20s ) == %2lu",
+            proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
+            qPrintable(sender.mailbox().prettyAddress()), result);
+    return result;
+}
 
-struct count_encrypt_certificates {
-    typedef size_t result_type;
-    const Protocol proto;
-    explicit count_encrypt_certificates(Protocol proto) : proto(proto) {}
-    size_t operator()(const Sender &sender) const
-    {
-        const size_t result = sender.encryptToSelfCertificateCandidates(proto).size();
-        qDebug("count_encrypt_certificates( %9s %20s ) == %2lu",
-               proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
-               qPrintable(sender.mailbox().prettyAddress()), result);
-        return result;
-    }
+static size_t count_encrypt_certificates(Protocol proto, const Sender &sender)
+{
+    const size_t result = sender.encryptToSelfCertificateCandidates(proto).size();
+    qDebug("count_encrypt_certificates( %9s %20s ) == %2lu",
+            proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
+            qPrintable(sender.mailbox().prettyAddress()), result);
+    return result;
+}
 
-    size_t operator()(const Recipient &recipient) const
-    {
-        const size_t result = recipient.encryptionCertificateCandidates(proto).size();
-        qDebug("count_encrypt_certificates( %9s %20s ) == %2lu",
-               proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
-               qPrintable(recipient.mailbox().prettyAddress()), result);
-        return result;
-    }
-};
+static size_t count_encrypt_certificates(Protocol proto, const Recipient &recipient)
+{        const size_t result = recipient.encryptionCertificateCandidates(proto).size();
+    qDebug("count_encrypt_certificates( %9s %20s ) == %2lu",
+            proto == OpenPGP ? "OpenPGP," : proto == CMS ? "CMS," : "<unknown>,",
+            qPrintable(recipient.mailbox().prettyAddress()), result);
+    return result;
+}
 
 }
 
 static bool has_perfect_match(bool sign, bool encrypt, Protocol proto, const std::vector<Sender> &senders, const std::vector<Recipient> &recipients)
 {
     if (sign)
-        if (!kdtools::all(senders,    boost::bind(count_signing_certificates(proto), _1) == 1)) {
+        if (!std::all_of(senders.cbegin(), senders.cend(),
+                         [proto](const Sender &sender) { return count_signing_certificates(proto, sender) == 1; })) {
             return false;
         }
     if (encrypt)
-        if (!kdtools::all(senders,    boost::bind(count_encrypt_certificates(proto), _1) == 1) ||
-                !kdtools::all(recipients, boost::bind(count_encrypt_certificates(proto), _1) == 1)) {
+        if (!std::all_of(senders.cbegin(), senders.cend(),
+                         [proto](const Sender &sender) { return count_encrypt_certificates(proto, sender) == 1; })
+            || !std::all_of(recipients.cbegin(), recipients.cend(),
+                           [proto](const Recipient &rec) { return count_encrypt_certificates(proto, rec) == 1; })) {
             return false;
         }
     return true;
@@ -170,12 +159,15 @@ static bool has_perfect_match(bool sign, bool encrypt, Protocol proto, const std
 static bool has_partial_match(bool sign, bool encrypt, Protocol proto, const std::vector<Sender> &senders, const std::vector<Recipient> &recipients)
 {
     if (sign)
-        if (!kdtools::all(senders,    boost::bind(count_signing_certificates(proto), _1) >= 1)) {
+        if (std::all_of(senders.cbegin(), senders.cend(),
+                        [proto](const Sender &sender) { return count_signing_certificates(proto, sender) >= 1; })) {
             return false;
         }
     if (encrypt)
-        if (!kdtools::all(senders,    boost::bind(count_encrypt_certificates(proto), _1) >= 1) ||
-                !kdtools::all(recipients, boost::bind(count_encrypt_certificates(proto), _1) >= 1)) {
+        if (!std::all_of(senders.cbegin(), senders.cend(),
+                         [proto](const Sender &sender) { return count_encrypt_certificates(proto, sender) >= 1; })
+            || !std::all_of(recipients.cbegin(), recipients.cend(),
+                            [proto](const Recipient &rec) { return count_encrypt_certificates(proto, rec) >= 1; })) {
             return false;
         }
     return true;
@@ -452,8 +444,9 @@ void NewSignEncryptEMailController::startEncryption(const std::vector< std::shar
 void NewSignEncryptEMailController::Private::startEncryption()
 {
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    const std::vector<std::shared_ptr<Task> > tmp
-        = kdtools::copy< std::vector<std::shared_ptr<Task> > >(runnable);
+    std::vector<std::shared_ptr<Task> > tmp;
+    tmp.reserve(runnable.size());
+    std::copy(runnable.cbegin(), runnable.cend(), std::back_inserter(tmp));
     coll->setTasks(tmp);
 #if 0
 #warning use a new result dialog
@@ -479,7 +472,7 @@ void NewSignEncryptEMailController::startSigning(const std::vector< std::shared_
     tasks.reserve(inputs.size());
 
     kleo_assert(!d->signers.empty());
-    kleo_assert(kdtools::none_of(d->signers, mem_fn(&Key::isNull)));
+    kleo_assert(std::none_of(d->signers.cbegin(), d->signers.cend(), std::mem_fn(&Key::isNull)));
 
     for (unsigned int i = 0, end = inputs.size(); i < end; ++i) {
 
@@ -502,8 +495,9 @@ void NewSignEncryptEMailController::startSigning(const std::vector< std::shared_
 void NewSignEncryptEMailController::Private::startSigning()
 {
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    const std::vector<std::shared_ptr<Task> > tmp
-        = kdtools::copy< std::vector<std::shared_ptr<Task> > >(runnable);
+    std::vector<std::shared_ptr<Task> > tmp;
+    tmp.reserve(runnable.size());
+    std::copy(runnable.cbegin(), runnable.cend(), std::back_inserter(tmp));
     coll->setTasks(tmp);
 #if 0
 #warning use a new result dialog
@@ -540,9 +534,8 @@ void NewSignEncryptEMailController::Private::schedule()
 
 std::shared_ptr<Task> NewSignEncryptEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< std::shared_ptr<Task> >::iterator it
-        = std::find_if(runnable.begin(), runnable.end(),
-                       boost::bind(&Task::protocol, _1) == proto);
+    const auto it = std::find_if(runnable.begin(), runnable.end(),
+                                 [proto](const std::shared_ptr<Task> &task) { return task->protocol() == proto; });
     if (it == runnable.end()) {
         return std::shared_ptr<Task>();
     }

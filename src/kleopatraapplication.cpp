@@ -75,14 +75,11 @@
 #include <QPointer>
 #include <QCommandLineOption>
 
-#include <boost/shared_ptr.hpp>
-
 #include <memory>
 #include <KSharedConfig>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace boost;
 
 static void add_resources()
 {
@@ -147,9 +144,9 @@ public:
 #ifndef QT_NO_SYSTEMTRAYICON
     SysTrayIcon *sysTray;
 #endif
-    shared_ptr<KeyCache> keyCache;
+    std::shared_ptr<KeyCache> keyCache;
     std::shared_ptr<Log> log;
-    shared_ptr<FileSystemWatcher> watcher;
+    std::shared_ptr<FileSystemWatcher> watcher;
 
 public:
     void setupKeyCache()

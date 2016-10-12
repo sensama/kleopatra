@@ -107,7 +107,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     sigChk->setChecked(true);
 
     mSigSelect = new KeySelectionCombo();
-    mSigSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new SignCertificateFilter()));
+    mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter()));
 
     sigLay->addWidget(sigChk);
     sigLay->addWidget(mSigSelect, 1);
@@ -129,7 +129,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     // Own key
     mSelfSelect = new KeySelectionCombo();
-    mSelfSelect->setKeyFilter(boost::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
+    mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
     QCheckBox *encSelfChk = new QCheckBox(i18n("Encrypt for me:"));
     encSelfChk->setChecked(true);
     mRecpLayout->addWidget(encSelfChk, 0, 0);
@@ -166,11 +166,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
     encBoxLay->addWidget(mSymmetric);
-
-#warning GPGME_PORT
-#if 0
-    mSymmetric->setVisible(GpgME::hasFeature(0, GpgME::EncryptSymmetric));
-#endif
 
     // Connect it
     connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);

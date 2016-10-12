@@ -46,7 +46,6 @@
 #include <cassert>
 
 using namespace Kleo;
-using namespace boost;
 
 class SearchBar::Private
 {
@@ -62,20 +61,20 @@ private:
         Q_EMIT q->keyFilterChanged(keyFilter(idx));
     }
 
-    shared_ptr<KeyFilter> keyFilter(int idx) const
+    std::shared_ptr<KeyFilter> keyFilter(int idx) const
     {
         const QModelIndex mi = KeyFilterManager::instance()->model()->index(idx, 0);
         return KeyFilterManager::instance()->fromModelIndex(mi);
     }
 
-    shared_ptr<KeyFilter> currentKeyFilter() const
+    std::shared_ptr<KeyFilter> currentKeyFilter() const
     {
         return keyFilter(combo->currentIndex());
     }
 
     QString currentKeyFilterID() const
     {
-        if (const shared_ptr<KeyFilter> f = currentKeyFilter()) {
+        if (const std::shared_ptr<KeyFilter> f = currentKeyFilter()) {
             return f->id();
         } else {
             return QString();
@@ -131,7 +130,7 @@ void SearchBar::setStringFilter(const QString &filter)
 }
 
 // slot
-void SearchBar::setKeyFilter(const shared_ptr<KeyFilter> &kf)
+void SearchBar::setKeyFilter(const std::shared_ptr<KeyFilter> &kf)
 {
     const QModelIndex idx = KeyFilterManager::instance()->toModelIndex(kf);
     if (idx.isValid()) {

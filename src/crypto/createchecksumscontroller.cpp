@@ -62,18 +62,15 @@
 #include <QDir>
 #include <QProcess>
 
-#include <boost/bind.hpp>
-#include <boost/function.hpp>
-
 #include <gpg-error.h>
 
 #include <deque>
 #include <map>
 #include <limits>
+#include <functional>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 namespace
 {
@@ -169,21 +166,23 @@ static const Qt::CaseSensitivity fs_cs = HAVE_UNIX ? Qt::CaseSensitive : Qt::Cas
 
 static QStringList fs_sort(QStringList l)
 {
-    int (*QString_compare)(const QString &, const QString &, Qt::CaseSensitivity) = &QString::compare;
-    kdtools::sort(l, boost::bind(QString_compare, _1, _2, fs_cs) < 0);
+    std::sort(l.begin(), l.end(), [](const QString &lhs, const QString &rhs) {
+                                    return QString::compare(lhs, rhs, fs_cs) < 0;
+                                  });
     return l;
 }
 
 static QStringList fs_intersect(QStringList l1, QStringList l2)
 {
-    int (*QString_compare)(const QString &, const QString &, Qt::CaseSensitivity) = &QString::compare;
     fs_sort(l1);
     fs_sort(l2);
     QStringList result;
     std::set_intersection(l1.begin(), l1.end(),
                           l2.begin(), l2.end(),
                           std::back_inserter(result),
-                          boost::bind(QString_compare, _1, _2, fs_cs) < 0);
+                          [](const QString &lhs, const QString &rhs) {
+                              return QString::compare(lhs, rhs, fs_cs) < 0;
+                          });
     return result;
 }
 
@@ -200,12 +199,14 @@ static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDe
 
 namespace
 {
+
 struct matches_any : std::unary_function<QString, bool> {
     const QList<QRegExp> m_regexps;
     explicit matches_any(const QList<QRegExp> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const
     {
-        return kdtools::any(m_regexps, boost::bind(&QRegExp::exactMatch, _1, s));
+        return std::any_of(m_regexps.cbegin(), m_regexps.cend(),
+                           [s](const QRegExp &rx) { return rx.exactMatch(s); });
     }
 };
 }
@@ -317,8 +318,8 @@ void CreateChecksumsController::setFiles(const QStringList &files)
     kleo_assert(!d->isRunning());
     kleo_assert(!files.empty());
     const QList<QRegExp> patterns = get_patterns(d->checksumDefinitions);
-    if (!kdtools::all(files, matches_any(patterns)) &&
-            !kdtools::none_of(files, matches_any(patterns))) {
+    if (!std::all_of(files.cbegin(), files.cend(), matches_any(patterns)) &&
+            !std::none_of(files.cbegin(), files.cend(), matches_any(patterns))) {
         throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Create Checksums: input files must be either all checksum files or all files to be checksummed, not a mixture of both."));
     }
     const QMutexLocker locker(&d->mutex);
@@ -385,9 +386,12 @@ struct Dir {
 static QStringList remove_checksum_files(QStringList l, const QList<QRegExp> &rxs)
 {
     QStringList::iterator end = l.end();
-    Q_FOREACH (const QRegExp &rx, rxs)
+    Q_FOREACH (const QRegExp &rx, rxs) {
         end = std::remove_if(l.begin(), end,
-                             boost::bind(&QRegExp::exactMatch, rx, _1));
+                             [rx](const QString &str) { 
+                                return rx.exactMatch(str);
+                             });
+    }
     l.erase(end, l.end());
     return l;
 }
@@ -472,7 +476,7 @@ static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fi
 }
 
 static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool allowAddition,
-        const function<void(int)> &progress,
+        const std::function<void(int)> &progress,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
 
@@ -494,8 +498,10 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
             inputFiles = entries;
         } else {
             const std::vector<File> parsed = parse_sum_file(fi.absoluteFilePath());
-            const QStringList oldInputFiles =
-                kdtools::transform<QStringList>(parsed, mem_fn(&File::name));
+            QStringList oldInputFiles;
+            oldInputFiles.reserve(parsed.size());
+            std::transform(parsed.cbegin(), parsed.cend(), std::back_inserter(oldInputFiles),
+                           std::mem_fn(&File::name));
             inputFiles = fs_intersect(oldInputFiles, entries);
         }
 
@@ -509,7 +515,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
 
         dirs.push_back(item);
 
-        if (!progress.empty()) {
+        if (progress) {
             progress(++i);
         }
 
@@ -528,7 +534,7 @@ struct less_dir : std::binary_function<QDir, QDir, bool> {
 }
 
 static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const std::shared_ptr<ChecksumDefinition> &checksumDefinition, bool allowAddition,
-        const function<void(int)> &progress,
+        const std::function<void(int)> &progress,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     Q_UNUSED(allowAddition);
@@ -552,13 +558,16 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         if (fi.isDir()) {
             QDir dir(file);
             dirs2files[ dir ] = remove_checksum_files(dir.entryList(QDir::Files), patterns);
-            kdtools::transform(dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot),
-                               std::inserter(inputs, inputs.begin()),
-                               boost::bind(&QDir::absoluteFilePath, cref(dir), _1));
+            const auto entryList = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+            std::transform(entryList.cbegin(), entryList.cend(),
+                           std::inserter(inputs, inputs.begin()),
+                           [&dir](const QString &entry) {
+                               return dir.absoluteFilePath(entry);
+                           });
         } else {
             dirs2files[fi.dir()].push_back(file);
         }
-        if (!progress.empty()) {
+        if (progress) {
             progress(++i);
         }
     }
@@ -584,7 +593,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         };
         dirs.push_back(dir);
 
-        if (!progress.empty()) {
+        if (progress) {
             progress(++i);
         }
 
@@ -667,9 +676,8 @@ void CreateChecksumsController::Private::run()
     const QString scanning = i18n("Scanning directories...");
     Q_EMIT progress(0, 0, scanning);
 
-    const bool haveSumFiles
-        = kdtools::all(files, matches_any(get_patterns(checksumDefinitions)));
-    const function<void(int)> progressCb = boost::bind(&Private::progress, this, _1, 0, scanning);
+    const bool haveSumFiles = std::all_of(files.cbegin(), files.cend(), matches_any(get_patterns(checksumDefinitions)));
+    const auto progressCb = [this, &scanning](int c) { Q_EMIT progress(c, 0, scanning); };
     const std::vector<Dir> dirs = haveSumFiles
                                   ? find_dirs_by_sum_files(files, allowAddition, progressCb, checksumDefinitions)
                                   : find_dirs_by_input_files(files, checksumDefinition, allowAddition, progressCb, checksumDefinitions);
@@ -682,8 +690,9 @@ void CreateChecksumsController::Private::run()
 
         Q_EMIT progress(0, 0, i18n("Calculating total size..."));
 
-        const quint64 total
-            = kdtools::accumulate_transform(dirs, mem_fn(&Dir::totalSize), Q_UINT64_C(0));
+        const quint64 total = kdtools::accumulate_transform(dirs.cbegin(), dirs.cend(),
+                                                            std::mem_fn(&Dir::totalSize),
+                                                            Q_UINT64_C(0));
 
         if (!canceled) {
 

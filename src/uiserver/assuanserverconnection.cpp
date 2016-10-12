@@ -76,19 +76,13 @@
 
 #include <kleo-assuan.h>
 
-#ifndef Q_MOC_RUN // QTBUG-22829
-#include <boost/type_traits/remove_pointer.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/bind.hpp>
-#include <boost/mem_fn.hpp>
-#include <boost/mpl/if.hpp>
-#endif
-
 #include <vector>
 #include <map>
 #include <string>
 #include <memory>
 #include <algorithm>
+#include <functional>
+#include <type_traits>
 
 #include <errno.h>
 
@@ -104,7 +98,6 @@
 # include <unistd.h>
 #endif
 using namespace Kleo;
-using namespace boost;
 
 static const unsigned int INIT_SOCKET_FLAGS = 3; // says info assuan...
 //static int(*USE_DEFAULT_HANDLER)(assuan_context_t,char*) = 0;
@@ -121,7 +114,7 @@ static void my_assuan_release(assuan_context_t ctx)
 
 #endif
 // std::shared_ptr for assuan_context_t w/ deleter enforced to assuan_deinit_server:
-typedef std::shared_ptr< remove_pointer<assuan_context_t>::type > AssuanContextBase;
+typedef std::shared_ptr<std::remove_pointer<assuan_context_t>::type> AssuanContextBase;
 struct AssuanContext : AssuanContextBase {
     AssuanContext() : AssuanContextBase() {}
 #ifndef HAVE_ASSUAN2
@@ -291,9 +284,10 @@ public Q_SLOTS:
 private:
     void nohupDone(AssuanCommand *cmd)
     {
-        const std::vector< std::shared_ptr<AssuanCommand> >::iterator it
-            = std::find_if(nohupedCommands.begin(), nohupedCommands.end(),
-                           boost::bind(&std::shared_ptr<AssuanCommand>::get, _1) == cmd);
+        const auto it = std::find_if(nohupedCommands.begin(), nohupedCommands.end(),
+                                     [cmd](const std::shared_ptr<AssuanCommand> &other) {
+                                        return other.get() == cmd;
+                                     });
         assert(it != nohupedCommands.end());
         nohupedCommands.erase(it);
         if (nohupedCommands.empty() && closed) {
@@ -506,7 +500,8 @@ private:
         return assuan_process_done(ctx_, 0);
     }
 
-    template <bool in> struct Input_or_Output : mpl::if_c<in, Input, Output> {};
+    template <bool in>
+    struct Input_or_Output : std::conditional<in, Input, Output> {};
 
     // format: TAG (FD|FD=\d+|FILE=...)
     template <bool in, typename T_memptr>
@@ -554,9 +549,9 @@ private:
                     }
                 } else {
 #if defined(Q_OS_WIN32)
-                    fd = (assuan_fd_t)lexical_cast<intptr_t>(fdstr);
+                    fd = (assuan_fd_t)std::stoi(fdstr);
 #else
-                    fd = lexical_cast<assuan_fd_t>(fdstr);
+                    fd = std::stoi(fdstr);
 #endif
                 }
 
@@ -812,7 +807,9 @@ private:
         QStringList sl;
         std::transform(c.begin(), c.end(),
                        std::back_inserter(sl),
-                       boost::bind(&KMime::Types::Mailbox::prettyAddress, _1));
+                       [](typename T_container::const_reference val) {
+                           return val.prettyAddress();
+                       });
         return dumpStringList(sl);
     }
 
@@ -840,7 +837,10 @@ private:
 
     QByteArray dumpFiles() const
     {
-        return dumpStringList(kdtools::copy<QStringList>(files));
+        QStringList rv;
+        rv.reserve(files.size());
+        std::copy(files.cbegin(), files.cend(), std::back_inserter(rv));
+        return dumpStringList(rv);
     }
 
     void cleanup();
@@ -855,14 +855,11 @@ private:
         sessionId = 0;
         mementos.clear();
         files.clear();
-        std::for_each(inputs.begin(), inputs.end(),
-                      boost::bind(&Input::finalize, _1));
+        std::for_each(inputs.begin(), inputs.end(), std::mem_fn(&Input::finalize));
         inputs.clear();
-        std::for_each(outputs.begin(), outputs.end(),
-                      boost::bind(&Output::finalize, _1));
+        std::for_each(outputs.begin(), outputs.end(), std::mem_fn(&Output::finalize));
         outputs.clear();
-        std::for_each(messages.begin(), messages.end(),
-                      boost::bind(&Input::finalize, _1));
+        std::for_each(messages.begin(), messages.end(), std::mem_fn(&Input::finalize));
         messages.clear();
         bias = GpgME::UnknownProtocol;
     }
@@ -955,14 +952,14 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
     assert(numFDs != -1);   // == 1
 
     if (!numFDs || fds[0] != fd) {
-        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fd, QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
+        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fd, QSocketNotifier::Read), std::mem_fn(&QObject::deleteLater));
         connect(sn.get(), &QSocketNotifier::activated, this, &Private::slotReadActivity);
         notifiers.push_back(sn);
     }
 
     notifiers.reserve(notifiers.size() + numFDs);
     for (int i = 0; i < numFDs; ++i) {
-        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fds[i], QSocketNotifier::Read), mem_fn(&QObject::deleteLater));
+        const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fds[i], QSocketNotifier::Read), std::mem_fn(&QObject::deleteLater));
         connect(sn.get(), &QSocketNotifier::activated, this, &Private::slotReadActivity);
         notifiers.push_back(sn);
     }
@@ -1355,7 +1352,10 @@ const std::vector< std::shared_ptr<Output> > &AssuanCommand::outputs() const
 
 QStringList AssuanCommand::fileNames() const
 {
-    return kdtools::copy<QStringList>(d->files);
+    QStringList rv;
+    rv.reserve(d->files.size());
+    std::copy(d->files.cbegin(), d->files.cend(), std::back_inserter(rv));
+    return rv;
 }
 
 unsigned int AssuanCommand::numFiles() const
@@ -1444,12 +1444,9 @@ void AssuanCommand::done(const GpgME::Error &err)
 
     d->done = true;
 
-    std::for_each(d->messages.begin(), d->messages.end(),
-                  boost::bind(&Input::finalize, _1));
-    std::for_each(d->inputs.begin(), d->inputs.end(),
-                  boost::bind(&Input::finalize, _1));
-    std::for_each(d->outputs.begin(), d->outputs.end(),
-                  boost::bind(&Output::finalize, _1));
+    std::for_each(d->messages.begin(), d->messages.end(), std::mem_fn(&Input::finalize));
+    std::for_each(d->inputs.begin(), d->inputs.end(), std::mem_fn(&Input::finalize));
+    std::for_each(d->outputs.begin(), d->outputs.end(), std::mem_fn(&Output::finalize));
     d->messages.clear();
     d->inputs.clear();
     d->outputs.clear();

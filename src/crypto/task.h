@@ -84,15 +84,9 @@ public Q_SLOTS:
     virtual void cancel() = 0;
 
 Q_SIGNALS:
-
-#ifndef Q_MOC_RUN
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-private: // don't tell moc, but those signals are in fact private
-#endif
-#endif
-    void progress(const QString &what, int processed, int total);
-    void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &);
-    void started();
+    void progress(const QString &what, int processed, int total, QPrivateSignal);
+    void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &, QPrivateSignal);
+    void started(QPrivateSignal);
 
 protected:
     std::shared_ptr<Result> makeErrorResult(int errCode, const QString &details);

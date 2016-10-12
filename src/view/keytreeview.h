@@ -39,7 +39,7 @@
 
 #include <gpgme++/key.h>
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <vector>
 
 class QTreeView;
@@ -57,7 +57,7 @@ class KeyTreeView : public QWidget
     Q_OBJECT
 public:
     explicit KeyTreeView(QWidget *parent = Q_NULLPTR);
-    KeyTreeView(const QString &stringFilter, const boost::shared_ptr<KeyFilter> &keyFilter,
+    KeyTreeView(const QString &stringFilter, const std::shared_ptr<KeyFilter> &keyFilter,
                 AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent);
     ~KeyTreeView();
 
@@ -105,7 +105,7 @@ public:
     {
         return m_stringFilter;
     }
-    const boost::shared_ptr<KeyFilter> &keyFilter() const
+    const std::shared_ptr<KeyFilter> &keyFilter() const
     {
         return m_keyFilter;
     }
@@ -131,12 +131,12 @@ public:
 
 public Q_SLOTS:
     virtual void setStringFilter(const QString &text);
-    virtual void setKeyFilter(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    virtual void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
     virtual void setHierarchicalView(bool on);
 
 Q_SIGNALS:
     void stringFilterChanged(const QString &filter);
-    void keyFilterChanged(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void keyFilterChanged(const std::shared_ptr<Kleo::KeyFilter> &filter);
     void hierarchicalChanged(bool on);
 
 protected:
@@ -158,7 +158,7 @@ private:
     AbstractKeyListModel *m_hierarchicalModel;
 
     QString m_stringFilter;
-    boost::shared_ptr<KeyFilter> m_keyFilter;
+    std::shared_ptr<KeyFilter> m_keyFilter;
 
     bool m_isHierarchical : 1;
 };

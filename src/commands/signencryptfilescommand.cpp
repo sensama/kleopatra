@@ -47,12 +47,12 @@
 
 #include <QStringList>
 
+#include <cassert>
 #include <exception>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class SignEncryptFilesCommand::Private : public Command::Private
 {
@@ -100,7 +100,7 @@ const SignEncryptFilesCommand::Private *SignEncryptFilesCommand::d_func() const
 SignEncryptFilesCommand::Private::Private(SignEncryptFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
       files(),
-      shared_qq(qq, kdtools::nodelete()),
+      shared_qq(qq, [](SignEncryptFilesCommand*){}),
       controller()
 {
     controller.setOperationMode(SignEncryptFilesController::SignSelected |

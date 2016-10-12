@@ -54,7 +54,6 @@
 #include <cassert>
 
 using namespace Kleo;
-using namespace boost;
 using namespace GpgME;
 
 namespace
@@ -104,7 +103,7 @@ KeyTreeView::KeyTreeView(const KeyTreeView &other)
     setSortColumn(other.sortColumn(), other.sortOrder());
 }
 
-KeyTreeView::KeyTreeView(const QString &text, const shared_ptr<KeyFilter> &kf, AbstractKeyListSortFilterProxyModel *proxy, QWidget *parent)
+KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &kf, AbstractKeyListSortFilterProxyModel *proxy, QWidget *parent)
     : QWidget(parent),
       m_proxy(new KeyListSortFilterProxyModel(this)),
       m_additionalProxy(proxy),
@@ -264,7 +263,7 @@ void KeyTreeView::setStringFilter(const QString &filter)
     Q_EMIT stringFilterChanged(filter);
 }
 
-void KeyTreeView::setKeyFilter(const shared_ptr<KeyFilter> &filter)
+void KeyTreeView::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     if (filter == m_keyFilter || (filter && m_keyFilter && filter->id() == m_keyFilter->id())) {
         return;
@@ -402,10 +401,12 @@ void KeyTreeView::removeKeys(const std::vector<Key> &keys)
     m_keys.swap(newKeys);
 
     if (m_flatModel) {
-        kdtools::for_each(sorted, boost::bind(&AbstractKeyListModel::removeKey, m_flatModel, _1));
+        std::for_each(sorted.cbegin(), sorted.cend(),
+                      [this](const Key &key) { m_flatModel->removeKey(key); });
     }
     if (m_hierarchicalModel) {
-        kdtools::for_each(sorted, boost::bind(&AbstractKeyListModel::removeKey, m_hierarchicalModel, _1));
+        std::for_each(sorted.cbegin(), sorted.cend(),
+                      [this](const Key &key) { m_hierarchicalModel->removeKey(key); });
     }
 
 }
@@ -419,8 +420,8 @@ static const struct {
         SLOT(setStringFilter(QString))
     },
     {
-        SIGNAL(keyFilterChanged(boost::shared_ptr<Kleo::KeyFilter>)),
-        SLOT(setKeyFilter(boost::shared_ptr<Kleo::KeyFilter>))
+        SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)),
+        SLOT(setKeyFilter(std::shared_ptr<Kleo::KeyFilter>))
     },
 };
 static const unsigned int numConnections = sizeof connections / sizeof * connections;

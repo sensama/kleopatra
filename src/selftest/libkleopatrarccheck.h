@@ -35,17 +35,14 @@
 
 #include <selftest/selftest.h>
 
-namespace boost
-{
-template <typename T> class shared_ptr;
-}
+#include <memory>
 
 namespace Kleo
 {
 
 class SelfTest;
 
-boost::shared_ptr<SelfTest> makeLibKleopatraRcSelfTest();
+std::shared_ptr<SelfTest> makeLibKleopatraRcSelfTest();
 
 }
 

@@ -36,6 +36,7 @@
 
 #include <Libkleo/Predicates>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Stl_Util>
 
 #include <utils/kleo_assert.h>
 #include <utils/cached.h>
@@ -48,7 +49,6 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace KMime::Types;
 using namespace GpgME;
-using namespace boost;
 
 namespace KMime
 {
@@ -87,9 +87,9 @@ public:
         // ### that don't match, for the case where there's a low
         // ### total number of keys
         const std::vector<Key> encrypt = KeyCache::instance()->findEncryptionKeysByMailbox(mb.addrSpec().asString());
-        kdtools::separate_if(encrypt,
+        kdtools::separate_if(encrypt.cbegin(), encrypt.cend(),
                              std::back_inserter(pgpEncryptionKeys), std::back_inserter(cmsEncryptionKeys),
-                             boost::bind(&Key::protocol, _1) == OpenPGP);
+                             [](const Key &key) { return key.protocol() == OpenPGP; });
     }
 
 private:
@@ -120,8 +120,10 @@ bool Recipient::deepEquals(const Recipient &other) const
            && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey)
            && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent())
            && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id())
-           && kdtools::equal(d->pgpEncryptionKeys, other.d->pgpEncryptionKeys, compare)
-           && kdtools::equal(d->cmsEncryptionKeys, other.d->cmsEncryptionKeys, compare)
+           && std::equal(d->pgpEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
+                         other.d->pgpEncryptionKeys.cbegin(), compare)
+           && std::equal(d->cmsEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
+                         other.d->cmsEncryptionKeys.cbegin(), compare)
            ;
 }
 

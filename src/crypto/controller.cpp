@@ -87,8 +87,7 @@ void Controller::doTaskDone(const Task *, const std::shared_ptr<const Task::Resu
 void Controller::connectTask(const std::shared_ptr<Task> &task)
 {
     assert(task);
-    connect(task.get(), SIGNAL(result(boost::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(taskDone(boost::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(task.get(), &Task::result, this, &Controller::taskDone);
 }
 
 void Controller::setLastError(int err, const QString &msg)

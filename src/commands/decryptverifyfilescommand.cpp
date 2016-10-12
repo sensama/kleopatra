@@ -54,7 +54,6 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
-using namespace boost;
 
 class DecryptVerifyFilesCommand::Private : public Command::Private
 {
@@ -104,7 +103,7 @@ const DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func() co
 DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode)
     : Command::Private(qq, c),
       files(),
-      shared_qq(qq, kdtools::nodelete())
+      shared_qq(qq, [](DecryptVerifyFilesCommand*){})
 {
     FileOperationsPreferences prefs;
     if (!forceManualMode &&

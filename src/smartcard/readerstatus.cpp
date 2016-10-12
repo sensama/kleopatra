@@ -59,9 +59,6 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/case_conv.hpp>
-#include <boost/static_assert.hpp>
-#include <boost/range.hpp>
-#include <boost/bind.hpp>
 
 #include <memory>
 #include <vector>
@@ -75,7 +72,6 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
-using namespace boost;
 
 static const unsigned int CHECK_INTERVAL = 2000; // msecs
 
@@ -113,7 +109,7 @@ static const char *flags[] = {
     "ACTIVE",
     "USABLE",
 };
-BOOST_STATIC_ASSERT((sizeof flags / sizeof * flags == ReaderStatus::_NumScdStates));
+static_assert(sizeof flags / sizeof * flags == ReaderStatus::_NumScdStates, "");
 
 static const char *prettyFlags[] = {
     "NoCard",
@@ -124,7 +120,7 @@ static const char *prettyFlags[] = {
     "CardHasNullPin",
     "CardError",
 };
-BOOST_STATIC_ASSERT((sizeof prettyFlags / sizeof * prettyFlags == ReaderStatus::NumStates));
+static_assert(sizeof prettyFlags / sizeof * prettyFlags == ReaderStatus::NumStates, "");
 
 static QByteArray read_file(const QString &fileName)
 {
@@ -181,16 +177,19 @@ static const char *app_types[] = {
     "dinsig",
     "geldkarte",
 };
-BOOST_STATIC_ASSERT((sizeof app_types / sizeof * app_types == ReaderStatus::NumAppTypes));
+static_assert(sizeof app_types / sizeof * app_types == ReaderStatus::NumAppTypes, "");
 
 static ReaderStatus::AppType parse_app_type(const std::string &s)
 {
     qCDebug(KLEOPATRA_LOG) << "parse_app_type(" << s.c_str() << ")";
-    const char **it = std::find(begin(app_types), end(app_types), to_lower_copy(s));
-    if (it == end(app_types)) {
+    const char **it = std::find_if(std::begin(app_types), std::end(app_types),
+                                [&s](const char *type) {
+                                    return ::strcasecmp(s.c_str(), type) == 0;
+                                });
+    if (it == std::end(app_types)) {
         return TRACE(ReaderStatus::UnknownApplication);
     }
-    return TRACE(static_cast<ReaderStatus::AppType>(it - begin(app_types)));
+    return TRACE(static_cast<ReaderStatus::AppType>(it - std::begin(app_types)));
 
 }
 
@@ -351,7 +350,7 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, std::
     // the following only works for NKS v3...
     std::vector<std::string> chvStatus;
     chvStatus.reserve(4);   // expected number of fields
-    split(chvStatus, scd_getattr_status(gpg_agent, "CHV-STATUS", err), is_any_of(" \t"), token_compress_on);
+    boost::split(chvStatus, scd_getattr_status(gpg_agent, "CHV-STATUS", err), boost::is_any_of(" \t"), boost::token_compress_on);
     if (err.code()) {
         return ci;
     }
@@ -359,7 +358,7 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, std::
                    std::back_inserter(ci.pinStates),
                    parse_pin_state);
 
-    if (kdtools::contains(ci.pinStates, ReaderStatus::NullPin)) {
+    if (std::find(ci.pinStates.cbegin(), ci.pinStates.cend(), ReaderStatus::NullPin) != ci.pinStates.cend()) {
         ci.status = ReaderStatus::CardHasNullPin;
         return ci;
     }
@@ -381,7 +380,10 @@ static CardInfo get_card_status(const QString &fileName, unsigned int idx, std::
     }
     klc->setKeyListMode(Ephemeral);
 
-    if (kdtools::any(keyPairInfos, !boost::bind(&parse_keypairinfo_and_lookup_key, klc.get(), _1))) {
+    if (std::any_of(keyPairInfos.cbegin(), keyPairInfos.cend(),
+                    [&klc](const std::string &str) {
+                        return !parse_keypairinfo_and_lookup_key(klc.get(), str);
+                    })) {
         ci.status = ReaderStatus::CardCanLearnKeys;
     }
 
@@ -504,8 +506,10 @@ public Q_SLOTS:
         }
 
         QStringList files = gnupgHome.entryList(QStringList(QStringLiteral("reader_*.status")), QDir::Files, QDir::Name);
-        bool *dummy = 0;
-        kdtools::sort(files, boost::bind(parseFileName, _1, dummy) < boost::bind(parseFileName, _2, dummy));
+        std::sort(files.begin(), files.end(),
+                  [](const QString &lhs, const QString &rhs) {
+                      return parseFileName(lhs, Q_NULLPTR) < parseFileName(rhs, Q_NULLPTR);
+                  });
 
         std::vector<QByteArray> contents;
 
@@ -736,12 +740,16 @@ public:
 private:
     bool anyCardHasNullPinImpl() const
     {
-        return kdtools::any(cardInfos(), boost::bind(&CardInfo::status, _1) == CardHasNullPin);
+        const auto cis = cardInfos();
+        return std::any_of(cis.cbegin(), cis.cend(),
+                           [](const CardInfo &ci) { return ci.status == CardHasNullPin; });
     }
 
     bool anyCardCanLearnKeysImpl() const
     {
-        return kdtools::any(cardInfos(), boost::bind(&CardInfo::status, _1) == CardCanLearnKeys);
+        const auto cis = cardInfos();
+        return std::any_of(cis.cbegin(), cis.cend(),
+                           [](const CardInfo &ci) { return ci.status == CardCanLearnKeys; });
     }
 
 private:

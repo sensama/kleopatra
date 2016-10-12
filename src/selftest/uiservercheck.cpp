@@ -45,13 +45,10 @@
 
 #include <KLocalizedString>
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 
 namespace
 {
@@ -103,7 +100,7 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeUiServerConnectivitySelfTest()
+std::shared_ptr<SelfTest> Kleo::makeUiServerConnectivitySelfTest()
 {
-    return shared_ptr<SelfTest>(new UiServerCheck);
+     return std::shared_ptr<SelfTest>(new UiServerCheck);
 }

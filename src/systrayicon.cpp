@@ -64,12 +64,8 @@
 #include <QPointer>
 #include <QSignalBlocker>
 
-#include <boost/shared_ptr.hpp>
-#include <boost/bind.hpp>
-
 #include <cassert>
 
-using namespace boost;
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;

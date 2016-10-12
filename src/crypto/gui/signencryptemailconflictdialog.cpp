@@ -64,9 +64,7 @@
 #include <QPointer>
 #include <QSignalBlocker>
 
-#include <boost/shared_ptr.hpp>
-#include <boost/bind.hpp>
-
+#include <algorithm>
 #include <iterator>
 
 using namespace Kleo;
@@ -74,7 +72,6 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 
 Q_DECLARE_METATYPE(GpgME::Key)
 Q_DECLARE_METATYPE(GpgME::UserID)
@@ -194,16 +191,26 @@ private:
 
     bool needShowAllRecipients(Protocol proto) const
     {
-        if (sign)
-            if (const unsigned int num = kdtools::count_if(ui.signers, boost::bind(&CertificateSelectionLine::wasInitiallyAmbiguous, _1, proto)))
+        if (sign) {
+            if (const unsigned int num = std::count_if(ui.signers.cbegin(), ui.signers.cend(),
+                                                       [proto](const CertificateSelectionLine &l) {
+                                                           return l.wasInitiallyAmbiguous(proto);
+                                                       })) {
                 if (num != ui.signers.size()) {
                     return true;
                 }
-        if (encrypt)
-            if (const unsigned int num = kdtools::count_if(ui.recipients, boost::bind(&CertificateSelectionLine::wasInitiallyAmbiguous, _1, proto)))
+            }
+        }
+        if (encrypt) {
+            if (const unsigned int num = std::count_if(ui.recipients.cbegin(), ui.signers.cend(),
+                                                      [proto](const CertificateSelectionLine &l) {
+                                                          return l.wasInitiallyAmbiguous(proto);
+                                                      })) {
                 if (num != ui.recipients.size()) {
                     return true;
                 }
+            }
+        }
         return false;
     }
 
@@ -404,8 +411,8 @@ private:
             std::vector<CertificateSelectionLine> sig, enc;
             sig.swap(signers);
             enc.swap(recipients);
-            kdtools::for_each(sig, mem_fn(&CertificateSelectionLine::kill));
-            kdtools::for_each(enc, mem_fn(&CertificateSelectionLine::kill));
+            std::for_each(sig.begin(), sig.end(), std::mem_fn(&CertificateSelectionLine::kill));
+            std::for_each(enc.begin(), enc.end(), std::mem_fn(&CertificateSelectionLine::kill));
             glay.removeWidget(&selectSigningCertificatesGB);
             glay.removeWidget(&selectEncryptionCertificatesGB);
         }
@@ -548,9 +555,14 @@ bool SignEncryptEMailConflictDialog::isComplete() const
 
 bool SignEncryptEMailConflictDialog::Private::isComplete(Protocol proto) const
 {
-    return (!sign    || kdtools::none_of(ui.signers,    boost::bind(&CertificateSelectionLine::isStillAmbiguous, _1, proto)))
-           && (!encrypt || kdtools::none_of(ui.recipients, boost::bind(&CertificateSelectionLine::isStillAmbiguous, _1, proto)))
-           ;
+    return (!sign || std::none_of(ui.signers.cbegin(), ui.signers.cend(),
+                                  [proto](const CertificateSelectionLine &l) {
+                                      return l.isStillAmbiguous(proto);
+                                  }))
+           && (!encrypt || std::none_of(ui.recipients.cbegin(), ui.recipients.cend(),
+                                        [proto](const CertificateSelectionLine &l) {
+                                            return l.isStillAmbiguous(proto);
+                                        }));
 }
 
 static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &lines, Protocol proto)
@@ -562,9 +574,11 @@ static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &li
 
     std::vector<Key> keys;
     keys.reserve(lines.size());
-    kdtools::transform(lines, std::back_inserter(keys),
-                       boost::bind(&CertificateSelectionLine::key, _1, proto));
-    kleo_assert(kdtools::none_of(keys, mem_fn(&Key::isNull)));
+    std::transform(lines.cbegin(), lines.cend(), std::back_inserter(keys),
+                   [proto](const CertificateSelectionLine &l) {
+                       return l.key(proto);
+                   });
+    kleo_assert(std::none_of(keys.cbegin(), keys.cend(), std::mem_fn(&Key::isNull)));
     return keys;
 }
 

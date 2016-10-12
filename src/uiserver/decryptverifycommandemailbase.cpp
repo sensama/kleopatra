@@ -62,7 +62,6 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Formatting;
 using namespace GpgME;
-using namespace boost;
 
 class DecryptVerifyCommandEMailBase::Private : public QObject
 {

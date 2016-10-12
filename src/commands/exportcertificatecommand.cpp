@@ -54,7 +54,6 @@
 #include <QMap>
 #include <QPointer>
 
-#include <boost/bind.hpp>
 #include <algorithm>
 #include <vector>
 #include <cassert>
@@ -62,7 +61,6 @@
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
-using namespace boost;
 using namespace QGpgME;
 
 class ExportCertificateCommand::Private : public Command::Private
@@ -163,8 +161,10 @@ void ExportCertificateCommand::doStart()
         return;
     }
 
-    const std::vector<Key>::iterator firstCms = std::partition(keys.begin(), keys.end(), boost::bind(&GpgME::Key::protocol, _1) != CMS);
-
+    const auto firstCms = std::partition(keys.begin(), keys.end(),
+                                         [](const GpgME::Key &key) {
+                                            return key.protocol() != GpgME::CMS;
+                                         });
     std::vector<Key> openpgp, cms;
     std::copy(keys.begin(), firstCms, std::back_inserter(openpgp));
     std::copy(firstCms, keys.end(), std::back_inserter(cms));

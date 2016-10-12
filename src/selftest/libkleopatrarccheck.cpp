@@ -42,13 +42,10 @@
 
 #include <KLocalizedString>
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 
 namespace
 {
@@ -90,7 +87,7 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeLibKleopatraRcSelfTest()
+std::shared_ptr<SelfTest> Kleo::makeLibKleopatraRcSelfTest()
 {
-    return shared_ptr<SelfTest>(new LibKleopatraRcCheck);
+    return std::shared_ptr<SelfTest>(new LibKleopatraRcCheck);
 }

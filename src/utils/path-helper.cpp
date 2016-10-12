@@ -46,12 +46,9 @@
 #include <QFileInfo>
 #include <QDir>
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
 
 using namespace Kleo;
-using namespace boost;
 
 static QString commonPrefix(const QString &s1, const QString &s2)
 {
@@ -95,9 +92,14 @@ QStringList Kleo::makeRelativeTo(const QString &base, const QStringList &fileNam
 
 QStringList Kleo::makeRelativeTo(const QDir &baseDir, const QStringList &fileNames)
 {
-    return kdtools::transform<QStringList>
-           (fileNames,
-            boost::bind(&QDir::relativeFilePath, &baseDir, _1));
+    QStringList rv;
+    rv.reserve(fileNames.size());
+    std::transform(fileNames.cbegin(), fileNames.cend(),
+                   std::back_inserter(rv),
+                   [&baseDir](const QString &file) {
+                       return baseDir.relativeFilePath(file);
+                   });
+    return rv;
 }
 
 void Kleo::recursivelyRemovePath(const QString &path)

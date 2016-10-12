@@ -63,8 +63,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
@@ -612,9 +610,8 @@ void SignEncryptFilesController::Private::schedule()
 
 std::shared_ptr<SignEncryptFilesTask> SignEncryptFilesController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< std::shared_ptr<SignEncryptFilesTask> >::iterator it
-        = std::find_if(runnable.begin(), runnable.end(),
-                       boost::bind(&Task::protocol, _1) == proto);
+    const auto it = std::find_if(runnable.begin(), runnable.end(),
+                                 [proto](const std::shared_ptr<Task> &task) { return task->protocol() == proto; });
     if (it == runnable.end()) {
         return std::shared_ptr<SignEncryptFilesTask>();
     }

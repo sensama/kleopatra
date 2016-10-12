@@ -68,7 +68,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          KeyFilter *filter)
     : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
-      mFilter(boost::shared_ptr<KeyFilter>(filter)),
+      mFilter(std::shared_ptr<KeyFilter>(filter)),
       mEditStarted(false),
       mEditFinished(false),
       mLineAction(new QAction(Q_NULLPTR))

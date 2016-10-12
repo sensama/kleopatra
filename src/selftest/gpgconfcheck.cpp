@@ -45,13 +45,10 @@
 #include <QProcess>
 #include <QDir>
 
-#include <boost/shared_ptr.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
-using namespace boost;
 
 namespace
 {
@@ -161,7 +158,7 @@ public:
 };
 }
 
-shared_ptr<SelfTest> Kleo::makeGpgConfCheckConfigurationSelfTest(const char *component)
+std::shared_ptr<SelfTest> Kleo::makeGpgConfCheckConfigurationSelfTest(const char *component)
 {
-    return shared_ptr<SelfTest>(new GpgConfCheck(component));
+    return std::shared_ptr<SelfTest>(new GpgConfCheck(component));
 }

@@ -35,8 +35,7 @@
 
 #include <gpgme++/global.h>
 
-#include <boost/shared_ptr.hpp>
-
+#include <memory>
 #include <vector>
 
 namespace KMime
@@ -97,7 +96,7 @@ private:
 
 private:
     class Private;
-    boost::shared_ptr<Private> d;
+    std::shared_ptr<Private> d;
 };
 
 inline bool operator!=(const Recipient &lhs, const Recipient &rhs)

@@ -38,12 +38,9 @@
 
 #include <QMutex>
 
-#include <boost/bind.hpp>
-
 #include <cassert>
 
 using namespace Kleo;
-using namespace boost;
 
 static const int GARBAGE_COLLECTION_INTERVAL = 60000; // 1min
 
@@ -62,7 +59,7 @@ std::shared_ptr<SessionDataHandler> SessionDataHandler::instance()
 {
     mutex.lock();
     static SessionDataHandler handler;
-    return std::shared_ptr<SessionDataHandler>(&handler, boost::bind(&QMutex::unlock, &mutex));
+    return std::shared_ptr<SessionDataHandler>(&handler, [](SessionDataHandler*) { mutex.unlock(); });
 }
 
 SessionDataHandler::SessionDataHandler()

@@ -55,8 +55,6 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <boost/bind.hpp>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
@@ -278,9 +276,8 @@ void SignEMailController::Private::schedule()
 // ### extract to base
 std::shared_ptr<SignEMailTask> SignEMailController::Private::takeRunnable(GpgME::Protocol proto)
 {
-    const std::vector< std::shared_ptr<SignEMailTask> >::iterator it
-        = std::find_if(runnable.begin(), runnable.end(),
-                       boost::bind(&Task::protocol, _1) == proto);
+    const auto it = std::find_if(runnable.begin(), runnable.end(),
+                                 [proto](const std::shared_ptr<Task> &task) { return task->protocol() == proto; });
     if (it == runnable.end()) {
         return std::shared_ptr<SignEMailTask>();
     }

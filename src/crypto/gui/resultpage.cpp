@@ -172,10 +172,10 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
             this, SLOT(progress(QString,int,int)));
     connect(d->m_tasks.get(), SIGNAL(done()),
             this, SLOT(allDone()));
-    connect(d->m_tasks.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(d->m_tasks.get(), SIGNAL(started(boost::std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(boost::std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(d->m_tasks.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(d->m_tasks.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
+            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
     Q_FOREACH (const std::shared_ptr<Task> &i, d->m_tasks->tasks()) {    // create labels for all tags in collection
         assert(i && d->labelForTag(i->tag()));

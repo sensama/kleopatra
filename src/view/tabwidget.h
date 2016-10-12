@@ -35,11 +35,11 @@
 
 #include <QWidget>
 
+#include <memory>
 #include <vector>
 
 #include <utils/pimpl_ptr.h>
 
-#include <boost/shared_ptr.hpp>
 
 class QAbstractItemView;
 
@@ -86,7 +86,7 @@ public:
     void setMultiSelection(bool on);
 
 public Q_SLOTS:
-    void setKeyFilter(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
     void setStringFilter(const QString &filter);
 
 Q_SIGNALS:
@@ -95,7 +95,7 @@ Q_SIGNALS:
 
     void currentViewChanged(QAbstractItemView *view);
     void stringFilterChanged(const QString &filter);
-    void keyFilterChanged(const boost::shared_ptr<Kleo::KeyFilter> &filter);
+    void keyFilterChanged(const std::shared_ptr<Kleo::KeyFilter> &filter);
 
     void enableChangeStringFilter(bool enable);
     void enableChangeKeyFilter(bool enable);
@@ -106,7 +106,7 @@ private:
 
     Q_PRIVATE_SLOT(d, void currentIndexChanged(int))
     Q_PRIVATE_SLOT(d, void slotPageTitleChanged(const QString &))
-    Q_PRIVATE_SLOT(d, void slotPageKeyFilterChanged(const boost::shared_ptr<Kleo::KeyFilter> &))
+    Q_PRIVATE_SLOT(d, void slotPageKeyFilterChanged(const std::shared_ptr<Kleo::KeyFilter> &))
     Q_PRIVATE_SLOT(d, void slotPageStringFilterChanged(const QString &))
     Q_PRIVATE_SLOT(d, void slotPageHierarchyChanged(bool))
     Q_PRIVATE_SLOT(d, void slotRenameCurrentTab())

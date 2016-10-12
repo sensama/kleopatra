@@ -41,8 +41,6 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <boost/mem_fn.hpp>
-
 #include <KLocalizedString>
 
 #include <QCheckBox>
@@ -59,7 +57,6 @@ static const int ProgressBarHideDelay = 2000; // 2 secs
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
-using namespace boost;
 
 class NewResultPage::Private
 {
@@ -167,7 +164,7 @@ void NewResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &col
 void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
     assert(coll);
-    if (kdtools::contains(d->m_collections, coll)) {
+    if (std::find(d->m_collections.cbegin(), d->m_collections.cend(), coll) != d->m_collections.cend()) {
         return;
     }
     d->m_hideProgressTimer.stop();
@@ -178,10 +175,10 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
             this, SLOT(progress(QString,int,int)));
     connect(coll.get(), SIGNAL(done()),
             this, SLOT(allDone()));
-    connect(coll.get(), SIGNAL(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)),
-            this, SLOT(result(boost::std::shared_ptr<const Kleo::Crypto::Task::Result>)));
-    connect(coll.get(), SIGNAL(started(boost::std::shared_ptr<Kleo::Crypto::Task>)),
-            this, SLOT(started(boost::std::shared_ptr<Kleo::Crypto::Task>)));
+    connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
+            this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
+    connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
+            this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
     Q_FOREACH (const std::shared_ptr<Task> &i, coll->tasks()) {    // create labels for all tags in collection
         assert(i);

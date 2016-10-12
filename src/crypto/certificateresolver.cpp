@@ -46,14 +46,12 @@
 #include <QHash>
 #include <QSet>
 
-#include <boost/bind.hpp>
-
 #include <algorithm>
 #include <iterator>
+#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
-using namespace boost;
 using namespace GpgME;
 using namespace KMime::Types;
 using namespace KMime::HeaderParsing;
@@ -62,19 +60,22 @@ std::vector< std::vector<Key> > CertificateResolver::resolveRecipients(const std
 {
     std::vector< std::vector<Key> > result;
     std::transform(recipients.begin(), recipients.end(),
-                   std::back_inserter(result), boost::bind(&resolveRecipient, _1, proto));
+                   std::back_inserter(result), 
+                   [proto](const Mailbox &recipient) {
+                       return resolveRecipient(recipient, proto);
+                   });
     return result;
 }
 
 std::vector<Key> CertificateResolver::resolveRecipient(const Mailbox &recipient, Protocol proto)
 {
     std::vector<Key> result = KeyCache::instance()->findByEMailAddress(recipient.address());
-    std::vector<Key>::iterator end = std::remove_if(result.begin(), result.end(),
-                                     !boost::bind(&Key::canEncrypt, _1));
+    auto end = std::remove_if(result.begin(), result.end(),
+                              [](const Key &key) { return key.canEncrypt(); });
 
     if (proto != UnknownProtocol)
         end = std::remove_if(result.begin(), end,
-                             boost::bind(&Key::protocol, _1) != proto);
+                             [proto](const Key &key) { return key.protocol() != proto; });
 
     result.erase(end, result.end());
     return result;
@@ -84,21 +85,23 @@ std::vector< std::vector<Key> > CertificateResolver::resolveSigners(const std::v
 {
     std::vector< std::vector<Key> > result;
     std::transform(signers.begin(), signers.end(),
-                   std::back_inserter(result), boost::bind(&resolveSigner, _1, proto));
+                   std::back_inserter(result),
+                   [proto](const Mailbox &signer) {
+                       return resolveSigner(signer, proto);
+                   });
     return result;
 }
 
 std::vector<Key> CertificateResolver::resolveSigner(const Mailbox &signer, Protocol proto)
 {
     std::vector<Key> result = KeyCache::instance()->findByEMailAddress(signer.address());
-    std::vector<Key>::iterator end
-        = std::remove_if(result.begin(), result.end(),
-                         !boost::bind(&Key::hasSecret, _1));
+    auto end = std::remove_if(result.begin(), result.end(),
+                              [](const Key &key) { return key.hasSecret(); });
     end = std::remove_if(result.begin(), end,
-                         !boost::bind(&Key::canReallySign, _1));
+                         [](const Key &key) { return key.canReallySign(); });
     if (proto != UnknownProtocol)
         end = std::remove_if(result.begin(), end,
-                             boost::bind(&Key::protocol, _1) != proto);
+                             [proto](const Key &key) { return key.protocol() != proto; });
     result.erase(end, result.end());
     return result;
 }

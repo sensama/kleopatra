@@ -55,15 +55,11 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
-#include <boost/shared_ptr.hpp>
-#include <boost/mem_fn.hpp>
-
 #include <vector>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
-using namespace boost;
 
 static const char *const components[] = {
     0, // gpgconf
@@ -133,7 +129,7 @@ private:
 
     void runTests()
     {
-        std::vector< shared_ptr<Kleo::SelfTest> > tests;
+        std::vector< std::shared_ptr<Kleo::SelfTest> > tests;
 
 #if defined(Q_OS_WIN)
         //Q_EMIT q->info( i18n("Checking Windows Registry...") );
@@ -158,7 +154,10 @@ private:
 #endif
         tests.push_back(makeLibKleopatraRcSelfTest());
 
-        if (!dialog && kdtools::none_of(tests, mem_fn(&Kleo::SelfTest::failed))) {
+        if (!dialog && std::none_of(tests.cbegin(), tests.cend(),
+                                    [](const std::shared_ptr<SelfTest> &test) {
+                                        return test->failed();
+                                    })) {
             finished();
             return;
         }

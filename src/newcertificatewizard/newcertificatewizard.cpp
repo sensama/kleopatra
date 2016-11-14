@@ -1012,7 +1012,7 @@ private Q_SLOTS:
 #endif
     }
 
-    void invokeMailer(const QString &to, const QString &subject, QString body, const QString &attachment)
+    void invokeMailer(const QString &to, const QString &subject, const QString &body, const QString &attachment)
     {
         qCDebug(KLEOPATRA_LOG) << "to:" << to << "subject:" << subject
                                << "body:" << body << "attachment:" << attachment;

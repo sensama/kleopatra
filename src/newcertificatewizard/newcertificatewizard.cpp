@@ -780,7 +780,7 @@ public:
 private:
     void startJob()
     {
-        const auto proto = (pgp() == OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+        const auto proto = pgp() ? QGpgME::openpgp() : QGpgME::smime();
         if (!proto) {
             return;
         }

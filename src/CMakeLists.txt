@@ -266,6 +266,8 @@ add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_uiserver_SRCS})
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
 target_link_libraries(kleopatra_bin
+  Gpgmepp
+  QGpgme
   ${_kleopatra_extra_libs}
   KF5::Libkleo
   KF5::Mime

@@ -202,7 +202,7 @@ private:
             }
         }
         if (encrypt) {
-            if (const unsigned int num = std::count_if(ui.recipients.cbegin(), ui.signers.cend(),
+            if (const unsigned int num = std::count_if(ui.recipients.cbegin(), ui.recipients.cend(),
                                                       [proto](const CertificateSelectionLine &l) {
                                                           return l.wasInitiallyAmbiguous(proto);
                                                       })) {

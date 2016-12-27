@@ -75,7 +75,7 @@ protected:
             const std::vector< std::shared_ptr<ArchiveDefinition> > &ads, const QString &filename);
 
 Q_SIGNALS:
-    virtual void verificationResult(const GpgME::VerificationResult &);
+    void verificationResult(const GpgME::VerificationResult &);
 
 private:
     void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;

@@ -79,7 +79,7 @@ class ImportResultProxyModel : public AbstractKeyListSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    ImportResultProxyModel(const std::vector<ImportResult> &results, const QStringList &ids, QObject *parent = Q_NULLPTR)
+    ImportResultProxyModel(const std::vector<ImportResult> &results, const QStringList &ids, QObject *parent = nullptr)
         : AbstractKeyListSortFilterProxyModel(parent)
     {
         updateFindCache(results, ids);
@@ -457,7 +457,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
                     QString::fromUtf8(fingerPr),
                     uids.join(QStringLiteral("</item><item>")));
 
-                int k = KMessageBox::questionYesNo(Q_NULLPTR, str, i18nc("@title:window",
+                int k = KMessageBox::questionYesNo(nullptr, str, i18nc("@title:window",
                                                                    "Secret key imported"));
 
                 if (k == KMessageBox::Yes) {

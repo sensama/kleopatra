@@ -76,8 +76,8 @@ class Page : public Kleo::KeyTreeView
     Q_OBJECT
     Page(const Page &other);
 public:
-    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = Q_NULLPTR, const QString &toolTip = QString(), QWidget *parent = Q_NULLPTR);
-    Page(const KConfigGroup &group, QWidget *parent = Q_NULLPTR);
+    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &toolTip = QString(), QWidget *parent = nullptr);
+    Page(const KConfigGroup &group, QWidget *parent = nullptr);
     ~Page();
 
     void setTemporary(bool temporary);
@@ -432,8 +432,8 @@ private:
 
 TabWidget::Private::Private(TabWidget *qq)
     : q(qq),
-      flatModel(Q_NULLPTR),
-      hierarchicalModel(Q_NULLPTR),
+      flatModel(nullptr),
+      hierarchicalModel(nullptr),
       tabWidget(q),
       layout(q),
       actionsCreated(false)
@@ -740,7 +740,7 @@ QAbstractItemView *TabWidget::currentView() const
     if (Page *const page = d->currentPage()) {
         return page->view();
     } else {
-        return Q_NULLPTR;
+        return nullptr;
     }
 }
 
@@ -748,11 +748,11 @@ KeyListModelInterface *TabWidget::currentModel() const
 {
     const QAbstractItemView *const view = currentView();
     if (!view) {
-        return Q_NULLPTR;
+        return nullptr;
     }
     QAbstractProxyModel *const proxy = qobject_cast<QAbstractProxyModel *>(view->model());
     if (!proxy) {
-        return Q_NULLPTR;
+        return nullptr;
     }
     return dynamic_cast<KeyListModelInterface *>(proxy);
 }
@@ -859,7 +859,7 @@ QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKey
 QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
 {
     if (!page) {
-        return Q_NULLPTR;
+        return nullptr;
     }
 
     if (!actionsCreated) {

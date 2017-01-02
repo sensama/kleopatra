@@ -75,7 +75,7 @@ using namespace GpgME;
 
 static const unsigned int CHECK_INTERVAL = 2000; // msecs
 
-static ReaderStatus *self = Q_NULLPTR;
+static ReaderStatus *self = nullptr;
 
 struct CardInfo {
     CardInfo()
@@ -442,7 +442,7 @@ class ReaderStatusThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit ReaderStatusThread(QObject *parent = Q_NULLPTR)
+    explicit ReaderStatusThread(QObject *parent = nullptr)
         : QThread(parent),
           m_gnupgHomePath(Kleo::gnupgHomeDirectory()),
           m_transactions(1, updateTransaction)   // force initial scan
@@ -508,7 +508,7 @@ public Q_SLOTS:
         QStringList files = gnupgHome.entryList(QStringList(QStringLiteral("reader_*.status")), QDir::Files, QDir::Name);
         std::sort(files.begin(), files.end(),
                   [](const QString &lhs, const QString &rhs) {
-                      return parseFileName(lhs, Q_NULLPTR) < parseFileName(rhs, Q_NULLPTR);
+                      return parseFileName(lhs, nullptr) < parseFileName(rhs, nullptr);
                   });
 
         std::vector<QByteArray> contents;
@@ -764,7 +764,7 @@ ReaderStatus::ReaderStatus(QObject *parent)
 
 ReaderStatus::~ReaderStatus()
 {
-    self = Q_NULLPTR;
+    self = nullptr;
 }
 
 // slot

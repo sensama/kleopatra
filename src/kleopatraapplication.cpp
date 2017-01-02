@@ -331,7 +331,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Check for --gen-key command
     if (parser.isSet("gen-key")) {
-        auto cmd = new NewCertificateCommand(Q_NULLPTR);
+        auto cmd = new NewCertificateCommand(nullptr);
         cmd->setParentWId(parentId);
         cmd->setProtocol(protocol);
         cmd->start();

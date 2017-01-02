@@ -358,7 +358,7 @@ void DirectoryServicesConfigurationPage::defaults()
 
 extern "C"
 {
-    Q_DECL_EXPORT KCModule *create_kleopatra_config_dirserv(QWidget *parent = Q_NULLPTR, const QVariantList &args = QVariantList())
+    Q_DECL_EXPORT KCModule *create_kleopatra_config_dirserv(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
     {
         DirectoryServicesConfigurationPage *page =
             new DirectoryServicesConfigurationPage(parent, args);

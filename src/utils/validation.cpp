@@ -57,7 +57,7 @@ namespace
 class EMailValidator : public QValidator
 {
 public:
-    explicit EMailValidator(QObject *parent = Q_NULLPTR) : QValidator(parent) {}
+    explicit EMailValidator(QObject *parent = nullptr) : QValidator(parent) {}
 
     State validate(QString &str, int &pos) const Q_DECL_OVERRIDE
     {

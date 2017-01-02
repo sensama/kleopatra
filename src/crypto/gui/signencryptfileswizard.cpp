@@ -74,7 +74,7 @@ class SigEncPage: public QWizardPage
     Q_OBJECT
 
 public:
-    explicit SigEncPage(QWidget *parent = Q_NULLPTR)
+    explicit SigEncPage(QWidget *parent = nullptr)
         : QWizardPage(parent),
           mWidget(new SignEncryptWidget),
           mOutLayout(new QVBoxLayout),
@@ -297,7 +297,7 @@ class ResultPage : public NewResultPage
 {
     Q_OBJECT
 public:
-    explicit ResultPage(QWidget *parent = Q_NULLPTR)
+    explicit ResultPage(QWidget *parent = nullptr)
         : NewResultPage(parent)
     {
         setTitle(i18nc("@title", "Results"));

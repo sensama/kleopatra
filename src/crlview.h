@@ -47,7 +47,7 @@ class CRLView : public QDialog
 {
     Q_OBJECT
 public:
-    explicit CRLView(QWidget *parent = Q_NULLPTR);
+    explicit CRLView(QWidget *parent = nullptr);
     ~CRLView();
 public Q_SLOTS:
     void slotUpdateView();

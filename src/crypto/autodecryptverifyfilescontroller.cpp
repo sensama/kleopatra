@@ -104,7 +104,7 @@ public:
 AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq),
     m_errorDetected(false),
     m_operation(DecryptVerify),
-    m_dialog(Q_NULLPTR)
+    m_dialog(nullptr)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -144,7 +144,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     xi18n("Failed to find encrypted or signed data in one or more files.<nl/>"
                           "You can manually select what to do with the files now.<nl/>"
                           "If they contain signed or encrypted data please report a bug (see Help->Report Bug)."));
-        auto cmd = new Commands::DecryptVerifyFilesCommand(undetected, Q_NULLPTR, true);
+        auto cmd = new Commands::DecryptVerifyFilesCommand(undetected, nullptr, true);
         cmd->start();
     }
     if (tasks.empty()) {
@@ -206,7 +206,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     }
     q->emitDoneOrError();
     delete m_dialog;
-    m_dialog = Q_NULLPTR;
+    m_dialog = nullptr;
     return;
 }
 
@@ -233,7 +233,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             // Detached signature, try to find data or ask the user.
             QString signedDataFileName = findSignedData(fName);
             if (signedDataFileName.isEmpty()) {
-                signedDataFileName = QFileDialog::getOpenFileName(Q_NULLPTR, xi18n("Select the file to verify with \"%1\"", fi.fileName()),
+                signedDataFileName = QFileDialog::getOpenFileName(nullptr, xi18n("Select the file to verify with \"%1\"", fi.fileName()),
                                                                   fi.dir().dirName());
             }
             if (signedDataFileName.isEmpty()) {

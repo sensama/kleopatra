@@ -53,7 +53,7 @@ class ConfigureDialog : public KleoPageConfigDialog
 {
     Q_OBJECT
 public:
-    explicit ConfigureDialog(QWidget *parent = Q_NULLPTR);
+    explicit ConfigureDialog(QWidget *parent = nullptr);
     ~ConfigureDialog();
 
 protected:

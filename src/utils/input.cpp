@@ -66,7 +66,7 @@ namespace
 class Process : public QProcess
 {
 public:
-    explicit Process(QObject *parent = Q_NULLPTR)
+    explicit Process(QObject *parent = nullptr)
         : QProcess(parent) {}
     void close() Q_DECL_OVERRIDE {
         closeReadChannel(StandardOutput);

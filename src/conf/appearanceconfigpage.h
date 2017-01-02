@@ -48,7 +48,7 @@ class AppearanceConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit AppearanceConfigurationPage(QWidget *parent = Q_NULLPTR, const QVariantList &args = QVariantList());
+    explicit AppearanceConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;

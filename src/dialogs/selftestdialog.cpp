@@ -60,7 +60,7 @@ class Model : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    explicit Model(QObject *parent = Q_NULLPTR)
+    explicit Model(QObject *parent = nullptr)
         : QAbstractTableModel(parent),
           m_tests()
     {
@@ -171,7 +171,7 @@ class Proxy : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit Proxy(QObject *parent = Q_NULLPTR)
+    explicit Proxy(QObject *parent = nullptr)
         : QSortFilterProxyModel(parent), m_showAll(true)
     {
         setDynamicSortFilter(true);

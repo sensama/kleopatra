@@ -394,7 +394,7 @@ struct AssuanClientContext : AssuanContextBase {
     AssuanClientContext() : AssuanContextBase() {}
 #ifndef HAVE_ASSUAN2
     explicit AssuanClientContext(assuan_context_t ctx) : AssuanContextBase(ctx, &assuan_disconnect) {}
-    void reset(assuan_context_t ctx = Q_NULLPTR)
+    void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &assuan_disconnect);
     }

@@ -43,7 +43,7 @@ class TestObject : public QObject
     Q_OBJECT
 public:
     TestObject(KUniqueService *service)
-        : m_proc(Q_NULLPTR), m_callCount(0),
+        : m_proc(nullptr), m_callCount(0),
           m_service(service)
     {}
 

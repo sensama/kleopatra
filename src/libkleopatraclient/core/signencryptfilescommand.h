@@ -31,7 +31,7 @@ class KLEOPATRACLIENTCORE_EXPORT SignEncryptFilesCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit SignEncryptFilesCommand(QObject *parent = Q_NULLPTR);
+    explicit SignEncryptFilesCommand(QObject *parent = nullptr);
     ~SignEncryptFilesCommand();
 
     // Inputs

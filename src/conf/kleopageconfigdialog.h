@@ -45,7 +45,7 @@ class KleoPageConfigDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    explicit KleoPageConfigDialog(QWidget *parent = Q_NULLPTR);
+    explicit KleoPageConfigDialog(QWidget *parent = nullptr);
 
     void addModule(const QString &module);
 

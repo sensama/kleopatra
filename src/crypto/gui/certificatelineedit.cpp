@@ -71,7 +71,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
       mFilter(std::shared_ptr<KeyFilter>(filter)),
       mEditStarted(false),
       mEditFinished(false),
-      mLineAction(new QAction(Q_NULLPTR))
+      mLineAction(new QAction(nullptr))
 {
     setPlaceholderText(i18n("Please enter a name or email address..."));
     setClearButtonEnabled(true);
@@ -172,7 +172,7 @@ Key CertificateLineEdit::key() const
 void CertificateLineEdit::dialogRequested()
 {
     if (!mKey.isNull()) {
-        auto cmd = new Commands::DetailsCommand(mKey, Q_NULLPTR);
+        auto cmd = new Commands::DetailsCommand(mKey, nullptr);
         cmd->start();
         return;
     }

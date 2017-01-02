@@ -544,7 +544,7 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ClearCrlCacheCommand>(coll->action(QStringLiteral("crl_clear_crl_cache")));
     registerActionForCommand<DumpCrlCacheCommand>(coll->action(QStringLiteral("crl_dump_crl_cache")));
 
-    enableDisableActions(Q_NULLPTR);
+    enableDisableActions(nullptr);
 }
 
 void KeyListController::registerAction(QAction *action, Command::Restrictions restrictions, Command * (*create)(QAbstractItemView *, KeyListController *))

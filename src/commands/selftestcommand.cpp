@@ -62,7 +62,7 @@ using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 
 static const char *const components[] = {
-    Q_NULLPTR, // gpgconf
+    nullptr, // gpgconf
     "gpg",
     "gpg-agent",
     "scdaemon",

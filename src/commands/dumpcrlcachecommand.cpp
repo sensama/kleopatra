@@ -62,7 +62,7 @@ class DumpCrlCacheDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit DumpCrlCacheDialog(QWidget *parent = Q_NULLPTR)
+    explicit DumpCrlCacheDialog(QWidget *parent = nullptr)
         : QDialog(parent), ui(this)
     {
         readConfig();
@@ -200,7 +200,7 @@ private:
 
     void slotDialogDestroyed()
     {
-        dialog = Q_NULLPTR;
+        dialog = nullptr;
         if (process.state() != QProcess::NotRunning) {
             q->cancel();
         } else {
@@ -229,7 +229,7 @@ const DumpCrlCacheCommand::Private *DumpCrlCacheCommand::d_func() const
 
 DumpCrlCacheCommand::Private::Private(DumpCrlCacheCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      dialog(Q_NULLPTR),
+      dialog(nullptr),
       process(),
       errorBuffer(),
       canceled(false)
@@ -313,7 +313,7 @@ void DumpCrlCacheCommand::doCancel()
     if (d->dialog) {
         d->dialog->close();
     }
-    d->dialog = Q_NULLPTR;
+    d->dialog = nullptr;
 }
 
 void DumpCrlCacheCommand::Private::slotProcessFinished(int code, QProcess::ExitStatus status)

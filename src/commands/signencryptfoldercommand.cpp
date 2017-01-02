@@ -50,7 +50,7 @@ SignEncryptFolderCommand::SignEncryptFolderCommand(QAbstractItemView *v, KeyList
 }
 
 SignEncryptFolderCommand::SignEncryptFolderCommand(KeyListController *c)
-    : SignEncryptFolderCommand(Q_NULLPTR, c)
+    : SignEncryptFolderCommand(nullptr, c)
 {
 }
 

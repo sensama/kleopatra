@@ -44,7 +44,7 @@ class SMimeValidationConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit SMimeValidationConfigurationPage(QWidget *parent = Q_NULLPTR, const QVariantList &args = QVariantList());
+    explicit SMimeValidationConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
     void load() Q_DECL_OVERRIDE;
     void save() Q_DECL_OVERRIDE;

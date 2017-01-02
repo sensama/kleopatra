@@ -277,16 +277,16 @@ QVector <Command *> Command::commandsForFiles(const QStringList &files)
         }
     }
     if (!importFiles.isEmpty()) {
-        cmds << new ImportCertificateFromFileCommand(importFiles, Q_NULLPTR);
+        cmds << new ImportCertificateFromFileCommand(importFiles, nullptr);
     }
     if (!decryptFiles.isEmpty()) {
-        cmds << new DecryptVerifyFilesCommand(decryptFiles, Q_NULLPTR);
+        cmds << new DecryptVerifyFilesCommand(decryptFiles, nullptr);
     }
     if (!encryptFiles.isEmpty()) {
-        cmds << new SignEncryptFilesCommand(encryptFiles, Q_NULLPTR);
+        cmds << new SignEncryptFilesCommand(encryptFiles, nullptr);
     }
     if (!checksumFiles.isEmpty()) {
-        cmds << new ChecksumVerifyFilesCommand(checksumFiles, Q_NULLPTR);
+        cmds << new ChecksumVerifyFilesCommand(checksumFiles, nullptr);
     }
     return cmds;
 }

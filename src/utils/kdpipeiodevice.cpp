@@ -258,8 +258,8 @@ void KDPipeIODevice::setDebugLevel(KDPipeIODevice::DebugLevel level)
 KDPipeIODevice::Private::Private(KDPipeIODevice *qq) : QObject(qq), q(qq),
     fd(-1),
     handle(0),
-    reader(Q_NULLPTR),
-    writer(Q_NULLPTR),
+    reader(nullptr),
+    writer(nullptr),
     triedToStartReader(false),
     triedToStartWriter(false)
 {
@@ -297,7 +297,7 @@ KDPipeIODevice::~KDPipeIODevice()
     if (isOpen()) {
         close();
     }
-    delete d; d = Q_NULLPTR;
+    delete d; d = nullptr;
 }
 
 bool KDPipeIODevice::open(int fd, OpenMode mode)
@@ -985,8 +985,8 @@ leave:
 // static
 std::pair<KDPipeIODevice *, KDPipeIODevice *> KDPipeIODevice::makePairOfConnectedPipes()
 {
-    KDPipeIODevice *read = Q_NULLPTR;
-    KDPipeIODevice *write = Q_NULLPTR;
+    KDPipeIODevice *read = nullptr;
+    KDPipeIODevice *write = nullptr;
 #ifdef Q_OS_WIN32
     HANDLE rh;
     HANDLE wh;

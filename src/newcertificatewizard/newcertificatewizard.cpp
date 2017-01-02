@@ -232,7 +232,7 @@ class WizardPage : public QWizardPage
 {
     Q_OBJECT
 protected:
-    explicit WizardPage(QWidget *parent = Q_NULLPTR)
+    explicit WizardPage(QWidget *parent = nullptr)
         : QWizardPage(parent) {}
 
     NewCertificateWizard *wizard() const
@@ -326,7 +326,7 @@ class AdvancedSettingsDialog : public QDialog
     Q_PROPERTY(bool authenticationAllowed READ authenticationAllowed WRITE setAuthenticationAllowed)
     Q_PROPERTY(QDate expiryDate READ expiryDate WRITE setExpiryDate)
 public:
-    explicit AdvancedSettingsDialog(QWidget *parent = Q_NULLPTR)
+    explicit AdvancedSettingsDialog(QWidget *parent = nullptr)
         : QDialog(parent),
           protocol(UnknownProtocol),
           pgpDefaultAlgorithm(Subkey::AlgoELG_E),
@@ -409,7 +409,7 @@ public:
         QRadioButton *const rb =
             is_rsa(algo) ? ui.rsaRB :
             is_dsa(algo) ? ui.dsaRB :
-            is_ecdsa(algo) ? ui.ecdsaRB : Q_NULLPTR;
+            is_ecdsa(algo) ? ui.ecdsaRB : nullptr;
         if (rb) {
             rb->setChecked(true);
         }
@@ -608,7 +608,7 @@ class ChooseProtocolPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit ChooseProtocolPage(QWidget *p = Q_NULLPTR)
+    explicit ChooseProtocolPage(QWidget *p = nullptr)
         : WizardPage(p),
           initialized(false),
           ui()
@@ -666,7 +666,7 @@ class EnterDetailsPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit EnterDetailsPage(QWidget *p = Q_NULLPTR)
+    explicit EnterDetailsPage(QWidget *p = nullptr)
         : WizardPage(p), dialog(this), ui()
     {
         ui.setupUi(this);
@@ -729,7 +729,7 @@ class OverviewPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit OverviewPage(QWidget *p = Q_NULLPTR)
+    explicit OverviewPage(QWidget *p = nullptr)
         : WizardPage(p), ui()
     {
         ui.setupUi(this);
@@ -761,7 +761,7 @@ class KeyCreationPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit KeyCreationPage(QWidget *p = Q_NULLPTR)
+    explicit KeyCreationPage(QWidget *p = nullptr)
         : WizardPage(p),
           ui()
     {
@@ -847,7 +847,7 @@ class ResultPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit ResultPage(QWidget *p = Q_NULLPTR)
+    explicit ResultPage(QWidget *p = nullptr)
         : WizardPage(p),
           initialized(false),
           successfullyCreatedSigningCertificate(false),
@@ -1237,7 +1237,7 @@ static const char *oidForAttributeName(const QString &attr)
         if (qstricmp(attrUtf8, oidmap[i].name) == 0) {
             return oidmap[i].oid;
         }
-    return Q_NULLPTR;
+    return nullptr;
 }
 
 QDir WizardPage::tmpDir() const

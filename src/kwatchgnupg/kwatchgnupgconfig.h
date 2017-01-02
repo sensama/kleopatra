@@ -48,7 +48,7 @@ class KWatchGnuPGConfig : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KWatchGnuPGConfig(QWidget *parent = Q_NULLPTR);
+    explicit KWatchGnuPGConfig(QWidget *parent = nullptr);
     ~KWatchGnuPGConfig();
 
     void loadConfig();

@@ -175,7 +175,7 @@ static std::map<std::string, std::string> parse_commandline(const char *line)
     std::map<std::string, std::string> result;
     if (line) {
         const char *begin = line;
-        const char *lastEQ = Q_NULLPTR;
+        const char *lastEQ = nullptr;
         while (*line) {
             if (*line == ' ' || *line == '\t') {
                 if (begin != line) {

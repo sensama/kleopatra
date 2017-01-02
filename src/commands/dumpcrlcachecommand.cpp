@@ -200,7 +200,7 @@ private:
 
     void slotDialogDestroyed()
     {
-        dialog = 0;
+        dialog = Q_NULLPTR;
         if (process.state() != QProcess::NotRunning) {
             q->cancel();
         } else {
@@ -229,7 +229,7 @@ const DumpCrlCacheCommand::Private *DumpCrlCacheCommand::d_func() const
 
 DumpCrlCacheCommand::Private::Private(DumpCrlCacheCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      dialog(0),
+      dialog(Q_NULLPTR),
       process(),
       errorBuffer(),
       canceled(false)
@@ -313,7 +313,7 @@ void DumpCrlCacheCommand::doCancel()
     if (d->dialog) {
         d->dialog->close();
     }
-    d->dialog = 0;
+    d->dialog = Q_NULLPTR;
 }
 
 void DumpCrlCacheCommand::Private::slotProcessFinished(int code, QProcess::ExitStatus status)

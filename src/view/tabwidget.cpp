@@ -76,7 +76,7 @@ class Page : public Kleo::KeyTreeView
     Q_OBJECT
     Page(const Page &other);
 public:
-    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = 0, const QString &toolTip = QString(), QWidget *parent = Q_NULLPTR);
+    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = Q_NULLPTR, const QString &toolTip = QString(), QWidget *parent = Q_NULLPTR);
     Page(const KConfigGroup &group, QWidget *parent = Q_NULLPTR);
     ~Page();
 
@@ -432,8 +432,8 @@ private:
 
 TabWidget::Private::Private(TabWidget *qq)
     : q(qq),
-      flatModel(0),
-      hierarchicalModel(0),
+      flatModel(Q_NULLPTR),
+      hierarchicalModel(Q_NULLPTR),
       tabWidget(q),
       layout(q),
       actionsCreated(false)
@@ -740,7 +740,7 @@ QAbstractItemView *TabWidget::currentView() const
     if (Page *const page = d->currentPage()) {
         return page->view();
     } else {
-        return 0;
+        return Q_NULLPTR;
     }
 }
 
@@ -859,7 +859,7 @@ QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKey
 QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
 {
     if (!page) {
-        return 0;
+        return Q_NULLPTR;
     }
 
     if (!actionsCreated) {

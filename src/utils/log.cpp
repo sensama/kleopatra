@@ -54,7 +54,7 @@ class Log::Private
 {
     Log *const q;
 public:
-    explicit Private(Log *qq) : q(qq), m_ioLoggingEnabled(false), m_logFile(0) {}
+    explicit Private(Log *qq) : q(qq), m_ioLoggingEnabled(false), m_logFile(Q_NULLPTR) {}
     ~Private();
     bool m_ioLoggingEnabled;
     QString m_outputDirectory;

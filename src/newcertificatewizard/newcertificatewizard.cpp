@@ -1237,7 +1237,7 @@ static const char *oidForAttributeName(const QString &attr)
         if (qstricmp(attrUtf8, oidmap[i].name) == 0) {
             return oidmap[i].oid;
         }
-    return 0;
+    return Q_NULLPTR;
 }
 
 QDir WizardPage::tmpDir() const

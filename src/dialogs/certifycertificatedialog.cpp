@@ -332,10 +332,10 @@ public:
     explicit Private(CertifyCertificateDialog *qq)
         : q(qq),
           summaryPageId(0),
-          selectUserIDsPage(0),
-          selectCheckLevelPage(0),
-          optionsPage(0),
-          summaryPage(0)
+          selectUserIDsPage(Q_NULLPTR),
+          selectCheckLevelPage(Q_NULLPTR),
+          optionsPage(Q_NULLPTR),
+          summaryPage(Q_NULLPTR)
     {
         selectUserIDsPage = new SelectUserIDsPage(q);
         q->addPage(selectUserIDsPage);

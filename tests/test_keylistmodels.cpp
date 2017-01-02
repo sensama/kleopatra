@@ -65,7 +65,7 @@ class Relay : public QObject
 {
     Q_OBJECT
 public:
-    explicit Relay(QObject *p = 0) : QObject(p) {}
+    explicit Relay(QObject *p = Q_NULLPTR) : QObject(p) {}
 
 public Q_SLOTS:
     void slotNextKeyEvent(GpgME::Context *, const GpgME::Key &key)
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
             hierarchicalWidget.show();
         }
 
-    const char *pattern[] = { 0 };
+    const char *pattern[] = { Q_NULLPTR };
 
     const std::auto_ptr<GpgME::Context> pgp(GpgME::Context::createForProtocol(GpgME::OpenPGP));
     pgp->setManagedByEventLoopInteractor(true);

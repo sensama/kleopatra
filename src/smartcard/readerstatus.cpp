@@ -75,7 +75,7 @@ using namespace GpgME;
 
 static const unsigned int CHECK_INTERVAL = 2000; // msecs
 
-static ReaderStatus *self = 0;
+static ReaderStatus *self = Q_NULLPTR;
 
 struct CardInfo {
     CardInfo()
@@ -764,7 +764,7 @@ ReaderStatus::ReaderStatus(QObject *parent)
 
 ReaderStatus::~ReaderStatus()
 {
-    self = 0;
+    self = Q_NULLPTR;
 }
 
 // slot

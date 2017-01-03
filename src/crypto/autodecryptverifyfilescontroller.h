@@ -43,11 +43,6 @@
 #include <memory>
 #include <vector>
 
-namespace GpgME
-{
-class VerificationResult;
-}
-
 namespace Kleo
 {
 namespace Crypto

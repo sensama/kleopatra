@@ -44,7 +44,6 @@
 
 #include <memory>
 
-class QStringList;
 
 namespace GpgME
 {
@@ -64,7 +63,6 @@ class SigEncPage;
 
 namespace Kleo
 {
-class SignEncryptWidget;
 
 class SignEncryptFilesWizard : public QWizard
 {

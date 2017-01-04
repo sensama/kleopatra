@@ -1697,7 +1697,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
     } else if (const unsigned int strength = keyStrength()) {
         s << "key-length:    " << strength                 << endl;
     }
-    s     << "key-usage:     " << keyUsages().join(QStringLiteral(" "))    << endl;
+    s     << "key-usage:     " << keyUsages().join(QLatin1Char(' '))    << endl;
     if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
         s << "subkey-type:   " << Subkey::publicKeyAlgorithmAsString(subkey) << endl;
 
@@ -1706,7 +1706,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
         } else if (const unsigned int strength = subkeyStrength()) {
             s << "subkey-length: " << strength             << endl;
         }
-        s << "subkey-usage:  " << subkeyUsages().join(QStringLiteral(" ")) << endl;
+        s << "subkey-usage:  " << subkeyUsages().join(QLatin1Char(' ')) << endl;
     }
     if (pgp() && expiryDate().isValid()) {
         s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << endl;

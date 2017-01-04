@@ -350,7 +350,7 @@ std::shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Prot
     checkProtocol(p);
     const QString base = heuristicBaseDirectory(files);
     if (base.isEmpty()) {
-        throw Kleo::Exception(GPG_ERR_CONFLICT, i18n("Cannot find common base directory for these files:\n%1", files.join(QStringLiteral("\n"))));
+        throw Kleo::Exception(GPG_ERR_CONFLICT, i18n("Cannot find common base directory for these files:\n%1", files.join(QLatin1Char('\n'))));
     }
     qCDebug(KLEOPATRA_LOG) << "heuristicBaseDirectory(" << files << ") ->" << base;
     const QStringList relative = makeRelativeTo(base, files);

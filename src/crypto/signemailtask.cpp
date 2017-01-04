@@ -250,7 +250,7 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
         }
     micalgs.sort();
     micalgs.erase(std::unique(micalgs.begin(), micalgs.end()), micalgs.end());
-    return micalgs.join(QStringLiteral(","));
+    return micalgs.join(QLatin1Char(','));
 }
 
 void SignEMailTask::Private::slotResult(const SigningResult &result)

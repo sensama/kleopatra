@@ -790,7 +790,7 @@ private:
 
     static QByteArray dumpStringList(const QStringList &sl)
     {
-        return sl.join(QStringLiteral("\n")).toUtf8();
+        return sl.join(QLatin1Char('\n')).toUtf8();
     }
 
     template <typename T_container>

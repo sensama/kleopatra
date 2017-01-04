@@ -130,7 +130,7 @@ QString RefreshOpenPGPCertsCommand::crashExitMessage(const QStringList &args) co
     return xi18nc("@info",
                   "<para>The GPG process that tried to refresh OpenPGP certificates "
                   "ended prematurely because of an unexpected error.</para>"
-                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QStringLiteral(" ")));
+                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QLatin1Char(' ')));
 }
 
 QString RefreshOpenPGPCertsCommand::errorExitMessage(const QStringList &args) const
@@ -138,7 +138,7 @@ QString RefreshOpenPGPCertsCommand::errorExitMessage(const QStringList &args) co
     return i18nc("@info",
                  "<para>An error occurred while trying to refresh OpenPGP certificates.</para> "
                  "<para>The output from <command>%1</command> was: <message>%2</message></para>",
-                 args[0], errorString().replace(QStringLiteral("\n"), QStringLiteral("<br>")));
+                 args[0], errorString().replace(QLatin1Char('\n'), QStringLiteral("<br>")));
 }
 
 QString RefreshOpenPGPCertsCommand::successMessage(const QStringList &) const

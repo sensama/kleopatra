@@ -126,7 +126,7 @@ QString ExportPaperKeyCommand::crashExitMessage(const QStringList &args) const
                   "<para>The GPG process that tried to export the secret key "
                   "ended prematurely because of an unexpected error.</para>"
                   "<para>Please check the output of <icode>%1</icode> for details.</para>",
-                  args.join(QStringLiteral(" ")));
+                  args.join(QLatin1Char(' ')));
 }
 
 QString ExportPaperKeyCommand::errorExitMessage(const QStringList &args) const

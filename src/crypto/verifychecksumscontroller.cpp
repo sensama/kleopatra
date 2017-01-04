@@ -161,7 +161,7 @@ private:
 
         if (!errors.empty())
             q->setLastError(gpg_error(GPG_ERR_GENERAL),
-                            errors.join(QStringLiteral("\n")));
+                            errors.join(QLatin1Char('\n')));
         q->emitDoneOrError();
     }
 

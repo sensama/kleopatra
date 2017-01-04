@@ -237,7 +237,7 @@ private:
         q->bringToForeground(dlg);
         if (!errors.empty())
             q->setLastError(gpg_error(GPG_ERR_GENERAL),
-                            errors.join(QStringLiteral("\n")));
+                            errors.join(QLatin1Char('\n')));
         q->emitDoneOrError();
     }
     void slotProgress(int current, int total, const QString &what)

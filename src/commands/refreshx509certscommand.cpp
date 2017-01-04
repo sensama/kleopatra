@@ -92,7 +92,7 @@ QString RefreshX509CertsCommand::crashExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>The GpgSM process that tried to refresh X.509 certificates "
                   "ended prematurely because of an unexpected error.</para>"
-                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QStringLiteral(" ")));
+                  "<para>Please check the output of <icode>%1</icode> for details.</para>", args.join(QLatin1Char(' ')));
 }
 
 QString RefreshX509CertsCommand::errorExitMessage(const QStringList &args) const
@@ -100,7 +100,7 @@ QString RefreshX509CertsCommand::errorExitMessage(const QStringList &args) const
     return xi18nc("@info",
                   "<para>An error occurred while trying to refresh X.509 certificates.</para>"
                   "<para>The output from <command>%1</command> was: <message>%2</message></para>",
-                  args[0], errorString().replace(QStringLiteral("\n"), QStringLiteral("<br>")));
+                  args[0], errorString().replace(QLatin1Char('\n'), QStringLiteral("<br>")));
 }
 
 QString RefreshX509CertsCommand::successMessage(const QStringList &) const

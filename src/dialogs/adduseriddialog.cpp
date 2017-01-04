@@ -354,7 +354,7 @@ void AddUserIDDialog::Private::slotUserIDChanged()
         parts.push_back(QLatin1Char('<') + email + QLatin1Char('>'));
     }
 
-    ui.resultLB->setText(parts.join(QStringLiteral(" ")));
+    ui.resultLB->setText(parts.join(QLatin1Char(' ')));
 }
 
 #include "moc_adduseriddialog.cpp"

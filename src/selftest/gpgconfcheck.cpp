@@ -131,7 +131,7 @@ public:
                 i18n("There was an error executing the GnuPG configuration self-check for %2:\n"
                      "  %1\n"
                      "You might want to execute \"gpgconf %3\" on the command line.\n",
-                     message, m_component.isEmpty() ? QStringLiteral("GnuPG") : m_component, arguments().join(QStringLiteral(" ")));
+                     message, m_component.isEmpty() ? QStringLiteral("GnuPG") : m_component, arguments().join(QLatin1Char(' ')));
             if (!output.trimmed().isEmpty()) {
                 m_explaination += QLatin1Char('\n') + i18n("Diagnostics:") + QLatin1Char('\n') + output;
             }

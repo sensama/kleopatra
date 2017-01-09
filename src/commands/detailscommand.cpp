@@ -35,7 +35,7 @@
 #include "detailscommand.h"
 #include "command_p.h"
 
-#include <dialogs/certificatedetailsdialog.h>
+#include <dialogs/certificatedetailswidget.h>
 
 #include "kleopatra_debug.h"
 
@@ -43,7 +43,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 class DetailsCommand::Private : public Command::Private

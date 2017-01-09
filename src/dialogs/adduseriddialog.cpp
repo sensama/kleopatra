@@ -69,11 +69,9 @@ static QString pgpLabel(const QString &attr)
 {
     if (attr == QLatin1String("NAME")) {
         return i18n("Name");
-    }
-    if (attr == QLatin1String("COMMENT")) {
+    } else if (attr == QLatin1String("COMMENT")) {
         return i18n("Comment");
-    }
-    if (attr == QLatin1String("EMAIL")) {
+    } else if (attr == QLatin1String("EMAIL")) {
         return i18n("EMail");
     }
     return QString();

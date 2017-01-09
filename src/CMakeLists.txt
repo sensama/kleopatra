@@ -107,10 +107,12 @@ set(_kleopatra_SRCS
   dialogs/certifycertificatedialog.cpp
   dialogs/exportsecretkeydialog.cpp
   dialogs/adduseriddialog.cpp
-  dialogs/certificatedetailsdialog.cpp
   dialogs/exportcertificatesdialog.cpp
   dialogs/deletecertificatesdialog.cpp
   dialogs/setinitialpindialog.cpp
+  dialogs/certificatedetailswidget.cpp
+  dialogs/trustchainwidget.cpp
+  dialogs/subkeyswidget.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp
@@ -239,8 +241,10 @@ ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/selftestdialog.ui
   dialogs/exportsecretkeydialog.ui
   dialogs/adduseriddialog.ui
-  dialogs/certificatedetailsdialog.ui
   dialogs/setinitialpindialog.ui
+  dialogs/certificatedetailswidget.ui
+  dialogs/trustchainwidget.ui
+  dialogs/subkeyswidget.ui
   newcertificatewizard/listwidget.ui
   newcertificatewizard/chooseprotocolpage.ui
   newcertificatewizard/enterdetailspage.ui

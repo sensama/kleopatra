@@ -317,7 +317,7 @@ public:
     explicit Private(AppearanceConfigWidget *qq)
         : Ui_AppearanceConfigWidget(),
           q(qq),
-          dnOrderWidget(0)
+          dnOrderWidget(nullptr)
     {
         setupUi(q);
 
@@ -399,7 +399,7 @@ void AppearanceConfigWidget::Private::slotSelectionChanged()
 QListWidgetItem *AppearanceConfigWidget::Private::selectedItem() const
 {
     const QList<QListWidgetItem *> items = categoriesLV->selectedItems();
-    return items.empty() ? 0 : items.front();
+    return items.empty() ? nullptr : items.front();
 }
 
 void AppearanceConfigWidget::Private::enableDisableActions(QListWidgetItem *item)

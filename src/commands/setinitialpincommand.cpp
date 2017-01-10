@@ -146,7 +146,7 @@ const SetInitialPinCommand::Private *SetInitialPinCommand::d_func() const
 #define d d_func()
 
 SetInitialPinCommand::Private::Private(SetInitialPinCommand *qq)
-    : Command::Private(qq, 0),
+    : Command::Private(qq, nullptr),
       dialog()
 {
 

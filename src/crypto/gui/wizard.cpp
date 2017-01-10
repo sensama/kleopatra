@@ -329,7 +329,7 @@ void Wizard::back()
 const WizardPage *Wizard::page(int id) const
 {
     if (id == InvalidPage) {
-        return 0;
+        return nullptr;
     }
 
     const std::map<int, WizardPage *>::const_iterator it = d->idToPage.find(id);
@@ -360,7 +360,7 @@ void Wizard::onBack(int currentId)
 WizardPage *Wizard::page(int id)
 {
     if (id == InvalidPage) {
-        return 0;
+        return nullptr;
     }
 
     const std::map<int, WizardPage *>::const_iterator it = d->idToPage.find(id);

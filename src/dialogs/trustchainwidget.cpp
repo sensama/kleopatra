@@ -69,7 +69,7 @@ void TrustChainWidget::setKey(const GpgME::Key &key)
     if (chain.empty()) {
         return;
     }
-    QTreeWidgetItem *last = 0;
+    QTreeWidgetItem *last = nullptr;
     if (!chain.back().isRoot()) {
         last = new QTreeWidgetItem(d->ui.treeWidget);
         last->setText(0, i18n("Issuer Certificate Not Found (%1)",

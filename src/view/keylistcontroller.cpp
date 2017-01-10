@@ -152,7 +152,7 @@ public:
             addView(view);
         }
         currentView = view;
-        q->enableDisableActions(view ? view->selectionModel() : 0);
+        q->enableDisableActions(view ? view->selectionModel() : nullptr);
     }
 
 private:
@@ -296,7 +296,7 @@ void KeyListController::setTabWidget(TabWidget *tabWidget)
 
     d->connectTabWidget();
 
-    d->slotCurrentViewChanged(tabWidget ? tabWidget->currentView() : 0);
+    d->slotCurrentViewChanged(tabWidget ? tabWidget->currentView() : nullptr);
 }
 
 void KeyListController::setParentWidget(QWidget *parent)
@@ -372,56 +372,56 @@ void KeyListController::createActions(KActionCollection *coll)
         // File menu
         {
             "file_new_certificate", i18n("New Certificate..."), QString(),
-            "view-certificate-add", 0, 0, QStringLiteral("Ctrl+N"), false, true
+            "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N"), false, true
         },
         {
             "file_export_certificates", i18n("Export Certificates..."), QString(),
-            "view-certificate-export", 0, 0, QStringLiteral("Ctrl+E"), false, true
+            "view-certificate-export", nullptr, nullptr, QStringLiteral("Ctrl+E"), false, true
         },
         {
             "file_export_certificates_to_server", i18n("Export Certificates to Server..."), QString(),
-            "view-certificate-export-server", 0, 0, QStringLiteral("Ctrl+Shift+E"), false, true
+            "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E"), false, true
         },
         {
             "file_export_secret_keys", i18n("Export Secret Keys..."), QString(),
-            "view-certificate-export-secret", 0, 0, QString(), false, true
+            "view-certificate-export-secret", nullptr, nullptr, QString(), false, true
         },
         {
             "file_export_paper_key", i18n("Print Secret Key..."), QString(),
-            "document-print", 0, 0, QString(), false, true
+            "document-print", nullptr, nullptr, QString(), false, true
         },
         {
             "file_lookup_certificates", i18n("Lookup Certificates on Server..."), QString(),
-            "edit-find", 0, 0, QStringLiteral("Shift+Ctrl+I"), false, true
+            "edit-find", nullptr, nullptr, QStringLiteral("Shift+Ctrl+I"), false, true
         },
         {
             "file_import_certificates", i18n("Import Certificates..."), QString(),
-            "view-certificate-import", 0, 0, QStringLiteral("Ctrl+I"), false, true
+            "view-certificate-import", nullptr, nullptr, QStringLiteral("Ctrl+I"), false, true
         },
         {
             "file_decrypt_verify_files", i18n("Decrypt/Verify Files..."), QString(),
-            "document-edit-decrypt-verify", 0, 0, QString(), false, true
+            "document-edit-decrypt-verify", nullptr, nullptr, QString(), false, true
         },
         {
             "file_sign_encrypt_files", i18n("Sign/Encrypt Files..."), QString(),
-            "document-edit-sign-encrypt", 0, 0, QString(), false, true
+            "document-edit-sign-encrypt", nullptr, nullptr, QString(), false, true
         },
         {
             "file_sign_encrypt_folder", i18n("Sign/Encrypt Folder..."), QString(),
-            0/*"folder-edit-sign-encrypt"*/, 0, 0, QString(), false, true
+            nullptr/*"folder-edit-sign-encrypt"*/, nullptr, nullptr, QString(), false, true
         },
         {
             "file_checksum_create_files", i18n("Create Checksum Files..."), QString(),
-            0/*"document-checksum-create"*/, 0, 0, QString(), false, true
+            nullptr/*"document-checksum-create"*/, nullptr, nullptr, QString(), false, true
         },
         {
             "file_checksum_verify_files", i18n("Verify Checksum Files..."), QString(),
-            0/*"document-checksum-verify"*/, 0, 0, QString(), false, true
+            nullptr/*"document-checksum-verify"*/, nullptr, nullptr, QString(), false, true
         },
         // View menu
         {
             "view_redisplay", i18n("Redisplay"), QString(),
-            "view-refresh", 0, 0, QStringLiteral("F5"), false, true
+            "view-refresh", nullptr, nullptr, QStringLiteral("F5"), false, true
         },
         {
             "view_stop_operations", i18n("Stop Operation"), QString(),
@@ -429,65 +429,65 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         {
             "view_certificate_details", i18n("Certificate Details"), QString(),
-            "dialog-information", 0, 0, QString(), false, true
+            "dialog-information", nullptr, nullptr, QString(), false, true
         },
         // Certificate menu
         {
             "certificates_delete", i18n("Delete"), QString()/*i18n("Delete selected certificates")*/,
-            "edit-delete", 0, 0, QStringLiteral("Delete"), false, true
+            "edit-delete", nullptr, nullptr, QStringLiteral("Delete"), false, true
         },
         {
             "certificates_certify_certificate", i18n("Certify Certificate..."), QString(),
-            "view-certificate-sign", 0, 0, QString(), false, true
+            "view-certificate-sign", nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_change_expiry", i18n("Change Expiry Date..."), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_change_owner_trust", i18n("Change Owner Trust..."), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_trust_root", i18n("Trust Root Certificate"), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_distrust_root", i18n("Distrust Root Certificate"), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_change_passphrase", i18n("Change Passphrase..."), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_add_userid", i18n("Add User-ID..."), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_dump_certificate", i18n("Dump Certificate"), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         // Tools menu
         {
             "tools_refresh_x509_certificates", i18n("Refresh X.509 Certificates"), QString(),
-            "view-refresh", 0, 0, QString(), false, true
+            "view-refresh", nullptr, nullptr, QString(), false, true
         },
         {
             "tools_refresh_openpgp_certificates", i18n("Refresh OpenPGP Certificates"), QString(),
-            "view-refresh", 0, 0, QString(), false, true
+            "view-refresh", nullptr, nullptr, QString(), false, true
         },
         {
             "crl_clear_crl_cache", i18n("Clear CRL Cache"), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "crl_dump_crl_cache", i18n("Dump CRL Cache"), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "crl_import_crl", i18n("Import CRL From File..."), QString(),
-            0, 0, 0, QString(), false, true
+            nullptr, nullptr, nullptr, QString(), false, true
         },
         // Window menu
         // (come from TabWidget)
@@ -725,17 +725,17 @@ Command::Restrictions find_root_restrictions(const std::vector<Key> &keys)
 Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const QItemSelectionModel *sm)
 {
     if (!sm) {
-        return 0;
+        return nullptr;
     }
 
     const KeyListModelInterface *const m = dynamic_cast<const KeyListModelInterface *>(sm->model());
     if (!m) {
-        return 0;
+        return nullptr;
     }
 
     const std::vector<Key> keys = m->keys(sm->selectedRows());
     if (keys.empty()) {
-        return 0;
+        return nullptr;
     }
 
     Command::Restrictions result = Command::NeedSelection;

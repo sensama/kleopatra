@@ -129,7 +129,7 @@ struct AssuanContext : AssuanContextBase {
         AssuanContextBase::reset(ctx, &assuan_deinit_server);
     }
 #else
-    void reset(assuan_context_t ctx = 0)
+    void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &my_assuan_release);
     }
@@ -214,7 +214,7 @@ static std::map<std::string, std::string> parse_commandline(const char *line)
     return result;
 }
 
-static WId wid_from_string(const QString &winIdStr, bool *ok = 0)
+static WId wid_from_string(const QString &winIdStr, bool *ok = nullptr)
 {
     return static_cast<WId>(winIdStr.toULongLong(ok, 16));
 }
@@ -926,7 +926,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
     if (const gpg_error_t err = assuan_init_socket_server_ext(&naked_ctx, fd, INIT_SOCKET_FLAGS))
 #else
     {
-        assuan_context_t naked_ctx = 0;
+        assuan_context_t naked_ctx = nullptr;
         if (const gpg_error_t err = assuan_new(&naked_ctx)) {
             throw Exception(err, "assuan_new");
         }
@@ -1100,7 +1100,7 @@ class InquiryHandler : public QObject
 public:
 
 #if defined(HAVE_ASSUAN2) || defined(HAVE_ASSUAN_INQUIRE_EXT)
-    explicit InquiryHandler(const char *keyword_, QObject *p = 0)
+    explicit InquiryHandler(const char *keyword_, QObject *p = nullptr)
         : QObject(p),
 # if !defined(HAVE_ASSUAN2) && !defined(HAVE_NEW_STYLE_ASSUAN_INQUIRE_EXT)
           buffer(0),
@@ -1387,7 +1387,7 @@ void  AssuanCommand::sendData(const QByteArray &data, bool moreToCome)
         throw Exception(err, i18n("Cannot send data"));
     }
     if (!moreToCome)
-        if (const gpg_error_t err = assuan_send_data(d->ctx.get(), 0, 0)) {   // flush
+        if (const gpg_error_t err = assuan_send_data(d->ctx.get(), nullptr, 0)) {   // flush
             throw Exception(err, i18n("Cannot flush data"));
         }
 }

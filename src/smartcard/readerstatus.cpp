@@ -432,9 +432,9 @@ struct Transaction {
     GpgME::Error error;
 };
 
-static const Transaction checkTransaction  = { "__check__",  0, 0, Error() };
-static const Transaction updateTransaction = { "__update__", 0, 0, Error() };
-static const Transaction quitTransaction   = { "__quit__",   0, 0, Error() };
+static const Transaction checkTransaction  = { "__check__",  nullptr, nullptr, Error() };
+static const Transaction updateTransaction = { "__update__", nullptr, nullptr, Error() };
+static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr, Error() };
 
 namespace
 {
@@ -559,7 +559,7 @@ private:
         {
 
             QByteArray command;
-            bool nullSlot;
+            bool nullSlot = false;
             std::list<Transaction> item;
             std::vector<CardInfo> oldCardInfos;
 

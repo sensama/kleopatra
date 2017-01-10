@@ -62,7 +62,7 @@
 #include <KSharedConfig>
 
 KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
-    : KXmlGuiWindow(parent, Qt::Window), mConfig(0)
+    : KXmlGuiWindow(parent, Qt::Window), mConfig(nullptr)
 {
     createActions();
     createGUI();
@@ -188,7 +188,7 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
     }
     cconfig->sync(true);
     if (logclients.isEmpty()) {
-        KMessageBox::sorry(0, i18n("There are no components available that support logging."));
+        KMessageBox::sorry(nullptr, i18n("There are no components available that support logging."));
     }
 }
 

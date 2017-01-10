@@ -211,16 +211,16 @@ static const struct {
         ClearCMS
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
     //      if !haveCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
     // if !havePGP
@@ -233,16 +233,16 @@ static const struct {
         Failure
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
     //     if !haveCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
     //  if canPGP
@@ -254,16 +254,16 @@ static const struct {
         Failure
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
     //     if !haveCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // cantCMS
     {
-        0,
+        nullptr,
         Nothing
     }, // canCMS
 };
@@ -422,7 +422,7 @@ void DeleteCertificatesCommand::doCancel()
 void DeleteCertificatesCommand::Private::pgpDeleteResult(const Error &err)
 {
     pgpError = err;
-    pgpJob = 0;
+    pgpJob = nullptr;
     if (!cmsJob) {
         showErrorsAndFinish();
     }
@@ -431,7 +431,7 @@ void DeleteCertificatesCommand::Private::pgpDeleteResult(const Error &err)
 void DeleteCertificatesCommand::Private::cmsDeleteResult(const Error &err)
 {
     cmsError = err;
-    cmsJob = 0;
+    cmsJob = nullptr;
     if (!pgpJob) {
         showErrorsAndFinish();
     }

@@ -257,7 +257,7 @@ void KDPipeIODevice::setDebugLevel(KDPipeIODevice::DebugLevel level)
 
 KDPipeIODevice::Private::Private(KDPipeIODevice *qq) : QObject(qq), q(qq),
     fd(-1),
-    handle(0),
+    handle(nullptr),
     reader(nullptr),
     writer(nullptr),
     triedToStartReader(false),
@@ -306,7 +306,7 @@ bool KDPipeIODevice::open(int fd, OpenMode mode)
 #ifdef Q_OS_WIN32
     return d->doOpen(fd, (HANDLE)_get_osfhandle(fd), mode);
 #else
-    return d->doOpen(fd, 0, mode);
+    return d->doOpen(fd, nullptr, mode);
 #endif
 }
 
@@ -777,7 +777,7 @@ void KDPipeIODevice::close()
 
     setOpenMode(NotOpen);
     d->fd = -1;
-    d->handle = 0;
+    d->handle = nullptr;
 }
 
 void Reader::run()

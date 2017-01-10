@@ -76,13 +76,13 @@ public:
 private:
     void reload()
     {
-        Command *const cmd = new ReloadKeysCommand(0);
+        Command *const cmd = new ReloadKeysCommand(nullptr);
         cmd->setParentWidget(q);
         cmd->start();
     }
     void create()
     {
-        NewCertificateCommand *cmd = new NewCertificateCommand(0);
+        NewCertificateCommand *cmd = new NewCertificateCommand(nullptr);
         cmd->setParentWidget(q);
         if ((options & AnyFormat) != AnyFormat) {
             cmd->setProtocol((options & OpenPGPFormat) ? OpenPGP : CMS);
@@ -91,7 +91,7 @@ private:
     }
     void lookup()
     {
-        Command *const cmd = new LookupCertificatesCommand(0);
+        Command *const cmd = new LookupCertificatesCommand(nullptr);
         cmd->setParentWidget(q);
         cmd->start();
     }

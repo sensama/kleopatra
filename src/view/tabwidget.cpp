@@ -192,7 +192,7 @@ static const char SORT_DESCENDING[] = "sort-descending";
 Page::Page(const KConfigGroup &group, QWidget *parent)
     : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY),
                   KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)),
-                  0, parent),
+                  nullptr, parent),
       m_title(group.readEntry(TITLE_ENTRY)),
       m_toolTip(),
       m_isTemporary(false),
@@ -503,7 +503,7 @@ void TabWidget::Private::slotContextMenu(const QPoint &p)
 void TabWidget::Private::currentIndexChanged(int index)
 {
     const Page *const page = this->page(index);
-    Q_EMIT q->currentViewChanged(page ? page->view() : 0);
+    Q_EMIT q->currentViewChanged(page ? page->view() : nullptr);
     Q_EMIT q->keyFilterChanged(page ? page->keyFilter() : std::shared_ptr<KeyFilter>());
     Q_EMIT q->stringFilterChanged(page ? page->stringFilter() : QString());
     enableDisableCurrentPageActions();
@@ -798,23 +798,23 @@ void TabWidget::createActions(KActionCollection *coll)
         }, // ### CTRL-W when available
         {
             "window_move_tab_left", i18n("Move Tab Left"), i18n("Move this tab left"),
-            0, this, SLOT(slotMoveCurrentTabLeft()), QStringLiteral("CTRL+SHIFT+LEFT"), false, false
+            nullptr, this, SLOT(slotMoveCurrentTabLeft()), QStringLiteral("CTRL+SHIFT+LEFT"), false, false
         },
         {
             "window_move_tab_right", i18n("Move Tab Right"), i18n("Move this tab right"),
-            0, this, SLOT(slotMoveCurrentTabRight()), QStringLiteral("CTRL+SHIFT+RIGHT"), false, false
+            nullptr, this, SLOT(slotMoveCurrentTabRight()), QStringLiteral("CTRL+SHIFT+RIGHT"), false, false
         },
         {
             "window_view_hierarchical", i18n("Hierarchical Certificate List"), QString(),
-            0, this, SLOT(slotToggleHierarchicalView(bool)), QString(), true, false
+            nullptr, this, SLOT(slotToggleHierarchicalView(bool)), QString(), true, false
         },
         {
             "window_expand_all", i18n("Expand All"), QString(),
-            0, this, SLOT(slotExpandAll()), QStringLiteral("CTRL+."), false, false
+            nullptr, this, SLOT(slotExpandAll()), QStringLiteral("CTRL+."), false, false
         },
         {
             "window_collapse_all", i18n("Collapse All"), QString(),
-            0, this, SLOT(slotCollapseAll()), QStringLiteral("CTRL+,"), false, false
+            nullptr, this, SLOT(slotCollapseAll()), QStringLiteral("CTRL+,"), false, false
         },
     };
 
@@ -827,7 +827,7 @@ void TabWidget::createActions(KActionCollection *coll)
         assert(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
         ad.name = ad.name + strlen("window_");
         ad.tooltip.clear();
-        ad.receiver = 0;
+        ad.receiver = nullptr;
         ad.shortcut.clear();
         d->otherPageActions[i] = make_action_from_data(ad, coll);
     }
@@ -844,7 +844,7 @@ QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, c
 
 QAbstractItemView *TabWidget::addView(const KConfigGroup &group)
 {
-    return d->addView(new Page(group), 0);
+    return d->addView(new Page(group), nullptr);
 }
 
 QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)

@@ -59,42 +59,42 @@ struct about_data {
 };
 
 static const about_data authors[] = {
-    { "Andre Heinecke", I18N_NOOP("Current Maintainer"), "aheinecke@gnupg.org", 0 },
-    { "Marc Mutz", I18N_NOOP("Former Maintainer"), "mutz@kde.org", 0 },
-    { "Steffen Hansen", I18N_NOOP("Former Maintainer"), "hansen@kde.org", 0 },
-    { "Matthias Kalle Dalheimer", I18N_NOOP("Original Author"), "kalle@kde.org", 0 },
+    { "Andre Heinecke", I18N_NOOP("Current Maintainer"), "aheinecke@gnupg.org", nullptr },
+    { "Marc Mutz", I18N_NOOP("Former Maintainer"), "mutz@kde.org", nullptr },
+    { "Steffen Hansen", I18N_NOOP("Former Maintainer"), "hansen@kde.org", nullptr },
+    { "Matthias Kalle Dalheimer", I18N_NOOP("Original Author"), "kalle@kde.org", nullptr },
 };
 
 static const about_data credits[] = {
     {
         I18N_NOOP("David Faure"),
         I18N_NOOP("Backend configuration framework, KIO integration"),
-        "faure@kde.org", 0
+        "faure@kde.org", nullptr
     },
     {
         I18N_NOOP("Michel Boyer de la Giroday"),
         I18N_NOOP("Key-state dependent colors and fonts in the certificates list"),
-        "michel@klaralvdalens-datakonsult.se", 0
+        "michel@klaralvdalens-datakonsult.se", nullptr
     },
     {
         I18N_NOOP("Thomas Moenicke"),
         I18N_NOOP("Artwork"),
-        "tm@php-qt.org", 0
+        "tm@php-qt.org", nullptr
     },
     {
         I18N_NOOP("Frank Osterfeld"),
         I18N_NOOP("Resident gpgme/win wrangler, UI Server commands and dialogs"),
-        "osterfeld@kde.org", 0
+        "osterfeld@kde.org", nullptr
     },
     {
         I18N_NOOP("Karl-Heinz Zimmer"),
         I18N_NOOP("DN display ordering support, infrastructure"),
-        "khz@kde.org", 0
+        "khz@kde.org", nullptr
     },
     {
         I18N_NOOP("Laurent Montel"),
         I18N_NOOP("Qt5 port, general code maintenance"),
-        "montel@kde.org", 0
+        "montel@kde.org", nullptr
     },
 };
 

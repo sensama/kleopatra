@@ -319,7 +319,7 @@ void MainWindow::Private::setupActions()
         // Settings menu
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
-            0, q, SLOT(selfTest()), QString(), false, true
+            nullptr, q, SLOT(selfTest()), QString(), false, true
         },
         // Help menu
 #ifdef Q_OS_WIN
@@ -511,13 +511,13 @@ void MainWindow::dropEvent(QDropEvent *e)
     QMenu menu;
 
     QAction *const signEncrypt = menu.addAction(i18n("Sign/Encrypt..."));
-    QAction *const decryptVerify = mayBeAnyMessageType(classification) ? menu.addAction(i18n("Decrypt/Verify...")) : 0;
+    QAction *const decryptVerify = mayBeAnyMessageType(classification) ? menu.addAction(i18n("Decrypt/Verify...")) : nullptr;
     if (signEncrypt || decryptVerify) {
         menu.addSeparator();
     }
 
-    QAction *const importCerts = mayBeAnyCertStoreType(classification) ? menu.addAction(i18n("Import Certificates")) : 0;
-    QAction *const importCRLs  = mayBeCertificateRevocationList(classification) ? menu.addAction(i18n("Import CRLs")) : 0;
+    QAction *const importCerts = mayBeAnyCertStoreType(classification) ? menu.addAction(i18n("Import Certificates")) : nullptr;
+    QAction *const importCRLs  = mayBeCertificateRevocationList(classification) ? menu.addAction(i18n("Import CRLs")) : nullptr;
     if (importCerts || importCRLs) {
         menu.addSeparator();
     }

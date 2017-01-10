@@ -276,7 +276,7 @@ void SelfTestCommand::doCancel()
     if (d->dialog) {
         d->dialog->close();
     }
-    d->dialog = 0;
+    d->dialog = nullptr;
 }
 
 #undef d

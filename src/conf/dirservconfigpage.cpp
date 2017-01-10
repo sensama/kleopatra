@@ -381,13 +381,13 @@ QGpgME::CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const
         if (showError) {
             KMessageBox::error(this, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2/%3", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName)));
         }
-        return 0;
+        return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != isList) {
         if (showError) {
             KMessageBox::error(this, i18n("Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName), entry->argType(), entry->isList()));
         }
-        return 0;
+        return nullptr;
     }
     return entry;
 }

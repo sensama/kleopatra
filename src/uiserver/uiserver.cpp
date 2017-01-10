@@ -84,7 +84,7 @@ UiServer::Private::Private(UiServer *qq)
 
 bool UiServer::Private::isStaleAssuanSocket(const QString &fileName)
 {
-    assuan_context_t ctx = 0;
+    assuan_context_t ctx = nullptr;
 #ifndef HAVE_ASSUAN2
     const bool error = assuan_socket_connect_ext(&ctx, QFile::encodeName(fileName).constData(), -1, 0);
 #else

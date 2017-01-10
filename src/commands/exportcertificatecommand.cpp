@@ -123,7 +123,7 @@ ExportCertificateCommand::ExportCertificateCommand(QAbstractItemView *v, KeyList
 }
 
 ExportCertificateCommand::ExportCertificateCommand(const Key &key)
-    : Command(key, new Private(this, 0))
+    : Command(key, new Private(this, nullptr))
 {
 
 }

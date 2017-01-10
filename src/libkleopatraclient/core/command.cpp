@@ -122,7 +122,7 @@ Command::Command(Private *pp, QObject *p)
 
 Command::~Command()
 {
-    delete d; d = 0;
+    delete d; d = nullptr;
 }
 
 void Command::Private::init()
@@ -400,7 +400,7 @@ struct AssuanClientContext : AssuanContextBase {
     }
 #else
     explicit AssuanClientContext(assuan_context_t ctx) : AssuanContextBase(ctx, &my_assuan_release) {}
-    void reset(assuan_context_t ctx = 0)
+    void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &my_assuan_release);
     }
@@ -416,12 +416,12 @@ typedef gpg_error_t assuan_error_t;
 static assuan_error_t
 my_assuan_transact(const AssuanClientContext &ctx,
                    const char *command,
-                   assuan_error_t (*data_cb)(void *, const void *, size_t) = 0,
-                   void *data_cb_arg = 0,
-                   assuan_error_t (*inquire_cb)(void *, const char *) = 0,
-                   void *inquire_cb_arg = 0,
-                   assuan_error_t (*status_cb)(void *, const char *) = 0,
-                   void *status_cb_arg = 0)
+                   assuan_error_t (*data_cb)(void *, const void *, size_t) = nullptr,
+                   void *data_cb_arg = nullptr,
+                   assuan_error_t (*inquire_cb)(void *, const char *) = nullptr,
+                   void *inquire_cb_arg = nullptr,
+                   assuan_error_t (*status_cb)(void *, const char *) = nullptr,
+                   void *status_cb_arg = nullptr)
 {
     return assuan_transact(ctx.get(), command, data_cb, data_cb_arg, inquire_cb, inquire_cb_arg, status_cb, status_cb_arg);
 }
@@ -594,7 +594,7 @@ void Command::Private::run()
     err = assuan_socket_connect(&naked_ctx, QFile::encodeName(socketName).constData(), -1);
 #else
     {
-        assuan_context_t naked_ctx = 0;
+        assuan_context_t naked_ctx = nullptr;
         err = assuan_new(&naked_ctx);
         if (err) {
             out.errorString = i18n("Could not allocate resources to connect to Kleopatra UI server at %1: %2"

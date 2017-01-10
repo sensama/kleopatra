@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     int rc = app.exec();
 
     if (cmd.error() && !cmd.wasCanceled())
-        QMessageBox::information(0, QStringLiteral("Kleopatra Error"),
+        QMessageBox::information(nullptr, QStringLiteral("Kleopatra Error"),
                                  QStringLiteral("There was an error while connecting to Kleopatra: %1")
                                  .arg(cmd.errorString()));
 

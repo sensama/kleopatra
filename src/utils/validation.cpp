@@ -78,7 +78,7 @@ QValidator *Validation::email(QObject *parent)
 
 QValidator *Validation::email(const QRegExp &addRX, QObject *parent)
 {
-    return new MultiValidator(email(), new QRegExpValidator(addRX, 0), parent);
+    return new MultiValidator(email(), new QRegExpValidator(addRX, nullptr), parent);
 }
 
 QValidator *Validation::pgpName(QObject *parent)
@@ -88,7 +88,7 @@ QValidator *Validation::pgpName(QObject *parent)
 
 QValidator *Validation::pgpName(const QRegExp &addRX, QObject *parent)
 {
-    return new MultiValidator(pgpName(), new QRegExpValidator(addRX, 0), parent);
+    return new MultiValidator(pgpName(), new QRegExpValidator(addRX, nullptr), parent);
 }
 
 QValidator *Validation::pgpComment(QObject *parent)
@@ -98,6 +98,6 @@ QValidator *Validation::pgpComment(QObject *parent)
 
 QValidator *Validation::pgpComment(const QRegExp &addRX, QObject *parent)
 {
-    return new MultiValidator(pgpComment(), new QRegExpValidator(addRX, 0), parent);
+    return new MultiValidator(pgpComment(), new QRegExpValidator(addRX, nullptr), parent);
 }
 

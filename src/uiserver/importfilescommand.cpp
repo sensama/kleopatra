@@ -57,7 +57,7 @@ class ImportFilesCommand::Private
 public:
     Private(ImportFilesCommand *qq) :
         q(qq),
-        command(0)
+        command(nullptr)
     {
         KDAB_SET_OBJECT_NAME(command);
         command.setAutoDelete(false);

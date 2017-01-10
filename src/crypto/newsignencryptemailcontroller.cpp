@@ -552,11 +552,11 @@ void NewSignEncryptEMailController::doTaskDone(const Task *task, const std::shar
     if (result && result->hasError()) {
         QPointer<QObject> that = this;
         if (result->details().isEmpty())
-            KMessageBox::        sorry(0,
+            KMessageBox::        sorry(nullptr,
                                        result->overview(),
                                        i18nc("@title:window", "Error"));
         else
-            KMessageBox::detailedSorry(0,
+            KMessageBox::detailedSorry(nullptr,
                                        result->overview(),
                                        result->details(),
                                        i18nc("@title:window", "Error"));

@@ -127,7 +127,7 @@ ChangeExpiryCommand::ChangeExpiryCommand(QAbstractItemView *v, KeyListController
 }
 
 ChangeExpiryCommand::ChangeExpiryCommand(const GpgME::Key &key)
-    : Command(key, new Private(this, 0))
+    : Command(key, new Private(this, nullptr))
 {
     d->init();
 }

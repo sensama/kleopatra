@@ -317,7 +317,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
         if (mayBeOpaqueSignature(classification) || mayBeCipherText(classification) || mayBeDetachedSignature(classification)) {
 
             DecryptVerifyOperationWidget *const op = m_wizard->operationWidget(counter++);
-            kleo_assert(op != 0);
+            kleo_assert(op != nullptr);
 
             op->setArchiveDefinitions(archiveDefinitions);
 
@@ -353,7 +353,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
                 // ### FIXME once we have a proper heuristic for this, this should move into
                 // classify() and/or classifyContent()
                 DecryptVerifyOperationWidget *const op = m_wizard->operationWidget(counter++);
-                kleo_assert(op != 0);
+                kleo_assert(op != nullptr);
                 op->setArchiveDefinitions(archiveDefinitions);
                 op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, q->pick_archive_definition(proto, archiveDefinitions, fname));
                 op->setInputFileName(fname);
@@ -362,7 +362,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
 
                 Q_FOREACH (const QString &s, signatures) {
                     DecryptVerifyOperationWidget *op = m_wizard->operationWidget(counter++);
-                    kleo_assert(op != 0);
+                    kleo_assert(op != nullptr);
 
                     op->setArchiveDefinitions(archiveDefinitions);
                     op->setMode(DecryptVerifyOperationWidget::VerifyDetachedWithSignedData);

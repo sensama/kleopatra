@@ -334,7 +334,7 @@ KeysComboBox *CertificateSelectionLine::comboBox(Protocol proto) const
     if (proto == CMS) {
         return mCmsCB;
     }
-    return 0;
+    return nullptr;
 }
 
 #include "certificateselectionline.moc"

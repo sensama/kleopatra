@@ -125,20 +125,20 @@ CertifyCertificateCommand::CertifyCertificateCommand(QAbstractItemView *v, KeyLi
 }
 
 CertifyCertificateCommand::CertifyCertificateCommand(const Key &key)
-    : Command(key, new Private(this, 0))
+    : Command(key, new Private(this, nullptr))
 {
     d->init();
 }
 
 CertifyCertificateCommand::CertifyCertificateCommand(const UserID &uid)
-    : Command(uid.parent(), new Private(this, 0))
+    : Command(uid.parent(), new Private(this, nullptr))
 {
     std::vector<UserID>(1, uid).swap(d->uids);
     d->init();
 }
 
 CertifyCertificateCommand::CertifyCertificateCommand(const std::vector<UserID> &uids)
-    : Command(uids.empty() ? Key() : uids.front().parent(), new Private(this, 0))
+    : Command(uids.empty() ? Key() : uids.front().parent(), new Private(this, nullptr))
 {
     d->uids = uids;
     d->init();

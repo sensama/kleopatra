@@ -49,7 +49,7 @@ using namespace Kleo::Commands;
 using namespace GpgME;
 
 LearnCardKeysCommand::LearnCardKeysCommand(GpgME::Protocol proto)
-    : GnuPGProcessCommand(0), m_protocol(proto)
+    : GnuPGProcessCommand(nullptr), m_protocol(proto)
 {
     setIgnoresSuccessOrFailure(true);
     setShowsOutputWindow(true);

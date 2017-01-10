@@ -246,7 +246,7 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments,
     }
 
     if (!err.isEmpty()) {
-        KMessageBox::sorry(NULL, err.toHtmlEscaped(), i18n("Failed to execute command"));
+        KMessageBox::sorry(nullptr, err.toHtmlEscaped(), i18n("Failed to execute command"));
         Q_EMIT setExitValue(1);
         return;
     }
@@ -311,7 +311,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         if (needle.isEmpty()) {
             return i18n("No search string specified for --search");
         }
-        LookupCertificatesCommand *const cmd = new LookupCertificatesCommand(needle, 0);
+        LookupCertificatesCommand *const cmd = new LookupCertificatesCommand(needle, nullptr);
         cmd->setParentWId(parentId);
         cmd->start();
         return QString();
@@ -516,7 +516,7 @@ void KleopatraApplication::importCertificatesFromFile(const QStringList &files, 
 
 void KleopatraApplication::encryptFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, 0);
+    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
     cmd->setEncryptionPolicy(Force);
     cmd->setSigningPolicy(Allow);
     if (proto != GpgME::UnknownProtocol) {
@@ -527,7 +527,7 @@ void KleopatraApplication::encryptFiles(const QStringList &files, GpgME::Protoco
 
 void KleopatraApplication::signFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, 0);
+    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
     cmd->setSigningPolicy(Force);
     cmd->setEncryptionPolicy(Deny);
     if (proto != GpgME::UnknownProtocol) {
@@ -538,7 +538,7 @@ void KleopatraApplication::signFiles(const QStringList &files, GpgME::Protocol p
 
 void KleopatraApplication::signEncryptFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, 0);
+    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
     if (proto != GpgME::UnknownProtocol) {
         cmd->setProtocol(proto);
     }
@@ -547,21 +547,21 @@ void KleopatraApplication::signEncryptFiles(const QStringList &files, GpgME::Pro
 
 void KleopatraApplication::decryptFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, 0);
+    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->setOperation(Decrypt);
     cmd->start();
 }
 
 void KleopatraApplication::verifyFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, 0);
+    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->setOperation(Verify);
     cmd->start();
 }
 
 void KleopatraApplication::decryptVerifyFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, 0);
+    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->start();
 }
 
@@ -578,11 +578,11 @@ void KleopatraApplication::checksumFiles(const QStringList &files, GpgME::Protoc
     }
 
     if (!verifyFiles.isEmpty()) {
-        auto *const cmd = new ChecksumVerifyFilesCommand(verifyFiles, 0);
+        auto *const cmd = new ChecksumVerifyFilesCommand(verifyFiles, nullptr);
         cmd->start();
     }
     if (!createFiles.isEmpty()) {
-        auto *const cmd = new ChecksumCreateFilesCommand(createFiles, 0);
+        auto *const cmd = new ChecksumCreateFilesCommand(createFiles, nullptr);
         cmd->start();
     }
 }

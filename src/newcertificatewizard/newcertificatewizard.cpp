@@ -243,7 +243,7 @@ protected:
 
     QAbstractButton *button(QWizard::WizardButton button) const
     {
-        return QWizardPage::wizard() ? QWizardPage::wizard()->button(button) : 0;
+        return QWizardPage::wizard() ? QWizardPage::wizard()->button(button) : nullptr;
     }
 
     bool isButtonVisible(QWizard::WizardButton button) const
@@ -833,7 +833,7 @@ private Q_SLOTS:
             }
         }
         setField(QStringLiteral("fingerprint"), QString::fromLatin1(result.fingerprint()));
-        job = 0;
+        job = nullptr;
         Q_EMIT completeChanged();
         QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);
     }
@@ -992,7 +992,7 @@ private Q_SLOTS:
         // ### better error handling?
         const QString fileName = exportCertificateCommand->openPGPFileName();
         qCDebug(KLEOPATRA_LOG) << "fileName" << fileName;
-        exportCertificateCommand = 0;
+        exportCertificateCommand = nullptr;
         if (fileName.isEmpty()) {
             return;
         }
@@ -1384,7 +1384,7 @@ void EnterDetailsPage::updateForm()
 
         int row;
         bool known = true;
-        QValidator *validator = 0;
+        QValidator *validator = nullptr;
         if (attr == QLatin1String("EMAIL")) {
             row = row_index_of(ui.emailLE, ui.gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(QRegExp(regex));
@@ -1410,7 +1410,7 @@ void EnterDetailsPage::updateForm()
             row = add_row(ui.gridLayout, &dynamicWidgets);
         }
         if (!validator && !regex.isEmpty()) {
-            validator = new QRegExpValidator(QRegExp(regex), 0);
+            validator = new QRegExpValidator(QRegExp(regex), nullptr);
         }
 
         QLineEdit *le = adjust_row(ui.gridLayout, row, label, preset, validator, readonly, required);
@@ -1814,7 +1814,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         }
     } else {
         if (ui.tabWidget->indexOf(ui.personalTab) == -1) {
-            ui.tabWidget->addTab(ui.personalTab, tr2i18n("Personal Details", 0));
+            ui.tabWidget->addTab(ui.personalTab, tr2i18n("Personal Details", nullptr));
         }
     }
     ui.uidGB->setVisible(protocol == OpenPGP);

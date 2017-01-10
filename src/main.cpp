@@ -89,7 +89,7 @@
 
 static bool selfCheck()
 {
-    Kleo::Commands::SelfTestCommand cmd(0);
+    Kleo::Commands::SelfTestCommand cmd(nullptr);
     cmd.setAutoDelete(false);
     cmd.setAutomaticMode(true);
     QEventLoop loop;
@@ -105,7 +105,7 @@ static bool selfCheck()
 
 static void fillKeyCache(Kleo::UiServer *server)
 {
-    Kleo::ReloadKeysCommand *cmd = new Kleo::ReloadKeysCommand(0);
+    Kleo::ReloadKeysCommand *cmd = new Kleo::ReloadKeysCommand(nullptr);
     QObject::connect(cmd, SIGNAL(finished()), server, SLOT(enableCryptoCommands()));
     cmd->start();
 }
@@ -161,7 +161,7 @@ int main(int argc, char **argv)
         QThreadPool::globalInstance()->setMaxThreadCount(qMax(2U, threads));
     }
     if (gpgmeInitError) {
-        KMessageBox::sorry(0, xi18nc("@info",
+        KMessageBox::sorry(nullptr, xi18nc("@info",
                                      "<para>The version of the <application>GpgME</application> library you are running against "
                                      "is older than the one that the <application>GpgME++</application> library was built against.</para>"
                                      "<para><application>Kleopatra</application> will not function in this setting.</para>"

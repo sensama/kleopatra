@@ -210,7 +210,7 @@ private:
                 const QString regex = config.readEntry(attr + QLatin1String("_regex"));
 
                 int row;
-                QValidator *validator = 0;
+                QValidator *validator = nullptr;
                 if (attr == QLatin1String("EMAIL")) {
                     validator = regex.isEmpty() ? Validation::email() : Validation::email(QRegExp(regex));
                     row = row_index_of(emailLE, gridLayout);

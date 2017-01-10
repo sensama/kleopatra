@@ -197,7 +197,7 @@ void DecryptVerifyOperationWidget::setMode(Mode mode, const std::shared_ptr<Arch
     d->ui.inputLB.setBuddy(inputWidget);
     d->ui.signedDataLB.setBuddy(signedDataWidget);
 
-    d->ui.archiveCB.setChecked(ad.get() != 0);
+    d->ui.archiveCB.setChecked(ad.get() != nullptr);
     for (int i = 0, end = d->ui.archivesCB.count(); i != end; ++i)
         if (ad == d->ui.archivesCB.itemData(i).value< std::shared_ptr<ArchiveDefinition> >()) {
             d->ui.archivesCB.setCurrentIndex(i);

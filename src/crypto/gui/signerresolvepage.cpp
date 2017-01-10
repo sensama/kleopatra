@@ -197,13 +197,13 @@ void SigningProtocolSelectionWidget::setExclusive(bool exclusive)
 QCheckBox *SigningProtocolSelectionWidget::button(Protocol p) const
 {
     const std::map<Protocol, QCheckBox *>::const_iterator it = m_buttons.find(p);
-    return it == m_buttons.end() ? 0 : it->second;
+    return it == m_buttons.end() ? nullptr : it->second;
 }
 
 QLabel *ReadOnlyProtocolSelectionWidget::label(Protocol p) const
 {
     const std::map<Protocol, QLabel *>::const_iterator it = m_labels.find(p);
-    return it == m_labels.end() ? 0 : it->second;
+    return it == m_labels.end() ? nullptr : it->second;
 }
 
 bool SigningProtocolSelectionWidget::isExclusive() const

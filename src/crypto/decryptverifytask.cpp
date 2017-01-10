@@ -880,7 +880,7 @@ class DecryptVerifyTask::Private
 {
     DecryptVerifyTask *const q;
 public:
-    explicit Private(DecryptVerifyTask *qq) : q(qq), m_backend(0), m_protocol(UnknownProtocol)  {}
+    explicit Private(DecryptVerifyTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
 
     void slotResult(const DecryptionResult &, const VerificationResult &, const QByteArray &);
 
@@ -1033,7 +1033,7 @@ class DecryptTask::Private
 {
     DecryptTask *const q;
 public:
-    explicit Private(DecryptTask *qq) : q(qq), m_backend(0), m_protocol(UnknownProtocol)  {}
+    explicit Private(DecryptTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
 
     void slotResult(const DecryptionResult &, const QByteArray &);
 
@@ -1188,7 +1188,7 @@ class VerifyOpaqueTask::Private
 {
     VerifyOpaqueTask *const q;
 public:
-    explicit Private(VerifyOpaqueTask *qq) : q(qq), m_backend(0), m_protocol(UnknownProtocol)  {}
+    explicit Private(VerifyOpaqueTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
 
     void slotResult(const VerificationResult &, const QByteArray &);
 
@@ -1342,7 +1342,7 @@ class VerifyDetachedTask::Private
 {
     VerifyDetachedTask *const q;
 public:
-    explicit Private(VerifyDetachedTask *qq) : q(qq), m_backend(0), m_protocol(UnknownProtocol) {}
+    explicit Private(VerifyDetachedTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol) {}
 
     void slotResult(const VerificationResult &);
 

@@ -127,7 +127,7 @@ SignEMailTask::Private::Private(SignEMailTask *qq)
       detached(false),
       clearsign(false),
       micAlg(),
-      job(0)
+      job(nullptr)
 {
 
 }

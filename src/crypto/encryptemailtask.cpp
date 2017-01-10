@@ -116,7 +116,7 @@ EncryptEMailTask::Private::Private(EncryptEMailTask *qq)
     : q(qq),
       input(),
       output(),
-      job(0)
+      job(nullptr)
 {
 
 }

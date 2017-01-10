@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
         usage("Command expected, but only options found");
     }
 
-    assuan_context_t ctx = 0;
+    assuan_context_t ctx = nullptr;
 
 #ifndef HAVE_ASSUAN2
     if (const gpg_error_t err = assuan_socket_connect_ext(&ctx, socket, -1, ASSUAN_CONNECT_FLAGS)) {
@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if (const gpg_error_t err = assuan_transact(ctx, "INPUT FD", 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, "INPUT FD", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, "INPUT FD").what());
             return 1;
         }
@@ -249,7 +249,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if (const gpg_error_t err = assuan_transact(ctx, "MESSAGE FD", 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, "MESSAGE FD", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, "MESSAGE FD").what());
             return 1;
         }
@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if (const gpg_error_t err = assuan_transact(ctx, "OUTPUT FD", 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, "OUTPUT FD", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, "OUTPUT FD").what());
             return 1;
         }
@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
         char buffer[1024];
         sprintf(buffer, "INPUT FILE=%s", hexencode(*it).c_str());
 
-        if (const gpg_error_t err = assuan_transact(ctx, buffer, 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, buffer, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, buffer).what());
             return 1;
         }
@@ -282,7 +282,7 @@ int main(int argc, char *argv[])
         char buffer[1024];
         sprintf(buffer, "MESSAGE FILE=%s", hexencode(*it).c_str());
 
-        if (const gpg_error_t err = assuan_transact(ctx, buffer, 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, buffer, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, buffer).what());
             return 1;
         }
@@ -292,7 +292,7 @@ int main(int argc, char *argv[])
         char buffer[1024];
         sprintf(buffer, "OUTPUT FILE=%s", hexencode(*it).c_str());
 
-        if (const gpg_error_t err = assuan_transact(ctx, buffer, 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, buffer, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, buffer).what());
             return 1;
         }
@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
     Q_FOREACH (const char *opt, options) {
         std::string line = "OPTION ";
         line += opt;
-        if (const gpg_error_t err = assuan_transact(ctx, line.c_str(), 0, 0, 0, 0, 0, 0)) {
+        if (const gpg_error_t err = assuan_transact(ctx, line.c_str(), nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {
             qDebug("%s", Exception(err, line).what());
             return 1;
         }

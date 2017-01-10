@@ -131,7 +131,7 @@ CertificateRequester::CertificateRequester(QWidget *p, Qt::WindowFlags f)
 
 CertificateRequester::~CertificateRequester()
 {
-    delete d; d = 0;
+    delete d; d = nullptr;
 }
 
 void CertificateRequester::setMultipleCertificatesAllowed(bool allow)

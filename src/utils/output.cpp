@@ -422,7 +422,7 @@ PipeOutput::PipeOutput(assuan_fd_t fd)
 
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
 {
-    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(0, forceOverwrite ? OverwritePolicy::Allow : OverwritePolicy::Deny)));
+    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(nullptr, forceOverwrite ? OverwritePolicy::Allow : OverwritePolicy::Deny)));
 
 }
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)

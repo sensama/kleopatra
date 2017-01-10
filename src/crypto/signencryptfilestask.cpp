@@ -337,8 +337,8 @@ SignEncryptFilesTask::Private::Private(SignEncryptFilesTask *qq)
       sign(true),
       encrypt(true),
       detached(false),
-      job(0),
-      m_overwritePolicy(new OverwritePolicy(0))
+      job(nullptr),
+      m_overwritePolicy(new OverwritePolicy(nullptr))
 {
     q->setAsciiArmor(true);
 }

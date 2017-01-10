@@ -182,7 +182,7 @@ private:
 
     void slotDialogDestroyed()
     {
-        dialog = 0;
+        dialog = nullptr;
         if (process.state() != QProcess::NotRunning) {
             q->cancel();
         } else {
@@ -243,7 +243,7 @@ DumpCertificateCommand::DumpCertificateCommand(QAbstractItemView *v, KeyListCont
 }
 
 DumpCertificateCommand::DumpCertificateCommand(const GpgME::Key &k)
-    : Command(k, new Private(this, 0))
+    : Command(k, new Private(this, nullptr))
 {
     d->init();
 }
@@ -335,7 +335,7 @@ void DumpCertificateCommand::doCancel()
     if (d->dialog) {
         d->dialog->close();
     }
-    d->dialog = 0;
+    d->dialog = nullptr;
 }
 
 void DumpCertificateCommand::Private::slotProcessFinished(int code, QProcess::ExitStatus status)

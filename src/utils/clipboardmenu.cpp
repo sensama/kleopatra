@@ -39,7 +39,7 @@ using namespace Kleo::Commands;
 
 ClipboardMenu::ClipboardMenu(QObject *parent)
     : QObject(parent),
-      mWindow(0)
+      mWindow(nullptr)
 {
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
     mImportClipboardAction = new QAction(i18n("Certificate Import"), this);
@@ -93,27 +93,27 @@ void ClipboardMenu::startCommand(Command *cmd)
 
 void ClipboardMenu::slotImportClipboard()
 {
-    startCommand(new ImportCertificateFromClipboardCommand(0));
+    startCommand(new ImportCertificateFromClipboardCommand(nullptr));
 }
 
 void ClipboardMenu::slotEncryptClipboard()
 {
-    startCommand(new EncryptClipboardCommand(0));
+    startCommand(new EncryptClipboardCommand(nullptr));
 }
 
 void ClipboardMenu::slotOpenPGPSignClipboard()
 {
-    startCommand(new SignClipboardCommand(GpgME::OpenPGP, 0));
+    startCommand(new SignClipboardCommand(GpgME::OpenPGP, nullptr));
 }
 
 void ClipboardMenu::slotSMIMESignClipboard()
 {
-    startCommand(new SignClipboardCommand(GpgME::CMS, 0));
+    startCommand(new SignClipboardCommand(GpgME::CMS, nullptr));
 }
 
 void ClipboardMenu::slotDecryptVerifyClipboard()
 {
-    startCommand(new DecryptVerifyClipboardCommand(0));
+    startCommand(new DecryptVerifyClipboardCommand(nullptr));
 }
 
 void ClipboardMenu::slotEnableDisableActions()

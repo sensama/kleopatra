@@ -97,7 +97,7 @@ class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(0), m_showDetailsLabel(0), m_closeButton(0)
+    explicit Private(const std::shared_ptr<const Task::Result> result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_showDetailsLabel(nullptr), m_closeButton(nullptr)
     {
         assert(m_result);
     }

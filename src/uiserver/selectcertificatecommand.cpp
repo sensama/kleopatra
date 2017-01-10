@@ -193,7 +193,7 @@ void SelectCertificateCommand::Private::slotDialogAccepted()
 
 void SelectCertificateCommand::Private::slotDialogRejected()
 {
-    dialog = 0;
+    dialog = nullptr;
     q->done(makeError(GPG_ERR_CANCELED));
 }
 

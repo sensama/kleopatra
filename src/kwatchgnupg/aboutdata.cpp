@@ -46,7 +46,7 @@ struct about_data {
 };
 
 static const about_data authors[] = {
-    { I18N_NOOP("Steffen Hansen"), I18N_NOOP("Original Author"), "hansen@kde.org", 0 },
+    { I18N_NOOP("Steffen Hansen"), I18N_NOOP("Original Author"), "hansen@kde.org", nullptr },
 };
 
 AboutData::AboutData()

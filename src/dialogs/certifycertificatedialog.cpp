@@ -257,7 +257,7 @@ SummaryPage::SummaryPage(QWidget *parent) : QWizardPage(parent), m_complete(fals
     layout->addWidget(new QLabel(i18n("Check level:")), ++row, 0);
     layout->addWidget(m_checkLevelLabel = new QLabel, row, 1);
 #else
-    m_checkLevelLabel = 0;
+    m_checkLevelLabel = nullptr;
 #endif
     layout->addWidget(new QLabel(i18n("Selected secret key:")), ++row, 0);
     layout->addWidget(m_secretKeyLabel = new QLabel, row, 1);

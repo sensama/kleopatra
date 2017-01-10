@@ -76,10 +76,10 @@ public:
 KeyTreeView::KeyTreeView(QWidget *parent)
     : QWidget(parent),
       m_proxy(new KeyListSortFilterProxyModel(this)),
-      m_additionalProxy(0),
+      m_additionalProxy(nullptr),
       m_view(new TreeView(this)),
-      m_flatModel(0),
-      m_hierarchicalModel(0),
+      m_flatModel(nullptr),
+      m_hierarchicalModel(nullptr),
       m_stringFilter(),
       m_keyFilter(),
       m_isHierarchical(true)
@@ -88,9 +88,9 @@ KeyTreeView::KeyTreeView(QWidget *parent)
 }
 
 KeyTreeView::KeyTreeView(const KeyTreeView &other)
-    : QWidget(0),
+    : QWidget(nullptr),
       m_proxy(new KeyListSortFilterProxyModel(this)),
-      m_additionalProxy(other.m_additionalProxy ? other.m_additionalProxy->clone() : 0),
+      m_additionalProxy(other.m_additionalProxy ? other.m_additionalProxy->clone() : nullptr),
       m_view(new TreeView(this)),
       m_flatModel(other.m_flatModel),
       m_hierarchicalModel(other.m_hierarchicalModel),
@@ -108,8 +108,8 @@ KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &
       m_proxy(new KeyListSortFilterProxyModel(this)),
       m_additionalProxy(proxy),
       m_view(new TreeView(this)),
-      m_flatModel(0),
-      m_hierarchicalModel(0),
+      m_flatModel(nullptr),
+      m_hierarchicalModel(nullptr),
       m_stringFilter(text),
       m_keyFilter(kf),
       m_isHierarchical(true)
@@ -340,7 +340,7 @@ void KeyTreeView::setKeys(const std::vector<Key> &keys)
         m_hierarchicalModel->setKeys(sorted);
     }
     if (!sorted.empty())
-        if (QHeaderView *const hv = m_view ? m_view->header() : 0) {
+        if (QHeaderView *const hv = m_view ? m_view->header() : nullptr) {
             hv->resizeSections(QHeaderView::ResizeToContents);
         }
 }

@@ -114,25 +114,25 @@ Command::Command(QAbstractItemView *v, Private *pp)
 }
 
 Command::Command(const Key &key)
-    : QObject(0), d(new Private(this, 0))
+    : QObject(nullptr), d(new Private(this, nullptr))
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
 Command::Command(const std::vector<Key> &keys)
-    : QObject(0), d(new Private(this, 0))
+    : QObject(nullptr), d(new Private(this, nullptr))
 {
     d->keys_ = keys;
 }
 
 Command::Command(const Key &key, Private *pp)
-    : QObject(0), d(pp)
+    : QObject(nullptr), d(pp)
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
 Command::Command(const std::vector<Key> &keys, Private *pp)
-    : QObject(0), d(pp)
+    : QObject(nullptr), d(pp)
 {
     d->keys_ = keys;
 }
@@ -232,7 +232,7 @@ void Command::cancel()
 
 void Command::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
 {
-    if (TabWidget *const tw = d->controller_ ? d->controller_->tabWidget() : 0)
+    if (TabWidget *const tw = d->controller_ ? d->controller_->tabWidget() : nullptr)
         if (QAbstractItemView *const v = tw->addTemporaryView(title, proxy, tabToolTip)) {
             setView(v);
         }
@@ -296,8 +296,8 @@ Command *Command::commandForQuery(const QString &query)
 {
     const GpgME::Key &key = Kleo::KeyCache::instance()->findByKeyIDOrFingerprint(query.toLocal8Bit().data());
     if (key.isNull()) {
-        return new LookupCertificatesCommand(query, 0);
+        return new LookupCertificatesCommand(query, nullptr);
     } else {
-        return new DetailsCommand(key, 0);
+        return new DetailsCommand(key, nullptr);
     }
 }

@@ -89,7 +89,7 @@ private Q_SLOTS:
     {
         Q_UNUSED(exitStatus)
         qDebug() << "Process exited with code" << exitCode;
-        m_proc = 0;
+        m_proc = nullptr;
         if (m_callCount == 2) {
             Q_ASSERT(exitCode == 4);
             secondCall();

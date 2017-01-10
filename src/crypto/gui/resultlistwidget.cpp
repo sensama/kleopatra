@@ -87,10 +87,10 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
       m_collections(),
       m_standaloneMode(false),
       m_lastErrorItemIndex(0),
-      m_scrollArea(0),
-      m_closeButton(0),
-      m_layout(0),
-      m_progressLabel(0)
+      m_scrollArea(nullptr),
+      m_closeButton(nullptr),
+      m_layout(nullptr),
+      m_progressLabel(nullptr)
 {
     m_layout = new QVBoxLayout(q);
     m_layout->setMargin(0);

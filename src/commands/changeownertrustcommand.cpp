@@ -123,7 +123,7 @@ ChangeOwnerTrustCommand::ChangeOwnerTrustCommand(QAbstractItemView *v, KeyListCo
 }
 
 ChangeOwnerTrustCommand::ChangeOwnerTrustCommand(const Key &key)
-    : Command(key, new Private(this, 0))
+    : Command(key, new Private(this, nullptr))
 {
     d->init();
 }

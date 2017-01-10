@@ -107,12 +107,12 @@ private:
     KeyListJob *createKeyListJob(GpgME::Protocol proto) const
     {
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-        return cbp ? cbp->keyListJob(true) : 0;
+        return cbp ? cbp->keyListJob(true) : nullptr;
     }
     ImportFromKeyserverJob *createImportJob(GpgME::Protocol proto) const
     {
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-        return cbp ? cbp->importFromKeyserverJob() : 0;
+        return cbp ? cbp->importFromKeyserverJob() : nullptr;
     }
     void startKeyListJob(GpgME::Protocol proto, const QString &str);
     bool checkConfig() const;
@@ -277,9 +277,9 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
 {
 
     if (q->sender() == keyListing.cms) {
-        keyListing.cms = 0;
+        keyListing.cms = nullptr;
     } else if (q->sender() == keyListing.openpgp) {
-        keyListing.openpgp = 0;
+        keyListing.openpgp = nullptr;
     } else {
         qCDebug(KLEOPATRA_LOG) << "unknown sender()" << q->sender();
     }
@@ -313,7 +313,7 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
 
 void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<Key> &keys)
 {
-    dialog = 0;
+    dialog = nullptr;
 
     assert(!keys.empty());
     assert(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
@@ -359,7 +359,7 @@ void LookupCertificatesCommand::doCancel()
 {
     ImportCertificatesCommand::doCancel();
     if (QDialog *const dlg = d->dialog) {
-        d->dialog = 0;
+        d->dialog = nullptr;
         dlg->close();
     }
 }

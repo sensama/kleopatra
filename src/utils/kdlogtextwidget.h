@@ -42,7 +42,7 @@ class KDLogTextWidget : public QAbstractScrollArea
     Q_PROPERTY(bool alternatingRowColors READ alternatingRowColors WRITE setAlternatingRowColors)
     Q_CLASSINFO("description", "High-speed text display widget")
 public:
-    explicit KDLogTextWidget(QWidget *parent = Q_NULLPTR);
+    explicit KDLogTextWidget(QWidget *parent = nullptr);
     ~KDLogTextWidget();
 
     void setHistorySize(unsigned int size);

@@ -51,7 +51,7 @@ class ExportSecretKeyDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ExportSecretKeyDialog(QWidget *parent = Q_NULLPTR);
+    explicit ExportSecretKeyDialog(QWidget *parent = nullptr);
     ~ExportSecretKeyDialog();
 
     void setKey(const GpgME::Key &key);

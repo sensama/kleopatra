@@ -54,8 +54,8 @@ class VerifyChecksumsController : public Controller
 {
     Q_OBJECT
 public:
-    explicit VerifyChecksumsController(QObject *parent = Q_NULLPTR);
-    explicit VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit VerifyChecksumsController(QObject *parent = nullptr);
+    explicit VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
     ~VerifyChecksumsController();
 
     void setFiles(const QStringList &files);

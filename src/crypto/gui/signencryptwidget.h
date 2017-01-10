@@ -49,7 +49,7 @@ class SignEncryptWidget: public QWidget
 {
     Q_OBJECT
 public:
-    explicit SignEncryptWidget(QWidget *parent = Q_NULLPTR);
+    explicit SignEncryptWidget(QWidget *parent = nullptr);
 
     /** Returns the list of recipients selected in the dialog
      * or an empty list if encryption is disabled */

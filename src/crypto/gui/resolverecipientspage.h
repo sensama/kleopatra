@@ -69,7 +69,7 @@ class ResolveRecipientsPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit ResolveRecipientsPage(QWidget *parent = Q_NULLPTR);
+    explicit ResolveRecipientsPage(QWidget *parent = nullptr);
     ~ResolveRecipientsPage();
 
     bool isComplete() const Q_DECL_OVERRIDE;

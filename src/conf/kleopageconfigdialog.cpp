@@ -229,14 +229,14 @@ static KCModule *loadModule(const QString &name)
         factorymethod += name.toLatin1();
         create = reinterpret_cast<KCModule *(*)(QWidget *, const char *)>(lib.resolve(factorymethod.constData()));
         if (create) {
-            return create(Q_NULLPTR, name.toLatin1().constData());
+            return create(nullptr, name.toLatin1().constData());
         } else {
             qCWarning(KLEOPATRA_LOG) << "Failed to load config module: " << name;
-            return Q_NULLPTR;
+            return nullptr;
         }
     }
     qCWarning(KLEOPATRA_LOG) << "Failed to load library: " << KCM_LIBRARY_NAME;
-    return Q_NULLPTR;
+    return nullptr;
 }
 
 void KleoPageConfigDialog::addModule(const QString &name)

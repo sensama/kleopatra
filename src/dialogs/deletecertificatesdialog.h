@@ -53,7 +53,7 @@ class DeleteCertificatesDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit DeleteCertificatesDialog(QWidget *parent = Q_NULLPTR);
+    explicit DeleteCertificatesDialog(QWidget *parent = nullptr);
     ~DeleteCertificatesDialog();
 
     void setSelectedKeys(const std::vector<GpgME::Key> &keys);

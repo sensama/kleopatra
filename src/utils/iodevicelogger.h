@@ -46,7 +46,7 @@ class IODeviceLogger : public QIODevice
 {
     Q_OBJECT
 public:
-    explicit IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent = Q_NULLPTR);
+    explicit IODeviceLogger(const std::shared_ptr<QIODevice> &iod, QObject *parent = nullptr);
     ~IODeviceLogger();
 
     void setWriteLogDevice(const std::shared_ptr<QIODevice> &dev);

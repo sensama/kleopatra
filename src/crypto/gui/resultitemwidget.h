@@ -57,7 +57,7 @@ class ResultItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
+    explicit ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
     ~ResultItemWidget();
 
     bool detailsVisible() const;

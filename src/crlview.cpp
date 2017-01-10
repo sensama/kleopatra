@@ -88,13 +88,13 @@ CRLView::CRLView(QWidget *parent)
 
 CRLView::~CRLView()
 {
-    delete _process; _process = Q_NULLPTR;
+    delete _process; _process = nullptr;
 }
 
 void CRLView::closeEvent(QCloseEvent *e)
 {
     QDialog::closeEvent(e);
-    delete _process; _process = Q_NULLPTR;
+    delete _process; _process = nullptr;
 }
 
 void CRLView::slotUpdateView()

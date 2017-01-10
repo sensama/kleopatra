@@ -76,7 +76,7 @@ public:
         SignaturePGP
     };
 
-    explicit SignEncryptFilesWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~SignEncryptFilesWizard();
 
     // Inputs

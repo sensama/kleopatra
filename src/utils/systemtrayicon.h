@@ -46,8 +46,8 @@ class SystemTrayIcon : public QSystemTrayIcon
 {
     Q_OBJECT
 public:
-    explicit SystemTrayIcon(QObject *parent = Q_NULLPTR);
-    explicit SystemTrayIcon(const QIcon &icon, QObject *parent = Q_NULLPTR);
+    explicit SystemTrayIcon(QObject *parent = nullptr);
+    explicit SystemTrayIcon(const QIcon &icon, QObject *parent = nullptr);
     ~SystemTrayIcon();
 
     void setMainWindow(QWidget *w);

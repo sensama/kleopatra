@@ -52,8 +52,8 @@ class AutoDecryptVerifyFilesController : public DecryptVerifyFilesController
 {
     Q_OBJECT
 public:
-    explicit AutoDecryptVerifyFilesController(QObject *parent = Q_NULLPTR);
-    explicit AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit AutoDecryptVerifyFilesController(QObject *parent = nullptr);
+    explicit AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
 
     ~AutoDecryptVerifyFilesController();
 

@@ -43,7 +43,7 @@ class ScrollArea : public QScrollArea
     Q_OBJECT
 
 public:
-    explicit ScrollArea(QWidget *widget = Q_NULLPTR);
+    explicit ScrollArea(QWidget *widget = nullptr);
     ~ScrollArea();
 
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;

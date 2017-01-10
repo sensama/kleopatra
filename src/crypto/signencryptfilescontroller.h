@@ -52,8 +52,8 @@ class SignEncryptFilesController : public Controller
 {
     Q_OBJECT
 public:
-    explicit SignEncryptFilesController(QObject *parent = Q_NULLPTR);
-    explicit SignEncryptFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit SignEncryptFilesController(QObject *parent = nullptr);
+    explicit SignEncryptFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
     ~SignEncryptFilesController();
 
     void setProtocol(GpgME::Protocol proto);

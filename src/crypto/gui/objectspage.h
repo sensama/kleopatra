@@ -50,7 +50,7 @@ class ObjectsPage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit ObjectsPage(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit ObjectsPage(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~ObjectsPage();
 
     bool isComplete() const Q_DECL_OVERRIDE;

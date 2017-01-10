@@ -143,7 +143,7 @@ private:
     void applyWindowID(QWidget *wid) const Q_DECL_OVERRIDE;
 
 protected:
-    void addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy = Q_NULLPTR, const QString &tabToolTip = QString());
+    void addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
 
 protected:
     class Private;

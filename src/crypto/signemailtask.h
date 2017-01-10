@@ -62,7 +62,7 @@ class SignEMailTask : public Task
 {
     Q_OBJECT
 public:
-    explicit SignEMailTask(QObject *parent = Q_NULLPTR);
+    explicit SignEMailTask(QObject *parent = nullptr);
     ~SignEMailTask();
 
     void setInput(const std::shared_ptr<Input> &input);

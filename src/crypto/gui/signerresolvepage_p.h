@@ -53,7 +53,7 @@ class AbstractSigningProtocolSelectionWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AbstractSigningProtocolSelectionWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
+    explicit AbstractSigningProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
     virtual void setProtocolChecked(GpgME::Protocol protocol, bool checked) = 0;
     virtual bool isProtocolChecked(GpgME::Protocol protocol) const = 0;
     virtual std::vector<GpgME::Protocol> checkedProtocols() const = 0;
@@ -67,7 +67,7 @@ class SigningProtocolSelectionWidget : public AbstractSigningProtocolSelectionWi
 {
     Q_OBJECT
 public:
-    explicit SigningProtocolSelectionWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
+    explicit SigningProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
     void setProtocolChecked(GpgME::Protocol protocol, bool checked) Q_DECL_OVERRIDE;
     bool isProtocolChecked(GpgME::Protocol protocol) const Q_DECL_OVERRIDE;
     std::vector<GpgME::Protocol> checkedProtocols() const Q_DECL_OVERRIDE;
@@ -86,7 +86,7 @@ class ReadOnlyProtocolSelectionWidget : public AbstractSigningProtocolSelectionW
 {
     Q_OBJECT
 public:
-    explicit ReadOnlyProtocolSelectionWidget(QWidget *parent = Q_NULLPTR, Qt::WindowFlags flags = 0);
+    explicit ReadOnlyProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
     void setProtocolChecked(GpgME::Protocol protocol, bool checked) Q_DECL_OVERRIDE;
     bool isProtocolChecked(GpgME::Protocol protocol) const Q_DECL_OVERRIDE;
     std::vector<GpgME::Protocol> checkedProtocols() const Q_DECL_OVERRIDE;

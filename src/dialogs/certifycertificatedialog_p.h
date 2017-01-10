@@ -60,7 +60,7 @@ public:
     enum Role {
         UserIDIndex = Qt::UserRole
     };
-    explicit UserIDModel(QObject *parent = Q_NULLPTR) : QStandardItemModel(parent) {}
+    explicit UserIDModel(QObject *parent = nullptr) : QStandardItemModel(parent) {}
     GpgME::Key certificateToCertify() const
     {
         return m_key;
@@ -80,7 +80,7 @@ public:
     enum Role {
         IndexRole = Qt::UserRole
     };
-    explicit SecretKeysModel(QObject *parent = Q_NULLPTR) : QStandardItemModel(parent) {}
+    explicit SecretKeysModel(QObject *parent = nullptr) : QStandardItemModel(parent) {}
     void setSecretKeys(const std::vector<GpgME::Key> &keys);
     std::vector<GpgME::Key> secretKeys() const;
     GpgME::Key keyFromItem(const QStandardItem *item) const;
@@ -94,7 +94,7 @@ class SelectUserIDsPage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit SelectUserIDsPage(QWidget *parent = Q_NULLPTR);
+    explicit SelectUserIDsPage(QWidget *parent = nullptr);
     bool isComplete() const Q_DECL_OVERRIDE;
 
     void setSelectedUserIDs(const std::vector<unsigned int> &indexes);
@@ -116,7 +116,7 @@ class SelectCheckLevelPage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit SelectCheckLevelPage(QWidget *parent = Q_NULLPTR);
+    explicit SelectCheckLevelPage(QWidget *parent = nullptr);
     unsigned int checkLevel() const;
 private:
     Ui::SelectCheckLevelWidget m_ui;
@@ -126,7 +126,7 @@ class OptionsPage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit OptionsPage(QWidget *parent = Q_NULLPTR);
+    explicit OptionsPage(QWidget *parent = nullptr);
 
     bool exportableCertificationSelected() const;
     void setCertificatesWithSecretKeys(const std::vector<GpgME::Key> &keys);
@@ -148,7 +148,7 @@ class SummaryPage : public QWizardPage
 {
     Q_OBJECT
 public:
-    explicit SummaryPage(QWidget *parent = Q_NULLPTR);
+    explicit SummaryPage(QWidget *parent = nullptr);
     bool isComplete() const Q_DECL_OVERRIDE;
     void setComplete(bool complete);
 

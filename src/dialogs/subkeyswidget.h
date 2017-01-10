@@ -29,7 +29,7 @@ class SubKeysWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SubKeysWidget(QWidget *parent = Q_NULLPTR);
+    explicit SubKeysWidget(QWidget *parent = nullptr);
     ~SubKeysWidget();
 
     void setKey(const GpgME::Key &key);
@@ -45,7 +45,7 @@ class SubKeysDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SubKeysDialog(QWidget *parent = Q_NULLPTR);
+    explicit SubKeysDialog(QWidget *parent = nullptr);
     ~SubKeysDialog();
 
     void setKey(const GpgME::Key &key);

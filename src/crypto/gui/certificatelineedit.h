@@ -70,8 +70,8 @@ public:
      * @param options: The options to use. See certificateselectiondialog.
      */
     CertificateLineEdit(AbstractKeyListModel *model,
-                        QWidget *parent = Q_NULLPTR,
-                        KeyFilter *filter = Q_NULLPTR);
+                        QWidget *parent = nullptr,
+                        KeyFilter *filter = nullptr);
 
     /** Get the selected key */
     GpgME::Key key() const;

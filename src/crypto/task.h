@@ -56,7 +56,7 @@ class Task : public QObject
 {
     Q_OBJECT
 public:
-    explicit Task(QObject *parent = Q_NULLPTR);
+    explicit Task(QObject *parent = nullptr);
     ~Task();
 
     class Result;

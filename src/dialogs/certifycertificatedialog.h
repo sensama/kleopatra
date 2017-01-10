@@ -56,7 +56,7 @@ class CertifyCertificateDialog : public QWizard
 {
     Q_OBJECT
 public:
-    explicit CertifyCertificateDialog(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~CertifyCertificateDialog();
 
     bool exportableCertificationSelected() const;

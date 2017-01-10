@@ -56,7 +56,7 @@ class KeyTreeView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyTreeView(QWidget *parent = Q_NULLPTR);
+    explicit KeyTreeView(QWidget *parent = nullptr);
     KeyTreeView(const QString &stringFilter, const std::shared_ptr<KeyFilter> &keyFilter,
                 AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent);
     ~KeyTreeView();

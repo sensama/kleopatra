@@ -46,8 +46,8 @@ class DragQueen : public QLabel
     Q_OBJECT
     Q_PROPERTY(QString url READ url WRITE setUrl)
 public:
-    explicit DragQueen(QWidget *widget = Q_NULLPTR, Qt::WindowFlags f = 0);
-    explicit DragQueen(const QString &text, QWidget *widget = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit DragQueen(QWidget *widget = nullptr, Qt::WindowFlags f = 0);
+    explicit DragQueen(const QString &text, QWidget *widget = nullptr, Qt::WindowFlags f = 0);
     ~DragQueen();
 
     void setUrl(const QString &url);

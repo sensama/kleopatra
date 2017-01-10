@@ -64,7 +64,7 @@ class SignEncryptFilesTask : public Task
 {
     Q_OBJECT
 public:
-    explicit SignEncryptFilesTask(QObject *parent = Q_NULLPTR);
+    explicit SignEncryptFilesTask(QObject *parent = nullptr);
     ~SignEncryptFilesTask();
 
     void setInputFileName(const QString &fileName);

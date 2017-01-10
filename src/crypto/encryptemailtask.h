@@ -61,7 +61,7 @@ class EncryptEMailTask : public Task
 {
     Q_OBJECT
 public:
-    explicit EncryptEMailTask(QObject *parent = Q_NULLPTR);
+    explicit EncryptEMailTask(QObject *parent = nullptr);
     ~EncryptEMailTask();
 
     void setInput(const std::shared_ptr<Input> &input);

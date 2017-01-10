@@ -52,8 +52,8 @@ class CreateChecksumsController : public Controller
 {
     Q_OBJECT
 public:
-    explicit CreateChecksumsController(QObject *parent = Q_NULLPTR);
-    explicit CreateChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = Q_NULLPTR);
+    explicit CreateChecksumsController(QObject *parent = nullptr);
+    explicit CreateChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
     ~CreateChecksumsController();
 
     void setAllowAddition(bool allow);

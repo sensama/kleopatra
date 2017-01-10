@@ -77,7 +77,7 @@ public:
     };
     Q_DECLARE_FLAGS(Options, Option)
 
-    explicit CertificateSelectionDialog(QWidget *parent = Q_NULLPTR);
+    explicit CertificateSelectionDialog(QWidget *parent = nullptr);
     ~CertificateSelectionDialog();
 
     void setCustomLabelText(const QString &text);

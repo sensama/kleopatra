@@ -69,8 +69,8 @@ class DecryptVerifyEMailController : public Controller
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyEMailController(QObject *parent = Q_NULLPTR);
-    explicit DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = Q_NULLPTR);
+    explicit DecryptVerifyEMailController(QObject *parent = nullptr);
+    explicit DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = nullptr);
 
     ~DecryptVerifyEMailController();
 

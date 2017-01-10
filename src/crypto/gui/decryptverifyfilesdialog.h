@@ -59,7 +59,7 @@ class DecryptVerifyFilesDialog : public QDialog
     Q_OBJECT
 public:
     explicit DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll,
-                                      QWidget *parent = Q_NULLPTR);
+                                      QWidget *parent = nullptr);
     ~DecryptVerifyFilesDialog();
 
     void setOutputLocation(const QString &dir);

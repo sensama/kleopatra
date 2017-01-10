@@ -74,7 +74,7 @@ class SignEncryptWizard : public Wizard
 {
     Q_OBJECT
 public:
-    explicit SignEncryptWizard(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit SignEncryptWizard(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     virtual ~SignEncryptWizard();
 
     enum Page {

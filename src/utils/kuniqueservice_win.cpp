@@ -74,16 +74,16 @@ private:
         windowClass.lpfnWndProc = windowProc;
         windowClass.hInstance   = (HINSTANCE) GetModuleHandle(NULL);
         windowClass.lpszClassName = wndName;
-        windowClass.hIcon = Q_NULLPTR;
-        windowClass.hCursor = Q_NULLPTR;
-        windowClass.hbrBackground = Q_NULLPTR;
-        windowClass.lpszMenuName = Q_NULLPTR;
+        windowClass.hIcon = nullptr;
+        windowClass.hCursor = nullptr;
+        windowClass.hbrBackground = nullptr;
+        windowClass.lpszMenuName = nullptr;
         windowClass.cbClsExtra = 0;
         windowClass.cbWndExtra = 0;
         RegisterClass(&windowClass);
         mResponder = CreateWindow(wndName, wndName,
-                                  0, 0, 0, 10, 10, Q_NULLPTR, Q_NULLPTR,
-                                  (HINSTANCE)GetModuleHandle(NULL), Q_NULLPTR);
+                                  0, 0, 0, 10, 10, nullptr, nullptr,
+                                  (HINSTANCE)GetModuleHandle(NULL), nullptr);
         qCDebug(KLEOPATRA_LOG) << "Created responder: " << qWndName
                                << " with handle: " << mResponder;
     }
@@ -118,8 +118,8 @@ private:
         return;
     }
 
-    KUniqueServicePrivate(KUniqueService *q) : q_ptr(q), mResponder(Q_NULLPTR),
-                                               mCurrentProcess(Q_NULLPTR)
+    KUniqueServicePrivate(KUniqueService *q) : q_ptr(q), mResponder(nullptr),
+                                               mCurrentProcess(nullptr)
     {
         HWND responder = getForeignResponder();
         if (!responder) {
@@ -186,7 +186,7 @@ private:
             const COPYDATASTRUCT *cds = (COPYDATASTRUCT*)lParam;
             // windowProc must be static so the singleton pattern although
             // it doesn't make much sense in here.
-            instance(Q_NULLPTR)->handleRequest(cds);
+            instance(nullptr)->handleRequest(cds);
             return 0;
         }
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -202,7 +202,7 @@ private:
     void setExitValue(int code)
     {
         TerminateProcess(mCurrentProcess, (unsigned int) code);
-        mCurrentProcess = Q_NULLPTR;
+        mCurrentProcess = nullptr;
     }
 };
 

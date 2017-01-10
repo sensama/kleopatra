@@ -61,7 +61,7 @@ class SignerResolvePage : public WizardPage
 {
     Q_OBJECT
 public:
-    explicit SignerResolvePage(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = 0);
+    explicit SignerResolvePage(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
     ~SignerResolvePage();
 
     void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers,

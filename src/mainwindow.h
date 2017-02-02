@@ -69,7 +69,6 @@ private:
     Q_PRIVATE_SLOT(d, void gnupgLogViewer())
     Q_PRIVATE_SLOT(d, void slotConfigCommitted())
     Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
-    Q_PRIVATE_SLOT(d, void aboutGpg4Win())
     Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
 };
 

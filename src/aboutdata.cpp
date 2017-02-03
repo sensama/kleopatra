@@ -90,8 +90,8 @@ static const about_data credits[] = {
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"), i18n("Kleopatra"),
                  QLatin1String(kleopatra_version), i18n(description), KAboutLicense::GPL,
-                 i18n("(c) 2002 Steffen\xC2\xA0Hansen, Matthias\xC2\xA0Kalle\xC2\xA0" "Dalheimer, Klar\xC3\xA4lvdalens\xC2\xA0" "Datakonsult\xC2\xA0" "AB\n"
-                      "(c) 2004, 2007, 2008, 2009 Marc\xC2\xA0Mutz, Klar\xC3\xA4lvdalens\xC2\xA0" "Datakonsult\xC2\xA0" "AB") +
+                 i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0" "Dalheimer, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB\n"
+                      "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB") +
                  "\n" + i18n("(c) 2010-2017 The Kleopatra developers")
 #ifdef Q_OS_WIN
                  , i18n("<a href=https://www.gpg4win.org>Visit the Gpg4win homepage</a>")

@@ -9,7 +9,7 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 set(KF5_VERSION "5.30.0")
 set(KMIME_VERSION "5.4.40")
 set(LIBKLEO_VERSION "5.4.40")
-set(QT_REQUIRED_VERSION "5.5.0")
+set(QT_REQUIRED_VERSION "5.6.0")
 
 find_package(ECM ${KF5_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})

@@ -211,8 +211,10 @@ static QString signatureSummaryToString(int summary)
         return i18n("No public certificate to verify the signature");
     } else if (summary & Signature::SigExpired) {
         return i18n("Signature expired");
+#if 0 //Duplicate entry
     } else if (summary & Signature::KeyMissing) {
         return i18n("Certificate missing");
+#endif
     } else if (summary & Signature::CrlMissing) {
         return i18n("CRL missing");
     } else if (summary & Signature::CrlTooOld) {

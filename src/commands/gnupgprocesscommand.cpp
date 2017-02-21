@@ -269,6 +269,9 @@ void GnuPGProcessCommand::doStart()
     d->process.setProgram(d->arguments.takeFirst());
     d->process.setArguments(d->arguments);
 
+    // Historically code using this expects arguments first to be the program.
+    d->arguments.prepend(d->process.program());
+
     d->process.start();
 
     if (!d->process.waitForStarted()) {
@@ -295,7 +298,10 @@ void GnuPGProcessCommand::Private::slotProcessFinished(int code, QProcess::ExitS
 {
     if (!canceled) {
         if (status == QProcess::CrashExit) {
-            error(q->crashExitMessage(arguments), q->errorCaption());
+            const QString msg = q->crashExitMessage(arguments);
+            if (!msg.isEmpty()) {
+                error(msg, q->errorCaption());
+            }
         } else if (ignoresSuccessOrFailure) {
             if (dialog) {
                 message(i18n("Process finished"));
@@ -303,7 +309,10 @@ void GnuPGProcessCommand::Private::slotProcessFinished(int code, QProcess::ExitS
                 ;
             }
         } else if (code) {
-            error(q->errorExitMessage(arguments), q->errorCaption());
+            const QString msg = q->errorExitMessage(arguments);
+            if (!msg.isEmpty()) {
+                error(q->errorExitMessage(arguments), q->errorCaption());
+            }
         } else {
             q->postSuccessHook(parentWidgetOrView());
             const QString successMessage = q->successMessage(arguments);

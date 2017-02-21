@@ -79,7 +79,6 @@ protected:
 
     QProcess *process();
 
-private:
     void doStart() Q_DECL_OVERRIDE;
     void doCancel() Q_DECL_OVERRIDE;
 

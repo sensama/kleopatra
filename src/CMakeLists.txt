@@ -202,6 +202,7 @@ set(_kleopatra_SRCS
   commands/checksumcreatefilescommand.cpp
   commands/checksumverifyfilescommand.cpp
   commands/exportpaperkeycommand.cpp
+  commands/genrevokecommand.cpp
 
   ${_kleopatra_uiserver_files}
 

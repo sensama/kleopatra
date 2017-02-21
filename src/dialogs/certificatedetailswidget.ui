@@ -26,19 +26,42 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item row="4" column="0">
-    <widget class="QPushButton" name="addUserIDBtn">
-     <property name="text">
-      <string>&amp;Add email address</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="trustChainDetailsBtn">
-     <property name="text">
-      <string>Trust chain &amp;details...</string>
-     </property>
-    </widget>
+   <item row="4" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="hboxLayout_1">
+     <item>
+      <widget class="QPushButton" name="addUserIDBtn">
+       <property name="text">
+        <string>&amp;Add email address</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="changePassphraseBtn">
+       <property name="text">
+        <string>Change &amp;passphrase</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="trustChainDetailsBtn">
+       <property name="text">
+        <string>Trust chain &amp;details...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="genRevokeBtn">
+       <property name="text">
+        <string>Generate &amp;revocation certificate</string>
+       </property>
+       <property name="toolTip">
+        <string>A revocation certificate is a file that serves as a "kill switch" to publicly
+declare that a key shall not anymore be used.  It is not possible"
+to retract such a revocation certificate once it has been published.</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item row="6" column="0" colspan="3">
     <widget class="QGroupBox" name="groupBox">
@@ -226,13 +249,6 @@
        <string notr="true">1</string>
       </property>
      </column>
-    </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QPushButton" name="changePassphraseBtn">
-     <property name="text">
-      <string>Change &amp;passphrase</string>
-     </property>
     </widget>
    </item>
    <item row="0" column="0" colspan="3">

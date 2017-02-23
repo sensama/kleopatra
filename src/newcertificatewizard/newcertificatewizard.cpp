@@ -918,7 +918,7 @@ public:
 
     bool isError() const
     {
-        return !ui.errorTB->toPlainText().isEmpty();
+        return !ui.errorTB->document()->isEmpty();
     }
 
     bool isComplete() const Q_DECL_OVERRIDE

@@ -40,6 +40,7 @@
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QScrollArea>
+#include <QScrollBar>
 
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
@@ -157,6 +158,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     recipientScroll->setFrameStyle(QFrame::NoFrame);
     mRecpLayout->setMargin(0);
     encBoxLay->addWidget(recipientScroll, 1);
+
+    auto bar = recipientScroll->verticalScrollBar();
+    connect (bar, &QScrollBar::rangeChanged, this, [bar] (int, int max) {
+            bar->setValue(max);
+        });
 
 
     // Checkbox for password

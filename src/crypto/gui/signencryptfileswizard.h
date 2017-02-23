@@ -73,7 +73,8 @@ public:
         CombinedPGP,
         EncryptedPGP,
         EncryptedCMS,
-        SignaturePGP
+        SignaturePGP,
+        Directory
     };
 
     explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
@@ -87,6 +88,7 @@ public:
     void setEncryptionUserMutable(bool mut);
 
     void setArchiveForced(bool archive);
+    void setArchiveMutable(bool archive);
 
     void setOutputNames(const QMap<int, QString> &nameMap) const;
     QMap<int, QString> outputNames() const;

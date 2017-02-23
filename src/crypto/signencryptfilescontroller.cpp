@@ -245,6 +245,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
     }
 
     wizard->setArchiveForced(archOp == ArchiveForced);
+    wizard->setArchiveMutable(archOp == ArchiveAllowed);
 }
 
 unsigned int SignEncryptFilesController::operationMode() const
@@ -312,7 +313,32 @@ static QMap <int, QString> buildOutputNames(const QStringList &files, const bool
     nameMap.insert(SignEncryptFilesWizard::CombinedPGP,  baseNamePgp + extension(true, true, true, ascii, false));
     nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, ascii, false));
     nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, ascii, true));
+    nameMap.insert(SignEncryptFilesWizard::Directory, heuristicBaseDirectory(files));
     return nameMap;
+}
+
+static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMap <int, QString> orig)
+{
+    QMap <int, QString> ret;
+
+    const QString dir = orig.value(SignEncryptFilesWizard::Directory);
+    if (dir.isEmpty()) {
+        return orig;
+    }
+
+    // Build the default names for the wizard.
+    const QFileInfo fi(file);
+    const QString baseName = dir + QStringLiteral("/") + fi.fileName() + QStringLiteral(".");
+
+    const FileOperationsPreferences prefs;
+    const bool ascii = prefs.addASCIIArmor();
+
+    ret.insert(SignEncryptFilesWizard::SignatureCMS, baseName + extension(false, true, false, ascii, true));
+    ret.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + extension(false, false, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::CombinedPGP,  baseName + extension(true, true, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::EncryptedPGP, baseName + extension(true, false, true, ascii, false));
+    ret.insert(SignEncryptFilesWizard::SignaturePGP, baseName + extension(true, true, false, ascii, true));
+    return ret;
 }
 
 void SignEncryptFilesController::setFiles(const QStringList &files)
@@ -320,9 +346,17 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
     kleo_assert(!files.empty());
     d->files = files;
     bool archive = false;
-    if (files.size() > 1 || QFileInfo(files.first()).isDir()) {
-        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
+
+    if (files.size() > 1) {
+        setOperationMode((operationMode() & ~ArchiveMask) | ArchiveAllowed);
         archive = true;
+    }
+    for (const auto &file: files) {
+        if (QFileInfo(file).isDir()) {
+            setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
+            archive = true;
+            break;
+        }
     }
     d->ensureWizardCreated();
     d->wizard->setOutputNames(buildOutputNames(files, archive));
@@ -498,7 +532,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = (operation & ArchiveMask) == ArchiveForced;
+        const bool archive = wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1;
 
         const QVector<Key> recipients = wizard->resolvedRecipients();
         const QVector<Key> signers = wizard->resolvedSigners();
@@ -547,7 +581,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
                             pgpSigners.toStdVector(),
                             cmsRecipients.toStdVector(),
                             cmsSigners.toStdVector(),
-                            wizard->outputNames(),
+                            buildOutputNamesForDir(file, wizard->outputNames()),
                             wizard->encryptSymmetric());
                 tasks.insert(tasks.end(), created.begin(), created.end());
             }

@@ -51,6 +51,7 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QIcon>
+#include <QCheckBox>
 
 #include <QPointer>
 
@@ -78,7 +79,8 @@ public:
         : QWizardPage(parent),
           mWidget(new SignEncryptWidget),
           mOutLayout(new QVBoxLayout),
-          mArchive(false)
+          mArchive(false),
+          mUseOutputDir(false)
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
@@ -97,8 +99,19 @@ public:
         mPlaceholderWidget = new QLabel(i18n("Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
+        mUseOutputDirChk = new QCheckBox(i18n("Encrypt / Sign each file seperately."));
+        mUseOutputDirChk->setToolTip(i18nc("@info",
+                                            "Keep each file seperate instead of creating an archive for all."));
+
+        mOutLayout->addWidget(mUseOutputDirChk);
+        connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {
+                    mUseOutputDir = state;
+                    mArchive = !mUseOutputDir;
+                    updateFileWidgets();
+                });
+
         vLay->addWidget(outputGrp);
-        setMinimumHeight(480);
+        setMinimumHeight(300);
     }
 
     bool isComplete() const Q_DECL_OVERRIDE
@@ -119,6 +132,18 @@ public:
     void setArchiveForced(bool archive)
     {
         mArchive = archive;
+        setArchiveMutable(!archive);
+    }
+
+    void setArchiveMutable(bool archive)
+    {
+        mUseOutputDirChk->setVisible(archive);
+        if (archive) {
+            const KConfigGroup archCfg(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+            mUseOutputDirChk->setChecked(archCfg.readEntry("LastUseOutputDir", false));
+        } else {
+            mUseOutputDirChk->setChecked(false);
+        }
     }
 
     bool validatePage() Q_DECL_OVERRIDE
@@ -126,6 +151,10 @@ public:
         bool sign = !mWidget->signKey().isNull();
         bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
         mWidget->saveOwnKeys();
+        if (mUseOutputDirChk->isVisible()) {
+            KConfigGroup archCfg(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+            archCfg.writeEntry("LastUseOutputDir", mUseOutputDir);
+        }
 
         if (sign && !encrypt && mArchive) {
             return KMessageBox::warningContinueCancel(this,
@@ -194,17 +223,20 @@ private:
             { SignEncryptFilesWizard::SignaturePGP, QStringLiteral("document-sign") },
             { SignEncryptFilesWizard::CombinedPGP,  QStringLiteral("document-edit-sign-encrypt") },
             { SignEncryptFilesWizard::EncryptedPGP, QStringLiteral("document-encrypt") },
-            { SignEncryptFilesWizard::EncryptedCMS, QStringLiteral("document-encrypt") }
+            { SignEncryptFilesWizard::EncryptedCMS, QStringLiteral("document-encrypt") },
+            { SignEncryptFilesWizard::Directory,    QStringLiteral("folder") }
         };
         static const QMap <int, QString> toolTips = {
             { SignEncryptFilesWizard::SignatureCMS, i18n("The S/MIME signature.") },
             { SignEncryptFilesWizard::SignaturePGP, i18n("The signature.") },
             { SignEncryptFilesWizard::CombinedPGP,  i18n("The signed and encrypted file.") },
             { SignEncryptFilesWizard::EncryptedPGP, i18n("The encrypted file.") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("The S/MIME encrypted file.") }
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("The S/MIME encrypted file.") },
+            { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
         };
 
-        FileNameRequester *req = new FileNameRequester(QDir::Files, this);
+        FileNameRequester *req = new FileNameRequester(forKind == SignEncryptFilesWizard::Directory ?
+                                                       QDir::Dirs : QDir::Files, this);
         req->setFileName(mOutNames[forKind]);
         QHBoxLayout *hLay = new QHBoxLayout;
         QLabel *iconLabel = new QLabel;
@@ -235,6 +267,11 @@ public:
     }
 
     QMap <int, QString> outputNames() const {
+        if (!mUseOutputDir) {
+            auto ret = mOutNames;
+            ret.remove(SignEncryptFilesWizard::Directory);
+            return ret;
+        }
         return mOutNames;
     }
 
@@ -276,11 +313,12 @@ private Q_SLOTS:
         }
         mOutLayout->setEnabled(false);
         mPlaceholderWidget->setVisible(!cms && !pgp && sigKey.isNull());
-        mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(sigKey.protocol() == Protocol::CMS);
-        mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(cms);
-        mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(sigKey.protocol() == Protocol::OpenPGP && pgp);
-        mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(pgp && sigKey.protocol() != Protocol::OpenPGP);
-        mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(sigKey.protocol() == Protocol::OpenPGP && !pgp);
+        mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
+        mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
+        mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
+        mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && pgp && sigKey.protocol() != Protocol::OpenPGP);
+        mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
+        mRequester[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir && !mPlaceholderWidget->isVisible());
         mOutLayout->setEnabled(true);
     }
 
@@ -290,7 +328,9 @@ private:
     QMap <int, QWidget *> mRequester;
     QVBoxLayout *mOutLayout;
     QWidget *mPlaceholderWidget;
+    QCheckBox *mUseOutputDirChk;
     bool mArchive;
+    bool mUseOutputDir;
 };
 
 class ResultPage : public NewResultPage
@@ -387,6 +427,11 @@ void SignEncryptFilesWizard::setEncryptionUserMutable(bool mut)
 void SignEncryptFilesWizard::setArchiveForced(bool archive)
 {
     mSigEncPage->setArchiveForced(archive);
+}
+
+void SignEncryptFilesWizard::setArchiveMutable(bool archive)
+{
+    mSigEncPage->setArchiveMutable(archive);
 }
 
 QVector<Key> SignEncryptFilesWizard::resolvedRecipients() const

@@ -1,8 +1,7 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    smartcard/readerstatus.h
+/*  smartcard/card.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2009 Klarälvdalens Datakonsult AB
+    Copyright (c) 2017 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,57 +29,16 @@
     your version.
 */
 
-#ifndef __KLEOPATRA__SMARTCARD__READERSTATUS_H___
-#define __KLEOPATRA__SMARTCARD__READERSTATUS_H___
-
-#include <QObject>
-#include <QMetaType>
-
+#include "readerstatus.h"
 #include "card.h"
 
-#include <vector>
-#include <memory>
+using namespace Kleo;
+using namespace Kleo::SmartCard;
 
-namespace Kleo
-{
-namespace SmartCard
-{
+Card::Card(Status s): status(s),
+                      appType(UnknownApplication),
+                      appVersion(-1) {
+}
 
-class ReaderStatus : public QObject
-{
-    Q_OBJECT
-public:
-    explicit ReaderStatus(QObject *parent = nullptr);
-    ~ReaderStatus();
-
-    static const ReaderStatus *instance();
-    static ReaderStatus *mutableInstance();
-
-    void startSimpleTransaction(const QByteArray &cmd, QObject *receiver, const char *slot);
-
-    Card::Status cardStatus(unsigned int slot) const;
-    bool anyCardHasNullPin() const;
-    bool anyCardCanLearnKeys() const;
-
-    std::vector<Card::PinState> pinStates(unsigned int slot) const;
-
-public Q_SLOTS:
-    void updateStatus();
-    void startMonitoring();
-
-Q_SIGNALS:
-    void anyCardHasNullPinChanged(bool);
-    void anyCardCanLearnKeysChanged(bool);
-    void cardStatusChanged(unsigned int slot, Card::Status status);
-
-private:
-    class Private;
-    std::shared_ptr<Private> d;
-};
-
-} // namespace SmartCard
-} // namespace Kleo
-
-Q_DECLARE_METATYPE(Kleo::SmartCard::Card::Status)
-
-#endif /* __KLEOPATRA__SMARTCARD__READERSTATUS_H___ */
+Card::Card(): Card(Status::NoCard) {
+}

@@ -77,10 +77,10 @@ private:
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setWindowTitle(i18nc("@title", "Set Initial Pin"));
 
-        const std::vector<ReaderStatus::PinState> pinStates = ReaderStatus::instance()->pinStates(0);
+        const std::vector<Card::PinState> pinStates = ReaderStatus::instance()->pinStates(0);
 
-        dlg->setNksPinPresent(pinStates.size() >= 1 && pinStates[0] != ReaderStatus::NullPin);
-        dlg->setSigGPinPresent(pinStates.size() >= 3 && pinStates[2] != ReaderStatus::NullPin);
+        dlg->setNksPinPresent(pinStates.size() >= 1 && pinStates[0] != Card::NullPin);
+        dlg->setSigGPinPresent(pinStates.size() >= 3 && pinStates[2] != Card::NullPin);
 
         connect(dlg, SIGNAL(nksPinRequested()), q_func(), SLOT(slotNksPinRequested()));
         connect(dlg, SIGNAL(sigGPinRequested()), q_func(), SLOT(slotSigGPinRequested()));

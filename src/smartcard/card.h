@@ -1,8 +1,9 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    smartcard/readerstatus.h
+#ifndef SMARTCARD_CARD_H
+#define SMARTCARD_CARD_H
+/*  smartcard/card.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2009 Klarälvdalens Datakonsult AB
+    Copyright (c) 2017 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,57 +31,61 @@
     your version.
 */
 
-#ifndef __KLEOPATRA__SMARTCARD__READERSTATUS_H___
-#define __KLEOPATRA__SMARTCARD__READERSTATUS_H___
-
-#include <QObject>
-#include <QMetaType>
-
-#include "card.h"
-
-#include <vector>
-#include <memory>
-
 namespace Kleo
 {
 namespace SmartCard
 {
-
-class ReaderStatus : public QObject
+/** Class to work with Smartcards or other Hardware tokens. */
+class Card
 {
-    Q_OBJECT
 public:
-    explicit ReaderStatus(QObject *parent = nullptr);
-    ~ReaderStatus();
+    enum AppType {
+        UnknownApplication,
+        OpenPGPApplication,
+        NksApplication,
+        P15Application,
+        DinSigApplication,
+        GeldkarteApplication,
 
-    static const ReaderStatus *instance();
-    static ReaderStatus *mutableInstance();
+        NumAppTypes
+    };
 
-    void startSimpleTransaction(const QByteArray &cmd, QObject *receiver, const char *slot);
+    enum PinState {
+        UnknownPinState,
+        NullPin,
+        PinBlocked,
+        NoPin,
+        PinOk,
 
-    Card::Status cardStatus(unsigned int slot) const;
-    bool anyCardHasNullPin() const;
-    bool anyCardCanLearnKeys() const;
+        NumPinStates
+    };
 
-    std::vector<Card::PinState> pinStates(unsigned int slot) const;
+    enum Status {
+        NoCard,
+        CardPresent,
+        CardActive,
+        CardUsable,
 
-public Q_SLOTS:
-    void updateStatus();
-    void startMonitoring();
+        _NumScdStates,
 
-Q_SIGNALS:
-    void anyCardHasNullPinChanged(bool);
-    void anyCardCanLearnKeysChanged(bool);
-    void cardStatusChanged(unsigned int slot, Card::Status status);
+        CardCanLearnKeys = _NumScdStates,
+        CardHasNullPin,
 
-private:
-    class Private;
-    std::shared_ptr<Private> d;
+        CardError,
+
+        NumStates
+    };
+
+    Card();
+    Card(Status s);
+
+    Status status;
+    std::string serialNumber;
+    AppType appType;
+    int appVersion;
+    std::vector<PinState> pinStates;
+    int slot;
 };
-
-} // namespace SmartCard
-} // namespace Kleo
-
-Q_DECLARE_METATYPE(Kleo::SmartCard::Card::Status)
-
-#endif /* __KLEOPATRA__SMARTCARD__READERSTATUS_H___ */
+} // namespace Smartcard
+} // namespace Kleopatra
+#endif // SMARTCARD_CARD_H

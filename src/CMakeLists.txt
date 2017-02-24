@@ -212,6 +212,7 @@ set(_kleopatra_SRCS
   newcertificatewizard/newcertificatewizard.cpp
 
   smartcard/readerstatus.cpp
+  smartcard/card.cpp
 
   aboutdata.cpp
   systrayicon.cpp

@@ -101,7 +101,8 @@ class KleopatraApplication::Private
 public:
     explicit Private(KleopatraApplication *qq)
         : q(qq),
-          ignoreNewInstance(true)
+          ignoreNewInstance(true),
+          sysTray(nullptr)
     {
     }
     ~Private() {

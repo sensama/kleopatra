@@ -606,7 +606,7 @@ private:
             return assuan_process_done_msg(conn.ctx.get(), e.error().encodedError(), e.message().c_str());
         } catch (const std::exception &) {
             return assuan_process_done(conn.ctx.get(), gpg_error(GPG_ERR_ASS_SYNTAX));
-        } catch (const gpg_error_t e) {
+        } catch (const gpg_error_t &e) {
             return assuan_process_done(conn.ctx.get(), e);
         } catch (...) {
             return assuan_process_done_msg(conn.ctx.get(), gpg_error(GPG_ERR_UNEXPECTED), "unknown exception caught");
@@ -671,7 +671,7 @@ private:
             return assuan_process_done(conn.ctx.get(), 0);
         } catch (const Exception &e) {
             return assuan_process_done_msg(conn.ctx.get(), e.error().encodedError(), e.message().toUtf8().constData());
-        } catch (const gpg_error_t e) {
+        } catch (const gpg_error_t &e) {
             return assuan_process_done(conn.ctx.get(), e);
         } catch (...) {
             return assuan_process_done_msg(conn.ctx.get(), gpg_error(GPG_ERR_UNEXPECTED), i18n("unknown exception caught").toUtf8().constData());

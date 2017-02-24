@@ -207,7 +207,7 @@ QString KDLogTextWidget::text() const
 void KDLogTextWidget::setLines(const QStringList &l)
 {
     clear();
-    Q_FOREACH (const QString &s, l) {
+    for (const QString &s : l) {
         message(s);
     }
 }

@@ -170,7 +170,7 @@ QString Kleo::gpgConfListDir(const char *which)
         return QString();
     }
     const QList<QByteArray> lines = gpgConf.readAllStandardOutput().split('\n');
-    Q_FOREACH (const QByteArray &line, lines)
+    for (const QByteArray &line : lines)
         if (line.startsWith(which) && line[qstrlen(which)] == ':') {
             const int begin = qstrlen(which) + 1;
             int end = line.size();

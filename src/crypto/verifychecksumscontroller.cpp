@@ -339,7 +339,7 @@ static std::vector<File> parse_sum_file(const QString &fileName)
 static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 {
     quint64 n = 0;
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         n += QFileInfo(dir.absoluteFilePath(file)).size();
     }
     return n;
@@ -413,7 +413,7 @@ static QStringList find_base_directiories(const QStringList &files)
     // Step 1: find base dirs:
 
     std::set<QDir, less_dir> dirs;
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         const QFileInfo fi(file);
         const QDir dir = fi.isDir() ? QDir(file) : fi.dir();
         dirs.insert(dir);

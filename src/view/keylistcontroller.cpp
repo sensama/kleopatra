@@ -689,7 +689,7 @@ void KeyListController::enableDisableActions(const QItemSelectionModel *sm) cons
 
 static bool all_secret_are_not_owner_trust_ultimate(const std::vector<Key> &keys)
 {
-    Q_FOREACH (const Key &key, keys)
+    for (const Key &key : keys)
         if (key.hasSecret() && key.ownerTrust() == Key::Ultimate) {
             return false;
         }
@@ -699,7 +699,7 @@ static bool all_secret_are_not_owner_trust_ultimate(const std::vector<Key> &keys
 Command::Restrictions find_root_restrictions(const std::vector<Key> &keys)
 {
     bool trusted = false, untrusted = false;
-    Q_FOREACH (const Key &key, keys)
+    for (const Key &key : keys)
         if (key.isRoot())
             if (key.userID(0).validity() == UserID::Ultimate) {
                 trusted = true;

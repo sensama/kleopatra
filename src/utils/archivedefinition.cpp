@@ -338,7 +338,7 @@ ArchiveDefinition::~ArchiveDefinition() {}
 static QByteArray make_input(const QStringList &files, char sep)
 {
     QByteArray result;
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         result += QFile::encodeName(file);
         result += sep;
     }
@@ -399,7 +399,7 @@ std::vector< std::shared_ptr<ArchiveDefinition> > ArchiveDefinition::getArchiveD
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
     result.reserve(groups.size());
-    Q_FOREACH (const QString &group, groups)
+    for (const QString &group : groups)
         try {
             const std::shared_ptr<ArchiveDefinition> ad(new KConfigBasedArchiveDefinition(KConfigGroup(config, group)));
             result.push_back(ad);

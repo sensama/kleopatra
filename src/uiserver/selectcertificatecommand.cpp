@@ -152,7 +152,7 @@ void SelectCertificateCommand::Private::slotSelectedCertificates(int err, const 
     fprs.reserve(split.size());
     std::transform(split.cbegin(), split.cend(), std::back_inserter(fprs), std::mem_fn(&QByteArray::constData));
     const std::vector<Key> keys = KeyCache::instance()->findByKeyIDOrFingerprint(fprs);
-    Q_FOREACH (const Key &key, keys) {
+    for (const Key &key : keys) {
         qCDebug(KLEOPATRA_LOG) << "found key " << key.userID(0).id();
     }
     if (dialog) {

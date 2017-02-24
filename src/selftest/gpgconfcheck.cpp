@@ -92,7 +92,7 @@ public:
             return false;
         }
         const QList<QByteArray> lines = gpgconf.readAll().split('\n');
-        Q_FOREACH (const QByteArray &line, lines)
+        for (const QByteArray &line : lines)
             if (line.startsWith("sysconfdir:"))     //krazy:exclude=strings
                 try {
                     return QDir(QFile::decodeName(hexdecode(line.mid(strlen("sysconfdir:"))))).exists(QStringLiteral("gpgconf.conf"));

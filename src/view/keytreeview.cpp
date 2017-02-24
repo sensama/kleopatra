@@ -276,7 +276,7 @@ void KeyTreeView::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 static QItemSelection itemSelectionFromKeys(const std::vector<Key> &keys, const KeyListSortFilterProxyModel &proxy)
 {
     QItemSelection result;
-    Q_FOREACH (const Key &key, keys) {
+    for (const Key &key : keys) {
         const QModelIndex mi = proxy.index(key);
         if (mi.isValid()) {
             result.merge(QItemSelection(mi, mi), QItemSelectionModel::Select);

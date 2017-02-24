@@ -569,7 +569,7 @@ void KleopatraApplication::checksumFiles(const QStringList &files, GpgME::Protoc
 {
     QStringList verifyFiles, createFiles;
 
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         if (isChecksumFile(file)) {
             verifyFiles << file;
         } else {

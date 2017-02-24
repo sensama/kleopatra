@@ -288,7 +288,7 @@ static bool has_intermediate_input(const QLineEdit *le)
 
 static bool requirementsAreMet(const QVector<Line> &list, QString &error)
 {
-    Q_FOREACH (const Line &line, list) {
+    for (const Line &line : list) {
         const QLineEdit *le = line.edit;
         if (!le) {
             continue;

@@ -119,7 +119,7 @@ bool SelectCertificateCommand::onlySecretKeysAllowed() const
 void SelectCertificateCommand::setSelectedCertificates(const QStringList &certs)
 {
     QByteArray data;
-    Q_FOREACH (const QString &s, certs)
+    for (const QString &s : certs)
         if (s.isEmpty()) {
             qCWarning(LIBKLEOPATRACLIENTCORE_LOG) << "SelectCertificateCommand::setSelectedCertificates: empty certificate!";
         } else {

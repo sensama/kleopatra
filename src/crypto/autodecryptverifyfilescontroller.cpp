@@ -213,7 +213,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
 std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
     std::vector<std::shared_ptr<Task> > tasks;
-    Q_FOREACH (const QString &fName, fileNames) {
+    for (const QString &fName : fileNames) {
         const auto classification = classify(fName);
         const auto proto = findProtocol(classification);
 

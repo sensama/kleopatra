@@ -292,7 +292,7 @@ static QString decode(const QString &encoded)
     QString decoded;
     decoded.reserve(encoded.size());
     bool shift = false;
-    Q_FOREACH (const QChar ch, encoded)
+    for (const QChar &ch : encoded)
         if (shift) {
             switch (ch.toLatin1()) {
             case '\\': decoded += QLatin1Char('\\'); break;

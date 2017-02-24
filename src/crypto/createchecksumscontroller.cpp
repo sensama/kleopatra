@@ -457,7 +457,7 @@ static std::vector<File> parse_sum_file(const QString &fileName)
 static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 {
     quint64 n = 0;
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
         n += QFileInfo(dir.absoluteFilePath(file)).size();
     }
     return n;

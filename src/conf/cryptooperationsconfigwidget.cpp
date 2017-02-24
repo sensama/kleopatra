@@ -187,7 +187,7 @@ void CryptoOperationsConfigWidget::load()
     // So we do the parsing which archive definitions exist here ourself.
     if (KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"))) {
         const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
-        Q_FOREACH (const QString &group, groups) {
+        for (const QString &group : groups) {
             const KConfigGroup cGroup(config, group);
             const QString id = cGroup.readEntryUntranslated(QStringLiteral("id"));
             const QString name = cGroup.readEntry("Name");

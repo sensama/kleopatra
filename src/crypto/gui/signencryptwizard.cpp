@@ -202,7 +202,7 @@ QFileInfoList SignEncryptWizard::resolvedFiles() const
 {
     const QStringList files = d->objectsPage->files();
     QFileInfoList fileInfos;
-    Q_FOREACH (const QString &i, files) {
+    for (const QString &i : files) {
         fileInfos.push_back(QFileInfo(i));
     }
     return fileInfos;

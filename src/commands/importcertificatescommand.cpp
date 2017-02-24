@@ -203,7 +203,7 @@ ImportCertificatesCommand::~ImportCertificatesCommand() {}
 static QString format_ids(const QStringList &ids)
 {
     QStringList escapedIds;
-    Q_FOREACH (const QString &id, ids) {
+    for (const QString &id : ids) {
         if (!id.isEmpty()) {
             escapedIds << id.toHtmlEscaped();
         }

@@ -107,7 +107,7 @@ void ObjectsPage::Private::remove()
 {
     const QList<QListWidgetItem *> selected = fileListWidget->selectedItems();
     assert(!selected.isEmpty());
-    Q_FOREACH (QListWidgetItem *const i, selected) {
+    for (QListWidgetItem *const i : selected) {
         delete i;
     }
     Q_EMIT q->completeChanged();
@@ -124,12 +124,15 @@ ObjectsPage::ObjectsPage(QWidget *parent, Qt::WindowFlags f)
 
 }
 
-ObjectsPage::~ObjectsPage() {}
+ObjectsPage::~ObjectsPage()
+{
+
+}
 
 void ObjectsPage::setFiles(const QStringList &list)
 {
     d->fileListWidget->clear();
-    Q_FOREACH (const QString &i, list) {
+    for (const QString &i : list) {
         d->addFile(QFileInfo(i));
     }
     Q_EMIT completeChanged();

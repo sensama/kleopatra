@@ -177,7 +177,7 @@ QStringList ResolveRecipientsPage::ListWidget::selectedEntries() const
     QStringList entries;
     const QList<QListWidgetItem *> items = m_listWidget->selectedItems();
     entries.reserve(items.count());
-    Q_FOREACH (const QListWidgetItem *i, items) {
+    for (const QListWidgetItem *i : items) {
         entries.append(i->data(IdRole).toString());
     }
     return entries;
@@ -481,7 +481,7 @@ bool ResolveRecipientsPage::isComplete() const
         return false;
     }
 
-    Q_FOREACH (const QString &i, ids) {
+    for (const QString &i : ids) {
         if (d->m_listWidget->selectedCertificate(i).isNull()) {
             return false;
         }

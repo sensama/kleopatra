@@ -464,7 +464,7 @@ void AppearanceConfigWidget::load()
         return;
     }
     const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
-    Q_FOREACH (const QString &group, groups) {
+    for (const QString &group : groups) {
         //QListWidgetItem * item = new QListWidgetItem( d->categoriesLV );
         apply_config(KConfigGroup(config, group), new QListWidgetItem(d->categoriesLV));
     }

@@ -132,7 +132,7 @@ std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(G
 void SigningCertificateSelectionWidget::Private::addCandidates(GpgME::Protocol prot, QComboBox *combo)
 {
     const std::vector<GpgME::Key> keys = candidates(prot);
-    Q_FOREACH (const GpgME::Key &i, keys) {
+    for (const GpgME::Key &i : keys) {
         add_cert(*combo, i);
     }
 }

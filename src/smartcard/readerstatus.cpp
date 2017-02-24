@@ -262,12 +262,65 @@ static bool parse_keypairinfo_and_lookup_key(Context *ctx, const std::string &kp
     return !e && !key.isNull();
 }
 
+static void handle_openpgp_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
+{
+    // TODO
+    Q_UNUSED(ci);
+    Q_UNUSED(gpg_agent);
+}
+
+static void handle_netkey_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
+{
+    Error err;
+    ci.appVersion = parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err));
+    if (err.code() || ci.appVersion != 3) {
+        qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up";
+        return;
+    }
+    // the following only works for NKS v3...
+    const auto chvStatus = QString::fromStdString(
+            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" \t"));
+    if (err.code()) {
+        return;
+    }
+    std::transform(chvStatus.begin(), chvStatus.end(),
+                   std::back_inserter(ci.pinStates),
+                   parse_pin_state);
+    if (std::find(ci.pinStates.cbegin(), ci.pinStates.cend(), Card::NullPin) != ci.pinStates.cend()) {
+        ci.status = Card::CardHasNullPin;
+        return;
+    }
+
+    // check for keys to learn:
+    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
+    if (err.code() || !result.get()) {
+        return;
+    }
+    const std::vector<std::string> keyPairInfos = result->statusLine("KEYPAIRINFO");
+    if (keyPairInfos.empty()) {
+        return;
+    }
+
+    // check that any of the keys are new
+    const std::unique_ptr<Context> klc(Context::createForProtocol(CMS));
+    if (!klc.get()) {
+        return;
+    }
+    klc->setKeyListMode(Ephemeral);
+
+    if (std::any_of(keyPairInfos.cbegin(), keyPairInfos.cend(),
+                    [&klc](const std::string &str) {
+                        return !parse_keypairinfo_and_lookup_key(klc.get(), str);
+                    })) {
+        ci.status = Card::CardCanLearnKeys;
+    }
+    return;
+}
+
 static Card get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)
 {
     Q_UNUSED(gpgagent_data);
-#ifdef DEBUG_SCREADER
     qCDebug(KLEOPATRA_LOG) << "get_card_status(" << slot << ',' << gpg_agent.get() << ')';
-#endif
     Card ci(Card::CardUsable);
     if (slot != 0 || !gpg_agent) {
         // In the future scdaemon should support multiple slots but
@@ -294,59 +347,17 @@ static Card get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_age
 
     // Handle different card types
     if (ci.appType == Card::NksApplication) {
-        ci.appVersion = parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err));
-        if (err.code() || ci.appVersion != 3) {
-            qCDebug(KLEOPATRA_LOG) << "get_card_status: not a NetKey v3 card, giving up";
-            return ci;
-        }
-        // the following only works for NKS v3...
-        const auto chvStatus = QString::fromStdString(
-                scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" \t"));
-        if (err.code()) {
-            return ci;
-        }
-        std::transform(chvStatus.begin(), chvStatus.end(),
-                       std::back_inserter(ci.pinStates),
-                       parse_pin_state);
-        if (std::find(ci.pinStates.cbegin(), ci.pinStates.cend(), Card::NullPin) != ci.pinStates.cend()) {
-            ci.status = Card::CardHasNullPin;
-            return ci;
-        }
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci.serialNumber.c_str() << "end";
+        handle_netkey_card(ci, gpg_agent);
+        return ci;
     } else if (ci.appType == Card::OpenPGPApplication) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci.serialNumber.c_str() << "end";
+        handle_openpgp_card(ci, gpg_agent);
+        return ci;
     } else {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << verbatimType.c_str();
         return ci;
     }
-
-    // check for keys to learn:
-    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
-    if (err.code() || !result.get()) {
-        return ci;
-    }
-    const std::vector<std::string> keyPairInfos = result->statusLine("KEYPAIRINFO");
-    if (keyPairInfos.empty()) {
-        return ci;
-    }
-
-    // check that any of the keys are new
-    const auto proto = ci.appType == Card::NksApplication ? CMS : OpenPGP;
-    const std::unique_ptr<Context> klc(Context::createForProtocol(proto));
-    if (!klc.get()) {
-        return ci;
-    }
-    klc->setKeyListMode(Ephemeral);
-
-    if (std::any_of(keyPairInfos.cbegin(), keyPairInfos.cend(),
-                    [&klc](const std::string &str) {
-                        return !parse_keypairinfo_and_lookup_key(klc.get(), str);
-                    })) {
-        ci.status = Card::CardCanLearnKeys;
-    }
-
-#ifdef DEBUG_SCREADER
-    qCDebug(KLEOPATRA_LOG) << "get_card_status: ci.status " << prettyFlags[ci.status];
-#endif
 
     return ci;
 }

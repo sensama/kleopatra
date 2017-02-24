@@ -99,9 +99,9 @@ public:
         mPlaceholderWidget = new QLabel(i18n("Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
-        mUseOutputDirChk = new QCheckBox(i18n("Encrypt / Sign each file seperately."));
+        mUseOutputDirChk = new QCheckBox(i18n("Encrypt / Sign each file separately."));
         mUseOutputDirChk->setToolTip(i18nc("@info",
-                                            "Keep each file seperate instead of creating an archive for all."));
+                                            "Keep each file separate instead of creating an archive for all."));
 
         mOutLayout->addWidget(mUseOutputDirChk);
         connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {

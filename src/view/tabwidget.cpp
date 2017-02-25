@@ -100,7 +100,7 @@ public:
     {
         return m_toolTip.isEmpty() ? title() : m_toolTip;
     }
-    void setToolTip(const QString &tip);
+    // not used void setToolTip(const QString &tip);
 
     bool canBeClosed() const
     {
@@ -273,6 +273,7 @@ void Page::setTitle(const QString &t)
     }
 }
 
+#if 0 // not used
 void Page::setToolTip(const QString &tip)
 {
     if (tip == m_toolTip) {
@@ -288,6 +289,7 @@ void Page::setToolTip(const QString &tip)
         Q_EMIT titleChanged(title());
     }
 }
+#endif
 
 void Page::setHierarchicalView(bool on)
 {

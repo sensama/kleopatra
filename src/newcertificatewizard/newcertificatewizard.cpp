@@ -223,7 +223,7 @@ static QString get_curve(const QComboBox *cb)
     return cb->currentText();
 }
 
-Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo);
+Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
 namespace Kleo
 {
 namespace NewCertificateUi

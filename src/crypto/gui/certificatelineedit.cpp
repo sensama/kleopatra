@@ -61,7 +61,7 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
-Q_DECLARE_METATYPE(GpgME::Key);
+Q_DECLARE_METATYPE(GpgME::Key)
 
 CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          QWidget *parent,

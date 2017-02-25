@@ -47,7 +47,7 @@
     ui.row->setVisible(false); \
     ui.row##Lbl->setVisible(false);
 
-Q_DECLARE_METATYPE(GpgME::UserID);
+Q_DECLARE_METATYPE(GpgME::UserID)
 
 class CertificateDetailsWidget::Private
 {

@@ -399,7 +399,7 @@ template <typename Derived, typename Base = AssuanCommand>
 class AssuanCommandMixin : public Base
 {
 protected:
-    /* reimp */ const char *name() const
+    /* reimp */ const char *name() const Q_DECL_OVERRIDE
     {
         return Derived::staticName();
     }

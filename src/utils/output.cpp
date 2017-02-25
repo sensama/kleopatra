@@ -148,7 +148,7 @@ struct inhibit_close : T_IODevice {
     template <typename T1>
     explicit inhibit_close(T1 &t1) : T_IODevice(t1) {}
 
-    /* reimp */ void close() {}
+    /* reimp */ void close() Q_DECL_OVERRIDE {}
     void reallyClose()
     {
         T_IODevice::close();
@@ -161,7 +161,7 @@ struct redirect_close : T_IODevice {
     template <typename T1>
     explicit redirect_close(T1 &t1) : T_IODevice(t1), m_closed(false) {}
 
-    /* reimp */ void close()
+    /* reimp */ void close() Q_DECL_OVERRIDE
     {
         this->closeWriteChannel();
         m_closed = true;

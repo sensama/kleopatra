@@ -253,7 +253,7 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
 
     QStringList fingerprints;
     fingerprints.reserve(keys.size());
-    Q_FOREACH (const Key &i, keys) {
+    for (const Key &i : keys) {
         fingerprints << QLatin1String(i.primaryFingerprint());
     }
 

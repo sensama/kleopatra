@@ -386,7 +386,7 @@ struct Dir {
 static QStringList remove_checksum_files(QStringList l, const QList<QRegExp> &rxs)
 {
     QStringList::iterator end = l.end();
-    Q_FOREACH (const QRegExp &rx, rxs) {
+    for (const QRegExp &rx : rxs) {
         end = std::remove_if(l.begin(), end,
                              [rx](const QString &str) { 
                                 return rx.exactMatch(str);
@@ -466,12 +466,15 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
-        if (cd)
-            Q_FOREACH (const QString &pattern, cd->patterns())
+    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions) {
+        if (cd) {
+            Q_FOREACH (const QString &pattern, cd->patterns()) {
                 if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
                     return cd;
                 }
+            }
+        }
+    }
     return std::shared_ptr<ChecksumDefinition>();
 }
 
@@ -682,7 +685,7 @@ void CreateChecksumsController::Private::run()
                                   ? find_dirs_by_sum_files(files, allowAddition, progressCb, checksumDefinitions)
                                   : find_dirs_by_input_files(files, checksumDefinition, allowAddition, progressCb, checksumDefinitions);
 
-    Q_FOREACH (const Dir &dir, dirs) {
+    for (const Dir &dir : dirs) {
         qCDebug(KLEOPATRA_LOG) << dir;
     }
 

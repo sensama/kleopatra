@@ -250,7 +250,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             // Not a Message? Maybe there is a signature for this file?
             const auto signatures = findSignatures(fName);
             if (!signatures.empty()) {
-                Q_FOREACH (const QString &sig, signatures) {
+                for (const QString &sig : signatures) {
                     qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << fName;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
                     t->setInput(Input::createFromFile(sig));

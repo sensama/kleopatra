@@ -167,7 +167,7 @@ DecryptVerifyOperationWidget::~DecryptVerifyOperationWidget() {}
 void DecryptVerifyOperationWidget::setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &archiveDefinitions)
 {
     d->ui.archivesCB.clear();
-    Q_FOREACH (const std::shared_ptr<ArchiveDefinition> &ad, archiveDefinitions) {
+    for (const std::shared_ptr<ArchiveDefinition> &ad : archiveDefinitions) {
         d->ui.archivesCB.addItem(ad->label(), qVariantFromValue(ad));
     }
 }

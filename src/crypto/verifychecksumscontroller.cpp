@@ -107,7 +107,7 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     QList<QRegExp> result;
-    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns()) {
                 result.push_back(QRegExp(pattern, fs_cs));
@@ -348,7 +348,7 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns())
                 if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
@@ -381,7 +381,7 @@ struct sumfile_contains_file : std::unary_function<QString, bool> {
         const std::vector<File> files = parse_sum_file(dir.absoluteFilePath(sumFile));
         qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:      found " << files.size()
                                << " files listed in " << qPrintable(dir.absoluteFilePath(sumFile));
-        Q_FOREACH (const File &file, files) {
+        for (const File &file : files) {
             const bool isSameFileName = (QString::compare(file.name, fileName, fs_cs) == 0);
             qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:        "
                                    << qPrintable(file.name) << " == "

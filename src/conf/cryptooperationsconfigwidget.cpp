@@ -173,7 +173,7 @@ void CryptoOperationsConfigWidget::load()
     mChecksumDefinitionCB->clear();
     mArchiveDefinitionCB->clear();
 
-    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, cds) {
+    for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
         mChecksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
         if (cd == default_cd) {
             mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);

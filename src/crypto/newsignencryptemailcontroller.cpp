@@ -194,7 +194,7 @@ static std::vector<Sender> mailbox2sender(const std::vector<Mailbox> &mbs)
 {
     std::vector<Sender> senders;
     senders.reserve(mbs.size());
-    Q_FOREACH (const Mailbox &mb, mbs) {
+    for (const Mailbox &mb : mbs) {
         senders.push_back(Sender(mb));
     }
     return senders;
@@ -204,7 +204,7 @@ static std::vector<Recipient> mailbox2recipient(const std::vector<Mailbox> &mbs)
 {
     std::vector<Recipient> recipients;
     recipients.reserve(mbs.size());
-    Q_FOREACH (const Mailbox &mb, mbs) {
+    for (const Mailbox &mb : mbs) {
         recipients.push_back(Recipient(mb));
     }
     return recipients;

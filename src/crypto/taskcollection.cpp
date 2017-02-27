@@ -206,7 +206,7 @@ std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
 
 void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
 {
-    Q_FOREACH (const std::shared_ptr<Task> &i, tasks) {
+    for (const std::shared_ptr<Task> &i : tasks) {
         assert(i);
         d->m_tasks[i->id()] = i;
         connect(i.get(), SIGNAL(progress(QString,int,int)),

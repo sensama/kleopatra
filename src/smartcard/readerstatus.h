@@ -64,6 +64,8 @@ public:
 
     std::vector<Card::PinState> pinStates(unsigned int slot) const;
 
+    std::vector<Card> getCards() const;
+
 public Q_SLOTS:
     void updateStatus();
     void startMonitoring();
@@ -71,7 +73,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void anyCardHasNullPinChanged(bool);
     void anyCardCanLearnKeysChanged(bool);
-    void cardStatusChanged(unsigned int slot, Card::Status status);
+    void cardChanged(unsigned int slot);
 
 private:
     class Private;

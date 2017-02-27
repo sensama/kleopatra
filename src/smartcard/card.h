@@ -31,10 +31,14 @@
     your version.
 */
 
+#include <vector>
+#include <string>
+
 namespace Kleo
 {
 namespace SmartCard
 {
+class ReaderStatus;
 /** Class to work with Smartcards or other Hardware tokens. */
 class Card
 {
@@ -68,24 +72,52 @@ public:
 
         _NumScdStates,
 
-        CardCanLearnKeys = _NumScdStates,
-        CardHasNullPin,
-
-        CardError,
+        CardError = _NumScdStates,
 
         NumStates
     };
 
     Card();
-    Card(Status s);
+    virtual ~Card() {};
 
-    Status status;
-    std::string serialNumber;
-    AppType appType;
-    int appVersion;
-    std::vector<PinState> pinStates;
-    int slot;
+    bool operator == (const Card& other) const;
+    bool operator != (const Card& other) const;
+
+    void setStatus(Status s);
+    Status status() const;
+
+    virtual void setSerialNumber(const std::string &sn);
+    std::string serialNumber() const;
+
+    AppType appType() const;
+    void setAppType(AppType type);
+
+    void setAppVersion(int version);
+    int appVersion() const;
+
+    std::vector<PinState> pinStates() const;
+    void setPinStates(std::vector<PinState> pinStates);
+
+    void setSlot(int slot);
+    int slot() const;
+
+    bool hasNullPin() const;
+    void setHasNullPin(bool value);
+
+    bool canLearnKeys() const;
+    void setCanLearnKeys(bool value);
+
+private:
+    bool mCanLearn;
+    bool mHasNullPin;
+    Status mStatus;
+    std::string mSerialNumber;
+    AppType mAppType;
+    int mAppVersion;
+    std::vector<PinState> mPinStates;
+    int mSlot;
 };
 } // namespace Smartcard
 } // namespace Kleopatra
+
 #endif // SMARTCARD_CARD_H

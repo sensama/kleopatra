@@ -196,7 +196,7 @@ private:
 
             QMap<int, Line> lines;
 
-            Q_FOREACH (const QString &rawKey, attrOrder) {
+            for (const QString &rawKey : attrOrder) {
                 const QString key = rawKey.trimmed().toUpper();
                 const QString attr = attributeFromKey(key);
                 if (attr.isEmpty()) {

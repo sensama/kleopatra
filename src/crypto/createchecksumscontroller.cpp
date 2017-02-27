@@ -410,7 +410,7 @@ static QString decode(const QString &encoded)
     QString decoded;
     decoded.reserve(encoded.size());
     bool shift = false;
-    Q_FOREACH (QChar ch, encoded)
+    for (QChar ch : encoded)
         if (shift) {
             switch (ch.toLatin1()) {
             case '\\': decoded += QLatin1Char('\\'); break;
@@ -487,7 +487,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
 
     int i = 0;
 
-    Q_FOREACH (const QString &file, files) {
+    for (const QString &file : files) {
 
         const QFileInfo fi(file);
         const QDir dir = fi.dir();

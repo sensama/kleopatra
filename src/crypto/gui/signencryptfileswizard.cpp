@@ -301,7 +301,7 @@ private Q_SLOTS:
         bool pgp = mWidget->encryptSymmetric();
         bool cms = false;
 
-        Q_FOREACH (const Key k, recipients) {
+        for (const Key &k : recipients) {
             if (pgp && cms) {
                 break;
             }

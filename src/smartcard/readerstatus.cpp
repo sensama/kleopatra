@@ -163,7 +163,7 @@ static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std
 {
     typedef std::pair<std::string, std::string> pair;
     s << '(';
-    Q_FOREACH (const pair &p, v) {
+    for (const pair &p : v) {
         s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << endl;
     }
     return s << ')';

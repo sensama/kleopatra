@@ -652,7 +652,7 @@ void VerifyChecksumsController::Private::run()
 
     const std::vector<SumFile> sumfiles = find_sums_by_input_files(files, errors, progressCb, checksumDefinitions);
 
-    Q_FOREACH (const SumFile &sumfile, sumfiles) {
+    for (const SumFile &sumfile : sumfiles) {
         qCDebug(KLEOPATRA_LOG) << sumfile;
     }
 

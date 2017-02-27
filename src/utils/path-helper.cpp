@@ -70,7 +70,7 @@ static QString longestCommonPrefix(const QStringList &sl)
 QString Kleo::heuristicBaseDirectory(const QStringList &fileNames)
 {
     QStringList dirs;
-    Q_FOREACH (const QString &fileName, fileNames) {
+    for (const QString &fileName : fileNames) {
         dirs.push_back(QFileInfo(fileName).path() + QLatin1Char('/'));
     }
     qCDebug(KLEOPATRA_LOG) << "dirs" << dirs;

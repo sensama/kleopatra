@@ -164,7 +164,7 @@ static std::vector<Mailbox> extractMailboxes(const Key &key)
 static std::vector<Mailbox> extractMailboxes(const std::vector<Key> &signers)
 {
     std::vector<Mailbox> res;
-    Q_FOREACH (const Key &i, signers) {
+    for (const Key &i : signers) {
         const std::vector<Mailbox> bxs = extractMailboxes(i);
         res.insert(res.end(), bxs.begin(), bxs.end());
     }
@@ -520,7 +520,7 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     const std::vector<Signature> sigs = res.signatures();
     const std::vector<Key> signers = KeyCache::instance()->findSigners(res);
     QString details;
-    Q_FOREACH (const Signature &sig, sigs) {
+    for (const Signature &sig : sigs) {
         details += formatSignature(sig, DecryptVerifyResult::keyForSignature(sig, signers), info) + QLatin1Char('\n');
     }
     details = details.trimmed();

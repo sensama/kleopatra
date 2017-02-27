@@ -168,7 +168,7 @@ public:
     void setKeys(const std::vector<Key> &keys)
     {
         clear();
-        Q_FOREACH (const Key &key, keys) {
+        for (const Key &key : keys) {
             addItem(Formatting::formatForComboBox(key), qVariantFromValue(key));
         }
     }

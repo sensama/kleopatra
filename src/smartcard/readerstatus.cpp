@@ -47,6 +47,7 @@
 #include <gpg-error.h>
 
 #include "kleopatra_debug.h"
+#include "openpgpcard.h"
 
 #include <QStringList>
 #include <QDir>
@@ -262,9 +263,17 @@ static bool parse_keypairinfo_and_lookup_key(Context *ctx, const std::string &kp
 
 static void handle_openpgp_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
 {
-    // TODO
-    Q_UNUSED(ci);
-    Q_UNUSED(gpg_agent);
+    Error err;
+    OpenPGPCard ret = OpenPGPCard();
+    ret.setSerialNumber(ci.serialNumber());
+
+    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --keypairinfo", err);
+    if (err.code()) {
+        ci.setStatus(Card::CardError);
+        return;
+    }
+    ret.setKeyPairInfo(info);
+    ci = ret;
 }
 
 static void handle_netkey_card(Card &ci, std::shared_ptr<Context> &gpg_agent)

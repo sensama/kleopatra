@@ -80,7 +80,7 @@ public:
     Card();
     virtual ~Card() {};
 
-    bool operator == (const Card& other) const;
+    virtual bool operator == (const Card& other) const;
     bool operator != (const Card& other) const;
 
     void setStatus(Status s);

@@ -175,14 +175,10 @@ static Card::PinState parse_pin_state(const QString &s)
 
 static std::unique_ptr<DefaultAssuanTransaction> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
 {
-#ifdef DEBUG_SCREADER
     qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
-#endif
     err = gpgAgent->assuanTransact(command);
     if (err.code()) {
-#ifdef DEBUG_SCREADER
         qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "):" << QString::fromLocal8Bit(err.asString());
-#endif
         if (err.code() >= GPG_ERR_ASS_GENERAL && err.code() <= GPG_ERR_ASS_UNKNOWN_INQUIRE) {
             qCDebug(KLEOPATRA_LOG) << "Assuan problem, killing context";
             gpgAgent.reset();
@@ -488,13 +484,8 @@ private:
 
                 while (m_transactions.empty()) {
                     // go to sleep waiting for more work:
-#ifdef DEBUG_SCREADER
-                    qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: .zZZ";
-#endif
+                    qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: waiting for commands";
                     m_waitForTransactions.wait(&m_mutex);
-#ifdef DEBUG_SCREADER
-                    qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: .oOO";
-#endif
                 }
 
                 // splice off the first transaction without
@@ -511,9 +502,7 @@ private:
                 oldCards = m_cardInfos;
             }
 
-#ifdef DEBUG_SCREADER
             qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: new iteration command=" << command << " ; nullSlot=" << nullSlot;
-#endif
             // now, let's see what we got:
             if (nullSlot && command == quitTransaction.command) {
                 return;    // quit

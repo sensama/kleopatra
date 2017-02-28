@@ -99,6 +99,7 @@ set(_kleopatra_SRCS
   view/smartcardwidget.cpp
   view/tabwidget.cpp
   view/keycacheoverlay.cpp
+  view/welcomewidget.cpp
 
   dialogs/certificateselectiondialog.cpp
   dialogs/expirydialog.cpp

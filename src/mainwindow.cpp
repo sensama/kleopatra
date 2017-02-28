@@ -40,6 +40,7 @@
 #include "view/keylistcontroller.h"
 #include "view/keycacheoverlay.h"
 #include "view/smartcardwidget.h"
+#include "view/welcomewidget.h"
 
 #include "commands/selftestcommand.h"
 #include "commands/importcrlcommand.h"
@@ -84,6 +85,7 @@
 #include <libkleo/cryptoconfigdialog.h>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>
+#include <Libkleo/KeyCache>
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
@@ -219,6 +221,7 @@ public:
             ui.scWidget->show();
             ui.searchBar->hide();
             ui.tabWidget.hide();
+            ui.welcomeWidget->hide();
         }
     }
 
@@ -230,6 +233,28 @@ private:
         return ui.tabWidget.currentView();
     }
 
+    void checkWelcomePage()
+    {
+        static bool wasSmartcardVisible;
+        if (KeyCache::instance()->keys().empty()) {
+            if (ui.scWidget->isVisible()) {
+                wasSmartcardVisible = true;
+            }
+            ui.scWidget->hide();
+            ui.searchBar->hide();
+            ui.tabWidget.hide();
+            ui.welcomeWidget->show();
+        } else {
+            ui.welcomeWidget->hide();
+            if (wasSmartcardVisible) {
+                ui.scWidget->show();
+            } else {
+                ui.searchBar->show();
+                ui.tabWidget.show();
+            }
+        }
+    }
+
 private:
     Kleo::KeyListController controller;
     bool firstShow : 1;
@@ -238,6 +263,7 @@ private:
         TabWidget tabWidget;
         SearchBar *searchBar;
         SmartCardWidget *scWidget;
+        WelcomeWidget *welcomeWidget;
         explicit UI(MainWindow *q);
     } ui;
     QAction *focusToClickSearchAction;
@@ -262,6 +288,10 @@ MainWindow::Private::UI::UI(MainWindow *q)
     scWidget = new SmartCardWidget();
     vbox->addWidget(scWidget);
     scWidget->hide();
+
+    welcomeWidget = new WelcomeWidget();
+    vbox->addWidget(welcomeWidget);
+    welcomeWidget->hide();
 
     q->setCentralWidget(mainWidget);
 }
@@ -295,6 +325,7 @@ MainWindow::Private::Private(MainWindow *qq)
             Q_ASSERT(action);
             action->setChecked(false);
         });
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this] () {checkWelcomePage();});
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
 

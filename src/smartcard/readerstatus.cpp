@@ -259,26 +259,26 @@ static bool parse_keypairinfo_and_lookup_key(Context *ctx, const std::string &kp
     return !e && !key.isNull();
 }
 
-static void handle_openpgp_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
+static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    OpenPGPCard ret = OpenPGPCard();
-    ret.setSerialNumber(ci.serialNumber());
+    auto ret = new OpenPGPCard();
+    ret->setSerialNumber(ci->serialNumber());
 
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code()) {
-        ci.setStatus(Card::CardError);
+        ci->setStatus(Card::CardError);
         return;
     }
-    ret.setKeyPairInfo(info);
-    ci = ret;
+    ret->setKeyPairInfo(info);
+    ci.reset(ret);
 }
 
-static void handle_netkey_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
+static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    ci.setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
-    if (err.code() || ci.appVersion() != 3) {
+    ci->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
+    if (err.code() || ci->appVersion() != 3) {
         qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up";
         return;
     }
@@ -294,10 +294,10 @@ static void handle_netkey_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
         const auto parsed = parse_pin_state (state);
         states.push_back(parsed);
         if (parsed == Card::NullPin) {
-            ci.setHasNullPin(true);
+            ci->setHasNullPin(true);
         }
     }
-    ci.setPinStates(states);
+    ci->setPinStates(states);
 
     // check for keys to learn:
     const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
@@ -320,16 +320,16 @@ static void handle_netkey_card(Card &ci, std::shared_ptr<Context> &gpg_agent)
                     [&klc](const std::string &str) {
                         return !parse_keypairinfo_and_lookup_key(klc.get(), str);
                     })) {
-        ci.setCanLearnKeys(true);
+        ci->setCanLearnKeys(true);
     }
     return;
 }
 
-static Card get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)
+static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)
 {
     Q_UNUSED(gpgagent_data);
     qCDebug(KLEOPATRA_LOG) << "get_card_status(" << slot << ',' << gpg_agent.get() << ')';
-    Card ci;
+    auto ci = std::shared_ptr<Card> (new Card());
     if (slot != 0 || !gpg_agent) {
         // In the future scdaemon should support multiple slots but
         // not yet (2.1.18)
@@ -337,30 +337,30 @@ static Card get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_age
     }
 
     Error err;
-    ci.setSerialNumber(gpgagent_status(gpg_agent, "SCD SERIALNO", err));
+    ci->setSerialNumber(gpgagent_status(gpg_agent, "SCD SERIALNO", err));
     if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
-        ci.setStatus(Card::NoCard);
+        ci->setStatus(Card::NoCard);
         return ci;
     }
     if (err.code()) {
-        ci.setStatus(Card::CardError);
+        ci->setStatus(Card::CardError);
         return ci;
     }
-    ci.setStatus(Card::CardPresent);
+    ci->setStatus(Card::CardPresent);
 
     const auto verbatimType = scd_getattr_status(gpg_agent, "APPTYPE", err);
-    ci.setAppType(parse_app_type(verbatimType));
+    ci->setAppType(parse_app_type(verbatimType));
     if (err.code()) {
         return ci;
     }
 
     // Handle different card types
-    if (ci.appType() == Card::NksApplication) {
-        qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci.serialNumber().c_str() << "end";
+    if (ci->appType() == Card::NksApplication) {
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci->serialNumber().c_str() << "end";
         handle_netkey_card(ci, gpg_agent);
         return ci;
-    } else if (ci.appType() == Card::OpenPGPApplication) {
-        qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci.serialNumber().c_str() << "end";
+    } else if (ci->appType() == Card::OpenPGPApplication) {
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
         handle_openpgp_card(ci, gpg_agent);
         return ci;
     } else {
@@ -371,14 +371,14 @@ static Card get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_age
     return ci;
 }
 
-static std::vector<Card> update_cardinfo(std::shared_ptr<Context> &gpgAgent)
+static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Context> &gpgAgent)
 {
     // Multiple smartcard readers are only supported internally by gnupg
     // but not by scdaemon (Status gnupg 2.1.18)
     // We still pretend that there can be multiple cards inserted
     // at once but we don't handle it yet.
-    const Card ci = get_card_status(0, gpgAgent);
-    return std::vector<Card>(1, ci);
+    const auto ci = get_card_status(0, gpgAgent);
+    return std::vector<std::shared_ptr<Card> >(1, ci);
 }
 } // namespace
 
@@ -406,7 +406,7 @@ public:
                 this, &ReaderStatusThread::slotOneTransactionFinished);
     }
 
-    std::vector<Card> cardInfos() const
+    std::vector<std::shared_ptr<Card> > cardInfos() const
     {
         const QMutexLocker locker(&m_mutex);
         return m_cardInfos;
@@ -416,7 +416,7 @@ public:
     {
         const QMutexLocker locker(&m_mutex);
         if (slot < m_cardInfos.size()) {
-            return m_cardInfos[slot].status();
+            return m_cardInfos[slot]->status();
         } else {
             return Card::NoCard;
         }
@@ -469,7 +469,7 @@ private:
             QByteArray command;
             bool nullSlot = false;
             std::list<Transaction> item;
-            std::vector<Card> oldCards;
+            std::vector<std::shared_ptr<Card> > oldCards;
 
             if (!gpgAgent) {
                 Error err;
@@ -510,7 +510,7 @@ private:
 
             if ((nullSlot && command == updateTransaction.command)) {
 
-                std::vector<Card> newCards = update_cardinfo(gpgAgent);
+                std::vector<std::shared_ptr<Card> > newCards = update_cardinfo(gpgAgent);
 
                 newCards.resize(std::max(newCards.size(), oldCards.size()));
                 oldCards.resize(std::max(newCards.size(), oldCards.size()));
@@ -518,7 +518,7 @@ private:
                 KDAB_SYNCHRONIZED(m_mutex)
                 m_cardInfos = newCards;
 
-                std::vector<Card>::const_iterator
+                std::vector<std::shared_ptr<Card> >::const_iterator
                 nit = newCards.begin(), nend = newCards.end(),
                 oit = oldCards.begin(), oend = oldCards.end();
 
@@ -527,19 +527,19 @@ private:
                 bool anyNP = false;
                 bool anyError = false;
                 while (nit != nend && oit != oend) {
-                    if (nit != oit) {
-#ifdef DEBUG_SCREADER
-                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: slot" << idx << ":" << prettyFlags[oit->status] << "->" << prettyFlags[nit->status];
-#endif
+                    const auto optr = (*oit).get();
+                    const auto nptr = (*nit).get();
+                    if ((optr && !nptr) || (!optr && nptr) || (optr && nptr && *optr != *nptr)) {
+                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: slot" << idx << ": card Changed";
                         Q_EMIT cardChanged(idx);
                     }
-                    if (nit->canLearnKeys()) {
+                    if ((*nit)->canLearnKeys()) {
                         anyLC = true;
                     }
-                    if (nit->hasNullPin()) {
+                    if ((*nit)->hasNullPin()) {
                         anyNP = true;
                     }
-                    if (nit->status() == Card::CardError) {
+                    if ((*nit)->status() == Card::CardError) {
                         anyError = true;
                     }
                     ++nit;
@@ -571,7 +571,7 @@ private:
     QWaitCondition m_waitForTransactions;
     const QString m_gnupgHomePath;
     // protected by m_mutex:
-    std::vector<Card> m_cardInfos;
+    std::vector<std::shared_ptr<Card> > m_cardInfos;
     std::list<Transaction> m_transactions, m_finishedTransactions;
 };
 
@@ -620,14 +620,14 @@ private:
     {
         const auto cis = cardInfos();
         return std::any_of(cis.cbegin(), cis.cend(),
-                           [](const Card &ci) { return ci.hasNullPin(); });
+                           [](const std::shared_ptr<Card> &ci) { return ci->hasNullPin(); });
     }
 
     bool anyCardCanLearnKeysImpl() const
     {
         const auto cis = cardInfos();
         return std::any_of(cis.cbegin(), cis.cend(),
-                           [](const Card &ci) { return ci.canLearnKeys(); });
+                           [](const std::shared_ptr<Card> &ci) { return ci->canLearnKeys(); });
     }
 
 private:
@@ -680,9 +680,9 @@ bool ReaderStatus::anyCardCanLearnKeys() const
 
 std::vector<Card::PinState> ReaderStatus::pinStates(unsigned int slot) const
 {
-    const std::vector<Card> ci = d->cardInfos();
+    const auto ci = d->cardInfos();
     if (slot < ci.size()) {
-        return ci[slot].pinStates();
+        return ci[slot]->pinStates();
     } else {
         return std::vector<Card::PinState>();
     }
@@ -699,7 +699,7 @@ void ReaderStatus::updateStatus()
     d->ping();
 }
 
-std::vector <Card> ReaderStatus::getCards() const
+std::vector <std::shared_ptr<Card> > ReaderStatus::getCards() const
 {
     return d->cardInfos();
 }

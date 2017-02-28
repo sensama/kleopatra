@@ -64,7 +64,7 @@ public:
 
     std::vector<Card::PinState> pinStates(unsigned int slot) const;
 
-    std::vector<Card> getCards() const;
+    std::vector<std::shared_ptr<Card> > getCards() const;
 
 public Q_SLOTS:
     void updateStatus();

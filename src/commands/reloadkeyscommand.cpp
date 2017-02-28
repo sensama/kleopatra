@@ -33,6 +33,7 @@
 #include <config-kleopatra.h>
 
 #include "reloadkeyscommand.h"
+#include "smartcard/readerstatus.h"
 #include "command_p.h"
 
 #include <Libkleo/KeyCache>
@@ -96,6 +97,14 @@ void ReloadKeysCommand::Private::keyListingDone(const KeyListResult &result)
 
 void ReloadKeysCommand::doStart()
 {
+    const auto view = d->parentWidgetOrView();
+    if (view && !view->isVisible()) {
+        // Small hack to make redisplay also work nicely when the keylist
+        // is not currently the active widget.
+        SmartCard::ReaderStatus::mutableInstance()->updateStatus();
+        finished();
+        return;
+    }
     connect(KeyCache::mutableInstance().get(), SIGNAL(keyListingDone(GpgME::KeyListResult)),
             this, SLOT(keyListingDone(GpgME::KeyListResult)));
     KeyCache::mutableInstance()->startKeyListing();

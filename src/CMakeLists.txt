@@ -96,6 +96,7 @@ set(_kleopatra_SRCS
   view/keylistcontroller.cpp
   view/keytreeview.cpp
   view/searchbar.cpp
+  view/smartcardwidget.cpp
   view/tabwidget.cpp
   view/keycacheoverlay.cpp
 

@@ -1,8 +1,9 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    mainwindow.h
+#ifndef VIEW_SMARTCARDWIDGET_H
+#define VIEW_SMARTCARDWIDGET_H
+/*  dialogs/smartcardwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2007 Klarälvdalens Datakonsult AB
+    Copyright (c) 2017 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,47 +31,28 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_MAINWINDOW_DESKTOP_H__
-#define __KLEOPATRA_MAINWINDOW_DESKTOP_H__
+#include <QWidget>
+#include <memory>
 
-#include <KXmlGuiWindow>
-
-#include <utils/pimpl_ptr.h>
-
-class MainWindow : public KXmlGuiWindow
+namespace Kleo
+{
+/* SmartCardWidget a generic widget to interact with smartcards */
+class SmartCardWidget: public QWidget
 {
     Q_OBJECT
 public:
-    explicit MainWindow(QWidget *parent = nullptr, Qt::WindowFlags f = KDE_DEFAULT_WINDOWFLAGS);
-    ~MainWindow();
+    explicit SmartCardWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
-    void importCertificatesFromFile(const QStringList &files);
+    void reload();
 
-protected:
-    QByteArray savedGeometry;
-
-    void closeEvent(QCloseEvent *e) Q_DECL_OVERRIDE;
-    void showEvent(QShowEvent *e) Q_DECL_OVERRIDE;
-    void hideEvent(QHideEvent *e) Q_DECL_OVERRIDE;
-    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
-    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
-    void readProperties(const KConfigGroup &cg) Q_DECL_OVERRIDE;
-    void saveProperties(KConfigGroup &cg) Q_DECL_OVERRIDE;
+Q_SIGNALS:
+    void backRequested();
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void closeAndQuit())
-    Q_PRIVATE_SLOT(d, void selfTest())
-    Q_PRIVATE_SLOT(d, void configureBackend())
-    Q_PRIVATE_SLOT(d, void configureToolbars())
-    Q_PRIVATE_SLOT(d, void editKeybindings())
-    Q_PRIVATE_SLOT(d, void gnupgLogViewer())
-    Q_PRIVATE_SLOT(d, void slotConfigCommitted())
-    Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
-    Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
-    Q_PRIVATE_SLOT(d, void toggleSmartcardView())
+    std::shared_ptr<Private> d;
 };
 
-#endif /* __KLEOPATRA_MAINWINDOW_DESKTOP_H__ */
+} // namespace Kleo
+#endif // VIEW_SMARTCARDWIDGET_H

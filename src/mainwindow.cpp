@@ -39,6 +39,7 @@
 #include "view/tabwidget.h"
 #include "view/keylistcontroller.h"
 #include "view/keycacheoverlay.h"
+#include "view/smartcardwidget.h"
 
 #include "commands/selftestcommand.h"
 #include "commands/importcrlcommand.h"
@@ -208,6 +209,19 @@ public:
         ui.searchBar->lineEdit()->setFocus();
     }
 
+    void toggleSmartcardView()
+    {
+        if (ui.scWidget->isVisible()) {
+            ui.scWidget->hide();
+            ui.searchBar->show();
+            ui.tabWidget.show();
+        } else {
+            ui.scWidget->show();
+            ui.searchBar->hide();
+            ui.tabWidget.hide();
+        }
+    }
+
 private:
     void setupActions();
 
@@ -223,6 +237,7 @@ private:
 
         TabWidget tabWidget;
         SearchBar *searchBar;
+        SmartCardWidget *scWidget;
         explicit UI(MainWindow *q);
     } ui;
     QAction *focusToClickSearchAction;
@@ -243,6 +258,10 @@ MainWindow::Private::UI::UI(MainWindow *q)
     tabWidget.connectSearchBar(searchBar);
     vbox->addWidget(&tabWidget);
     new KeyCacheOverlay(mainWidget, q);
+
+    scWidget = new SmartCardWidget();
+    vbox->addWidget(scWidget);
+    scWidget->hide();
 
     q->setCentralWidget(mainWidget);
 }
@@ -271,6 +290,11 @@ MainWindow::Private::Private(MainWindow *qq)
     setupActions();
 
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView*,QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView*,QPoint)));
+    connect(ui.scWidget, &SmartCardWidget::backRequested, q, [this]() {
+            auto action = q->actionCollection()->action(QStringLiteral("manage_smartcard"));
+            Q_ASSERT(action);
+            action->setChecked(false);
+        });
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
 
@@ -315,6 +339,11 @@ void MainWindow::Private::setupActions()
             "settings_self_test", i18n("Perform Self-Test"), QString(),
             nullptr, q, SLOT(selfTest()), QString(), false, true
         },
+        {
+            "manage_smartcard", i18n("Manage Smartcards"),
+            i18n("Edit or initialize a crypto hardware token."), "secure-card", q, SLOT(toggleSmartcardView()), QString(), true, true
+        }
+
         // most have been MOVED TO keylistcontroller.cpp
     };
 

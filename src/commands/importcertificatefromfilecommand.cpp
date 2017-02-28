@@ -101,6 +101,12 @@ ImportCertificateFromFileCommand::Private::~Private() {}
 #define d d_func()
 #define q q_func()
 
+ImportCertificateFromFileCommand::ImportCertificateFromFileCommand()
+    : ImportCertificatesCommand(new Private(this, nullptr))
+{
+
+}
+
 ImportCertificateFromFileCommand::ImportCertificateFromFileCommand(KeyListController *p)
     : ImportCertificatesCommand(new Private(this, p))
 {

@@ -90,6 +90,12 @@ NewCertificateCommand::Private::Private(NewCertificateCommand *qq, KeyListContro
 
 NewCertificateCommand::Private::~Private() {}
 
+NewCertificateCommand::NewCertificateCommand()
+    : Command(new Private(this, nullptr))
+{
+    d->init();
+}
+
 NewCertificateCommand::NewCertificateCommand(KeyListController *c)
     : Command(new Private(this, c))
 {

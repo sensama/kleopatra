@@ -44,6 +44,7 @@ class ImportCertificateFromFileCommand : public ImportCertificatesCommand
 {
     Q_OBJECT
 public:
+    explicit ImportCertificateFromFileCommand();
     explicit ImportCertificateFromFileCommand(KeyListController *parent);
     explicit ImportCertificateFromFileCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ImportCertificateFromFileCommand(const QStringList &files, KeyListController *parent);

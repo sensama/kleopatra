@@ -48,6 +48,7 @@ class NewCertificateCommand : public Command
 public:
     explicit NewCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     explicit NewCertificateCommand(KeyListController *parent);
+    explicit NewCertificateCommand();
     ~NewCertificateCommand();
 
     void setProtocol(GpgME::Protocol proto);

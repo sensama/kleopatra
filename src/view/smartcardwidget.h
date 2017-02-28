@@ -1,6 +1,6 @@
 #ifndef VIEW_SMARTCARDWIDGET_H
 #define VIEW_SMARTCARDWIDGET_H
-/*  dialogs/smartcardwidget.h
+/*  view/smartcardwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2017 Intevation GmbH

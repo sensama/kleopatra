@@ -1,4 +1,4 @@
-/*  dialogs/smartcardwidget.cpp
+/*  view/smartcardwidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2017 Intevation GmbH

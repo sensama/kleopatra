@@ -108,6 +108,8 @@ static unsigned int parseFileName(const QString &fileName, bool *ok)
 }
 #endif
 
+Q_DECLARE_METATYPE(GpgME::Error)
+
 namespace
 {
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
@@ -388,11 +390,10 @@ struct Transaction {
     QByteArray command;
     QPointer<QObject> receiver;
     const char *slot;
-    GpgME::Error error;
 };
 
-static const Transaction updateTransaction = { "__update__", nullptr, nullptr, Error() };
-static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr, Error() };
+static const Transaction updateTransaction = { "__update__", nullptr, nullptr };
+static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr };
 
 namespace
 {
@@ -436,7 +437,7 @@ Q_SIGNALS:
     void anyCardHasNullPinChanged(bool);
     void anyCardCanLearnKeysChanged(bool);
     void cardChanged(unsigned int);
-    void oneTransactionFinished();
+    void oneTransactionFinished(GpgME::Error err);
 
 public Q_SLOTS:
     void ping()
@@ -453,14 +454,14 @@ public Q_SLOTS:
     }
 
 private Q_SLOTS:
-    void slotOneTransactionFinished()
+    void slotOneTransactionFinished(GpgME::Error err)
     {
         std::list<Transaction> ft;
         KDAB_SYNCHRONIZED(m_mutex)
         ft.splice(ft.begin(), m_finishedTransactions);
         Q_FOREACH (const Transaction &t, ft)
             if (t.receiver && t.slot && *t.slot) {
-                QMetaObject::invokeMethod(t.receiver, t.slot, Qt::DirectConnection, Q_ARG(GpgME::Error, t.error));
+                QMetaObject::invokeMethod(t.receiver, t.slot, Qt::DirectConnection, Q_ARG(GpgME::Error, err));
             }
     }
 
@@ -564,13 +565,14 @@ private:
                     gpgAgent.reset();
                 }
             } else {
-                (void)gpgagent_transact(gpgAgent, command.constData(), item.front().error);
+                GpgME::Error err;
+                (void)gpgagent_transact(gpgAgent, command.constData(), err);
 
                 KDAB_SYNCHRONIZED(m_mutex)
                 // splice 'item' into m_finishedTransactions:
                 m_finishedTransactions.splice(m_finishedTransactions.end(), item);
 
-                Q_EMIT oneTransactionFinished();
+                Q_EMIT oneTransactionFinished(err);
             }
         }
     }
@@ -599,6 +601,7 @@ public:
         KDAB_SET_OBJECT_NAME(watcher);
 
         qRegisterMetaType<Card::Status>("Kleo::SmartCard::Card::Status");
+        qRegisterMetaType<GpgME::Error>("GpgME::Error");
 
         watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
         watcher.addPath(Kleo::gnupgHomeDirectory());
@@ -698,7 +701,7 @@ std::vector<Card::PinState> ReaderStatus::pinStates(unsigned int slot) const
 
 void ReaderStatus::startSimpleTransaction(const QByteArray &command, QObject *receiver, const char *slot)
 {
-    const Transaction t = { command, receiver, slot, Error() };
+    const Transaction t = { command, receiver, slot };
     d->addTransaction(t);
 }
 

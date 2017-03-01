@@ -32,20 +32,14 @@
 #include "smartcardwidget.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
+#include "view/pgpcardwidget.h"
 
 #include "kleopatra_debug.h"
 
-#include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QPushButton>
-#include <QGridLayout>
 #include <QLabel>
-#include <QScrollArea>
-#include <QInputDialog>
-#include <QLineEdit>
-
-#include <Libkleo/KeyCache>
-#include <Libkleo/Formatting>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -54,246 +48,6 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 namespace {
-class PGPWidget: public QWidget
-{
-    Q_OBJECT
-public:
-    PGPWidget():
-        mSerialNumber(new QLabel),
-        mCardHolderLabel(new QLabel),
-        mVersionLabel(new QLabel),
-        mSigningKey(new QLabel),
-        mEncryptionKey(new QLabel),
-        mAuthKey(new QLabel),
-        mCardIsEmpty(false)
-    {
-        auto grid = new QGridLayout;
-        setLayout(grid);
-        int row = 0;
-
-        // Set up the scroll are
-        auto area = new QScrollArea;
-        area->setFrameShape(QFrame::NoFrame);
-        area->setWidgetResizable(true);
-        auto areaWidget = new QWidget;
-        areaWidget->setLayout(grid);
-        area->setWidget(areaWidget);
-        auto myLayout = new QVBoxLayout;
-        myLayout->addWidget(area);
-        setLayout(myLayout);
-
-        grid->addWidget(mVersionLabel, row++, 0, 1, 2);
-        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-
-        grid->addWidget(mSerialNumber, row++, 1);
-        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        grid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.",
-                        "Cardholder:")), row, 0);
-
-        grid->addWidget(mCardHolderLabel, row, 1);
-        mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        auto nameButtton = new QPushButton;
-        nameButtton->setIcon(QIcon::fromTheme("cell_edit"));
-        nameButtton->setToolTip(i18n("Change"));
-        grid->addWidget(nameButtton, row++, 2);
-        connect(nameButtton, &QPushButton::clicked, this, &PGPWidget::changeNameRequested);
-
-        auto line1 = new QFrame();
-        line1->setFrameShape(QFrame::HLine);
-        grid->addWidget(line1, row++, 0, 1, 4);
-        grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
-
-        grid->addWidget(new QLabel(i18n("Signature:")), row, 0);
-        grid->addWidget(mSigningKey, row++, 1);
-        mSigningKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-        grid->addWidget(new QLabel(i18n("Encryption:")), row, 0);
-        grid->addWidget(mEncryptionKey, row++, 1);
-        mEncryptionKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-        grid->addWidget(new QLabel(i18n("Authentication:")), row, 0);
-        grid->addWidget(mAuthKey, row++, 1);
-        mAuthKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-        auto line2 = new QFrame();
-        line2->setFrameShape(QFrame::HLine);
-        grid->addWidget(line2, row++, 0, 1, 4);
-        grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), row++, 0);
-
-        auto actionLayout = new QHBoxLayout;
-        auto generateButton = new QPushButton(i18n("Generate new Keys"));
-        // TODO implement action
-        generateButton->setEnabled(false);
-        generateButton->setToolTip(i18n("Create a new primary key and generate subkeys on the card."));
-        actionLayout->addWidget(generateButton);
-        connect(generateButton, &QPushButton::clicked, this, &PGPWidget::genkeyRequested);
-
-        auto pinButtton = new QPushButton(i18n("Change PIN"));
-        pinButtton->setToolTip(i18n("Change the PIN required to unblock the smartcard."));
-        actionLayout->addWidget(pinButtton);
-        connect(pinButtton, &QPushButton::clicked, this, [this] () {doChangePin(1);});
-
-        auto pukButton = new QPushButton(i18n("Change Admin PIN"));
-        pukButton->setToolTip(i18n("Change the PIN required to unlock the smartcard."));
-        actionLayout->addWidget(pukButton);
-        connect(pukButton, &QPushButton::clicked, this,  [this] () {doChangePin(3);});
-
-        auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
-        pukButton->setToolTip(i18n("Change the PIN required to reset the smartcard to an empty state."));
-        actionLayout->addWidget(resetCodeButton);
-        connect(resetCodeButton, &QPushButton::clicked, this, [this] () {doChangePin(2);});
-
-        actionLayout->addStretch(-1);
-        grid->addLayout(actionLayout, row++, 0, 1, 4);
-
-        grid->setColumnStretch(4, -1);
-    }
-
-    void setCard(const OpenPGPCard* card)
-    {
-        mVersionLabel->setText(i18nc("First placeholder is manufacturer, second placeholder is a version number",
-                                     "%1 OpenPGP v%2 card", QString::fromStdString(card->manufacturer()),
-                                     QString::fromStdString(card->cardVersion())));
-        mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
-        mCardHolderLabel->setText(QString::fromStdString(card->cardHolder()));
-
-        updateKey(mSigningKey, card->sigFpr());
-        updateKey(mEncryptionKey, card->encFpr());
-        updateKey(mAuthKey, card->authFpr());
-        mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
-    }
-
-    void doChangePin(int slot)
-    {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction(QStringLiteral("SCD PASSWD %1").arg(slot).toUtf8().constData(),
-                                 this, "changePinResult");
-    }
-
-public Q_SLOTS:
-    void genkeyRequested()
-    {
-        if (mCardIsEmpty) {
-//            GenKeyWidget *widget;
-//            QDialog *dialog = 
-        }
-    }
-
-    void changePinResult(const GpgME::Error &err)
-    {
-        if (err) {
-            KMessageBox::error(this, i18nc("@info",
-                               "PIN change failed: %1", err.asString()),
-                               i18nc("@title", "Error"));
-            return;
-        }
-        if (!err.isCanceled()) {
-            KMessageBox::information(this, i18nc("@info",
-                        "Code successfully changed."),
-                    i18nc("@title", "Success"));
-        }
-    }
-
-    void changeNameRequested()
-    {
-        QString text = mCardHolderLabel->text();
-        while (true) {
-            bool ok = false;
-            text = QInputDialog::getText(this, i18n("Change cardholder"),
-                                         i18n("New name:"), QLineEdit::Normal,
-                                         text, &ok, Qt::WindowFlags(),
-                                         Qt::ImhLatinOnly);
-            if (!ok) {
-                return;
-            }
-            // Some additional restrictions imposed by gnupg
-            if (text.contains("<")) {
-                KMessageBox::error(this, i18nc("@info",
-                                   "The \"<\" character may not be used."),
-                                   i18nc("@title", "Error"));
-                continue;
-            }
-            if (text.contains("  ")) {
-                KMessageBox::error(this, i18nc("@info",
-                                   "Double spaces are not allowed"),
-                                   i18nc("@title", "Error"));
-                continue;
-            }
-            if (text.size() > 38) {
-                KMessageBox::error(this, i18nc("@info",
-                                   "The size of the name may not exceed 38 characters."),
-                                   i18nc("@title", "Error"));
-            }
-            break;
-        }
-        auto parts = text.split(" ");
-        const auto lastName = parts.takeLast();
-        const auto formatted = lastName + QStringLiteral("<<") + parts.join("<");
-
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction(QStringLiteral("SCD SETATTR DISP-NAME %1").arg(formatted).toUtf8().constData(),
-                                 this, "changeNameResult");
-
-    }
-
-    void changeNameResult(const GpgME::Error &err)
-    {
-        if (err) {
-            KMessageBox::error(this, i18nc("@info",
-                               "Name change failed: %1", err.asString()),
-                               i18nc("@title", "Error"));
-            return;
-        }
-        if (!err.isCanceled()) {
-            KMessageBox::information(this, i18nc("@info",
-                        "Name successfully changed."),
-                    i18nc("@title", "Success"));
-            ReaderStatus::mutableInstance()->updateStatus();
-        }
-
-    }
-
-private:
-    void updateKey(QLabel *label, const std::string &fpr)
-    {
-        label->setText(fpr.c_str());
-
-        if (fpr.empty()) {
-            label->setText(i18n("Slot empty"));
-            return;
-        }
-
-        std::vector<std::string> vec;
-        std::string keyid = fpr;
-        keyid.erase(0, keyid.size() - 16);
-        vec.push_back(keyid);
-        const auto subkeys = KeyCache::instance()->findSubkeysByKeyID(vec);
-        if (subkeys.empty() || subkeys[0].isNull()) {
-            label->setToolTip(i18n("Public key not found."));
-            return;
-        }
-        QStringList toolTips;
-        for (const auto &sub: subkeys) {
-            // Yep you can have one subkey associated with mutliple
-            // primary keys.
-            toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                                            Formatting::StorageLocation |
-                                            Formatting::ExpiryDates |
-                                            Formatting::UserIDs |
-                                            Formatting::Fingerprint);
-        }
-        label->setToolTip(toolTips.join("<br/>"));
-        return;
-    }
-    QLabel *mSerialNumber,
-           *mCardHolderLabel,
-           *mVersionLabel,
-           *mSigningKey,
-           *mEncryptionKey,
-           *mAuthKey;
-    bool mCardIsEmpty;
-};
 class PlaceHolderWidget: public QWidget
 {
     Q_OBJECT
@@ -343,8 +97,9 @@ public:
 
         vLay->addLayout(backH);
 
-        mPGPWidget = new PGPWidget;
-        vLay->addWidget(mPGPWidget);
+        mPGPCardWidget = new PGPCardWidget;
+        mPGPCardWidget->setVisible(false);
+        vLay->addWidget(mPGPCardWidget);
 
         mPlaceHolderWidget = new PlaceHolderWidget;
         vLay->addWidget(mPlaceHolderWidget);
@@ -366,21 +121,21 @@ public:
     void setCard(std::shared_ptr<Card> card)
     {
         if (card->appType() == Card::OpenPGPApplication) {
-            mPGPWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
-            mPGPWidget->setVisible(true);
+            mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
+            mPGPCardWidget->setVisible(true);
             mPlaceHolderWidget->setVisible(false);
         } else if (card->appType() == Card::NksApplication) {
             // TODO
         } else {
             mPlaceHolderWidget->setVisible(true);
-            mPGPWidget->setVisible(false);
+            mPGPCardWidget->setVisible(false);
         }
     }
 
 private:
     SmartCardWidget *q;
     // NetkeyWidget *mNetkey;
-    PGPWidget *mPGPWidget;
+    PGPCardWidget *mPGPCardWidget;
     PlaceHolderWidget *mPlaceHolderWidget;
 };
 

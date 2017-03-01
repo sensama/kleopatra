@@ -122,6 +122,23 @@ QStringList Kleo::gnupgFileWhitelist()
            ;
 }
 
+QString Kleo::gpg4winVersion()
+{
+    QFile versionFile(gpg4winInstallPath() + QStringLiteral("/../VERSION"));
+    if (!versionFile.open(QIODevice::ReadOnly)) {
+        // No need to translate this should only be the case in development
+        // builds.
+        return QStringLiteral("Unknown (no VERSION file found)");
+    }
+    const QString g4wTag = QString::fromUtf8(versionFile.readLine());
+    if (!g4wTag.startsWith(QStringLiteral("gpg4win"))) {
+        // Hu? Something unknown
+        return QStringLiteral("Unknown (invalid VERSION file found)");
+    }
+    // Next line is version.
+    return QString::fromUtf8(versionFile.readLine()).trimmed();
+}
+
 QString Kleo::gpg4winInstallPath()
 {
 #ifdef Q_OS_WIN

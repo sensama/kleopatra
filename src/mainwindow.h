@@ -71,6 +71,7 @@ private:
     Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
     Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
     Q_PRIVATE_SLOT(d, void toggleSmartcardView())
+    Q_PRIVATE_SLOT(d, void forceUpdateCheck())
 };
 
 #endif /* __KLEOPATRA_MAINWINDOW_DESKTOP_H__ */

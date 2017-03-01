@@ -63,6 +63,8 @@
 #include "commands/detailscommand.h"
 #include "commands/newcertificatecommand.h"
 
+#include "dialogs/updatenotification.h"
+
 #include <KIconLoader>
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
@@ -488,6 +490,7 @@ void KleopatraApplication::openOrRaiseMainWindow()
         d->connectConfigureDialog();
     }
     open_or_raise(mw);
+    UpdateNotification::checkUpdate(mw);
 }
 
 void KleopatraApplication::openOrRaiseConfigDialog()

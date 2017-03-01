@@ -1,8 +1,7 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    utils/gnupg-helper.h
+/*  dialogs/updatenotification.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2017 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,34 +29,26 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_GNUPGHELPER_H__
-#define __KLEOPATRA_GNUPGHELPER_H__
+#ifndef DIALOGS_UPDATENOTIFICATION_H
+#define DIALOGS_UPDATENOTIFICATION_H
 
-#include <gpgme++/engineinfo.h>
-
-class QString;
-class QStringList;
+#include <QString>
+#include <QDialog>
 
 namespace Kleo
 {
 
-QString gnupgHomeDirectory();
-
-QString gpgConfPath();
-QString gpgSmPath();
-QString gpgPath();
-
-QString gpgConfListDir(const char *which);
-QString gpg4winInstallPath();
-QString gpg4winVersion();
-QString gnupgInstallPath();
-const QString& paperKeyInstallPath();
-
-QStringList gnupgFileWhitelist();
-
-int makeGnuPGError(int code);
-
-bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
-}
-
-#endif // __KLEOPATRA_GNUPGHELPER_H__
+/** Updatenotification for Gpg4win
+ *
+ * On Windows it is usual for Applications to notifiy the user
+ * about updates. To avoid network access in Kleopatra and
+ * to have only one TLS stack in our package this is implemented
+ * in dirmngr.
+ */
+class UpdateNotification : public QDialog
+{
+public:
+    static void checkUpdate(QWidget *parent, bool force = false);
+    UpdateNotification(QWidget *parent, const QString &version);};
+} // namespace Kleo
+#endif // DIALOGS_UPDATENOTIFICATION_H

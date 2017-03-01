@@ -54,6 +54,8 @@
 #include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"
 
+#include "dialogs/updatenotification.h"
+
 #include <KXMLGUIFactory>
 #include <QApplication>
 #include <KActionCollection>
@@ -195,6 +197,11 @@ public:
             KMessageBox::error(q, i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
                                        "Please check your installation."),
                                i18n("Error Starting KWatchGnuPG"));
+    }
+
+    void forceUpdateCheck()
+    {
+        UpdateNotification::checkUpdate(q, true);
     }
 
     void slotConfigCommitted();
@@ -353,6 +360,12 @@ void MainWindow::Private::setupActions()
         {
             "tools_start_kwatchgnupg", i18n("GnuPG Log Viewer"), QString(),
             "kwatchgnupg", q, SLOT(gnupgLogViewer()), QString(), false, true
+        },
+#endif
+#ifdef Q_OS_WIN
+        {
+            "help_check_updates", i18n("Check for updates"), QString(),
+            "gpg4win-compact", q, SLOT(forceUpdateCheck()), QString(), false, true
         },
 #endif
         // most have been MOVED TO keylistcontroller.cpp

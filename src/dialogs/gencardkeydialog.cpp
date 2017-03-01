@@ -68,7 +68,7 @@ public:
 
         vBox->addWidget(bbox);
 
-        KEMailSettings e;
+        const KEMailSettings e;
         mNameEdit = new QLineEdit(e.getSetting(KEMailSettings::RealName));
         mEmailEdit = new QLineEdit(e.getSetting(KEMailSettings::EmailAddress));
 

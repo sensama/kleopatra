@@ -83,6 +83,7 @@
 #include <cassert>
 
 #include <KSharedConfig>
+#include <KEMailSettings>
 #include <QLocale>
 
 using namespace Kleo;
@@ -1435,6 +1436,14 @@ void EnterDetailsPage::updateForm()
     widgets.push_back(ui.resultLE);
     widgets.push_back(ui.addEmailToDnCB);
     widgets.push_back(ui.advancedPB);
+
+    const KEMailSettings e;
+    if (ui.nameLE->text().isEmpty()) {
+        ui.nameLE->setText(e.getSetting(KEMailSettings::RealName));
+    }
+    if (ui.emailLE->text().isEmpty()) {
+        ui.emailLE->setText(e.getSetting(KEMailSettings::EmailAddress));
+    }
 
     set_tab_order(widgets);
 }

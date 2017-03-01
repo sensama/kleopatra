@@ -170,17 +170,12 @@ void OpenPGPCard::setSerialNumber(const std::string &serialno)
     const char *version = "";
     const char *string = serialno.c_str();
 
+    Card::setSerialNumber(serialno);
     if (strncmp(string, "D27600012401", 12) || strlen(string) != 32 ) {
         /* Not a proper OpenPGP card serialnumber.  Display the full
            serialnumber. */
         mManufacturer = "unknown";
-        Card::setSerialNumber(serialno);
     } else {
-        /* A proper OpenPGP AID.  */
-        strncpy(serialno_buffer, string + 20, 8);
-        serialno_buffer[8] = 0;
-        Card::setSerialNumber(serialno_buffer);
-
         /* Reformat the version number to be better human readable.  */
         p = version_buffer;
         if (string[12] != '0') {

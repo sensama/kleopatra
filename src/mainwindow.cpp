@@ -79,6 +79,7 @@
 #include <QProcess>
 #include <QVBoxLayout>
 #include <QMimeData>
+#include <QDesktopWidget>
 
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -334,6 +335,8 @@ MainWindow::Private::~Private() {}
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags), d(new Private(this))
 {
+    const auto desk = QApplication::desktop()->screenGeometry(this);
+    resize(desk.width() / 2, desk.height() / 3);
 }
 
 MainWindow::~MainWindow() {}

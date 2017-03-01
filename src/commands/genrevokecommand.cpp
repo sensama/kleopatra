@@ -124,7 +124,7 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
 void GenRevokeCommand::doStart()
 {
     while (mOutputFileName.isEmpty()) {
-        mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(), tr("Generate revocation certificate"),
+        mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(), i18n("Generate revocation certificate"),
                                                        QString(),
                                                        QStringLiteral("Revocation Certificates (*.rev)"));
         if (mOutputFileName.isEmpty()) {

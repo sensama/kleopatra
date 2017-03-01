@@ -102,7 +102,6 @@ class GenKeyThread: public QThread
             ei->setNameUtf8(mParams.name.toStdString());
             ei->setEmailUtf8(mParams.email.toStdString());
             ei->setDoBackup(mParams.backup);
-            ei->setDebugChannel(stdout);
 
             const auto ctx = std::shared_ptr<GpgME::Context> (GpgME::Context::createForProtocol(GpgME::OpenPGP));
             QGpgME::QByteArrayDataProvider dp;

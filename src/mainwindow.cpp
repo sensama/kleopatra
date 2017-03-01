@@ -235,23 +235,17 @@ private:
 
     void checkWelcomePage()
     {
-        static bool wasSmartcardVisible;
+        if (ui.scWidget->isVisible()) {
+           return;
+        }
         if (KeyCache::instance()->keys().empty()) {
-            if (ui.scWidget->isVisible()) {
-                wasSmartcardVisible = true;
-            }
-            ui.scWidget->hide();
             ui.searchBar->hide();
             ui.tabWidget.hide();
             ui.welcomeWidget->show();
         } else {
             ui.welcomeWidget->hide();
-            if (wasSmartcardVisible) {
-                ui.scWidget->show();
-            } else {
-                ui.searchBar->show();
-                ui.tabWidget.show();
-            }
+            ui.searchBar->show();
+            ui.tabWidget.show();
         }
     }
 

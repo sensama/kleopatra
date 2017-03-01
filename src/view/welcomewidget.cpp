@@ -101,7 +101,7 @@ public:
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         mImportBtn->setToolTip(i18n("Import a Certificate from a file.") + QStringLiteral("<br>") +
-                               i18n("To import form a public keyserver use \"Lookup on Server\" instead."));
+                               i18n("To import from a public keyserver use \"Lookup on Server\" instead."));
 
         auto btnLayout = new QHBoxLayout;
         btnLayout->addStretch(-1);

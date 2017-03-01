@@ -371,15 +371,15 @@ void KeyListController::createActions(KActionCollection *coll)
     const action_data action_data[] = {
         // File menu
         {
-            "file_new_certificate", i18n("New Certificate..."), QString(),
+            "file_new_certificate", i18n("New Keypair..."), QString(),
             "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N"), false, true
         },
         {
-            "file_export_certificates", i18n("Export Certificates..."), QString(),
+            "file_export_certificates", i18n("Export..."), i18n("Export the selected certificate (public key) to a file"),
             "view-certificate-export", nullptr, nullptr, QStringLiteral("Ctrl+E"), false, true
         },
         {
-            "file_export_certificates_to_server", i18n("Export Certificates to Server..."), QString(),
+            "file_export_certificates_to_server", i18n("Publish on Server..."), i18n("Publish the selected certificate (public key) on a public keyserver"),
             "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E"), false, true
         },
         {
@@ -391,23 +391,23 @@ void KeyListController::createActions(KActionCollection *coll)
             "document-print", nullptr, nullptr, QString(), false, true
         },
         {
-            "file_lookup_certificates", i18n("Lookup Certificates on Server..."), QString(),
+            "file_lookup_certificates", i18n("Lookup on Server..."), i18n("Search for certificates online using a public keyserver"),
             "edit-find", nullptr, nullptr, QStringLiteral("Shift+Ctrl+I"), false, true
         },
         {
-            "file_import_certificates", i18n("Import Certificates..."), QString(),
+            "file_import_certificates", i18n("Import..."), i18n("Import a certificate from a file"),
             "view-certificate-import", nullptr, nullptr, QStringLiteral("Ctrl+I"), false, true
         },
         {
-            "file_decrypt_verify_files", i18n("Decrypt/Verify Files..."), QString(),
+            "file_decrypt_verify_files", i18n("Decrypt/Verify..."), i18n("Decrypt and/or verify files"),
             "document-edit-decrypt-verify", nullptr, nullptr, QString(), false, true
         },
         {
-            "file_sign_encrypt_files", i18n("Sign/Encrypt Files..."), QString(),
+            "file_sign_encrypt_files", i18n("Sign/Encrypt..."), i18n("Encrypt and/or sign files"),
             "document-edit-sign-encrypt", nullptr, nullptr, QString(), false, true
         },
         {
-            "file_sign_encrypt_folder", i18n("Sign/Encrypt Folder..."), QString(),
+            "file_sign_encrypt_folder", i18n("Sign/Encrypt Folder..."), i18n("Encrypt and/or sign folders"),
             nullptr/*"folder-edit-sign-encrypt"*/, nullptr, nullptr, QString(), false, true
         },
         {
@@ -428,16 +428,16 @@ void KeyListController::createActions(KActionCollection *coll)
             "process-stop", this, SLOT(cancelCommands()), QStringLiteral("Escape"), false, false
         },
         {
-            "view_certificate_details", i18n("Certificate Details"), QString(),
+            "view_certificate_details", i18n("Details"), QString(),
             "dialog-information", nullptr, nullptr, QString(), false, true
         },
         // Certificate menu
         {
-            "certificates_delete", i18n("Delete"), QString()/*i18n("Delete selected certificates")*/,
+            "certificates_delete", i18n("Delete"), i18n("Delete selected certificates"),
             "edit-delete", nullptr, nullptr, QStringLiteral("Delete"), false, true
         },
         {
-            "certificates_certify_certificate", i18n("Certify Certificate..."), QString(),
+            "certificates_certify_certificate", i18n("Certify..."), i18n("Certify the validity of the selected certificate"),
             "view-certificate-sign", nullptr, nullptr, QString(), false, true
         },
         {
@@ -465,7 +465,7 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
-            "certificates_dump_certificate", i18n("Dump Certificate"), QString(),
+            "certificates_dump_certificate", i18n("Technical Details"), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
         // Tools menu

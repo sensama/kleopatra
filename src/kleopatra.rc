@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui >
-<kpartgui name="kleopatra" version="493" >
+<kpartgui name="kleopatra" version="500" >
     <MenuBar>
         <Menu name="file">
             <text>&amp;File</text>
@@ -82,25 +82,26 @@
         </Menu>
     </MenuBar>
 
-    <ToolBar fullWidth="false" name="mainToolBar">
+    <ToolBar fullWidth="false" name="mainToolBar" iconText="TextUnderIcon">
         <text>Main Toolbar</text>
+        <Action name="file_sign_encrypt_files"/>
+        <Action name="file_decrypt_verify_files"/>
+        <Separator/>
         <Action name="file_import_certificates"/>
         <Action name="file_export_certificates"/>
-        <Separator/>
-        <Action name="view_redisplay"/>
-        <Action name="view_stop_operations"/>
-        <Separator/>
+        <Action name="certificates_certify_certificate"/>
         <Action name="file_lookup_certificates"/>
+        <Separator/>
         <Action name="clipboard_menu"/>
     </ToolBar>
 
     <Menu name="listview_popup">
         <text>&amp;Certificates</text>
-        <Action name="certificates_change_owner_trust"/>
+        <Action name="certificates_certify_certificate"/>
         <Action name="certificates_trust_root"/>
         <Action name="certificates_distrust_root"/>
+        <Action name="certificates_change_owner_trust"/>
         <Separator/>
-        <Action name="certificates_certify_certificate"/>
         <Action name="certificates_change_expiry"/>
         <Action name="certificates_change_passphrase"/>
         <Action name="certificates_add_userid"/>

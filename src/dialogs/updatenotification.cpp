@@ -127,6 +127,9 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
                                      i18nc("@title", "Up to date"));
         }
     }
+#else
+    Q_UNUSED(parent);
+    Q_UNUSED(force);
 #endif
 }
 

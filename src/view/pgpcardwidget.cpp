@@ -308,7 +308,7 @@ void PGPCardWidget::genkeyRequested()
                 i18n("The existing keys on this card will be <b>deleted</b> "
                      "and replaced by new keys.") + QStringLiteral("<br/><br/>") +
                 i18n("It will no longer be possible to decrypt past communication "
-                     "encrypted for the existing keys."),
+                     "encrypted for the existing key."),
                 i18n("Secret Key Deletion"),
                 KStandardGuiItem::guiItem(KStandardGuiItem::Delete),
                 KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);

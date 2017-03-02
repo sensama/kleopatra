@@ -18,6 +18,10 @@
 #include "subkeyswidget.h"
 #include "ui_subkeyswidget.h"
 
+#include "smartcard/readerstatus.h"
+
+#include "commands/keytocardcommand.h"
+
 #include <gpgme++/key.h>
 
 #include <KConfigGroup>
@@ -25,29 +29,77 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTreeWidgetItem>
+#include <QMenu>
 
 #include <libkleo/formatting.h>
 
+Q_DECLARE_METATYPE(GpgME::Subkey)
+
+using namespace Kleo;
 
 class SubKeysWidget::Private
 {
 public:
     Private(SubKeysWidget *q)
         : q(q)
-    {}
+    {
+        ui.setupUi(q);
+        ui.subkeysTree->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(ui.subkeysTree, &QAbstractItemView::customContextMenuRequested,
+                q, [this](const QPoint &p) { tableContextMenuRequested(p); });
+    }
 
     GpgME::Key key;
     Ui::SubKeysWidget ui;
-
+    void tableContextMenuRequested(const QPoint &p);
 private:
     SubKeysWidget *q;
 };
+
+void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
+{
+    if (!Kleo::Commands::KeyToCardCommand::supported()) {
+        return;
+    }
+    auto item = ui.subkeysTree->itemAt(p);
+    if (!item) {
+        return;
+    }
+    const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
+
+    if (!subkey.isSecret()) {
+        return;
+    }
+
+    const auto cards = SmartCard::ReaderStatus::instance()->getCards();
+    if (!cards.size() || cards[0]->appType() != SmartCard::Card::OpenPGPApplication) {
+        return;
+    }
+    const auto card = cards[0];
+
+    if (subkey.cardSerialNumber() && card->serialNumber() == subkey.cardSerialNumber()) {
+        return;
+    }
+
+    QMenu *menu = new QMenu(q);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
+                    i18n("Transfer to smartcard"),
+                    q, [this, subkey, card]() {
+        auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber());
+        ui.subkeysTree->setEnabled(false);
+        connect(cmd, &Kleo::Commands::KeyToCardCommand::finished,
+                q, [this]() { ui.subkeysTree->setEnabled(true); });
+        cmd->setParentWidget(q);
+        cmd->start();
+    });
+    connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
+    menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
+}
 
 SubKeysWidget::SubKeysWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
-    d->ui.setupUi(this);
 }
 
 SubKeysWidget::~SubKeysWidget()
@@ -61,6 +113,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     for (const auto &subkey : key.subkeys()) {
         auto item = new QTreeWidgetItem();
         item->setData(0, Qt::DisplayRole, QString::fromLatin1(subkey.keyID()));
+        item->setData(0, Qt::UserRole, QVariant::fromValue(subkey));
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::type(subkey));
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(3, Qt::DisplayRole, Kleo::Formatting::expirationDateString(subkey));

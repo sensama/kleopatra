@@ -68,6 +68,8 @@ public:
                        i18n("Kleopatra currently supports the following card types:") +
                             QStringLiteral("<ul><li>") + supported.join(QStringLiteral("</li><li>")) +
                             QStringLiteral("</li></ul>")));
+        lay->addSpacing(10);
+        lay->addWidget(new QLabel(i18n("Refresh the view (F5) to update the smartcard status.")));
         lay->addStretch(-1);
 
         auto hLay = new QHBoxLayout;

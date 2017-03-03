@@ -33,10 +33,12 @@
 #include <config-kleopatra.h>
 
 #include "decryptverifycommandfilesbase.h"
+#include "fileoperationspreferences.h"
 
 #include <crypto/decryptverifytask.h>
 
-#include <crypto/decryptverifyfilescontroller.h>
+#include "crypto/decryptverifyfilescontroller.h"
+#include "crypto/autodecryptverifyfilescontroller.h"
 
 #include <utils/hex.h>
 #include <utils/input.h>
@@ -117,7 +119,12 @@ int DecryptVerifyCommandFilesBase::doStart()
 
     d->checkForErrors();
 
-    d->controller.reset(new DecryptVerifyFilesController(shared_from_this()));
+    FileOperationsPreferences prefs;
+    if (prefs.autoDecryptVerify()) {
+        d->controller.reset(new AutoDecryptVerifyFilesController());
+    } else {
+        d->controller.reset(new DecryptVerifyFilesController(shared_from_this()));
+    }
 
     d->controller->setOperation(operation());
     d->controller->setFiles(fileNames());

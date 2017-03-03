@@ -38,6 +38,8 @@
 
 #include "detailscommand.h"
 
+#include "utils/gnupg-helper.h"
+
 #include <dialogs/lookupcertificatesdialog.h>
 
 #include <Libkleo/Formatting>
@@ -391,16 +393,6 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
                                  QStringLiteral("lookup-certificates-truncated-result"));
 }
 
-static bool haveOpenPGPKeyserverConfigured()
-{
-    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
-    if (!config) {
-        return false;
-    }
-    const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
-    return entry && !entry->stringValue().isEmpty();
-}
-
 static bool haveX509DirectoryServerConfigured()
 {
     const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
@@ -416,7 +408,7 @@ static bool haveX509DirectoryServerConfigured()
 
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
-    const bool ok = haveOpenPGPKeyserverConfigured() || haveX509DirectoryServerConfigured();
+    const bool ok = haveKeyserverConfigured() || haveX509DirectoryServerConfigured();
     if (!ok)
         information(xi18nc("@info",
                            "<para>You do not have any directory servers configured.</para>"

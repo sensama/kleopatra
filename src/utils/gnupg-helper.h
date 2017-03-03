@@ -58,6 +58,7 @@ QStringList gnupgFileWhitelist();
 int makeGnuPGError(int code);
 
 bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
+bool haveKeyserverConfigured();
 }
 
 #endif // __KLEOPATRA_GNUPGHELPER_H__

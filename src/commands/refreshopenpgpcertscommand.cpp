@@ -36,25 +36,11 @@
 
 #include <utils/gnupg-helper.h>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/CryptoConfig>
-
 #include <KLocalizedString>
 #include <KMessageBox>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace QGpgME;
-
-static bool haveKeyserverConfigured()
-{
-    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
-    if (!config) {
-        return false;
-    }
-    const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
-    return entry && !entry->stringValue().isEmpty();
-}
 
 RefreshOpenPGPCertsCommand::RefreshOpenPGPCertsCommand(KeyListController *c)
     : GnuPGProcessCommand(c)

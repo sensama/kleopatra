@@ -40,6 +40,9 @@
 #include <gpgme++/engineinfo.h>
 #include <gpgme++/error.h>
 
+#include <QGpgME/Protocol>
+#include <QGpgME/CryptoConfig>
+
 #include "kleopatra_debug.h"
 
 #include <QDir>
@@ -250,4 +253,18 @@ const QString& Kleo::paperKeyInstallPath()
                                   QStandardPaths::findExecutable(QStringLiteral("paperkey")) :
                                   QStandardPaths::findExecutable(QStringLiteral("paperkey"), QStringList() << QCoreApplication::applicationDirPath());
     return pkPath;
+}
+
+bool Kleo::haveKeyserverConfigured()
+{
+    if (engineIsVersion(2, 1, 19)) {
+        // since 2.1.19 there is a builtin keyserver
+        return true;
+    }
+    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
+    if (!config) {
+        return false;
+    }
+    const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
+    return entry && !entry->stringValue().isEmpty();
 }

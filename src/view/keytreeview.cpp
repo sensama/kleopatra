@@ -214,13 +214,12 @@ void KeyTreeView::init()
     m_view->setModel(rearangingModel);
 
     std::vector<int> defaultSizes;
-    int unit = fontMetrics().averageCharWidth();
-    defaultSizes.push_back(unit * 40);
-    defaultSizes.push_back(unit * 40);
-    defaultSizes.push_back(unit * 10);
-    defaultSizes.push_back(unit * 10);
-    defaultSizes.push_back(unit * 10);
-    defaultSizes.push_back(unit * 10);
+    defaultSizes.push_back(280);
+    defaultSizes.push_back(280);
+    defaultSizes.push_back(100);
+    defaultSizes.push_back(100);
+    defaultSizes.push_back(80);
+    defaultSizes.push_back(80);
     setColumnSizes(defaultSizes);
 }
 

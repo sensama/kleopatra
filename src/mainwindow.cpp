@@ -342,8 +342,7 @@ MainWindow::Private::~Private() {}
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags), d(new Private(this))
 {
-    const auto desk = QApplication::desktop()->screenGeometry(this);
-    resize(desk.width() / 2, desk.height() / 3);
+    resize(960, 440);
 }
 
 MainWindow::~MainWindow() {}

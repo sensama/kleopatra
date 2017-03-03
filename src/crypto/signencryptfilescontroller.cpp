@@ -532,7 +532,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1;
+        const bool archive = (wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) ||
+                             ((operation & ArchiveMask) == ArchiveForced);
 
         const QVector<Key> recipients = wizard->resolvedRecipients();
         const QVector<Key> signers = wizard->resolvedSigners();

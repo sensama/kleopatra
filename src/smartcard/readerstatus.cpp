@@ -463,22 +463,20 @@ private Q_SLOTS:
 
 private:
     void run() Q_DECL_OVERRIDE {
-        std::shared_ptr<Context> gpgAgent;
-
         while (true) {
+            std::shared_ptr<Context> gpgAgent;
+
             QByteArray command;
             bool nullSlot = false;
             std::list<Transaction> item;
             std::vector<std::shared_ptr<Card> > oldCards;
 
-            if (!gpgAgent) {
-                Error err;
-                std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
-                if (err.code() == GPG_ERR_NOT_SUPPORTED) {
-                    return;
-                }
-                gpgAgent = std::shared_ptr<Context>(c.release());
+            Error err;
+            std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
+            if (err.code() == GPG_ERR_NOT_SUPPORTED) {
+                return;
             }
+            gpgAgent = std::shared_ptr<Context>(c.release());
 
             KDAB_SYNCHRONIZED(m_mutex) {
 

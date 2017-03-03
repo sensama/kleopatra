@@ -82,7 +82,7 @@ private:
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    std::shared_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void slotWizardOperationPrepared())
     Q_PRIVATE_SLOT(d, void slotWizardCanceled())
     Q_PRIVATE_SLOT(d, void schedule())

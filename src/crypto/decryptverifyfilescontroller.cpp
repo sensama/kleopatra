@@ -78,7 +78,7 @@ public:
     void slotWizardCanceled();
     void schedule();
 
-    QStringList prepareWizardFromPassedFiles();
+    void prepareWizardFromPassedFiles();
     std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, const std::shared_ptr<OverwritePolicy> &);
 
     void ensureWizardCreated();
@@ -183,7 +183,7 @@ void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
     m_runnableTasks.swap(tasks);
 
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    Q_FOREACH (const std::shared_ptr<Task> &i, m_runnableTasks) {
+    for (const auto &i: m_runnableTasks) {
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);
@@ -228,7 +228,7 @@ void DecryptVerifyFilesController::Private::schedule()
     }
     if (!m_runningTask) {
         kleo_assert(m_runnableTasks.empty());
-        Q_FOREACH (const std::shared_ptr<const DecryptVerifyResult> &i, m_results) {
+        for (const auto &i: m_results) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
         q->emitDoneOrError();
@@ -299,16 +299,13 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
     }
 }
 
-QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
+void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
 {
     ensureWizardCreated();
-
     const std::vector< std::shared_ptr<ArchiveDefinition> > archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
 
-    QStringList fileNames;
     unsigned int counter = 0;
-    Q_FOREACH (const QString &fname, m_passedFiles) {
-
+    for (const auto &fname: m_passedFiles) {
         kleo_assert(!fname.isEmpty());
 
         const unsigned int classification = classify(fname);
@@ -340,7 +337,7 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
             op->setInputFileName(fname);
             op->setSignedDataFileName(signedDataFileName);
 
-            fileNames.push_back(fname);
+            m_filesAfterPreparation << fname;
 
         } else {
 
@@ -357,10 +354,9 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
                 op->setArchiveDefinitions(archiveDefinitions);
                 op->setMode(DecryptVerifyOperationWidget::DecryptVerifyOpaque, q->pick_archive_definition(proto, archiveDefinitions, fname));
                 op->setInputFileName(fname);
-                fileNames.push_back(fname);
+                m_filesAfterPreparation << fname;
             } else {
-
-                Q_FOREACH (const QString &s, signatures) {
+                for (const auto &s: signatures) {
                     DecryptVerifyOperationWidget *op = m_wizard->operationWidget(counter++);
                     kleo_assert(op != nullptr);
 
@@ -369,17 +365,15 @@ QStringList DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles(
                     op->setInputFileName(s);
                     op->setSignedDataFileName(fname);
 
-                    fileNames.push_back(fname);
+                    m_filesAfterPreparation << fname;
                 }
 
             }
         }
     }
 
-    kleo_assert(counter == static_cast<unsigned>(fileNames.size()));
-
     m_wizard->setOutputDirectory(heuristicBaseDirectory(m_passedFiles));
-    return fileNames;
+    return;
 }
 
 std::vector< std::shared_ptr<Task> > DecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, const std::shared_ptr<OverwritePolicy> &overwritePolicy)
@@ -431,7 +425,7 @@ DecryptVerifyFilesController::~DecryptVerifyFilesController()
 
 void DecryptVerifyFilesController::start()
 {
-    d->m_filesAfterPreparation = d->prepareWizardFromPassedFiles();
+    d->prepareWizardFromPassedFiles();
     d->ensureWizardVisible();
 }
 

@@ -386,7 +386,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 cmd->setParentWId(parentId);
                 cmd->start();
             }
-            return errors.join("\n");
+            return errors.join('\n');
         }
     }
 

@@ -228,5 +228,5 @@ std::string OpenPGPCard::cardHolder() const
 {
     auto list = QString::fromStdString(mMetaInfo.value("DISP-NAME")).split("<<");
     std::reverse(list.begin(), list.end());
-    return list.join(QStringLiteral(" ")).toStdString();
+    return list.join(QLatin1Char(' ')).toStdString();
 }

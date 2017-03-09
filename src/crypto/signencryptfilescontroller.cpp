@@ -300,10 +300,10 @@ static QMap <int, QString> buildOutputNames(const QStringList &files, const bool
                 firstFile.baseName());
 
         const auto ad = getDefaultAd();
-        baseNamePgp = baseName + QStringLiteral(".") + ad->extensions(GpgME::OpenPGP).first() + QStringLiteral(".");
-        baseNameCms = baseName + QStringLiteral(".") + ad->extensions(GpgME::CMS).first() + QStringLiteral(".");
+        baseNamePgp = baseName + QLatin1Char('.') + ad->extensions(GpgME::OpenPGP).first() + QLatin1Char('.');
+        baseNameCms = baseName + QLatin1Char('.') + ad->extensions(GpgME::CMS).first() + QLatin1Char('.');
     } else {
-        baseNameCms = baseNamePgp = files.first() + QStringLiteral(".");
+        baseNameCms = baseNamePgp = files.first() + QLatin1Char('.');
     }
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();
@@ -328,7 +328,7 @@ static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMa
 
     // Build the default names for the wizard.
     const QFileInfo fi(file);
-    const QString baseName = dir + QStringLiteral("/") + fi.fileName() + QStringLiteral(".");
+    const QString baseName = dir + QLatin1Char('/') + fi.fileName() + QStringLiteral(".");
 
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();

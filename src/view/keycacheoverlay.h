@@ -50,7 +50,7 @@ public:
      * @p baseWidget must not be null.
      * @p parent must not be equal to @p baseWidget
      */
-    explicit KeyCacheOverlay(QWidget *baseWidget, QWidget *parent = 0);
+    explicit KeyCacheOverlay(QWidget *baseWidget, QWidget *parent = nullptr);
 
 protected:
     bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;

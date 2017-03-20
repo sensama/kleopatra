@@ -42,7 +42,7 @@ namespace Kleo
 
 class SelfTest;
 
-std::shared_ptr<SelfTest> makeGpgConfCheckConfigurationSelfTest(const char *component = 0);
+std::shared_ptr<SelfTest> makeGpgConfCheckConfigurationSelfTest(const char *component = nullptr);
 
 }
 

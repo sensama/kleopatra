@@ -207,6 +207,7 @@ set(_kleopatra_SRCS
   commands/checksumcreatefilescommand.cpp
   commands/checksumverifyfilescommand.cpp
   commands/exportpaperkeycommand.cpp
+  commands/importpaperkeycommand.cpp
   commands/genrevokecommand.cpp
   commands/keytocardcommand.cpp
 

@@ -334,14 +334,12 @@ void GnuPGProcessCommand::Private::slotProcessFinished(int code, QProcess::ExitS
 
 void GnuPGProcessCommand::Private::slotProcessReadyReadStandardError()
 {
-    while (process.canReadLine()) {
-        QByteArray ba = process.readLine();
-        errorBuffer += ba;
-        while (ba.endsWith('\n') || ba.endsWith('\r')) {
-            ba.chop(1);
-        }
-        message(QString::fromLocal8Bit(ba.constData(), ba.size()));
+    auto ba = process.readAllStandardError();
+    errorBuffer += ba;
+    while (ba.endsWith('\n') || ba.endsWith('\r')) {
+        ba.chop(1);
     }
+    message(QString::fromLocal8Bit(ba.constData(), ba.size()));
 }
 
 QString GnuPGProcessCommand::errorString() const

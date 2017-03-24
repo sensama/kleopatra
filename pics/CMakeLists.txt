@@ -1,5 +1,6 @@
 if (WIN32)
   set(EXTRAWINFILES gpg4win-compact.png)
+  set(EXTRAWINFILES gpg4win.png)
 endif()
 
 install(FILES

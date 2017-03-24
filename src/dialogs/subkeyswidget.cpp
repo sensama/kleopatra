@@ -21,6 +21,7 @@
 #include "smartcard/readerstatus.h"
 
 #include "commands/keytocardcommand.h"
+#include "commands/importpaperkeycommand.h"
 
 #include <gpgme++/key.h>
 
@@ -58,42 +59,57 @@ private:
 
 void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 {
-    if (!Kleo::Commands::KeyToCardCommand::supported()) {
-        return;
-    }
     auto item = ui.subkeysTree->itemAt(p);
     if (!item) {
         return;
     }
     const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
 
-    if (!subkey.isSecret()) {
-        return;
-    }
-
-    const auto cards = SmartCard::ReaderStatus::instance()->getCards();
-    if (!cards.size() || cards[0]->appType() != SmartCard::Card::OpenPGPApplication) {
-        return;
-    }
-    const auto card = cards[0];
-
-    if (subkey.cardSerialNumber() && card->serialNumber() == subkey.cardSerialNumber()) {
-        return;
-    }
-
     QMenu *menu = new QMenu(q);
-    menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
-                    i18n("Transfer to smartcard"),
-                    q, [this, subkey, card]() {
-        auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber());
-        ui.subkeysTree->setEnabled(false);
-        connect(cmd, &Kleo::Commands::KeyToCardCommand::finished,
-                q, [this]() { ui.subkeysTree->setEnabled(true); });
-        cmd->setParentWidget(q);
-        cmd->start();
-    });
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
-    menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
+
+    bool hasActions = false;
+
+    if (!subkey.isSecret()) {
+        hasActions = true;
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-import")),
+                        i18n("Restore printed backup"),
+                        q, [this, subkey] () {
+            auto cmd = new Kleo::Commands::ImportPaperKeyCommand(subkey.parent());
+            ui.subkeysTree->setEnabled(false);
+            connect(cmd, &Kleo::Commands::ImportPaperKeyCommand::finished,
+                    q, [this]() { ui.subkeysTree->setEnabled(true); });
+            cmd->setParentWidget(q);
+            cmd->start();
+        });
+    }
+
+    if (Kleo::Commands::KeyToCardCommand::supported()) {
+        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
+        if (cards.size() && cards[0]->appType() == SmartCard::Card::OpenPGPApplication) {
+            const auto card = cards[0];
+
+            if (!subkey.cardSerialNumber() || card->serialNumber() != subkey.cardSerialNumber()) {
+                hasActions = true;
+                menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
+                                i18n("Transfer to smartcard"),
+                                q, [this, subkey, card]() {
+                    auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber());
+                    ui.subkeysTree->setEnabled(false);
+                    connect(cmd, &Kleo::Commands::KeyToCardCommand::finished,
+                            q, [this]() { ui.subkeysTree->setEnabled(true); });
+                    cmd->setParentWidget(q);
+                    cmd->start();
+                });
+            }
+        }
+    }
+
+    if (hasActions) {
+        menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
+    } else {
+        delete menu;
+    }
 }
 
 SubKeysWidget::SubKeysWidget(QWidget *parent)

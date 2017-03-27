@@ -1030,6 +1030,16 @@ void DecryptVerifyTask::cancel()
 
 }
 
+static void ensureIOOpen(QIODevice *input, QIODevice *output)
+{
+    if (input && !input->isOpen()) {
+        input->open(QIODevice::ReadOnly);
+    }
+    if (output && !output->isOpen()) {
+        output->open(QIODevice::WriteOnly);
+    }
+}
+
 void DecryptVerifyTask::doStart()
 {
     kleo_assert(d->m_backend);
@@ -1037,6 +1047,7 @@ void DecryptVerifyTask::doStart()
         QGpgME::DecryptVerifyJob *const job = d->m_backend->decryptVerifyJob();
         kleo_assert(job);
         d->registerJob(job);
+        ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
@@ -1193,6 +1204,7 @@ void DecryptTask::doStart()
         QGpgME::DecryptJob *const job = d->m_backend->decryptJob();
         kleo_assert(job);
         d->registerJob(job);
+        ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
@@ -1347,6 +1359,7 @@ void VerifyOpaqueTask::doStart()
         QGpgME::VerifyOpaqueJob *const job = d->m_backend->verifyOpaqueJob();
         kleo_assert(job);
         d->registerJob(job);
+        ensureIOOpen(d->m_input->ioDevice().get(), d->m_output ? d->m_output->ioDevice().get() : nullptr);
         job->start(d->m_input->ioDevice(), d->m_output ? d->m_output->ioDevice() : std::shared_ptr<QIODevice>());
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
@@ -1500,6 +1513,8 @@ void VerifyDetachedTask::doStart()
         QGpgME::VerifyDetachedJob *const job = d->m_backend->verifyDetachedJob();
         kleo_assert(job);
         d->registerJob(job);
+        ensureIOOpen(d->m_input->ioDevice().get(), nullptr);
+        ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
         job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));

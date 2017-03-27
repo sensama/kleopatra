@@ -44,6 +44,7 @@
 namespace GpgME
 {
 class ImportResult;
+class Import;
 class Error;
 }
 
@@ -80,6 +81,7 @@ public:
 
     void setImportResultProxyModel(const std::vector<GpgME::ImportResult> &results, const QStringList &ids);
 
+    bool showPleaseCertify(const GpgME::Import &imp);
 private:
     void tryToFinish();
 

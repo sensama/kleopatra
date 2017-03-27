@@ -35,6 +35,7 @@
 
 #include "importcertificatescommand.h"
 #include "importcertificatescommand_p.h"
+#include "certifycertificatecommand.h"
 #include "kleopatra_debug.h"
 
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -55,6 +56,7 @@
 #include <KMessageBox>
 
 #include <QByteArray>
+#include <QEventLoop>
 #include <QString>
 #include <QWidget>
 #include <QTreeView>
@@ -324,8 +326,71 @@ static QString make_message_report(const std::vector<ImportResult> &res, const Q
                 "<table width=\"100%\">%1</table></qt>", make_report(res, i18n("Totals")));
 }
 
+// Returns false on error, true if please certify was shown.
+bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &imp)
+{
+    const char *fpr = imp.fingerprint();
+    if (!fpr) {
+        // WTF
+        qCWarning(KLEOPATRA_LOG) << "Import without fingerprint";
+        return false;
+    }
+    // Exactly one public key imported. Let's see if it is openpgp. We are async here so
+    // we can just fetch it.
+
+    auto ctx = GpgME::Context::createForProtocol(GpgME::OpenPGP);
+    if (!ctx) {
+        // WTF
+        qCWarning(KLEOPATRA_LOG) << "Failed to create OpenPGP proto";
+        return false;
+    }
+    GpgME::Error err;
+    auto key = ctx->key(fpr, err, false);
+    delete ctx;
+
+    if (key.isNull() || err) {
+        // No such key most likely not OpenPGP
+        return false;
+    }
+
+    for (const auto &uid: key.userIDs()) {
+        if (uid.validity() >= GpgME::UserID::Marginal) {
+            // Already marginal so don't bug the user
+            return false;
+        }
+    }
+
+    const QStringList suggestions = QStringList() << i18n("A phone call to the person.")
+        << i18n("Using a business card.")
+        << i18n("Confirming it on a trusted website.");
+
+    auto sel = KMessageBox::questionYesNo(parentWidgetOrView(),
+                i18n("In order to mark the certificate as valid (green) it needs to be certified.") + QStringLiteral("<br>") +
+                i18n("Certifying means that you check the Fingerprint.") + QStringLiteral("<br>") +
+                i18n("Some suggestions to do this are:") +
+                QStringLiteral("<li><ul>%1").arg(suggestions.join(QStringLiteral("</ul><ul>"))) +
+                QStringLiteral("</ul></li>") +
+                i18n("Do you wish to start this process now?"),
+                i18nc("@title", "You have imported a new certificate (public key)"),
+                KStandardGuiItem::yes(), KStandardGuiItem::no(), QStringLiteral("CertifyQuestion"));
+    if (sel == KMessageBox::Yes) {
+        QEventLoop loop;
+        auto cmd = new Commands::CertifyCertificateCommand(key);
+        cmd->setParentWidget(parentWidgetOrView());
+        loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+        QMetaObject::invokeMethod(cmd, "start", Qt::QueuedConnection);
+        loop.exec();
+    }
+    return true;
+}
+
 void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std::vector<ImportResult> &res, const QStringList &ids)
 {
+    if (res.size() == 1 && res[0].numImported() == 1 && res[0].imports().size() == 1) {
+        if (showPleaseCertify(res[0].imports()[0])) {
+            return;
+        }
+    }
     if (parent) {
         setImportResultProxyModel(res, ids);
         KMessageBox::information(parent, make_message_report(res, ids), i18n("Certificate Import Result"));
@@ -336,8 +401,7 @@ void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std:
 
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResult> &res, const QStringList &ids)
 {
-    setImportResultProxyModel(res, ids);
-    information(make_message_report(res, ids), i18n("Certificate Import Result"));
+    showDetails(parentWidgetOrView(), res, ids);
 }
 
 static QString make_error_message(const Error &err, const QString &id)

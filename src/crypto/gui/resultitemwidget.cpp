@@ -36,9 +36,14 @@
 
 #include "utils/auditlog.h"
 #include "commands/command.h"
+#include "commands/importcertificatefromfilecommand.h"
+#include "commands/lookupcertificatescommand.h"
+#include "crypto/decryptverifytask.h"
 
 #include <libkleo/messagebox.h>
 #include <Libkleo/Classify>
+
+#include <gpgme++/key.h>
 
 #include <KLocalizedString>
 #include <QPushButton>
@@ -105,11 +110,83 @@ public:
     void slotLinkActivated(const QString &);
     void updateShowDetailsLabel();
 
+    void addKeyImportButton(QBoxLayout *lay, bool search);
+
+    void oneImportFinished();
+
     const std::shared_ptr<const Task::Result> m_result;
     QLabel *m_detailsLabel;
     QLabel *m_actionsLabel;
     QPushButton *m_closeButton;
 };
+
+void ResultItemWidget::Private::oneImportFinished()
+{
+    // TODO recheck sig.
+}
+
+void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
+{
+    if (!m_result || !lay) {
+        return;
+    }
+
+    const auto dvResult = dynamic_cast<const DecryptVerifyResult *>(m_result.get());
+    if (!dvResult) {
+        return;
+    }
+    const auto verifyResult = dvResult->verificationResult();
+
+    if (verifyResult.isNull()) {
+        return;
+    }
+
+    for (const auto sig: verifyResult.signatures()) {
+        if (!(sig.summary() & GpgME::Signature::KeyMissing)) {
+            continue;
+        }
+
+        auto btn = new QPushButton;
+        QString suffix;
+        const auto keyid = QLatin1String(sig.fingerprint());
+        if (verifyResult.numSignatures() > 1) {
+            suffix = QLatin1Char(' ') + keyid;
+        }
+        btn = new QPushButton(search ? i18nc("1 is optional keyid. No space is intended as it can be empty.",
+                                       "Search%1", suffix)
+                                     : i18nc("1 is optional keyid. No space is intended as it can be empty.",
+                                       "Import%1", suffix));
+
+        if (search) {
+            btn->setIcon(QIcon::fromTheme("edit-find"));
+            connect (btn, &QPushButton::clicked, q, [this, btn, keyid] () {
+                btn->setEnabled(false);
+                auto cmd = new Kleo::Commands::LookupCertificatesCommand(keyid, nullptr);
+                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished,
+                        q, [this, btn]() {
+                    btn->setEnabled(true);
+                    oneImportFinished();
+                });
+                cmd->setParentWidget(q);
+                cmd->start();
+            });
+        } else {
+            btn->setIcon(QIcon::fromTheme("view-certificate-import"));
+            connect (btn, &QPushButton::clicked, q, [this, btn] () {
+                auto cmd = new Kleo::ImportCertificateFromFileCommand();
+                connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
+                        q, [this, btn]() {
+                    btn->setEnabled(true);
+                    oneImportFinished();
+                });
+                cmd->setParentWidget(q);
+                cmd->start();
+            });
+        }
+        btn->setFixedSize(btn->sizeHint());
+        lay->addWidget(btn);
+    }
+}
 
 static QUrl auditlog_url_template()
 {
@@ -131,23 +208,16 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 {
     const QColor color = colorForVisualCode(d->m_result->code());
     const QColor txtColor = txtColorForVisualCode(d->m_result->code());
-    const QString styleSheet = QStringLiteral("* { background-color: %1; margin: 0px; }"
+    const QString styleSheet = QStringLiteral("QFrame,QLabel { background-color: %1; margin: 0px; }"
                                               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
                                               "QLabel { color: %3; padding: 5px; border-radius: 3px }").arg(color.name()).arg(color.darker(150).name()).arg(txtColor.name());
     QVBoxLayout *topLayout = new QVBoxLayout(this);
-    topLayout->setMargin(0);
-    topLayout->setSpacing(0);
     QFrame *frame = new QFrame;
     frame->setObjectName(QStringLiteral("resultFrame"));
     frame->setStyleSheet(styleSheet);
     topLayout->addWidget(frame);
-    QVBoxLayout *layout = new QVBoxLayout(frame);
-    layout->setMargin(0);
-    layout->setSpacing(0);
-    QWidget *hbox = new QWidget;
-    QHBoxLayout *hlay = new QHBoxLayout(hbox);
-    hlay->setMargin(0);
-    hlay->setSpacing(0);
+    QHBoxLayout *layout = new QHBoxLayout(frame);
+    QVBoxLayout *vlay = new QVBoxLayout();
     QLabel *overview = new QLabel;
     overview->setWordWrap(true);
     overview->setTextFormat(Qt::RichText);
@@ -156,14 +226,21 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     overview->setStyleSheet(styleSheet);
     connect(overview, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
 
-    hlay->addWidget(overview, 1, Qt::AlignTop);
-    layout->addWidget(hbox);
+    vlay->addWidget(overview);
+    layout->addLayout(vlay);
 
     const QString details = d->m_result->details();
 
+    QVBoxLayout *actionLayout = new QVBoxLayout;
+    layout->addLayout(actionLayout);
+
+    d->addKeyImportButton(actionLayout, false);
+    // TODO: Only show if auto-key-retrieve is not set.
+    d->addKeyImportButton(actionLayout, true);
+
     d->m_actionsLabel = new QLabel;
     connect(d->m_actionsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
-    hlay->addWidget(d->m_actionsLabel);
+    actionLayout->addWidget(d->m_actionsLabel);
     d->m_actionsLabel->setFocusPolicy(Qt::StrongFocus);
     d->m_actionsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     d->m_actionsLabel->setStyleSheet(styleSheet);
@@ -175,17 +252,23 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     d->m_detailsLabel->setFocusPolicy(Qt::StrongFocus);
     d->m_detailsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     d->m_detailsLabel->setStyleSheet(styleSheet);
+
     connect(d->m_detailsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
-    layout->addWidget(d->m_detailsLabel);
+    vlay->addWidget(d->m_detailsLabel);
 
     d->m_closeButton = new QPushButton;
     KGuiItem::assign(d->m_closeButton, KStandardGuiItem::close());
     d->m_closeButton->setFixedSize(d->m_closeButton->sizeHint());
     connect(d->m_closeButton, &QAbstractButton::clicked, this, &ResultItemWidget::closeButtonClicked);
-    layout->addWidget(d->m_closeButton, 0, Qt::AlignRight);
+    actionLayout->addWidget(d->m_closeButton);
     d->m_closeButton->setVisible(false);
 
+    layout->setStretch(0, 1);
+    actionLayout->addStretch(-1);
+    vlay->addStretch(-1);
+
     d->updateShowDetailsLabel();
+    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 }
 
 ResultItemWidget::~ResultItemWidget()

@@ -65,7 +65,6 @@ public:
 
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &task);
-    void detailsToggled(bool);
     void allTasksDone();
 
     void addResultWidget(ResultItemWidget *widget);
@@ -180,7 +179,6 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
     assert(std::any_of(m_collections.cbegin(), m_collections.cend(),
                        [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
     ResultItemWidget *wid = new ResultItemWidget(result);
-    q->connect(wid, SIGNAL(detailsToggled(bool)), q, SLOT(detailsToggled(bool)));
     q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
     q->connect(wid, &ResultItemWidget::closeButtonClicked, q, &ResultListWidget::close);
     addResultWidget(wid);
@@ -222,11 +220,6 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
     d->setupMulti();
     setStandaloneMode(d->m_standaloneMode);
-}
-
-void ResultListWidget::Private::detailsToggled(bool)
-{
-    resizeIfStandalone();
 }
 
 void ResultListWidget::Private::started(const std::shared_ptr<Task> &task)

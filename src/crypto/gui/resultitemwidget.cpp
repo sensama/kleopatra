@@ -97,7 +97,7 @@ class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_showDetailsLabel(nullptr), m_closeButton(nullptr)
+    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_actionsLabel(nullptr), m_closeButton(nullptr)
     {
         assert(m_result);
     }
@@ -107,7 +107,7 @@ public:
 
     const std::shared_ptr<const Task::Result> m_result;
     QLabel *m_detailsLabel;
-    QLabel *m_showDetailsLabel;
+    QLabel *m_actionsLabel;
     QPushButton *m_closeButton;
 };
 
@@ -119,14 +119,12 @@ static QUrl auditlog_url_template()
 
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
-    if (!m_showDetailsLabel || !m_detailsLabel) {
+    if (!m_actionsLabel || !m_detailsLabel) {
         return;
     }
 
-    const bool detailsVisible = m_detailsLabel->isVisible();
     const QString auditLogLink = m_result->auditLog().formatLink(auditlog_url_template());
-    m_showDetailsLabel->setText(QStringLiteral("<a href=\"kleoresultitem://toggledetails/\">%1</a><br/>%2").arg(detailsVisible ? i18n("Hide Details") : i18n("Show Details"), auditLogLink));
-    m_showDetailsLabel->setAccessibleDescription(detailsVisible ? i18n("Hide Details") : i18n("Show Details"));
+    m_actionsLabel->setText(auditLogLink);
 }
 
 ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
@@ -163,13 +161,12 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 
     const QString details = d->m_result->details();
 
-    d->m_showDetailsLabel = new QLabel;
-    connect(d->m_showDetailsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
-    hlay->addWidget(d->m_showDetailsLabel);
-    d->m_showDetailsLabel->setVisible(!details.isEmpty());
-    d->m_showDetailsLabel->setFocusPolicy(Qt::StrongFocus);
-    d->m_showDetailsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    d->m_showDetailsLabel->setStyleSheet(styleSheet);
+    d->m_actionsLabel = new QLabel;
+    connect(d->m_actionsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
+    hlay->addWidget(d->m_actionsLabel);
+    d->m_actionsLabel->setFocusPolicy(Qt::StrongFocus);
+    d->m_actionsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    d->m_actionsLabel->setStyleSheet(styleSheet);
 
     d->m_detailsLabel = new QLabel;
     d->m_detailsLabel->setWordWrap(true);
@@ -180,8 +177,6 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     d->m_detailsLabel->setStyleSheet(styleSheet);
     connect(d->m_detailsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
     layout->addWidget(d->m_detailsLabel);
-
-    d->m_detailsLabel->setVisible(false);
 
     d->m_closeButton = new QPushButton;
     KGuiItem::assign(d->m_closeButton, KStandardGuiItem::close());
@@ -200,11 +195,6 @@ ResultItemWidget::~ResultItemWidget()
 void ResultItemWidget::showCloseButton(bool show)
 {
     d->m_closeButton->setVisible(show);
-}
-
-bool ResultItemWidget::detailsVisible() const
-{
-    return d->m_detailsLabel && d->m_detailsLabel->isVisible();
 }
 
 bool ResultItemWidget::hasErrorResult() const
@@ -233,10 +223,6 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
     }
 
     const QUrl url(link);
-    if (url.host() == QLatin1String("toggledetails")) {
-        q->showDetails(!q->detailsVisible());
-        return;
-    }
 
     if (url.host() == QLatin1String("showauditlog")) {
         q->showAuditLog();
@@ -248,16 +234,6 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 void ResultItemWidget::showAuditLog()
 {
     MessageBox::auditLog(parentWidget(), d->m_result->auditLog().text());
-}
-
-void ResultItemWidget::showDetails(bool show)
-{
-    if (show == d->m_detailsLabel->isVisible()) {
-        return;
-    }
-    d->m_detailsLabel->setVisible(show);
-    d->updateShowDetailsLabel();
-    Q_EMIT detailsToggled(show);
 }
 
 #include "moc_resultitemwidget.cpp"

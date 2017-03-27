@@ -60,19 +60,16 @@ public:
     explicit ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
     ~ResultItemWidget();
 
-    bool detailsVisible() const;
     bool hasErrorResult() const;
 
     void showCloseButton(bool show);
 
 public Q_SLOTS:
-    void showDetails(bool show = true);
     void showAuditLog();
 
 Q_SIGNALS:
     void linkActivated(const QString &link);
     void closeButtonClicked();
-    void detailsToggled(bool);
 
 private:
     class Private;

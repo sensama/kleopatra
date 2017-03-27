@@ -68,7 +68,7 @@ static QColor colorForVisualCode(Task::Result::VisualCode code)
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color();
     case Task::Result::NeutralError:
     case Task::Result::Warning:
-        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NeutralBackground).color();
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     case Task::Result::Danger:
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color();
     case Task::Result::NeutralSuccess:
@@ -83,7 +83,7 @@ static QColor txtColorForVisualCode(Task::Result::VisualCode code)
         return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
     case Task::Result::NeutralError:
     case Task::Result::Warning:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NeutralText).color();
+        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();
     case Task::Result::Danger:
         return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
     case Task::Result::NeutralSuccess:

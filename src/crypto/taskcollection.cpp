@@ -115,6 +115,11 @@ void TaskCollection::Private::taskStarted()
     assert(m_tasks.find(task->id()) != m_tasks.end());
     Q_EMIT q->started(m_tasks[task->id()]);
     calculateAndEmitProgress(); // start Knight-Rider-Mode right away (gpgsm doesn't report _any_ progress).
+    if (m_doneEmitted) {
+        // We are not done anymore, one task restarted.
+        m_nCompleted--;
+        m_doneEmitted = false;
+    }
 }
 
 void TaskCollection::Private::calculateAndEmitProgress()

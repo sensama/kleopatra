@@ -102,7 +102,7 @@ class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_actionsLabel(nullptr), m_closeButton(nullptr)
+    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_actionsLabel(nullptr), m_closeButton(nullptr), m_importCanceled(false)
     {
         assert(m_result);
     }
@@ -118,11 +118,18 @@ public:
     QLabel *m_detailsLabel;
     QLabel *m_actionsLabel;
     QPushButton *m_closeButton;
+    bool m_importCanceled;
 };
 
 void ResultItemWidget::Private::oneImportFinished()
 {
-    // TODO recheck sig.
+    if (m_importCanceled) {
+        return;
+    }
+    if (m_result->parentTask()) {
+        m_result->parentTask()->start();
+    }
+    q->setVisible(false);
 }
 
 void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
@@ -161,7 +168,10 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
             btn->setIcon(QIcon::fromTheme("edit-find"));
             connect (btn, &QPushButton::clicked, q, [this, btn, keyid] () {
                 btn->setEnabled(false);
+                m_importCanceled = false;
                 auto cmd = new Kleo::Commands::LookupCertificatesCommand(keyid, nullptr);
+                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled,
+                        q, [this]() { m_importCanceled = true; });
                 connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished,
                         q, [this, btn]() {
                     btn->setEnabled(true);
@@ -173,7 +183,11 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
         } else {
             btn->setIcon(QIcon::fromTheme("view-certificate-import"));
             connect (btn, &QPushButton::clicked, q, [this, btn] () {
+                btn->setEnabled(false);
+                m_importCanceled = false;
                 auto cmd = new Kleo::ImportCertificateFromFileCommand();
+                connect(cmd, &Kleo::ImportCertificateFromFileCommand::canceled,
+                        q, [this]() { m_importCanceled = true; });
                 connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
                         q, [this, btn]() {
                     btn->setEnabled(true);

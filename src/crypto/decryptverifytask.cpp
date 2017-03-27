@@ -602,6 +602,7 @@ public:
             const QString &input,
             const QString &output,
             const AuditLog &auditLog,
+            Task *parentTask,
             const Mailbox &informativeSender,
             DecryptVerifyResult *qq) :
         q(qq),
@@ -614,6 +615,7 @@ public:
         m_inputLabel(input),
         m_outputLabel(output),
         m_auditLog(auditLog),
+        m_parentTask(QPointer<Task>(parentTask)),
         m_informativeSender(informativeSender)
     {
     }
@@ -646,6 +648,7 @@ public:
     QString m_inputLabel;
     QString m_outputLabel;
     const AuditLog m_auditLog;
+    QPointer <Task> m_parentTask;
     const Mailbox m_informativeSender;
 };
 
@@ -666,6 +669,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -681,6 +685,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -696,6 +701,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -711,6 +717,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -726,6 +733,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
@@ -740,6 +748,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -755,6 +764,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
@@ -769,6 +779,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
             inputLabel(),
             outputLabel(),
             auditLog,
+            this,
             informativeSender()));
 }
 
@@ -781,8 +792,9 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
         const QString &inputLabel,
         const QString &outputLabel,
         const AuditLog &auditLog,
+        Task *parentTask,
         const Mailbox &informativeSender)
-    : Task::Result(), d(new Private(type, vr, dr, stuff, errCode, errString, inputLabel, outputLabel, auditLog, informativeSender, this))
+    : Task::Result(), d(new Private(type, vr, dr, stuff, errCode, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
 {
 }
 
@@ -830,6 +842,11 @@ QString DecryptVerifyResult::errorString() const
 AuditLog DecryptVerifyResult::auditLog() const
 {
     return d->m_auditLog;
+}
+
+QPointer<Task> DecryptVerifyResult::parentTask() const
+{
+    return d->m_parentTask;
 }
 
 Task::Result::VisualCode DecryptVerifyResult::code() const

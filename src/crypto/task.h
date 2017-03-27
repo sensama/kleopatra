@@ -41,6 +41,7 @@
 #include <gpgme++/global.h>
 
 #include <memory>
+#include <QPointer>
 
 namespace Kleo
 {
@@ -137,6 +138,7 @@ public:
     virtual QString errorString() const = 0;
     virtual VisualCode code() const = 0;
     virtual AuditLog auditLog() const = 0;
+    virtual QPointer<Task> parentTask() const {return QPointer<Task>();}
 
 protected:
     static QString iconPath(VisualCode code);

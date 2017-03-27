@@ -243,6 +243,7 @@ public:
     QString errorString() const Q_DECL_OVERRIDE;
     VisualCode code() const Q_DECL_OVERRIDE;
     AuditLog auditLog() const Q_DECL_OVERRIDE;
+    QPointer<Task> parentTask() const Q_DECL_OVERRIDE;
 
     GpgME::VerificationResult verificationResult() const;
 
@@ -265,6 +266,7 @@ private:
                         const QString &inputLabel,
                         const QString &outputLabel,
                         const AuditLog &auditLog,
+                        Task *parentTask,
                         const KMime::Types::Mailbox &informativeSender);
 
 private:

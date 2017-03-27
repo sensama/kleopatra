@@ -32,6 +32,7 @@
 #include <config-kleopatra.h>
 
 #include "certifycertificatecommand.h"
+#include "newcertificatecommand.h"
 
 #include "command_p.h"
 
@@ -44,6 +45,8 @@
 
 #include <QGpgME/Protocol>
 #include <QGpgME/SignKeyJob>
+
+#include <QEventLoop>
 
 #include <gpgme++/key.h>
 
@@ -202,8 +205,35 @@ void CertifyCertificateCommand::doStart()
     }
 
     if (secKeys.empty()) {
-        d->error(xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself. Choose <interface>File->New Certificate...</interface> to create one."),
-                 i18n("Certification Not Possible"));
+        auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+                    xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.") +
+                    QStringLiteral("<br><br>") +
+                    i18n("Do you wish to create one now?"),
+                    i18n("Certification Not Possible"));
+        if (sel == KMessageBox::Yes) {
+            QEventLoop loop;
+            auto cmd = new Commands::NewCertificateCommand();
+            cmd->setParentWidget(d->parentWidgetOrView());
+            cmd->setProtocol(GpgME::OpenPGP);
+            loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+            QMetaObject::invokeMethod(cmd, "start", Qt::QueuedConnection);
+            loop.exec();
+        } else {
+            Q_EMIT(canceled());
+            d->finished();
+            return;
+        }
+    }
+    Q_FOREACH (const Key &secKey, KeyCache::instance()->secretKeys()) {
+        // Check again for secret keys
+        if (secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() &&
+            !secKey.isExpired() && !secKey.isInvalid()) {
+            secKeys.push_back(secKey);
+        }
+    }
+    if (secKeys.empty()) {
+        qCDebug(KLEOPATRA_LOG) << "Sec Keys still empty after keygen.";
+        Q_EMIT(canceled());
         d->finished();
         return;
     }

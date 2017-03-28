@@ -223,19 +223,19 @@ void CertifyCertificateCommand::doStart()
             d->finished();
             return;
         }
-    }
-    Q_FOREACH (const Key &secKey, KeyCache::instance()->secretKeys()) {
-        // Check again for secret keys
-        if (secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() &&
-            !secKey.isExpired() && !secKey.isInvalid()) {
-            secKeys.push_back(secKey);
+        Q_FOREACH (const Key &secKey, KeyCache::instance()->secretKeys()) {
+            // Check again for secret keys
+            if (secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() &&
+                !secKey.isExpired() && !secKey.isInvalid()) {
+                secKeys.push_back(secKey);
+            }
         }
-    }
-    if (secKeys.empty()) {
-        qCDebug(KLEOPATRA_LOG) << "Sec Keys still empty after keygen.";
-        Q_EMIT(canceled());
-        d->finished();
-        return;
+        if (secKeys.empty()) {
+            qCDebug(KLEOPATRA_LOG) << "Sec Keys still empty after keygen.";
+            Q_EMIT(canceled());
+            d->finished();
+            return;
+        }
     }
     const Key &key = keys.front();
 

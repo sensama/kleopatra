@@ -71,6 +71,7 @@
 #include <QDateTime>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
+#include <QRegularExpression>
 
 #include <algorithm>
 #include <cassert>
@@ -201,20 +202,14 @@ static QString signatureSummaryToString(int summary)
         return i18n("Error: Signature not verified");
     } else if (summary & Signature::Valid || summary & Signature::Green) {
         return i18n("Good signature");
-    } else if (summary & Signature::Red) {
-        return i18n("Bad signature");
     } else if (summary & Signature::KeyRevoked) {
-        return i18n("Signing certificate revoked");
+        return i18n("Signing certificate was revoked");
     } else if (summary & Signature::KeyExpired) {
-        return i18n("Signing certificate expired");
+        return i18n("Signing certificate is expired");
     } else if (summary & Signature::KeyMissing) {
-        return i18n("No public certificate to verify the signature");
+        return i18n("Certificate is not available");
     } else if (summary & Signature::SigExpired) {
         return i18n("Signature expired");
-#if 0 //Duplicate entry
-    } else if (summary & Signature::KeyMissing) {
-        return i18n("Certificate missing");
-#endif
     } else if (summary & Signature::CrlMissing) {
         return i18n("CRL missing");
     } else if (summary & Signature::CrlTooOld) {
@@ -223,8 +218,9 @@ static QString signatureSummaryToString(int summary)
         return i18n("Bad policy");
     } else if (summary & Signature::SysError) {
         return i18n("System error");    //### retrieve system error details?
-    }
-    return QString();
+    } else if (summary & Signature::Red) {
+        return i18n("Bad signature");
+    }return QString();
 }
 
 static QString formatValidSignatureWithTrustLevel(const UserID &id)
@@ -254,7 +250,7 @@ static QString renderFingerprint(const char *fpr)
     if (!fpr) {
         return QString();
     }
-    return QStringLiteral("0x%1").arg(QString::fromLatin1(fpr).toUpper());
+    return QString::fromLatin1(fpr).toUpper().replace(QRegularExpression("(....)"), "\\1 ").trimmed();
 }
 
 static QString renderKeyLink(const QString &fpr, const QString &text)
@@ -267,7 +263,7 @@ static QString renderKey(const Key &key)
     if (key.isNull()) {
         return i18n("Unknown certificate");
     }
-    return renderKeyLink(QLatin1String(key.primaryFingerprint()), Formatting::prettyName(key));
+    return renderKeyLink(QLatin1String(key.primaryFingerprint()), renderFingerprint(key.primaryFingerprint()));
 }
 
 static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
@@ -284,39 +280,21 @@ static QString formatDate(const QDateTime &dt)
 {
     return QLocale().toString(dt);
 }
-static QString formatSigningInformation(const Signature &sig, const Key &key)
+static QString formatSigningInformation(const Signature &sig)
 {
     if (sig.isNull()) {
         return QString();
     }
     const QDateTime dt = sig.creationTime() != 0 ? QDateTime::fromTime_t(sig.creationTime()) : QDateTime();
-    const QString signer = key.isNull() ? QString() : renderKeyEMailOnlyNameAsFallback(key);
-    const bool haveKey = !key.isNull();
-    const bool haveSigner = !signer.isEmpty();
-    const bool haveDate = dt.isValid();
-    if (!haveKey) {
-        if (haveDate) {
-            return i18n("Signed on %1 with unknown certificate %2.", formatDate(dt), renderFingerprint(sig.fingerprint()));
-        } else {
-            return i18n("Signed with unknown certificate %1.", renderFingerprint(sig.fingerprint()));
-        }
+    QString text;
+    Key key = sig.key();
+    if (dt.isValid()) {
+        text = i18nc("1 is a date", "Signature created on %1", formatDate(dt)) + QStringLiteral("<br>");
     }
-    if (haveSigner) {
-        if (haveDate)
-            return i18nc("date, key owner, key ID",
-                         "Signed on %1 by %2 (Key ID: %3).",
-                         formatDate(dt),
-                         signer,
-                         renderFingerprint(key.shortKeyID()));
-        else {
-            return i18n("Signed by %1 with certificate %2.", signer, renderKey(key));
-        }
+    if (key.isNull()) {
+        return text += i18n("With unavilable certificate:") + QStringLiteral("<br>ID: 0x%1").arg(QString::fromLatin1(sig.fingerprint()).toUpper());
     }
-    if (haveDate) {
-        return i18n("Signed on %1 with certificate %2.", formatDate(dt), renderKey(key));
-    }
-    return i18n("Signed with certificate %1.", renderKey(key));
-
+    return text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 }
 
 static QString strikeOut(const QString &str, bool strike)
@@ -361,6 +339,17 @@ static UserID findUserIDByMailbox(const Key &key, const Mailbox &mbox)
             return id;
         }
     return UserID();
+}
+
+static void updateKeys(const VerificationResult &result) {
+    // This little hack works around the problem that GnuPG / GpgME does not
+    // provide Key information in a verification result. The Key object is
+    // a dummy just holding the KeyID. This hack ensures that all available
+    // keys are fetched from the backend and are populated
+    for (const auto sig: result.signatures()) {
+        // Update key information
+        sig.key(true, true);
+    }
 }
 
 }
@@ -429,7 +418,6 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
     }
 
     const std::vector<Signature> sigs = res.signatures();
-    const std::vector<Key> signers = info.signers;
 
     if (sigs.empty()) {
         return i18n("<b>No signatures found.</b>");
@@ -440,21 +428,17 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
         return i18np("<b>Invalid signature.</b>", "<b>%1 invalid signatures.</b>", bad);
     }
     const uint warn = std::count_if(sigs.cbegin(), sigs.cend(), [](const Signature &sig) { return !IsGoodOrValid(sig); });
-    if (warn > 0) {
-        return i18np("<b>Not enough information to check signature validity.</b>", "<b>%1 signatures could not be verified.</b>", warn);
+    if (warn == sigs.size()) {
+        return i18np("<b>The data could not be verified.</b>", "<b>%1 signatures could not be verified.</b>", warn);
     }
 
     //Good signature:
     QString text;
     if (sigs.size() == 1) {
-        const Key key = DecryptVerifyResult::keyForSignature(sigs[0], signers);
-        if (key.isNull()) {
-            return i18n("<b>Signature is valid.</b>");
-        }
-        text = i18n("<b>Signed by %1</b>", renderKeyEMailOnlyNameAsFallback(key));
+        text = i18n("<b>Valid signature by %1</b>", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
         if (info.conflicts())
             text += i18n("<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used for signing.",
-                         renderKeyLink(QLatin1String(key.primaryFingerprint()), i18n("certificate")));
+                         renderKeyLink(QLatin1String(sigs[0].key().primaryFingerprint()), i18n("certificate")));
     } else {
         text = i18np("<b>Valid signature.</b>", "<b>%1 valid signatures.</b>", sigs.size());
         if (info.conflicts()) {
@@ -479,25 +463,40 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     return i18n("<b>Decryption succeeded.</b>");
 }
 
-static QString formatSignature(const Signature &sig, const Key &key, const DecryptVerifyResult::SenderInfo &info)
+static QString formatSignature(const Signature &sig, const DecryptVerifyResult::SenderInfo &info)
 {
     if (sig.isNull()) {
         return QString();
     }
 
-    const QString text = formatSigningInformation(sig, key) + QLatin1String("<br/>");
+    const QString text = formatSigningInformation(sig) + QLatin1String("<br/>");
+    const Key key = sig.key();
 
-    const bool red = sig.summary() & Signature::Red;
+    // Green
     if (sig.summary() & Signature::Valid) {
         const UserID id = findUserIDByMailbox(key, info.informativeSender);
         return text + formatValidSignatureWithTrustLevel(!id.isNull() ? id : key.userID(0));
     }
-    if (red) {
-        return text + i18n("The signature is bad.");
+
+    // Red
+    if ((sig.summary() & Signature::Red)) {
+        return text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
     }
-    if (!sig.summary()) {
-        return text + i18n("The validity of the signature cannot be verified.");
+
+    // Key missing
+    if ((sig.summary() & Signature::KeyMissing)) {
+        return text + i18n("You can search the certificate on a keyserver or import it from a file.");
     }
+
+    // Yellow
+    if ((sig.validity() & Signature::Validity::Undefined) ||
+        (sig.validity() & Signature::Validity::Unknown) ||
+        (sig.summary() == Signature::Summary::None)) {
+        return text + (key.protocol() == OpenPGP ? i18n("The used key is not certified by you or any trusted person.") :
+               i18n("The used certificate is not certified by a trustworthy Certificate Authority or the Certificate Authority is unknown."));
+    }
+
+    // Catch all fall through
     return text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
 }
 
@@ -518,13 +517,12 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     }
 
     const std::vector<Signature> sigs = res.signatures();
-    const std::vector<Key> signers = KeyCache::instance()->findSigners(res);
     QString details;
     for (const Signature &sig : sigs) {
-        details += formatSignature(sig, DecryptVerifyResult::keyForSignature(sig, signers), info) + QLatin1Char('\n');
+        details += formatSignature(sig, info) + QLatin1Char('\n');
     }
     details = details.trimmed();
-    details.replace(QLatin1Char('\n'), QStringLiteral("<br/>"));
+    details.replace(QLatin1Char('\n'), QStringLiteral("<br/><br/>"));
     if (info.conflicts()) {
         details += i18n("<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>", info.informativeSender.prettyAddress(), format(info.signerMailboxes()).join(i18nc("separator for a list of e-mail addresses", ", ")));
     }
@@ -805,11 +803,15 @@ QString DecryptVerifyResult::overview() const
 {
     QString ov;
     if (d->isDecryptOnly()) {
-        ov = formatDecryptionResultOverview(d->m_decryptionResult);
+        ov += formatDecryptionResultOverview(d->m_decryptionResult);
     } else if (d->isVerifyOnly()) {
-        ov = formatVerificationResultOverview(d->m_verificationResult, d->makeSenderInfo());
+        ov += formatVerificationResultOverview(d->m_verificationResult, d->makeSenderInfo());
     } else {
-        ov = formatDecryptVerifyResultOverview(d->m_decryptionResult, d->m_verificationResult, d->makeSenderInfo());
+        ov += formatDecryptVerifyResultOverview(d->m_decryptionResult, d->m_verificationResult, d->makeSenderInfo());
+    }
+    if (ov.size() + d->label().size() > 120) {
+        // Avoid ugly breaks
+        ov = QStringLiteral("<br>") + ov;
     }
     return i18nc("label: result example: foo.sig: Verification failed. ", "%1: %2", d->label(), ov);
 }
@@ -865,19 +867,6 @@ GpgME::VerificationResult DecryptVerifyResult::verificationResult() const
     return d->m_verificationResult;
 }
 
-const Key &DecryptVerifyResult::keyForSignature(const Signature &sig, const std::vector<Key> &keys)
-{
-    if (const char *const fpr = sig.fingerprint()) {
-        const std::vector<Key>::const_iterator it
-            = std::lower_bound(keys.begin(), keys.end(), fpr, _detail::ByFingerprint<std::less>());
-        if (it != keys.end() && _detail::ByFingerprint<std::equal_to>()(*it, fpr)) {
-            return *it;
-        }
-    }
-    static const Key null;
-    return null;
-}
-
 class AbstractDecryptVerifyTask::Private
 {
 public:
@@ -930,6 +919,7 @@ void DecryptVerifyTask::Private::emitResult(const std::shared_ptr<DecryptVerifyR
 
 void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plainText)
 {
+    updateKeys(vr);
     {
         std::stringstream ss;
         ss << dr << '\n' << vr;
@@ -1250,6 +1240,7 @@ void VerifyOpaqueTask::Private::emitResult(const std::shared_ptr<DecryptVerifyRe
 
 void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, const QByteArray &plainText)
 {
+    updateKeys(result);
     {
         std::stringstream ss;
         ss << result;
@@ -1404,6 +1395,7 @@ void VerifyDetachedTask::Private::emitResult(const std::shared_ptr<DecryptVerify
 
 void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
 {
+    updateKeys(result);
     {
         std::stringstream ss;
         ss << result;

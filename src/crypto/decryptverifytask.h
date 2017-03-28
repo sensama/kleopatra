@@ -247,8 +247,6 @@ public:
 
     GpgME::VerificationResult verificationResult() const;
 
-    static const GpgME::Key &keyForSignature(const GpgME::Signature &sig, const std::vector<GpgME::Key> &keys);
-
 private:
     static QString keyToString(const GpgME::Key &key);
 

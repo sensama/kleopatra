@@ -205,9 +205,8 @@ void DecryptVerifyCommandFilesBase::Private::verificationResult(const Verificati
 {
     try {
         const std::vector<Signature> sigs = vResult.signatures();
-        const std::vector<Key> signers = KeyCache::instance()->findSigners(vResult);
         for (const Signature &sig : sigs) {
-            const QString s = signatureToString(sig, DecryptVerifyResult::keyForSignature(sig, signers));
+            const QString s = signatureToString(sig, sig.key(true, true));
             const char *color = summaryToString(sig.summary());
             q->sendStatusEncoded("SIGSTATUS",
                                  color + (' ' + hexencode(s.toUtf8().constData())));

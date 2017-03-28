@@ -531,13 +531,16 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     return details;
 }
 
-static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients, const QString &errorString)
+static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients, const QString &errorString, bool isSigned)
 {
     if ((res.error().code() == GPG_ERR_EIO || res.error().code() == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
         return i18n("Input error: %1", errorString);
     }
 
     if (res.isNull() || !res.error() || res.error().isCanceled()) {
+        if (!isSigned) {
+            return i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.");
+        }
         return QString();
     }
 
@@ -580,7 +583,7 @@ static QString formatDecryptVerifyResultDetails(const DecryptionResult &dr,
         const DecryptVerifyResult::SenderInfo &info,
         const QString &errorString)
 {
-    const QString drDetails = formatDecryptionResultDetails(dr, recipients, errorString);
+    const QString drDetails = formatDecryptionResultDetails(dr, recipients, errorString, relevantInDecryptVerifyContext(vr));
     if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
         return drDetails;
     }
@@ -814,7 +817,7 @@ QString DecryptVerifyResult::overview() const
 QString DecryptVerifyResult::details() const
 {
     if (d->isDecryptOnly()) {
-        return formatDecryptionResultDetails(d->m_decryptionResult, KeyCache::instance()->findRecipients(d->m_decryptionResult), errorString());
+        return formatDecryptionResultDetails(d->m_decryptionResult, KeyCache::instance()->findRecipients(d->m_decryptionResult), errorString(), false);
     }
     if (d->isVerifyOnly()) {
         return formatVerificationResultDetails(d->m_verificationResult, d->makeSenderInfo(), errorString());

@@ -178,8 +178,25 @@ void ImportPaperKeyCommand::doStart()
 
     mFileName = QFileDialog::getOpenFileName(d->parentWidgetOrView(), i18n("Select input file"),
                                              QString(),
-                                             QStringLiteral("Paper backup(*.txt)"));
-
+                                             QLatin1String("Paper backup(*.txt)")
+#ifdef Q_OS_WIN
+/* For whatever reason at least with Qt 5.6.1 the native file dialog crashes in
+ * my (aheinecke) Windows 10 environment when invoked here.
+ * In other places it works, with the same arguments as in other places (e.g. import)
+ * it works. But not here. Maybe it's our (gpg4win) build? But why did it only
+ * crash here?
+ *
+ * It does not crash immediately, the program flow continues for a while before it
+ * crashes so this is hard to debug.
+ *
+ * There are some reports about this
+ * QTBUG-33119 QTBUG-41416 where different people describe "bugs" but they
+ * describe them differntly also not really reproducible.
+ * Anyway this works for now and for such an exotic feature its good enough for now.
+ */
+                                             , 0, QFileDialog::DontUseNativeDialog
+#endif
+                                             );
     if (mFileName.isEmpty()) {
         d->finished();
         return;

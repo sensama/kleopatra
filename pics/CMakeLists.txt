@@ -8,6 +8,6 @@ install(FILES
   kleopatra_wizard.svgz
   kleopatra_splashscreen.png
   kleopatra_splashscreen.svgz
-  gpg4win-compact.png
+  ${EXTRAWINFILES}
   DESTINATION ${KDE_INSTALL_DATADIR}/kleopatra/pics
 )

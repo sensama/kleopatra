@@ -84,7 +84,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         });
     }
 
-    if (Kleo::Commands::KeyToCardCommand::supported()) {
+    if (subkey.isSecret() && Kleo::Commands::KeyToCardCommand::supported()) {
         const auto cards = SmartCard::ReaderStatus::instance()->getCards();
         if (cards.size() && cards[0]->appType() == SmartCard::Card::OpenPGPApplication) {
             const auto card = cards[0];

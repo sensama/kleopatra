@@ -292,7 +292,7 @@ static QString formatSigningInformation(const Signature &sig)
         text = i18nc("1 is a date", "Signature created on %1", formatDate(dt)) + QStringLiteral("<br>");
     }
     if (key.isNull()) {
-        return text += i18n("With unavilable certificate:") + QStringLiteral("<br>ID: 0x%1").arg(QString::fromLatin1(sig.fingerprint()).toUpper());
+        return text += i18n("With unavailable certificate:") + QStringLiteral("<br>ID: 0x%1").arg(QString::fromLatin1(sig.fingerprint()).toUpper());
     }
     return text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 }

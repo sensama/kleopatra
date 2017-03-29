@@ -71,7 +71,9 @@ QStringList ImportPaperKeyCommand::arguments() const
     result << paperKeyInstallPath() << QStringLiteral("--pubring")
            << mTmpDir.path() + QStringLiteral("/pubkey.gpg")
            << QStringLiteral("--secrets")
-           << mTmpDir.path() + QStringLiteral("/secrets.txt");
+           << mTmpDir.path() + QStringLiteral("/secrets.txt")
+           << QStringLiteral("--output")
+           << mTmpDir.path() + QStringLiteral("/seckey.gpg");
 
     return result;
 }
@@ -136,31 +138,37 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
 {
     qCDebug(KLEOPATRA_LOG) << "Paperkey secrets restore finished successfully.";
 
-    auto importjob = QGpgME::openpgp()->importJob();
-
-    auto data = process()->readAllStandardOutput();
-
-    connect(importjob, &QGpgME::ImportJob::result, this, [this](ImportResult result, QString, Error) {
-        if (result.error()) {
-            d->error(result.error().asString(), errorCaption());
-            finished();
-            return;
-        }
-        if (!result.numSecretKeysImported() ||
-            (result.numSecretKeysUnchanged() == result.numSecretKeysImported())) {
-            d->error(i18n("Failed to restore any secret keys."), errorCaption());
-            finished();
-            return;
-        }
-
-        // Refresh the key after success
-        auto key = d->key();
-        key.update();
-        KeyCache::mutableInstance()->insert(key);
+    QFile secKey(mTmpDir.path() + QStringLiteral("/seckey.gpg"));
+    if (!secKey.open(QIODevice::ReadOnly)) {
+        d->error(QStringLiteral("Failed to open temporary secret"), errorCaption());
+        qCWarning(KLEOPATRA_LOG) << "Failed to open tmp file";
         finished();
         return;
-    });
-    importjob->start(data);
+    }
+    auto data = secKey.readAll();
+    secKey.close();
+
+    auto importjob = QGpgME::openpgp()->importJob();
+    auto result = importjob->exec(data);
+    delete importjob;
+    if (result.error()) {
+        d->error(result.error().asString(), errorCaption());
+        finished();
+        return;
+    }
+    if (!result.numSecretKeysImported() ||
+        (result.numSecretKeysUnchanged() == result.numSecretKeysImported())) {
+        d->error(i18n("Failed to restore any secret keys."), errorCaption());
+        finished();
+        return;
+    }
+
+    // Refresh the key after success
+    KeyCache::mutableInstance()->reload(OpenPGP);
+    finished();
+    d->information(xi18nc("@info", "Successfully restored the secret key parts from <filename>%1</filename>",
+                   mFileName));
+    return;
 }
 
 void ImportPaperKeyCommand::doStart()
@@ -235,6 +243,5 @@ QString ImportPaperKeyCommand::errorExitMessage(const QStringList &args) const
 
 QString ImportPaperKeyCommand::successMessage(const QStringList &) const
 {
-    return xi18nc("@info", "Successfully restored the secret key parts from <filename>%1</filename>",
-                  mFileName);
+    return QString();
 }

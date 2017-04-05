@@ -554,7 +554,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
         }
 
         details += QLatin1String("<ul>");
-        Q_FOREACH (const Key &key, recipients) {
+        for (const Key &key : recipients) {
             details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
         }
         if (recipients.size() < res.numRecipients())

@@ -130,6 +130,7 @@ endif()
 
 kde_enable_exceptions()
 
+add_definitions( -DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT )
 add_subdirectory(pics)
 add_subdirectory(src)
 

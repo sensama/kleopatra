@@ -111,7 +111,10 @@ public:
                                     "<para>Replace the <icode>gpgme</icode> library with a version compiled "
                                     "with <application>%1</application> support.</para>",
                                     engine_name(eng));
-        } else if (ei.fileName() && !ei.version()) {
+        } else if (ei.fileName() && (!ei.version() || !strcmp(ei.version(), "1.0.0"))) {
+            // GPGSM only got the ei.version() working with 1.0.0 so 1.0.0 is returned as
+            // a fallback if the version could not be checked. We assume that it's not properly
+            // installed in that case.
             m_error = i18n("not properly installed");
             m_explaination += xi18nc("@info",
                                      "<para>Backend <command>%1</command> is not installed properly.</para>", QFile::decodeName(ei.fileName()));

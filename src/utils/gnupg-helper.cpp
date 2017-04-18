@@ -119,9 +119,15 @@ QStringList Kleo::gnupgFileWhitelist()
            << QStringLiteral("reader*.status")
            // No longer used in 2.1 but for 2.0 we want this
            << QStringLiteral("secring.gpg")
-           // Changes to the trustmodel * because you can have different
-           // configs for different versions.
-           << QStringLiteral("gpg.conf*")
+           // Changes to the trustmodel / compliance mode might
+           // affect validity so we check this, too.
+           // Globbing for gpg.conf* here will trigger too often
+           // as gpgconf creates files like gpg.conf.bak or
+           // gpg.conf.tmp12312.gpgconf that should not trigger
+           // a change.
+           << QStringLiteral("gpg.conf")
+           << QStringLiteral("gpg.conf-?")
+           << QStringLiteral("gpg.conf-?.?")
            ;
 }
 

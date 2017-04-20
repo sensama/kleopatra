@@ -78,7 +78,7 @@ public:
     };
 
     Card();
-    virtual ~Card() {};
+    virtual ~Card() {}
 
     virtual bool operator == (const Card& other) const;
     bool operator != (const Card& other) const;

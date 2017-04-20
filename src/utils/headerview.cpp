@@ -80,22 +80,6 @@ inline typename T_container::value_type lookup(const T_container &c, unsigned in
 
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0) // provided by Qt since 5.7
-template <typename T, typename A>
-QDebug operator<<(QDebug debug, const std::vector<T, A> &v)
-{
-    debug.nospace() << "std::vector(";
-    for (typename std::vector<T, A>::size_type i = 0; i < v.size(); ++i) {
-        if (i) {
-            debug << ", ";
-        }
-        debug << v[i];
-    }
-    debug << ")";
-    return debug.space();
-}
-#endif
-
 class HeaderView::Private
 {
     friend class ::Kleo::HeaderView;

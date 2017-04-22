@@ -36,8 +36,6 @@
 
 #include "command_p.h"
 
-#include <utils/kdlogtextwidget.h>
-
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 #include <KWindowSystem>
@@ -45,6 +43,7 @@
 #include <QString>
 #include <QStringList>
 #include <QByteArray>
+#include <QTextEdit>
 #include <QTimer>
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -75,14 +74,15 @@ public:
         KDAB_SET_OBJECT_NAME(logTextWidget);
         KDAB_SET_OBJECT_NAME(buttonBox);
 
-        logTextWidget.setMinimumVisibleLines(20);
-        logTextWidget.setMinimumVisibleColumns(80);
+        logTextWidget.setReadOnly(true);
 
         vlay.addWidget(&logTextWidget, 1);
         vlay.addWidget(&buttonBox);
 
         connect(closeButton(), &QAbstractButton::clicked, this, &QWidget::close);
         connect(cancelButton(), &QAbstractButton::clicked, this, &OutputDialog::slotCancelClicked);
+
+        resize(600, 500);
     }
 
 Q_SIGNALS:
@@ -91,7 +91,8 @@ Q_SIGNALS:
 public Q_SLOTS:
     void message(const QString &s)
     {
-        logTextWidget.message(s);
+        logTextWidget.append(s);
+        logTextWidget.ensureCursorVisible();
     }
     void setComplete(bool complete)
     {
@@ -117,7 +118,7 @@ private:
 
 private:
     QVBoxLayout vlay;
-    KDLogTextWidget logTextWidget;
+    QTextEdit logTextWidget;
     QDialogButtonBox buttonBox;
 };
 

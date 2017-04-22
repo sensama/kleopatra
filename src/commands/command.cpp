@@ -225,7 +225,7 @@ void Command::start()
 
 void Command::cancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << metaObject()->className();
     doCancel();
     Q_EMIT canceled();
 }

@@ -42,12 +42,12 @@
 #include <gpgme++/context.h>
 #include <gpgme++/defaultassuantransaction.h>
 #include <gpgme++/key.h>
-#include <gpgme++/keylistresult.h>
 
 #include <gpg-error.h>
 
 #include "kleopatra_debug.h"
 #include "openpgpcard.h"
+#include "netkeycard.h"
 
 #include <QStringList>
 #include <QDir>
@@ -157,6 +157,7 @@ static Card::PinState parse_pin_state(const QString &s)
     bool ok;
     int i = s.toInt(&ok);
     if (!ok) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to parse pin state" << s;
         return Card::UnknownPinState;
     }
     switch (i) {
@@ -235,30 +236,6 @@ static const std::string gpgagent_data(std::shared_ptr<Context> &gpgAgent, const
     }
 }
 
-static std::string parse_keypairinfo(const std::string &kpi)
-{
-    static const char hexchars[] = "0123456789abcdefABCDEF";
-    return '&' + kpi.substr(0, kpi.find_first_not_of(hexchars));
-}
-
-static bool parse_keypairinfo_and_lookup_key(Context *ctx, const std::string &kpi)
-{
-    if (!ctx) {
-        return false;
-    }
-    const std::string pattern = parse_keypairinfo(kpi);
-    qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: pattern=" << pattern.c_str();
-    if (const Error err = ctx->startKeyListing(pattern.c_str())) {
-        qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: startKeyListing failed:" << err.asString();
-        return false;
-    }
-    Error e;
-    const Key key = ctx->nextKey(e);
-    ctx->endKeyListing();
-    qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: e=" << e.code() << "; key.isNull()" << key.isNull();
-    return !e && !key.isNull();
-}
-
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -277,14 +254,17 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
 static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    ci->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
-    if (err.code() || ci->appVersion() != 3) {
+    auto ret = new NetKeyCard();
+    ret->setSerialNumber(ci->serialNumber());
+
+    ret->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
+    if (err.code() || ret->appVersion() != 3) {
         qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up";
         return;
     }
     // the following only works for NKS v3...
     const auto chvStatus = QString::fromStdString(
-            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" \t"));
+            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" "));
     if (err.code()) {
         return;
     }
@@ -294,10 +274,10 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         const auto parsed = parse_pin_state (state);
         states.push_back(parsed);
         if (parsed == Card::NullPin) {
-            ci->setHasNullPin(true);
+            ret->setHasNullPin(true);
         }
     }
-    ci->setPinStates(states);
+    ret->setPinStates(states);
 
     // check for keys to learn:
     const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
@@ -308,21 +288,8 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     if (keyPairInfos.empty()) {
         return;
     }
-
-    // check that any of the keys are new
-    const std::unique_ptr<Context> klc(Context::createForProtocol(CMS));
-    if (!klc.get()) {
-        return;
-    }
-    klc->setKeyListMode(Ephemeral);
-
-    if (std::any_of(keyPairInfos.cbegin(), keyPairInfos.cend(),
-                    [&klc](const std::string &str) {
-                        return !parse_keypairinfo_and_lookup_key(klc.get(), str);
-                    })) {
-        ci->setCanLearnKeys(true);
-    }
-    return;
+    ret->setKeyPairInfo(keyPairInfos);
+    ci.reset(ret);
 }
 
 static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)

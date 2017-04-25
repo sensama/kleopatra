@@ -1,7 +1,8 @@
 /* commands/setinitialpincommand.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2009 Klarälvdalens Datakonsult AB
+    Copyright (c) 2017 by Bundesamt für Sicherheit in der Informationstechnik
+    Software engineering by Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

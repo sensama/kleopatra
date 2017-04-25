@@ -5,6 +5,8 @@
     Copyright (C) 2000 Espen Sand, espen@kde.org
     Copyright (C) 2001-2002 Marc Mutz <mutz@kde.org>
     Copyright (c) 2004,2008 Klarälvdalens Datakonsult AB
+    2016 by Bundesamt für Sicherheit in der Informationstechnik
+    Software engineering by Intevation GmbH
 
     Libkleopatra is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License,

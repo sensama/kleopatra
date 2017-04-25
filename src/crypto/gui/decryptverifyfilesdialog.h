@@ -2,7 +2,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2007 Klarälvdalens Datakonsult AB
-    Copyright (c) 2016 Intevation GmbH
+    Copyright (c) 2016 by Bundesamt für Sicherheit in der Informationstechnik
+    Software engineering by Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

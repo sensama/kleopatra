@@ -3,7 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
-    2016 by Bundesamt für Sicherheit in der Informationstechnik
+    2016, 2017 by Bundesamt für Sicherheit in der Informationstechnik
     Software engineering by Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
@@ -60,8 +60,10 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <QGpgME/CryptoConfig>
 
 #include <gpgme++/global.h>
+#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/keygenerationresult.h>
 
 #include <KConfigGroup>
@@ -209,7 +211,7 @@ static void set_curve(QComboBox *cb, const QString &curve)
     if (!cb) {
         return;
     }
-    const int idx = cb->findData(curve);
+    const int idx = cb->findText(curve);
     if (idx < 0) {
         // Can't happen as we don't have them configurable.
         qCWarning(KLEOPATRA_LOG) << "curve " << curve << " not allowed";
@@ -223,6 +225,64 @@ static QString get_curve(const QComboBox *cb)
         return QString();
     }
     return cb->currentText();
+}
+
+// Extract the algo information from default_pubkey_algo format
+//
+// and put it into the return values size, algo and curve.
+//
+// Values look like:
+// RSA-2048
+// rsa2048/cert,sign+rsa2048/enc
+// brainpoolP256r1+brainpoolP256r1
+static void parseAlgoString(const QString &algoString, int *size, Subkey::PubkeyAlgo *algo, QString &curve)
+{
+    const auto split = algoString.split(QLatin1Char('/'));
+    bool isEncrypt = split.size() == 2 && split[1].contains(QStringLiteral("enc"));
+
+    // Normalize
+    const auto lowered = split[0].toLower().remove(QLatin1Char('-'));
+    if (!algo || !size) {
+        return;
+    }
+    *algo = Subkey::AlgoUnknown;
+    if (lowered.startsWith(QStringLiteral("rsa"))) {
+        *algo = Subkey::AlgoRSA;
+    } else if (lowered.startsWith(QStringLiteral("dsa"))) {
+        *algo = Subkey::AlgoDSA;
+    } else if (lowered.startsWith(QStringLiteral("elg"))) {
+        *algo = Subkey::AlgoELG;
+    }
+
+    if (*algo != Subkey::AlgoUnknown) {
+        bool ok;
+        *size = lowered.right(lowered.size() - 3).toInt(&ok);
+        if (!ok) {
+            qCWarning(KLEOPATRA_LOG) << "Could not extract size from: " << lowered;
+            *size = 2048;
+        }
+        return;
+    }
+
+    // Now the ECC Algorithms
+    if (lowered.startsWith(QStringLiteral("ed25519"))) {
+        // Special handling for this as technically
+        // this is a cv25519 curve used for EDDSA
+        curve = split[0];
+        *algo = Subkey::AlgoEDDSA;
+        return;
+    }
+
+    if (lowered.startsWith(QStringLiteral("cv25519")) ||
+        lowered.startsWith(QStringLiteral("nist")) ||
+        lowered.startsWith(QStringLiteral("brainpool")) ||
+        lowered.startsWith(QStringLiteral("secp"))) {
+        curve = split[0];
+        *algo = isEncrypt ? Subkey::AlgoECDH : Subkey::AlgoECDSA;
+        return;
+    }
+
+    qCWarning(KLEOPATRA_LOG) << "Failed to parse default_pubkey_algo:" << algoString;
 }
 
 Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
@@ -595,6 +655,7 @@ private Q_SLOTS:
 private:
     void fillKeySizeComboBoxen();
     void loadDefaultKeyType();
+    void loadDefaultGnuPGKeyType();
     void updateWidgetVisibility();
 
 private:
@@ -1784,6 +1845,68 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
     ui.ecdsaKeyCurvesCB->addItems(curveNames);
 }
 
+// Try to load the default key type from GnuPG
+void AdvancedSettingsDialog::loadDefaultGnuPGKeyType()
+{
+    const auto conf = QGpgME::cryptoConfig();
+    if (!conf) {
+        qCWarning(KLEOPATRA_LOG) << "Failed to obtain cryptoConfig.";
+        return;
+    }
+    const auto entry = conf->entry(protocol == CMS ? QStringLiteral("gpgsm") : QStringLiteral("gpg"),
+                                   QStringLiteral("Configuration"),
+                                   QStringLiteral("default_pubkey_algo"));
+    if (!entry) {
+        // GnuPG does not support that option.
+        return;
+    }
+
+    qCDebug(KLEOPATRA_LOG) << "Have default key type: " << entry->stringValue();
+
+    // Format is <primarytype>[/usage]+<subkeytype>[/usage]
+    const auto split = entry->stringValue().split(QLatin1Char('+'));
+    int size = 0;
+    Subkey::PubkeyAlgo algo = Subkey::AlgoUnknown;
+    QString curve;
+
+    parseAlgoString(split[0], &size, &algo, curve);
+    if (algo == Subkey::AlgoUnknown) {
+        setSubkeyType(Subkey::AlgoRSA);
+        return;
+    }
+
+    setKeyType(algo);
+
+    if (is_rsa(algo) || is_elg(algo) || is_dsa(algo)) {
+        setKeyStrength(size);
+    } else {
+        setKeyCurve(curve);
+    }
+
+    if (split.size() == 2) {
+        auto algoString = split[1];
+        // If it has no usage we assume encrypt subkey
+        if (!algoString.contains(QLatin1Char('/'))) {
+            algoString += QStringLiteral("/enc");
+        }
+
+        parseAlgoString(algoString, &size, &algo, curve);
+
+        if (algo == Subkey::AlgoUnknown) {
+            setSubkeyType(Subkey::AlgoRSA);
+            return;
+        }
+
+        setSubkeyType(algo);
+
+        if (is_rsa(algo) || is_elg(algo)) {
+            setSubkeyStrength(size);
+        } else {
+            setSubkeyCurve(curve);
+        }
+    }
+}
+
 void AdvancedSettingsDialog::loadDefaultKeyType()
 {
 
@@ -1802,6 +1925,12 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
     } else if (protocol == OpenPGP && keyType == QLatin1String("DSA+ELG")) {
         setKeyType(Subkey::AlgoDSA);
         setSubkeyType(Subkey::AlgoELG_E);
+#if GPGMEPP_VERSION > 0x10800
+        // GPGME 1.8.0 has a bug that makes the gpgconf engine
+        // return garbage so we don't load it for this
+    } else if (keyType.isEmpty() && engineIsVersion(2, 1, 17)) {
+        loadDefaultGnuPGKeyType();
+#endif
     } else {
         if (!keyType.isEmpty() && keyType != QLatin1String("RSA"))
             qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType)

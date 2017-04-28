@@ -39,6 +39,7 @@
 
 class QCheckBox;
 class QComboBox;
+class QBoxLayout;
 
 namespace Kleo
 {
@@ -62,6 +63,8 @@ Q_SIGNALS:
 
 private:
     void setupGui();
+    void setupProfileGui(QBoxLayout *layout);
+    void applyProfile(const QString &profile);
     QCheckBox *mQuickEncryptCB,
               *mQuickSignCB,
               *mPGPFileExtCB,

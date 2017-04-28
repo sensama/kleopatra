@@ -98,6 +98,8 @@ set(_kleopatra_SRCS
   view/searchbar.cpp
   view/smartcardwidget.cpp
   view/pgpcardwidget.cpp
+  view/netkeywidget.cpp
+  view/nullpinwidget.cpp
   view/tabwidget.cpp
   view/keycacheoverlay.cpp
   view/welcomewidget.cpp

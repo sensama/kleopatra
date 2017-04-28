@@ -33,7 +33,9 @@
 #include "smartcardwidget.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
+#include "smartcard/netkeycard.h"
 #include "view/pgpcardwidget.h"
+#include "view/netkeywidget.h"
 
 #include "kleopatra_debug.h"
 
@@ -104,6 +106,10 @@ public:
         mPGPCardWidget->setVisible(false);
         vLay->addWidget(mPGPCardWidget);
 
+        mNetKeyWidget = new NetKeyWidget;
+        mNetKeyWidget->setVisible(false);
+        vLay->addWidget(mNetKeyWidget);
+
         mPlaceHolderWidget = new PlaceHolderWidget;
         vLay->addWidget(mPlaceHolderWidget);
         vLay->addStretch(-1);
@@ -127,17 +133,22 @@ public:
             mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
             mPGPCardWidget->setVisible(true);
             mPlaceHolderWidget->setVisible(false);
+            mNetKeyWidget->setVisible(false);
         } else if (card->appType() == Card::NksApplication) {
-            // TODO
+            mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
+            mNetKeyWidget->setVisible(true);
+            mPlaceHolderWidget->setVisible(false);
+            mPGPCardWidget->setVisible(false);
         } else {
             mPlaceHolderWidget->setVisible(true);
             mPGPCardWidget->setVisible(false);
+            mNetKeyWidget->setVisible(false);
         }
     }
 
 private:
     SmartCardWidget *q;
-    // NetkeyWidget *mNetkey;
+    NetKeyWidget *mNetKeyWidget;
     PGPCardWidget *mPGPCardWidget;
     PlaceHolderWidget *mPlaceHolderWidget;
 };

@@ -102,6 +102,12 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.type->setText(Kleo::Formatting::type(key));
     ui.fingerprint->setText(QString::fromLatin1(key.primaryFingerprint()));
 
+    if (Kleo::Formatting::complianceMode().isEmpty()) {
+        HIDE_ROW(compliance)
+    } else {
+        ui.complianceLbl->setText(Kleo::Formatting::complianceStringForKey(key));
+    }
+
     ui.userIDTable->clear();
 
     QStringList headers = { i18n("Email"), i18n("Name") };

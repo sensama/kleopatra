@@ -82,7 +82,10 @@
 #include <QVBoxLayout>
 #include <QMimeData>
 #include <QDesktopWidget>
+#include <QStatusBar>
+#include <QLabel>
 
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <libkleo/cryptoconfigdialog.h>
@@ -181,6 +184,21 @@ public:
     {
         const QString shortcutStr = focusToClickSearchAction->shortcut().toString();
         ui.searchBar->updateClickMessage(shortcutStr);
+    }
+
+    void updateStatusBar()
+    {
+        const auto complianceMode = Formatting::complianceMode();
+        if (!complianceMode.isEmpty()) {
+            auto statusBar = new QStatusBar;
+            q->setStatusBar(statusBar);
+            auto statusLbl = new QLabel(i18nc("Compliance means that GnuPG is running in a more restricted mode e.g. to handle restricted documents.",
+                                        "Compliance: %1", complianceMode));
+            statusBar->insertPermanentWidget(0, statusLbl);
+
+        } else {
+            q->setStatusBar(nullptr);
+        }
     }
 
     void selfTest()
@@ -335,6 +353,7 @@ MainWindow::Private::Private(MainWindow *qq)
 
     q->setAutoSaveSettings();
     updateSearchBarClickMessage();
+    updateStatusBar();
 }
 
 MainWindow::Private::~Private() {}
@@ -445,6 +464,7 @@ void MainWindow::Private::configureBackend()
 void MainWindow::Private::slotConfigCommitted()
 {
     controller.updateConfig();
+    updateStatusBar();
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

@@ -1262,7 +1262,7 @@ void EnterDetailsPage::registerDialogPropertiesAsFields()
 
 void EnterDetailsPage::saveValues()
 {
-    Q_FOREACH (const Line &line, lineList) {
+    for (const Line &line : qAsConst(lineList)) {
         savedValues[ attributeFromKey(line.attr) ] = line.edit->text().trimmed();
     }
 }

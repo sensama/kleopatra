@@ -189,7 +189,7 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
     QList<QRegExp> result;
-    Q_FOREACH (const std::shared_ptr<ChecksumDefinition> &cd, checksumDefinitions)
+    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
         if (cd)
             Q_FOREACH (const QString &pattern, cd->patterns()) {
                 result.push_back(QRegExp(pattern, fs_cs));

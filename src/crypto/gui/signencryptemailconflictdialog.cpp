@@ -219,15 +219,15 @@ private:
         ui.clearSendersAndRecipients();
 
         ui.addSelectSigningCertificatesGB();
-        Q_FOREACH (const Sender &s, senders) {
+        for (const Sender &s : qAsConst(senders)) {
             addSigner(s);
         }
 
         ui.addSelectEncryptionCertificatesGB();
-        Q_FOREACH (const Sender &s, senders) {
+        for (const Sender &s : qAsConst(senders)) {
             addRecipient(s);
         }
-        Q_FOREACH (const Recipient &r, recipients) {
+        for (const Recipient &r : qAsConst(recipients)) {
             addRecipient(r);
         }
     }

@@ -61,7 +61,7 @@ static QString longestCommonPrefix(const QStringList &sl)
         return QString();
     }
     QString result = sl.front();
-    Q_FOREACH (const QString &s, sl) {
+    for (const QString &s : sl) {
         result = commonPrefix(s, result);
     }
     return result;

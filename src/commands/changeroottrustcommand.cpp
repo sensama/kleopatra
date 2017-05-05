@@ -304,7 +304,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
     QRegExp rx(QLatin1String("\\s*(!?)\\s*([a-fA-F0-9]{40}|(?:[a-fA-F0-9]{2}:){19}[a-fA-F0-9]{2})\\s*([SsPp*])(.*)"));
     bool found = false;
 
-    Q_FOREACH (const QByteArray &rawLine, trustListFileContents) {
+    for (const QByteArray &rawLine : qAsConst(trustListFileContents)) {
 
         const QString line = QString::fromLatin1(rawLine.data(), rawLine.size());
         if (!rx.exactMatch(line)) {

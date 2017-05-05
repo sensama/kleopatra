@@ -909,7 +909,7 @@ void TabWidget::loadViews(const KConfig *config)
     if (config) {
         QStringList groupList = extractViewGroups(config);
         groupList.sort();
-        Q_FOREACH (const QString &group, groupList) {
+        for (const QString &group : qAsConst(groupList)) {
             const KConfigGroup kcg(config, group);
             if (!KCONFIG_DELETEGROUP_BROKEN || kcg.readEntry("magic", 0U) == 0xFA1AFE1U) {
                 addView(kcg);

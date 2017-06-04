@@ -56,8 +56,8 @@ public Q_SLOTS:
     void setAnyCardCanLearnKeys(bool);
 
 private:
-    void doActivated() Q_DECL_OVERRIDE;
-    void slotEnableDisableActions() Q_DECL_OVERRIDE;
+    void doActivated() override;
+    void slotEnableDisableActions() override;
 
 private:
     class Private;

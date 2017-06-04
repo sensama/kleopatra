@@ -70,7 +70,7 @@ public:
     std::vector<GpgME::Key> resolvedSigners() const;
     std::vector<GpgME::Key> signingCertificates(GpgME::Protocol protocol = GpgME::UnknownProtocol) const;
 
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
 
     bool encryptionSelected() const;
     void setEncryptionSelected(bool selected);
@@ -130,7 +130,7 @@ public:
     std::shared_ptr<SigningPreferences> signingPreferences() const;
 
 private:
-    void onNext() Q_DECL_OVERRIDE;
+    void onNext() override;
 
 private:
     class Private;

@@ -113,20 +113,20 @@ public:
     void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
-    void autodetectProtocolFromInput() Q_DECL_OVERRIDE;
+    void autodetectProtocolFromInput() override;
 
-    QString label() const Q_DECL_OVERRIDE;
+    QString label() const override;
 
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
 public Q_SLOTS:
-    void cancel() Q_DECL_OVERRIDE;
+    void cancel() override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    QString inputLabel() const Q_DECL_OVERRIDE;
-    QString outputLabel() const Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;
@@ -145,20 +145,20 @@ public:
     void setSignedData(const std::shared_ptr<Input> &signedData);
 
     void setProtocol(GpgME::Protocol prot);
-    void autodetectProtocolFromInput() Q_DECL_OVERRIDE;
+    void autodetectProtocolFromInput() override;
 
-    QString label() const Q_DECL_OVERRIDE;
+    QString label() const override;
 
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
 public Q_SLOTS:
-    void cancel() Q_DECL_OVERRIDE;
+    void cancel() override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    QString inputLabel() const Q_DECL_OVERRIDE;
-    QString outputLabel() const Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;
@@ -177,19 +177,19 @@ public:
     void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
-    void autodetectProtocolFromInput()Q_DECL_OVERRIDE;
+    void autodetectProtocolFromInput()override;
 
-    QString label() const Q_DECL_OVERRIDE;
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    QString label() const override;
+    GpgME::Protocol protocol() const override;
 
 public Q_SLOTS:
-    void cancel() Q_DECL_OVERRIDE;
+    void cancel() override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    QString inputLabel() const Q_DECL_OVERRIDE;
-    QString outputLabel() const Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;
@@ -209,20 +209,20 @@ public:
     void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);
-    void autodetectProtocolFromInput() Q_DECL_OVERRIDE;
+    void autodetectProtocolFromInput() override;
 
-    QString label() const Q_DECL_OVERRIDE;
+    QString label() const override;
 
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
 public Q_SLOTS:
-    void cancel() Q_DECL_OVERRIDE;
+    void cancel() override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    QString inputLabel() const Q_DECL_OVERRIDE;
-    QString outputLabel() const Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;
@@ -236,14 +236,14 @@ class DecryptVerifyResult : public Task::Result
 public:
     class SenderInfo;
 
-    QString overview() const Q_DECL_OVERRIDE;
-    QString details() const Q_DECL_OVERRIDE;
+    QString overview() const override;
+    QString details() const override;
     bool hasError() const;
-    int errorCode() const Q_DECL_OVERRIDE;
-    QString errorString() const Q_DECL_OVERRIDE;
-    VisualCode code() const Q_DECL_OVERRIDE;
-    AuditLog auditLog() const Q_DECL_OVERRIDE;
-    QPointer<Task> parentTask() const Q_DECL_OVERRIDE;
+    int errorCode() const override;
+    QString errorString() const override;
+    VisualCode code() const override;
+    AuditLog auditLog() const override;
+    QPointer<Task> parentTask() const override;
 
     GpgME::VerificationResult verificationResult() const;
 

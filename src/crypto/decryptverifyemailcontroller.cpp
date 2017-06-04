@@ -90,7 +90,7 @@ public:
     }
 
 public Q_SLOTS:
-    void accept() Q_DECL_OVERRIDE {
+    void accept() override {
         EMailOperationsPreferences prefs;
         prefs.setDecryptVerifyPopupGeometry(geometry());
         prefs.save();

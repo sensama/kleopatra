@@ -86,9 +86,9 @@ public:
         return m_isTemporary;
     }
 
-    void setHierarchicalView(bool hierarchical) Q_DECL_OVERRIDE;
-    void setStringFilter(const QString &filter) Q_DECL_OVERRIDE;
-    void setKeyFilter(const std::shared_ptr<KeyFilter> &filter) Q_DECL_OVERRIDE;
+    void setHierarchicalView(bool hierarchical) override;
+    void setStringFilter(const QString &filter) override;
+    void setKeyFilter(const std::shared_ptr<KeyFilter> &filter) override;
 
     QString title() const
     {
@@ -125,7 +125,7 @@ public:
 
     void saveTo(KConfigGroup &group) const;
 
-    Page *clone() const Q_DECL_OVERRIDE
+    Page *clone() const override
     {
         return new Page(*this);
     }

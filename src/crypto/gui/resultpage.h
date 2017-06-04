@@ -60,7 +60,7 @@ public:
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
 
     bool keepOpenWhenDone() const;
     void setKeepOpenWhenDone(bool keep);

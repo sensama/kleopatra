@@ -72,16 +72,16 @@ public:
     void setDetachedSignature(bool detached);
     void setClearsign(bool clear);
 
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
-    void cancel() Q_DECL_OVERRIDE;
-    QString label() const Q_DECL_OVERRIDE;
+    void cancel() override;
+    QString label() const override;
 
     QString micAlg() const;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;

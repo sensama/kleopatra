@@ -138,7 +138,7 @@ public:
     bool keepResultPageOpenWhenDone() const;
     void setKeepResultPageOpenWhenDone(bool keep);
 
-    void onNext(int currentId) Q_DECL_OVERRIDE;
+    void onNext(int currentId) override;
 
 Q_SIGNALS:
     void signersResolved();

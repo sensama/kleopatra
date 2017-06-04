@@ -61,7 +61,7 @@ public:
 
     std::vector<GpgME::Key> keys() const;
 
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private:
     class Private;

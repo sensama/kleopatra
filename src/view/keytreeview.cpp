@@ -64,7 +64,7 @@ class TreeView : public QTreeView
 public:
     explicit TreeView(QWidget *parent = nullptr) : QTreeView(parent) {}
 
-    QSize minimumSizeHint() const Q_DECL_OVERRIDE
+    QSize minimumSizeHint() const override
     {
         const QSize min = QTreeView::minimumSizeHint();
         return QSize(min.width(), min.height() + 5 * fontMetrics().height());

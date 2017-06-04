@@ -97,10 +97,10 @@ public:
 public Q_SLOTS:
     void setStringFilter(const QString &text);
     void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 protected:
-    void hideEvent(QHideEvent *) Q_DECL_OVERRIDE;
+    void hideEvent(QHideEvent *) override;
 
 private:
     class Private;

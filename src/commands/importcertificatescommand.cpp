@@ -90,7 +90,7 @@ public:
 
     ~ImportResultProxyModel() {}
 
-    ImportResultProxyModel *clone() const Q_DECL_OVERRIDE
+    ImportResultProxyModel *clone() const override
     {
         // compiler-generated copy ctor is fine!
         return new ImportResultProxyModel(*this);
@@ -103,7 +103,7 @@ public:
     }
 
 protected:
-    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE
+    QVariant data(const QModelIndex &index, int role) const override
     {
         if (!index.isValid() || role != Qt::ToolTipRole) {
             return AbstractKeyListSortFilterProxyModel::data(index, role);
@@ -124,7 +124,7 @@ protected:
             return Formatting::importMetaData(*it, rv);
         }
     }
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const Q_DECL_OVERRIDE
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override
     {
         //
         // 0. Keep parents of matching children:

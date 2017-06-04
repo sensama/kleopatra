@@ -56,7 +56,7 @@ private:
     void init();
 
 private:
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
 private:
     QMutex mutex;

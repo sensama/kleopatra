@@ -49,16 +49,16 @@ public:
     ~RefreshX509CertsCommand();
 
 private:
-    bool preStartHook(QWidget *) const Q_DECL_OVERRIDE;
+    bool preStartHook(QWidget *) const override;
 
-    QStringList arguments() const Q_DECL_OVERRIDE;
+    QStringList arguments() const override;
 
-    QString errorCaption() const Q_DECL_OVERRIDE;
-    QString successCaption() const Q_DECL_OVERRIDE;
+    QString errorCaption() const override;
+    QString successCaption() const override;
 
-    QString crashExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
-    QString errorExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
-    QString successMessage(const QStringList &) const Q_DECL_OVERRIDE;
+    QString crashExitMessage(const QStringList &) const override;
+    QString errorExitMessage(const QStringList &) const override;
+    QString successMessage(const QStringList &) const override;
 };
 
 }

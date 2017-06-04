@@ -67,8 +67,8 @@ private:
         return SignSelected | EncryptSelected;
     }
 private:
-    int doStart() Q_DECL_OVERRIDE;
-    void doCanceled() Q_DECL_OVERRIDE;
+    int doStart() override;
+    void doCanceled() override;
 public:
     static const char *staticName()
     {
@@ -96,7 +96,7 @@ public:
     {
         return "ENCRYPT_FILES";
     }
-    unsigned int operation() const Q_DECL_OVERRIDE
+    unsigned int operation() const override
     {
         return SignAllowed | EncryptSelected;
     }
@@ -109,7 +109,7 @@ public:
     {
         return "SIGN_FILES";
     }
-    unsigned int operation() const Q_DECL_OVERRIDE
+    unsigned int operation() const override
     {
         return SignSelected | EncryptAllowed;
     }

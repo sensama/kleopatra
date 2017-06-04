@@ -97,7 +97,7 @@ class GenKeyThread: public QThread
             return mBkpFile;
         }
     protected:
-        void run() Q_DECL_OVERRIDE {
+        void run() override {
             GpgME::GpgGenCardKeyInteractor *ei = new GpgME::GpgGenCardKeyInteractor(mSerial);
             ei->setKeySize(mParams.keysize);
             ei->setNameUtf8(mParams.name.toStdString());

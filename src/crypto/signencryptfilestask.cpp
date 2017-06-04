@@ -79,21 +79,21 @@ public:
     ErrorResult(bool sign, bool encrypt, const Error &err, const QString &errStr, const QString &input, const QString &output, const AuditLog &auditLog)
         : Task::Result(), m_sign(sign), m_encrypt(encrypt), m_error(err), m_errString(errStr), m_inputLabel(input), m_outputLabel(output), m_auditLog(auditLog) {}
 
-    QString overview() const Q_DECL_OVERRIDE;
-    QString details() const Q_DECL_OVERRIDE;
-    int errorCode() const Q_DECL_OVERRIDE
+    QString overview() const override;
+    QString details() const override;
+    int errorCode() const override
     {
         return m_error.encodedError();
     }
-    QString errorString() const Q_DECL_OVERRIDE
+    QString errorString() const override
     {
         return m_errString;
     }
-    VisualCode code() const Q_DECL_OVERRIDE
+    VisualCode code() const override
     {
         return NeutralError;
     }
-    AuditLog auditLog() const Q_DECL_OVERRIDE
+    AuditLog auditLog() const override
     {
         return m_auditLog;
     }
@@ -157,12 +157,12 @@ public:
         assert(!m_sresult.isNull() || !m_eresult.isNull());
     }
 
-    QString overview() const Q_DECL_OVERRIDE;
-    QString details() const Q_DECL_OVERRIDE;
-    int errorCode() const Q_DECL_OVERRIDE;
-    QString errorString() const Q_DECL_OVERRIDE;
-    VisualCode code() const Q_DECL_OVERRIDE;
-    AuditLog auditLog() const Q_DECL_OVERRIDE;
+    QString overview() const override;
+    QString details() const override;
+    int errorCode() const override;
+    QString errorString() const override;
+    VisualCode code() const override;
+    AuditLog auditLog() const override;
 
 private:
     const SigningResult m_sresult;

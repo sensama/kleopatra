@@ -54,7 +54,7 @@ public:
     explicit KeyCacheOverlay(QWidget *baseWidget, QWidget *parent = nullptr);
 
 protected:
-    bool eventFilter(QObject *object, QEvent *event) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject *object, QEvent *event) override;
 
 private:
     void reposition();

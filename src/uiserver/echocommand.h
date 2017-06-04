@@ -74,8 +74,8 @@ public:
     }
 
 private:
-    int doStart() Q_DECL_OVERRIDE;
-    void doCanceled() Q_DECL_OVERRIDE;
+    int doStart() override;
+    void doCanceled() override;
 
 private Q_SLOTS:
     void slotInquireData(int, const QByteArray &);

@@ -55,8 +55,8 @@ private:
     }
 
 private:
-    int doStart() Q_DECL_OVERRIDE;
-    void doCanceled() Q_DECL_OVERRIDE;
+    int doStart() override;
+    void doCanceled() override;
 public:
     static const char *staticName()
     {
@@ -73,7 +73,7 @@ class DecryptVerifyCommand : public AssuanCommandMixin<DecryptVerifyCommand, Dec
 public:
 
 private:
-    DecryptVerifyOperation operation() const Q_DECL_OVERRIDE
+    DecryptVerifyOperation operation() const override
     {
         return DecryptVerify;
     }

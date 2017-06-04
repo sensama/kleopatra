@@ -63,22 +63,22 @@ public:
         return OnlyOneKey | MustBeOpenPGP;
     }
 
-    void postSuccessHook(QWidget *parentWidget) Q_DECL_OVERRIDE;
+    void postSuccessHook(QWidget *parentWidget) override;
 
-    QString successMessage(const QStringList &args) const Q_DECL_OVERRIDE;
+    QString successMessage(const QStringList &args) const override;
 
 private Q_SLOTS:
     void exportResult(const GpgME::Error &err, const QByteArray &data);
 
 private:
-    QStringList arguments() const Q_DECL_OVERRIDE;
+    QStringList arguments() const override;
 
-    void doStart() Q_DECL_OVERRIDE;
+    void doStart() override;
 
-    QString errorCaption() const Q_DECL_OVERRIDE;
+    QString errorCaption() const override;
 
-    QString crashExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
-    QString errorExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
+    QString crashExitMessage(const QStringList &) const override;
+    QString errorExitMessage(const QStringList &) const override;
 
     QTemporaryDir mTmpDir;
     QString mFileName;

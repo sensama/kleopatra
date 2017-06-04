@@ -62,8 +62,8 @@ public:
     void setAlternatingRowColors(bool on);
     bool alternatingRowColors() const;
 
-    QSize minimumSizeHint() const Q_DECL_OVERRIDE;
-    QSize sizeHint() const Q_DECL_OVERRIDE;
+    QSize minimumSizeHint() const override;
+    QSize sizeHint() const override;
 
 public Q_SLOTS:
     void clear();
@@ -71,10 +71,10 @@ public Q_SLOTS:
     void message(const QString &msg);
 
 protected:
-    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE;
-    void timerEvent(QTimerEvent *) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *) Q_DECL_OVERRIDE;
-    void changeEvent(QEvent *) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *) override;
+    void timerEvent(QTimerEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
+    void changeEvent(QEvent *) override;
 
 private:
     class Private;

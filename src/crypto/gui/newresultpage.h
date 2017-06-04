@@ -65,7 +65,7 @@ public:
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
 
 Q_SIGNALS:
     void linkActivated(const QString &link);

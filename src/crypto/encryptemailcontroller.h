@@ -103,7 +103,7 @@ Q_SIGNALS:
 
 private:
 
-    void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Kleo::Crypto::Task::Result> &) override;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

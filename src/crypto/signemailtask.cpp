@@ -70,12 +70,12 @@ public:
     explicit SignEMailResult(const SigningResult &r, const AuditLog &auditLog)
         : Task::Result(), m_result(r), m_auditLog(auditLog) {}
 
-    QString overview() const Q_DECL_OVERRIDE;
-    QString details() const Q_DECL_OVERRIDE;
-    int errorCode() const Q_DECL_OVERRIDE;
-    QString errorString() const Q_DECL_OVERRIDE;
-    VisualCode code() const Q_DECL_OVERRIDE;
-    AuditLog auditLog() const Q_DECL_OVERRIDE;
+    QString overview() const override;
+    QString details() const override;
+    int errorCode() const override;
+    QString errorString() const override;
+    VisualCode code() const override;
+    AuditLog auditLog() const override;
 };
 
 QString makeResultString(const SigningResult &res)

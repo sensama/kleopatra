@@ -50,28 +50,28 @@ public:
     explicit SelfTestImplementation(const QString &name);
     ~SelfTestImplementation();
 
-    QString name() const Q_DECL_OVERRIDE
+    QString name() const override
     {
         return m_name;
     }
-    QString shortError() const Q_DECL_OVERRIDE
+    QString shortError() const override
     {
         return m_error;
     }
-    QString longError() const Q_DECL_OVERRIDE
+    QString longError() const override
     {
         return m_explaination;
     }
-    QString proposedFix() const Q_DECL_OVERRIDE
+    QString proposedFix() const override
     {
         return m_proposedFix;
     }
 
-    bool skipped() const Q_DECL_OVERRIDE
+    bool skipped() const override
     {
         return m_skipped;
     }
-    bool passed() const Q_DECL_OVERRIDE
+    bool passed() const override
     {
         return m_passed;
     }

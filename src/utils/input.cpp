@@ -68,7 +68,7 @@ class Process : public QProcess
 public:
     explicit Process(QObject *parent = nullptr)
         : QProcess(parent) {}
-    void close() Q_DECL_OVERRIDE {
+    void close() override {
         closeReadChannel(StandardOutput);
     }
 };
@@ -82,7 +82,7 @@ class InputImplBase : public Input
 public:
     InputImplBase() : Input(), m_customLabel(), m_defaultLabel() {}
 
-    QString label() const Q_DECL_OVERRIDE
+    QString label() const override
     {
         return m_customLabel.isEmpty() ? m_defaultLabel : m_customLabel;
     }
@@ -90,10 +90,10 @@ public:
     {
         m_defaultLabel = l;
     }
-    void setLabel(const QString &l) Q_DECL_OVERRIDE {
+    void setLabel(const QString &l) override {
         m_customLabel = l;
     }
-    QString errorString() const Q_DECL_OVERRIDE
+    QString errorString() const override
     {
         if (m_errorString.dirty()) {
             m_errorString = doErrorString();
@@ -122,12 +122,12 @@ class PipeInput : public InputImplBase
 public:
     explicit PipeInput(assuan_fd_t fd);
 
-    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const override
     {
         return m_io;
     }
-    unsigned int classification() const Q_DECL_OVERRIDE;
-    unsigned long long size() const Q_DECL_OVERRIDE
+    unsigned int classification() const override;
+    unsigned long long size() const override
     {
         return 0;
     }
@@ -141,22 +141,22 @@ class ProcessStdOutInput : public InputImplBase
 public:
     explicit ProcessStdOutInput(const QString &cmd, const QStringList &args, const QDir &wd, const QByteArray &stdin_ = QByteArray());
 
-    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const override
     {
         return m_proc;
     }
-    unsigned int classification() const Q_DECL_OVERRIDE
+    unsigned int classification() const override
     {
         return 0U;    // plain text
     }
-    unsigned long long size() const Q_DECL_OVERRIDE
+    unsigned long long size() const override
     {
         return 0;
     }
-    QString label() const Q_DECL_OVERRIDE;
+    QString label() const override;
 
 private:
-    QString doErrorString() const Q_DECL_OVERRIDE;
+    QString doErrorString() const override;
 
 private:
     const QString m_command;
@@ -170,16 +170,16 @@ public:
     explicit FileInput(const QString &fileName);
     explicit FileInput(const std::shared_ptr<QFile> &file);
 
-    QString label() const Q_DECL_OVERRIDE
+    QString label() const override
     {
         return m_io ? QFileInfo(m_fileName).fileName() : InputImplBase::label();
     }
-    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    std::shared_ptr<QIODevice> ioDevice() const override
     {
         return m_io;
     }
-    unsigned int classification() const Q_DECL_OVERRIDE;
-    unsigned long long size() const Q_DECL_OVERRIDE
+    unsigned int classification() const override;
+    unsigned long long size() const override
     {
         return QFileInfo(m_fileName).size();
     }
@@ -195,18 +195,18 @@ class ClipboardInput : public Input
 public:
     explicit ClipboardInput(QClipboard::Mode mode);
 
-    void setLabel(const QString &label) Q_DECL_OVERRIDE;
-    QString label() const Q_DECL_OVERRIDE;
-    std::shared_ptr<QIODevice> ioDevice() const Q_DECL_OVERRIDE
+    void setLabel(const QString &label) override;
+    QString label() const override;
+    std::shared_ptr<QIODevice> ioDevice() const override
     {
         return m_buffer;
     }
-    unsigned int classification() const Q_DECL_OVERRIDE;
-    unsigned long long size() const Q_DECL_OVERRIDE
+    unsigned int classification() const override;
+    unsigned long long size() const override
     {
         return m_buffer ? m_buffer->buffer().size() : 0;
     }
-    QString errorString() const Q_DECL_OVERRIDE
+    QString errorString() const override
     {
         return QString();
     }

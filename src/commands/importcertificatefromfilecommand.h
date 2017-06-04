@@ -55,7 +55,7 @@ public:
     QStringList files() const;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
+    void doStart() override;
 
 private:
     class Private;

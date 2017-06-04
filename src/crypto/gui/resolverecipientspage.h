@@ -72,7 +72,7 @@ public:
     explicit ResolveRecipientsPage(QWidget *parent = nullptr);
     ~ResolveRecipientsPage();
 
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
 
     /**
      * The protocol selected by the user (which is chosen by
@@ -113,7 +113,7 @@ Q_SIGNALS:
     void selectedProtocolChanged();
 
 private:
-    void onNext() Q_DECL_OVERRIDE;
+    void onNext() override;
 
 private:
     class Private;

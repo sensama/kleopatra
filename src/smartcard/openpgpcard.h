@@ -46,7 +46,7 @@ class OpenPGPCard: public Card
 public:
     OpenPGPCard ();
     OpenPGPCard (const std::string &serialno);
-    void setSerialNumber(const std::string &sn) Q_DECL_OVERRIDE;
+    void setSerialNumber(const std::string &sn) override;
 
     std::string encFpr() const;
     std::string sigFpr() const;
@@ -54,7 +54,7 @@ public:
 
     void setKeyPairInfo (const std::vector< std::pair<std::string, std::string> > &infos);
 
-    bool operator == (const Card& other) const Q_DECL_OVERRIDE;
+    bool operator == (const Card& other) const override;
 
     std::string manufacturer() const;
     std::string cardVersion() const;

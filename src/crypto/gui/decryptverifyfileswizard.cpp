@@ -107,7 +107,7 @@ public:
         return m_widgets.at(idx);
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE
+    bool isComplete() const override
     {
         return true;
     }

@@ -63,13 +63,13 @@ protected Q_SLOTS:
     void pkProcFinished(int code, QProcess::ExitStatus status);
 
 private:
-    QStringList arguments() const Q_DECL_OVERRIDE;
-    bool preStartHook(QWidget *parentWidget) const Q_DECL_OVERRIDE;
+    QStringList arguments() const override;
+    bool preStartHook(QWidget *parentWidget) const override;
 
-    QString errorCaption() const Q_DECL_OVERRIDE;
+    QString errorCaption() const override;
 
-    QString crashExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
-    QString errorExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
+    QString crashExitMessage(const QStringList &) const override;
+    QString errorExitMessage(const QStringList &) const override;
 
 private:
     QWidget *mParent;

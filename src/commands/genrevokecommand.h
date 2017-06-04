@@ -61,15 +61,15 @@ public:
     }
 
 private:
-    void postSuccessHook(QWidget *parentWidget) Q_DECL_OVERRIDE;
+    void postSuccessHook(QWidget *parentWidget) override;
 
-    QStringList arguments() const Q_DECL_OVERRIDE;
-    QString errorCaption() const Q_DECL_OVERRIDE;
+    QStringList arguments() const override;
+    QString errorCaption() const override;
 
-    QString crashExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
-    QString errorExitMessage(const QStringList &) const Q_DECL_OVERRIDE;
+    QString crashExitMessage(const QStringList &) const override;
+    QString errorExitMessage(const QStringList &) const override;
 
-    void doStart() Q_DECL_OVERRIDE;
+    void doStart() override;
 
     QString mOutputFileName;
 };

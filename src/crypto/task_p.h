@@ -53,20 +53,20 @@ public:
     {
         m_result = res;
     }
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE
+    GpgME::Protocol protocol() const override
     {
         return GpgME::UnknownProtocol;
     }
-    QString label() const Q_DECL_OVERRIDE
+    QString label() const override
     {
         return m_label;
     }
-    void cancel() Q_DECL_OVERRIDE {}
+    void cancel() override {}
 private:
-    void doStart() Q_DECL_OVERRIDE {
+    void doStart() override {
         QTimer::singleShot(0, this, &SimpleTask::slotEmitResult);
     }
-    unsigned long long inputSize() const Q_DECL_OVERRIDE
+    unsigned long long inputSize() const override
     {
         return 0;
     }

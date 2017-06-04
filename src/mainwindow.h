@@ -52,13 +52,13 @@ public Q_SLOTS:
 protected:
     QByteArray savedGeometry;
 
-    void closeEvent(QCloseEvent *e) Q_DECL_OVERRIDE;
-    void showEvent(QShowEvent *e) Q_DECL_OVERRIDE;
-    void hideEvent(QHideEvent *e) Q_DECL_OVERRIDE;
-    void dragEnterEvent(QDragEnterEvent *) Q_DECL_OVERRIDE;
-    void dropEvent(QDropEvent *) Q_DECL_OVERRIDE;
-    void readProperties(const KConfigGroup &cg) Q_DECL_OVERRIDE;
-    void saveProperties(KConfigGroup &cg) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *e) override;
+    void showEvent(QShowEvent *e) override;
+    void hideEvent(QHideEvent *e) override;
+    void dragEnterEvent(QDragEnterEvent *) override;
+    void dropEvent(QDropEvent *) override;
+    void readProperties(const KConfigGroup &cg) override;
+    void saveProperties(KConfigGroup &cg) override;
 
 private:
     class Private;

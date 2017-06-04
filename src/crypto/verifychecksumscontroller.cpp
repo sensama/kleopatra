@@ -166,7 +166,7 @@ private:
     }
 
 private:
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
 private:
     QPointer<VerifyChecksumsDialog> dialog;

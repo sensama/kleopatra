@@ -51,7 +51,7 @@ public:
     explicit SignEncryptFolderCommand(KeyListController *parent);
 
 protected:
-    QStringList selectFiles() const Q_DECL_OVERRIDE;
+    QStringList selectFiles() const override;
 };
 
 }

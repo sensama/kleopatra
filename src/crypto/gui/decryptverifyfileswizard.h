@@ -74,7 +74,7 @@ Q_SIGNALS:
     void operationPrepared();
 
 private:
-    void onNext(int id) Q_DECL_OVERRIDE;
+    void onNext(int id) override;
 
 private:
     class Private;

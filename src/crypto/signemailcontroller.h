@@ -100,7 +100,7 @@ Q_SIGNALS:
     void reportMicAlg(const QString &micalg);
 
 private:
-    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result) override;
 
     class Private;
     kdtools::pimpl_ptr<Private> d;

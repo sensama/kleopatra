@@ -89,7 +89,7 @@ private:
         connect(this, SIGNAL(finished()), q_func(), SLOT(slotOperationFinished()));
     }
 
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
 private:
     void slotOperationFinished()

@@ -299,19 +299,19 @@ public:
     }
 
 private:
-    QString doGetPackCommand(GpgME::Protocol p) const Q_DECL_OVERRIDE
+    QString doGetPackCommand(GpgME::Protocol p) const override
     {
         return m_packCommand[p];
     }
-    QString doGetUnpackCommand(GpgME::Protocol p) const Q_DECL_OVERRIDE
+    QString doGetUnpackCommand(GpgME::Protocol p) const override
     {
         return m_unpackCommand[p];
     }
-    QStringList doGetPackArguments(GpgME::Protocol p, const QStringList &files) const Q_DECL_OVERRIDE
+    QStringList doGetPackArguments(GpgME::Protocol p, const QStringList &files) const override
     {
         return m_packPrefixArguments[p] + files + m_packPostfixArguments[p];
     }
-    QStringList doGetUnpackArguments(GpgME::Protocol p, const QString &file) const Q_DECL_OVERRIDE
+    QStringList doGetUnpackArguments(GpgME::Protocol p, const QString &file) const override
     {
         QStringList copy = m_unpackArguments[p];
         copy.replaceInStrings(FILE_PLACEHOLDER, file);

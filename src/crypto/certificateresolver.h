@@ -76,8 +76,8 @@ class KConfigBasedRecipientPreferences : public RecipientPreferences
 public:
     explicit KConfigBasedRecipientPreferences(const KSharedConfigPtr &config);
     ~KConfigBasedRecipientPreferences();
-    GpgME::Key preferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol) Q_DECL_OVERRIDE;
-    void setPreferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol, const GpgME::Key &certificate) Q_DECL_OVERRIDE;
+    GpgME::Key preferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol) override;
+    void setPreferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol, const GpgME::Key &certificate) override;
 private:
     Q_DISABLE_COPY(KConfigBasedRecipientPreferences)
     class Private;
@@ -89,8 +89,8 @@ class KConfigBasedSigningPreferences : public SigningPreferences
 public:
     explicit KConfigBasedSigningPreferences(const KSharedConfigPtr &config);
     ~KConfigBasedSigningPreferences();
-    GpgME::Key preferredCertificate(GpgME::Protocol protocol) Q_DECL_OVERRIDE;
-    void setPreferredCertificate(GpgME::Protocol protocol, const GpgME::Key &certificate) Q_DECL_OVERRIDE;
+    GpgME::Key preferredCertificate(GpgME::Protocol protocol) override;
+    void setPreferredCertificate(GpgME::Protocol protocol, const GpgME::Key &certificate) override;
 private:
     Q_DISABLE_COPY(KConfigBasedSigningPreferences)
     class Private;

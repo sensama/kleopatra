@@ -45,7 +45,7 @@ public:
     //~DecryptCommand();
 
 private:
-    DecryptVerifyOperation operation() const Q_DECL_OVERRIDE
+    DecryptVerifyOperation operation() const override
     {
         if (hasOption("no-verify")) {
             return Decrypt;

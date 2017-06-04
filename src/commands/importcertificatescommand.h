@@ -47,7 +47,7 @@ public:
     ~ImportCertificatesCommand();
 
 protected:
-    void doCancel() Q_DECL_OVERRIDE;
+    void doCancel() override;
 
 protected:
     class Private;

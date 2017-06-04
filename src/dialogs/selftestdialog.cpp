@@ -84,16 +84,16 @@ public:
         return null;
     }
 
-    int rowCount(const QModelIndex &idx) const Q_DECL_OVERRIDE
+    int rowCount(const QModelIndex &idx) const override
     {
         return idx.isValid() ? 0 : m_tests.size();
     }
-    int columnCount(const QModelIndex &) const Q_DECL_OVERRIDE
+    int columnCount(const QModelIndex &) const override
     {
         return NumColumns;
     }
 
-    QVariant data(const QModelIndex &idx, int role) const Q_DECL_OVERRIDE
+    QVariant data(const QModelIndex &idx, int role) const override
     {
         const unsigned int row = idx.row();
         if (idx.isValid() && row < m_tests.size())
@@ -119,7 +119,7 @@ public:
         return QVariant();
     }
 
-    QVariant headerData(int section, Qt::Orientation o, int role) const Q_DECL_OVERRIDE
+    QVariant headerData(int section, Qt::Orientation o, int role) const override
     {
         if (o == Qt::Horizontal &&
                 section >= 0 && section < NumColumns &&
@@ -197,7 +197,7 @@ public Q_SLOTS:
     }
 
 private:
-    bool filterAcceptsRow(int src_row, const QModelIndex &src_parent) const Q_DECL_OVERRIDE
+    bool filterAcceptsRow(int src_row, const QModelIndex &src_parent) const override
     {
         if (m_showAll) {
             return true;

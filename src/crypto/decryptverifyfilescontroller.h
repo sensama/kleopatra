@@ -78,7 +78,7 @@ Q_SIGNALS:
     void verificationResult(const GpgME::VerificationResult &);
 
 private:
-    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) override;
 
 private:
     class Private;

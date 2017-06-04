@@ -78,7 +78,7 @@ private:
     static QString systemErrorString();
 
 protected:
-    void incomingConnection(qintptr fd) Q_DECL_OVERRIDE;
+    void incomingConnection(qintptr fd) override;
 
 private Q_SLOTS:
     void slotConnectionClosed(Kleo::AssuanServerConnection *conn);

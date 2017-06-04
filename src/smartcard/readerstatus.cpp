@@ -462,7 +462,7 @@ private Q_SLOTS:
     }
 
 private:
-    void run() Q_DECL_OVERRIDE {
+    void run() override {
         while (true) {
             std::shared_ptr<Context> gpgAgent;
 

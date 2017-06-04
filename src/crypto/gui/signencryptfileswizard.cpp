@@ -115,17 +115,17 @@ public:
         setMinimumHeight(300);
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE
+    bool isComplete() const override
     {
         return !mWidget->currentOp().isNull();
     }
 
-    int nextId() const Q_DECL_OVERRIDE
+    int nextId() const override
     {
         return ResultPageId;
     }
 
-    void initializePage() Q_DECL_OVERRIDE
+    void initializePage() override
     {
         setCommitPage(true);
     }
@@ -147,7 +147,7 @@ public:
         }
     }
 
-    bool validatePage() Q_DECL_OVERRIDE
+    bool validatePage() override
     {
         bool sign = !mWidget->signKey().isNull();
         bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();

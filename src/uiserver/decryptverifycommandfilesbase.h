@@ -65,8 +65,8 @@ private:
     virtual DecryptVerifyOperation operation() const = 0;
 
 private:
-    int doStart() Q_DECL_OVERRIDE;
-    void doCanceled() Q_DECL_OVERRIDE;
+    int doStart() override;
+    void doCanceled() override;
 public:
     // ### FIXME fix this
     static const char *staticName()

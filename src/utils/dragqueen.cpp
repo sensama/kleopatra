@@ -58,7 +58,7 @@ public:
 
     }
 
-    QStringList formats() const Q_DECL_OVERRIDE
+    QStringList formats() const override
     {
         if (m_source) {
             return m_source->formats();
@@ -67,13 +67,13 @@ public:
         }
     }
 
-    bool hasFormat(const QString &format) const Q_DECL_OVERRIDE
+    bool hasFormat(const QString &format) const override
     {
         return m_source && m_source->hasFormat(format);
     }
 
 protected:
-    QVariant retrieveData(const QString &format, QVariant::Type type) const Q_DECL_OVERRIDE
+    QVariant retrieveData(const QString &format, QVariant::Type type) const override
     {
         if (!m_source) {
             return QVariant();

@@ -80,15 +80,15 @@ public:
     void setEncryptSymmetric(bool symmetric);
 
     void setOverwritePolicy(const std::shared_ptr<OverwritePolicy> &policy);
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
-    void cancel() Q_DECL_OVERRIDE;
-    QString label() const Q_DECL_OVERRIDE;
-    QString tag() const Q_DECL_OVERRIDE;
+    void cancel() override;
+    QString label() const override;
+    QString tag() const override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;

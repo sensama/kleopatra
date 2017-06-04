@@ -638,7 +638,7 @@ public:
             ui.x509CLB->isChecked() ? CMS : UnknownProtocol;
     }
 
-    void initializePage() Q_DECL_OVERRIDE {
+    void initializePage() override {
         if (!initialized)
         {
             connect(ui.pgpCLB,  &QAbstractButton::clicked, wizard(), &QWizard::next, Qt::QueuedConnection);
@@ -647,7 +647,7 @@ public:
         initialized = true;
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE
+    bool isComplete() const override
     {
         return protocol() != UnknownProtocol;
     }
@@ -693,12 +693,12 @@ public:
         updateForm();
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE;
-    void initializePage() Q_DECL_OVERRIDE {
+    bool isComplete() const override;
+    void initializePage() override {
         updateForm();
         dialog.setProtocol(pgp() ? OpenPGP : CMS);
     }
-    void cleanupPage() Q_DECL_OVERRIDE {
+    void cleanupPage() override {
         saveValues();
     }
 
@@ -739,7 +739,7 @@ public:
         setButtonText(QWizard::CommitButton, i18nc("@action", "Create Key"));
     }
 
-    void initializePage() Q_DECL_OVERRIDE {
+    void initializePage() override {
         slotShowDetails();
     }
 
@@ -770,12 +770,12 @@ public:
         ui.setupUi(this);
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE
+    bool isComplete() const override
     {
         return !job;
     }
 
-    void initializePage() Q_DECL_OVERRIDE {
+    void initializePage() override {
         startJob();
     }
 
@@ -867,7 +867,7 @@ public:
         registerField(QStringLiteral("fingerprint"), le);
     }
 
-    void initializePage() Q_DECL_OVERRIDE {
+    void initializePage() override {
         const bool error = isError();
 
         if (error)
@@ -914,7 +914,7 @@ public:
         initialized = true;
     }
 
-    void cleanupPage() Q_DECL_OVERRIDE {
+    void cleanupPage() override {
         setButtonVisible(QWizard::CancelButton, true);
     }
 
@@ -923,7 +923,7 @@ public:
         return !ui.errorTB->document()->isEmpty();
     }
 
-    bool isComplete() const Q_DECL_OVERRIDE
+    bool isComplete() const override
     {
         return !isError();
     }

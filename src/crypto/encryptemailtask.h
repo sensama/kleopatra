@@ -68,14 +68,14 @@ public:
     void setOutput(const std::shared_ptr<Output> &output);
     void setRecipients(const std::vector<GpgME::Key> &recipients);
 
-    GpgME::Protocol protocol() const Q_DECL_OVERRIDE;
+    GpgME::Protocol protocol() const override;
 
-    void cancel() Q_DECL_OVERRIDE;
-    QString label() const Q_DECL_OVERRIDE;
+    void cancel() override;
+    QString label() const override;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    unsigned long long inputSize() const Q_DECL_OVERRIDE;
+    void doStart() override;
+    unsigned long long inputSize() const override;
 
 private:
     class Private;

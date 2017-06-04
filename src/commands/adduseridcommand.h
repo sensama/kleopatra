@@ -64,8 +64,8 @@ public:
     const QString &comment() const;
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
-    void doCancel() Q_DECL_OVERRIDE;
+    void doStart() override;
+    void doCancel() override;
 
 private:
     class Private;

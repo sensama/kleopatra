@@ -64,27 +64,27 @@ public:
     ErrorResult(int code, const QString &details)
         : Task::Result(), m_code(code), m_details(details) {}
 
-    QString overview() const Q_DECL_OVERRIDE
+    QString overview() const override
     {
         return makeOverview(m_details);
     }
-    QString details() const Q_DECL_OVERRIDE
+    QString details() const override
     {
         return QString();
     }
-    int errorCode() const Q_DECL_OVERRIDE
+    int errorCode() const override
     {
         return m_code;
     }
-    QString errorString() const Q_DECL_OVERRIDE
+    QString errorString() const override
     {
         return m_details;
     }
-    VisualCode code() const Q_DECL_OVERRIDE
+    VisualCode code() const override
     {
         return NeutralError;
     }
-    AuditLog auditLog() const Q_DECL_OVERRIDE
+    AuditLog auditLog() const override
     {
         return AuditLog();
     }

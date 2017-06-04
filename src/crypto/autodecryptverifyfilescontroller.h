@@ -58,16 +58,16 @@ public:
 
     ~AutoDecryptVerifyFilesController();
 
-    void setFiles(const QStringList &files) Q_DECL_OVERRIDE;
-    void setOperation(DecryptVerifyOperation op) Q_DECL_OVERRIDE;
-    DecryptVerifyOperation operation() const Q_DECL_OVERRIDE;
-    void start() Q_DECL_OVERRIDE;
+    void setFiles(const QStringList &files) override;
+    void setOperation(DecryptVerifyOperation op) override;
+    DecryptVerifyOperation operation() const override;
+    void start() override;
 
 public Q_SLOTS:
-    void cancel() Q_DECL_OVERRIDE;
+    void cancel() override;
 
 private:
-    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) Q_DECL_OVERRIDE;
+    void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) override;
 
 private:
     class Private;

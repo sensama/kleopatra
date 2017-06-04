@@ -51,7 +51,7 @@ public:
     static bool canImportCurrentClipboard();
 
 private:
-    void doStart() Q_DECL_OVERRIDE;
+    void doStart() override;
 
 private:
     class Private;

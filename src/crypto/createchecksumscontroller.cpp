@@ -254,7 +254,7 @@ private:
     }
 
 private:
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
 private:
 #ifndef QT_NO_PROGRESSDIALOG

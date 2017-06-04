@@ -95,7 +95,7 @@ class SelectUserIDsPage : public QWizardPage
     Q_OBJECT
 public:
     explicit SelectUserIDsPage(QWidget *parent = nullptr);
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
 
     void setSelectedUserIDs(const std::vector<unsigned int> &indexes);
     std::vector<unsigned int> selectedUserIDs() const;
@@ -133,8 +133,8 @@ public:
     GpgME::Key selectedSecretKey() const;
     bool sendToServer() const;
 
-    bool validatePage() Q_DECL_OVERRIDE;
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool validatePage() override;
+    bool isComplete() const override;
 
 Q_SIGNALS:
     void nextClicked();
@@ -149,7 +149,7 @@ class SummaryPage : public QWizardPage
     Q_OBJECT
 public:
     explicit SummaryPage(QWidget *parent = nullptr);
-    bool isComplete() const Q_DECL_OVERRIDE;
+    bool isComplete() const override;
     void setComplete(bool complete);
 
     void setResult(const GpgME::Error &err);

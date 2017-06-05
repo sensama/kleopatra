@@ -506,6 +506,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 }
 
                 QStringList uids;
+                uids.reserve(toTrustOwner.userIDs().size());
                 Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
                     uids << Formatting::prettyNameAndEMail(uid);
                 }

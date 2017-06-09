@@ -36,8 +36,6 @@
 
 #include "implementation_p.h"
 
-#include <utils/getpid.h>
-
 #include <gpgme++/context.h>
 #include <gpgme++/gpgagentgetinfoassuantransaction.h>
 

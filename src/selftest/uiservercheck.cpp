@@ -40,6 +40,7 @@
 
 #include <QTextDocument> // for Qt::escape
 #include <QEventLoop>
+#include <QCoreApplication>
 
 #include <KLocalizedString>
 

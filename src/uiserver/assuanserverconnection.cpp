@@ -72,6 +72,7 @@
 #include <QStringList>
 #include <QRegExp>
 #include <QWidget>
+#include <QCoreApplication>
 
 #include <kleo-assuan.h>
 

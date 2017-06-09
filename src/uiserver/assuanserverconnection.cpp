@@ -50,7 +50,6 @@
 #include <utils/hex.h>
 #include <utils/log.h>
 #include <utils/kleo_assert.h>
-#include <utils/getpid.h>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
@@ -442,7 +441,7 @@ private:
 
         QByteArray ba;
         if (qstrcmp(line, "pid") == 0) {
-            ba = QByteArray::number(mygetpid());
+            ba = QByteArray::number(QCoreApplication::applicationPid());
         } else if (qstrcmp(line, "options") == 0) {
             ba = conn.dumpOptions();
         } else if (qstrcmp(line, "x-mementos") == 0) {

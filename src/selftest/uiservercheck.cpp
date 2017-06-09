@@ -36,8 +36,6 @@
 
 #include "implementation_p.h"
 
-#include <utils/getpid.h>
-
 #include <libkleopatraclient/core/command.h>
 
 #include <QTextDocument> // for Qt::escape
@@ -83,7 +81,7 @@ public:
             m_proposedFix = xi18nc("@info",
                                    "<para>Check that your firewall is not set to block local connections "
                                    "(allow connections to <resource>localhost</resource> or <resource>127.0.0.1</resource>).</para>");
-        } else if (command.serverPid() != mygetpid()) {
+        } else if (command.serverPid() != QCoreApplication::applicationPid()) {
             m_passed = false;
             m_error = i18n("multiple instances");
             m_explaination = xi18nc("@info",

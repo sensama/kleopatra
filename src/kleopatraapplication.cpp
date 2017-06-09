@@ -45,7 +45,6 @@
 #include <utils/gnupg-helper.h>
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
-#include <utils/getpid.h>
 
 #include <gpgme++/key.h>
 
@@ -178,7 +177,7 @@ public:
             return;
         }
         const QString dir = QFile::decodeName(dirNative);
-        const QString logFileName = QDir(dir).absoluteFilePath(QStringLiteral("kleopatra.log.%1").arg(mygetpid()));
+        const QString logFileName = QDir(dir).absoluteFilePath(QStringLiteral("kleopatra.log.%1").arg(QCoreApplication::applicationPid()));
         std::unique_ptr<QFile> logFile(new QFile(logFileName));
         if (!logFile->open(QIODevice::WriteOnly | QIODevice::Append)) {
             qCDebug(KLEOPATRA_LOG) << "Could not open file for logging: " << logFileName << "\nLogging disabled";

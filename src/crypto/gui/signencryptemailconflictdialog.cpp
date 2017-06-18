@@ -609,4 +609,3 @@ void SignEncryptEMailConflictDialog::setConflict(bool conflict)
 }
 
 #include "moc_signencryptemailconflictdialog.cpp"
-#include "signencryptemailconflictdialog.moc"

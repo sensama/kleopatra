@@ -131,6 +131,7 @@ endif()
 kde_enable_exceptions()
 
 add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
+add_definitions(-DQT_USE_QSTRINGBUILDER)
 add_subdirectory(pics)
 add_subdirectory(src)
 

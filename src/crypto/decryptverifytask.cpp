@@ -53,6 +53,7 @@
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 #include <utils/auditlog.h>
+#include <utils/gnupg-helper.h>
 
 #include <kmime/kmime_header_parsing.h>
 
@@ -294,7 +295,19 @@ static QString formatSigningInformation(const Signature &sig)
     if (key.isNull()) {
         return text += i18n("With unavailable certificate:") + QStringLiteral("<br>ID: 0x%1").arg(QString::fromLatin1(sig.fingerprint()).toUpper());
     }
-    return text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
+    text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
+
+    if (Kleo::gpgComplianceP("de-vs")) {
+        text +=
+            (QStringLiteral("<br/>")
+             + (IS_DE_VS(sig)
+                ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that a signature is compliant with that.",
+                        "The signature is VS-compliant.")
+                : i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that a signature is not compliant with that.",
+                        "The signature <b>is not</b> VS-compliant.")));
+    }
+
+    return text;
 }
 
 static QString strikeOut(const QString &str, bool strike)
@@ -531,22 +544,32 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
 
 static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients, const QString &errorString, bool isSigned)
 {
+    QString details;
+
     if ((res.error().code() == GPG_ERR_EIO || res.error().code() == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
         return i18n("Input error: %1", errorString);
     }
 
+    if (Kleo::gpgComplianceP("de-vs")) {
+        details += ((IS_DE_VS(res)
+                     ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that the decryption is compliant with that.",
+                             "The decryption is VS-compliant.")
+                     : i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that the decryption is compliant with that.",
+                             "The decryption <b>is not</b> VS-compliant."))
+                    + QStringLiteral("<br/>"));
+    }
+
     if (res.isNull() || !res.error() || res.error().isCanceled()) {
         if (!isSigned) {
-            return i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.");
+            return details + i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.");
         }
-        return QString();
+        return details;
     }
 
     if (recipients.empty() && res.numRecipients() > 0) {
-        return QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
+        return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
     }
 
-    QString details;
     if (!recipients.empty()) {
         details += i18np("Recipient:", "Recipients:", res.numRecipients());
         if (res.numRecipients() == 1) {

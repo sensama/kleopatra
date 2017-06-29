@@ -34,6 +34,22 @@
 #define __KLEOPATRA_GNUPGHELPER_H__
 
 #include <gpgme++/engineinfo.h>
+#include <gpgme++/key.h>
+
+/* Support compilation with GPGME older than 1.9.  */
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10900
+# define GPGME_HAS_KEY_IS_DEVS
+#endif
+
+/* Does the given object comply with DE_VS?  This macro can be used to
+   ensure that we can still build against older versions of GPGME
+   without cluttering the code with preprocessor conditionals.  */
+#ifdef GPGME_HAS_KEY_IS_DEVS
+# define IS_DE_VS(x)	(x).isDeVs()
+#else
+# define IS_DE_VS(x)	false
+#endif
 
 class QString;
 class QStringList;
@@ -59,6 +75,8 @@ int makeGnuPGError(int code);
 
 bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
 bool haveKeyserverConfigured();
+bool gpgComplianceP(const char *mode);
+enum GpgME::UserID::Validity keyValidity(const GpgME::Key &key);
 }
 
 #endif // __KLEOPATRA_GNUPGHELPER_H__

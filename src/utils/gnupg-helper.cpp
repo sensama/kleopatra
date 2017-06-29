@@ -40,6 +40,7 @@
 
 #include <gpgme++/engineinfo.h>
 #include <gpgme++/error.h>
+#include <gpgme++/key.h>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
@@ -274,4 +275,27 @@ bool Kleo::haveKeyserverConfigured()
     }
     const QGpgME::CryptoConfigEntry *const entry = config->entry(QStringLiteral("gpg"), QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
     return entry && !entry->stringValue().isEmpty();
+}
+
+bool Kleo::gpgComplianceP(const char *mode)
+{
+    auto conf = QGpgME::cryptoConfig();
+    return (conf->entry(QStringLiteral("gpg"),
+                        QStringLiteral("Configuration"),
+                        QStringLiteral("compliance"))->stringValue()
+            == QString(mode));
+}
+
+enum GpgME::UserID::Validity Kleo::keyValidity(const GpgME::Key &key)
+{
+    enum UserID::Validity validity = UserID::Validity::Unknown;
+
+    for (const auto &uid: key.userIDs()) {
+        if (validity == UserID::Validity::Unknown
+            || validity > uid.validity()) {
+            validity = uid.validity();
+        }
+    }
+
+    return validity;
 }

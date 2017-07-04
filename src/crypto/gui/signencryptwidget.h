@@ -74,6 +74,11 @@ public:
     /** Save the currently selected signing and encrypt to self keys. */
     void saveOwnKeys() const;
 
+    /** Return whether or not all keys involved in the operation are
+        compliant with CO_DE_VS, and all keys are valid (i.e. all
+        userIDs have Validity >= Full).  */
+    bool isDeVsAndValid() const;
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();

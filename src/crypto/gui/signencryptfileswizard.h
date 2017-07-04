@@ -102,6 +102,8 @@ public:
     QVector<GpgME::Key> resolvedSigners() const;
     bool encryptSymmetric() const;
 
+    void setLabelText(const QString &label) const;
+
 Q_SIGNALS:
     void operationPrepared();
 
@@ -111,6 +113,7 @@ private Q_SLOTS:
 private:
     SigEncPage *mSigEncPage;
     ResultPage *mResultPage;
+    QAbstractButton *mLabel;
     bool mSigningPreset,
          mSigningUserMutable,
          mEncryptionUserMutable,

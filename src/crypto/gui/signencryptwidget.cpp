@@ -49,6 +49,8 @@
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
+#include <utils/gnupg-helper.h>
+
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -278,6 +280,28 @@ QVector <Key> SignEncryptWidget::recipients() const
     return ret;
 }
 
+bool SignEncryptWidget::isDeVsAndValid() const
+{
+    if (!signKey().isNull()
+        && (!IS_DE_VS(signKey()) || keyValidity(signKey()) < GpgME::UserID::Validity::Full)) {
+        return false;
+    }
+
+    if (!selfKey().isNull()
+        && (!IS_DE_VS(selfKey())
+            || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
+        return false;
+    }
+
+    for (const auto &key: recipients()) {
+	if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 void SignEncryptWidget::updateOp()
 {
     const Key sigKey = signKey();
@@ -293,10 +317,8 @@ void SignEncryptWidget::updateOp()
     } else {
         newOp = QString();
     }
-    if (newOp != mOp) {
-        mOp = newOp;
-        Q_EMIT operationChanged(mOp);
-    }
+    mOp = newOp;
+    Q_EMIT operationChanged(mOp);
     Q_EMIT keysChanged();
 }
 

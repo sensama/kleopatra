@@ -45,6 +45,7 @@
 #include <KMessageBox>
 
 #include "kleopatra_debug.h"
+#include <utils/gnupg-helper.h>
 
 #include <Libkleo/FileNameRequester>
 #include <QVBoxLayout>
@@ -78,6 +79,7 @@ class SigEncPage: public QWizardPage
 public:
     explicit SigEncPage(QWidget *parent = nullptr)
         : QWizardPage(parent),
+          mParent((SignEncryptFilesWizard *) parent),
           mWidget(new SignEncryptWidget),
           mOutLayout(new QVBoxLayout),
           mArchive(false),
@@ -284,10 +286,27 @@ public:
 private Q_SLOTS:
     void updateCommitButton(const QString &label)
     {
+        auto btn = mParent->button(QWizard::CommitButton);
         if (!label.isEmpty()) {
-            setButtonText(QWizard::CommitButton, label);
+            btn->setText(label);
+            if (Kleo::gpgComplianceP("de-vs")) {
+                bool de_vs = mWidget->isDeVsAndValid();
+                btn->setIcon(QIcon::fromTheme(de_vs
+                                             ? "security-high"
+                                             : "security-medium"));
+                btn->setStyleSheet(de_vs
+                                   ? "background-color: lime"
+                                   : "background-color: red");
+                mParent->setLabelText(de_vs
+                                      ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                                              "VS-compliant communication possible.")
+                                      : i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                                              "VS-compliant communication not possible."));
+            }
         } else {
-            setButtonText(QWizard::CommitButton, i18n("Next"));
+            btn->setText(i18n("Next"));
+            btn->setIcon(QIcon());
+            btn->setStyleSheet("");
         }
         Q_EMIT completeChanged();
     }
@@ -324,6 +343,7 @@ private Q_SLOTS:
     }
 
 private:
+    SignEncryptFilesWizard *mParent;
     SignEncryptWidget *mWidget;
     QMap <int, QString> mOutNames;
     QMap <int, QWidget *> mRequester;
@@ -337,15 +357,24 @@ private:
 class ResultPage : public NewResultPage
 {
     Q_OBJECT
+
 public:
     explicit ResultPage(QWidget *parent = nullptr)
-        : NewResultPage(parent)
+        : NewResultPage(parent),
+          mParent((SignEncryptFilesWizard *) parent)
     {
         setTitle(i18nc("@title", "Results"));
         setSubTitle(i18nc("@title",
                           "Status and progress of the crypto operations is shown here."));
     }
 
+    void initializePage() override
+    {
+        mParent->setLabelText(QString());
+    }
+
+private:
+    SignEncryptFilesWizard *mParent;
 };
 
 SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
@@ -355,6 +384,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     , mEncryptionUserMutable(false)
     , mEncryptionPreset(false)
 {
+    bool de_vs = Kleo::gpgComplianceP("de-vs");
 #ifdef Q_OS_WIN
     // Enforce modern style to avoid vista style uglyness.
     setWizardStyle(QWizard::ModernStyle);
@@ -367,14 +397,34 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     setPage(SigEncPageId, mSigEncPage);
     setPage(ResultPageId, mResultPage);
     setOptions(QWizard::IndependentPages |
+               (de_vs ? QWizard::HaveCustomButton1 : (QWizard::WizardOption) 0) |
                QWizard::NoBackButtonOnLastPage |
                QWizard::NoBackButtonOnStartPage);
+
+    if (de_vs) {
+        /* We use a custom button to display a label next to the
+           buttons.  */
+        mLabel = button(QWizard::CustomButton1);
+        /* We style the button so that it looks and acts like a
+           label.  */
+        mLabel->setStyleSheet("border: none");
+        mLabel->setFocusPolicy(Qt::NoFocus);
+    } else {
+        mLabel = NULL;
+    }
 
     KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
     const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
     if (!geom.isEmpty()) {
         restoreGeometry(geom);
         return;
+    }
+}
+
+void SignEncryptFilesWizard::setLabelText(const QString &label) const
+{
+    if (mLabel) {
+        mLabel->setText(label);
     }
 }
 

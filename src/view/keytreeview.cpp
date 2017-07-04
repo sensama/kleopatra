@@ -207,6 +207,7 @@ void KeyTreeView::init()
     /* TODO: Make this configurable by the user. E.g. kdepim/src/todo/todoview.cpp */
     rearangingModel->setSourceColumns(QVector<int>() << KeyListModelInterface::PrettyName
                                                      << KeyListModelInterface::PrettyEMail
+                                                     << KeyListModelInterface::Validity
                                                      << KeyListModelInterface::ValidFrom
                                                      << KeyListModelInterface::ValidUntil
                                                      << KeyListModelInterface::TechnicalDetails
@@ -216,6 +217,7 @@ void KeyTreeView::init()
     std::vector<int> defaultSizes;
     defaultSizes.push_back(280);
     defaultSizes.push_back(280);
+    defaultSizes.push_back(120);
     defaultSizes.push_back(100);
     defaultSizes.push_back(100);
     defaultSizes.push_back(80);

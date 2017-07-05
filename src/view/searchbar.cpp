@@ -1,4 +1,4 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
+/* -*- mode: c++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
     view/searchbar.cpp
 
     This file is part of Kleopatra, the KDE keymanager
@@ -42,8 +42,14 @@
 
 #include <QComboBox>
 #include <QHBoxLayout>
+#include <QPushButton>
 
 #include <cassert>
+
+#include <utils/gnupg-helper.h>
+#include <qgpgme/keylistjob.h>
+#include <qgpgme/protocol.h>
+#include <gpgme++/keylistresult.h>
 
 using namespace Kleo;
 
@@ -81,9 +87,39 @@ private:
         }
     }
 
+    void listNotCertifiedKeys() const
+    {
+        lineEdit->clear();
+        combo->setCurrentIndex(combo->findData(QStringLiteral("not-validated-certificates")));
+        Q_EMIT q->keyFilterChanged(keyFilter(combo->currentIndex()));
+    }
+
+    /* List all OpenPGP keys and see if we find one with a UID that is
+     * not at least fully valid.  If we find one, show the certify
+     * button.  */
+    /* XXX: It would be nice to do this every time the user certifies
+     * a key.  */
+    void showOrHideCertifyButton() const
+    {
+        QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob();
+        connect(job, &QGpgME::KeyListJob::result, job,
+                [this, job](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error)
+                {
+                    for (const auto &key: keys) {
+                        if (Kleo::keyValidity(key) < GpgME::UserID::Validity::Full) {
+                            certifyButton->show();
+                            return;
+                        }
+                    }
+                    certifyButton->hide();
+                });
+        job->start(QStringList());
+    }
+
 private:
     QLineEdit *lineEdit;
     QComboBox *combo;
+    QPushButton *certifyButton;
 };
 
 SearchBar::Private::Private(SearchBar *qq)
@@ -97,15 +133,27 @@ SearchBar::Private::Private(SearchBar *qq)
     layout->addWidget(lineEdit, /*stretch=*/1);
     combo = new QComboBox(q);
     layout->addWidget(combo);
+    certifyButton = new QPushButton(q);
+    certifyButton->setIcon(QIcon::fromTheme("security-medium"));
+    certifyButton->setToolTip(i18n("Some certificates are not yet certified. "
+                                   "Click here to see a list of these certificates."
+                                   "<br/><br/>"
+                                   "Certification is required to make sure that the certificates "
+                                   "actually belong to the identity they claim to belong to."));
+    certifyButton->hide();
+    layout->addWidget(certifyButton);
+    showOrHideCertifyButton();
 
     combo->setModel(KeyFilterManager::instance()->model());
 
     KDAB_SET_OBJECT_NAME(layout);
     KDAB_SET_OBJECT_NAME(lineEdit);
     KDAB_SET_OBJECT_NAME(combo);
+    KDAB_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
     connect(combo, SIGNAL(currentIndexChanged(int)), q, SLOT(slotKeyFilterChanged(int)));
+    connect(certifyButton, SIGNAL(clicked()), q, SLOT(listNotCertifiedKeys()));
 }
 
 SearchBar::Private::~Private() {}

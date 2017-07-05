@@ -337,7 +337,6 @@ protected:
 
     FIELD(QString, name)
     FIELD(QString, email)
-    FIELD(QString, comment)
     FIELD(QString, dn)
 
     FIELD(Subkey::PubkeyAlgo, keyType)
@@ -750,7 +749,6 @@ public:
         registerField(QStringLiteral("dn"), ui.resultLE);
         registerField(QStringLiteral("name"), ui.nameLE);
         registerField(QStringLiteral("email"), ui.emailLE);
-        registerField(QStringLiteral("comment"), ui.commentLE);
         updateForm();
     }
 
@@ -1249,9 +1247,6 @@ static QString pgpLabel(const QString &attr)
     if (attr == QLatin1String("NAME")) {
         return i18n("Name");
     }
-    if (attr == QLatin1String("COMMENT")) {
-        return i18n("Comment");
-    }
     if (attr == QLatin1String("EMAIL")) {
         return i18n("EMail");
     }
@@ -1344,11 +1339,6 @@ void EnterDetailsPage::clearForm()
     ui.emailLB->hide();
     ui.emailRequiredLB->hide();
 
-    ui.commentLE->hide();
-    ui.commentLE->clear();
-    ui.commentLB->hide();
-    ui.commentRequiredLB->hide();
-
     ui.addEmailToDnCB->hide();
 }
 
@@ -1419,7 +1409,7 @@ void EnterDetailsPage::updateForm()
     QStringList attrOrder = config.readEntry(pgp() ? "OpenPGPAttributeOrder" : "DNAttributeOrder", QStringList());
     if (attrOrder.empty()) {
         if (pgp()) {
-            attrOrder << QStringLiteral("NAME!") << QStringLiteral("EMAIL!") << QStringLiteral("COMMENT");
+            attrOrder << QStringLiteral("NAME!") << QStringLiteral("EMAIL!");
         } else {
             attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O!") << QStringLiteral("C!") << QStringLiteral("EMAIL!");
         }
@@ -1428,7 +1418,6 @@ void EnterDetailsPage::updateForm()
     QList<QWidget *> widgets;
     widgets.push_back(ui.nameLE);
     widgets.push_back(ui.emailLE);
-    widgets.push_back(ui.commentLE);
 
     QMap<int, Line> lines;
 
@@ -1462,12 +1451,6 @@ void EnterDetailsPage::updateForm()
                 validator = regex.isEmpty() ? Validation::pgpName() : Validation::pgpName(QRegExp(regex));
             }
             row = row_index_of(ui.nameLE, ui.gridLayout);
-        } else if (attr == QLatin1String("COMMENT")) {
-            if (!pgp()) {
-                continue;
-            }
-            validator = regex.isEmpty() ? Validation::pgpComment() : Validation::pgpComment(QRegExp(regex));
-            row = row_index_of(ui.commentLE, ui.gridLayout);
         } else {
             known = false;
             row = add_row(ui.gridLayout, &dynamicWidgets);
@@ -1535,7 +1518,7 @@ QString EnterDetailsPage::pgpUserID() const
     return Formatting::prettyNameAndEMail(OpenPGP, QString(),
                                           ui.nameLE->text().trimmed(),
                                           ui.emailLE->text().trimmed(),
-                                          ui.commentLE->text().trimmed());
+                                          QString());
 }
 
 static bool has_intermediate_input(const QLineEdit *le)
@@ -1693,11 +1676,7 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
         s         << Row<        >(i18n("Name:"),              name());
     }
     s             << Row<        >(i18n("Email Address:"),     email());
-    if (pgp()) {
-        if (!comment().isEmpty()) {
-            s     << Row<        >(i18n("Comment:"),           comment());
-        }
-    } else {
+    if (!pgp()) {
         s         << Row<        >(i18n("Subject-DN:"),        DN(dn()).dn(QStringLiteral(",<br>")));
     }
     if (details) {
@@ -1785,9 +1764,6 @@ QString KeyCreationPage::createGnupgKeyParms() const
     if (pgp()) {
         s << "name-real:     " << name()                   << endl;
         s << "name-email:    " << email()                  << endl;
-        if (!comment().isEmpty()) {
-            s << "name-comment:  " << comment()            << endl;
-        }
     } else {
         s << "name-dn:       " << dn()                     << endl;
         s << "name-email:    " << encode_email(email())    << endl;

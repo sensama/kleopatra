@@ -87,7 +87,7 @@ void NullPinWidget::doChangePin(bool sigG)
     auto ret = KMessageBox::warningContinueCancel(this,
             i18n("Setting a PIN is required but <b>can't be reverted</b>.") +
             QStringLiteral("<p>%1</p><p>%2</p>").arg(
-                i18n("If you proceeed you will be asked to enter a new PIN "
+                i18n("If you proceed you will be asked to enter a new PIN "
                      "and later to repeat that PIN.")).arg(
                 i18n("It will <b>not be possible</b> to recover the "
                      "card if the PIN has been entered wrongly more than 2 times.")),

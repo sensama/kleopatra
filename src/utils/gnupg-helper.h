@@ -38,7 +38,7 @@
 
 /* Support compilation with GPGME older than 1.9.  */
 #include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10900
+#if GPGMEPP_VERSION > 0x10900
 # define GPGME_HAS_KEY_IS_DEVS
 #endif
 

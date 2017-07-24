@@ -40,6 +40,7 @@
 
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <KColorScheme>
 #include <KConfigGroup>
 
 #include <KMessageBox>
@@ -294,9 +295,9 @@ private Q_SLOTS:
                 btn->setIcon(QIcon::fromTheme(de_vs
                                              ? "security-high"
                                              : "security-medium"));
-                btn->setStyleSheet(de_vs
-                                   ? "background-color: lime"
-                                   : "background-color: red");
+                btn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
+                                   ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
+                                   : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
                 mParent->setLabelText(de_vs
                                       ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
                                               "VS-compliant communication possible.")

@@ -81,7 +81,9 @@
 #include <QProcess>
 #include <QVBoxLayout>
 #include <QMimeData>
+#include <QDesktopServices>
 #include <QDesktopWidget>
+#include <QDir>
 #include <QStatusBar>
 #include <QLabel>
 
@@ -220,6 +222,19 @@ public:
     void forceUpdateCheck()
     {
         UpdateNotification::checkUpdate(q, true);
+    }
+
+    void openCompendium()
+    {
+        QDir datadir(QCoreApplication::applicationDirPath() + QStringLiteral("/../share/gpg4win"));
+        const auto path = datadir.filePath(i18nc("The Gpg4win compendium is only available"
+                                                 "at this point (24.7.2017) in german and english."
+                                                 "Please check with Gpg4win before translating this filename.",
+                                                 "gpg4win-compendium-en.pdf"));
+        qCDebug(KLEOPATRA_LOG) << "Opening Compendium at:" << path;
+        // The compendium is always installed. So this should work. Otherwise
+        // we have debug output.
+        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
     }
 
     void slotConfigCommitted();
@@ -384,6 +399,10 @@ void MainWindow::Private::setupActions()
         {
             "help_check_updates", i18n("Check for updates"), QString(),
             "gpg4win-compact", q, SLOT(forceUpdateCheck()), QString(), false, true
+        },
+        {
+            "help_show_compendium", i18n("Gpg4win Compendium"), QString(),
+            "gpg4win-compact", q, SLOT(openCompendium()), QString(), false, true
         },
 #endif
         // most have been MOVED TO keylistcontroller.cpp

@@ -44,9 +44,10 @@
 
 #include <crypto/gui/signencryptemailconflictdialog.h>
 
-#include <utils/input.h>
-#include <utils/output.h>
-#include <utils/kleo_assert.h>
+#include "utils/input.h"
+#include "utils/output.h"
+#include "utils/gnupg-helper.h"
+#include "utils/kleo_assert.h"
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>
@@ -184,6 +185,39 @@ static bool has_perfect_overall_match(bool sign, bool encrypt, const std::vector
 static bool has_conflict(bool sign, bool encrypt, const std::vector<Sender> &senders, const std::vector<Recipient> &recipients, Protocol presetProtocol)
 {
     return !has_perfect_overall_match(sign, encrypt, senders, recipients, presetProtocol);
+}
+
+static bool is_de_vs_compliant(bool sign, bool encrypt, const std::vector<Sender> &senders, const std::vector<Recipient> &recipients, Protocol presetProtocol)
+{
+    if (presetProtocol == Protocol::UnknownProtocol) {
+        return false;
+    }
+    if (sign) {
+        for (const auto &sender: senders) {
+            const auto &key = sender.resolvedSigningKey(presetProtocol);
+            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                return false;
+            }
+        }
+    }
+
+    if (encrypt) {
+        for (const auto &sender: senders) {
+            const auto &key = sender.resolvedSigningKey(presetProtocol);
+            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                return false;
+            }
+        }
+
+        for (const auto &recipient: recipients) {
+            const auto &key = recipient.resolvedEncryptionKey(presetProtocol);
+            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 //
@@ -382,7 +416,13 @@ void NewSignEncryptEMailController::startResolveCertificates(const std::vector<M
     d->dialog->pickProtocol();
     d->dialog->setConflict(conflict);
 
-    if (quickMode && !conflict) {
+    const bool compliant = !Kleo::gpgComplianceP("de-vs") || is_de_vs_compliant(d->sign,
+                                                                                d->encrypt,
+                                                                                senders,
+                                                                                recipients,
+                                                                                d->presetProtocol);
+
+    if (quickMode && !conflict && compliant) {
         QMetaObject::invokeMethod(this, "slotDialogAccepted", Qt::QueuedConnection);
     } else {
         d->ensureDialogVisible();

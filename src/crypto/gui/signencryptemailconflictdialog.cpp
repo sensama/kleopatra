@@ -40,8 +40,9 @@
 #include "dialogs/certificateselectiondialog.h"
 #include "certificateselectionline.h"
 
-#include <utils/gui-helper.h>
-#include <utils/kleo_assert.h>
+#include "utils/gnupg-helper.h"
+#include "utils/gui-helper.h"
+#include "utils/kleo_assert.h"
 
 #include <Libkleo/Stl_Util>
 
@@ -50,6 +51,7 @@
 #include <kmime/kmime_header_parsing.h>
 
 #include <KLocalizedString>
+#include <KColorScheme>
 
 #include <QLabel>
 #include <QComboBox>
@@ -265,13 +267,56 @@ private:
     bool isComplete(Protocol proto) const;
 
 private:
-    void enableDisableOkButton()
+
+    void updateComplianceStatus()
+    {
+        if (q->selectedProtocol() == UnknownProtocol ||
+            (q->resolvedSigningKeys().empty() && q->resolvedEncryptionKeys().empty())) {
+            return;
+        }
+        // Handle compliance
+        bool de_vs = true;
+        for (const auto &key: q->resolvedSigningKeys()) {
+            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                de_vs = false;
+                break;
+            }
+        }
+        if (de_vs) {
+            for (const auto &key: q->resolvedEncryptionKeys()) {
+                if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                    de_vs = false;
+                    break;
+                }
+            }
+        }
+
+        auto btn = ui.buttonBox.button(QDialogButtonBox::Ok);
+
+        btn->setIcon(QIcon::fromTheme(de_vs
+                    ? "security-high"
+                    : "security-medium"));
+        btn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
+                    ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
+                    : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
+        ui.complianceLB.setText(de_vs
+                ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                    "VS-compliant communication possible.")
+                : i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                    "VS-compliant communication not possible."));
+        ui.complianceLB.setVisible(true);
+    }
+
+    void updateDialogStatus()
     {
         ui.setOkButtonEnabled(q->isComplete());
+        if (Kleo::gpgComplianceP("de-vs")) {
+            updateComplianceStatus();
+        }
     }
     void slotCompleteChanged()
     {
-        enableDisableOkButton();
+        updateDialogStatus();
     }
     void slotShowAllRecipientsToggled(bool)
     {
@@ -280,7 +325,7 @@ private:
     void slotProtocolChanged()
     {
         showHideWidgets();
-        enableDisableOkButton();
+        updateDialogStatus();
     }
     void slotCertificateSelectionDialogRequested()
     {
@@ -327,8 +372,10 @@ private:
         QDialogButtonBox buttonBox;
         QVBoxLayout vlay;
         QHBoxLayout  hlay;
+        QHBoxLayout  hlay2;
         QGridLayout  glay;
         std::vector<CertificateSelectionLine> signers, recipients;
+        QLabel complianceLB;
 
         void setOkButtonEnabled(bool enable)
         {
@@ -393,8 +440,14 @@ private:
 
             vlay.addStretch(1);
 
-            vlay.addWidget(&quickModeCB, 0, Qt::AlignCenter);
-            vlay.addWidget(&buttonBox);
+            complianceLB.setVisible(false);
+            hlay2.addStretch(1);
+            hlay2.addWidget(&complianceLB, 0, Qt::AlignRight);
+            hlay2.addWidget(&buttonBox, 0, Qt::AlignRight);
+
+            vlay.addWidget(&quickModeCB, 0, Qt::AlignRight);
+            vlay.addLayout(&hlay2);
+
 
             connect(&buttonBox, &QDialogButtonBox::accepted, q, &SignEncryptEMailConflictDialog::accept);
             connect(&buttonBox, &QDialogButtonBox::rejected, q, &SignEncryptEMailConflictDialog::reject);
@@ -464,7 +517,7 @@ void SignEncryptEMailConflictDialog::setPresetProtocol(Protocol p)
     really_check(d->ui.cmsRB, p == CMS);
     d->presetProtocol = p;
     d->showHideWidgets();
-    d->enableDisableOkButton();
+    d->updateDialogStatus();
 }
 
 Protocol SignEncryptEMailConflictDialog::selectedProtocol() const
@@ -494,7 +547,7 @@ void SignEncryptEMailConflictDialog::setSign(bool sign)
     d->sign = sign;
     d->updateTopLabelText();
     d->showHideWidgets();
-    d->enableDisableOkButton();
+    d->updateDialogStatus();
 }
 
 void SignEncryptEMailConflictDialog::setEncrypt(bool encrypt)
@@ -505,7 +558,7 @@ void SignEncryptEMailConflictDialog::setEncrypt(bool encrypt)
     d->encrypt = encrypt;
     d->updateTopLabelText();
     d->showHideWidgets();
-    d->enableDisableOkButton();
+    d->updateDialogStatus();
 }
 
 void SignEncryptEMailConflictDialog::setSenders(const std::vector<Sender> &senders)
@@ -516,7 +569,7 @@ void SignEncryptEMailConflictDialog::setSenders(const std::vector<Sender> &sende
     d->senders = senders;
     d->createSendersAndRecipients();
     d->showHideWidgets();
-    d->enableDisableOkButton();
+    d->updateDialogStatus();
 }
 
 void SignEncryptEMailConflictDialog::setRecipients(const std::vector<Recipient> &recipients)
@@ -527,7 +580,7 @@ void SignEncryptEMailConflictDialog::setRecipients(const std::vector<Recipient> 
     d->recipients = recipients;
     d->createSendersAndRecipients();
     d->showHideWidgets();
-    d->enableDisableOkButton();
+    d->updateDialogStatus();
 }
 
 void SignEncryptEMailConflictDialog::pickProtocol()

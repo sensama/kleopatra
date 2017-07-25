@@ -294,7 +294,7 @@ bool SignEncryptWidget::isDeVsAndValid() const
     }
 
     for (const auto &key: recipients()) {
-	if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+        if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
             return false;
         }
     }

@@ -245,16 +245,16 @@ void ChangeOwnerTrustCommand::Private::createJob()
 void ChangeOwnerTrustCommand::Private::showErrorDialog(const Error &err)
 {
     error(i18n("<p>An error occurred while trying to change "
-               "the owner trust for <b>%1</b>:</p><p>%2</p>",
+               "the certification trust for <b>%1</b>:</p><p>%2</p>",
                Formatting::formatForComboBox(key()),
                QString::fromLocal8Bit(err.asString())),
-          i18n("Owner Trust Change Error"));
+          i18n("Certification Trust Change Error"));
 }
 
 void ChangeOwnerTrustCommand::Private::showSuccessDialog()
 {
-    information(i18n("Owner trust changed successfully."),
-                i18n("Owner Trust Change Succeeded"));
+    information(i18n("Certification trust changed successfully."),
+                i18n("Certification Trust Change Succeeded"));
 }
 
 #undef d

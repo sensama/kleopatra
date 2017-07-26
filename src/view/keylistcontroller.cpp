@@ -445,7 +445,7 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
-            "certificates_change_owner_trust", i18n("Change Owner Trust..."), QString(),
+            "certificates_change_owner_trust", i18n("Change Certification Trust..."), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {

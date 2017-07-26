@@ -36,7 +36,6 @@
 
 #include "command_p.h"
 
-#include <utils/kdlogtextwidget.h>
 #include <utils/gnupg-helper.h>
 
 #include <gpgme++/key.h>
@@ -54,6 +53,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFontDatabase>
+#include <QTextEdit>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
 
@@ -66,7 +66,7 @@ public:
     explicit DumpCertificateDialog(QWidget *parent = nullptr)
         : QDialog(parent), ui(this)
     {
-
+        resize(600, 500);
     }
 
 Q_SIGNALS:
@@ -75,7 +75,8 @@ Q_SIGNALS:
 public Q_SLOTS:
     void append(const QString &line)
     {
-        ui.logTextWidget.message(line);
+        ui.logTextWidget.append(line);
+        ui.logTextWidget.ensureCursorVisible();
     }
     void clear()
     {
@@ -84,7 +85,7 @@ public Q_SLOTS:
 
 private:
     struct Ui {
-        KDLogTextWidget logTextWidget;
+        QTextEdit   logTextWidget;
         QPushButton     updateButton, closeButton;
         QVBoxLayout vlay;
         QHBoxLayout  hlay;
@@ -104,8 +105,7 @@ private:
             KDAB_SET_OBJECT_NAME(hlay);
 
             logTextWidget.setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
-            logTextWidget.setMinimumVisibleLines(25);
-            logTextWidget.setMinimumVisibleColumns(80);
+            logTextWidget.setReadOnly(true);
 
             vlay.addWidget(&logTextWidget, 1);
             vlay.addLayout(&hlay);

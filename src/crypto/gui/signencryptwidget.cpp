@@ -288,8 +288,7 @@ bool SignEncryptWidget::isDeVsAndValid() const
     }
 
     if (!selfKey().isNull()
-        && (!IS_DE_VS(selfKey())
-            || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
+        && (!IS_DE_VS(selfKey()) || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
         return false;
     }
 

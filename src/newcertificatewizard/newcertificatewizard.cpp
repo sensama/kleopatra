@@ -1954,6 +1954,23 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui.ecdhKeyCurvesCB->setVisible(mECCSupported);
     ui.ecdsaKeyCurvesCB->setVisible(mECCSupported);
     ui.ecdsaRB->setVisible(mECCSupported);
+
+    bool deVsHack = Kleo::gpgComplianceP("de-vs");
+
+    if (deVsHack) {
+        // GnuPG Provides no API to query which keys are compliant for
+        // a mode. If we request a different one it will error out so
+        // we have to remove the options.
+        //
+        // Does anyone want to use NIST anyway?
+        int i;
+        while ((i = ui.ecdsaKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1) {
+            ui.ecdsaKeyCurvesCB->removeItem(i);
+        }
+        while ((i = ui.ecdhKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1) {
+            ui.ecdhKeyCurvesCB->removeItem(i);
+        }
+    }
     // Technical Details Page
     if (keyTypeImmutable) {
         ui.rsaRB->setEnabled(false);
@@ -1965,8 +1982,8 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     } else {
         ui.rsaRB->setEnabled(true);
         ui.rsaSubCB->setEnabled(protocol == OpenPGP);
-        ui.dsaRB->setEnabled(protocol == OpenPGP);
-        ui.elgCB->setEnabled(protocol == OpenPGP);
+        ui.dsaRB->setEnabled(protocol == OpenPGP && !deVsHack);
+        ui.elgCB->setEnabled(protocol == OpenPGP && !deVsHack);
         ui.ecdsaRB->setEnabled(protocol == OpenPGP);
         ui.ecdhCB->setEnabled(protocol == OpenPGP);
     }

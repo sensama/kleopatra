@@ -117,7 +117,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 {
     qCDebug(KLEOPATRA_LOG) << "Applying profile " << profile;
 
-    if (profile == "default") {
+    if (profile == i18n("default")) {
         if (KMessageBox::warningYesNo(
                           this,
                           i18n("This means that every configuration option of the GnuPG System will be reset to its default."),
@@ -141,7 +141,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
     gpgconf->setArguments(QStringList() << QStringLiteral("--apply-profile") << path.toLocal8Bit());
 
     connect(gpgconf, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
-            this, [this, gpgconf] () {
+            this, [this, gpgconf, profile] () {
         if (gpgconf->exitStatus() != QProcess::NormalExit) {
             KMessageBox::error(this, QStringLiteral("<pre>%1</pre>").arg(QString::fromLocal8Bit(gpgconf->readAll())));
             delete gpgconf;
@@ -149,8 +149,9 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
         }
         delete gpgconf;
         KMessageBox::information(this,
-                         i18nc("@info", "The configuration profile is now applied."),
-                         i18n("Configuration profile applied"));
+                         i18nc("%1 is the name of the profile",
+                               "The configuration profile \"%1\" was applied.", profile),
+                         i18n("GnuPG Profile - Kleopatra"));
         auto config = QGpgME::cryptoConfig();
         if (config) {
             config->clear();
@@ -196,12 +197,12 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 
     // We don't translate "default" here because the other profile names are
     // also not translated as they are taken directly from file.
-    combo->addItem(QStringLiteral("default"));
+    combo->addItem(i18n("default"));
     for (const auto &profile: profiles) {
         combo->addItem(profile.baseName());
     }
 
-    auto btn = new QPushButton("Apply");
+    auto btn = new QPushButton(i18n("Apply"));
 
     profLayout->addWidget(profLabel);
     profLayout->addWidget(combo);

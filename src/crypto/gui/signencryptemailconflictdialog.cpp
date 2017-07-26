@@ -300,10 +300,10 @@ private:
                     ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                     : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
         ui.complianceLB.setText(de_vs
-                ? i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
-                    "VS-compliant communication possible.")
-                : i18nc("VS-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
-                    "VS-compliant communication not possible."));
+                ? i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                    "VS-NfD-compliant communication possible.")
+                : i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
+                    "VS-NfD-compliant communication not possible."));
         ui.complianceLB.setVisible(true);
     }
 

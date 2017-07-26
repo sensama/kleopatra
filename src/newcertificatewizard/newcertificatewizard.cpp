@@ -1409,7 +1409,7 @@ void EnterDetailsPage::updateForm()
     QStringList attrOrder = config.readEntry(pgp() ? "OpenPGPAttributeOrder" : "DNAttributeOrder", QStringList());
     if (attrOrder.empty()) {
         if (pgp()) {
-            attrOrder << QStringLiteral("NAME!") << QStringLiteral("EMAIL!");
+            attrOrder << QStringLiteral("NAME") << QStringLiteral("EMAIL");
         } else {
             attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O!") << QStringLiteral("C!") << QStringLiteral("EMAIL!");
         }
@@ -1531,6 +1531,7 @@ static bool has_intermediate_input(const QLineEdit *le)
 
 static bool requirementsAreMet(const QVector<Line> &list, QString &error)
 {
+    bool allEmpty = true;
     for (const Line &line : list) {
         const QLineEdit *le = line.edit;
         if (!le) {
@@ -1561,10 +1562,12 @@ static bool requirementsAreMet(const QVector<Line> &list, QString &error)
                 error = xi18nc("@info", "<interface>%1</interface> is invalid.<nl/>"
                                "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
             return false;
+        } else {
+            allEmpty = false;
         }
-        qCDebug(KLEOPATRA_LOG) << "ok";
     }
-    return true;
+    // Ensure that at least one value is acceptable
+    return !allEmpty;
 }
 
 bool EnterDetailsPage::isComplete() const
@@ -1673,9 +1676,13 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
     QTextStream s(&result);
     s             << "<table>";
     if (pgp()) {
-        s         << Row<        >(i18n("Name:"),              name());
+        if (!name().isEmpty()) {
+            s         << Row<        >(i18n("Name:"),              name());
+        }
     }
-    s             << Row<        >(i18n("Email Address:"),     email());
+    if (!email().isEmpty()) {
+        s             << Row<        >(i18n("Email Address:"),     email());
+    }
     if (!pgp()) {
         s         << Row<        >(i18n("Subject-DN:"),        DN(dn()).dn(QStringLiteral(",<br>")));
     }
@@ -1762,8 +1769,12 @@ QString KeyCreationPage::createGnupgKeyParms() const
         s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << endl;
     }
     if (pgp()) {
-        s << "name-real:     " << name()                   << endl;
-        s << "name-email:    " << email()                  << endl;
+        if (!name().isEmpty()) {
+            s << "name-real:     " << name()                   << endl;
+        }
+        if (!email().isEmpty()) {
+            s << "name-email:    " << email()                  << endl;
+        }
     } else {
         s << "name-dn:       " << dn()                     << endl;
         s << "name-email:    " << encode_email(email())    << endl;

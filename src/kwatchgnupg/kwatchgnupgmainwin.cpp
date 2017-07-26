@@ -40,7 +40,7 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
 
-#include "utils/kdlogtextwidget.h"
+#include "kdlogtextwidget.h"
 
 #include <kmessagebox.h>
 #include <KLocalizedString>

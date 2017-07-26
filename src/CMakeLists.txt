@@ -63,7 +63,6 @@ set(_kleopatra_SRCS
   utils/gnupg-helper.cpp
   utils/filedialog.cpp
   utils/kdpipeiodevice.cpp
-  utils/kdlogtextwidget.cpp
   utils/headerview.cpp
   utils/scrollarea.cpp
   utils/dragqueen.cpp

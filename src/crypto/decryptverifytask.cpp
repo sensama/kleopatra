@@ -493,7 +493,11 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
 
     // Red
     if ((sig.summary() & Signature::Red)) {
-        return text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
+        const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
+        if (sig.summary() & Signature::SysError) {
+            return ret + QStringLiteral(" (%1)").arg(QString::fromLocal8Bit(sig.status().asString()));
+        }
+        return ret;
     }
 
     // Key missing
@@ -510,7 +514,11 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
     }
 
     // Catch all fall through
-    return text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
+    const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
+    if (sig.summary() & Signature::SysError) {
+        return ret + QStringLiteral(" (%1)").arg(QString::fromLocal8Bit(sig.status().asString()));
+    }
+    return ret;
 }
 
 static QStringList format(const std::vector<Mailbox> &mbxs)

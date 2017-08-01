@@ -631,7 +631,6 @@ static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &li
                    [proto](const CertificateSelectionLine &l) {
                        return l.key(proto);
                    });
-    kleo_assert(std::none_of(keys.cbegin(), keys.cend(), std::mem_fn(&Key::isNull)));
     return keys;
 }
 

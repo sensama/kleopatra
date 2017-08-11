@@ -237,15 +237,6 @@ void KWatchGnuPGMainWindow::slotSaveAs()
         return;
     }
     QFile file(filename);
-    if (file.exists()) {
-        if (KMessageBox::Yes !=
-                KMessageBox::warningYesNo(this, i18n("The file named \"%1\" already "
-                                          "exists. Are you sure you want "
-                                          "to overwrite it?", filename),
-                                          i18n("Overwrite File"), KStandardGuiItem::overwrite(), KStandardGuiItem::cancel())) {
-            return;
-        }
-    }
     if (file.open(QIODevice::WriteOnly)) {
         QTextStream(&file) << mCentralWidget->text();
     } else

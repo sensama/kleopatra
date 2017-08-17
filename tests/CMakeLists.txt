@@ -57,7 +57,7 @@ add_definitions(-DKLEO_TEST_DATADIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 
 add_executable(test_verify  ${test_verify_SRCS})
-add_test(test_verify test_verify)
+add_test(NAME test_verify COMMAND test_verify)
 ecm_mark_as_test(test_verify)
 
 target_link_libraries(test_verify

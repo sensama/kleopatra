@@ -132,7 +132,7 @@ void GenRevokeCommand::doStart()
             d->finished();
             return;
         }
-        if (!mOutputFileName.endsWith(".rev")) {
+        if (!mOutputFileName.endsWith(QLatin1String(".rev"))) {
             mOutputFileName += ".rev";
         }
         if (QFileInfo(mOutputFileName).exists()) {

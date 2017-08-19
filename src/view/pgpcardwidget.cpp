@@ -63,13 +63,11 @@
 
 #include <QGpgME/DataProvider>
 
-
 #if GPGMEPP_VERSION > 0x10801 // 1.8.1
 // TODO remove ifdef once > 1.8.1 is required
 #include <gpgme++/gpggencardkeyinteractor.h>
 # define GPGME_CAN_GENCARDKEY
 #endif
-
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -88,9 +86,9 @@ class GenKeyThread: public QThread
         }
 
         GpgME::Error error()
-         {
-             return mErr;
-         }
+        {
+            return mErr;
+        }
 
         std::string bkpFile()
         {
@@ -121,7 +119,6 @@ class GenKeyThread: public QThread
 };
 #endif
 } // Namespace
-
 
 PGPCardWidget::PGPCardWidget():
     mSerialNumber(new QLabel),
@@ -203,7 +200,7 @@ PGPCardWidget::PGPCardWidget():
     auto pukButton = new QPushButton(i18n("Change Admin PIN"));
     pukButton->setToolTip(i18n("Change the PIN required to unlock the smartcard."));
     actionLayout->addWidget(pukButton);
-    connect(pukButton, &QPushButton::clicked, this,  [this] () {doChangePin(3);});
+    connect(pukButton, &QPushButton::clicked, this, [this] () {doChangePin(3);});
 
     auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
     pukButton->setToolTip(i18n("Change the PIN required to reset the smartcard to an empty state."));
@@ -216,7 +213,7 @@ PGPCardWidget::PGPCardWidget():
     grid->setColumnStretch(4, -1);
 }
 
-void PGPCardWidget::setCard(const OpenPGPCard* card)
+void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     const QString version = QString::fromStdString(card->cardVersion());
     mIs21 = version == "2.1";
@@ -257,7 +254,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     progress->setWindowTitle(i18n("Generating keys"));
     progress->setLabel(new QLabel(i18n("This may take several minutes...")));
     GenKeyThread *workerThread = new GenKeyThread(params, mRealSerial);
-    connect (workerThread, &QThread::finished, this, [this, workerThread, progress] {
+    connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
             progress->accept();
             delete progress;
             genKeyDone(workerThread->error(), workerThread->bkpFile());
@@ -382,14 +379,13 @@ void PGPCardWidget::changeNameRequested()
         }
         break;
     }
-    auto parts = text.split(" ");
+    auto parts = text.split(' ');
     const auto lastName = parts.takeLast();
     const auto formatted = lastName + QStringLiteral("<<") + parts.join('<');
 
     ReaderStatus::mutableInstance()
     ->startSimpleTransaction(QStringLiteral("SCD SETATTR DISP-NAME %1").arg(formatted).toUtf8().constData(),
                              this, "changeNameResult");
-
 }
 
 void PGPCardWidget::changeNameResult(const GpgME::Error &err)
@@ -406,7 +402,6 @@ void PGPCardWidget::changeNameResult(const GpgME::Error &err)
                 i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
-
 }
 
 void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)

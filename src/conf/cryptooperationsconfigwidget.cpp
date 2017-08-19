@@ -34,9 +34,8 @@
 
 #include <config-kleopatra.h>
 
-#include "kleopatra_debug.h"
-
 #include "cryptooperationsconfigwidget.h"
+#include "kleopatra_debug.h"
 
 #include "emailoperationspreferences.h"
 #include "fileoperationspreferences.h"
@@ -374,4 +373,3 @@ void CryptoOperationsConfigWidget::save()
     }
     filePrefs.save();
 }
-

@@ -31,8 +31,8 @@
 */
 
 #include <config-kleopatra.h>
-#include "kleopatra_debug.h"
 #include "signemailcontroller.h"
+#include "kleopatra_debug.h"
 
 #include "signemailtask.h"
 #include "certificateresolver.h"
@@ -364,4 +364,3 @@ void SignEMailController::Private::ensureWizardVisible()
 }
 
 #include "moc_signemailcontroller.cpp"
-

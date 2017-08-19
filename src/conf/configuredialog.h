@@ -36,7 +36,7 @@
 #ifndef __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
 #define __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
 
-#include "config-kleopatra.h"
+#include <config-kleopatra.h>
 
 /**
  * This is a small wrapper class that holds common code between

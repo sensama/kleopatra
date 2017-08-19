@@ -32,7 +32,7 @@
 
 #include "welcomewidget.h"
 
-#include "version-kleopatra.h"
+#include <version-kleopatra.h>
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>

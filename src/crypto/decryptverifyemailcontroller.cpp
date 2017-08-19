@@ -31,8 +31,8 @@
 */
 
 #include <config-kleopatra.h>
-#include "kleopatra_debug.h"
 #include "decryptverifyemailcontroller.h"
+#include "kleopatra_debug.h"
 
 #include "emailoperationspreferences.h"
 

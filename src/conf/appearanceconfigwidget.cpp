@@ -57,7 +57,6 @@
 #include <QApplication>
 #include <QColorDialog>
 #include <QFontDialog>
-#include <QRegularExpression>
 
 #include <algorithm>
 #include <cassert>

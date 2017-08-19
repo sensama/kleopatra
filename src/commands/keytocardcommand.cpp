@@ -32,9 +32,9 @@
 
 #include <config-kleopatra.h>
 
+#include "keytocardcommand.h"
 #include "kleopatra_debug.h"
 
-#include "keytocardcommand.h"
 #include "command_p.h"
 
 #include "smartcard/readerstatus.h"

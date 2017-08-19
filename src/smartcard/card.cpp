@@ -30,8 +30,8 @@
     your version.
 */
 
-#include "readerstatus.h"
 #include "card.h"
+#include "readerstatus.h"
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;

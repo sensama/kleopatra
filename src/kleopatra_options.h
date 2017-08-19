@@ -33,7 +33,7 @@
 #ifndef KLEOPATRA_OPTIONS_H
 #define KLEOPATRA_OPTIONS_H
 
-#include "config-kleopatra.h"
+#include <config-kleopatra.h>
 
 #include <QCommandLineParser>
 #include <KLocalizedString>

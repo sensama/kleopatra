@@ -74,7 +74,6 @@
 #include <KConfigGroup>
 
 #include <QAbstractItemView>
-#include <QApplication>
 #include <QCloseEvent>
 #include <QMenu>
 #include <QTimer>

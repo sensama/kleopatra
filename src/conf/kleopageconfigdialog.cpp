@@ -53,7 +53,7 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include "config-kleopatra.h"
+#include <config-kleopatra.h>
 
 #include "kleopageconfigdialog.h"
 

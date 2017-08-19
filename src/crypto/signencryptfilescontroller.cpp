@@ -50,8 +50,6 @@
 #include "utils/archivedefinition.h"
 #include "utils/path-helper.h"
 
-#include "fileoperationspreferences.h"
-
 #include <Libkleo/Exception>
 #include <Libkleo/Classify>
 
@@ -731,4 +729,3 @@ void SignEncryptFilesController::Private::ensureWizardVisible()
 }
 
 #include "moc_signencryptfilescontroller.cpp"
-

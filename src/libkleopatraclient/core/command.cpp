@@ -686,8 +686,7 @@ void Command::Private::run()
 
     Q_FOREACH (const QString &sender, in.senders)
         if ((err = send_sender(ctx, sender, in.areSendersInformative))) {
-            out.errorString = i18n("Failed to send sender %1: %2")
-                              .arg(sender, to_error_string(err));
+            out.errorString = i18n("Failed to send sender %1: %2", sender, to_error_string(err));
             goto leave;
         }
 

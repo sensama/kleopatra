@@ -151,7 +151,7 @@ private:
             }
         }
         if (!cardFound) {
-            error(i18n("Failed to find the card with the serial number: %1").arg(mSerial.c_str()));
+            error(i18n("Failed to find the card with the serial number: %1", mSerial.c_str()));
             finished();
             return;
         }

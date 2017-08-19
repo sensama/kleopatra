@@ -249,14 +249,14 @@ void CertificateRequester::Private::slotButtonClicked()
 
 void CertificateRequester::Private::slotCommandFinished()
 {
-    if (command->wasCanceled())
+    if (command->wasCanceled()) {
         /* do nothing */;
-    else if (command->error())
+    } else if (command->error()) {
         QMessageBox::information(q,
                                  i18n("Kleopatra Error"),
-                                 i18n("There was an error while connecting to Kleopatra: %1")
-                                 .arg(command->errorString()));
-    else {
+                                 i18n("There was an error while connecting to Kleopatra: %1",
+                                      command->errorString()));
+    } else {
         q->setSelectedCertificates(command->selectedCertificates());
     }
     ui.button.setEnabled(true);

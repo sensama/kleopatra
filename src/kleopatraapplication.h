@@ -113,7 +113,7 @@ public Q_SLOTS:
     void slotActivateRequested(const QStringList &arguments, const QString &workingDirectory);
 
 Q_SIGNALS:
-    /* Emited from slotActivateRequested to enable setting the
+    /* Emitted from slotActivateRequested to enable setting the
      * correct exitValue */
     void setExitValue(int value);
 

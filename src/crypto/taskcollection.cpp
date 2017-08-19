@@ -163,7 +163,7 @@ void TaskCollection::Private::calculateAndEmitProgress()
     m_totalProgress = total;
     m_progress = processed;
     if (!unknowable && processed && total >= processed) {
-        // Scale down to a promille value to avoid range issues.
+        // Scale down to avoid range issues.
         int scaled = 1000 * (m_progress / static_cast<double>(m_totalProgress));
         qCDebug(KLEOPATRA_LOG) << "Collection Progress: " << scaled << " total: " << 1000;
         Q_EMIT q->progress(m_lastProgressMessage, scaled, 1000);
@@ -226,4 +226,3 @@ void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
 }
 
 #include "moc_taskcollection.cpp"
-

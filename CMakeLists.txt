@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
-# Standalone build. Find / include everything neccessary.
+# Standalone build. Find / include everything necessary.
 set(KF5_VERSION "5.37.0")
 set(KMIME_VERSION "5.6.40")
 set(LIBKLEO_VERSION "5.6.40")

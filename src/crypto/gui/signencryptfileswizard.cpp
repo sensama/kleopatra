@@ -387,7 +387,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
 {
     bool de_vs = Kleo::gpgComplianceP("de-vs");
 #ifdef Q_OS_WIN
-    // Enforce modern style to avoid vista style uglyness.
+    // Enforce modern style to avoid vista style ugliness.
     setWizardStyle(QWizard::ModernStyle);
 #endif
     mSigEncPage = new SigEncPage(this);

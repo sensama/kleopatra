@@ -68,7 +68,7 @@ public:
      * a null string if nothing would happen. */
     QString currentOp() const;
 
-    /** Wether or not symmetric encryption should also be used. */
+    /** Whether or not symmetric encryption should also be used. */
     bool encryptSymmetric() const;
 
     /** Save the currently selected signing and encrypt to self keys. */

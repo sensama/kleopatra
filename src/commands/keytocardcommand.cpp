@@ -212,7 +212,7 @@ void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
         if (KMessageBox::questionYesNo(d->parentWidgetOrView(),
                                        i18n("Do you want to delete the key on this computer?"),
                                        i18nc("@title:window",
-                                       "Key transfered to card")) == KMessageBox::Yes) {
+                                       "Key transferred to card")) == KMessageBox::Yes) {
             const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->mKey.keyGrip());
             // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
             ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), this, "deleteDone");

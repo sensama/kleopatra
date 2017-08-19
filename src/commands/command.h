@@ -97,7 +97,7 @@ public:
         return NoRestriction;
     }
 
-    /** Classify the files and return the most appropiate commands.
+    /** Classify the files and return the most appropriate commands.
      *
      * @param files: A list of files.
      *

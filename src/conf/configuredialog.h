@@ -42,7 +42,7 @@
  * This is a small wrapper class that holds common code between
  * the KCM Config dialog (which is used when KCMUtils are available)
  * and the KleoPageConfigDialog. Which is just a KPageView
- * with the neccessary bits of the KCMultiDialog behavior.
+ * with the necessary bits of the KCMultiDialog behavior.
  */
 #if HAVE_KCMUTILS
 # include <KCMultiDialog>

@@ -795,7 +795,7 @@ public:
     {
         ui.setupUi(this);
         setCommitPage(true);
-        setButtonText(QWizard::CommitButton, i18nc("@action", "Create Key"));
+        setButtonText(QWizard::CommitButton, i18nc("@action", "Create"));
     }
 
     void initializePage() override {
@@ -852,7 +852,7 @@ private:
         connect(j, SIGNAL(result(GpgME::KeyGenerationResult,QByteArray,QString)),
                 this, SLOT(slotResult(GpgME::KeyGenerationResult,QByteArray,QString)));
         if (const Error err = j->start(createGnupgKeyParms()))
-            setField(QStringLiteral("error"), i18n("Could not start certificate creation: %1",
+            setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1",
                                                    QString::fromLocal8Bit(err.asString())));
         else {
             job = j;
@@ -869,14 +869,14 @@ private Q_SLOTS:
         if (result.error().code()) {
             setField(QStringLiteral("error"), result.error().isCanceled()
                      ? i18n("Operation canceled.")
-                     : i18n("Could not create certificate: %1",
+                     : i18n("Could not create key pair: %1",
                             QString::fromLocal8Bit(result.error().asString())));
             setField(QStringLiteral("url"), QString());
             setField(QStringLiteral("result"), QString());
         } else if (pgp()) {
             setField(QStringLiteral("error"), QString());
             setField(QStringLiteral("url"), QString());
-            setField(QStringLiteral("result"), i18n("Certificate created successfully.\n"
+            setField(QStringLiteral("result"), i18n("Key pair created successfully.\n"
                                                     "Fingerprint: %1", QLatin1String(result.fingerprint())));
         } else {
             QFile file(tmpDir().absoluteFilePath(QStringLiteral("request.p10")));
@@ -890,7 +890,7 @@ private Q_SLOTS:
                 file.write(request);
                 setField(QStringLiteral("error"), QString());
                 setField(QStringLiteral("url"), QUrl::fromLocalFile(file.fileName()).toString());
-                setField(QStringLiteral("result"), i18n("Certificate created successfully."));
+                setField(QStringLiteral("result"), i18n("Key pair created successfully."));
             }
         }
         setField(QStringLiteral("fingerprint"), QString::fromLatin1(result.fingerprint()));
@@ -1058,8 +1058,8 @@ private Q_SLOTS:
             return;
         }
         invokeMailer(QString(),  // to
-                     i18n("My new OpenPGP certificate"), // subject
-                     i18n("Please find attached my new OpenPGP certificate."), // body
+                     i18n("My new public OpenPGP key"), // subject
+                     i18n("Please find attached my new public OpenPGP key."), // body
                      fileName);
     }
 
@@ -1183,7 +1183,7 @@ public:
           tmp(QDir::temp().absoluteFilePath(QStringLiteral("kleo-"))),
           ui(q)
     {
-        q->setWindowTitle(i18nc("@title", "Certificate Creation Wizard"));
+        q->setWindowTitle(i18nc("@title", "Key Pair Creation Wizard"));
     }
 
 private:
@@ -1695,7 +1695,7 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
         } else {
             s     << Row<        >(i18n("Key Strength:"),      i18n("default"));
         }
-        s         << Row<        >(i18n("Certificate Usage:"), i18nCombinedKeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
+        s         << Row<        >(i18n("Usage:"), i18nCombinedKeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
         if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
             s     << Row<        >(i18n("Subkey Type:"),       QLatin1String(Subkey::publicKeyAlgorithmAsString(subkey)));
             if (is_ecdh(subkeyType())) {

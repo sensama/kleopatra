@@ -371,7 +371,7 @@ void KeyListController::createActions(KActionCollection *coll)
     const action_data action_data[] = {
         // File menu
         {
-            "file_new_certificate", i18n("New Keypair..."), QString(),
+            "file_new_certificate", i18n("New Key Pair..."), QString(),
             "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N"), false, true
         },
         {

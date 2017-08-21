@@ -66,25 +66,25 @@ public:
                                       KLEOPATRA_VERSION_STRING);
         const QString introduction = i18n("Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org\">GnuPG</a>.");
 
-        const QString keyExplanation = i18n("For most actions you need either a public certificate (key) from others or a private key of your own.");
+        const QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own private key.");
 
         const QString privateKeyExplanation = i18n("The private key is needed to decrypt or sign.");
-        const QString publicKeyExplanation = i18n("The certificate (public key) can be used by others to verify your identity or encrypt to you.");
+        const QString publicKeyExplanation = i18n("The public key can be used by others to verify your identity or encrypt to you.");
 
         const QString wikiUrl = i18nc("More info about public key cryptography, please link to your local version of Wikipedia",
                                       "https://en.wikipedia.org/wiki/Public-key_cryptography");
-        const QString learnMore = i18nc("%1 is link a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>", wikiUrl);
+        const QString learnMore = i18nc("%1 is link a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
 
         auto label = new QLabel(templ.arg(welcome).arg(introduction).arg(keyExplanation).arg(privateKeyExplanation).arg(publicKeyExplanation).arg(learnMore));
         label->setTextInteractionFlags(Qt::TextBrowserInteraction);
         label->setOpenExternalLinks(true);
 
         auto genKeyAction = new QAction(q);
-        genKeyAction->setText(i18n("Generate Keypair"));
+        genKeyAction->setText(i18n("New Key Pair..."));
         genKeyAction->setIcon(QIcon::fromTheme("view-certificate-add"));
 
         auto importAction = new QAction(q);
-        importAction->setText(i18n("Import Certificates"));
+        importAction->setText(i18n("Import..."));
         importAction->setIcon(QIcon::fromTheme("view-certificate-import"));
 
         connect(importAction, &QAction::triggered, q, [this] () { import(); });
@@ -94,14 +94,14 @@ public:
         mGenerateBtn->setDefaultAction(genKeyAction);
         mGenerateBtn->setIconSize(QSize(64, 64));
         mGenerateBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        mGenerateBtn->setToolTip(i18n("Create a new OpenPGP Keypair") + QStringLiteral("<br>") +
-                                 i18n("To create an S/MIME certificate request use \"New Keypair\" from the 'File' Menu instead"));
+        mGenerateBtn->setToolTip(i18n("Create a new OpenPGP key pair") + QStringLiteral("<br>") +
+                                 i18n("To create an S/MIME certificate request use \"New Key Pair\" from the 'File' Menu instead"));
 
         mImportBtn = new QToolButton();
         mImportBtn->setDefaultAction(importAction);
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        mImportBtn->setToolTip(i18n("Import a Certificate from a file.") + QStringLiteral("<br>") +
+        mImportBtn->setToolTip(i18n("Import from a file.") + QStringLiteral("<br>") +
                                i18n("To import from a public keyserver use \"Lookup on Server\" instead."));
 
         auto btnLayout = new QHBoxLayout;

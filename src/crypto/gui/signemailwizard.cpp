@@ -42,7 +42,6 @@
 
 #include <gpgme++/key.h>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -72,7 +71,7 @@ private:
 
 SignerResolveValidator::SignerResolveValidator(SignerResolvePage *page) : SignerResolvePage::Validator(), m_page(page), complete(true)
 {
-    assert(m_page);
+    Q_ASSERT(m_page);
 }
 
 void SignerResolveValidator::update() const
@@ -90,7 +89,7 @@ void SignerResolveValidator::update() const
         return;
     }
 
-    assert(missing.size() <= 2);
+    Q_ASSERT(missing.size() <= 2);
     if (missing.size() == 1) {
         expl = i18n("You need to select an %1 signing certificate to proceed.", Formatting::displayName(missing[0]));
     } else {

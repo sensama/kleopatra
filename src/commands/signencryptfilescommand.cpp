@@ -47,7 +47,6 @@
 
 #include <QStringList>
 
-#include <cassert>
 #include <exception>
 
 using namespace Kleo;
@@ -182,7 +181,7 @@ Policy SignEncryptFilesCommand::signingPolicy() const
     const unsigned int mode = d->controller.operationMode();
     switch (mode & SignEncryptFilesController::SignMask) {
     default:
-        assert(!"This should not happen!");
+        Q_ASSERT(!"This should not happen!");
         return NoPolicy;
     case SignEncryptFilesController::SignAllowed:
         return Allow;
@@ -219,7 +218,7 @@ Policy SignEncryptFilesCommand::encryptionPolicy() const
     const unsigned int mode = d->controller.operationMode();
     switch (mode & SignEncryptFilesController::EncryptMask) {
     default:
-        assert(!"This should not happen!");
+        Q_ASSERT(!"This should not happen!");
         return NoPolicy;
     case SignEncryptFilesController::EncryptAllowed:
         return Allow;
@@ -260,7 +259,7 @@ Policy SignEncryptFilesCommand::archivePolicy() const
     case SignEncryptFilesController::ArchiveDisallowed:
         return Deny;
     default:
-        assert(!"This should not happen!");
+        Q_ASSERT(!"This should not happen!");
         return NoPolicy;
     }
 }

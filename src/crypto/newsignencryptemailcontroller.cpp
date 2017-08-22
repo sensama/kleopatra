@@ -547,7 +547,7 @@ std::shared_ptr<Task> NewSignEncryptEMailController::Private::takeRunnable(GpgME
 
 void NewSignEncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    assert(task);
+    Q_ASSERT(task);
 
     if (result && result->hasError()) {
         QPointer<QObject> that = this;

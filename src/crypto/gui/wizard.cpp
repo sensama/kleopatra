@@ -53,7 +53,6 @@
 #include <map>
 #include <set>
 
-#include <cassert>
 
 using namespace Kleo::Crypto::Gui;
 
@@ -180,7 +179,7 @@ void Wizard::Private::updateButtonStates()
 void Wizard::Private::updateHeader()
 {
     WizardPage *const widget = q->page(currentId);
-    assert(!widget || stack->indexOf(widget) != -1);
+    Q_ASSERT(!widget || stack->indexOf(widget) != -1);
     if (widget) {
         stack->setCurrentWidget(widget);
     }
@@ -273,7 +272,7 @@ bool Wizard::canGoToPreviousPage() const
         return false;
     }
     const WizardPage *const prevPage = page(prev);
-    assert(prevPage);
+    Q_ASSERT(prevPage);
     return !prevPage->isCommitPage();
 }
 
@@ -285,7 +284,7 @@ void Wizard::next()
     }
     onNext(d->currentId);
     std::vector<int>::const_iterator it = qBinaryFind(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);
-    assert(it != d->pageOrder.end());
+    Q_ASSERT(it != d->pageOrder.end());
 
     do {
         ++it;

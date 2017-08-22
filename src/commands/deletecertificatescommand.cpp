@@ -56,7 +56,6 @@
 
 #include <algorithm>
 #include <vector>
-#include <cassert>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -305,7 +304,7 @@ void DeleteCertificatesCommand::doStart()
 void DeleteCertificatesCommand::Private::slotDialogAccepted()
 {
     std::vector<Key> keys = dialog->keys();
-    assert(!keys.empty());
+    Q_ASSERT(!keys.empty());
 
     auto pgpBegin = keys.begin();
     auto pgpEnd = std::stable_partition(pgpBegin, keys.end(),
@@ -339,7 +338,7 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
         }
     }
 
-    assert(!openpgp.empty() || !cms.empty());
+    Q_ASSERT(!openpgp.empty() || !cms.empty());
 
     pgpKeys.swap(openpgp);
     cmsKeys.swap(cms);
@@ -359,12 +358,12 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
 
 void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol)
 {
-    assert(protocol != GpgME::UnknownProtocol);
+    Q_ASSERT(protocol != GpgME::UnknownProtocol);
 
     const std::vector<Key> &keys = protocol == CMS ? cmsKeys : pgpKeys;
 
     const auto backend = (protocol == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-    assert(backend);
+    Q_ASSERT(backend);
 
     std::unique_ptr<MultiDeleteJob> job(new MultiDeleteJob(backend));
 
@@ -388,7 +387,7 @@ void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol
 void DeleteCertificatesCommand::Private::showErrorsAndFinish()
 {
 
-    assert(!pgpJob); assert(!cmsJob);
+    Q_ASSERT(!pgpJob); Q_ASSERT(!cmsJob);
 
     if (pgpError || cmsError) {
         QString pgpErrorString;

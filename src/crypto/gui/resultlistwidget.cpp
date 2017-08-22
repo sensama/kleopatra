@@ -50,7 +50,6 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-#include <cassert>
 #include <KGuiItem>
 
 using namespace Kleo;
@@ -140,7 +139,7 @@ void ResultListWidget::Private::setupMulti()
 
     m_scrollArea = new ScrollArea;
     m_scrollArea->setFocusPolicy(Qt::NoFocus);
-    assert(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
+    Q_ASSERT(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
     static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setMargin(0);
     static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setSpacing(2);
     static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->addStretch();
@@ -149,13 +148,13 @@ void ResultListWidget::Private::setupMulti()
 
 void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
 {
-    assert(widget);
-    assert(std::any_of(m_collections.cbegin(), m_collections.cend(),
+    Q_ASSERT(widget);
+    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(),
                        [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
 
-    assert(m_scrollArea);
-    assert(m_scrollArea->widget());
-    assert(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
+    Q_ASSERT(m_scrollArea);
+    Q_ASSERT(m_scrollArea->widget());
+    Q_ASSERT(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
     QBoxLayout &blay = *static_cast<QBoxLayout *>(m_scrollArea->widget()->layout());
     blay.insertWidget(widget->hasErrorResult() ? m_lastErrorItemIndex++ : (blay.count() - 1), widget);
 
@@ -175,8 +174,8 @@ void ResultListWidget::Private::allTasksDone()
 
 void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result> &result)
 {
-    assert(result);
-    assert(std::any_of(m_collections.cbegin(), m_collections.cend(),
+    Q_ASSERT(result);
+    Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(),
                        [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
     ResultItemWidget *wid = new ResultItemWidget(result);
     q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
@@ -211,7 +210,7 @@ void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &
 
 void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    assert(coll); assert(!coll->isEmpty());
+    Q_ASSERT(coll); Q_ASSERT(!coll->isEmpty());
     d->m_collections.push_back(coll);
     connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
             this, SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
@@ -224,8 +223,8 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
 
 void ResultListWidget::Private::started(const std::shared_ptr<Task> &task)
 {
-    assert(task);
-    assert(m_progressLabel);
+    Q_ASSERT(task);
+    Q_ASSERT(m_progressLabel);
     m_progressLabel->setText(i18nc("number, operation description", "Operation %1: %2", q->numberOfCompletedTasks() + 1, task->label()));
     resizeIfStandalone();
 }

@@ -438,7 +438,7 @@ FileOutput::FileOutput(const QString &fileName, const std::shared_ptr<OverwriteP
       m_tmpFile(new TemporaryFile(fileName)),
       m_policy(policy)
 {
-    assert(m_policy);
+    Q_ASSERT(m_policy);
     errno = 0;
     if (!m_tmpFile->openNonInheritable())
         throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),

@@ -28,7 +28,6 @@
 #include <QWaitCondition>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 #include <cstring>
 #include <memory>
 #include <algorithm>
@@ -318,7 +317,7 @@ bool KDPipeIODevice::open(Qt::HANDLE h, OpenMode mode)
 #else
     Q_UNUSED(h);
     Q_UNUSED(mode);
-    assert(!"KDPipeIODevice::open( Qt::HANDLE, OpenMode ) should never be called except on Windows.");
+    Q_ASSERT(!"KDPipeIODevice::open( Qt::HANDLE, OpenMode ) should never be called except on Windows.");
     return false;
 #endif
 }
@@ -552,7 +551,7 @@ bool KDPipeIODevice::waitForReadyRead(int msecs)
     if (r->bytesInBuffer() != 0 || r->eof || r->error) {
         return true;
     }
-    assert(false);   // ### wtf?
+    Q_ASSERT(false);   // ### wtf?
     return r->bufferNotEmptyCondition.wait(&r->mutex, msecs);
 }
 
@@ -594,11 +593,11 @@ qint64 KDPipeIODevice::readData(char *data, qint64 maxSize)
     d->startReaderThread();
     Reader *const r = d->reader;
 
-    assert(r);
+    Q_ASSERT(r);
 
     //assert( r->isRunning() ); // wrong (might be eof, error)
-    assert(data || maxSize == 0);
-    assert(maxSize >= 0);
+    Q_ASSERT(data || maxSize == 0);
+    Q_ASSERT(maxSize >= 0);
 
     if (r->eofShortCut) {
         QDebug("%p: KDPipeIODevice::readData: hit eofShortCut, returning 0", (void *)this);
@@ -631,7 +630,7 @@ qint64 KDPipeIODevice::readData(char *data, qint64 maxSize)
     if (r->bufferEmpty()) {
         QDebug("%p: KDPipeIODevice::readData: got empty buffer, signal eof", (void *) this);
         // woken with an empty buffer must mean either EOF or error:
-        assert(r->eof || r->error);
+        Q_ASSERT(r->eof || r->error);
         r->eofShortCut = true;
         return r->eof ? 0 : -1;
     }
@@ -673,10 +672,10 @@ qint64 KDPipeIODevice::writeData(const char *data, qint64 size)
     d->startWriterThread();
     Writer *const w = d->writer;
 
-    assert(w);
-    assert(w->error || w->isRunning());
-    assert(data || size == 0);
-    assert(size >= 0);
+    Q_ASSERT(w);
+    Q_ASSERT(w->error || w->isRunning());
+    Q_ASSERT(data || size == 0);
+    Q_ASSERT(size >= 0);
 
     LOCKED(w);
 
@@ -690,14 +689,14 @@ qint64 KDPipeIODevice::writeData(const char *data, qint64 size)
         return -1;
     }
 
-    assert(w->bufferEmpty());
+    Q_ASSERT(w->bufferEmpty());
 
     return w->writeData(data, size);
 }
 
 qint64 Writer::writeData(const char *data, qint64 size)
 {
-    assert(bufferEmpty());
+    Q_ASSERT(bufferEmpty());
 
     if (size > static_cast<qint64>(sizeof buffer)) {
         size = sizeof buffer;
@@ -720,7 +719,7 @@ void KDPipeIODevice::Private::stopThreads()
             q->waitForBytesWritten(-1);
         }
 
-        assert(q->bytesToWrite() == 0);
+        Q_ASSERT(q->bytesToWrite() == 0);
     }
     if (Reader *&r = reader) {
         disconnect(r, &Reader::readyRead, this, &Private::emitReadyRead);
@@ -831,7 +830,7 @@ void Reader::run()
 
             QDebug("%p: Reader::run: rptr=%d, wptr=%d -> numBytes=%d", (void *)this, rptr, wptr, numBytes);
 
-            assert(numBytes > 0);
+            Q_ASSERT(numBytes > 0);
 
             QDebug("%p: Reader::run: trying to read %d bytes from fd %d", (void *)this, numBytes, fd);
 #ifdef Q_OS_WIN32
@@ -849,11 +848,11 @@ void Reader::run()
             } else { // !ok
                 errorCode = static_cast<int>(GetLastError());
                 if (errorCode == ERROR_BROKEN_PIPE) {
-                    assert(numRead == 0);
+                    Q_ASSERT(numRead == 0);
                     QDebug("%p: Reader::run: got eof (broken pipe)", (void *) this);
                     eof = true;
                 } else {
-                    assert(numRead == 0);
+                    Q_ASSERT(numRead == 0);
                     QDebug("%p: Reader::run: got error: %s (%d)", (void *) this, strerror(errorCode), errorCode);
                     error = true;
                 }
@@ -892,7 +891,7 @@ leave:
 void Reader::notifyReadyRead()
 {
     QDebug("notifyReadyRead: %d bytes available", bytesInBuffer());
-    assert(!cancel);
+    Q_ASSERT(!cancel);
 
     if (consumerBlocksOnUs) {
         bufferNotEmptyCondition.wakeAll();
@@ -931,7 +930,7 @@ void Writer::run()
             goto leave;
         }
 
-        assert(numBytesInBuffer > 0);
+        Q_ASSERT(numBytesInBuffer > 0);
 
         qCDebug(KLEOPATRA_LOG) << this << "Writer::run: Trying to write " << numBytesInBuffer << "bytes";
         qint64 totalWritten = 0;
@@ -1016,31 +1015,31 @@ std::pair<KDPipeIODevice *, KDPipeIODevice *> KDPipeIODevice::makePairOfConnecte
 KDAB_DEFINE_CHECKS(KDPipeIODevice)
 {
     if (!isOpen()) {
-        assert(openMode() == NotOpen);
-        assert(!d->reader);
-        assert(!d->writer);
+        Q_ASSERT(openMode() == NotOpen);
+        Q_ASSERT(!d->reader);
+        Q_ASSERT(!d->writer);
 #ifdef Q_OS_WIN32
-        assert(!d->handle);
+        Q_ASSERT(!d->handle);
 #else
-        assert(d->fd < 0);
+        Q_ASSERT(d->fd < 0);
 #endif
     } else {
-        assert(openMode() != NotOpen);
-        assert(openMode() & ReadWrite);
+        Q_ASSERT(openMode() != NotOpen);
+        Q_ASSERT(openMode() & ReadWrite);
         if (openMode() & ReadOnly) {
-            assert(d->reader);
+            Q_ASSERT(d->reader);
             synchronized(d->reader)
-            assert(d->reader->eof || d->reader->error || d->reader->isRunning());
+            Q_ASSERT(d->reader->eof || d->reader->error || d->reader->isRunning());
         }
         if (openMode() & WriteOnly) {
-            assert(d->writer);
+            Q_ASSERT(d->writer);
             synchronized(d->writer)
-            assert(d->writer->error || d->writer->isRunning());
+            Q_ASSERT(d->writer->error || d->writer->isRunning());
         }
 #ifdef Q_OS_WIN32
-        assert(d->handle);
+        Q_ASSERT(d->handle);
 #else
-        assert(d->fd >= 0);
+        Q_ASSERT(d->fd >= 0);
 #endif
     }
 }

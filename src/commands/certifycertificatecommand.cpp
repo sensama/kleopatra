@@ -53,7 +53,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -247,7 +246,7 @@ void CertifyCertificateCommand::doStart()
         }
 
     d->ensureDialogCreated();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
     d->dialog->setCertificateToCertify(d->key());
     d->dialog->setSelectedUserIDs(d->uids);
     d->dialog->setCertificatesWithSecretKeys(secKeys);
@@ -272,10 +271,10 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
 
 void CertifyCertificateCommand::Private::slotCertificationPrepared()
 {
-    assert(dialog);
+    Q_ASSERT(dialog);
 
     createJob();
-    assert(job);
+    Q_ASSERT(job);
     job->setExportable(dialog->exportableCertificationSelected());
     job->setNonRevocable(dialog->nonRevocableCertificationSelected());
     job->setUserIDsToSign(dialog->selectedUserIDs());
@@ -318,9 +317,9 @@ void CertifyCertificateCommand::Private::createJob()
         disconnect(dialog, SIGNAL(certificationPrepared()), q, SLOT(slotCertificationPrepared()));
     }
 
-    assert(!job);
+    Q_ASSERT(!job);
 
-    assert(key().protocol() == OpenPGP);
+    Q_ASSERT(key().protocol() == OpenPGP);
     const auto backend = QGpgME::openpgp();
     if (!backend) {
         return;

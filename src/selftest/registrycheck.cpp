@@ -41,7 +41,6 @@
 
 #include <QSettings>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;

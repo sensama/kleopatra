@@ -50,7 +50,6 @@
 #include <QVBoxLayout>
 #include <QTimer>
 
-#include <cassert>
 
 static const int ProgressBarHideDelay = 2000; // 2 secs
 
@@ -108,7 +107,7 @@ void NewResultPage::Private::progress(const QString &msg, int progress, int tota
 
 void NewResultPage::Private::allDone()
 {
-    assert(!m_collections.empty());
+    Q_ASSERT(!m_collections.empty());
     if (!m_resultList->isComplete()) {
         return;
     }
@@ -135,10 +134,10 @@ void NewResultPage::Private::result(const std::shared_ptr<const Task::Result> &)
 
 void NewResultPage::Private::started(const std::shared_ptr<Task> &task)
 {
-    assert(task);
+    Q_ASSERT(task);
     const QString tag = task->tag();
     QLabel *const label = labelForTag(tag);
-    assert(label);
+    Q_ASSERT(label);
     if (tag.isEmpty()) {
         label->setText(i18nc("number, operation description", "Operation %1: %2", m_resultList->numberOfCompletedTasks() + 1, task->label()));
     } else {
@@ -163,7 +162,7 @@ void NewResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &col
 
 void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    assert(coll);
+    Q_ASSERT(coll);
     if (std::find(d->m_collections.cbegin(), d->m_collections.cend(), coll) != d->m_collections.cend()) {
         return;
     }
@@ -181,9 +180,9 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
             this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
     Q_FOREACH (const std::shared_ptr<Task> &i, coll->tasks()) {    // create labels for all tags in collection
-        assert(i);
+        Q_ASSERT(i);
         QLabel *l = d->labelForTag(i->tag());
-        assert(l); (void)l;
+        Q_ASSERT(l); (void)l;
     }
     Q_EMIT completeChanged();
 }

@@ -57,7 +57,6 @@
 #include <KSharedConfig>
 
 #include <memory>
-#include <cassert>
 
 using namespace GpgME;
 using namespace Kleo;

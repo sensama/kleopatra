@@ -48,7 +48,6 @@
 
 #include <gpg-error.h>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -185,7 +184,7 @@ void ChangePassphraseCommand::doCancel()
 
 void ChangePassphraseCommand::Private::createJob()
 {
-    assert(!job);
+    Q_ASSERT(!job);
 
     const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {

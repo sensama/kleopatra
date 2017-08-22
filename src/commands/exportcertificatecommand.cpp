@@ -56,7 +56,6 @@
 
 #include <algorithm>
 #include <vector>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -168,7 +167,7 @@ void ExportCertificateCommand::doStart()
     std::vector<Key> openpgp, cms;
     std::copy(keys.begin(), firstCms, std::back_inserter(openpgp));
     std::copy(firstCms, keys.end(), std::back_inserter(cms));
-    assert(!openpgp.empty() || !cms.empty());
+    Q_ASSERT(!openpgp.empty() || !cms.empty());
     const bool haveBoth = !cms.empty() && !openpgp.empty();
     const GpgME::Protocol prot = haveBoth ? UnknownProtocol : (!cms.empty() ? CMS : OpenPGP);
     if (!d->requestFileNames(prot)) {
@@ -234,16 +233,16 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
 
 void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol, const std::vector<Key> &keys)
 {
-    assert(protocol != GpgME::UnknownProtocol);
+    Q_ASSERT(protocol != GpgME::UnknownProtocol);
 
     const QGpgME::Protocol *const backend = (protocol == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-    assert(backend);
+    Q_ASSERT(backend);
     const QString fileName = fileNames[protocol];
     const bool binary = protocol == GpgME::OpenPGP
                         ? fileName.endsWith(QStringLiteral(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QStringLiteral(".pgp"), Qt::CaseInsensitive)
                         : fileName.endsWith(QStringLiteral(".der"), Qt::CaseInsensitive);
     std::unique_ptr<ExportJob> job(backend->publicKeyExportJob(!binary));
-    assert(job.get());
+    Q_ASSERT(job.get());
 
     connect(job.get(), SIGNAL(result(GpgME::Error,QByteArray)),
             q, SLOT(exportResult(GpgME::Error,QByteArray)));
@@ -273,7 +272,7 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
 
 void ExportCertificateCommand::Private::showError(const GpgME::Error &err)
 {
-    assert(err);
+    Q_ASSERT(err);
     const QString msg = i18n("<qt><p>An error occurred while trying to export "
                              "the certificate:</p>"
                              "<p><b>%1</b></p></qt>",
@@ -310,10 +309,10 @@ static bool write_complete(QIODevice &iod, const QByteArray &data)
 
 void ExportCertificateCommand::Private::exportResult(const GpgME::Error &err, const QByteArray &data)
 {
-    assert(jobsPending > 0);
+    Q_ASSERT(jobsPending > 0);
     --jobsPending;
 
-    assert(outFileForSender.contains(q->sender()));
+    Q_ASSERT(outFileForSender.contains(q->sender()));
     const QString outFile = outFileForSender[q->sender()];
 
     if (err) {

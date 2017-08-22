@@ -50,7 +50,6 @@
 
 #include <QDateTime>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -157,7 +156,7 @@ void ChangeExpiryCommand::doStart()
     d->key = keys.front();
 
     d->ensureDialogCreated();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
     const Subkey subkey = d->key.subkey(0);
     d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() : QDateTime::fromTime_t(d->key.subkey(0).expirationTime()).date());
     d->dialog->show();
@@ -166,7 +165,7 @@ void ChangeExpiryCommand::doStart()
 
 void ChangeExpiryCommand::Private::slotDialogAccepted()
 {
-    assert(dialog);
+    Q_ASSERT(dialog);
 
     static const QTime END_OF_DAY(23, 59, 59);   // not used, so as good as any
 
@@ -175,7 +174,7 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     qCDebug(KLEOPATRA_LOG) << "expiry" << expiry;
 
     createJob();
-    assert(job);
+    Q_ASSERT(job);
 
     if (const Error err = job->start(key, expiry)) {
         showErrorDialog(err);
@@ -225,7 +224,7 @@ void ChangeExpiryCommand::Private::ensureDialogCreated()
 
 void ChangeExpiryCommand::Private::createJob()
 {
-    assert(!job);
+    Q_ASSERT(!job);
 
     const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {

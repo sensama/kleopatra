@@ -53,8 +53,6 @@
 #include <QHeaderView>
 #include "kleopatra_debug.h"
 
-#include <cassert>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
@@ -338,7 +336,7 @@ private:
                 baseWidgets.pop_back();
             }
 
-            assert(static_cast<unsigned>(bases.size()) == baseWidgets.size());
+            Q_ASSERT(static_cast<unsigned>(bases.size()) == baseWidgets.size());
 
             // update bases:
             for (unsigned int i = 0; i < baseWidgets.size(); ++i) {

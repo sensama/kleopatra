@@ -46,7 +46,6 @@
 #include <QStringList>
 #include <QVBoxLayout>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -106,7 +105,7 @@ void ObjectsPage::Private::add()
 void ObjectsPage::Private::remove()
 {
     const QList<QListWidgetItem *> selected = fileListWidget->selectedItems();
-    assert(!selected.isEmpty());
+    Q_ASSERT(!selected.isEmpty());
     for (QListWidgetItem *const i : selected) {
         delete i;
     }

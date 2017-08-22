@@ -59,7 +59,6 @@
 #include <KGuiItem>
 #include <KColorScheme>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -106,7 +105,7 @@ class ResultItemWidget::Private
 public:
     explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_actionsLabel(nullptr), m_closeButton(nullptr), m_importCanceled(false)
     {
-        assert(m_result);
+        Q_ASSERT(m_result);
     }
 
     void slotLinkActivated(const QString &);
@@ -303,7 +302,7 @@ bool ResultItemWidget::hasErrorResult() const
 
 void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 {
-    assert(m_result);
+    Q_ASSERT(m_result);
     qCDebug(KLEOPATRA_LOG) << "Link activated: " << link;
     if (link.startsWith(QStringLiteral("key:"))) {
         auto split = link.split(QLatin1Char(':'));

@@ -49,7 +49,6 @@
 
 #include <string>
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 
@@ -168,7 +167,7 @@ void EchoCommand::slotInquireData(int rc, const QByteArray &data)
 void EchoCommand::slotInputReadyRead()
 {
     const std::shared_ptr<QIODevice> in = inputs().at(0)->ioDevice();
-    assert(in);
+    Q_ASSERT(in);
 
     QByteArray buffer;
     buffer.resize(in->bytesAvailable());
@@ -190,7 +189,7 @@ void EchoCommand::slotInputReadyRead()
 void EchoCommand::slotOutputBytesWritten()
 {
     const std::shared_ptr<QIODevice> out = outputs().at(0)->ioDevice();
-    assert(out);
+    Q_ASSERT(out);
 
     if (!d->buffer.isEmpty()) {
 

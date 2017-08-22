@@ -45,7 +45,6 @@
 #include <QFile>
 #include <QString>
 
-#include <cassert>
 #include <cstdio>
 
 using namespace Kleo;
@@ -143,10 +142,10 @@ void Log::setOutputDirectory(const QString &path)
         return;
     }
     d->m_outputDirectory = path;
-    assert(!d->m_logFile);
+    Q_ASSERT(!d->m_logFile);
     const QString lfn = path + QLatin1String("/kleo-log");
     d->m_logFile = fopen(QDir::toNativeSeparators(lfn).toLocal8Bit().constData(), "a");
-    assert(d->m_logFile);
+    Q_ASSERT(d->m_logFile);
 }
 
 std::shared_ptr<QIODevice> Log::createIOLogger(const std::shared_ptr<QIODevice> &io, const QString &prefix, OpenMode mode) const

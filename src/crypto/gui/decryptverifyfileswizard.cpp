@@ -58,7 +58,6 @@
 #include <QTreeView>
 
 #include <vector>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -239,7 +238,7 @@ OperationsWidget::UI::UI(OperationsWidget *q)
     connect(&useOutputDirectoryCB, &QCheckBox::toggled, &outputDirectoryLB, &QLabel::setEnabled);
     connect(&useOutputDirectoryCB, &QCheckBox::toggled, &outputDirectoryFNR, &FileNameRequester::setEnabled);
 
-    assert(qobject_cast<QBoxLayout *>(scrollArea.widget()->layout()));
+    Q_ASSERT(qobject_cast<QBoxLayout *>(scrollArea.widget()->layout()));
     static_cast<QBoxLayout *>(scrollArea.widget()->layout())->addStretch(1);
     outputDirectoryLB.setBuddy(&outputDirectoryFNR);
 
@@ -259,8 +258,8 @@ void OperationsWidget::ensureIndexAvailable(unsigned int idx)
         return;
     }
 
-    assert(m_ui.scrollArea.widget());
-    assert(qobject_cast<QBoxLayout *>(m_ui.scrollArea.widget()->layout()));
+    Q_ASSERT(m_ui.scrollArea.widget());
+    Q_ASSERT(qobject_cast<QBoxLayout *>(m_ui.scrollArea.widget()->layout()));
     QBoxLayout &blay = *static_cast<QBoxLayout *>(m_ui.scrollArea.widget()->layout());
 
     for (unsigned int i = m_widgets.size(); i < idx + 1; ++i) {

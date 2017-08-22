@@ -62,7 +62,6 @@
 
 #include <algorithm>
 #include <array>
-#include <cassert>
 
 using namespace GpgME;
 
@@ -238,7 +237,7 @@ bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
         for (int i = 0; i < 3; ++i) {
             ok = false;
             actual_version[i] = rx.cap(i + 1).toUInt(&ok);
-            assert(ok);
+            Q_ASSERT(ok);
         }
 
         qCDebug(KLEOPATRA_LOG) << "Parsed" << actual << "as: "

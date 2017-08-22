@@ -63,7 +63,6 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -205,7 +204,7 @@ void LookupCertificatesCommand::doStart()
     }
 
     d->createDialog();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
 
     // if we have a prespecified query, load it into find field
     // and start the search
@@ -317,8 +316,8 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
 {
     dialog = nullptr;
 
-    assert(!keys.empty());
-    assert(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
+    Q_ASSERT(!keys.empty());
+    Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
 
     std::vector<Key> pgp, cms;
     pgp.reserve(keys.size());

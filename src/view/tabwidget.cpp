@@ -63,7 +63,6 @@
 
 #include <map>
 #include <vector>
-#include <cassert>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -384,19 +383,19 @@ private:
 
     Page *currentPage() const
     {
-        assert(!tabWidget.currentWidget() || qobject_cast<Page *>(tabWidget.currentWidget()));
+        Q_ASSERT(!tabWidget.currentWidget() || qobject_cast<Page *>(tabWidget.currentWidget()));
         return static_cast<Page *>(tabWidget.currentWidget());
     }
     Page *page(unsigned int idx) const
     {
-        assert(!tabWidget.widget(idx) || qobject_cast<Page *>(tabWidget.widget(idx)));
+        Q_ASSERT(!tabWidget.widget(idx) || qobject_cast<Page *>(tabWidget.widget(idx)));
         return static_cast<Page *>(tabWidget.widget(idx));
     }
 
     Page *senderPage() const
     {
         QObject *const sender = q->sender();
-        assert(!sender || qobject_cast<Page *>(sender));
+        Q_ASSERT(!sender || qobject_cast<Page *>(sender));
         return static_cast<Page *>(sender);
     }
 
@@ -594,7 +593,7 @@ void TabWidget::Private::duplicatePage(Page *page)
         return;
     }
     Page *const clone = page->clone();
-    assert(clone);
+    Q_ASSERT(clone);
     clone->liftAllRestrictions();
     addView(clone, page);
 }
@@ -826,7 +825,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
     for (int i = 0; i < d->NumPageActions; ++i) {
         action_data ad = actionData[i];
-        assert(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
+        Q_ASSERT(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
         ad.name = ad.name + strlen("window_");
         ad.tooltip.clear();
         ad.receiver = nullptr;

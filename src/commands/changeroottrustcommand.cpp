@@ -56,7 +56,6 @@
 
 #include <gpgme++/key.h>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -140,7 +139,7 @@ ChangeRootTrustCommand::ChangeRootTrustCommand(QAbstractItemView *v, KeyListCont
 ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, KeyListController *p)
     : Command(new Private(this, p))
 {
-    assert(!key.isNull());
+    Q_ASSERT(!key.isNull());
     d->init();
     setKey(key);
 }
@@ -148,7 +147,7 @@ ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, KeyListController
 ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-    assert(!key.isNull());
+    Q_ASSERT(!key.isNull());
     d->init();
     setKey(key);
 }
@@ -157,7 +156,7 @@ ChangeRootTrustCommand::~ChangeRootTrustCommand() {}
 
 void ChangeRootTrustCommand::setTrust(Key::OwnerTrust trust)
 {
-    assert(!d->isRunning());
+    Q_ASSERT(!d->isRunning());
     const QMutexLocker locker(&d->mutex);
     d->trust = trust;
 }
@@ -170,7 +169,7 @@ Key::OwnerTrust ChangeRootTrustCommand::trust() const
 
 void ChangeRootTrustCommand::setTrustListFile(const QString &trustListFile)
 {
-    assert(!d->isRunning());
+    Q_ASSERT(!d->isRunning());
     const QMutexLocker locker(&d->mutex);
     d->trustListFile = trustListFile;
 }

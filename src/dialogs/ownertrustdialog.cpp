@@ -41,7 +41,6 @@
 
 #include <QPushButton>
 
-#include <cassert>
 #include <KConfigGroup>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>

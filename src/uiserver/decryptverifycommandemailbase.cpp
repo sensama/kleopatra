@@ -56,8 +56,6 @@
 
 #include <gpg-error.h>
 
-#include <cassert>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Formatting;

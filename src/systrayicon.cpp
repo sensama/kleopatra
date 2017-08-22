@@ -64,7 +64,6 @@
 #include <QPointer>
 #include <QSignalBlocker>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -120,7 +119,7 @@ private:
     }
     void startCommand(Command *cmd)
     {
-        assert(cmd);
+        Q_ASSERT(cmd);
         cmd->setParent(q->mainWindow());
         cmd->start();
     }

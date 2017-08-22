@@ -275,7 +275,7 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
 static std::shared_ptr<ArchiveDefinition> getDefaultAd()
 {
     std::vector<std::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
-    assert(!ads.empty());
+    Q_ASSERT(!ads.empty());
     std::shared_ptr<ArchiveDefinition> ad = ads.front();
     const FileOperationsPreferences prefs;
     Q_FOREACH (const std::shared_ptr<ArchiveDefinition> toCheck, ads) {
@@ -661,7 +661,7 @@ std::shared_ptr<SignEncryptFilesTask> SignEncryptFilesController::Private::takeR
 void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_UNUSED(result)
-    assert(task);
+    Q_ASSERT(task);
 
     // We could just delete the tasks here, but we can't use
     // Qt::QueuedConnection here (we need sender()) and other slots

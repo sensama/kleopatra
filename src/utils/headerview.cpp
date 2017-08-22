@@ -36,7 +36,6 @@
 
 #include <algorithm>
 #include <numeric>
-#include <cassert>
 
 #include "kleopatra_debug.h"
 
@@ -52,7 +51,7 @@ using namespace Kleo;
 
 static std::vector<int> section_sizes(const QHeaderView *view)
 {
-    assert(view);
+    Q_ASSERT(view);
     std::vector<int> result;
     result.reserve(view->count());
     for (int i = 0, end = view->count(); i != end; ++i) {
@@ -63,7 +62,7 @@ static std::vector<int> section_sizes(const QHeaderView *view)
 
 static void apply_section_sizes(QHeaderView *view, const std::vector<int> &newSizes)
 {
-    assert(view);
+    Q_ASSERT(view);
     for (unsigned int i = 0, end = newSizes.size(); i != end; ++i) {
         view->resizeSection(i, newSizes[i]);
     }

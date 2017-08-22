@@ -62,7 +62,6 @@
 #include <gpg-error.h>
 
 #include <memory>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;

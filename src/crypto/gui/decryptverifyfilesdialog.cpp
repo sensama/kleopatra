@@ -49,7 +49,6 @@
 #include <QPushButton>
 
 #include <vector>
-#include <cassert>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -85,7 +84,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     vLay->addWidget(m_resultList);
 
     m_tasks = coll;
-    assert(m_tasks);
+    Q_ASSERT(m_tasks);
     m_resultList->setTaskCollection(coll);
     connect(m_tasks.get(), &TaskCollection::progress, this, &DecryptVerifyFilesDialog::progress);
     connect(m_tasks.get(), &TaskCollection::done, this, &DecryptVerifyFilesDialog::allDone);
@@ -178,8 +177,8 @@ QLabel *DecryptVerifyFilesDialog::labelForTag(const QString &tag)
 void DecryptVerifyFilesDialog::progress(const QString &msg, int progress, int total)
 {
     Q_UNUSED(msg);
-    assert(progress >= 0);
-    assert(total >= 0);
+    Q_ASSERT(progress >= 0);
+    Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
     m_progressBar->setValue(progress);
 }

@@ -34,7 +34,6 @@
 
 #include "controller.h"
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -78,7 +77,7 @@ void Controller::taskDone(const std::shared_ptr<const Task::Result> &result)
         d->lastErrorString = result->errorString();
     }
     const Task *task = qobject_cast<const Task *>(sender());
-    assert(task);
+    Q_ASSERT(task);
     doTaskDone(task, result);
 }
 
@@ -86,7 +85,7 @@ void Controller::doTaskDone(const Task *, const std::shared_ptr<const Task::Resu
 
 void Controller::connectTask(const std::shared_ptr<Task> &task)
 {
-    assert(task);
+    Q_ASSERT(task);
     connect(task.get(), &Task::result, this, &Controller::taskDone);
 }
 

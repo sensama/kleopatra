@@ -50,7 +50,6 @@
 #include <QRegExp>
 
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
@@ -89,7 +88,7 @@ public:
     void runTest(GpgME::Engine eng)
     {
         const Error err = GpgME::checkEngine(eng);
-        assert(!err.code() || err.code() == GPG_ERR_INV_ENGINE);
+        Q_ASSERT(!err.code() || err.code() == GPG_ERR_INV_ENGINE);
 
         m_passed = !err;
 
@@ -166,7 +165,7 @@ std::shared_ptr<SelfTest> Kleo::makeGpgConfEngineCheckSelfTest()
 bool SelfTestImplementation::ensureEngineVersion(GpgME::Engine engine, int major, int minor, int patch)
 {
     const Error err = GpgME::checkEngine(engine);
-    assert(!err || err.code() == GPG_ERR_INV_ENGINE);
+    Q_ASSERT(!err || err.code() == GPG_ERR_INV_ENGINE);
 
     m_skipped = err || !engineIsVersion(major, minor, patch, engine);
 

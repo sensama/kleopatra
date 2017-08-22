@@ -48,8 +48,8 @@
    }
 
    KDAB_DEFINE_CHECKS( Foo ) {
-      assert( something );
-      assert( another thing );
+      Q_ASSERT( something );
+      Q_ASSERT( another thing );
    }
 
    void Foo::setBar( int bar ) {

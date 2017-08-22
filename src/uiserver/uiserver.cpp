@@ -53,7 +53,6 @@
 #include <QFile>
 
 #include <algorithm>
-#include <cassert>
 #include <cerrno>
 
 using namespace Kleo;
@@ -264,7 +263,7 @@ QString UiServer::Private::makeFileName(const QString &socket) const
     }
     ensureDirectoryExists(gnupgHome);
     const QDir dir(gnupgHome);
-    assert(dir.exists());
+    Q_ASSERT(dir.exists());
     return dir.absoluteFilePath(QStringLiteral("S.uiserver"));
 }
 

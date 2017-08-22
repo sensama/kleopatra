@@ -62,8 +62,6 @@
 #include <QVBoxLayout>
 #include <QVector>
 
-#include <cassert>
-
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -116,14 +114,14 @@ ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt:
 void ReadOnlyProtocolSelectionWidget::setProtocolChecked(Protocol protocol, bool checked)
 {
     QLabel *const l = label(protocol);
-    assert(l);
+    Q_ASSERT(l);
     l->setVisible(checked);
 }
 
 bool ReadOnlyProtocolSelectionWidget::isProtocolChecked(Protocol protocol) const
 {
     QLabel *const l = label(protocol);
-    assert(l);
+    Q_ASSERT(l);
     return l->isVisible();
 }
 
@@ -159,17 +157,17 @@ SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, 
 
 void SigningProtocolSelectionWidget::setProtocolChecked(Protocol p, bool checked)
 {
-    assert(p != UnknownProtocol);
+    Q_ASSERT(p != UnknownProtocol);
     QCheckBox *const b = button(p);
-    assert(b);
+    Q_ASSERT(b);
     b->setChecked(checked);
 }
 
 bool SigningProtocolSelectionWidget::isProtocolChecked(Protocol p) const
 {
-    assert(p != UnknownProtocol);
+    Q_ASSERT(p != UnknownProtocol);
     const QAbstractButton *const b = button(p);
-    assert(b);
+    Q_ASSERT(b);
     return b->isChecked();
 }
 
@@ -214,7 +212,7 @@ bool SigningProtocolSelectionWidget::isExclusive() const
 void SigningProtocolSelectionWidget::setCertificate(Protocol prot, const Key &key)
 {
     QAbstractButton *const b = button(prot);
-    assert(b);
+    Q_ASSERT(b);
     b->setText(formatLabel(prot, key));
 }
 
@@ -364,7 +362,7 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
 
 void SignerResolvePage::setValidator(const std::shared_ptr<SignerResolvePage::Validator> &validator)
 {
-    assert(validator);
+    Q_ASSERT(validator);
     d->validator = validator;
     d->updateUi();
 }
@@ -378,7 +376,7 @@ SignerResolvePage::Private::~Private() {}
 
 bool SignerResolvePage::Private::protocolSelected(Protocol p) const
 {
-    assert(p != UnknownProtocol);
+    Q_ASSERT(p != UnknownProtocol);
     return signingProtocolSelectionWidget->isProtocolChecked(p);
 }
 
@@ -598,7 +596,7 @@ std::vector<Key> SignerResolvePage::resolvedSigners() const
 
 bool SignerResolvePage::isComplete() const
 {
-    assert(d->validator);
+    Q_ASSERT(d->validator);
     return d->validator->isComplete();
 }
 

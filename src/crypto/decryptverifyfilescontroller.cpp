@@ -199,7 +199,7 @@ void DecryptVerifyFilesController::Private::slotWizardCanceled()
 
 void DecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    assert(task);
+    Q_ASSERT(task);
     Q_UNUSED(task);
 
     // We could just delete the tasks here, but we can't use

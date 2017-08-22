@@ -51,7 +51,6 @@
 #include <QItemSelection>
 #include <QLayout>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -122,9 +121,9 @@ void KeyTreeView::setColumnSizes(const std::vector<int> &sizes)
     if (sizes.empty()) {
         return;
     }
-    assert(m_view);
-    assert(m_view->header());
-    assert(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
+    Q_ASSERT(m_view);
+    Q_ASSERT(m_view->header());
+    Q_ASSERT(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
     if (HeaderView *const hv = static_cast<HeaderView *>(m_view->header())) {
         hv->setSectionSizes(sizes);
     }
@@ -132,29 +131,29 @@ void KeyTreeView::setColumnSizes(const std::vector<int> &sizes)
 
 void KeyTreeView::setSortColumn(int sortColumn, Qt::SortOrder sortOrder)
 {
-    assert(m_view);
+    Q_ASSERT(m_view);
     m_view->sortByColumn(sortColumn, sortOrder);
 }
 
 int KeyTreeView::sortColumn() const
 {
-    assert(m_view);
-    assert(m_view->header());
+    Q_ASSERT(m_view);
+    Q_ASSERT(m_view->header());
     return m_view->header()->sortIndicatorSection();
 }
 
 Qt::SortOrder KeyTreeView::sortOrder() const
 {
-    assert(m_view);
-    assert(m_view->header());
+    Q_ASSERT(m_view);
+    Q_ASSERT(m_view->header());
     return m_view->header()->sortIndicatorOrder();
 }
 
 std::vector<int> KeyTreeView::columnSizes() const
 {
-    assert(m_view);
-    assert(m_view->header());
-    assert(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
+    Q_ASSERT(m_view);
+    Q_ASSERT(m_view->header());
+    Q_ASSERT(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
     if (HeaderView *const hv = static_cast<HeaderView *>(m_view->header())) {
         return hv->sectionSizes();
     } else {
@@ -229,7 +228,7 @@ KeyTreeView::~KeyTreeView() {}
 
 static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)
 {
-    assert(pm);
+    Q_ASSERT(pm);
     while (QAbstractProxyModel *const sm = qobject_cast<QAbstractProxyModel *>(pm->sourceModel())) {
         pm = sm;
     }

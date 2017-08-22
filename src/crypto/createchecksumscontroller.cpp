@@ -441,7 +441,7 @@ static std::vector<File> parse_sum_file(const QString &fileName)
         while (!s.atEnd()) {
             const QString line = s.readLine();
             if (rx.exactMatch(line)) {
-                assert(!rx.cap(4).endsWith(QLatin1Char('\n')));
+                Q_ASSERT(!rx.cap(4).endsWith(QLatin1Char('\n')));
                 const File file = {
                     rx.cap(1) == QLatin1String("\\") ? decode(rx.cap(4)) : rx.cap(4),
                     rx.cap(2).toLatin1(),

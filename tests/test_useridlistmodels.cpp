@@ -56,7 +56,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include <cassert>
 #include <QApplication>
 #include <KLocalizedString>
 #include <QCommandLineParser>
@@ -72,7 +71,7 @@ public:
           m_done(false),
           m_loop(0)
     {
-        assert(m_ctx.get());
+        Q_ASSERT(m_ctx.get());
         connect(QGpgME::EventLoopInteractor::instance(), SIGNAL(nextKeyEventSignal(GpgME::Context*,GpgME::Key)),
                 this, SLOT(slotNextKey(GpgME::Context*,GpgME::Key)));
         connect(QGpgME::EventLoopInteractor::instance(), SIGNAL(operationDoneEventSignal(GpgME::Context*,GpgME::Error)),

@@ -65,7 +65,6 @@
 
 #include <memory>
 #include <algorithm>
-#include <cassert>
 #include <map>
 #include <set>
 
@@ -130,7 +129,7 @@ protected:
         // 0. Keep parents of matching children:
         //
         const QModelIndex index = sourceModel()->index(source_row, 0, source_parent);
-        assert(index.isValid());
+        Q_ASSERT(index.isValid());
         for (int i = 0, end = sourceModel()->rowCount(index); i != end; ++i)
             if (filterAcceptsRow(i, index)) {
                 return true;
@@ -148,7 +147,7 @@ protected:
 private:
     void updateFindCache(const std::vector<ImportResult> &results, const QStringList &ids)
     {
-        assert(results.size() == static_cast<unsigned>(ids.size()));
+        Q_ASSERT(results.size() == static_cast<unsigned>(ids.size()));
         m_importsByFingerprint.clear();
         m_idsByFingerprint.clear();
         m_results = results;
@@ -310,7 +309,7 @@ static QString make_report(const std::vector<ImportResult> &res, const QString &
 static QString make_message_report(const std::vector<ImportResult> &res, const QStringList &ids)
 {
 
-    assert(res.size() == static_cast<unsigned>(ids.size()));
+    Q_ASSERT(res.size() == static_cast<unsigned>(ids.size()));
 
     if (res.empty()) {
         return i18n("No imports (should not happen, please report a bug).");
@@ -407,8 +406,8 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
 
 static QString make_error_message(const Error &err, const QString &id)
 {
-    assert(err);
-    assert(!err.isCanceled());
+    Q_ASSERT(err);
+    Q_ASSERT(!err.isCanceled());
     return id.isEmpty()
            ? i18n("<qt><p>An error occurred while trying "
                   "to import the certificate:</p>"
@@ -548,7 +547,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
 
 static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
 {
-    assert(protocol != UnknownProtocol);
+    Q_ASSERT(protocol != UnknownProtocol);
     if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         return std::unique_ptr<ImportJob>(backend->importJob());
     } else {
@@ -558,7 +557,7 @@ static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
 
 void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id)
 {
-    assert(protocol != UnknownProtocol);
+    Q_ASSERT(protocol != UnknownProtocol);
 
     if (std::find(nonWorkingProtocols.cbegin(), nonWorkingProtocols.cend(), protocol) != nonWorkingProtocols.cend()) {
         return;
@@ -589,7 +588,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
 static std::unique_ptr<ImportFromKeyserverJob> get_import_from_keyserver_job(GpgME::Protocol protocol)
 {
-    assert(protocol != UnknownProtocol);
+    Q_ASSERT(protocol != UnknownProtocol);
     if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         return std::unique_ptr<ImportFromKeyserverJob>(backend->importFromKeyserverJob());
     } else {
@@ -599,7 +598,7 @@ static std::unique_ptr<ImportFromKeyserverJob> get_import_from_keyserver_job(Gpg
 
 void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const std::vector<Key> &keys, const QString &id)
 {
-    assert(protocol != UnknownProtocol);
+    Q_ASSERT(protocol != UnknownProtocol);
 
     if (std::find(nonWorkingProtocols.cbegin(), nonWorkingProtocols.cend(), protocol) != nonWorkingProtocols.cend()) {
         return;

@@ -46,7 +46,6 @@
 
 #include <KLocalizedString>
 
-#include <cassert>
 
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION > 0x10801

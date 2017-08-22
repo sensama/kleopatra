@@ -59,7 +59,6 @@
 
 #include <gpgme++/key.h>
 
-#include <cassert>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -261,7 +260,7 @@ private:
 
 public:
     void setOutputNames(const QMap<int, QString> &names) {
-        assert(mOutNames.isEmpty());
+        Q_ASSERT(mOutNames.isEmpty());
         mOutNames = names;
         Q_FOREACH (int i, mOutNames.keys()) {
             mRequester[i] = createRequester(i, mOutLayout);

@@ -165,7 +165,7 @@ void DecryptVerifyEMailController::Private::slotWizardCanceled()
 
 void DecryptVerifyEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    assert(task);
+    Q_ASSERT(task);
 
     // We could just delete the tasks here, but we can't use
     // Qt::QueuedConnection here (we need sender()) and other slots
@@ -175,7 +175,7 @@ void DecryptVerifyEMailController::doTaskDone(const Task *task, const std::share
     if (task == d->m_runningTask.get()) {
         d->m_completedTasks.push_back(d->m_runningTask);
         const std::shared_ptr<const DecryptVerifyResult> &dvr = std::dynamic_pointer_cast<const DecryptVerifyResult>(result);
-        assert(dvr);
+        Q_ASSERT(dvr);
         d->m_results.push_back(dvr);
         d->m_runningTask.reset();
     }
@@ -247,7 +247,7 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
             = s_wizards.find(id);
 
         if (it != s_wizards.end()) {
-            assert(it->second && "This should have been garbage-collected");
+            Q_ASSERT(it->second && "This should have been garbage-collected");
             return it->second;
         }
 
@@ -320,7 +320,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
         case Decrypt: {
             std::shared_ptr<DecryptTask> t(new DecryptTask);
             t->setInput(m_inputs.at(i));
-            assert(numOutputs);
+            Q_ASSERT(numOutputs);
             t->setOutput(m_outputs.at(i));
             t->setProtocol(m_protocol);
             task = t;
@@ -353,7 +353,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
         case DecryptVerify: {
             std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
             t->setInput(m_inputs.at(i));
-            assert(numOutputs);
+            Q_ASSERT(numOutputs);
             t->setOutput(m_outputs.at(i));
             if (numInformativeSenders > 0) {
                 t->setInformativeSender(m_informativeSenders.at(i));
@@ -363,7 +363,7 @@ std::vector< std::shared_ptr<AbstractDecryptVerifyTask> > DecryptVerifyEMailCont
         }
         }
 
-        assert(task);
+        Q_ASSERT(task);
         tasks.push_back(task);
     }
 

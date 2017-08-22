@@ -55,7 +55,6 @@
 #include <memory>
 #include <vector>
 #include <string>
-#include <cassert>
 #include <QApplication>
 #include <KLocalizedString>
 #include <QCommandLineParser>

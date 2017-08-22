@@ -260,7 +260,7 @@ Q_SIGNALS:
 public Q_SLOTS:
     void slotReadActivity(int)
     {
-        assert(ctx);
+        Q_ASSERT(ctx);
 #ifndef HAVE_ASSUAN2
         if (const int err = assuan_process_next(ctx.get())) {
 #else
@@ -288,7 +288,7 @@ private:
                                      [cmd](const std::shared_ptr<AssuanCommand> &other) {
                                         return other.get() == cmd;
                                      });
-        assert(it != nohupedCommands.end());
+        Q_ASSERT(it != nohupedCommands.end());
         nohupedCommands.erase(it);
         if (nohupedCommands.empty() && closed) {
             bottomHalfDeletion();
@@ -340,7 +340,7 @@ private:
     static gpg_error_t reset_handler(assuan_context_t ctx_, char *)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
 
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -358,7 +358,7 @@ private:
     static gpg_error_t option_handler(assuan_context_t ctx_, const char *key, const char *value)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
 
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -378,7 +378,7 @@ private:
     static gpg_error_t session_handler(assuan_context_t ctx_, char *line)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         const QString str = QString::fromUtf8(line);
@@ -432,7 +432,7 @@ private:
     static gpg_error_t getinfo_handler(assuan_context_t ctx_, char *line)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         if (qstrcmp(line, "version") == 0) {
@@ -467,7 +467,7 @@ private:
     static gpg_error_t start_keymanager_handler(assuan_context_t ctx_, char *line)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         if (line && *line) {
@@ -487,7 +487,7 @@ private:
     static gpg_error_t start_confdialog_handler(assuan_context_t ctx_, char *line)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         if (line && *line) {
@@ -512,7 +512,7 @@ private:
     static gpg_error_t IO_handler(assuan_context_t ctx_, char *line_, T_memptr which)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         char *binOpt = strstr(line_, "--binary");
@@ -651,7 +651,7 @@ private:
     static gpg_error_t file_handler(assuan_context_t ctx_, char *line)
     {
 #endif
-        assert(assuan_get_pointer(ctx_));
+        Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         try {
@@ -727,7 +727,7 @@ private:
     static gpg_error_t recipient_sender_handler(T_memptr mp, T_memptr2 info, assuan_context_t ctx, char *line, bool sender = false)
     {
 #endif
-        assert(assuan_get_pointer(ctx));
+        Q_ASSERT(assuan_get_pointer(ctx));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx));
 
         if (!line || !*line) {
@@ -889,7 +889,7 @@ private:
 
 void AssuanServerConnection::Private::cleanup()
 {
-    assert(nohupedCommands.empty());
+    Q_ASSERT(nohupedCommands.empty());
     reset();
     currentCommand.reset();
     currentCommandIsNohup = false;
@@ -914,7 +914,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
       factories(factories_)
 {
 #ifdef __GLIBCXX__
-    assert(__gnu_cxx::is_sorted(factories_.begin(), factories_.end(), _detail::ByName<std::less>()));
+    Q_ASSERT(__gnu_cxx::is_sorted(factories_.begin(), factories_.end(), _detail::ByName<std::less>()));
 #endif
 
     if (fd == ASSUAN_INVALID_FD) {
@@ -949,7 +949,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
     // register FDs with the event loop:
     assuan_fd_t fds[MAX_ACTIVE_FDS];
     const int numFDs = assuan_get_active_fds(ctx.get(), FOR_READING, fds, MAX_ACTIVE_FDS);
-    assert(numFDs != -1);   // == 1
+    Q_ASSERT(numFDs != -1);   // == 1
 
     if (!numFDs || fds[0] != fd) {
         const std::shared_ptr<QSocketNotifier> sn(new QSocketNotifier((intptr_t)fd, QSocketNotifier::Read), std::mem_fn(&QObject::deleteLater));
@@ -1118,7 +1118,7 @@ public:
     static gpg_error_t handler(void *cb_data, gpg_error_t rc, unsigned char *buffer, size_t buflen)
 #  endif
     {
-        assert(cb_data);
+        Q_ASSERT(cb_data);
         InquiryHandler *this_ = static_cast<InquiryHandler *>(cb_data);
         Q_EMIT this_->signal(rc, QByteArray::fromRawData(reinterpret_cast<const char *>(buffer), buflen), this_->keyword);
         std::free(buffer);
@@ -1128,7 +1128,7 @@ public:
 # else
     static int handler(void *cb_data, int rc)
     {
-        assert(cb_data);
+        Q_ASSERT(cb_data);
         InquiryHandler *this_ = static_cast<InquiryHandler *>(cb_data);
         Q_EMIT this_->signal(rc, QByteArray::fromRawData(reinterpret_cast<const char *>(this_->buffer), this_->buflen), this_->keyword);
         std::free(this_->buffer);
@@ -1271,7 +1271,7 @@ std::vector<U> keys(const std::map<U, V> &map)
 const std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> > &AssuanCommand::mementos() const
 {
     // oh, hack :(
-    assert(assuan_get_pointer(d->ctx.get()));
+    Q_ASSERT(assuan_get_pointer(d->ctx.get()));
     const AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(d->ctx.get()));
     return conn.mementos;
 }
@@ -1312,7 +1312,7 @@ QByteArray AssuanCommand::registerMemento(const std::shared_ptr<Memento> &mem)
 QByteArray AssuanCommand::registerMemento(const QByteArray &tag, const std::shared_ptr<Memento> &mem)
 {
     // oh, hack :(
-    assert(assuan_get_pointer(d->ctx.get()));
+    Q_ASSERT(assuan_get_pointer(d->ctx.get()));
     AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(d->ctx.get()));
 
     if (const unsigned int id = sessionId()) {
@@ -1326,7 +1326,7 @@ QByteArray AssuanCommand::registerMemento(const QByteArray &tag, const std::shar
 void AssuanCommand::removeMemento(const QByteArray &tag)
 {
     // oh, hack :(
-    assert(assuan_get_pointer(d->ctx.get()));
+    Q_ASSERT(assuan_get_pointer(d->ctx.get()));
     AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(d->ctx.get()));
 
     conn.mementos.erase(tag);
@@ -1394,9 +1394,9 @@ void  AssuanCommand::sendData(const QByteArray &data, bool moreToCome)
 
 int AssuanCommand::inquire(const char *keyword, QObject *receiver, const char *slot, unsigned int maxSize)
 {
-    assert(keyword);
-    assert(receiver);
-    assert(slot);
+    Q_ASSERT(keyword);
+    Q_ASSERT(receiver);
+    Q_ASSERT(slot);
 
     if (d->nohup) {
         return makeError(GPG_ERR_INV_OP);
@@ -1453,7 +1453,7 @@ void AssuanCommand::done(const GpgME::Error &err)
     d->files.clear();
 
     // oh, hack :(
-    assert(assuan_get_pointer(d->ctx.get()));
+    Q_ASSERT(assuan_get_pointer(d->ctx.get()));
     AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(d->ctx.get()));
 
     if (d->nohup) {
@@ -1523,7 +1523,7 @@ int AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, const char *
 gpg_error_t AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, const char *commandName)
 {
 #endif
-    assert(assuan_get_pointer(ctx));
+    Q_ASSERT(assuan_get_pointer(ctx));
     AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx));
 
     try {

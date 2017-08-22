@@ -47,7 +47,6 @@
 #include <QApplication>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 #include <vector>
 
 using namespace Kleo;

@@ -37,7 +37,6 @@
 
 #include <newcertificatewizard/newcertificatewizard.h>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -136,7 +135,7 @@ void NewCertificateCommand::doStart()
 {
 
     d->ensureDialogCreated();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
 
     if (d->protocol != UnknownProtocol) {
         d->dialog->setProtocol(d->protocol);

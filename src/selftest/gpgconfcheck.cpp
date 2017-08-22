@@ -45,7 +45,6 @@
 #include <QProcess>
 #include <QDir>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::_detail;

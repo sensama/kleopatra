@@ -85,7 +85,6 @@
 #include <gpgme++/error.h>
 
 #include <memory>
-#include <cassert>
 #include <iostream>
 #include <QCommandLineParser>
 

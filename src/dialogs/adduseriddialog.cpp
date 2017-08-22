@@ -49,7 +49,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 #include <KSharedConfig>
 
 using namespace Kleo;
@@ -109,16 +108,16 @@ static int row_index_of(QWidget *w, QGridLayout *l)
 
 static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, QValidator *validator, bool readonly, bool required)
 {
-    assert(l);
-    assert(row >= 0);
-    assert(row < l->rowCount());
+    Q_ASSERT(l);
+    Q_ASSERT(row >= 0);
+    Q_ASSERT(row < l->rowCount());
 
     QLabel *lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
-    assert(lb);
+    Q_ASSERT(lb);
     QLineEdit *le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
-    assert(le);
+    Q_ASSERT(le);
     QLabel *reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
-    assert(reqLB);
+    Q_ASSERT(reqLB);
 
     lb->setText(i18nc("interpunctation for labels", "%1:", label));
     le->setText(preset);

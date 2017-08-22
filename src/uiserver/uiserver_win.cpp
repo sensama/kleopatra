@@ -41,7 +41,6 @@
 #include <qendian.h>
 
 #include <stdexcept>
-#include <cassert>
 
 #include <windows.h>
 #include <io.h>

@@ -44,7 +44,6 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 
-#include <cassert>
 
 #include <utils/gnupg-helper.h>
 #include <qgpgme/keylistjob.h>

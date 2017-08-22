@@ -49,7 +49,6 @@
 #include <QPushButton>
 #include <QHeaderView>
 
-#include <cassert>
 #include <KSharedConfig>
 
 using namespace Kleo;
@@ -81,7 +80,7 @@ private:
     }
     void slotDetailsClicked()
     {
-        assert(q->selectedCertificates().size() == 1);
+        Q_ASSERT(q->selectedCertificates().size() == 1);
         Q_EMIT q->detailsRequested(q->selectedCertificates().front());
     }
     void slotSaveAsClicked()
@@ -239,7 +238,7 @@ QString LookupCertificatesDialog::searchText() const
 
 void LookupCertificatesDialog::accept()
 {
-    assert(!d->selectedIndexes().empty());
+    Q_ASSERT(!d->selectedIndexes().empty());
     Q_EMIT importRequested(selectedCertificates());
     QDialog::accept();
 }

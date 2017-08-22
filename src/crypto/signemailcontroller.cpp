@@ -291,7 +291,7 @@ std::shared_ptr<SignEMailTask> SignEMailController::Private::takeRunnable(GpgME:
 void SignEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_UNUSED(result);
-    assert(task);
+    Q_ASSERT(task);
 
     // We could just delete the tasks here, but we can't use
     // Qt::QueuedConnection here (we need sender()) and other slots

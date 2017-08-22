@@ -85,7 +85,6 @@
 #include <QAction>
 
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -552,7 +551,7 @@ void KeyListController::registerAction(QAction *action, Command::Restrictions re
     if (!action) {
         return;
     }
-    assert(!action->isCheckable());   // can be added later, for now, disallow
+    Q_ASSERT(!action->isCheckable());   // can be added later, for now, disallow
 
     const Private::action_item ai = {
         action, restrictions, create

@@ -249,7 +249,7 @@ CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom, const 
     glay.addWidget(mMailboxLB, row, col++);
     glay.addWidget(mSbox,    row, col++);
     glay.addWidget(mToolTB,    row, col++);
-    assert(col == NumColumns);
+    Q_ASSERT(col == NumColumns);
 
     q->connect(mPgpCB, SIGNAL(currentIndexChanged(int)), SLOT(slotCompleteChanged()));
     q->connect(mCmsCB, SIGNAL(currentIndexChanged(int)), SLOT(slotCompleteChanged()));

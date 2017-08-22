@@ -48,7 +48,6 @@
 
 #include <algorithm>
 #include <iterator>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -129,7 +128,7 @@ private:
 
 KConfigBasedRecipientPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedRecipientPreferences *qq) : q(qq), m_config(config), m_parsed(false), m_dirty(false)
 {
-    assert(m_config);
+    Q_ASSERT(m_config);
 }
 
 KConfigBasedRecipientPreferences::Private::~Private()
@@ -229,7 +228,7 @@ private:
 
 KConfigBasedSigningPreferences::Private::Private(const KSharedConfigPtr &config, KConfigBasedSigningPreferences *qq) : q(qq), m_config(config), m_parsed(false), m_dirty(false)
 {
-    assert(m_config);
+    Q_ASSERT(m_config);
 }
 
 void KConfigBasedSigningPreferences::Private::ensurePrefsParsed() const

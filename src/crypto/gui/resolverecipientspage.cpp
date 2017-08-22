@@ -60,8 +60,6 @@
 #include <QStringList>
 #include <QVBoxLayout>
 
-#include <cassert>
-
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -85,7 +83,7 @@ ResolveRecipientsPage::ListWidget::~ListWidget()
 void ResolveRecipientsPage::ListWidget::onSelectionChange()
 {
     Q_FOREACH (const QString &i, widgets.keys()) {
-        assert(items.contains(i));
+        Q_ASSERT(items.contains(i));
         widgets[i]->setSelected(items[i]->isSelected());
     }
     Q_EMIT selectionChanged();
@@ -103,7 +101,7 @@ void ResolveRecipientsPage::ListWidget::addEntry(const QString &id, const QStrin
 
 void ResolveRecipientsPage::ListWidget::addEntry(const QString &id, const QString &name, const Mailbox &mbox)
 {
-    assert(!widgets.contains(id) && !items.contains(id));
+    Q_ASSERT(!widgets.contains(id) && !items.contains(id));
     QListWidgetItem *item = new QListWidgetItem;
     item->setData(IdRole, id);
     ItemWidget *wid = new ItemWidget(id, name, mbox, this);
@@ -123,7 +121,7 @@ Mailbox ResolveRecipientsPage::ListWidget::mailbox(const QString &id) const
 
 void ResolveRecipientsPage::ListWidget::setCertificates(const QString &id, const std::vector<Key> &pgp, const std::vector<Key> &cms)
 {
-    assert(widgets.contains(id));
+    Q_ASSERT(widgets.contains(id));
     widgets[id]->setCertificates(pgp, cms);
 }
 
@@ -186,7 +184,7 @@ QStringList ResolveRecipientsPage::ListWidget::selectedEntries() const
 ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &name, const Mailbox &mbox,
         QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), m_id(id), m_mailbox(mbox), m_protocol(UnknownProtocol), m_selected(false)
 {
-    assert(!m_id.isEmpty());
+    Q_ASSERT(!m_id.isEmpty());
     setAutoFillBackground(true);
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setMargin(0);
@@ -515,7 +513,7 @@ void ResolveRecipientsPage::Private::setSelectedProtocol(Protocol protocol)
 void ResolveRecipientsPage::Private::protocolSelected(int p)
 {
     const Protocol protocol = static_cast<Protocol>(p);
-    assert(protocol != UnknownProtocol);
+    Q_ASSERT(protocol != UnknownProtocol);
     setSelectedProtocol(protocol);
 }
 

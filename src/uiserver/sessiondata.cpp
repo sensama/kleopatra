@@ -38,7 +38,6 @@
 
 #include <QMutex>
 
-#include <cassert>
 
 using namespace Kleo;
 
@@ -75,7 +74,7 @@ void SessionDataHandler::enterSession(unsigned int id)
 {
     qCDebug(KLEOPATRA_LOG) << id;
     const std::shared_ptr<SessionData> sd = sessionDataInternal(id);
-    assert(sd);
+    Q_ASSERT(sd);
     ++sd->ref;
     sd->ripe = false;
 }
@@ -84,7 +83,7 @@ void SessionDataHandler::exitSession(unsigned int id)
 {
     qCDebug(KLEOPATRA_LOG) << id;
     const std::shared_ptr<SessionData> sd = sessionDataInternal(id);
-    assert(sd);
+    Q_ASSERT(sd);
     if (--sd->ref <= 0) {
         sd->ref = 0;
         sd->ripe = false;

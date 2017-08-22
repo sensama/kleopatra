@@ -42,8 +42,6 @@
 #include <QWidget>
 #include <QEvent>
 
-#include <cassert>
-
 using namespace Kleo;
 
 static const int ATTENTION_ANIMATION_FRAMES_PER_SEC = 1;

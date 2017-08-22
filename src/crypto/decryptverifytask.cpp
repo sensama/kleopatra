@@ -75,7 +75,6 @@
 #include <QRegularExpression>
 
 #include <algorithm>
-#include <cassert>
 #include <sstream>
 
 using namespace Kleo::Crypto;
@@ -128,7 +127,7 @@ static std::string email(const UserID &uid)
         }
     }
 
-    assert(uid.parent().protocol() == CMS);
+    Q_ASSERT(uid.parent().protocol() == CMS);
 
     if (const char *const id = uid.id())
         if (*id == '<') {

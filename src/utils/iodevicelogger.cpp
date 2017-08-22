@@ -34,8 +34,6 @@
 
 #include "iodevicelogger.h"
 
-#include <cassert>
-
 using namespace Kleo;
 
 class IODeviceLogger::Private
@@ -47,7 +45,7 @@ public:
 
     explicit Private(const std::shared_ptr<QIODevice> &io_, IODeviceLogger *qq) : q(qq), io(io_), writeLog(), readLog()
     {
-        assert(io);
+        Q_ASSERT(io);
         connect(io.get(), &QIODevice::aboutToClose, q, &QIODevice::aboutToClose);
         connect(io.get(), &QIODevice::bytesWritten, q, &QIODevice::bytesWritten);
         connect(io.get(), &QIODevice::readyRead, q, &QIODevice::readyRead);
@@ -65,9 +63,9 @@ public:
 
 bool IODeviceLogger::Private::write(const std::shared_ptr<QIODevice> &dev, const char *data, qint64 max)
 {
-    assert(dev);
-    assert(data);
-    assert(max >= 0);
+    Q_ASSERT(dev);
+    Q_ASSERT(data);
+    Q_ASSERT(max >= 0);
     qint64 toWrite = max;
     while (toWrite > 0) {
         const qint64 written = dev->write(data, toWrite);

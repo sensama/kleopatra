@@ -43,7 +43,6 @@
 #include <QByteArray>
 #include <QMap>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto::Gui;
@@ -115,13 +114,13 @@ void SigningCertificateSelectionWidget::setSelectedCertificates(const GpgME::Key
 
 std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(GpgME::Protocol prot)
 {
-    assert(prot != GpgME::UnknownProtocol);
+    Q_ASSERT(prot != GpgME::UnknownProtocol);
     std::vector<GpgME::Key> keys = KeyCache::instance()->keys();
     std::vector<GpgME::Key>::iterator end = keys.end();
 
     end = std::remove_if(keys.begin(), end, [prot](const GpgME::Key &key) { return key.protocol() != prot; });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.hasSecret(); });
-    assert(std::all_of(keys.begin(), end, [](const GpgME::Key &key) { return key.hasSecret(); }));
+    Q_ASSERT(std::all_of(keys.begin(), end, [](const GpgME::Key &key) { return key.hasSecret(); }));
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.canReallySign(); });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isExpired(); });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isRevoked(); });

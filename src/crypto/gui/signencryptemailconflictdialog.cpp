@@ -623,7 +623,7 @@ static std::vector<Key> get_keys(const std::vector<CertificateSelectionLine> &li
     if (proto == UnknownProtocol) {
         return std::vector<Key>();
     }
-    assert(proto == OpenPGP || proto == CMS);
+    Q_ASSERT(proto == OpenPGP || proto == CMS);
 
     std::vector<Key> keys;
     keys.reserve(lines.size());

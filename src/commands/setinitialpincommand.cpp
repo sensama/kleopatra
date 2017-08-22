@@ -41,7 +41,6 @@
 
 #include <KLocalizedString>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;

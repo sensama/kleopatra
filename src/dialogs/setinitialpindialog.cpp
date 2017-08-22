@@ -44,7 +44,6 @@
 
 #include <gpgme++/error.h>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -75,7 +74,7 @@ static_assert(sizeof("movie-") == 7, "");
 
 static void update_widget(State state, bool delay, QLabel *resultLB, QLabel *lb, QPushButton *pb, QLabel *statusLB)
 {
-    assert(state >= 0); assert(state < NumStates);
+    Q_ASSERT(state >= 0); Q_ASSERT(state < NumStates);
     const char *icon = icons[state];
     if (qstrncmp(icon, "movie-", sizeof("movie-") - 1) == 0) {
         resultLB->setMovie(KIconLoader::global()->loadMovie(QLatin1String(icon + sizeof("movie-")), KIconLoader::NoGroup));
@@ -163,13 +162,13 @@ private:
 
         QAbstractButton *closePB() const
         {
-            assert(dialogButtonBox);
+            Q_ASSERT(dialogButtonBox);
             return dialogButtonBox->button(QDialogButtonBox::Close);
         }
 
         QAbstractButton *cancelPB() const
         {
-            assert(dialogButtonBox);
+            Q_ASSERT(dialogButtonBox);
             return dialogButtonBox->button(QDialogButtonBox::Cancel);
         }
 

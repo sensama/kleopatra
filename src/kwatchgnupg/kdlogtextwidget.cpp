@@ -30,7 +30,6 @@
 #include <QPaintEvent>
 #include <QScrollBar>
 
-#include <cassert>
 #include <algorithm>
 #include <iterator>
 
@@ -83,7 +82,7 @@ public:
 
     QRect lineRect(int idx) const
     {
-        assert(!cache.dirty);
+        Q_ASSERT(!cache.dirty);
         return QRect(0, idx * cache.fontMetrics.lineSpacing, cache.dimensions.longestLineLength, cache.fontMetrics.lineSpacing - 1);
     }
 
@@ -370,7 +369,7 @@ void KDLogTextWidget::paintEvent(QPaintEvent *e)
     const QPair<int, int> visibleLines
         = d->visibleLines(visible.top(), visible.bottom());
 
-    assert(visibleLines.first <= visibleLines.second);
+    Q_ASSERT(visibleLines.first <= visibleLines.second);
 
     const Private::Style defaultStyle = { p.pen().color() };
 
@@ -411,7 +410,7 @@ void KDLogTextWidget::paintEvent(QPaintEvent *e)
     // ### unused optimization: paint lines by styles to minimise pen changes.
     for (unsigned int i = visibleLines.first, end = visibleLines.second; i != end; ++i) {
         const Private::LineItem &li = d->lines[i];
-        assert(!li.styleID || d->styleByID.contains(li.styleID));
+        Q_ASSERT(!li.styleID || d->styleByID.contains(li.styleID));
         const Private::Style &st = li.styleID ? d->styleByID[li.styleID] : defaultStyle;
 
         p.setPen(st.color);
@@ -503,8 +502,8 @@ unsigned int KDLogTextWidget::Private::findOrAddStyle(const Style &s)
 {
     if (idByStyle.contains(s)) {
         const unsigned int id = idByStyle[s];
-        assert(styleByID.contains(id));
-        assert(styleByID[id] == s);
+        Q_ASSERT(styleByID.contains(id));
+        Q_ASSERT(styleByID[id] == s);
         return id;
     } else {
         static unsigned int nextID = 0; // remember, 0 is reserved
@@ -532,7 +531,7 @@ void KDLogTextWidget::Private::enforceHistorySize()
 
     QVector<int> &lw = cache.fontMetrics.lineWidths;
 
-    assert(lw.size() > remove);
+    Q_ASSERT(lw.size() > remove);
     lw.erase(lw.begin(), lw.begin() + remove);
 
     if (cache.dirty & Cache::Dimensions) {

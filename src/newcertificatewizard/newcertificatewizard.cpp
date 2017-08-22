@@ -83,7 +83,6 @@
 #include <QUrlQuery>
 
 #include <algorithm>
-#include <cassert>
 
 #include <KSharedConfig>
 #include <KEMailSettings>
@@ -299,7 +298,7 @@ protected:
 
     NewCertificateWizard *wizard() const
     {
-        assert(static_cast<NewCertificateWizard *>(QWizardPage::wizard()) == qobject_cast<NewCertificateWizard *>(QWizardPage::wizard()));
+        Q_ASSERT(static_cast<NewCertificateWizard *>(QWizardPage::wizard()) == qobject_cast<NewCertificateWizard *>(QWizardPage::wizard()));
         return static_cast<NewCertificateWizard *>(QWizardPage::wizard());
     }
 
@@ -1352,17 +1351,17 @@ static int row_index_of(QWidget *w, QGridLayout *l)
 
 static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, QValidator *validator, bool readonly, bool required)
 {
-    assert(l);
-    assert(row >= 0);
-    assert(row < l->rowCount());
+    Q_ASSERT(l);
+    Q_ASSERT(row >= 0);
+    Q_ASSERT(row < l->rowCount());
 
     QLabel *lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
-    assert(lb);
+    Q_ASSERT(lb);
     QLineEdit *le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
-    assert(le);
+    Q_ASSERT(le);
     lb->setBuddy(le);   // For better accessibility
     QLabel *reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
-    assert(reqLB);
+    Q_ASSERT(reqLB);
 
     lb->setText(i18nc("interpunctation for labels", "%1:", label));
     le->setText(preset);
@@ -1386,8 +1385,8 @@ static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, cons
 
 static int add_row(QGridLayout *l, QList<QWidget *> *wl)
 {
-    assert(l);
-    assert(wl);
+    Q_ASSERT(l);
+    Q_ASSERT(wl);
     const int row = l->rowCount();
     QWidget *w1, *w2, *w3;
     l->addWidget(w1 = new QLabel(l->parentWidget()),    row, 0);
@@ -1628,7 +1627,7 @@ QStringList KeyCreationPage::subkeyUsages() const
     QStringList usages;
     if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
                                 is_ecdh(subkeyType()))) {
-        assert(subkeyType());
+        Q_ASSERT(subkeyType());
         usages << QStringLiteral("encrypt");
     }
     return usages;
@@ -1639,7 +1638,7 @@ QStringList OverviewPage::i18nSubkeyUsages() const
     QStringList usages;
     if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
                                 is_ecdh(subkeyType()))) {
-        assert(subkeyType());
+        Q_ASSERT(subkeyType());
         usages << i18n("Encrypt");
     }
     return usages;

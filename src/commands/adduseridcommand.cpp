@@ -47,7 +47,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -152,7 +151,7 @@ void AddUserIDCommand::doStart()
     d->key = keys.front();
 
     d->ensureDialogCreated();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
 
     const UserID uid = d->key.userID(0);
 
@@ -165,7 +164,7 @@ void AddUserIDCommand::doStart()
 
 void AddUserIDCommand::Private::slotDialogAccepted()
 {
-    assert(dialog);
+    Q_ASSERT(dialog);
 
     createJob();
     if (!job) {
@@ -220,7 +219,7 @@ void AddUserIDCommand::Private::ensureDialogCreated()
 
 void AddUserIDCommand::Private::createJob()
 {
-    assert(!job);
+    Q_ASSERT(!job);
 
     const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {

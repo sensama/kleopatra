@@ -59,7 +59,6 @@
 #include <QVBoxLayout>
 
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -241,9 +240,9 @@ void CertificateSelectionDialog::selectCertificates(const std::vector<Key> &keys
         return;
     }
     const auto *const model = d->ui.tabWidget.currentModel();
-    assert(model);
+    Q_ASSERT(model);
     QItemSelectionModel *const sm = view->selectionModel();
-    assert(sm);
+    Q_ASSERT(sm);
 
     Q_FOREACH (const QModelIndex &idx, model->indexes(keys))
         if (idx.isValid()) {
@@ -263,9 +262,9 @@ std::vector<Key> CertificateSelectionDialog::selectedCertificates() const
         return std::vector<Key>();
     }
     const auto *const model = d->ui.tabWidget.currentModel();
-    assert(model);
+    Q_ASSERT(model);
     const QItemSelectionModel *const sm = view->selectionModel();
-    assert(sm);
+    Q_ASSERT(sm);
     return model->keys(sm->selectedRows());
 }
 
@@ -339,7 +338,7 @@ void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemVi
     if (lastView) {
         disconnect(lastView, SIGNAL(doubleClicked(QModelIndex)),
                    q, SLOT(slotDoubleClicked(QModelIndex)));
-        assert(lastView->selectionModel());
+        Q_ASSERT(lastView->selectionModel());
         disconnect(lastView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
                    q, SLOT(slotSelectionChanged()));
     }
@@ -347,7 +346,7 @@ void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemVi
     if (newView) {
         connect(newView, SIGNAL(doubleClicked(QModelIndex)),
                 q, SLOT(slotDoubleClicked(QModelIndex)));
-        assert(newView->selectionModel());
+        Q_ASSERT(newView->selectionModel());
         connect(newView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
                 q, SLOT(slotSelectionChanged()));
     }
@@ -364,12 +363,12 @@ void CertificateSelectionDialog::Private::slotSelectionChanged()
 void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &idx)
 {
     QAbstractItemView *const view = ui.tabWidget.currentView();
-    assert(view);
+    Q_ASSERT(view);
     const auto *const model = ui.tabWidget.currentModel();
-    assert(model);
+    Q_ASSERT(model);
     Q_UNUSED(model);
     QItemSelectionModel *const sm = view->selectionModel();
-    assert(sm);
+    Q_ASSERT(sm);
     sm->select(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     QMetaObject::invokeMethod(q, "accept", Qt::QueuedConnection);
 }

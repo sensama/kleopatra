@@ -39,7 +39,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -129,7 +128,7 @@ DetailsCommand::DetailsCommand(QAbstractItemView *v, KeyListController *p)
 DetailsCommand::DetailsCommand(const Key &key, KeyListController *p)
     : Command(new Private(this, p))
 {
-    assert(!key.isNull());
+    Q_ASSERT(!key.isNull());
     d->init();
     setKey(key);
 }
@@ -137,7 +136,7 @@ DetailsCommand::DetailsCommand(const Key &key, KeyListController *p)
 DetailsCommand::DetailsCommand(const Key &key, QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-    assert(!key.isNull());
+    Q_ASSERT(!key.isNull());
     d->init();
     setKey(key);
 }

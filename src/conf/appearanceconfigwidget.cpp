@@ -59,7 +59,6 @@
 #include <QFontDialog>
 
 #include <algorithm>
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Config;
@@ -503,7 +502,7 @@ void AppearanceConfigWidget::save()
 #endif
     for (int i = 0, end = std::min(groups.size(), d->categoriesLV->count()); i != end; ++i) {
         const QListWidgetItem *const item = d->categoriesLV->item(i);
-        assert(item);
+        Q_ASSERT(item);
         KConfigGroup group(config, groups[i]);
         save_to_config(item, group);
     }

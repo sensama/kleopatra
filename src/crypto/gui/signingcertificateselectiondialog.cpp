@@ -37,7 +37,6 @@
 
 #include <KLocalizedString>
 
-#include <cassert>
 #include <KConfigGroup>
 
 #include <QVBoxLayout>

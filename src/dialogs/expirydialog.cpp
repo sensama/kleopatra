@@ -38,7 +38,6 @@
 
 #include <QDate>
 
-#include <cassert>
 #include <KConfigGroup>
 #include <QDialogButtonBox>
 #include <QPushButton>
@@ -65,7 +64,7 @@ static QDate date_by_amount_and_unit(int inAmount, int inUnit)
     case Months: return current.addMonths(inAmount); break;
     case Years:  return current.addYears(inAmount); break;
     default:
-        assert(!"Should not reach here");
+        Q_ASSERT(!"Should not reach here");
     }
     return QDate();
 }
@@ -102,7 +101,7 @@ public:
         connect(ui.onCW, SIGNAL(selectionChanged()),
                 q, SLOT(slotOnDateChanged()));
 
-        assert(ui.inCB->currentIndex() == inUnit);
+        Q_ASSERT(ui.inCB->currentIndex() == inUnit);
     }
 
 private:
@@ -135,7 +134,7 @@ private:
             qq->connect(buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
             mainLayout->addWidget(buttonBox);
 
-            assert(inCB->count() == NumPeriods);
+            Q_ASSERT(inCB->count() == NumPeriods);
 
             onCW->setMinimumDate(QDate::currentDate().addDays(1));
         }
@@ -214,7 +213,7 @@ int ExpiryDialog::Private::inAmountByDate(const QDate &selected) const
     case Months: return monthsBetween(current, selected);
     case Years:  return yearsBetween(current, selected);
     };
-    assert(!"Should not reach here");
+    Q_ASSERT(!"Should not reach here");
     return -1;
 }
 

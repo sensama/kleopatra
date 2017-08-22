@@ -51,7 +51,6 @@
 # include <fcntl.h>
 # include <errno.h>
 #endif
-#include <assert.h>
 
 #include <cstdlib>
 #include <iostream>
@@ -119,7 +118,7 @@ static gpg_error_t inquire(void *void_ctx, const char *keyword)
 {
 #endif
     assuan_context_t ctx = (assuan_context_t)void_ctx;
-    assert(ctx);
+    Q_ASSERT(ctx);
     const std::map<std::string, std::string>::const_iterator it = inquireData.find(keyword);
     if (it == inquireData.end()) {
         return gpg_error(GPG_ERR_UNKNOWN_COMMAND);

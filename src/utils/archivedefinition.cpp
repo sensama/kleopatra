@@ -139,9 +139,9 @@ static QString try_extensions(const QString &path)
 static void parse_command(QString cmdline, const QString &id, const QString &whichCommand,
                           QString *command, QStringList *prefix, QStringList *suffix, ArchiveDefinition::ArgumentPassingMethod *method, bool parseFilePlaceholder)
 {
-    assert(prefix);
-    assert(suffix);
-    assert(method);
+    Q_ASSERT(prefix);
+    Q_ASSERT(suffix);
+    Q_ASSERT(method);
 
     KShell::Errors errors;
     QStringList l;
@@ -207,7 +207,7 @@ static void parse_command(QString cmdline, const QString &id, const QString &whi
         qCDebug(KLEOPATRA_LOG) << "ArchiveDefinition[" << id << ']' << "find -print0 | " << *command << *prefix;
         break;
     case ArchiveDefinition::NumArgumentPassingMethods:
-        assert(!"Should not happen");
+        Q_ASSERT(!"Should not happen");
         break;
     }
 }
@@ -371,7 +371,7 @@ std::shared_ptr<Input> ArchiveDefinition::createInputFromPackCommand(GpgME::Prot
                                               QDir(base),
                                               make_input(relative, '\0'));
     case NumArgumentPassingMethods:
-        assert(!"Should not happen");
+        Q_ASSERT(!"Should not happen");
     }
     return std::shared_ptr<Input>(); // make compiler happy
 }

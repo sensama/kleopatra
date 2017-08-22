@@ -43,7 +43,6 @@
 #include <algorithm>
 #include <map>
 
-#include <cassert>
 #include <cmath>
 
 using namespace Kleo;
@@ -85,7 +84,7 @@ size_t TaskCollection::size() const
 
 bool TaskCollection::allTasksCompleted() const
 {
-    assert(d->m_nCompleted <= d->m_tasks.size());
+    Q_ASSERT(d->m_nCompleted <= d->m_tasks.size());
     return d->m_nCompleted == d->m_tasks.size();
 }
 
@@ -97,7 +96,7 @@ void TaskCollection::Private::taskProgress(const QString &msg, int, int)
 
 void TaskCollection::Private::taskResult(const std::shared_ptr<const Task::Result> &result)
 {
-    assert(result);
+    Q_ASSERT(result);
     ++m_nCompleted;
     m_errorOccurred = m_errorOccurred || result->hasError();
     m_lastProgressMessage.clear();
@@ -112,8 +111,8 @@ void TaskCollection::Private::taskResult(const std::shared_ptr<const Task::Resul
 void TaskCollection::Private::taskStarted()
 {
     const Task *const task = qobject_cast<Task *>(q->sender());
-    assert(task);
-    assert(m_tasks.find(task->id()) != m_tasks.end());
+    Q_ASSERT(task);
+    Q_ASSERT(m_tasks.find(task->id()) != m_tasks.end());
     Q_EMIT q->started(m_tasks[task->id()]);
     calculateAndEmitProgress(); // start Knight-Rider-Mode right away (gpgsm doesn't report _any_ progress).
     if (m_doneEmitted) {
@@ -148,7 +147,7 @@ void TaskCollection::Private::calculateAndEmitProgress()
     for (ConstIterator it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
         // Sum up progress and totals
         const std::shared_ptr<Task> &i = it->second;
-        assert(i);
+        Q_ASSERT(i);
         if (!i->totalProgress()) {
             // There still might be jobs for which we don't know the progress.
             qCDebug(KLEOPATRA_LOG) << "Task: " << i->label() << " has no total progress set. ";
@@ -213,7 +212,7 @@ std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
 void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
 {
     for (const std::shared_ptr<Task> &i : tasks) {
-        assert(i);
+        Q_ASSERT(i);
         d->m_tasks[i->id()] = i;
         connect(i.get(), SIGNAL(progress(QString,int,int)),
                 this, SLOT(taskProgress(QString,int,int)));

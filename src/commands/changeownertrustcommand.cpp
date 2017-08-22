@@ -48,7 +48,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -153,7 +152,7 @@ void ChangeOwnerTrustCommand::doStart()
     }
 
     d->ensureDialogCreated();
-    assert(d->dialog);
+    Q_ASSERT(d->dialog);
 
     d->dialog->setHasSecretKey(key.hasSecret());
     d->dialog->setFormattedCertificateName(Formatting::formatForComboBox(key));
@@ -165,14 +164,14 @@ void ChangeOwnerTrustCommand::doStart()
 
 void ChangeOwnerTrustCommand::Private::slotDialogAccepted()
 {
-    assert(dialog);
+    Q_ASSERT(dialog);
 
     const Key::OwnerTrust trust = dialog->ownerTrust();
 
     qCDebug(KLEOPATRA_LOG) << "trust " << trust;
 
     createJob();
-    assert(job);
+    Q_ASSERT(job);
 
     if (const Error err = job->start(key(), trust)) {
         showErrorDialog(err);
@@ -222,7 +221,7 @@ void ChangeOwnerTrustCommand::Private::ensureDialogCreated()
 
 void ChangeOwnerTrustCommand::Private::createJob()
 {
-    assert(!job);
+    Q_ASSERT(!job);
 
     const auto backend = (key().protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     if (!backend) {

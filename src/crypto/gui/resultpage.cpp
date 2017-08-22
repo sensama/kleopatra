@@ -48,7 +48,6 @@
 #include <QProgressBar>
 #include <QVBoxLayout>
 
-#include <cassert>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -96,8 +95,8 @@ ResultPage::Private::Private(ResultPage *qq) : q(qq), m_lastErrorItemIndex(0)
 void ResultPage::Private::progress(const QString &msg, int progress, int total)
 {
     Q_UNUSED(msg);
-    assert(progress >= 0);
-    assert(total >= 0);
+    Q_ASSERT(progress >= 0);
+    Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
     m_progressBar->setValue(progress);
 }
@@ -108,7 +107,7 @@ void ResultPage::Private::keepOpenWhenDone(bool)
 
 void ResultPage::Private::allDone()
 {
-    assert(m_tasks);
+    Q_ASSERT(m_tasks);
     q->setAutoAdvance(!m_keepOpenCB->isChecked() && !m_tasks->errorOccurred());
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
@@ -129,10 +128,10 @@ void ResultPage::Private::result(const std::shared_ptr<const Task::Result> &)
 
 void ResultPage::Private::started(const std::shared_ptr<Task> &task)
 {
-    assert(task);
+    Q_ASSERT(task);
     const QString tag = task->tag();
     QLabel *const label = labelForTag(tag);
-    assert(label);
+    Q_ASSERT(label);
     if (tag.isEmpty()) {
         label->setText(i18nc("number, operation description", "Operation %1: %2", m_tasks->numberOfCompletedTasks() + 1, task->label()));
     } else {
@@ -161,12 +160,12 @@ void ResultPage::setKeepOpenWhenDone(bool keep)
 
 void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    assert(!d->m_tasks);
+    Q_ASSERT(!d->m_tasks);
     if (d->m_tasks == coll) {
         return;
     }
     d->m_tasks = coll;
-    assert(d->m_tasks);
+    Q_ASSERT(d->m_tasks);
     d->m_resultList->setTaskCollection(coll);
     connect(d->m_tasks.get(), SIGNAL(progress(QString,int,int)),
             this, SLOT(progress(QString,int,int)));
@@ -178,7 +177,7 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
             this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
     Q_FOREACH (const std::shared_ptr<Task> &i, d->m_tasks->tasks()) {    // create labels for all tags in collection
-        assert(i && d->labelForTag(i->tag()));
+        Q_ASSERT(i && d->labelForTag(i->tag()));
         Q_UNUSED(i);
     }
     Q_EMIT completeChanged();

@@ -55,7 +55,6 @@
 
 #include <gpg-error.h>
 
-#include <cassert>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -117,9 +116,9 @@ std::vector<GpgME::Key> SecretKeysModel::secretKeys() const
 
 Key SecretKeysModel::keyFromItem(const QStandardItem *item) const
 {
-    assert(item);
+    Q_ASSERT(item);
     const unsigned int idx = item->data(IndexRole).toUInt();
-    assert(idx < m_secretKeys.size());
+    Q_ASSERT(idx < m_secretKeys.size());
     return m_secretKeys[idx];
 }
 
@@ -187,7 +186,7 @@ unsigned int SelectCheckLevelPage::checkLevel() const
     if (m_ui.checkLevelThoroughlyRB->isChecked()) {
         return 3;
     }
-    assert(!"No check level radiobutton checked");
+    Q_ASSERT(!"No check level radiobutton checked");
     return 0;
 }
 
@@ -207,7 +206,7 @@ bool OptionsPage::exportableCertificationSelected() const
 
 void OptionsPage::setCertificatesWithSecretKeys(const std::vector<Key> &keys)
 {
-    assert(!keys.empty());
+    Q_ASSERT(!keys.empty());
     m_model.setSecretKeys(keys);
     if (keys.size() == 1) {
         m_ui.stackedWidget->setCurrentWidget(m_ui.singleKeyPage);
@@ -224,7 +223,7 @@ Key OptionsPage::selectedSecretKey() const
         return m_model.secretKeys().at(0);
     }
     const QModelIndexList idxs = m_ui.keyListView->selectionModel()->selectedIndexes();
-    assert(idxs.size() <= 1);
+    Q_ASSERT(idxs.size() <= 1);
     return idxs.isEmpty() ? Key() : m_model.keyFromIndex(idxs[0]);
 }
 

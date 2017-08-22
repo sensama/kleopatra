@@ -39,7 +39,6 @@
 #include <KLocalizedString>
 
 #include <stdexcept>
-#include <cassert>
 
 #include <sys/types.h>
 #include <sys/socket.h>

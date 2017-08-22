@@ -43,7 +43,6 @@
 #include <QRegExp>
 #include <QUrl>
 
-#include <cassert>
 
 using namespace Kleo;
 

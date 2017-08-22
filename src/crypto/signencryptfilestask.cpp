@@ -123,7 +123,7 @@ public:
         qCDebug(KLEOPATRA_LOG) << endl
                                << "inputError :" << m_inputErrorString << endl
                                << "outputError:" << m_outputErrorString;
-        assert(!m_sresult.isNull());
+        Q_ASSERT(!m_sresult.isNull());
     }
     SignEncryptFilesResult(const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
         : Task::Result(),
@@ -138,7 +138,7 @@ public:
         qCDebug(KLEOPATRA_LOG) << endl
                                << "inputError :" << m_inputErrorString << endl
                                << "outputError:" << m_outputErrorString;
-        assert(!m_eresult.isNull());
+        Q_ASSERT(!m_eresult.isNull());
     }
     SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated,  const AuditLog &auditLog)
         : Task::Result(),
@@ -154,7 +154,7 @@ public:
         qCDebug(KLEOPATRA_LOG) << endl
                                << "inputError :" << m_inputErrorString << endl
                                << "outputError:" << m_outputErrorString;
-        assert(!m_sresult.isNull() || !m_eresult.isNull());
+        Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
     }
 
     QString overview() const override;
@@ -275,8 +275,8 @@ static QString makeResultDetails(const EncryptionResult &result, const QString &
 
 QString ErrorResult::overview() const
 {
-    assert(m_error || m_error.isCanceled());
-    assert(m_sign || m_encrypt);
+    Q_ASSERT(m_error || m_error.isCanceled());
+    Q_ASSERT(m_sign || m_encrypt);
     const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true);
     const bool canceled = m_error.isCanceled();
     if (m_sign && m_encrypt) {

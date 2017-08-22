@@ -1,4 +1,4 @@
-set(kleopatra_version 2.3.0)
+set(kleopatra_version 3.0.0${KLEOPATRA_VERSION_SUFFIX})
 cmake_minimum_required(VERSION 3.0)
 project(kleopatra VERSION ${kleopatra_version})
 

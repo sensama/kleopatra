@@ -280,7 +280,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
         QFileInfo fi(bkpFile);
         const auto target = QFileDialog::getSaveFileName(this, i18n("Save backup of encryption key"),
                                                          fi.fileName(),
-                                                         QStringLiteral("Backup Key (*.gpg)"));
+                                                         QStringLiteral("%1 (*.gpg)").arg(i18n("Backup Key")));
         if (!target.isEmpty() && !QFile::copy(bkpFile, target)) {
             KMessageBox::error(this, i18nc("@info",
                                "Failed to move backup. The backup key is still stored under: %1", bkpFile),

@@ -72,7 +72,7 @@ private:
     {
         // loadcrl can only work with DER encoded files
         //   (verified with dirmngr 1.0.3)
-        const QString filter = i18n("Certificate Revocation Lists, DER encoded (*.crl *.arl *-crl.der *-arl.der)");
+        const QString filter = QStringLiteral("%1 (*.crl *.arl *-crl.der *-arl.der)").arg(i18n("Certificate Revocation Lists, DER encoded"));
         return QFileDialog::getOpenFileNames(parentWidgetOrView(), i18n("Select CRL File to Import"),
                                              QString(), filter);
     }

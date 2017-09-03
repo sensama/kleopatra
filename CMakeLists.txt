@@ -1,6 +1,7 @@
-project(kleopatra)
-
+set(kleopatra_version 2.3.0)
 cmake_minimum_required(VERSION 3.0)
+project(kleopatra VERSION ${kleopatra_version})
+
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
@@ -98,7 +99,6 @@ if(NOT Boost_TOPOLOGICAL_SORT_DIR)
     message(FATAL_ERROR "The Boost Topological_sort header was NOT found. Should be part of Boost graph module.")
 endif()
 
-set(kleopatra_version 2.3.0${KLEOPATRA_VERSION_SUFFIX})
 set(kleopatra_release FALSE)
 
 if(NOT kleopatra_release)

@@ -610,7 +610,7 @@ static QString process(const Dir &dir, bool *fatal)
     QTemporaryFile out;
     QProcess p;
     if (!out.open()) {
-        return QStringLiteral("Faile to open Temporary file.");
+        return QStringLiteral("Failed to open Temporary file.");
     }
     p.setWorkingDirectory(dir.dir.absolutePath());
     p.setStandardOutputFile(out.fileName());

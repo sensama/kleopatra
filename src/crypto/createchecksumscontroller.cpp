@@ -632,8 +632,7 @@ static QString process(const Dir &dir, bool *fatal)
     }
 
     QFileInfo fi(absFilePath);
-    if (!(fi.exists() && !QFile::remove(absFilePath)) && QFile::rename(out.fileName(), absFilePath)) {
-        out.setAutoRemove(false);
+    if (!(fi.exists() && !QFile::remove(absFilePath)) && QFile::copy(out.fileName(), absFilePath)) {
         return QString();
     }
 

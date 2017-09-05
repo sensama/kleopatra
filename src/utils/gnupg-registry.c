@@ -219,8 +219,10 @@ standard_homedir(void)
                                 NULL, 0, path) >= 0) {
             char *tmp = malloc(strlen(path) + 6 + 1);
 
-            /* FIXME.  */
-            Q_ASSERT(tmp);
+            if (!tmp) {
+                dir = strdup ("C:\\gnupg");
+                return dir;
+            }
 
             strcpy(tmp, path);
             strcat(tmp, "\\gnupg");

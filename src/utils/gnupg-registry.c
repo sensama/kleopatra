@@ -234,7 +234,7 @@ standard_homedir(void)
                 CreateDirectoryA(dir, NULL);
             }
         } else {
-            dir = "C:\\gnupg";
+            dir = strdup("C:\\gnupg");
         }
     }
     return dir;
@@ -272,7 +272,7 @@ default_homedir(void)
         dir = saved_dir;
     }
     if (!dir || !*dir) {
-        dir = "C:\\gnupg";
+        dir = strdup("C:\\gnupg");
     }
 
     return dir;

@@ -1,6 +1,8 @@
-set(kleopatra_version 3.0.0${KLEOPATRA_VERSION_SUFFIX})
+set(kleopatra_version 3.0.0)
 cmake_minimum_required(VERSION 3.0)
 project(kleopatra VERSION ${kleopatra_version})
+# Add version suffix for internal usage of the version string
+set(kleopatra_version ${kleopatra_version}${KLEOPATRA_VERSION_SUFFIX})
 
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)

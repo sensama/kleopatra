@@ -56,7 +56,7 @@ NullPinWidget::NullPinWidget()
     const auto nullDescription = i18n("You need to set a PIN before you can use the certificates.");
     const auto descriptionLbl = new QLabel(QStringLiteral("<b>%1</b><br/>%2").arg(nullTitle).arg(nullDescription));
 
-    auto vLay = new QVBoxLayout;
+    auto vLay = new QVBoxLayout(this);
     vLay->addWidget(descriptionLbl, 0, Qt::AlignCenter);
 
     mNKSBtn = new QPushButton(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Set NKS PIN"));
@@ -78,8 +78,6 @@ NullPinWidget::NullPinWidget()
     hLayBtn->addStretch(1);
 
     vLay->addLayout(hLayBtn);
-
-    setLayout(vLay);
 }
 
 void NullPinWidget::doChangePin(bool sigG)

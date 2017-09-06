@@ -139,8 +139,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     QDialog(parent)
 {
     resize(400, 200);
-    auto lay = new QGridLayout;
-    setLayout (lay);
+    auto lay = new QGridLayout(this);
     auto logo = new QLabel;
     logo->setMaximumWidth(110);
 

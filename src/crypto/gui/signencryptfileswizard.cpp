@@ -93,7 +93,6 @@ public:
                 &SigEncPage::updateCommitButton);
         connect(mWidget, &SignEncryptWidget::keysChanged, this,
                 &SigEncPage::updateFileWidgets);
-        setLayout(vLay);
         updateCommitButton(mWidget->currentOp());
 
         auto outputGrp = new QGroupBox(i18n("Output"));

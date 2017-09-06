@@ -55,7 +55,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
         return;
     }
 
-    auto vLay = new QVBoxLayout;
+    auto vLay = new QVBoxLayout(this);
     auto bar = new QProgressBar;
     auto label = new QLabel;
     label->setText(QStringLiteral("<h3>%1</h3>").arg(i18n("Loading certificate cache...")));
@@ -78,7 +78,6 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
     vLay->addLayout(subLay2);
 
     vLay->addStretch(1);
-    setLayout(vLay);
 
     connect(cache.get(), &KeyCache::keyListingDone, this, &KeyCacheOverlay::hideOverlay);
 

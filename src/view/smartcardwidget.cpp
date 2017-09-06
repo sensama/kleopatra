@@ -75,11 +75,10 @@ public:
         lay->addWidget(new QLabel(i18n("Refresh the view (F5) to update the smartcard status.")));
         lay->addStretch(-1);
 
-        auto hLay = new QHBoxLayout;
+        auto hLay = new QHBoxLayout(this);
         hLay->addStretch(-1);
         hLay->addLayout(lay);
         hLay->addStretch(-1);
-        setLayout(hLay);
     }
 };
 } // namespace

@@ -51,15 +51,14 @@ SigningCertificateSelectionDialog::SigningCertificateSelectionDialog(QWidget *pa
       widget(new SigningCertificateSelectionWidget(this))
 {
     setWindowTitle(i18n("Select Signing Certificates"));
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(widget);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &SigningCertificateSelectionDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &SigningCertificateSelectionDialog::reject);
-    mainLayout->addWidget(widget);
     mainLayout->addWidget(buttonBox);
 }
 

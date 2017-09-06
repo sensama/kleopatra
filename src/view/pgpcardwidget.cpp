@@ -130,7 +130,6 @@ PGPCardWidget::PGPCardWidget():
     mCardIsEmpty(false)
 {
     auto grid = new QGridLayout;
-    setLayout(grid);
     int row = 0;
 
     // Set up the scroll are

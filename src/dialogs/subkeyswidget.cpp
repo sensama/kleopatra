@@ -162,7 +162,6 @@ SubKeysDialog::SubKeysDialog(QWidget *parent)
 {
     setWindowTitle(i18n("Subkeys details"));
     auto l = new QVBoxLayout(this);
-    setLayout(l);
     l->addWidget(new SubKeysWidget(this));
 
     auto bbox = new QDialogButtonBox(this);

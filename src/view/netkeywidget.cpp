@@ -74,9 +74,8 @@ NetKeyWidget::NetKeyWidget() :
     auto mAreaWidget = new QWidget;
     mAreaWidget->setLayout(vLay);
     mArea->setWidget(mAreaWidget);
-    auto scrollLay = new QVBoxLayout;
+    auto scrollLay = new QVBoxLayout(this);
     scrollLay->addWidget(mArea);
-    setLayout(scrollLay);
 
     // Add general widgets
     mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);

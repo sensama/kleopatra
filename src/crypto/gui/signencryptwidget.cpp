@@ -99,7 +99,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
       mModel(AbstractKeyListModel::createFlatKeyListModel(this)),
       mRecpRowCount(2)
 {
-    QVBoxLayout *lay = new QVBoxLayout;
+    QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setMargin(0);
 
     mModel->useKeyCache(true, false);
@@ -191,7 +191,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     lay->addWidget(encBox);
 
     loadKeys();
-    setLayout(lay);
     addRecipient(Key());
     updateOp();
 }

@@ -215,7 +215,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 
 void CryptoOperationsConfigWidget::setupGui()
 {
-    QVBoxLayout *baseLay = new QVBoxLayout;
+    QVBoxLayout *baseLay = new QVBoxLayout(this);
     baseLay->setMargin(0);
 
     QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
@@ -258,7 +258,6 @@ void CryptoOperationsConfigWidget::setupGui()
 
     baseLay->addStretch(1);
 
-    setLayout(baseLay);
 
     if (!GpgME::hasFeature(0, GpgME::BinaryAndFineGrainedIdentify)) {
         /* Auto handling requires a working identify in GpgME.

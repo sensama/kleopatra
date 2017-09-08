@@ -357,6 +357,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
         owner = i18nc("<name> of <company>", "%1 of %2", name, o);
     }
     ui.smimeOwner->setText(QStringLiteral("<a href=\"#ownerDetails\">%1</a>").arg(owner));
+    ui.smimeOwner->setContextMenuPolicy(Qt::NoContextMenu);
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];

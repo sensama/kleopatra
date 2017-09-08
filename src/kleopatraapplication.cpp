@@ -384,7 +384,18 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 }
             }
             Q_FOREACH (Command *cmd, Command::commandsForFiles(files)) {
-                cmd->setParentWId(parentId);
+                if (parentId) {
+                    cmd->setParentWId(parentId);
+                } else {
+                    MainWindow *mw = mainWindow();
+                    if (!mw) {
+                        mw = new MainWindow;
+                        mw->setAttribute(Qt::WA_DeleteOnClose);
+                        setMainWindow(mw);
+                        d->connectConfigureDialog();
+                    }
+                    cmd->setParentWidget(mw);
+                }
                 cmd->start();
             }
             return errors.join('\n');

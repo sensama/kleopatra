@@ -61,6 +61,7 @@ ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwid
 
 set(_kleopatra_SRCS
   utils/gnupg-helper.cpp
+  utils/gui-helper.cpp
   utils/filedialog.cpp
   utils/kdpipeiodevice.cpp
   utils/headerview.cpp

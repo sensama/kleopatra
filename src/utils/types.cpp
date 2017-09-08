@@ -33,6 +33,7 @@
 #include <config-kleopatra.h>
 
 #include "utils/types.h"
+#include "utils/gui-helper.h"
 
 #include <QWidget>
 #include <QVector>
@@ -103,13 +104,7 @@ std::shared_ptr<const ExecutionContext> ExecutionContextUser::executionContext()
 void ExecutionContextUser::bringToForeground(QWidget *wid)
 {
     applyWindowID(wid);
-    if (wid->isVisible()) {
-        wid->raise();
-    } else {
-        wid->show();
-    }
-#ifdef Q_OS_WIN
-    SetForegroundWindow(reinterpret_cast<HWND>(wid->winId()));
-#endif
+    wid->show();
+    agressive_raise(wid);
 }
 

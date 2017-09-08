@@ -35,6 +35,8 @@
 
 #include <QAbstractButton>
 
+class QWidget;
+
 namespace Kleo
 {
 static inline void really_check(QAbstractButton &b, bool on)
@@ -52,6 +54,11 @@ static inline bool xconnect(const QObject *a, const char *signal,
         QObject::connect(a, signal, b, slot) &&
         QObject::connect(b, signal, a, slot);
 }
+
+/** Agressively raise a window to foreground. May be platform
+ * specific. */
+void agressive_raise(QWidget *w);
+
 }
 
 #endif /* __KLEOPATRA_UTILS_GUI_HELPER_H__ */

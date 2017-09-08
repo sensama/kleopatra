@@ -391,12 +391,8 @@ void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std:
             return;
         }
     }
-    if (parent) {
-        setImportResultProxyModel(res, ids);
-        KMessageBox::information(parent, make_message_report(res, ids), i18n("Certificate Import Result"));
-    } else {
-        showDetails(res, ids);
-    }
+    setImportResultProxyModel(res, ids);
+    KMessageBox::information(parent, make_message_report(res, ids), i18n("Certificate Import Result"));
 }
 
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResult> &res, const QStringList &ids)

@@ -9,21 +9,13 @@ option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing 
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_VERSION "5.37.0")
+set(KF5_VERSION "5.38.0")
 set(KMIME_VERSION "5.6.40")
 set(LIBKLEO_VERSION "5.6.40")
 set(QT_REQUIRED_VERSION "5.8.0")
 set(GPGME_REQUIRED_VERSION "1.8.0")
 
-option(RUN_UNINSTALL "test run uninstalled apps (experimental)" FALSE)
-
-set(ECM_VERSION ${KF5_VERSION})
-# ECM setup
-if (RUN_UNINSTALL)
-   set(ECM_VERSION "5.38.0")
-endif()
-
-find_package(ECM ${ECM_VERSION} CONFIG REQUIRED)
+find_package(ECM ${KF5_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 

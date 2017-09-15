@@ -48,7 +48,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QProcess>
 #include <QFileDialog>
 #include <QTextStream>
 

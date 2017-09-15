@@ -45,7 +45,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <QStringList>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;

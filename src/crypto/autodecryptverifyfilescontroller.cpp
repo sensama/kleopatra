@@ -59,7 +59,6 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QPointer>
 #include <QTimer>
 #include <QFileDialog>
 #include <QTemporaryDir>

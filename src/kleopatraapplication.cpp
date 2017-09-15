@@ -71,12 +71,10 @@
 #include "kleopatra_debug.h"
 #include <KMessageBox>
 #include <KWindowSystem>
-#include <QUrl>
 
 #include <QFile>
 #include <QDir>
 #include <QPointer>
-#include <QCommandLineOption>
 
 #include <memory>
 #include <KSharedConfig>

@@ -37,7 +37,6 @@
 #include <QGpgME/KeyListJob>
 #include <QGpgME/DecryptVerifyJob>
 
-#include <KAboutData>
 
 #include <gpgme++/error.h>
 #include <gpgme++/verificationresult.h>

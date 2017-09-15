@@ -56,7 +56,6 @@
 #include <QIcon>
 #include <QCheckBox>
 
-#include <QPointer>
 
 #include <gpgme++/key.h>
 

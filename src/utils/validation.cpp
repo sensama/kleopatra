@@ -41,7 +41,6 @@
 #include "kleopatra_debug.h"
 
 #include <QRegExp>
-#include <QUrl>
 
 
 using namespace Kleo;

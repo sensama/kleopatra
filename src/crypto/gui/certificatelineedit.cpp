@@ -32,13 +32,9 @@
 
 #include "certificatelineedit.h"
 
-#include <QHBoxLayout>
-#include <QComboBox>
 #include <QLineEdit>
 #include <QCompleter>
 #include <QFontMetrics>
-#include <QSortFilterProxyModel>
-#include <QLabel>
 #include <QPushButton>
 #include <QAction>
 #include <QSignalBlocker>

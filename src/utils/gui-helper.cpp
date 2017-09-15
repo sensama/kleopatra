@@ -31,7 +31,6 @@
 #include "gui-helper.h"
 
 #include <QWidget>
-#include <QDesktopWidget>
 
 #ifdef Q_OS_WIN
 #include <windows.h>

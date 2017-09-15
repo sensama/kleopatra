@@ -34,7 +34,6 @@
 
 #include <QWidget>
 #include <QVector>
-#include <QMap>
 #include <gpgme++/key.h>
 
 class QGridLayout;

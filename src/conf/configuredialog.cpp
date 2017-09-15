@@ -43,9 +43,8 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
-
-#include <QApplication>
 #include <QIcon>
+#include <QApplication>
 
 #if HAVE_KCMUTILS
 # include <KCMultiDialog>

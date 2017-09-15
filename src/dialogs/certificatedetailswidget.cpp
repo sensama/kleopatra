@@ -35,7 +35,6 @@
 #include <gpgme++/key.h>
 #include <gpgme++/tofuinfo.h>
 
-#include <QStandardItemModel>
 #include <QToolTip>
 #include <QDateTime>
 #include <QDialogButtonBox>

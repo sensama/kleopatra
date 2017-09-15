@@ -37,7 +37,6 @@
 #include <commands/gnupgprocesscommand.h>
 
 #include <QString>
-#include <QProcess>
 
 class QWidget;
 

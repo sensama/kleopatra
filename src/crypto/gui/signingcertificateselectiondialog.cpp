@@ -37,8 +37,7 @@
 
 #include <KLocalizedString>
 
-#include <KConfigGroup>
-
+#include <QMap>
 #include <QVBoxLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>

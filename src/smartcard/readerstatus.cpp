@@ -50,7 +50,6 @@
 #include "netkeycard.h"
 
 #include <QStringList>
-#include <QDir>
 #include <QFileInfo>
 #include <QMutex>
 #include <QWaitCondition>

@@ -42,7 +42,6 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <KConfigGroup>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 

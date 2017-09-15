@@ -42,7 +42,6 @@
 
 #include <gpg-error.h>
 
-#include <QStringList>
 
 #include <string>
 #include <algorithm>

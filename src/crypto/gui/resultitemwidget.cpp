@@ -53,7 +53,6 @@
 #include "kleopatra_debug.h"
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QStringList>
 #include <QUrl>
 #include <QVBoxLayout>
 #include <KGuiItem>

@@ -45,7 +45,6 @@
 #include <QVBoxLayout>
 
 #include <KLocalizedString>
-#include <KMessageBox>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;

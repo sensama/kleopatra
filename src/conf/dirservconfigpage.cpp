@@ -42,14 +42,12 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 #include <kconfig.h>
-#include <QDialog>
 #include <QSpinBox>
 
 #include <QLabel>
 #include <qdatetimeedit.h>
 #include <QCheckBox>
 #include <QLayout>
-#include <KConfigGroup>
 
 using namespace Kleo;
 

@@ -33,7 +33,6 @@
 #define CRYPTO_GUI_CERTIFICATELINEEDIT_H
 
 #include <QLineEdit>
-#include <QString>
 
 #include <gpgme++/key.h>
 

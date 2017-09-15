@@ -47,7 +47,6 @@
 #include "kleopatra_debug.h"
 
 #include <QFile>
-#include <QRegExp>
 
 #include <algorithm>
 

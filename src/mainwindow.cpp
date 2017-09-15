@@ -58,6 +58,8 @@
 
 #include <KXMLGUIFactory>
 #include <QApplication>
+#include <QLineEdit>
+#include <KActionMenu>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KStandardAction>
@@ -67,10 +69,7 @@
 #include <KStandardGuiItem>
 #include <KShortcutsDialog>
 #include <KEditToolBar>
-#include <KAboutApplicationDialog>
 #include "kleopatra_debug.h"
-#include <QLineEdit>
-#include <KActionMenu>
 #include <KConfigGroup>
 
 #include <QAbstractItemView>
@@ -81,7 +80,6 @@
 #include <QVBoxLayout>
 #include <QMimeData>
 #include <QDesktopServices>
-#include <QDesktopWidget>
 #include <QDir>
 #include <QStatusBar>
 #include <QLabel>

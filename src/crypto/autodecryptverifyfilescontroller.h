@@ -39,7 +39,6 @@
 
 #include <utils/types.h>
 
-#include <QMetaType>
 
 #include <memory>
 #include <vector>

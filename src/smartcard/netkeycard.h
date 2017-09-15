@@ -31,7 +31,6 @@
     your version.
 */
 
-#include <QMap>
 
 #include "card.h"
 

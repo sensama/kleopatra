@@ -54,10 +54,7 @@
 #include <KColorScheme>
 
 #include <QLabel>
-#include <QComboBox>
 #include <QLayout>
-#include <QStackedWidget>
-#include <QToolButton>
 #include <QGroupBox>
 #include <QDialogButtonBox>
 #include <QCheckBox>
@@ -65,6 +62,7 @@
 #include <QPushButton>
 #include <QPointer>
 #include <QSignalBlocker>
+#include <QToolButton>
 
 #include <algorithm>
 #include <iterator>

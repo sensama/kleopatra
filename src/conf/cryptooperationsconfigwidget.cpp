@@ -57,7 +57,6 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDir>
-#include <QLayout>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QPushButton>

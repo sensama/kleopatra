@@ -32,6 +32,7 @@
 */
 #include <config-kleopatra.h>
 
+#include <QtGlobal>
 
 // Includes the real implementation
 

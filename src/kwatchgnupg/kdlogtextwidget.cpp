@@ -397,7 +397,7 @@ void KDLogTextWidget::paintEvent(QPaintEvent *e)
 #endif
 
         p.setBrush(palette().alternateBase());
-        for (unsigned int i = visibleLines.first % 2 ? visibleLines.first   : visibleLines.first + 1, end = visibleLines.second; i < end; i += 2) {
+        for (unsigned int i = (visibleLines.first % 2) ? visibleLines.first   : visibleLines.first + 1, end = visibleLines.second; i < end; i += 2) {
             p.drawRect(d->lineRect(i));
         }
 

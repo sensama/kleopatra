@@ -202,14 +202,14 @@ const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(st
 
 }
 
-static const std::string gpgagent_status(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
+static const std::string gpgagent_status(const std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
 {
     const auto lines = gpgagent_statuslines (gpgAgent, what, err);
     // The status is only the last attribute
     // e.g. for SCD SERIALNO it would only be "SERIALNO" and for SCD GETATTR FOO
     // it would only be FOO
     const char *p = strrchr(what, ' ');
-    const char *needle = p + 1 ? p + 1 : what;
+    const char *needle = (p + 1) ? (p + 1) : what;
     for (const auto &pair: lines) {
         if (pair.first == needle) {
             return pair.second;

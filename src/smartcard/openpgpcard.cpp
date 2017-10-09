@@ -165,7 +165,6 @@ void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::
 void OpenPGPCard::setSerialNumber(const std::string &serialno)
 {
     char version_buffer[6];
-    char *p;
     const char *version = "";
     const char *string = serialno.c_str();
 
@@ -176,7 +175,7 @@ void OpenPGPCard::setSerialNumber(const std::string &serialno)
         mManufacturer = "unknown";
     } else {
         /* Reformat the version number to be better human readable.  */
-        p = version_buffer;
+        char *p = version_buffer;
         if (string[12] != '0') {
             *p++ = string[12];
         }

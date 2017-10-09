@@ -140,7 +140,7 @@ public:
         if (!mail.isEmpty()) {
             mInvalidEmailLabel->show();
         } else {
-            mInvalidEmailLabel->show();
+            mInvalidEmailLabel->hide();
         }
         mOkButton->setEnabled(false);
     }

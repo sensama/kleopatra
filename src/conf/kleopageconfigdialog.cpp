@@ -291,8 +291,7 @@ void KleoPageConfigDialog::clientChanged()
     }
     qCDebug(KLEOPATRA_LOG) << "Client changed: " << " mod " << module;
 
-    bool change = false;
-    change = mChangedModules.contains(module);
+    bool change = mChangedModules.contains(module);
 
     QPushButton *resetButton = buttonBox()->button(QDialogButtonBox::Reset);
     if (resetButton) {

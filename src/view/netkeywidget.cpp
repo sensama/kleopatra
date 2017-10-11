@@ -124,6 +124,7 @@ NetKeyWidget::NetKeyWidget() :
         const auto klm = dynamic_cast<KeyListModelInterface *> (mTreeView->view()->model());
         if (!klm) {
             qCDebug(KLEOPATRA_LOG) << "Unhandled Model: " << mTreeView->view()->model()->metaObject()->className();
+            return;
         }
         auto cmd = new DetailsCommand(klm->key(idx), nullptr);
         cmd->setParentWidget(this);

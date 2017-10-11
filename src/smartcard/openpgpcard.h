@@ -60,7 +60,7 @@ public:
     std::string cardVersion() const;
     std::string cardHolder() const;
 private:
-    bool mIsV2;
+    bool mIsV2 = false;
     std::string mCardVersion;
     QMap <std::string, std::string> mMetaInfo;
     std::string mManufacturer;

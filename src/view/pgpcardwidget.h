@@ -67,14 +67,14 @@ public Q_SLOTS:
 
 private:
     void updateKey(QLabel *label, const std::string &fpr);
-    QLabel *mSerialNumber,
-           *mCardHolderLabel,
-           *mVersionLabel,
-           *mSigningKey,
-           *mEncryptionKey,
-           *mAuthKey;
-    bool mCardIsEmpty,
-         mIs21;
+    QLabel *mSerialNumber = nullptr;
+    QLabel *mCardHolderLabel = nullptr;
+    QLabel *mVersionLabel = nullptr;
+    QLabel *mSigningKey = nullptr;
+    QLabel *mEncryptionKey = nullptr;
+    QLabel *mAuthKey = nullptr;
+    bool mCardIsEmpty = false;
+    bool mIs21 = false;
     std::string mRealSerial;
 };
 } // namespace Kleo

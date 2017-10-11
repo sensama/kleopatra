@@ -56,6 +56,11 @@ private:
 
 KUniqueService::KUniqueService() : d_ptr(new KUniqueServicePrivate(this)) {}
 
+KUniqueService::~KUniqueService()
+{
+    delete d_ptr;
+}
+
 void KUniqueService::setExitValue(int code)
 {
     Q_D(KUniqueService);

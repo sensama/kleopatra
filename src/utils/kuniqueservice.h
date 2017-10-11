@@ -66,6 +66,7 @@ public:
      * Default constructor
      */
     KUniqueService();
+    ~KUniqueService();
 
 public Q_SLOTS:
     /**

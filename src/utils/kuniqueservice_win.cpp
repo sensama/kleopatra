@@ -212,6 +212,11 @@ KUniqueService::KUniqueService() : d_ptr(KUniqueServicePrivate::instance(this))
 {
 }
 
+KUniqueService::~KUniqueService()
+{
+    delete d_ptr;
+}
+
 void KUniqueService::setExitValue(int code)
 {
     Q_D(KUniqueService);

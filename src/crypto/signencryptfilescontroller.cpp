@@ -477,7 +477,8 @@ createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::ve
             result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, std::vector<Key>(),
                                                               cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS],
                                                               false));
-        } else {
+        }
+        if (!cmsRecipients.empty()) {
             result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, cmsRecipients,
                                                               std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS],
                                                               false));
@@ -517,7 +518,8 @@ createArchiveSignEncryptTasksForFiles(const QStringList &files, const std::share
             result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
                                                                   std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS],
                                                                   false));
-        } else {
+        }
+        if (!cmsRecipients.empty()) {
             result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, false, ascii,
                                                                   cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS],
                                                                   false));

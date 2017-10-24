@@ -68,7 +68,7 @@ ExportCertificatesDialog::Private::Private(ExportCertificatesDialog *qq)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout;
     q->setLayout(mainLayout);
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);

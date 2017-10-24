@@ -122,7 +122,7 @@ private:
             QWidget *mainWidget = new QWidget(qq);
 
             setupUi(mainWidget);
-            QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+            QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
             QVBoxLayout *mainLayout = new QVBoxLayout;
             qq->setLayout(mainLayout);
             mainLayout->addWidget(mainWidget);

@@ -58,7 +58,7 @@ public:
         vBox->addLayout(grid);
         q->setLayout(vBox);
 
-        auto bbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+        auto bbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
 
         mOkButton = bbox->button(QDialogButtonBox::Ok);
 

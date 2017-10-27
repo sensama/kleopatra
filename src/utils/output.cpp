@@ -33,7 +33,7 @@
 #include <config-kleopatra.h>
 
 #include "output.h"
-
+#include "input_p.h"
 #include "detail_p.h"
 #include "kleo_assert.h"
 #include "kdpipeiodevice.h"
@@ -173,6 +173,39 @@ struct redirect_close : T_IODevice {
     }
 private:
     bool m_closed;
+};
+
+class FileOutput;
+class OutputInput : public InputImplBase
+{
+public:
+    OutputInput(const std::shared_ptr<FileOutput> &output);
+
+    unsigned int classification() const override
+    {
+        return 0;
+    }
+
+    void outputFinalized()
+    {
+        if (!m_ioDevice->open(QIODevice::ReadOnly)) {
+            qCCritical(KLEOPATRA_LOG) << "Failed to open file for reading";
+        }
+    }
+
+    std::shared_ptr<QIODevice> ioDevice() const override
+    {
+        return m_ioDevice;
+    }
+
+    unsigned long long size() const override
+    {
+        return 0;
+    }
+
+private:
+    std::shared_ptr<FileOutput> m_output;
+    mutable std::shared_ptr<QIODevice> m_ioDevice = nullptr;
 };
 
 class OutputImplBase : public Output
@@ -366,6 +399,16 @@ public:
     void doCancel() override {
         qCDebug(KLEOPATRA_LOG) << this;
     }
+    QString fileName() const
+    {
+        return m_fileName;
+    }
+
+    void attachInput(const std::shared_ptr<OutputInput> &input)
+    {
+        m_attachedInput = std::weak_ptr<OutputInput>(input);
+    }
+
 private:
     bool obtainOverwritePermission();
 
@@ -373,6 +416,7 @@ private:
     const QString m_fileName;
     std::shared_ptr< TemporaryFile > m_tmpFile;
     const std::shared_ptr<OverwritePolicy> m_policy;
+    std::weak_ptr<OutputInput> m_attachedInput;
 };
 
 #ifndef QT_NO_CLIPBOARD
@@ -493,6 +537,10 @@ void FileOutput::doFinalize()
 
     if (QFile::rename(tmpFileName, m_fileName)) {
         qCDebug(KLEOPATRA_LOG) << this << "succeeded";
+
+        if (!m_attachedInput.expired()) {
+            m_attachedInput.lock()->outputFinalized();
+        }
         return;
     }
 
@@ -512,6 +560,10 @@ void FileOutput::doFinalize()
 
     if (QFile::rename(tmpFileName, m_fileName)) {
         qCDebug(KLEOPATRA_LOG) << this << "succeeded";
+
+        if (!m_attachedInput.expired()) {
+            m_attachedInput.lock()->outputFinalized();
+        }
         return;
     }
 
@@ -627,3 +679,23 @@ void ClipboardOutput::doFinalize()
 #endif // QT_NO_CLIPBOARD
 
 Output::~Output() {}
+
+
+OutputInput::OutputInput(const std::shared_ptr<FileOutput> &output)
+    : m_output(output)
+    , m_ioDevice(new QFile(output->fileName()))
+{
+}
+
+
+
+std::shared_ptr<Input> Input::createFromOutput(const std::shared_ptr<Output> &output)
+{
+    if (auto fo = std::dynamic_pointer_cast<FileOutput>(output)) {
+        auto input = std::shared_ptr<OutputInput>(new OutputInput(fo));
+        fo->attachInput(input);
+        return input;
+    } else {
+        return {};
+    }
+}

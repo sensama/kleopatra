@@ -84,6 +84,15 @@ public:
     void exec();
     std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, QStringList &);
 
+    struct CryptoFile {
+        QString baseName;
+        QString fileName;
+        GpgME::Protocol protocol = GpgME::UnknownProtocol;
+        int classification = 0;
+        std::shared_ptr<Output> output;
+    };
+    QVector<CryptoFile> classifyAndSortFiles(const QStringList &files);
+
     void reportError(int err, const QString &details)
     {
         q->setLastError(err, details);
@@ -210,77 +219,175 @@ void AutoDecryptVerifyFilesController::Private::exec()
     return;
 }
 
+QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
+{
+    const auto isSignature = [](int classification) -> bool {
+        return mayBeDetachedSignature(classification)
+                || mayBeOpaqueSignature(classification)
+                || (classification & Class::TypeMask) == Class::ClearsignedMessage;
+    };
+
+    QVector<CryptoFile> out;
+    for (const auto &file : files) {
+        CryptoFile cFile;
+        cFile.fileName = file;
+        cFile.baseName = file.left(file.length() - 4);
+        cFile.classification = classify(file);
+        cFile.protocol = findProtocol(cFile.classification);
+
+        auto it = std::find_if(out.begin(), out.end(),
+                               [&cFile](const CryptoFile &other) {
+                                    return other.protocol == cFile.protocol
+                                            && other.baseName == cFile.baseName;
+                               });
+        if (it != out.end()) {
+            // If we found a file with the same basename, make sure that encrypted
+            // file is before the signature file, so that we first decrypt and then
+            // verify
+            if (isSignature(cFile.classification) && isCipherText(it->classification)) {
+                out.insert(it + 1, cFile);
+            } else if (isCipherText(cFile.classification) && isSignature(it->classification)) {
+                out.insert(it, cFile);
+            } else {
+                // both are signatures or both are encrypted files, in which
+                // case order does not matter
+                out.insert(it, cFile);
+            }
+        } else {
+            out.push_back(cFile);
+        }
+    }
+
+    return out;
+}
+
+
 std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
-    std::vector<std::shared_ptr<Task> > tasks;
-    for (const QString &fName : fileNames) {
-        const auto classification = classify(fName);
-        const auto proto = findProtocol(classification);
+    // sort files so that we make sure we first decrypt and then verify
+    QVector<CryptoFile> cryptoFiles = classifyAndSortFiles(fileNames);
 
-        QFileInfo fi(fName);
-        qCDebug(KLEOPATRA_LOG) << "classified" << fName << "as" << printableClassification(classification);
+    std::vector<std::shared_ptr<Task> > tasks;
+    for (auto it = cryptoFiles.begin(), end = cryptoFiles.end(); it != end; ++it) {
+        auto &cFile = (*it);
+        QFileInfo fi(cFile.fileName);
+        qCDebug(KLEOPATRA_LOG) << "classified" << cFile.fileName << "as" << printableClassification(cFile.classification);
 
         if (!fi.isReadable()) {
             reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT),
-                        xi18n("Cannot open <filename>%1</filename> for reading.", fName));
-        } else if (mayBeAnyCertStoreType(classification)) {
+                        xi18n("Cannot open <filename>%1</filename> for reading.", cFile.fileName));
+            continue;
+        }
+
+        if (mayBeAnyCertStoreType(cFile.classification)) {
             // Trying to verify a certificate. Possible because extensions are often similar
             // for PGP Keys.
             reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT),
-                        xi18n("The file <filename>%1</filename> contains certificates and can't be decrypted or verified.", fName));
+                        xi18n("The file <filename>%1</filename> contains certificates and can't be decrypted or verified.", cFile.fileName));
             qCDebug(KLEOPATRA_LOG) << "reported error";
-        } else if (isDetachedSignature(classification)) {
+            continue;
+        }
+
+        // We can't reliably detect CMS detached signatures, so we will try to do
+        // our best to use the current file as a detached signature and fallback to
+        // opaque signature otherwise.
+        if (cFile.protocol == GpgME::CMS && mayBeDetachedSignature(cFile.classification)) {
+            // First, see if previous task was a decryption task for the same file
+            // and "pipe" it's output into our input
+            std::shared_ptr<Input> input;
+            bool prepend = false;
+            if (it != cryptoFiles.begin()) {
+                const auto prev = it - 1;
+                if (prev->protocol == cFile.protocol && prev->baseName == cFile.baseName) {
+                    input = Input::createFromOutput(prev->output);
+                    prepend = true;
+                }
+            }
+
+            if (!input) {
+                if (QFile::exists(cFile.baseName)) {
+                    input = Input::createFromFile(cFile.baseName);
+                }
+            }
+
+            if (input) {
+                qCDebug(KLEOPATRA_LOG) << "Detached CMS verify: " << cFile.fileName;
+                std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+                t->setInput(Input::createFromFile(cFile.fileName));
+                t->setSignedData(input);
+                t->setProtocol(cFile.protocol);
+                if (prepend) {
+                    // Put the verify task BEFORE the decrypt task in the tasks queue,
+                    // because the tasks are executed in reverse order!
+                    tasks.insert(tasks.end() - 1, t);
+                } else {
+                    tasks.push_back(t);
+                }
+                continue;
+            } else {
+                // No signed data, maybe not a detached signature
+            }
+        }
+
+        if (isDetachedSignature(cFile.classification)) {
             // Detached signature, try to find data or ask the user.
-            QString signedDataFileName = findSignedData(fName);
+            QString signedDataFileName = cFile.baseName;
             if (signedDataFileName.isEmpty()) {
                 signedDataFileName = QFileDialog::getOpenFileName(nullptr, xi18n("Select the file to verify with \"%1\"", fi.fileName()),
                                                                   fi.dir().dirName());
             }
             if (signedDataFileName.isEmpty()) {
                 qCDebug(KLEOPATRA_LOG) << "No signed data selected. Verify abortet.";
-                continue;
+            } else {
+                qCDebug(KLEOPATRA_LOG) << "Detached verify: " << cFile.fileName << " Data: " << signedDataFileName;
+                std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
+                t->setInput(Input::createFromFile(cFile.fileName));
+                t->setSignedData(Input::createFromFile(signedDataFileName));
+                t->setProtocol(cFile.protocol);
+                tasks.push_back(t);
             }
-            qCDebug(KLEOPATRA_LOG) << "Detached verify: " << fName << " Data: " << signedDataFileName;
-            std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
-            t->setInput(Input::createFromFile(fName));
-            t->setSignedData(Input::createFromFile(signedDataFileName));
-            t->setProtocol(proto);
-            tasks.push_back(t);
-        } else if (!mayBeAnyMessageType(classification)) {
+            continue;
+        }
+
+        if (!mayBeAnyMessageType(cFile.classification)) {
             // Not a Message? Maybe there is a signature for this file?
-            const auto signatures = findSignatures(fName);
+            const auto signatures = findSignatures(cFile.fileName);
             if (!signatures.empty()) {
                 for (const QString &sig : signatures) {
-                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << fName;
+                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << cFile.fileName;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
                     t->setInput(Input::createFromFile(sig));
-                    t->setSignedData(Input::createFromFile(fName));
-                    t->setProtocol(proto);
+                    t->setSignedData(Input::createFromFile(cFile.fileName));
+                    t->setProtocol(cFile.protocol);
                     tasks.push_back(t);
                 }
             } else {
-                undetected << fName;
-                qCDebug(KLEOPATRA_LOG) << "Failed detection for: " << fName << " adding to undetected.";
+                undetected << cFile.fileName;
+                qCDebug(KLEOPATRA_LOG) << "Failed detection for: " << cFile.fileName << " adding to undetected.";
             }
         } else {
             // Any Message type so we have input and output.
-            const auto input = Input::createFromFile(fName);
+            const auto input = Input::createFromFile(cFile.fileName);
             const auto archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
 
-            const auto ad = q->pick_archive_definition(proto, archiveDefinitions, fName);
+            const auto ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
 
             const auto wd = QDir(m_workDir.path());
 
             const auto output =
-                ad       ? ad->createOutputFromUnpackCommand(proto, fName, wd) :
+                ad       ? ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd) :
                 /*else*/   Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
 
-            if (isOpaqueSignature(classification)) {
+            // If this might be opaque CMS signature, then try that. We already handled
+            // detached CMS signature above
+            const auto isCMSOpaqueSignature = cFile.protocol == GpgME::CMS && mayBeOpaqueSignature(cFile.classification);
+
+            if (isOpaqueSignature(cFile.classification) || isCMSOpaqueSignature) {
                 qCDebug(KLEOPATRA_LOG) << "creating a VerifyOpaqueTask";
                 std::shared_ptr<VerifyOpaqueTask> t(new VerifyOpaqueTask);
                 t->setInput(input);
                 t->setOutput(output);
-                t->setProtocol(proto);
+                t->setProtocol(cFile.protocol);
                 tasks.push_back(t);
             } else {
                 // Any message. That is not an opaque signature needs to be
@@ -290,7 +397,8 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
                 t->setInput(input);
                 t->setOutput(output);
-                t->setProtocol(proto);
+                t->setProtocol(cFile.protocol);
+                cFile.output = output;
                 tasks.push_back(t);
             }
         }

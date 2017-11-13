@@ -254,7 +254,7 @@ void DirectoryServicesConfigurationPage::load()
 
     mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, false);
     if (mTimeoutConfigEntry) {
-        QTime time = QTime().addSecs(mTimeoutConfigEntry->uintValue());
+        QTime time = QTime(0, 0, 0, 0).addSecs(mTimeoutConfigEntry->uintValue());
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
         mTimeout->setTime(time);
     }

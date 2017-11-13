@@ -471,7 +471,7 @@ void SignEncryptFilesTask::doStart()
         Context::EncryptionFlags flags = Context::AlwaysTrust;
         if (d->symmetric) {
             flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
-            qDebug() << "Adding symmetric flag";
+            qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";
         }
         if (d->sign) {
             std::unique_ptr<QGpgME::SignEncryptJob> job = d->createSignEncryptJob(protocol());

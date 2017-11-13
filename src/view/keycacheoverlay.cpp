@@ -79,11 +79,24 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
     vLay->addStretch(1);
 
-    connect(cache.get(), &KeyCache::keyListingDone, this, &KeyCacheOverlay::hideOverlay);
 
     mBaseWidget->installEventFilter(this);
     mBaseWidget->setEnabled(false);
     reposition();
+
+    connect(&mTimer, &QTimer::timeout, [this]() {
+        // To avoid an infinite show if we miss the keyListingDone signal
+        // (Race potential) we use a watchdog timer, too to actively poll
+        // the keycache every second. See bug #381910
+        if (KeyCache::instance()->initialized()) {
+            qCDebug(KLEOPATRA_LOG) << "Hiding overlay from watchdog";
+            hideOverlay();
+        }
+    } );
+
+    mTimer.start(1000);
+
+    connect(cache.get(), &KeyCache::keyListingDone, this, &KeyCacheOverlay::hideOverlay);
 }
 
 bool KeyCacheOverlay::eventFilter(QObject *object, QEvent *event)
@@ -114,6 +127,7 @@ void KeyCacheOverlay::reposition()
 
 void KeyCacheOverlay::hideOverlay()
 {
+   mTimer.stop();
    mBaseWidget->setEnabled(true);
    hide();
    mBaseWidget->removeEventFilter(this);

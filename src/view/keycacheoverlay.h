@@ -33,6 +33,7 @@
 #define VIEW_KEYCACHEOVERLAY_H
 
 #include <QWidget>
+#include <QTimer>
 
 namespace Kleo
 {
@@ -65,6 +66,7 @@ private Q_SLOTS:
 
 private:
     QWidget *mBaseWidget;
+    QTimer mTimer;
 };
 
 } // namespace Kleo

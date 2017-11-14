@@ -177,8 +177,38 @@ void AutoDecryptVerifyFilesController::Private::exec()
         const QDir outDir(m_dialog->outputLocation());
         bool overWriteAll = false;
         qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        Q_FOREACH (const QFileInfo &fi, workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
+        for (const QFileInfo &fi: workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot)) {
             const auto inpath = fi.absoluteFilePath();
+
+            if (fi.isDir()) {
+                // A directory. Assume that the input was an archive
+                // and avoid directory merges by trying to find a non
+                // existing directory.
+                auto candidate = fi.baseName();
+                if (candidate.startsWith(QLatin1Char('-'))) {
+                    // Bug in GpgTar Extracts stdout passed archives to a dir named -
+                    candidate = QFileInfo(m_passedFiles.first()).baseName();
+                }
+
+                QString suffix;
+                QFileInfo ofi;
+                int i = 0;
+                do {
+                    ofi = QFileInfo(outDir.absoluteFilePath(candidate + suffix));
+                    if (!ofi.exists()) {
+                        break;
+                    }
+                    suffix = QStringLiteral("_%1").arg(++i);
+                } while (i < 1000);
+
+
+                if (!QFile::rename(inpath, ofi.absoluteFilePath())) {
+                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                            xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.",
+                                  inpath, ofi.absoluteFilePath()));
+                }
+                continue;
+            }
             const auto outpath = outDir.absoluteFilePath(fi.fileName());
             qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
             const QFileInfo ofi(outpath);

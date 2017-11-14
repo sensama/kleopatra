@@ -556,6 +556,11 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &result)
     bool outputCreated = false;
     if (result.error().code()) {
         output->cancel();
+    } else if (input->failed()) {
+        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
+                                      i18n("Input error: %1", escape( input->errorString())),
+                                      auditLog));
+        return;
     } else {
         try {
             kleo_assert(!result.isNull());
@@ -578,6 +583,12 @@ void SignEncryptFilesTask::Private::slotResult(const SigningResult &sresult, con
     bool outputCreated = false;
     if (sresult.error().code() || eresult.error().code()) {
         output->cancel();
+    } else if (input->failed()) {
+        output->cancel();
+        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
+                                      i18n("Input error: %1", escape( input->errorString())),
+                                      auditLog));
+        return;
     } else {
         try {
             kleo_assert(!sresult.isNull() || !eresult.isNull());
@@ -600,6 +611,12 @@ void SignEncryptFilesTask::Private::slotResult(const EncryptionResult &result)
     bool outputCreated = false;
     if (result.error().code()) {
         output->cancel();
+    } else if (input->failed()) {
+        output->cancel();
+        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
+                                      i18n("Input error: %1", escape(input->errorString())),
+                                      auditLog));
+        return;
     } else {
         try {
             kleo_assert(!result.isNull());

@@ -115,6 +115,7 @@ public:
         return 0;
     }
     QString label() const override;
+    bool failed() const override;
 
 private:
     QString doErrorString() const override;
@@ -347,6 +348,12 @@ QString ProcessStdOutInput::doErrorString() const
     else {
         return i18n("Failed to execute %1: %2", m_command, m_proc->errorString());
     }
+}
+
+bool ProcessStdOutInput::failed() const
+{
+    kleo_assert(m_proc);
+    return !(m_proc->exitStatus() == QProcess::NormalExit && m_proc->exitCode() == 0);
 }
 
 #ifndef QT_NO_CLIPBOARD

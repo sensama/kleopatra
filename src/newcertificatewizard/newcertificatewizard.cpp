@@ -65,6 +65,7 @@
 #include <gpgme++/global.h>
 #include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/keygenerationresult.h>
+#include <gpgme++/context.h>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -891,6 +892,14 @@ private Q_SLOTS:
                 setField(QStringLiteral("url"), QUrl::fromLocalFile(file.fileName()).toString());
                 setField(QStringLiteral("result"), i18n("Key pair created successfully."));
             }
+        }
+        // Ensure that we have the key in the keycache
+        auto ctx = Context::createForProtocol(pgp() ? OpenPGP : CMS);
+        if (ctx) {
+            // Check is pretty useless something very buggy in that case.
+            Error e;
+            KeyCache::mutableInstance()->insert(ctx->key(result.fingerprint(), e, true));
+            delete ctx;
         }
         setField(QStringLiteral("fingerprint"), QString::fromLatin1(result.fingerprint()));
         job = nullptr;

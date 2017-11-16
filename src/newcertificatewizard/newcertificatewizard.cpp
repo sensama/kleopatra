@@ -894,12 +894,14 @@ private Q_SLOTS:
             }
         }
         // Ensure that we have the key in the keycache
-        auto ctx = Context::createForProtocol(pgp() ? OpenPGP : CMS);
-        if (ctx) {
-            // Check is pretty useless something very buggy in that case.
-            Error e;
-            KeyCache::mutableInstance()->insert(ctx->key(result.fingerprint(), e, true));
-            delete ctx;
+        if (pgp()) {
+            auto ctx = Context::createForProtocol(OpenPGP);
+            if (ctx) {
+                // Check is pretty useless something very buggy in that case.
+                Error e;
+                KeyCache::mutableInstance()->insert(ctx->key(result.fingerprint(), e, true));
+                delete ctx;
+            }
         }
         setField(QStringLiteral("fingerprint"), QString::fromLatin1(result.fingerprint()));
         job = nullptr;

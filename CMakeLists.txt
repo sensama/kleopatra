@@ -1,4 +1,4 @@
-set(kleopatra_version 3.0.0)
+set(kleopatra_version 3.0.1)
 cmake_minimum_required(VERSION 3.0)
 project(kleopatra VERSION ${kleopatra_version})
 # Add version suffix for internal usage of the version string

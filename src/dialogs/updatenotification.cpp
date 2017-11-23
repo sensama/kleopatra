@@ -40,6 +40,8 @@
 #include <QCheckBox>
 #include <QDialogButtonBox>
 #include <QDesktopServices>
+#include <QProcess>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QLabel>
 #include <QUrl>
@@ -71,21 +73,67 @@ static void gpgconf_set_update_check(bool value)
     if (!entry) {
         qCDebug(KLEOPATRA_LOG) << "allow-version-check entry not found";
     }
-    entry->setBoolValue(value);
-    conf->sync(true);
+    if (entry->boolValue() != value) {
+        entry->setBoolValue(value);
+        conf->sync(true);
+    }
 }
 } // namespace
+
+void UpdateNotification::forceUpdateCheck(QWidget *parent)
+{
+    auto proc = new QProcess;
+
+    proc->setProgram(gnupgInstallPath() + QStringLiteral("/gpg-connect-agent.exe"));
+    proc->setArguments(QStringList() << QStringLiteral("--dirmngr")
+                       << QStringLiteral("loadswdb --force")
+                       << QStringLiteral("/bye"));
+
+    auto progress = new QProgressDialog(i18n("Searching for updates..."),
+                                        i18n("Cancel"), 0, 0, parent);
+    progress->setMinimumDuration(0);
+    progress->show();
+
+    connect(progress, &QProgressDialog::canceled, [progress, proc] () {
+            proc->kill();
+            qCDebug(KLEOPATRA_LOG) << "Update force cancled. Output:"
+                                   << QString::fromLocal8Bit(proc->readAllStandardOutput())
+                                   << "stderr:"
+                                   << QString::fromLocal8Bit(proc->readAllStandardError());
+    });
+
+    connect(proc, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+            [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
+            qCDebug(KLEOPATRA_LOG) << "Update force exited with status:" << exitStatus
+                                   << "code:" << exitCode;
+            delete progress;
+            proc->deleteLater();
+            UpdateNotification::checkUpdate(parent, exitStatus == QProcess::NormalExit);
+    });
+
+    qCDebug(KLEOPATRA_LOG) << "Starting:" << proc->program() << "args" << proc->arguments();
+
+    proc->start();
+}
 
 void UpdateNotification::checkUpdate(QWidget *parent, bool force)
 {
 #ifdef Q_OS_WIN
-    if (force) {
-        gpgconf_set_update_check(true);
+    KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
+
+    if (updatecfg.readEntry("NeverShow", false) && !force) {
+        return;
+    }
+
+    // Gpg defaults to no update check. For Gpg4win we want this
+    // enabled if the user does not explicitly disable update
+    // checks neverShow would be true in that case
+    if (!force) {
+        gpgconf_set_update_check (true);
     }
 
     const auto current = gpg4winVersion();
     GpgME::Error err;
-    KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
     const auto lastshown = updatecfg.readEntry("LastShown", QDateTime());
 
     if (!force && lastshown.isValid() &&
@@ -166,7 +214,9 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     lay->addWidget(label, 0, 1);
     const auto chk = new QCheckBox (i18n("Show this notification for future updates."));
     lay->addWidget(chk, 1, 0, 1, -1);
-    chk->setChecked(true);
+
+    KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
+    chk->setChecked(!updatecfg.readEntry("NeverShow", false));
 
     const auto bb = new QDialogButtonBox();
     const auto b = bb->addButton(i18n("&Get update"), QDialogButtonBox::AcceptRole);
@@ -177,13 +227,14 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     connect (bb, &QDialogButtonBox::accepted, this, [this, chk]() {
             QDesktopServices::openUrl(QUrl("https://www.gpg4win.org/download.html"));
             KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
-
             updatecfg.writeEntry("NeverShow", !chk->isChecked());
+            gpgconf_set_update_check (chk->isChecked());
             QDialog::accept();
         });
     connect (bb, &QDialogButtonBox::rejected, this, [this, chk]() {
             KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
             updatecfg.writeEntry("NeverShow", !chk->isChecked());
+            gpgconf_set_update_check (chk->isChecked());
             QDialog::reject();
         });
 }

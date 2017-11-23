@@ -49,6 +49,11 @@ namespace Kleo
 class UpdateNotification : public QDialog
 {
 public:
+    /* Force an update check dirmngr loadswdb --force callse
+     * check update afterwards. */
+    static void forceUpdateCheck(QWidget *parent);
+    /* Check for an update. The force parameter overrides the
+     * NeverShow setting */
     static void checkUpdate(QWidget *parent, bool force = false);
     UpdateNotification(QWidget *parent, const QString &version);};
 } // namespace Kleo

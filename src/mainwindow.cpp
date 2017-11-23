@@ -219,7 +219,7 @@ public:
 
     void forceUpdateCheck()
     {
-        UpdateNotification::checkUpdate(q, true);
+        UpdateNotification::forceUpdateCheck(q);
     }
 
     void openCompendium()

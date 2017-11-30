@@ -107,19 +107,19 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
     QGroupBox *sigGrp = new QGroupBox(i18n("Prove authenticity (sign)"));
-    QCheckBox *sigChk = new QCheckBox(i18n("Sign as:"));
-    sigChk->setChecked(true);
+    mSigChk = new QCheckBox(i18n("Sign as:"));
+    mSigChk->setChecked(true);
 
     mSigSelect = new KeySelectionCombo();
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter()));
 
-    sigLay->addWidget(sigChk);
+    sigLay->addWidget(mSigChk);
     sigLay->addWidget(mSigSelect, 1);
     sigGrp->setLayout(sigLay);
     lay->addWidget(sigGrp);
 
-    connect(sigChk, &QCheckBox::toggled, mSigSelect, &QWidget::setEnabled);
-    connect(sigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(mSigChk, &QCheckBox::toggled, mSigSelect, &QWidget::setEnabled);
+    connect(mSigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSigSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
@@ -134,16 +134,16 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     // Own key
     mSelfSelect = new KeySelectionCombo();
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
-    QCheckBox *encSelfChk = new QCheckBox(i18n("Encrypt for me:"));
-    encSelfChk->setChecked(true);
-    mRecpLayout->addWidget(encSelfChk, 0, 0);
+    mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
+    mEncSelfChk->setChecked(true);
+    mRecpLayout->addWidget(mEncSelfChk, 0, 0);
     mRecpLayout->addWidget(mSelfSelect, 0, 1);
 
     // Checkbox for other keys
-    QCheckBox *encOtherChk = new QCheckBox(i18n("Encrypt for others:"));
-    mRecpLayout->addWidget(encOtherChk, 1, 0);
-    encOtherChk->setChecked(true);
-    connect(encOtherChk, &QCheckBox::toggled, this,
+    mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
+    mRecpLayout->addWidget(mEncOtherChk, 1, 0);
+    mEncOtherChk->setChecked(true);
+    connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
             Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
                 edit->setEnabled(toggled);
@@ -179,14 +179,14 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     // Connect it
     connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);
     connect(encBox, &QGroupBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(encSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
-    connect(encSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(mEncSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
+    connect(mEncSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
-    // Ensure that the sigChk is aligned togehter with the encryption check boxes.
-    sigChk->setMinimumWidth(qMax(encOtherChk->width(), encSelfChk->width()));
+    // Ensure that the mSigChk is aligned togehter with the encryption check boxes.
+    mSigChk->setMinimumWidth(qMax(mEncOtherChk->width(), mEncSelfChk->width()));
 
     lay->addWidget(encBox);
 
@@ -382,4 +382,15 @@ void SignEncryptWidget::saveOwnKeys() const
     if (!encKey.isNull()) {
         keys.writeEntry("EncryptKey", encKey.primaryFingerprint());
     }
+}
+
+void SignEncryptWidget::setSigningChecked(bool value)
+{
+    mSigChk->setChecked(value);
+}
+
+void SignEncryptWidget::setEncryptionChecked(bool value)
+{
+    mEncSelfChk->setChecked(value);
+    mEncOtherChk->setChecked(value);
 }

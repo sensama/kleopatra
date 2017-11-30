@@ -78,6 +78,12 @@ public:
         userIDs have Validity >= Full).  */
     bool isDeVsAndValid() const;
 
+    /** Set wether or not signing group should be checked */
+    void setSigningChecked(bool value);
+
+    /** Set wether or not encryption group should be checked */
+    void setEncryptionChecked(bool value);
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
@@ -104,7 +110,10 @@ private:
     QGridLayout *mRecpLayout;
     QString mOp;
     AbstractKeyListModel *mModel;
-    QCheckBox *mSymmetric;
+    QCheckBox *mSymmetric,
+              *mSigChk,
+              *mEncOtherChk,
+              *mEncSelfChk;
     int mRecpRowCount;
 };
 } // namespace Kleo

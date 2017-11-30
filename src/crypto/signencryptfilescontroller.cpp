@@ -225,11 +225,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setSigningPreset(false);
     } else {
         wizard->setSigningUserMutable(true);
-        wizard->setSigningPreset(false);
-
-        if (signOp == SignSelected) {
-            wizard->setSigningPreset(true);
-        }
+        wizard->setSigningPreset(signOp == SignSelected);
     }
 
     if (encrOp == EncryptDisallowed) {
@@ -238,10 +234,7 @@ void SignEncryptFilesController::Private::updateWizardMode()
     } else {
         wizard->setEncryptionUserMutable(true);
         wizard->setEncryptionPreset(false);
-
-        if (encrOp == EncryptSelected) {
-            wizard->setEncryptionPreset(true);
-        }
+        wizard->setEncryptionPreset(encrOp == EncryptSelected);
     }
 
     wizard->setArchiveForced(archOp == ArchiveForced);

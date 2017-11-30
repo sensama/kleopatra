@@ -115,6 +115,16 @@ public:
         setMinimumHeight(300);
     }
 
+    void setEncryptionPreset(bool value)
+    {
+        mWidget->setEncryptionChecked(value);
+    }
+
+    void setSigningPreset(bool value)
+    {
+        mWidget->setSigningChecked(value);
+    }
+
     bool isComplete() const override
     {
         return !mWidget->currentOp().isNull();
@@ -377,10 +387,8 @@ private:
 
 SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
     : QWizard(parent, f)
-    , mSigningPreset(false)
-    , mSigningUserMutable(false)
-    , mEncryptionUserMutable(false)
-    , mEncryptionPreset(false)
+    , mSigningUserMutable(true)
+    , mEncryptionUserMutable(true)
 {
     bool de_vs = Kleo::gpgComplianceP("de-vs");
 #ifdef Q_OS_WIN
@@ -443,10 +451,7 @@ SignEncryptFilesWizard::~SignEncryptFilesWizard()
 
 void SignEncryptFilesWizard::setSigningPreset(bool preset)
 {
-    if (preset == mSigningPreset) {
-        return;
-    }
-    mSigningPreset = preset;
+    mSigEncPage->setSigningPreset(preset);
 }
 
 void SignEncryptFilesWizard::setSigningUserMutable(bool mut)
@@ -459,10 +464,7 @@ void SignEncryptFilesWizard::setSigningUserMutable(bool mut)
 
 void SignEncryptFilesWizard::setEncryptionPreset(bool preset)
 {
-    if (preset == mEncryptionPreset) {
-        return;
-    }
-    mEncryptionPreset = preset;
+    mSigEncPage->setEncryptionPreset(preset);
 }
 
 void SignEncryptFilesWizard::setEncryptionUserMutable(bool mut)

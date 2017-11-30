@@ -114,10 +114,8 @@ private:
     SigEncPage *mSigEncPage;
     ResultPage *mResultPage;
     QAbstractButton *mLabel;
-    bool mSigningPreset,
-         mSigningUserMutable,
-         mEncryptionUserMutable,
-         mEncryptionPreset;
+    bool mSigningUserMutable,
+         mEncryptionUserMutable;
 };
 
 }

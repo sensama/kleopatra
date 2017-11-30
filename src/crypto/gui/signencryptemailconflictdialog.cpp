@@ -348,7 +348,12 @@ private:
                 // ### switch to key.protocol(), in case proto == UnknownProtocol
                 break;
             }
+#ifndef Q_OS_WIN
+        // This leads to a crash on Windows. We don't really
+        // leak memory here anyway because the destruction of the
+        // dialog happens when the parent (q) is destroyed anyway.
         delete dlg;
+#endif
     }
 
 private:

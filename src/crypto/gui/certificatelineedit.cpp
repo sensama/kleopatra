@@ -44,6 +44,7 @@
 #include "dialogs/certificateselectiondialog.h"
 #include "commands/detailscommand.h"
 
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -54,11 +55,16 @@
 
 #include <gpgme++/key.h>
 
+#include <QGpgME/KeyForMailboxJob>
+#include <QGpgME/Protocol>
+
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key)
+
+static QStringList s_lookedUpKeys;
 
 CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          QWidget *parent,
@@ -91,7 +97,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
         mFilterModel->setKeyFilter(mFilter);
     }
 
-    connect(model, &QAbstractItemModel::dataChanged,
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keyListingDone,
             this, &CertificateLineEdit::updateKey);
     connect(this, &QLineEdit::editingFinished,
             this, &CertificateLineEdit::updateKey);
@@ -99,7 +105,8 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
             this, &CertificateLineEdit::editChanged);
     connect(mLineAction, &QAction::triggered,
             this, &CertificateLineEdit::dialogRequested);
-
+    connect(this, &QLineEdit::editingFinished, this,
+            &CertificateLineEdit::checkLocate);
     updateKey();
 
     /* Take ownership of the model to prevent double deletion when the
@@ -115,6 +122,24 @@ void CertificateLineEdit::editChanged()
         mEditStarted = true;
     }
     mEditFinished = false;
+}
+
+void CertificateLineEdit::checkLocate()
+{
+    if (!key().isNull()) {
+        // Already have a key
+        return;
+    }
+
+    // Only check once per mailbox
+    const auto mailText = text();
+    if (s_lookedUpKeys.contains(mailText)) {
+        return;
+    }
+    s_lookedUpKeys << mailText;
+    qCDebug(KLEOPATRA_LOG) << "Lookup job for" << mailText;
+    QGpgME::KeyForMailboxJob *job = QGpgME::openpgp()->keyForMailboxJob();
+    job->start(mailText);
 }
 
 void CertificateLineEdit::updateKey()

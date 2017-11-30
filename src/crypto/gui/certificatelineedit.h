@@ -99,6 +99,7 @@ private Q_SLOTS:
     void updateKey();
     void dialogRequested();
     void editChanged();
+    void checkLocate();
 
 private:
     KeyListSortFilterProxyModel *mFilterModel;

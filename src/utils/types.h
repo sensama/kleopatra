@@ -79,7 +79,7 @@ public:
     std::shared_ptr<const ExecutionContext> executionContext() const;
 
 protected:
-    void bringToForeground(QWidget *wid);
+    void bringToForeground(QWidget *wid, bool stayOnTop = false);
     void applyWindowID(QWidget *wid);
 private:
     class Private;

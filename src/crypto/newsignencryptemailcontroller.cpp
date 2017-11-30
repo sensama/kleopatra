@@ -649,7 +649,7 @@ void NewSignEncryptEMailController::Private::cancelAllTasks()
 
 void NewSignEncryptEMailController::Private::ensureDialogVisible()
 {
-    q->bringToForeground(dialog);
+    q->bringToForeground(dialog, true);
 }
 
 #include "moc_newsignencryptemailcontroller.cpp"

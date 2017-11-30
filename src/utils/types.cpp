@@ -101,10 +101,10 @@ std::shared_ptr<const ExecutionContext> ExecutionContextUser::executionContext()
     return d->executionContext.lock();
 }
 
-void ExecutionContextUser::bringToForeground(QWidget *wid)
+void ExecutionContextUser::bringToForeground(QWidget *wid, bool stayOnTop)
 {
     applyWindowID(wid);
     wid->show();
-    agressive_raise(wid);
+    agressive_raise(wid, stayOnTop);
 }
 

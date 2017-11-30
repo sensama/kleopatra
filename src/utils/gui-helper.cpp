@@ -63,7 +63,7 @@ WINBOOL SetForegroundWindowEx(HWND hWnd)
 }// End SetForegroundWindowEx
 #endif
 
-void Kleo::agressive_raise(QWidget *w)
+void Kleo::agressive_raise(QWidget *w, bool stayOnTop)
 {
     /* Maybe Qt will become aggressive enough one day that
      * this is enough on windows too*/
@@ -88,18 +88,17 @@ void Kleo::agressive_raise(QWidget *w)
                       SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW)) {
         OutputDebugStringA("SetWindowPos failed.");
     }
-    /* In Kleopatra we want to stay on top even if the user
+    /* sometimes we want to stay on top even if the user
      * changes focus because we are _agressive_ and otherwise
      * Outlook might show the "Help I'm unresponsive so I must have
      * crashed" Popup if the user clicks into Outlook while a dialog
-     * from us is active.
-     else {
+     * from us is active. */
+     else if (!stayOnTop) {
         // Without moving back to NOTOPMOST we just stay on top.
         // Even if the user changes focus.
         SetWindowPos(wid, HWND_NOTOPMOST, 0, 0, 0, 0,
                      SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
     }
-    */
 #endif
 }
 

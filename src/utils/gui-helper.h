@@ -57,7 +57,7 @@ static inline bool xconnect(const QObject *a, const char *signal,
 
 /** Agressively raise a window to foreground. May be platform
  * specific. */
-void agressive_raise(QWidget *w);
+void agressive_raise(QWidget *w, bool stayOnTop);
 
 }
 

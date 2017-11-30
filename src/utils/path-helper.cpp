@@ -43,6 +43,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QStorageInfo>
 #include <QFileInfo>
 #include <QDir>
 
@@ -121,4 +122,52 @@ void Kleo::recursivelyRemovePath(const QString &path)
             throw Exception(GPG_ERR_EPERM, i18n("Cannot remove file %1: %2", path, file.errorString()));
         }
     }
+}
+
+bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
+{
+    QDir srcDir(src);
+
+    if(!srcDir.exists()) {
+        return false;
+    }
+
+    QDir destDir(dest);
+    if(!destDir.exists() && !destDir.mkdir(dest)) {
+        return false;
+    }
+
+    for(const auto file: srcDir.entryList(QDir::Files)) {
+        const QString srcName = src + QDir::separator() + file;
+        const QString destName = dest + QDir::separator() + file;
+        if(!QFile::copy(srcName, destName)) {
+            return false;
+        }
+    }
+
+    for (const auto dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
+        const QString srcName = src + QDir::separator() + dir;
+        const QString destName = dest + QDir::separator() + dir;
+        if (!recursivelyCopy(srcName, destName)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Kleo::moveDir(const QString &src, const QString &dest)
+{
+    if (QStorageInfo(src).device() == QStorageInfo(dest).device()) {
+        // Easy same partition we can use qt.
+        return QFile::rename(src, dest);
+    }
+    // first copy
+    if (!recursivelyCopy(src, dest)) {
+        return false;
+    }
+    // Then delete original
+    recursivelyRemovePath(src);
+
+    return true;
 }

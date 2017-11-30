@@ -45,6 +45,8 @@ QStringList makeRelativeTo(const QDir &dir, const QStringList &files);
 QStringList makeRelativeTo(const QString &dir, const QStringList &files);
 
 void recursivelyRemovePath(const QString &path);
+bool recursivelyCopy(const QString &src, const QString &dest);
+bool moveDir(const QString &src, const QString &dest);
 }
 
 #endif /* __KLEOPATRA_UTILS_PATH_HELPER_H__ */

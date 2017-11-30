@@ -201,8 +201,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     suffix = QStringLiteral("_%1").arg(++i);
                 } while (i < 1000);
 
-
-                if (!QFile::rename(inpath, ofi.absoluteFilePath())) {
+                if (!moveDir(inpath, ofi.absoluteFilePath())) {
                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
                             xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.",
                                   inpath, ofi.absoluteFilePath()));

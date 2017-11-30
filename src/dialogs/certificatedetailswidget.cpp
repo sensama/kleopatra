@@ -61,6 +61,7 @@ public:
 
     void revokeUID(const GpgME::UserID &uid);
     void genRevokeCert();
+    void certifyClicked();
     void addUserID();
     void changePassphrase();
     void changeExpiration();
@@ -92,8 +93,11 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
+    ui.certifyBtn->setVisible(isOpenPGP && !hasSecret);
     ui.changeExpirationBtn->setVisible(isOpenPGP && hasSecret);
     ui.addUserIDBtn->setVisible(hasSecret);
+
+    ui.hboxLayout_1->addStretch(1);
 
     ui.validFrom->setText(Kleo::Formatting::creationDateString(key));
     const QString expiry = Kleo::Formatting::expirationDateString(key);
@@ -205,6 +209,17 @@ void CertificateDetailsWidget::Private::genRevokeCert()
                          ui.genRevokeBtn->setEnabled(true);
                      });
     ui.genRevokeBtn->setEnabled(false);
+    cmd->start();
+}
+
+void CertificateDetailsWidget::Private::certifyClicked()
+{
+    auto cmd = new Kleo::Commands::CertifyCertificateCommand(key);
+    QObject::connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
+                     q, [this, cmd]() {
+                         ui.certifyBtn->setEnabled(true);
+                     });
+    ui.certifyBtn->setEnabled(false);
     cmd->start();
 }
 
@@ -426,6 +441,8 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
             this, [this]() { d->showMoreDetails(); });
     connect(d->ui.publishing, &QPushButton::pressed,
             this, [this]() { d->publishCertificate(); });
+    connect(d->ui.certifyBtn, &QPushButton::clicked,
+            this, [this]() { d->certifyClicked(); });
 
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this]() { d->keysMayHaveChanged(); });

@@ -94,7 +94,7 @@ public:
                                     QStringLiteral("</h2>")));
         backH->addStretch(-1);
 
-        QVBoxLayout *vLay = new QVBoxLayout;
+        QVBoxLayout *vLay = new QVBoxLayout(q);
 
         connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT (q->backRequested());});
 
@@ -112,7 +112,6 @@ public:
         vLay->addWidget(mPlaceHolderWidget);
         vLay->addStretch(-1);
 
-        q->setLayout(vLay);
 
         connect (ReaderStatus::instance(), &ReaderStatus::cardChanged, q, [this] (unsigned int /*slot*/) {
                 const auto cards = ReaderStatus::instance()->getCards();

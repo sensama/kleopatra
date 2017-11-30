@@ -53,10 +53,9 @@ class GenCardKeyDialog::Private
 public:
     Private(GenCardKeyDialog *qq): q(qq)
     {
-        auto *vBox = new QVBoxLayout;
+        auto *vBox = new QVBoxLayout(q);
         auto *grid = new QGridLayout;
         vBox->addLayout(grid);
-        q->setLayout(vBox);
 
         auto bbox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
 

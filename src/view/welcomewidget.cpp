@@ -59,7 +59,7 @@ class WelcomeWidget::Private
 public:
     Private(WelcomeWidget *qq): q(qq)
     {
-        auto vLay = new QVBoxLayout;
+        auto vLay = new QVBoxLayout(q);
         auto hLay = new QHBoxLayout;
 
         const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1",
@@ -118,8 +118,6 @@ public:
         hLay->addStretch(-1);
         hLay->addWidget(label);
         hLay->addStretch(-1);
-
-        q->setLayout(vLay);
     }
 
     void import()

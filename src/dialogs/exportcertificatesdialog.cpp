@@ -66,8 +66,7 @@ private:
 ExportCertificatesDialog::Private::Private(ExportCertificatesDialog *qq)
     : q(qq)
 {
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    q->setLayout(mainLayout);
+    QVBoxLayout *mainLayout = new QVBoxLayout(q);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);

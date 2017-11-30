@@ -86,8 +86,7 @@ private:
 
             setupUi(mainWidget);
             QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-            QVBoxLayout *mainLayout = new QVBoxLayout;
-            q->setLayout(mainLayout);
+            QVBoxLayout *mainLayout = new QVBoxLayout(q);
             mainLayout->addWidget(mainWidget);
             okButton = buttonBox->button(QDialogButtonBox::Ok);
             okButton->setDefault(true);

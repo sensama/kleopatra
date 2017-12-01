@@ -59,6 +59,7 @@ public:
     std::string manufacturer() const;
     std::string cardVersion() const;
     std::string cardHolder() const;
+    std::string pubkeyUrl() const;
 private:
     bool mIsV2 = false;
     std::string mCardVersion;

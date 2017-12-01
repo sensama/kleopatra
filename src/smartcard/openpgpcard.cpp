@@ -209,7 +209,8 @@ bool OpenPGPCard::operator == (const Card& rhs) const
         && authFpr() == other->authFpr()
         && manufacturer() == other->manufacturer()
         && cardVersion() == other->cardVersion()
-        && cardHolder() == other->cardHolder();
+        && cardHolder() == other->cardHolder()
+        && pubkeyUrl() == other->pubkeyUrl();
 }
 
 std::string OpenPGPCard::manufacturer() const
@@ -227,4 +228,9 @@ std::string OpenPGPCard::cardHolder() const
     auto list = QString::fromStdString(mMetaInfo.value("DISP-NAME")).split("<<");
     std::reverse(list.begin(), list.end());
     return list.join(QLatin1Char(' ')).toStdString();
+}
+
+std::string OpenPGPCard::pubkeyUrl() const
+{
+    return mMetaInfo.value("PUBKEY-URL");
 }

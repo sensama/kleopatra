@@ -66,6 +66,41 @@ Q_DECLARE_METATYPE(GpgME::Key)
 
 static QStringList s_lookedUpKeys;
 
+namespace
+{
+class ProxyModel : public KeyListSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    ProxyModel(QObject *parent = nullptr)
+        : KeyListSortFilterProxyModel(parent)
+    {
+    }
+
+    QVariant data(const QModelIndex &index, int role) const override
+    {
+        if (!index.isValid()) {
+            return QVariant();
+        }
+
+        switch (role) {
+        case Qt::DecorationRole: {
+            const auto key = KeyListSortFilterProxyModel::data(index,
+                    Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+            Q_ASSERT(!key.isNull());
+            if (key.isNull()) {
+                return QVariant();
+            }
+            return Kleo::Formatting::iconForUid(key.userID(0));
+        }
+        default:
+            return KeyListSortFilterProxyModel::data(index, role);
+        }
+    }
+};
+} // namespace
+
 CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          QWidget *parent,
                                          KeyFilter *filter)
@@ -83,7 +118,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     QFontMetrics fm(font());
 
     auto *completer = new QCompleter(this);
-    auto *completeFilterModel = new KeyListSortFilterProxyModel(completer);
+    auto *completeFilterModel = new ProxyModel(completer);
     completeFilterModel->setKeyFilter(mFilter);
     completeFilterModel->setSourceModel(model);
     completer->setModel(completeFilterModel);
@@ -231,3 +266,5 @@ bool CertificateLineEdit::isEmpty() const
 {
     return text().isEmpty();
 }
+
+#include "certificatelineedit.moc"

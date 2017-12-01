@@ -127,6 +127,7 @@ PGPCardWidget::PGPCardWidget():
     mSigningKey(new QLabel),
     mEncryptionKey(new QLabel),
     mAuthKey(new QLabel),
+    mUrlLabel(new QLabel),
     mCardIsEmpty(false)
 {
     auto grid = new QGridLayout;
@@ -143,12 +144,15 @@ PGPCardWidget::PGPCardWidget():
     myLayout->addWidget(area);
     setLayout(myLayout);
 
+    // Version and Serialnumber
     grid->addWidget(mVersionLabel, row++, 0, 1, 2);
     mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
 
     grid->addWidget(mSerialNumber, row++, 1);
     mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+    // Cardholder Row
     grid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.",
                     "Cardholder:")), row, 0);
 
@@ -160,6 +164,20 @@ PGPCardWidget::PGPCardWidget():
     grid->addWidget(nameButtton, row++, 2);
     connect(nameButtton, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
 
+    // URL Row
+    grid->addWidget(new QLabel(i18nc("The URL under which a public key that "
+                                     "corresponds to a smartcard can be downloaded",
+                                     "Pubkey URL:")), row, 0);
+    grid->addWidget(mUrlLabel, row, 1);
+
+    mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    auto urlButtton = new QPushButton;
+    urlButtton->setIcon(QIcon::fromTheme("cell_edit"));
+    urlButtton->setToolTip(i18n("Change"));
+    grid->addWidget(urlButtton, row++, 2);
+    connect(urlButtton, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
+
+    // The keys
     auto line1 = new QFrame();
     line1->setFrameShape(QFrame::HLine);
     grid->addWidget(line1, row++, 0, 1, 4);
@@ -222,7 +240,14 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     const QString sn = QString::fromStdString(card->serialNumber()).mid(16, 12);
     mSerialNumber->setText(sn);
     mRealSerial = card->serialNumber();
-    mCardHolderLabel->setText(QString::fromStdString(card->cardHolder()));
+
+    const auto holder = QString::fromStdString(card->cardHolder());
+    const auto url = QString::fromStdString(card->pubkeyUrl());
+    mCardHolderLabel->setText(holder.isEmpty() ? i18n("not set") : holder);
+    mUrl = url;
+    mUrlLabel->setText(url.isEmpty() ? i18n("not set") :
+                       QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
+    mUrlLabel->setOpenExternalLinks(true);
 
     updateKey(mSigningKey, card->sigFpr());
     updateKey(mEncryptionKey, card->encFpr());
@@ -398,6 +423,48 @@ void PGPCardWidget::changeNameResult(const GpgME::Error &err)
     if (!err.isCanceled()) {
         KMessageBox::information(this, i18nc("@info",
                     "Name successfully changed."),
+                i18nc("@title", "Success"));
+        ReaderStatus::mutableInstance()->updateStatus();
+    }
+}
+
+void PGPCardWidget::changeUrlRequested()
+{
+    QString text = mUrl;
+    while (true) {
+        bool ok = false;
+        text = QInputDialog::getText(this, i18n("Change the URL where the pubkey can be found"),
+                                     i18n("New pubkey URL:"), QLineEdit::Normal,
+                                     text, &ok, Qt::WindowFlags(),
+                                     Qt::ImhLatinOnly);
+        if (!ok) {
+            return;
+        }
+        // Some additional restrictions imposed by gnupg
+        if (text.size() > 254) {
+            KMessageBox::error(this, i18nc("@info",
+                               "The size of the URL may not exceed 254 characters."),
+                               i18nc("@title", "Error"));
+        }
+        break;
+    }
+
+    ReaderStatus::mutableInstance()
+    ->startSimpleTransaction(QStringLiteral("SCD SETATTR PUBKEY-URL %1").arg(text).toUtf8().constData(),
+                             this, "changeUrlResult");
+}
+
+void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
+{
+    if (err) {
+        KMessageBox::error(this, i18nc("@info",
+                           "URL change failed: %1", err.asString()),
+                           i18nc("@title", "Error"));
+        return;
+    }
+    if (!err.isCanceled()) {
+        KMessageBox::information(this, i18nc("@info",
+                    "URL successfully changed."),
                 i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }

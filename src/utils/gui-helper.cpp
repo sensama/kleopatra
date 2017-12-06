@@ -99,6 +99,8 @@ void Kleo::agressive_raise(QWidget *w, bool stayOnTop)
         SetWindowPos(wid, HWND_NOTOPMOST, 0, 0, 0, 0,
                      SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
     }
+#else
+    Q_UNUSED(stayOnTop);
 #endif
 }
 

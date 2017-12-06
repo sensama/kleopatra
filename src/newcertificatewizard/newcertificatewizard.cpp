@@ -866,7 +866,7 @@ private Q_SLOTS:
     void slotResult(const GpgME::KeyGenerationResult &result, const QByteArray &request, const QString &auditLog)
     {
         Q_UNUSED(auditLog);
-        if (result.error().code()) {
+        if (result.error().code() || !result.fingerprint()) {
             setField(QStringLiteral("error"), result.error().isCanceled()
                      ? i18n("Operation canceled.")
                      : i18n("Could not create key pair: %1",
@@ -894,16 +894,22 @@ private Q_SLOTS:
             }
         }
         // Ensure that we have the key in the keycache
-        if (pgp()) {
+        if (pgp() && !result.error().code() && result.fingerprint()) {
             auto ctx = Context::createForProtocol(OpenPGP);
             if (ctx) {
                 // Check is pretty useless something very buggy in that case.
                 Error e;
-                KeyCache::mutableInstance()->insert(ctx->key(result.fingerprint(), e, true));
+                const auto key = ctx->key(result.fingerprint(), e, true);
+                if (!key.isNull()) {
+                    KeyCache::mutableInstance()->insert(key);
+                } else {
+                    qCDebug(KLEOPATRA_LOG) << "Failed to find newly generated key.";
+                }
                 delete ctx;
             }
         }
-        setField(QStringLiteral("fingerprint"), QString::fromLatin1(result.fingerprint()));
+        setField(QStringLiteral("fingerprint"), result.fingerprint() ?
+                 QString::fromLatin1(result.fingerprint()) : QString());
         job = nullptr;
         Q_EMIT completeChanged();
         QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);

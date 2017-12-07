@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
+    <width>701</width>
     <height>571</height>
    </rect>
   </property>
@@ -51,13 +51,13 @@
      </item>
      <item>
       <widget class="QPushButton" name="genRevokeBtn">
+       <property name="toolTip">
+        <string>A revocation certificate is a file that serves as a &quot;kill switch&quot; to publicly
+declare that a key shall not anymore be used.  It is not possible&quot;
+to retract such a revocation certificate once it has been published.</string>
+       </property>
        <property name="text">
         <string>Generate &amp;revocation certificate</string>
-       </property>
-       <property name="toolTip">
-        <string>A revocation certificate is a file that serves as a "kill switch" to publicly
-declare that a key shall not anymore be used.  It is not possible"
-to retract such a revocation certificate once it has been published.</string>
        </property>
       </widget>
      </item>
@@ -78,63 +78,41 @@ to retract such a revocation certificate once it has been published.</string>
      <property name="flat">
       <bool>false</bool>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <property name="horizontalSpacing">
-       <number>60</number>
-      </property>
-      <property name="verticalSpacing">
-       <number>6</number>
-      </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="validFromLbl">
+        <property name="text">
+         <string>Valid from:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="validFrom">
+        <property name="text">
+         <string>00/00/00</string>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="expiresLbl">
         <property name="text">
          <string>Expires:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1" colspan="2">
-       <widget class="QLabel" name="smimeIssuer">
-        <property name="text">
-         <string>unknown</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::TextBrowserInteraction</set>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="compliance">
-        <property name="text">
-         <string>Compliance:</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::TextBrowserInteraction</set>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1" colspan="2">
-       <widget class="QLabel" name="complianceLbl">
-        <property name="text">
-         <string>unknown</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::TextBrowserInteraction</set>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QPushButton" name="moreDetailsBtn">
-        <property name="text">
-         <string>&amp;More details...</string>
         </property>
        </widget>
       </item>
@@ -152,8 +130,11 @@ to retract such a revocation certificate once it has been published.</string>
         </item>
         <item>
          <widget class="QToolButton" name="changeExpirationBtn">
-          <property name="text">
+          <property name="toolTip">
            <string>Change</string>
+          </property>
+          <property name="text">
+           <string/>
           </property>
           <property name="icon">
            <iconset theme="editor">
@@ -172,14 +153,14 @@ to retract such a revocation certificate once it has been published.</string>
         </item>
        </layout>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="validFromLbl">
+      <item row="2" column="0">
+       <widget class="QLabel" name="typeLbl">
         <property name="text">
-         <string>Valid from:</string>
+         <string>Type:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
+      <item row="2" column="1">
        <widget class="QLabel" name="type">
         <property name="text">
          <string>unknown</string>
@@ -196,50 +177,6 @@ to retract such a revocation certificate once it has been published.</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="validFrom">
-        <property name="text">
-         <string>00/00/00</string>
-        </property>
-        <property name="textInteractionFlags">
-         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="smimeIssuerLbl">
-        <property name="text">
-         <string>Issuer:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="publishingLbl">
-        <property name="text">
-         <string>Publishing:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="typeLbl">
-        <property name="text">
-         <string>Type:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="3" column="1" colspan="2">
        <widget class="QLabel" name="fingerprint">
         <property name="text">
@@ -250,12 +187,96 @@ to retract such a revocation certificate once it has been published.</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
+      <item row="4" column="0">
+       <widget class="QLabel" name="publishingLbl">
+        <property name="text">
+         <string>Publishing:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
        <widget class="QPushButton" name="publishing">
         <property name="text">
          <string>Publish Certificate</string>
         </property>
        </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="smimeIssuerLbl">
+        <property name="text">
+         <string>Issuer:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" colspan="2">
+       <widget class="QLabel" name="smimeIssuer">
+        <property name="text">
+         <string>unknown</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextBrowserInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="compliance">
+        <property name="text">
+         <string>Compliance:</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextBrowserInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="complianceLbl">
+        <property name="text">
+         <string>unknown</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextBrowserInteraction</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="3">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="moreDetailsBtn">
+          <property name="text">
+           <string>&amp;More details...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="webOfTrustBtn">
+          <property name="text">
+           <string>&amp;Certifications...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

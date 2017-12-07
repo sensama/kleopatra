@@ -117,6 +117,8 @@ set(_kleopatra_SRCS
   dialogs/setinitialpindialog.cpp
   dialogs/certificatedetailswidget.cpp
   dialogs/trustchainwidget.cpp
+  dialogs/weboftrustwidget.cpp
+  dialogs/weboftrustdialog.cpp
   dialogs/subkeyswidget.cpp
   dialogs/gencardkeydialog.cpp
   dialogs/updatenotification.cpp

@@ -20,6 +20,7 @@
 #include "kleopatra_debug.h"
 #include "trustchainwidget.h"
 #include "subkeyswidget.h"
+#include "weboftrustdialog.h"
 
 #include "commands/changepassphrasecommand.h"
 #include "commands/changeexpirycommand.h"
@@ -48,6 +49,8 @@
 
 Q_DECLARE_METATYPE(GpgME::UserID)
 
+using namespace Kleo;
+
 class CertificateDetailsWidget::Private
 {
 public:
@@ -62,6 +65,7 @@ public:
     void revokeUID(const GpgME::UserID &uid);
     void genRevokeCert();
     void certifyClicked();
+    void webOfTrustClicked();
     void addUserID();
     void changePassphrase();
     void changeExpiration();
@@ -96,6 +100,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.certifyBtn->setVisible(isOpenPGP && !hasSecret);
     ui.changeExpirationBtn->setVisible(isOpenPGP && hasSecret);
     ui.addUserIDBtn->setVisible(hasSecret);
+    ui.webOfTrustBtn->setVisible(isOpenPGP);
 
     ui.hboxLayout_1->addStretch(1);
 
@@ -221,6 +226,13 @@ void CertificateDetailsWidget::Private::certifyClicked()
                      });
     ui.certifyBtn->setEnabled(false);
     cmd->start();
+}
+
+void CertificateDetailsWidget::Private::webOfTrustClicked()
+{
+    QScopedPointer<WebOfTrustDialog> dlg(new WebOfTrustDialog(q));
+    dlg->setKey(key);
+    dlg->exec();
 }
 
 void CertificateDetailsWidget::Private::addUserID()
@@ -443,6 +455,8 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
             this, [this]() { d->publishCertificate(); });
     connect(d->ui.certifyBtn, &QPushButton::clicked,
             this, [this]() { d->certifyClicked(); });
+    connect(d->ui.webOfTrustBtn, &QPushButton::clicked,
+            this, [this]() { d->webOfTrustClicked(); });
 
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this]() { d->keysMayHaveChanged(); });

@@ -39,8 +39,7 @@ using namespace Kleo;
 class WebOfTrustWidget::Private
 {
 public:
-    Private(WebOfTrustWidget *qq)
-        : q(qq)
+    Private(WebOfTrustWidget *qq): keyListJob(nullptr), q(qq)
     {
         certificationsTV = new QTreeView;
         certificationsTV->setModel(&certificationsModel);

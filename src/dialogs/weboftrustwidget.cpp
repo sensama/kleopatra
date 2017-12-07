@@ -30,6 +30,7 @@
 
 #include "weboftrustwidget.h"
 #include "kleopatra_debug.h"
+#include "commands/command.h"
 
 #include <KMessageBox>
 #include <KLocalizedString>
@@ -50,6 +51,30 @@ public:
         vLay->addWidget(certificationsTV);
 
         q->setLayout(vLay);
+
+        connect(certificationsTV, &QAbstractItemView::doubleClicked,
+                q, [this] (const QModelIndex &idx) {
+                certificationDblClicked(idx);
+            });
+    }
+
+    void certificationDblClicked(const QModelIndex &idx) {
+        if (!idx.isValid()) {
+            return;
+        }
+
+        if (!idx.parent().isValid()) {
+            // No parent -> root item.
+            return;
+        }
+
+        // grab the keyid
+        const auto query = certificationsModel.data(idx.sibling(idx.row(), 0)).toString();
+
+        // Show details widget or search
+        auto cmd = Command::commandForQuery(query);
+        cmd->setParentWId(q->winId());
+        cmd->start();
     }
 
 

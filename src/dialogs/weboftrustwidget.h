@@ -22,6 +22,7 @@
 
 namespace GpgME {
 class Key;
+class KeyListResult;
 }
 
 namespace Kleo {
@@ -36,6 +37,10 @@ public:
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
+
+private Q_SLOTS:
+    void signatureListingNextKey(const GpgME::Key &key);
+    void signatureListingDone(const GpgME::KeyListResult &result);
 
 private:
     class Private;

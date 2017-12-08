@@ -88,36 +88,18 @@ public:
             return;
         }
 
-        connect(job, &QGpgME::KeyListJob::result,
-                q, [this](GpgME::KeyListResult result, std::vector<GpgME::Key>, QString, GpgME::Error) {
-                signatureListingDone(result);
-            });
 
-        connect(job, &QGpgME::KeyListJob::nextKey,
-                q, [this](const GpgME::Key &key) {
-                signatureListingNextKey (key);
-            });
+        /* Old style connect here again as QGPGME newstyle connects with
+         * default arguments don't work on windows. */
+
+        connect(job, SIGNAL(result(GpgME::KeyListResult)),
+            q, SLOT(signatureListingDone(GpgME::KeyListResult)));
+
+        connect(job, SIGNAL(nextKey(GpgME::Key)),
+            q, SLOT(signatureListingNextKey(GpgME::Key)));
+
         job->start(QStringList(QString::fromLatin1(key.primaryFingerprint())));
         keyListJob = job;
-    }
-
-    void signatureListingNextKey(const GpgME::Key &key)
-    {
-        GpgME::Key merged = key;
-        merged.mergeWith(this->key);
-        q->setKey(merged);
-    }
-
-    void signatureListingDone(const GpgME::KeyListResult &result)
-    {
-        if (result.error()) {
-            KMessageBox::information(q, xi18nc("@info",
-                                               "<para>An error occurred while loading the certifications: "
-                                               "<message>%1</message></para>",
-                                               QString::fromLocal8Bit(result.error().asString())),
-                                     i18nc("@title", "Certifications Loading Failed"));
-        }
-        keyListJob = nullptr;
     }
 
     GpgME::Key key;
@@ -158,3 +140,23 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
 WebOfTrustWidget::~WebOfTrustWidget()
 {
 }
+
+void WebOfTrustWidget::signatureListingNextKey(const GpgME::Key &key)
+{
+    GpgME::Key merged = key;
+    merged.mergeWith(d->key);
+    setKey(merged);
+}
+
+void WebOfTrustWidget::signatureListingDone(const GpgME::KeyListResult &result)
+{
+    if (result.error()) {
+        KMessageBox::information(this, xi18nc("@info",
+                                           "<para>An error occurred while loading the certifications: "
+                                           "<message>%1</message></para>",
+                                           QString::fromLocal8Bit(result.error().asString())),
+                                 i18nc("@title", "Certifications Loading Failed"));
+    }
+    d->keyListJob = nullptr;
+}
+

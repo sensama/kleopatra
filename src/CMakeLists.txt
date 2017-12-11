@@ -120,6 +120,7 @@ set(_kleopatra_SRCS
   dialogs/trustchainwidget.cpp
   dialogs/weboftrustwidget.cpp
   dialogs/weboftrustdialog.cpp
+  dialogs/exportdialog.cpp
   dialogs/subkeyswidget.cpp
   dialogs/gencardkeydialog.cpp
   dialogs/updatenotification.cpp

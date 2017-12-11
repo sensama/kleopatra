@@ -1,4 +1,5 @@
 /*  Copyright (c) 2016 Klarälvdalens Datakonsult AB
+                  2017 Intevation GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 #include "certificatedetailswidget.h"
 #include "ui_certificatedetailswidget.h"
 #include "kleopatra_debug.h"
+#include "exportdialog.h"
 #include "trustchainwidget.h"
 #include "subkeyswidget.h"
 #include "weboftrustdialog.h"
@@ -66,6 +68,7 @@ public:
     void genRevokeCert();
     void certifyClicked();
     void webOfTrustClicked();
+    void exportClicked();
     void addUserID();
     void changePassphrase();
     void changeExpiration();
@@ -231,6 +234,13 @@ void CertificateDetailsWidget::Private::certifyClicked()
 void CertificateDetailsWidget::Private::webOfTrustClicked()
 {
     QScopedPointer<WebOfTrustDialog> dlg(new WebOfTrustDialog(q));
+    dlg->setKey(key);
+    dlg->exec();
+}
+
+void CertificateDetailsWidget::Private::exportClicked()
+{
+    QScopedPointer<ExportDialog> dlg(new ExportDialog(q));
     dlg->setKey(key);
     dlg->exec();
 }
@@ -457,6 +467,8 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
             this, [this]() { d->certifyClicked(); });
     connect(d->ui.webOfTrustBtn, &QPushButton::clicked,
             this, [this]() { d->webOfTrustClicked(); });
+    connect(d->ui.exportBtn, &QPushButton::clicked,
+            this, [this]() { d->exportClicked(); });
 
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this]() { d->keysMayHaveChanged(); });

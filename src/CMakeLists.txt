@@ -102,6 +102,7 @@ set(_kleopatra_SRCS
   view/nullpinwidget.cpp
   view/tabwidget.cpp
   view/keycacheoverlay.cpp
+  view/waitwidget.cpp
   view/welcomewidget.cpp
 
   dialogs/certificateselectiondialog.cpp

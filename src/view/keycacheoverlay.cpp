@@ -35,10 +35,9 @@
 #include <Libkleo/KeyCache>
 
 #include "kleopatra_debug.h"
+#include "waitwidget.h"
 
 #include <QVBoxLayout>
-#include <QProgressBar>
-#include <QLabel>
 #include <QEvent>
 #include <KLocalizedString>
 
@@ -55,30 +54,15 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
         return;
     }
 
-    auto vLay = new QVBoxLayout(this);
-    auto bar = new QProgressBar;
-    auto label = new QLabel;
-    label->setText(QStringLiteral("<h3>%1</h3>").arg(i18n("Loading certificate cache...")));
-    bar->setRange(0, 0);
-    vLay->addStretch(1);
+    auto vLay = new QVBoxLayout;
 
-    auto subLay1 = new QVBoxLayout;
-    auto subLay3 = new QHBoxLayout;
-    subLay3->addStretch(1);
-    subLay3->addWidget(label);
-    subLay3->addStretch(1);
-    subLay1->addLayout(subLay3);
-    subLay1->addWidget(bar);
+    auto waitWidget = new WaitWidget(this);
 
-    auto subLay2 = new QHBoxLayout;
-    subLay2->addStretch(0.15);
-    subLay2->addLayout(subLay1, 0.7);
-    subLay2->addStretch(0.15);
+    waitWidget->setText(i18n("Loading certificate cache..."));
 
-    vLay->addLayout(subLay2);
+    vLay->addWidget(waitWidget);
 
-    vLay->addStretch(1);
-
+    setLayout(vLay);
 
     mBaseWidget->installEventFilter(this);
     mBaseWidget->setEnabled(false);

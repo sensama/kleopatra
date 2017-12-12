@@ -201,6 +201,8 @@ void KeyTreeView::init()
 
     m_proxy->setFilterFixedString(m_stringFilter);
     m_proxy->setKeyFilter(m_keyFilter);
+    m_proxy->setSortCaseSensitivity(Qt::CaseInsensitive);
+
     KeyRearrangeColumnsProxyModel *rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
     /* TODO: Make this configurable by the user. E.g. kdepim/src/todo/todoview.cpp */

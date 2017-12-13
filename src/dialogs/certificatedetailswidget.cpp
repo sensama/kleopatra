@@ -29,6 +29,7 @@
 #include "commands/certifycertificatecommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/genrevokecommand.h"
+#include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
 
 #include <libkleo/formatting.h>
@@ -373,6 +374,30 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
             q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
 }
 
+static QString formatDNToolTip(const Kleo::DN &dn)
+{
+    QString html = QStringLiteral("<table border=\"0\" cell-spacing=15>");
+
+    const auto appendRow = [&html, dn](const QString &lbl, const QString &attr) {
+                                const QString val = dn[attr];
+                                if (!val.isEmpty()) {
+                                    html += QStringLiteral(
+                                            "<tr><th style=\"text-align: left; white-space: nowrap\">%1:</th>"
+                                                "<td style=\"white-space: nowrap\">%2</td>"
+                                            "</tr>").arg(lbl, val);
+                                }
+                            };
+    appendRow(i18n("Common Name"), QStringLiteral("CN"));
+    appendRow(i18n("Organization"), QStringLiteral("O"));
+    appendRow(i18n("Street"), QStringLiteral("STREET"));
+    appendRow(i18n("City"),  QStringLiteral("L"));
+    appendRow(i18n("State"), QStringLiteral("ST"));
+    appendRow(i18n("Country"), QStringLiteral("C"));
+    html += QStringLiteral("</table>");
+
+    return html;
+}
+
 void CertificateDetailsWidget::Private::setupSMIMEProperties()
 {
     HIDE_ROW(publishing)
@@ -392,52 +417,35 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     } else {
         owner = i18nc("<name> of <company>", "%1 of %2", name, o);
     }
-    ui.smimeOwner->setText(QStringLiteral("<a href=\"#ownerDetails\">%1</a>").arg(owner));
-    ui.smimeOwner->setContextMenuPolicy(Qt::NoContextMenu);
+    ui.smimeOwner->setText(owner);
+    ui.smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
     const QString issuer = issuerCN.isEmpty() ? key.issuerName() : issuerCN;
     ui.smimeIssuer->setText(QStringLiteral("<a href=\"#issuerDetails\">%1</a>").arg(issuer));
+
+    ui.smimeIssuer->setToolTip(formatDNToolTip(issuerDN));
+
+    ui.smimeOwner->setToolTip(formatDNToolTip(dn));
+
 }
 
 void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)
 {
-    Kleo::DN dn;
-    QWidget *w;
-    if (link == QLatin1String("#ownerDetails")) {
-        dn = Kleo::DN(key.userID(0).id());
-        w = ui.smimeOwner;
-    } else if (link == QLatin1String("#issuerDetails")) {
-        dn = Kleo::DN(key.issuerName());
-        w = ui.smimeIssuer;
-    } else {
-        Q_UNREACHABLE();
+    if (link == QLatin1String("#issuerDetails")) {
+        const auto parentKey = KeyCache::instance()->findIssuers(key, KeyCache::NoOption);
+
+        if (!parentKey.size()) {
+            return;
+        }
+        auto cmd = new Kleo::Commands::DetailsCommand(parentKey[0], nullptr);
+        cmd->setParentWidget(q);
+        cmd->start();
         return;
     }
-
-    QString html = QStringLiteral("<table border=\"0\" cell-spacing=15>");
-    const auto appendRow = [&html, dn](const QString &lbl, const QString &attr) {
-                                const QString val = dn[attr];
-                                if (!val.isEmpty()) {
-                                    html += QStringLiteral(
-                                            "<tr><th style=\"text-align: left; white-space: nowrap\">%1:</th>"
-                                                "<td style=\"white-space: nowrap\">%2</td>"
-                                            "</tr>").arg(lbl, val);
-                                }
-                            };
-    appendRow(i18n("Common Name"), QStringLiteral("CN"));
-    appendRow(i18n("Organization"), QStringLiteral("O"));
-    appendRow(i18n("Street"), QStringLiteral("STREET"));
-    appendRow(i18n("City"),  QStringLiteral("L"));
-    appendRow(i18n("State"), QStringLiteral("ST"));
-    appendRow(i18n("Country"), QStringLiteral("C"));
-    html += QStringLiteral("</table>");
-
-    QToolTip::showText(QCursor::pos(), html, w);
+    qCWarning(KLEOPATRA_LOG) << "Unknown link activated:" << link;
 }
-
-
 
 CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
     : QWidget(parent)

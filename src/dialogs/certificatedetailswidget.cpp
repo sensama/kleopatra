@@ -135,11 +135,25 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDTable->setHeaderLabels(headers);
 
     const auto uids = key.userIDs();
-    for (const auto &uid : uids) {
+    for (unsigned int i = 0; i < uids.size(); ++i) {
+        const auto &uid = uids[i];
         auto item = new QTreeWidgetItem;
         const QString toolTip = tofuTooltipString(uid);
         item->setData(0, Qt::UserRole, QVariant::fromValue(uid));
-        item->setData(0, Qt::DisplayRole, Kleo::Formatting::prettyEMail(uid));
+
+        auto pMail = Kleo::Formatting::prettyEMail(uid);
+        if (!isOpenPGP && pMail.isEmpty()) {
+            // S/MIME UserIDs are sometimes split, with one userID
+            // containing the name another the Mail, we merge these
+            // UID's into a single item.
+
+            if (i + 1 < uids.size()) {
+                pMail = Kleo::Formatting::prettyEMail(uids[i + 1]);
+                // skip next uid
+                ++i;
+            }
+        }
+        item->setData(0, Qt::DisplayRole, pMail);
         item->setData(0, Qt::ToolTipRole, toolTip);
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::prettyName(uid));
         item->setData(1, Qt::ToolTipRole, toolTip);

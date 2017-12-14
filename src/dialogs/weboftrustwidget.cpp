@@ -47,10 +47,8 @@ public:
         certificationsTV->setAllColumnsShowFocus(true);
         certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-        auto vLay = new QVBoxLayout;
+        auto vLay = new QVBoxLayout(q);
         vLay->addWidget(certificationsTV);
-
-        q->setLayout(vLay);
 
         connect(certificationsTV, &QAbstractItemView::doubleClicked,
                 q, [this] (const QModelIndex &idx) {

@@ -47,8 +47,6 @@ WaitWidget::WaitWidget(QWidget *parent)
     vLay->addLayout(subLay2);
 
     vLay->addStretch(1);
-
-    setLayout(vLay);
 }
 
 void WaitWidget::setText(const QString &text)

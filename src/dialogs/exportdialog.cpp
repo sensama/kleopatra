@@ -61,7 +61,7 @@ private:
 
 void ExportWidget::Private::setupUi()
 {
-    auto vlay = new QVBoxLayout;
+    auto vlay = new QVBoxLayout(q);
 
     textEdit = new QTextEdit;
     textEdit->setVisible(false);
@@ -73,8 +73,6 @@ void ExportWidget::Private::setupUi()
     waitWidget = new WaitWidget;
     waitWidget->setText(i18n("Exporting ..."));
     vlay->addWidget(waitWidget);
-
-    q->setLayout(vlay);
 }
 
 ExportWidget::ExportWidget(QWidget *parent)

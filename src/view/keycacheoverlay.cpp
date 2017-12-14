@@ -54,7 +54,7 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
         return;
     }
 
-    auto vLay = new QVBoxLayout;
+    auto vLay = new QVBoxLayout(this);
 
     auto waitWidget = new WaitWidget(this);
 
@@ -62,7 +62,6 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
 
     vLay->addWidget(waitWidget);
 
-    setLayout(vLay);
 
     mBaseWidget->installEventFilter(this);
     mBaseWidget->setEnabled(false);

@@ -140,9 +140,8 @@ PGPCardWidget::PGPCardWidget():
     auto areaWidget = new QWidget;
     areaWidget->setLayout(grid);
     area->setWidget(areaWidget);
-    auto myLayout = new QVBoxLayout;
+    auto myLayout = new QVBoxLayout(this);
     myLayout->addWidget(area);
-    setLayout(myLayout);
 
     // Version and Serialnumber
     grid->addWidget(mVersionLabel, row++, 0, 1, 2);

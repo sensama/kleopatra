@@ -396,7 +396,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
                     t->setInput(Input::createFromFile(sig));
                     t->setSignedData(Input::createFromFile(cFile.fileName));
-                    t->setProtocol(findProtocol(classification));
+                    t->setProtocol(proto);
                     tasks.push_back(t);
                 }
             }

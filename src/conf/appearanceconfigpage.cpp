@@ -49,7 +49,7 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent, const 
     QVBoxLayout *lay = new QVBoxLayout(this);
     mWidget = new AppearanceConfigWidget(this);
     lay->addWidget(mWidget);
-    connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
+    connect(mWidget, &AppearanceConfigWidget::changed, this, QOverload<>::of(&KCModule::changed));
 
     load();
 }

@@ -215,7 +215,11 @@ void CertifyCertificateCommand::doStart()
             cmd->setParentWidget(d->parentWidgetOrView());
             cmd->setProtocol(GpgME::OpenPGP);
             loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+            QMetaObject::invokeMethod(cmd, &Commands::NewCertificateCommand::start, Qt::QueuedConnection);
+#else
             QMetaObject::invokeMethod(cmd, "start", Qt::QueuedConnection);
+#endif
             loop.exec();
         } else {
             Q_EMIT(canceled());

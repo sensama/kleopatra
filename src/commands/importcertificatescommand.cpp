@@ -378,7 +378,11 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         auto cmd = new Commands::CertifyCertificateCommand(key);
         cmd->setParentWidget(parentWidgetOrView());
         loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+        QMetaObject::invokeMethod(cmd, &Commands::CertifyCertificateCommand::start, Qt::QueuedConnection);
+#else
         QMetaObject::invokeMethod(cmd, "start", Qt::QueuedConnection);
+#endif
         loop.exec();
     }
     return true;

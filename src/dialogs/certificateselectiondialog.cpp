@@ -370,7 +370,11 @@ void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &i
     QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
     sm->select(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    QMetaObject::invokeMethod(q, [this]() {q->accept();}, Qt::QueuedConnection);
+#else
     QMetaObject::invokeMethod(q, "accept", Qt::QueuedConnection);
+#endif
 }
 
 void CertificateSelectionDialog::accept()

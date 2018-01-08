@@ -381,16 +381,26 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
         if (!mayBeAnyMessageType(cFile.classification)) {
             // Not a Message? Maybe there is a signature for this file?
             const auto signatures = findSignatures(cFile.fileName);
+            bool foundSig = false;
             if (!signatures.empty()) {
                 for (const QString &sig : signatures) {
-                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << cFile.fileName;
+                    const auto classification = classify(sig);
+                    qCDebug(KLEOPATRA_LOG) << "Guessing: " << sig << " is a signature for: " << cFile.fileName
+                                           << "Classification: " << classification;
+                    const auto proto = findProtocol(classification);
+                    if (proto == GpgME::UnknownProtocol) {
+                        qCDebug(KLEOPATRA_LOG) << "Could not determine protocol. Skipping guess.";
+                        continue;
+                    }
+                    foundSig = true;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
                     t->setInput(Input::createFromFile(sig));
                     t->setSignedData(Input::createFromFile(cFile.fileName));
-                    t->setProtocol(cFile.protocol);
+                    t->setProtocol(findProtocol(classification));
                     tasks.push_back(t);
                 }
-            } else {
+            }
+            if (!foundSig) {
                 undetected << cFile.fileName;
                 qCDebug(KLEOPATRA_LOG) << "Failed detection for: " << cFile.fileName << " adding to undetected.";
             }

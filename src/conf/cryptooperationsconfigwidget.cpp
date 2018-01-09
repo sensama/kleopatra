@@ -234,9 +234,13 @@ void CryptoOperationsConfigWidget::setupGui()
                                              "So that they can be opened with an editor or sent in a mail body. "
                                              "This will increase file size by one third."));
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
+    mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));
+    mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
+
     fileGrpLay->addWidget(mPGPFileExtCB);
     fileGrpLay->addWidget(mAutoDecryptVerifyCB);
     fileGrpLay->addWidget(mASCIIArmorCB);
+    fileGrpLay->addWidget(mTmpDirCB);
 
     QGridLayout *comboLay = new QGridLayout;
     QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
@@ -249,6 +253,7 @@ void CryptoOperationsConfigWidget::setupGui()
     mArchiveDefinitionCB = new QComboBox;
     comboLay->addWidget(mArchiveDefinitionCB, 1, 1);
     fileGrpLay->addLayout(comboLay);
+
 
     fileGrp->setLayout(fileGrpLay);
     baseLay->addWidget(fileGrp);
@@ -273,6 +278,7 @@ void CryptoOperationsConfigWidget::setupGui()
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mASCIIArmorCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mTmpDirCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
@@ -311,6 +317,7 @@ void CryptoOperationsConfigWidget::load()
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
     mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
+    mTmpDirCB->setChecked(filePrefs.dontUseTmpDir());
 
     const std::vector< std::shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
     const std::shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
@@ -357,6 +364,7 @@ void CryptoOperationsConfigWidget::save()
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
     filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
     filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
+    filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());
 
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {

@@ -69,7 +69,8 @@ private:
               *mQuickSignCB,
               *mPGPFileExtCB,
               *mAutoDecryptVerifyCB,
-              *mASCIIArmorCB;
+              *mASCIIArmorCB,
+              *mTmpDirCB;
     QComboBox *mChecksumDefinitionCB,
               *mArchiveDefinitionCB;
 };

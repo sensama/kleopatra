@@ -26,5 +26,10 @@
    <whatsthis>Set this option to encode encrypted or signed files as base64 encoded text. So that they can be opened with an editor or sent in a mail body. This will increase file size by one third.</whatsthis>
    <default>false</default>
  </entry>
+ <entry name="DontUseTmpDir" key="dont-use-tmp-dir" type="Bool">
+   <label>Create temporary decrypted files in the folder of the encrypted file.</label>
+   <whatsthis>Set this option to avoid using the users temporary directory.</whatsthis>
+   <default>false</default>
+ </entry>
  </group>
 </kcfg>

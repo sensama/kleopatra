@@ -36,6 +36,8 @@
 
 #include "autodecryptverifyfilescontroller.h"
 
+#include "fileoperationspreferences.h"
+
 #include <crypto/gui/decryptverifyoperationwidget.h>
 #include <crypto/gui/decryptverifyfilesdialog.h>
 #include <crypto/decryptverifytask.h>
@@ -76,7 +78,10 @@ class AutoDecryptVerifyFilesController::Private
     AutoDecryptVerifyFilesController *const q;
 public:
     explicit Private(AutoDecryptVerifyFilesController *qq);
-    ~Private() { qCDebug(KLEOPATRA_LOG); }
+    ~Private() {
+        qCDebug(KLEOPATRA_LOG);
+        delete m_workDir;
+    }
 
     void slotDialogCanceled();
     void schedule();
@@ -107,13 +112,14 @@ public:
     bool m_errorDetected;
     DecryptVerifyOperation m_operation;
     DecryptVerifyFilesDialog *m_dialog;
-    QTemporaryDir m_workDir;
+    QTemporaryDir *m_workDir;
 };
 
 AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq),
     m_errorDetected(false),
     m_operation(DecryptVerify),
-    m_dialog(nullptr)
+    m_dialog(nullptr),
+    m_workDir(nullptr)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -173,7 +179,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
 
     QTimer::singleShot(0, q, SLOT(schedule()));
     if (m_dialog->exec() == QDialog::Accepted) {
-        const QDir workdir(m_workDir.path());
+        Q_ASSERT(m_workDir);
+        const QDir workdir(m_workDir->path());
         const QDir outDir(m_dialog->outputLocation());
         bool overWriteAll = false;
         qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
@@ -411,7 +418,19 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
 
             const auto ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
 
-            const auto wd = QDir(m_workDir.path());
+            if (FileOperationsPreferences().dontUseTmpDir()) {
+                m_workDir = new QTemporaryDir(heuristicBaseDirectory(fileNames) + "/kleopatra-XXXXXX");
+                if (!m_workDir->isValid()) {
+                    qCDebug(KLEOPATRA_LOG) << m_workDir->path() << "not a valid temporary directory.";
+                    delete m_workDir;
+                    m_workDir = new QTemporaryDir();
+                }
+            } else {
+                m_workDir = new QTemporaryDir();
+            }
+            qCDebug(KLEOPATRA_LOG) << "Using:" << m_workDir->path() << "as temporary directory.";
+
+            const auto wd = QDir(m_workDir->path());
 
             const auto output =
                 ad       ? ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd) :

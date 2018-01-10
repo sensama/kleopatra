@@ -321,7 +321,7 @@ static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMa
 
     // Build the default names for the wizard.
     const QFileInfo fi(file);
-    const QString baseName = dir + QLatin1Char('/') + fi.fileName() + QStringLiteral(".");
+    const QString baseName = dir + QLatin1Char('/') + fi.fileName() + QLatin1Char('.');
 
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();

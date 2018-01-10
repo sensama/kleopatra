@@ -36,8 +36,13 @@
 #include <libkleo/dn.h>
 #include <libkleo/keycache.h>
 
+#include <gpgme++/context.h>
 #include <gpgme++/key.h>
+#include <gpgme++/keylistresult.h>
 #include <gpgme++/tofuinfo.h>
+
+#include <QGpgME/Protocol>
+#include <QGpgME/KeyListJob>
 
 #include <QToolTip>
 #include <QDateTime>
@@ -83,8 +88,11 @@ public:
 
     void smimeLinkActivated(const QString &link);
 
+    void setUpdatedKey(const GpgME::Key &key);
+
     Ui::CertificateDetailsWidget ui;
     GpgME::Key key;
+    bool updateInProgress;
 private:
     CertificateDetailsWidget *q;
 };
@@ -122,12 +130,9 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     ui.userIDTable->clear();
 
-    QStringList headers = { i18n("Email"), i18n("Name") };
-    if (isOpenPGP) {
-        headers << i18n("Trust Level");
-        if (canRevokeUID) {
-            headers << QString();
-        }
+    QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level") };
+    if (canRevokeUID) {
+        headers << QString();
     }
     ui.userIDTable->setColumnCount(headers.count());
     ui.userIDTable->setColumnWidth(0, 200);
@@ -157,8 +162,12 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(0, Qt::ToolTipRole, toolTip);
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::prettyName(uid));
         item->setData(1, Qt::ToolTipRole, toolTip);
-        if (isOpenPGP) {
-            QIcon trustIcon;
+
+        QIcon trustIcon;
+        if (updateInProgress) {
+           trustIcon = QIcon::fromTheme(QStringLiteral("emblem-question"));
+           item->setData(2, Qt::DisplayRole, i18n("Updating..."));
+        } else {
             switch (uid.validity()) {
             case GpgME::UserID::Unknown:
             case GpgME::UserID::Undefined:
@@ -175,23 +184,21 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
                 trustIcon = QIcon::fromTheme(QStringLiteral("emblem-success"));
                 break;
             }
-            item->setData(2, Qt::DecorationRole, trustIcon);
             item->setData(2, Qt::DisplayRole, Kleo::Formatting::validityShort(uid));
-            item->setData(2, Qt::ToolTipRole, toolTip);
+        }
+        item->setData(2, Qt::DecorationRole, trustIcon);
+        item->setData(2, Qt::ToolTipRole, toolTip);
 
-            ui.userIDTable->addTopLevelItem(item);
+        ui.userIDTable->addTopLevelItem(item);
 
-            if (canRevokeUID) {
-                auto button = new QPushButton;
-                button->setIcon(QIcon::fromTheme(QStringLiteral("entry-delete")));
-                button->setToolTip(i18n("Revoke this User ID"));
-                button->setMaximumWidth(32);
-                QObject::connect(button, &QPushButton::clicked,
-                                q, [this, uid]() { revokeUID(uid); });
-                ui.userIDTable->setItemWidget(item, 4, button);
-            }
-        } else {
-            ui.userIDTable->addTopLevelItem(item);
+        if (canRevokeUID) {
+            auto button = new QPushButton;
+            button->setIcon(QIcon::fromTheme(QStringLiteral("entry-delete")));
+            button->setToolTip(i18n("Revoke this User ID"));
+            button->setMaximumWidth(32);
+            QObject::connect(button, &QPushButton::clicked,
+                            q, [this, uid]() { revokeUID(uid); });
+            ui.userIDTable->setItemWidget(item, 4, button);
         }
     }
 }
@@ -275,7 +282,7 @@ void CertificateDetailsWidget::Private::keysMayHaveChanged()
 {
     auto newKey = Kleo::KeyCache::instance()->findByFingerprint(key.primaryFingerprint());
     if (!newKey.isNull()) {
-        q->setKey(newKey);
+        setUpdatedKey(newKey);
     }
 }
 
@@ -500,17 +507,46 @@ CertificateDetailsWidget::~CertificateDetailsWidget()
 {
 }
 
+void CertificateDetailsWidget::Private::setUpdatedKey(const GpgME::Key &k)
+{
+    key = k;
+
+    setupCommonProperties();
+    if (key.protocol() == GpgME::OpenPGP) {
+        setupPGPProperties();
+    } else {
+        setupSMIMEProperties();
+    }
+}
+
 void CertificateDetailsWidget::setKey(const GpgME::Key &key)
 {
-    d->key = key;
-    d->key.update(); // Fetch TOFU info (TODO: could be blocking, use async?)
-
-    d->setupCommonProperties();
-    if (key.protocol() == GpgME::OpenPGP) {
-        d->setupPGPProperties();
-    } else {
-        d->setupSMIMEProperties();
+    if (key.protocol() == GpgME::CMS) {
+        // For everything but S/MIME this should be quick
+        // and we don't need to show another status.
+        d->updateInProgress = true;
     }
+    d->setUpdatedKey(key);
+
+    // Run a keylistjob with full details (TOFU / Validate)
+    QGpgME::KeyListJob *job = key.protocol() == GpgME::OpenPGP ? QGpgME::openpgp()->keyListJob(false, true, true) :
+                                                                 QGpgME::smime()->keyListJob(false, true, true);
+
+    auto ctx = QGpgME::Job::context(job);
+    ctx->addKeyListMode(GpgME::WithTofu);
+
+    connect(job, &QGpgME::KeyListJob::result, job, [this, job](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
+        d->updateInProgress = false;
+        if (keys.size() != 1) {
+            qCWarning(KLEOPATRA_LOG) << "Invalid keylist result in update.";
+            return;
+        }
+        // As we listen for keysmayhavechanged we get the update
+        // after updating the keycache.
+        KeyCache::mutableInstance()->insert(keys);
+    });
+
+    job->start(QStringList() << key.primaryFingerprint(), key.hasSecret());
 }
 
 GpgME::Key CertificateDetailsWidget::key() const

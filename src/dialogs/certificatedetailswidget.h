@@ -21,8 +21,12 @@
 #include <QWidget>
 #include <QDialog>
 
+#include <vector>
+
 namespace GpgME {
 class Key;
+class Error;
+class KeyListResult;
 }
 
 class CertificateDetailsWidget : public QWidget
@@ -39,6 +43,11 @@ public:
 private:
     class Private;
     const QScopedPointer<Private> d;
+
+    // Windows QGpgME new style connect problem makes this necessary.
+    Q_PRIVATE_SLOT(d, void keyListDone(const GpgME::KeyListResult &,
+                   const std::vector<GpgME::Key> &, const QString &,
+                   const GpgME::Error &))
 };
 
 

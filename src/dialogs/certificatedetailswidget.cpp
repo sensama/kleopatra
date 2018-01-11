@@ -89,6 +89,9 @@ public:
     void smimeLinkActivated(const QString &link);
 
     void setUpdatedKey(const GpgME::Key &key);
+    void keyListDone(const GpgME::KeyListResult &,
+                     const std::vector<GpgME::Key> &, const QString &,
+                     const GpgME::Error &);
 
     Ui::CertificateDetailsWidget ui;
     GpgME::Key key;
@@ -507,6 +510,20 @@ CertificateDetailsWidget::~CertificateDetailsWidget()
 {
 }
 
+void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &,
+                                                    const std::vector<GpgME::Key> &keys,
+                                                    const QString &,
+                                                    const GpgME::Error &) {
+        updateInProgress = false;
+        if (keys.size() != 1) {
+            qCWarning(KLEOPATRA_LOG) << "Invalid keylist result in update.";
+            return;
+        }
+        // As we listen for keysmayhavechanged we get the update
+        // after updating the keycache.
+        KeyCache::mutableInstance()->insert(keys);
+}
+
 void CertificateDetailsWidget::Private::setUpdatedKey(const GpgME::Key &k)
 {
     key = k;
@@ -535,16 +552,9 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
 
-    connect(job, &QGpgME::KeyListJob::result, job, [this, job](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
-        d->updateInProgress = false;
-        if (keys.size() != 1) {
-            qCWarning(KLEOPATRA_LOG) << "Invalid keylist result in update.";
-            return;
-        }
-        // As we listen for keysmayhavechanged we get the update
-        // after updating the keycache.
-        KeyCache::mutableInstance()->insert(keys);
-    });
+    // Windows QGpgME new style connect problem makes this necessary.
+    connect(job, SIGNAL(result(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)),
+            this, SLOT(keyListDone(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)));
 
     job->start(QStringList() << key.primaryFingerprint(), key.hasSecret());
 }
@@ -602,3 +612,5 @@ GpgME::Key CertificateDetailsDialog::key() const
     Q_ASSERT(w);
     return w->key();
 }
+
+#include "moc_certificatedetailswidget.cpp"

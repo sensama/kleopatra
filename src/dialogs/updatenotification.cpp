@@ -72,6 +72,7 @@ static void gpgconf_set_update_check(bool value)
                              QStringLiteral("allow-version-check"));
     if (!entry) {
         qCDebug(KLEOPATRA_LOG) << "allow-version-check entry not found";
+        return;
     }
     if (entry->boolValue() != value) {
         entry->setBoolValue(value);

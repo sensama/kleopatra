@@ -43,6 +43,7 @@
 #include <commands/reloadkeyscommand.h>
 #include <commands/lookupcertificatescommand.h>
 #include <commands/newcertificatecommand.h>
+#include <commands/importcertificatefromfilecommand.h>
 
 #include <gpgme++/key.h>
 
@@ -147,9 +148,11 @@ private:
             QPushButton *const cancel = buttonBox.addButton(QDialogButtonBox::Close);
             Q_UNUSED(cancel);
             QPushButton *const reload = buttonBox.addButton(i18n("Reload"),    QDialogButtonBox::ActionRole);
+            QPushButton *const import = buttonBox.addButton(i18n("Import..."),    QDialogButtonBox::ActionRole);
             QPushButton *const lookup = buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
             QPushButton *const create = buttonBox.addButton(i18n("New..."),    QDialogButtonBox::ActionRole);
 
+            import->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
             lookup->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));
             reload->setToolTip(i18nc("@info:tooltip", "Refresh certificate list"));
             create->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
@@ -161,6 +164,17 @@ private:
             connect(create,     SIGNAL(clicked()),  q, SLOT(create()));
             connect(KeyCache::instance().get(), SIGNAL(keysMayHaveChanged()),
                     q, SLOT(slotKeysMayHaveChanged()));
+
+            connect(import, &QPushButton::clicked, q, [import, q] () {
+                import->setEnabled(false);
+                auto cmd = new Kleo::ImportCertificateFromFileCommand();
+                connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
+                        q, [import, q]() {
+                    import->setEnabled(true);
+                });
+                cmd->setParentWidget(q);
+                cmd->start();
+            });
         }
     } ui;
 };

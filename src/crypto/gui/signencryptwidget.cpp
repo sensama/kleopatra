@@ -63,28 +63,40 @@ namespace {
 class SignCertificateFilter: public DefaultKeyFilter
 {
 public:
-    SignCertificateFilter() : DefaultKeyFilter()
+    SignCertificateFilter(GpgME::Protocol proto) : DefaultKeyFilter()
     {
         setRevoked(DefaultKeyFilter::NotSet);
         setExpired(DefaultKeyFilter::NotSet);
         setHasSecret(DefaultKeyFilter::Set);
         setCanSign(DefaultKeyFilter::Set);
+
+        if (proto == GpgME::OpenPGP) {
+            setIsOpenPGP(DefaultKeyFilter::Set);
+        } else if (proto == GpgME::CMS) {
+            setIsOpenPGP(DefaultKeyFilter::NotSet);
+        }
     }
 };
 class EncryptCertificateFilter: public DefaultKeyFilter
 {
 public:
-    EncryptCertificateFilter(): DefaultKeyFilter()
+    EncryptCertificateFilter(GpgME::Protocol proto): DefaultKeyFilter()
     {
         setRevoked(DefaultKeyFilter::NotSet);
         setExpired(DefaultKeyFilter::NotSet);
         setCanEncrypt(DefaultKeyFilter::Set);
+
+        if (proto == GpgME::OpenPGP) {
+            setIsOpenPGP(DefaultKeyFilter::Set);
+        } else if (proto == GpgME::CMS) {
+            setIsOpenPGP(DefaultKeyFilter::NotSet);
+        }
     }
 };
 class EncryptSelfCertificateFilter: public EncryptCertificateFilter
 {
 public:
-    EncryptSelfCertificateFilter(): EncryptCertificateFilter()
+    EncryptSelfCertificateFilter(GpgME::Protocol proto): EncryptCertificateFilter(proto)
     {
         setRevoked(DefaultKeyFilter::NotSet);
         setExpired(DefaultKeyFilter::NotSet);
@@ -111,7 +123,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     mSigChk->setChecked(true);
 
     mSigSelect = new KeySelectionCombo();
-    mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter()));
 
     sigLay->addWidget(mSigChk);
     sigLay->addWidget(mSigSelect, 1);
@@ -133,7 +144,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
 
     // Own key
     mSelfSelect = new KeySelectionCombo();
-    mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter()));
     mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
     mEncSelfChk->setChecked(true);
     mRecpLayout->addWidget(mEncSelfChk, 0, 0);
@@ -191,6 +201,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     lay->addWidget(encBox);
 
     loadKeys();
+    setProtocol(GpgME::UnknownProtocol);
     addRecipient(Key());
     updateOp();
 }
@@ -203,7 +214,7 @@ void SignEncryptWidget::addRecipient()
 void SignEncryptWidget::addRecipient(const Key &key)
 {
     CertificateLineEdit *certSel = new CertificateLineEdit(mModel, this,
-                                                           new EncryptCertificateFilter());
+                                                           new EncryptCertificateFilter(mCurrentProto));
     mRecpWidgets << certSel;
 
     if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
@@ -393,4 +404,18 @@ void SignEncryptWidget::setEncryptionChecked(bool value)
 {
     mEncSelfChk->setChecked(value);
     mEncOtherChk->setChecked(value);
+}
+
+void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
+{
+    if (mCurrentProto == proto) {
+        return;
+    }
+    mCurrentProto = proto;
+    mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(proto)));
+    mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(proto)));
+    const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(proto));
+    Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
+        edit->setKeyFilter(encFilter);
+    }
 }

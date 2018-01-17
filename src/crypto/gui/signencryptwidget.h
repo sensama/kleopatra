@@ -84,6 +84,10 @@ public:
     /** Set wether or not encryption group should be checked */
     void setEncryptionChecked(bool value);
 
+    /** Filter for a specific protocol. Use UnknownProtocol for both
+     * S/MIME and OpenPGP */
+    void setProtocol(GpgME::Protocol protocol);
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
@@ -115,6 +119,7 @@ private:
               *mEncOtherChk,
               *mEncSelfChk;
     int mRecpRowCount;
+    GpgME::Protocol mCurrentProto;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

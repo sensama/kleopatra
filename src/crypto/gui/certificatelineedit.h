@@ -82,6 +82,9 @@ public:
     /** Set the preselected Key for this widget. */
     void setKey(const GpgME::Key &key);
 
+    /** Set the used keyfilter. */
+    void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
+
 Q_SIGNALS:
     /** Emitted when the selected key changed. */
     void keyChanged();
@@ -106,6 +109,7 @@ private:
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;
+    GpgME::Protocol mCurrentProto;
     std::shared_ptr<KeyFilter> mFilter;
     bool mEditStarted,
          mEditFinished;

@@ -267,4 +267,10 @@ bool CertificateLineEdit::isEmpty() const
     return text().isEmpty();
 }
 
+void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
+{
+    mFilter = filter;
+    mFilterModel->setKeyFilter(filter);
+}
+
 #include "certificatelineedit.moc"

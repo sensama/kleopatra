@@ -212,7 +212,7 @@ public:
     }
     unsigned int classification() const override
     {
-        return 0;
+        return classifyContent(m_buffer->data());
     }
 
 private:

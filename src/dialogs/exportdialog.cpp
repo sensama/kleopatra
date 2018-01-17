@@ -66,7 +66,7 @@ void ExportWidget::Private::setupUi()
     textEdit = new QTextEdit;
     textEdit->setVisible(false);
     textEdit->setReadOnly(true);
-    textEdit->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
+    textEdit->setFont(QFont("Monospace") /* QFontDatabase::systemFont(QFontDatabase::FixedFont) */);
     textEdit->setReadOnly(true);
     vlay->addWidget(textEdit);
 

@@ -72,6 +72,7 @@ private:
     Q_PRIVATE_SLOT(d, void slotConfigCommitted())
     Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
     Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
+    Q_PRIVATE_SLOT(d, void togglePadView())
     Q_PRIVATE_SLOT(d, void toggleSmartcardView())
     Q_PRIVATE_SLOT(d, void forceUpdateCheck())
     Q_PRIVATE_SLOT(d, void openCompendium())

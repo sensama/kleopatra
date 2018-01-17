@@ -1,5 +1,5 @@
 <!DOCTYPE gui >
-<gui name="kleopatra" version="501" >
+<gui name="kleopatra" version="502" >
     <MenuBar>
         <Menu name="file">
             <text>&amp;File</text>
@@ -33,6 +33,8 @@
             <Separator/>
             <Action name="window_expand_all"/>
             <Action name="window_collapse_all"/>
+            <Separator/>
+            <Action name="pad_view"/>
         </Menu>
         <Menu name="certMenu">
             <text>&amp;Certificates</text>
@@ -57,6 +59,8 @@
             <Action name="tools_refresh_openpgp_certificates"/>
             <Separator/>
             <Action name="manage_smartcard"/>
+            <Separator/>
+            <Action name="clipboard_menu"/>
             <Separator/>
             <Action name="crl_import_crl"/>
             <Separator/>
@@ -97,7 +101,8 @@
         <Action name="certificates_certify_certificate"/>
         <Action name="file_lookup_certificates"/>
         <Separator/>
-        <Action name="clipboard_menu"/>
+        <Action name="pad_view"/>
+        <Separator/>
     </ToolBar>
 
     <Menu name="listview_popup">

@@ -35,6 +35,7 @@
 #include "mainwindow.h"
 #include "aboutdata.h"
 
+#include "view/padwidget.h"
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
 #include "view/keylistcontroller.h"
@@ -264,6 +265,8 @@ public:
         }
     }
 
+    void togglePadView();
+
 private:
     void setupActions();
 
@@ -274,7 +277,7 @@ private:
 
     void checkWelcomePage()
     {
-        if (ui.scWidget->isVisible()) {
+        if (ui.scWidget->isVisible() || ui.padWidget->isVisible()) {
            return;
         }
         if (KeyCache::instance()->keys().empty()) {
@@ -295,6 +298,7 @@ private:
 
         TabWidget tabWidget;
         SearchBar *searchBar;
+        PadWidget *padWidget;
         SmartCardWidget *scWidget;
         WelcomeWidget *welcomeWidget;
         explicit UI(MainWindow *q);
@@ -325,6 +329,10 @@ MainWindow::Private::UI::UI(MainWindow *q)
     welcomeWidget = new WelcomeWidget();
     vbox->addWidget(welcomeWidget);
     welcomeWidget->hide();
+
+    padWidget = new PadWidget();
+    vbox->addWidget(padWidget);
+    padWidget->hide();
 
     q->setCentralWidget(mainWidget);
 }
@@ -403,6 +411,10 @@ void MainWindow::Private::setupActions()
             "gpg4win-compact", q, SLOT(openCompendium()), QString(), false, true
         },
 #endif
+        {
+            "pad_view", i18nc("Title for a generic data input / output area supporting text actions.", "Notepad"),
+            i18n("Switch to Pad view."), "edittext", q, SLOT(togglePadView()), QString(), true, true
+        },
         // most have been MOVED TO keylistcontroller.cpp
 #if 0
         {
@@ -482,6 +494,20 @@ void MainWindow::Private::slotConfigCommitted()
 {
     controller.updateConfig();
     updateStatusBar();
+}
+
+void MainWindow::Private::togglePadView()
+{
+     if (ui.padWidget->isVisible()) {
+         ui.padWidget->hide();
+         ui.searchBar->show();
+         ui.tabWidget.show();
+     } else {
+         ui.padWidget->show();
+         ui.searchBar->hide();
+         ui.tabWidget.hide();
+         ui.welcomeWidget->hide();
+     }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

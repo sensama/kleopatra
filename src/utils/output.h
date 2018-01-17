@@ -94,6 +94,7 @@ public:
 #ifndef QT_NO_CLIPBOARD
     static std::shared_ptr<Output> createFromClipboard();
 #endif
+    static std::shared_ptr<Output> createFromByteArray(QByteArray *data, const QString &label);
 };
 }
 

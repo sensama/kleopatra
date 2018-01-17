@@ -179,6 +179,54 @@ private:
 };
 #endif // QT_NO_CLIPBOARD
 
+class ByteArrayInput: public Input
+{
+public:
+    explicit ByteArrayInput(QByteArray *data):
+        m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
+    {
+        if (!m_buffer->open(QIODevice::ReadOnly))
+            throw Exception(gpg_error(GPG_ERR_EIO),
+                            QStringLiteral("Could not open bytearray for reading?!"));
+    }
+
+    void setLabel(const QString &label) override
+    {
+        m_label = label;
+    }
+    QString label() const override
+    {
+        return m_label;
+    }
+    std::shared_ptr<QIODevice> ioDevice() const override
+    {
+        return m_buffer;
+    }
+    unsigned long long size() const override
+    {
+        return m_buffer ? m_buffer->buffer().size() : 0;
+    }
+    QString errorString() const override
+    {
+        return QString();
+    }
+    unsigned int classification() const override
+    {
+        return 0;
+    }
+
+private:
+    std::shared_ptr<QBuffer> m_buffer;
+    QString m_label;
+};
+
+}
+
+std::shared_ptr<Input> Input::createFromByteArray(QByteArray *data, const QString &label)
+{
+    std::shared_ptr<ByteArrayInput> po(new ByteArrayInput(data));
+    po->setLabel(label);
+    return po;
 }
 
 std::shared_ptr<Input> Input::createFromPipeDevice(assuan_fd_t fd, const QString &label)

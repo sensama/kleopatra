@@ -444,6 +444,52 @@ private:
 };
 #endif // QT_NO_CLIPBOARD
 
+class ByteArrayOutput: public OutputImplBase
+{
+public:
+    explicit ByteArrayOutput(QByteArray *data):
+        m_buffer(std::shared_ptr<QBuffer>(new QBuffer(data)))
+    {
+        if (!m_buffer->open(QIODevice::WriteOnly))
+            throw Exception(gpg_error(GPG_ERR_EIO),
+                            QStringLiteral("Could not open bytearray for writing?!"));
+    }
+
+    QString label() const override
+    {
+        return m_label;
+    }
+
+    void setLabel(const QString &label) override
+    {
+        m_label = label;
+    }
+
+    std::shared_ptr<QIODevice> ioDevice() const override
+    {
+        return m_buffer;
+    }
+
+    void doFinalize() override
+    {
+        m_buffer->close();
+    }
+
+    void doCancel() override
+    {
+        m_buffer->close();
+    }
+
+private:
+    QString doErrorString() const override
+    {
+        return QString();
+    }
+private:
+    QString m_label;
+    std::shared_ptr<QBuffer> m_buffer;
+};
+
 }
 
 std::shared_ptr<Output> Output::createFromPipeDevice(assuan_fd_t fd, const QString &label)
@@ -698,4 +744,11 @@ std::shared_ptr<Input> Input::createFromOutput(const std::shared_ptr<Output> &ou
     } else {
         return {};
     }
+}
+
+std::shared_ptr<Output> Output::createFromByteArray(QByteArray *data, const QString &label)
+{
+    auto ret = std::shared_ptr<ByteArrayOutput>(new ByteArrayOutput(data));
+    ret->setLabel(label);
+    return ret;
 }

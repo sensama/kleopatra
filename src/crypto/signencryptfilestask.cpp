@@ -377,6 +377,13 @@ void SignEncryptFilesTask::setInput(const std::shared_ptr<Input> &input)
     d->input = input;
 }
 
+void SignEncryptFilesTask::setOutput(const std::shared_ptr<Output> &output)
+{
+    kleo_assert(!d->job);
+    kleo_assert(output);
+    d->output = output;
+}
+
 void SignEncryptFilesTask::setOutputFileName(const QString &fileName)
 {
     kleo_assert(!d->job);
@@ -465,7 +472,10 @@ void SignEncryptFilesTask::doStart()
     }
 
     kleo_assert(d->input);
-    d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
+
+    if (!d->output) {
+        d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
+    }
 
     if (d->encrypt || d->symmetric) {
         Context::EncryptionFlags flags = Context::AlwaysTrust;

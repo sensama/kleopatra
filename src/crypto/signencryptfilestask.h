@@ -53,6 +53,7 @@ namespace Kleo
 {
 class OverwritePolicy;
 class Input;
+class Output;
 }
 
 namespace Kleo
@@ -70,6 +71,7 @@ public:
     void setInputFileName(const QString &fileName);
     void setInputFileNames(const QStringList &fileNames);
     void setInput(const std::shared_ptr<Input> &input);
+    void setOutput(const std::shared_ptr<Output> &output);
     void setOutputFileName(const QString &fileName);
     void setSigners(const std::vector<GpgME::Key> &singners);
     void setRecipients(const std::vector<GpgME::Key> &recipients);

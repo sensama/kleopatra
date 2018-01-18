@@ -73,6 +73,7 @@ public:
         mEdit(new QTextEdit),
         mCryptBtn(new QPushButton(QIcon::fromTheme("document-edit-sign-encrypt"), i18n("Sign / Encrypt Notepad"))),
         mDecryptBtn(new QPushButton(QIcon::fromTheme("document-edit-decrypt-verify"), i18n("Decrypt / Verify Notepad"))),
+        mRevertBtn(new QPushButton(QIcon::fromTheme("edit-undo"), i18n("Revert"))),
         mAdditionalInfoLabel(new QLabel),
         mSigEncWidget(new SignEncryptWidget),
         mProgressBar(new QProgressBar),
@@ -85,8 +86,10 @@ public:
         vLay->addLayout(btnLay);
         btnLay->addWidget(mCryptBtn);
         btnLay->addWidget(mDecryptBtn);
+        btnLay->addWidget(mRevertBtn);
 
-        mAdditionalInfoLabel->setWordWrap(true);
+        mRevertBtn->setVisible(false);
+
         btnLay->addWidget(mAdditionalInfoLabel);
 
         btnLay->addStretch(-1);
@@ -145,6 +148,16 @@ public:
         connect(mDecryptBtn, &QPushButton::clicked, q, [this] () {
                 doDecryptVerify();
             });
+
+        connect(mRevertBtn, &QPushButton::clicked, q, [this] () {
+                revert();
+            });
+    }
+
+    void revert()
+    {
+        mEdit->setPlainText(QString::fromUtf8(mInputData));
+        mRevertBtn->setVisible(false);
     }
 
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
@@ -172,6 +185,7 @@ public:
         }
         mEdit->setPlainText(QString::fromUtf8(mOutputData));
         mOutputData.clear();
+        mRevertBtn->setVisible(true);
     }
 
     void doDecryptVerify()
@@ -301,6 +315,7 @@ private:
     QTextEdit *mEdit;
     QPushButton *mCryptBtn;
     QPushButton *mDecryptBtn;
+    QPushButton *mRevertBtn;
     QLabel *mAdditionalInfoLabel;
     QByteArray mInputData;
     QByteArray mOutputData;

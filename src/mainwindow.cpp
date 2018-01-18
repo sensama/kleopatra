@@ -82,6 +82,7 @@
 #include <QMimeData>
 #include <QDesktopServices>
 #include <QDir>
+#include <QStackedWidget>
 #include <QStatusBar>
 #include <QLabel>
 
@@ -253,19 +254,23 @@ public:
 
     void toggleSmartcardView()
     {
-        if (ui.scWidget->isVisible()) {
-            ui.scWidget->hide();
-            ui.searchBar->show();
-            ui.tabWidget.show();
-        } else {
-            ui.scWidget->show();
-            ui.searchBar->hide();
-            ui.tabWidget.hide();
-            ui.welcomeWidget->hide();
+        if (ui.stackWidget->currentWidget() == ui.scWidget) {
+            ui.stackWidget->setCurrentWidget(ui.searchTab);
+            checkWelcomePage();
+            return;
         }
+        ui.stackWidget->setCurrentWidget(ui.scWidget);
     }
 
-    void togglePadView();
+    void togglePadView()
+    {
+        if (ui.stackWidget->currentWidget() == ui.padWidget) {
+            ui.stackWidget->setCurrentWidget(ui.searchTab);
+            checkWelcomePage();
+            return;
+        }
+        ui.stackWidget->setCurrentWidget(ui.padWidget);
+    }
 
 private:
     void setupActions();
@@ -277,17 +282,14 @@ private:
 
     void checkWelcomePage()
     {
-        if (ui.scWidget->isVisible() || ui.padWidget->isVisible()) {
+        const auto curWidget = ui.stackWidget->currentWidget();
+        if (curWidget == ui.scWidget || curWidget == ui.padWidget) {
            return;
         }
         if (KeyCache::instance()->keys().empty()) {
-            ui.searchBar->hide();
-            ui.tabWidget.hide();
-            ui.welcomeWidget->show();
+            ui.stackWidget->setCurrentWidget(ui.welcomeWidget);
         } else {
-            ui.welcomeWidget->hide();
-            ui.searchBar->show();
-            ui.tabWidget.show();
+            ui.stackWidget->setCurrentWidget(ui.searchTab);
         }
     }
 
@@ -295,12 +297,13 @@ private:
     Kleo::KeyListController controller;
     bool firstShow : 1;
     struct UI {
-
+        QWidget *searchTab;
         TabWidget tabWidget;
         SearchBar *searchBar;
         PadWidget *padWidget;
         SmartCardWidget *scWidget;
         WelcomeWidget *welcomeWidget;
+        QStackedWidget *stackWidget;
         explicit UI(MainWindow *q);
     } ui;
     QAction *focusToClickSearchAction;
@@ -312,27 +315,32 @@ MainWindow::Private::UI::UI(MainWindow *q)
 {
     KDAB_SET_OBJECT_NAME(tabWidget);
 
-    QWidget *mainWidget = new QWidget;
-    QVBoxLayout *vbox = new QVBoxLayout;
+    searchTab = new QWidget;
+    QVBoxLayout *vbox = new QVBoxLayout(searchTab);
     vbox->setSpacing(0);
-    mainWidget->setLayout(vbox);
     searchBar = new SearchBar;
     vbox->addWidget(searchBar);
     tabWidget.connectSearchBar(searchBar);
     vbox->addWidget(&tabWidget);
+
+    QWidget *mainWidget = new QWidget;
+    auto mainLayout = new QVBoxLayout(mainWidget);
+    stackWidget = new QStackedWidget;
+
+    mainLayout->addWidget(stackWidget);
+
+    stackWidget->addWidget(searchTab);
+
     new KeyCacheOverlay(mainWidget, q);
 
     scWidget = new SmartCardWidget();
-    vbox->addWidget(scWidget);
-    scWidget->hide();
+    stackWidget->addWidget(scWidget);
 
     welcomeWidget = new WelcomeWidget();
-    vbox->addWidget(welcomeWidget);
-    welcomeWidget->hide();
+    stackWidget->addWidget(welcomeWidget);
 
     padWidget = new PadWidget();
-    vbox->addWidget(padWidget);
-    padWidget->hide();
+    stackWidget->addWidget(padWidget);
 
     q->setCentralWidget(mainWidget);
 }
@@ -357,6 +365,8 @@ MainWindow::Private::Private(MainWindow *qq)
 
     ui.tabWidget.setFlatModel(flatModel);
     ui.tabWidget.setHierarchicalModel(hierarchicalModel);
+
+    ui.stackWidget->setCurrentWidget(ui.searchTab);
 
     setupActions();
 
@@ -494,20 +504,6 @@ void MainWindow::Private::slotConfigCommitted()
 {
     controller.updateConfig();
     updateStatusBar();
-}
-
-void MainWindow::Private::togglePadView()
-{
-     if (ui.padWidget->isVisible()) {
-         ui.padWidget->hide();
-         ui.searchBar->show();
-         ui.tabWidget.show();
-     } else {
-         ui.padWidget->show();
-         ui.searchBar->hide();
-         ui.tabWidget.hide();
-         ui.welcomeWidget->hide();
-     }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

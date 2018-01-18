@@ -59,6 +59,7 @@
 #include <KLocalizedString>
 #include <KColorScheme>
 #include <KMessageBox>
+#include <KSplitterCollapserButton>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -118,6 +119,7 @@ public:
 
         recipientsVLay->addWidget(mSigEncWidget);
         splitter->addWidget(recipientsWidget);
+        new KSplitterCollapserButton(recipientsWidget, splitter);
 
         mEdit->setPlaceholderText("Enter a message to encrypt or decrypt...");
 

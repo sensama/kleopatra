@@ -34,6 +34,7 @@
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Exception>
+#include <Libkleo/Classify>
 
 #include "crypto/gui/signencryptwidget.h"
 #include "crypto/gui/resultitemwidget.h"
@@ -178,9 +179,20 @@ public:
         auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
-        auto task = new DecryptVerifyTask();
-        task->setInput(input);
-        task->setOutput(output);
+        AbstractDecryptVerifyTask *task;
+        auto classification = input->classification();
+        if (classification & Class::OpaqueSignature ||
+            classification & Class::ClearsignedMessage) {
+            auto verifyTask = new VerifyOpaqueTask();
+            verifyTask->setInput(input);
+            verifyTask->setOutput(output);
+            task = verifyTask;
+        } else {
+            auto decTask = new DecryptVerifyTask();
+            decTask->setInput(input);
+            decTask->setOutput(output);
+            task = decTask;
+        }
         try {
             task->autodetectProtocolFromInput();
         } catch (const Kleo::Exception &e) {

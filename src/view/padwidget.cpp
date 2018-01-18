@@ -147,7 +147,7 @@ public:
 
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
     {
-        mCryptBtn->setEnabled(true);
+        updateCommitButton();
         mDecryptBtn->setEnabled(true);
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);

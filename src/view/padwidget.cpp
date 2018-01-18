@@ -38,7 +38,7 @@
 #include "crypto/gui/signencryptwidget.h"
 #include "crypto/gui/resultitemwidget.h"
 
-#include "crypto/signencryptfilestask.h"
+#include "crypto/signencrypttask.h"
 #include "crypto/decryptverifytask.h"
 #include "utils/gnupg-helper.h"
 #include "utils/input.h"
@@ -228,7 +228,7 @@ public:
         auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
-        auto task = new SignEncryptFilesTask();
+        auto task = new SignEncryptTask();
         task->setInput(input);
         task->setOutput(output);
 

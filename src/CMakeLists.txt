@@ -139,7 +139,7 @@ set(_kleopatra_SRCS
   crypto/encryptemailtask.cpp
   crypto/encryptemailcontroller.cpp
   crypto/newsignencryptemailcontroller.cpp
-  crypto/signencryptfilestask.cpp
+  crypto/signencrypttask.cpp
   crypto/signencryptfilescontroller.cpp
   crypto/signemailtask.cpp
   crypto/signemailcontroller.cpp

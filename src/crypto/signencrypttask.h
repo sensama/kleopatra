@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/signencryptfilestask.h
+    crypto/signencrypttask.h
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2007 Klarälvdalens Datakonsult AB
@@ -61,12 +61,12 @@ namespace Kleo
 namespace Crypto
 {
 
-class SignEncryptFilesTask : public Task
+class SignEncryptTask : public Task
 {
     Q_OBJECT
 public:
-    explicit SignEncryptFilesTask(QObject *parent = nullptr);
-    ~SignEncryptFilesTask();
+    explicit SignEncryptTask(QObject *parent = nullptr);
+    ~SignEncryptTask();
 
     void setInputFileName(const QString &fileName);
     void setInputFileNames(const QStringList &fileNames);

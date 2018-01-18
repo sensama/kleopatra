@@ -60,13 +60,12 @@ QString AuditLog::formatLink(const QUrl &urlTemplate) const
     if (const unsigned int code = m_error.code()) {
         if (code == GPG_ERR_NOT_IMPLEMENTED) {
             qCDebug(KLEOPATRA_LOG) << "not showing link (not implemented)";
-            return QString();
         } else if (code == GPG_ERR_NO_DATA) {
             qCDebug(KLEOPATRA_LOG) << "not showing link (not available)";
-            return i18n("No Audit Log available");
         } else {
-            return i18n("Error Retrieving Audit Log: %1", QString::fromLocal8Bit(m_error.asString()));
+            qCDebug(KLEOPATRA_LOG) << "Error Retrieving Audit Log:" << QString::fromLocal8Bit(m_error.asString());
         }
+        return QString();
     }
 
     if (!m_text.isEmpty()) {

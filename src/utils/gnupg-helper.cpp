@@ -278,11 +278,12 @@ bool Kleo::haveKeyserverConfigured()
 
 bool Kleo::gpgComplianceP(const char *mode)
 {
-    auto conf = QGpgME::cryptoConfig();
-    return (conf->entry(QStringLiteral("gpg"),
-                        QStringLiteral("Configuration"),
-                        QStringLiteral("compliance"))->stringValue()
-            == QString(mode));
+    const auto conf = QGpgME::cryptoConfig();
+    const auto entry = conf->entry(QStringLiteral("gpg"),
+                                   QStringLiteral("Configuration"),
+                                   QStringLiteral("compliance"));
+
+    return entry && entry->stringValue() == QString(mode);
 }
 
 enum GpgME::UserID::Validity Kleo::keyValidity(const GpgME::Key &key)

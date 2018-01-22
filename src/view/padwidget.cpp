@@ -35,6 +35,7 @@
 
 #include <Libkleo/Exception>
 #include <Libkleo/Classify>
+#include <Libkleo/KeyCache>
 
 #include "crypto/gui/signencryptwidget.h"
 #include "crypto/gui/resultitemwidget.h"
@@ -44,6 +45,8 @@
 #include "utils/gnupg-helper.h"
 #include "utils/input.h"
 #include "utils/output.h"
+
+#include <gpgme++/decryptionresult.h>
 
 #include <QTextEdit>
 #include <QToolBar>
@@ -160,6 +163,51 @@ public:
         mRevertBtn->setVisible(false);
     }
 
+    void updateRecipientsFromResult(const Kleo::Crypto::DecryptVerifyResult &result)
+    {
+        const auto decResult = result.decryptionResult();
+
+        for (const auto &recipient: decResult.recipients()) {
+            if (!recipient.keyID()) {
+                continue;
+            }
+
+            GpgME::Key key;
+            if (strlen(recipient.keyID()) < 16) {
+                key = KeyCache::instance()->findByShortKeyID(recipient.keyID());
+            } else {
+                key = KeyCache::instance()->findByKeyIDOrFingerprint(recipient.keyID());
+            }
+
+            if (key.isNull()) {
+                std::vector<std::string> subids;
+                subids.push_back(std::string(recipient.keyID()));
+                for (const auto &subkey: KeyCache::instance()->findSubkeysByKeyID(subids)) {
+                    key = subkey.parent();
+                    break;
+                }
+            }
+
+            if (key.isNull()) {
+                qCDebug(KLEOPATRA_LOG) << "Unknown key" << recipient.keyID();
+                mSigEncWidget->addUnknownRecipient(recipient.keyID());
+                continue;
+            }
+
+            bool keyFound = false;
+            for (const auto &existingKey: mSigEncWidget->recipients()) {
+                if (existingKey.primaryFingerprint() && key.primaryFingerprint() &&
+                    !strcmp (existingKey.primaryFingerprint(), key.primaryFingerprint())) {
+                    keyFound = true;
+                    break;
+                }
+            }
+            if (!keyFound) {
+                mSigEncWidget->addRecipient(key);
+            }
+        }
+    }
+
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
     {
         updateCommitButton();
@@ -186,11 +234,17 @@ public:
         mEdit->setPlainText(QString::fromUtf8(mOutputData));
         mOutputData.clear();
         mRevertBtn->setVisible(true);
+
+        const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
+        if (decryptVerifyResult) {
+            updateRecipientsFromResult(*decryptVerifyResult);
+        }
     }
 
     void doDecryptVerify()
     {
         doCryptoCommon();
+        mSigEncWidget->clearAddedRecipients();
         mProgressLabel->setText(i18n("Decrypt / Verify") + QStringLiteral("..."));
         auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
@@ -324,6 +378,7 @@ private:
     QLabel *mProgressLabel;
     QVBoxLayout *mStatusLay;
     ResultItemWidget *mLastResultWidget;
+    QList<GpgME::Key> mAutoAddedKeys;
 };
 
 PadWidget::PadWidget(QWidget *parent):

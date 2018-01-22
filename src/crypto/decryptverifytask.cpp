@@ -897,6 +897,11 @@ GpgME::VerificationResult DecryptVerifyResult::verificationResult() const
     return d->m_verificationResult;
 }
 
+GpgME::DecryptionResult DecryptVerifyResult::decryptionResult() const
+{
+    return d->m_decryptionResult;
+}
+
 class AbstractDecryptVerifyTask::Private
 {
 public:

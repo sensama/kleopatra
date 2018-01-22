@@ -174,6 +174,7 @@ set(_kleopatra_SRCS
   crypto/gui/signemailwizard.cpp
   crypto/gui/signencryptwidget.cpp
   crypto/gui/signencryptwizard.cpp
+  crypto/gui/unknownrecipientwidget.cpp
 
   crypto/gui/verifychecksumsdialog.cpp
 

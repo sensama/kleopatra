@@ -35,6 +35,7 @@
 #include "kleopatra_debug.h"
 
 #include "certificatelineedit.h"
+#include "unknownrecipientwidget.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -236,7 +237,58 @@ void SignEncryptWidget::addRecipient(const Key &key)
 
     if (!key.isNull()) {
         certSel->setKey(key);
+        mAddedKeys << key;
     }
+}
+
+void SignEncryptWidget::clearAddedRecipients()
+{
+    for (auto w: mUnknownWidgets) {
+        mRecpLayout->removeWidget(w);
+        delete w;
+    }
+
+    for (auto &key: mAddedKeys) {
+        removeRecipient(key);
+    }
+}
+
+void SignEncryptWidget::addUnknownRecipient(const char *keyID)
+{
+    auto unknownWidget = new UnknownRecipientWidget(keyID);
+    mUnknownWidgets << unknownWidget;
+
+    if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
+        // First widget. Should align with the row above that
+        // contians the encrypt for others checkbox.
+        mRecpLayout->addWidget(unknownWidget, mRecpRowCount - 1, 1);
+    } else {
+        mRecpLayout->addWidget(unknownWidget, mRecpRowCount++, 1);
+    }
+
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
+            this, [this] () {
+        // Check if any unknown recipient can now be found.
+        for (auto w: mUnknownWidgets) {
+            auto key = KeyCache::instance()->findByKeyIDOrFingerprint(w->keyID().toLatin1().constData());
+            if (key.isNull()) {
+                std::vector<std::string> subids;
+                subids.push_back(std::string(w->keyID().toLatin1().constData()));
+                for (const auto &subkey: KeyCache::instance()->findSubkeysByKeyID(subids)) {
+                    key = subkey.parent();
+                }
+            }
+            if (key.isNull()) {
+                continue;
+            }
+            // Key is now available replace by line edit.
+            qCDebug(KLEOPATRA_LOG) << "Removing widget for keyid: " << w->keyID();
+            mRecpLayout->removeWidget(w);
+            mUnknownWidgets.removeAll(w);
+            delete w;
+            addRecipient(key);
+        }
+    });
 }
 
 void SignEncryptWidget::recipientsChanged()
@@ -364,6 +416,23 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
                 mRecpLayout->addItem(item, i - 1, 1);
             }
             w->deleteLater();
+            return;
+        }
+    }
+}
+
+void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
+{
+    for (CertificateLineEdit *edit: mRecpWidgets) {
+        const auto editKey = edit->key();
+        if (key.isNull() && editKey.isNull()) {
+            recpRemovalRequested(edit);
+            return;
+        }
+        if (editKey.primaryFingerprint() &&
+            key.primaryFingerprint() &&
+            !strcmp(editKey.primaryFingerprint(), key.primaryFingerprint())) {
+            recpRemovalRequested(edit);
             return;
         }
     }

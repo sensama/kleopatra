@@ -44,6 +44,7 @@ namespace Kleo
 class CertificateLineEdit;
 class KeySelectionCombo;
 class AbstractKeyListModel;
+class UnknownRecipientWidget;
 
 class SignEncryptWidget: public QWidget
 {
@@ -88,12 +89,23 @@ public:
      * S/MIME and OpenPGP */
     void setProtocol(GpgME::Protocol protocol);
 
+    /** Add a recipient with the key key */
+    void addRecipient(const GpgME::Key &key);
+
+    /** Add a placehoder for an unknown key */
+    void addUnknownRecipient(const char *keyId);
+
+    /** Remove all Recipients added by keyId or by key. */
+    void clearAddedRecipients();
+
+    /** Remove a Recipient key */
+    void removeRecipient(const GpgME::Key &key);
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
     void addRecipient();
-    void addRecipient(const GpgME::Key &key);
 
 protected:
     void loadKeys();
@@ -111,6 +123,8 @@ private:
     KeySelectionCombo *mSigSelect,
                       *mSelfSelect;
     QVector<CertificateLineEdit *> mRecpWidgets;
+    QVector<UnknownRecipientWidget *> mUnknownWidgets;
+    QVector<GpgME::Key> mAddedKeys;
     QGridLayout *mRecpLayout;
     QString mOp;
     AbstractKeyListModel *mModel;

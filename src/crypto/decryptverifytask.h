@@ -246,6 +246,7 @@ public:
     QPointer<Task> parentTask() const override;
 
     GpgME::VerificationResult verificationResult() const;
+    GpgME::DecryptionResult decryptionResult() const;
 
 private:
     static QString keyToString(const GpgME::Key &key);

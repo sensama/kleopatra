@@ -107,10 +107,11 @@ public:
 };
 }
 
-SignEncryptWidget::SignEncryptWidget(QWidget *parent)
+SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     : QWidget(parent),
       mModel(AbstractKeyListModel::createFlatKeyListModel(this)),
-      mRecpRowCount(2)
+      mRecpRowCount(2),
+      mIsExclusive(sigEncExclusive)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setMargin(0);
@@ -195,6 +196,34 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent)
     connect(mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
+
+    if (mIsExclusive) {
+        connect(mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (mCurrentProto != GpgME::CMS) {
+                return;
+            }
+            if (value) {
+                mSigChk->setChecked(false);
+            }
+        });
+        connect(mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (mCurrentProto != GpgME::CMS) {
+                return;
+            }
+            if (value) {
+                mSigChk->setChecked(false);
+            }
+        });
+        connect(mSigChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (mCurrentProto != GpgME::CMS) {
+                return;
+            }
+            if (value) {
+                mEncSelfChk->setChecked(false);
+                mEncOtherChk->setChecked(false);
+            }
+        });
+    }
 
     // Ensure that the mSigChk is aligned togehter with the encryption check boxes.
     mSigChk->setMinimumWidth(qMax(mEncOtherChk->width(), mEncSelfChk->width()));
@@ -486,5 +515,16 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(proto));
     Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
         edit->setKeyFilter(encFilter);
+    }
+
+    if (mIsExclusive) {
+        mSymmetric->setDisabled(proto == GpgME::CMS);
+        if (mSymmetric->isChecked() && proto == GpgME::CMS) {
+            mSymmetric->setChecked(false);
+        }
+        if (mSigChk->isChecked() && proto == GpgME::CMS &&
+                (mEncSelfChk->isChecked() || mEncOtherChk->isChecked())) {
+            mSigChk->setChecked(false);
+        }
     }
 }

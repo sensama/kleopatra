@@ -50,7 +50,9 @@ class SignEncryptWidget: public QWidget
 {
     Q_OBJECT
 public:
-    explicit SignEncryptWidget(QWidget *parent = nullptr);
+    /** If cmsSigEncExclusive is true CMS operations can be
+     * done only either as sign or as encrypt */
+    explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
 
     /** Returns the list of recipients selected in the dialog
      * or an empty list if encryption is disabled */
@@ -134,6 +136,7 @@ private:
               *mEncSelfChk;
     int mRecpRowCount;
     GpgME::Protocol mCurrentProto;
+    bool mIsExclusive;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

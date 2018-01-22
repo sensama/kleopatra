@@ -97,7 +97,7 @@ public:
         mDecryptBtn(new QPushButton(QIcon::fromTheme("document-edit-decrypt-verify"), i18n("Decrypt / Verify Notepad"))),
         mRevertBtn(new QPushButton(QIcon::fromTheme("edit-undo"), i18n("Revert"))),
         mAdditionalInfoLabel(new QLabel),
-        mSigEncWidget(new SignEncryptWidget),
+        mSigEncWidget(new SignEncryptWidget(nullptr, true)),
         mProgressBar(new QProgressBar),
         mProgressLabel(new QLabel),
         mLastResultWidget(nullptr),

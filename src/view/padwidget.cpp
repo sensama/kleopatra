@@ -48,25 +48,44 @@
 
 #include <gpgme++/decryptionresult.h>
 
-#include <QTextEdit>
-#include <QToolBar>
-#include <QVBoxLayout>
+#include <QButtonGroup>
 #include <QFontDatabase>
 #include <QFontMetrics>
 #include <QGroupBox>
-#include <QPushButton>
-#include <QProgressBar>
-#include <QSplitter>
 #include <QLabel>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QSplitter>
+#include <QTextEdit>
+#include <QToolBar>
+#include <QVBoxLayout>
 
 #include <KLocalizedString>
 #include <KColorScheme>
 #include <KMessageBox>
 #include <KSplitterCollapserButton>
 
+#include <KSharedConfig>
+#include <KConfigGroup>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
+
+static GpgME::Protocol getProtocol(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
+{
+    const auto dvResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
+    if (dvResult) {
+        for (const auto &key: KeyCache::instance()->findRecipients(dvResult->decryptionResult())) {
+            return key.protocol();
+        }
+        for (const auto &key: KeyCache::instance()->findSigners(dvResult->verificationResult())) {
+            return key.protocol();
+        }
+    }
+    return GpgME::UnknownProtocol;
+}
 
 class PadWidget::Private
 {
@@ -81,7 +100,9 @@ public:
         mSigEncWidget(new SignEncryptWidget),
         mProgressBar(new QProgressBar),
         mProgressLabel(new QLabel),
-        mLastResultWidget(nullptr)
+        mLastResultWidget(nullptr),
+        mPGPRB(nullptr),
+        mCMSRB(nullptr)
     {
         auto vLay = new QVBoxLayout(q);
 
@@ -136,7 +157,37 @@ public:
         mEdit->setCurrentFont(fixedFont);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
-        mSigEncWidget->setProtocol(GpgME::OpenPGP);
+        if (KeyCache::instance()->pgpOnly()) {
+            mSigEncWidget->setProtocol(GpgME::OpenPGP);
+        } else {
+            auto grp = new QButtonGroup(q);
+            auto mPGPRB = new QRadioButton(i18n("OpenPGP"));
+            auto mCMSRB = new QRadioButton(i18n("S/MIME"));
+            grp->addButton(mPGPRB);
+            grp->addButton(mCMSRB);
+
+            KConfigGroup config(KSharedConfig::openConfig(), "Notepad");
+            if (config.readEntry("wasCMS", false)) {
+                mCMSRB->setChecked(true);
+                mSigEncWidget->setProtocol(GpgME::CMS);
+            } else {
+                mPGPRB->setChecked(true);
+                mSigEncWidget->setProtocol(GpgME::OpenPGP);
+            }
+
+            protocolSelectionLay->addWidget(mPGPRB);
+            protocolSelectionLay->addWidget(mCMSRB);
+            connect(mPGPRB, &QRadioButton::toggled, q, [this] (bool value) {
+                    if (value) {
+                        mSigEncWidget->setProtocol(GpgME::OpenPGP);
+                    }
+                });
+            connect(mCMSRB, &QRadioButton::toggled, q, [this] (bool value) {
+                    if (value) {
+                        mSigEncWidget->setProtocol(GpgME::CMS);
+                    }
+                });
+        }
 
         updateCommitButton();
 
@@ -222,6 +273,21 @@ public:
         connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this] () {
             removeLastResultItem();
         });
+
+        // Check result protocol
+        if (mPGPRB) {
+            auto proto = getProtocol(result);
+            if (proto == GpgME::UnknownProtocol) {
+                proto = mPGPRB->isChecked() ? GpgME::OpenPGP : GpgME::CMS;
+            } else if (proto == GpgME::OpenPGP) {
+                mPGPRB->setChecked(true);
+            } else if (proto == GpgME::CMS) {
+                mCMSRB->setChecked(true);
+            }
+
+            KConfigGroup config(KSharedConfig::openConfig(), "Notepad");
+            config.writeEntry("wasCMS", proto == GpgME::CMS);
+        }
 
         if (result->errorCode()) {
             if (!result->errorString().isEmpty()) {
@@ -379,6 +445,8 @@ private:
     QVBoxLayout *mStatusLay;
     ResultItemWidget *mLastResultWidget;
     QList<GpgME::Key> mAutoAddedKeys;
+    QRadioButton *mPGPRB;
+    QRadioButton *mCMSRB;
 };
 
 PadWidget::PadWidget(QWidget *parent):

@@ -49,7 +49,7 @@ SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *pare
     mWidget = new SMimeValidationConfigurationWidget(this);
     lay->addWidget(mWidget);
 
-    connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, QOverload<>::of(&KCModule::changed));
+    connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, QOverload<>::of(&Kleo::Config::SMimeValidationConfigurationPage::changed));
 
     load();
 }

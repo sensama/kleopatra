@@ -55,7 +55,7 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
                                      this);
     lay->addWidget(mWidget);
 
-    connect(mWidget, &CryptoConfigModule::changed, this, QOverload<>::of(&KCModule::changed));
+    connect(mWidget, &CryptoConfigModule::changed, this, QOverload<>::of(&Kleo::Config::GnuPGSystemConfigurationPage::changed));
 
     load();
 }

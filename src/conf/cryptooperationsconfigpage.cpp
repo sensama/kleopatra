@@ -48,7 +48,7 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *pa
     lay->setMargin(0);
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
-    connect(mWidget, &CryptoOperationsConfigWidget::changed, this, QOverload<>::of(&KCModule::changed));
+    connect(mWidget, &CryptoOperationsConfigWidget::changed, this, QOverload<>::of(&Kleo::Config::CryptoOperationsConfigurationPage::changed));
 
     load();
 }

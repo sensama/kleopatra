@@ -103,11 +103,11 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
                                              Formatting::CertificateUsage);
 
     // Fixup the HTML coming from the toolTip for our own format.
-    overView.replace(QLatin1String("<tr><th>"), "");
+    overView.remove(QLatin1String("<tr><th>"));
     overView.replace(QLatin1String("</th><td>"), "\t");
     overView.replace(QLatin1String("</td></tr>"), "\n");
-    overView.replace(QLatin1String("<table border=\"0\">"), "");
-    overView.replace(QLatin1String("\n</table>"), "");
+    overView.remove(QLatin1String("<table border=\"0\">"));
+    overView.remove(QLatin1String("\n</table>"));
     overView.replace(QLatin1String("&lt;"), "<");
     overView.replace(QLatin1String("&gt;"), ">");
 

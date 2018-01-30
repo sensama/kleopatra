@@ -178,8 +178,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
 
     QTimer::singleShot(0, q, SLOT(schedule()));
-    if (m_dialog->exec() == QDialog::Accepted) {
-        Q_ASSERT(m_workDir);
+    if (m_dialog->exec() == QDialog::Accepted && m_workDir) {
+        // Without workdir there is nothing to move.
         const QDir workdir(m_workDir->path());
         const QDir outDir(m_dialog->outputLocation());
         bool overWriteAll = false;

@@ -280,7 +280,7 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
         return std::shared_ptr<ArchiveDefinition>();
     }
 
-    if (extension.endsWith(QStringLiteral(".out"))) {     // added by outputFileName() -> remove
+    if (extension.endsWith(QLatin1String(".out"))) {     // added by outputFileName() -> remove
         extension.chop(4);
     }
 

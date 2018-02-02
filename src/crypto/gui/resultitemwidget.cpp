@@ -303,7 +303,7 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 {
     Q_ASSERT(m_result);
     qCDebug(KLEOPATRA_LOG) << "Link activated: " << link;
-    if (link.startsWith(QStringLiteral("key:"))) {
+    if (link.startsWith(QLatin1String("key:"))) {
         auto split = link.split(QLatin1Char(':'));
         auto fpr = split.value(1);
         if (split.size() == 2 && isFingerprint(fpr)) {

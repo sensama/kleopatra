@@ -423,7 +423,7 @@ void LookupCertificatesCommand::Private::showHexPrefixInfo() const
 {
     const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
     if (rx.exactMatch(query)) {
-        information(query.startsWith(QStringLiteral("0x"), Qt::CaseInsensitive)
+        information(query.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)
                     ? i18n("<p>You seem to be searching for a fingerPrint or a key-id.</p>"
                            "<p>Different keyservers expect different ways to search for these. "
                            "Some require a \"0x\" prefix, while others require there be no such prefix.</p>"

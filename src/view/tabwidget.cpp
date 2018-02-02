@@ -825,7 +825,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
     for (int i = 0; i < d->NumPageActions; ++i) {
         action_data ad = actionData[i];
-        Q_ASSERT(QString::fromLatin1(ad.name).startsWith(QStringLiteral("window_")));
+        Q_ASSERT(QString::fromLatin1(ad.name).startsWith(QLatin1String("window_")));
         ad.name = ad.name + strlen("window_");
         ad.tooltip.clear();
         ad.receiver = nullptr;

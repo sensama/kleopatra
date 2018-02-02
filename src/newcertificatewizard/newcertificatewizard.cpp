@@ -246,11 +246,11 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         return;
     }
     *algo = Subkey::AlgoUnknown;
-    if (lowered.startsWith(QStringLiteral("rsa"))) {
+    if (lowered.startsWith(QLatin1String("rsa"))) {
         *algo = Subkey::AlgoRSA;
-    } else if (lowered.startsWith(QStringLiteral("dsa"))) {
+    } else if (lowered.startsWith(QLatin1String("dsa"))) {
         *algo = Subkey::AlgoDSA;
-    } else if (lowered.startsWith(QStringLiteral("elg"))) {
+    } else if (lowered.startsWith(QLatin1String("elg"))) {
         *algo = Subkey::AlgoELG;
     }
 
@@ -265,7 +265,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     }
 
     // Now the ECC Algorithms
-    if (lowered.startsWith(QStringLiteral("ed25519"))) {
+    if (lowered.startsWith(QLatin1String("ed25519"))) {
         // Special handling for this as technically
         // this is a cv25519 curve used for EDDSA
         curve = split[0];
@@ -273,10 +273,10 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         return;
     }
 
-    if (lowered.startsWith(QStringLiteral("cv25519")) ||
-        lowered.startsWith(QStringLiteral("nist")) ||
-        lowered.startsWith(QStringLiteral("brainpool")) ||
-        lowered.startsWith(QStringLiteral("secp"))) {
+    if (lowered.startsWith(QLatin1String("cv25519")) ||
+        lowered.startsWith(QLatin1String("nist")) ||
+        lowered.startsWith(QLatin1String("brainpool")) ||
+        lowered.startsWith(QLatin1String("secp"))) {
         curve = split[0];
         *algo = isEncrypt ? Subkey::AlgoECDH : Subkey::AlgoECDSA;
         return;

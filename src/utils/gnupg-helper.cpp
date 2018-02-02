@@ -141,7 +141,7 @@ QString Kleo::gpg4winVersion()
         return QStringLiteral("Unknown (no VERSION file found)");
     }
     const QString g4wTag = QString::fromUtf8(versionFile.readLine());
-    if (!g4wTag.startsWith(QStringLiteral("gpg4win"))) {
+    if (!g4wTag.startsWith(QLatin1String("gpg4win"))) {
         // Hu? Something unknown
         return QStringLiteral("Unknown (invalid VERSION file found)");
     }

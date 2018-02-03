@@ -55,6 +55,7 @@ public:
     /* Check for an update. The force parameter overrides the
      * NeverShow setting */
     static void checkUpdate(QWidget *parent, bool force = false);
-    UpdateNotification(QWidget *parent, const QString &version);};
+    UpdateNotification(QWidget *parent, const QString &version);
+};
 } // namespace Kleo
 #endif // DIALOGS_UPDATENOTIFICATION_H

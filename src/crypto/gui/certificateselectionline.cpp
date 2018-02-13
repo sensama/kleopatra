@@ -181,7 +181,7 @@ public:
         for (int i = 0, end = count(); i != end; ++i) {
             result.push_back(qvariant_cast<Key>(itemData(i)));
         }
-        return result;;
+        return result;
     }
 
     int findOrAdd(const Key &key)

@@ -159,7 +159,7 @@ void DecryptVerifyCommandEMailBase::Private::checkForErrors() const
     const unsigned int numOutputs  = q->outputs().size();
     const unsigned int numInformativeSenders = q->informativeSenders() ? q->senders().size() : 0;
 
-    const DecryptVerifyOperation op = q->operation();;
+    const DecryptVerifyOperation op = q->operation();
     const GpgME::Protocol proto = q->checkProtocol(q->mode());
 
     const unsigned int numFiles = q->numFiles();

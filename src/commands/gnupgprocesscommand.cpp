@@ -271,6 +271,8 @@ void GnuPGProcessCommand::doStart()
     d->process.setArguments(d->arguments);
 
     // Historically code using this expects arguments first to be the program.
+    d->arguments.prepend(QLatin1String("utf-8"));
+    d->arguments.prepend(QLatin1String("--display-charset"));
     d->arguments.prepend(d->process.program());
 
     d->process.start();
@@ -340,12 +342,12 @@ void GnuPGProcessCommand::Private::slotProcessReadyReadStandardError()
     while (ba.endsWith('\n') || ba.endsWith('\r')) {
         ba.chop(1);
     }
-    message(QString::fromLocal8Bit(ba.constData(), ba.size()));
+    message(QString::fromUtf8(ba.constData(), ba.size()));
 }
 
 QString GnuPGProcessCommand::errorString() const
 {
-    return QString::fromLocal8Bit(d->errorBuffer);
+    return QString::fromUtf8(d->errorBuffer);
 }
 
 void GnuPGProcessCommand::setIgnoresSuccessOrFailure(bool ignores)

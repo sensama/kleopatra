@@ -158,7 +158,7 @@ void GenRevokeCommand::doStart()
     connect(proc, &QProcess::readyReadStandardOutput,
             this, [proc] () {
         while (proc->canReadLine()) {
-            const QString line = QString::fromLocal8Bit(proc->readLine()).trimmed();
+            const QString line = QString::fromUtf8(proc->readLine()).trimmed();
             // Command-fd is a stable interface, while this is all kind of hacky we
             // are on a deadline :-/
             if (line == QStringLiteral("[GNUPG:] GET_BOOL gen_revoke.okay")) {

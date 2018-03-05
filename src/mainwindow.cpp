@@ -269,6 +269,10 @@ public:
             checkWelcomePage();
             return;
         }
+        if (!ui.padWidget) {
+            ui.padWidget = new PadWidget;
+            ui.stackWidget->addWidget(ui.padWidget);
+        }
         ui.stackWidget->setCurrentWidget(ui.padWidget);
     }
 
@@ -311,7 +315,7 @@ private:
 };
 
 MainWindow::Private::UI::UI(MainWindow *q)
-    : tabWidget(q)
+    : tabWidget(q), padWidget(nullptr)
 {
     KDAB_SET_OBJECT_NAME(tabWidget);
 
@@ -338,9 +342,6 @@ MainWindow::Private::UI::UI(MainWindow *q)
 
     welcomeWidget = new WelcomeWidget();
     stackWidget->addWidget(welcomeWidget);
-
-    padWidget = new PadWidget();
-    stackWidget->addWidget(padWidget);
 
     q->setCentralWidget(mainWidget);
 }

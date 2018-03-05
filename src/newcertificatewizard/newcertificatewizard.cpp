@@ -1860,7 +1860,9 @@ void AdvancedSettingsDialog::loadDefaultGnuPGKeyType()
                                    QStringLiteral("Configuration"),
                                    QStringLiteral("default_pubkey_algo"));
     if (!entry) {
-        // GnuPG does not support that option.
+        qCDebug(KLEOPATRA_LOG) << "GnuPG does not have default key type. Fallback to RSA";
+        setKeyType(Subkey::AlgoRSA);
+        setSubkeyType(Subkey::AlgoRSA);
         return;
     }
 

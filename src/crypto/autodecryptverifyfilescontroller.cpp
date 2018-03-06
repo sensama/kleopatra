@@ -419,13 +419,15 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             const auto ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
 
             if (FileOperationsPreferences().dontUseTmpDir()) {
-                m_workDir = new QTemporaryDir(heuristicBaseDirectory(fileNames) + "/kleopatra-XXXXXX");
+                if (!m_workDir) {
+                    m_workDir = new QTemporaryDir(heuristicBaseDirectory(fileNames) + "/kleopatra-XXXXXX");
+                }
                 if (!m_workDir->isValid()) {
                     qCDebug(KLEOPATRA_LOG) << m_workDir->path() << "not a valid temporary directory.";
                     delete m_workDir;
                     m_workDir = new QTemporaryDir();
                 }
-            } else {
+            } else if (!m_workDir) {
                 m_workDir = new QTemporaryDir();
             }
             qCDebug(KLEOPATRA_LOG) << "Using:" << m_workDir->path() << "as temporary directory.";

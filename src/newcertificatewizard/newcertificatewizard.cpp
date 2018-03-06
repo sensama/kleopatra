@@ -379,7 +379,7 @@ class AdvancedSettingsDialog : public QDialog
     Q_PROPERTY(Subkey::PubkeyAlgo keyType READ keyType WRITE setKeyType)
     Q_PROPERTY(QString keyCurve READ keyCurve WRITE setKeyCurve)
     Q_PROPERTY(uint subkeyStrength READ subkeyStrength WRITE setSubkeyStrength)
-    Q_PROPERTY(QString subkeyCurve READ keyCurve WRITE setSubkeyCurve)
+    Q_PROPERTY(QString subkeyCurve READ subkeyCurve WRITE setSubkeyCurve)
     Q_PROPERTY(Subkey::PubkeyAlgo subkeyType READ subkeyType WRITE setSubkeyType)
     Q_PROPERTY(bool signingAllowed READ signingAllowed WRITE setSigningAllowed)
     Q_PROPERTY(bool encryptionAllowed READ encryptionAllowed WRITE setEncryptionAllowed)

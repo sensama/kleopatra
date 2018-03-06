@@ -124,7 +124,7 @@ static void set_tab_order(const QList<QWidget *> &wl)
     kdtools::for_each_adjacent_pair(wl.begin(), wl.end(), &QWidget::setTabOrder);
 }
 
-enum KeyAlgo { RSA, DSA, ELG, ECDSA, ECDH };
+enum KeyAlgo { RSA, DSA, ELG, ECDSA, ECDH, EDDSA };
 
 static bool is_algo(Subkey::PubkeyAlgo algo, KeyAlgo what)
 {
@@ -142,6 +142,8 @@ static bool is_algo(Subkey::PubkeyAlgo algo, KeyAlgo what)
             return what == ECDSA;
         case Subkey::AlgoECDH:
             return what == ECDH;
+        case Subkey::AlgoEDDSA:
+            return what == EDDSA;
         default:
             break;
     }
@@ -166,6 +168,11 @@ static bool is_elg(unsigned int algo)
 static bool is_ecdsa(unsigned int algo)
 {
     return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), ECDSA);
+}
+
+static bool is_eddsa(unsigned int algo)
+{
+    return is_algo(static_cast<Subkey::PubkeyAlgo>(algo), EDDSA);
 }
 
 static bool is_ecdh(unsigned int algo)
@@ -394,7 +401,8 @@ public:
           cmsDefaultAlgorithm(Subkey::AlgoRSA),
           keyTypeImmutable(false),
           ui(),
-          mECCSupported(engineIsVersion(2, 1, 0))
+          mECCSupported(engineIsVersion(2, 1, 0)),
+          mEdDSASupported(engineIsVersion(2, 1, 15))
     {
         qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
         ui.setupUi(this);
@@ -470,7 +478,7 @@ public:
         QRadioButton *const rb =
             is_rsa(algo) ? ui.rsaRB :
             is_dsa(algo) ? ui.dsaRB :
-            is_ecdsa(algo) ? ui.ecdsaRB : nullptr;
+            is_ecdsa(algo) || is_eddsa(algo) ? ui.ecdsaRB : nullptr;
         if (rb) {
             rb->setChecked(true);
         }
@@ -480,7 +488,9 @@ public:
         return
             ui.dsaRB->isChecked() ? Subkey::AlgoDSA :
             ui.rsaRB->isChecked() ? Subkey::AlgoRSA :
-            ui.ecdsaRB->isChecked() ? Subkey::AlgoECDSA :
+            ui.ecdsaRB->isChecked() ?
+                ui.ecdsaKeyCurvesCB->currentText() == QStringLiteral("ed25519") ? Subkey::AlgoEDDSA :
+                Subkey::AlgoECDSA :
             Subkey::AlgoUnknown;
     }
 
@@ -600,10 +610,10 @@ private Q_SLOTS:
             if (!keyTypeImmutable) {
                 ui.elgCB->setEnabled(is_dsa(algo));
                 ui.rsaSubCB->setEnabled(is_rsa(algo));
-                ui.ecdhCB->setEnabled(is_ecdsa(algo));
+                ui.ecdhCB->setEnabled(is_ecdsa(algo) || is_eddsa(algo));
                 if (sender() == ui.dsaRB || sender() == ui.rsaRB || sender() == ui.ecdsaRB) {
                     ui.elgCB->setChecked(is_dsa(algo));
-                    ui.ecdhCB->setChecked(is_ecdsa(algo));
+                    ui.ecdhCB->setChecked(is_ecdsa(algo) || is_eddsa(algo));
                     ui.rsaSubCB->setChecked(is_rsa(algo));
                 }
                 if (is_rsa(algo)) {
@@ -625,7 +635,7 @@ private Q_SLOTS:
                     } else {
                         ui.encryptionCB->setChecked(false);
                     }
-                } else if (is_ecdsa(algo)) {
+                } else if (is_ecdsa(algo) || is_eddsa(algo)) {
                     ui.signingCB->setEnabled(true);
                     ui.signingCB->setChecked(true);
                     ui.authenticationCB->setEnabled(true);
@@ -664,6 +674,7 @@ private:
     bool keyTypeImmutable;
     Ui_AdvancedSettingsDialog ui;
     bool mECCSupported;
+    bool mEdDSASupported;
 };
 
 class ChooseProtocolPage : public WizardPage
@@ -1704,7 +1715,7 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
     }
     if (details) {
         s         << Row<        >(i18n("Key Type:"),          QLatin1String(Subkey::publicKeyAlgorithmAsString(keyType())));
-        if (is_ecdsa(keyType())) {
+        if (is_ecdsa(keyType()) || is_eddsa(keyType())) {
             s     << Row<        >(i18n("Key Curve:"),         keyCurve());
         } else if (const unsigned int strength = keyStrength()) {
             s     << Row<        >(i18n("Key Strength:"),      i18np("1 bit", "%1 bits", strength));
@@ -1764,7 +1775,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
         s << "%ask-passphrase"                             << endl;
     }
     s     << "key-type:      " << Subkey::publicKeyAlgorithmAsString(keyType()) << endl;
-    if (is_ecdsa(keyType())) {
+    if (is_ecdsa(keyType()) || is_eddsa(keyType())) {
         s << "key-curve:     " << keyCurve() << endl;
 
     } else if (const unsigned int strength = keyStrength()) {
@@ -1844,6 +1855,11 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
     fill_combobox(*ui.rsaKeyStrengthSubCB, rsaKeySizes, rsaKeySizeLabels);
     fill_combobox(*ui.dsaKeyStrengthCB, dsaKeySizes, dsaKeySizeLabels);
     fill_combobox(*ui.elgKeyStrengthCB, elgKeySizes, elgKeySizeLabels);
+    if (mEdDSASupported) {
+        // If supported we recommend cv25519
+        ui.ecdsaKeyCurvesCB->addItem(QStringLiteral("ed25519"));
+        ui.ecdhKeyCurvesCB->addItem(QStringLiteral("cv25519"));
+    }
     ui.ecdhKeyCurvesCB->addItems(curveNames);
     ui.ecdsaKeyCurvesCB->addItems(curveNames);
 }
@@ -1972,6 +1988,12 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui.ecdhKeyCurvesCB->setVisible(mECCSupported);
     ui.ecdsaKeyCurvesCB->setVisible(mECCSupported);
     ui.ecdsaRB->setVisible(mECCSupported);
+    if (mEdDSASupported) {
+        // We use the same radio button for EdDSA as we use for
+        // ECDSA GnuPG does the same and this is really super technical
+        // land.
+        ui.ecdsaRB->setText(QStringLiteral("ECDSA/EdDSA"));
+    }
 
     bool deVsHack = Kleo::gpgComplianceP("de-vs");
 
@@ -1982,10 +2004,12 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         //
         // Does anyone want to use NIST anyway?
         int i;
-        while ((i = ui.ecdsaKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1) {
+        while ((i = ui.ecdsaKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1 ||
+               (i = ui.ecdsaKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
             ui.ecdsaKeyCurvesCB->removeItem(i);
         }
-        while ((i = ui.ecdhKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1) {
+        while ((i = ui.ecdhKeyCurvesCB->findText(QStringLiteral("NIST"), Qt::MatchStartsWith)) != -1 ||
+               (i = ui.ecdhKeyCurvesCB->findText(QStringLiteral("25519"), Qt::MatchEndsWith)) != -1) {
             ui.ecdhKeyCurvesCB->removeItem(i);
         }
     }

@@ -155,6 +155,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     } else {
         d->ui.stored->setText(i18nc("stored...", "on this computer"));
     }
+    d->ui.subkeysTree->resizeColumnToContents(0);
 }
 
 
@@ -187,7 +188,7 @@ SubKeysDialog::~SubKeysDialog()
 void SubKeysDialog::readConfig()
 {
     KConfigGroup dialog(KSharedConfig::openConfig(), "SubKeysDialog");
-    const QSize size = dialog.readEntry("Size", QSize(730, 280));
+    const QSize size = dialog.readEntry("Size", QSize(750, 280));
     if (size.isValid()) {
         resize(size);
     }

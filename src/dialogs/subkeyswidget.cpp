@@ -136,7 +136,15 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(3, Qt::DisplayRole, Kleo::Formatting::expirationDateString(subkey));
         item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
-        item->setData(5, Qt::DisplayRole, QString::number(subkey.length()));
+        switch (subkey.publicKeyAlgorithm()) {
+            case GpgME::Subkey::AlgoECDSA:
+            case GpgME::Subkey::AlgoEDDSA:
+            case GpgME::Subkey::AlgoECDH:
+                item->setData(5, Qt::DisplayRole, QString::fromStdString(subkey.algoName()));
+                break;
+            default:
+                item->setData(5, Qt::DisplayRole, QString::number(subkey.length()));
+        }
         item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
         d->ui.subkeysTree->addTopLevelItem(item);
     }

@@ -274,6 +274,7 @@ public:
             ui.stackWidget->addWidget(ui.padWidget);
         }
         ui.stackWidget->setCurrentWidget(ui.padWidget);
+        ui.stackWidget->resize(ui.padWidget->sizeHint());
     }
 
 private:

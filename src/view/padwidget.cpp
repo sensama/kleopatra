@@ -151,7 +151,8 @@ public:
         mEdit->setPlaceholderText("Enter a message to encrypt or decrypt...");
 
         auto fixedFont = QFont("Monospace", 10);
-        // This does not work well:
+        fixedFont.setStyleHint(QFont::TypeWriter);
+        // This does not work well
         // QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
         mEdit->setCurrentFont(fixedFont);

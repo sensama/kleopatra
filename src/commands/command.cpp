@@ -294,7 +294,18 @@ QVector <Command *> Command::commandsForFiles(const QStringList &files)
 // static
 Command *Command::commandForQuery(const QString &query)
 {
-    const GpgME::Key &key = Kleo::KeyCache::instance()->findByKeyIDOrFingerprint(query.toLocal8Bit().data());
+    const auto cache = Kleo::KeyCache::instance();
+    GpgME::Key key = cache->findByKeyIDOrFingerprint(query.toLocal8Bit().data());
+
+    if (key.isNull() && query.size() > 16) {
+        // Try to find by subkeyid
+        std::vector<std::string> id;
+        id.push_back(query.right(16).toStdString());
+        auto keys = cache->findSubkeysByKeyID(id);
+        if (keys.size()) {
+            key = keys[0].parent();
+        }
+    }
     if (key.isNull()) {
         return new LookupCertificatesCommand(query, nullptr);
     } else {

@@ -159,6 +159,12 @@ void DecryptVerifyFilesDialog::started(const std::shared_ptr<Task> &task)
     } else {
         label->setText(i18nc("tag( \"OpenPGP\" or \"CMS\"),  operation description", "%1: %2", tag, task->label()));
     }
+    if (m_saveButton != QDialogButtonBox::NoButton) {
+        m_buttonBox->button(m_saveButton)->setEnabled(false);
+    } else if (m_buttonBox->button(QDialogButtonBox::Ok)) {
+        m_buttonBox->removeButton(m_buttonBox->button(QDialogButtonBox::Ok));
+        m_buttonBox->addButton(QDialogButtonBox::Close);
+    }
 }
 
 QLabel *DecryptVerifyFilesDialog::labelForTag(const QString &tag)

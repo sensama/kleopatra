@@ -238,6 +238,11 @@ set(_kleopatra_SRCS
   main.cpp
 )
 
+if(WIN32)
+  configure_file (versioninfo.rc.in versioninfo.rc)
+  set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc ${_kleopatra_SRCS})
+endif()
+
 if(HAVE_KCMUTILS)
   set (_kleopatra_extra_libs KF5::KCMUtils)
 else()

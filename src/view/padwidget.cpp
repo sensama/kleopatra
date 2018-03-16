@@ -56,7 +56,7 @@
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRadioButton>
-#include <QSplitter>
+#include <QTabWidget>
 #include <QTextEdit>
 #include <QToolBar>
 #include <QVBoxLayout>
@@ -64,7 +64,6 @@
 #include <KLocalizedString>
 #include <KColorScheme>
 #include <KMessageBox>
-#include <KSplitterCollapserButton>
 
 #include <KSharedConfig>
 #include <KConfigGroup>
@@ -130,23 +129,28 @@ public:
         mStatusLay->addLayout(progLay);
         vLay->addLayout(mStatusLay, 0.1);
 
-        auto splitter = new QSplitter;
-        vLay->addWidget(splitter, 1);
+        auto tabWidget = new QTabWidget;
+        vLay->addWidget(tabWidget, 1);
 
-        splitter->addWidget(mEdit);
+        tabWidget->addTab(mEdit, QIcon::fromTheme("edittext"), i18n("Notepad"));
 
         // The recipients area
         auto recipientsWidget = new QWidget;
         auto recipientsVLay = new QVBoxLayout(recipientsWidget);
         auto protocolSelectionLay = new QHBoxLayout;
-        recipientsVLay->addLayout(protocolSelectionLay);
-        protocolSelectionLay->addWidget(new QLabel(i18n("<h3>Recipients:</h3>")));
+
+        bool pgpOnly = KeyCache::instance()->pgpOnly();
+        if (!pgpOnly) {
+            recipientsVLay->addLayout(protocolSelectionLay);
+        }
+
+        protocolSelectionLay->addWidget(new QLabel(i18n("<h3>Protocol:</h3>")));
         protocolSelectionLay->addStretch(-1);
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
-        splitter->addWidget(recipientsWidget);
-        new KSplitterCollapserButton(recipientsWidget, splitter);
+        tabWidget->addTab(recipientsWidget, QIcon::fromTheme("contact-new-symbolic"),
+                          i18n("Recipients"));
 
         mEdit->setPlaceholderText("Enter a message to encrypt or decrypt...");
 

@@ -113,6 +113,9 @@ static void resetDefaults()
 
 void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 {
+    if (profile.isEmpty()) {
+        return;
+    }
     qCDebug(KLEOPATRA_LOG) << "Applying profile " << profile;
 
     if (profile == i18n("default")) {
@@ -187,11 +190,15 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
     auto profLayout = new QHBoxLayout;
     genGrp->setLayout(profLayout);
     layout->addWidget(genGrp);
-    auto profLabel = new QLabel(i18n("GnuPG Profile:"));
+    auto profLabel = new QLabel(i18n("Activate GnuPG Profile:"));
     profLabel->setToolTip(i18n("A profile consists of various settings that can apply to multiple components of the GnuPG system."));
 
     auto combo = new QComboBox;
     profLabel->setBuddy(combo);
+
+    // Add an empty Item to avoid the impression that this GUI elment
+    // shows the currently selected profile.
+    combo->addItem(QString());
 
     // We don't translate "default" here because the other profile names are
     // also not translated as they are taken directly from file.

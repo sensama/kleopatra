@@ -65,7 +65,9 @@ private:
         CertificateDetailsDialog *dlg = new CertificateDetailsDialog;
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dlg, SIGNAL(rejected()), q_func(), SLOT(slotDialogClosed()));
+        connect(dlg, &QDialog::finished, q_func(), [this] (int) {
+                slotDialogClosed();
+            });
 
         dialog = dlg;
     }

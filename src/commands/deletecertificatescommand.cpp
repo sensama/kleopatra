@@ -404,7 +404,7 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
                                  "<p><b>%1</b></p></qt>",
                                  pgpError ? cmsError ? pgpErrorString + QLatin1String("</br>") + cmsErrorString : pgpErrorString : cmsErrorString);
         error(msg, i18n("Certificate Deletion Failed"));
-    } else {
+    } else if (!pgpError.isCanceled() && !cmsError.isCanceled()) {
         std::vector<Key> keys = pgpKeys;
         keys.insert(keys.end(), cmsKeys.begin(), cmsKeys.end());
         KeyCache::mutableInstance()->remove(keys);

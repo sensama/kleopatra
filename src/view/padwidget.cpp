@@ -461,14 +461,18 @@ public:
         checkImportProtocol();
 
         if (mImportProto != GpgME::UnknownProtocol) {
-            mCryptBtn->setText(i18n("Import"));
+            mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
+                                     "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
+                                     i18n("Import")));
             mCryptBtn->setDisabled(false);
             return;
         }
 
         if (!mSigEncWidget->currentOp().isEmpty()) {
             mCryptBtn->setDisabled(false);
-            mCryptBtn->setText(mSigEncWidget->currentOp() + QLatin1Char(' ') + i18n("Notepad"));
+            mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
+                                     "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
+                                     mSigEncWidget->currentOp()));
         } else {
             mCryptBtn->setText(i18n("Sign / Encrypt Notepad"));
             mCryptBtn->setDisabled(true);

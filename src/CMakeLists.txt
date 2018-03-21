@@ -185,6 +185,7 @@ set(_kleopatra_SRCS
   commands/importcertificatescommand.cpp
   commands/importcertificatefromfilecommand.cpp
   commands/importcertificatefromclipboardcommand.cpp
+  commands/importcertificatefromdatacommand.cpp
   commands/lookupcertificatescommand.cpp
   commands/reloadkeyscommand.cpp
   commands/refreshx509certscommand.cpp

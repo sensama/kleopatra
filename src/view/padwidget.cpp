@@ -46,7 +46,12 @@
 #include "utils/input.h"
 #include "utils/output.h"
 
+#include "commands/importcertificatefromdatacommand.h"
+
+#include <gpgme++/data.h>
 #include <gpgme++/decryptionresult.h>
+
+#include <QGpgME/DataProvider>
 
 #include <QButtonGroup>
 #include <QFontDatabase>
@@ -101,7 +106,8 @@ public:
         mProgressLabel(new QLabel),
         mLastResultWidget(nullptr),
         mPGPRB(nullptr),
-        mCMSRB(nullptr)
+        mCMSRB(nullptr),
+        mImportProto(GpgME::UnknownProtocol)
     {
         auto vLay = new QVBoxLayout(q);
 
@@ -196,8 +202,16 @@ public:
 
         updateCommitButton();
 
+        connect(mEdit, &QTextEdit::textChanged, q, [this] () {
+                updateCommitButton();
+            });
+
         connect(mCryptBtn, &QPushButton::clicked, q, [this] () {
-                doEncryptSign();
+                if (mImportProto != GpgME::UnknownProtocol) {
+                    doImport();
+                } else {
+                    doEncryptSign();
+                }
             });
 
         connect(mSigEncWidget, &SignEncryptWidget::operationChanged, q, [this] (const QString &) {
@@ -407,9 +421,51 @@ public:
         task->start();
     }
 
+    void doImport()
+    {
+        doCryptoCommon();
+        mProgressLabel->setText(i18n("Importing..."));
+        auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
+        connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this] () {
+                mCryptBtn->setEnabled(true);
+                mDecryptBtn->setEnabled(true);
+                mProgressBar->setVisible(false);
+                mProgressLabel->setVisible(false);
+
+                updateCommitButton();
+                mRevertBtn->setVisible(true);
+                mEdit->setPlainText(QString());
+            });
+        cmd->start();
+    }
+
+    void checkImportProtocol()
+    {
+        QGpgME::QByteArrayDataProvider dp(mEdit->toPlainText().toUtf8());
+        GpgME::Data data(&dp);
+        auto type = data.type();
+        if (type == GpgME::Data::PGPKey) {
+            mImportProto = GpgME::OpenPGP;
+        } else if (type == GpgME::Data::X509Cert ||
+                   type == GpgME::Data::PKCS12) {
+            mImportProto = GpgME::CMS;
+        } else {
+            mImportProto = GpgME::UnknownProtocol;
+        }
+    }
+
     void updateCommitButton()
     {
         mAdditionalInfoLabel->setVisible(false);
+
+        checkImportProtocol();
+
+        if (mImportProto != GpgME::UnknownProtocol) {
+            mCryptBtn->setText(i18n("Import"));
+            mCryptBtn->setDisabled(false);
+            return;
+        }
+
         if (!mSigEncWidget->currentOp().isEmpty()) {
             mCryptBtn->setDisabled(false);
             mCryptBtn->setText(mSigEncWidget->currentOp() + QLatin1Char(' ') + i18n("Notepad"));
@@ -452,6 +508,7 @@ private:
     QList<GpgME::Key> mAutoAddedKeys;
     QRadioButton *mPGPRB;
     QRadioButton *mCMSRB;
+    GpgME::Protocol mImportProto;
 };
 
 PadWidget::PadWidget(QWidget *parent):

@@ -150,7 +150,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(0, Qt::UserRole, QVariant::fromValue(uid));
 
         auto pMail = Kleo::Formatting::prettyEMail(uid);
-        if (!isOpenPGP && pMail.isEmpty()) {
+        auto pName = Kleo::Formatting::prettyName(uid);
+        if (!isOpenPGP && pMail.isEmpty() && !pName.isEmpty()) {
             // S/MIME UserIDs are sometimes split, with one userID
             // containing the name another the Mail, we merge these
             // UID's into a single item.
@@ -161,9 +162,20 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
                 ++i;
             }
         }
+
+        if (!isOpenPGP && pMail.isEmpty() && pName.isEmpty()) {
+            // S/MIME certificates sometimes contain urls where both
+            // name and mail is empty. In that case we print whatever
+            // the uid is as name.
+            //
+            // Can be ugly like (3:uri24:http://ca.intevation.org), but
+            // this is better then showing an empty entry.
+            pName = uid.id();
+        }
+
         item->setData(0, Qt::DisplayRole, pMail);
         item->setData(0, Qt::ToolTipRole, toolTip);
-        item->setData(1, Qt::DisplayRole, Kleo::Formatting::prettyName(uid));
+        item->setData(1, Qt::DisplayRole, pName);
         item->setData(1, Qt::ToolTipRole, toolTip);
 
         QIcon trustIcon;

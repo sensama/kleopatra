@@ -103,6 +103,7 @@ public:
     explicit Private(KleopatraApplication *qq)
         : q(qq),
           ignoreNewInstance(true),
+          firstNewInstance(true),
           sysTray(nullptr)
     {
     }
@@ -140,6 +141,7 @@ private:
 
 public:
     bool ignoreNewInstance;
+    bool firstNewInstance;
     QPointer<ConfigureDialog> configureDialog;
     QPointer<MainWindow> mainWindow;
     SmartCard::ReaderStatus readerStatus;
@@ -369,7 +371,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         (this->*funcMap.value(found))(files, protocol);
     } else {
         if (files.empty()) {
-            if (!isSessionRestored()) {
+            if (!(d->firstNewInstance && isSessionRestored())) {
                 qCDebug(KLEOPATRA_LOG) << "openOrRaiseMainWindow";
                 openOrRaiseMainWindow();
             }
@@ -399,6 +401,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
             return errors.join('\n');
         }
     }
+    d->firstNewInstance = false;
 
     return QString();
 }

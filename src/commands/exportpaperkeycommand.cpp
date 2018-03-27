@@ -68,6 +68,7 @@ ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListContro
     process()->setStandardOutputProcess(&mPkProc);
     qCDebug(KLEOPATRA_LOG) << "Starting PaperKey process.";
     mPkProc.start();
+    setAutoDelete(false);
 }
 
 QStringList ExportPaperKeyCommand::arguments() const
@@ -99,6 +100,12 @@ void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status
 {
     qCDebug(KLEOPATRA_LOG) << "Paperkey export finished: " << code << "status: " << status;
 
+    if (status == QProcess::CrashExit || code) {
+        qCDebug(KLEOPATRA_LOG) << "Aborting because paperkey failed";
+        deleteLater();
+        return;
+    }
+
     QPrinter printer;
 
     const Key key = d->key();
@@ -108,12 +115,15 @@ void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status
 
     if (printDialog.exec() != QDialog::Accepted) {
         qCDebug(KLEOPATRA_LOG) << "Printing aborted.";
+        deleteLater();
         return;
     }
 
     QTextDocument doc(mPkProc.readAllStandardOutput());
     doc.setDefaultFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     doc.print(&printer);
+
+    deleteLater();
 }
 
 QString ExportPaperKeyCommand::errorCaption() const

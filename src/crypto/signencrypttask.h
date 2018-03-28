@@ -80,6 +80,7 @@ public:
     void setEncrypt(bool encrypt);
     void setDetachedSignature(bool detached);
     void setEncryptSymmetric(bool symmetric);
+    void setClearsign(bool clearsign);
 
     void setOverwritePolicy(const std::shared_ptr<OverwritePolicy> &policy);
     GpgME::Protocol protocol() const override;

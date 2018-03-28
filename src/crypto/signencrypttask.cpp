@@ -321,6 +321,7 @@ private:
     bool encrypt  : 1;
     bool detached : 1;
     bool symmetric: 1;
+    bool clearsign: 1;
 
     QPointer<QGpgME::Job> job;
     std::shared_ptr<OverwritePolicy> m_overwritePolicy;
@@ -337,6 +338,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
       sign(true),
       encrypt(true),
       detached(false),
+      clearsign(false),
       job(nullptr),
       m_overwritePolicy(new OverwritePolicy(nullptr))
 {
@@ -433,6 +435,12 @@ void SignEncryptTask::setEncryptSymmetric(bool symmetric)
     d->symmetric = symmetric;
 }
 
+void SignEncryptTask::setClearsign(bool clearsign)
+{
+    kleo_assert(!d->job);
+    d->clearsign = clearsign;
+}
+
 Protocol SignEncryptTask::protocol() const
 {
     if (d->sign && !d->signers.empty()) {
@@ -502,10 +510,12 @@ void SignEncryptTask::doStart()
     } else if (d->sign) {
         std::unique_ptr<QGpgME::SignJob> job = d->createSignJob(protocol());
         kleo_assert(job.get());
+        kleo_assert(! (d->detached && d->clearsign));
 
         job->start(d->signers,
                    d->input->ioDevice(), d->output->ioDevice(),
-                   d->detached ? GpgME::Detached : GpgME::NormalSignatureMode);
+                   d->detached ? GpgME::Detached : d->clearsign ?
+                              GpgME::Clearsigned : GpgME::NormalSignatureMode);
 
         d->job = job.release();
     } else {

@@ -400,7 +400,11 @@ public:
         task->setOutput(output);
 
         const auto sigKey = mSigEncWidget->signKey();
-        if (!sigKey.isNull()) {
+
+        bool encrypt = mSigEncWidget->encryptSymmetric() || mSigEncWidget->recipients().size();
+        bool sign = !sigKey.isNull();
+
+        if (sign) {
             task->setSign(true);
             std::vector<GpgME::Key> signVector;
             signVector.push_back(sigKey);
@@ -408,10 +412,14 @@ public:
         } else {
             task->setSign(false);
         }
-        task->setEncrypt(mSigEncWidget->encryptSymmetric() || mSigEncWidget->recipients().size());
+        task->setEncrypt(encrypt);
         task->setRecipients(mSigEncWidget->recipients().toStdVector());
         task->setEncryptSymmetric(mSigEncWidget->encryptSymmetric());
         task->setAsciiArmor(true);
+
+        if (sign && !encrypt && sigKey.protocol() == GpgME::OpenPGP) {
+            task->setClearsign(true);
+        }
 
         connect (task, &Task::result, q, [this, task] (const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
                 qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->errorCode();

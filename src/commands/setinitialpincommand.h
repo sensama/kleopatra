@@ -45,7 +45,7 @@ class SetInitialPinCommand : public Command
     Q_OBJECT
 public:
     SetInitialPinCommand();
-    ~SetInitialPinCommand();
+    ~SetInitialPinCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

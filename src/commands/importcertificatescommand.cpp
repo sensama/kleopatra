@@ -88,7 +88,7 @@ public:
         updateFindCache(results, ids);
     }
 
-    ~ImportResultProxyModel() {}
+    ~ImportResultProxyModel() override {}
 
     ImportResultProxyModel *clone() const override
     {

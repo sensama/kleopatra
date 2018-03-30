@@ -47,7 +47,7 @@ public:
     explicit ChangeOwnerTrustCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ChangeOwnerTrustCommand(KeyListController *parent);
     explicit ChangeOwnerTrustCommand(const GpgME::Key &key);
-    ~ChangeOwnerTrustCommand();
+    ~ChangeOwnerTrustCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

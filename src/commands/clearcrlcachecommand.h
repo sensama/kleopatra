@@ -46,7 +46,7 @@ class ClearCrlCacheCommand : public GnuPGProcessCommand
 public:
     explicit ClearCrlCacheCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ClearCrlCacheCommand(KeyListController *parent);
-    ~ClearCrlCacheCommand();
+    ~ClearCrlCacheCommand() override;
 
 private:
     QStringList arguments() const override;

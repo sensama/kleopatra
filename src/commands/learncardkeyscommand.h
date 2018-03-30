@@ -47,7 +47,7 @@ class LearnCardKeysCommand : public GnuPGProcessCommand
     Q_OBJECT
 public:
     explicit LearnCardKeysCommand(GpgME::Protocol proto);
-    ~LearnCardKeysCommand();
+    ~LearnCardKeysCommand() override;
 
     GpgME::Protocol protocol() const;
 

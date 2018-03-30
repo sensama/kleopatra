@@ -54,7 +54,7 @@ public:
     explicit CertifyCertificateCommand(const GpgME::Key &key);
     explicit CertifyCertificateCommand(const GpgME::UserID &uid);
     explicit CertifyCertificateCommand(const std::vector<GpgME::UserID> &uids);
-    ~CertifyCertificateCommand();
+    ~CertifyCertificateCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

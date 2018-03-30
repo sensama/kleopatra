@@ -50,7 +50,7 @@ public:
     explicit ExportSecretKeyCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ExportSecretKeyCommand(KeyListController *parent);
     explicit ExportSecretKeyCommand(const GpgME::Key &key);
-    ~ExportSecretKeyCommand();
+    ~ExportSecretKeyCommand() override;
 
     void setFileName(const QString &fileName);
     QString fileName() const

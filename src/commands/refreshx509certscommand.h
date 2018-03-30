@@ -46,7 +46,7 @@ class RefreshX509CertsCommand : public GnuPGProcessCommand
 public:
     explicit RefreshX509CertsCommand(QAbstractItemView *view, KeyListController *parent);
     explicit RefreshX509CertsCommand(KeyListController *parent);
-    ~RefreshX509CertsCommand();
+    ~RefreshX509CertsCommand() override;
 
 private:
     bool preStartHook(QWidget *) const override;

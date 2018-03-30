@@ -55,7 +55,7 @@ class ConfigureDialog : public KleoPageConfigDialog
     Q_OBJECT
 public:
     explicit ConfigureDialog(QWidget *parent = nullptr);
-    ~ConfigureDialog();
+    ~ConfigureDialog() override;
 
 protected:
     void hideEvent(QHideEvent *) override;

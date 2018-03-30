@@ -43,7 +43,7 @@ class DeleteCertificatesCommand : public Command
 public:
     explicit DeleteCertificatesCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DeleteCertificatesCommand(KeyListController *parent);
-    ~DeleteCertificatesCommand();
+    ~DeleteCertificatesCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

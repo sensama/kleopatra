@@ -47,7 +47,7 @@ public:
     explicit AddUserIDCommand(QAbstractItemView *view, KeyListController *parent);
     explicit AddUserIDCommand(KeyListController *parent);
     explicit AddUserIDCommand(const GpgME::Key &key);
-    ~AddUserIDCommand();
+    ~AddUserIDCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

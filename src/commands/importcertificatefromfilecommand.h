@@ -49,7 +49,7 @@ public:
     explicit ImportCertificateFromFileCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ImportCertificateFromFileCommand(const QStringList &files, KeyListController *parent);
     explicit ImportCertificateFromFileCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
-    ~ImportCertificateFromFileCommand();
+    ~ImportCertificateFromFileCommand() override;
 
     void setFiles(const QStringList &files);
     QStringList files() const;

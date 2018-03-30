@@ -44,7 +44,7 @@ class ImportCertificatesCommand : public Command
 public:
     explicit ImportCertificatesCommand(KeyListController *parent);
     explicit ImportCertificatesCommand(QAbstractItemView *view, KeyListController *parent);
-    ~ImportCertificatesCommand();
+    ~ImportCertificatesCommand() override;
 
 protected:
     void doCancel() override;

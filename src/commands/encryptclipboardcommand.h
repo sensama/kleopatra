@@ -50,7 +50,7 @@ class EncryptClipboardCommand : public Command
 public:
     explicit EncryptClipboardCommand(QAbstractItemView *view, KeyListController *parent);
     explicit EncryptClipboardCommand(KeyListController *parent);
-    ~EncryptClipboardCommand();
+    ~EncryptClipboardCommand() override;
 
     static bool canEncryptCurrentClipboard();
 

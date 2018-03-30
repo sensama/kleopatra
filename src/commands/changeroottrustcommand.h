@@ -50,7 +50,7 @@ public:
     explicit ChangeRootTrustCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ChangeRootTrustCommand(const GpgME::Key &key, KeyListController *parent);
     explicit ChangeRootTrustCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent);
-    ~ChangeRootTrustCommand();
+    ~ChangeRootTrustCommand() override;
 
     void setTrust(GpgME::Key::OwnerTrust trust);
     GpgME::Key::OwnerTrust trust() const;

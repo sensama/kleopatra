@@ -44,7 +44,7 @@ public:
     explicit ExportCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ExportCertificateCommand(KeyListController *parent);
     explicit ExportCertificateCommand(const GpgME::Key &key);
-    ~ExportCertificateCommand();
+    ~ExportCertificateCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

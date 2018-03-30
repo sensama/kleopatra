@@ -52,7 +52,7 @@ class SignClipboardCommand : public Command
 public:
     explicit SignClipboardCommand(GpgME::Protocol protocol, QAbstractItemView *view, KeyListController *parent);
     explicit SignClipboardCommand(GpgME::Protocol protocol, KeyListController *parent);
-    ~SignClipboardCommand();
+    ~SignClipboardCommand() override;
 
     static bool canSignCurrentClipboard();
 

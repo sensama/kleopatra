@@ -46,7 +46,7 @@ class DumpCrlCacheCommand : public Command
 public:
     explicit DumpCrlCacheCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DumpCrlCacheCommand(KeyListController *parent);
-    ~DumpCrlCacheCommand();
+    ~DumpCrlCacheCommand() override;
 
 private:
     void doStart() override;

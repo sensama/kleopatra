@@ -54,7 +54,7 @@ public:
     explicit ChecksumVerifyFilesCommand(KeyListController *parent);
     explicit ChecksumVerifyFilesCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
     explicit ChecksumVerifyFilesCommand(const QStringList &files, KeyListController *parent);
-    ~ChecksumVerifyFilesCommand();
+    ~ChecksumVerifyFilesCommand() override;
 
     void setFiles(const QStringList &files);
 

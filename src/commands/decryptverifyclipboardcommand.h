@@ -50,7 +50,7 @@ class DecryptVerifyClipboardCommand : public Command
 public:
     explicit DecryptVerifyClipboardCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DecryptVerifyClipboardCommand(KeyListController *parent);
-    ~DecryptVerifyClipboardCommand();
+    ~DecryptVerifyClipboardCommand() override;
 
     static bool canDecryptVerifyCurrentClipboard();
 

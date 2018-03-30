@@ -46,7 +46,7 @@ class SelfTestCommand : public Command
 public:
     explicit SelfTestCommand(QAbstractItemView *view, KeyListController *parent);
     explicit SelfTestCommand(KeyListController *parent);
-    ~SelfTestCommand();
+    ~SelfTestCommand() override;
 
     void setAutomaticMode(bool automatic);
 

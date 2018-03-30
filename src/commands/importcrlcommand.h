@@ -50,7 +50,7 @@ public:
     explicit ImportCrlCommand(KeyListController *parent);
     explicit ImportCrlCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
     explicit ImportCrlCommand(const QStringList &files, KeyListController *parent);
-    ~ImportCrlCommand();
+    ~ImportCrlCommand() override;
 
     void setFiles(const QStringList &files);
 

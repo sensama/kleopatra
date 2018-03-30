@@ -47,7 +47,7 @@ public:
     explicit LookupCertificatesCommand(QAbstractItemView *view, KeyListController *parent);
     explicit LookupCertificatesCommand(KeyListController *parent);
     explicit LookupCertificatesCommand(const QString &fingerPrint, KeyListController *parent);
-    ~LookupCertificatesCommand();
+    ~LookupCertificatesCommand() override;
 
 private:
     void doStart() override;

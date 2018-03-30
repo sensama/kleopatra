@@ -54,7 +54,7 @@ public:
     explicit SignEncryptFilesCommand(KeyListController *parent);
     explicit SignEncryptFilesCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
     explicit SignEncryptFilesCommand(const QStringList &files, KeyListController *parent);
-    ~SignEncryptFilesCommand();
+    ~SignEncryptFilesCommand() override;
 
     void setFiles(const QStringList &files);
 

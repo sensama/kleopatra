@@ -48,7 +48,7 @@ class ImportCertificateFromDataCommand : public ImportCertificatesCommand
 public:
     explicit ImportCertificateFromDataCommand(const QByteArray &data,
                                               GpgME::Protocol proto);
-    ~ImportCertificateFromDataCommand();
+    ~ImportCertificateFromDataCommand() override;
 
 private:
     void doStart() override;

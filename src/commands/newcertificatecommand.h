@@ -49,7 +49,7 @@ public:
     explicit NewCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     explicit NewCertificateCommand(KeyListController *parent);
     explicit NewCertificateCommand();
-    ~NewCertificateCommand();
+    ~NewCertificateCommand() override;
 
     void setProtocol(GpgME::Protocol proto);
     GpgME::Protocol protocol() const;

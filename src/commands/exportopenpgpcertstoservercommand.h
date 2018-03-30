@@ -48,7 +48,7 @@ public:
     explicit ExportOpenPGPCertsToServerCommand(KeyListController *parent);
     explicit ExportOpenPGPCertsToServerCommand(const GpgME::Key &key);
 
-    ~ExportOpenPGPCertsToServerCommand();
+    ~ExportOpenPGPCertsToServerCommand() override;
 
     static Restrictions restrictions()
     {

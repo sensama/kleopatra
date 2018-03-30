@@ -47,7 +47,7 @@ public:
     explicit DumpCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DumpCertificateCommand(KeyListController *parent);
     explicit DumpCertificateCommand(const GpgME::Key &key);
-    ~DumpCertificateCommand();
+    ~DumpCertificateCommand() override;
 
     static Restrictions restrictions()
     {

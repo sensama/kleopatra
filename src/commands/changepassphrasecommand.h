@@ -47,7 +47,7 @@ public:
     explicit ChangePassphraseCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ChangePassphraseCommand(KeyListController *parent);
     explicit ChangePassphraseCommand(const GpgME::Key &key);
-    ~ChangePassphraseCommand();
+    ~ChangePassphraseCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

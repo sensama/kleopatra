@@ -52,7 +52,7 @@ public:
     explicit DecryptVerifyFilesCommand(KeyListController *parent);
     explicit DecryptVerifyFilesCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
     explicit DecryptVerifyFilesCommand(const QStringList &files, KeyListController *parent, bool forceManualMode = false);
-    ~DecryptVerifyFilesCommand();
+    ~DecryptVerifyFilesCommand() override;
 
     void setFiles(const QStringList &files);
 

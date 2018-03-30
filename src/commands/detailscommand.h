@@ -53,7 +53,7 @@ public:
     explicit DetailsCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DetailsCommand(const GpgME::Key &key, KeyListController *parent);
     explicit DetailsCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent);
-    ~DetailsCommand();
+    ~DetailsCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

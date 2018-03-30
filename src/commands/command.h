@@ -65,7 +65,7 @@ public:
     explicit Command(QAbstractItemView *view, KeyListController *parent);
     explicit Command(const GpgME::Key &key);
     explicit Command(const std::vector<GpgME::Key> &keys);
-    ~Command();
+    ~Command() override;
 
     enum Restriction {
         NoRestriction      = 0,

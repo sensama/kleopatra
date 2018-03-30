@@ -46,7 +46,7 @@ class RefreshOpenPGPCertsCommand : public GnuPGProcessCommand
 public:
     explicit RefreshOpenPGPCertsCommand(QAbstractItemView *view, KeyListController *parent);
     explicit RefreshOpenPGPCertsCommand(KeyListController *parent);
-    ~RefreshOpenPGPCertsCommand();
+    ~RefreshOpenPGPCertsCommand() override;
 
 private:
     bool preStartHook(QWidget *) const override;

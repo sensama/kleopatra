@@ -44,7 +44,7 @@ class ReloadKeysCommand : public Command
 public:
     explicit ReloadKeysCommand(KeyListController *parent);
     ReloadKeysCommand(QAbstractItemView *view, KeyListController *parent);
-    ~ReloadKeysCommand();
+    ~ReloadKeysCommand() override;
 
 private:
     void doStart() override;

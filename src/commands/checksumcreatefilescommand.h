@@ -54,7 +54,7 @@ public:
     explicit ChecksumCreateFilesCommand(KeyListController *parent);
     explicit ChecksumCreateFilesCommand(const QStringList &files, QAbstractItemView *view, KeyListController *parent);
     explicit ChecksumCreateFilesCommand(const QStringList &files, KeyListController *parent);
-    ~ChecksumCreateFilesCommand();
+    ~ChecksumCreateFilesCommand() override;
 
     void setFiles(const QStringList &files);
 

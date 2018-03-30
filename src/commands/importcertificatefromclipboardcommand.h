@@ -46,7 +46,7 @@ class ImportCertificateFromClipboardCommand : public ImportCertificatesCommand
 public:
     explicit ImportCertificateFromClipboardCommand(KeyListController *parent);
     explicit ImportCertificateFromClipboardCommand(QAbstractItemView *view, KeyListController *parent);
-    ~ImportCertificateFromClipboardCommand();
+    ~ImportCertificateFromClipboardCommand() override;
 
     static bool canImportCurrentClipboard();
 

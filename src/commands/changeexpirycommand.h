@@ -47,7 +47,7 @@ public:
     explicit ChangeExpiryCommand(QAbstractItemView *view, KeyListController *parent);
     explicit ChangeExpiryCommand(KeyListController *parent);
     explicit ChangeExpiryCommand(const GpgME::Key &key);
-    ~ChangeExpiryCommand();
+    ~ChangeExpiryCommand() override;
 
     /* reimp */ static Restrictions restrictions()
     {

@@ -70,7 +70,7 @@ class NewSignEncryptEMailController : public Controller
 public:
     explicit NewSignEncryptEMailController(QObject *parent = nullptr);
     explicit NewSignEncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, QObject *parent = nullptr);
-    ~NewSignEncryptEMailController();
+    ~NewSignEncryptEMailController() override;
 
     static const char *mementoName()
     {

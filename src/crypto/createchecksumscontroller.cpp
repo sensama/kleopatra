@@ -218,7 +218,7 @@ class CreateChecksumsController::Private : public QThread
     CreateChecksumsController *const q;
 public:
     explicit Private(CreateChecksumsController *qq);
-    ~Private();
+    ~Private() override;
 
 Q_SIGNALS:
     void progress(int, int, const QString &);

@@ -45,7 +45,7 @@ class DecryptVerifyCommandEMailBase : public AssuanCommandMixin<DecryptVerifyCom
 {
 public:
     explicit DecryptVerifyCommandEMailBase();
-    ~DecryptVerifyCommandEMailBase();
+    ~DecryptVerifyCommandEMailBase() override;
 
 private:
     virtual DecryptVerifyOperation operation() const = 0;

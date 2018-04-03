@@ -54,7 +54,7 @@ class LookupCertificatesDialog : public QDialog
     Q_OBJECT
 public:
     explicit LookupCertificatesDialog(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
-    ~LookupCertificatesDialog();
+    ~LookupCertificatesDialog() override;
 
     void setCertificates(const std::vector<GpgME::Key> &certs);
     std::vector<GpgME::Key> selectedCertificates() const;

@@ -60,7 +60,7 @@ public:
     explicit DecryptVerifyFilesController(QObject *parent = nullptr);
     explicit DecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
 
-    ~DecryptVerifyFilesController();
+    ~DecryptVerifyFilesController() override;
 
     virtual void setFiles(const QStringList &files);
     virtual void setOperation(DecryptVerifyOperation op);

@@ -72,7 +72,7 @@ public:
 
     explicit SignEMailController(Mode mode, QObject *parent = nullptr);
     explicit SignEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = nullptr);
-    ~SignEMailController();
+    ~SignEMailController() override;
 
     Mode mode() const;
 

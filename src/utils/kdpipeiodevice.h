@@ -40,7 +40,7 @@ public:
     explicit KDPipeIODevice(QObject *parent = nullptr);
     explicit KDPipeIODevice(int fd, OpenMode = ReadOnly, QObject *parent = nullptr);
     explicit KDPipeIODevice(Qt::HANDLE handle, OpenMode = ReadOnly, QObject *parent = nullptr);
-    ~KDPipeIODevice();
+    ~KDPipeIODevice() override;
 
     static std::pair<KDPipeIODevice *, KDPipeIODevice *> makePairOfConnectedPipes();
 

@@ -107,7 +107,7 @@ class DecryptTask : public AbstractDecryptVerifyTask
     Q_OBJECT
 public:
     explicit DecryptTask(QObject *parent = nullptr);
-    ~DecryptTask();
+    ~DecryptTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setOutput(const std::shared_ptr<Output> &output);
@@ -139,7 +139,7 @@ class VerifyDetachedTask : public AbstractDecryptVerifyTask
     Q_OBJECT
 public:
     explicit VerifyDetachedTask(QObject *parent = nullptr);
-    ~VerifyDetachedTask();
+    ~VerifyDetachedTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setSignedData(const std::shared_ptr<Input> &signedData);
@@ -171,7 +171,7 @@ class VerifyOpaqueTask : public AbstractDecryptVerifyTask
     Q_OBJECT
 public:
     explicit VerifyOpaqueTask(QObject *parent = nullptr);
-    ~VerifyOpaqueTask();
+    ~VerifyOpaqueTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setOutput(const std::shared_ptr<Output> &output);
@@ -202,7 +202,7 @@ class DecryptVerifyTask : public AbstractDecryptVerifyTask
     Q_OBJECT
 public:
     explicit DecryptVerifyTask(QObject *parent = nullptr);
-    ~DecryptVerifyTask();
+    ~DecryptVerifyTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setSignedData(const std::shared_ptr<Input> &signedData);

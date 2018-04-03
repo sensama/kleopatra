@@ -75,7 +75,7 @@ class KConfigBasedRecipientPreferences : public RecipientPreferences
 {
 public:
     explicit KConfigBasedRecipientPreferences(const KSharedConfigPtr &config);
-    ~KConfigBasedRecipientPreferences();
+    ~KConfigBasedRecipientPreferences() override;
     GpgME::Key preferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol) override;
     void setPreferredCertificate(const KMime::Types::Mailbox &recipient, GpgME::Protocol protocol, const GpgME::Key &certificate) override;
 private:
@@ -88,7 +88,7 @@ class KConfigBasedSigningPreferences : public SigningPreferences
 {
 public:
     explicit KConfigBasedSigningPreferences(const KSharedConfigPtr &config);
-    ~KConfigBasedSigningPreferences();
+    ~KConfigBasedSigningPreferences() override;
     GpgME::Key preferredCertificate(GpgME::Protocol protocol) override;
     void setPreferredCertificate(GpgME::Protocol protocol, const GpgME::Key &certificate) override;
 private:

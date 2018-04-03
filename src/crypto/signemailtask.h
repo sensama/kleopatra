@@ -63,7 +63,7 @@ class SignEMailTask : public Task
     Q_OBJECT
 public:
     explicit SignEMailTask(QObject *parent = nullptr);
-    ~SignEMailTask();
+    ~SignEMailTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setOutput(const std::shared_ptr<Output> &output);

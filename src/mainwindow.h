@@ -44,7 +44,7 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr, Qt::WindowFlags f = KDE_DEFAULT_WINDOWFLAGS);
-    ~MainWindow();
+    ~MainWindow() override;
 
 public Q_SLOTS:
     void importCertificatesFromFile(const QStringList &files);

@@ -44,7 +44,7 @@ class SelectCertificateCommand : public QObject, public AssuanCommandMixin<Selec
     Q_OBJECT
 public:
     SelectCertificateCommand();
-    ~SelectCertificateCommand();
+    ~SelectCertificateCommand() override;
 
     static const char *staticName()
     {

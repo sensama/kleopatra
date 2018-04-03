@@ -66,7 +66,7 @@ class EchoCommand : public QObject, public AssuanCommandMixin<EchoCommand>
     Q_OBJECT
 public:
     EchoCommand();
-    ~EchoCommand();
+    ~EchoCommand() override;
 
     static const char *staticName()
     {

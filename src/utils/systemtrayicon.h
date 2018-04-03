@@ -48,7 +48,7 @@ class SystemTrayIcon : public QSystemTrayIcon
 public:
     explicit SystemTrayIcon(QObject *parent = nullptr);
     explicit SystemTrayIcon(const QIcon &icon, QObject *parent = nullptr);
-    ~SystemTrayIcon();
+    ~SystemTrayIcon() override;
 
     void setMainWindow(QWidget *w);
     QWidget *mainWindow() const;

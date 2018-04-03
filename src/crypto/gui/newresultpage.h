@@ -60,7 +60,7 @@ class NewResultPage : public QWizardPage
     Q_OBJECT
 public:
     explicit NewResultPage(QWidget *parent = nullptr);
-    ~NewResultPage();
+    ~NewResultPage() override;
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);

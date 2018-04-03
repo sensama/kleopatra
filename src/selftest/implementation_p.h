@@ -48,7 +48,7 @@ class SelfTestImplementation : public SelfTest
 {
 public:
     explicit SelfTestImplementation(const QString &name);
-    ~SelfTestImplementation();
+    ~SelfTestImplementation() override;
 
     QString name() const override
     {

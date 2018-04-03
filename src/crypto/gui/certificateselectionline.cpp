@@ -131,7 +131,8 @@ public Q_SLOTS:
     }
 
 protected:
-    void paintEvent(QPaintEvent *) override {
+    void paintEvent(QPaintEvent *) override
+    {
         QStylePainter p(this);
         p.setPen(palette().color(QPalette::Text));
         QStyleOptionComboBox opt;

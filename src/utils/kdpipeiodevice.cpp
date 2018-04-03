@@ -70,7 +70,7 @@ class Reader : public QThread
     Q_OBJECT
 public:
     Reader(int fd, Qt::HANDLE handle);
-    ~Reader();
+    ~Reader() override;
 
     qint64 readData(char *data, qint64 maxSize);
 
@@ -158,7 +158,7 @@ class Writer : public QThread
     Q_OBJECT
 public:
     Writer(int fd, Qt::HANDLE handle);
-    ~Writer();
+    ~Writer() override;
 
     qint64 writeData(const char *data, qint64 size);
 

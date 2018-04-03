@@ -82,7 +82,7 @@ class OperationsWidget : public WizardPage
     Q_OBJECT
 public:
     explicit OperationsWidget(QWidget *p = nullptr);
-    ~OperationsWidget();
+    ~OperationsWidget() override;
 
     void setOutputDirectory(const QString &dir)
     {

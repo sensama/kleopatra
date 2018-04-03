@@ -66,7 +66,7 @@ class SignEncryptTask : public Task
     Q_OBJECT
 public:
     explicit SignEncryptTask(QObject *parent = nullptr);
-    ~SignEncryptTask();
+    ~SignEncryptTask() override;
 
     void setInputFileName(const QString &fileName);
     void setInputFileNames(const QStringList &fileNames);

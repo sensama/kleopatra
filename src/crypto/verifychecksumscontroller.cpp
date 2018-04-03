@@ -144,7 +144,7 @@ class VerifyChecksumsController::Private : public QThread
     VerifyChecksumsController *const q;
 public:
     explicit Private(VerifyChecksumsController *qq);
-    ~Private();
+    ~Private() override;
 
 Q_SIGNALS:
     void baseDirectories(const QStringList &);

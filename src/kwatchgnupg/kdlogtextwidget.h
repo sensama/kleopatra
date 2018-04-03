@@ -43,7 +43,7 @@ class KDLogTextWidget : public QAbstractScrollArea
     Q_CLASSINFO("description", "High-speed text display widget")
 public:
     explicit KDLogTextWidget(QWidget *parent = nullptr);
-    ~KDLogTextWidget();
+    ~KDLogTextWidget() override;
 
     void setHistorySize(unsigned int size);
     unsigned int historySize() const;

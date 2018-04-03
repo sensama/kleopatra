@@ -59,7 +59,7 @@ public:
     };
 
     explicit DecryptVerifyCommandFilesBase();
-    ~DecryptVerifyCommandFilesBase();
+    ~DecryptVerifyCommandFilesBase() override;
 
 private:
     virtual DecryptVerifyOperation operation() const = 0;

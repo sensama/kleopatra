@@ -56,7 +56,7 @@ class ResultPage : public WizardPage
 
 public:
     explicit ResultPage(QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
-    ~ResultPage();
+    ~ResultPage() override;
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 

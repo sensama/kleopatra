@@ -54,7 +54,7 @@ class SignEncryptFilesController : public Controller
 public:
     explicit SignEncryptFilesController(QObject *parent = nullptr);
     explicit SignEncryptFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
-    ~SignEncryptFilesController();
+    ~SignEncryptFilesController() override;
 
     void setProtocol(GpgME::Protocol proto);
     GpgME::Protocol protocol() const;

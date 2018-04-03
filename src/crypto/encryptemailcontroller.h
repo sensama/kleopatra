@@ -72,7 +72,7 @@ public:
 
     explicit EncryptEMailController(Mode mode, QObject *parent = nullptr);
     explicit EncryptEMailController(const std::shared_ptr<ExecutionContext> &xc, Mode mode, QObject *parent = nullptr);
-    ~EncryptEMailController();
+    ~EncryptEMailController() override;
 
     Mode mode() const;
 

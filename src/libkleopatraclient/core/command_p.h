@@ -50,7 +50,7 @@ public:
     {
 
     }
-    ~Private() {}
+    ~Private() override {}
 
 private:
     void init();

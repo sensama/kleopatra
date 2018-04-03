@@ -52,7 +52,7 @@ class ExportSecretKeyDialog : public QDialog
     Q_OBJECT
 public:
     explicit ExportSecretKeyDialog(QWidget *parent = nullptr);
-    ~ExportSecretKeyDialog();
+    ~ExportSecretKeyDialog() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;

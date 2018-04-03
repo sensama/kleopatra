@@ -72,7 +72,7 @@ public:
     explicit DecryptVerifyEMailController(QObject *parent = nullptr);
     explicit DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = nullptr);
 
-    ~DecryptVerifyEMailController();
+    ~DecryptVerifyEMailController() override;
 
     void setInput(const std::shared_ptr<Input> &input);
     void setInputs(const std::vector<std::shared_ptr<Input> > &inputs);

@@ -60,7 +60,7 @@ public:
     };
 
     explicit DecryptVerifyFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
-    ~DecryptVerifyFilesWizard();
+    ~DecryptVerifyFilesWizard() override;
 
     void setOutputDirectory(const QString &dir);
     QString outputDirectory() const;

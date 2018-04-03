@@ -44,7 +44,7 @@ class ImportFilesCommand : public QObject, public AssuanCommandMixin<ImportFiles
     Q_OBJECT
 public:
     ImportFilesCommand();
-    ~ImportFilesCommand();
+    ~ImportFilesCommand() override;
 
     static const char *staticName()
     {

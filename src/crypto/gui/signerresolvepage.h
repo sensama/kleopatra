@@ -62,7 +62,7 @@ class SignerResolvePage : public WizardPage
     Q_OBJECT
 public:
     explicit SignerResolvePage(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
-    ~SignerResolvePage();
+    ~SignerResolvePage() override;
 
     void setSignersAndCandidates(const std::vector<KMime::Types::Mailbox> &signers,
                                  const std::vector< std::vector<GpgME::Key> > &keys);

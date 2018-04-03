@@ -51,7 +51,7 @@ class ObjectsPage : public WizardPage
     Q_OBJECT
 public:
     explicit ObjectsPage(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
-    ~ObjectsPage();
+    ~ObjectsPage() override;
 
     bool isComplete() const override;
     void setFiles(const QStringList &files);

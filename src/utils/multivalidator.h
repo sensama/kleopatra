@@ -56,7 +56,7 @@ public:
     {
         addValidators(validators);
     }
-    ~MultiValidator();
+    ~MultiValidator() override;
 
     void addValidator(QValidator *validator);
     void addValidators(const QList<QValidator *> &validators);

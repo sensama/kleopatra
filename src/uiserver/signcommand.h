@@ -44,7 +44,7 @@ class SignCommand : public Kleo::AssuanCommandMixin<SignCommand>
 {
 public:
     SignCommand();
-    ~SignCommand();
+    ~SignCommand() override;
 
 private:
     int doStart() override;

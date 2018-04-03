@@ -46,7 +46,7 @@ class CreateChecksumsCommand : public QObject, public AssuanCommandMixin<CreateC
     Q_OBJECT
 public:
     CreateChecksumsCommand();
-    ~CreateChecksumsCommand();
+    ~CreateChecksumsCommand() override;
 
     static const char *staticName()
     {

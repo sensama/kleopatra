@@ -44,7 +44,7 @@ class EncryptCommand : public Kleo::AssuanCommandMixin<EncryptCommand>
 {
 public:
     EncryptCommand();
-    virtual ~EncryptCommand();
+    ~EncryptCommand() override;
 private:
     int doStart() override;
     void doCanceled() override;

@@ -46,7 +46,7 @@ class SysTrayIcon : public Kleo::SystemTrayIcon
     Q_OBJECT
 public:
     explicit SysTrayIcon(QObject *parent = nullptr);
-    ~SysTrayIcon();
+    ~SysTrayIcon() override;
 
     MainWindow *mainWindow() const;
     QDialog *attentionWindow() const;

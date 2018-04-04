@@ -108,4 +108,8 @@ AboutData::AboutData()
         addCredit(i18n(credits[i].name), i18n(credits[i].desc),
                   QLatin1String(credits[i].email), QLatin1String(credits[i].web));
     }
+
+#ifdef Q_OS_WIN
+    setBugAddress("https://dev.gnupg.org/u/rgpg4win");
+#endif
 }

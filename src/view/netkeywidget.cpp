@@ -97,7 +97,7 @@ NetKeyWidget::NetKeyWidget() :
     vLay->addWidget(line1);
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Certificates:"))), 0, Qt::AlignLeft);
 
-    mLearnKeysLabel = new QLabel("There are unknown certificates on this card.");
+    mLearnKeysLabel = new QLabel(i18n("There are unknown certificates on this card."));
     mLearnKeysBtn->setText(i18nc("@action", "Load Certificates"));
     connect(mLearnKeysBtn, &QPushButton::clicked, this, [this] () {
         mLearnKeysBtn->setEnabled(false);

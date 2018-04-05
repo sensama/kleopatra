@@ -154,12 +154,12 @@ public:
 
         mEdit->setPlaceholderText("Enter a message to encrypt or decrypt...");
 
-        auto fixedFont = QFont("Monospace", 10);
+        auto fixedFont = QFont("Monospace");
         fixedFont.setStyleHint(QFont::TypeWriter);
         // This does not work well
         // QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
-        mEdit->setCurrentFont(fixedFont);
+        mEdit->setFont(fixedFont);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
         if (KeyCache::instance()->pgpOnly()) {

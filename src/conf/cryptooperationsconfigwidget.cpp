@@ -209,6 +209,8 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 
     auto btn = new QPushButton(i18n("Apply"));
 
+    btn->setEnabled(false);
+
     profLayout->addWidget(profLabel);
     profLayout->addWidget(combo);
     profLayout->addWidget(btn);
@@ -216,6 +218,10 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 
     connect(btn, &QPushButton::clicked, this, [this, combo] () {
         applyProfile(combo->currentText());
+    });
+
+    connect(combo, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, [btn] (const QString &text) {
+        btn->setEnabled(!text.isEmpty());
     });
 }
 

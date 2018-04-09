@@ -104,7 +104,7 @@ private:
             return QModelIndexList();
         }
     }
-    unsigned int numSelectedCertificates() const
+    int numSelectedCertificates() const
     {
         return selectedIndexes().size();
     }
@@ -257,7 +257,7 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
 
     ui.findPB->setEnabled(searchText().length() > minimalSearchTextLength);
 
-    const unsigned int n = numSelectedCertificates();
+    const int n = numSelectedCertificates();
 
     ui.detailsPB->setEnabled(n == 1);
     ui.saveAsPB->setEnabled(n == 1);

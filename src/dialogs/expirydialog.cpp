@@ -58,10 +58,10 @@ static QDate date_by_amount_and_unit(int inAmount, int inUnit)
 {
     const QDate current = QDate::currentDate();
     switch (inUnit) {
-    case Days:   return current.addDays(inAmount); break;
-    case Weeks:  return current.addDays(7 * inAmount); break;
-    case Months: return current.addMonths(inAmount); break;
-    case Years:  return current.addYears(inAmount); break;
+    case Days:   return current.addDays(inAmount);
+    case Weeks:  return current.addDays(7 * inAmount);
+    case Months: return current.addMonths(inAmount);
+    case Years:  return current.addYears(inAmount);
     default:
         Q_ASSERT(!"Should not reach here");
     }

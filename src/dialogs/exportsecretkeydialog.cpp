@@ -188,7 +188,7 @@ void ExportSecretKeyDialog::setCharset(const QByteArray &charset)
 {
     for (unsigned int i = 0; i < sizeof charsets / sizeof * charsets; ++i)
         if (charset == charsets[i]) {
-            d->ui.charsetCB->setCurrentIndex(i);
+            d->ui.charsetCB->setCurrentIndex(static_cast<int>(i));
             return;
         }
 }

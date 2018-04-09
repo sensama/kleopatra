@@ -80,7 +80,7 @@ void UserIDModel::setCheckedUserIDs(const std::vector<unsigned int> &uids)
 {
     std::vector<unsigned int> sorted = uids;
     std::sort(sorted.begin(), sorted.end());
-    for (unsigned int i = 0, end = rowCount(); i != end; ++i) {
+    for (int i = 0, end = rowCount(); i != end; ++i) {
         item(i)->setCheckState(std::binary_search(sorted.begin(), sorted.end(), i) ? Qt::Checked : Qt::Unchecked);
     }
 }

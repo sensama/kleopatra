@@ -73,6 +73,7 @@
 #include <KLocalizedString>
 #include <kiconloader.h>
 #include <kmessagebox.h>
+#include <KCrash>
 
 #include <QTextDocument> // for Qt::escape
 #include <QMessageBox>
@@ -115,6 +116,8 @@ int main(int argc, char **argv)
 {
     KleopatraApplication app(argc, argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    KCrash::initialize();
+
 
     QTime timer;
     timer.start();

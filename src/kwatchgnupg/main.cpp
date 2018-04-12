@@ -39,6 +39,7 @@
 
 #include <kmessagebox.h>
 #include <KLocalizedString>
+#include <KCrash>
 #include "kwatchgnupg_debug.h"
 #include <QCommandLineParser>
 #include <QApplication>
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    KCrash::initialize();
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kwatchgnupg"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kwatchgnupgrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kwatchgnupgui.rc"));

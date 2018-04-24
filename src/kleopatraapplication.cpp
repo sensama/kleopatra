@@ -363,6 +363,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         }
     }
 
+    QStringList errors;
     if (!found.isEmpty()) {
         if (files.empty()) {
             return i18n("No files specified for \"%1\" command", found);
@@ -376,7 +377,6 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 openOrRaiseMainWindow();
             }
         } else {
-            QStringList errors;
             Q_FOREACH (const QString& fileName, files) {
                 QFileInfo fi(fileName);
                 if (!fi.isReadable()) {
@@ -398,12 +398,20 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 }
                 cmd->start();
             }
-            return errors.join('\n');
         }
     }
     d->firstNewInstance = false;
 
-    return QString();
+#ifdef Q_OS_WIN
+    // On Windows we might be started from the
+    // explorer in any working directory. E.g.
+    // a double click on a file. To avoid preventing
+    // the folder from deletion we set the
+    // working directory to the users homedir.
+    QDir::setCurrent(QDir::homePath());
+#endif
+
+    return errors.join('\n');
 }
 
 #ifndef QT_NO_SYSTEMTRAYICON

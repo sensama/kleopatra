@@ -40,6 +40,7 @@
 class QCheckBox;
 class QComboBox;
 class QBoxLayout;
+class QPushButton;
 
 namespace Kleo
 {
@@ -73,6 +74,7 @@ private:
               *mTmpDirCB;
     QComboBox *mChecksumDefinitionCB,
               *mArchiveDefinitionCB;
+    QPushButton *mApplyBtn;
 };
 
 }

@@ -71,7 +71,8 @@ using namespace Kleo;
 using namespace Kleo::Config;
 
 CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f)
+    : QWidget(p, f),
+      mApplyBtn(nullptr)
 {
     setupGui();
 }
@@ -131,6 +132,8 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
         return;
     }
 
+    mApplyBtn->setEnabled(false);
+
     QDir datadir(QString::fromLocal8Bit(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
     const auto path = datadir.filePath(profile + QStringLiteral(".prf"));
 
@@ -143,8 +146,11 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
                                         << QStringLiteral("--apply-profile")
                                         << path.toLocal8Bit());
 
+    qDebug() << "Starting" << ei.fileName() << "with args" << gpgconf->arguments();
+
     connect(gpgconf, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
             this, [this, gpgconf, profile] () {
+        mApplyBtn->setEnabled(true);
         if (gpgconf->exitStatus() != QProcess::NormalExit) {
             KMessageBox::error(this, QStringLiteral("<pre>%1</pre>").arg(QString::fromLocal8Bit(gpgconf->readAll())));
             delete gpgconf;
@@ -209,21 +215,21 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
         combo->addItem(profile.baseName());
     }
 
-    auto btn = new QPushButton(i18n("Apply"));
+    mApplyBtn = new QPushButton(i18n("Apply"));
 
-    btn->setEnabled(false);
+    mApplyBtn->setEnabled(false);
 
     profLayout->addWidget(profLabel);
     profLayout->addWidget(combo);
-    profLayout->addWidget(btn);
+    profLayout->addWidget(mApplyBtn);
     profLayout->addStretch(1);
 
-    connect(btn, &QPushButton::clicked, this, [this, combo] () {
+    connect(mApplyBtn, &QPushButton::clicked, this, [this, combo] () {
         applyProfile(combo->currentText());
     });
 
-    connect(combo, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, [btn] (const QString &text) {
-        btn->setEnabled(!text.isEmpty());
+    connect(combo, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, [this] (const QString &text) {
+        mApplyBtn->setEnabled(!text.isEmpty());
     });
 }
 

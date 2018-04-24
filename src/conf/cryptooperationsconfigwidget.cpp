@@ -139,7 +139,9 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
     Q_ASSERT (ei.fileName());
     gpgconf->setProgram(QFile::decodeName(ei.fileName()));
     gpgconf->setProcessChannelMode(QProcess::MergedChannels);
-    gpgconf->setArguments(QStringList() << QStringLiteral("--apply-profile") << path.toLocal8Bit());
+    gpgconf->setArguments(QStringList() << QStringLiteral("--runtime")
+                                        << QStringLiteral("--apply-profile")
+                                        << path.toLocal8Bit());
 
     connect(gpgconf, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
             this, [this, gpgconf, profile] () {

@@ -95,6 +95,7 @@ public:
     bool ignoreNewInstance() const;
     void toggleMainWindowVisibility();
     void restoreMainWindow();
+    void openConfigDialogWithForeignParent(WId parentWId);
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();

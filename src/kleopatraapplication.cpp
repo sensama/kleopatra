@@ -342,6 +342,12 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         return QString();
     }
 
+    // Check for --config command
+    if (parser.isSet("config")) {
+        openConfigDialogWithForeignParent(parentId);
+        return QString();
+    }
+
     static const QMap<QString, Func> funcMap {
         { QStringLiteral("import-certificate"), &KleopatraApplication::importCertificatesFromFile },
         { QStringLiteral("encrypt"), &KleopatraApplication::encryptFiles },
@@ -514,14 +520,34 @@ void KleopatraApplication::openOrRaiseMainWindow()
     UpdateNotification::checkUpdate(mw);
 }
 
-void KleopatraApplication::openOrRaiseConfigDialog()
+void KleopatraApplication::openConfigDialogWithForeignParent(WId parentWId)
 {
     if (!d->configureDialog) {
         d->configureDialog = new ConfigureDialog;
         d->configureDialog->setAttribute(Qt::WA_DeleteOnClose);
         d->connectConfigureDialog();
     }
+
+    // This is similar to what the commands do.
+    if (parentWId) {
+        if (QWidget *pw = QWidget::find(parentWId)) {
+            d->configureDialog->setParent(pw, d->configureDialog->windowFlags());
+        } else {
+            KWindowSystem::setMainWindow(d->configureDialog, parentWId);
+        }
+    }
+
     open_or_raise(d->configureDialog);
+
+    // If we have a parent we want to raise over it.
+    if (parentWId) {
+        d->configureDialog->raise();
+    }
+}
+
+void KleopatraApplication::openOrRaiseConfigDialog()
+{
+    openConfigDialogWithForeignParent(0);
 }
 
 #ifndef QT_NO_SYSTEMTRAYICON

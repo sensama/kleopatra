@@ -94,7 +94,9 @@ static void kleopatra_options(QCommandLineParser *parser)
                                   i18n("Create a new key pair or certificate signing request"))
             << QCommandLineOption(QStringLiteral("parent-windowid"),
                                   i18n("Parent Window Id for dialogs"),
-                                  QStringLiteral("windowId"));
+                                  QStringLiteral("windowId"))
+            << QCommandLineOption(QStringList() << QStringLiteral("config"),
+                                  i18n("Open the config dialog"));
 
     parser->addOptions(options);
     parser->addVersionOption();

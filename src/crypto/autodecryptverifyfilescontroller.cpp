@@ -252,7 +252,6 @@ void AutoDecryptVerifyFilesController::Private::exec()
     q->emitDoneOrError();
     delete m_dialog;
     m_dialog = nullptr;
-    return;
 }
 
 QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)

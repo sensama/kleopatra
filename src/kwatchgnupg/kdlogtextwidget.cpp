@@ -397,7 +397,7 @@ void KDLogTextWidget::paintEvent(QPaintEvent *e)
 #endif
 
         p.setBrush(palette().alternateBase());
-        for (unsigned int i = (visibleLines.first % 2) ? visibleLines.first   : visibleLines.first + 1, end = visibleLines.second; i < end; i += 2) {
+        for (int i = (visibleLines.first % 2) ? visibleLines.first   : visibleLines.first + 1, end = visibleLines.second; i < end; i += 2) {
             p.drawRect(d->lineRect(i));
         }
 
@@ -408,7 +408,7 @@ void KDLogTextWidget::paintEvent(QPaintEvent *e)
     }
 
     // ### unused optimization: paint lines by styles to minimise pen changes.
-    for (unsigned int i = visibleLines.first, end = visibleLines.second; i != end; ++i) {
+    for (int i = visibleLines.first, end = visibleLines.second; i != end; ++i) {
         const Private::LineItem &li = d->lines[i];
         Q_ASSERT(!li.styleID || d->styleByID.contains(li.styleID));
         const Private::Style &st = li.styleID ? d->styleByID[li.styleID] : defaultStyle;
@@ -583,7 +583,7 @@ void KDLogTextWidget::Private::addPendingLines()
         return;
     }
 
-    const unsigned int oldNumLines = lines.size();
+    const int oldNumLines = lines.size();
 
     lines += pendingLines;
 

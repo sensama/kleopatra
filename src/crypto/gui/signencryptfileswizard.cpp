@@ -416,7 +416,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
         mLabel->setStyleSheet("border: none");
         mLabel->setFocusPolicy(Qt::NoFocus);
     } else {
-        mLabel = NULL;
+        mLabel = nullptr;
     }
 
     KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");

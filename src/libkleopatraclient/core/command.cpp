@@ -68,6 +68,7 @@ static std::string hexencode(const std::string &in)
                 result += ch;
                 break;
             }
+            Q_FALLTHROUGH();
         // else fall through
         case ' ':
             result += '+';

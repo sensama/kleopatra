@@ -358,7 +358,7 @@ static void updateKeys(const VerificationResult &result) {
     // provide Key information in a verification result. The Key object is
     // a dummy just holding the KeyID. This hack ensures that all available
     // keys are fetched from the backend and are populated
-    for (const auto sig: result.signatures()) {
+    for (const auto &sig: result.signatures()) {
         // Update key information
         sig.key(true, true);
     }

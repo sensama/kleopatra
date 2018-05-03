@@ -245,7 +245,7 @@ CertificateSelectionLine::CertificateSelectionLine(const QString &toFrom, const 
     mSbox->setCurrentWidget(noProtocolCB);
 
     const int row = glay.rowCount();
-    unsigned int col = 0;
+    int col = 0;
     glay.addWidget(mToFromLB,  row, col++);
     glay.addWidget(mMailboxLB, row, col++);
     glay.addWidget(mSbox,    row, col++);

@@ -99,6 +99,16 @@ public:
                 q, SLOT(slotInUnitChanged()));
         connect(ui.onCW, SIGNAL(selectionChanged()),
                 q, SLOT(slotOnDateChanged()));
+        connect(ui.onCW, &QCalendarWidget::currentPageChanged,
+                q, [this] (int year, int month) {
+                    // We select the ame day in the month when
+                    // a page is switched.
+                    auto date = ui.onCW->selectedDate();
+                    if (!date.setDate(year, month, date.day())) {
+                        date.setDate(year, month, 1);
+                    }
+                    ui.onCW->setSelectedDate(date);
+                });
 
         Q_ASSERT(ui.inCB->currentIndex() == inUnit);
     }

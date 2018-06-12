@@ -182,8 +182,8 @@ void CertificateLineEdit::updateKey()
     const auto mailText = text();
     auto newKey = Key();
     if (mailText.isEmpty()) {
-        mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
-        mLineAction->setToolTip(i18n("Please select a certificate."));
+        mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
+        mLineAction->setToolTip(i18n("Open selection dialog."));
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {

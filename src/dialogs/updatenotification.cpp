@@ -128,9 +128,12 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
 
     // Gpg defaults to no update check. For Gpg4win we want this
     // enabled if the user does not explicitly disable update
-    // checks neverShow would be true in that case
-    if (!force) {
+    // checks neverShow would be true in that case or
+    // we would have set AllowVersionCheck once and the user
+    // explicitly removed that.
+    if (force || updatecfg.readEntry("AllowVersionCheckSetOnce", false)) {
         gpgconf_set_update_check (true);
+        updatecfg.writeEntry("AllowVersionCheckSetOnce", true)
     }
 
     const auto current = gpg4winVersion();

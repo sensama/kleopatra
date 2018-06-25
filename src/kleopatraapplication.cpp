@@ -305,13 +305,23 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 #endif
     }
 
+    // Handle openpgp4fpr URI scheme
+    QString needle;
+    if (parser.isSet(QStringLiteral("search"))) {
+        needle = parser.value(QStringLiteral("search"));
+    } else if (parser.isSet(QStringLiteral("query"))) {
+        needle = parser.value(QStringLiteral("query"));
+    }
+    if (needle.startsWith("openpgp4fpr:")) {
+        needle.remove(0, 12);
+    }
+
     // Check for --search command.
     if (parser.isSet(QStringLiteral("search"))) {
         // This is an extra command instead of a combination with the
         // similar query to avoid changing the older query commands behavior
         // and query's "show details if a certificate exist or search on a
         // keyserver" logic is hard to explain and use consistently.
-        const QString needle = parser.value(QStringLiteral("search"));
         if (needle.isEmpty()) {
             return i18n("No search string specified for --search");
         }
@@ -323,11 +333,10 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Check for --query command
     if (parser.isSet(QStringLiteral("query"))) {
-        const QString query = parser.value(QStringLiteral("query"));
-        if (query.isEmpty()) {
+        if (needle.isEmpty()) {
             return i18n("No fingerprint argument specified for --query");
         }
-        auto cmd = Command::commandForQuery(query);
+        auto cmd = Command::commandForQuery(needle);
         cmd->setParentWId(parentId);
         cmd->start();
         return QString();

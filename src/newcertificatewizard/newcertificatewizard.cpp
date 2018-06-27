@@ -409,6 +409,7 @@ public:
         const QDate today = QDate::currentDate();
         ui.expiryDE->setMinimumDate(today);
         ui.expiryDE->setDate(today.addYears(2));
+        ui.expiryCB->setChecked(true);
         ui.emailLW->setDefaultValue(i18n("new email"));
         ui.dnsLW->setDefaultValue(i18n("new dns name"));
         ui.uriLW->setDefaultValue(i18n("new uri"));

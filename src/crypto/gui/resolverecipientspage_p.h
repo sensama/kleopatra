@@ -50,7 +50,7 @@ class Kleo::Crypto::Gui::ResolveRecipientsPage::ListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ListWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
+    explicit ListWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     ~ListWidget();
 
     void addEntry(const QString &id, const QString &name);
@@ -90,7 +90,7 @@ class Kleo::Crypto::Gui::ResolveRecipientsPage::ItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ItemWidget(const QString &id, const QString &name, const KMime::Types::Mailbox &mbox, QWidget *parent = nullptr, Qt::WindowFlags flags = 0);
+    explicit ItemWidget(const QString &id, const QString &name, const KMime::Types::Mailbox &mbox, QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     ~ItemWidget();
 
     QString id() const;

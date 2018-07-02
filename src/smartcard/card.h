@@ -35,6 +35,8 @@
 #include <vector>
 #include <string>
 
+#include <QString>
+
 namespace Kleo
 {
 namespace SmartCard
@@ -108,6 +110,9 @@ public:
     bool canLearnKeys() const;
     void setCanLearnKeys(bool value);
 
+    QString errorMsg() const;
+    void setErrorMsg(const QString &msg);
+
 private:
     bool mCanLearn;
     bool mHasNullPin;
@@ -117,6 +122,7 @@ private:
     int mAppVersion;
     std::vector<PinState> mPinStates;
     int mSlot;
+    QString mErrMsg;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

@@ -139,3 +139,13 @@ bool Card::operator != (const Card& other) const
 {
     return !operator==(other);
 }
+
+void Card::setErrorMsg(const QString &msg)
+{
+    mErrMsg = msg;
+}
+
+QString Card::errorMsg() const
+{
+    return mErrMsg;
+}

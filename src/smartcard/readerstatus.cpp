@@ -253,18 +253,29 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
 static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    auto ret = new NetKeyCard();
-    ret->setSerialNumber(ci->serialNumber());
+    auto nkCard = new NetKeyCard();
+    nkCard->setSerialNumber(ci->serialNumber());
+    ci.reset(nkCard);
 
-    ret->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
-    if (err.code() || ret->appVersion() != 3) {
-        qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up";
+    ci->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
+
+    if (err.code()) {
+        qCDebug(KLEOPATRA_LOG) << "NKS-VERSION resulted in error" << err.asString();
+        ci->setErrorMsg(QStringLiteral ("NKS-VERSION failed: ") + QString::fromUtf8(err.asString()));
+        return;
+    }
+
+    if (ci->appVersion() != 3) {
+        qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up. Version:" << ci->appVersion();
+        ci->setErrorMsg(QStringLiteral("NetKey v%1 cards are not supported.").arg(ci->appVersion()));
         return;
     }
     // the following only works for NKS v3...
     const auto chvStatus = QString::fromStdString(
             scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" "));
     if (err.code()) {
+        qCDebug(KLEOPATRA_LOG) << "no CHV-STATUS" << err.asString();
+        ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + QString::fromUtf8(err.asString()));
         return;
     }
 
@@ -273,22 +284,26 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         const auto parsed = parse_pin_state (state);
         states.push_back(parsed);
         if (parsed == Card::NullPin) {
-            ret->setHasNullPin(true);
+            ci->setHasNullPin(true);
         }
     }
-    ret->setPinStates(states);
+    nkCard->setPinStates(states);
 
     // check for keys to learn:
     const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code() || !result.get()) {
+        if (err) {
+            ci->setErrorMsg(err.asString());
+        } else {
+            ci->setErrorMsg(QStringLiteral("Invalid internal state. No result."));
+        }
         return;
     }
     const std::vector<std::string> keyPairInfos = result->statusLine("KEYPAIRINFO");
     if (keyPairInfos.empty()) {
         return;
     }
-    ret->setKeyPairInfo(keyPairInfos);
-    ci.reset(ret);
+    nkCard->setKeyPairInfo(keyPairInfos);
 }
 
 static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)

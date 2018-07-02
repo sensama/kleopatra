@@ -69,7 +69,8 @@ private Q_SLOTS:
 private:
     QLabel *mSerialNumber,
            *mVersionLabel,
-           *mLearnKeysLabel;
+           *mLearnKeysLabel,
+           *mErrorLabel;
     NullPinWidget *mNullPinWidget;
     QPushButton *mLearnKeysBtn,
                 *mChangeNKSPINBtn,

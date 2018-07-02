@@ -59,6 +59,7 @@ NetKeyWidget::NetKeyWidget() :
     mSerialNumber(new QLabel),
     mVersionLabel(new QLabel),
     mLearnKeysLabel(new QLabel),
+    mErrorLabel(new QLabel),
     mNullPinWidget(new NullPinWidget()),
     mLearnKeysBtn(new QPushButton),
     mChangeNKSPINBtn(new QPushButton),
@@ -116,6 +117,9 @@ NetKeyWidget::NetKeyWidget() :
     hLay2->addStretch(1);
     vLay->addLayout(hLay2);
 
+    mErrorLabel->setVisible(false);
+    vLay->addWidget(mErrorLabel);
+
     // The certificate view
     mTreeView->setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel(mTreeView));
     mTreeView->setHierarchicalView(true);
@@ -172,6 +176,14 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     mLearnKeysBtn->setEnabled(true);
     mLearnKeysBtn->setVisible(card->canLearnKeys());
     mLearnKeysLabel->setVisible(card->canLearnKeys());
+
+    const auto errMsg = card->errorMsg();
+    if (!errMsg.isEmpty()) {
+        mErrorLabel->setText(QStringLiteral("<b>%1:</b> %2").arg(i18n("Error")).arg(errMsg));
+        mErrorLabel->setVisible(true);
+    } else {
+        mErrorLabel->setVisible(false);
+    }
 
     const auto keys = card->keys();
     mTreeView->setKeys(keys);

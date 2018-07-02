@@ -170,7 +170,7 @@ private Q_SLOTS:
 
         GpgME::Signature sig = result.signature(0);
         QCOMPARE(sig.summary() & GpgME::Signature::KeyMissing, 0);
-        QCOMPARE((quint64) sig.creationTime(), Q_UINT64_C(1189650248));
+        QCOMPARE((quint64) sig.creationTime(), Q_UINT64_C(1530524124));
         QCOMPARE(sig.validity(), GpgME::Signature::Full);
     }
 

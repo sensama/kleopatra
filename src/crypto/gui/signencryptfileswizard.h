@@ -79,7 +79,7 @@ public:
         Directory
     };
 
-    explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SignEncryptFilesWizard();
 
     // Inputs

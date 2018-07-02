@@ -50,7 +50,7 @@ class SearchBar : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SearchBar(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    explicit SearchBar(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SearchBar();
 
     QString stringFilter() const;

@@ -53,7 +53,7 @@ class WizardPage : public QWidget
     friend class ::Kleo::Crypto::Gui::Wizard;
     Q_OBJECT
 public:
-    explicit WizardPage(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    explicit WizardPage(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     virtual ~WizardPage();
 
     virtual bool isComplete() const = 0;

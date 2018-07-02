@@ -47,7 +47,7 @@ class AppearanceConfigWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AppearanceConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    explicit AppearanceConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~AppearanceConfigWidget();
 
 public Q_SLOTS:

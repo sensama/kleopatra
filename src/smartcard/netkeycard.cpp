@@ -108,6 +108,7 @@ bool NetKeyCard::hasNKSNullPin() const
     const auto states = pinStates();
     if (states.size() < 2) {
         qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << states.size();
+        return false;
     }
     return states[0] == Card::NullPin;
 }
@@ -117,6 +118,7 @@ bool NetKeyCard::hasSigGNullPin() const
     const auto states = pinStates();
     if (states.size() < 4) {
         qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << states.size();
+        return false;
     }
     return states[2] == Card::NullPin;
 }

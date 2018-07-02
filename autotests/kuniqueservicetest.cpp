@@ -123,6 +123,8 @@ private:
 #else
         if (QFile::exists(appName + QStringLiteral(".shell"))) {
             appName = QStringLiteral("./") + appName + QStringLiteral(".shell");
+        } else if (QFile::exists(QCoreApplication::applicationFilePath())) {
+            appName = QCoreApplication::applicationFilePath();
         } else {
             Q_ASSERT(QFile::exists(appName));
             appName = QStringLiteral("./") + appName;

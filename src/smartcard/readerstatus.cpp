@@ -255,8 +255,8 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         return;
     }
 
-    if (ci->appVersion() != 3) {
-        qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 card, giving up. Version:" << ci->appVersion();
+    if (ci->appVersion() != 3 && ci->appVersion() != 15) {
+        qCDebug(KLEOPATRA_LOG) << "not a NetKey v3 or 15 card, giving up. Version:" << ci->appVersion();
         ci->setErrorMsg(QStringLiteral("NetKey v%1 cards are not supported.").arg(ci->appVersion()));
         return;
     }

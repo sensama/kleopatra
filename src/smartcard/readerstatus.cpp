@@ -225,16 +225,6 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
     return gpgagent_status(gpgAgent, cmd.c_str(), err);
 }
 
-static const std::string gpgagent_data(std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
-{
-    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, what, err);
-    if (t.get()) {
-        return t->data();
-    } else {
-        return std::string();
-    }
-}
-
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -293,7 +283,6 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
 
 static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)
 {
-    Q_UNUSED(gpgagent_data);
     qCDebug(KLEOPATRA_LOG) << "get_card_status(" << slot << ',' << gpg_agent.get() << ')';
     auto ci = std::shared_ptr<Card> (new Card());
     if (slot != 0 || !gpg_agent) {

@@ -290,7 +290,7 @@ public:
                 doCancel();
             } catch (...) {}
             m_isFinalizing = false;
-            m_isFinalized = true;
+            m_isFinalized = false;
             m_canceled = true;
         }
     }

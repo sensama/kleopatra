@@ -215,6 +215,8 @@ public:
 
     GpgME::Protocol protocol() const override;
 
+    void setIgnoreMDCError(bool value);
+
 public Q_SLOTS:
     void cancel() override;
 

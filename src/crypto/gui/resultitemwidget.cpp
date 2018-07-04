@@ -46,6 +46,8 @@
 #include <Libkleo/Classify>
 
 #include <gpgme++/key.h>
+#include <gpgme++/gpgmepp_version.h>
+#include <gpgme++/decryptionresult.h>
 
 #include <KLocalizedString>
 #include <QPushButton>
@@ -58,6 +60,9 @@
 #include <KGuiItem>
 #include <KColorScheme>
 
+#if GPGMEPP_VERSION > 0x10B01 // > 1.11.1
+# define GPGME_HAS_LEGACY_NOMDC
+#endif
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -111,6 +116,7 @@ public:
     void updateShowDetailsLabel();
 
     void addKeyImportButton(QBoxLayout *lay, bool search);
+    void addIgnoreMDCButton(QBoxLayout *lay);
 
     void oneImportFinished();
 
@@ -130,6 +136,41 @@ void ResultItemWidget::Private::oneImportFinished()
         m_result->parentTask()->start();
     }
     q->setVisible(false);
+}
+
+void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
+{
+    if (!m_result || !lay) {
+        return;
+    }
+
+    const auto dvResult = dynamic_cast<const DecryptVerifyResult *>(m_result.get());
+    if (!dvResult) {
+        return;
+    }
+    const auto decResult = dvResult->decryptionResult();
+
+#ifdef GPGME_HAS_LEGACY_NOMDC
+    if (decResult.isNull() || !decResult.error() || !decResult.isLegacyCipherNoMDC())
+#endif
+    {
+        return;
+    }
+
+    auto btn = new QPushButton(i18n("Force decryption"));
+    btn->setFixedSize(btn->sizeHint());
+
+    connect (btn, &QPushButton::clicked, q, [this] () {
+        if (m_result->parentTask()) {
+            const auto dvTask = dynamic_cast<DecryptVerifyTask*>(m_result->parentTask().data());
+            dvTask->setIgnoreMDCError(true);
+            dvTask->start();
+            q->setVisible(false);
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "Failed to get parent task";
+        }
+    });
+    lay->addWidget(btn);
 }
 
 void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
@@ -251,6 +292,8 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     d->addKeyImportButton(actionLayout, false);
     // TODO: Only show if auto-key-retrieve is not set.
     d->addKeyImportButton(actionLayout, true);
+
+    d->addIgnoreMDCButton(actionLayout);
 
     d->m_actionsLabel = new QLabel;
     connect(d->m_actionsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));

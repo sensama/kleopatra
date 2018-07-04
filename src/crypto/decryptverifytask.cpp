@@ -61,6 +61,8 @@
 #include <gpgme++/key.h>
 #include <gpgme++/verificationresult.h>
 #include <gpgme++/decryptionresult.h>
+#include <gpgme++/gpgmepp_version.h>
+#include <gpgme++/context.h>
 
 #include <gpg-error.h>
 
@@ -76,6 +78,10 @@
 
 #include <algorithm>
 #include <sstream>
+
+#if GPGMEPP_VERSION > 0x10B01 // > 1.11.1
+# define GPGME_HAS_LEGACY_NOMDC
+#endif
 
 using namespace Kleo::Crypto;
 using namespace Kleo;
@@ -475,7 +481,13 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
 
     if (err.isCanceled()) {
         return i18n("<b>Decryption canceled.</b>");
-    } else if (!errorString.isEmpty()) {
+    }
+#ifdef GPGME_HAS_LEGACY_NOMDC
+    else if (result.isLegacyCipherNoMDC()) {
+        return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
+    }
+#endif
+    else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
         return i18n("<b>Decryption failed: %1.</b>", QString::fromLocal8Bit(err.asString()).toHtmlEscaped());
@@ -585,10 +597,22 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
         return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
     }
 
+#ifdef GPGME_HAS_LEGACY_NOMDC
+    if (res.isLegacyCipherNoMDC()) {
+        details += i18nc("Integrity protection (Efail attack possibility) was missing because an old cipher was used.",
+                         "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
+                         "likely that the file is legitimate.  This is because back "
+                         "then integrity protection was not widely used.") + QStringLiteral("<br/><br/>") +
+                   i18nc("The user is offered to force decrypt a non integrity protected message. With the strong advice to re-encrypt it.",
+                         "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.") +
+                   QStringLiteral("<br/><br/>");
+    }
+#endif
+
     if (!recipients.empty()) {
         details += i18np("Recipient:", "Recipients:", res.numRecipients());
         if (res.numRecipients() == 1) {
-            return details + renderKey(recipients.front());
+            return details + QLatin1Char(' ') + renderKey(recipients.front());
         }
 
         details += QLatin1String("<ul>");
@@ -935,7 +959,7 @@ class DecryptVerifyTask::Private
 {
     DecryptVerifyTask *const q;
 public:
-    explicit Private(DecryptVerifyTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
+    explicit Private(DecryptVerifyTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol), m_ignoreMDCError(false)  {}
 
     void slotResult(const DecryptionResult &, const VerificationResult &, const QByteArray &);
 
@@ -953,6 +977,7 @@ public:
     std::shared_ptr<Output> m_output;
     const QGpgME::Protocol *m_backend;
     Protocol m_protocol;
+    bool m_ignoreMDCError;
 };
 
 void DecryptVerifyTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
@@ -1077,11 +1102,31 @@ static void ensureIOOpen(QIODevice *input, QIODevice *output)
     }
 }
 
+void DecryptVerifyTask::setIgnoreMDCError(bool value)
+{
+    d->m_ignoreMDCError = value;
+}
+
 void DecryptVerifyTask::doStart()
 {
     kleo_assert(d->m_backend);
     try {
         QGpgME::DecryptVerifyJob *const job = d->m_backend->decryptVerifyJob();
+
+#ifdef GPGME_HAS_LEGACY_NOMDC
+        if (d->m_ignoreMDCError) {
+            qCDebug(KLEOPATRA_LOG) << "Modifying job to ignore MDC errors.";
+            auto ctx = QGpgME::Job::context(job);
+            if (!ctx) {
+                qCWarning(KLEOPATRA_LOG) << "Failed to get context for job";
+            } else {
+                const auto err = ctx->setFlag("ignore-mdc-error", "1");
+                if (err) {
+                    qCWarning(KLEOPATRA_LOG) << "Failed to set ignore mdc errors" << err.asString();
+                }
+            }
+        }
+#endif
         kleo_assert(job);
         d->registerJob(job);
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());

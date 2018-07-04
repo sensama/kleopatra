@@ -130,6 +130,7 @@ void TaskCollection::Private::taskStarted()
     if (m_doneEmitted) {
         // We are not done anymore, one task restarted.
         m_nCompleted--;
+        m_nErrors--;
         m_doneEmitted = false;
     }
 }

@@ -599,7 +599,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
 
 #ifdef GPGME_HAS_LEGACY_NOMDC
     if (res.isLegacyCipherNoMDC()) {
-        details += i18nc("Integrity protection (Efail attack possibility) was missing because an old cipher was used.",
+        details += i18nc("Integrity protection was missing because an old cipher was used.",
                          "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
                          "likely that the file is legitimate.  This is because back "
                          "then integrity protection was not widely used.") + QStringLiteral("<br/><br/>") +

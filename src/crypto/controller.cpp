@@ -72,10 +72,6 @@ Controller::~Controller() {}
 
 void Controller::taskDone(const std::shared_ptr<const Task::Result> &result)
 {
-    if (result->hasError()) {
-        d->lastError = result->errorCode();
-        d->lastErrorString = result->errorString();
-    }
     const Task *task = qobject_cast<const Task *>(sender());
     Q_ASSERT(task);
     doTaskDone(task, result);

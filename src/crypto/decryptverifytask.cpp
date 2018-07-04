@@ -263,6 +263,13 @@ static QString renderKey(const Key &key)
     if (key.isNull()) {
         return i18n("Unknown certificate");
     }
+
+    if (key.primaryFingerprint() && strlen(key.primaryFingerprint()) > 16 && key.numUserIDs()) {
+        const QString text = QStringLiteral("%1 (%2)").arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped()).arg(
+            renderFingerprint(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
+        return renderKeyLink(QLatin1String(key.primaryFingerprint()), text);
+    }
+
     return renderKeyLink(QLatin1String(key.primaryFingerprint()), renderFingerprint(key.primaryFingerprint()));
 }
 

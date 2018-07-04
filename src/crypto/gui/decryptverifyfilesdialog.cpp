@@ -97,7 +97,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     layout()->addWidget(m_buttonBox);
 
     bool hasOutputs = false;
-    Q_FOREACH (const std::shared_ptr<Task> t, coll->tasks()) {
+    for (const auto &t: coll->tasks()) {
         if (!qobject_cast<VerifyDetachedTask *>(t.get())) {
             hasOutputs = true;
             break;
@@ -133,7 +133,7 @@ void DecryptVerifyFilesDialog::allDone()
     Q_ASSERT(m_tasks);
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
-    Q_FOREACH (const QString &i, m_progressLabelByTag.keys()) {
+    for (const auto &i: m_progressLabelByTag.keys()) {
         if (!i.isEmpty()) {
             m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
         } else {

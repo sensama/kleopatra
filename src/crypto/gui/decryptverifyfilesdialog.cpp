@@ -140,6 +140,10 @@ void DecryptVerifyFilesDialog::allDone()
             m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
         }
     }
+
+    if (m_tasks->allTasksHaveErrors()) {
+        return;
+    }
     if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->button(m_saveButton)->setEnabled(true);
     } else {

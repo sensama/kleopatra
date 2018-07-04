@@ -63,12 +63,20 @@ public:
     mutable quint64 m_totalProgress;
     mutable quint64 m_progress;
     unsigned int m_nCompleted;
+    unsigned int m_nErrors;
     QString m_lastProgressMessage;
     bool m_errorOccurred;
     bool m_doneEmitted;
 };
 
-TaskCollection::Private::Private(TaskCollection *qq) : q(qq), m_totalProgress(0), m_progress(0), m_nCompleted(0), m_errorOccurred(false), m_doneEmitted(false)
+TaskCollection::Private::Private(TaskCollection *qq):
+    q(qq),
+    m_totalProgress(0),
+    m_progress(0),
+    m_nCompleted(0),
+    m_nErrors(0),
+    m_errorOccurred(false),
+    m_doneEmitted(false)
 {
 }
 
@@ -98,7 +106,11 @@ void TaskCollection::Private::taskResult(const std::shared_ptr<const Task::Resul
 {
     Q_ASSERT(result);
     ++m_nCompleted;
-    m_errorOccurred = m_errorOccurred || result->hasError();
+
+    if (result->hasError()) {
+        m_errorOccurred = true;
+        ++m_nErrors;
+    }
     m_lastProgressMessage.clear();
     calculateAndEmitProgress();
     Q_EMIT q->result(result);
@@ -190,6 +202,11 @@ bool TaskCollection::isEmpty() const
 bool TaskCollection::errorOccurred() const
 {
     return d->m_errorOccurred;
+}
+
+bool TaskCollection::allTasksHaveErrors() const
+{
+    return d->m_nErrors == d->m_nCompleted;
 }
 
 std::shared_ptr<Task> TaskCollection::taskById(int id) const

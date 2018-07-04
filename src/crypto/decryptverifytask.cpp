@@ -193,7 +193,8 @@ static bool relevantInDecryptVerifyContext(const VerificationResult &r)
 {
     // for D/V operations, we ignore verification results which are not errors and contain
     // no signatures (which means that the data was just not signed)
-    return r.error() || r.numSignatures() > 0;
+
+    return (r.error() && r.error().code() != GPG_ERR_DECRYPT_FAILED) || r.numSignatures() > 0;
 }
 
 static QString signatureSummaryToString(int summary)
@@ -729,12 +730,13 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
 {
+    int err = dr.error() ? dr.error().code() : vr.error().code();
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             DecryptVerify,
             vr,
             dr,
             plaintext,
-            0,
+            err,
             QString(),
             inputLabel(),
             outputLabel(),

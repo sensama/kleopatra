@@ -66,6 +66,7 @@ public:
     int numberOfCompletedTasks() const;
     bool allTasksCompleted() const;
     bool errorOccurred() const;
+    bool allTasksHaveErrors() const;
 
 Q_SIGNALS:
     void progress(const QString &msg, int processed, int total);

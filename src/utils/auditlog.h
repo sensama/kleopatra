@@ -67,7 +67,7 @@ public:
         return m_text;
     }
 
-    QString formatLink(const QUrl &urlTemplate) const;
+    QString formatLink(const QUrl &urlTemplate, const QString &caption = QString()) const;
 
 private:
     QString m_text;

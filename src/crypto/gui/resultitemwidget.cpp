@@ -255,7 +255,15 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
         return;
     }
 
-    const QString auditLogLink = m_result->auditLog().formatLink(auditlog_url_template());
+    const auto parentTask = m_result->parentTask();
+    QString auditLogLink;
+    if (parentTask && parentTask->protocol() == GpgME::OpenPGP) {
+        if (m_result->hasError()) {
+            auditLogLink = m_result->auditLog().formatLink(auditlog_url_template(), i18n("Diagnostics"));
+        }
+    } else {
+        auditLogLink = m_result->auditLog().formatLink(auditlog_url_template());
+    }
     m_actionsLabel->setText(auditLogLink);
 }
 

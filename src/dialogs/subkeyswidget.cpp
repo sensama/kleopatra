@@ -146,6 +146,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
                 item->setData(5, Qt::DisplayRole, QString::number(subkey.length()));
         }
         item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
+        item->setData(7, Qt::DisplayRole, subkey.keyID() == key.keyID() ? QStringLiteral("✓") : QString());
         d->ui.subkeysTree->addTopLevelItem(item);
     }
 
@@ -188,7 +189,7 @@ SubKeysDialog::~SubKeysDialog()
 void SubKeysDialog::readConfig()
 {
     KConfigGroup dialog(KSharedConfig::openConfig(), "SubKeysDialog");
-    const QSize size = dialog.readEntry("Size", QSize(750, 280));
+    const QSize size = dialog.readEntry("Size", QSize(820, 280));
     if (size.isValid()) {
         resize(size);
     }

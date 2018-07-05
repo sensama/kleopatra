@@ -184,7 +184,6 @@ void KeyTreeView::init()
     m_view->setAllColumnsShowFocus(true);
     m_view->setSortingEnabled(true);
 
-    qDebug() << model();
     if (model()) {
         if (m_additionalProxy) {
             m_additionalProxy->setSourceModel(model());

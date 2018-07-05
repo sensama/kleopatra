@@ -252,14 +252,6 @@ static QString formatValidSignatureWithTrustLevel(const UserID &id)
     }
 }
 
-static QString renderFingerprint(const char *fpr)
-{
-    if (!fpr) {
-        return QString();
-    }
-    return QString::fromLatin1(fpr).toUpper().replace(QRegularExpression("(....)"), "\\1 ").trimmed();
-}
-
 static QString renderKeyLink(const QString &fpr, const QString &text)
 {
     return QStringLiteral("<a href=\"key:%1\">%2</a>").arg(fpr, text);
@@ -273,11 +265,11 @@ static QString renderKey(const Key &key)
 
     if (key.primaryFingerprint() && strlen(key.primaryFingerprint()) > 16 && key.numUserIDs()) {
         const QString text = QStringLiteral("%1 (%2)").arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped()).arg(
-            renderFingerprint(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
+            Formatting::prettyID(QString::fromLocal8Bit(key.primaryFingerprint()).right(16).toLatin1().constData()));
         return renderKeyLink(QLatin1String(key.primaryFingerprint()), text);
     }
 
-    return renderKeyLink(QLatin1String(key.primaryFingerprint()), renderFingerprint(key.primaryFingerprint()));
+    return renderKeyLink(QLatin1String(key.primaryFingerprint()), Formatting::prettyID(key.primaryFingerprint()));
 }
 
 static QString renderKeyEMailOnlyNameAsFallback(const Key &key)

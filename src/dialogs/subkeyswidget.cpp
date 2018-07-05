@@ -130,7 +130,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
 
     for (const auto &subkey : key.subkeys()) {
         auto item = new QTreeWidgetItem();
-        item->setData(0, Qt::DisplayRole, QString::fromLatin1(subkey.keyID()));
+        item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
         item->setData(0, Qt::UserRole, QVariant::fromValue(subkey));
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::type(subkey));
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));

@@ -123,7 +123,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const QString expiry = Kleo::Formatting::expirationDateString(key);
     ui.expires->setText(expiry.isEmpty() ? i18nc("Expires", "never") : expiry);
     ui.type->setText(Kleo::Formatting::type(key));
-    ui.fingerprint->setText(QString::fromLatin1(key.primaryFingerprint()));
+    ui.fingerprint->setText(Formatting::prettyID(key.primaryFingerprint()));
 
     if (Kleo::Formatting::complianceMode().isEmpty()) {
         HIDE_ROW(compliance)

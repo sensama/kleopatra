@@ -111,7 +111,7 @@
       </widget>
      </item>
      <item rowspan="6" row="2" column="0" colspan="2" >
-      <widget class="QTreeView" name="resultTV" >
+      <widget class="Kleo::KeyTreeView" name="resultTV" >
        <property name="enabled" >
         <bool>true</bool>
        </property>
@@ -120,15 +120,6 @@
          <width>400</width>
          <height>0</height>
         </size>
-       </property>
-       <property name="selectionMode" >
-        <enum>QAbstractItemView::ExtendedSelection</enum>
-       </property>
-       <property name="sortingEnabled" >
-        <bool>true</bool>
-       </property>
-       <property name="allColumnsShowFocus" >
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -143,6 +134,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+   <customwidget>
+     <class>Kleo::KeyTreeView</class>
+     <extends>QWidget</extends>
+     <header>view/keytreeview.h</header>
+   </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
@@ -190,38 +188,6 @@
     <hint type="destinationlabel" >
      <x>218</x>
      <y>291</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>selectAllPB</sender>
-   <signal>clicked()</signal>
-   <receiver>resultTV</receiver>
-   <slot>selectAll()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>437</x>
-     <y>79</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>409</x>
-     <y>77</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deselectAllPB</sender>
-   <signal>clicked()</signal>
-   <receiver>resultTV</receiver>
-   <slot>clearSelection()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>465</x>
-     <y>115</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>409</x>
-     <y>119</y>
     </hint>
    </hints>
   </connection>

@@ -36,11 +36,7 @@
 
 #include "ui_lookupcertificatesdialog.h"
 
-#include <utils/headerview.h>
-
 #include <Libkleo/KeyListModel>
-#include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/Stl_Util>
 #include <KConfigGroup>
 #include <gpgme++/key.h>
 
@@ -48,6 +44,7 @@
 
 #include <QPushButton>
 #include <QHeaderView>
+#include <QTreeView>
 
 #include <KSharedConfig>
 
@@ -55,7 +52,7 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
-static const int minimalSearchTextLength = 2; // ### TODO: make that KIOSK-able
+static const int minimalSearchTextLength = 2;
 
 class LookupCertificatesDialog::Private
 {
@@ -96,21 +93,25 @@ private:
     {
         return ui.findED->text().trimmed();
     }
-    QModelIndexList selectedIndexes() const
+
+    std::vector<Key> selectedCertificates() const
     {
-        if (const QItemSelectionModel *const sm = ui.resultTV->selectionModel()) {
-            return sm->selectedRows();
-        } else {
-            return QModelIndexList();
+        const QAbstractItemView *const view = ui.resultTV->view();
+        if (!view) {
+            return std::vector<Key>();
         }
+        const auto *const model = dynamic_cast<KeyListModelInterface*>(view->model());
+        Q_ASSERT(model);
+        const QItemSelectionModel *const sm = view->selectionModel();
+        Q_ASSERT(sm);
+        return model->keys(sm->selectedRows());
     }
+
     int numSelectedCertificates() const
     {
-        return selectedIndexes().size();
+        return ui.resultTV->selectedKeys().size();
     }
 private:
-    AbstractKeyListModel *model;
-    KeyListSortFilterProxyModel proxy;
     bool passive;
 
     struct Ui : Ui_LookupCertificatesDialog {
@@ -124,17 +125,21 @@ private:
 
             findED->setClearButtonEnabled(true);
 
+            resultTV->setFlatModel(AbstractKeyListModel::createFlatKeyListModel(q));
+            resultTV->setHierarchicalView(false);
+
             importPB()->setText(i18n("Import"));
             importPB()->setEnabled(false);
 
-            HeaderView *hv = new HeaderView(Qt::Horizontal);
-            KDAB_SET_OBJECT_NAME(hv);
-            resultTV->setHeader(hv);
-
-            connect(resultTV,   SIGNAL(doubleClicked(QModelIndex)),
+            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)),
                     importPB(), SLOT(animateClick()));
 
             findED->setFocus();
+
+            connect(selectAllPB, &QPushButton::clicked,
+                    resultTV->view(), &QTreeView::selectAll);
+            connect(deselectAllPB, &QPushButton::clicked,
+                    resultTV->view(), &QTreeView::clearSelection);
         }
 
         QPushButton *importPB() const
@@ -150,18 +155,10 @@ private:
 
 LookupCertificatesDialog::Private::Private(LookupCertificatesDialog *qq)
     : q(qq),
-      model(AbstractKeyListModel::createFlatKeyListModel()),
-      proxy(),
       passive(false),
       ui(q)
 {
-    KDAB_SET_OBJECT_NAME(model);
-    KDAB_SET_OBJECT_NAME(proxy);
-
-    proxy.setSourceModel(model);
-    ui.resultTV->setModel(&proxy);
-
-    connect(ui.resultTV->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+    connect(ui.resultTV->view()->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             q, SLOT(slotSelectionChanged()));
 }
 
@@ -174,16 +171,11 @@ void LookupCertificatesDialog::Private::readConfig()
     if (size.isValid()) {
         q->resize(size);
     }
-    const QByteArray headerState = dialog.readEntry("header", QByteArray());
-    if (!headerState.isEmpty()) {
-        ui.resultTV->header()->restoreState(headerState);
-    }
 }
 
 void LookupCertificatesDialog::Private::writeConfig()
 {
     KConfigGroup dialog(KSharedConfig::openConfig(), "LookupCertificatesDialog");
-    dialog.writeEntry("header", ui.resultTV->header()->saveState());
     dialog.writeEntry("Size", q->size());
     dialog.sync();
 }
@@ -202,14 +194,13 @@ LookupCertificatesDialog::~LookupCertificatesDialog()
 
 void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs)
 {
-    d->model->setKeys(certs);
-    d->ui.resultTV->header()->resizeSections(QHeaderView::ResizeToContents);
-    d->ui.resultTV->setFocus();
+    d->ui.resultTV->view()->setFocus();
+    d->ui.resultTV->setKeys(certs);
 }
 
 std::vector<Key> LookupCertificatesDialog::selectedCertificates() const
 {
-    return d->proxy.keys(d->selectedIndexes());
+    return d->selectedCertificates();
 }
 
 void LookupCertificatesDialog::setPassive(bool on)
@@ -238,7 +229,7 @@ QString LookupCertificatesDialog::searchText() const
 
 void LookupCertificatesDialog::accept()
 {
-    Q_ASSERT(!d->selectedIndexes().empty());
+    Q_ASSERT(!selectedCertificates().empty());
     Q_EMIT importRequested(selectedCertificates());
     QDialog::accept();
 }
@@ -257,7 +248,7 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
 
     ui.findPB->setEnabled(searchText().length() > minimalSearchTextLength);
 
-    const int n = numSelectedCertificates();
+    const int n = q->selectedCertificates().size();
 
     ui.detailsPB->setEnabled(n == 1);
     ui.saveAsPB->setEnabled(n == 1);

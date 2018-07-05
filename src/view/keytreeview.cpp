@@ -211,7 +211,7 @@ void KeyTreeView::init()
                                                      << KeyListModelInterface::ValidFrom
                                                      << KeyListModelInterface::ValidUntil
                                                      << KeyListModelInterface::TechnicalDetails
-                                                     << KeyListModelInterface::ShortKeyID);
+                                                     << KeyListModelInterface::KeyID);
     m_view->setModel(rearangingModel);
 
     std::vector<int> defaultSizes;
@@ -221,7 +221,7 @@ void KeyTreeView::init()
     defaultSizes.push_back(100);
     defaultSizes.push_back(100);
     defaultSizes.push_back(80);
-    defaultSizes.push_back(80);
+    defaultSizes.push_back(140);
     setColumnSizes(defaultSizes);
 }
 

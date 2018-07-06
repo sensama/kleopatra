@@ -59,9 +59,8 @@ public:
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
 
-        const QStringList supported = QStringList() << QStringLiteral("OpenPGP v2.0")
-                                                    << QStringLiteral("OpenPGP v2.1")
-                                                    << QStringLiteral("Netkey v2")
+        const QStringList supported = QStringList() << QStringLiteral("OpenPGP v2.0 - v3.3")
+                                                    << QStringLiteral("Gnuk")
                                                     << QStringLiteral("NetKey v3");
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") +
                                   i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>")));

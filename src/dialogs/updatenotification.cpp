@@ -133,7 +133,7 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
     // explicitly removed that.
     if (force || updatecfg.readEntry("AllowVersionCheckSetOnce", false)) {
         gpgconf_set_update_check (true);
-        updatecfg.writeEntry("AllowVersionCheckSetOnce", true)
+        updatecfg.writeEntry("AllowVersionCheckSetOnce", true);
     }
 
     const auto current = gpg4winVersion();

@@ -168,11 +168,22 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     mVersionLabel->setText(i18nc("1 is a Version number", "NetKey v%1 Card", card->appVersion()));
     mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
 
-    mNullPinWidget->setVisible(card->hasNKSNullPin() || card->hasSigGNullPin());
+    /* According to users of NetKey Cards it is fairly uncommon
+     * to use SigG Certificates at all. So it should be optional to set the pins. */
+    mNullPinWidget->setVisible(card->hasNKSNullPin() /*|| card->hasSigGNullPin()*/);
+
+    mNullPinWidget->setSigGVisible(false/*card->hasSigGNullPin()*/);
     mNullPinWidget->setNKSVisible(card->hasNKSNullPin());
-    mNullPinWidget->setSigGVisible(card->hasSigGNullPin());
     mChangeNKSPINBtn->setEnabled(!card->hasNKSNullPin());
-    mChangeSigGPINBtn->setEnabled(!card->hasSigGNullPin());
+
+    if (card->hasSigGNullPin()) {
+        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card",
+                                   "Set SigG PIN"));
+    } else {
+        mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card",
+                                  "Change SigG PIN"));
+    }
+
     mLearnKeysBtn->setEnabled(true);
     mLearnKeysBtn->setVisible(card->canLearnKeys());
     mLearnKeysLabel->setVisible(card->canLearnKeys());

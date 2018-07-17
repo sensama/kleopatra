@@ -217,8 +217,7 @@ void SetInitialPinDialog::setSigGPinSettingResult(const Error &err)
 
 bool SetInitialPinDialog::isComplete() const
 {
-    return (d->nksState  == Ok || d->nksState  == AlreadySet)
-           && (d->sigGState == Ok || d->sigGState == AlreadySet);
+    return (d->nksState  == Ok || d->nksState  == AlreadySet);
 }
 
 #include "moc_setinitialpindialog.cpp"

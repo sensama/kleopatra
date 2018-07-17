@@ -270,12 +270,19 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     }
 
     std::vector<Card::PinState> states;
+    // CHV Status for NKS v3 is
+    // Pin1 (Normal pin) Pin2 (Normal PUK)
+    // SigG1 SigG PUK.
+    int num = 0;
     for (const auto &state: chvStatus) {
         const auto parsed = parse_pin_state (state);
         states.push_back(parsed);
         if (parsed == Card::NullPin) {
-            ci->setHasNullPin(true);
+            if (num == 0) {
+                ci->setHasNullPin(true);
+            }
         }
+        ++num;
     }
     nkCard->setPinStates(states);
 

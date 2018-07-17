@@ -43,6 +43,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QStackedWidget>
 
 #include <KLocalizedString>
 
@@ -77,6 +78,7 @@ public:
         hLay->addStretch(-1);
         hLay->addLayout(lay);
         hLay->addStretch(-1);
+        lay->addStretch(-1);
     }
 };
 } // namespace
@@ -95,22 +97,24 @@ public:
 
         QVBoxLayout *vLay = new QVBoxLayout(q);
 
+
         connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT (q->backRequested());});
 
         vLay->addLayout(backH);
 
+        mStack = new QStackedWidget;
+        vLay->addWidget(mStack);
+
         mPGPCardWidget = new PGPCardWidget;
-        mPGPCardWidget->setVisible(false);
-        vLay->addWidget(mPGPCardWidget);
+        mStack->addWidget(mPGPCardWidget);
 
         mNetKeyWidget = new NetKeyWidget;
-        mNetKeyWidget->setVisible(false);
-        vLay->addWidget(mNetKeyWidget);
+        mStack->addWidget(mNetKeyWidget);
 
         mPlaceHolderWidget = new PlaceHolderWidget;
-        vLay->addWidget(mPlaceHolderWidget);
-        vLay->addStretch(-1);
+        mStack->addWidget(mPlaceHolderWidget);
 
+        mStack->setCurrentWidget(mPlaceHolderWidget);
 
         connect (ReaderStatus::instance(), &ReaderStatus::cardChanged, q, [this] (unsigned int /*slot*/) {
                 const auto cards = ReaderStatus::instance()->getCards();
@@ -127,18 +131,12 @@ public:
     {
         if (card->appType() == Card::OpenPGPApplication) {
             mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
-            mPGPCardWidget->setVisible(true);
-            mPlaceHolderWidget->setVisible(false);
-            mNetKeyWidget->setVisible(false);
+            mStack->setCurrentWidget(mPGPCardWidget);
         } else if (card->appType() == Card::NksApplication) {
             mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
-            mNetKeyWidget->setVisible(true);
-            mPlaceHolderWidget->setVisible(false);
-            mPGPCardWidget->setVisible(false);
+            mStack->setCurrentWidget(mNetKeyWidget);
         } else {
-            mPlaceHolderWidget->setVisible(true);
-            mPGPCardWidget->setVisible(false);
-            mNetKeyWidget->setVisible(false);
+            mStack->setCurrentWidget(mPlaceHolderWidget);
         }
     }
 
@@ -147,6 +145,7 @@ private:
     NetKeyWidget *mNetKeyWidget;
     PGPCardWidget *mPGPCardWidget;
     PlaceHolderWidget *mPlaceHolderWidget;
+    QStackedWidget *mStack;
 };
 
 SmartCardWidget::SmartCardWidget(QWidget *parent):

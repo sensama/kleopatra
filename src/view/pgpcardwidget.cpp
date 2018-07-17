@@ -138,7 +138,9 @@ PGPCardWidget::PGPCardWidget():
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
     auto areaWidget = new QWidget;
-    areaWidget->setLayout(grid);
+    auto areaVLay = new QVBoxLayout(areaWidget);
+    areaVLay->addLayout(grid);
+    areaVLay->addStretch(1);
     area->setWidget(areaWidget);
     auto myLayout = new QVBoxLayout(this);
     myLayout->addWidget(area);

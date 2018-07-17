@@ -161,6 +161,7 @@ NetKeyWidget::NetKeyWidget() :
     hLay3->addStretch(1);
 
     vLay->addLayout(hLay3);
+    vLay->addStretch(1);
 }
 
 void NetKeyWidget::setCard(const NetKeyCard* card)
@@ -186,6 +187,7 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
 
     mLearnKeysBtn->setEnabled(true);
     mLearnKeysBtn->setVisible(card->canLearnKeys());
+    mTreeView->setVisible(!card->canLearnKeys());
     mLearnKeysLabel->setVisible(card->canLearnKeys());
 
     const auto errMsg = card->errorMsg();

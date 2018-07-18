@@ -36,6 +36,8 @@
 
 #include "command_p.h"
 
+#include "utils/gnupg-helper.h"
+
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 #include <KWindowSystem>
@@ -268,11 +270,10 @@ void GnuPGProcessCommand::doStart()
     d->arguments = arguments();
 
     d->process.setProgram(d->arguments.takeFirst());
+
     d->process.setArguments(d->arguments);
 
     // Historically code using this expects arguments first to be the program.
-    d->arguments.prepend(QLatin1String("utf-8"));
-    d->arguments.prepend(QLatin1String("--display-charset"));
     d->arguments.prepend(d->process.program());
 
     d->process.start();
@@ -342,12 +343,12 @@ void GnuPGProcessCommand::Private::slotProcessReadyReadStandardError()
     while (ba.endsWith('\n') || ba.endsWith('\r')) {
         ba.chop(1);
     }
-    message(QString::fromUtf8(ba.constData(), ba.size()));
+    message(Kleo::stringFromGpgOutput(ba));
 }
 
 QString GnuPGProcessCommand::errorString() const
 {
-    return QString::fromUtf8(d->errorBuffer);
+    return Kleo::stringFromGpgOutput(d->errorBuffer);
 }
 
 void GnuPGProcessCommand::setIgnoresSuccessOrFailure(bool ignores)

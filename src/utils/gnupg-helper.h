@@ -53,6 +53,7 @@
 
 class QString;
 class QStringList;
+class QByteArray;
 
 namespace Kleo
 {
@@ -70,13 +71,17 @@ QString gnupgInstallPath();
 const QString& paperKeyInstallPath();
 
 QStringList gnupgFileWhitelist();
-
 int makeGnuPGError(int code);
 
 bool engineIsVersion(int major, int minor, int patch, GpgME::Engine = GpgME::GpgConfEngine);
 bool haveKeyserverConfigured();
 bool gpgComplianceP(const char *mode);
 enum GpgME::UserID::Validity keyValidity(const GpgME::Key &key);
+
+/* Convert GnuPG output to a QString with proper encoding.
+ * Takes Gpg Quirks into account and might handle future
+ * changes in GnuPG Output. */
+QString stringFromGpgOutput(const QByteArray &ba);
 }
 
 #endif // __KLEOPATRA_GNUPGHELPER_H__

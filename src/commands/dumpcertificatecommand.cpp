@@ -160,7 +160,7 @@ private:
     void slotProcessReadyReadStandardOutput()
     {
         while (process.canReadLine()) {
-            const QString line = QString::fromUtf8(chomped(process.readLine()));
+            const QString line = Kleo::stringFromGpgOutput(chomped(process.readLine()));
             if (dialog) {
                 dialog->append(line);
             }

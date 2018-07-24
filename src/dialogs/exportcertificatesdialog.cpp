@@ -85,12 +85,14 @@ ExportCertificatesDialog::Private::Private(ExportCertificatesDialog *qq)
     QLabel *const pgpLabel = new QLabel;
     pgpLabel->setText(i18n(" OpenPGP export file:"));
     pgpRequester = new FileNameRequester;
+    pgpRequester->setExistingOnly(false);
     connect(pgpRequester, SIGNAL(fileNameChanged(QString)), q, SLOT(fileNamesChanged()));
     layout->addRow(pgpLabel, pgpRequester);
 
     QLabel *const cmsLabel = new QLabel;
     cmsLabel->setText(i18n("S/MIME export file:"));
     cmsRequester = new FileNameRequester;
+    cmsRequester->setExistingOnly(false);
     layout->addRow(cmsLabel, cmsRequester);
 
     connect(cmsRequester, SIGNAL(fileNameChanged(QString)), q, SLOT(fileNamesChanged()));

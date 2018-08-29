@@ -1261,8 +1261,7 @@ QString DecryptTask::outputLabel() const
 
 Protocol DecryptTask::protocol() const
 {
-    kleo_assert(!"not implemented");
-    return UnknownProtocol; // ### TODO
+    return d->m_protocol;
 }
 
 void DecryptTask::cancel()
@@ -1573,8 +1572,7 @@ QString VerifyDetachedTask::outputLabel() const
 
 Protocol VerifyDetachedTask::protocol() const
 {
-    kleo_assert(!"not implemented");
-    return UnknownProtocol; // ### TODO
+    return d->m_protocol;
 }
 
 void VerifyDetachedTask::cancel()

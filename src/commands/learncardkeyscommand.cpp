@@ -44,6 +44,8 @@
 
 #include <KLocalizedString>
 
+#include <QProgressDialog>
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
@@ -103,3 +105,26 @@ QString LearnCardKeysCommand::successMessage(const QStringList &) const
     return QString();
 }
 
+void LearnCardKeysCommand::doStart()
+{
+    GnuPGProcessCommand::doStart();
+
+    auto detailsDlg = dialog();
+    if (detailsDlg) {
+        detailsDlg->hide();
+    }
+
+    const auto dlg = new QProgressDialog(i18n("Loading certificates... (this can take a while)"),
+            i18n("Show Details"), 0, 0, d->parentWidgetOrView());
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    dlg->setModal(true);
+    connect(dlg, &QProgressDialog::canceled, this, [detailsDlg] () {
+            if (detailsDlg) {
+                detailsDlg->show();
+            }
+        });
+    connect(this, &LearnCardKeysCommand::finished, this, [dlg] () {
+            dlg->accept();
+        });
+    dlg->show();
+}

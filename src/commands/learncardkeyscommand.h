@@ -57,6 +57,8 @@ public:
     }
 
 private:
+    void doStart() override;
+
     QStringList arguments() const override;
 
     QString errorCaption() const override;

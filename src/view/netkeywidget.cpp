@@ -31,6 +31,8 @@
 #include "netkeywidget.h"
 #include "nullpinwidget.h"
 #include "keytreeview.h"
+#include "kleopatraapplication.h"
+#include "systrayicon.h"
 
 #include "kleopatra_debug.h"
 
@@ -106,8 +108,14 @@ NetKeyWidget::NetKeyWidget() :
         cmd->setParentWidget(this);
         cmd->start();
 
-        connect(cmd, &Command::finished, this, [] () {
+        auto icon = KleopatraApplication::instance()->sysTrayIcon();
+        if (icon) {
+            icon->setLearningInProgress(true);
+        }
+
+        connect(cmd, &Command::finished, this, [icon] () {
             ReaderStatus::mutableInstance()->updateStatus();
+            icon->setLearningInProgress(false);
         });
     });
 

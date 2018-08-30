@@ -127,6 +127,7 @@ private:
 private:
     bool anyCardHasNullPin;
     bool anyCardCanLearnKeys;
+    bool learningInProgress;
 
     QMenu menu;
     QAction openCertificateManagerAction;
@@ -251,7 +252,7 @@ void SysTrayIcon::setAnyCardHasNullPin(bool on)
 
 void SysTrayIcon::setAnyCardCanLearnKeys(bool on)
 {
-    if (d->anyCardCanLearnKeys == on) {
+    if (d->anyCardCanLearnKeys == on || d->learningInProgress) {
         return;
     }
     d->anyCardCanLearnKeys = on;
@@ -261,6 +262,16 @@ void SysTrayIcon::setAnyCardCanLearnKeys(bool on)
 void SysTrayIcon::slotEnableDisableActions()
 {
     d->enableDisableActions();
+}
+
+/* We need this as the readerstatus might update even
+ * while the loading is in progress. */
+void SysTrayIcon::setLearningInProgress(bool value)
+{
+    if (value) {
+        setAnyCardCanLearnKeys(false);
+    }
+    d->learningInProgress = value;
 }
 
 #include "moc_systrayicon.cpp"

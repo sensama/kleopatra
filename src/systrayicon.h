@@ -51,6 +51,8 @@ public:
     MainWindow *mainWindow() const;
     QDialog *attentionWindow() const;
 
+    void setLearningInProgress(bool value);
+
 public Q_SLOTS:
     void setAnyCardHasNullPin(bool);
     void setAnyCardCanLearnKeys(bool);

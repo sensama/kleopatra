@@ -510,6 +510,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 const Key toTrustOwner = ctx->key(fingerPr, err , false);
 
                 if (toTrustOwner.isNull()) {
+                    finished();
                     return;
                 }
 
@@ -541,6 +542,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
 
                     if (!backend){
                         qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
+                        finished();
                         return;
                     }
 

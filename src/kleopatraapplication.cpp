@@ -312,7 +312,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
     } else if (parser.isSet(QStringLiteral("query"))) {
         needle = parser.value(QStringLiteral("query"));
     }
-    if (needle.startsWith("openpgp4fpr:")) {
+    if (needle.startsWith(QLatin1String("openpgp4fpr:"))) {
         needle.remove(0, 12);
     }
 

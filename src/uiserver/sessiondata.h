@@ -62,6 +62,7 @@ private:
 
 class SessionDataHandler : public QObject
 {
+    Q_OBJECT
 public:
 
     static std::shared_ptr<SessionDataHandler> instance();

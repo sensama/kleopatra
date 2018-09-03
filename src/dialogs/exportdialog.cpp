@@ -151,8 +151,8 @@ void ExportWidget::setKey(const GpgME::Key &key)
     auto job = protocol->publicKeyExportJob(true);
 
     /* New style connect does not work on Windows. */
-    connect(job, SIGNAL(result(GpgME::Error, QByteArray)),
-            this, SLOT(exportResult(GpgME::Error, QByteArray)));
+    connect(job, SIGNAL(result(GpgME::Error,QByteArray)),
+            this, SLOT(exportResult(GpgME::Error,QByteArray)));
 
     job->start(QStringList() << key.primaryFingerprint());
 }

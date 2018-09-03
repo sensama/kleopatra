@@ -565,8 +565,8 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     ctx->addKeyListMode(GpgME::WithTofu);
 
     // Windows QGpgME new style connect problem makes this necessary.
-    connect(job, SIGNAL(result(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)),
-            this, SLOT(keyListDone(GpgME::KeyListResult, std::vector<GpgME::Key>, QString, GpgME::Error)));
+    connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
+            this, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
 
     job->start(QStringList() << key.primaryFingerprint(), key.hasSecret());
 }

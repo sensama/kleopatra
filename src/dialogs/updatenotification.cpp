@@ -225,11 +225,11 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     const auto bb = new QDialogButtonBox();
     const auto b = bb->addButton(i18n("&Get update"), QDialogButtonBox::AcceptRole);
     b->setDefault(true);
-    b->setIcon(QIcon::fromTheme("arrow-down"));
+    b->setIcon(QIcon::fromTheme(QStringLiteral("arrow-down")));
     bb->addButton(QDialogButtonBox::Cancel);
     lay->addWidget(bb, 2, 0, 1, -1);
     connect (bb, &QDialogButtonBox::accepted, this, [this, chk]() {
-            QDesktopServices::openUrl(QUrl("https://www.gpg4win.org/download.html"));
+            QDesktopServices::openUrl(QUrl(QStringLiteral("https://www.gpg4win.org/download.html")));
             KConfigGroup updatecfg(KSharedConfig::openConfig(), "UpdateNotification");
             updatecfg.writeEntry("NeverShow", !chk->isChecked());
             gpgconf_set_update_check (chk->isChecked());

@@ -133,7 +133,7 @@ void GenRevokeCommand::doStart()
             return;
         }
         if (!mOutputFileName.endsWith(QLatin1String(".rev"))) {
-            mOutputFileName += ".rev";
+            mOutputFileName += QLatin1String(".rev");
         }
         if (QFileInfo(mOutputFileName).exists()) {
             auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(), i18n("The file <b>%1</b> already exists.\n"
@@ -182,7 +182,7 @@ QStringList GenRevokeCommand::arguments() const
     const Key key = d->key();
     QStringList result;
 
-    result << gpgPath() << "--command-fd" << "0" << "--status-fd" << "1"
+    result << gpgPath() << QStringLiteral("--command-fd") << QStringLiteral("0") << QStringLiteral("--status-fd") << QStringLiteral("1")
            << QStringLiteral("-o") << mOutputFileName
            << QStringLiteral("--gen-revoke")
            << QLatin1String(key.primaryFingerprint());

@@ -206,7 +206,7 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
                                        "Import%1", suffix));
 
         if (search) {
-            btn->setIcon(QIcon::fromTheme("edit-find"));
+            btn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
             connect (btn, &QPushButton::clicked, q, [this, btn, keyid] () {
                 btn->setEnabled(false);
                 m_importCanceled = false;
@@ -222,7 +222,7 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
                 cmd->start();
             });
         } else {
-            btn->setIcon(QIcon::fromTheme("view-certificate-import"));
+            btn->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-import")));
             connect (btn, &QPushButton::clicked, q, [this, btn] () {
                 btn->setEnabled(false);
                 m_importCanceled = false;

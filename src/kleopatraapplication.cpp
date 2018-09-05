@@ -343,7 +343,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
     }
 
     // Check for --gen-key command
-    if (parser.isSet("gen-key")) {
+    if (parser.isSet(QStringLiteral("gen-key"))) {
         auto cmd = new NewCertificateCommand(nullptr);
         cmd->setParentWId(parentId);
         cmd->setProtocol(protocol);
@@ -352,7 +352,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
     }
 
     // Check for --config command
-    if (parser.isSet("config")) {
+    if (parser.isSet(QStringLiteral("config"))) {
         openConfigDialogWithForeignParent(parentId);
         return QString();
     }
@@ -426,7 +426,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
     QDir::setCurrent(QDir::homePath());
 #endif
 
-    return errors.join('\n');
+    return errors.join(QLatin1Char('\n'));
 }
 
 #ifndef QT_NO_SYSTEMTRAYICON

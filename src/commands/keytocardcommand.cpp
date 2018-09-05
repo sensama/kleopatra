@@ -150,7 +150,7 @@ private:
             }
         }
         if (!cardFound) {
-            error(i18n("Failed to find the card with the serial number: %1", mSerial.c_str()));
+            error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
             finished();
             return;
         }
@@ -172,7 +172,7 @@ private:
         const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
 #ifdef GPGME_SUBKEY_HAS_KEYGRIP
         const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(mKey.keyGrip())
-                                                                                   .arg(mSerial.c_str())
+                                                                                   .arg(QString::fromStdString(mSerial))
                                                                                    .arg(slot)
                                                                                    .arg(timestamp);
         ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");

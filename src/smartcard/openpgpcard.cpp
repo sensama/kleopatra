@@ -126,11 +126,11 @@ void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::
             }
             const auto usage = values[0];
             const auto fpr = values[1].toStdString();
-            if (usage == "1") {
+            if (usage == QLatin1String("1")) {
                 mMetaInfo.insert(std::string("SIG") + pair.first, fpr);
-            } else if (usage == "2") {
+            } else if (usage == QLatin1String("2")) {
                 mMetaInfo.insert(std::string("ENC") + pair.first, fpr);
-            } else if (usage == "3") {
+            } else if (usage == QLatin1String("3")) {
                 mMetaInfo.insert(std::string("AUTH") + pair.first, fpr);
             } else {
                 // Maybe more keyslots in the future?
@@ -146,11 +146,11 @@ void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::
             }
             const auto usage = values[1];
             const auto grip = values[0].toStdString();
-            if (usage == "OPENPGP.1") {
+            if (usage == QLatin1String("OPENPGP.1")) {
                 mMetaInfo.insert(std::string("SIG") + pair.first, grip);
-            } else if (usage == "OPENPGP.2") {
+            } else if (usage == QLatin1String("OPENPGP.2")) {
                 mMetaInfo.insert(std::string("ENC") + pair.first, grip);
-            } else if (usage == "OPENPGP.3") {
+            } else if (usage == QLatin1String("OPENPGP.3")) {
                 mMetaInfo.insert(std::string("AUTH") + pair.first, grip);
             } else {
                 // Maybe more keyslots in the future?
@@ -225,7 +225,7 @@ std::string OpenPGPCard::cardVersion() const
 
 std::string OpenPGPCard::cardHolder() const
 {
-    auto list = QString::fromStdString(mMetaInfo.value("DISP-NAME")).split("<<");
+    auto list = QString::fromStdString(mMetaInfo.value("DISP-NAME")).split(QStringLiteral("<<"));
     std::reverse(list.begin(), list.end());
     return list.join(QLatin1Char(' ')).toStdString();
 }

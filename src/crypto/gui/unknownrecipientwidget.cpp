@@ -53,12 +53,12 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
     mKeyID = QString::fromLatin1(keyid);
 
     auto keyIdLabel = new QLabel(mKeyID);
-    keyIdLabel->setFont(QFont("Monospace"));
+    keyIdLabel->setFont(QFont(QStringLiteral("Monospace")));
 
     auto lookUpBtn = new QPushButton(i18n("Search"));
 
 
-    lookUpBtn->setIcon(QIcon::fromTheme("edit-find"));
+    lookUpBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
     lookUpBtn->setToolTip(i18n("Search on keyserver"));
     connect (lookUpBtn, &QPushButton::clicked, this, [this, lookUpBtn] () {
         lookUpBtn->setEnabled(false);

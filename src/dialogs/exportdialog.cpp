@@ -108,12 +108,12 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
 
     // Fixup the HTML coming from the toolTip for our own format.
     overView.remove(QLatin1String("<tr><th>"));
-    overView.replace(QLatin1String("</th><td>"), "\t");
-    overView.replace(QLatin1String("</td></tr>"), "\n");
+    overView.replace(QLatin1String("</th><td>"), QLatin1String("\t"));
+    overView.replace(QLatin1String("</td></tr>"), QLatin1String("\n"));
     overView.remove(QLatin1String("<table border=\"0\">"));
     overView.remove(QLatin1String("\n</table>"));
-    overView.replace(QLatin1String("&lt;"), "<");
-    overView.replace(QLatin1String("&gt;"), ">");
+    overView.replace(QLatin1String("&lt;"), QLatin1String("<"));
+    overView.replace(QLatin1String("&gt;"), QLatin1String(">"));
 
     auto overViewLines = overView.split(QLatin1Char('\n'));
 
@@ -133,7 +133,7 @@ void ExportWidget::exportResult(const GpgME::Error &err, const QByteArray &data)
 
     if (err) {
         /* Should not happen. But well,.. */
-        d->textEdit->setText(i18nc("%1 is error message", "Failed to export: '%1'",err.asString()));
+        d->textEdit->setText(i18nc("%1 is error message", "Failed to export: '%1'", QString::fromLatin1(err.asString())));
     }
 
     d->textEdit->setText(injectComments(d->key, data));

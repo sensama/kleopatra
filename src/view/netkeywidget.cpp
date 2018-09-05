@@ -218,7 +218,7 @@ void NetKeyWidget::handleResult(const GpgME::Error &err, QPushButton *btn)
     }
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Failed to set PIN: %1", err.asString()),
+                           "Failed to set PIN: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
         return;
     }

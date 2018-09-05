@@ -118,8 +118,8 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
     auto overViewLines = overView.split(QLatin1Char('\n'));
 
     // Format comments so that they fit for RFC 4880
-    auto comments = QString("Comment: ");
-    comments += overViewLines.join("\nComment: ") + QLatin1Char('\n');
+    auto comments = QString::fromLatin1("Comment: ");
+    comments += overViewLines.join(QStringLiteral("\nComment: ")) + QLatin1Char('\n');
 
     ret.insert(37 /* -----BEGIN PGP PUBLIC KEY BLOCK-----\n */, comments);
 

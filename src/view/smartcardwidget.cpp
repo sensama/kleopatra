@@ -88,7 +88,7 @@ class SmartCardWidget::Private
 public:
     Private(SmartCardWidget *qq) : q(qq)
     {
-        QPushButton *backBtn = new QPushButton(QIcon::fromTheme("arrow-left"), i18n("Back"));
+        QPushButton *backBtn = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-left")), i18n("Back"));
         QHBoxLayout *backH = new QHBoxLayout;
         backH->addWidget(backBtn);
         backH->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +

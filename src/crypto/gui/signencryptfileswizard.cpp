@@ -300,8 +300,8 @@ private Q_SLOTS:
             if (Kleo::gpgComplianceP("de-vs")) {
                 bool de_vs = mWidget->isDeVsAndValid();
                 btn->setIcon(QIcon::fromTheme(de_vs
-                                             ? "security-high"
-                                             : "security-medium"));
+                                             ? QStringLiteral("security-high")
+                                             : QStringLiteral("security-medium")));
                 btn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
                                    ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                                    : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
@@ -314,7 +314,7 @@ private Q_SLOTS:
         } else {
             btn->setText(i18n("Next"));
             btn->setIcon(QIcon());
-            btn->setStyleSheet("");
+            btn->setStyleSheet(QString());
         }
         Q_EMIT completeChanged();
     }
@@ -413,7 +413,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
         mLabel = button(QWizard::CustomButton1);
         /* We style the button so that it looks and acts like a
            label.  */
-        mLabel->setStyleSheet("border: none");
+        mLabel->setStyleSheet(QStringLiteral("border: none"));
         mLabel->setFocusPolicy(Qt::NoFocus);
     } else {
         mLabel = nullptr;

@@ -63,7 +63,7 @@ public:
         auto hLay = new QHBoxLayout;
 
         const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1",
-                                      KLEOPATRA_VERSION_STRING);
+                                      QString::fromLatin1(KLEOPATRA_VERSION_STRING));
         const QString introduction = i18n("Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org\">GnuPG</a>.");
 
         const QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own private key.");
@@ -81,11 +81,11 @@ public:
 
         auto genKeyAction = new QAction(q);
         genKeyAction->setText(i18n("New Key Pair..."));
-        genKeyAction->setIcon(QIcon::fromTheme("view-certificate-add"));
+        genKeyAction->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-add")));
 
         auto importAction = new QAction(q);
         importAction->setText(i18n("Import..."));
-        importAction->setIcon(QIcon::fromTheme("view-certificate-import"));
+        importAction->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-import")));
 
         connect(importAction, &QAction::triggered, q, [this] () { import(); });
         connect(genKeyAction, &QAction::triggered, q, [this] () { generate(); });

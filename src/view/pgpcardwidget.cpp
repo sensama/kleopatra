@@ -160,7 +160,7 @@ PGPCardWidget::PGPCardWidget():
     grid->addWidget(mCardHolderLabel, row, 1);
     mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     auto nameButtton = new QPushButton;
-    nameButtton->setIcon(QIcon::fromTheme("cell_edit"));
+    nameButtton->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
     nameButtton->setToolTip(i18n("Change"));
     grid->addWidget(nameButtton, row++, 2);
     connect(nameButtton, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
@@ -173,7 +173,7 @@ PGPCardWidget::PGPCardWidget():
 
     mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     auto urlButtton = new QPushButton;
-    urlButtton->setIcon(QIcon::fromTheme("cell_edit"));
+    urlButtton->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
     urlButtton->setToolTip(i18n("Change"));
     grid->addWidget(urlButtton, row++, 2);
     connect(urlButtton, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
@@ -234,7 +234,7 @@ PGPCardWidget::PGPCardWidget():
 void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     const QString version = QString::fromStdString(card->cardVersion());
-    mIs21 = version == "2.1";
+    mIs21 = version == QLatin1String("2.1");
     mVersionLabel->setText(i18nc("First placeholder is manufacturer, second placeholder is a version number",
                                  "%1 OpenPGP v%2 card", QString::fromStdString(card->manufacturer()),
                                  version));
@@ -293,7 +293,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Failed to generate new key: %1", err.asString()),
+                           "Failed to generate new key: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
         return;
     }
@@ -361,7 +361,7 @@ void PGPCardWidget::changePinResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "PIN change failed: %1", err.asString()),
+                           "PIN change failed: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
         return;
     }
@@ -385,13 +385,13 @@ void PGPCardWidget::changeNameRequested()
             return;
         }
         // Some additional restrictions imposed by gnupg
-        if (text.contains("<")) {
+        if (text.contains(QLatin1Char('<'))) {
             KMessageBox::error(this, i18nc("@info",
                                "The \"<\" character may not be used."),
                                i18nc("@title", "Error"));
             continue;
         }
-        if (text.contains("  ")) {
+        if (text.contains(QLatin1String("  "))) {
             KMessageBox::error(this, i18nc("@info",
                                "Double spaces are not allowed"),
                                i18nc("@title", "Error"));
@@ -404,9 +404,9 @@ void PGPCardWidget::changeNameRequested()
         }
         break;
     }
-    auto parts = text.split(' ');
+    auto parts = text.split(QLatin1Char(' '));
     const auto lastName = parts.takeLast();
-    const auto formatted = lastName + QStringLiteral("<<") + parts.join('<');
+    const auto formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
 
     ReaderStatus::mutableInstance()
     ->startSimpleTransaction(QStringLiteral("SCD SETATTR DISP-NAME %1").arg(formatted).toUtf8().constData(),
@@ -417,7 +417,7 @@ void PGPCardWidget::changeNameResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Name change failed: %1", err.asString()),
+                           "Name change failed: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
         return;
     }
@@ -459,7 +459,7 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "URL change failed: %1", err.asString()),
+                           "URL change failed: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
         return;
     }
@@ -473,7 +473,7 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
 
 void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)
 {
-    label->setText(fpr.c_str());
+    label->setText(QString::fromStdString(fpr));
 
     if (fpr.empty()) {
         label->setText(i18n("Slot empty"));
@@ -499,7 +499,7 @@ void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)
                                         Formatting::UserIDs |
                                         Formatting::Fingerprint);
     }
-    label->setToolTip(toolTips.join("<br/>"));
+    label->setToolTip(toolTips.join(QStringLiteral("<br/>")));
     return;
 }
 

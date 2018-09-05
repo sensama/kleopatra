@@ -292,8 +292,8 @@ private:
         auto btn = ui.buttonBox.button(QDialogButtonBox::Ok);
 
         btn->setIcon(QIcon::fromTheme(de_vs
-                    ? "security-high"
-                    : "security-medium"));
+                    ? QStringLiteral("security-high")
+                    : QStringLiteral("security-medium")));
         btn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
                     ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                     : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));

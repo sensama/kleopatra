@@ -97,9 +97,9 @@ public:
     Private(PadWidget *qq):
         q(qq),
         mEdit(new QTextEdit),
-        mCryptBtn(new QPushButton(QIcon::fromTheme("document-edit-sign-encrypt"), i18n("Sign / Encrypt Notepad"))),
-        mDecryptBtn(new QPushButton(QIcon::fromTheme("document-edit-decrypt-verify"), i18n("Decrypt / Verify Notepad"))),
-        mRevertBtn(new QPushButton(QIcon::fromTheme("edit-undo"), i18n("Revert"))),
+        mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad"))),
+        mDecryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-decrypt-verify")), i18n("Decrypt / Verify Notepad"))),
+        mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert"))),
         mAdditionalInfoLabel(new QLabel),
         mSigEncWidget(new SignEncryptWidget(nullptr, true)),
         mProgressBar(new QProgressBar),
@@ -138,7 +138,7 @@ public:
         auto tabWidget = new QTabWidget;
         vLay->addWidget(tabWidget, 1);
 
-        tabWidget->addTab(mEdit, QIcon::fromTheme("edittext"), i18n("Notepad"));
+        tabWidget->addTab(mEdit, QIcon::fromTheme(QStringLiteral("edittext")), i18n("Notepad"));
 
         // The recipients area
         auto recipientsWidget = new QWidget;
@@ -155,12 +155,12 @@ public:
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
-        tabWidget->addTab(recipientsWidget, QIcon::fromTheme("contact-new-symbolic"),
+        tabWidget->addTab(recipientsWidget, QIcon::fromTheme(QStringLiteral("contact-new-symbolic")),
                           i18n("Recipients"));
 
         mEdit->setPlaceholderText(i18n("Enter a message to encrypt or decrypt..."));
 
-        auto fixedFont = QFont("Monospace");
+        auto fixedFont = QFont(QStringLiteral("Monospace"));
         fixedFont.setStyleHint(QFont::TypeWriter);
         // This does not work well
         // QFontDatabase::systemFont(QFontDatabase::FixedFont);
@@ -489,8 +489,8 @@ public:
         if (Kleo::gpgComplianceP("de-vs")) {
             bool de_vs = mSigEncWidget->isDeVsAndValid();
             mCryptBtn->setIcon(QIcon::fromTheme(de_vs
-                        ? "security-high"
-                        : "security-medium"));
+                        ? QStringLiteral("security-high")
+                        : QStringLiteral("security-medium")));
             mCryptBtn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
                         ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                         : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));

@@ -283,7 +283,7 @@ bool Kleo::gpgComplianceP(const char *mode)
                                    QStringLiteral("Configuration"),
                                    QStringLiteral("compliance"));
 
-    return entry && entry->stringValue() == QString(mode);
+    return entry && entry->stringValue() == QString::fromLatin1(mode);
 }
 
 enum GpgME::UserID::Validity Kleo::keyValidity(const GpgME::Key &key)

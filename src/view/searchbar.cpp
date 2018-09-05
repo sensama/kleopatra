@@ -133,7 +133,7 @@ SearchBar::Private::Private(SearchBar *qq)
     combo = new QComboBox(q);
     layout->addWidget(combo);
     certifyButton = new QPushButton(q);
-    certifyButton->setIcon(QIcon::fromTheme("security-medium"));
+    certifyButton->setIcon(QIcon::fromTheme(QStringLiteral("security-medium")));
     certifyButton->setToolTip(i18n("Some certificates are not yet certified. "
                                    "Click here to see a list of these certificates."
                                    "<br/><br/>"

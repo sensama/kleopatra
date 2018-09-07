@@ -15,6 +15,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "weboftrustwidget.h"
+
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QVBoxLayout>
@@ -28,7 +30,6 @@
 
 #include <Libkleo/UserIDListModel>
 
-#include "weboftrustwidget.h"
 #include "kleopatra_debug.h"
 #include "commands/command.h"
 

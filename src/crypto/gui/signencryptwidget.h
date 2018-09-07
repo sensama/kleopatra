@@ -81,10 +81,10 @@ public:
         userIDs have Validity >= Full).  */
     bool isDeVsAndValid() const;
 
-    /** Set wether or not signing group should be checked */
+    /** Set whether or not signing group should be checked */
     void setSigningChecked(bool value);
 
-    /** Set wether or not encryption group should be checked */
+    /** Set whether or not encryption group should be checked */
     void setEncryptionChecked(bool value);
 
     /** Filter for a specific protocol. Use UnknownProtocol for both

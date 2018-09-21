@@ -35,7 +35,7 @@ include(ECMGeneratePriFile)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMCoverageOption)
@@ -127,7 +127,6 @@ include_directories(
     )
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
@@ -136,7 +135,6 @@ endif()
 kde_enable_exceptions()
 
 add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
-add_definitions(-DQT_USE_QSTRINGBUILDER)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 add_subdirectory(pics)

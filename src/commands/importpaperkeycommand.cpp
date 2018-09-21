@@ -81,7 +81,7 @@ QStringList ImportPaperKeyCommand::arguments() const
 void ImportPaperKeyCommand::exportResult(const GpgME::Error &err, const QByteArray &data)
 {
     if (err) {
-        d->error(err.asString(), errorCaption());
+        d->error(QString::fromUtf8(err.asString()), errorCaption());
         d->finished();
         return;
     }
@@ -152,7 +152,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     auto result = importjob->exec(data);
     delete importjob;
     if (result.error()) {
-        d->error(result.error().asString(), errorCaption());
+        d->error(QString::fromUtf8(result.error().asString()), errorCaption());
         finished();
         return;
     }

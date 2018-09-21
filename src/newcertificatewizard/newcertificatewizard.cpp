@@ -1320,7 +1320,7 @@ static const char *oidForAttributeName(const QString &attr)
 {
     QByteArray attrUtf8 = attr.toUtf8();
     for (unsigned int i = 0; i < numOidMaps; ++i)
-        if (qstricmp(attrUtf8, oidmap[i].name) == 0) {
+        if (qstricmp(attrUtf8.constData(), oidmap[i].name) == 0) {
             return oidmap[i].oid;
         }
     return nullptr;

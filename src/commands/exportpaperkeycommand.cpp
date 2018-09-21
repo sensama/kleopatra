@@ -109,7 +109,7 @@ void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status
     QPrinter printer;
 
     const Key key = d->key();
-    printer.setDocName(QStringLiteral("0x%1-sec").arg(key.shortKeyID()));
+    printer.setDocName(QStringLiteral("0x%1-sec").arg(QString::fromLatin1(key.shortKeyID())));
     QPrintDialog printDialog(&printer, mParent);
     printDialog.setWindowTitle(i18nc("@title", "Print secret key"));
 
@@ -119,7 +119,7 @@ void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status
         return;
     }
 
-    QTextDocument doc(mPkProc.readAllStandardOutput());
+    QTextDocument doc(QString::fromLatin1(mPkProc.readAllStandardOutput()));
     doc.setDefaultFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     doc.print(&printer);
 

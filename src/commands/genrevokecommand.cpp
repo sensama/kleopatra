@@ -83,7 +83,7 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
                            QStringLiteral("Failed to access the created output file."));
         return;
     }
-    const QString revCert = f.readAll();
+    const QString revCert = QString::fromLocal8Bit(f.readAll());
     f.close();
 
     if (!f.open(QIODevice::WriteOnly)) {

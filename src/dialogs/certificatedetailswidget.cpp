@@ -170,7 +170,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
             //
             // Can be ugly like (3:uri24:http://ca.intevation.org), but
             // this is better then showing an empty entry.
-            pName = uid.id();
+            pName = QString::fromLatin1(uid.id());
         }
 
         item->setData(0, Qt::DisplayRole, pMail);
@@ -458,7 +458,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
-    const QString issuer = issuerCN.isEmpty() ? key.issuerName() : issuerCN;
+    const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
     ui.smimeIssuer->setText(QStringLiteral("<a href=\"#issuerDetails\">%1</a>").arg(issuer));
 
     ui.smimeIssuer->setToolTip(formatDNToolTip(issuerDN));
@@ -568,7 +568,7 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
             this, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
 
-    job->start(QStringList() << key.primaryFingerprint(), key.hasSecret());
+    job->start(QStringList() << QLatin1String(key.primaryFingerprint()), key.hasSecret());
 }
 
 GpgME::Key CertificateDetailsWidget::key() const

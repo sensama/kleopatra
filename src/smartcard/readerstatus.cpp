@@ -290,7 +290,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code() || !result.get()) {
         if (err) {
-            ci->setErrorMsg(err.asString());
+            ci->setErrorMsg(QString::fromLatin1(err.asString()));
         } else {
             ci->setErrorMsg(QStringLiteral("Invalid internal state. No result."));
         }

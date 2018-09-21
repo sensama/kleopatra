@@ -68,7 +68,7 @@ std::vector< std::vector<Key> > CertificateResolver::resolveRecipients(const std
 
 std::vector<Key> CertificateResolver::resolveRecipient(const Mailbox &recipient, Protocol proto)
 {
-    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(recipient.address());
+    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(recipient.address().constData());
     auto end = std::remove_if(result.begin(), result.end(),
                               [](const Key &key) { return key.canEncrypt(); });
 
@@ -93,7 +93,7 @@ std::vector< std::vector<Key> > CertificateResolver::resolveSigners(const std::v
 
 std::vector<Key> CertificateResolver::resolveSigner(const Mailbox &signer, Protocol proto)
 {
-    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(signer.address());
+    std::vector<Key> result = KeyCache::instance()->findByEMailAddress(signer.address().constData());
     auto end = std::remove_if(result.begin(), result.end(),
                               [](const Key &key) { return key.hasSecret(); });
     end = std::remove_if(result.begin(), end,
@@ -192,7 +192,7 @@ Key KConfigBasedRecipientPreferences::preferredCertificate(const Mailbox &recipi
     d->ensurePrefsParsed();
 
     const QByteArray keyId = (protocol == CMS ? d->cmsPrefs : d->pgpPrefs).value(recipient.address());
-    return KeyCache::instance()->findByKeyIDOrFingerprint(keyId);
+    return KeyCache::instance()->findByKeyIDOrFingerprint(keyId.constData());
 }
 
 void KConfigBasedRecipientPreferences::setPreferredCertificate(const Mailbox &recipient, Protocol protocol, const Key &certificate)
@@ -273,7 +273,7 @@ Key KConfigBasedSigningPreferences::preferredCertificate(Protocol protocol)
     d->ensurePrefsParsed();
 
     const QByteArray keyId = (protocol == CMS ? d->cmsSigningCertificate : d->pgpSigningCertificate);
-    const Key key = KeyCache::instance()->findByKeyIDOrFingerprint(keyId);
+    const Key key = KeyCache::instance()->findByKeyIDOrFingerprint(keyId.constData());
     return key.hasSecret() ? key : Key::null;
 }
 

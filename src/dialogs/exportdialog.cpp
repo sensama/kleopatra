@@ -67,7 +67,7 @@ void ExportWidget::Private::setupUi()
     textEdit->setVisible(false);
     textEdit->setReadOnly(true);
 
-    auto fixedFont = QFont("Monospace");
+    auto fixedFont = QFont(QStringLiteral("Monospace"));
     fixedFont.setStyleHint(QFont::TypeWriter);
 
     textEdit->setFont(fixedFont);
@@ -154,7 +154,7 @@ void ExportWidget::setKey(const GpgME::Key &key)
     connect(job, SIGNAL(result(GpgME::Error,QByteArray)),
             this, SLOT(exportResult(GpgME::Error,QByteArray)));
 
-    job->start(QStringList() << key.primaryFingerprint());
+    job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }
 
 GpgME::Key ExportWidget::key() const

@@ -73,7 +73,7 @@ public:
     }
     KeyListModelInterface *model() const
     {
-        return view_ ? dynamic_cast<KeyListModelInterface *>(view_->model()) : 0;
+        return view_ ? dynamic_cast<KeyListModelInterface *>(view_->model()) : nullptr;
     }
     KeyListController *controller() const
     {

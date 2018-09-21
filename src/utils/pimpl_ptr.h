@@ -39,7 +39,7 @@ public:
     ~pimpl_ptr()
     {
         delete d;
-        d = 0;
+        d = nullptr;
     }
 
     T *get()

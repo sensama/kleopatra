@@ -171,7 +171,7 @@ private:
         const auto time = QDateTime::fromTime_t(mKey.creationTime());
         const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
 #ifdef GPGME_SUBKEY_HAS_KEYGRIP
-        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(mKey.keyGrip())
+        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mKey.keyGrip()))
                                                                                    .arg(QString::fromStdString(mSerial))
                                                                                    .arg(slot)
                                                                                    .arg(timestamp);
@@ -202,7 +202,7 @@ void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
 {
     if (err) {
         d->error(i18nc("@info",
-                       "Moving the key to the card failed: %1", err.asString()),
+                       "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())),
                         i18nc("@title", "Error"));
     } else if (!err.isCanceled()) {
         /* TODO DELETE_KEY is too strong, because it also deletes the stub
@@ -227,7 +227,7 @@ void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
 void KeyToCardCommand::deleteDone(const GpgME::Error &err)
 {
     if (err) {
-        d->error(i18nc("@info", "Failed to delete the key: %1", err.asString()),
+        d->error(i18nc("@info", "Failed to delete the key: %1", QString::fromUtf8(err.asString())),
                         i18nc("@title", "Error"));
     }
     d->finished();

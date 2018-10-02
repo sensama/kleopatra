@@ -38,7 +38,7 @@ include(KDECMakeSettings)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
-include(ECMCoverageOption)
+
 # Find KF5 packages
 if (NOT FORCE_DISABLE_KCMUTILS)
   find_package(KF5KCMUtils ${KF5_VERSION} CONFIG REQUIRED)

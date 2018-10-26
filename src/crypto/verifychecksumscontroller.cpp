@@ -407,7 +407,7 @@ struct sumfile_contains_file : std::unary_function<QString, bool> {
 // ELSE
 //   error: no checksum found for "file"
 
-static QStringList find_base_directiories(const QStringList &files)
+static QStringList find_base_directories(const QStringList &files)
 {
 
     // Step 1: find base dirs:
@@ -638,7 +638,7 @@ void VerifyChecksumsController::Private::run()
     // Step 0: find base directories:
     //
 
-    Q_EMIT baseDirectories(find_base_directiories(files));
+    Q_EMIT baseDirectories(find_base_directories(files));
 
     //
     // Step 1: build a list of work to do (no progress):

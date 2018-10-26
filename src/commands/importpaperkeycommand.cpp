@@ -199,7 +199,7 @@ void ImportPaperKeyCommand::doStart()
  *
  * There are some reports about this
  * QTBUG-33119 QTBUG-41416 where different people describe "bugs" but they
- * describe them differntly also not really reproducible.
+ * describe them differently also not really reproducible.
  * Anyway this works for now and for such an exotic feature its good enough for now.
  */
                                              , 0, QFileDialog::DontUseNativeDialog

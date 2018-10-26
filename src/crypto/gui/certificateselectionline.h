@@ -66,9 +66,9 @@ public:
      * @param toFrom: An optional label.
      * @param mailbox: The Mailbox for which the certificate should be selected.
      * @param pgp: List of PGP Certificates.
-     * @param pgpAmbig: Whether or not the PGP Cert is ambigous.
+     * @param pgpAmbig: Whether or not the PGP Cert is ambiguous.
      * @param cms: List of CMS Certificates.
-     * @param cmsAmbig: Whether or not the CMS Cert is ambigous.
+     * @param cmsAmbig: Whether or not the CMS Cert is ambiguous.
      * @param q: Parent widget.
      * @param glay: Layout to add the widgets to.
      */

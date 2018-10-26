@@ -491,7 +491,7 @@ void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)
     }
     QStringList toolTips;
     for (const auto &sub: subkeys) {
-        // Yep you can have one subkey associated with mutliple
+        // Yep you can have one subkey associated with multiple
         // primary keys.
         toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
                                         Formatting::StorageLocation |

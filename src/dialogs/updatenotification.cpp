@@ -97,7 +97,7 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
 
     connect(progress, &QProgressDialog::canceled, [progress, proc] () {
             proc->kill();
-            qCDebug(KLEOPATRA_LOG) << "Update force cancled. Output:"
+            qCDebug(KLEOPATRA_LOG) << "Update force canceled. Output:"
                                    << QString::fromLocal8Bit(proc->readAllStandardOutput())
                                    << "stderr:"
                                    << QString::fromLocal8Bit(proc->readAllStandardError());

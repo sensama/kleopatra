@@ -112,7 +112,7 @@ private:
         ds >> workDir;
         QStringList args;
         ds >> args;
-        qCDebug(KLEOPATRA_LOG) << "Proccess handle: " << mCurrentProcess
+        qCDebug(KLEOPATRA_LOG) << "Process handle: " << mCurrentProcess
                                << " requests activate with args "
                                << args;
         q->emitActivateRequested(args, workDir);

@@ -188,7 +188,7 @@ void OpenPGPCard::setSerialNumber(const std::string &serialno)
         *p++ = '\0';
         version = version_buffer;
 
-        /* Get the manufactorer.  */
+        /* Get the manufacturer.  */
         mManufacturer = get_manufacturer(xtoi_2(string + 16)*256 + xtoi_2(string + 18));
     }
 

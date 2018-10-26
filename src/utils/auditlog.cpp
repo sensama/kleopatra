@@ -56,7 +56,7 @@ QString AuditLog::formatLink(const QUrl &urlTemplate, const QString &caption) co
 {
     // more or less the same as
     // kmail/objecttreeparser.cpp:makeShowAuditLogLink(), so any bug
-    // fixed here eqally applies there:
+    // fixed here equally applies there:
     if (const int code = m_error.code()) {
         if (code == GPG_ERR_NOT_IMPLEMENTED) {
             qCDebug(KLEOPATRA_LOG) << "not showing link (not implemented)";

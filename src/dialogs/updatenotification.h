@@ -41,7 +41,7 @@ namespace Kleo
 
 /** Updatenotification for Gpg4win
  *
- * On Windows it is usual for Applications to notifiy the user
+ * On Windows it is usual for Applications to notify the user
  * about updates. To avoid network access in Kleopatra and
  * to have only one TLS stack in our package this is implemented
  * in dirmngr.

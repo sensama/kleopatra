@@ -249,7 +249,7 @@ void SignEncryptWidget::addRecipient(const Key &key)
 
     if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
         // First widget. Should align with the row above that
-        // contians the encrypt for others checkbox.
+        // contains the encrypt for others checkbox.
         mRecpLayout->addWidget(certSel, mRecpRowCount - 1, 1);
     } else {
         mRecpLayout->addWidget(certSel, mRecpRowCount++, 1);
@@ -289,7 +289,7 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 
     if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
         // First widget. Should align with the row above that
-        // contians the encrypt for others checkbox.
+        // contains the encrypt for others checkbox.
         mRecpLayout->addWidget(unknownWidget, mRecpRowCount - 1, 1);
     } else {
         mRecpLayout->addWidget(unknownWidget, mRecpRowCount++, 1);

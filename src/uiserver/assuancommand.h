@@ -169,7 +169,7 @@ class AssuanCommandFactory;
   You can do as many inquiries as you want, but only one at a
   time.
 
-  You should peridocally send status updates to the client. You do
+  You should periodically send status updates to the client. You do
   that by calling sendStatus().
 
   Once your command has finished executing, call done(). If it's

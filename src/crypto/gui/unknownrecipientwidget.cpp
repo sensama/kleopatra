@@ -47,7 +47,7 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
 {
     auto hLay = new QHBoxLayout(this);
 
-    auto caption = new QLabel(i18nc("Caption for an unknwon key/certificate where only ID is known.",
+    auto caption = new QLabel(i18nc("Caption for an unknown key/certificate where only ID is known.",
                               "Unknown Recipient:"));
 
     mKeyID = QString::fromLatin1(keyid);

@@ -105,6 +105,6 @@ void ExecutionContextUser::bringToForeground(QWidget *wid, bool stayOnTop)
 {
     applyWindowID(wid);
     wid->show();
-    agressive_raise(wid, stayOnTop);
+    aggressive_raise(wid, stayOnTop);
 }
 

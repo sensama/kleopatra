@@ -348,9 +348,9 @@ public:
         /*
           Make sure the data is written in the output here. If this
           is not done the output will be written in small chunks
-          trough the eventloop causing an uncessary delay before
+          trough the eventloop causing an unnecessary delay before
           the process has even a chance to work and finish.
-          This delay is mainly noticabe on Windows where it can
+          This delay is mainly noticeable on Windows where it can
           take ~30 seconds to write out a 10MB file in the 512 byte
           chunks gpgme serves. */
         qCDebug(KLEOPATRA_LOG) << "Waiting for " << m_proc->bytesToWrite()

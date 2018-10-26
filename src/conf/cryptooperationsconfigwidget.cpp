@@ -204,7 +204,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
     auto combo = new QComboBox;
     profLabel->setBuddy(combo);
 
-    // Add an empty Item to avoid the impression that this GUI elment
+    // Add an empty Item to avoid the impression that this GUI element
     // shows the currently selected profile.
     combo->addItem(QString());
 

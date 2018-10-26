@@ -63,7 +63,7 @@ WINBOOL SetForegroundWindowEx(HWND hWnd)
 }// End SetForegroundWindowEx
 #endif
 
-void Kleo::agressive_raise(QWidget *w, bool stayOnTop)
+void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
 {
     /* Maybe Qt will become aggressive enough one day that
      * this is enough on windows too*/
@@ -89,7 +89,7 @@ void Kleo::agressive_raise(QWidget *w, bool stayOnTop)
         OutputDebugStringA("SetWindowPos failed.");
     }
     /* sometimes we want to stay on top even if the user
-     * changes focus because we are _agressive_ and otherwise
+     * changes focus because we are _aggressive_ and otherwise
      * Outlook might show the "Help I'm unresponsive so I must have
      * crashed" Popup if the user clicks into Outlook while a dialog
      * from us is active. */

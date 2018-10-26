@@ -63,7 +63,7 @@ public:
     /** Create the certificate selection line.
      *
      * If parent is not NULL the model is not taken
-     * over but the parent arugment used as the parent of the model.
+     * over but the parent argument used as the parent of the model.
      *
      * @param model: The keylistmodel to use.
      * @param parent: The usual widget parent.

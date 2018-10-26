@@ -133,7 +133,7 @@ public:
 
         mStatusLay = new QVBoxLayout;
         mStatusLay->addLayout(progLay);
-        vLay->addLayout(mStatusLay, 0.1);
+        vLay->addLayout(mStatusLay, 0);
 
         auto tabWidget = new QTabWidget;
         vLay->addWidget(tabWidget, 1);

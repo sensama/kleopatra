@@ -40,9 +40,9 @@ WaitWidget::WaitWidget(QWidget *parent)
     subLay1->addWidget(bar);
 
     auto subLay2 = new QHBoxLayout;
-    subLay2->addStretch(0.15);
-    subLay2->addLayout(subLay1, 0.7);
-    subLay2->addStretch(0.15);
+    subLay2->addStretch(0);
+    subLay2->addLayout(subLay1, 0);
+    subLay2->addStretch(0);
 
     vLay->addLayout(subLay2);
 

@@ -134,7 +134,7 @@ endif()
 
 kde_enable_exceptions()
 
-add_definitions(-DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT)
+
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
 add_subdirectory(pics)

@@ -223,7 +223,7 @@ void KleoPageConfigDialog::slotHelpClicked()
 
 static KCModule *loadModule(const QString &name)
 {
-    QLibrary lib(KPluginLoader::findPlugin(KCM_LIBRARY_NAME));
+    QLibrary lib(KPluginLoader::findPlugin(QStringLiteral(KCM_LIBRARY_NAME)));
     if (lib.load()) {
         KCModule *(*create)(QWidget *, const char *);
         QByteArray factorymethod("create_");

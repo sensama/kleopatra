@@ -36,6 +36,8 @@
 
 #include "command_p.h"
 
+#include "utils/gnupg-helper.h"
+
 #include <QString>
 #include <QByteArray>
 #include <QTimer>
@@ -62,7 +64,7 @@ public:
 
     QString errorString() const
     {
-        return QString::fromLocal8Bit(errorBuffer);
+        return stringFromGpgOutput(errorBuffer);
     }
 
 private:

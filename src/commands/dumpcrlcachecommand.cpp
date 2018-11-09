@@ -63,7 +63,7 @@ class DumpCrlCacheDialog : public QDialog
     Q_OBJECT
 public:
     explicit DumpCrlCacheDialog(QWidget *parent = nullptr)
-        : QDialog(parent), ui(this)
+        : QDialog(parent), ui(this), mWithRevocations(false)
     {
         readConfig();
     }
@@ -86,6 +86,15 @@ public Q_SLOTS:
         ui.logTextWidget.clear();
     }
 
+public:
+    void setWithRevocations (bool value) {
+        mWithRevocations = value;
+    }
+
+    bool withRevocations () {
+        return mWithRevocations;
+    }
+
 private:
     void readConfig()
     {
@@ -105,7 +114,7 @@ private:
 
     struct Ui {
         QTextEdit   logTextWidget;
-        QPushButton     updateButton, closeButton;
+        QPushButton     updateButton, closeButton, revocationsButton;
         QVBoxLayout vlay;
         QHBoxLayout  hlay;
 
@@ -129,7 +138,10 @@ private:
             vlay.addWidget(&logTextWidget, 1);
             vlay.addLayout(&hlay);
 
+            revocationsButton.setText(i18n("Show Entries"));
+
             hlay.addWidget(&updateButton);
+            hlay.addWidget(&revocationsButton);
             hlay.addStretch(1);
             hlay.addWidget(&closeButton);
 
@@ -137,8 +149,16 @@ private:
                     q, &DumpCrlCacheDialog::updateRequested);
             connect(&closeButton, &QAbstractButton::clicked,
                     q, &QWidget::close);
+
+            connect(&revocationsButton, &QAbstractButton::clicked,
+                    q, [q, this] () {
+                q->mWithRevocations = true;
+                revocationsButton.setEnabled(false);
+                q->updateRequested();
+            });
         }
     } ui;
+    bool mWithRevocations;
 };
 }
 
@@ -178,11 +198,25 @@ private:
 
     void slotProcessReadyReadStandardOutput()
     {
+        static int count;
         while (process.canReadLine()) {
-            const QByteArray line = chomped(process.readLine());
-            if (dialog) {
-                dialog->append(QString::fromLocal8Bit(line));
+            if (!dialog) {
+                break;
             }
+            const QByteArray line = chomped(process.readLine());
+            if (!line.size()) {
+                continue;
+            }
+            if (!dialog->withRevocations() && line.contains("reasons")) {
+                count++;
+                continue;
+            } else if (count) {
+                dialog->append (QLatin1Char(' ') +
+                    i18nc("Count of revocations in a CRL",
+                          "Entries:") + QStringLiteral("\t\t%1\n").arg(count));
+                count = 0;
+            }
+            dialog->append(stringFromGpgOutput(line));
         }
     }
 

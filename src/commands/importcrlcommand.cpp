@@ -42,8 +42,8 @@
 #include <QByteArray>
 #include <QTimer>
 #include <QFileDialog>
+#include <QProcess>
 
-#include <KProcess>
 #include <KLocalizedString>
 
 static const int PROCESS_TERMINATE_TIMEOUT = 5000; // milliseconds
@@ -86,9 +86,10 @@ private:
 
 private:
     QStringList files;
-    KProcess process;
+    QProcess process;
     QByteArray errorBuffer;
     bool canceled;
+    bool firstRun;
 };
 
 ImportCrlCommand::Private *ImportCrlCommand::d_func()
@@ -108,10 +109,13 @@ ImportCrlCommand::Private::Private(ImportCrlCommand *qq, KeyListController *c)
       files(),
       process(),
       errorBuffer(),
-      canceled(false)
+      canceled(false),
+      firstRun(true)
 {
-    process.setOutputChannelMode(KProcess::OnlyStderrChannel);
-    process << QStringLiteral("gpgsm") << QStringLiteral("--call-dirmngr") << QStringLiteral("loadcrl");
+    process.setProgram (gpgSmPath());
+    process.setArguments(QStringList() <<
+                         QStringLiteral("--call-dirmngr") <<
+                         QStringLiteral("loadcrl"));
 }
 
 ImportCrlCommand::Private::~Private() {}
@@ -168,11 +172,21 @@ void ImportCrlCommand::doStart()
     if (d->files.empty()) {
         Q_EMIT canceled();
         d->finished();
+        return;
     }
 
-    d->process << d->files;
+    auto args = d->process.arguments();
+    if (!d->firstRun) {
+        /* remove the last file */
+        args.pop_back();
+    }
+    args << d->files.takeFirst();
+
+    d->process.setArguments(args);
 
     d->process.start();
+
+    d->firstRun = false;
 
     if (!d->process.waitForStarted()) {
         d->error(i18n("Unable to start process dirmngr. "
@@ -203,9 +217,13 @@ void ImportCrlCommand::Private::slotProcessFinished(int code, QProcess::ExitStat
             error(i18n("An error occurred while trying to import the CRL file. "
                        "The output from gpgsm was:\n%1", errorString()),
                   i18n("Import CRL Error"));
-        else
+        else if (files.empty())
             information(i18n("CRL file imported successfully."),
                         i18n("Import CRL Finished"));
+    }
+    if (!files.empty()) {
+        q->doStart();
+        return;
     }
     finished();
 }

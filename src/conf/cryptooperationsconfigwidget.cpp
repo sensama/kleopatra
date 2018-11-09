@@ -41,6 +41,7 @@
 #include "fileoperationspreferences.h"
 
 #include <Libkleo/ChecksumDefinition>
+#include <Libkleo/KeyFilterManager>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
@@ -129,6 +130,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
             return;
         }
         resetDefaults();
+        KeyFilterManager::instance()->reload();
         return;
     }
 
@@ -165,6 +167,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
         if (config) {
             config->clear();
         }
+        KeyFilterManager::instance()->reload();
     });
     gpgconf->start();
 }

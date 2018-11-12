@@ -33,6 +33,7 @@
 #include <config-kleopatra.h>
 
 #include "clearcrlcachecommand.h"
+#include "utils/gnupg-helper.h"
 
 #include <KLocalizedString>
 
@@ -55,8 +56,16 @@ ClearCrlCacheCommand::~ClearCrlCacheCommand() {}
 
 QStringList ClearCrlCacheCommand::arguments() const
 {
+#ifdef Q_OS_WIN
+    return QStringList() << gpgSmPath()
+                         << QStringLiteral("--call-dirmngr")
+                         << QStringLiteral("flushcrls");
+#else
+    // TODO: Replace with a version check if an unpatched
+    // gnupg supports it otherwise this mostly works on
+    // GNU/Linux but on Windows this did not work
     return QStringList() << QStringLiteral("dirmngr") << QStringLiteral("--flush");
-    //return QStringList() << "gpgsm" << "--call-dirmngr" << "flush";
+#endif
 }
 
 QString ClearCrlCacheCommand::errorCaption() const

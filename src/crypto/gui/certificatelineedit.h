@@ -67,7 +67,7 @@ public:
      *
      * @param model: The keylistmodel to use.
      * @param parent: The usual widget parent.
-     * @param options: The options to use. See certificateselectiondialog.
+     * @param filter: The filters to use. See certificateselectiondialog.
      */
     CertificateLineEdit(AbstractKeyListModel *model,
                         QWidget *parent = nullptr,

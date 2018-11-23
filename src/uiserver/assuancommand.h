@@ -121,7 +121,7 @@ class AssuanCommandFactory;
   out what you're doing :)
 
   In addition to options and the command line, your command might
-  require \em{bulk data} input or output. That's what the bulk
+  require <em>bulk data</em> input or output. That's what the bulk
   input and output channels are for. You can check whether the
   client handed you an input channel by checking that
   bulkInputDevice() isn't NULL, likewise for bulkOutputDevice().
@@ -173,8 +173,8 @@ class AssuanCommandFactory;
   that by calling sendStatus().
 
   Once your command has finished executing, call done(). If it's
-  with an error code, call done(err) like above. \bold{Do not
-  forget to call done() when done!}. It will close
+  with an error code, call done(err) like above. <b>Do not
+  forget to call done() when done!</b>. It will close
   bulkInputDevice(), bulkOutputDevice(), and send an OK or ERR
   message back to the client.
 

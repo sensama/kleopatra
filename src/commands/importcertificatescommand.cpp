@@ -40,10 +40,12 @@
 #include "kleopatra_debug.h"
 
 #include <Libkleo/KeyListSortFilterProxyModel>
+#include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
+#include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 #include <QGpgME/ImportJob>
 #include <QGpgME/ImportFromKeyserverJob>
@@ -53,6 +55,8 @@
 #include <gpgme++/importresult.h>
 #include <gpgme++/context.h>
 #include <gpgme++/gpgmepp_version.h>
+#include <gpgme++/key.h>
+#include <gpgme++/keylistresult.h>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -175,6 +179,7 @@ private:
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
       waitForMoreJobs(false),
+      containedExternalCMSCerts(false),
       nonWorkingProtocols(),
       idsByJob(),
       jobs(),
@@ -528,6 +533,45 @@ static void handleOwnerTrust(std::vector<GpgME::ImportResult> results)
     }
 }
 
+void ImportCertificatesCommand::Private::handleExternalCMSImports()
+{
+    QStringList fingerprints;
+    // For external CMS Imports we have to manually do a keylist
+    // with validation to get the intermediate and root ca imported
+    // automatically if trusted-certs and extra-certs are used.
+    Q_FOREACH (const ImportResult &result, results) {
+        Q_FOREACH (const Import &import, result.imports()) {
+            if (!import.fingerprint()) {
+                continue;
+            }
+            fingerprints << QString::fromLatin1(import.fingerprint());
+        }
+    }
+
+    auto job = QGpgME::smime()->keyListJob(false, true, true);
+
+    // Old connect here because of Windows.
+    connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
+            q, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
+    job->start(fingerprints, false);
+}
+
+void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult &,
+                                                     const std::vector<GpgME::Key> &keys,
+                                                     const QString &, GpgME::Error)
+{
+    KeyCache::mutableInstance()->refresh(keys);
+    showDetails(results, ids);
+
+    auto tv = dynamic_cast<QTreeView *> (view());
+    if (!tv) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to find treeview";
+    } else {
+        tv->expandAll();
+    }
+    finished();
+}
+
 void ImportCertificatesCommand::Private::tryToFinish()
 {
 
@@ -552,7 +596,14 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 }
         }
     } else {
-        handleOwnerTrust(results);
+        if (containedExternalCMSCerts) {
+            handleExternalCMSImports();
+            // We emit finished and do show details
+            // after the keylisting.
+            return;
+        } else {
+            handleOwnerTrust(results);
+        }
         showDetails(results, ids);
     }
     finished();
@@ -625,6 +676,10 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
               i18n("Certificate Import Failed"));
         importResult(ImportResult(), id);
         return;
+    }
+
+    if (protocol == GpgME::CMS) {
+        containedExternalCMSCerts = true;
     }
 
     connect(job.get(), SIGNAL(result(GpgME::ImportResult)),

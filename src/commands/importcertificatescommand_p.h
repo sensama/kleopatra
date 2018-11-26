@@ -45,6 +45,7 @@ namespace GpgME
 {
 class ImportResult;
 class Import;
+class KeyListResult;
 class Error;
 }
 
@@ -82,11 +83,17 @@ public:
     void setImportResultProxyModel(const std::vector<GpgME::ImportResult> &results, const QStringList &ids);
 
     bool showPleaseCertify(const GpgME::Import &imp);
+
+    void keyListDone(const GpgME::KeyListResult &result,
+                     const std::vector<GpgME::Key> &keys,
+                     const QString &, GpgME::Error);
 private:
+    void handleExternalCMSImports();
     void tryToFinish();
 
 private:
     bool waitForMoreJobs;
+    bool containedExternalCMSCerts;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::map<QObject *, QString> idsByJob;
     std::vector<QGpgME::AbstractImportJob *> jobs;

@@ -54,6 +54,9 @@ protected:
     inline Private *d_func();
     inline const Private *d_func() const;
     Q_PRIVATE_SLOT(d_func(), void importResult(GpgME::ImportResult))
+    Q_PRIVATE_SLOT(d_func(), void keyListDone(GpgME::KeyListResult,
+                                              std::vector<GpgME::Key> keys,
+                                              QString, GpgME::Error))
 
 protected:
     explicit ImportCertificatesCommand(Private *pp);

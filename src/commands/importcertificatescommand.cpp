@@ -468,6 +468,66 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
     tryToFinish();
 }
 
+static void handleOwnerTrust(std::vector<GpgME::ImportResult> results)
+{
+    //iterate over all imported certificates
+    Q_FOREACH (const ImportResult &result, results) {
+        //when a new certificate got a secret key
+        if (result.numSecretKeysImported() >= 1) {
+            const char *fingerPr = result.imports()[0].fingerprint();
+            GpgME::Error err;
+            QScopedPointer<Context>
+                ctx(Context::createForProtocol(GpgME::Protocol::OpenPGP));
+
+            if (!ctx){
+                qCWarning(KLEOPATRA_LOG) << "Failed to get context";
+                continue;
+            }
+
+            const Key toTrustOwner = ctx->key(fingerPr, err , false);
+
+            if (toTrustOwner.isNull()) {
+                return;
+            }
+
+            QStringList uids;
+            uids.reserve(toTrustOwner.userIDs().size());
+            Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
+                uids << Formatting::prettyNameAndEMail(uid);
+            }
+
+            const QString str = xi18nc("@info",
+                "<title>You have imported a Secret Key.</title>"
+                "<para>The key has the fingerprint:<nl/>"
+                "<numid>%1</numid>"
+                "</para>"
+                "<para>And claims the User IDs:"
+                "<list><item>%2</item></list>"
+                "</para>"
+                "Is this your own key? (Set trust level to ultimate)",
+                QString::fromUtf8(fingerPr),
+                uids.join(QStringLiteral("</item><item>")));
+
+            int k = KMessageBox::questionYesNo(nullptr, str, i18nc("@title:window",
+                                                               "Secret key imported"));
+
+            if (k == KMessageBox::Yes) {
+                //To use the ChangeOwnerTrustJob over
+                //the CryptoBackendFactory
+                const QGpgME::Protocol *const backend = QGpgME::openpgp();
+
+                if (!backend){
+                    qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
+                    return;
+                }
+
+                ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
+                j->start(toTrustOwner, Key::Ultimate);
+            }
+        }
+    }
+}
+
 void ImportCertificatesCommand::Private::tryToFinish()
 {
 
@@ -490,67 +550,9 @@ void ImportCertificatesCommand::Private::tryToFinish()
                 if (const Error err = results[i].error()) {
                     showError(err, ids[i]);
                 }
-                
         }
     } else {
-        //iterate over all imported certificates
-        Q_FOREACH (const ImportResult &result, results) {
-            //when a new certificate got a secret key
-            if (result.numSecretKeysImported() >= 1) {
-                const char *fingerPr = result.imports()[0].fingerprint();
-                GpgME::Error err;
-                QScopedPointer<Context>
-                    ctx(Context::createForProtocol(GpgME::Protocol::OpenPGP));
-
-                if (!ctx){
-                    qCWarning(KLEOPATRA_LOG) << "Failed to get context";
-                    continue;
-                }
-
-                const Key toTrustOwner = ctx->key(fingerPr, err , false);
-
-                if (toTrustOwner.isNull()) {
-                    finished();
-                    return;
-                }
-
-                QStringList uids;
-                uids.reserve(toTrustOwner.userIDs().size());
-                Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
-                    uids << Formatting::prettyNameAndEMail(uid);
-                }
-
-                const QString str = xi18nc("@info",
-                    "<title>You have imported a Secret Key.</title>"
-                    "<para>The key has the fingerprint:<nl/>"
-                    "<numid>%1</numid>"
-                    "</para>"
-                    "<para>And claims the User IDs:"
-                    "<list><item>%2</item></list>"
-                    "</para>"
-                    "Is this your own key? (Set trust level to ultimate)",
-                    QString::fromUtf8(fingerPr),
-                    uids.join(QStringLiteral("</item><item>")));
-
-                int k = KMessageBox::questionYesNo(nullptr, str, i18nc("@title:window",
-                                                                   "Secret key imported"));
-
-                if (k == KMessageBox::Yes) {
-                    //To use the ChangeOwnerTrustJob over
-                    //the CryptoBackendFactory
-                    const QGpgME::Protocol *const backend = QGpgME::openpgp();
-
-                    if (!backend){
-                        qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
-                        finished();
-                        return;
-                    }
-
-                    ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
-                    j->start(toTrustOwner, Key::Ultimate);
-                }
-            }
-        }
+        handleOwnerTrust(results);
         showDetails(results, ids);
     }
     finished();

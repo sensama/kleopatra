@@ -231,9 +231,9 @@ if ( NOT Assuan2_FIND_QUIETLY )
   endif()
 
   if ( WIN32 )
-    set( _assuan2_homepage "http://www.gpg4win.org" )
+    set( _assuan2_homepage "https://www.gpg4win.org" )
   else()
-    set( _assuan2_homepage "http://www.gnupg.org/related_software/libassuan" )
+    set( _assuan2_homepage "https://www.gnupg.org/related_software/libassuan" )
   endif()
 
   set_package_properties(ASSUAN2 PROPERTIES DESCRIPTION "Assuan v2 IPC library"

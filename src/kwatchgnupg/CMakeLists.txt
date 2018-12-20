@@ -1,6 +1,6 @@
 
-find_package(KF5Notifications ${KF5_VERSION} CONFIG REQUIRED)
-find_package(KF5TextWidgets ${KF5_VERSION} CONFIG REQUIRED)
+find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5TextWidgets ${KF5_MIN_VERSION} CONFIG REQUIRED)
 
 set(kwatchgnupg_SRCS
   kdlogtextwidget.cpp

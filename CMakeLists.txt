@@ -65,7 +65,7 @@ if (WIN32)
   find_package(KF5DBusAddons ${KF5_MIN_VERSION} CONFIG)
   set_package_properties(KF5DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
-                         URL "http://inqlude.org/libraries/kdbusaddons.html"
+                         URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
 else()
   find_package(KF5DBusAddons ${KF5_MIN_VERSION} CONFIG REQUIRED)

@@ -136,7 +136,7 @@ ChangeRootTrustCommand::ChangeRootTrustCommand(QAbstractItemView *v, KeyListCont
     d->init();
 }
 
-ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, KeyListController *p)
+ChangeRootTrustCommand::ChangeRootTrustCommand(const GpgME::Key &key, KeyListController *p)
     : Command(new Private(this, p))
 {
     Q_ASSERT(!key.isNull());
@@ -144,7 +144,7 @@ ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, KeyListController
     setKey(key);
 }
 
-ChangeRootTrustCommand::ChangeRootTrustCommand(const Key &key, QAbstractItemView *v, KeyListController *p)
+ChangeRootTrustCommand::ChangeRootTrustCommand(const GpgME::Key &key, QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
     Q_ASSERT(!key.isNull());

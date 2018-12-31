@@ -214,7 +214,7 @@ QString Kleo::gpgConfListDir(const char *which)
     return QString();
 }
 
-bool Kleo::engineIsVersion(int major, int minor, int patch, Engine engine)
+bool Kleo::engineIsVersion(int major, int minor, int patch, GpgME::Engine engine)
 {
     static QMap<Engine, std::array<int, 3> > cachedVersions;
     const int required_version[] = {major, minor, patch};

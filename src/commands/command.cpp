@@ -113,13 +113,13 @@ Command::Command(QAbstractItemView *v, Private *pp)
     }
 }
 
-Command::Command(const Key &key)
+Command::Command(const GpgME::Key &key)
     : QObject(nullptr), d(new Private(this, nullptr))
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
-Command::Command(const std::vector<Key> &keys)
+Command::Command(const std::vector<GpgME::Key> &keys)
     : QObject(nullptr), d(new Private(this, nullptr))
 {
     d->keys_ = keys;
@@ -131,7 +131,7 @@ Command::Command(const Key &key, Private *pp)
     d->keys_ = std::vector<Key>(1, key);
 }
 
-Command::Command(const std::vector<Key> &keys, Private *pp)
+Command::Command(const std::vector<GpgME::Key> &keys, Private *pp)
     : QObject(nullptr), d(pp)
 {
     d->keys_ = keys;

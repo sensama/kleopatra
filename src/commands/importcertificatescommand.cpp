@@ -469,10 +469,10 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
     tryToFinish();
 }
 
-static void handleOwnerTrust(std::vector<GpgME::ImportResult> results)
+static void handleOwnerTrust(const std::vector<GpgME::ImportResult> &results)
 {
     //iterate over all imported certificates
-    Q_FOREACH (const ImportResult &result, results) {
+    for (const ImportResult &result : results) {
         //when a new certificate got a secret key
         if (result.numSecretKeysImported() >= 1) {
             const char *fingerPr = result.imports()[0].fingerprint();

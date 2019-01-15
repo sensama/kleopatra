@@ -410,7 +410,7 @@ Q_SIGNALS:
     void anyCardHasNullPinChanged(bool);
     void anyCardCanLearnKeysChanged(bool);
     void cardChanged(unsigned int);
-    void oneTransactionFinished(GpgME::Error err);
+    void oneTransactionFinished(const GpgME::Error &err);
 
 public Q_SLOTS:
     void ping()
@@ -427,7 +427,7 @@ public Q_SLOTS:
     }
 
 private Q_SLOTS:
-    void slotOneTransactionFinished(GpgME::Error err)
+    void slotOneTransactionFinished(const GpgME::Error &err)
     {
         std::list<Transaction> ft;
         KDAB_SYNCHRONIZED(m_mutex)

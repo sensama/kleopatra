@@ -86,7 +86,7 @@ public:
 
     void keyListDone(const GpgME::KeyListResult &result,
                      const std::vector<GpgME::Key> &keys,
-                     const QString &, GpgME::Error);
+                     const QString &, const GpgME::Error&);
 private:
     void handleExternalCMSImports();
     void tryToFinish();

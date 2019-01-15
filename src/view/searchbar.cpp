@@ -102,7 +102,7 @@ private:
     {
         QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob();
         connect(job, &QGpgME::KeyListJob::result, job,
-                [this, job](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error)
+                [this, job](const GpgME::KeyListResult&, const std::vector<GpgME::Key> &keys, const QString&, const GpgME::Error&)
                 {
                     for (const auto &key: keys) {
                         if (Kleo::keyValidity(key) < GpgME::UserID::Validity::Full) {

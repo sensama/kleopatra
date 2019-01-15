@@ -91,11 +91,11 @@ public:
         /* Old style connect here again as QGPGME newstyle connects with
          * default arguments don't work on windows. */
 
-        connect(job, SIGNAL(result(GpgME::KeyListResult)),
-            q, SLOT(signatureListingDone(GpgME::KeyListResult)));
+        connect(job, &QGpgME::KeyListJob::result,
+            q, &WebOfTrustWidget::signatureListingDone);
 
-        connect(job, SIGNAL(nextKey(GpgME::Key)),
-            q, SLOT(signatureListingNextKey(GpgME::Key)));
+        connect(job, &QGpgME::KeyListJob::nextKey,
+            q, &WebOfTrustWidget::signatureListingNextKey);
 
         job->start(QStringList(QString::fromLatin1(key.primaryFingerprint())));
         keyListJob = job;

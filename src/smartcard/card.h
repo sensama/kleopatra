@@ -99,7 +99,7 @@ public:
     int appVersion() const;
 
     std::vector<PinState> pinStates() const;
-    void setPinStates(std::vector<PinState> pinStates);
+    void setPinStates(const std::vector<PinState> &pinStates);
 
     void setSlot(int slot);
     int slot() const;

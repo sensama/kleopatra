@@ -189,7 +189,7 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
         return;
     }
 
-    for (const auto sig: verifyResult.signatures()) {
+    for (const auto &sig: verifyResult.signatures()) {
         if (!(sig.summary() & GpgME::Signature::KeyMissing)) {
             continue;
         }

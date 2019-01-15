@@ -118,7 +118,7 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
     auto overViewLines = overView.split(QLatin1Char('\n'));
 
     // Format comments so that they fit for RFC 4880
-    auto comments = QString::fromLatin1("Comment: ");
+    auto comments = QStringLiteral("Comment: ");
     comments += overViewLines.join(QStringLiteral("\nComment: ")) + QLatin1Char('\n');
 
     ret.insert(37 /* -----BEGIN PGP PUBLIC KEY BLOCK-----\n */, comments);
@@ -151,8 +151,8 @@ void ExportWidget::setKey(const GpgME::Key &key)
     auto job = protocol->publicKeyExportJob(true);
 
     /* New style connect does not work on Windows. */
-    connect(job, SIGNAL(result(GpgME::Error,QByteArray)),
-            this, SLOT(exportResult(GpgME::Error,QByteArray)));
+    connect(job, &QGpgME::ExportJob::result,
+            this, &ExportWidget::exportResult);
 
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }

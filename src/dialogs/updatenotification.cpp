@@ -198,7 +198,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     setAttribute(Qt::WA_QuitOnClose, false);
 
     KIconLoader *const il = KIconLoader::global();
-    const QString iconPath = il->iconPath(QLatin1String("gpg4win"),
+    const QString iconPath = il->iconPath(QStringLiteral("gpg4win"),
                                           KIconLoader::User);
     logo->setPixmap(QIcon(iconPath).pixmap(100, 100));
 

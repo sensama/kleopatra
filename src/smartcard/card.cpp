@@ -88,7 +88,7 @@ std::vector<Card::PinState> Card::pinStates() const
     return mPinStates;
 }
 
-void Card::setPinStates(std::vector<PinState> pinStates)
+void Card::setPinStates(const std::vector<PinState> &pinStates)
 {
     mPinStates = pinStates;
 }

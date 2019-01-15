@@ -554,7 +554,7 @@ void ImportCertificatesCommand::Private::handleExternalCMSImports()
 
 void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult &,
                                                      const std::vector<GpgME::Key> &keys,
-                                                     const QString &, GpgME::Error)
+                                                     const QString &, const GpgME::Error&)
 {
     KeyCache::mutableInstance()->refresh(keys);
     showDetails(results, ids);

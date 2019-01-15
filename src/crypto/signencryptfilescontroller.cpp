@@ -310,7 +310,7 @@ static QMap <int, QString> buildOutputNames(const QStringList &files, const bool
     return nameMap;
 }
 
-static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMap <int, QString> orig)
+static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMap <int, QString> &orig)
 {
     QMap <int, QString> ret;
 
@@ -436,7 +436,7 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files,
 
 static std::vector< std::shared_ptr<SignEncryptTask> >
 createSignEncryptTasksForFileInfo(const QFileInfo &fi, bool ascii, const std::vector<Key> &pgpRecipients, const std::vector<Key> &pgpSigners,
-                                  const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> outputNames,
+                                  const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners, const QMap<int, QString> &outputNames,
                                   bool symmetric)
 {
     std::vector< std::shared_ptr<SignEncryptTask> > result;
@@ -483,7 +483,7 @@ static std::vector< std::shared_ptr<SignEncryptTask> >
 createArchiveSignEncryptTasksForFiles(const QStringList &files, const std::shared_ptr<ArchiveDefinition> &ad,
                                       bool ascii, const std::vector<Key> &pgpRecipients,
                                       const std::vector<Key> &pgpSigners, const std::vector<Key> &cmsRecipients, const std::vector<Key> &cmsSigners,
-                                      const QMap<int, QString> outputNames, bool symmetric)
+                                      const QMap<int, QString> &outputNames, bool symmetric)
 {
     std::vector< std::shared_ptr<SignEncryptTask> > result;
 

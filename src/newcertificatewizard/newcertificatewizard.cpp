@@ -263,7 +263,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
 
     if (*algo != Subkey::AlgoUnknown) {
         bool ok;
-        *size = lowered.right(lowered.size() - 3).toInt(&ok);
+        *size = lowered.rightRef(lowered.size() - 3).toInt(&ok);
         if (!ok) {
             qCWarning(KLEOPATRA_LOG) << "Could not extract size from: " << lowered;
             *size = 2048;
@@ -861,8 +861,8 @@ private:
         if (!j) {
             return;
         }
-        connect(j, SIGNAL(result(GpgME::KeyGenerationResult,QByteArray,QString)),
-                this, SLOT(slotResult(GpgME::KeyGenerationResult,QByteArray,QString)));
+        connect(j, &QGpgME::KeyGenerationJob::result,
+                this, &KeyCreationPage::slotResult);
         if (const Error err = j->start(createGnupgKeyParms()))
             setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1",
                                                    QString::fromLocal8Bit(err.asString())));

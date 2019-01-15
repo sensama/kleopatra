@@ -213,8 +213,8 @@ void ImportPaperKeyCommand::doStart()
     auto exportJob = QGpgME::openpgp()->publicKeyExportJob();
     // Do not change to new style connect without testing on
     // Windows / mingw first for compatibility please.
-    connect(exportJob, SIGNAL(result(GpgME::Error,QByteArray)),
-            this, SLOT(exportResult(GpgME::Error,QByteArray)));
+    connect(exportJob, &QGpgME::ExportJob::result,
+            this, &ImportPaperKeyCommand::exportResult);
     exportJob->start(QStringList() << QLatin1String(d->key().primaryFingerprint()));
 }
 

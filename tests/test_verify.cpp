@@ -82,7 +82,7 @@ public Q_SLOTS:
         }
     }
 
-    void slotParallelVerifyJobFinished(GpgME::VerificationResult result)
+    void slotParallelVerifyJobFinished(const GpgME::VerificationResult &result)
     {
         // Verify the result of the job is correct
         QVERIFY(mParallelVerifyJobs.contains(static_cast<QGpgME::VerifyDetachedJob *>(sender())));

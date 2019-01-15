@@ -406,7 +406,7 @@ void PGPCardWidget::changeNameRequested()
     }
     auto parts = text.split(QLatin1Char(' '));
     const auto lastName = parts.takeLast();
-    const auto formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
+    const QString formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
 
     ReaderStatus::mutableInstance()
     ->startSimpleTransaction(QStringLiteral("SCD SETATTR DISP-NAME %1").arg(formatted).toUtf8().constData(),

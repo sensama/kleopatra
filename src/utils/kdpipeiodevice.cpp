@@ -589,7 +589,7 @@ bool KDPipeIODevice::writeWouldBlock() const
 qint64 KDPipeIODevice::readData(char *data, qint64 maxSize)
 {
     KDAB_CHECK_THIS;
-    QDebug("%p: KDPipeIODevice::readData: data=%p, maxSize=%lld", (void *)this, data, maxSize);
+    QDebug("%p: KDPipeIODevice::readData: data=%s, maxSize=%lld", (void *)this, data, maxSize);
     d->startReaderThread();
     Reader *const r = d->reader;
 
@@ -651,7 +651,7 @@ qint64 Reader::readData(char *data, qint64 maxSize)
         numRead = maxSize;
     }
 
-    QDebug("%p: KDPipeIODevice::readData: data=%p, maxSize=%lld; rptr=%u, wptr=%u (bytesInBuffer=%u); -> numRead=%lld",
+    QDebug("%p: KDPipeIODevice::readData: data=%s, maxSize=%lld; rptr=%u, wptr=%u (bytesInBuffer=%u); -> numRead=%lld",
            (void *)this, data, maxSize, rptr, wptr, bytesInBuffer(), numRead);
 
     memcpy(data, buffer + rptr, numRead);

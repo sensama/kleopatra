@@ -49,6 +49,7 @@ public:
         certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
         auto vLay = new QVBoxLayout(q);
+        vLay->setMargin(0);
         vLay->addWidget(certificationsTV);
 
         connect(certificationsTV, &QAbstractItemView::doubleClicked,

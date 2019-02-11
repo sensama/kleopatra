@@ -11,7 +11,7 @@ option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing 
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.53.0")
+set(KF5_MIN_VERSION "5.55.0")
 set(KMIME_VERSION "5.10.40")
 set(LIBKLEO_VERSION "5.10.40")
 set(QT_REQUIRED_VERSION "5.10.0")

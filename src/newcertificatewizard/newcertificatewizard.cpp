@@ -1621,12 +1621,13 @@ QStringList KeyCreationPage::keyUsages() const
         !is_dsa(keyType()) && !is_rsa(subkeyType())) {
         usages << QStringLiteral("encrypt");
     }
-    if (0)   // not needed in pgp (implied) and not supported in cms
-        if (certificationAllowed()) {
-            usages << QStringLiteral("certify");
-        }
     if (authenticationAllowed()) {
         usages << QStringLiteral("auth");
+    }
+    if (usages.empty() && certificationAllowed()) {
+        /* Empty usages cause an error so we need to
+         * add at least certify if nothing else is selected */
+        usages << QStringLiteral("cert");
     }
     return usages;
 }
@@ -1641,12 +1642,11 @@ QStringList OverviewPage::i18nKeyUsages() const
         !is_dsa(keyType()) && !is_rsa(subkeyType())) {
         usages << i18n("Encrypt");
     }
-    if (0)   // not needed in pgp (implied) and not supported in cms
-        if (certificationAllowed()) {
-            usages << i18n("Certify");
-        }
     if (authenticationAllowed()) {
         usages << i18n("Authenticate");
+    }
+    if (usages.empty() && certificationAllowed()) {
+        usages << i18n("Certify");
     }
     return usages;
 }

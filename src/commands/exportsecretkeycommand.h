@@ -58,18 +58,6 @@ public:
         return m_filename;
     }
 
-    void setPassphraseCharset(const QByteArray &charset);
-    QByteArray passphraseCharset() const
-    {
-        return m_charset;
-    }
-
-    void setUseArmor(bool armor);
-    bool useArmor() const
-    {
-        return m_armor;
-    }
-
     /* reimp */ static Restrictions restrictions()
     {
         return OnlyOneKey | NeedSecretKey;
@@ -89,7 +77,6 @@ private:
 
 private:
     mutable QString m_filename;
-    mutable QByteArray m_charset;
     mutable bool m_armor;
 };
 

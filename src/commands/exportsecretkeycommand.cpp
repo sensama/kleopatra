@@ -34,11 +34,14 @@
 
 #include "exportsecretkeycommand.h"
 
+#include "fileoperationspreferences.h"
+
 #include "command_p.h"
 
-#include <dialogs/exportsecretkeydialog.h>
-
 #include <utils/gnupg-helper.h>
+#include <utils/filedialog.h>
+
+#include <Libkleo/Classify>
 
 #include <gpgme++/key.h>
 
@@ -46,7 +49,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 ExportSecretKeyCommand::ExportSecretKeyCommand(KeyListController *c)
@@ -71,33 +73,37 @@ void ExportSecretKeyCommand::setFileName(const QString &fileName)
     m_filename = fileName;
 }
 
-void ExportSecretKeyCommand::setPassphraseCharset(const QByteArray &charset)
-{
-    m_charset = charset;
-}
-
-void ExportSecretKeyCommand::setUseArmor(bool armor)
-{
-    m_armor = armor;
-}
-
 bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
 {
     if (!m_filename.isEmpty()) {
         return true;
     }
 
-    ExportSecretKeyDialog dlg(parent);
-    dlg.setKey(d->key());
-    if (!dlg.exec()) {
-        return false;
-    }
+    const auto key = d->key();
 
-    m_filename = dlg.fileName();
-    m_armor = dlg.useArmor();
-    m_charset = dlg.charset();
+    const auto protocol = key.protocol();
 
-    return true;
+    QString proposedFileName;
+    const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
+    proposedFileName
+        = QString::fromLatin1(key.primaryFingerprint())
+        + QLatin1Char('.')
+        + QString::fromLatin1(outputFileExtension(protocol == OpenPGP
+                    ? Class::OpenPGP | Class::Ascii | Class::Certificate
+                    : Class::CMS | Class::Binary | Class::ExportedPSM, usePGPFileExt))
+        ;
+
+    m_filename = FileDialog::getSaveFileNameEx(parent ? parent : d->parentWidgetOrView(),
+                          i18n("Export Secret Key"),
+                          QStringLiteral("imp"),
+                          proposedFileName,
+                          protocol == GpgME::OpenPGP
+                          ? i18n("Secret Key Files") + QLatin1String(" (*.asc *.gpg *.pgp)")
+                          : i18n("Secret Key Files")  + QLatin1String(" (*.p12)"));
+
+    m_armor = m_filename.endsWith (QLatin1String (".asc"));
+
+    return !m_filename.isEmpty ();
 }
 
 QStringList ExportSecretKeyCommand::arguments() const
@@ -117,8 +123,8 @@ QStringList ExportSecretKeyCommand::arguments() const
         result << QStringLiteral("--armor");
     }
 
-    if (key.protocol() == CMS && !m_charset.isEmpty()) {
-        result << QStringLiteral("--p12-charset") << QLatin1String(m_charset);
+    if (key.protocol() == CMS) {
+        result << QStringLiteral("--p12-charset") << QLatin1String("utf-8");
     }
 
     if (key.protocol() == OpenPGP) {

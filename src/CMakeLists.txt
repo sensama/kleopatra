@@ -112,7 +112,6 @@ set(_kleopatra_SRCS
   dialogs/ownertrustdialog.cpp
   dialogs/selftestdialog.cpp
   dialogs/certifycertificatedialog.cpp
-  dialogs/exportsecretkeydialog.cpp
   dialogs/adduseriddialog.cpp
   dialogs/exportcertificatesdialog.cpp
   dialogs/deletecertificatesdialog.cpp
@@ -264,7 +263,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/ownertrustdialog.ui
   dialogs/selectchecklevelwidget.ui
   dialogs/selftestdialog.ui
-  dialogs/exportsecretkeydialog.ui
   dialogs/adduseriddialog.ui
   dialogs/setinitialpindialog.ui
   dialogs/certificatedetailswidget.ui

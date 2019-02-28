@@ -195,9 +195,6 @@ static void set_keysize(QComboBox *cb, unsigned int strength)
         return;
     }
     const int idx = cb->findData(static_cast<int>(strength));
-    if (idx < 0) {
-        qCWarning(KLEOPATRA_LOG) << "keysize " << strength << " not allowed";
-    }
     cb->setCurrentIndex(idx);
 }
 
@@ -266,7 +263,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         *size = lowered.rightRef(lowered.size() - 3).toInt(&ok);
         if (!ok) {
             qCWarning(KLEOPATRA_LOG) << "Could not extract size from: " << lowered;
-            *size = 2048;
+            *size = 3072;
         }
         return;
     }
@@ -1844,7 +1841,10 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
 
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
-    const QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << -2048 << 3072 << 4096);
+    QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << 2048 << -3072 << 4096);
+    if (Kleo::gpgComplianceP("de-vs")) {
+        rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << -3072 << 4096);
+    }
     const QList<int> dsaKeySizes = config.readEntry(DSA_KEYSIZES_ENTRY, QList<int>() << -2048);
     const QList<int> elgKeySizes = config.readEntry(ELG_KEYSIZES_ENTRY, QList<int>() << -2048 << 3072 << 4096);
 

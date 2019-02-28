@@ -91,7 +91,7 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
       m_progressLabel(nullptr)
 {
     m_layout = new QVBoxLayout(q);
-    m_layout->setMargin(0);
+    m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
     m_progressLabel = new QLabel;
     m_progressLabel->setWordWrap(true);
@@ -140,7 +140,7 @@ void ResultListWidget::Private::setupMulti()
     m_scrollArea = new ScrollArea;
     m_scrollArea->setFocusPolicy(Qt::NoFocus);
     Q_ASSERT(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
-    static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setMargin(0);
+    static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setContentsMargins(0, 0, 0, 0);
     static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setSpacing(2);
     static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->addStretch();
     m_layout->insertWidget(0, m_scrollArea);

@@ -125,7 +125,7 @@ SearchBar::Private::Private(SearchBar *qq)
     : q(qq)
 {
     QHBoxLayout *layout = new QHBoxLayout(q);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     lineEdit = new QLineEdit(q);
     lineEdit->setClearButtonEnabled(true);
     lineEdit->setPlaceholderText(i18n("Search..."));

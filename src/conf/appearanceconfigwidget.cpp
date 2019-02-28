@@ -320,7 +320,7 @@ public:
         setupUi(q);
 
         if (QLayout *const l = q->layout()) {
-            l->setMargin(0);
+            l->setContentsMargins(0, 0, 0, 0);
         }
 
         QWidget *w = new QWidget;

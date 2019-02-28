@@ -88,7 +88,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     mainLayout->addWidget(mButtonBox);
 
     QVBoxLayout *vlay = new QVBoxLayout(top);
-    vlay->setMargin(0);
+    vlay->setContentsMargins(0, 0, 0, 0);
 
     QGroupBox *group = new QGroupBox(i18n("WatchGnuPG"), top);
     vlay->addWidget(group);

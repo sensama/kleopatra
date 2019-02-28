@@ -171,7 +171,7 @@ void KeyTreeView::init()
 
     QLayout *layout = new QVBoxLayout(this);
     KDAB_SET_OBJECT_NAME(layout);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_view);
 
     HeaderView *headerView = new HeaderView(Qt::Horizontal);

@@ -62,7 +62,7 @@ private:
 void ExportWidget::Private::setupUi()
 {
     auto vlay = new QVBoxLayout(q);
-    vlay->setMargin(0);
+    vlay->setContentsMargins(0, 0, 0, 0);
 
     textEdit = new QTextEdit;
     textEdit->setVisible(false);

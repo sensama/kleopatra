@@ -187,7 +187,7 @@ ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &
     Q_ASSERT(!m_id.isEmpty());
     setAutoFillBackground(true);
     QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addSpacing(15);
     m_nameLabel = new QLabel;
     m_nameLabel->setText(name);
@@ -412,7 +412,7 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     m_additionalRecipientsLabel->setVisible(false);
     QWidget *buttonWidget = new QWidget;
     QHBoxLayout *buttonLayout = new QHBoxLayout(buttonWidget);
-    buttonLayout->setMargin(0);
+    buttonLayout->setContentsMargins(0, 0, 0, 0);
     m_addButton = new QPushButton;
     connect(m_addButton, SIGNAL(clicked()), q, SLOT(addRecipient()));
     m_addButton->setText(i18n("Add Recipient..."));

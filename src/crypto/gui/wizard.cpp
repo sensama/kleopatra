@@ -97,7 +97,7 @@ Wizard::Private::Private(Wizard *qq)
     nextItem = KGuiItem(i18n("&Next"));
     finishItem = KStandardGuiItem::ok();
     QVBoxLayout *const top = new QVBoxLayout(q);
-    top->setMargin(0);
+    top->setContentsMargins(0, 0, 0, 0);
     titleFrame = new QFrame;
     titleFrame->setFrameShape(QFrame::StyledPanel);
     titleFrame->setAutoFillBackground(true);

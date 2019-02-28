@@ -45,7 +45,7 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *pa
     : KCModule(parent, args)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
     connect(mWidget, &CryptoOperationsConfigWidget::changed, this, QOverload<>::of(&Kleo::Config::CryptoOperationsConfigurationPage::changed));

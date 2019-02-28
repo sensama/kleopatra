@@ -239,7 +239,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 void CryptoOperationsConfigWidget::setupGui()
 {
     QVBoxLayout *baseLay = new QVBoxLayout(this);
-    baseLay->setMargin(0);
+    baseLay->setContentsMargins(0, 0, 0, 0);
 
     QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
     QVBoxLayout *mailGrpLayout = new QVBoxLayout;

@@ -114,7 +114,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
       mIsExclusive(sigEncExclusive)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 
     mModel->useKeyCache(true, false);
 
@@ -171,7 +171,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     recipientScroll->setWidgetResizable(true);
     recipientScroll->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     recipientScroll->setFrameStyle(QFrame::NoFrame);
-    mRecpLayout->setMargin(0);
+    mRecpLayout->setContentsMargins(0, 0, 0, 0);
     encBoxLay->addWidget(recipientScroll, 1);
 
     auto bar = recipientScroll->verticalScrollBar();

@@ -442,7 +442,7 @@ TabWidget::Private::Private(TabWidget *qq)
     KDAB_SET_OBJECT_NAME(tabWidget);
     KDAB_SET_OBJECT_NAME(layout);
 
-    layout.setMargin(0);
+    layout.setContentsMargins(0, 0, 0, 0);
     layout.addWidget(&tabWidget);
 
     tabWidget.tabBar()->hide();

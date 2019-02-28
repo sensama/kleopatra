@@ -242,7 +242,7 @@ OperationsWidget::UI::UI(OperationsWidget *q)
     static_cast<QBoxLayout *>(scrollArea.widget()->layout())->addStretch(1);
     outputDirectoryLB.setBuddy(&outputDirectoryFNR);
 
-    hlay.setMargin(0);
+    hlay.setContentsMargins(0, 0, 0, 0);
 
     vlay.addWidget(&scrollArea, 1);
     vlay.addWidget(&useOutputDirectoryCB);

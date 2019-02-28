@@ -85,7 +85,7 @@ private:
             setupUi(q);
 
             if (QLayout *l = q->layout()) {
-                l->setMargin(0);
+                l->setContentsMargins(0, 0, 0, 0);
             }
 
             const struct {

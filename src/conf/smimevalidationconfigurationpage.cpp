@@ -44,7 +44,7 @@ SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *pare
     : KCModule(parent, args)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 
     mWidget = new SMimeValidationConfigurationWidget(this);
     lay->addWidget(mWidget);

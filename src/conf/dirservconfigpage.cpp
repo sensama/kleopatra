@@ -158,12 +158,12 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 {
     mConfig = QGpgME::cryptoConfig();
     QGridLayout *glay = new QGridLayout(this);
-    glay->setMargin(0);
+    glay->setContentsMargins(0, 0, 0, 0);
 
     int row = 0;
     mWidget = new Kleo::DirectoryServicesWidget(this);
     if (QLayout *l = mWidget->layout()) {
-        l->setMargin(0);
+        l->setContentsMargins(0, 0, 0, 0);
     }
     glay->addWidget(mWidget, row, 0, 1, 3);
     connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));

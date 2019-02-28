@@ -102,7 +102,7 @@ AbstractSigningProtocolSelectionWidget::AbstractSigningProtocolSelectionWidget(Q
 ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f) : AbstractSigningProtocolSelectionWidget(p, f)
 {
     QVBoxLayout *const layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
         QLabel *const l = new QLabel;
         l->setText(formatLabel(i, Key()));
@@ -144,7 +144,7 @@ SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, 
     connect(m_buttonGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &SigningProtocolSelectionWidget::userSelectionChanged);
 
     QVBoxLayout *const layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
         QCheckBox *const b = new QCheckBox;
         b->setText(formatLabel(i, Key()));

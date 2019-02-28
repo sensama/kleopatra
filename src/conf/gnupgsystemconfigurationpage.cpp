@@ -46,7 +46,7 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
     : KCModule(parent, args)
 {
     QVBoxLayout *lay = new QVBoxLayout(this);
-    lay->setMargin(0);
+    lay->setContentsMargins(0, 0, 0, 0);
 
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 

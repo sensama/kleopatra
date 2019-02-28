@@ -115,15 +115,15 @@ DecryptVerifyOperationWidget::Private::UI::UI(DecryptVerifyOperationWidget *q)
     KDAB_SET_OBJECT_NAME(archiveCB);
     KDAB_SET_OBJECT_NAME(archivesCB);
 
-    inputStack.setMargin(0);
-    signedDataStack.setMargin(0);
+    inputStack.setContentsMargins(0, 0, 0, 0);
+    signedDataStack.setContentsMargins(0, 0, 0, 0);
 
     signedDataLB.setEnabled(false);
     signedDataFileNameLB.setEnabled(false);
     signedDataFileNameRQ.setEnabled(false);
     archivesCB.setEnabled(false);
 
-    glay.setMargin(0);
+    glay.setContentsMargins(0, 0, 0, 0);
     glay.addWidget(&inputLB, 0, 0);
     glay.addLayout(&inputStack, 0, 1);
     inputStack.addWidget(&inputFileNameLB);

@@ -38,8 +38,6 @@
 
 #include <KLocalizedString>
 
-#include <qendian.h>
-
 #include <stdexcept>
 
 #include <windows.h>

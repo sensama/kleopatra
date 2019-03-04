@@ -215,7 +215,7 @@ int main(int argc, char **argv)
         // Once there actually is a plugin for other systems then Windows this
         // error should probably be shown, too. But currently only Windows users need
         // to care.
-        QMessageBox::information(0, i18n("GPG UI Server Error"),
+        QMessageBox::information(nullptr, i18n("GPG UI Server Error"),
                                  i18n("<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>"
                                       "The error given was: <b>%1</b><br/>"
                                       "You can use Kleopatra as a certificate manager, but cryptographic plugins that "

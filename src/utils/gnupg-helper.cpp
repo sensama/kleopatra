@@ -92,17 +92,20 @@ static QString findGpgExe(GpgME::Engine engine, const QString &exe)
 
 QString Kleo::gpgConfPath()
 {
-    return findGpgExe(GpgME::GpgConfEngine, QStringLiteral("gpgconf"));
+    static const auto path = findGpgExe(GpgME::GpgConfEngine, QStringLiteral("gpgconf"));
+    return path;
 }
 
 QString Kleo::gpgSmPath()
 {
-    return findGpgExe(GpgME::GpgSMEngine, QStringLiteral("gpgsm"));
+    static const auto path = findGpgExe(GpgME::GpgSMEngine, QStringLiteral("gpgsm"));
+    return path;
 }
 
 QString Kleo::gpgPath()
 {
-    return findGpgExe(GpgME::GpgEngine, QStringLiteral("gpg"));
+    static const auto path = findGpgExe(GpgME::GpgSMEngine, QStringLiteral("gpg"));
+    return path;
 }
 
 QStringList Kleo::gnupgFileWhitelist()
@@ -176,6 +179,27 @@ QString Kleo::gpg4winInstallPath()
 
 QString Kleo::gnupgInstallPath()
 {
+
+#ifdef Q_OS_WIN
+    // QApplication::applicationDirPath is only used as a fallback
+    // to support the case where Kleopatra is not installed from
+    // Gpg4win but Gpg4win is also installed.
+    char *instDir = read_w32_registry_string("HKEY_LOCAL_MACHINE",
+                                             "Software\\GnuPG",
+                                             "Install Directory");
+    if (!instDir) {
+        // Fallback to HKCU
+        instDir = read_w32_registry_string("HKEY_CURRENT_USER",
+                                           "Software\\GnuPG",
+                                           "Install Directory");
+    }
+    if (instDir) {
+        QString ret = QString::fromLocal8Bit(instDir) + QStringLiteral("/bin");
+        free(instDir);
+        return ret;
+    }
+    qCDebug(KLEOPATRA_LOG) << "GnuPG not found. Falling back to gpgconf list dir.";
+#endif
     return gpgConfListDir("bindir");
 }
 

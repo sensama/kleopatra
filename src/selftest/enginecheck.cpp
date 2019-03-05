@@ -46,6 +46,9 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
+
 #include <QFile>
 
 #include <algorithm>
@@ -86,6 +89,22 @@ public:
 
     void runTest(GpgME::Engine eng)
     {
+        // First use the crypto config which is much faster because it is only
+        // created once and then kept in memory. Only if the crypoconfig is
+        // bad we check into the engine info.
+        const auto conf = QGpgME::cryptoConfig();
+        if (conf && eng == GpgME::GpgEngine) {
+            m_passed = true;
+            return;
+        } else if (conf) {
+            const auto comp = conf->component(engine_name(eng));
+            if (comp) {
+                m_passed = true;
+                return;
+            }
+        }
+
+        // Problem with the config. Try to get more details:
         const Error err = GpgME::checkEngine(eng);
         Q_ASSERT(!err.code() || err.code() == GPG_ERR_INV_ENGINE);
 

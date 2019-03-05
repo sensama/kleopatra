@@ -45,6 +45,9 @@
 #include <QProcess>
 #include <QDir>
 
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
+
 
 using namespace Kleo;
 using namespace Kleo::_detail;
@@ -63,94 +66,42 @@ public:
         runTest();
     }
 
-    QStringList arguments() const
-    {
-        if (m_component.isEmpty()) {
-            return QStringList() << QStringLiteral("--check-config");
-        } else {
-            return QStringList() << QStringLiteral("--check-options") << m_component;
-        }
-    }
-
-    bool canRun()
-    {
-        if (!ensureEngineVersion(GpgME::GpgConfEngine, 2, 0, 10)) {
-            return false;
-        }
-
-        if (!m_component.isEmpty()) {
-            return true;
-        }
-
-        QProcess gpgconf;
-        gpgconf.setReadChannel(QProcess::StandardOutput);
-        gpgconf.start(gpgConfPath(), QStringList() << QStringLiteral("--list-dirs"), QIODevice::ReadOnly);
-        gpgconf.waitForFinished();
-        if (gpgconf.exitStatus() != QProcess::NormalExit || gpgconf.exitCode() != 0) {
-            qCDebug(KLEOPATRA_LOG) << "GpgConfCheck: \"gpgconf --list-dirs\" gives error, disabling";
-            return false;
-        }
-        const QList<QByteArray> lines = gpgconf.readAll().split('\n');
-        for (const QByteArray &line : lines)
-            if (line.startsWith("sysconfdir:"))     //krazy:exclude=strings
-                try {
-                    return QDir(QFile::decodeName(hexdecode(line.mid(strlen("sysconfdir:"))))).exists(QStringLiteral("gpgconf.conf"));
-                } catch (...) {
-                    return false;
-                }
-        qCDebug(KLEOPATRA_LOG) << "GpgConfCheck: \"gpgconf --list-dirs\" has no sysconfdir entry";
-        return false;
-    }
-
     void runTest()
     {
+        const auto conf = QGpgME::cryptoConfig();
+        QString message;
+        m_passed = true;
 
-        if (!canRun()) {
-            if (!m_skipped) {
-                m_passed = true;
+        if (!conf) {
+            message = QStringLiteral ("Could not be started.");
+            m_passed = false;
+        } else if (m_component.isEmpty() && conf->componentList().empty()) {
+            message = QStringLiteral ("Could not list components.");
+            m_passed = false;
+        } else if (!m_component.isEmpty()) {
+            const auto comp = conf->component (m_component);
+            if (!comp) {
+                message = QStringLiteral ("Binary could not be found.");
+                m_passed = false;
+            } else if (comp->groupList().empty()) {
+                // If we don't have any group it means that list-options
+                // for this component failed.
+                message = QStringLiteral ("The configuration file is invalid.");
+                m_passed = false;
             }
-            return;
         }
 
-        QProcess process;
-        process.setProcessChannelMode(QProcess::MergedChannels);
-
-        process.start(gpgConfPath(), arguments(), QIODevice::ReadOnly);
-
-        process.waitForFinished();
-
-        const QString output = QString::fromUtf8(process.readAll());
-        const QString message = process.exitStatus() == QProcess::CrashExit ? i18n("The process terminated prematurely") : process.errorString();
-
-        if (process.exitStatus() != QProcess::NormalExit ||
-                process.error()      != QProcess::UnknownError) {
-            m_passed = false;
+        if (!m_passed) {
             m_error = i18nc("self-test did not pass", "Failed");
             m_explaination =
                 i18n("There was an error executing the GnuPG configuration self-check for %2:\n"
                      "  %1\n"
                      "You might want to execute \"gpgconf %3\" on the command line.\n",
-                     message, m_component.isEmpty() ? QStringLiteral("GnuPG") : m_component, arguments().join(QLatin1Char(' ')));
-            if (!output.trimmed().isEmpty()) {
-                m_explaination += QLatin1Char('\n') + i18n("Diagnostics:") + QLatin1Char('\n') + output;
-            }
+                     message, m_component.isEmpty() ? QStringLiteral("GnuPG") : m_component,
+                     QStringLiteral("--check-options ") + (m_component.isEmpty() ? QStringLiteral("") : m_component));
 
-            m_proposedFix.clear();
-        } else if (process.exitCode()) {
-            m_passed = false;
-            m_error = i18nc("self-check did not pass", "Failed");
-            m_explaination = !output.trimmed().isEmpty()
-                             ? i18nc("Self-test did not pass",
-                                     "The GnuPG configuration self-check failed.\n"
-                                     "\n"
-                                     "Error code: %1\n"
-                                     "Diagnostics:", process.exitCode()) + QLatin1Char('\n') + output
-                             : i18nc("self-check did not pass",
-                                     "The GnuPG configuration self-check failed with error code %1.\n"
-                                     "No output was received.", process.exitCode());
-            m_proposedFix.clear();
-        } else {
-            m_passed = true;
+            // To avoid modifying the l10n
+            m_explaination.replace(QLatin1Char('\n'), QStringLiteral("<br/>"));
         }
     }
 

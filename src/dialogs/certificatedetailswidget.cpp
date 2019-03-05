@@ -114,7 +114,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
     ui.certifyBtn->setVisible(isOpenPGP && !hasSecret);
     ui.changeExpirationBtn->setVisible(isOpenPGP && hasSecret);
-    ui.addUserIDBtn->setVisible(hasSecret);
+    ui.addUserIDBtn->setVisible(hasSecret && isOpenPGP);
     ui.webOfTrustBtn->setVisible(isOpenPGP);
 
     ui.hboxLayout_1->addStretch(1);

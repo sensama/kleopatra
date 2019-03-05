@@ -159,12 +159,12 @@ QString Kleo::gpg4winInstallPath()
     // to support the case where Kleopatra is not installed from
     // Gpg4win but Gpg4win is also installed.
     char *instDir = read_w32_registry_string("HKEY_LOCAL_MACHINE",
-                                             "Software/GPG4Win",
+                                             "Software\\GPG4Win",
                                              "Install Directory");
     if (!instDir) {
         // Fallback to HKCU
         instDir = read_w32_registry_string("HKEY_CURRENT_USER",
-                                           "Software/GPG4Win",
+                                           "Software\\GPG4Win",
                                            "Install Directory");
     }
     if (instDir) {

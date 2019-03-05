@@ -174,6 +174,8 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: GPGME Initalized";
+
     Kleo::ChecksumDefinition::setInstallPath(Kleo::gpg4winInstallPath());
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 

@@ -84,6 +84,8 @@ public:
     virtual void cancel() = 0;
     virtual bool binaryOpt() const = 0;
     virtual void setBinaryOpt(bool value) = 0;
+    /** Whether or not the output failed. */
+    virtual bool failed() const { return false; }
 
     static std::shared_ptr<Output> createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &);
     static std::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);

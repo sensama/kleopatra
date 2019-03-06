@@ -363,6 +363,15 @@ public:
         }
         m_proc->waitForFinished(PROCESS_MAX_RUNTIME_TIMEOUT);
     }
+
+    bool failed() const override
+    {
+        if (!m_proc) {
+            return false;
+        }
+        return !(m_proc->exitStatus() == QProcess::NormalExit && m_proc->exitCode() == 0);
+    }
+
     void doCancel() override {
         m_proc->terminate();
         QTimer::singleShot(PROCESS_TERMINATE_TIMEOUT, m_proc.get(), &QProcess::kill);

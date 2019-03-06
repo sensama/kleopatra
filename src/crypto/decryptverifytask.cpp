@@ -1006,8 +1006,10 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
     }
     const int drErr = dr.error().code();
     const QString errorString = m_output->errorString();
-    if ((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
-        emitResult(q->fromDecryptResult(dr.error(), errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
+          m_output->failed()) {
+        emitResult(q->fromDecryptResult(drErr ? dr.error() : Error::fromCode(GPG_ERR_EIO),
+                    errorString, auditLog));
         return;
     }
 
@@ -1191,8 +1193,10 @@ void DecryptTask::Private::slotResult(const DecryptionResult &result, const QByt
 
     const int drErr = result.error().code();
     const QString errorString = m_output->errorString();
-    if ((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
-        emitResult(q->fromDecryptResult(result.error(), errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
+          m_output->failed()) {
+        emitResult(q->fromDecryptResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO),
+                    errorString, auditLog));
         return;
     }
 
@@ -1347,8 +1351,10 @@ void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, con
 
     const int drErr = result.error().code();
     const QString errorString = m_output->errorString();
-    if ((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
-        emitResult(q->fromDecryptResult(result.error(), errorString, auditLog));
+    if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) ||
+          m_output->failed()) {
+        emitResult(q->fromDecryptResult(result.error() ? result.error() : Error::fromCode(GPG_ERR_EIO),
+                    errorString, auditLog));
         return;
     }
 

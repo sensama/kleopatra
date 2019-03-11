@@ -64,20 +64,6 @@ using namespace Kleo;
 namespace
 {
 
-class Process : public QProcess
-{
-public:
-    explicit Process(QObject *parent = nullptr)
-        : QProcess(parent) {}
-    void close() override {
-        closeReadChannel(StandardOutput);
-    }
-};
-}
-
-namespace
-{
-
 class PipeInput : public InputImplBase
 {
 public:
@@ -123,7 +109,7 @@ private:
 private:
     const QString m_command;
     const QStringList m_arguments;
-    const std::shared_ptr<Process> m_proc;
+    const std::shared_ptr<QProcess> m_proc;
 };
 
 class FileInput : public InputImplBase
@@ -348,7 +334,7 @@ ProcessStdOutInput::ProcessStdOutInput(const QString &cmd, const QStringList &ar
     : InputImplBase(),
       m_command(cmd),
       m_arguments(args),
-      m_proc(new Process)
+      m_proc(new QProcess)
 {
     const QIODevice::OpenMode openMode =
         stdin_.isEmpty() ? QIODevice::ReadOnly : QIODevice::ReadWrite;

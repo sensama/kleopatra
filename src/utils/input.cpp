@@ -86,6 +86,11 @@ private:
 class ProcessStdOutInput : public InputImplBase
 {
 public:
+    ~ProcessStdOutInput()
+    {
+        finalize();
+    }
+
     explicit ProcessStdOutInput(const QString &cmd, const QStringList &args, const QDir &wd, const QByteArray &stdin_ = QByteArray());
 
     std::shared_ptr<QIODevice> ioDevice() const override
@@ -447,6 +452,7 @@ void Input::finalize()
 {
     if (const std::shared_ptr<QIODevice> io = ioDevice())
         if (io->isOpen()) {
+            qCDebug(KLEOPATRA_LOG)  << "closing input";
             io->close();
         }
 }

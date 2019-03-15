@@ -44,6 +44,16 @@
 
 using namespace Kleo;
 
+static void CloseHandleX(HANDLE &h)
+{
+    if (h && h != INVALID_HANDLE_VALUE) {
+        if (!CloseHandle(h)) {
+            qCWarning(KLEOPATRA_LOG) << "CloseHandle failed!";
+        }
+        h = nullptr;
+    }
+}
+
 class WindowsProcessDevice::Private
 {
 public:
@@ -177,10 +187,9 @@ public:
 
     void close()
     {
-        if (mProc) {
+        if (mProc && mProc != INVALID_HANDLE_VALUE) {
             TerminateProcess(mProc, 0xf291);
-            CloseHandle(mProc);
-            mProc = nullptr;
+            CloseHandleX(mProc);
         }
     }
 
@@ -191,10 +200,7 @@ public:
 
     void closeWriteChannel()
     {
-        if (mStdInWr) {
-            CloseHandle(mStdInWr);
-            mStdInWr = nullptr;
-        }
+        CloseHandleX(mStdInWr);
     }
 
 private:
@@ -279,30 +285,16 @@ QString getLastErrorString()
 
 WindowsProcessDevice::Private::~Private()
 {
-    if (mProc) {
+    if (mProc && mProc != INVALID_HANDLE_VALUE) {
         close();
     }
-    if (mThread) {
-        CloseHandle (mThread);
-    }
-    if (mStdInRd) {
-        CloseHandle (mStdInRd);
-    }
-    if (mStdInWr) {
-        CloseHandle (mStdInRd);
-    }
-    if (mStdOutRd) {
-        CloseHandle (mStdInRd);
-    }
-    if (mStdOutWr) {
-        CloseHandle (mStdInWr);
-    }
-    if (mStdErrRd) {
-        CloseHandle (mStdErrRd);
-    }
-    if (mStdErrWr) {
-        CloseHandle (mStdErrWr);
-    }
+    CloseHandleX (mThread);
+    CloseHandleX (mStdInRd);
+    CloseHandleX (mStdInWr);
+    CloseHandleX (mStdOutRd);
+    CloseHandleX (mStdOutWr);
+    CloseHandleX (mStdErrRd);
+    CloseHandleX (mStdErrWr);
 }
 
 static QString qt_create_commandline(const QString &program, const QStringList &arguments,
@@ -371,8 +363,8 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
 
     // Ensure only the proper handles are inherited
     if (!SetHandleInformation(mStdOutRd, HANDLE_FLAG_INHERIT, 0) ||
-            !SetHandleInformation(mStdErrRd, HANDLE_FLAG_INHERIT, 0) ||
-            !SetHandleInformation(mStdInWr,  HANDLE_FLAG_INHERIT, 0)) {
+        !SetHandleInformation(mStdErrRd, HANDLE_FLAG_INHERIT, 0) ||
+        !SetHandleInformation(mStdInWr,  HANDLE_FLAG_INHERIT, 0)) {
 
         qCDebug(KLEOPATRA_LOG) << "Failed to set inherit flag";
         mError = getLastErrorString();
@@ -420,13 +412,11 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     mThread = piProcInfo.hThread;
 
     if (mode == QIODevice::WriteOnly) {
-        CloseHandle (mStdInRd);
-        mStdInRd = nullptr;
+        CloseHandleX (mStdInRd);
     }
 
     if (mode == QIODevice::ReadOnly) {
-        CloseHandle (mStdInWr);
-        mStdInWr = nullptr;
+        CloseHandleX (mStdInWr);
     }
 
     return true;

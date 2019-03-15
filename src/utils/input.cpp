@@ -37,6 +37,7 @@
 
 #include "detail_p.h"
 #include "kdpipeiodevice.h"
+#include "windowsprocessdevice.h"
 #include "log.h"
 #include "kleo_assert.h"
 #include "cached.h"
@@ -114,7 +115,11 @@ private:
 private:
     const QString m_command;
     const QStringList m_arguments;
-    const std::shared_ptr<QProcess> m_proc;
+#ifdef Q_OS_WIN
+    std::shared_ptr<WindowsProcessDevice> m_proc;
+#else
+    std::shared_ptr<QProcess> m_proc;
+#endif
 };
 
 class FileInput : public InputImplBase
@@ -338,8 +343,7 @@ static QDebug operator<<(QDebug s, const Outputter &o)
 ProcessStdOutInput::ProcessStdOutInput(const QString &cmd, const QStringList &args, const QDir &wd, const QByteArray &stdin_)
     : InputImplBase(),
       m_command(cmd),
-      m_arguments(args),
-      m_proc(new QProcess)
+      m_arguments(args)
 {
     const QIODevice::OpenMode openMode =
         stdin_.isEmpty() ? QIODevice::ReadOnly : QIODevice::ReadWrite;
@@ -347,12 +351,21 @@ ProcessStdOutInput::ProcessStdOutInput(const QString &cmd, const QStringList &ar
     if (cmd.isEmpty())
         throw Exception(gpg_error(GPG_ERR_INV_ARG),
                         i18n("Command not specified"));
+
+#ifndef Q_OS_WIN
+    m_proc = std::shared_ptr<QProcess> (new QProcess);
     m_proc->setWorkingDirectory(wd.absolutePath());
     m_proc->start(cmd, args, openMode);
     if (!m_proc->waitForStarted())
         throw Exception(gpg_error(GPG_ERR_EIO),
                         i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
-
+#else
+    m_proc = std::shared_ptr<Kleo::WindowsProcessDevice> (new WindowsProcessDevice(cmd, args, wd.absolutePath()));
+    if (!m_proc->open(openMode)) {
+        throw Exception(gpg_error(GPG_ERR_EIO),
+                        i18n("Could not start %1 process: %2", cmd, m_proc->errorString()));
+    }
+#endif
     if (!stdin_.isEmpty()) {
         if (m_proc->write(stdin_) != stdin_.size())
             throw Exception(gpg_error(GPG_ERR_EIO),
@@ -378,6 +391,13 @@ QString ProcessStdOutInput::label() const
 QString ProcessStdOutInput::doErrorString() const
 {
     kleo_assert(m_proc);
+#ifdef Q_OS_WIN
+    const auto err = m_proc->errorString();
+    if (!err.isEmpty()) {
+        return QStringLiteral("%1:\n%2").arg(m_command).arg(err);
+    }
+    return QString();
+#else
     if (m_proc->exitStatus() == QProcess::NormalExit && m_proc->exitCode() == 0) {
         return QString();
     }
@@ -387,12 +407,17 @@ QString ProcessStdOutInput::doErrorString() const
     else {
         return i18n("Failed to execute %1: %2", m_command, m_proc->errorString());
     }
+#endif
 }
 
 bool ProcessStdOutInput::failed() const
 {
     kleo_assert(m_proc);
+#ifdef Q_OS_WIN
+    return !m_proc->errorString().isEmpty();
+#else
     return !(m_proc->exitStatus() == QProcess::NormalExit && m_proc->exitCode() == 0);
+#endif
 }
 
 #ifndef QT_NO_CLIPBOARD

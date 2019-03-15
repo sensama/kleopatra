@@ -574,13 +574,13 @@ void SignEncryptTask::Private::slotResult(const SigningResult &result)
     const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
-    if (result.error().code()) {
-        output->cancel();
-    } else if (input->failed()) {
+    if (input->failed()) {
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape( input->errorString())),
                                       auditLog));
         return;
+    } else if (result.error().code()) {
+        output->cancel();
     } else {
         try {
             kleo_assert(!result.isNull());
@@ -601,14 +601,14 @@ void SignEncryptTask::Private::slotResult(const SigningResult &sresult, const En
     const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
-    if (sresult.error().code() || eresult.error().code()) {
-        output->cancel();
-    } else if (input->failed()) {
+    if (input->failed()) {
         output->cancel();
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape( input->errorString())),
                                       auditLog));
         return;
+    } else if (sresult.error().code() || eresult.error().code()) {
+        output->cancel();
     } else {
         try {
             kleo_assert(!sresult.isNull() || !eresult.isNull());
@@ -629,14 +629,14 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
     const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
-    if (result.error().code()) {
-        output->cancel();
-    } else if (input->failed()) {
+    if (input->failed()) {
         output->cancel();
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape(input->errorString())),
                                       auditLog));
         return;
+    } else if (result.error().code()) {
+        output->cancel();
     } else {
         try {
             kleo_assert(!result.isNull());

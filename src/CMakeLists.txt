@@ -69,6 +69,7 @@ set(_kleopatra_SRCS
   utils/dragqueen.cpp
   utils/multivalidator.cpp
   utils/systemtrayicon.cpp
+  utils/windowsprocessdevice.cpp
 
   utils/hex.cpp
   utils/path-helper.cpp

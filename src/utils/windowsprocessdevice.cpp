@@ -131,11 +131,11 @@ public:
         if (mEnded) {
             DWORD avail = 0;
             if (!PeekNamedPipe(mStdOutRd,
+                               nullptr,
                                0,
-                               0,
-                               0,
+                               nullptr,
                                &avail,
-                               0)) {
+                               nullptr)) {
                 qCDebug(KLEOPATRA_LOG) << "Failed to peek pipe";
                 return -1;
             }
@@ -165,11 +165,11 @@ public:
             char buf[4096];
             DWORD avail;
             if (!PeekNamedPipe(mStdErrRd,
-                        0,
-                        0,
-                        0,
-                        &avail,
-                        0)) {
+                               nullptr,
+                               0,
+                               nullptr,
+                               &avail,
+                               nullptr)) {
                 qCDebug(KLEOPATRA_LOG) << "Failed to peek pipe";
                 return ret;
             }

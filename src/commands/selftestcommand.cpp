@@ -59,6 +59,9 @@
 
 #include <vector>
 
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
@@ -189,6 +192,10 @@ private:
     }
     void slotUpdateRequested()
     {
+        const auto conf = QGpgME::cryptoConfig();
+        if (conf) {
+            conf->clear();
+        }
         runTests();
     }
 

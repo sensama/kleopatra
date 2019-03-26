@@ -267,7 +267,6 @@ void PGPCardWidget::doChangePin(int slot)
 void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
 {
     const auto params = dlg->getKeyParams();
-    delete dlg;
 
     auto progress = new QProgressDialog(this, Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::Dialog);
     progress->setAutoClose(true);
@@ -281,7 +280,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     GenKeyThread *workerThread = new GenKeyThread(params, mRealSerial);
     connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
             progress->accept();
-            delete progress;
+            progress->deleteLater();
             genKeyDone(workerThread->error(), workerThread->bkpFile());
             delete workerThread;
         });
@@ -351,8 +350,10 @@ void PGPCardWidget::genkeyRequested()
         sizes.push_back(4096);
     }
     dlg->setSupportedSizes(sizes);
-    connect(dlg, &QDialog::accepted, this, [this, dlg] () {doGenKey(dlg);});
-    connect(dlg, &QDialog::rejected, dlg, &QObject::deleteLater);
+    connect(dlg, &QDialog::accepted, this, [this, dlg] () {
+            doGenKey(dlg);
+            dlg->deleteLater();
+        });
     dlg->setModal(true);
     dlg->show();
 }

@@ -561,7 +561,8 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     return details;
 }
 
-static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients, const QString &errorString, bool isSigned)
+static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients,
+                                             const QString &errorString, bool isSigned, const QPointer<Task> &task)
 {
     QString details;
 
@@ -576,6 +577,18 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                      : i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that the decryption is compliant with that.",
                              "The decryption <b>is not</b> VS-NfD-compliant."))
                     + QStringLiteral("<br/>"));
+    }
+
+    if (res.fileName()) {
+        const auto decVerifyTask = qobject_cast<AbstractDecryptVerifyTask*> (task.data());
+        if (decVerifyTask) {
+            const auto embedFileName = QString::fromUtf8(res.fileName()).toHtmlEscaped();
+
+            if (embedFileName != decVerifyTask->outputLabel()) {
+                details += i18n("Embedded file name: '%1'", embedFileName);
+                details += QStringLiteral("<br/>");
+            }
+        }
     }
 
     if (res.isNull() || !res.error() || res.error().isCanceled()) {
@@ -633,9 +646,10 @@ static QString formatDecryptVerifyResultDetails(const DecryptionResult &dr,
         const VerificationResult &vr,
         const std::vector<Key> &recipients,
         const DecryptVerifyResult::SenderInfo &info,
-        const QString &errorString)
+        const QString &errorString,
+        const QPointer<Task> &task)
 {
-    const QString drDetails = formatDecryptionResultDetails(dr, recipients, errorString, relevantInDecryptVerifyContext(vr));
+    const QString drDetails = formatDecryptionResultDetails(dr, recipients, errorString, relevantInDecryptVerifyContext(vr), task);
     if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
         return drDetails;
     }
@@ -874,14 +888,17 @@ QString DecryptVerifyResult::overview() const
 QString DecryptVerifyResult::details() const
 {
     if (d->isDecryptOnly()) {
-        return formatDecryptionResultDetails(d->m_decryptionResult, KeyCache::instance()->findRecipients(d->m_decryptionResult), errorString(), false);
+        return formatDecryptionResultDetails(d->m_decryptionResult,
+                KeyCache::instance()->findRecipients(d->m_decryptionResult),
+                errorString(), false, d->m_parentTask);
     }
     if (d->isVerifyOnly()) {
         return formatVerificationResultDetails(d->m_verificationResult, d->makeSenderInfo(), errorString());
     }
     return formatDecryptVerifyResultDetails(d->m_decryptionResult,
                                             d->m_verificationResult, KeyCache::instance()->findRecipients(
-                                                    d->m_decryptionResult), d->makeSenderInfo(), errorString());
+                                                    d->m_decryptionResult), d->makeSenderInfo(), errorString(),
+                                            d->m_parentTask);
 }
 
 bool DecryptVerifyResult::hasError() const

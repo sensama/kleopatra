@@ -1,6 +1,6 @@
-set(kleopatra_version 3.1.4)
+set(kleopatra_version 3.1.6)
 # The following is for Windows. Keep in line with kleopatra_version.
-set(kleopatra_fileversion 3,1,4,0)
+set(kleopatra_fileversion 3,1,6,0)
 cmake_minimum_required(VERSION 3.5)
 project(kleopatra VERSION ${kleopatra_version})
 # Add version suffix for internal usage of the version string

@@ -81,6 +81,9 @@ public:
     KMime::Types::Mailbox informativeSender() const;
     void setInformativeSender(const KMime::Types::Mailbox &senders);
 
+    virtual QString inputLabel() const = 0;
+    virtual QString outputLabel() const = 0;
+
 Q_SIGNALS:
     void decryptVerifyResult(const std::shared_ptr<const Kleo::Crypto::DecryptVerifyResult> &);
 
@@ -93,9 +96,6 @@ protected:
     std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-
-    virtual QString inputLabel() const = 0;
-    virtual QString outputLabel() const = 0;
 
 private:
     class Private;
@@ -119,13 +119,14 @@ public:
 
     GpgME::Protocol protocol() const override;
 
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+
 public Q_SLOTS:
     void cancel() override;
 
 private:
     void doStart() override;
-    QString inputLabel() const override;
-    QString outputLabel() const override;
     unsigned long long inputSize() const override;
 
 private:
@@ -151,13 +152,14 @@ public:
 
     GpgME::Protocol protocol() const override;
 
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+
 public Q_SLOTS:
     void cancel() override;
 
 private:
     void doStart() override;
-    QString inputLabel() const override;
-    QString outputLabel() const override;
     unsigned long long inputSize() const override;
 
 private:
@@ -182,13 +184,14 @@ public:
     QString label() const override;
     GpgME::Protocol protocol() const override;
 
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+
 public Q_SLOTS:
     void cancel() override;
 
 private:
     void doStart() override;
-    QString inputLabel() const override;
-    QString outputLabel() const override;
     unsigned long long inputSize() const override;
 
 private:
@@ -217,13 +220,14 @@ public:
 
     void setIgnoreMDCError(bool value);
 
+    QString inputLabel() const override;
+    QString outputLabel() const override;
+
 public Q_SLOTS:
     void cancel() override;
 
 private:
     void doStart() override;
-    QString inputLabel() const override;
-    QString outputLabel() const override;
     unsigned long long inputSize() const override;
 
 private:

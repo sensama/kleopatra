@@ -28,7 +28,7 @@
     your version.
  */
 
-#ifdef WIN32
+#if defined(WIN32) || defined(Q_MOC_RUN)
 #ifndef WINDOWSPROCESSDEVICE_H
 #define WINDOWSPROCESSDEVICE_H
 

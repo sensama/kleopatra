@@ -104,7 +104,7 @@ QString Kleo::gpgSmPath()
 
 QString Kleo::gpgPath()
 {
-    static const auto path = findGpgExe(GpgME::GpgSMEngine, QStringLiteral("gpg"));
+    static const auto path = findGpgExe(GpgME::GpgEngine, QStringLiteral("gpg"));
     return path;
 }
 

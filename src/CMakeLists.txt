@@ -12,7 +12,11 @@ add_subdirectory(kconf_update)
 
 if(WIN32)
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_win.cpp)
-  set(_kleopatra_extra_SRCS utils/gnupg-registry.c selftest/registrycheck.cpp)
+  set(_kleopatra_extra_SRCS
+      utils/gnupg-registry.c
+      selftest/registrycheck.cpp
+      utils/windowsprocessdevice.cpp
+      )
 else()
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_unix.cpp)
   set(_kleopatra_extra_SRCS)
@@ -69,7 +73,6 @@ set(_kleopatra_SRCS
   utils/dragqueen.cpp
   utils/multivalidator.cpp
   utils/systemtrayicon.cpp
-  utils/windowsprocessdevice.cpp
 
   utils/hex.cpp
   utils/path-helper.cpp

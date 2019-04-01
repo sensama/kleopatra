@@ -45,7 +45,7 @@
 #include <QSpinBox>
 
 #include <QLabel>
-#include <qdatetimeedit.h>
+#include <QDateTimeEdit>
 #include <QCheckBox>
 #include <QLayout>
 

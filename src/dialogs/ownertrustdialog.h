@@ -33,7 +33,7 @@
 #ifndef __KLEOPATRA_DIALOGS_OWNERTRUSTDIALOG_H__
 #define __KLEOPATRA_DIALOGS_OWNERTRUSTDIALOG_H__
 
-#include <qdialog.h>
+#include <QDialog>
 
 #include <utils/pimpl_ptr.h>
 

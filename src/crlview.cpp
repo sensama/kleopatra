@@ -41,7 +41,7 @@
 #include <KStandardGuiItem>
 
 #include <QLabel>
-#include <qtextedit.h>
+#include <QTextEdit>
 #include <QTimer>
 
 #include <QVBoxLayout>

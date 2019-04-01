@@ -31,7 +31,7 @@
 #ifndef KLEO_TEST_H
 #define KLEO_TEST_H
 
-#include <qtest.h>
+#include <QTest>
 #include <KAboutData>
 #include <KLocalizedString>
 #include <QDir>

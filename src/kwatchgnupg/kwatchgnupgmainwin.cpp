@@ -45,7 +45,7 @@
 #include <kmessagebox.h>
 #include <KLocalizedString>
 #include <QApplication>
-#include <qaction.h>
+#include <QAction>
 #include <kactioncollection.h>
 #include <kstandardaction.h>
 #include <kprocess.h>

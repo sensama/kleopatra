@@ -43,17 +43,25 @@
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KeyFilter>
+#include <Libkleo/KeyCache>
+
+#include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"
+#include <QTimer>
 #include <QTreeView>
 #include <QHeaderView>
 #include <QItemSelectionModel>
 #include <QItemSelection>
 #include <QLayout>
 
+#include <KSharedConfig>
+#include <KConfigGroup>
 
 using namespace Kleo;
 using namespace GpgME;
+
+Q_DECLARE_METATYPE(GpgME::Key)
 
 namespace
 {
@@ -223,6 +231,70 @@ void KeyTreeView::init()
     defaultSizes.push_back(80);
     defaultSizes.push_back(140);
     setColumnSizes(defaultSizes);
+
+    /* Handle expansion state */
+    const auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
+    m_expandedKeys = grp.readEntry("Expanded", QStringList());
+
+    connect(m_view, &QTreeView::expanded, this, [this] (const QModelIndex &index) {
+        if (!index.isValid()) {
+            return;
+        }
+        const auto &key = index.data(Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+        const auto fpr = QString::fromLatin1(key.primaryFingerprint());
+
+        if (m_expandedKeys.contains(fpr)) {
+            return;
+        }
+        m_expandedKeys << fpr;
+        auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
+        grp.writeEntry("Expanded", m_expandedKeys);
+    });
+
+    connect(m_view, &QTreeView::collapsed, this, [this] (const QModelIndex &index) {
+        if (!index.isValid()) {
+            return;
+        }
+        const auto &key = index.data(Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+        m_expandedKeys.removeAll(QString::fromLatin1(key.primaryFingerprint()));
+        auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
+        grp.writeEntry("Expanded", m_expandedKeys);
+    });
+
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this] () {
+        /* We use a single shot timer here to ensure that the keysMayHaveChanged
+         * handlers are all handled before we restore the expand state so that
+         * the model is already populated. */
+        QTimer::singleShot(0, [this] () { restoreExpandState(); });
+    });
+}
+
+void KeyTreeView::restoreExpandState()
+{
+    if (!KeyCache::instance()->initialized()) {
+        qCWarning(KLEOPATRA_LOG) << "Restore expand state before keycache available. Aborting.";
+        return;
+    }
+    for (const auto &fpr: m_expandedKeys) {
+        const KeyListModelInterface *km = dynamic_cast<const KeyListModelInterface*> (m_view->model());
+        if (!km) {
+            qCWarning(KLEOPATRA_LOG) << "invalid model";
+            return;
+        }
+        const auto key = KeyCache::instance()->findByFingerprint(fpr.toLatin1().constData());
+        if (key.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << "Cannot find:" << fpr << "anymore in cache";
+            m_expandedKeys.removeAll(fpr);
+            return;
+        }
+        const auto idx = km->index(key);
+        if (!idx.isValid()) {
+            qCDebug(KLEOPATRA_LOG) << "Cannot find:" << fpr << "anymore in model";
+            m_expandedKeys.removeAll(fpr);
+            return;
+        }
+        m_view->expand(idx);
+    }
 }
 
 KeyTreeView::~KeyTreeView() {}

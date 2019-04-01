@@ -36,6 +36,7 @@
 #include <QWidget>
 
 #include <QString>
+#include <QStringList>
 
 #include <gpgme++/key.h>
 
@@ -145,6 +146,7 @@ protected:
 private:
     void init();
     void addKeysImpl(const std::vector<GpgME::Key> &, bool);
+    void restoreExpandState();
 
 private:
     std::vector<GpgME::Key> m_keys;
@@ -159,6 +161,8 @@ private:
 
     QString m_stringFilter;
     std::shared_ptr<KeyFilter> m_keyFilter;
+
+    QStringList m_expandedKeys;
 
     bool m_isHierarchical : 1;
 };

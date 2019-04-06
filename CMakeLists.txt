@@ -135,8 +135,6 @@ endif()
 kde_enable_exceptions()
 
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
-
 add_subdirectory(pics)
 add_subdirectory(src)
 

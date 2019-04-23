@@ -169,7 +169,7 @@ private:
                 import->setEnabled(false);
                 auto cmd = new Kleo::ImportCertificateFromFileCommand();
                 connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
-                        q, [import, q]() {
+                        q, [import]() {
                     import->setEnabled(true);
                 });
                 cmd->setParentWidget(q);

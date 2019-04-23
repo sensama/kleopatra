@@ -124,7 +124,7 @@ QStringList ExportSecretKeyCommand::arguments() const
     }
 
     if (key.protocol() == CMS) {
-        result << QStringLiteral("--p12-charset") << QLatin1String("utf-8");
+        result << QStringLiteral("--p12-charset") << QStringLiteral("utf-8");
     }
 
     if (key.protocol() == OpenPGP) {

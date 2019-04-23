@@ -239,7 +239,7 @@ void CertificateDetailsWidget::Private::changePassphrase()
 {
     auto cmd = new Kleo::Commands::ChangePassphraseCommand(key);
     QObject::connect(cmd, &Kleo::Commands::ChangePassphraseCommand::finished,
-                     q, [this, cmd]() {
+                     q, [this]() {
                          ui.changePassphraseBtn->setEnabled(true);
                      });
     ui.changePassphraseBtn->setEnabled(false);
@@ -250,7 +250,7 @@ void CertificateDetailsWidget::Private::genRevokeCert()
 {
     auto cmd = new Kleo::Commands::GenRevokeCommand(key);
     QObject::connect(cmd, &Kleo::Commands::GenRevokeCommand::finished,
-                     q, [this, cmd]() {
+                     q, [this]() {
                          ui.genRevokeBtn->setEnabled(true);
                      });
     ui.genRevokeBtn->setEnabled(false);
@@ -261,7 +261,7 @@ void CertificateDetailsWidget::Private::certifyClicked()
 {
     auto cmd = new Kleo::Commands::CertifyCertificateCommand(key);
     QObject::connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                     q, [this, cmd]() {
+                     q, [this]() {
                          ui.certifyBtn->setEnabled(true);
                      });
     ui.certifyBtn->setEnabled(false);
@@ -286,7 +286,7 @@ void CertificateDetailsWidget::Private::addUserID()
 {
     auto cmd = new Kleo::Commands::AddUserIDCommand(key);
     QObject::connect(cmd, &Kleo::Commands::AddUserIDCommand::finished,
-                     q, [this, cmd]() {
+                     q, [this]() {
                          ui.addUserIDBtn->setEnabled(true);
                      });
     ui.addUserIDBtn->setEnabled(false);

@@ -158,7 +158,7 @@ private Q_SLOTS:
     void testVerify()
     {
         QGpgME::VerifyDetachedJob *job = mBackend->verifyDetachedJob();
-        QSignalSpy spy(job, SIGNAL(result(GpgME::VerificationResult)));
+        QSignalSpy spy(job, &QGpgME::VerifyDetachedJob::result);
         QVERIFY(spy.isValid());
         GpgME::Error err = job->start(mSignature, mSignedData);
         QVERIFY(!err);

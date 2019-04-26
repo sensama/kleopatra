@@ -37,11 +37,14 @@
 
 #include <QString>
 #include <QStringList>
+#include <QList>
 
 #include <gpgme++/key.h>
 
 #include <memory>
 #include <vector>
+
+#include <KConfigGroup>
 
 class QTreeView;
 
@@ -59,7 +62,8 @@ class KeyTreeView : public QWidget
 public:
     explicit KeyTreeView(QWidget *parent = nullptr);
     KeyTreeView(const QString &stringFilter, const std::shared_ptr<KeyFilter> &keyFilter,
-                AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent);
+                AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent,
+                const KConfigGroup &group = KConfigGroup());
     ~KeyTreeView();
 
     QTreeView *view() const
@@ -129,6 +133,7 @@ public:
 
     void disconnectSearchBar(const QObject *bar);
     bool connectSearchBar(const QObject *bar);
+    void resizeColumns();
 
 public Q_SLOTS:
     virtual void setStringFilter(const QString &text);
@@ -147,6 +152,8 @@ private:
     void init();
     void addKeysImpl(const std::vector<GpgME::Key> &, bool);
     void restoreExpandState();
+    void saveLayout();
+    void restoreLayout();
 
 private:
     std::vector<GpgME::Key> m_keys;
@@ -164,7 +171,10 @@ private:
 
     QStringList m_expandedKeys;
 
+    KConfigGroup m_group;
+
     bool m_isHierarchical : 1;
+    bool m_onceResized : 1;
 };
 
 }

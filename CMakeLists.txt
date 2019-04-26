@@ -13,7 +13,7 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.57.0")
 set(KMIME_VERSION "5.11.40")
-set(LIBKLEO_VERSION "5.11.40")
+set(LIBKLEO_VERSION "5.11.41")
 set(QT_REQUIRED_VERSION "5.10.0")
 set(GPGME_REQUIRED_VERSION "1.8.0")
 

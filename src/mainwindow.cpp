@@ -394,7 +394,7 @@ MainWindow::Private::~Private() {}
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags), d(new Private(this))
 {
-    resize(1000, 500);
+    resize(1024, 500);
 }
 
 MainWindow::~MainWindow() {}

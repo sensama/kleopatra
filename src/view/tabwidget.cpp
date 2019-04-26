@@ -49,6 +49,7 @@
 #include <KLocalizedString>
 #include <QTabWidget>
 #include <KConfigGroup>
+#include <KSharedConfig>
 #include <KConfig>
 #include <QAction>
 #include <KActionCollection>
@@ -75,7 +76,7 @@ class Page : public Kleo::KeyTreeView
     Q_OBJECT
     Page(const Page &other);
 public:
-    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &toolTip = QString(), QWidget *parent = nullptr);
+    Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &toolTip = QString(), QWidget *parent = nullptr, const KConfigGroup &group = KConfigGroup());
     Page(const KConfigGroup &group, QWidget *parent = nullptr);
     ~Page();
 
@@ -166,8 +167,9 @@ Page::Page(const Page &other)
     init();
 }
 
-Page::Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy, const QString &toolTip, QWidget *parent)
-    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent),
+Page::Page(const QString &title, const QString &id, const QString &text, AbstractKeyListSortFilterProxyModel *proxy, const QString &toolTip, QWidget *parent,
+           const KConfigGroup &group)
+    : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group),
       m_title(title),
       m_toolTip(toolTip),
       m_isTemporary(false),
@@ -191,7 +193,7 @@ static const char SORT_DESCENDING[] = "sort-descending";
 Page::Page(const KConfigGroup &group, QWidget *parent)
     : KeyTreeView(group.readEntry(STRING_FILTER_ENTRY),
                   KeyFilterManager::instance()->keyFilterByID(group.readEntry(KEY_FILTER_ENTRY)),
-                  nullptr, parent),
+                  nullptr, parent, group),
       m_title(group.readEntry(TITLE_ENTRY)),
       m_toolTip(),
       m_isTemporary(false),
@@ -569,7 +571,8 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 
 void TabWidget::Private::slotNewTab()
 {
-    Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString());
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QString().sprintf("View #%u", tabWidget.count()));
+    Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
     addView(page, currentPage());
     tabWidget.setCurrentIndex(tabWidget.count() - 1);
 }

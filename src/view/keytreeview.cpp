@@ -54,9 +54,15 @@
 #include <QItemSelectionModel>
 #include <QItemSelection>
 #include <QLayout>
+#include <QList>
+#include <QMenu>
+#include <QAction>
+#include <QEvent>
+#include <QContextMenuEvent>
 
 #include <KSharedConfig>
 #include <KConfigGroup>
+#include <KLocalizedString>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -69,13 +75,65 @@ namespace
 class TreeView : public QTreeView
 {
 public:
-    explicit TreeView(QWidget *parent = nullptr) : QTreeView(parent) {}
+    explicit TreeView(QWidget *parent = nullptr) : QTreeView(parent)
+    {
+        header()->installEventFilter(this);
+    }
 
     QSize minimumSizeHint() const override
     {
         const QSize min = QTreeView::minimumSizeHint();
         return QSize(min.width(), min.height() + 5 * fontMetrics().height());
     }
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override
+    {
+        Q_UNUSED(watched);
+        if (event->type() == QEvent::ContextMenu) {
+            QContextMenuEvent *e = static_cast<QContextMenuEvent *>(event);
+
+            if (!mHeaderPopup) {
+                mHeaderPopup = new QMenu(this);
+                mHeaderPopup->setTitle(i18n("View Columns"));
+                for (int i = 0; i < model()->columnCount(); ++i) {
+                    QAction *tmp
+                        = mHeaderPopup->addAction(model()->headerData(i, Qt::Horizontal).toString());
+                    tmp->setData(QVariant(i));
+                    tmp->setCheckable(true);
+                    mColumnActions << tmp;
+                }
+
+                connect(mHeaderPopup, &QMenu::triggered, this, [this] (QAction *action) {
+                    if (action->isChecked()) {
+                        showColumn(action->data().toInt());
+                    } else {
+                        hideColumn(action->data().toInt());
+                    }
+
+                    KeyTreeView *tv = qobject_cast<KeyTreeView *> (parent());
+                    if (tv) {
+                        tv->resizeColumns();
+                    }
+                });
+            }
+
+            foreach (QAction *action, mColumnActions) {
+                int column = action->data().toInt();
+                action->setChecked(!isColumnHidden(column));
+            }
+
+            mHeaderPopup->popup(mapToGlobal(e->pos()));
+            return true;
+        }
+
+        return false;
+    }
+
+private:
+    QMenu *mHeaderPopup = nullptr;
+
+    QList<QAction *> mColumnActions;
 };
 
 } // anon namespace
@@ -103,6 +161,7 @@ KeyTreeView::KeyTreeView(const KeyTreeView &other)
       m_hierarchicalModel(other.m_hierarchicalModel),
       m_stringFilter(other.m_stringFilter),
       m_keyFilter(other.m_keyFilter),
+      m_group(other.m_group),
       m_isHierarchical(other.m_isHierarchical)
 {
     init();
@@ -110,7 +169,9 @@ KeyTreeView::KeyTreeView(const KeyTreeView &other)
     setSortColumn(other.sortColumn(), other.sortOrder());
 }
 
-KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &kf, AbstractKeyListSortFilterProxyModel *proxy, QWidget *parent)
+KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &kf,
+                         AbstractKeyListSortFilterProxyModel *proxy, QWidget *parent,
+                         const KConfigGroup &group)
     : QWidget(parent),
       m_proxy(new KeyListSortFilterProxyModel(this)),
       m_additionalProxy(proxy),
@@ -119,7 +180,9 @@ KeyTreeView::KeyTreeView(const QString &text, const std::shared_ptr<KeyFilter> &
       m_hierarchicalModel(nullptr),
       m_stringFilter(text),
       m_keyFilter(kf),
-      m_isHierarchical(true)
+      m_group(group),
+      m_isHierarchical(true),
+      m_onceResized(false)
 {
     init();
 }
@@ -173,10 +236,18 @@ void KeyTreeView::init()
 {
     KDAB_SET_OBJECT_NAME(m_proxy);
     KDAB_SET_OBJECT_NAME(m_view);
+
+    if (!m_group.isValid()) {
+        m_group = KSharedConfig::openConfig()->group("KeyTreeView_default");
+    } else {
+        // Reopen as non const
+        KConfig *conf = m_group.config();
+        m_group = conf->group(m_group.name());
+    }
+
     if (m_additionalProxy && m_additionalProxy->objectName().isEmpty()) {
         KDAB_SET_OBJECT_NAME(m_additionalProxy);
     }
-
     QLayout *layout = new QVBoxLayout(this);
     KDAB_SET_OBJECT_NAME(layout);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -184,6 +255,8 @@ void KeyTreeView::init()
 
     HeaderView *headerView = new HeaderView(Qt::Horizontal);
     KDAB_SET_OBJECT_NAME(headerView);
+    headerView->installEventFilter(m_view);
+    headerView->setSectionsMovable(true);
     m_view->setHeader(headerView);
 
     m_view->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -212,29 +285,23 @@ void KeyTreeView::init()
 
     KeyRearrangeColumnsProxyModel *rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
-    /* TODO: Make this configurable by the user. E.g. kdepim/src/todo/todoview.cpp */
     rearangingModel->setSourceColumns(QVector<int>() << KeyListModelInterface::PrettyName
                                                      << KeyListModelInterface::PrettyEMail
                                                      << KeyListModelInterface::Validity
                                                      << KeyListModelInterface::ValidFrom
                                                      << KeyListModelInterface::ValidUntil
                                                      << KeyListModelInterface::TechnicalDetails
-                                                     << KeyListModelInterface::KeyID);
+                                                     << KeyListModelInterface::KeyID
+                                                     << KeyListModelInterface::Fingerprint
+                                                     << KeyListModelInterface::OwnerTrust
+                                                     << KeyListModelInterface::Origin
+                                                     << KeyListModelInterface::LastUpdate
+                                                     << KeyListModelInterface::Issuer
+                                                     << KeyListModelInterface::SerialNumber);
     m_view->setModel(rearangingModel);
 
-    std::vector<int> defaultSizes;
-    defaultSizes.push_back(280);
-    defaultSizes.push_back(280);
-    defaultSizes.push_back(120);
-    defaultSizes.push_back(100);
-    defaultSizes.push_back(100);
-    defaultSizes.push_back(80);
-    defaultSizes.push_back(140);
-    setColumnSizes(defaultSizes);
-
     /* Handle expansion state */
-    const auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
-    m_expandedKeys = grp.readEntry("Expanded", QStringList());
+    m_expandedKeys = m_group.readEntry("Expanded", QStringList());
 
     connect(m_view, &QTreeView::expanded, this, [this] (const QModelIndex &index) {
         if (!index.isValid()) {
@@ -247,8 +314,7 @@ void KeyTreeView::init()
             return;
         }
         m_expandedKeys << fpr;
-        auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
-        grp.writeEntry("Expanded", m_expandedKeys);
+        m_group.writeEntry("Expanded", m_expandedKeys);
     });
 
     connect(m_view, &QTreeView::collapsed, this, [this] (const QModelIndex &index) {
@@ -257,16 +323,24 @@ void KeyTreeView::init()
         }
         const auto &key = index.data(Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
         m_expandedKeys.removeAll(QString::fromLatin1(key.primaryFingerprint()));
-        auto grp = KSharedConfig::openConfig()->group("KeyTreeView");
-        grp.writeEntry("Expanded", m_expandedKeys);
+        m_group.writeEntry("Expanded", m_expandedKeys);
     });
 
     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this] () {
         /* We use a single shot timer here to ensure that the keysMayHaveChanged
          * handlers are all handled before we restore the expand state so that
          * the model is already populated. */
-        QTimer::singleShot(0, [this] () { restoreExpandState(); });
+        QTimer::singleShot(0, [this] () {
+            restoreExpandState();
+            if (!m_onceResized) {
+                m_onceResized = true;
+                resizeColumns();
+            }
+        });
     });
+
+    resizeColumns();
+    restoreLayout();
 }
 
 void KeyTreeView::restoreExpandState()
@@ -297,7 +371,86 @@ void KeyTreeView::restoreExpandState()
     }
 }
 
-KeyTreeView::~KeyTreeView() {}
+void KeyTreeView::saveLayout()
+{
+    QHeaderView *header = m_view->header();
+
+    QVariantList columnVisibility;
+    QVariantList columnOrder;
+    QVariantList columnWidths;
+    const int headerCount = header->count();
+    columnVisibility.reserve(headerCount);
+    columnWidths.reserve(headerCount);
+    columnOrder.reserve(headerCount);
+    for (int i = 0; i < headerCount; ++i) {
+        columnVisibility << QVariant(!m_view->isColumnHidden(i));
+        columnWidths << QVariant(header->sectionSize(i));
+        columnOrder << QVariant(header->visualIndex(i));
+    }
+
+    m_group.writeEntry("ColumnVisibility", columnVisibility);
+    m_group.writeEntry("ColumnOrder", columnOrder);
+    m_group.writeEntry("ColumnWidths", columnWidths);
+
+    m_group.writeEntry("SortAscending", (int)header->sortIndicatorOrder());
+    if (header->isSortIndicatorShown()) {
+        m_group.writeEntry("SortColumn", header->sortIndicatorSection());
+    } else {
+        m_group.writeEntry("SortColumn", -1);
+    }
+}
+
+void KeyTreeView::restoreLayout()
+{
+    QHeaderView *header = m_view->header();
+
+    QVariantList columnVisibility = m_group.readEntry("ColumnVisibility", QVariantList());
+    QVariantList columnOrder = m_group.readEntry("ColumnOrder", QVariantList());
+    QVariantList columnWidths = m_group.readEntry("ColumnWidths", QVariantList());
+
+    if (columnVisibility.isEmpty()) {
+        // if config is empty then use default settings
+        // The numbers have to be in line with the order in
+        // setsSourceColumns above
+        m_view->hideColumn(5);
+
+        for (int i = 7; i < m_view->model()->columnCount(); ++i) {
+            m_view->hideColumn(i);
+        }
+        if (KeyCache::instance()->initialized()) {
+            QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
+        }
+    } else {
+        for (int i = 0;
+             i < header->count()
+             && i < columnOrder.size()
+             && i < columnWidths.size()
+             && i < columnVisibility.size();
+             ++i) {
+            bool visible = columnVisibility[i].toBool();
+            int width = columnWidths[i].toInt();
+            int order = columnOrder[i].toInt();
+
+            header->resizeSection(i, width ? width : 100);
+            header->moveSection(header->visualIndex(i), order);
+            if (!visible) {
+                m_view->hideColumn(i);
+            }
+        }
+        m_onceResized = true;
+    }
+
+    int sortOrder = m_group.readEntry("SortAscending", (int)Qt::AscendingOrder);
+    int sortColumn = m_group.readEntry("SortColumn", -1);
+    if (sortColumn >= 0) {
+        m_view->sortByColumn(sortColumn, (Qt::SortOrder)sortOrder);
+    }
+}
+
+KeyTreeView::~KeyTreeView()
+{
+    saveLayout();
+}
 
 static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)
 {
@@ -422,10 +575,6 @@ void KeyTreeView::setKeys(const std::vector<Key> &keys)
     if (m_hierarchicalModel) {
         m_hierarchicalModel->setKeys(sorted);
     }
-    if (!sorted.empty())
-        if (QHeaderView *const hv = m_view ? m_view->header() : nullptr) {
-            hv->resizeSections(QHeaderView::ResizeToContents);
-        }
 }
 
 void KeyTreeView::addKeysImpl(const std::vector<Key> &keys, bool select)
@@ -527,3 +676,12 @@ bool KeyTreeView::connectSearchBar(const QObject *bar)
     return true;
 }
 
+void KeyTreeView::resizeColumns()
+{
+    m_view->setColumnWidth(KeyListModelInterface::PrettyName, 260);
+    m_view->setColumnWidth(KeyListModelInterface::PrettyEMail, 260);
+
+    for (int i = 2; i < m_view->model()->columnCount(); ++i) {
+        m_view->resizeColumnToContents(i);
+    }
+}

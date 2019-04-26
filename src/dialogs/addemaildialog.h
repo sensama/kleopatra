@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/adduseridcommand.h
+    dialogs/addemaildialog.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2019 g10 Code GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,54 +30,36 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_COMMANDS_ADDUSERIDCOMMAND_H__
-#define __KLEOPATRA_COMMANDS_ADDUSERIDCOMMAND_H__
+#ifndef __KLEOPATRA_DIALOGS_ADDEMAILDIALOG_H__
+#define __KLEOPATRA_DIALOGS_ADDEMAILDIALOG_H__
 
-#include <commands/command.h>
+#include <QDialog>
+
+#include <memory>
+
+class QString;
 
 namespace Kleo
 {
-namespace Commands
+namespace Dialogs
 {
 
-class AddUserIDCommand : public Command
+class AddEmailDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit AddUserIDCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit AddUserIDCommand(KeyListController *parent);
-    explicit AddUserIDCommand(const GpgME::Key &key);
-    ~AddUserIDCommand() override;
-
-    /* reimp */ static Restrictions restrictions()
-    {
-        return OnlyOneKey | MustBeOpenPGP | NeedSecretKey;
-    }
-
-    void setName(const QString &name);
-    const QString &name() const;
+    explicit AddEmailDialog(QWidget *parent = nullptr);
+    ~AddEmailDialog();
 
     void setEmail(const QString &email);
-    const QString &email() const;
+    QString email() const;
 
-    void setComment(const QString &comment);
-    const QString &comment() const;
-
-private:
-    void doStart() override;
-    void doCancel() override;
-
+    bool advancedSelected();
 private:
     class Private;
-    inline Private *d_func();
-    inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotResult(GpgME::Error))
-    Q_PRIVATE_SLOT(d_func(), void slotDialogAccepted())
-    Q_PRIVATE_SLOT(d_func(), void slotDialogRejected())
-    Q_PRIVATE_SLOT(d_func(), void slotSimpleDialogAccepted())
+    std::shared_ptr<Private> d;
 };
 
 }
 }
-
-#endif // __KLEOPATRA_COMMANDS_ADDUSERIDCOMMAND_H__
+#endif

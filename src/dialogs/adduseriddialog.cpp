@@ -191,7 +191,7 @@ private:
 
             const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
             const QStringList attrOrder = config.readEntry("OpenPGPAttributeOrder",
-                                          QStringList() << QStringLiteral("NAME!") << QStringLiteral("EMAIL!") << QStringLiteral("COMMENT"));
+                                          QStringList() << QStringLiteral("NAME") << QStringLiteral("EMAIL") << QStringLiteral("COMMENT"));
 
             QMap<int, Line> lines;
 
@@ -287,6 +287,7 @@ static bool has_intermediate_input(const QLineEdit *le)
 
 static bool requirementsAreMet(const QVector<Line> &list, QString &error)
 {
+    bool allEmpty = true;
     for (const Line &line : list) {
         const QLineEdit *le = line.edit;
         if (!le) {
@@ -317,10 +318,11 @@ static bool requirementsAreMet(const QVector<Line> &list, QString &error)
                 error = xi18nc("@info", "<interface>%1</interface> is invalid.<nl/>"
                                "Local Admin rule: <icode>%2</icode>", line.label, line.regex);
             return false;
+        } else {
+            allEmpty = false;
         }
-        qCDebug(KLEOPATRA_LOG) << "ok";
     }
-    return true;
+    return !allEmpty;
 }
 
 bool AddUserIDDialog::Private::isComplete() const

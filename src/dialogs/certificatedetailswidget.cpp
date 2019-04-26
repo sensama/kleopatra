@@ -288,6 +288,8 @@ void CertificateDetailsWidget::Private::addUserID()
     QObject::connect(cmd, &Kleo::Commands::AddUserIDCommand::finished,
                      q, [this]() {
                          ui.addUserIDBtn->setEnabled(true);
+                         key.update();
+                         q->setKey(key);
                      });
     ui.addUserIDBtn->setEnabled(false);
     cmd->start();

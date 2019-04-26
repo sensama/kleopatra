@@ -103,7 +103,6 @@ private:
     using ImportCertificatesCommand::Private::showError;
     void showError(QWidget *parent, const KeyListResult &result);
     void showResult(QWidget *parent, const KeyListResult &result);
-    void showHexPrefixInfo() const;
     void createDialog();
     KeyListJob *createKeyListJob(GpgME::Protocol proto) const
     {
@@ -251,8 +250,14 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     query = str;
 
     startKeyListJob(CMS,     str);
-    startKeyListJob(OpenPGP, str);
 
+    const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
+    if (rx.exactMatch(query) && !str.startsWith(QStringLiteral("0x"), Qt::CaseInsensitive)) {
+        qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
+        startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
+    } else {
+        startKeyListJob(OpenPGP, str);
+    }
 }
 
 void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, const QString &str)
@@ -296,10 +301,6 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
 
     if (keyListing.result.isTruncated()) {
         showResult(dialog, keyListing.result);
-    }
-
-    if (keyListing.keys.empty()) {
-        showHexPrefixInfo();
     }
 
     if (dialog) {
@@ -417,24 +418,6 @@ bool LookupCertificatesCommand::Private::checkConfig() const
                            "<interface>Settings->Configure Kleopatra</interface>.</para>"),
                     i18nc("@title", "No Directory Servers Configured"));
     return ok;
-}
-
-void LookupCertificatesCommand::Private::showHexPrefixInfo() const
-{
-    const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
-    if (rx.exactMatch(query)) {
-        information(query.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)
-                    ? i18n("<p>You seem to be searching for a fingerPrint or a key-id.</p>"
-                           "<p>Different keyservers expect different ways to search for these. "
-                           "Some require a \"0x\" prefix, while others require there be no such prefix.</p>"
-                           "<p>If your search does not yield any results, try removing the 0x prefix from your search.</p>")
-                    : i18n("<p>You seem to be searching for a fingerPrint or a key-id.</p>"
-                           "<p>Different keyservers expect different ways to search for these. "
-                           "Some require a \"0x\" prefix, while others require there be no such prefix.</p>"
-                           "<p>If your search does not yield any results, try adding the 0x prefix to your search.</p>"),
-                    i18n("Hex-String Search"),
-                    QStringLiteral("lookup-certificates-warn-0x-prefix"));
-    }
 }
 
 #undef d

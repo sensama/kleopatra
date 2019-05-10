@@ -171,7 +171,7 @@ public:
     {
         clear();
         for (const Key &key : keys) {
-            addItem(Formatting::formatForComboBox(key), qVariantFromValue(key));
+            addItem(Formatting::formatForComboBox(key), QVariant::fromValue(key));
         }
     }
 
@@ -191,7 +191,7 @@ public:
             if (_detail::ByFingerprint<std::equal_to>()(key, qvariant_cast<Key>(itemData(i)))) {
                 return i;
             }
-        insertItem(0, Formatting::formatForComboBox(key), qVariantFromValue(key));
+        insertItem(0, Formatting::formatForComboBox(key), QVariant::fromValue(key));
         return 0;
     }
 

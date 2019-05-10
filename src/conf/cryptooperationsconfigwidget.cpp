@@ -350,7 +350,7 @@ void CryptoOperationsConfigWidget::load()
     mArchiveDefinitionCB->clear();
 
     for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
-        mChecksumDefinitionCB->addItem(cd->label(), qVariantFromValue(cd));
+        mChecksumDefinitionCB->addItem(cd->label(), QVariant::fromValue(cd));
         if (cd == default_cd) {
             mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
         }

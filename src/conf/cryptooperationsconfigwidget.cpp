@@ -231,7 +231,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
         applyProfile(combo->currentText());
     });
 
-    connect(combo, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, [this] (const QString &text) {
+    connect(combo, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, [this] (const QString &text) {
         mApplyBtn->setEnabled(!text.isEmpty());
     });
 }

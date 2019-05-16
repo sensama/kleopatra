@@ -55,7 +55,7 @@ CRLView::CRLView(QWidget *parent)
 {
     QVBoxLayout *topLayout = new QVBoxLayout(this);
     topLayout->setSpacing(4);
-    topLayout->setMargin(10);
+    topLayout->setContentsMargins(10, 10, 10, 10);
 
     topLayout->addWidget(new QLabel(i18n("CRL cache dump:"), this));
 

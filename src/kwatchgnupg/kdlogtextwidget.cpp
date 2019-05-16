@@ -478,7 +478,7 @@ void KDLogTextWidget::Private::updateCache() const
         lw.clear();
         lw.reserve(lines.size());
         Q_FOREACH (const LineItem &li, lines) {
-            lw.push_back(fm.width(li.text));
+            lw.push_back(fm.boundingRect(li.text).width());
         }
     }
 
@@ -597,7 +597,7 @@ void KDLogTextWidget::Private::addPendingLines()
         QVector<int> plw;
         plw.reserve(pendingLines.size());
         Q_FOREACH (const LineItem &li, pendingLines) {
-            plw.push_back(fm.width(li.text));
+            plw.push_back(fm.boundingRect(li.text).width());
         }
 
         // update dimensions:

@@ -158,7 +158,7 @@ void ChangeExpiryCommand::doStart()
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
     const Subkey subkey = d->key.subkey(0);
-    d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() : QDateTime::fromTime_t(d->key.subkey(0).expirationTime()).date());
+    d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() : QDateTime::fromSecsSinceEpoch(d->key.subkey(0).expirationTime()).date());
     d->dialog->show();
 
 }

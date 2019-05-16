@@ -291,7 +291,7 @@ static QString formatSigningInformation(const Signature &sig)
     if (sig.isNull()) {
         return QString();
     }
-    const QDateTime dt = sig.creationTime() != 0 ? QDateTime::fromTime_t(sig.creationTime()) : QDateTime();
+    const QDateTime dt = sig.creationTime() != 0 ? QDateTime::fromSecsSinceEpoch(sig.creationTime()) : QDateTime();
     QString text;
     Key key = sig.key();
     if (dt.isValid()) {

@@ -380,7 +380,7 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
                          hdr);
     };
     const auto dateTime = [](long ts) {
-        return ts == 0 ? i18n("never") : QDateTime::fromTime_t(ts).toString(Qt::SystemLocaleShortDate);
+        return ts == 0 ? i18n("never") : QDateTime::fromSecsSinceEpoch(ts).toString(Qt::SystemLocaleShortDate);
     };
     appendHeader(i18n("Signing"));
     appendRow(i18n("First message"), dateTime(tofu.signFirst()));

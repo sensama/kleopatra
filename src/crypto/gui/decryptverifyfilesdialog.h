@@ -36,7 +36,7 @@
 #include <QDialog>
 #include <QString>
 #include <QDialogButtonBox>
-
+#include <QHash>
 #include "crypto/task.h"
 
 class QVBoxLayout;

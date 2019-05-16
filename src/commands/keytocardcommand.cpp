@@ -168,7 +168,7 @@ private:
             }
         }
         // Now do the deed
-        const auto time = QDateTime::fromTime_t(mKey.creationTime());
+        const auto time = QDateTime::fromSecsSinceEpoch(mKey.creationTime());
         const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
 #ifdef GPGME_SUBKEY_HAS_KEYGRIP
         const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mKey.keyGrip()))

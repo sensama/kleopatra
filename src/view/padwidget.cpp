@@ -56,14 +56,12 @@
 #include <QButtonGroup>
 #include <QFontDatabase>
 #include <QFontMetrics>
-#include <QGroupBox>
 #include <QLabel>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRadioButton>
 #include <QTabWidget>
 #include <QTextEdit>
-#include <QToolBar>
 #include <QVBoxLayout>
 
 #include <KLocalizedString>

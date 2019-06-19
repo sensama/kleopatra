@@ -74,7 +74,6 @@
 #include <QDateTime>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
-#include <QRegularExpression>
 
 #include <algorithm>
 #include <sstream>

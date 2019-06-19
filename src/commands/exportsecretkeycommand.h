@@ -36,7 +36,6 @@
 #include <commands/gnupgprocesscommand.h>
 
 #include <QString>
-#include <QByteArray>
 
 namespace Kleo
 {

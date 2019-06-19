@@ -35,7 +35,6 @@
 
 #include <kleo-assuan.h>
 
-#include <QByteArray>
 
 #ifdef _WIN32
 #include <io.h>

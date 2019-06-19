@@ -43,7 +43,6 @@
 #include <KLocalizedString>
 
 #include <QPushButton>
-#include <QHeaderView>
 #include <QTreeView>
 
 #include <KSharedConfig>

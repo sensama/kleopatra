@@ -37,16 +37,13 @@
 #include <utils/validation.h>
 
 #include <QString>
-#include <QStringList>
 #include <QPushButton>
 #include <QDialogButtonBox>
 #include <QLineEdit>
 #include <QLabel>
-#include <QValidator>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 

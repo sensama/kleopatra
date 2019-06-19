@@ -17,7 +17,6 @@
 
 #include "weboftrustwidget.h"
 
-#include <QHBoxLayout>
 #include <QHeaderView>
 #include <QVBoxLayout>
 #include <QTreeView>

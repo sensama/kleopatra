@@ -35,7 +35,6 @@
 #include <memory>
 
 #include <QIODevice>
-#include <QObject>
 
 class QString;
 class QStringList;

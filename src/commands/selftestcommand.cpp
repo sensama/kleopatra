@@ -53,7 +53,6 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
 

@@ -23,9 +23,6 @@
 
 #include <QDialog>
 #include <QDialogButtonBox>
-#include <QFontDatabase>
-#include <QHBoxLayout>
-#include <QLabel>
 #include <QPushButton>
 #include <QTextEdit>
 #include <QVBoxLayout>

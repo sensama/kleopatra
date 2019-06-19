@@ -37,7 +37,6 @@
 
 #include <QString>
 #include <QStringList>
-#include <QList>
 
 #include <gpgme++/key.h>
 

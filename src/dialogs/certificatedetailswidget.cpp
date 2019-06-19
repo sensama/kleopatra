@@ -44,7 +44,6 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 
-#include <QToolTip>
 #include <QDateTime>
 #include <QDialogButtonBox>
 #include <QMenu>

@@ -42,8 +42,6 @@
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
-#include <QProcess>
-#include <QDir>
 
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>

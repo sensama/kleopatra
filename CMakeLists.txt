@@ -11,7 +11,7 @@ option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing 
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.58.0")
+set(KF5_MIN_VERSION "5.59.0")
 set(KMIME_VERSION "5.11.40")
 set(LIBKLEO_VERSION "5.11.41")
 set(QT_REQUIRED_VERSION "5.10.0")
@@ -143,11 +143,7 @@ if(BUILD_TESTING)
     add_subdirectory(tests)
     add_subdirectory(autotests)
 endif()
-if (${ECM_VERSION} STRGREATER "5.58.0")
-    install(FILES kleopatra.renamecategories kleopatra.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
-else()
-    install(FILES kleopatra.renamecategories kleopatra.categories  DESTINATION ${KDE_INSTALL_CONFDIR})
-endif()
+install(FILES kleopatra.renamecategories kleopatra.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 
 if(KF5DocTools_FOUND)
     add_subdirectory(doc)

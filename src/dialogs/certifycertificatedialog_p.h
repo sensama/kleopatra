@@ -108,7 +108,6 @@ public:
 private:
     QListView *m_listView;
     QLabel *m_label;
-    QCheckBox *m_checkbox;
     UserIDModel m_userIDModel;
 };
 

@@ -50,7 +50,7 @@ public:
 
 EncryptEMailWizard::EncryptEMailWizard(QWidget *parent, Qt::WindowFlags flags) : SignEncryptWizard(parent, flags), d(new Private)
 {
-    setWindowTitle(i18n("Encrypt Mail Message"));
+    setWindowTitle(i18nc("@title:window", "Encrypt Mail Message"));
     std::vector<int> pageOrder;
     pageOrder.push_back(ResolveRecipientsPage);
     pageOrder.push_back(ResultPage);

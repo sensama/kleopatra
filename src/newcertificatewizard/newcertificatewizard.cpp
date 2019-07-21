@@ -1208,7 +1208,7 @@ public:
           tmp(QDir::temp().absoluteFilePath(QStringLiteral("kleo-"))),
           ui(q)
     {
-        q->setWindowTitle(i18nc("@title", "Key Pair Creation Wizard"));
+        q->setWindowTitle(i18nc("@title:window", "Key Pair Creation Wizard"));
     }
 
 private:

@@ -153,7 +153,7 @@ private:
 ExpiryDialog::ExpiryDialog(QWidget *p)
     : QDialog(p), d(new Private(this))
 {
-    setWindowTitle(i18n("Change Expiry"));
+    setWindowTitle(i18nc("@title:window", "Change Expiry"));
 }
 
 ExpiryDialog::~ExpiryDialog() {}

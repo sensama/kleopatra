@@ -104,7 +104,7 @@ AddEmailDialog::AddEmailDialog(QWidget *parent):
     QDialog(parent),
     d(new Private(this))
 {
-    setWindowTitle(i18n("Add New EMail"));
+    setWindowTitle(i18nc("@title:window", "Add New EMail"));
 }
 
 AddEmailDialog::~AddEmailDialog()

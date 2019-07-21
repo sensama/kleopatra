@@ -74,7 +74,7 @@ private:
         SetInitialPinDialog *dlg = new SetInitialPinDialog;
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
-        dlg->setWindowTitle(i18nc("@title", "Set Initial Pin"));
+        dlg->setWindowTitle(i18nc("@title:window", "Set Initial Pin"));
 
         const std::vector<Card::PinState> pinStates = ReaderStatus::instance()->pinStates(0);
 

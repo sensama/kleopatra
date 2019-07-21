@@ -255,7 +255,7 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
     }
 
     DecryptVerifyEMailWizard *w = new DecryptVerifyEMailWizard;
-    w->setWindowTitle(i18n("Decrypt/Verify E-Mail"));
+    w->setWindowTitle(i18nc("@title:window", "Decrypt/Verify E-Mail"));
     w->setAttribute(Qt::WA_DeleteOnClose);
 
     const QRect preferredGeometry = EMailOperationsPreferences().decryptVerifyPopupGeometry();

@@ -191,7 +191,7 @@ CertificateSelectionDialog::Private::Private(CertificateSelectionDialog *qq)
             q, SLOT(slotCurrentViewChanged(QAbstractItemView*)));
 
     updateLabelText();
-    q->setWindowTitle(i18n("Certificate Selection"));
+    q->setWindowTitle(i18nc("@title:window", "Certificate Selection"));
 }
 
 CertificateSelectionDialog::CertificateSelectionDialog(QWidget *parent)

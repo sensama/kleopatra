@@ -104,14 +104,14 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
         }
     }
     if (hasOutputs) {
-        setWindowTitle(i18n("Decrypt/Verify Files"));
+        setWindowTitle(i18nc("@title:window", "Decrypt/Verify Files"));
         m_saveButton = QDialogButtonBox::SaveAll;
         m_buttonBox->addButton(QDialogButtonBox::Discard);
         connect(m_buttonBox, &QDialogButtonBox::accepted, this, &DecryptVerifyFilesDialog::checkAccept);
     } else {
         outLabel->setVisible(false);
         m_outputLocationFNR->setVisible(false);
-        setWindowTitle(i18n("Verify Files"));
+        setWindowTitle(i18nc("@title:window", "Verify Files"));
         m_buttonBox->addButton(QDialogButtonBox::Close);
         connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     }

@@ -123,7 +123,7 @@ void OwnerTrustDialog::setFormattedCertificateName(const QString &formatted)
         return;
     }
     d->formattedCertificateName = formatted;
-    setWindowTitle(i18nc("@title", "Change Trust Level of %1", formatted));
+    setWindowTitle(i18nc("@title:window", "Change Trust Level of %1", formatted));
     d->ui.label->setText(i18nc("@info", "How much do you trust certifications made by <b>%1</b> to correctly verify authenticity of certificates?", formatted));
 }
 

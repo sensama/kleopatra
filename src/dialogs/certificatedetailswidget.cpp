@@ -580,7 +580,7 @@ GpgME::Key CertificateDetailsWidget::key() const
 CertificateDetailsDialog::CertificateDetailsDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Certificate Details"));
+    setWindowTitle(i18nc("@title:window", "Certificate Details"));
     auto l = new QVBoxLayout(this);
     l->addWidget(new CertificateDetailsWidget(this));
 

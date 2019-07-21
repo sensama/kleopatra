@@ -49,7 +49,7 @@ SigningCertificateSelectionDialog::SigningCertificateSelectionDialog(QWidget *pa
     : QDialog(parent),
       widget(new SigningCertificateSelectionWidget(this))
 {
-    setWindowTitle(i18n("Select Signing Certificates"));
+    setWindowTitle(i18nc("@title:window", "Select Signing Certificates"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(widget);
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);

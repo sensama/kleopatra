@@ -414,7 +414,7 @@ private:
             KDAB_SET_OBJECT_NAME(glay);
             KDAB_SET_OBJECT_NAME(vlay);
 
-            q->setWindowTitle(i18n("Select Certificates For Message"));
+            q->setWindowTitle(i18nc("@title:window", "Select Certificates for Message"));
 
             conflictTopLB.hide();
 
@@ -539,7 +539,7 @@ Protocol SignEncryptEMailConflictDialog::selectedProtocol() const
 
 void SignEncryptEMailConflictDialog::setSubject(const QString &subject)
 {
-    setWindowTitle(i18n("Select Certificates For Message \"%1\"", subject));
+    setWindowTitle(i18nc("@title:window", "Select Certificates for Message \"%1\"", subject));
 }
 
 void SignEncryptEMailConflictDialog::setSign(bool sign)

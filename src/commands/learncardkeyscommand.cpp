@@ -77,12 +77,12 @@ QStringList LearnCardKeysCommand::arguments() const
 
 QString LearnCardKeysCommand::errorCaption() const
 {
-    return i18n("Error Learning SmartCard");
+    return i18nc("@title:window", "Error Learning SmartCard");
 }
 
 QString LearnCardKeysCommand::successCaption() const
 {
-    return i18n("Finished Learning SmartCard");
+    return i18nc("@title:window", "Finished Learning SmartCard");
 }
 
 QString LearnCardKeysCommand::crashExitMessage(const QStringList &args) const

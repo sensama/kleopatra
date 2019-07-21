@@ -170,7 +170,7 @@ GpgME::Key SubKeysWidget::key() const
 SubKeysDialog::SubKeysDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Subkeys details"));
+    setWindowTitle(i18nc("@title:window", "Subkeys Details"));
     auto l = new QVBoxLayout(this);
     l->addWidget(new SubKeysWidget(this));
 

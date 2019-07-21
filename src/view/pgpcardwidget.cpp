@@ -275,7 +275,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     progress->setMinimum(0);
     progress->setModal(true);
     progress->setCancelButton(nullptr);
-    progress->setWindowTitle(i18n("Generating keys"));
+    progress->setWindowTitle(i18nc("@title:window", "Generating Keys"));
     progress->setLabel(new QLabel(i18n("This may take several minutes...")));
     GenKeyThread *workerThread = new GenKeyThread(params, mRealSerial);
     connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {

@@ -290,7 +290,7 @@ void DumpCertificateCommand::doStart()
     if (d->useDialog) {
         d->dialog = new DumpCertificateDialog;
         d->dialog->setAttribute(Qt::WA_DeleteOnClose);
-        d->dialog->setWindowTitle(i18n("Certificate Dump"));
+        d->dialog->setWindowTitle(i18nc("@title:window", "Certificate Dump"));
 
         connect(d->dialog, SIGNAL(updateRequested()),
                 this, SLOT(slotUpdateRequested()));

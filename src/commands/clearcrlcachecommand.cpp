@@ -70,12 +70,12 @@ QStringList ClearCrlCacheCommand::arguments() const
 
 QString ClearCrlCacheCommand::errorCaption() const
 {
-    return i18n("Clear CRL Cache Error");
+    return i18nc("@title:window", "Clear CRL Cache Error");
 }
 
 QString ClearCrlCacheCommand::successCaption() const
 {
-    return i18n("Clear CRL Cache Finished");
+    return i18nc("@title:window", "Clear CRL Cache Finished");
 }
 
 QString ClearCrlCacheCommand::crashExitMessage(const QStringList &args) const

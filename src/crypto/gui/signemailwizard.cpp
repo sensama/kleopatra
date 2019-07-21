@@ -125,7 +125,7 @@ public:
 SignEMailWizard::Private::Private(SignEMailWizard *qq)
     : q(qq), m_quickMode(false)
 {
-    q->setWindowTitle(i18n("Sign Mail Message"));
+    q->setWindowTitle(i18nc("@title:window", "Sign Mail Message"));
 
     std::vector<int> pageOrder;
     q->setSignerResolvePageValidator(std::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(q->signerResolvePage())));

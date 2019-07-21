@@ -397,7 +397,7 @@ CertifyCertificateDialog::~CertifyCertificateDialog() {}
 
 void CertifyCertificateDialog::setCertificateToCertify(const Key &key)
 {
-    setWindowTitle(i18nc("arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
+    setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
     d->selectUserIDsPage->setCertificateToCertify(key);
 }
 

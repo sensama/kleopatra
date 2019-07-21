@@ -241,7 +241,7 @@ void DecryptVerifyFilesController::Private::ensureWizardCreated()
     }
 
     std::unique_ptr<DecryptVerifyFilesWizard> w(new DecryptVerifyFilesWizard);
-    w->setWindowTitle(i18n("Decrypt/Verify Files"));
+    w->setWindowTitle(i18nc("@title:window", "Decrypt/Verify Files"));
     w->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);

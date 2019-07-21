@@ -211,7 +211,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
     label->setOpenExternalLinks(true);
     label->setTextInteractionFlags(Qt::TextBrowserInteraction);
     label->setWordWrap(true);
-    setWindowTitle(i18n("Update available!"));
+    setWindowTitle(i18nc("@title:window", "Update Available"));
     setWindowIcon(QIcon(QLatin1String("gpg4win")));
 
     lay->addWidget(logo, 0, 0);

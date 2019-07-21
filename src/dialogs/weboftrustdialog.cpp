@@ -38,7 +38,7 @@ WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
     if (size.isValid()) {
         resize(size);
     }
-    setWindowTitle(i18n("Certifications"));
+    setWindowTitle(i18nc("@title:window", "Certifications"));
 
     mWidget = new WebOfTrustWidget(this);
     auto l = new QVBoxLayout(this);

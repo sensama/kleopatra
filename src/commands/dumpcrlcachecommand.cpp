@@ -309,7 +309,7 @@ void DumpCrlCacheCommand::doStart()
 
     d->dialog = new DumpCrlCacheDialog;
     d->dialog->setAttribute(Qt::WA_DeleteOnClose);
-    d->dialog->setWindowTitle(i18n("CRL Cache Dump"));
+    d->dialog->setWindowTitle(i18nc("@title:window", "CRL Cache Dump"));
 
     connect(d->dialog, SIGNAL(updateRequested()),
             this, SLOT(slotUpdateRequested()));

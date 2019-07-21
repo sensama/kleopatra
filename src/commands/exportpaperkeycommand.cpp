@@ -111,7 +111,7 @@ void ExportPaperKeyCommand::pkProcFinished(int code, QProcess::ExitStatus status
     const Key key = d->key();
     printer.setDocName(QStringLiteral("0x%1-sec").arg(QString::fromLatin1(key.shortKeyID())));
     QPrintDialog printDialog(&printer, mParent);
-    printDialog.setWindowTitle(i18nc("@title", "Print secret key"));
+    printDialog.setWindowTitle(i18nc("@title:window", "Print Secret Key"));
 
     if (printDialog.exec() != QDialog::Accepted) {
         qCDebug(KLEOPATRA_LOG) << "Printing aborted.";

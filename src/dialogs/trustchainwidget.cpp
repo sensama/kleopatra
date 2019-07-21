@@ -95,7 +95,7 @@ TrustChainDialog::TrustChainDialog(QWidget *parent)
     : QDialog(parent)
 {
     resize(650, 330);
-    setWindowTitle(i18n("Trust Chain"));
+    setWindowTitle(i18nc("@title:window", "Trust Chain"));
 
     auto l = new QVBoxLayout(this);
     l->addWidget(new TrustChainWidget(this));

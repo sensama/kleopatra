@@ -74,7 +74,7 @@ static int log_level_to_int(const QString &loglevel)
 KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18n("Configure KWatchGnuPG"));
+    setWindowTitle(i18nc("@title:window", "Configure KWatchGnuPG"));
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);

@@ -169,7 +169,7 @@ ExportDialog::ExportDialog(QWidget *parent)
     if (size.isValid()) {
         resize(size);
     }
-    setWindowTitle(i18n("Export..."));
+    setWindowTitle(i18nc("@title:window", "Export"));
 
     auto l = new QVBoxLayout(this);
     l->addWidget(mWidget);

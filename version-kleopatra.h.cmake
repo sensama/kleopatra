@@ -1,1 +1,1 @@
-#define KLEOPATRA_VERSION_STRING "@kleopatra_version@"
+#define KLEOPATRA_VERSION_STRING "@kleopatra_version@ (@KDE_APPLICATIONS_VERSION@)"

@@ -216,7 +216,7 @@ static QString format_ids(const QStringList &ids)
             escapedIds << id.toHtmlEscaped();
         }
     }
-    return escapedIds.join(QStringLiteral("<br>"));
+    return escapedIds.join(QLatin1String("<br>"));
 }
 
 static QString make_tooltip(const QStringList &ids)
@@ -507,7 +507,7 @@ static void handleOwnerTrust(const std::vector<GpgME::ImportResult> &results)
                 "</para>"
                 "Is this your own key? (Set trust level to ultimate)",
                 QString::fromUtf8(fingerPr),
-                uids.join(QStringLiteral("</item><item>")));
+                uids.join(QLatin1String("</item><item>")));
 
             int k = KMessageBox::questionYesNo(nullptr, str, i18nc("@title:window",
                                                                "Secret key imported"));

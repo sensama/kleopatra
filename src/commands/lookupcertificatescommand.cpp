@@ -252,7 +252,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     startKeyListJob(CMS,     str);
 
     const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
-    if (rx.exactMatch(query) && !str.startsWith(QStringLiteral("0x"), Qt::CaseInsensitive)) {
+    if (rx.exactMatch(query) && !str.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)) {
         qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
         startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
     } else {

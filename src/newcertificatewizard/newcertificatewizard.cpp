@@ -242,7 +242,7 @@ static QString get_curve(const QComboBox *cb)
 static void parseAlgoString(const QString &algoString, int *size, Subkey::PubkeyAlgo *algo, QString &curve)
 {
     const auto split = algoString.split(QLatin1Char('/'));
-    bool isEncrypt = split.size() == 2 && split[1].contains(QStringLiteral("enc"));
+    bool isEncrypt = split.size() == 2 && split[1].contains(QLatin1String("enc"));
 
     // Normalize
     const auto lowered = split[0].toLower().remove(QLatin1Char('-'));

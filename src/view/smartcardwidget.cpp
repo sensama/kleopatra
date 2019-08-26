@@ -68,7 +68,7 @@ public:
         lay->addSpacing(10);
         lay->addWidget(new QLabel(QStringLiteral("\t\t") +
                        i18n("Kleopatra currently supports the following card types:") +
-                            QStringLiteral("<ul><li>") + supported.join(QStringLiteral("</li><li>")) +
+                            QStringLiteral("<ul><li>") + supported.join(QLatin1String("</li><li>")) +
                             QStringLiteral("</li></ul>")));
         lay->addSpacing(10);
         lay->addWidget(new QLabel(i18n("Refresh the view (F5) to update the smartcard status.")));

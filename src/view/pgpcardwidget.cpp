@@ -500,7 +500,7 @@ void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)
                                         Formatting::UserIDs |
                                         Formatting::Fingerprint);
     }
-    label->setToolTip(toolTips.join(QStringLiteral("<br/>")));
+    label->setToolTip(toolTips.join(QLatin1String("<br/>")));
     return;
 }
 

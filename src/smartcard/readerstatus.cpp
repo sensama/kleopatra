@@ -262,7 +262,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     }
     // the following only works for NKS v3...
     const auto chvStatus = QString::fromStdString(
-            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QStringLiteral(" "));
+            scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "no CHV-STATUS" << err.asString();
         ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + QString::fromUtf8(err.asString()));

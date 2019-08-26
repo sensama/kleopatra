@@ -487,7 +487,7 @@ public:
             ui.dsaRB->isChecked() ? Subkey::AlgoDSA :
             ui.rsaRB->isChecked() ? Subkey::AlgoRSA :
             ui.ecdsaRB->isChecked() ?
-                ui.ecdsaKeyCurvesCB->currentText() == QStringLiteral("ed25519") ? Subkey::AlgoEDDSA :
+                ui.ecdsaKeyCurvesCB->currentText() == QLatin1String("ed25519") ? Subkey::AlgoEDDSA :
                 Subkey::AlgoECDSA :
             Subkey::AlgoUnknown;
     }

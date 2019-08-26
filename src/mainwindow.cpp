@@ -195,7 +195,7 @@ public:
             q->setStatusBar(statusBar);
             auto statusLbl = new QLabel(i18nc("Compliance means that GnuPG is running in a more restricted mode e.g. to handle restricted documents.",
                                         // The germans want some extra sausage
-                                        "Compliance: %1", complianceMode == QStringLiteral("de-vs") ? QStringLiteral ("VS-NfD") : complianceMode));
+                                        "Compliance: %1", complianceMode == QLatin1String("de-vs") ? QStringLiteral ("VS-NfD") : complianceMode));
             statusBar->insertPermanentWidget(0, statusLbl);
 
         } else {

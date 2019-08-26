@@ -161,16 +161,16 @@ void GenRevokeCommand::doStart()
             const QString line = QString::fromUtf8(proc->readLine()).trimmed();
             // Command-fd is a stable interface, while this is all kind of hacky we
             // are on a deadline :-/
-            if (line == QStringLiteral("[GNUPG:] GET_BOOL gen_revoke.okay")) {
+            if (line == QLatin1String("[GNUPG:] GET_BOOL gen_revoke.okay")) {
                 proc->write("y\n");
-            } else if (line == QStringLiteral("[GNUPG:] GET_LINE ask_revocation_reason.code")) {
+            } else if (line == QLatin1String("[GNUPG:] GET_LINE ask_revocation_reason.code")) {
                 proc->write("0\n");
-            } else if (line == QStringLiteral("[GNUPG:] GET_LINE ask_revocation_reason.text")) {
+            } else if (line == QLatin1String("[GNUPG:] GET_LINE ask_revocation_reason.text")) {
                 proc->write("\n");
-            } else if (line == QStringLiteral("[GNUPG:] GET_BOOL openfile.overwrite.okay")) {
+            } else if (line == QLatin1String("[GNUPG:] GET_BOOL openfile.overwrite.okay")) {
                 // We asked before
                 proc->write("y\n");
-            } else if (line == QStringLiteral("[GNUPG:] GET_BOOL ask_revocation_reason.okay")) {
+            } else if (line == QLatin1String("[GNUPG:] GET_BOOL ask_revocation_reason.okay")) {
                 proc->write("y\n");
             }
         }

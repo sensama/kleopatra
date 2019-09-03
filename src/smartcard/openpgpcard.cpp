@@ -126,11 +126,11 @@ void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::
             }
             const auto usage = values[0];
             const auto fpr = values[1].toStdString();
-            if (usage == QLatin1String("1")) {
+            if (usage == QLatin1Char('1')) {
                 mMetaInfo.insert(std::string("SIG") + pair.first, fpr);
-            } else if (usage == QLatin1String("2")) {
+            } else if (usage == QLatin1Char('2')) {
                 mMetaInfo.insert(std::string("ENC") + pair.first, fpr);
-            } else if (usage == QLatin1String("3")) {
+            } else if (usage == QLatin1Char('3')) {
                 mMetaInfo.insert(std::string("AUTH") + pair.first, fpr);
             } else {
                 // Maybe more keyslots in the future?

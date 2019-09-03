@@ -320,7 +320,7 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
             continue;
         }
         found = true;
-        const bool disabled = rx.cap(1) == QLatin1String("!");
+        const bool disabled = rx.cap(1) == QLatin1Char('!');
         const QByteArray flags = rx.cap(3).toLatin1();
         const QByteArray rests = rx.cap(4).toLatin1();
         if (trust == Key::Ultimate)

@@ -38,6 +38,7 @@
 #include "smartcard/readerstatus.h"
 
 #include "dialogs/gencardkeydialog.h"
+#include "utils/gnupg-helper.h"
 
 #include <QProgressDialog>
 #include <QThread>
@@ -234,7 +235,8 @@ PGPCardWidget::PGPCardWidget():
 void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     const QString version = QString::fromStdString(card->cardVersion());
-    mIs21 = version == QLatin1String("2.1");
+
+    mIs21 = versionIsAtLeast("2.1", card->cardVersion().c_str());
     mVersionLabel->setText(i18nc("First placeholder is manufacturer, second placeholder is a version number",
                                  "%1 OpenPGP v%2 card", QString::fromStdString(card->manufacturer()),
                                  version));

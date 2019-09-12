@@ -238,6 +238,64 @@ QString Kleo::gpgConfListDir(const char *which)
     return QString();
 }
 
+static std::array<int, 3> getVersionFromString(const char *actual, bool &ok)
+{
+    std::array<int, 3> ret;
+    ok = false;
+
+    if (!actual) {
+        return ret;
+    }
+
+    QString versionString = QString::fromLatin1(actual);
+
+    // Try to fix it up
+    QRegExp rx(QLatin1String("(\\d+)\\.(\\d+)\\.(\\d+)(?:-svn\\d+)?.*"));
+    for (int i = 0; i < 3; i++) {
+        if (!rx.exactMatch(versionString)) {
+            versionString += QStringLiteral(".0");
+        } else {
+            ok = true;
+            break;
+        }
+    }
+
+    if (!ok) {
+        qCDebug(KLEOPATRA_LOG) << "Can't parse version " << actual;
+        return ret;
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        ret[i] = rx.cap(i + 1).toUInt(&ok);
+        if (!ok) {
+            return ret;
+        }
+    }
+
+    ok = true;
+    return ret;
+}
+
+bool Kleo::versionIsAtLeast(const char *minimum, const char *actual)
+{
+    if (!minimum || !actual) {
+        return false;
+    }
+    bool ok;
+    const auto minimum_version = getVersionFromString(minimum, ok);
+    if (!ok) {
+        return false;
+    }
+    const auto actual_version = getVersionFromString(actual, ok);
+    if (!ok) {
+        return false;
+    }
+
+    return !std::lexicographical_compare(std::begin(actual_version), std::end(actual_version),
+                                         std::begin(minimum_version), std::end(minimum_version));
+
+}
+
 bool Kleo::engineIsVersion(int major, int minor, int patch, GpgME::Engine engine)
 {
     static QMap<Engine, std::array<int, 3> > cachedVersions;
@@ -252,22 +310,16 @@ bool Kleo::engineIsVersion(int major, int minor, int patch, GpgME::Engine engine
         }
 
         const char *actual = GpgME::engineInfo(engine).version();
-        QRegExp rx(QLatin1String("(\\d+)\\.(\\d+)\\.(\\d+)(?:-svn\\d+)?.*"));
-        if (!rx.exactMatch(QString::fromUtf8(actual))) {
-            qCDebug(KLEOPATRA_LOG) << "Can't parse version " << actual;
-            return false;
-        }
         bool ok;
-        for (int i = 0; i < 3; ++i) {
-            ok = false;
-            actual_version[i] = rx.cap(i + 1).toUInt(&ok);
-            Q_ASSERT(ok);
-        }
+        actual_version = getVersionFromString(actual, ok);
 
         qCDebug(KLEOPATRA_LOG) << "Parsed" << actual << "as: "
                                << actual_version[0] << '.'
                                << actual_version[1] << '.'
                                << actual_version[2] << '.';
+        if (!ok) {
+            return false;
+        }
         cachedVersions.insert(engine, actual_version);
     } else {
         actual_version = cachedVersions.value(engine);

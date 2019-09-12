@@ -82,6 +82,11 @@ enum GpgME::UserID::Validity keyValidity(const GpgME::Key &key);
  * Takes Gpg Quirks into account and might handle future
  * changes in GnuPG Output. */
 QString stringFromGpgOutput(const QByteArray &ba);
+
+/* Check if a minimum version is there. Strings should be in the format:
+ * 1.2.3 */
+
+bool versionIsAtLeast(const char *minimum, const char *actual);
 }
 
 #endif // __KLEOPATRA_GNUPGHELPER_H__

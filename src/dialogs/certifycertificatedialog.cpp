@@ -131,7 +131,7 @@ SelectUserIDsPage::SelectUserIDsPage(QWidget *parent) : QWizardPage(parent), m_u
 {
     QVBoxLayout *const layout = new QVBoxLayout(this);
     QLabel *const label = new QLabel;
-    label->setText(i18n("<b>Step 1:</b> Please select the names and e-mail adresses you wish to certify."));
+    label->setText(i18n("<b>Step 1:</b> Please select the names and email addresses you wish to certify."));
     layout->addWidget(label);
     m_listView = new QListView;
     m_listView->setModel(&m_userIDModel);

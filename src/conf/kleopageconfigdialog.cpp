@@ -64,6 +64,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QProcess>
+#include <QFile>
 
 #include <KCModule>
 #include <KDesktopFile>
@@ -246,7 +247,20 @@ void KleoPageConfigDialog::addModule(const QString &name)
     const QString path = qApp->applicationDirPath() +
                          QLatin1String("/../share/kservices5/") +
                          name + QLatin1String(".desktop");
+
+    if (!QFile::exists(path)) {
+        qCDebug(KLEOPATRA_LOG) << "Ignoring module for:" << name
+            << "because the corresponding desktop file does not exist.";
+        return;
+    }
+
     KDesktopFile desktopModule(path);
+
+    if (desktopModule.noDisplay()) {
+        qCDebug(KLEOPATRA_LOG) << "Ignoring module for:" << name
+            << "because it has no display set.";
+        return;
+    }
 
     KCModule *mod = loadModule(name);
     mModules << mod;

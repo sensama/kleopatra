@@ -154,7 +154,7 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
       openCertificateManagerAction(i18n("&Open Certificate Manager..."), q),
       configureAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("&Configure %1...", KAboutData::applicationData().componentName()), q),
       aboutAction(QIcon::fromTheme(QStringLiteral("kleopatra")), i18n("&About %1...", KAboutData::applicationData().componentName()), q),
-      quitAction(i18n("&Shutdown Kleopatra"), q),
+      quitAction(QIcon::fromTheme(QStringLiteral("application-exit")),i18n("&Shutdown Kleopatra"), q),
       clipboardMenu(q),
       cardMenu(i18n("SmartCard")),
       updateCardStatusAction(i18n("Update Card Status"), q),

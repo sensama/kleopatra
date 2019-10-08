@@ -30,13 +30,11 @@
     your version.
 */
 
-#include <config-kleopatra.h>
-
+#include <version-kwatchgnupg.h>
 #include "aboutdata.h"
 
 #include <KLocalizedString>
 
-static const char kwatchgnupg_version[] = "1.0";
 
 struct about_data {
     const char *name;
@@ -51,7 +49,7 @@ static const about_data authors[] = {
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kwatchgnupg"), i18n("KWatchGnuPG"),
-                 QLatin1String(kwatchgnupg_version), i18n("GnuPG log viewer"), KAboutLicense::GPL,
+                 QLatin1String(KWATCHGNUPG_VERSION_STRING), i18n("GnuPG log viewer"), KAboutLicense::GPL,
                  i18n("(c) 2004 Klar\xC3\xA4lvdalens Datakonsult AB\n"))
 {
     using ::authors;

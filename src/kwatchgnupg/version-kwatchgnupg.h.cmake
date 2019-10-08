@@ -1,0 +1,1 @@
+#define KWATCHGNUPG_VERSION_STRING "@kwatchgnupg_version@ (@KDE_APPLICATIONS_VERSION@)"

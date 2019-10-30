@@ -245,7 +245,8 @@ void Command::applyWindowID(QWidget *w) const
             if (QWidget *pw = QWidget::find(d->parentWId)) {
                 w->setParent(pw, w->windowFlags());
             } else {
-                KWindowSystem::setMainWindow(w, d->parentWId);
+                w->setAttribute(Qt::WA_NativeWindow, true);
+                KWindowSystem::setMainWindow(w->windowHandle(), d->parentWId);
             }
         } else {
             w->setParent(d->parentWidgetOrView(), w->windowFlags());

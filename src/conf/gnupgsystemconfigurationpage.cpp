@@ -31,7 +31,7 @@
 */
 
 #include <config-kleopatra.h>
-
+#include <kconfigwidgets_version.h>
 #include "gnupgsystemconfigurationpage.h"
 
 #include <libkleo/cryptoconfigmodule.h>
@@ -55,7 +55,12 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
                                      this);
     lay->addWidget(mWidget);
 
+
+#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
     connect(mWidget, &CryptoConfigModule::changed, this, QOverload<>::of(&Kleo::Config::GnuPGSystemConfigurationPage::changed));
+#else
+    connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);
+#endif
 
     load();
 }

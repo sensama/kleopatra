@@ -233,7 +233,8 @@ static void apply_window_id(QWidget *widget, const QString &winIdStr)
     if (QWidget *pw = QWidget::find(wid)) {
         widget->setParent(pw, widget->windowFlags());
     } else {
-        KWindowSystem::setMainWindow(widget, wid);
+        widget->setAttribute(Qt::WA_NativeWindow, true);
+        KWindowSystem::setMainWindow(widget->windowHandle(), wid);
     }
 }
 

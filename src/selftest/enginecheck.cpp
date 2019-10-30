@@ -68,9 +68,9 @@ static QString engine_name(GpgME::Engine eng)
 static QString test_name(GpgME::Engine eng)
 {
     static const char *names[] = {
-        I18N_NOOP2("@title", "GPG (OpenPGP Backend) installation"),
-        I18N_NOOP2("@title", "GpgSM (S/MIME Backend) installation"),
-        I18N_NOOP2("@title", "GpgConf (Configuration) installation"),
+        I18NC_NOOP("@title", "GPG (OpenPGP Backend) installation"),
+        I18NC_NOOP("@title", "GpgSM (S/MIME Backend) installation"),
+        I18NC_NOOP("@title", "GpgConf (Configuration) installation"),
     };
     return i18nc("@title", names[eng]);
 }

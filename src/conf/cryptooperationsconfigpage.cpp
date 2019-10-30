@@ -31,6 +31,7 @@
 */
 
 #include <config-kleopatra.h>
+#include <kconfigwidgets_version.h>
 
 #include "cryptooperationsconfigpage.h"
 
@@ -48,8 +49,11 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *pa
     lay->setContentsMargins(0, 0, 0, 0);
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
+#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
     connect(mWidget, &CryptoOperationsConfigWidget::changed, this, QOverload<>::of(&Kleo::Config::CryptoOperationsConfigurationPage::changed));
-
+#else
+    connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::markAsChanged);
+#endif
     load();
 }
 

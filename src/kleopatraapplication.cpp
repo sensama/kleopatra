@@ -542,7 +542,7 @@ void KleopatraApplication::openConfigDialogWithForeignParent(WId parentWId)
         if (QWidget *pw = QWidget::find(parentWId)) {
             d->configureDialog->setParent(pw, d->configureDialog->windowFlags());
         } else {
-            KWindowSystem::setMainWindow(d->configureDialog, parentWId);
+            KWindowSystem::setMainWindow(d->configureDialog->windowHandle(), parentWId);
         }
     }
 

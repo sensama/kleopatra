@@ -53,7 +53,7 @@ SelfTestImplementation::SelfTestImplementation(const QString &title)
     : SelfTest(),
       m_name(title),
       m_error(),
-      m_explaination(),
+      m_explanation(),
       m_proposedFix(),
       m_skipped(false),
       m_passed(false)

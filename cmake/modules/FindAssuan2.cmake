@@ -177,7 +177,7 @@ else() # not WIN32
               if ( NOT _assuan2_${_name}_lib )
                 if ( ASSUAN2_FOUND )
                   set( ASSUAN2_FOUND false )
-                  set( _not_found_reason "dependant library ${_name} wasn't found" )
+                  set( _not_found_reason "dependent library ${_name} wasn't found" )
                 endif()
               endif()
 

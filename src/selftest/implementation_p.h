@@ -60,7 +60,7 @@ public:
     }
     QString longError() const override
     {
-        return m_explaination;
+        return m_explanation;
     }
     QString proposedFix() const override
     {
@@ -82,7 +82,7 @@ protected:
 protected:
     const QString m_name;
     QString m_error;
-    QString m_explaination;
+    QString m_explanation;
     QString m_proposedFix;
     bool m_skipped : 1;
     bool m_passed : 1;

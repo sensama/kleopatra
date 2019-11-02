@@ -71,7 +71,7 @@ public:
 
         m_error = i18n("Obsolete registry entries found");
 
-        m_explaination
+        m_explanation
             = xi18nc("@info",
                      "<para>Kleopatra detected an obsolete registry key (<resource>%1\\%2</resource>), "
                      "added by either a previous <application>Gpg4win</application> version or "
@@ -112,7 +112,7 @@ public:
 
         m_passed = true;
         m_error.clear();
-        m_explaination.clear();
+        m_explanation.clear();
         m_proposedFix.clear();
         return true;
     }

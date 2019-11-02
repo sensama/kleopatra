@@ -75,7 +75,7 @@ public:
         if (command.error()) {
             m_passed = false;
             m_error = i18n("not reachable");
-            m_explaination = xi18nc("@info",
+            m_explanation = xi18nc("@info",
                                     "Could not connect to UiServer: <message>%1</message>",
                                     command.errorString().toHtmlEscaped());
             m_proposedFix = xi18nc("@info",
@@ -84,7 +84,7 @@ public:
         } else if (command.serverPid() != QCoreApplication::applicationPid()) {
             m_passed = false;
             m_error = i18n("multiple instances");
-            m_explaination = xi18nc("@info",
+            m_explanation = xi18nc("@info",
                                     "It seems another <application>Kleopatra</application> is running (with process-id %1)",
                                     command.serverPid());
             m_proposedFix = xi18nc("@info",

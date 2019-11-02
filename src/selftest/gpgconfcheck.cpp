@@ -91,7 +91,7 @@ public:
 
         if (!m_passed) {
             m_error = i18nc("self-test did not pass", "Failed");
-            m_explaination =
+            m_explanation =
                 i18n("There was an error executing the GnuPG configuration self-check for %2:\n"
                      "  %1\n"
                      "You might want to execute \"gpgconf %3\" on the command line.\n",
@@ -99,7 +99,7 @@ public:
                      QStringLiteral("--check-options ") + (m_component.isEmpty() ? QStringLiteral("") : m_component));
 
             // To avoid modifying the l10n
-            m_explaination.replace(QLatin1Char('\n'), QStringLiteral("<br/>"));
+            m_explanation.replace(QLatin1Char('\n'), QStringLiteral("<br/>"));
         }
     }
 

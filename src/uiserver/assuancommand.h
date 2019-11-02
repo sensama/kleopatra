@@ -74,7 +74,7 @@ class AssuanCommandFactory;
   <h3>Implementing a new AssuanCommand</h3>
 
   You do not directly inherit AssuanCommand, unless you want to
-  deal with implementing low-level, repetetive things like name()
+  deal with implementing low-level, repetitive things like name()
   in terms of staticName(). Assuming you don't, then you inherit
   your command class from AssuanCommandMixin, passing your class
   as the template argument to AssuanCommandMixin, like this:

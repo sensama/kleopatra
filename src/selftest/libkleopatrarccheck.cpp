@@ -74,7 +74,7 @@ public:
         // The building of the following string is a bit of a hack to avoid
         // that xi18nc does not escape the html tags while not breaking
         // the historic string.
-        m_explaination
+        m_explanation
             = xi18nc("@info",
                      "<para>Kleopatra detected the following errors in the libkleopatrarc configuration:</para>"
                      "%1", QStringLiteral("%1")).arg(QStringLiteral("<ol><li>") +

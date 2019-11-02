@@ -372,7 +372,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                                                                   fi.dir().dirName());
             }
             if (signedDataFileName.isEmpty()) {
-                qCDebug(KLEOPATRA_LOG) << "No signed data selected. Verify abortet.";
+                qCDebug(KLEOPATRA_LOG) << "No signed data selected. Verify aborted.";
             } else {
                 qCDebug(KLEOPATRA_LOG) << "Detached verify: " << cFile.fileName << " Data: " << signedDataFileName;
                 std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);

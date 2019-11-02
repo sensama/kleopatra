@@ -74,7 +74,7 @@ using namespace KMime::Types;
 //
 
 /*
-  This code implements the following conflict detection algortihm:
+  This code implements the following conflict detection algorithm:
 
   1. There is no conflict if and only if we have a Perfect Match.
   2. A Perfect Match is defined as:

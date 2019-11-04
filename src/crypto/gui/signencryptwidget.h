@@ -103,6 +103,9 @@ public:
     /** Remove a Recipient key */
     void removeRecipient(const GpgME::Key &key);
 
+    /** Validate that each line edit with content has a key. */
+    bool validate();
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();

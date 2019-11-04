@@ -55,6 +55,7 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KMessageBox>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -527,4 +528,17 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
             mSigChk->setChecked(false);
         }
     }
+}
+
+bool SignEncryptWidget::validate()
+{
+    for (const auto edit: mRecpWidgets) {
+        if (!edit->isEmpty() && edit->key().isNull()) {
+            KMessageBox::error(this, i18nc("%1 is user input that could not be found",
+                        "Could not find a key for '%1'", edit->text().toHtmlEscaped()),
+                    i18n("Failed to find recipient"), KMessageBox::Notify);
+            return false;
+        }
+    }
+    return true;
 }

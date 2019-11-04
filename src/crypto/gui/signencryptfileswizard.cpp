@@ -161,6 +161,9 @@ public:
     {
         bool sign = !mWidget->signKey().isNull();
         bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
+        if (!mWidget->validate()) {
+            return false;
+        }
         mWidget->saveOwnKeys();
         if (mUseOutputDirChk->isVisible()) {
             KConfigGroup archCfg(KSharedConfig::openConfig(), "SignEncryptFilesWizard");

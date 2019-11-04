@@ -254,6 +254,13 @@ public:
 
     void toggleSmartcardView()
     {
+        const auto coll = q->actionCollection();
+        if (coll) {
+            auto act = coll->action(QStringLiteral("pad_view"));
+            if (act) {
+                act->setChecked(false);
+            }
+        }
         if (ui.stackWidget->currentWidget() == ui.scWidget) {
             ui.stackWidget->setCurrentWidget(ui.searchTab);
             checkWelcomePage();
@@ -264,6 +271,13 @@ public:
 
     void togglePadView()
     {
+        const auto coll = q->actionCollection();
+        if (coll) {
+            auto act = coll->action(QStringLiteral("manage_smartcard"));
+            if (act) {
+                act->setChecked(false);
+            }
+        }
         if (ui.stackWidget->currentWidget() == ui.padWidget) {
             ui.stackWidget->setCurrentWidget(ui.searchTab);
             checkWelcomePage();

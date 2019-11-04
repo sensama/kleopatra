@@ -35,7 +35,7 @@
 
 // Includes the real implementation
 
-#if !HAVE_QDBUS && defined(Q_OS_WIN)
+#if !HAVE_QDBUS && defined(_WIN32)
 # include "kuniqueservice_win.cpp"
 #elif HAVE_QDBUS
 # include "kuniqueservice_dbus.cpp"

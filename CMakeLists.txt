@@ -5,17 +5,17 @@ cmake_minimum_required(VERSION 3.5)
 project(kleopatra VERSION ${kleopatra_version})
 # Add version suffix for internal usage of the version string
 set(kleopatra_version ${kleopatra_version}${KLEOPATRA_VERSION_SUFFIX})
-set(KDE_APPLICATIONS_VERSION "19.11.80")
+set(KDE_APPLICATIONS_VERSION "20.03.70")
 
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.63.0")
+set(KF5_MIN_VERSION "5.64.0")
 set(KMIME_VERSION "5.12.40")
 set(LIBKLEO_VERSION "5.12.40")
-set(QT_REQUIRED_VERSION "5.11.0")
+set(QT_REQUIRED_VERSION "5.12.0")
 set(GPGME_REQUIRED_VERSION "1.8.0")
 
 find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)

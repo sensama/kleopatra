@@ -31,7 +31,6 @@
 */
 
 #include <config-kleopatra.h>
-#include <kconfigwidgets_version.h>
 #include "smimevalidationconfigurationpage.h"
 #include "smimevalidationconfigurationwidget.h"
 
@@ -49,11 +48,7 @@ SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *pare
     mWidget = new SMimeValidationConfigurationWidget(this);
     lay->addWidget(mWidget);
 
-#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
-    connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, QOverload<>::of(&Kleo::Config::SMimeValidationConfigurationPage::changed));
-#else
     connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, &Kleo::Config::SMimeValidationConfigurationPage::markAsChanged);
-#endif
     load();
 }
 

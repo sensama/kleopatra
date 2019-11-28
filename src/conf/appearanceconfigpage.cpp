@@ -31,7 +31,6 @@
 */
 
 #include <config-kleopatra.h>
-#include <kconfigwidgets_version.h>
 #include "appearanceconfigpage.h"
 
 #include "appearanceconfigwidget.h"
@@ -50,11 +49,7 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent, const 
     mWidget = new AppearanceConfigWidget(this);
     lay->addWidget(mWidget);
 
-#if KCONFIGWIDGETS_VERSION < QT_VERSION_CHECK(5, 64, 0)
-    connect(mWidget, &AppearanceConfigWidget::changed, this, QOverload<>::of(&Kleo::Config::AppearanceConfigurationPage::changed));
-#else
     connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::markAsChanged);
-#endif
 
     load();
 }

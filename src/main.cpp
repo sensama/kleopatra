@@ -38,7 +38,7 @@
 #include "kleopatraapplication.h"
 #include "mainwindow.h"
 
-#include <kdelibs4configmigrator.h>
+#include <Kdelibs4ConfigMigrator>
 
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
@@ -71,8 +71,8 @@
 #include "kleopatra_options.h"
 
 #include <KLocalizedString>
-#include <kiconloader.h>
-#include <kmessagebox.h>
+#include <KIconLoader>
+#include <KMessageBox>
 #include <KCrash>
 
 #include <QTextDocument> // for Qt::escape

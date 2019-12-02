@@ -38,10 +38,10 @@
 
 #include <QGpgME/Protocol>
 
-#include <kmessagebox.h>
+#include <KMessageBox>
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
-#include <kconfig.h>
+#include <KConfig>
 #include <QSpinBox>
 
 #include <QLabel>

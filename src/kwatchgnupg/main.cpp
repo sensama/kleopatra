@@ -34,10 +34,10 @@
 
 #include "aboutdata.h"
 #include "kwatchgnupgmainwin.h"
-#include <kdelibs4configmigrator.h>
+#include <Kdelibs4ConfigMigrator>
 #include "utils/kuniqueservice.h"
 
-#include <kmessagebox.h>
+#include <KMessageBox>
 #include <KLocalizedString>
 #include <KCrash>
 #include "kwatchgnupg_debug.h"

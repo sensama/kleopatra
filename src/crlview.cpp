@@ -35,8 +35,8 @@
 #include "crlview.h"
 
 #include <KLocalizedString>
-#include <kprocess.h>
-#include <kmessagebox.h>
+#include <KProcess>
+#include <KMessageBox>
 #include <QPushButton>
 #include <KStandardGuiItem>
 

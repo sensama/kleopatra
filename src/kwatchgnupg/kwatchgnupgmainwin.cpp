@@ -42,16 +42,16 @@
 
 #include "kdlogtextwidget.h"
 
-#include <kmessagebox.h>
+#include <KMessageBox>
 #include <KLocalizedString>
 #include <QApplication>
 #include <QAction>
-#include <kactioncollection.h>
-#include <kstandardaction.h>
-#include <kprocess.h>
-#include <kconfig.h>
-#include <kedittoolbar.h>
-#include <kshortcutsdialog.h>
+#include <KActionCollection>
+#include <KStandardAction>
+#include <KProcess>
+#include <KConfig>
+#include <KEditToolBar>
+#include <KShortcutsDialog>
 #include <QIcon>
 #include <KConfigGroup>
 

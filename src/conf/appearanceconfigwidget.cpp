@@ -43,12 +43,12 @@
 #include "Libkleo/Dn"
 #include "Libkleo/DNAttributeOrderConfigWidget"
 
-#include <kicondialog.h>
+#include <KIconDialog>
 #include <QIcon>
 
-#include <kconfig.h>
+#include <KConfig>
 #include <KLocalizedString>
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 
 #include <QColor>
 #include <QFont>

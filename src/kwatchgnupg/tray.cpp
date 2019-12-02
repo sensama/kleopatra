@@ -37,7 +37,7 @@
 
 #include "kwatchgnupg_debug.h"
 #include <KLocalizedString>
-#include <kiconloader.h>
+#include <KIconLoader>
 
 KWatchGnuPGTray::KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin)
     : KStatusNotifierItem(mainwin)

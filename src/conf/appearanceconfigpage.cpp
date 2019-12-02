@@ -35,7 +35,7 @@
 
 #include "appearanceconfigwidget.h"
 
-#include <kmessagebox.h>
+#include <KMessageBox>
 
 #include <QVBoxLayout>
 

@@ -38,7 +38,7 @@
 #include "Libkleo/FileNameRequester"
 
 #include <KLocalizedString>
-#include <kconfig.h>
+#include <KConfig>
 #include <KPluralHandlingSpinBox>
 
 #include <QVBoxLayout>

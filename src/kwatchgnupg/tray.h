@@ -34,7 +34,7 @@
 #define TRAY_H
 
 #include <QIcon>
-#include <kstatusnotifieritem.h>
+#include <KStatusNotifierItem>
 
 class KWatchGnuPGMainWindow;
 

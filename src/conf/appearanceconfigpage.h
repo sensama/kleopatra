@@ -33,7 +33,7 @@
 #ifndef KLEOPATRA_CONFIG_APPEARANCECONFIGPAGE_H
 #define KLEOPATRA_CONFIG_APPEARANCECONFIGPAGE_H
 
-#include <kcmodule.h>
+#include <KCModule>
 namespace Kleo
 {
 namespace Config

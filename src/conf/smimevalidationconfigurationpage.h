@@ -32,7 +32,7 @@
 #ifndef KLEOPATRA_SMIMEVALIDATIONCONFIGURATIONPAGE_H
 #define KLEOPATRA_SMIMEVALIDATIONCONFIGURATIONPAGE_H
 
-#include <kcmodule.h>
+#include <KCModule>
 namespace Kleo
 {
 namespace Config

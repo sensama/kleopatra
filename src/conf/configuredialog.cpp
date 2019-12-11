@@ -37,9 +37,7 @@
 
 #include "configuredialog.h"
 
-#include <KWindowSystem>
 #include <KConfig>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -61,9 +59,6 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
 {
     setFaceType(KPageDialog::List);
     setWindowTitle(i18nc("@title:window", "Configure"));
-    KWindowSystem::setIcons(winId(), qApp->windowIcon().pixmap(IconSize(KIconLoader::Desktop), IconSize(KIconLoader::Desktop)),
-                            qApp->windowIcon().pixmap(IconSize(KIconLoader::Small), IconSize(KIconLoader::Small)));
-
     addModule(QStringLiteral("kleopatra_config_dirserv"));
     addModule(QStringLiteral("kleopatra_config_appear"));
     addModule(QStringLiteral("kleopatra_config_cryptooperations"));

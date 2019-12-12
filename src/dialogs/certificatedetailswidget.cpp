@@ -31,6 +31,7 @@
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
+#include "utils/remarks.h"
 
 #include <libkleo/formatting.h>
 #include <libkleo/dn.h>
@@ -132,7 +133,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     ui.userIDTable->clear();
 
-    QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level") };
+    QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags") };
     if (canRevokeUID) {
         headers << QString();
     }
@@ -203,6 +204,15 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(2, Qt::DecorationRole, trustIcon);
         item->setData(2, Qt::ToolTipRole, toolTip);
 
+        GpgME::Error err;
+        QStringList remarkList;
+        for (const auto &rem: uid.remarks(Remarks::remarkKeys(), err)) {
+            remarkList << QString::fromStdString(rem);
+        }
+        const auto remark = remarkList.join(QStringLiteral("; "));
+        item->setData(3, Qt::DisplayRole, remark);
+        item->setData(3, Qt::ToolTipRole, toolTip);
+
         ui.userIDTable->addTopLevelItem(item);
 
         if (canRevokeUID) {
@@ -214,6 +224,9 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
                             q, [this, uid]() { revokeUID(uid); });
             ui.userIDTable->setItemWidget(item, 4, button);
         }
+    }
+    if (!Remarks::remarksEnabled()) {
+        ui.userIDTable->hideColumn(3);
     }
 }
 
@@ -331,7 +344,11 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
         ui.userIDTable->setEnabled(false);
         connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                q, [this]() { ui.userIDTable->setEnabled(true); });
+                q, [this]() {
+            ui.userIDTable->setEnabled(true);
+            // Trigger an update when done
+            q->setKey(key);
+        });
         cmd->start();
     });
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
@@ -564,6 +581,8 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
 
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
+    ctx->addKeyListMode(GpgME::Signatures);
+    ctx->addKeyListMode(GpgME::SignatureNotations);
 
     // Windows QGpgME new style connect problem makes this necessary.
     connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),

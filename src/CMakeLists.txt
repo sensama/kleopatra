@@ -88,6 +88,7 @@ set(_kleopatra_SRCS
   utils/auditlog.cpp
   utils/clipboardmenu.cpp
   utils/kuniqueservice.cpp
+  utils/remarks.cpp
 
   selftest/selftest.cpp
   selftest/enginecheck.cpp
@@ -111,6 +112,7 @@ set(_kleopatra_SRCS
   view/welcomewidget.cpp
 
   dialogs/certificateselectiondialog.cpp
+  dialogs/certifywidget.cpp
   dialogs/expirydialog.cpp
   dialogs/lookupcertificatesdialog.cpp
   dialogs/ownertrustdialog.cpp
@@ -262,7 +264,6 @@ if(KLEO_MODEL_TEST)
 endif()
 
 ki18n_wrap_ui(_kleopatra_SRCS
-  dialogs/certificationoptionswidget.ui
   dialogs/expirydialog.ui
   dialogs/lookupcertificatesdialog.ui
   dialogs/ownertrustdialog.ui

@@ -3,6 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
+                  2019 g10code GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,378 +33,99 @@
 
 #include <config-kleopatra.h>
 
+#include "kleopatra_debug.h"
+
 #include "certifycertificatedialog.h"
 
-#include "certifycertificatedialog_p.h"
-
-#include <utils/kleo_assert.h>
+#include "certifywidget.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>
+#include <KStandardGuiItem>
+#include <KSharedConfig>
+#include <KConfigGroup>
+#include <KMessageBox>
 
-#include <QGridLayout>
-#include <QStandardItem>
-#include <QListView>
 #include <QVBoxLayout>
-#include <QWizardPage>
-#include <QCheckBox>
-#include <QLabel>
-
-#include <QTextDocument> // Qt::escape
+#include <QDialogButtonBox>
+#include <QPushButton>
 
 #include <gpg-error.h>
 
 
 using namespace GpgME;
 using namespace Kleo;
-using namespace Kleo::Dialogs;
-using namespace Kleo::Dialogs::CertifyCertificateDialogPrivate;
-
-void UserIDModel::setCertificateToCertify(const Key &key)
-{
-    m_key = key;
-    clear();
-    const std::vector<UserID> ids = key.userIDs();
-    for (unsigned int i = 0; i < ids.size(); ++i) {
-        QStandardItem *const item = new QStandardItem;
-        item->setText(Formatting::prettyUserID(key.userID(i)));
-        item->setData(i, UserIDIndex);
-        item->setCheckable(true);
-        item->setEditable(false);
-        appendRow(item);
-    }
-}
-
-void UserIDModel::setCheckedUserIDs(const std::vector<unsigned int> &uids)
-{
-    std::vector<unsigned int> sorted = uids;
-    std::sort(sorted.begin(), sorted.end());
-    for (int i = 0, end = rowCount(); i != end; ++i) {
-        item(i)->setCheckState(std::binary_search(sorted.begin(), sorted.end(), i) ? Qt::Checked : Qt::Unchecked);
-    }
-}
-
-std::vector<unsigned int> UserIDModel::checkedUserIDs() const
-{
-    std::vector<unsigned int> ids;
-    for (int i = 0; i < rowCount(); ++i)
-        if (item(i)->checkState() == Qt::Checked) {
-            ids.push_back(item(i)->data(UserIDIndex).toUInt());
-        }
-    return ids;
-}
-
-void SecretKeysModel::setSecretKeys(const std::vector<Key> &keys)
-{
-    clear();
-    m_secretKeys = keys;
-    for (unsigned int i = 0; i < m_secretKeys.size(); ++i) {
-        const Key key = m_secretKeys[i];
-        QStandardItem *const item = new QStandardItem;
-        item->setText(Formatting::formatForComboBox(key));
-        item->setData(i, IndexRole);
-        item->setEditable(false);
-        appendRow(item);
-    }
-}
-
-std::vector<GpgME::Key> SecretKeysModel::secretKeys() const
-{
-    return m_secretKeys;
-}
-
-Key SecretKeysModel::keyFromItem(const QStandardItem *item) const
-{
-    Q_ASSERT(item);
-    const unsigned int idx = item->data(IndexRole).toUInt();
-    Q_ASSERT(idx < m_secretKeys.size());
-    return m_secretKeys[idx];
-}
-
-Key SecretKeysModel::keyFromIndex(const QModelIndex &idx) const
-{
-    return keyFromItem(itemFromIndex(idx));
-}
-
-SelectUserIDsPage::SelectUserIDsPage(QWidget *parent) : QWizardPage(parent), m_userIDModel()
-{
-    QVBoxLayout *const layout = new QVBoxLayout(this);
-    QLabel *const label = new QLabel;
-    label->setText(i18n("<b>Step 1:</b> Please select the names and email addresses you wish to certify."));
-    layout->addWidget(label);
-    m_listView = new QListView;
-    m_listView->setModel(&m_userIDModel);
-    layout->addWidget(m_listView, 1);
-    m_label = new QLabel;
-    layout->addWidget(m_label);
-    connect(&m_userIDModel, &QStandardItemModel::itemChanged, this, &QWizardPage::completeChanged);
-}
-
-bool SelectUserIDsPage::isComplete() const
-{
-    return !selectedUserIDs().empty();
-}
-
-void SelectUserIDsPage::setSelectedUserIDs(const std::vector<unsigned int> &uids)
-{
-    m_userIDModel.setCheckedUserIDs(uids);
-}
-
-std::vector<unsigned int> SelectUserIDsPage::selectedUserIDs() const
-{
-    return m_userIDModel.checkedUserIDs();
-}
-
-void SelectUserIDsPage::setCertificateToCertify(const Key &key)
-{
-    m_label->setText(i18n("Fingerprint: <b>%1</b>",
-                     Formatting::prettyID(key.primaryFingerprint())) + QStringLiteral("<br/>") +
-                     i18n("<i>Only the fingerprint clearly identifies the key and its owner.</i>"));
-    m_userIDModel.setCertificateToCertify(key);
-
-}
-
-SelectCheckLevelPage::SelectCheckLevelPage(QWidget *parent) : QWizardPage(parent), m_ui()
-{
-    m_ui.setupUi(this);
-}
-
-unsigned int SelectCheckLevelPage::checkLevel() const
-{
-    if (m_ui.checkLevelNotCheckedRB->isChecked()) {
-        return 1;
-    }
-    if (m_ui.checkLevelCasualRB->isChecked()) {
-        return 2;
-    }
-    if (m_ui.checkLevelThoroughlyRB->isChecked()) {
-        return 3;
-    }
-    Q_ASSERT(!"No check level radiobutton checked");
-    return 0;
-}
-
-OptionsPage::OptionsPage(QWidget *parent) : QWizardPage(parent), m_ui()
-{
-    m_ui.setupUi(this);
-    m_ui.keyListView->setModel(&m_model);
-    connect(m_ui.keyListView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &QWizardPage::completeChanged);
-    setCommitPage(true);
-    setButtonText(QWizard::CommitButton, i18n("Certify"));
-}
-
-bool OptionsPage::exportableCertificationSelected() const
-{
-    return m_ui.exportableSignatureRB->isChecked();
-}
-
-void OptionsPage::setCertificatesWithSecretKeys(const std::vector<Key> &keys)
-{
-    Q_ASSERT(!keys.empty());
-    m_model.setSecretKeys(keys);
-    if (keys.size() == 1) {
-        m_ui.stackedWidget->setCurrentWidget(m_ui.singleKeyPage);
-        m_ui.singleKeyLabel->setText(i18n("Certification will be performed using certificate %1.", Formatting::prettyNameAndEMail(keys[0])));
-    } else {
-        m_ui.stackedWidget->setCurrentWidget(m_ui.multipleKeysPage);
-    }
-    Q_EMIT completeChanged();
-}
-
-Key OptionsPage::selectedSecretKey() const
-{
-    if (m_model.secretKeys().size() == 1) {
-        return m_model.secretKeys().at(0);
-    }
-    const QModelIndexList idxs = m_ui.keyListView->selectionModel()->selectedIndexes();
-    Q_ASSERT(idxs.size() <= 1);
-    return idxs.isEmpty() ? Key() : m_model.keyFromIndex(idxs[0]);
-}
-
-bool OptionsPage::sendToServer() const
-{
-    return m_ui.sendToServerCB->isChecked();
-}
-
-bool OptionsPage::validatePage()
-{
-    Q_EMIT nextClicked();
-    return true;
-}
-
-bool OptionsPage::isComplete() const
-{
-    return !selectedSecretKey().isNull();
-}
-
-SummaryPage::SummaryPage(QWidget *parent) : QWizardPage(parent), m_complete(false)
-{
-    QGridLayout *const layout = new QGridLayout(this);
-    QLabel *const uidLabelLabel = new QLabel(i18n("Signed user IDs:"));
-    uidLabelLabel->setAlignment(Qt::AlignTop);
-    int row = 0;
-    layout->addWidget(new QLabel(i18n("<b>Summary:</b>")), row, 0, 1, 2);
-    layout->addWidget(uidLabelLabel, ++row, 0);
-    layout->addWidget(m_userIDsLabel = new QLabel, row, 1);
-#ifdef KLEO_SIGN_KEY_CERTLEVEL_SUPPORT
-    layout->addWidget(new QLabel(i18n("Check level:")), ++row, 0);
-    layout->addWidget(m_checkLevelLabel = new QLabel, row, 1);
-#else
-    m_checkLevelLabel = nullptr;
-#endif
-    layout->addWidget(new QLabel(i18n("Selected secret key:")), ++row, 0);
-    layout->addWidget(m_secretKeyLabel = new QLabel, row, 1);
-    m_secretKeyLabel->setTextFormat(Qt::PlainText);
-    layout->addWidget(m_resultLabel = new QLabel, ++row, 0, 1, 2, Qt::AlignCenter);
-    m_resultLabel->setWordWrap(true);
-    layout->setRowStretch(row, 1);
-    m_resultLabel->setAlignment(Qt::AlignCenter);
-}
-
-bool SummaryPage::isComplete() const
-{
-    return m_complete;
-}
-
-void SummaryPage::setSummary(const SummaryPage::Summary &sum)
-{
-    const Key key = sum.certificateToCertify;
-    QStringList ids;
-    Q_FOREACH (const unsigned int i, sum.selectedUserIDs) {
-        ids += Formatting::prettyUserID(key.userID(i)).toHtmlEscaped();
-    }
-    m_userIDsLabel->setText(QLatin1String("<qt>") + ids.join(QLatin1String("<br/>")) + QLatin1String("</qt>"));
-    m_secretKeyLabel->setText(sum.secretKey.isNull() ? i18n("Default certificate") : Formatting::prettyNameAndEMail(sum.secretKey));
-#ifdef KLEO_SIGN_KEY_CERTLEVEL_SUPPORT
-    switch (sum.checkLevel) {
-    case 0:
-        m_checkLevelLabel->setText(i18n("No statement made"));
-        break;
-    case 1:
-        m_checkLevelLabel->setText(i18n("Not checked"));
-        break;
-    case 2:
-        m_checkLevelLabel->setText(i18n("Casually checked"));
-        break;
-    case 3:
-        m_checkLevelLabel->setText(i18n("Thoroughly checked"));
-        break;
-    }
-#endif
-}
-
-void SummaryPage::setComplete(bool complete)
-{
-    if (complete == m_complete) {
-        return;
-    }
-    m_complete = complete;
-    Q_EMIT completeChanged();
-}
-void SummaryPage::setResult(const Error &err)
-{
-    if (err && !err.isCanceled())
-        if (err.code() == GPG_ERR_USER_1) {
-            m_resultLabel->setText(i18n("The certificate was not certified because it was already certified by the same certificate."));
-        } else {
-            m_resultLabel->setText(i18n("The certificate could not be certified. <b>Error</b>: %1", QString::fromLocal8Bit(err.asString()).toHtmlEscaped()));
-        }
-    else if (err.isCanceled()) {
-        m_resultLabel->setText(i18n("Certification canceled."));
-    } else {
-        m_resultLabel->setText(i18n("Certification successful."));
-    }
-}
-
-class CertifyCertificateDialog::Private
-{
-    friend class ::Kleo::Dialogs::CertifyCertificateDialog;
-    CertifyCertificateDialog *const q;
-
-public:
-    explicit Private(CertifyCertificateDialog *qq)
-        : q(qq),
-          summaryPageId(0),
-          selectUserIDsPage(nullptr),
-          selectCheckLevelPage(nullptr),
-          optionsPage(nullptr),
-          summaryPage(nullptr)
-    {
-        selectUserIDsPage = new SelectUserIDsPage(q);
-        q->addPage(selectUserIDsPage);
-        //selectCheckLevelPage = new SelectCheckLevelPage( q );
-        //setting the cert level explicitly is not supported by the backend,
-        //thus we omit the page from the UI
-        //q->addPage( selectCheckLevelPage );
-        optionsPage = new OptionsPage(q);
-        q->addPage(optionsPage);
-        summaryPage = new SummaryPage(q);
-        summaryPageId = q->addPage(summaryPage);
-        connect(optionsPage, &OptionsPage::nextClicked, q, &CertifyCertificateDialog::certificationPrepared);
-    }
-
-    Key key() const
-    {
-        return selectUserIDsPage ? selectUserIDsPage->certificateToCertify() : Key();
-    }
-
-    void ensureSummaryPageVisible();
-
-    void certificationResult(const Error &error);
-
-    void setOperationCompleted()
-    {
-        summaryPage->setComplete(true);
-    }
-
-    SummaryPage::Summary createSummary() const
-    {
-        SummaryPage::Summary sum;
-        sum.selectedUserIDs = selectUserIDsPage->selectedUserIDs();
-        sum.secretKey = optionsPage->selectedSecretKey();
-        sum.certificateToCertify = selectUserIDsPage->certificateToCertify();
-        //PENDING
-#ifdef KLEO_SIGN_KEY_CERTLEVEL_SUPPORT
-        sum.checkLevel = selectCheckLevelPage->checkLevel();
-#else
-        sum.checkLevel = 0;
-#endif
-
-        sum.exportable = optionsPage->exportableCertificationSelected();
-        sum.sendToServer = optionsPage->sendToServer();
-        return sum;
-    }
-
-    int summaryPageId;
-    SelectUserIDsPage *selectUserIDsPage;
-    SelectCheckLevelPage *selectCheckLevelPage;
-    OptionsPage *optionsPage;
-    SummaryPage *summaryPage;
-};
 
 CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f)
-    : QWizard(p, f), d(new Private(this))
+    : QDialog(p, f)
 {
+    setWindowFlags(windowFlags() & (~Qt::WindowContextHelpButtonHint));
+
+    // Setup GUI
+    auto mainLay = new QVBoxLayout(this);
+    mCertWidget = new CertifyWidget(this);
+    mainLay->addWidget(mCertWidget);
+
+    QDialogButtonBox *buttonBox = new QDialogButtonBox();
+    buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
+                                  QDialogButtonBox::Ok);
+    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
+    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
+
+    buttonBox->button(QDialogButtonBox::Ok)->setText(i18n("Certify"));
+    connect(buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked,
+            this, [this] () {
+        KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
+        const auto lastKey = mCertWidget->secKey();
+        // Do not accept if the keys are the same.
+        if (!lastKey.isNull() && !mCertWidget->target().isNull() &&
+            !strcmp(lastKey.primaryFingerprint(),
+                    mCertWidget->target().primaryFingerprint())) {
+            KMessageBox::error(this, i18n("You cannot certify using the same key."),
+                               i18n("Invalid Selection"), KMessageBox::Notify);
+            return;
+        }
+
+        if (!lastKey.isNull()) {
+            conf.writeEntry("LastKey", lastKey.primaryFingerprint());
+        }
+        conf.writeEntry("ExportCheckState", mCertWidget->exportableSelected());
+        conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
+        accept();
+    });
+    connect(buttonBox->button(QDialogButtonBox::Cancel), &QAbstractButton::clicked,
+            this, [this] () {
+        close();
+    });
+
+    mainLay->addWidget(buttonBox);
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "CertifyDialog");
+    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
+    if (!geom.isEmpty()) {
+        restoreGeometry(geom);
+        return;
+    }
+    resize(QSize(640, 480));
 }
 
-CertifyCertificateDialog::~CertifyCertificateDialog() {}
+CertifyCertificateDialog::~CertifyCertificateDialog()
+{
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "CertifyDialog");
+    cfgGroup.writeEntry("geometry", saveGeometry());
+    cfgGroup.sync();
+}
 
 void CertifyCertificateDialog::setCertificateToCertify(const Key &key)
 {
     setWindowTitle(i18nc("@title:window arg is name, email of certificate holder", "Certify Certificate: %1", Formatting::prettyName(key)));
-    d->selectUserIDsPage->setCertificateToCertify(key);
-}
-
-void CertifyCertificateDialog::setCertificatesWithSecretKeys(const std::vector<Key> &keys)
-{
-    d->optionsPage->setCertificatesWithSecretKeys(keys);
+    mCertWidget->setTarget(key);
 }
 
 bool CertifyCertificateDialog::exportableCertificationSelected() const
 {
-    return d->optionsPage->exportableCertificationSelected();
+    return mCertWidget->exportableSelected();
 }
 
 bool CertifyCertificateDialog::trustCertificationSelected() const
@@ -418,12 +140,12 @@ bool CertifyCertificateDialog::nonRevocableCertificationSelected() const
 
 Key CertifyCertificateDialog::selectedSecretKey() const
 {
-    return d->optionsPage->selectedSecretKey();
+    return mCertWidget->secKey();
 }
 
 bool CertifyCertificateDialog::sendToServer() const
 {
-    return d->optionsPage->sendToServer();
+    return mCertWidget->publishSelected();
 }
 
 unsigned int CertifyCertificateDialog::selectedCheckLevel() const
@@ -435,73 +157,17 @@ unsigned int CertifyCertificateDialog::selectedCheckLevel() const
     return 0;
 }
 
-void CertifyCertificateDialog::connectJob(QGpgME::SignKeyJob *job)
-{
-    connect(job, SIGNAL(result(GpgME::Error)), this, SLOT(certificationResult(GpgME::Error)));
-    d->summaryPage->setSummary(d->createSummary());
-}
-
-void CertifyCertificateDialog::setError(const Error &error)
-{
-    d->setOperationCompleted();
-    d->summaryPage->setResult(error);
-    d->ensureSummaryPageVisible();
-    if (error.isCanceled()) {
-        close();
-    }
-}
-
-void CertifyCertificateDialog::Private::certificationResult(const Error &err)
-{
-    setOperationCompleted();
-    summaryPage->setResult(err);
-    ensureSummaryPageVisible();
-}
-
-namespace
-{
-static bool uidEqual(const UserID &lhs, const UserID &rhs)
-{
-    return qstrcmp(lhs.parent().primaryFingerprint(),
-                    rhs.parent().primaryFingerprint()) == 0
-            && qstrcmp(lhs.id(), rhs.id()) == 0;
-}
-}
-
 void CertifyCertificateDialog::setSelectedUserIDs(const std::vector<UserID> &uids)
 {
-    const Key key = d->key();
-    const char *const fpr = key.primaryFingerprint();
-
-    const std::vector<UserID> all = key.userIDs();
-
-    std::vector<unsigned int> indexes;
-    indexes.reserve(uids.size());
-
-    Q_FOREACH (const UserID &uid, uids) {
-        kleo_assert(qstrcmp(uid.parent().primaryFingerprint(), fpr) == 0);
-        const unsigned int idx =
-            std::distance(all.cbegin(), std::find_if(all.cbegin(), all.cend(),
-                                                     [uid](const UserID &other) { return uidEqual(uid, other); }));
-        if (idx < all.size()) {
-            indexes.push_back(idx);
-        }
-    }
-
-    d->selectUserIDsPage->setSelectedUserIDs(indexes);
+    mCertWidget->selectUserIDs(uids);
 }
 
 std::vector<unsigned int> CertifyCertificateDialog::selectedUserIDs() const
 {
-    return d->selectUserIDsPage->selectedUserIDs();
+    return mCertWidget->selectedUserIDs();
 }
 
-void CertifyCertificateDialog::Private::ensureSummaryPageVisible()
+QString CertifyCertificateDialog::remarks() const
 {
-    while (q->currentId() != summaryPageId) {
-        q->next();
-    }
+    return mCertWidget->remarks();
 }
-
-#include "moc_certifycertificatedialog.cpp"
-#include "moc_certifycertificatedialog_p.cpp"

@@ -1,8 +1,9 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    dialogs/signcertificatedialog.h
+#ifndef SRC_VIEW_CERTIFYWIDGET_H
+#define SRC_VIEW_CERTIFYWIDGET_H
+/*  dialogs/certifywidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2019 by g10code GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,59 +31,55 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__
-#define __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__
+#include <QWidget>
 
-#include <QWizard>
-
-#include <QGpgME/SignKeyJob>
-
-#include <gpgme++/key.h>
-
-#include <utils/pimpl_ptr.h>
+#include <vector>
+#include <memory>
 
 namespace GpgME
 {
-class Error;
-}
+    class Key;
+    class UserID;
+} // namespace GpgME
 
 namespace Kleo
 {
-
-class CertifyWidget;
-
-class CertifyCertificateDialog : public QDialog
+/** Widget for OpenPGP certification. */
+class CertifyWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~CertifyCertificateDialog();
+    explicit CertifyWidget(QWidget *parent = nullptr);
 
-    bool exportableCertificationSelected() const;
+    /* Set the key to certify */
+    void setTarget(const GpgME::Key &key);
 
-    bool trustCertificationSelected() const;
+    /* Get the key to certify */
+    GpgME::Key target() const;
 
-    bool nonRevocableCertificationSelected() const;
+    /* Select specific user ids. Default: all */
+    void selectUserIDs(const std::vector<GpgME::UserID> &uids);
 
-    void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
+    /* The user ids that should be signed */
     std::vector<unsigned int> selectedUserIDs() const;
 
-    void setCertificatesWithSecretKeys(const std::vector<GpgME::Key> &keys);
-    GpgME::Key selectedSecretKey() const;
+    /* The secret key selected */
+    GpgME::Key secKey() const;
 
-    bool sendToServer() const;
+    /* Should the signature be exportable */
+    bool exportableSelected() const;
 
-    unsigned int selectedCheckLevel() const;
-
-    void setCertificateToCertify(const GpgME::Key &key);
-
+    /* Additional remarks (search tags) for the key */
     QString remarks() const;
 
+    /* Should the signed key be be published */
+    bool publishSelected() const;
+
 private:
-    CertifyWidget *mCertWidget;
+    class Private;
+    std::shared_ptr<Private> d;
 };
 
-}
+} // namespace Kleo
 
-#endif /* __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__ */
-
+#endif // SRC_VIEW_CERTIFYWIDGET_H

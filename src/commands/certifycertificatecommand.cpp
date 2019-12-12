@@ -3,6 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     Copyright (c) 2008 Klarälvdalens Datakonsult AB
+                  2019 g10code GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,8 +38,8 @@
 #include "command_p.h"
 
 #include "exportopenpgpcertstoservercommand.h"
-
-#include <dialogs/certifycertificatedialog.h>
+#include "dialogs/certifycertificatedialog.h"
+#include "utils/remarks.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
@@ -53,10 +54,13 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_REMARKS
+#endif
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
@@ -112,6 +116,10 @@ CertifyCertificateCommand::Private::Private(CertifyCertificateCommand *qq, KeyLi
 CertifyCertificateCommand::Private::~Private()
 {
     qCDebug(KLEOPATRA_LOG);
+    if (dialog) {
+        delete dialog;
+        dialog = nullptr;
+    }
 }
 
 CertifyCertificateCommand::CertifyCertificateCommand(KeyListController *c)
@@ -247,9 +255,17 @@ void CertifyCertificateCommand::doStart()
 
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
-    d->dialog->setCertificateToCertify(d->key());
-    d->dialog->setSelectedUserIDs(d->uids);
-    d->dialog->setCertificatesWithSecretKeys(secKeys);
+
+    Key target = d->key();
+#ifdef GPGME_HAS_REMARKS
+    if (!(target.keyListMode() & GpgME::SignatureNotations)) {
+        target.update();
+    }
+#endif
+    d->dialog->setCertificateToCertify(target);
+    if (d->uids.size()) {
+        d->dialog->setSelectedUserIDs(d->uids);
+    }
     d->dialog->show();
 }
 
@@ -264,6 +280,18 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
     if (!err && !err.isCanceled() && dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
         ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(key());
         cmd->start();
+    } else if (!err) {
+        information(i18n("Certification successfully."),
+                    i18n("Certification Succeeded"));
+    } else {
+        error(i18n("<p>An error occurred while trying to certify<br/><br/>"
+                   "<b>%1</b>:</p><p>\t%2</p>",
+              Formatting::formatForComboBox(key()),
+              QString::fromUtf8(err.asString())),
+              i18n("Certification Error"));
+    }
+    if (!dialog->remarks().isEmpty()) {
+        Remarks::enableRemarks(true);
     }
 
     finished();
@@ -280,12 +308,14 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     job->setUserIDsToSign(dialog->selectedUserIDs());
     job->setSigningKey(dialog->selectedSecretKey());
     job->setCheckLevel(dialog->selectedCheckLevel());
-
-    dialog->connectJob(job);
+#ifdef GPGME_HAS_REMARKS
+    job->setRemark(dialog->remarks());
+    // This also came with 1.14.0
+    job->setDupeOk(true);
+#endif
 
     if (const Error err = job->start(key())) {
-        dialog->setError(err);
-        finished();
+        slotResult(err);
     }
 }
 
@@ -305,18 +335,13 @@ void CertifyCertificateCommand::Private::ensureDialogCreated()
 
     dialog = new CertifyCertificateDialog;
     applyWindowID(dialog);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
-    connect(dialog, SIGNAL(certificationPrepared()), q, SLOT(slotCertificationPrepared()));
+    connect(dialog, SIGNAL(accepted()), q, SLOT(slotCertificationPrepared()));
 }
 
 void CertifyCertificateCommand::Private::createJob()
 {
-    if (dialog) {
-        disconnect(dialog, SIGNAL(certificationPrepared()), q, SLOT(slotCertificationPrepared()));
-    }
-
     Q_ASSERT(!job);
 
     Q_ASSERT(key().protocol() == OpenPGP);

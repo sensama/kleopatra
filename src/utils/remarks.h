@@ -1,8 +1,9 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
-    dialogs/signcertificatedialog.h
+#ifndef REMARKS_H
+#define REMARKS_H
+/*  utils/remarks.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2008 Klarälvdalens Datakonsult AB
+    Copyright (c) 2019 by g10code GmbH
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,59 +31,24 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__
-#define __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__
-
-#include <QWizard>
-
-#include <QGpgME/SignKeyJob>
-
 #include <gpgme++/key.h>
 
-#include <utils/pimpl_ptr.h>
-
-namespace GpgME
-{
-class Error;
-}
+#include <vector>
 
 namespace Kleo
 {
-
-class CertifyWidget;
-
-class CertifyCertificateDialog : public QDialog
+namespace Remarks
 {
-    Q_OBJECT
-public:
-    explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~CertifyCertificateDialog();
+/* Helper functions to work with remark configuration */
+bool remarksEnabled();
+void enableRemarks(bool enable);
+/* Read / write a single remark key into configuration. */
+GpgME::Key remarkKey();
+void setRemarkKey(const GpgME::Key &key);
 
-    bool exportableCertificationSelected() const;
-
-    bool trustCertificationSelected() const;
-
-    bool nonRevocableCertificationSelected() const;
-
-    void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
-    std::vector<unsigned int> selectedUserIDs() const;
-
-    void setCertificatesWithSecretKeys(const std::vector<GpgME::Key> &keys);
-    GpgME::Key selectedSecretKey() const;
-
-    bool sendToServer() const;
-
-    unsigned int selectedCheckLevel() const;
-
-    void setCertificateToCertify(const GpgME::Key &key);
-
-    QString remarks() const;
-
-private:
-    CertifyWidget *mCertWidget;
-};
-
+/* Get multiple keys to use for remarks. Currently
+ * this returns all fully trusted OpenPGP Keys. */
+std::vector<GpgME::Key> remarkKeys();
 }
-
-#endif /* __KLEOPATRA_DIALOGS_CERTIFYCERTIFICATEDIALOG_H__ */
-
+} // namespace Kleo
+#endif // REMARKS_H

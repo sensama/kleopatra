@@ -51,6 +51,11 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_REMARKS
+#endif
+
 #define HIDE_ROW(row) \
     ui.row->setVisible(false); \
     ui.row##Lbl->setVisible(false);
@@ -206,9 +211,11 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
         GpgME::Error err;
         QStringList remarkList;
+#ifdef GPGME_HAS_REMARKS
         for (const auto &rem: uid.remarks(Remarks::remarkKeys(), err)) {
             remarkList << QString::fromStdString(rem);
         }
+#endif
         const auto remark = remarkList.join(QStringLiteral("; "));
         item->setData(3, Qt::DisplayRole, remark);
         item->setData(3, Qt::ToolTipRole, toolTip);

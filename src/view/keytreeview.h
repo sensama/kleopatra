@@ -153,6 +153,7 @@ private:
     void restoreExpandState();
     void saveLayout();
     void restoreLayout();
+    void setupRemarkKeys();
 
 private:
     std::vector<GpgME::Key> m_keys;

@@ -39,7 +39,8 @@
 #include <Libkleo/KeyRearrangeColumnsProxyModel>
 #include <Libkleo/Predicates>
 
-#include <utils/headerview.h>
+#include "utils/headerview.h"
+#include "utils/remarks.h"
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KeyFilter>
@@ -63,6 +64,13 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
+
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_REMARKS
+#endif
+
+#define REMARK_COLUMN 13
 
 using namespace Kleo;
 using namespace GpgME;
@@ -105,10 +113,14 @@ protected:
                 }
 
                 connect(mHeaderPopup, &QMenu::triggered, this, [this] (QAction *action) {
+                    const int col = action->data().toInt();
+                    if (col == REMARK_COLUMN) {
+                        Remarks::enableRemarks(action->isChecked());
+                    }
                     if (action->isChecked()) {
-                        showColumn(action->data().toInt());
+                        showColumn(col);
                     } else {
-                        hideColumn(action->data().toInt());
+                        hideColumn(col);
                     }
 
                     KeyTreeView *tv = qobject_cast<KeyTreeView *> (parent());
@@ -297,7 +309,12 @@ void KeyTreeView::init()
                                                      << KeyListModelInterface::Origin
                                                      << KeyListModelInterface::LastUpdate
                                                      << KeyListModelInterface::Issuer
-                                                     << KeyListModelInterface::SerialNumber);
+                                                     << KeyListModelInterface::SerialNumber
+#ifdef GPGME_HAS_REMARKS
+    // If a column is added before this REMARK_COLUMN define has to be updated accordingly
+                                                     << KeyListModelInterface::Remarks
+#endif
+    );
     m_view->setModel(rearangingModel);
 
     /* Handle expansion state */
@@ -332,13 +349,13 @@ void KeyTreeView::init()
          * the model is already populated. */
         QTimer::singleShot(0, [this] () {
             restoreExpandState();
+            setupRemarkKeys();
             if (!m_onceResized) {
                 m_onceResized = true;
                 resizeColumns();
             }
         });
     });
-
     resizeColumns();
     restoreLayout();
 }
@@ -369,6 +386,19 @@ void KeyTreeView::restoreExpandState()
         }
         m_view->expand(idx);
     }
+}
+
+void KeyTreeView::setupRemarkKeys()
+{
+#ifdef GPGME_HAS_REMARKS
+    const auto remarkKeys = Remarks::remarkKeys();
+    if (m_hierarchicalModel) {
+        m_hierarchicalModel->setRemarkKeys(remarkKeys);
+    }
+    if (m_flatModel) {
+        m_flatModel->setRemarkKeys(remarkKeys);
+    }
+#endif
 }
 
 void KeyTreeView::saveLayout()
@@ -421,18 +451,22 @@ void KeyTreeView::restoreLayout()
             QTimer::singleShot(0, this, &KeyTreeView::resizeColumns);
         }
     } else {
-        for (int i = 0;
-             i < header->count()
-             && i < columnOrder.size()
-             && i < columnWidths.size()
-             && i < columnVisibility.size();
-             ++i) {
+        for (int i = 0; i < header->count(); ++i) {
+            if (i >= columnOrder.size() || i >= columnWidths.size() || i >= columnVisibility.size()) {
+                // An additional column that was not around last time we saved.
+                // We default to hidden.
+                m_view->hideColumn(i);
+                continue;
+            }
             bool visible = columnVisibility[i].toBool();
             int width = columnWidths[i].toInt();
             int order = columnOrder[i].toInt();
 
             header->resizeSection(i, width ? width : 100);
             header->moveSection(header->visualIndex(i), order);
+            if (i == REMARK_COLUMN) {
+                Remarks::enableRemarks(visible);
+            }
             if (!visible) {
                 m_view->hideColumn(i);
             }

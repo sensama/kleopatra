@@ -31,6 +31,7 @@
 
 #include "kleopatra_debug.h"
 #include "commands/command.h"
+#include "utils/remarks.h"
 
 #include <KMessageBox>
 #include <KLocalizedString>
@@ -42,6 +43,8 @@ class WebOfTrustWidget::Private
 public:
     Private(WebOfTrustWidget *qq): keyListJob(nullptr), q(qq)
     {
+        certificationsModel.enableRemarks(Remarks::remarksEnabled());
+
         certificationsTV = new QTreeView;
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(true);
@@ -85,6 +88,10 @@ public:
         QGpgME::KeyListJob *const job = QGpgME::openpgp()->keyListJob(/*remote*/false, /*includeSigs*/true, /*validate*/true);
         if (!job) {
             return;
+        }
+
+        if (Remarks::remarksEnabled()) {
+            job->addMode(GpgME::SignatureNotations);
         }
 
 

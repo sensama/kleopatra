@@ -117,7 +117,7 @@ QStringList ExportSecretKeyCommand::arguments() const
         result << gpgSmPath();
     }
 
-    result << QStringLiteral("--output") << m_filename;
+    result << QStringLiteral("--yes") << QStringLiteral("--output") << m_filename;
 
     if (m_armor) {
         result << QStringLiteral("--armor");

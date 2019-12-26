@@ -281,7 +281,7 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
         ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(key());
         cmd->start();
     } else if (!err) {
-        information(i18n("Certification successfully."),
+        information(i18n("Certification successful."),
                     i18n("Certification Succeeded"));
     } else {
         error(i18n("<p>An error occurred while trying to certify<br/><br/>"

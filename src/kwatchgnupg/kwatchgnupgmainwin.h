@@ -39,7 +39,7 @@
 class KWatchGnuPGTray;
 class KWatchGnuPGConfig;
 class KProcess;
-class KDLogTextWidget;
+class QTextEdit;
 
 class KWatchGnuPGMainWindow : public KXmlGuiWindow
 {
@@ -74,7 +74,7 @@ private:
 
     KProcess *mWatcher;
 
-    KDLogTextWidget *mCentralWidget;
+    QTextEdit *mCentralWidget;
     KWatchGnuPGTray *mSysTray;
     KWatchGnuPGConfig *mConfig;
 };

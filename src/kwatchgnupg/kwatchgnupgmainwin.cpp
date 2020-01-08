@@ -40,7 +40,7 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
 
-#include "kdlogtextwidget.h"
+#include <QTextEdit>
 
 #include <KMessageBox>
 #include <KLocalizedString>
@@ -67,8 +67,8 @@ KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     createActions();
     createGUI();
 
-    mCentralWidget = new KDLogTextWidget(this);
-    KDAB_SET_OBJECT_NAME(mCentralWidget);
+    mCentralWidget = new QTextEdit(this);
+    mCentralWidget->setReadOnly(true);
 
     setCentralWidget(mCentralWidget);
 
@@ -97,7 +97,7 @@ KWatchGnuPGMainWindow::~KWatchGnuPGMainWindow()
 void KWatchGnuPGMainWindow::slotClear()
 {
     mCentralWidget->clear();
-    mCentralWidget->message(i18n("[%1] Log cleared", QDateTime::currentDateTime().toString(Qt::ISODate)));
+    mCentralWidget->append(i18n("[%1] Log cleared", QDateTime::currentDateTime().toString(Qt::ISODate)));
 }
 
 void KWatchGnuPGMainWindow::createActions()
@@ -135,7 +135,8 @@ void KWatchGnuPGMainWindow::startWatcher()
         while (mWatcher->state() == QProcess::Running) {
             qApp->processEvents(QEventLoop::ExcludeUserInputEvents);
         }
-        mCentralWidget->message(i18n("[%1] Log stopped", QDateTime::currentDateTime().toString(Qt::ISODate)));
+        mCentralWidget->append(i18n("[%1] Log stopped", QDateTime::currentDateTime().toString(Qt::ISODate)));
+        mCentralWidget->ensureCursorVisible();
     }
     mWatcher->clearProgram();
 
@@ -152,7 +153,8 @@ void KWatchGnuPGMainWindow::startWatcher()
     if (!ok) {
         KMessageBox::sorry(this, i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is unable to display any useful information."));
     } else {
-        mCentralWidget->message(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
+        mCentralWidget->append(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
+        mCentralWidget->ensureCursorVisible();
     }
     connect(mWatcher, SIGNAL(finished(int,QProcess::ExitStatus)),
             this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
@@ -195,7 +197,8 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
 void KWatchGnuPGMainWindow::slotWatcherExited(int, QProcess::ExitStatus)
 {
     if (KMessageBox::questionYesNo(this, i18n("The watchgnupg logging process died.\nDo you want to try to restart it?"), QString(), KGuiItem(i18n("Try Restart")), KGuiItem(i18n("Do Not Try"))) == KMessageBox::Yes) {
-        mCentralWidget->message(i18n("====== Restarting logging process ====="));
+        mCentralWidget->append(i18n("====== Restarting logging process ====="));
+        mCentralWidget->ensureCursorVisible();
         startWatcher();
     } else {
         KMessageBox::sorry(this, i18n("The watchgnupg logging process is not running.\nThis log window is unable to display any useful information."));
@@ -215,7 +218,8 @@ void KWatchGnuPGMainWindow::slotReadStdout()
         if (str.endsWith(QLatin1Char('\r'))) {
             str.chop(1);
         }
-        mCentralWidget->message(str);
+        mCentralWidget->append(str);
+        mCentralWidget->ensureCursorVisible();
         if (!isVisible()) {
             // Change tray icon to show something happened
             // PENDING(steffen)
@@ -238,7 +242,7 @@ void KWatchGnuPGMainWindow::slotSaveAs()
     }
     QFile file(filename);
     if (file.open(QIODevice::WriteOnly)) {
-        QTextStream(&file) << mCentralWidget->text();
+        QTextStream(&file) << mCentralWidget->document()->toRawText();
     } else
         KMessageBox::information(this, i18n("Could not save file %1: %2",
                                             filename, file.errorString()));
@@ -268,7 +272,7 @@ void KWatchGnuPGMainWindow::slotReadConfig()
 {
     const KConfigGroup config(KSharedConfig::openConfig(), "LogWindow");
     const int maxLogLen = config.readEntry("MaxLogLen", 10000);
-    mCentralWidget->setHistorySize(maxLogLen < 1 ? -1 : maxLogLen);
+    mCentralWidget->document()->setMaximumBlockCount(maxLogLen < 1 ? -1 : maxLogLen);
     setGnuPGConfig();
     startWatcher();
 }

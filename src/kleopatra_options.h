@@ -99,8 +99,6 @@ static void kleopatra_options(QCommandLineParser *parser)
                                   i18n("Open the config dialog"));
 
     parser->addOptions(options);
-    parser->addVersionOption();
-    parser->addHelpOption();
 
     parser->addPositionalArgument(QStringLiteral("files"),
                                   i18n("File(s) to process"),

@@ -650,7 +650,7 @@ ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &ar
       m_arguments(args),
       m_proc(new redirect_close<QProcess>)
 {
-    qCDebug(KLEOPATRA_LOG) << "cd" << wd.absolutePath() << endl << cmd << args;
+    qCDebug(KLEOPATRA_LOG) << "cd" << wd.absolutePath() << '\n' << cmd << args;
     if (cmd.isEmpty())
         throw Exception(gpg_error(GPG_ERR_INV_ARG),
                         i18n("Command not specified"));

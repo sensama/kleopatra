@@ -73,7 +73,7 @@ class DecryptVerifyEMailWizard : public QWizard
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags f = nullptr)
+    explicit DecryptVerifyEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {})
         : QWizard(parent, f),
           m_resultPage(this)
     {

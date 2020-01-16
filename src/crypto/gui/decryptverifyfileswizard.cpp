@@ -70,7 +70,7 @@ class HLine : public QFrame
 {
     Q_OBJECT
 public:
-    explicit HLine(QWidget *p = nullptr, Qt::WindowFlags f = nullptr)
+    explicit HLine(QWidget *p = nullptr, Qt::WindowFlags f = {})
         : QFrame(p, f)
     {
         setFrameStyle(QFrame::HLine | QFrame::Sunken);

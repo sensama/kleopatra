@@ -724,17 +724,17 @@ Command::Restrictions find_root_restrictions(const std::vector<Key> &keys)
 Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const QItemSelectionModel *sm)
 {
     if (!sm) {
-        return nullptr;
+        return Command::NoRestriction;
     }
 
     const KeyListModelInterface *const m = dynamic_cast<const KeyListModelInterface *>(sm->model());
     if (!m) {
-        return nullptr;
+        return Command::NoRestriction;
     }
 
     const std::vector<Key> keys = m->keys(sm->selectedRows());
     if (keys.empty()) {
-        return nullptr;
+        return Command::NoRestriction;
     }
 
     Command::Restrictions result = Command::NeedSelection;

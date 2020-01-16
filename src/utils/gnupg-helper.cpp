@@ -217,7 +217,7 @@ QString Kleo::gpgConfListDir(const char *which)
     gpgConf.start(gpgConfPath, QStringList() << QStringLiteral("--list-dirs"));
     if (!gpgConf.waitForFinished()) {
         qCDebug(KLEOPATRA_LOG) << "gpgConfListDir(): failed to execute gpgconf: " << qPrintable(gpgConf.errorString());
-        qCDebug(KLEOPATRA_LOG) << "output was:" << endl << gpgConf.readAllStandardError().constData();
+        qCDebug(KLEOPATRA_LOG) << "output was:\n" << gpgConf.readAllStandardError().constData();
         return QString();
     }
     const QList<QByteArray> lines = gpgConf.readAllStandardOutput().split('\n');
@@ -234,7 +234,7 @@ QString Kleo::gpgConfListDir(const char *which)
             return result;
         }
     qCDebug(KLEOPATRA_LOG) << "gpgConfListDir(): didn't find '" << which << "'"
-                           << "entry in output:" << endl << gpgConf.readAllStandardError().constData();
+                           << "entry in output:\n" << gpgConf.readAllStandardError().constData();
     return QString();
 }
 

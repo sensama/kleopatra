@@ -571,7 +571,7 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 
 void TabWidget::Private::slotNewTab()
 {
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QString().sprintf("View #%u", tabWidget.count()));
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", tabWidget.count()));
     Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
     addView(page, currentPage());
     tabWidget.setCurrentIndex(tabWidget.count() - 1);
@@ -938,7 +938,7 @@ void TabWidget::saveViews(KConfig *config) const
             if (p->isTemporary()) {
                 continue;
             }
-            KConfigGroup group(config, QString().sprintf("View #%u", vg++));
+            KConfigGroup group(config, QString::asprintf("View #%u", vg++));
             p->saveTo(group);
             if (KCONFIG_DELETEGROUP_BROKEN) {
                 group.writeEntry("magic", 0xFA1AFE1U);

@@ -120,9 +120,8 @@ public:
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << endl
-                               << "inputError :" << m_inputErrorString << endl
-                               << "outputError:" << m_outputErrorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_inputErrorString
+                               << "\noutputError:" << m_outputErrorString;
         Q_ASSERT(!m_sresult.isNull());
     }
     SignEncryptFilesResult(const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated, const AuditLog &auditLog)
@@ -135,9 +134,8 @@ public:
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << endl
-                               << "inputError :" << m_inputErrorString << endl
-                               << "outputError:" << m_outputErrorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_inputErrorString
+                               << "\noutputError:" << m_outputErrorString;
         Q_ASSERT(!m_eresult.isNull());
     }
     SignEncryptFilesResult(const SigningResult &sr, const EncryptionResult &er, const std::shared_ptr<Input> &input, const std::shared_ptr<Output> &output, bool outputCreated,  const AuditLog &auditLog)
@@ -151,9 +149,8 @@ public:
           m_outputCreated(outputCreated),
           m_auditLog(auditLog)
     {
-        qCDebug(KLEOPATRA_LOG) << endl
-                               << "inputError :" << m_inputErrorString << endl
-                               << "outputError:" << m_outputErrorString;
+        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_inputErrorString
+                               << "\noutputError:" << m_outputErrorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
     }
 

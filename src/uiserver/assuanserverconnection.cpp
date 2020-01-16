@@ -752,7 +752,7 @@ private:
         (conn.*mp).push_back(mb);
 
         const QString email = mb.addrSpec().asString();
-        (void)assuan_write_line(conn.ctx.get(), qPrintable(QString().sprintf("# ok, parsed as \"%s\"", qPrintable(email))));
+        (void)assuan_write_line(conn.ctx.get(), qPrintable(QString::asprintf("# ok, parsed as \"%s\"", qPrintable(email))));
         if (sender && !informative) {
             return AssuanCommandFactory::_handle(conn.ctx.get(), line, "PREP_SIGN");
         } else {

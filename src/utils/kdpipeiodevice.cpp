@@ -754,7 +754,7 @@ void KDPipeIODevice::close()
     Q_EMIT aboutToClose();
     d->stopThreads();
 
-#define waitAndDelete( t ) if ( t ) { t->wait(); QThread* const t2 = t; t = 0; delete t2; }
+#define waitAndDelete( t ) if ( t ) { t->wait(); QThread* const t2 = t; t = nullptr; delete t2; }
     QDebug("KPipeIODevice::close(%p): wait and closing writer %p", (void *)this, (void *) d->writer);
     waitAndDelete(d->writer);
     QDebug("KPipeIODevice::close(%p): wait and closing reader %p", (void *)this, (void *) d->reader);

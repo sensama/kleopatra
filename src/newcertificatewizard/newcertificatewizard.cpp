@@ -1768,52 +1768,53 @@ QString KeyCreationPage::createGnupgKeyParms() const
 {
     QString result;
     QTextStream s(&result);
-    s     << "<GnupgKeyParms format=\"internal\">"         << endl;
+    s     << "<GnupgKeyParms format=\"internal\">\n";
     if (pgp()) {
-        s << "%ask-passphrase"                             << endl;
+        s << "%ask-passphrase\n";
     }
-    s     << "key-type:      " << Subkey::publicKeyAlgorithmAsString(keyType()) << endl;
+    s     << "key-type:      " << Subkey::publicKeyAlgorithmAsString(keyType()) << '\n';
     if (is_ecdsa(keyType()) || is_eddsa(keyType())) {
-        s << "key-curve:     " << keyCurve() << endl;
+        s << "key-curve:     " << keyCurve() << '\n';
 
     } else if (const unsigned int strength = keyStrength()) {
-        s << "key-length:    " << strength                 << endl;
+        s << "key-length:    " << strength                 << '\n';
     }
-    s     << "key-usage:     " << keyUsages().join(QLatin1Char(' '))    << endl;
+    s     << "key-usage:     " << keyUsages().join(QLatin1Char(' '))    << '\n';
     if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
-        s << "subkey-type:   " << Subkey::publicKeyAlgorithmAsString(subkey) << endl;
+        s << "subkey-type:   " << Subkey::publicKeyAlgorithmAsString(subkey) << '\n';
 
         if (is_ecdh(subkeyType())) {
-            s << "subkey-curve: " << subkeyCurve()         << endl;
+            s << "subkey-curve: " << subkeyCurve()         << '\n';
         } else if (const unsigned int strength = subkeyStrength()) {
-            s << "subkey-length: " << strength             << endl;
+            s << "subkey-length: " << strength             << '\n';
         }
-        s << "subkey-usage:  " << subkeyUsages().join(QLatin1Char(' ')) << endl;
+        s << "subkey-usage:  " << subkeyUsages().join(QLatin1Char(' ')) << '\n';
     }
     if (pgp() && expiryDate().isValid()) {
-        s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << endl;
+        s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << '\n';
     }
     if (pgp()) {
         if (!name().isEmpty()) {
-            s << "name-real:     " << name()                   << endl;
+            s << "name-real:     " << name()                   << '\n';
         }
         if (!email().isEmpty()) {
-            s << "name-email:    " << email()                  << endl;
+            s << "name-email:    " << email()                  << '\n';
         }
     } else {
-        s << "name-dn:       " << dn()                     << endl;
-        s << "name-email:    " << encode_email(email())    << endl;
+        s << "name-dn:       " << dn()                     << '\n';
+        s << "name-email:    " << encode_email(email())    << '\n';
         Q_FOREACH (const QString &email, additionalEMailAddresses()) {
-            s << "name-email:    " << encode_email(email) << endl;
+            s << "name-email:    " << encode_email(email) << '\n';
         }
         Q_FOREACH (const QString &dns,   dnsNames()) {
-            s << "name-dns:      " << encode_dns(dns)    << endl;
+            s << "name-dns:      " << encode_dns(dns)    << '\n';
         }
         Q_FOREACH (const QString &uri,   uris()) {
-            s << "name-uri:      " << uri                  << endl;
+            s << "name-uri:      " << uri                  << '\n';
         }
     }
-    s     << "</GnupgKeyParms>"                            << endl;
+    s     << "</GnupgKeyParms>"                            << '\n';
+    s.flush();
     qCDebug(KLEOPATRA_LOG) << '\n' << result;
     return result;
 }

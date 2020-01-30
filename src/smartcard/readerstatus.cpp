@@ -116,7 +116,7 @@ static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std
     typedef std::pair<std::string, std::string> pair;
     s << '(';
     for (const pair &p : v) {
-        s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << endl;
+        s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << '\n';
     }
     return s << ')';
 }

@@ -213,7 +213,7 @@ public:
 
     void gnupgLogViewer()
     {
-        if (!QProcess::startDetached(QStringLiteral("kwatchgnupg")))
+        if (!QProcess::startDetached(QStringLiteral("kwatchgnupg"), QStringList()))
             KMessageBox::error(q, i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
                                        "Please check your installation."),
                                i18n("Error Starting KWatchGnuPG"));

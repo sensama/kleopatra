@@ -81,6 +81,7 @@
 #include <QTime>
 #include <QEventLoop>
 #include <QThreadPool>
+#include <QElapsedTimer>
 
 #include <gpgme++/global.h>
 #include <gpgme++/error.h>
@@ -120,7 +121,7 @@ int main(int argc, char **argv)
     KCrash::initialize();
 
 
-    QTime timer;
+    QElapsedTimer timer;
     timer.start();
 
     KLocalizedString::setApplicationDomain("kleopatra");

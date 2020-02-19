@@ -295,9 +295,17 @@ void CryptoOperationsConfigWidget::setupGui()
 
     connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+#else
+    connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int, const QString &)>(&QComboBox::currentIndexChanged) ,
+#endif
             this, &CryptoOperationsConfigWidget::changed);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(mArchiveDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+#else
+    connect(mArchiveDefinitionCB, static_cast<void (QComboBox::*)(int, const QString &)>(&QComboBox::currentIndexChanged) ,
+#endif
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);

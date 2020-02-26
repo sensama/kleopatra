@@ -208,10 +208,18 @@ void DragQueen::mouseMoveEvent(QMouseEvent *e)
             (e->buttons() & Qt::LeftButton) &&
             (m_dragStartPosition - e->pos()).manhattanLength() > QApplication::startDragDistance()) {
         QDrag *drag = new QDrag(this);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
         if (const QPixmap *const pix = pixmap()) {
             drag->setPixmap(*pix);
             drag->setHotSpot(calculate_hot_spot(e->pos(), pix->size(), this));
         }
+#else
+        const QPixmap pix = pixmap();
+        if (!pix.isNull()) {
+            drag->setPixmap(pix);
+            drag->setHotSpot(calculate_hot_spot(e->pos(), pix.size(), this));
+        }
+#endif
         drag->setMimeData(new MimeDataProxy(m_data));
         drag->exec();
     } else {

@@ -50,6 +50,7 @@
 #include <QMenu>
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <QLocale>
 
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
@@ -403,7 +404,8 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
                          hdr);
     };
     const auto dateTime = [](long ts) {
-        return ts == 0 ? i18n("never") : QDateTime::fromSecsSinceEpoch(ts).toString(Qt::SystemLocaleShortDate);
+        QLocale l;
+        return ts == 0 ? i18n("never") : l.toString(QDateTime::fromSecsSinceEpoch(ts), QLocale::ShortFormat);
     };
     appendHeader(i18n("Signing"));
     appendRow(i18n("First message"), dateTime(tofu.signFirst()));

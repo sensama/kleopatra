@@ -145,7 +145,16 @@ if(BUILD_TESTING)
     add_subdirectory(tests)
     add_subdirectory(autotests)
 endif()
-install(FILES kleopatra.renamecategories kleopatra.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    install(FILES kleopatra.renamecategories kleopatra.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+else ()
+    ecm_qt_install_logging_categories(
+        EXPORT KLEOPATRA
+        FILE kleopatra.categories
+        DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+        )
+endif()
 
 if(KF5DocTools_FOUND)
     add_subdirectory(doc)

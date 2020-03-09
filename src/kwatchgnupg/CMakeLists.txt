@@ -17,7 +17,16 @@ set(kwatchgnupg_SRCS
   main.cpp
 )
 
-ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME org.kde.pim.kwatchgnupg)
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME org.kde.pim.kwatchgnupg)
+else()
+    ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME org.kde.pim.kwatchgnupg
+        DESCRIPTION "kwatchgnupg (kwatchgnupg)"
+        OLD_CATEGORY_NAMES log_kwatchgnupg
+        EXPORT KLEOPATRA
+    )
+endif()
+
 qt5_add_resources(kwatchgnupg_SRCS kwatchgnupg.qrc)
 
 if(WIN32)

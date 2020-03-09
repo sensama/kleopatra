@@ -8,7 +8,16 @@ else()
   set(_kleopatraclientcore_extra_SRCS)
 endif()
 
-ecm_qt_declare_logging_category(_kleopatraclientcore_common_SRCS HEADER libkleopatraclientcore_debug.h IDENTIFIER LIBKLEOPATRACLIENTCORE_LOG CATEGORY_NAME org.kde.pim.libkleopatraclientcore)
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    ecm_qt_declare_logging_category(_kleopatraclientcore_common_SRCS HEADER libkleopatraclientcore_debug.h IDENTIFIER LIBKLEOPATRACLIENTCORE_LOG CATEGORY_NAME org.kde.pim.libkleopatraclientcore)
+else()
+    ecm_qt_declare_logging_category(_kleopatraclientcore_common_SRCS HEADER libkleopatraclientcore_debug.h IDENTIFIER LIBKLEOPATRACLIENTCORE_LOG CATEGORY_NAME org.kde.pim.libkleopatraclientcore
+        DESCRIPTION "kleopatra (kleopatra)"
+        OLD_CATEGORY_NAMES log_libkleopatraclientcore
+        EXPORT KLEOPATRA
+    )
+endif()
+
 
 add_library(kleopatraclientcore
   ${_kleopatraclientcore_extra_SRCS}

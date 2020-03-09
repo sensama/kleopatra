@@ -256,7 +256,16 @@ else()
   set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
 endif()
 
-ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
+if (ECM_VERSION VERSION_LESS "5.68.0")
+    ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
+else()
+    ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra
+        DESCRIPTION "kleopatra (kleopatra)"
+        OLD_CATEGORY_NAMES log_kleopatra
+        EXPORT KLEOPATRA
+    )
+endif()
+
 
 if(KLEO_MODEL_TEST)
   add_definitions(-DKLEO_MODEL_TEST)

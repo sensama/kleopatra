@@ -129,8 +129,8 @@ include_directories(
     )
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
-#add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x060000)
+#add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x058000)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

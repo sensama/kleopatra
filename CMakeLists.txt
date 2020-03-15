@@ -14,8 +14,8 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.68.0")
-set(KMIME_VERSION "5.13.40")
-set(LIBKLEO_VERSION "5.13.41")
+set(KMIME_VERSION "5.13.80")
+set(LIBKLEO_VERSION "5.13.80")
 set(QT_REQUIRED_VERSION "5.12.0")
 set(GPGME_REQUIRED_VERSION "1.8.0")
 
@@ -130,7 +130,7 @@ include_directories(
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x058000)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

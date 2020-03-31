@@ -46,7 +46,7 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
-#include "Libkleo/FileNameRequester"
+#include <Libkleo/FileNameRequester>
 
 #include <KLocalizedString>
 #include <KGuiItem>

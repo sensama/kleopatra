@@ -39,9 +39,9 @@
 #include "tooltippreferences.h"
 
 #include <QGpgME/Protocol>
-#include "Libkleo/KeyFilterManager"
-#include "Libkleo/Dn"
-#include "Libkleo/DNAttributeOrderConfigWidget"
+#include <Libkleo/KeyFilterManager>
+#include <Libkleo/Dn>
+#include <Libkleo/DNAttributeOrderConfigWidget>
 
 #include <KIconDialog>
 #include <QIcon>

@@ -42,7 +42,7 @@
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
 
-#include <libkleo/messagebox.h>
+#include <Libkleo/MessageBox>
 #include <Libkleo/Classify>
 
 #include <gpgme++/key.h>

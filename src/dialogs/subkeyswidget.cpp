@@ -34,7 +34,7 @@
 #include <QTreeWidgetItem>
 #include <QMenu>
 
-#include <libkleo/formatting.h>
+#include <Libkleo/Formatting>
 
 Q_DECLARE_METATYPE(GpgME::Subkey)
 

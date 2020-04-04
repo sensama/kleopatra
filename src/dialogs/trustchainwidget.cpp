@@ -27,8 +27,8 @@
 
 #include <gpgme++/key.h>
 
-#include <libkleo/dn.h>
-#include <libkleo/keycache.h>
+#include <Libkleo/Dn>
+#include <Libkleo/KeyCache>
 
 class TrustChainWidget::Private
 {

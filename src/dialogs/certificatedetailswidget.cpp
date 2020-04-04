@@ -33,9 +33,9 @@
 #include "commands/dumpcertificatecommand.h"
 #include "utils/remarks.h"
 
-#include <libkleo/formatting.h>
-#include <libkleo/dn.h>
-#include <libkleo/keycache.h>
+#include <Libkleo/Formatting>
+#include <Libkleo/Dn>
+#include <Libkleo/KeyCache>
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>

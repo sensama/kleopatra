@@ -89,7 +89,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <libkleo/cryptoconfigdialog.h>
+#include <Libkleo/CryptoConfigDialog>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>

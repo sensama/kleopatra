@@ -33,7 +33,7 @@
 #include <config-kleopatra.h>
 #include "gnupgsystemconfigurationpage.h"
 
-#include <libkleo/cryptoconfigmodule.h>
+#include <Libkleo/CryptoConfigModule>
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
 

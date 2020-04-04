@@ -69,9 +69,8 @@ Log::Private::~Private()
 
 void Log::messageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString& msg)
 {
-    Q_UNUSED(type)
-    Q_UNUSED(ctx)
-    const QByteArray local8str = msg.toLocal8Bit();
+    const QString formattedMessage = qFormatLogMessage(type, ctx, msg);
+    const QByteArray local8str = formattedMessage.toLocal8Bit();
     FILE *const file = Log::instance()->logFile();
     if (!file) {
         fprintf(stderr, "Log::messageHandler[!file]: %s", local8str.constData());

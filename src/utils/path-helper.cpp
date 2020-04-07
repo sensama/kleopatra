@@ -138,16 +138,16 @@ bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
     }
 
     for(const auto &file: srcDir.entryList(QDir::Files)) {
-        const QString srcName = src + QDir::separator() + file;
-        const QString destName = dest + QDir::separator() + file;
+        const QString srcName = src + QLatin1Char('/') + file;
+        const QString destName = dest + QLatin1Char('/') + file;
         if(!QFile::copy(srcName, destName)) {
             return false;
         }
     }
 
     for (const auto &dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
-        const QString srcName = src + QDir::separator() + dir;
-        const QString destName = dest + QDir::separator() + dir;
+        const QString srcName = src + QLatin1Char('/') + dir;
+        const QString destName = dest + QLatin1Char('/') + dir;
         if (!recursivelyCopy(srcName, destName)) {
             return false;
         }

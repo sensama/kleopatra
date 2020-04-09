@@ -108,7 +108,9 @@ public:
     {
     }
     ~Private() {
+#ifndef QT_NO_SYSTEMTRAYICON
         delete sysTray;
+#endif
     }
     void init()
     {

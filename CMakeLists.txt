@@ -134,6 +134,8 @@ add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()
+add_definitions(-DQT_NO_SIGNALS_SLOTS_KEYWORDS)
+add_definitions(-DQT_NO_EMIT)
 
 kde_enable_exceptions()
 

@@ -96,7 +96,7 @@ public:
 
     void finished()
     {
-        emit q->finished();
+        Q_EMIT q->finished();
         if (autoDelete) {
             q->deleteLater();
         }
@@ -104,7 +104,7 @@ public:
 
     void canceled()
     {
-        emit q->canceled();
+        Q_EMIT q->canceled();
         finished();
     }
 

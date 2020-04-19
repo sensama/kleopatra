@@ -42,6 +42,7 @@
 
 #include <Libkleo/FileNameRequester>
 
+#include <QWindow>
 #include <QVBoxLayout>
 #include <QProgressBar>
 #include <QLabel>
@@ -54,6 +55,7 @@
 #include <KMessageBox>
 #include <KConfigGroup>
 #include <KSharedConfig>
+#include <KWindowConfig>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -243,18 +245,24 @@ void DecryptVerifyFilesDialog::checkAccept() {
 
 void DecryptVerifyFilesDialog::readConfig()
 {
+    winId(); // ensure there's a window created
+
+    // set default window size
+    windowHandle()->resize(640, 480);
+
+    // restore size from config file
     KConfigGroup cfgGroup(KSharedConfig::openConfig(), "DecryptVerifyFilesDialog");
-    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
-    if (!geom.isEmpty()) {
-        restoreGeometry(geom);
-        return;
-    }
-    resize(QSize(640, 480));
+    KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
+
+    // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
+    // window was created -> QTBUG-40584. We therefore copy the size here.
+    // TODO: remove once this was resolved in QWidget QPA
+    resize(windowHandle()->size());
 }
 
 void DecryptVerifyFilesDialog::writeConfig()
 {
     KConfigGroup cfgGroup(KSharedConfig::openConfig(), "DecryptVerifyFilesDialog");
-    cfgGroup.writeEntry("geometry", saveGeometry());
+    KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
 }

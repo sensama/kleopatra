@@ -59,6 +59,7 @@
 
 #include <KXMLGUIFactory>
 #include <QApplication>
+#include <QSize>
 #include <QLineEdit>
 #include <KActionMenu>
 #include <KActionCollection>
@@ -398,7 +399,10 @@ MainWindow::Private::Private(MainWindow *qq)
 
     q->setAcceptDrops(true);
 
+    // set default window size
+    q->resize(QSize(1024, 500));
     q->setAutoSaveSettings();
+
     updateSearchBarClickMessage();
     updateStatusBar();
 }
@@ -407,9 +411,7 @@ MainWindow::Private::~Private() {}
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags), d(new Private(this))
-{
-    resize(1024, 500);
-}
+{}
 
 MainWindow::~MainWindow() {}
 
@@ -682,14 +684,7 @@ void MainWindow::readProperties(const KConfigGroup &cg)
 {
     qCDebug(KLEOPATRA_LOG);
     KXmlGuiWindow::readProperties(cg);
-    savedGeometry = cg.readEntry("savedGeometry", QByteArray());
-    if (!savedGeometry.isEmpty()) {
-        restoreGeometry(savedGeometry);
-    }
-
-    if (! cg.readEntry<bool>("hidden", false)) {
-        show();
-    }
+    setHidden(cg.readEntry("hidden", false));
 }
 
 void MainWindow::saveProperties(KConfigGroup &cg)
@@ -697,11 +692,6 @@ void MainWindow::saveProperties(KConfigGroup &cg)
     qCDebug(KLEOPATRA_LOG);
     KXmlGuiWindow::saveProperties(cg);
     cg.writeEntry("hidden", isHidden());
-    if (isHidden()) {
-        cg.writeEntry("savedGeometry", savedGeometry);
-    } else {
-        cg.writeEntry("savedGeometry", saveGeometry());
-    }
 }
 
 #include "moc_mainwindow.cpp"

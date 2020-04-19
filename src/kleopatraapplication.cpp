@@ -222,6 +222,10 @@ void KleopatraApplication::init()
 
 KleopatraApplication::~KleopatraApplication()
 {
+    // main window doesn't receive "close" signal and cannot
+    // save settings before app exit
+    delete d->mainWindow;
+
     // work around kdelibs bug https://bugs.kde.org/show_bug.cgi?id=162514
     KSharedConfig::openConfig()->sync();
 }

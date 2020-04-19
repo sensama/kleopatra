@@ -104,6 +104,10 @@ public:
 
     void setLabelText(const QString &label) const;
 
+protected:
+    void readConfig();
+    void writeConfig();
+
 Q_SIGNALS:
     void operationPrepared();
 

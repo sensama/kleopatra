@@ -42,6 +42,7 @@
 #include <KSharedConfig>
 #include <KColorScheme>
 #include <KConfigGroup>
+#include <KWindowConfig>
 
 #include <KMessageBox>
 
@@ -49,6 +50,7 @@
 #include <utils/gnupg-helper.h>
 
 #include <Libkleo/FileNameRequester>
+#include <QWindow>
 #include <QVBoxLayout>
 #include <QWizardPage>
 #include <QGroupBox>
@@ -393,6 +395,8 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     , mSigningUserMutable(true)
     , mEncryptionUserMutable(true)
 {
+    readConfig();
+
     bool de_vs = Kleo::gpgComplianceP("de-vs");
 #ifdef Q_OS_WIN
     // Enforce modern style to avoid vista style ugliness.
@@ -421,13 +425,6 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     } else {
         mLabel = nullptr;
     }
-
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
-    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
-    if (!geom.isEmpty()) {
-        restoreGeometry(geom);
-        return;
-    }
 }
 
 void SignEncryptFilesWizard::setLabelText(const QString &label) const
@@ -447,9 +444,7 @@ void SignEncryptFilesWizard::slotCurrentIdChanged(int id)
 SignEncryptFilesWizard::~SignEncryptFilesWizard()
 {
     qCDebug(KLEOPATRA_LOG);
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
-    cfgGroup.writeEntry("geometry", saveGeometry());
-    cfgGroup.sync();
+    writeConfig();
 }
 
 void SignEncryptFilesWizard::setSigningPreset(bool preset)
@@ -517,5 +512,30 @@ bool SignEncryptFilesWizard::encryptSymmetric() const
 {
     return mSigEncPage->encryptSymmetric();
 }
+
+void SignEncryptFilesWizard::readConfig()
+{
+    winId(); // ensure there's a window created
+
+    // set default window size
+    windowHandle()->resize(640, 480);
+
+    // restore size from config file
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+    KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
+
+    // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
+    // window was created -> QTBUG-40584. We therefore copy the size here.
+    // TODO: remove once this was resolved in QWidget QPA
+    resize(windowHandle()->size());
+}
+
+void SignEncryptFilesWizard::writeConfig()
+{
+    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
+    KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
+    cfgGroup.sync();
+}
+
 
 #include "signencryptfileswizard.moc"

@@ -34,7 +34,7 @@
 
 #include "tabwidget.h"
 #include "keytreeview.h"
-
+#include "kleopatra_debug.h"
 
 #include <utils/action_data.h>
 
@@ -667,7 +667,9 @@ TabWidget::TabWidget(QWidget *p, Qt::WindowFlags f)
 
 }
 
-TabWidget::~TabWidget() {}
+TabWidget::~TabWidget() {
+    saveViews(KSharedConfig::openConfig().data());
+}
 
 void TabWidget::setFlatModel(AbstractKeyListModel *model)
 {
@@ -722,6 +724,11 @@ void TabWidget::setStringFilter(const QString &filter)
 
 void TabWidget::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
+    if (!filter) {
+        qCDebug(KLEOPATRA_LOG) << "TabWidget::setKeyFilter() trial to set filter=NULL";
+        return;
+    }
+
     if (Page *const page = d->currentPage()) {
         page->setKeyFilter(filter);
     }
@@ -843,7 +850,9 @@ void TabWidget::createActions(KActionCollection *coll)
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
 {
-    return d->addView(new Page(title, id, text), d->currentPage());
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", d->tabWidget.count()));
+    Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group);
+    return d->addView(page, d->currentPage());
 }
 
 QAbstractItemView *TabWidget::addView(const KConfigGroup &group)

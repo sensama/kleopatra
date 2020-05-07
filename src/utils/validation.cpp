@@ -46,7 +46,7 @@
 using namespace Kleo;
 
 // these are modeled after gnupg/g10/keygen.c:ask_user_id:
-static const QString name_rx = QStringLiteral("[^0-9<>][^<>@]{4,}");
+static const QString name_rx = QStringLiteral("[^0-9<>][^<>@]{3,}");
 static const QString comment_rx = QStringLiteral("[^()]*");
 
 namespace

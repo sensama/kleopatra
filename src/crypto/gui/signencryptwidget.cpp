@@ -273,12 +273,12 @@ void SignEncryptWidget::addRecipient(const Key &key)
 
 void SignEncryptWidget::clearAddedRecipients()
 {
-    for (auto w: mUnknownWidgets) {
+    for (auto w: qAsConst(mUnknownWidgets)) {
         mRecpLayout->removeWidget(w);
         delete w;
     }
 
-    for (auto &key: mAddedKeys) {
+    for (auto &key: qAsConst(mAddedKeys)) {
         removeRecipient(key);
     }
 }
@@ -453,7 +453,7 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
 
 void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 {
-    for (CertificateLineEdit *edit: mRecpWidgets) {
+    for (CertificateLineEdit *edit: qAsConst(mRecpWidgets)) {
         const auto editKey = edit->key();
         if (key.isNull() && editKey.isNull()) {
             recpRemovalRequested(edit);
@@ -532,7 +532,7 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 
 bool SignEncryptWidget::validate()
 {
-    for (const auto edit: mRecpWidgets) {
+    for (const auto edit: qAsConst(mRecpWidgets)) {
         if (!edit->isEmpty() && edit->key().isNull()) {
             KMessageBox::error(this, i18nc("%1 is user input that could not be found",
                         "Could not find a key for '%1'", edit->text().toHtmlEscaped()),

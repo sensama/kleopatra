@@ -366,7 +366,7 @@ void KeyTreeView::restoreExpandState()
         qCWarning(KLEOPATRA_LOG) << "Restore expand state before keycache available. Aborting.";
         return;
     }
-    for (const auto &fpr: m_expandedKeys) {
+    for (const auto &fpr: qAsConst(m_expandedKeys)) {
         const KeyListModelInterface *km = dynamic_cast<const KeyListModelInterface*> (m_view->model());
         if (!km) {
             qCWarning(KLEOPATRA_LOG) << "invalid model";

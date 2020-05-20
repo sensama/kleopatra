@@ -127,7 +127,7 @@ public:
 
     void applyWindowID(QWidget *w) const
     {
-        return q->applyWindowID(w);
+        q->applyWindowID(w);
     }
 
 private:

@@ -113,7 +113,7 @@ UiServer::~UiServer()
 
 namespace {
 using Iterator = std::vector<std::shared_ptr<AssuanCommandFactory>>::iterator;
-static bool empty(const std::pair<Iterator, Iterator> &iters)
+static bool empty(std::pair<Iterator, Iterator> iters)
 {
     return iters.first == iters.second;
 }

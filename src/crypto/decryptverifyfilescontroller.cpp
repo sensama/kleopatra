@@ -304,7 +304,7 @@ void DecryptVerifyFilesController::Private::prepareWizardFromPassedFiles()
     const std::vector< std::shared_ptr<ArchiveDefinition> > archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
 
     unsigned int counter = 0;
-    for (const auto &fname: m_passedFiles) {
+    for (const auto &fname: qAsConst(m_passedFiles)) {
         kleo_assert(!fname.isEmpty());
 
         const unsigned int classification = classify(fname);

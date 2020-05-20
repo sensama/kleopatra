@@ -142,7 +142,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     if (!secKey.open(QIODevice::ReadOnly)) {
         d->error(QStringLiteral("Failed to open temporary secret"), errorCaption());
         qCWarning(KLEOPATRA_LOG) << "Failed to open tmp file";
-        finished();
+        Q_EMIT finished();
         return;
     }
     auto data = secKey.readAll();
@@ -153,19 +153,19 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     delete importjob;
     if (result.error()) {
         d->error(QString::fromUtf8(result.error().asString()), errorCaption());
-        finished();
+        Q_EMIT finished();
         return;
     }
     if (!result.numSecretKeysImported() ||
         (result.numSecretKeysUnchanged() == result.numSecretKeysImported())) {
         d->error(i18n("Failed to restore any secret keys."), errorCaption());
-        finished();
+        Q_EMIT finished();
         return;
     }
 
     // Refresh the key after success
     KeyCache::mutableInstance()->reload(OpenPGP);
-    finished();
+    Q_EMIT finished();
     d->information(xi18nc("@info", "Successfully restored the secret key parts from <filename>%1</filename>",
                    mFileName));
     return;

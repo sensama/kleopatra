@@ -6,7 +6,7 @@ project(kleopatra VERSION ${kleopatra_version})
 
 # The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version
 if (NOT RELEASE_SERVICE_VERSION)
-    set (RELEASE_SERVICE_VERSION "20.04.0")
+    set (RELEASE_SERVICE_VERSION "20.04.2")
 endif()
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
@@ -14,8 +14,8 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.68.0")
-set(KMIME_VERSION "5.14.1")
-set(LIBKLEO_VERSION "5.14.1")
+set(KMIME_VERSION "5.14.2")
+set(LIBKLEO_VERSION "5.14.2")
 set(QT_REQUIRED_VERSION "5.12.0")
 set(GPGME_REQUIRED_VERSION "1.8.0")
 

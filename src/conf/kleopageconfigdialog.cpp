@@ -213,8 +213,14 @@ void KleoPageConfigDialog::slotHelpClicked()
     }
 
     const QString docPath = mHelpUrls.value(item->name());
+    QUrl docUrl;
 
-    QUrl docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
+#ifdef Q_OS_WIN
+    docUrl = QUrl(QLatin1String("https://docs.kde.org/index.php?branch=stable5&language=")
+                  + QLocale().name() + QLatin1String("&application=kleopatra"));
+#else
+    docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
+#endif
     if (docUrl.scheme() == QLatin1String("help") || docUrl.scheme() == QLatin1String("man") || docUrl.scheme() == QLatin1String("info")) {
         QProcess::startDetached(QStringLiteral("khelpcenter"), QStringList() << docUrl.toString());
     } else {

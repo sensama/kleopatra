@@ -164,6 +164,7 @@ public:
         // QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
         mEdit->setFont(fixedFont);
+        mEdit->setAcceptRichText(false);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
         if (KeyCache::instance()->pgpOnly()) {

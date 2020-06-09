@@ -98,7 +98,7 @@ void Controller::emitDoneOrError()
         d->lastError = 0;
         d->lastErrorString = QString();
     } else {
-        Q_EMIT done();
+        done();
     }
 }
 

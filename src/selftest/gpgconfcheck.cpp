@@ -96,7 +96,7 @@ public:
                      "  %1\n"
                      "You might want to execute \"gpgconf %3\" on the command line.\n",
                      message, m_component.isEmpty() ? QStringLiteral("GnuPG") : m_component,
-                     QStringLiteral("--check-options ") + (m_component.isEmpty() ? QStringLiteral("") : m_component));
+                     QStringLiteral("--check-options ") + (m_component.isEmpty() ? QString() : m_component));
 
             // To avoid modifying the l10n
             m_explanation.replace(QLatin1Char('\n'), QStringLiteral("<br/>"));

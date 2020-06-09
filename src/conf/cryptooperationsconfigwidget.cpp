@@ -87,19 +87,22 @@ static void resetDefaults()
         return;
     }
 
-    for (const auto &compName: config->componentList()) {
+    const QStringList componentList = config->componentList();
+    for (const auto &compName: componentList) {
         auto comp = config->component(compName);
         if (!comp) {
             qCWarning(KLEOPATRA_LOG) << "Failed to find component:" << comp;
             return;
         }
-        for (const auto &grpName: comp->groupList()) {
+        const QStringList groupList = comp->groupList();
+        for (const auto &grpName: groupList) {
             auto grp = comp->group(grpName);
             if (!grp) {
                 qCWarning(KLEOPATRA_LOG) << "Failed to find group:" << grp << "in component:" << compName;
                 return;
             }
-            for (const auto &entryName: grp->entryList()) {
+            const QStringList entries = grp->entryList();
+            for (const auto &entryName: entries) {
                 auto entry = grp->entry(entryName);
                 if (!entry) {
                     qCWarning(KLEOPATRA_LOG) << "Failed to find entry:" << entry << "in group:"<< grp << "in component:" << compName;

@@ -131,7 +131,11 @@ void SelectCertificateCommand::setSelectedCertificates(const QStringList &certs)
 QStringList SelectCertificateCommand::selectedCertificates() const
 {
     const QByteArray data = receivedData();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    return QString::fromLatin1(data.data(), data.size()).split(QLatin1Char('\n'), Qt::SkipEmptyParts);
+#else
     return QString::fromLatin1(data.data(), data.size()).split(QLatin1Char('\n'), QString::SkipEmptyParts);
+#endif
 }
 
 void SelectCertificateCommand::setSelectedCertificate(const QString &cert)

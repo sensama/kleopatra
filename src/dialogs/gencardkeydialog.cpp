@@ -77,8 +77,7 @@ public:
         auto nameLabel = new QLabel(i18n("Name:"));
         auto mailLabel = new QLabel(i18n("EMail:"));
         mInvalidEmailLabel = new QLabel(QStringLiteral("<font size='small' color='%1'>%2</font>").arg(
-            KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color().name()).arg(
-            i18n("Invalid EMail")));
+            KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color().name(), i18n("Invalid EMail")));
         int row = 0;
         grid->addWidget(nameLabel, row, 0);
         grid->addWidget(mNameEdit, row++, 1);

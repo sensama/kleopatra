@@ -98,7 +98,7 @@ public:
         QVBoxLayout *vLay = new QVBoxLayout(q);
 
 
-        connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT (q->backRequested());});
+        connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT q->backRequested();});
 
         vLay->addLayout(backH);
 

@@ -400,7 +400,7 @@ public:
 
         const auto sigKey = mSigEncWidget->signKey();
 
-        bool encrypt = mSigEncWidget->encryptSymmetric() || mSigEncWidget->recipients().size();
+        bool encrypt = mSigEncWidget->encryptSymmetric() || !mSigEncWidget->recipients().isEmpty();
         bool sign = !sigKey.isNull();
 
         if (sign) {

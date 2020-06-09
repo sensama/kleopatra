@@ -171,8 +171,7 @@ private:
         const auto time = QDateTime::fromSecsSinceEpoch(mKey.creationTime());
         const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
 #ifdef GPGME_SUBKEY_HAS_KEYGRIP
-        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mKey.keyGrip()))
-                                                                                   .arg(QString::fromStdString(mSerial))
+        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mKey.keyGrip()), QString::fromStdString(mSerial))
                                                                                    .arg(slot)
                                                                                    .arg(timestamp);
         ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");

@@ -332,7 +332,7 @@ protected Q_SLOTS:
     }
 
 protected:
-#define FIELD(type, name) type name() const { return field( QLatin1String(#name) ).value<type>(); }
+#define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }
     FIELD(bool, pgp)
     FIELD(bool, signingAllowed)
     FIELD(bool, encryptionAllowed)
@@ -582,7 +582,7 @@ public:
         return ui.authenticationCB->isChecked();
     }
 
-    void setExpiryDate(const QDate &date)
+    void setExpiryDate(QDate date)
     {
         if (date.isValid()) {
             ui.expiryDE->setDate(date);

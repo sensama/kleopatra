@@ -54,7 +54,7 @@ NullPinWidget::NullPinWidget()
                                  "documentation and should be understandable by Netkey cardholders",
                                  "The NullPIN is still active on this card.");
     const auto nullDescription = i18n("You need to set a PIN before you can use the certificates.");
-    const auto descriptionLbl = new QLabel(QStringLiteral("<b>%1</b><br/>%2").arg(nullTitle).arg(nullDescription));
+    const auto descriptionLbl = new QLabel(QStringLiteral("<b>%1</b><br/>%2").arg(nullTitle, nullDescription));
 
     auto vLay = new QVBoxLayout(this);
     vLay->addWidget(descriptionLbl, 0, Qt::AlignCenter);

@@ -219,7 +219,7 @@ void CertificateRequester::setSelectedCertificates(const QStringList &certs)
     }
     d->selectedCertificates = certs;
     d->updateLineEdit();
-    /*emit*/ selectedCertificatesChanged(certs);
+    Q_EMIT selectedCertificatesChanged(certs);
 }
 
 QStringList CertificateRequester::selectedCertificates() const

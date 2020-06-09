@@ -200,7 +200,7 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
 
     const auto errMsg = card->errorMsg();
     if (!errMsg.isEmpty()) {
-        mErrorLabel->setText(QStringLiteral("<b>%1:</b> %2").arg(i18n("Error")).arg(errMsg));
+        mErrorLabel->setText(QStringLiteral("<b>%1:</b> %2").arg(i18n("Error"), errMsg));
         mErrorLabel->setVisible(true);
     } else {
         mErrorLabel->setVisible(false);

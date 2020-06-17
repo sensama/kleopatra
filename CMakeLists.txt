@@ -88,7 +88,8 @@ find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network Pri
 find_package(Assuan2 REQUIRED)
 
 set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
-
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
 find_package(Boost 1.34.0 REQUIRED)

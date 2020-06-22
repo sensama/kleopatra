@@ -41,7 +41,6 @@ namespace Kleo
 {
 namespace SmartCard
 {
-class ReaderStatus;
 /** Class to work with Smartcards or other Hardware tokens. */
 class Card
 {

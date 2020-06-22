@@ -37,7 +37,6 @@
 
 #include <gpgme++/global.h>
 
-class QStringList;
 
 namespace Kleo
 {

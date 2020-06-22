@@ -41,11 +41,6 @@
 
 #include <utils/pimpl_ptr.h>
 
-namespace GpgME
-{
-class Error;
-}
-
 namespace Kleo
 {
 

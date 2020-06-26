@@ -109,7 +109,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
       mFilter(std::shared_ptr<KeyFilter>(filter)),
       mEditStarted(false),
       mEditFinished(false),
-      mLineAction(new QAction(nullptr))
+      mLineAction(new QAction(this))
 {
     setPlaceholderText(i18n("Please enter a name or email address..."));
     setClearButtonEnabled(true);
@@ -251,6 +251,7 @@ void CertificateLineEdit::dialogRequested()
             }
         }
     }
+    delete dlg;
     updateKey();
 }
 

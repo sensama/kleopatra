@@ -183,8 +183,8 @@ CertificateSelectionDialog::Private::Private(CertificateSelectionDialog *qq)
     : q(qq),
       ui(q)
 {
-    ui.tabWidget.setFlatModel(AbstractKeyListModel::createFlatKeyListModel());
-    ui.tabWidget.setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel());
+    ui.tabWidget.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(q));
+    ui.tabWidget.setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel(q));
     ui.tabWidget.connectSearchBar(&ui.searchBar);
 
     connect(&ui.tabWidget, SIGNAL(currentViewChanged(QAbstractItemView*)),

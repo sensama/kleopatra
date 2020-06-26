@@ -77,8 +77,8 @@ public:
 
         auto emailLay = new QHBoxLayout;
         auto emailLbl = new QLabel(i18n("EMail") + QLatin1Char(':'));
-        mEmailEdit = new QLineEdit;
-        mEmailEdit->setValidator(Validation::email());
+        mEmailEdit = new QLineEdit(q);
+        mEmailEdit->setValidator(Validation::email(mEmailEdit));
 
         connect(mEmailEdit, &QLineEdit::textChanged, q, [this] () {
                 mOkButton->setEnabled(!mEmailEdit->text().isEmpty() && mEmailEdit->hasAcceptableInput());

@@ -52,7 +52,7 @@ class PGPCardWidget: public QWidget
 {
     Q_OBJECT
 public:
-    PGPCardWidget();
+    explicit PGPCardWidget(QWidget *parent = nullptr);
 
     void setCard(const SmartCard::OpenPGPCard* card);
     void doChangePin(int slot);

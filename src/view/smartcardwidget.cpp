@@ -55,7 +55,8 @@ class PlaceHolderWidget: public QWidget
 {
     Q_OBJECT
 public:
-    PlaceHolderWidget()
+    explicit PlaceHolderWidget(QWidget *parent = nullptr)
+        : QWidget(parent)
     {
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
@@ -64,14 +65,14 @@ public:
                                                     << QStringLiteral("Gnuk")
                                                     << QStringLiteral("NetKey v3");
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") +
-                                  i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>")));
+                                  i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);
         lay->addWidget(new QLabel(QStringLiteral("\t\t") +
                        i18n("Kleopatra currently supports the following card types:") +
                             QStringLiteral("<ul><li>") + supported.join(QLatin1String("</li><li>")) +
-                            QStringLiteral("</li></ul>")));
+                            QStringLiteral("</li></ul>"), this));
         lay->addSpacing(10);
-        lay->addWidget(new QLabel(i18n("Refresh the view (F5) to update the smartcard status.")));
+        lay->addWidget(new QLabel(i18n("Refresh the view (F5) to update the smartcard status."), this));
         lay->addStretch(-1);
 
         auto hLay = new QHBoxLayout(this);
@@ -105,13 +106,13 @@ public:
         mStack = new QStackedWidget;
         vLay->addWidget(mStack);
 
-        mPGPCardWidget = new PGPCardWidget;
+        mPGPCardWidget = new PGPCardWidget(q);
         mStack->addWidget(mPGPCardWidget);
 
-        mNetKeyWidget = new NetKeyWidget;
+        mNetKeyWidget = new NetKeyWidget(q);
         mStack->addWidget(mNetKeyWidget);
 
-        mPlaceHolderWidget = new PlaceHolderWidget;
+        mPlaceHolderWidget = new PlaceHolderWidget(q);
         mStack->addWidget(mPlaceHolderWidget);
 
         mStack->setCurrentWidget(mPlaceHolderWidget);

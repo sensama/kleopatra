@@ -47,7 +47,7 @@ class NullPinWidget: public QWidget
 {
     Q_OBJECT
 public:
-    NullPinWidget();
+    explicit NullPinWidget(QWidget *parent = nullptr);
 
     void setSigGVisible(bool val);
     void setNKSVisible(bool val);

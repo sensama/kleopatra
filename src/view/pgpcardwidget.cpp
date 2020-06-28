@@ -121,14 +121,15 @@ class GenKeyThread: public QThread
 #endif
 } // Namespace
 
-PGPCardWidget::PGPCardWidget():
-    mSerialNumber(new QLabel),
-    mCardHolderLabel(new QLabel),
-    mVersionLabel(new QLabel),
-    mSigningKey(new QLabel),
-    mEncryptionKey(new QLabel),
-    mAuthKey(new QLabel),
-    mUrlLabel(new QLabel),
+PGPCardWidget::PGPCardWidget(QWidget *parent):
+    QWidget(parent),
+    mSerialNumber(new QLabel(this)),
+    mCardHolderLabel(new QLabel(this)),
+    mVersionLabel(new QLabel(this)),
+    mSigningKey(new QLabel(this)),
+    mEncryptionKey(new QLabel(this)),
+    mAuthKey(new QLabel(this)),
+    mUrlLabel(new QLabel(this)),
     mCardIsEmpty(false)
 {
     auto grid = new QGridLayout;

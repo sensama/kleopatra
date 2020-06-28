@@ -54,7 +54,8 @@ class NetKeyWidget: public QWidget
 {
     Q_OBJECT
 public:
-    NetKeyWidget();
+    explicit NetKeyWidget(QWidget *parent = nullptr);
+    ~NetKeyWidget();
 
     void setCard(const SmartCard::NetKeyCard* card);
 

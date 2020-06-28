@@ -57,15 +57,16 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace Kleo::Commands;
 
-NetKeyWidget::NetKeyWidget() :
-    mSerialNumber(new QLabel),
-    mVersionLabel(new QLabel),
-    mLearnKeysLabel(new QLabel),
-    mErrorLabel(new QLabel),
+NetKeyWidget::NetKeyWidget(QWidget *parent) :
+    QWidget(parent),
+    mSerialNumber(new QLabel(this)),
+    mVersionLabel(new QLabel(this)),
+    mLearnKeysLabel(new QLabel(this)),
+    mErrorLabel(new QLabel(this)),
     mNullPinWidget(new NullPinWidget()),
-    mLearnKeysBtn(new QPushButton),
-    mChangeNKSPINBtn(new QPushButton),
-    mChangeSigGPINBtn(new QPushButton),
+    mLearnKeysBtn(new QPushButton(this)),
+    mChangeNKSPINBtn(new QPushButton(this)),
+    mChangeSigGPINBtn(new QPushButton(this)),
     mTreeView(new KeyTreeView(this)),
     mArea(new QScrollArea)
 {
@@ -170,6 +171,10 @@ NetKeyWidget::NetKeyWidget() :
 
     vLay->addLayout(hLay3);
     vLay->addStretch(1);
+}
+
+NetKeyWidget::~NetKeyWidget()
+{
 }
 
 void NetKeyWidget::setCard(const NetKeyCard* card)

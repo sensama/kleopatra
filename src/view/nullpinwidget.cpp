@@ -48,7 +48,8 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
-NullPinWidget::NullPinWidget()
+NullPinWidget::NullPinWidget(QWidget *parent)
+    : QWidget(parent)
 {
     const auto nullTitle = i18nc("NullPIN is a word that is used all over in the netkey "
                                  "documentation and should be understandable by Netkey cardholders",

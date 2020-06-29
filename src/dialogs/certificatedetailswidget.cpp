@@ -69,7 +69,7 @@ class CertificateDetailsWidget::Private
 {
 public:
     Private(CertificateDetailsWidget *parent)
-        : q(parent), updateInProgress (false)
+        : updateInProgress (false), q(parent)
     {}
 
     void setupCommonProperties();

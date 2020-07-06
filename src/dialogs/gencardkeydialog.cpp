@@ -143,7 +143,7 @@ public:
         mOkButton->setEnabled(false);
     }
 
-    GenCardKeyDialog *q;
+    GenCardKeyDialog *const q;
     KeyParams params;
     QPushButton *mOkButton;
     QLineEdit *mNameEdit;

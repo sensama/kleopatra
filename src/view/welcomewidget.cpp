@@ -147,7 +147,7 @@ public:
         cmd->start();
     }
 
-    WelcomeWidget *q;
+    WelcomeWidget *const q;
     QToolButton *mGenerateBtn;
     QToolButton *mImportBtn;
 };

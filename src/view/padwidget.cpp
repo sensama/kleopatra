@@ -503,7 +503,7 @@ public:
     }
 
 private:
-    PadWidget *q;
+    PadWidget *const q;
     QTextEdit *mEdit;
     QPushButton *mCryptBtn;
     QPushButton *mDecryptBtn;

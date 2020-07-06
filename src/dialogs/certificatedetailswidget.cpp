@@ -103,7 +103,7 @@ public:
     GpgME::Key key;
     bool updateInProgress;
 private:
-    CertificateDetailsWidget *q;
+    CertificateDetailsWidget *const q;
 };
 
 void CertificateDetailsWidget::Private::setupCommonProperties()

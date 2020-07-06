@@ -430,7 +430,7 @@ public:
     }
 
 private:
-    CertifyWidget *q;
+    CertifyWidget *const q;
     QLabel *mFprLabel;
     KeySelectionCombo *mSecKeySelect;
     QCheckBox *mExportCB;

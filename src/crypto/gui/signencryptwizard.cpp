@@ -65,7 +65,7 @@ using namespace KMime::Types;
 class SignEncryptWizard::Private
 {
     friend class ::Kleo::Crypto::Gui::SignEncryptWizard;
-    SignEncryptWizard *q;
+    SignEncryptWizard *const q;
 public:
     explicit Private(SignEncryptWizard *qq);
     ~Private();

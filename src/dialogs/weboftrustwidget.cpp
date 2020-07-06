@@ -114,7 +114,7 @@ public:
     QTreeView *certificationsTV;
 
 private:
-    WebOfTrustWidget *q;
+    WebOfTrustWidget *const q;
 };
 
 

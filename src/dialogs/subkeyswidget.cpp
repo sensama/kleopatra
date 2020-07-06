@@ -56,7 +56,7 @@ public:
     Ui::SubKeysWidget ui;
     void tableContextMenuRequested(const QPoint &p);
 private:
-    SubKeysWidget *q;
+    SubKeysWidget *const q;
 };
 
 void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)

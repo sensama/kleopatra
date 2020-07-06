@@ -41,7 +41,7 @@ public:
     Ui::TrustChainWidget ui;
 
 private:
-    TrustChainWidget *q;
+    TrustChainWidget *const q;
 };
 
 TrustChainWidget::TrustChainWidget(QWidget *parent)

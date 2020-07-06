@@ -142,7 +142,7 @@ public:
     }
 
 private:
-    SmartCardWidget *q;
+    SmartCardWidget *const q;
     NetKeyWidget *mNetKeyWidget;
     PGPCardWidget *mPGPCardWidget;
     PlaceHolderWidget *mPlaceHolderWidget;

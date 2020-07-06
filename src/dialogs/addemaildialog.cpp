@@ -94,7 +94,7 @@ public:
         mOkButton->setEnabled(!mEmailEdit->text().isEmpty() && mEmailEdit->hasAcceptableInput());
     }
 
-    AddEmailDialog *q;
+    AddEmailDialog *const q;
     QPushButton *mOkButton;
     QLineEdit *mEmailEdit;
     bool mAdvancedSelected;

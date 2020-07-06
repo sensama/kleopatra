@@ -101,7 +101,7 @@ private:
             return okButton;
         }
         QPushButton *okButton;
-        Dialogs::OwnerTrustDialog *q;
+        Dialogs::OwnerTrustDialog *const q;
     } ui;
 };
 

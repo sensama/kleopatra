@@ -53,7 +53,7 @@ public:
     QTextEdit *textEdit;
     WaitWidget *waitWidget;
 private:
-    ExportWidget *q;
+    ExportWidget *const q;
 };
 
 void ExportWidget::Private::setupUi()

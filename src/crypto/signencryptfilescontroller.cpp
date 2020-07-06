@@ -537,7 +537,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         const bool ascii = prefs.addASCIIArmor();
 
         QVector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
-        Q_FOREACH (const Key k, recipients) {
+        Q_FOREACH (const Key &k, recipients) {
             if (k.protocol() == GpgME::OpenPGP) {
                 pgpRecipients << k;
             } else {
@@ -545,7 +545,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        Q_FOREACH (Key k, signers) {
+        Q_FOREACH (const Key &k, signers) {
             if (k.protocol() == GpgME::OpenPGP) {
                 pgpSigners << k;
             } else {
@@ -592,7 +592,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
 
         runnable.swap(tasks);
 
-        Q_FOREACH (const std::shared_ptr<Task> &task, runnable) {
+        for (const std::shared_ptr<Task> &task : qAsConst(runnable)) {
             q->connectTask(task);
         }
 

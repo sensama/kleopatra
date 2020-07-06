@@ -64,17 +64,12 @@
 
 #include <QGpgME/DataProvider>
 
-#if GPGMEPP_VERSION > 0x10801 // 1.8.1
-// TODO remove ifdef once > 1.8.1 is required
 #include <gpgme++/gpggencardkeyinteractor.h>
-# define GPGME_CAN_GENCARDKEY
-#endif
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 namespace {
-#ifdef GPGME_CAN_GENCARDKEY
 class GenKeyThread: public QThread
 {
     Q_OBJECT
@@ -118,7 +113,6 @@ class GenKeyThread: public QThread
 
         std::string mBkpFile;
 };
-#endif
 } // Namespace
 
 PGPCardWidget::PGPCardWidget(QWidget *parent):
@@ -205,12 +199,10 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
 
     auto actionLayout = new QHBoxLayout;
 
-#ifdef GPGME_CAN_GENCARDKEY
     auto generateButton = new QPushButton(i18n("Generate new Keys"));
     generateButton->setToolTip(i18n("Create a new primary key and generate subkeys on the card."));
     actionLayout->addWidget(generateButton);
     connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
-#endif
 
     auto pinButtton = new QPushButton(i18n("Change PIN"));
     pinButtton->setToolTip(i18n("Change the PIN required to unblock the smartcard."));
@@ -266,7 +258,6 @@ void PGPCardWidget::doChangePin(int slot)
                              this, "changePinResult");
 }
 
-#ifdef GPGME_CAN_GENCARDKEY
 void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
 {
     const auto params = dlg->getKeyParams();
@@ -321,10 +312,6 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
                              "Successfully generated a new key for this card."),
                              i18nc("@title", "Success"));
 }
-#else
-void PGPCardWidget::doGenKey(GenCardKeyDialog *) {}
-void PGPCardWidget::genKeyDone(const GpgME::Error &, const std::string &) {}
-#endif
 
 void PGPCardWidget::genkeyRequested()
 {

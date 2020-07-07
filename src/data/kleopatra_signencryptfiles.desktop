@@ -103,7 +103,7 @@ Name[x-test]=xxSign & Encrypt Filexx
 Name[zh_CN]=签名并加密文件
 Name[zh_TW]=簽署並加密檔案
 Icon=kleopatra
-Exec=kleopatra --encrypt-sign %F
+Exec=kleopatra --encrypt-sign -- %F
 
 [Desktop Action kleoencryptfiles]
 Name=Encrypt File
@@ -159,7 +159,7 @@ Name[x-test]=xxEncrypt Filexx
 Name[zh_CN]=加密文件
 Name[zh_TW]=加密檔案
 Icon=kleopatra
-Exec=kleopatra --encrypt %F
+Exec=kleopatra --encrypt -- %F
 
 [Desktop Action kleosignfilesopenpgp]
 Name=OpenPGP-Sign File
@@ -211,7 +211,7 @@ Name[x-test]=xxOpenPGP-Sign Filexx
 Name[zh_CN]=OpenPGP 签名文件
 Name[zh_TW]=OpenPGP─簽署檔案
 Icon=kleopatra
-Exec=kleopatra --openpgp --sign %F
+Exec=kleopatra --openpgp --sign -- %F
 
 [Desktop Action kleosignfilescms]
 Name=S/MIME-Sign File
@@ -263,5 +263,5 @@ Name[x-test]=xxS/MIME-Sign Filexx
 Name[zh_CN]=S/MIME 签名文件
 Name[zh_TW]=S/MIME─簽署檔案
 Icon=kleopatra
-Exec=kleopatra --cms --sign %F
+Exec=kleopatra --cms --sign -- %F
 

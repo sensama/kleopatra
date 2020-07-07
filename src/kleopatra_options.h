@@ -79,8 +79,7 @@ static void kleopatra_options(QCommandLineParser *parser)
                                   << QStringLiteral("D"),
                                   i18n("Decrypt and/or verify file(s)"))
             << QCommandLineOption(QStringList() << QStringLiteral("search"),
-                                  i18n("Search for a certificate on a keyserver"),
-                                  QStringLiteral("search string"))
+                                  i18n("Search for a certificate on a keyserver"))
             << QCommandLineOption(QStringList() << QStringLiteral("checksum"),
                                   i18n("Create or check a checksum file"))
             << QCommandLineOption(QStringList() << QStringLiteral("query")
@@ -88,8 +87,7 @@ static void kleopatra_options(QCommandLineParser *parser)
                                   i18nc("If a certificate is already known it shows the certificate details dialog."
                                         "Otherwise it brings up the certificate search dialog.",
                                         "Show details of a local certificate or search for it on a keyserver"
-                                        " by fingerprint"),
-                                  QStringLiteral("fingerprint"))
+                                        " by fingerprint"))
             << QCommandLineOption(QStringList() << QStringLiteral("gen-key"),
                                   i18n("Create a new key pair or certificate signing request"))
             << QCommandLineOption(QStringLiteral("parent-windowid"),
@@ -100,8 +98,19 @@ static void kleopatra_options(QCommandLineParser *parser)
 
     parser->addOptions(options);
 
+    /* Security note: To avoid code execution by shared library injection
+     * through e.g. -platformpluginpath any external input should be seperated
+     * by a double dash -- this is why query / search uses positional arguments.
+     *
+     * For example on Windows there is an URLhandler for openpgp4fpr:
+     * be opened with Kleopatra's query function. And while a browser should
+     * urlescape such a query there might be tricks to inject a quote character
+     * and as such inject command line options for Kleopatra in an URL. */
     parser->addPositionalArgument(QStringLiteral("files"),
                                   i18n("File(s) to process"),
-                                  QStringLiteral("[files..]"));
+                                  QStringLiteral("-- [files..]"));
+    parser->addPositionalArgument(QStringLiteral("query"),
+                                  i18n("String or Fingerprint for query and search"),
+                                  QStringLiteral("-- [query..]"));
 }
 #endif

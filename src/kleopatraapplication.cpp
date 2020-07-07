@@ -273,13 +273,18 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     QStringList files;
     const QDir cwd = QDir(workingDirectory);
-    Q_FOREACH (const QString &file, parser.positionalArguments()) {
-        // We do not check that file exists here. Better handle
-        // these errors in the UI.
-        if (QFileInfo(file).isAbsolute()) {
-            files << file;
-        } else {
-            files << cwd.absoluteFilePath(file);
+    bool queryMode = parser.isSet(QStringLiteral("query")) || parser.isSet(QStringLiteral("search"));
+
+    // Query and Search treat positional arguments differently, see below.
+    if (!queryMode) {
+        Q_FOREACH (const QString &file, parser.positionalArguments()) {
+            // We do not check that file exists here. Better handle
+            // these errors in the UI.
+            if (QFileInfo(file).isAbsolute()) {
+                files << file;
+            } else {
+                files << cwd.absoluteFilePath(file);
+            }
         }
     }
 
@@ -313,10 +318,8 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Handle openpgp4fpr URI scheme
     QString needle;
-    if (parser.isSet(QStringLiteral("search"))) {
-        needle = parser.value(QStringLiteral("search"));
-    } else if (parser.isSet(QStringLiteral("query"))) {
-        needle = parser.value(QStringLiteral("query"));
+    if (queryMode) {
+        needle = parser.positionalArguments().join(QLatin1Char(' '));
     }
     if (needle.startsWith(QLatin1String("openpgp4fpr:"))) {
         needle.remove(0, 12);

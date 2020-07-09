@@ -1823,14 +1823,14 @@ static void fill_combobox(QComboBox &cb, const QList<int> &sizes, const QStringL
 {
     cb.clear();
     for (int i = 0, end = sizes.size(); i != end; ++i) {
+        const int size = std::abs(sizes[i]);
+        /* As we respect the defaults configurable in GnuPG, and we also have configurable
+         * defaults in Kleopatra its difficult to print out "default" here. To avoid confusion
+         * about that its better not to show any default indication.  */
         cb.addItem(i < labels.size() && !labels[i].trimmed().isEmpty()
-                   ? sizes[i] < 0
-                   ? i18ncp("%2: some admin-supplied text, %1: key size in bits", "%2 (1 bit; default)", "%2 (%1 bits; default)", -sizes[i], labels[i].trimmed())
-                   : i18ncp("%2: some admin-supplied text, %1: key size in bits", "%2 (1 bit)", "%2 (%1 bits)", sizes[i], labels[i].trimmed())
-                   : sizes[i] < 0
-                   ? i18ncp("%1: key size in bits", "1 bit (default)", "%1 bits (default)", -sizes[i])
-                   : i18ncp("%1: key size in bits", "1 bit", "%1 bits", sizes[i]),
-                   std::abs(sizes[i]));
+                   ? i18ncp("%2: some admin-supplied text, %1: key size in bits", "%2 (1 bit)", "%2 (%1 bits)", size, labels[i].trimmed())
+                   : i18ncp("%1: key size in bits", "1 bit", "%1 bits", size),
+                   size);
         if (sizes[i] < 0) {
             cb.setCurrentIndex(cb.count() - 1);
         }

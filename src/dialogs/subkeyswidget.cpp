@@ -24,8 +24,10 @@
 
 #include "commands/keytocardcommand.h"
 #include "commands/importpaperkeycommand.h"
+#include "exportdialog.h"
 
 #include <gpgme++/key.h>
+#include <gpgme++/context.h>
 
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -33,6 +35,11 @@
 #include <QPushButton>
 #include <QTreeWidgetItem>
 #include <QMenu>
+
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_EXPORT_FLAGS
+#endif
 
 #include <Libkleo/Formatting>
 
@@ -71,6 +78,19 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     bool hasActions = false;
+
+#ifdef GPGME_HAS_EXPORT_FLAGS
+    if (subkey.parent().protocol() && subkey.canAuthenticate()) {
+        hasActions = true;
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
+                i18n("Export OpenSSH key"),
+                q, [this, subkey]() {
+            QScopedPointer<ExportDialog> dlg(new ExportDialog(q));
+            dlg->setKey(subkey, static_cast<unsigned int> (GpgME::Context::ExportSSH));
+            dlg->exec();
+        });
+    }
+#endif // GPGME_HAS_EXPORT_FLAGS
 
     if (!subkey.isSecret()) {
         hasActions = true;

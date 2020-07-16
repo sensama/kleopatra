@@ -38,6 +38,11 @@
 
 #include <Libkleo/Formatting>
 
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_EXPORT_FLAGS
+#endif
+
 using namespace Kleo;
 
 class ExportWidget::Private
@@ -50,8 +55,10 @@ public:
     void setupUi();
 
     GpgME::Key key;
+    GpgME::Subkey subkey;
     QTextEdit *textEdit;
     WaitWidget *waitWidget;
+    unsigned int flags;
 private:
     ExportWidget *const q;
 };
@@ -134,24 +141,53 @@ void ExportWidget::exportResult(const GpgME::Error &err, const QByteArray &data)
         d->textEdit->setText(i18nc("%1 is error message", "Failed to export: '%1'", QString::fromLatin1(err.asString())));
     }
 
-    d->textEdit->setText(injectComments(d->key, data));
+    if (!d->flags) {
+        d->textEdit->setText(injectComments(d->key, data));
+    } else {
+        d->textEdit->setText(QString::fromUtf8(data));
+    }
 }
 
-void ExportWidget::setKey(const GpgME::Key &key)
+void ExportWidget::setKey(const GpgME::Subkey &key, unsigned int flags)
+{
+    d->waitWidget->setVisible(true);
+    d->textEdit->setVisible(false);
+    d->key = key.parent();
+    d->subkey = key;
+    d->flags = flags;
+
+    auto protocol = d->key.protocol() == GpgME::CMS ?
+                                         QGpgME::smime() : QGpgME::openpgp();
+
+    auto job = protocol->publicKeyExportJob(true);
+
+    connect(job, &QGpgME::ExportJob::result,
+            this, &ExportWidget::exportResult);
+
+#ifdef GPGME_HAS_EXPORT_FLAGS
+    job->setExportFlags(flags);
+#endif
+    job->start(QStringList() << QLatin1String(key.fingerprint()) + QLatin1Char('!'));
+}
+
+void ExportWidget::setKey(const GpgME::Key &key, unsigned int flags)
 {
     d->waitWidget->setVisible(true);
     d->textEdit->setVisible(false);
     d->key = key;
+    d->flags = flags;
 
     auto protocol = key.protocol() == GpgME::CMS ?
                                       QGpgME::smime() : QGpgME::openpgp();
 
     auto job = protocol->publicKeyExportJob(true);
 
-    /* New style connect does not work on Windows. */
     connect(job, &QGpgME::ExportJob::result,
             this, &ExportWidget::exportResult);
 
+#ifdef GPGME_HAS_EXPORT_FLAGS
+    job->setExportFlags(flags);
+#endif
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }
 
@@ -187,9 +223,14 @@ ExportDialog::~ExportDialog()
     dialog.sync();
 }
 
-void ExportDialog::setKey(const GpgME::Key &key)
+void ExportDialog::setKey(const GpgME::Key &key, unsigned int flags)
 {
-    mWidget->setKey(key);
+    mWidget->setKey(key, flags);
+}
+
+void ExportDialog::setKey(const GpgME::Subkey &key, unsigned int flags)
+{
+    mWidget->setKey(key, flags);
 }
 
 GpgME::Key ExportDialog::key() const

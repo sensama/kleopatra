@@ -23,6 +23,7 @@
 
 namespace GpgME {
 class Key;
+class Subkey;
 class Error;
 }
 
@@ -36,7 +37,8 @@ public:
     explicit ExportWidget(QWidget *parent = nullptr);
     ~ExportWidget();
 
-    void setKey(const GpgME::Key &key);
+    void setKey(const GpgME::Key &key, unsigned int flags = 0);
+    void setKey(const GpgME::Subkey &key, unsigned int flags = 0);
     GpgME::Key key() const;
 
 private Q_SLOTS:
@@ -56,7 +58,8 @@ public:
     explicit ExportDialog(QWidget *parent = nullptr);
     ~ExportDialog();
 
-    void setKey(const GpgME::Key &key);
+    void setKey(const GpgME::Key &key, unsigned int flags = 0);
+    void setKey(const GpgME::Subkey &key, unsigned int flags = 0);
     GpgME::Key key() const;
 
 private:

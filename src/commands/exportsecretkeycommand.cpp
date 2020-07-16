@@ -42,6 +42,7 @@
 #include <utils/filedialog.h>
 
 #include <Libkleo/Classify>
+#include <Libkleo/Formatting>
 
 #include <gpgme++/key.h>
 
@@ -85,13 +86,16 @@ bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
 
     QString proposedFileName;
     const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
-    proposedFileName
-        = QString::fromLatin1(key.primaryFingerprint())
-        + QLatin1Char('.')
-        + QString::fromLatin1(outputFileExtension(protocol == OpenPGP
+    auto name = Formatting::prettyName(key);
+    if (name.isEmpty()) {
+        name = Formatting::prettyEMail(key);
+    }
+    /* Not translated so it's better to use in tutorials etc. */
+    proposedFileName = QStringLiteral("%1_%2_SECRET.%3").arg(name).arg(
+            Formatting::prettyKeyID(key.shortKeyID())).arg(
+            QString::fromLatin1(outputFileExtension(protocol == OpenPGP
                     ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                    : Class::CMS | Class::Binary | Class::ExportedPSM, usePGPFileExt))
-        ;
+                    : Class::CMS | Class::Binary | Class::ExportedPSM, usePGPFileExt)));
 
     m_filename = FileDialog::getSaveFileNameEx(parent ? parent : d->parentWidgetOrView(),
                           i18n("Export Secret Key"),

@@ -42,6 +42,7 @@
 #include <utils/filedialog.h>
 
 #include <Libkleo/Classify>
+#include <Libkleo/Formatting>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
@@ -211,13 +212,17 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
     QString proposedFileName;
     if (keys().size() == 1) {
         const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
-        proposedFileName
-            = QString::fromLatin1(keys().front().primaryFingerprint())
-              + QLatin1Char('.')
-              + QString::fromLatin1(outputFileExtension(protocol == OpenPGP
-                                    ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                                    : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt))
-              ;
+        const auto key = keys().front();
+        auto name = Formatting::prettyName(key);
+        if (name.isEmpty()) {
+            name = Formatting::prettyEMail(key);
+        }
+        /* Not translated so it's better to use in tutorials etc. */
+        proposedFileName = QStringLiteral("%1_%2_public.%3").arg(name).arg(
+                Formatting::prettyKeyID(key.shortKeyID())).arg(
+                QString::fromLatin1(outputFileExtension(protocol == OpenPGP
+                        ? Class::OpenPGP | Class::Ascii | Class::Certificate
+                        : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt)));
     }
 
     const QString fname = FileDialog::getSaveFileNameEx(parentWidgetOrView(),

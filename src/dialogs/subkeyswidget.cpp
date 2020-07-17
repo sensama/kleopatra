@@ -80,7 +80,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     bool hasActions = false;
 
 #ifdef GPGME_HAS_EXPORT_FLAGS
-    if (subkey.parent().protocol() && subkey.canAuthenticate()) {
+    if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.canAuthenticate()) {
         hasActions = true;
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                 i18n("Export OpenSSH key"),

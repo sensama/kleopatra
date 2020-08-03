@@ -1926,12 +1926,8 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
     } else if (protocol == OpenPGP && keyType == QLatin1String("DSA+ELG")) {
         setKeyType(Subkey::AlgoDSA);
         setSubkeyType(Subkey::AlgoELG_E);
-#if GPGMEPP_VERSION > 0x10800
-        // GPGME 1.8.0 has a bug that makes the gpgconf engine
-        // return garbage so we don't load it for this
     } else if (keyType.isEmpty() && engineIsVersion(2, 1, 17)) {
         loadDefaultGnuPGKeyType();
-#endif
     } else {
         if (!keyType.isEmpty() && keyType != QLatin1String("RSA"))
             qCWarning(KLEOPATRA_LOG) << "invalid value \"" << qPrintable(keyType)

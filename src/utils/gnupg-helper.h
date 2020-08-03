@@ -13,9 +13,6 @@
 #include <gpgme++/engineinfo.h>
 #include <gpgme++/key.h>
 
-/* Support compilation with GPGME older than 1.9.  */
-# define GPGME_HAS_KEY_IS_DEVS
-
 /* Does the given object comply with DE_VS?  This macro can be used to
    ensure that we can still build against older versions of GPGME
    without cluttering the code with preprocessor conditionals.  */

@@ -12,6 +12,8 @@
 
 #include "aboutdata.h"
 
+#include <Libkleo/GnuPG>
+
 #include <KLocalizedString>
 
 static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
@@ -66,12 +68,19 @@ static const about_data credits[] = {
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"), i18n("Kleopatra"),
-                 QLatin1String(kleopatra_version), i18n(description), KAboutLicense::GPL,
+#ifdef Q_OS_WIN
+                 Kleo::gpg4winVersion(),
+                 Kleo::gpg4winDescription(),
+#else
+                 QLatin1String(kleopatra_version),
+                 i18n(description),
+#endif
+                 KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0" "Dalheimer, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB\n"
                       "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB") +
                  QLatin1Char('\n') + i18n("(c) 2010-2019 The Kleopatra developers")
 #ifdef Q_OS_WIN
-                 , i18n("<a href=https://www.gpg4win.org>Visit the Gpg4win homepage</a>")
+                 , Kleo::gpg4winLongDescription()
 #endif
                  )
 {

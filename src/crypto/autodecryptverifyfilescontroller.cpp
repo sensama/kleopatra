@@ -23,7 +23,7 @@
 
 #include "commands/decryptverifyfilescommand.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/path-helper.h>
 #include <utils/input.h>
 #include <utils/output.h>

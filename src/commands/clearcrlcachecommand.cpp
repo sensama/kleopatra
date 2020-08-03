@@ -10,7 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "clearcrlcachecommand.h"
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 

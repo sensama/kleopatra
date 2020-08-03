@@ -17,7 +17,7 @@
 #include "dialogs/certificateselectiondialog.h"
 #include "certificateselectionline.h"
 
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 #include "utils/gui-helper.h"
 #include "utils/kleo_assert.h"
 

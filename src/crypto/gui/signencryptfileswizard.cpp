@@ -25,7 +25,7 @@
 #include <KMessageBox>
 
 #include "kleopatra_debug.h"
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/FileNameRequester>
 #include <QWindow>

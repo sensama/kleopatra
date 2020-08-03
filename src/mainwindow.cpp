@@ -27,7 +27,7 @@
 #include "commands/signencryptfilescommand.h"
 
 #include "utils/detail_p.h"
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 #include "utils/action_data.h"
 #include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"

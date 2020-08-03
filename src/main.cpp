@@ -21,7 +21,7 @@
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/archivedefinition.h>
 #include "utils/kuniqueservice.h"
 

@@ -19,7 +19,7 @@
 
 #include "crypto/signencrypttask.h"
 #include "crypto/decryptverifytask.h"
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 #include "utils/input.h"
 #include "utils/output.h"
 

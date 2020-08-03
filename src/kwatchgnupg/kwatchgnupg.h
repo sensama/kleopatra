@@ -10,7 +10,7 @@
 #define KWATCHGNUPG_H
 
 #include <QString>
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #define WATCHGNUPGBINARY QStringLiteral("watchgnupg")
 #define WATCHGNUPGSOCKET QString( Kleo::gnupgHomeDirectory() + QLatin1String("/log-socket") )

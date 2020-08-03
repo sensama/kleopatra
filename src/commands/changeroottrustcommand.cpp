@@ -14,7 +14,7 @@
 
 #include <Libkleo/KeyCache>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>

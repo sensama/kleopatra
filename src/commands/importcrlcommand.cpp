@@ -13,7 +13,7 @@
 
 #include "command_p.h"
 
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <QString>
 #include <QByteArray>

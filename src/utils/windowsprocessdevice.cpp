@@ -10,7 +10,7 @@
 
 #include "kleopatra_debug.h"
 
-#include "gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <windows.h>
 

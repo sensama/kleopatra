@@ -15,7 +15,7 @@
 
 #include "keypairinfo.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/Stl_Util>

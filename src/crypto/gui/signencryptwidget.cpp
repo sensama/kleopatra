@@ -27,7 +27,7 @@
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 #include <KConfigGroup>

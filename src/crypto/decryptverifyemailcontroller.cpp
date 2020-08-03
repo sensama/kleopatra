@@ -17,7 +17,7 @@
 #include <crypto/decryptverifytask.h>
 #include <crypto/taskcollection.h>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>

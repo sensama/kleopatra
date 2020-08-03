@@ -22,7 +22,7 @@
 #include <QPushButton>
 
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <qgpgme/keylistjob.h>
 #include <qgpgme/protocol.h>
 #include <gpgme++/keylistresult.h>

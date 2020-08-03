@@ -13,7 +13,7 @@
 
 #include "implementation_p.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/hex.h>
 
 #include "kleopatra_debug.h"

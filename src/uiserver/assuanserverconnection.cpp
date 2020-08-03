@@ -22,7 +22,7 @@
 
 #include <utils/input.h>
 #include <utils/output.h>
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/detail_p.h>
 #include <utils/hex.h>
 #include <utils/log.h>

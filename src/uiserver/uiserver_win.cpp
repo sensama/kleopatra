@@ -11,7 +11,7 @@
 
 #include "uiserver_p.h"
 
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 

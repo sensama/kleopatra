@@ -30,7 +30,7 @@
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 #include <utils/auditlog.h>
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <kmime/kmime_header_parsing.h>
 

@@ -16,7 +16,7 @@
 #include "task.h"
 #include "kleopatra_debug.h"
 
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <algorithm>
 #include <map>

@@ -12,7 +12,7 @@
 
 #include "exportpaperkeycommand.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <gpgme++/key.h>
 

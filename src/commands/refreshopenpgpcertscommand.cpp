@@ -11,7 +11,7 @@
 
 #include "refreshopenpgpcertscommand.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 #include <KMessageBox>

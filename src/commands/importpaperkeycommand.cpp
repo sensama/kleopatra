@@ -11,7 +11,7 @@
 
 #include "importpaperkeycommand.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <gpgme++/key.h>
 #include <gpgme++/importresult.h>

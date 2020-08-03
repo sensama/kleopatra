@@ -15,7 +15,7 @@
 
 #include <smartcard/readerstatus.h>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <gpgme++/key.h>
 

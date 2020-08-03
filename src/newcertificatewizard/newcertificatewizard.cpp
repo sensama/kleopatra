@@ -28,7 +28,7 @@
 
 #include <utils/validation.h>
 #include <utils/filedialog.h>
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Dn>

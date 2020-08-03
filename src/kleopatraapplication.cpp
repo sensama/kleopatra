@@ -20,7 +20,7 @@
 #include <smartcard/readerstatus.h>
 #include <conf/configuredialog.h>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/kdpipeiodevice.h>
 #include <utils/log.h>
 

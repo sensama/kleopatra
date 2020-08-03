@@ -14,7 +14,7 @@
 
 #include <Libkleo/Exception>
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 #include <utils/auditlog.h>
 
 #include <gpgme++/exception.h>

@@ -17,7 +17,7 @@
 #include "smartcard/readerstatus.h"
 
 #include "dialogs/gencardkeydialog.h"
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <QProgressDialog>
 #include <QThread>

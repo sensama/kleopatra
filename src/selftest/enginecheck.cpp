@@ -10,7 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "enginecheck.h"
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include "implementation_p.h"
 

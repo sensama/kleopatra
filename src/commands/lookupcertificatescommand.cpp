@@ -15,7 +15,7 @@
 
 #include "detailscommand.h"
 
-#include "utils/gnupg-helper.h"
+#include <Libkleo/GnuPG>
 
 #include <dialogs/lookupcertificatesdialog.h>
 

@@ -12,7 +12,7 @@
 
 #include "genrevokecommand.h"
 
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/Formatting>
 

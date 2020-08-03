@@ -15,7 +15,7 @@
 #include "sessiondata.h"
 
 #include <utils/detail_p.h>
-#include <utils/gnupg-helper.h>
+#include <Libkleo/GnuPG>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Exception>

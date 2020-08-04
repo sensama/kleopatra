@@ -78,7 +78,7 @@ AboutData::AboutData()
                  KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0" "Dalheimer, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB\n"
                       "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB") +
-                 QLatin1Char('\n') + i18n("(c) 2010-2019 The Kleopatra developers")
+                 QLatin1Char('\n') + i18n("(c) 2010-2020 The Kleopatra developers, g10 Code GmbH, Intevation GmbH")
 #ifdef Q_OS_WIN
                  , Kleo::gpg4winLongDescription()
 #endif

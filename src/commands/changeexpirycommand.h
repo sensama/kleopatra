@@ -35,6 +35,11 @@
 
 #include <commands/command.h>
 
+namespace GpgME
+{
+class Subkey;
+}
+
 namespace Kleo
 {
 namespace Commands
@@ -53,6 +58,8 @@ public:
     {
         return OnlyOneKey | MustBeOpenPGP | NeedSecretKey;
     }
+
+    void setSubkey(const GpgME::Subkey &subkey);
 
 private:
     void doStart() override;

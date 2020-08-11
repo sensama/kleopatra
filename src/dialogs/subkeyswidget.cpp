@@ -22,6 +22,7 @@
 
 #include "smartcard/readerstatus.h"
 
+#include "commands/changeexpirycommand.h"
 #include "commands/keytocardcommand.h"
 #include "commands/importpaperkeycommand.h"
 #include "exportdialog.h"
@@ -39,6 +40,9 @@
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
 # define GPGME_HAS_EXPORT_FLAGS
+#endif
+#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
+# define CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
 #endif
 
 #include <Libkleo/Formatting>
@@ -78,6 +82,30 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     bool hasActions = false;
+
+#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
+    if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.parent().hasSecret()) {
+        hasActions = true;
+        menu->addAction(i18n("Change Expiry Date..."), q,
+                [this, subkey]() {
+                    auto cmd = new Kleo::Commands::ChangeExpiryCommand(subkey.parent());
+                    if (subkey.keyID() != key.keyID()) {
+                        // do not set the primary key as subkey
+                        cmd->setSubkey(subkey);
+                    }
+                    ui.subkeysTree->setEnabled(false);
+                    connect(cmd, &Kleo::Commands::ChangeExpiryCommand::finished,
+                            q, [this]() {
+                                ui.subkeysTree->setEnabled(true);
+                                key.update();
+                                q->setKey(key);
+                            });
+                    cmd->setParentWidget(q);
+                    cmd->start();
+                }
+        );
+    }
+#endif // CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
 
 #ifdef GPGME_HAS_EXPORT_FLAGS
     if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.canAuthenticate()) {
@@ -148,6 +176,11 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
 {
     d->key = key;
 
+    const auto currentItem = d->ui.subkeysTree->currentItem();
+    const QByteArray selectedKeyFingerprint = currentItem ?
+        QByteArray(currentItem->data(0, Qt::UserRole).value<GpgME::Subkey>().fingerprint()) : QByteArray();
+    d->ui.subkeysTree->clear();
+
     for (const auto &subkey : key.subkeys()) {
         auto item = new QTreeWidgetItem();
         item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
@@ -168,6 +201,9 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
         item->setData(7, Qt::DisplayRole, subkey.keyID() == key.keyID() ? QStringLiteral("✓") : QString());
         d->ui.subkeysTree->addTopLevelItem(item);
+        if (subkey.fingerprint() == selectedKeyFingerprint) {
+            d->ui.subkeysTree->setCurrentItem(item);
+        }
     }
 
     const auto subkey = key.subkey(0);

@@ -50,6 +50,12 @@
 
 #include <QDateTime>
 
+#include <QDebug>
+
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
+# define CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
+#endif
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -83,6 +89,7 @@ private:
 
 private:
     GpgME::Key key;
+    GpgME::Subkey subkey;
     QPointer<ExpiryDialog> dialog;
     QPointer<ChangeExpiryJob> job;
 };
@@ -141,9 +148,13 @@ ChangeExpiryCommand::~ChangeExpiryCommand()
     qCDebug(KLEOPATRA_LOG);
 }
 
+void ChangeExpiryCommand::setSubkey(const GpgME::Subkey &subkey)
+{
+    d->subkey = subkey;
+}
+
 void ChangeExpiryCommand::doStart()
 {
-
     const std::vector<Key> keys = d->keys();
     if (keys.size() != 1 ||
             keys.front().protocol() != GpgME::OpenPGP ||
@@ -155,10 +166,20 @@ void ChangeExpiryCommand::doStart()
 
     d->key = keys.front();
 
+    if (!d->subkey.isNull() &&
+            d->subkey.parent().primaryFingerprint() != d->key.primaryFingerprint()) {
+        qDebug() << "Invalid subkey" << d->subkey.fingerprint()
+                 << ": Not a subkey of key" << d->key.primaryFingerprint();
+        d->finished();
+        return;
+    }
+
+    const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
+
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
-    const Subkey subkey = d->key.subkey(0);
-    d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() : QDateTime::fromSecsSinceEpoch(d->key.subkey(0).expirationTime()).date());
+    d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() :
+                               QDateTime::fromSecsSinceEpoch(subkey.expirationTime()).date());
     d->dialog->show();
 
 }
@@ -167,7 +188,7 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
 {
     Q_ASSERT(dialog);
 
-    static const QTime END_OF_DAY(23, 59, 59);   // not used, so as good as any
+    static const QTime END_OF_DAY(23, 59, 59);
 
     const QDateTime expiry(dialog->dateOfExpiry(), END_OF_DAY);
 
@@ -176,7 +197,16 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     createJob();
     Q_ASSERT(job);
 
+    std::vector<Subkey> subkeys;
+    if (!subkey.isNull()) {
+        subkeys.push_back(subkey);
+    }
+
+#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
+    if (const Error err = job->start(key, expiry, subkeys)) {
+#else
     if (const Error err = job->start(key, expiry)) {
+#endif
         showErrorDialog(err);
         finished();
     }

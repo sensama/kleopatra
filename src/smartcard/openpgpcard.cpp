@@ -49,41 +49,6 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
-#define xtoi_1(p)   (*(p) <= '9'? (*(p)- '0'): \
-                     *(p) <= 'F'? (*(p)-'A'+10):(*(p)-'a'+10))
-#define xtoi_2(p)   ((xtoi_1(p) * 16) + xtoi_1((p)+1))
-
-namespace
-{
-static const char * get_manufacturer (unsigned int no)
-{
-    switch (no) {
-        case 0x0001: return "PPC Card Systems";
-        case 0x0002: return "Prism";
-        case 0x0003: return "OpenFortress";
-        case 0x0004: return "Wewid";
-        case 0x0005: return "ZeitControl";
-        case 0x0006: return "Yubico";
-        case 0x0007: return "OpenKMS";
-        case 0x0008: return "LogoEmail";
-
-        case 0x002A: return "Magrathea";
-
-        case 0x1337: return "Warsaw Hackerspace";
-
-        case 0xF517: return "FSIJ";
-
-     /* 0x0000 and 0xFFFF are defined as test cards per spec,
-        0xFF00 to 0xFFFE are assigned for use with randomly created
-        serial numbers.  */
-        case 0x0000:
-        case 0xffff: return "test card";
-        default: return (no & 0xff00) == 0xff00? "unmanaged S/N range":"unknown";
-    }
-}
-
-} // namespace
-
 OpenPGPCard::OpenPGPCard()
 {
     setAppType(Card::OpenPGPApplication);
@@ -166,15 +131,13 @@ void OpenPGPCard::setSerialNumber(const std::string &serialno)
 {
     char version_buffer[6];
     const char *version = "";
-    const char *string = serialno.c_str();
 
     Card::setSerialNumber(serialno);
-    if (strncmp(string, "D27600012401", 12) || strlen(string) != 32 ) {
-        /* Not a proper OpenPGP card serialnumber.  Display the full
-           serialnumber. */
-        mManufacturer = "unknown";
-    } else {
+    const bool isProperOpenPGPCardSerialNumber =
+        serialno.size() == 32 && serialno.substr(0, 12) == "D27600012401";
+    if (isProperOpenPGPCardSerialNumber) {
         /* Reformat the version number to be better human readable.  */
+        const char *string = serialno.c_str();
         char *p = version_buffer;
         if (string[12] != '0') {
             *p++ = string[12];
@@ -187,9 +150,6 @@ void OpenPGPCard::setSerialNumber(const std::string &serialno)
         *p++ = string[15];
         *p++ = '\0';
         version = version_buffer;
-
-        /* Get the manufacturer.  */
-        mManufacturer = get_manufacturer(xtoi_2(string + 16)*256 + xtoi_2(string + 18));
     }
 
     mIsV2 = !((*version == '1' || *version == '0') && version[1] == '.');
@@ -211,6 +171,11 @@ bool OpenPGPCard::operator == (const Card& rhs) const
         && cardVersion() == other->cardVersion()
         && cardHolder() == other->cardHolder()
         && pubkeyUrl() == other->pubkeyUrl();
+}
+
+void OpenPGPCard::setManufacturer(const std::string &manufacturer)
+{
+    mManufacturer = manufacturer;
 }
 
 std::string OpenPGPCard::manufacturer() const

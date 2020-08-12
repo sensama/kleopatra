@@ -73,6 +73,9 @@ using namespace GpgME;
 
 static ReaderStatus *self = nullptr;
 
+#define xtoi_1(p)   (*(p) <= '9'? (*(p)- '0'): \
+                     *(p) <= 'F'? (*(p)-'A'+10):(*(p)-'a'+10))
+#define xtoi_2(p)   ((xtoi_1(p) * 16) + xtoi_1((p)+1))
 
 static const char *flags[] = {
     "NOCARD",
@@ -225,11 +228,78 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
     return gpgagent_status(gpgAgent, cmd.c_str(), err);
 }
 
+static const char * get_openpgp_card_manufacturer_from_serial_number(const std::string &serialno)
+{
+    qCDebug(KLEOPATRA_LOG) << "get_openpgp_card_manufacturer_from_serial_number(" << serialno.c_str() << ")";
+
+    const bool isProperOpenPGPCardSerialNumber =
+        serialno.size() == 32 && serialno.substr(0, 12) == "D27600012401";
+    if (isProperOpenPGPCardSerialNumber) {
+        const char *sn = serialno.c_str();
+        const int manufacturerId = xtoi_2(sn + 16)*256 + xtoi_2(sn + 18);
+        switch (manufacturerId) {
+            case 0x0001: return "PPC Card Systems";
+            case 0x0002: return "Prism";
+            case 0x0003: return "OpenFortress";
+            case 0x0004: return "Wewid";
+            case 0x0005: return "ZeitControl";
+            case 0x0006: return "Yubico";
+            case 0x0007: return "OpenKMS";
+            case 0x0008: return "LogoEmail";
+
+            case 0x002A: return "Magrathea";
+
+            case 0x1337: return "Warsaw Hackerspace";
+
+            case 0xF517: return "FSIJ";
+
+            /* 0x0000 and 0xFFFF are defined as test cards per spec,
+               0xFF00 to 0xFFFE are assigned for use with randomly created
+               serial numbers.  */
+            case 0x0000:
+            case 0xffff: return "test card";
+            default: return (manufacturerId & 0xff00) == 0xff00 ? "unmanaged S/N range" : "unknown";
+        }
+    } else {
+        return "unknown";
+    }
+}
+
+static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Error &err)
+{
+    // The result of SCD GETATTR MANUFACTURER is the manufacturer ID as unsigned number
+    // optionally followed by the name of the manufacturer, e.g.
+    // 6 Yubico
+    // 65534 unmanaged S/N range
+    const auto manufacturerIdAndName = scd_getattr_status(gpgAgent, "MANUFACTURER", err);
+    if (err.code()) {
+        if (err.code() == GPG_ERR_INV_NAME) {
+            qCDebug(KLEOPATRA_LOG) << "get_manufacturer(): Querying for attribute MANUFACTURER not yet supported; needs GnuPG 2.2.21+";
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "get_manufacturer(): GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        }
+        return std::string();
+    }
+    const auto startOfManufacturerName = manufacturerIdAndName.find(' ');
+    if (startOfManufacturerName == std::string::npos) {
+        // only ID without manufacturer name
+        return "unknown";
+    }
+    const auto manufacturerName = manufacturerIdAndName.substr(startOfManufacturerName + 1);
+    return manufacturerName;
+}
+
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
     auto ret = new OpenPGPCard();
     ret->setSerialNumber(ci->serialNumber());
+
+    ret->setManufacturer(get_manufacturer(gpg_agent, err));
+    if (err.code()) {
+        // fallback, e.g. if gpg does not yet support querying for the MANUFACTURER attribute
+        ret->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
+    }
 
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code()) {

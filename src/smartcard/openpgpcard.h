@@ -56,7 +56,9 @@ public:
 
     bool operator == (const Card& other) const override;
 
+    void setManufacturer(const std::string &manufacturer);
     std::string manufacturer() const;
+
     std::string cardVersion() const;
     std::string cardHolder() const;
     std::string pubkeyUrl() const;

@@ -168,12 +168,10 @@ public:
     void updateStatusBar()
     {
         const auto complianceMode = Formatting::complianceMode();
-        if (!complianceMode.isEmpty()) {
+        if (complianceMode == QStringLiteral("de-vs")) {
             auto statusBar = new QStatusBar;
             q->setStatusBar(statusBar);
-            auto statusLbl = new QLabel(i18nc("Compliance means that GnuPG is running in a more restricted mode e.g. to handle restricted documents.",
-                                        // The germans want some extra sausage
-                                        "Compliance: %1", complianceMode == QLatin1String("de-vs") ? QStringLiteral ("VS-NfD") : complianceMode));
+            auto statusLbl = new QLabel(Formatting::deVsString());
             statusBar->insertPermanentWidget(0, statusLbl);
 
         } else {

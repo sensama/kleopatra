@@ -282,10 +282,10 @@ static QString formatSigningInformation(const Signature &sig)
         text +=
             (QStringLiteral("<br/>")
              + (IS_DE_VS(sig)
-                ? i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that a signature is compliant with that.",
-                        "The signature is VS-NfD-compliant.")
-                : i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that a signature is not compliant with that.",
-                        "The signature <b>is not</b> VS-NfD-compliant.")));
+                ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                        "The signature is %1", Formatting::deVsString())
+                : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                        "The signature <b>is not</b> %1.", Formatting::deVsString())));
     }
 
     return text;
@@ -548,10 +548,10 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
 
     if (Kleo::gpgComplianceP("de-vs")) {
         details += ((IS_DE_VS(res)
-                     ? i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that the decryption is compliant with that.",
-                             "The decryption is VS-NfD-compliant.")
-                     : i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that the decryption is compliant with that.",
-                             "The decryption <b>is not</b> VS-NfD-compliant."))
+                     ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                             "The decryption is %1.", Formatting::deVsString())
+                     : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                             "The decryption <b>is not</b> %1."), Formatting::deVsString())
                     + QStringLiteral("<br/>"));
     }
 

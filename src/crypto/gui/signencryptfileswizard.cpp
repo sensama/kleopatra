@@ -26,6 +26,7 @@
 
 #include "kleopatra_debug.h"
 #include <Libkleo/GnuPG>
+#include <Libkleo/Formatting>
 
 #include <Libkleo/FileNameRequester>
 #include <QWindow>
@@ -289,10 +290,10 @@ private Q_SLOTS:
                                    ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                                    : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
                 mParent->setLabelText(de_vs
-                                      ? i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
-                                              "VS-NfD-compliant communication possible.")
-                                      : i18nc("VS-NfD-conforming is a German standard for restricted documents for which special restrictions about algorithms apply.  The string states that all cryptographic operations necessary for the communication are compliant with that.",
-                                              "VS-NfD-compliant communication not possible."));
+                        ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                            "%1 communication possible.", Formatting::deVsString())
+                        : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                            "%1 communication not possible.", Formatting::deVsString()));
             }
         } else {
             btn->setText(i18n("Next"));

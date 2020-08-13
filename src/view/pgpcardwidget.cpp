@@ -233,7 +233,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     const QString manufacturer = QString::fromStdString(card->manufacturer());
     const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1String("unknown");
     mVersionLabel->setText(manufacturerIsUnknown ?
-        i18nc("Placeholder is a version number", "Unknown OpenPGP v%2 card", version) :
+        i18nc("Placeholder is a version number", "Unknown OpenPGP v%1 card", version) :
         i18nc("First placeholder is manufacturer, second placeholder is a version number",
               "%1 OpenPGP v%2 card", manufacturer, version));
     const QString sn = QString::fromStdString(card->serialNumber()).mid(16, 12);

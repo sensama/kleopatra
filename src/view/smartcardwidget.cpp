@@ -11,8 +11,10 @@
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/netkeycard.h"
+#include "smartcard/pivcard.h"
 #include "view/pgpcardwidget.h"
 #include "view/netkeywidget.h"
+#include "view/pivcardwidget.h"
 
 #include "kleopatra_debug.h"
 
@@ -40,7 +42,8 @@ public:
 
         const QStringList supported = QStringList() << QStringLiteral("OpenPGP v2.0 - v3.3")
                                                     << QStringLiteral("Gnuk")
-                                                    << QStringLiteral("NetKey v3");
+                                                    << QStringLiteral("NetKey v3")
+                                                    << QStringLiteral("PIV");
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") +
                                   i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);
@@ -89,6 +92,9 @@ public:
         mNetKeyWidget = new NetKeyWidget(q);
         mStack->addWidget(mNetKeyWidget);
 
+        mPIVCardWidget = new PIVCardWidget(q);
+        mStack->addWidget(mPIVCardWidget);
+
         mPlaceHolderWidget = new PlaceHolderWidget(q);
         mStack->addWidget(mPlaceHolderWidget);
 
@@ -113,6 +119,9 @@ public:
         } else if (card->appType() == Card::NksApplication) {
             mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
             mStack->setCurrentWidget(mNetKeyWidget);
+        } else if (card->appType() == Card::PivApplication) {
+            mPIVCardWidget->setCard(static_cast<PIVCard *> (card.get()));
+            mStack->setCurrentWidget(mPIVCardWidget);
         } else {
             mStack->setCurrentWidget(mPlaceHolderWidget);
         }
@@ -122,6 +131,7 @@ private:
     SmartCardWidget *const q;
     NetKeyWidget *mNetKeyWidget;
     PGPCardWidget *mPGPCardWidget;
+    PIVCardWidget *mPIVCardWidget;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
 };

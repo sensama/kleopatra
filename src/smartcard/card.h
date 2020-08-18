@@ -25,6 +25,7 @@ public:
     enum AppType {
         UnknownApplication,
         OpenPGPApplication,
+        PivApplication,
         NksApplication,
         P15Application,
         DinSigApplication,

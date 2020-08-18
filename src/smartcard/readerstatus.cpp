@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2009 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -25,6 +27,7 @@
 #include "kleopatra_debug.h"
 #include "openpgpcard.h"
 #include "netkeycard.h"
+#include "pivcard.h"
 
 #include <QStringList>
 #include <QFileInfo>
@@ -104,6 +107,7 @@ static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std
 static const char *app_types[] = {
     "_", // will hopefully never be used as an app-type :)
     "openpgp",
+    "piv",
     "nks",
     "p15",
     "dinsig",
@@ -123,7 +127,6 @@ static Card::AppType parse_app_type(const std::string &s)
         return Card::UnknownApplication;
     }
     return static_cast<Card::AppType>(it - std::begin(app_types));
-
 }
 
 static int parse_app_version(const std::string &s)
@@ -287,6 +290,28 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     ci.reset(ret);
 }
 
+static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
+{
+    Error err;
+    auto pivCard = new PIVCard();
+    pivCard->setSerialNumber(ci->serialNumber());
+
+    const auto displaySerialnumber = scd_getattr_status(gpg_agent, "$DISPSERIALNO", err);
+    if (err.code()) {
+        qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Error on GETATTR $DISPSERIALNO:"
+                  << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+    }
+    pivCard->setDisplaySerialNumber(err.code() ? ci->serialNumber() : displaySerialnumber);
+
+    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    if (err.code()) {
+        ci->setStatus(Card::CardError);
+        return;
+    }
+    pivCard->setCardInfo(info);
+    ci.reset(pivCard);
+}
+
 static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -387,6 +412,10 @@ static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<
     } else if (ci->appType() == Card::OpenPGPApplication) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
         handle_openpgp_card(ci, gpg_agent);
+        return ci;
+    } else if (ci->appType() == Card::PivApplication) {
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: found PIV card" << ci->serialNumber().c_str() << "end";
+        handle_piv_card(ci, gpg_agent);
         return ci;
     } else {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << verbatimType.c_str();

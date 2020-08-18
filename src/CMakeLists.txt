@@ -104,6 +104,7 @@ set(_kleopatra_SRCS
   view/smartcardwidget.cpp
   view/padwidget.cpp
   view/pgpcardwidget.cpp
+  view/pivcardwidget.cpp
   view/netkeywidget.cpp
   view/nullpinwidget.cpp
   view/tabwidget.cpp
@@ -237,6 +238,7 @@ set(_kleopatra_SRCS
   smartcard/card.cpp
   smartcard/openpgpcard.cpp
   smartcard/netkeycard.cpp
+  smartcard/pivcard.cpp
 
   aboutdata.cpp
   systrayicon.cpp

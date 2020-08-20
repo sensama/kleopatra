@@ -11,11 +11,13 @@
 
 #include <QWidget>
 
+#include <gpgme++/error.h>
+
 class QLabel;
+class QPushButton;
 
 namespace Kleo
 {
-class GenCardKeyDialog;
 
 namespace SmartCard
 {
@@ -27,18 +29,31 @@ class PIVCardWidget: public QWidget
     Q_OBJECT
 public:
     explicit PIVCardWidget(QWidget *parent = nullptr);
+    ~PIVCardWidget();
 
     void setCard(const SmartCard::PIVCard* card);
 
 private:
-    void updateKey(QLabel *label, const std::string &fpr);
+    void updateKey(QLabel *label, QPushButton *button, const std::string &fpr);
+    void generateKey(const QByteArray &keyref);
 
+private Q_SLOTS:
+    void generatePIVAuthenticationKey();
+    void generateCardAuthenticationKey();
+    void generateDigitalSignatureKey();
+    void generateKeyManagementKey();
+
+private:
     QLabel *mSerialNumber = nullptr,
            *mVersionLabel = nullptr,
-           *mPivAuthenticationKey = nullptr,
+           *mPIVAuthenticationKey = nullptr,
            *mCardAuthenticationKey = nullptr,
-           *mSigningKey = nullptr,
-           *mEncryptionKey = nullptr;
+           *mDigitalSignatureKey = nullptr,
+           *mKeyManagementKey = nullptr;
+    QPushButton *mGeneratePIVAuthenticationKeyBtn = nullptr,
+                *mGenerateCardAuthenticationKeyBtn = nullptr,
+                *mGenerateDigitalSignatureKeyBtn = nullptr,
+                *mGenerateKeyManagementKeyBtn = nullptr;
     bool mCardIsEmpty = false;
 };
 } // namespace Kleo

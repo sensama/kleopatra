@@ -226,6 +226,8 @@ set(_kleopatra_SRCS
   commands/importpaperkeycommand.cpp
   commands/genrevokecommand.cpp
   commands/keytocardcommand.cpp
+  commands/cardcommand.cpp
+  commands/pivgeneratecardkeycommand.cpp
 
   ${_kleopatra_uiserver_files}
 

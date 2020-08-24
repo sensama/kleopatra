@@ -15,9 +15,10 @@
 
 using namespace Kleo;
 
-CardCommand::Private::Private(CardCommand *qq, QWidget *parent)
+CardCommand::Private::Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent)
     : q(qq),
       autoDelete(true),
+      serialNumber_(serialNumber),
       parentWidget_(parent)
 {
 }
@@ -26,8 +27,8 @@ CardCommand::Private::~Private()
 {
 }
 
-CardCommand::CardCommand(QWidget *parent)
-    : QObject(parent), d(new Private(this, parent))
+CardCommand::CardCommand(const std::string &serialNumber, QWidget *parent)
+    : QObject(parent), d(new Private(this, serialNumber, parent))
 {
 }
 

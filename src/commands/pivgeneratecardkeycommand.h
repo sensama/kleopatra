@@ -25,10 +25,10 @@ class PIVGenerateCardKeyCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    explicit PIVGenerateCardKeyCommand(QWidget *parent);
+    explicit PIVGenerateCardKeyCommand(const std::string &serialNumber, QWidget *parent);
     ~PIVGenerateCardKeyCommand() override;
 
-    void setKeyRef(const QByteArray &keyref);
+    void setKeyRef(const std::string &keyref);
 
 private:
     void doStart() override;

@@ -24,24 +24,33 @@ PIVCard::PIVCard(const std::string &serialno): PIVCard()
     setSerialNumber(serialno);
 }
 
-std::string PIVCard::pivAuthenticationKeyGrip() const
+// static
+std::string PIVCard::pivAuthenticationKeyRef()
 {
-    return mMetaInfo.value("PIV-AUTH-KEYPAIRINFO");
+    return std::string("PIV.9A");
 }
 
-std::string PIVCard::cardAuthenticationKeyGrip() const
+// static
+std::string PIVCard::cardAuthenticationKeyRef()
 {
-    return mMetaInfo.value("CARD-AUTH-KEYPAIRINFO");
+    return std::string("PIV.9E");
 }
 
-std::string PIVCard::digitalSignatureKeyGrip() const
+// static
+std::string PIVCard::digitalSignatureKeyRef()
 {
-    return mMetaInfo.value("SIG-KEYPAIRINFO");
+    return std::string("PIV.9C");
 }
 
-std::string PIVCard::keyManagementKeyGrip() const
+// static
+std::string PIVCard::keyManagementKeyRef()
 {
-    return mMetaInfo.value("ENC-KEYPAIRINFO");
+    return std::string("PIV.9D");
+}
+
+std::string PIVCard::keyGrip(const std::string& keyRef) const
+{
+    return mMetaInfo.value("KEYPAIRINFO-" + keyRef);
 }
 
 namespace {
@@ -68,19 +77,9 @@ void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string>
                 continue;
             }
             const auto grip = values[0].toStdString();
-            const auto slotId = values[1];
-            const auto usage = values[2];
-            if (slotId == QLatin1String("PIV.9A")) {
-                mMetaInfo.insert(std::string("PIV-AUTH-") + pair.first, grip);
-            } else if (slotId == QLatin1String("PIV.9E")) {
-                mMetaInfo.insert(std::string("CARD-AUTH-") + pair.first, grip);
-            } else if (slotId == QLatin1String("PIV.9C")) {
-                mMetaInfo.insert(std::string("SIG-") + pair.first, grip);
-            } else if (slotId == QLatin1String("PIV.9D")) {
-                mMetaInfo.insert(std::string("ENC-") + pair.first, grip);
-            } else {
-                qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
-            }
+            const auto keyRef = values[1].toStdString();
+            //const auto usage = values[2];
+            mMetaInfo.insert("KEYPAIRINFO-" + keyRef, grip);
         } else {
             mMetaInfo.insert(pair.first, pair.second);
         }
@@ -105,8 +104,5 @@ bool PIVCard::operator == (const Card& rhs) const
     }
 
     return Card::operator ==(rhs)
-        && pivAuthenticationKeyGrip() == other->pivAuthenticationKeyGrip()
-        && cardAuthenticationKeyGrip() == other->cardAuthenticationKeyGrip()
-        && digitalSignatureKeyGrip() == other->digitalSignatureKeyGrip()
-        && keyManagementKeyGrip() == other->keyManagementKeyGrip();
+        && mMetaInfo == other->mMetaInfo;
 }

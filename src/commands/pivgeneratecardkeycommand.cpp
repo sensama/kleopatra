@@ -11,6 +11,7 @@
 
 #include "cardcommand_p.h"
 
+#include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
 #include <gpgme++/error.h>
@@ -32,7 +33,7 @@ class PIVGenerateCardKeyCommand::Private : public CardCommand::Private
         return static_cast<PIVGenerateCardKeyCommand *>(q);
     }
 public:
-    explicit Private(PIVGenerateCardKeyCommand *qq, QWidget *p);
+    explicit Private(PIVGenerateCardKeyCommand *qq, const std::string &serialNumber, QWidget *p);
     ~Private();
 
     void init();
@@ -46,7 +47,8 @@ private:
     void generateKey();
 
 private:
-    QByteArray keyref;
+    std::string keyref;
+    bool overwriteExistingKey = false;
 };
 
 PIVGenerateCardKeyCommand::Private *PIVGenerateCardKeyCommand::d_func()
@@ -61,8 +63,8 @@ const PIVGenerateCardKeyCommand::Private *PIVGenerateCardKeyCommand::d_func() co
 #define d d_func()
 #define q q_func()
 
-PIVGenerateCardKeyCommand::Private::Private(PIVGenerateCardKeyCommand *qq, QWidget *p)
-    : CardCommand::Private(qq, p)
+PIVGenerateCardKeyCommand::Private::Private(PIVGenerateCardKeyCommand *qq, const std::string &serialNumber, QWidget *p)
+    : CardCommand::Private(qq, serialNumber, p)
 {
 }
 
@@ -71,8 +73,8 @@ PIVGenerateCardKeyCommand::Private::~Private()
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::Private::~Private()";
 }
 
-PIVGenerateCardKeyCommand::PIVGenerateCardKeyCommand(QWidget *p)
-    : CardCommand(new Private(this, p))
+PIVGenerateCardKeyCommand::PIVGenerateCardKeyCommand(const std::string &serialNumber, QWidget *p)
+    : CardCommand(new Private(this, serialNumber, p))
 {
     d->init();
 }
@@ -86,7 +88,7 @@ PIVGenerateCardKeyCommand::~PIVGenerateCardKeyCommand()
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::~PIVGenerateCardKeyCommand()";
 }
 
-void PIVGenerateCardKeyCommand::setKeyRef(const QByteArray &keyref)
+void PIVGenerateCardKeyCommand::setKeyRef(const std::string &keyref)
 {
     d->keyref = keyref;
 }
@@ -94,6 +96,33 @@ void PIVGenerateCardKeyCommand::setKeyRef(const QByteArray &keyref)
 void PIVGenerateCardKeyCommand::doStart()
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::doStart()";
+
+    // check if key exists
+    auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(d->serialNumber());
+    if (!pivCard) {
+        d->error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(d->serialNumber())));
+        d->finished();
+        return;
+    }
+
+    auto existingKey = pivCard->keyGrip(d->keyref);
+    if (!existingKey.empty()) {
+        const QString warningText = i18nc("@info",
+            "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+            "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+            i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+            (d->keyref == PIVCard::keyManagementKeyRef() ?
+             i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
+             QString());
+        const auto choice = KMessageBox::warningContinueCancel(d->parentWidget(), warningText,
+            i18nc("@title:window", "Overwrite existing key"),
+            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+        if (choice != KMessageBox::Continue) {
+            d->finished();
+            return;
+        }
+        d->overwriteExistingKey = true;
+    }
 
     d->generateKey();
 }
@@ -116,18 +145,26 @@ void PIVGenerateCardKeyCommand::Private::slotAuthenticateResult(const Error &err
         error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())),
               i18nc("@title", "Error"));
         finished();
-    } else if (err.isCanceled()) {
-        finished();
-    } else {
-        generateKey();
+        return;
     }
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+    generateKey();
 }
 
 void PIVGenerateCardKeyCommand::Private::generateKey()
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::generateKey()";
 
-    ReaderStatus::mutableInstance()->startSimpleTransaction("SCD GENKEY -- " + keyref, q, "slotGenerateKeyResult");
+    QByteArrayList command;
+    command << "SCD GENKEY";
+    if (overwriteExistingKey) {
+        command << "--force";
+    }
+    command << "--" << QByteArray::fromStdString(keyref);
+    ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotGenerateKeyResult");
 }
 
 void PIVGenerateCardKeyCommand::Private::slotGenerateKeyResult(const GpgME::Error& err)

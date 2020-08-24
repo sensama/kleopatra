@@ -24,10 +24,12 @@ public:
     PIVCard ();
     PIVCard (const std::string &serialno);
 
-    std::string pivAuthenticationKeyGrip() const;
-    std::string cardAuthenticationKeyGrip() const;
-    std::string digitalSignatureKeyGrip() const;
-    std::string keyManagementKeyGrip() const;
+    static std::string pivAuthenticationKeyRef();
+    static std::string cardAuthenticationKeyRef();
+    static std::string digitalSignatureKeyRef();
+    static std::string keyManagementKeyRef();
+
+    std::string keyGrip(const std::string &keyRef) const;
 
     void setCardInfo (const std::vector< std::pair<std::string, std::string> > &infos);
 

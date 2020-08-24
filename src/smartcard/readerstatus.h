@@ -18,6 +18,8 @@
 #include <vector>
 #include <memory>
 
+#include "kleopatra_debug.h"
+
 namespace Kleo
 {
 namespace SmartCard
@@ -42,6 +44,19 @@ public:
     std::vector<Card::PinState> pinStates(unsigned int slot) const;
 
     std::vector<std::shared_ptr<Card> > getCards() const;
+
+    template <typename T>
+    std::shared_ptr<T> getCard(const std::string &serialNumber) const
+    {
+        for (const auto &card: getCards()) {
+            if (card->serialNumber() == serialNumber) {
+                qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Found card with serial number" << QString::fromStdString(serialNumber);
+                return std::dynamic_pointer_cast<T>(card);
+            }
+        }
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Did not find card with serial number" << QString::fromStdString(serialNumber);
+        return std::shared_ptr<T>();
+    }
 
 public Q_SLOTS:
     void updateStatus();

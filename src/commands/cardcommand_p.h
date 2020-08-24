@@ -23,8 +23,13 @@ class Kleo::CardCommand::Private
 protected:
     CardCommand *const q;
 public:
-    explicit Private(CardCommand *qq, QWidget *parent);
+    explicit Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent);
     virtual ~Private();
+
+    std::string serialNumber() const
+    {
+        return serialNumber_;
+    }
 
     QWidget *parentWidget() const
     {
@@ -51,6 +56,7 @@ public:
 
 private:
     bool autoDelete : 1;
+    std::string serialNumber_;
     QPointer<QWidget> parentWidget_;
 };
 

@@ -24,7 +24,7 @@ class CardCommand : public QObject
 {
     Q_OBJECT
 public:
-    explicit CardCommand(QWidget *parent);
+    explicit CardCommand(const std::string &serialNumber, QWidget *parent);
     ~CardCommand() override;
 
    void setAutoDelete(bool on);

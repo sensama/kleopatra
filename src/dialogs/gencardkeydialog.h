@@ -28,15 +28,14 @@ public:
         QString name;
         QString email;
         QString comment;
-        int keysize;
-        GpgME::Subkey::PubkeyAlgo algo;
+        std::string algorithm;
         bool backup;
     };
     explicit GenCardKeyDialog(QWidget *parent = nullptr);
 
     KeyParams getKeyParams() const;
 
-    void setSupportedSizes(const std::vector<int> &sizes);
+    void setSupportedAlgorithms(const std::vector<std::pair<std::string, QString>> &algorithms, const std::string &defaultAlgo);
 
 private:
     class Private;

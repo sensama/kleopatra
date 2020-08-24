@@ -70,7 +70,8 @@ class GenKeyThread: public QThread
     protected:
         void run() override {
             GpgME::GpgGenCardKeyInteractor *ei = new GpgME::GpgGenCardKeyInteractor(mSerial);
-            ei->setKeySize(mParams.keysize);
+            ei->setAlgo(GpgME::GpgGenCardKeyInteractor::RSA);
+            ei->setKeySize(QByteArray::fromStdString(mParams.algorithm).toInt());
             ei->setNameUtf8(mParams.name.toStdString());
             ei->setEmailUtf8(mParams.email.toStdString());
             ei->setDoBackup(mParams.backup);
@@ -311,15 +312,16 @@ void PGPCardWidget::genkeyRequested()
     }
 
     GenCardKeyDialog *dlg = new GenCardKeyDialog(this);
-    std::vector <int> sizes;
-    sizes.push_back(1024);
-    sizes.push_back(2048);
-    sizes.push_back(3072);
+    std::vector<std::pair<std::string, QString>> algos = {
+        { "1024", QStringLiteral("RSA 1024") },
+        { "2048", QStringLiteral("RSA 2048") },
+        { "3072", QStringLiteral("RSA 3072") }
+    };
     // There is probably a better way to check for capabilities
     if (mIs21) {
-        sizes.push_back(4096);
+        algos.push_back({"4096", QStringLiteral("RSA 4096")});
     }
-    dlg->setSupportedSizes(sizes);
+    dlg->setSupportedAlgorithms(algos, "2048");
     connect(dlg, &QDialog::accepted, this, [this, dlg] () {
             doGenKey(dlg);
             dlg->deleteLater();

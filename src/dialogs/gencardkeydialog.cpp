@@ -64,11 +64,11 @@ public:
 
         // In the future GnuPG may support more algos but for now
         // (2.1.18) we are stuck with RSA for on card generation.
-        auto rsaLabel = new QLabel(i18n("RSA Keysize:"));
-        mKeySizeCombo = new QComboBox;
+        auto algorithmLabel = new QLabel(i18n("Algorithm:"));
+        mAlgorithmCombo = new QComboBox;
 
-        grid->addWidget(rsaLabel, row, 0);
-        grid->addWidget(mKeySizeCombo, row++, 1);
+        grid->addWidget(algorithmLabel, row, 0);
+        grid->addWidget(mAlgorithmCombo, row++, 1);
 
         mBackupCheckBox = new QCheckBox(i18n("Backup encryption key"));
         mBackupCheckBox->setToolTip(i18n("Backup the encryption key in a file.") + QStringLiteral("<br/>") +
@@ -87,19 +87,18 @@ public:
     {
         params.name = mNameEdit->text();
         params.email = mEmailEdit->text();
-        params.keysize = mKeySizeCombo->currentText().toInt();
-        params.algo = GpgME::Subkey::AlgoRSA;
+        params.algorithm = mAlgorithmCombo->currentData().toByteArray().toStdString();
         params.backup = mBackupCheckBox->isChecked();
         q->accept();
     }
 
-    void setSupportedSizes(const std::vector<int> &sizes)
+    void setSupportedAlgorithms(const std::vector<std::pair<std::string, QString>> &algorithms, const std::string &defaultAlgo)
     {
-        mKeySizeCombo->clear();
-        for (auto size: sizes) {
-            mKeySizeCombo->addItem(QString::number(size));
+        mAlgorithmCombo->clear();
+        for (auto algorithm: algorithms) {
+            mAlgorithmCombo->addItem(algorithm.second, QByteArray::fromStdString(algorithm.first));
         }
-        mKeySizeCombo->setCurrentIndex(mKeySizeCombo->findText(QStringLiteral("2048")));
+        mAlgorithmCombo->setCurrentIndex(mAlgorithmCombo->findData(QByteArray::fromStdString(defaultAlgo)));
     }
 
     void checkAcceptable()
@@ -126,7 +125,7 @@ public:
     QLineEdit *mNameEdit;
     QLineEdit *mEmailEdit;
     QLabel *mInvalidEmailLabel;
-    QComboBox *mKeySizeCombo;
+    QComboBox *mAlgorithmCombo;
     QCheckBox *mBackupCheckBox;
 };
 
@@ -135,9 +134,9 @@ GenCardKeyDialog::GenCardKeyDialog(QWidget *parent) : QDialog(parent),
 {
 }
 
-void GenCardKeyDialog::setSupportedSizes(const std::vector<int> &sizes)
+void GenCardKeyDialog::setSupportedAlgorithms(const std::vector<std::pair<std::string, QString>> &algorithms, const std::string &defaultAlgo)
 {
-    d->setSupportedSizes(sizes);
+    d->setSupportedAlgorithms(algorithms, defaultAlgo);
 }
 
 GenCardKeyDialog::KeyParams GenCardKeyDialog::getKeyParams() const

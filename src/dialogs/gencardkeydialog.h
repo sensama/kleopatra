@@ -31,7 +31,22 @@ public:
         std::string algorithm;
         bool backup;
     };
-    explicit GenCardKeyDialog(QWidget *parent = nullptr);
+
+    enum KeyAttribute {
+        NoKeyAttributes = 0,
+        KeyOwnerName    = 1,
+        KeyOwnerEmail   = 2,
+        KeyComment      = 4,
+        KeyAlgorithm    = 8,
+        LocalKeyBackup  = 16,
+
+        _AllKeyAttributes_Helper,
+        AllKeyAttributes = 2 * (_AllKeyAttributes_Helper - 1) - 1
+    };
+
+    Q_DECLARE_FLAGS(KeyAttributes, KeyAttribute)
+
+    explicit GenCardKeyDialog(KeyAttributes requiredAttributes, QWidget *parent = nullptr);
 
     KeyParams getKeyParams() const;
 

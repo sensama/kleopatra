@@ -29,6 +29,8 @@ public:
     static std::string digitalSignatureKeyRef();
     static std::string keyManagementKeyRef();
 
+    static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
+
     std::string keyGrip(const std::string &keyRef) const;
 
     void setCardInfo (const std::vector< std::pair<std::string, std::string> > &infos);

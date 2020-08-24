@@ -311,7 +311,7 @@ void PGPCardWidget::genkeyRequested()
         }
     }
 
-    GenCardKeyDialog *dlg = new GenCardKeyDialog(this);
+    GenCardKeyDialog *dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
     std::vector<std::pair<std::string, QString>> algos = {
         { "1024", QStringLiteral("RSA 1024") },
         { "2048", QStringLiteral("RSA 2048") },

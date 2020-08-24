@@ -1,4 +1,4 @@
-/*  commands/pivgeneratecardkeycommand.h
+/*  commands/pivgeneratecardkeycommand.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2020 g10 Code GmbH
@@ -14,9 +14,11 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
-#include <gpgme++/error.h>
+#include "dialogs/gencardkeydialog.h"
 
 #include <KLocalizedString>
+
+#include <gpgme++/error.h>
 
 #include "kleopatra_debug.h"
 
@@ -39,16 +41,21 @@ public:
     void init();
 
 private:
+    void slotDialogAccepted();
+    void slotDialogRejected();
     void slotAuthenticateResult(const Error &err);
     void slotGenerateKeyResult(const Error &err);
 
 private:
     void authenticate();
     void generateKey();
+    void ensureDialogCreated();
 
 private:
-    std::string keyref;
+    std::string keyRef;
     bool overwriteExistingKey = false;
+    std::string algorithm;
+    QPointer<GenCardKeyDialog> dialog;
 };
 
 PIVGenerateCardKeyCommand::Private *PIVGenerateCardKeyCommand::d_func()
@@ -65,6 +72,7 @@ const PIVGenerateCardKeyCommand::Private *PIVGenerateCardKeyCommand::d_func() co
 
 PIVGenerateCardKeyCommand::Private::Private(PIVGenerateCardKeyCommand *qq, const std::string &serialNumber, QWidget *p)
     : CardCommand::Private(qq, serialNumber, p)
+    , dialog()
 {
 }
 
@@ -88,9 +96,9 @@ PIVGenerateCardKeyCommand::~PIVGenerateCardKeyCommand()
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::~PIVGenerateCardKeyCommand()";
 }
 
-void PIVGenerateCardKeyCommand::setKeyRef(const std::string &keyref)
+void PIVGenerateCardKeyCommand::setKeyRef(const std::string &keyRef)
 {
-    d->keyref = keyref;
+    d->keyRef = keyRef;
 }
 
 void PIVGenerateCardKeyCommand::doStart()
@@ -105,13 +113,13 @@ void PIVGenerateCardKeyCommand::doStart()
         return;
     }
 
-    auto existingKey = pivCard->keyGrip(d->keyref);
+    auto existingKey = pivCard->keyGrip(d->keyRef);
     if (!existingKey.empty()) {
         const QString warningText = i18nc("@info",
             "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
             "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
             i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-            (d->keyref == PIVCard::keyManagementKeyRef() ?
+            (d->keyRef == PIVCard::keyManagementKeyRef() ?
              i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
              QString());
         const auto choice = KMessageBox::warningContinueCancel(d->parentWidget(), warningText,
@@ -124,7 +132,9 @@ void PIVGenerateCardKeyCommand::doStart()
         d->overwriteExistingKey = true;
     }
 
-    d->generateKey();
+    d->ensureDialogCreated();
+    Q_ASSERT(d->dialog);
+    d->dialog->show();
 }
 
 void PIVGenerateCardKeyCommand::Private::authenticate()
@@ -163,7 +173,10 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
     if (overwriteExistingKey) {
         command << "--force";
     }
-    command << "--" << QByteArray::fromStdString(keyref);
+    if (!algorithm.empty()) {
+        command << "--algo=" + QByteArray::fromStdString(algorithm);
+    }
+    command << "--" << QByteArray::fromStdString(keyRef);
     ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotGenerateKeyResult");
 }
 
@@ -184,6 +197,33 @@ void PIVGenerateCardKeyCommand::Private::slotGenerateKeyResult(const GpgME::Erro
         ReaderStatus::mutableInstance()->updateStatus();
     }
     finished();
+}
+
+void PIVGenerateCardKeyCommand::Private::slotDialogAccepted()
+{
+    algorithm = dialog->getKeyParams().algorithm;
+
+    // assume that we are already authenticated to the card
+    generateKey();
+}
+
+void PIVGenerateCardKeyCommand::Private::slotDialogRejected()
+{
+    finished();
+}
+
+void PIVGenerateCardKeyCommand::Private::ensureDialogCreated()
+{
+    if (dialog) {
+        return;
+    }
+
+    dialog = new GenCardKeyDialog(GenCardKeyDialog::KeyAlgorithm, parentWidget());
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setSupportedAlgorithms(PIVCard::supportedAlgorithms(keyRef), "rsa2048");
+
+    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
+    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
 }
 
 #undef d

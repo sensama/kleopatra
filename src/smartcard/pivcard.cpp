@@ -9,6 +9,8 @@
 
 #include "pivcard.h"
 
+#include <KLocalizedString>
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -46,6 +48,30 @@ std::string PIVCard::digitalSignatureKeyRef()
 std::string PIVCard::keyManagementKeyRef()
 {
     return std::string("PIV.9D");
+}
+
+// static
+std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(const std::string &keyRef)
+{
+    if (keyRef == PIVCard::keyManagementKeyRef()) {
+        return {
+            { "rsa2048", i18n("RSA key transport (2048 bits)") },
+            { "nistp256", i18n("ECDH (Curve P-256)") },
+            { "nistp384", i18n("ECDH (Curve P-384)") }
+        };
+    } else if (keyRef == PIVCard::digitalSignatureKeyRef()) {
+        return {
+            { "rsa2048", i18n("RSA (2048 bits)") },
+            { "nistp256", i18n("ECDSA (Curve P-256)") },
+            { "nistp384", i18n("ECDSA (Curve P-384)") }
+        };
+    }
+
+    // NIST SP 800-78-4 does not allow Curve P-384 for PIV Authentication key or Card Authentication key
+    return {
+        { "rsa2048", i18n("RSA (2048 bits)") },
+        { "nistp256", i18n("ECDSA (Curve P-256)") },
+    };
 }
 
 std::string PIVCard::keyGrip(const std::string& keyRef) const

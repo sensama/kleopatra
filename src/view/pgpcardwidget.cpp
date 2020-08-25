@@ -11,6 +11,8 @@
 
 #include "kleopatra_debug.h"
 
+#include "commands/changepincommand.h"
+
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
 
@@ -44,6 +46,7 @@
 #include <gpgme++/gpggencardkeyinteractor.h>
 
 using namespace Kleo;
+using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
 namespace {
@@ -185,17 +188,17 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     auto pinButtton = new QPushButton(i18n("Change PIN"));
     pinButtton->setToolTip(i18n("Change the PIN required to unblock the smartcard."));
     actionLayout->addWidget(pinButtton);
-    connect(pinButtton, &QPushButton::clicked, this, [this] () {doChangePin(1);});
+    connect(pinButtton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::pinKeyRef()); });
 
     auto pukButton = new QPushButton(i18n("Change Admin PIN"));
     pukButton->setToolTip(i18n("Change the PIN required to unlock the smartcard."));
     actionLayout->addWidget(pukButton);
-    connect(pukButton, &QPushButton::clicked, this, [this] () {doChangePin(3);});
+    connect(pukButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::adminPinKeyRef()); });
 
     auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
     pukButton->setToolTip(i18n("Change the PIN required to reset the smartcard to an empty state."));
     actionLayout->addWidget(resetCodeButton);
-    connect(resetCodeButton, &QPushButton::clicked, this, [this] () {doChangePin(2);});
+    connect(resetCodeButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
 
     actionLayout->addStretch(-1);
     grid->addLayout(actionLayout, row++, 0, 1, 4);
@@ -232,11 +235,16 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
 }
 
-void PGPCardWidget::doChangePin(int slot)
+void PGPCardWidget::doChangePin(const std::string &keyRef)
 {
-    ReaderStatus::mutableInstance()
-    ->startSimpleTransaction(QStringLiteral("SCD PASSWD %1").arg(slot).toUtf8().constData(),
-                             this, "changePinResult");
+    auto cmd = new ChangePinCommand(mRealSerial, this);
+    this->setEnabled(false);
+    connect(cmd, &ChangePinCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->setKeyRef(keyRef);
+    cmd->start();
 }
 
 void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
@@ -328,21 +336,6 @@ void PGPCardWidget::genkeyRequested()
         });
     dlg->setModal(true);
     dlg->show();
-}
-
-void PGPCardWidget::changePinResult(const GpgME::Error &err)
-{
-    if (err) {
-        KMessageBox::error(this, i18nc("@info",
-                           "PIN change failed: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
-        return;
-    }
-    if (!err.isCanceled()) {
-        KMessageBox::information(this, i18nc("@info",
-                    "Code successfully changed."),
-                i18nc("@title", "Success"));
-    }
 }
 
 void PGPCardWidget::changeNameRequested()

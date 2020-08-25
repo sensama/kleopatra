@@ -36,6 +36,24 @@ OpenPGPCard::OpenPGPCard(const std::string &serialno): OpenPGPCard()
     setSerialNumber(serialno);
 }
 
+// static
+std::string OpenPGPCard::pinKeyRef()
+{
+    return std::string("OPENPGP.1");
+}
+
+// static
+std::string OpenPGPCard::adminPinKeyRef()
+{
+    return std::string("OPENPGP.3");
+}
+
+// static
+std::string OpenPGPCard::resetCodeKeyRef()
+{
+    return std::string("OPENPGP.2");
+}
+
 std::string OpenPGPCard::sigFpr() const
 {
     return mMetaInfo.value("SIGKEY-FPR");

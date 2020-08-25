@@ -32,19 +32,18 @@ public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
 
     void setCard(const SmartCard::OpenPGPCard* card);
-    void doChangePin(int slot);
     void doGenKey(GenCardKeyDialog *dlg);
     void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
 public Q_SLOTS:
     void genkeyRequested();
-    void changePinResult(const GpgME::Error &err);
     void changeNameRequested();
     void changeNameResult(const GpgME::Error &err);
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
 
 private:
+    void doChangePin(const std::string &keyRef);
     void updateKey(QLabel *label, const std::string &fpr);
     QLabel *mSerialNumber = nullptr,
            *mCardHolderLabel = nullptr,

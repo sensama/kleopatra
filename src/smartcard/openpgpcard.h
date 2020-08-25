@@ -23,6 +23,11 @@ class OpenPGPCard: public Card
 public:
     OpenPGPCard ();
     OpenPGPCard (const std::string &serialno);
+
+    static std::string pinKeyRef();
+    static std::string adminPinKeyRef();
+    static std::string resetCodeKeyRef();
+
     void setSerialNumber(const std::string &sn) override;
 
     std::string encFpr() const;

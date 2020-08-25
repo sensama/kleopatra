@@ -103,6 +103,15 @@ void ChangePinCommand::Private::changePin()
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::changePin()";
     QByteArrayList command;
     command << "SCD PASSWD";
+    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+        // special handling for setting/changing the Reset Code of OpenPGP v2 cards
+        const auto card = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
+        const std::string firstTwoVersionChars = card->cardVersion().substr(0, 2);
+        const bool isVersion2 = !(firstTwoVersionChars == "1." || firstTwoVersionChars == "0.");
+        if (isVersion2) {
+            command << "--reset";
+        }
+    }
     command << QByteArray::fromStdString(keyRef);
     ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotResult");
 }

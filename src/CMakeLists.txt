@@ -228,6 +228,7 @@ set(_kleopatra_SRCS
   commands/keytocardcommand.cpp
   commands/cardcommand.cpp
   commands/pivgeneratecardkeycommand.cpp
+  commands/changepincommand.cpp
 
   ${_kleopatra_uiserver_files}
 

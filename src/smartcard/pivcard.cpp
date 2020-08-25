@@ -51,6 +51,18 @@ std::string PIVCard::keyManagementKeyRef()
 }
 
 // static
+std::string PIVCard::pinKeyRef()
+{
+    return std::string("PIV.80");
+}
+
+// static
+std::string PIVCard::pukKeyRef()
+{
+    return std::string("PIV.81");
+}
+
+// static
 std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(const std::string &keyRef)
 {
     if (keyRef == PIVCard::keyManagementKeyRef()) {

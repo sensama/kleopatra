@@ -29,6 +29,9 @@ public:
     static std::string digitalSignatureKeyRef();
     static std::string keyManagementKeyRef();
 
+    static std::string pinKeyRef();
+    static std::string pukKeyRef();
+
     static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
 
     std::string keyGrip(const std::string &keyRef) const;

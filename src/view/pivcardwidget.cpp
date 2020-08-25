@@ -9,6 +9,7 @@
 
 #include "pivcardwidget.h"
 
+#include "commands/changepincommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
 
 #include "smartcard/pivcard.h"
@@ -144,6 +145,21 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     line2->setFrameShape(QFrame::HLine);
     grid->addWidget(line2, row++, 0, 1, 4);
 
+    auto actionLayout = new QHBoxLayout;
+
+    auto pinButton = new QPushButton(i18n("Change PIN"));
+    pinButton->setToolTip(i18n("Change the PIV Card Application PIN that activates the PIV Card and enables private key operations using the stored keys."));
+    actionLayout->addWidget(pinButton);
+    connect(pinButton, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pinKeyRef()); });
+
+    auto pukButton = new QPushButton(i18n("Change PUK"));
+    pukButton->setToolTip(i18n("Change the PIN Unblocking Key that enables a reset of the PIN."));
+    actionLayout->addWidget(pukButton);
+    connect(pukButton, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pukKeyRef()); });
+
+    actionLayout->addStretch(-1);
+    grid->addLayout(actionLayout, row++, 0, 1, 4);
+
     grid->setColumnStretch(4, -1);
 }
 
@@ -210,4 +226,16 @@ void PIVCardWidget::generateDigitalSignatureKey()
 void PIVCardWidget::generateKeyManagementKey()
 {
     generateKey(PIVCard::keyManagementKeyRef());
+}
+
+void PIVCardWidget::changePin(const std::string &keyRef)
+{
+    auto cmd = new ChangePinCommand(mCardSerialNumber, this);
+    this->setEnabled(false);
+    connect(cmd, &ChangePinCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->setKeyRef(keyRef);
+    cmd->start();
 }

@@ -51,6 +51,7 @@ private:
     void ensureDialogCreated();
 
 private:
+    QString prompt;
     QPointer<PIVCardApplicationAdministrationKeyInputDialog> dialog;
 };
 
@@ -90,6 +91,11 @@ void AuthenticatePIVCardApplicationCommand::Private::init()
 AuthenticatePIVCardApplicationCommand::~AuthenticatePIVCardApplicationCommand()
 {
     qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::~AuthenticatePIVCardApplicationCommand()";
+}
+
+void AuthenticatePIVCardApplicationCommand::setPrompt(const QString& prompt)
+{
+    d->prompt = prompt;
 }
 
 void AuthenticatePIVCardApplicationCommand::doStart()
@@ -143,7 +149,9 @@ void AuthenticatePIVCardApplicationCommand::Private::ensureDialogCreated()
 
     dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidget());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setLabelText(i18n("Please enter the PIV Card Application Administration Key in hex-encoded form."));
+    dialog->setLabelText(prompt.isEmpty() ?
+                         i18n("Please enter the PIV Card Application Administration Key in hex-encoded form.") :
+                         prompt);
 
     connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
     connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));

@@ -37,6 +37,7 @@ private:
     void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, QLabel *label, QPushButton *button);
     void generateKey(const std::string &keyref);
     void changePin(const std::string &keyRef);
+    void setAdminKey();
 
 private Q_SLOTS:
     void generatePIVAuthenticationKey();

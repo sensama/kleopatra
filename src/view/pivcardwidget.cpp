@@ -11,6 +11,7 @@
 
 #include "commands/changepincommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
+#include "commands/setpivcardapplicationadministrationkeycommand.h"
 
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -147,15 +148,26 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
 
     auto actionLayout = new QHBoxLayout;
 
-    auto pinButton = new QPushButton(i18n("Change PIN"));
-    pinButton->setToolTip(i18n("Change the PIV Card Application PIN that activates the PIV Card and enables private key operations using the stored keys."));
-    actionLayout->addWidget(pinButton);
-    connect(pinButton, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pinKeyRef()); });
-
-    auto pukButton = new QPushButton(i18n("Change PUK"));
-    pukButton->setToolTip(i18n("Change the PIN Unblocking Key that enables a reset of the PIN."));
-    actionLayout->addWidget(pukButton);
-    connect(pukButton, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pukKeyRef()); });
+    {
+        auto button = new QPushButton(i18n("Change PIN"));
+        button->setToolTip(i18n("Change the PIV Card Application PIN that activates the PIV Card and enables private key operations using the stored keys."));
+        actionLayout->addWidget(button);
+        connect(button, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pinKeyRef()); });
+    }
+    {
+        auto button = new QPushButton(i18n("Change PUK"));
+        button->setToolTip(i18n("Change the PIN Unblocking Key that enables a reset of the PIN."));
+        actionLayout->addWidget(button);
+        connect(button, &QPushButton::clicked, this, [this] () { changePin(PIVCard::pukKeyRef()); });
+    }
+    {
+        auto button = new QPushButton(i18n("Change Admin Key"));
+        button->setToolTip(i18n("Change the PIV Card Application Administration Key that is used by the "
+            "PIV Card Application to authenticate the PIV Card Application Administrator and by the "
+            "administrator (resp. Kleopatra) to authenticate the PIV Card Application."));
+        actionLayout->addWidget(button);
+        connect(button, &QPushButton::clicked, this, [this] () { setAdminKey(); });
+    }
 
     actionLayout->addStretch(-1);
     grid->addLayout(actionLayout, row++, 0, 1, 4);
@@ -237,5 +249,16 @@ void PIVCardWidget::changePin(const std::string &keyRef)
                 this->setEnabled(true);
             });
     cmd->setKeyRef(keyRef);
+    cmd->start();
+}
+
+void PIVCardWidget::setAdminKey()
+{
+    auto cmd = new SetPIVCardApplicationAdministrationKeyCommand(mCardSerialNumber, this);
+    this->setEnabled(false);
+    connect(cmd, &SetPIVCardApplicationAdministrationKeyCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
     cmd->start();
 }

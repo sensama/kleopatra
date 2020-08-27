@@ -1,4 +1,4 @@
-/*  commands/authenticatepivcardapplicationcommand.h
+/*  commands/setpivcardapplicationadministrationkeycommand.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2020 g10 Code GmbH
@@ -6,8 +6,8 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_COMMMANDS_AUTHENTICATEPIVCARDAPPLICATIONCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_AUTHENTICATEPIVCARDAPPLICATIONCOMMAND_H__
+#ifndef __KLEOPATRA_COMMMANDS_SETPIVCARDAPPLICATIONADMINISTRATIONKEYCOMMAND_H__
+#define __KLEOPATRA_COMMMANDS_SETPIVCARDAPPLICATIONADMINISTRATIONKEYCOMMAND_H__
 
 #include "cardcommand.h"
 
@@ -21,14 +21,12 @@ namespace Kleo
 namespace Commands
 {
 
-class AuthenticatePIVCardApplicationCommand : public CardCommand
+class SetPIVCardApplicationAdministrationKeyCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    explicit AuthenticatePIVCardApplicationCommand(const std::string &serialNumber, QWidget *parent);
-    ~AuthenticatePIVCardApplicationCommand() override;
-
-    void setPrompt(const QString& prompt);
+    explicit SetPIVCardApplicationAdministrationKeyCommand(const std::string &serialNumber, QWidget *parent);
+    ~SetPIVCardApplicationAdministrationKeyCommand() override;
 
 private:
     void doStart() override;
@@ -45,4 +43,4 @@ private:
 } // namespace Commands
 } // namespace Kleo
 
-#endif // __KLEOPATRA_COMMMANDS_AUTHENTICATEPIVCARDAPPLICATIONCOMMAND_H__
+#endif // __KLEOPATRA_COMMMANDS_SETPIVCARDAPPLICATIONADMINISTRATIONKEYCOMMAND_H__

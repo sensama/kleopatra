@@ -32,12 +32,15 @@ public:
 
 public Q_SLOTS:
     void start();
+    void cancel();
 
 Q_SIGNALS:
     void finished();
+    void canceled();
 
 private:
     virtual void doStart() = 0;
+    virtual void doCancel();
 
 protected:
     class Private;

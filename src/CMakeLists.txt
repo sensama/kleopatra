@@ -132,6 +132,7 @@ set(_kleopatra_SRCS
   dialogs/subkeyswidget.cpp
   dialogs/gencardkeydialog.cpp
   dialogs/updatenotification.cpp
+  dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp
@@ -229,6 +230,7 @@ set(_kleopatra_SRCS
   commands/cardcommand.cpp
   commands/pivgeneratecardkeycommand.cpp
   commands/changepincommand.cpp
+  commands/authenticatepivcardapplicationcommand.cpp
 
   ${_kleopatra_uiserver_files}
 

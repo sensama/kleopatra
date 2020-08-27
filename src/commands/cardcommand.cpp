@@ -55,3 +55,13 @@ void CardCommand::start()
 {
     doStart();
 }
+
+void CardCommand::cancel()
+{
+    doCancel();
+    Q_EMIT canceled();
+}
+
+void CardCommand::doCancel()
+{
+}

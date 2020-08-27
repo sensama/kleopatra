@@ -44,6 +44,12 @@ public:
         }
     }
 
+    void canceled()
+    {
+        Q_EMIT q->canceled();
+        finished();
+    }
+
     void error(const QString &text, const QString &caption = QString(), KMessageBox::Options options = KMessageBox::Notify) const
     {
         KMessageBox::error(parentWidget(), text, caption, options);

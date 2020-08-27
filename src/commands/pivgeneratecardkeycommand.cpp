@@ -14,6 +14,8 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
+#include "commands/authenticatepivcardapplicationcommand.h"
+
 #include "dialogs/gencardkeydialog.h"
 
 #include <KLocalizedString>
@@ -43,11 +45,12 @@ public:
 private:
     void slotDialogAccepted();
     void slotDialogRejected();
-    void slotAuthenticateResult(const Error &err);
-    void slotGenerateKeyResult(const Error &err);
+    void slotResult(const Error &err);
 
 private:
     void authenticate();
+    void authenticationFinished();
+    void authenticationCanceled();
     void generateKey();
     void ensureDialogCreated();
 
@@ -56,6 +59,7 @@ private:
     bool overwriteExistingKey = false;
     std::string algorithm;
     QPointer<GenCardKeyDialog> dialog;
+    bool hasBeenCanceled = false;
 };
 
 PIVGenerateCardKeyCommand::Private *PIVGenerateCardKeyCommand::d_func()
@@ -141,27 +145,27 @@ void PIVGenerateCardKeyCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::authenticate()";
 
-    const QByteArray defaultAuthenticationKey = QByteArray::fromHex("010203040506070801020304050607080102030405060708");
-    const QByteArray plusPercentEncodedAuthenticationKey = defaultAuthenticationKey.toPercentEncoding().replace(' ', '+');
-    const QByteArray command = QByteArray("SCD SETATTR AUTH-ADM-KEY ") + plusPercentEncodedAuthenticationKey;
-    ReaderStatus::mutableInstance()->startSimpleTransaction(command, q, "slotAuthenticateResult");
+    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidget());
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
+            q, [this]() { authenticationFinished(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
+            q, [this]() { authenticationCanceled(); });
+    cmd->start();
 }
 
-void PIVGenerateCardKeyCommand::Private::slotAuthenticateResult(const Error &err)
+void PIVGenerateCardKeyCommand::Private::authenticationFinished()
 {
-    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotAuthenticateResult():"
-                           << err.asString() << "(" << err.code() << ")";
-    if (err) {
-        error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())),
-              i18nc("@title", "Error"));
-        finished();
-        return;
+    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::authenticationFinished()";
+    if (!hasBeenCanceled) {
+        generateKey();
     }
-    if (err.isCanceled()) {
-        finished();
-        return;
-    }
-    generateKey();
+}
+
+void PIVGenerateCardKeyCommand::Private::authenticationCanceled()
+{
+    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::authenticationCanceled()";
+    hasBeenCanceled = true;
+    canceled();
 }
 
 void PIVGenerateCardKeyCommand::Private::generateKey()
@@ -177,12 +181,12 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
         command << "--algo=" + QByteArray::fromStdString(algorithm);
     }
     command << "--" << QByteArray::fromStdString(keyRef);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotGenerateKeyResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotResult");
 }
 
-void PIVGenerateCardKeyCommand::Private::slotGenerateKeyResult(const GpgME::Error& err)
+void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
 {
-    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotGenerateKeyResult():"
+    qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotResult():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
         if (err.code() == GPG_ERR_NO_AUTH) {

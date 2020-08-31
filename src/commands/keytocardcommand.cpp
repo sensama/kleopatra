@@ -103,39 +103,26 @@ private:
 
     void slotDetermined(int slot)
     {
-        // Check if we need to do the overwrite warning.
-        const auto cards = ReaderStatus::instance()->getCards();
+        qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::slotDetermined():" << slot;
 
-        qDebug() << "slot determined" << slot;
-        bool cardFound = false;
-        std::string existingKey;
-        QString encKeyWarning;
-        for (const auto &card: cards) {
-            if (card->serialNumber() == mSerial) {
-                const auto pgpCard = dynamic_cast<SmartCard::OpenPGPCard*>(card.get());
-                Q_ASSERT(pgpCard);
-                cardFound = true;
-                if (slot == 1) {
-                    existingKey = pgpCard->sigFpr();
-                    break;
-                }
-                if (slot == 2) {
-                    existingKey = pgpCard->encFpr();
-                    encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
-                                         "encrypted for the existing key.");
-                    break;
-                }
-                if (slot == 3) {
-                    existingKey = pgpCard->authFpr();
-                    break;
-                }
-                break;
-            }
-        }
-        if (!cardFound) {
+        // Check if we need to do the overwrite warning.
+        const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
+        if (!pgpCard) {
             error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
             finished();
             return;
+        }
+
+        std::string existingKey;
+        QString encKeyWarning;
+        if (slot == 1) {
+            existingKey = pgpCard->sigFpr();
+        } else if (slot == 2) {
+            existingKey = pgpCard->encFpr();
+            encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
+                                    "encrypted for the existing key.");
+        } else if (slot == 3) {
+            existingKey = pgpCard->authFpr();
         }
         if (!existingKey.empty()) {
             if (KMessageBox::warningContinueCancel(parentWidgetOrView(), i18nc("@info",

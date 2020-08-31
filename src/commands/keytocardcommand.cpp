@@ -29,6 +29,8 @@
 # define GPGME_SUBKEY_HAS_KEYGRIP
 #endif
 
+#include "kleopatra_debug.h"
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
@@ -57,6 +59,8 @@ public:
 private:
     void start()
     {
+        qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
+
         // Check if we need to ask the user for the slot
         if ((mKey.canSign() || mKey.canCertify()) && !mKey.canEncrypt() && !mKey.canAuthenticate()) {
             // Signing only
@@ -77,22 +81,24 @@ private:
         QStringList options;
 
         if (mKey.canSign() || mKey.canCertify()) {
-            options << i18n("Signature") + QStringLiteral(" (1)");
+            options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
         }
         if (mKey.canEncrypt()) {
-            options << i18n("Encryption") + QStringLiteral(" (2)");
+            options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
         }
         if (mKey.canAuthenticate()) {
-            options << i18n("Authentication") + QStringLiteral(" (3)");
+            options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
         }
 
-        dialog = std::shared_ptr<QInputDialog> (new QInputDialog(parentWidgetOrView()));
-        dialog->setComboBoxItems(options);
-
-        connect(dialog.get(), &QDialog::rejected, q_func(), [this] () {finished();});
-        connect(dialog.get(), &QInputDialog::textValueSelected, q_func(), [this] (const QString &text) {
-                slotDetermined(text.at(text.size() - 1).digitValue());
-            });
+        bool ok;
+        const QString choice = QInputDialog::getItem(parentWidgetOrView(), i18n("Select Slot"),
+            i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+        const int slot = options.indexOf(choice) + 1;
+        if (!ok || slot == 0) {
+            finished();
+        } else {
+            slotDetermined(slot);
+        }
     }
 
     void slotDetermined(int slot)
@@ -158,7 +164,6 @@ private:
     }
 
 private:
-    std::shared_ptr<QInputDialog> dialog;
     std::string mSerial;
     GpgME::Subkey mKey;
 };
@@ -213,7 +218,6 @@ KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
                                    const GpgME::Subkey &key,
                                    const std::string &serialno)
     : Command::Private(qq, nullptr),
-      dialog(),
       mSerial(serialno),
       mKey(key)
 {
@@ -231,14 +235,13 @@ KeyToCardCommand::~KeyToCardCommand() {}
 
 void KeyToCardCommand::doStart()
 {
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::doStart()";
+
     d->start();
 }
 
 void KeyToCardCommand::doCancel()
 {
-    if (d->dialog) {
-        d->dialog->close();
-    }
 }
 
 #undef q_func

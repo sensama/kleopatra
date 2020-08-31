@@ -45,6 +45,7 @@
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/exportpaperkeycommand.h"
+#include "commands/keytocardcommand.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
@@ -441,6 +442,10 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
+            "certificates_transfer_to_card", i18n("Transfer to Smartcard"), QString(),
+            "send-to-symbolic", nullptr, nullptr, QString(), false, true
+        },
+        {
             "certificates_dump_certificate", i18n("Technical Details"), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
@@ -519,6 +524,8 @@ void KeyListController::createActions(KActionCollection *coll)
     //---
     registerActionForCommand<ClearCrlCacheCommand>(coll->action(QStringLiteral("crl_clear_crl_cache")));
     registerActionForCommand<DumpCrlCacheCommand>(coll->action(QStringLiteral("crl_dump_crl_cache")));
+    //---
+    registerActionForCommand<KeyToCardCommand>(coll->action(QStringLiteral("certificates_transfer_to_card")));
 
     enableDisableActions(nullptr);
 }
@@ -739,6 +746,10 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
     result |= find_root_restrictions(keys);
 
     if (const ReaderStatus *rs = ReaderStatus::instance()) {
+        const auto cards = rs->getCards();
+        if (cards.size() && !cards[0]->serialNumber().empty()) {
+            result |= Command::NeedsSmartCard;
+        }
         if (rs->anyCardHasNullPin()) {
             result |= Command::AnyCardHasNullPin;
         }

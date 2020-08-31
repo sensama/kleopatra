@@ -24,11 +24,18 @@ class KeyToCardCommand : public Command
 {
     Q_OBJECT
 public:
+    explicit KeyToCardCommand(KeyListController *parent);
+    explicit KeyToCardCommand(QAbstractItemView *view, KeyListController *parent);
+    explicit KeyToCardCommand(const GpgME::Key &key);
     KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno);
     ~KeyToCardCommand() override;
 
-    static bool supported();
+    /* reimp */ static Restrictions restrictions()
+    {
+        return OnlyOneKey | NeedSecretKey | MustBeOpenPGP | NeedsSmartCard;
+    }
 
+    static bool supported();
 
 public Q_SLOTS:
     void keyToCardDone(const GpgME::Error &err);

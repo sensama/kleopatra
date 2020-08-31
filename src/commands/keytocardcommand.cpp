@@ -53,6 +53,7 @@ class KeyToCardCommand::Private : public Command::Private
         return static_cast<KeyToCardCommand *>(q);
     }
 public:
+    explicit Private(KeyToCardCommand *qq, KeyListController *c);
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &key, const std::string &serialno);
     ~Private();
 
@@ -62,17 +63,17 @@ private:
         qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
 
         // Check if we need to ask the user for the slot
-        if ((mKey.canSign() || mKey.canCertify()) && !mKey.canEncrypt() && !mKey.canAuthenticate()) {
+        if ((mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt() && !mSubkey.canAuthenticate()) {
             // Signing only
             slotDetermined(1);
             return;
         }
-        if (mKey.canEncrypt() && !(mKey.canSign() || mKey.canCertify()) && !mKey.canAuthenticate()) {
+        if (mSubkey.canEncrypt() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canAuthenticate()) {
             // Encrypt only
             slotDetermined(2);
             return;
         }
-        if (mKey.canAuthenticate() && !(mKey.canSign() || mKey.canCertify()) && !mKey.canEncrypt()) {
+        if (mSubkey.canAuthenticate() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt()) {
             // Auth only
             slotDetermined(3);
             return;
@@ -80,13 +81,13 @@ private:
         // Multiple uses, ask user.
         QStringList options;
 
-        if (mKey.canSign() || mKey.canCertify()) {
+        if (mSubkey.canSign() || mSubkey.canCertify()) {
             options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
         }
-        if (mKey.canEncrypt()) {
+        if (mSubkey.canEncrypt()) {
             options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
         }
-        if (mKey.canAuthenticate()) {
+        if (mSubkey.canAuthenticate()) {
             options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
         }
 
@@ -138,10 +139,10 @@ private:
             }
         }
         // Now do the deed
-        const auto time = QDateTime::fromSecsSinceEpoch(mKey.creationTime());
+        const auto time = QDateTime::fromSecsSinceEpoch(mSubkey.creationTime());
         const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
 #ifdef GPGME_SUBKEY_HAS_KEYGRIP
-        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mKey.keyGrip()), QString::fromStdString(mSerial))
+        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
                                                                                    .arg(slot)
                                                                                    .arg(timestamp);
         ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");
@@ -152,7 +153,7 @@ private:
 
 private:
     std::string mSerial;
-    GpgME::Subkey mKey;
+    GpgME::Subkey mSubkey;
 };
 
 KeyToCardCommand::Private *KeyToCardCommand::d_func()
@@ -166,6 +167,8 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 
 #define q q_func()
 #define d d_func()
+
+
 void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
 {
     if (err) {
@@ -180,7 +183,7 @@ void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
                                        i18n("Do you want to delete the key on this computer?"),
                                        i18nc("@title:window",
                                        "Key transferred to card")) == KMessageBox::Yes) {
-            const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->mKey.keyGrip());
+            const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->mSubkey.keyGrip());
             // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
             ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), this, "deleteDone");
         }
@@ -201,28 +204,78 @@ void KeyToCardCommand::deleteDone(const GpgME::Error &err)
     d->finished();
 }
 
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, KeyListController *c)
+    : Command::Private(qq, c)
+{
+}
+
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
                                    const GpgME::Subkey &key,
                                    const std::string &serialno)
     : Command::Private(qq, nullptr),
       mSerial(serialno),
-      mKey(key)
+      mSubkey(key)
 {
 
 }
 
 KeyToCardCommand::Private::~Private() {}
 
+KeyToCardCommand::KeyToCardCommand(KeyListController *c)
+    : Command(new Private(this, c))
+{
+}
+
+KeyToCardCommand::KeyToCardCommand(QAbstractItemView *v, KeyListController *c)
+    : Command(v, new Private(this, c))
+{
+}
+
+KeyToCardCommand::KeyToCardCommand(const GpgME::Key &key)
+    : Command(key, new Private(this, nullptr))
+{
+}
+
 KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)
     : Command(new Private(this, key, serialno))
 {
 }
 
-KeyToCardCommand::~KeyToCardCommand() {}
+KeyToCardCommand::~KeyToCardCommand()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
+}
 
 void KeyToCardCommand::doStart()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::doStart()";
+
+    if (d->mSubkey.isNull()) {
+        const std::vector<Key> keys = d->keys();
+        if (keys.size() != 1 ||
+                !keys.front().hasSecret() ||
+                keys.front().subkey(0).isNull()) {
+            d->finished();
+            return;
+        }
+        d->mSubkey = keys.front().subkey(0);
+    }
+
+    if (d->mSerial.empty()) {
+        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
+        if (!cards.size() || cards[0]->serialNumber().empty()) {
+            d->error(i18n("Failed to find a smart card."));
+            d->finished();
+            return;
+        }
+        const auto card = cards[0];
+        if (card->appType() != SmartCard::Card::OpenPGPApplication) {
+            d->error(i18n("Sorry! This OpenPGP key cannot be transferred to this non-OpenPGP card."));
+            d->finished();
+            return;
+        }
+        d->mSerial = card->serialNumber();
+    }
 
     d->start();
 }

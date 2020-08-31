@@ -63,6 +63,8 @@ public:
         MustBeTrustedRoot   = 1024 | MustBeRoot,
         MustBeUntrustedRoot = 2048 | MustBeRoot,
 
+        NeedsSmartCard      = 4096,
+
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1
     };

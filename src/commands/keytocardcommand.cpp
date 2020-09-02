@@ -36,15 +36,6 @@ using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
-bool KeyToCardCommand::supported()
-{
-#ifdef GPGME_SUBKEY_HAS_KEYGRIP
-    return true;
-#else
-    return false;
-#endif
-}
-
 class KeyToCardCommand::Private : public Command::Private
 {
     friend class ::Kleo::Commands::KeyToCardCommand;
@@ -58,98 +49,8 @@ public:
     ~Private();
 
 private:
-    void start()
-    {
-        qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
-
-        // Check if we need to ask the user for the slot
-        if ((mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt() && !mSubkey.canAuthenticate()) {
-            // Signing only
-            slotDetermined(1);
-            return;
-        }
-        if (mSubkey.canEncrypt() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canAuthenticate()) {
-            // Encrypt only
-            slotDetermined(2);
-            return;
-        }
-        if (mSubkey.canAuthenticate() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt()) {
-            // Auth only
-            slotDetermined(3);
-            return;
-        }
-        // Multiple uses, ask user.
-        QStringList options;
-
-        if (mSubkey.canSign() || mSubkey.canCertify()) {
-            options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
-        }
-        if (mSubkey.canEncrypt()) {
-            options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
-        }
-        if (mSubkey.canAuthenticate()) {
-            options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
-        }
-
-        bool ok;
-        const QString choice = QInputDialog::getItem(parentWidgetOrView(), i18n("Select Slot"),
-            i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
-        const int slot = options.indexOf(choice) + 1;
-        if (!ok || slot == 0) {
-            finished();
-        } else {
-            slotDetermined(slot);
-        }
-    }
-
-    void slotDetermined(int slot)
-    {
-        qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::slotDetermined():" << slot;
-
-        // Check if we need to do the overwrite warning.
-        const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
-        if (!pgpCard) {
-            error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
-            finished();
-            return;
-        }
-
-        std::string existingKey;
-        QString encKeyWarning;
-        if (slot == 1) {
-            existingKey = pgpCard->sigFpr();
-        } else if (slot == 2) {
-            existingKey = pgpCard->encFpr();
-            encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
-                                    "encrypted for the existing key.");
-        } else if (slot == 3) {
-            existingKey = pgpCard->authFpr();
-        }
-        if (!existingKey.empty()) {
-            if (KMessageBox::warningContinueCancel(parentWidgetOrView(), i18nc("@info",
-                "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-                "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
-                i18n("The existing key has the fingerprint:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-                encKeyWarning,
-                i18nc("@title:window", "Overwrite existing key"),
-                KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous)
-                != KMessageBox::Continue) {
-                finished();
-                return;
-            }
-        }
-        // Now do the deed
-        const auto time = QDateTime::fromSecsSinceEpoch(mSubkey.creationTime());
-        const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
-#ifdef GPGME_SUBKEY_HAS_KEYGRIP
-        const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
-                                                                                   .arg(slot)
-                                                                                   .arg(timestamp);
-        ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");
-#else
-        finished();
-#endif
-    }
+    void start();
+    void slotDetermined(int slot);
 
 private:
     std::string mSerial;
@@ -168,6 +69,151 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 #define q q_func()
 #define d d_func()
 
+
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, KeyListController *c)
+    : Command::Private(qq, c)
+{
+}
+
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
+                                   const GpgME::Subkey &key,
+                                   const std::string &serialno)
+    : Command::Private(qq, nullptr),
+      mSerial(serialno),
+      mSubkey(key)
+{
+}
+
+KeyToCardCommand::Private::~Private()
+{
+}
+
+void KeyToCardCommand::Private::start()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
+
+    // Check if we need to ask the user for the slot
+    if ((mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt() && !mSubkey.canAuthenticate()) {
+        // Signing only
+        slotDetermined(1);
+        return;
+    }
+    if (mSubkey.canEncrypt() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canAuthenticate()) {
+        // Encrypt only
+        slotDetermined(2);
+        return;
+    }
+    if (mSubkey.canAuthenticate() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt()) {
+        // Auth only
+        slotDetermined(3);
+        return;
+    }
+    // Multiple uses, ask user.
+    QStringList options;
+
+    if (mSubkey.canSign() || mSubkey.canCertify()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
+    }
+    if (mSubkey.canEncrypt()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
+    }
+    if (mSubkey.canAuthenticate()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
+    }
+
+    bool ok;
+    const QString choice = QInputDialog::getItem(parentWidgetOrView(), i18n("Select Slot"),
+        i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const int slot = options.indexOf(choice) + 1;
+    if (!ok || slot == 0) {
+        finished();
+    } else {
+        slotDetermined(slot);
+    }
+}
+
+void KeyToCardCommand::Private::slotDetermined(int slot)
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::slotDetermined():" << slot;
+
+    // Check if we need to do the overwrite warning.
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
+    if (!pgpCard) {
+        error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
+        finished();
+        return;
+    }
+
+    std::string existingKey;
+    QString encKeyWarning;
+    if (slot == 1) {
+        existingKey = pgpCard->sigFpr();
+    } else if (slot == 2) {
+        existingKey = pgpCard->encFpr();
+        encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
+                                "encrypted for the existing key.");
+    } else if (slot == 3) {
+        existingKey = pgpCard->authFpr();
+    }
+    if (!existingKey.empty()) {
+        if (KMessageBox::warningContinueCancel(parentWidgetOrView(), i18nc("@info",
+            "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+            "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+            i18n("The existing key has the fingerprint:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+            encKeyWarning,
+            i18nc("@title:window", "Overwrite existing key"),
+            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous)
+            != KMessageBox::Continue) {
+            finished();
+            return;
+        }
+    }
+    // Now do the deed
+    const auto time = QDateTime::fromSecsSinceEpoch(mSubkey.creationTime());
+    const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
+#ifdef GPGME_SUBKEY_HAS_KEYGRIP
+    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
+                                                                                .arg(slot)
+                                                                                .arg(timestamp);
+    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");
+#else
+    finished();
+#endif
+}
+
+KeyToCardCommand::KeyToCardCommand(KeyListController *c)
+    : Command(new Private(this, c))
+{
+}
+
+KeyToCardCommand::KeyToCardCommand(QAbstractItemView *v, KeyListController *c)
+    : Command(v, new Private(this, c))
+{
+}
+
+KeyToCardCommand::KeyToCardCommand(const GpgME::Key &key)
+    : Command(key, new Private(this, nullptr))
+{
+}
+
+KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)
+    : Command(new Private(this, key, serialno))
+{
+}
+
+KeyToCardCommand::~KeyToCardCommand()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
+}
+
+bool KeyToCardCommand::supported()
+{
+#ifdef GPGME_SUBKEY_HAS_KEYGRIP
+    return true;
+#else
+    return false;
+#endif
+}
 
 void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
 {
@@ -202,48 +248,6 @@ void KeyToCardCommand::deleteDone(const GpgME::Error &err)
                         i18nc("@title", "Error"));
     }
     d->finished();
-}
-
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq, KeyListController *c)
-    : Command::Private(qq, c)
-{
-}
-
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
-                                   const GpgME::Subkey &key,
-                                   const std::string &serialno)
-    : Command::Private(qq, nullptr),
-      mSerial(serialno),
-      mSubkey(key)
-{
-
-}
-
-KeyToCardCommand::Private::~Private() {}
-
-KeyToCardCommand::KeyToCardCommand(KeyListController *c)
-    : Command(new Private(this, c))
-{
-}
-
-KeyToCardCommand::KeyToCardCommand(QAbstractItemView *v, KeyListController *c)
-    : Command(v, new Private(this, c))
-{
-}
-
-KeyToCardCommand::KeyToCardCommand(const GpgME::Key &key)
-    : Command(key, new Private(this, nullptr))
-{
-}
-
-KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)
-    : Command(new Private(this, key, serialno))
-{
-}
-
-KeyToCardCommand::~KeyToCardCommand()
-{
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
 }
 
 void KeyToCardCommand::doStart()

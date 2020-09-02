@@ -32,13 +32,14 @@ public:
 
     /* reimp */ static Restrictions restrictions()
     {
-        return OnlyOneKey | NeedSecretKey | MustBeOpenPGP | NeedsSmartCard;
+        return OnlyOneKey | NeedSecretKey | NeedsSmartCard;
     }
 
     static bool supported();
 
 public Q_SLOTS:
-    void keyToCardDone(const GpgME::Error &err);
+    void keyToOpenPGPCardDone(const GpgME::Error &err);
+    void keyToPIVCardDone(const GpgME::Error &err);
     void deleteDone(const GpgME::Error &err);
 
 private:

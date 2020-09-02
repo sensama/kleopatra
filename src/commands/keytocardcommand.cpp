@@ -16,6 +16,9 @@
 
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
+#include "smartcard/pivcard.h"
+
+#include "commands/authenticatepivcardapplicationcommand.h"
 
 #include <QInputDialog>
 #include <QDateTime>
@@ -44,11 +47,17 @@ public:
 
 private:
     void start();
-    void slotDetermined(int slot);
+    void startTransferToOpenPGPCard();
+    void startTransferToPIVCard();
+    void authenticate();
+    void authenticationFinished();
+    void authenticationCanceled();
 
 private:
     std::string mSerial;
     GpgME::Subkey mSubkey;
+    bool overwriteExistingAlreadyApproved = false;
+    bool hasBeenCanceled = false;
 };
 
 KeyToCardCommand::Private *KeyToCardCommand::d_func()
@@ -86,58 +95,94 @@ void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
 
-    // Check if we need to ask the user for the slot
-    if ((mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt() && !mSubkey.canAuthenticate()) {
-        // Signing only
-        slotDetermined(1);
-        return;
-    }
-    if (mSubkey.canEncrypt() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canAuthenticate()) {
-        // Encrypt only
-        slotDetermined(2);
-        return;
-    }
-    if (mSubkey.canAuthenticate() && !(mSubkey.canSign() || mSubkey.canCertify()) && !mSubkey.canEncrypt()) {
-        // Auth only
-        slotDetermined(3);
-        return;
-    }
-    // Multiple uses, ask user.
-    QStringList options;
-
-    if (mSubkey.canSign() || mSubkey.canCertify()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
-    }
-    if (mSubkey.canEncrypt()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
-    }
-    if (mSubkey.canAuthenticate()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
-    }
-
-    bool ok;
-    const QString choice = QInputDialog::getItem(parentWidgetOrView(), i18n("Select Slot"),
-        i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
-    const int slot = options.indexOf(choice) + 1;
-    if (!ok || slot == 0) {
-        finished();
-    } else {
-        slotDetermined(slot);
-    }
-}
-
-void KeyToCardCommand::Private::slotDetermined(int slot)
-{
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::slotDetermined():" << slot;
-
-    // Check if we need to do the overwrite warning.
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
-    if (!pgpCard) {
+    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(mSerial);
+    if (!card) {
         error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
         finished();
         return;
     }
 
+    switch (card->appType()) {
+    case SmartCard::Card::OpenPGPApplication: {
+        if (mSubkey.parent().protocol() == GpgME::OpenPGP) {
+            startTransferToOpenPGPCard();
+        }
+        else {
+            error(i18n("Sorry! This key cannot be transferred to an OpenPGP card."));
+            finished();
+        }
+    }
+    break;
+    case SmartCard::Card::PivApplication: {
+        if (mSubkey.parent().protocol() == GpgME::CMS) {
+            startTransferToPIVCard();
+        } else {
+            error(i18n("Sorry! This key cannot be transferred to a PIV card."));
+            finished();
+        }
+    }
+    break;
+    default: {
+        error(i18n("Sorry! Transferring keys to this card is not supported."));
+        finished();
+    }
+    }
+}
+
+namespace {
+static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
+{
+    // Check if we need to ask the user for the slot
+    if ((subKey.canSign() || subKey.canCertify()) && !subKey.canEncrypt() && !subKey.canAuthenticate()) {
+        // Signing only
+        return 1;
+    }
+    if (subKey.canEncrypt() && !(subKey.canSign() || subKey.canCertify()) && !subKey.canAuthenticate()) {
+        // Encrypt only
+        return 2;
+    }
+    if (subKey.canAuthenticate() && !(subKey.canSign() || subKey.canCertify()) && !subKey.canEncrypt()) {
+        // Auth only
+        return 3;
+    }
+    // Multiple uses, ask user.
+    QStringList options;
+
+    if (subKey.canSign() || subKey.canCertify()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
+    }
+    if (subKey.canEncrypt()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
+    }
+    if (subKey.canAuthenticate()) {
+        options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
+    }
+
+    bool ok;
+    const QString choice = QInputDialog::getItem(parent, i18n("Select Slot"),
+        i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const int slot = options.indexOf(choice) + 1;
+    return ok ? slot : -1;
+}
+}
+
+void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startTransferToOpenPGPCard()";
+
+    const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
+    if (!pgpCard) {
+        error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mSerial)));
+        finished();
+        return;
+    }
+
+    const auto slot = getOpenPGPCardSlotForKey(mSubkey, parentWidgetOrView());
+    if (slot < 1) {
+        finished();
+        return;
+    }
+
+    // Check if we need to do the overwrite warning.
     std::string existingKey;
     QString encKeyWarning;
     if (slot == 1) {
@@ -150,25 +195,101 @@ void KeyToCardCommand::Private::slotDetermined(int slot)
         existingKey = pgpCard->authFpr();
     }
     if (!existingKey.empty()) {
-        if (KMessageBox::warningContinueCancel(parentWidgetOrView(), i18nc("@info",
+        const QString message = i18nc("@info",
             "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
             "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
-            i18n("The existing key has the fingerprint:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-            encKeyWarning,
+            i18n("The existing key has the fingerprint:") +
+            QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+            encKeyWarning;
+        const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
             i18nc("@title:window", "Overwrite existing key"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous)
-            != KMessageBox::Continue) {
+            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+        if (choice != KMessageBox::Continue) {
             finished();
             return;
         }
     }
+
     // Now do the deed
     const auto time = QDateTime::fromSecsSinceEpoch(mSubkey.creationTime());
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
-    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
-                                                                                .arg(slot)
-                                                                                .arg(timestamp);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");
+    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4")
+        .arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
+        .arg(slot)
+        .arg(timestamp);
+    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
+}
+
+void KeyToCardCommand::Private::startTransferToPIVCard()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startTransferToPIVCard()";
+
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(mSerial)));
+        finished();
+        return;
+    }
+
+    if (!mSubkey.canEncrypt()) {
+        error(i18n("Sorry! Only encryption keys can be transferred to a PIV card."));
+        finished();
+        return;
+    }
+
+    // Check if we need to do the overwrite warning.
+    if (!overwriteExistingAlreadyApproved) {
+        const std::string existingKey = pivCard->keyGrip(PIVCard::keyManagementKeyRef());
+        if (!existingKey.empty()) {
+            const QString message = i18nc("@info",
+                "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+                i18n("The existing key has the key grip:") +
+                QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.");
+            const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
+                i18nc("@title:window", "Overwrite existing key"),
+                KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+            if (choice != KMessageBox::Continue) {
+                finished();
+                return;
+            }
+            overwriteExistingAlreadyApproved = true;
+        }
+    }
+
+    // Now do the deed
+    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
+        .arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
+        .arg(QString::fromStdString(PIVCard::keyManagementKeyRef()));
+    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
+}
+
+void KeyToCardCommand::Private::authenticate()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticate()";
+
+    auto cmd = new AuthenticatePIVCardApplicationCommand(mSerial, parentWidgetOrView());
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
+            q, [this]() { authenticationFinished(); });
+    connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
+            q, [this]() { authenticationCanceled(); });
+    cmd->start();
+}
+
+void KeyToCardCommand::Private::authenticationFinished()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticationFinished()";
+    if (!hasBeenCanceled) {
+        startTransferToPIVCard();
+    }
+}
+
+void KeyToCardCommand::Private::authenticationCanceled()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticationCanceled()";
+    hasBeenCanceled = true;
+    canceled();
 }
 
 KeyToCardCommand::KeyToCardCommand(KeyListController *c)
@@ -201,7 +322,7 @@ bool KeyToCardCommand::supported()
     return true;
 }
 
-void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
+void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
 {
     if (err) {
         d->error(i18nc("@info",
@@ -223,6 +344,29 @@ void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)
         KMessageBox::information(d->parentWidgetOrView(),
                                  i18n("Successfully copied the key to the card."),
                                  i18nc("@title", "Success"));
+    }
+    d->finished();
+}
+
+void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::keyToPIVCardDone():"
+                           << err.asString() << "(" << err.code() << ")";
+    if (err) {
+        // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
+        if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
+            d->authenticate();
+            return;
+        }
+
+        d->error(i18nc("@info",
+                       "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())),
+                        i18nc("@title", "Error"));
+    } else if (!err.isCanceled()) {
+        KMessageBox::information(d->parentWidgetOrView(),
+                                 i18n("Successfully copied the key to the card."),
+                                 i18nc("@title", "Success"));
+        ReaderStatus::mutableInstance()->updateStatus();
     }
     d->finished();
 }
@@ -258,13 +402,7 @@ void KeyToCardCommand::doStart()
             d->finished();
             return;
         }
-        const auto card = cards[0];
-        if (card->appType() != SmartCard::Card::OpenPGPApplication) {
-            d->error(i18n("Sorry! This OpenPGP key cannot be transferred to this non-OpenPGP card."));
-            d->finished();
-            return;
-        }
-        d->mSerial = card->serialNumber();
+        d->mSerial = cards[0]->serialNumber();
     }
 
     d->start();

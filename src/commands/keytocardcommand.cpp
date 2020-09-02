@@ -23,12 +23,6 @@
 
 #include <KLocalizedString>
 
-
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION > 0x10801
-# define GPGME_SUBKEY_HAS_KEYGRIP
-#endif
-
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -171,14 +165,10 @@ void KeyToCardCommand::Private::slotDetermined(int slot)
     // Now do the deed
     const auto time = QDateTime::fromSecsSinceEpoch(mSubkey.creationTime());
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
-#ifdef GPGME_SUBKEY_HAS_KEYGRIP
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4").arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
                                                                                 .arg(slot)
                                                                                 .arg(timestamp);
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToCardDone");
-#else
-    finished();
-#endif
 }
 
 KeyToCardCommand::KeyToCardCommand(KeyListController *c)
@@ -208,11 +198,7 @@ KeyToCardCommand::~KeyToCardCommand()
 
 bool KeyToCardCommand::supported()
 {
-#ifdef GPGME_SUBKEY_HAS_KEYGRIP
     return true;
-#else
-    return false;
-#endif
 }
 
 void KeyToCardCommand::keyToCardDone(const GpgME::Error &err)

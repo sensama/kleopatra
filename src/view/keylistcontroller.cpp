@@ -51,7 +51,7 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/Formatting>
 
-
+#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/key.h>
 
 #include <KActionCollection>
@@ -525,7 +525,9 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ClearCrlCacheCommand>(coll->action(QStringLiteral("crl_clear_crl_cache")));
     registerActionForCommand<DumpCrlCacheCommand>(coll->action(QStringLiteral("crl_dump_crl_cache")));
     //---
+#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
     registerActionForCommand<KeyToCardCommand>(coll->action(QStringLiteral("certificates_transfer_to_card")));
+#endif
 
     enableDisableActions(nullptr);
 }

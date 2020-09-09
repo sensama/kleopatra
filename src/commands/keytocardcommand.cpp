@@ -20,11 +20,17 @@
 
 #include "commands/authenticatepivcardapplicationcommand.h"
 
+#include "utils/writecertassuantransaction.h"
+
+#include <KLocalizedString>
+
 #include <QInputDialog>
 #include <QDateTime>
 #include <QStringList>
 
-#include <KLocalizedString>
+#include <qgpgme/dataprovider.h>
+
+#include <gpgme++/context.h>
 
 #include "kleopatra_debug.h"
 
@@ -49,6 +55,7 @@ private:
     void start();
     void startTransferToOpenPGPCard();
     void startTransferToPIVCard();
+    void startCertificateToPIVCard();
     void authenticate();
     void authenticationFinished();
     void authenticationCanceled();
@@ -265,6 +272,57 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
 }
 
+void KeyToCardCommand::Private::startCertificateToPIVCard()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startCertificateToPIVCard()";
+
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(mSerial)));
+        finished();
+        return;
+    }
+
+    // Check if we need to do the overwrite warning.
+    if (!overwriteExistingAlreadyApproved) {
+        const std::string existingKey = pivCard->keyGrip(PIVCard::keyManagementKeyRef());
+        if (!existingKey.empty()) {
+            const QString message = i18nc("@info",
+                "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+                i18n("The existing key has the key grip:") +
+                QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.");
+            const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
+                i18nc("@title:window", "Overwrite existing key"),
+                KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+            if (choice != KMessageBox::Continue) {
+                finished();
+                return;
+            }
+            overwriteExistingAlreadyApproved = true;
+        }
+    }
+
+    auto ctx = Context::createForProtocol(GpgME::CMS);
+    QGpgME::QByteArrayDataProvider dp;
+    Data data(&dp);
+    const Error err = ctx->exportPublicKeys(mSubkey.parent().primaryFingerprint(), data);
+    if (err) {
+        error(i18nc("@info", "Exporting the certificate failed: %1", QString::fromUtf8(err.asString())),
+              i18nc("@title", "Error"));
+        finished();
+        return;
+    }
+    const QByteArray certificateData = dp.data();
+
+    // Now do the deed
+    const QString cmd = QStringLiteral("SCD WRITECERT %1")
+        .arg(QString::fromStdString(PIVCard::keyManagementKeyRef()));
+    auto transaction = std::unique_ptr<AssuanTransaction>(new WriteCertAssuanTransaction(certificateData));
+    ReaderStatus::mutableInstance()->startTransaction(cmd.toUtf8(), q_func(), "certificateToPIVCardDone", std::move(transaction));
+}
+
 void KeyToCardCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticate()";
@@ -352,6 +410,11 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::keyToPIVCardDone():"
                            << err.asString() << "(" << err.code() << ")";
+    if (!err && !err.isCanceled()) {
+        d->startCertificateToPIVCard();
+        return;
+    }
+
     if (err) {
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
         if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
@@ -362,12 +425,32 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
         d->error(i18nc("@info",
                        "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())),
                         i18nc("@title", "Error"));
+    }
+
+    d->finished();
+}
+
+void KeyToCardCommand::certificateToPIVCardDone(const GpgME::Error &err)
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::certificateToPIVCardDone():"
+                           << err.asString() << "(" << err.code() << ")";
+    if (err) {
+        // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
+        if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
+            d->authenticate();
+            return;
+        }
+
+        d->error(i18nc("@info",
+                       "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())),
+                        i18nc("@title", "Error"));
     } else if (!err.isCanceled()) {
         KMessageBox::information(d->parentWidgetOrView(),
-                                 i18n("Successfully copied the key to the card."),
+                                 i18n("Successfully copied the certificate to the card."),
                                  i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
+
     d->finished();
 }
 

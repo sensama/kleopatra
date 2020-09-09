@@ -40,6 +40,7 @@ public:
 public Q_SLOTS:
     void keyToOpenPGPCardDone(const GpgME::Error &err);
     void keyToPIVCardDone(const GpgME::Error &err);
+    void certificateToPIVCardDone(const GpgME::Error &err);
     void deleteDone(const GpgME::Error &err);
 
 private:

@@ -20,6 +20,11 @@
 
 #include "kleopatra_debug.h"
 
+namespace GpgME
+{
+class AssuanTransaction;
+}
+
 namespace Kleo
 {
 namespace SmartCard
@@ -36,6 +41,7 @@ public:
     static ReaderStatus *mutableInstance();
 
     void startSimpleTransaction(const QByteArray &cmd, QObject *receiver, const char *slot);
+    void startTransaction(const QByteArray &cmd, QObject *receiver, const char *slot, std::unique_ptr<GpgME::AssuanTransaction> transaction);
 
     Card::Status cardStatus(unsigned int slot) const;
     bool anyCardHasNullPin() const;

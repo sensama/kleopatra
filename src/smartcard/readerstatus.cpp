@@ -156,25 +156,31 @@ static Card::PinState parse_pin_state(const QString &s)
     }
 }
 
-static std::unique_ptr<DefaultAssuanTransaction> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
+template<typename T>
+static std::unique_ptr<T> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, const char *command, std::unique_ptr<T> transaction, Error &err)
 {
     qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
-    err = gpgAgent->assuanTransact(command);
+    err = gpgAgent->assuanTransact(command, std::move(transaction));
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "):" << QString::fromLocal8Bit(err.asString());
         if (err.code() >= GPG_ERR_ASS_GENERAL && err.code() <= GPG_ERR_ASS_UNKNOWN_INQUIRE) {
             qCDebug(KLEOPATRA_LOG) << "Assuan problem, killing context";
             gpgAgent.reset();
         }
-        return std::unique_ptr<DefaultAssuanTransaction>();
+        return std::unique_ptr<T>();
     }
     std::unique_ptr<AssuanTransaction> t = gpgAgent->takeLastAssuanTransaction();
-    return std::unique_ptr<DefaultAssuanTransaction>(dynamic_cast<DefaultAssuanTransaction*>(t.release()));
+    return std::unique_ptr<T>(dynamic_cast<T*>(t.release()));
+}
+
+static std::unique_ptr<DefaultAssuanTransaction> gpgagent_default_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
+{
+    return gpgagent_transact(gpgAgent, command, std::unique_ptr<DefaultAssuanTransaction>(new DefaultAssuanTransaction), err);
 }
 
 const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
 {
-    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_transact(gpgAgent, what, err);
+    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, what, err);
     if (t.get()) {
         qCDebug(KLEOPATRA_LOG) << "agent_getattr_status(" << what << "): got" << t->statusLines();
         return t->statusLines();
@@ -182,7 +188,6 @@ const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(st
         qCDebug(KLEOPATRA_LOG) << "agent_getattr_status(" << what << "): t == NULL";
         return std::vector<std::pair<std::string, std::string> >();
     }
-
 }
 
 static const std::string gpgagent_status(const std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
@@ -360,7 +365,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     nkCard->setPinStates(states);
 
     // check for keys to learn:
-    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
+    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_default_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
     if (err.code() || !result.get()) {
         if (err) {
             ci->setErrorMsg(QString::fromLatin1(err.asString()));
@@ -440,10 +445,11 @@ struct Transaction {
     QByteArray command;
     QPointer<QObject> receiver;
     const char *slot;
+    AssuanTransaction* assuanTransaction;
 };
 
-static const Transaction updateTransaction = { "__update__", nullptr, nullptr };
-static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr };
+static const Transaction updateTransaction = { "__update__", nullptr, nullptr, nullptr };
+static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr, nullptr };
 
 namespace
 {
@@ -522,6 +528,7 @@ private:
 
             QByteArray command;
             bool nullSlot = false;
+            AssuanTransaction* assuanTransaction = nullptr;
             std::list<Transaction> item;
             std::vector<std::shared_ptr<Card> > oldCards;
 
@@ -551,6 +558,8 @@ private:
                 // we can release the mutex again:
                 command = item.front().command;
                 nullSlot = !item.front().slot;
+                // we take ownership of the assuan transaction
+                std::swap(assuanTransaction, item.front().assuanTransaction);
                 oldCards = m_cardInfos;
             }
 
@@ -607,7 +616,11 @@ private:
                 }
             } else {
                 GpgME::Error err;
-                (void)gpgagent_transact(gpgAgent, command.constData(), err);
+                if (assuanTransaction) {
+                    (void)gpgagent_transact(gpgAgent, command.constData(), std::unique_ptr<AssuanTransaction>(assuanTransaction), err);
+                } else {
+                    (void)gpgagent_default_transact(gpgAgent, command.constData(), err);
+                }
 
                 KDAB_SYNCHRONIZED(m_mutex)
                 // splice 'item' into m_finishedTransactions:
@@ -742,7 +755,13 @@ std::vector<Card::PinState> ReaderStatus::pinStates(unsigned int slot) const
 
 void ReaderStatus::startSimpleTransaction(const QByteArray &command, QObject *receiver, const char *slot)
 {
-    const Transaction t = { command, receiver, slot };
+    const Transaction t = { command, receiver, slot, nullptr };
+    d->addTransaction(t);
+}
+
+void ReaderStatus::startTransaction(const QByteArray &command, QObject *receiver, const char *slot, std::unique_ptr<AssuanTransaction> transaction)
+{
+    const Transaction t = { command, receiver, slot, transaction.release() };
     d->addTransaction(t);
 }
 

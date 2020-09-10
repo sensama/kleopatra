@@ -50,23 +50,23 @@ private:
     std::vector<int> pageOrder;
     std::set<int> hiddenPages;
     std::map<int, WizardPage *> idToPage;
-    int currentId;
-    QStackedWidget *stack;
-    QPushButton *nextButton;
-    QPushButton *backButton;
-    QPushButton *cancelButton;
+    int currentId = -1;
+    QStackedWidget *const stack;
+    QPushButton *nextButton = nullptr;
+    QPushButton *backButton = nullptr;
+    QPushButton *cancelButton = nullptr;
     KGuiItem finishItem;
     KGuiItem nextItem;
-    QFrame *titleFrame;
-    QLabel *titleLabel;
-    QLabel *subTitleLabel;
-    QFrame *explanationFrame;
-    QLabel *explanationLabel;
-    QTimer *nextPageTimer;
+    QFrame *titleFrame = nullptr;
+    QLabel *titleLabel = nullptr;
+    QLabel *subTitleLabel = nullptr;
+    QFrame *explanationFrame = nullptr;
+    QLabel *explanationLabel = nullptr;
+    QTimer *nextPageTimer = nullptr;
 };
 
 Wizard::Private::Private(Wizard *qq)
-    : q(qq), currentId(-1), stack(new QStackedWidget)
+    : q(qq), stack(new QStackedWidget)
 {
     nextPageTimer = new QTimer(q);
     nextPageTimer->setInterval(0);

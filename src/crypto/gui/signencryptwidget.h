@@ -102,21 +102,21 @@ Q_SIGNALS:
     void keysChanged();
 
 private:
-    KeySelectionCombo *mSigSelect,
-                      *mSelfSelect;
+    KeySelectionCombo *mSigSelect = nullptr;
+    KeySelectionCombo *mSelfSelect = nullptr;
     QVector<CertificateLineEdit *> mRecpWidgets;
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
     QVector<GpgME::Key> mAddedKeys;
-    QGridLayout *mRecpLayout;
+    QGridLayout *mRecpLayout = nullptr;
     QString mOp;
-    AbstractKeyListModel *mModel;
-    QCheckBox *mSymmetric,
-              *mSigChk,
-              *mEncOtherChk,
-              *mEncSelfChk;
-    int mRecpRowCount;
+    AbstractKeyListModel *mModel = nullptr;
+    QCheckBox *mSymmetric = nullptr;
+    QCheckBox *mSigChk = nullptr;
+    QCheckBox *mEncOtherChk = nullptr;
+    QCheckBox *mEncSelfChk = nullptr;
+    int mRecpRowCount = 2;
     GpgME::Protocol mCurrentProto;
-    bool mIsExclusive;
+    const bool mIsExclusive;
 };
 } // namespace Kleo
 #endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

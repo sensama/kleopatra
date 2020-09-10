@@ -80,7 +80,8 @@ ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt:
 {
     QVBoxLayout *const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
+    const auto supportedProtocolsLst = supportedProtocols();
+    for (const Protocol i: supportedProtocolsLst) {
         QLabel *const l = new QLabel;
         l->setText(formatLabel(i, Key()));
         layout->addWidget(l);

@@ -64,8 +64,8 @@ public:
         return AuditLog();
     }
 private:
-    int m_code;
-    QString m_details;
+    const int m_code;
+    const QString m_details;
 };
 }
 

@@ -77,11 +77,11 @@ public:
 
     }
 
-    QString initialText() const
+    Q_REQUIRED_RESULT QString initialText() const
     {
         return m_initialText;
     }
-    QIcon initialIcon() const
+    Q_REQUIRED_RESULT QIcon initialIcon() const
     {
         return m_initialIcon;
     }

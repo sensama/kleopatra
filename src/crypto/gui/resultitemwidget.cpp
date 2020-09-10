@@ -85,7 +85,7 @@ class ResultItemWidget::Private
 {
     ResultItemWidget *const q;
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result), m_detailsLabel(nullptr), m_actionsLabel(nullptr), m_closeButton(nullptr), m_importCanceled(false)
+    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq) : q(qq), m_result(result)
     {
         Q_ASSERT(m_result);
     }
@@ -99,10 +99,10 @@ public:
     void oneImportFinished();
 
     const std::shared_ptr<const Task::Result> m_result;
-    QLabel *m_detailsLabel;
-    QLabel *m_actionsLabel;
-    QPushButton *m_closeButton;
-    bool m_importCanceled;
+    QLabel *m_detailsLabel = nullptr;
+    QLabel *m_actionsLabel = nullptr;
+    QPushButton *m_closeButton = nullptr;
+    bool m_importCanceled = false;
 };
 
 void ResultItemWidget::Private::oneImportFinished()

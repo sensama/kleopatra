@@ -49,23 +49,17 @@ public:
     void resizeIfStandalone();
 
     std::vector< std::shared_ptr<TaskCollection> > m_collections;
-    bool m_standaloneMode;
-    int m_lastErrorItemIndex;
-    ScrollArea *m_scrollArea;
-    QPushButton *m_closeButton;
-    QVBoxLayout *m_layout;
-    QLabel *m_progressLabel;
+    bool m_standaloneMode = false;
+    int m_lastErrorItemIndex = 0;
+    ScrollArea *m_scrollArea = nullptr;
+    QPushButton *m_closeButton = nullptr;
+    QVBoxLayout *m_layout = nullptr;
+    QLabel *m_progressLabel = nullptr;
 };
 
 ResultListWidget::Private::Private(ResultListWidget *qq)
     : q(qq),
-      m_collections(),
-      m_standaloneMode(false),
-      m_lastErrorItemIndex(0),
-      m_scrollArea(nullptr),
-      m_closeButton(nullptr),
-      m_layout(nullptr),
-      m_progressLabel(nullptr)
+      m_collections()
 {
     m_layout = new QVBoxLayout(q);
     m_layout->setContentsMargins(0, 0, 0, 0);

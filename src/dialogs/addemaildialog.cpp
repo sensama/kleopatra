@@ -31,8 +31,7 @@ class AddEmailDialog::Private
 {
 public:
     Private(AddEmailDialog *qq):
-        q(qq),
-        mAdvancedSelected(false)
+        q(qq)
     {
         auto mainLay = new QVBoxLayout(q);
 
@@ -72,9 +71,9 @@ public:
     }
 
     AddEmailDialog *const q;
-    QPushButton *mOkButton;
-    QLineEdit *mEmailEdit;
-    bool mAdvancedSelected;
+    QPushButton *mOkButton = nullptr;
+    QLineEdit *mEmailEdit = nullptr;
+    bool mAdvancedSelected = false;
 };
 
 AddEmailDialog::AddEmailDialog(QWidget *parent):

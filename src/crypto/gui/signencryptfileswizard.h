@@ -93,11 +93,11 @@ private Q_SLOTS:
     void slotCurrentIdChanged(int);
 
 private:
-    SigEncPage *mSigEncPage;
-    ResultPage *mResultPage;
-    QAbstractButton *mLabel;
-    bool mSigningUserMutable,
-         mEncryptionUserMutable;
+    SigEncPage *mSigEncPage = nullptr;
+    ResultPage *mResultPage = nullptr;
+    QAbstractButton *mLabel = nullptr;
+    bool mSigningUserMutable = true;
+    bool mEncryptionUserMutable = true;
 };
 
 }

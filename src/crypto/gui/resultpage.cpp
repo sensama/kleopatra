@@ -47,12 +47,12 @@ public:
     QProgressBar *m_progressBar;
     QHash<QString, QLabel *> m_progressLabelByTag;
     QVBoxLayout *m_progressLabelLayout;
-    int m_lastErrorItemIndex;
+    int m_lastErrorItemIndex = 0;
     ResultListWidget *m_resultList;
     QCheckBox *m_keepOpenCB;
 };
 
-ResultPage::Private::Private(ResultPage *qq) : q(qq), m_lastErrorItemIndex(0)
+ResultPage::Private::Private(ResultPage *qq) : q(qq)
 {
     QBoxLayout *const layout = new QVBoxLayout(q);
     QWidget *const labels = new QWidget;

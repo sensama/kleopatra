@@ -87,17 +87,13 @@ public:
     std::vector<std::shared_ptr<const DecryptVerifyResult> > m_results;
     std::vector<std::shared_ptr<Task> > m_runnableTasks, m_completedTasks;
     std::shared_ptr<Task> m_runningTask;
-    bool m_errorDetected;
-    DecryptVerifyOperation m_operation;
-    DecryptVerifyFilesDialog *m_dialog;
-    QTemporaryDir *m_workDir;
+    bool m_errorDetected = false;
+    DecryptVerifyOperation m_operation = DecryptVerify;
+    DecryptVerifyFilesDialog *m_dialog = nullptr;
+    QTemporaryDir *m_workDir = nullptr;
 };
 
-AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq),
-    m_errorDetected(false),
-    m_operation(DecryptVerify),
-    m_dialog(nullptr),
-    m_workDir(nullptr)
+AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq)
 {
     qRegisterMetaType<VerificationResult>();
 }

@@ -24,8 +24,8 @@ public:
     ~Private();
 
 private:
-    bool commitPage;
-    bool autoAdvance;
+    bool commitPage = false;
+    bool autoAdvance = false;
     QString title;
     QString subTitle;
     QString explanation;
@@ -33,7 +33,7 @@ private:
 };
 
 WizardPage::Private::Private(WizardPage *qq)
-    : q(qq), commitPage(false), autoAdvance(false)
+    : q(qq)
 {
 
 }

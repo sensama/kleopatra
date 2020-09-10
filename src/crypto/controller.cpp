@@ -21,15 +21,13 @@ class Controller::Private
     Controller *const q;
 public:
     explicit Private(Controller *qq)
-        : q(qq),
-          lastError(0),
-          lastErrorString()
+        : q(qq)
     {
 
     }
 
 private:
-    int lastError;
+    int lastError = 0;
     QString lastErrorString;
 };
 

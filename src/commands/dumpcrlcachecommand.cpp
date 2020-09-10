@@ -68,7 +68,7 @@ public:
         mWithRevocations = value;
     }
 
-    bool withRevocations () {
+    Q_REQUIRED_RESULT bool withRevocations () {
         return mWithRevocations;
     }
 

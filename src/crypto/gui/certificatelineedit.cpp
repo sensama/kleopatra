@@ -84,15 +84,11 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
       mFilter(std::shared_ptr<KeyFilter>(filter)),
-      mEditStarted(false),
-      mEditFinished(false),
       mLineAction(new QAction(this))
 {
     setPlaceholderText(i18n("Please enter a name or email address..."));
     setClearButtonEnabled(true);
     addAction(mLineAction, QLineEdit::LeadingPosition);
-
-    QFontMetrics fm(font());
 
     auto *completer = new QCompleter(this);
     auto *completeFilterModel = new ProxyModel(completer);

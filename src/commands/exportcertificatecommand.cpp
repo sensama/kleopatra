@@ -60,7 +60,7 @@ public:
 
 private:
     QMap<GpgME::Protocol, QString> fileNames;
-    uint jobsPending;
+    uint jobsPending = 0;
     QMap<QObject *, QString> outFileForSender;
     QPointer<ExportJob> cmsJob;
     QPointer<ExportJob> pgpJob;
@@ -79,8 +79,7 @@ const ExportCertificateCommand::Private *ExportCertificateCommand::d_func() cons
 #define q q_func()
 
 ExportCertificateCommand::Private::Private(ExportCertificateCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      jobsPending(0)
+    : Command::Private(qq, c)
 {
 
 }

@@ -21,8 +21,7 @@ using namespace Kleo::Crypto::Gui;
 class EncryptEMailWizard::Private
 {
 public:
-    Private() : m_quickMode(false) {}
-    bool m_quickMode;
+    bool m_quickMode = false;
 };
 
 EncryptEMailWizard::EncryptEMailWizard(QWidget *parent, Qt::WindowFlags flags) : SignEncryptWizard(parent, flags), d(new Private)

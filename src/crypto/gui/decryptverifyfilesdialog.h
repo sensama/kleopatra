@@ -65,8 +65,8 @@ private:
     int m_lastErrorItemIndex;
     ResultListWidget *m_resultList;
     FileNameRequester *m_outputLocationFNR;
-    QDialogButtonBox::StandardButton m_saveButton;
-    QDialogButtonBox *m_buttonBox;
+    QDialogButtonBox::StandardButton m_saveButton = QDialogButtonBox::NoButton;
+    QDialogButtonBox *const m_buttonBox;
 };
 
 } // namespace Gui

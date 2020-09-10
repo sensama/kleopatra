@@ -82,15 +82,15 @@ private Q_SLOTS:
     void checkLocate();
 
 private:
-    KeyListSortFilterProxyModel *mFilterModel;
+    KeyListSortFilterProxyModel *const mFilterModel;
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;
     GpgME::Protocol mCurrentProto;
     std::shared_ptr<KeyFilter> mFilter;
-    bool mEditStarted,
-         mEditFinished;
-    QAction *mLineAction;
+    bool mEditStarted = false;
+    bool mEditFinished = false;
+    QAction *const mLineAction;
 };
 }
 #endif

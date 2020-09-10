@@ -37,7 +37,7 @@ struct Line {
     QString attr;
     QString label;
     QString regex;
-    QLineEdit *edit;
+    QLineEdit *edit = nullptr;
 };
 }
 

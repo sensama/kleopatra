@@ -34,9 +34,7 @@ static const char option_prefix[] = "prefix";
 class EchoCommand::Private
 {
 public:
-    Private() : operationsInFlight(0), buffer() {}
-
-    int operationsInFlight;
+    int operationsInFlight = 0;
     QByteArray buffer;
 };
 

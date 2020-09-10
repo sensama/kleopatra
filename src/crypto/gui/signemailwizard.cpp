@@ -46,7 +46,8 @@ private:
 };
 }
 
-SignerResolveValidator::SignerResolveValidator(SignerResolvePage *page) : SignerResolvePage::Validator(), m_page(page), complete(true)
+SignerResolveValidator::SignerResolveValidator(SignerResolvePage *page)
+    : SignerResolvePage::Validator(), m_page(page), complete(true)
 {
     Q_ASSERT(m_page);
 }

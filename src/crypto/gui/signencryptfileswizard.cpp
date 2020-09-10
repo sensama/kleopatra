@@ -370,8 +370,6 @@ private:
 
 SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags f)
     : QWizard(parent, f)
-    , mSigningUserMutable(true)
-    , mEncryptionUserMutable(true)
 {
     readConfig();
 

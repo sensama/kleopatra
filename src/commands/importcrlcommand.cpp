@@ -39,7 +39,7 @@ public:
     explicit Private(ImportCrlCommand *qq, KeyListController *c);
     ~Private();
 
-    QString errorString() const
+    Q_REQUIRED_RESULT QString errorString() const
     {
         return stringFromGpgOutput(errorBuffer);
     }

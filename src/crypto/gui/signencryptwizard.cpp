@@ -49,10 +49,10 @@ public:
 
     void setCommitPage(Page page);
 
-    Gui::ResolveRecipientsPage *recipientResolvePage;  // clashes with enum of same name
-    SignerResolvePage *signerResolvePage;
-    Gui::ObjectsPage *objectsPage;  // clashes with enum of same name
-    Gui::ResultPage *resultPage;   // clashes with enum of same name
+    Gui::ResolveRecipientsPage *const recipientResolvePage;  // clashes with enum of same name
+    SignerResolvePage *const signerResolvePage;
+    Gui::ObjectsPage *const objectsPage;  // clashes with enum of same name
+    Gui::ResultPage *const resultPage;   // clashes with enum of same name
 };
 
 SignEncryptWizard::Private::Private(SignEncryptWizard *qq)

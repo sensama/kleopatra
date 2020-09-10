@@ -49,7 +49,7 @@ private:
     QString errorExitMessage(const QStringList &) const override;
 
 private:
-    QWidget *mParent;
+    QWidget *const mParent;
     QProcess mPkProc;
 };
 

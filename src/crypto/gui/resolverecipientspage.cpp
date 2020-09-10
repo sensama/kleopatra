@@ -59,7 +59,8 @@ ResolveRecipientsPage::ListWidget::~ListWidget()
 
 void ResolveRecipientsPage::ListWidget::onSelectionChange()
 {
-    Q_FOREACH (const QString &i, widgets.keys()) {
+    const auto widgetskeys = widgets.keys();
+    for (const QString &i : widgetskeys) {
         Q_ASSERT(items.contains(i));
         widgets[i]->setSelected(items[i]->isSelected());
     }

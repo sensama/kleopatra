@@ -35,12 +35,12 @@ public:
 
     void setAllowedProtocols(const QVector<GpgME::Protocol> &allowedProtocols);
     void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);
-    QMap<GpgME::Protocol, GpgME::Key> selectedCertificates() const;
+    Q_REQUIRED_RESULT QMap<GpgME::Protocol, GpgME::Key> selectedCertificates() const;
 
-    bool rememberAsDefault() const;
+    Q_REQUIRED_RESULT bool rememberAsDefault() const;
 
 private:
-    SigningCertificateSelectionWidget *widget;
+    SigningCertificateSelectionWidget *const widget;
 };
 
 }

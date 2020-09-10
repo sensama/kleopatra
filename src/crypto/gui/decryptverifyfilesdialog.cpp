@@ -39,7 +39,7 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent)
-    : QDialog(parent), m_tasks(coll), m_saveButton(QDialogButtonBox::NoButton), m_buttonBox(new QDialogButtonBox)
+    : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox)
 {
     readConfig();
     auto vLay = new QVBoxLayout(this);

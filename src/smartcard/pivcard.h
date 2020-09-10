@@ -32,6 +32,7 @@ public:
     static std::string pinKeyRef();
     static std::string pukKeyRef();
 
+    static QString keyDisplayName(const std::string &keyRef);
     static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
 
     std::string keyGrip(const std::string &keyRef) const;

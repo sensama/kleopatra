@@ -63,6 +63,19 @@ std::string PIVCard::pukKeyRef()
 }
 
 // static
+QString PIVCard::keyDisplayName(const std::string &keyRef)
+{
+    static const QMap<std::string, QString> displayNames = {
+        { PIVCard::pivAuthenticationKeyRef(), i18n("PIV Authentication Key") },
+        { PIVCard::cardAuthenticationKeyRef(), i18n("Card Authentication Key") },
+        { PIVCard::digitalSignatureKeyRef(), i18n("Digital Signature Key") },
+        { PIVCard::keyManagementKeyRef(), i18n("Key Management Key") },
+    };
+
+    return displayNames.value(keyRef);
+}
+
+// static
 std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(const std::string &keyRef)
 {
     if (keyRef == PIVCard::keyManagementKeyRef()) {

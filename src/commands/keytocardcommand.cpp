@@ -55,6 +55,7 @@ private:
     void start();
     void startTransferToOpenPGPCard();
     void startTransferToPIVCard();
+    void startKeyToPIVCard();
     void startCertificateToPIVCard();
     void authenticate();
     void authenticationFinished();
@@ -63,6 +64,7 @@ private:
 private:
     std::string mSerial;
     GpgME::Subkey mSubkey;
+    std::string cardSlot;
     bool overwriteExistingAlreadyApproved = false;
     bool hasBeenCanceled = false;
 };
@@ -166,8 +168,8 @@ static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent
     }
 
     bool ok;
-    const QString choice = QInputDialog::getItem(parent, i18n("Select Slot"),
-        i18n("Please select the slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    const QString choice = QInputDialog::getItem(parent, i18n("Select Card Slot"),
+        i18n("Please select the card slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
     const int slot = options.indexOf(choice) + 1;
     return ok ? slot : -1;
 }
@@ -227,6 +229,43 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
 }
 
+namespace {
+static std::string getPIVCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
+{
+    // Check if we need to ask the user for the slot
+    if (subKey.canSign() && !subKey.canEncrypt()) {
+        // Signing only
+        return PIVCard::digitalSignatureKeyRef();
+    }
+    if (subKey.canEncrypt() && !subKey.canSign()) {
+        // Encrypt only
+        return PIVCard::keyManagementKeyRef();
+    }
+
+    // Multiple uses, ask user.
+    QMap<QString, std::string> options;
+
+    if (subKey.canSign()) {
+        options.insert(i18nc("Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
+                             "placeholder 2 is the identifier of a slot on a smart card", "%1 (%2)",
+                             PIVCard::keyDisplayName(PIVCard::digitalSignatureKeyRef()), QString::fromStdString(PIVCard::digitalSignatureKeyRef())),
+                       PIVCard::digitalSignatureKeyRef());
+    }
+    if (subKey.canEncrypt()) {
+        options.insert(i18nc("Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
+                             "placeholder 2 is the identifier of a slot on a smart card", "%1 (%2)",
+                             PIVCard::keyDisplayName(PIVCard::keyManagementKeyRef()), QString::fromStdString(PIVCard::keyManagementKeyRef())),
+                       PIVCard::keyManagementKeyRef());
+    }
+
+    bool ok;
+    const QString choice = QInputDialog::getItem(parent, i18n("Select Card Slot"),
+        i18n("Please select the card slot the certificate should be written to:"), options.keys(), /* current= */ 0, /* editable= */ false, &ok);
+    const std::string slot = options.value(choice);
+    return ok ? slot : std::string();
+}
+}
+
 void KeyToCardCommand::Private::startTransferToPIVCard()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startTransferToPIVCard()";
@@ -238,22 +277,53 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
         return;
     }
 
-    if (!mSubkey.canEncrypt()) {
-        error(i18n("Sorry! Only encryption keys can be transferred to a PIV card."));
+    if (!mSubkey.canEncrypt() && !mSubkey.canSign()) {
+        error(i18n("Sorry! Only encryption keys and signing keys can be transferred to a PIV card."));
+        finished();
+        return;
+    }
+
+    // get card slot unless it was already selected before authentication was performed
+    if (cardSlot.empty()) {
+        cardSlot = getPIVCardSlotForKey(mSubkey, parentWidgetOrView());
+        if (cardSlot.empty()) {
+            finished();
+            return;
+        }
+    }
+
+    if (cardSlot == PIVCard::keyManagementKeyRef()) {
+        startKeyToPIVCard();
+    } else {
+        // skip key to card because it's only supported for encryption keys
+        startCertificateToPIVCard();
+    }
+}
+
+void KeyToCardCommand::Private::startKeyToPIVCard()
+{
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToPIVCard()";
+
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(mSerial)));
         finished();
         return;
     }
 
     // Check if we need to do the overwrite warning.
     if (!overwriteExistingAlreadyApproved) {
-        const std::string existingKey = pivCard->keyGrip(PIVCard::keyManagementKeyRef());
-        if (!existingKey.empty()) {
+        const std::string existingKey = pivCard->keyGrip(cardSlot);
+        if (!existingKey.empty() && (existingKey != mSubkey.keyGrip())) {
+            const QString decryptionWarning = (cardSlot == PIVCard::keyManagementKeyRef()) ?
+                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
+                QString();
             const QString message = i18nc("@info",
                 "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
                 "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
                 i18n("The existing key has the key grip:") +
                 QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.");
+                decryptionWarning;
             const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
                 i18nc("@title:window", "Overwrite existing key"),
                 KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
@@ -265,10 +335,9 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
         }
     }
 
-    // Now do the deed
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
         .arg(QString::fromLatin1(mSubkey.keyGrip()), QString::fromStdString(mSerial))
-        .arg(QString::fromStdString(PIVCard::keyManagementKeyRef()));
+        .arg(QString::fromStdString(cardSlot));
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
 }
 
@@ -283,25 +352,17 @@ void KeyToCardCommand::Private::startCertificateToPIVCard()
         return;
     }
 
-    // Check if we need to do the overwrite warning.
-    if (!overwriteExistingAlreadyApproved) {
-        const std::string existingKey = pivCard->keyGrip(PIVCard::keyManagementKeyRef());
-        if (!existingKey.empty()) {
-            const QString message = i18nc("@info",
-                "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-                "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
-                i18n("The existing key has the key grip:") +
-                QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
-                i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.");
-            const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
-                i18nc("@title:window", "Overwrite existing key"),
-                KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
-            if (choice != KMessageBox::Continue) {
-                finished();
-                return;
-            }
-            overwriteExistingAlreadyApproved = true;
-        }
+    // verify that public keys on the card and in the certificate match
+    const std::string cardKeygrip = pivCard->keyGrip(cardSlot);
+    const std::string certificateKeygrip = mSubkey.keyGrip();
+    if (cardKeygrip != certificateKeygrip) {
+        error(i18n("<p>The certificate does not seem to correspond to the key on the card.</p>"
+                   "<p>Public key on card: %1<br>"
+                   "Public key of certificate: %2</p>",
+                   QString::fromStdString(cardKeygrip),
+                   QString::fromStdString(certificateKeygrip)));
+        finished();
+        return;
     }
 
     auto ctx = Context::createForProtocol(GpgME::CMS);
@@ -316,9 +377,8 @@ void KeyToCardCommand::Private::startCertificateToPIVCard()
     }
     const QByteArray certificateData = dp.data();
 
-    // Now do the deed
     const QString cmd = QStringLiteral("SCD WRITECERT %1")
-        .arg(QString::fromStdString(PIVCard::keyManagementKeyRef()));
+        .arg(QString::fromStdString(cardSlot));
     auto transaction = std::unique_ptr<AssuanTransaction>(new WriteCertAssuanTransaction(certificateData));
     ReaderStatus::mutableInstance()->startTransaction(cmd.toUtf8(), q_func(), "certificateToPIVCardDone", std::move(transaction));
 }

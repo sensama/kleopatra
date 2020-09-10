@@ -50,18 +50,6 @@ static QString formatVersion(int value)
     }
     return QString::number(d);
 }
-
-static QString keyDisplayName(std::string keyRef)
-{
-    static const QMap<std::string, QString> displayNames = {
-        { PIVCard::pivAuthenticationKeyRef(), i18n("PIV Authentication Key") },
-        { PIVCard::cardAuthenticationKeyRef(), i18n("Card Authentication Key") },
-        { PIVCard::digitalSignatureKeyRef(), i18n("Digital Signature Key") },
-        { PIVCard::keyManagementKeyRef(), i18n("Key Management Key") },
-    };
-
-    return displayNames.value(keyRef);
-}
 } // Namespace
 
 PIVCardWidget::PIVCardWidget(QWidget *parent):
@@ -203,8 +191,8 @@ void PIVCardWidget::updateKey(const std::string &keyRef, const PIVCard *card, QL
     label->setText(grip.empty() ? i18n("Slot empty") : QString::fromStdString(grip));
     button->setText(grip.empty() ? i18n("Generate") : i18n("Replace"));
     button->setToolTip(grip.empty() ?
-        i18nc("Placeholder is the display name of a key", "Generate %1", keyDisplayName(keyRef)) :
-        i18nc("Placeholder is the display name of a key", "Replace %1 with new key", keyDisplayName(keyRef)));
+        i18nc("Placeholder is the display name of a key", "Generate %1", PIVCard::keyDisplayName(keyRef)) :
+        i18nc("Placeholder is the display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
     button->setEnabled(true);
 }
 

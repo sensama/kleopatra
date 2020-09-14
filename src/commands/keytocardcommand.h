@@ -28,6 +28,7 @@ public:
     explicit KeyToCardCommand(QAbstractItemView *view, KeyListController *parent);
     explicit KeyToCardCommand(const GpgME::Key &key);
     KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno);
+    KeyToCardCommand(const std::string& cardSlot, const std::string &serialno);
     ~KeyToCardCommand() override;
 
     /* reimp */ static Restrictions restrictions()

@@ -22,6 +22,8 @@
 
 #include "utils/writecertassuantransaction.h"
 
+#include <Libkleo/KeyCache>
+
 #include <KLocalizedString>
 
 #include <QInputDialog>
@@ -49,11 +51,14 @@ class KeyToCardCommand::Private : public Command::Private
 public:
     explicit Private(KeyToCardCommand *qq, KeyListController *c);
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &key, const std::string &serialno);
+    explicit Private(KeyToCardCommand *qq, const std::string &cardSlot, const std::string &serialno);
     ~Private();
 
 private:
     void start();
+
     void startTransferToOpenPGPCard();
+
     void startTransferToPIVCard();
     void startKeyToPIVCard();
     void startCertificateToPIVCard();
@@ -96,6 +101,13 @@ KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
 {
 }
 
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &cardSlot_, const std::string &serialno)
+    : Command::Private(qq, nullptr)
+    , mSerial(serialno)
+    , cardSlot(cardSlot_)
+{
+}
+
 KeyToCardCommand::Private::~Private()
 {
 }
@@ -103,6 +115,17 @@ KeyToCardCommand::Private::~Private()
 void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
+
+    // for now we always use the first smart card
+    if (mSerial.empty()) {
+        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
+        if (!cards.size() || cards[0]->serialNumber().empty()) {
+            error(i18n("Failed to find a smart card."));
+            finished();
+            return;
+        }
+        mSerial = cards[0]->serialNumber();
+    }
 
     const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(mSerial);
     if (!card) {
@@ -113,32 +136,30 @@ void KeyToCardCommand::Private::start()
 
     switch (card->appType()) {
     case SmartCard::Card::OpenPGPApplication: {
-        if (mSubkey.parent().protocol() == GpgME::OpenPGP) {
-            startTransferToOpenPGPCard();
-        }
-        else {
-            error(i18n("Sorry! This key cannot be transferred to an OpenPGP card."));
-            finished();
-        }
+        startTransferToOpenPGPCard();
     }
     break;
     case SmartCard::Card::PivApplication: {
-        if (mSubkey.parent().protocol() == GpgME::CMS) {
-            startTransferToPIVCard();
-        } else {
-            error(i18n("Sorry! This key cannot be transferred to a PIV card."));
-            finished();
-        }
+        startTransferToPIVCard();
     }
     break;
     default: {
         error(i18n("Sorry! Transferring keys to this card is not supported."));
         finished();
+        return;
     }
     }
 }
 
 namespace {
+static GpgME::Subkey getSubkeyToTransferToOpenPGPCard(const std::vector<Key> &keys)
+{
+    if (keys.size() == 1 && keys.front().hasSecret()) {
+        return keys.front().subkey(0);
+    }
+    return GpgME::Subkey();
+}
+
 static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
 {
     // Check if we need to ask the user for the slot
@@ -181,6 +202,19 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
     const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
     if (!pgpCard) {
         error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mSerial)));
+        finished();
+        return;
+    }
+
+    if (mSubkey.isNull()) {
+        mSubkey = getSubkeyToTransferToOpenPGPCard(keys());
+    }
+    if (mSubkey.isNull()) {
+        finished();
+        return;
+    }
+    if (mSubkey.parent().protocol() != GpgME::OpenPGP) {
+        error(i18n("Sorry! This key cannot be transferred to an OpenPGP card."));
         finished();
         return;
     }
@@ -230,6 +264,29 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
 }
 
 namespace {
+static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::vector<Key> &keys, const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
+{
+    if (!cardSlot.empty()) {
+        if (cardSlot == PIVCard::digitalSignatureKeyRef()) {
+            // get signing certificate matching the key grip
+            const std::string cardKeygrip = card->keyGrip(cardSlot);
+            const auto subkey = KeyCache::instance()->findSubkeyByKeyGrip(cardKeygrip);
+            if (subkey.canSign() && subkey.parent().protocol() == GpgME::CMS) {
+                return subkey;
+            }
+        }
+        if (cardSlot == PIVCard::keyManagementKeyRef()) {
+            // get encryption certificate with secret subkey
+        }
+        return GpgME::Subkey();
+    }
+
+    if (keys.size() == 1) {
+        return keys.front().subkey(0);
+    }
+    return GpgME::Subkey();
+}
+
 static std::string getPIVCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
 {
     // Check if we need to ask the user for the slot
@@ -277,6 +334,21 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
         return;
     }
 
+    if (mSubkey.isNull()) {
+        mSubkey = getSubkeyToTransferToPIVCard(keys(), cardSlot, pivCard);
+    }
+    if (mSubkey.isNull()) {
+        if (!cardSlot.empty()) {
+            error(i18n("Sorry! No suitable certificate to write to this card slot was found."));
+        }
+        finished();
+        return;
+    }
+    if (mSubkey.parent().protocol() != GpgME::CMS) {
+        error(i18n("Sorry! This key cannot be transferred to a PIV card."));
+        finished();
+        return;
+    }
     if (!mSubkey.canEncrypt() && !mSubkey.canSign()) {
         error(i18n("Sorry! Only encryption keys and signing keys can be transferred to a PIV card."));
         finished();
@@ -430,6 +502,11 @@ KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &
 {
 }
 
+KeyToCardCommand::KeyToCardCommand(const std::string& cardSlot, const std::string &serialno)
+    : Command(new Private(this, cardSlot, serialno))
+{
+}
+
 KeyToCardCommand::~KeyToCardCommand()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
@@ -526,27 +603,6 @@ void KeyToCardCommand::deleteDone(const GpgME::Error &err)
 void KeyToCardCommand::doStart()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::doStart()";
-
-    if (d->mSubkey.isNull()) {
-        const std::vector<Key> keys = d->keys();
-        if (keys.size() != 1 ||
-                !keys.front().hasSecret() ||
-                keys.front().subkey(0).isNull()) {
-            d->finished();
-            return;
-        }
-        d->mSubkey = keys.front().subkey(0);
-    }
-
-    if (d->mSerial.empty()) {
-        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
-        if (!cards.size() || cards[0]->serialNumber().empty()) {
-            d->error(i18n("Failed to find a smart card."));
-            d->finished();
-            return;
-        }
-        d->mSerial = cards[0]->serialNumber();
-    }
 
     d->start();
 }

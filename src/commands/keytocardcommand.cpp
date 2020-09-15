@@ -3,6 +3,8 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -20,19 +22,11 @@
 
 #include "commands/authenticatepivcardapplicationcommand.h"
 
-#include "utils/writecertassuantransaction.h"
-
-#include <Libkleo/KeyCache>
-
 #include <KLocalizedString>
 
 #include <QInputDialog>
 #include <QDateTime>
 #include <QStringList>
-
-#include <qgpgme/dataprovider.h>
-
-#include <gpgme++/context.h>
 
 #include "kleopatra_debug.h"
 
@@ -56,11 +50,10 @@ public:
 private:
     void start();
 
-    void startTransferToOpenPGPCard();
+    void startKeyToOpenPGPCard();
 
-    void startTransferToPIVCard();
     void startKeyToPIVCard();
-    void startCertificateToPIVCard();
+
     void authenticate();
     void authenticationFinished();
     void authenticationCanceled();
@@ -110,17 +103,6 @@ void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
 
-    // for now we always use the first smart card
-    if (mSerial.empty()) {
-        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
-        if (!cards.size() || cards[0]->serialNumber().empty()) {
-            error(i18n("Failed to find a smart card."));
-            finished();
-            return;
-        }
-        mSerial = cards[0]->serialNumber();
-    }
-
     const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(mSerial);
     if (!card) {
         error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(mSerial)));
@@ -130,11 +112,11 @@ void KeyToCardCommand::Private::start()
 
     switch (card->appType()) {
     case SmartCard::Card::OpenPGPApplication: {
-        startTransferToOpenPGPCard();
+        startKeyToOpenPGPCard();
     }
     break;
     case SmartCard::Card::PivApplication: {
-        startTransferToPIVCard();
+        startKeyToPIVCard();
     }
     break;
     default: {
@@ -182,8 +164,8 @@ static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent
 }
 }
 
-void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startTransferToOpenPGPCard()";
+void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToOpenPGPCard()";
 
     const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(mSerial);
     if (!pgpCard) {
@@ -247,17 +229,9 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
 }
 
 namespace {
-static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
+static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &/*card*/)
 {
     if (!cardSlot.empty()) {
-        if (cardSlot == PIVCard::digitalSignatureKeyRef()) {
-            // get signing certificate matching the key grip
-            const std::string cardKeygrip = card->keyGrip(cardSlot);
-            const auto subkey = KeyCache::instance()->findSubkeyByKeyGrip(cardKeygrip);
-            if (subkey.canSign() && subkey.parent().protocol() == GpgME::CMS) {
-                return subkey;
-            }
-        }
         if (cardSlot == PIVCard::keyManagementKeyRef()) {
             // get encryption certificate with secret subkey
         }
@@ -266,46 +240,11 @@ static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::string &cardSlot, c
 
     return GpgME::Subkey();
 }
-
-static std::string getPIVCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
-{
-    // Check if we need to ask the user for the slot
-    if (subKey.canSign() && !subKey.canEncrypt()) {
-        // Signing only
-        return PIVCard::digitalSignatureKeyRef();
-    }
-    if (subKey.canEncrypt() && !subKey.canSign()) {
-        // Encrypt only
-        return PIVCard::keyManagementKeyRef();
-    }
-
-    // Multiple uses, ask user.
-    QMap<QString, std::string> options;
-
-    if (subKey.canSign()) {
-        options.insert(i18nc("Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-                             "placeholder 2 is the identifier of a slot on a smart card", "%1 (%2)",
-                             PIVCard::keyDisplayName(PIVCard::digitalSignatureKeyRef()), QString::fromStdString(PIVCard::digitalSignatureKeyRef())),
-                       PIVCard::digitalSignatureKeyRef());
-    }
-    if (subKey.canEncrypt()) {
-        options.insert(i18nc("Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-                             "placeholder 2 is the identifier of a slot on a smart card", "%1 (%2)",
-                             PIVCard::keyDisplayName(PIVCard::keyManagementKeyRef()), QString::fromStdString(PIVCard::keyManagementKeyRef())),
-                       PIVCard::keyManagementKeyRef());
-    }
-
-    bool ok;
-    const QString choice = QInputDialog::getItem(parent, i18n("Select Card Slot"),
-        i18n("Please select the card slot the certificate should be written to:"), options.keys(), /* current= */ 0, /* editable= */ false, &ok);
-    const std::string slot = options.value(choice);
-    return ok ? slot : std::string();
-}
 }
 
-void KeyToCardCommand::Private::startTransferToPIVCard()
+void KeyToCardCommand::Private::startKeyToPIVCard()
 {
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startTransferToPIVCard()";
+    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToPIVCard()";
 
     const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
     if (!pivCard) {
@@ -314,13 +253,17 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
         return;
     }
 
+    if (cardSlot != PIVCard::keyManagementKeyRef()) {
+        // key to card is only supported for encryption keys
+        finished();
+        return;
+    }
+
     if (mSubkey.isNull()) {
         mSubkey = getSubkeyToTransferToPIVCard(cardSlot, pivCard);
     }
     if (mSubkey.isNull()) {
-        if (!cardSlot.empty()) {
-            error(i18n("Sorry! No suitable certificate to write to this card slot was found."));
-        }
+        error(i18n("Sorry! No suitable certificate to write to this card slot was found."));
         finished();
         return;
     }
@@ -331,34 +274,6 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
     }
     if (!mSubkey.canEncrypt() && !mSubkey.canSign()) {
         error(i18n("Sorry! Only encryption keys and signing keys can be transferred to a PIV card."));
-        finished();
-        return;
-    }
-
-    // get card slot unless it was already selected before authentication was performed
-    if (cardSlot.empty()) {
-        cardSlot = getPIVCardSlotForKey(mSubkey, parentWidgetOrView());
-        if (cardSlot.empty()) {
-            finished();
-            return;
-        }
-    }
-
-    if (cardSlot == PIVCard::keyManagementKeyRef()) {
-        startKeyToPIVCard();
-    } else {
-        // skip key to card because it's only supported for encryption keys
-        startCertificateToPIVCard();
-    }
-}
-
-void KeyToCardCommand::Private::startKeyToPIVCard()
-{
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToPIVCard()";
-
-    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
-    if (!pivCard) {
-        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(mSerial)));
         finished();
         return;
     }
@@ -393,48 +308,6 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
 }
 
-void KeyToCardCommand::Private::startCertificateToPIVCard()
-{
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startCertificateToPIVCard()";
-
-    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(mSerial);
-    if (!pivCard) {
-        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(mSerial)));
-        finished();
-        return;
-    }
-
-    // verify that public keys on the card and in the certificate match
-    const std::string cardKeygrip = pivCard->keyGrip(cardSlot);
-    const std::string certificateKeygrip = mSubkey.keyGrip();
-    if (cardKeygrip != certificateKeygrip) {
-        error(i18n("<p>The certificate does not seem to correspond to the key on the card.</p>"
-                   "<p>Public key on card: %1<br>"
-                   "Public key of certificate: %2</p>",
-                   QString::fromStdString(cardKeygrip),
-                   QString::fromStdString(certificateKeygrip)));
-        finished();
-        return;
-    }
-
-    auto ctx = Context::createForProtocol(GpgME::CMS);
-    QGpgME::QByteArrayDataProvider dp;
-    Data data(&dp);
-    const Error err = ctx->exportPublicKeys(mSubkey.parent().primaryFingerprint(), data);
-    if (err) {
-        error(i18nc("@info", "Exporting the certificate failed: %1", QString::fromUtf8(err.asString())),
-              i18nc("@title", "Error"));
-        finished();
-        return;
-    }
-    const QByteArray certificateData = dp.data();
-
-    const QString cmd = QStringLiteral("SCD WRITECERT %1")
-        .arg(QString::fromStdString(cardSlot));
-    auto transaction = std::unique_ptr<AssuanTransaction>(new WriteCertAssuanTransaction(certificateData));
-    ReaderStatus::mutableInstance()->startTransaction(cmd.toUtf8(), q_func(), "certificateToPIVCardDone", std::move(transaction));
-}
-
 void KeyToCardCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticate()";
@@ -451,7 +324,7 @@ void KeyToCardCommand::Private::authenticationFinished()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticationFinished()";
     if (!hasBeenCanceled) {
-        startTransferToPIVCard();
+        startKeyToPIVCard();
     }
 }
 
@@ -512,11 +385,6 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::keyToPIVCardDone():"
                            << err.asString() << "(" << err.code() << ")";
-    if (!err && !err.isCanceled()) {
-        d->startCertificateToPIVCard();
-        return;
-    }
-
     if (err) {
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
         if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
@@ -527,30 +395,6 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
         d->error(i18nc("@info",
                        "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())),
                         i18nc("@title", "Error"));
-    }
-
-    d->finished();
-}
-
-void KeyToCardCommand::certificateToPIVCardDone(const GpgME::Error &err)
-{
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::certificateToPIVCardDone():"
-                           << err.asString() << "(" << err.code() << ")";
-    if (err) {
-        // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
-        if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
-            d->authenticate();
-            return;
-        }
-
-        d->error(i18nc("@info",
-                       "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())),
-                        i18nc("@title", "Error"));
-    } else if (!err.isCanceled()) {
-        KMessageBox::information(d->parentWidgetOrView(),
-                                 i18n("Successfully copied the certificate to the card."),
-                                 i18nc("@title", "Success"));
-        ReaderStatus::mutableInstance()->updateStatus();
     }
 
     d->finished();

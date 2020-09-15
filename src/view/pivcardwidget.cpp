@@ -9,8 +9,8 @@
 
 #include "pivcardwidget.h"
 
+#include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
-#include "commands/keytocardcommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
 #include "commands/setpivcardapplicationadministrationkeycommand.h"
 
@@ -125,7 +125,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mWriteDigitalSignatureKeyBtn->setToolTip(i18n("Write the certificate corresponding to this key to the card"));
     mWriteDigitalSignatureKeyBtn->setEnabled(false);
     grid->addWidget(mWriteDigitalSignatureKeyBtn, row, 3);
-    connect(mWriteDigitalSignatureKeyBtn, &QPushButton::clicked, this, [this] () { writeKeyToCard(PIVCard::digitalSignatureKeyRef()); });
+    connect(mWriteDigitalSignatureKeyBtn, &QPushButton::clicked, this, [this] () { writeCertificateToCard(PIVCard::digitalSignatureKeyRef()); });
     row++;
 
     grid->addWidget(new QLabel(i18n("Key management:")), row, 0);
@@ -218,11 +218,11 @@ void PIVCardWidget::generateKey(const std::string &keyref)
     cmd->start();
 }
 
-void PIVCardWidget::writeKeyToCard(const std::string &keyref)
+void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
 {
-    auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber);
+    auto cmd = new CertificateToPIVCardCommand(keyref, mCardSerialNumber);
     this->setEnabled(false);
-    connect(cmd, &KeyToCardCommand::finished,
+    connect(cmd, &CertificateToPIVCardCommand::finished,
             this, [this]() {
                 this->setEnabled(true);
             });

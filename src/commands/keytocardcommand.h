@@ -3,6 +3,8 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -12,7 +14,6 @@
 
 #include <commands/command.h>
 
-#include <string>
 #include <gpgme++/key.h>
 
 namespace Kleo
@@ -33,7 +34,6 @@ public:
 public Q_SLOTS:
     void keyToOpenPGPCardDone(const GpgME::Error &err);
     void keyToPIVCardDone(const GpgME::Error &err);
-    void certificateToPIVCardDone(const GpgME::Error &err);
     void deleteDone(const GpgME::Error &err);
 
 private:

@@ -233,6 +233,7 @@ set(_kleopatra_SRCS
   commands/changepincommand.cpp
   commands/authenticatepivcardapplicationcommand.cpp
   commands/setpivcardapplicationadministrationkeycommand.cpp
+  commands/certificatetopivcardcommand.cpp
 
   ${_kleopatra_uiserver_files}
 

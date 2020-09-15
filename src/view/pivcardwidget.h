@@ -57,8 +57,9 @@ private:
     QPushButton *mGeneratePIVAuthenticationKeyBtn = nullptr,
                 *mGenerateCardAuthenticationKeyBtn = nullptr,
                 *mGenerateDigitalSignatureKeyBtn = nullptr,
-                *mWriteDigitalSignatureKeyBtn = nullptr,
-                *mGenerateKeyManagementKeyBtn = nullptr;
+                *mWriteDigitalSignatureCertificateBtn = nullptr,
+                *mGenerateKeyManagementKeyBtn = nullptr,
+                *mWriteKeyManagementCertificateBtn = nullptr;
 };
 } // namespace Kleo
 

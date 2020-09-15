@@ -100,18 +100,15 @@ namespace {
 static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
 {
     if (!cardSlot.empty()) {
-        if (cardSlot == PIVCard::digitalSignatureKeyRef()) {
-            // get signing certificate matching the key grip
-            const std::string cardKeygrip = card->keyGrip(cardSlot);
-            const auto subkey = KeyCache::instance()->findSubkeyByKeyGrip(cardKeygrip);
-            if (subkey.canSign() && subkey.parent().protocol() == GpgME::CMS) {
-                return subkey;
-            }
+        const std::string cardKeygrip = card->keyGrip(cardSlot);
+        const auto subkey = KeyCache::instance()->findSubkeyByKeyGrip(cardKeygrip);
+        if (subkey.isNull() || subkey.parent().protocol() != GpgME::CMS) {
+            return GpgME::Subkey();
         }
-        if (cardSlot == PIVCard::keyManagementKeyRef()) {
-            // get encryption certificate with secret subkey
+        if ((cardSlot == PIVCard::digitalSignatureKeyRef() && subkey.canSign()) ||
+            (cardSlot == PIVCard::keyManagementKeyRef() && subkey.canEncrypt())) {
+            return subkey;
         }
-        return GpgME::Subkey();
     }
 
     return GpgME::Subkey();

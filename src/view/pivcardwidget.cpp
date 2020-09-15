@@ -64,8 +64,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGeneratePIVAuthenticationKeyBtn(new QPushButton(this)),
     mGenerateCardAuthenticationKeyBtn(new QPushButton(this)),
     mGenerateDigitalSignatureKeyBtn(new QPushButton(this)),
-    mWriteDigitalSignatureKeyBtn(new QPushButton(this)),
-    mGenerateKeyManagementKeyBtn(new QPushButton(this))
+    mWriteDigitalSignatureCertificateBtn(new QPushButton(this)),
+    mGenerateKeyManagementKeyBtn(new QPushButton(this)),
+    mWriteKeyManagementCertificateBtn(new QPushButton(this))
 {
     auto grid = new QGridLayout;
     int row = 0;
@@ -121,11 +122,11 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateDigitalSignatureKeyBtn->setEnabled(false);
     grid->addWidget(mGenerateDigitalSignatureKeyBtn, row, 2);
     connect(mGenerateDigitalSignatureKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generateDigitalSignatureKey);
-    mWriteDigitalSignatureKeyBtn->setText(i18n("Write Certificate"));
-    mWriteDigitalSignatureKeyBtn->setToolTip(i18n("Write the certificate corresponding to this key to the card"));
-    mWriteDigitalSignatureKeyBtn->setEnabled(false);
-    grid->addWidget(mWriteDigitalSignatureKeyBtn, row, 3);
-    connect(mWriteDigitalSignatureKeyBtn, &QPushButton::clicked, this, [this] () { writeCertificateToCard(PIVCard::digitalSignatureKeyRef()); });
+    mWriteDigitalSignatureCertificateBtn->setText(i18n("Write Certificate"));
+    mWriteDigitalSignatureCertificateBtn->setToolTip(i18n("Write the certificate corresponding to this key to the card"));
+    mWriteDigitalSignatureCertificateBtn->setEnabled(false);
+    grid->addWidget(mWriteDigitalSignatureCertificateBtn, row, 3);
+    connect(mWriteDigitalSignatureCertificateBtn, &QPushButton::clicked, this, [this] () { writeCertificateToCard(PIVCard::digitalSignatureKeyRef()); });
     row++;
 
     grid->addWidget(new QLabel(i18n("Key management:")), row, 0);
@@ -135,6 +136,11 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateKeyManagementKeyBtn->setEnabled(false);
     grid->addWidget(mGenerateKeyManagementKeyBtn, row, 2);
     connect(mGenerateKeyManagementKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generateKeyManagementKey);
+    mWriteKeyManagementCertificateBtn->setText(i18n("Write Certificate"));
+    mWriteKeyManagementCertificateBtn->setToolTip(i18n("Write the certificate corresponding to this key to the card"));
+    mWriteKeyManagementCertificateBtn->setEnabled(false);
+    grid->addWidget(mWriteKeyManagementCertificateBtn, row, 3);
+    connect(mWriteKeyManagementCertificateBtn, &QPushButton::clicked, this, [this] () { writeCertificateToCard(PIVCard::keyManagementKeyRef()); });
     row++;
 
     auto line2 = new QFrame();
@@ -188,8 +194,8 @@ void PIVCardWidget::setCard(const PIVCard *card)
 
     updateKey(PIVCard::pivAuthenticationKeyRef(), card, mPIVAuthenticationKey, mGeneratePIVAuthenticationKeyBtn, nullptr);
     updateKey(PIVCard::cardAuthenticationKeyRef(), card, mCardAuthenticationKey, mGenerateCardAuthenticationKeyBtn, nullptr);
-    updateKey(PIVCard::digitalSignatureKeyRef(), card, mDigitalSignatureKey, mGenerateDigitalSignatureKeyBtn, mWriteDigitalSignatureKeyBtn);
-    updateKey(PIVCard::keyManagementKeyRef(), card, mKeyManagementKey, mGenerateKeyManagementKeyBtn, nullptr);
+    updateKey(PIVCard::digitalSignatureKeyRef(), card, mDigitalSignatureKey, mGenerateDigitalSignatureKeyBtn, mWriteDigitalSignatureCertificateBtn);
+    updateKey(PIVCard::keyManagementKeyRef(), card, mKeyManagementKey, mGenerateKeyManagementKeyBtn, mWriteKeyManagementCertificateBtn);
 }
 
 void PIVCardWidget::updateKey(const std::string &keyRef, const PIVCard *card, QLabel *label, QPushButton *generateButton, QPushButton *writeButton)

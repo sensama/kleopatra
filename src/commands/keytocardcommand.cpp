@@ -1,4 +1,4 @@
-/* commands/setinitialpincommand.cpp
+/* commands/keytocardcommand.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
@@ -49,7 +49,6 @@ class KeyToCardCommand::Private : public Command::Private
         return static_cast<KeyToCardCommand *>(q);
     }
 public:
-    explicit Private(KeyToCardCommand *qq, KeyListController *c);
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &key, const std::string &serialno);
     explicit Private(KeyToCardCommand *qq, const std::string &cardSlot, const std::string &serialno);
     ~Private();
@@ -86,11 +85,6 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 #define q q_func()
 #define d d_func()
 
-
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq, KeyListController *c)
-    : Command::Private(qq, c)
-{
-}
 
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
                                    const GpgME::Subkey &key,
@@ -152,14 +146,6 @@ void KeyToCardCommand::Private::start()
 }
 
 namespace {
-static GpgME::Subkey getSubkeyToTransferToOpenPGPCard(const std::vector<Key> &keys)
-{
-    if (keys.size() == 1 && keys.front().hasSecret()) {
-        return keys.front().subkey(0);
-    }
-    return GpgME::Subkey();
-}
-
 static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
 {
     // Check if we need to ask the user for the slot
@@ -206,9 +192,6 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
         return;
     }
 
-    if (mSubkey.isNull()) {
-        mSubkey = getSubkeyToTransferToOpenPGPCard(keys());
-    }
     if (mSubkey.isNull()) {
         finished();
         return;
@@ -264,7 +247,7 @@ void KeyToCardCommand::Private::startTransferToOpenPGPCard() {
 }
 
 namespace {
-static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::vector<Key> &keys, const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
+static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
 {
     if (!cardSlot.empty()) {
         if (cardSlot == PIVCard::digitalSignatureKeyRef()) {
@@ -281,9 +264,6 @@ static GpgME::Subkey getSubkeyToTransferToPIVCard(const std::vector<Key> &keys, 
         return GpgME::Subkey();
     }
 
-    if (keys.size() == 1) {
-        return keys.front().subkey(0);
-    }
     return GpgME::Subkey();
 }
 
@@ -335,7 +315,7 @@ void KeyToCardCommand::Private::startTransferToPIVCard()
     }
 
     if (mSubkey.isNull()) {
-        mSubkey = getSubkeyToTransferToPIVCard(keys(), cardSlot, pivCard);
+        mSubkey = getSubkeyToTransferToPIVCard(cardSlot, pivCard);
     }
     if (mSubkey.isNull()) {
         if (!cardSlot.empty()) {
@@ -480,21 +460,6 @@ void KeyToCardCommand::Private::authenticationCanceled()
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticationCanceled()";
     hasBeenCanceled = true;
     canceled();
-}
-
-KeyToCardCommand::KeyToCardCommand(KeyListController *c)
-    : Command(new Private(this, c))
-{
-}
-
-KeyToCardCommand::KeyToCardCommand(QAbstractItemView *v, KeyListController *c)
-    : Command(v, new Private(this, c))
-{
-}
-
-KeyToCardCommand::KeyToCardCommand(const GpgME::Key &key)
-    : Command(key, new Private(this, nullptr))
-{
 }
 
 KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)

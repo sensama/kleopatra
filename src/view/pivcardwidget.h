@@ -40,12 +40,6 @@ private:
     void changePin(const std::string &keyRef);
     void setAdminKey();
 
-private Q_SLOTS:
-    void generatePIVAuthenticationKey();
-    void generateCardAuthenticationKey();
-    void generateDigitalSignatureKey();
-    void generateKeyManagementKey();
-
 private:
     std::string mCardSerialNumber;
     QLabel *mSerialNumber = nullptr,

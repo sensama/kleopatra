@@ -105,7 +105,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGeneratePIVAuthenticationKeyBtn->setText(i18nc("@action:button", "Generate"));
     mGeneratePIVAuthenticationKeyBtn->setEnabled(false);
     grid->addWidget(mGeneratePIVAuthenticationKeyBtn, row, 2);
-    connect(mGeneratePIVAuthenticationKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generatePIVAuthenticationKey);
+    connect(mGeneratePIVAuthenticationKeyBtn, &QPushButton::clicked, this, [this] () { generateKey(PIVCard::pivAuthenticationKeyRef()); });
     mWritePIVAuthenticationCertificateBtn->setText(i18nc("@action:button", "Write Certificate"));
     mWritePIVAuthenticationCertificateBtn->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     mWritePIVAuthenticationCertificateBtn->setEnabled(false);
@@ -119,7 +119,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateCardAuthenticationKeyBtn->setText(i18nc("@action:button", "Generate"));
     mGenerateCardAuthenticationKeyBtn->setEnabled(false);
     grid->addWidget(mGenerateCardAuthenticationKeyBtn, row, 2);
-    connect(mGenerateCardAuthenticationKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generateCardAuthenticationKey);
+    connect(mGenerateCardAuthenticationKeyBtn, &QPushButton::clicked, this, [this] () { generateKey(PIVCard::cardAuthenticationKeyRef()); });
     mWriteCardAuthenticationCertificateBtn->setText(i18nc("@action:button", "Write Certificate"));
     mWriteCardAuthenticationCertificateBtn->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     mWriteCardAuthenticationCertificateBtn->setEnabled(false);
@@ -133,7 +133,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateDigitalSignatureKeyBtn->setText(i18nc("@action:button", "Generate"));
     mGenerateDigitalSignatureKeyBtn->setEnabled(false);
     grid->addWidget(mGenerateDigitalSignatureKeyBtn, row, 2);
-    connect(mGenerateDigitalSignatureKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generateDigitalSignatureKey);
+    connect(mGenerateDigitalSignatureKeyBtn, &QPushButton::clicked, this, [this] () { generateKey(PIVCard::digitalSignatureKeyRef()); });
     mWriteDigitalSignatureCertificateBtn->setText(i18nc("@action:button", "Write Certificate"));
     mWriteDigitalSignatureCertificateBtn->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     mWriteDigitalSignatureCertificateBtn->setEnabled(false);
@@ -147,7 +147,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateKeyManagementKeyBtn->setText(i18nc("@action:button", "Generate"));
     mGenerateKeyManagementKeyBtn->setEnabled(false);
     grid->addWidget(mGenerateKeyManagementKeyBtn, row, 2);
-    connect(mGenerateKeyManagementKeyBtn, &QPushButton::clicked, this, &PIVCardWidget::generateKeyManagementKey);
+    connect(mGenerateKeyManagementKeyBtn, &QPushButton::clicked, this, [this] () { generateKey(PIVCard::keyManagementKeyRef()); });
     mWriteKeyManagementCertificateBtn->setText(i18nc("@action:button", "Write Certificate"));
     mWriteKeyManagementCertificateBtn->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     mWriteKeyManagementCertificateBtn->setEnabled(false);
@@ -247,26 +247,6 @@ void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
             });
     cmd->setParentWidget(this);
     cmd->start();
-}
-
-void PIVCardWidget::generatePIVAuthenticationKey()
-{
-    generateKey(PIVCard::pivAuthenticationKeyRef());
-}
-
-void PIVCardWidget::generateCardAuthenticationKey()
-{
-    generateKey(PIVCard::cardAuthenticationKeyRef());
-}
-
-void PIVCardWidget::generateDigitalSignatureKey()
-{
-    generateKey(PIVCard::digitalSignatureKeyRef());
-}
-
-void PIVCardWidget::generateKeyManagementKey()
-{
-    generateKey(PIVCard::keyManagementKeyRef());
 }
 
 void PIVCardWidget::changePin(const std::string &keyRef)

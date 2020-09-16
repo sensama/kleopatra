@@ -55,7 +55,9 @@ private:
            *mDigitalSignatureKey = nullptr,
            *mKeyManagementKey = nullptr;
     QPushButton *mGeneratePIVAuthenticationKeyBtn = nullptr,
+                *mWritePIVAuthenticationCertificateBtn = nullptr,
                 *mGenerateCardAuthenticationKeyBtn = nullptr,
+                *mWriteCardAuthenticationCertificateBtn = nullptr,
                 *mGenerateDigitalSignatureKeyBtn = nullptr,
                 *mWriteDigitalSignatureCertificateBtn = nullptr,
                 *mGenerateKeyManagementKeyBtn = nullptr,

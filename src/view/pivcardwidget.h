@@ -37,6 +37,7 @@ private:
     void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, QLabel *label, QPushButton *generateButton, QPushButton *writeButton);
     void generateKey(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
+    void writeKeyToCard(const std::string &keyref);
     void changePin(const std::string &keyRef);
     void setAdminKey();
 
@@ -55,7 +56,8 @@ private:
                 *mGenerateDigitalSignatureKeyBtn = nullptr,
                 *mWriteDigitalSignatureCertificateBtn = nullptr,
                 *mGenerateKeyManagementKeyBtn = nullptr,
-                *mWriteKeyManagementCertificateBtn = nullptr;
+                *mWriteKeyManagementCertificateBtn = nullptr,
+                *mWriteKeyManagementKeyBtn = nullptr;
 };
 } // namespace Kleo
 

@@ -11,6 +11,7 @@
 
 #include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
+#include "commands/keytocardcommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
 #include "commands/setpivcardapplicationadministrationkeycommand.h"
 
@@ -68,7 +69,8 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mGenerateDigitalSignatureKeyBtn(new QPushButton(this)),
     mWriteDigitalSignatureCertificateBtn(new QPushButton(this)),
     mGenerateKeyManagementKeyBtn(new QPushButton(this)),
-    mWriteKeyManagementCertificateBtn(new QPushButton(this))
+    mWriteKeyManagementCertificateBtn(new QPushButton(this)),
+    mWriteKeyManagementKeyBtn(new QPushButton(this))
 {
     auto grid = new QGridLayout;
     int row = 0;
@@ -96,7 +98,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     // The keys
     auto line1 = new QFrame();
     line1->setFrameShape(QFrame::HLine);
-    grid->addWidget(line1, row++, 0, 1, 4);
+    grid->addWidget(line1, row++, 0, 1, 5);
     grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
 
     grid->addWidget(new QLabel(i18n("PIV authentication:")), row, 0);
@@ -153,11 +155,16 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mWriteKeyManagementCertificateBtn->setEnabled(false);
     grid->addWidget(mWriteKeyManagementCertificateBtn, row, 3);
     connect(mWriteKeyManagementCertificateBtn, &QPushButton::clicked, this, [this] () { writeCertificateToCard(PIVCard::keyManagementKeyRef()); });
+    mWriteKeyManagementKeyBtn->setText(i18nc("@action:button", "Write Key"));
+    mWriteKeyManagementKeyBtn->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
+    mWriteKeyManagementKeyBtn->setEnabled(true);
+    grid->addWidget(mWriteKeyManagementKeyBtn, row, 4);
+    connect(mWriteKeyManagementKeyBtn, &QPushButton::clicked, this, [this] () { writeKeyToCard(PIVCard::keyManagementKeyRef()); });
     row++;
 
     auto line2 = new QFrame();
     line2->setFrameShape(QFrame::HLine);
-    grid->addWidget(line2, row++, 0, 1, 4);
+    grid->addWidget(line2, row++, 0, 1, 5);
 
     auto actionLayout = new QHBoxLayout;
 
@@ -242,6 +249,18 @@ void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
     auto cmd = new CertificateToPIVCardCommand(keyref, mCardSerialNumber);
     this->setEnabled(false);
     connect(cmd, &CertificateToPIVCardCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->setParentWidget(this);
+    cmd->start();
+}
+
+void PIVCardWidget::writeKeyToCard(const std::string &keyref)
+{
+    auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber);
+    this->setEnabled(false);
+    connect(cmd, &KeyToCardCommand::finished,
             this, [this]() {
                 this->setEnabled(true);
             });

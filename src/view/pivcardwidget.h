@@ -36,6 +36,7 @@ public:
 private:
     struct KeyWidgets {
         QLabel *keyGrip = nullptr;
+        QLabel *keyAlgorithm = nullptr;
         QPushButton *generateButton = nullptr;
         QPushButton *writeCertificateButton = nullptr;
         QPushButton *writeKeyButton = nullptr;

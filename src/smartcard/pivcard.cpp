@@ -9,6 +9,8 @@
 
 #include "pivcard.h"
 
+#include "keypairinfo.h"
+
 #include <KLocalizedString>
 
 #include "kleopatra_debug.h"
@@ -60,6 +62,19 @@ std::string PIVCard::pinKeyRef()
 std::string PIVCard::pukKeyRef()
 {
     return std::string("PIV.81");
+}
+
+// static
+const std::vector<std::string> & PIVCard::supportedKeys()
+{
+    static const std::vector<std::string> keyRefs = {
+        PIVCard::pivAuthenticationKeyRef(),
+        PIVCard::cardAuthenticationKeyRef(),
+        PIVCard::digitalSignatureKeyRef(),
+        PIVCard::keyManagementKeyRef()
+    };
+
+    return keyRefs;
 }
 
 // static
@@ -121,16 +136,14 @@ void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string>
         if (pair.first == "APPVERSION") {
             setAppVersion(parseAppVersion(pair.second));
         } else if (pair.first == "KEYPAIRINFO") {
-            const auto values = QString::fromStdString(pair.second).split(QLatin1Char(' '));
-            if (values.size() != 3) {
-                qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO entry" << QString::fromStdString(pair.second);
+            const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
+            if (info.grip.empty()) {
+                qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
+                        << QString::fromStdString(pair.second);
                 setStatus(Card::CardError);
                 continue;
             }
-            const auto grip = values[0].toStdString();
-            const auto keyRef = values[1].toStdString();
-            //const auto usage = values[2];
-            mMetaInfo.insert("KEYPAIRINFO-" + keyRef, grip);
+            mMetaInfo.insert("KEYPAIRINFO-" + info.keyRef, info.grip);
         } else {
             mMetaInfo.insert(pair.first, pair.second);
         }
@@ -145,6 +158,16 @@ std::string PIVCard::displaySerialNumber() const
 void PIVCard::setDisplaySerialNumber(const std::string &serialno)
 {
     mDisplaySerialNumber = serialno;
+}
+
+std::string PIVCard::keyAlgorithm(const std::string &keyRef) const
+{
+    return mMetaInfo.value("KLEO-KEYALGO-" + keyRef);
+}
+
+void PIVCard::setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm)
+{
+    mMetaInfo.insert("KLEO-KEYALGO-" + keyRef, algorithm);
 }
 
 bool PIVCard::operator == (const Card& rhs) const

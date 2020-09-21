@@ -247,6 +247,7 @@ set(_kleopatra_SRCS
   smartcard/openpgpcard.cpp
   smartcard/netkeycard.cpp
   smartcard/pivcard.cpp
+  smartcard/keypairinfo.cpp
 
   aboutdata.cpp
   systrayicon.cpp

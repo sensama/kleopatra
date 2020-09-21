@@ -13,6 +13,8 @@
 
 #include "readerstatus.h"
 
+#include "keypairinfo.h"
+
 #include <utils/gnupg-helper.h>
 
 #include <Libkleo/FileSystemWatcher>
@@ -178,7 +180,7 @@ static std::unique_ptr<DefaultAssuanTransaction> gpgagent_default_transact(std::
     return gpgagent_transact(gpgAgent, command, std::unique_ptr<DefaultAssuanTransaction>(new DefaultAssuanTransaction), err);
 }
 
-const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
+static const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
 {
     const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, what, err);
     if (t.get()) {
@@ -302,18 +304,46 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     pivCard->setSerialNumber(ci->serialNumber());
 
     const auto displaySerialnumber = scd_getattr_status(gpg_agent, "$DISPSERIALNO", err);
-    if (err.code()) {
+    if (err) {
         qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Error on GETATTR $DISPSERIALNO:"
                   << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
     }
-    pivCard->setDisplaySerialNumber(err.code() ? ci->serialNumber() : displaySerialnumber);
+    pivCard->setDisplaySerialNumber(err ? ci->serialNumber() : displaySerialnumber);
 
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
-    if (err.code()) {
+    if (err) {
         ci->setStatus(Card::CardError);
         return;
     }
     pivCard->setCardInfo(info);
+
+    for (const std::string &keyRef : PIVCard::supportedKeys()) {
+        if (!pivCard->keyGrip(keyRef).empty()) {
+            const std::string command = std::string("SCD READKEY --info-only -- ") + keyRef;
+            const auto keyPairInfoLines = gpgagent_statuslines(gpg_agent, command.c_str(), err);
+            if (err) {
+                qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Error on " << QString::fromStdString(command) << ":"
+                        << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+                break;
+            }
+            for (const auto &pair: keyPairInfoLines) {
+                if (pair.first == "KEYPAIRINFO") {
+                    const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
+                    if (info.grip.empty()) {
+                        qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
+                                << QString::fromStdString(pair.second);
+                        continue;
+                    }
+                    pivCard->setKeyAlgorithm(keyRef, info.algorithm);
+                } else {
+                    qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Unexpected status line on "
+                            << QString::fromStdString(command) << ":" << QString::fromStdString(pair.first)
+                            << QString::fromStdString(pair.second);
+                }
+            }
+        }
+    }
+
     ci.reset(pivCard);
 }
 

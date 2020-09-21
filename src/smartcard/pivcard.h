@@ -32,6 +32,7 @@ public:
     static std::string pinKeyRef();
     static std::string pukKeyRef();
 
+    static const std::vector<std::string> & supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
 
@@ -41,6 +42,9 @@ public:
 
     std::string displaySerialNumber() const;
     void setDisplaySerialNumber(const std::string &sn);
+
+    std::string keyAlgorithm(const std::string &keyRef) const;
+    void setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm);
 
     bool operator == (const Card& other) const override;
 

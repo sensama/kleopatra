@@ -34,7 +34,15 @@ public:
     void setCard(const SmartCard::PIVCard* card);
 
 private:
-    void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, QLabel *label, QPushButton *generateButton, QPushButton *writeButton);
+    struct KeyWidgets {
+        QLabel *keyGrip = nullptr;
+        QPushButton *generateButton = nullptr;
+        QPushButton *writeCertificateButton = nullptr;
+        QPushButton *writeKeyButton = nullptr;
+    };
+
+    KeyWidgets createKeyWidgets(const std::string &keyRef);
+    void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, const KeyWidgets &widgets);
     void generateKey(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
     void writeKeyToCard(const std::string &keyref);
@@ -43,21 +51,12 @@ private:
 
 private:
     std::string mCardSerialNumber;
-    QLabel *mSerialNumber = nullptr,
-           *mVersionLabel = nullptr,
-           *mPIVAuthenticationKey = nullptr,
-           *mCardAuthenticationKey = nullptr,
-           *mDigitalSignatureKey = nullptr,
-           *mKeyManagementKey = nullptr;
-    QPushButton *mGeneratePIVAuthenticationKeyBtn = nullptr,
-                *mWritePIVAuthenticationCertificateBtn = nullptr,
-                *mGenerateCardAuthenticationKeyBtn = nullptr,
-                *mWriteCardAuthenticationCertificateBtn = nullptr,
-                *mGenerateDigitalSignatureKeyBtn = nullptr,
-                *mWriteDigitalSignatureCertificateBtn = nullptr,
-                *mGenerateKeyManagementKeyBtn = nullptr,
-                *mWriteKeyManagementCertificateBtn = nullptr,
-                *mWriteKeyManagementKeyBtn = nullptr;
+    QLabel *mSerialNumber = nullptr;
+    QLabel *mVersionLabel = nullptr;
+    KeyWidgets mPIVAuthenticationKey;
+    KeyWidgets mCardAuthenticationKey;
+    KeyWidgets mDigitalSignatureKey;
+    KeyWidgets mKeyManagementKey;
 };
 } // namespace Kleo
 

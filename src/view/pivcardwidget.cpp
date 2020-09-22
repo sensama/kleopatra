@@ -9,6 +9,8 @@
 
 #include "pivcardwidget.h"
 
+#include "tooltippreferences.h"
+
 #include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
 #include "commands/importcertificatefrompivcardcommand.h"
@@ -19,6 +21,13 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
+#include <Libkleo/Dn>
+#include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
+
+#include <KLocalizedString>
+#include <KMessageBox>
+
 #include <QFrame>
 #include <QGridLayout>
 #include <QLabel>
@@ -26,9 +35,7 @@
 #include <QScrollArea>
 #include <QVBoxLayout>
 
-#include <KLocalizedString>
-#include <KMessageBox>
-
+using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
@@ -53,6 +60,38 @@ static QString formatVersion(int value)
     }
     return QString::number(d);
 }
+
+static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PIVCardWidget::KeyWidgets &keyWidgets)
+{
+    int row = grid->rowCount();
+    grid->addWidget(new QLabel(keyName), row, 0);
+    grid->addWidget(keyWidgets.certificateInfo, row, 1, 1, 2);
+    grid->addWidget(keyWidgets.generateButton, row, 3);
+    if (keyWidgets.writeKeyButton) {
+        grid->addWidget(keyWidgets.writeKeyButton, row, 4);
+    }
+    row++;
+    grid->addWidget(keyWidgets.keyGrip, row, 1);
+    grid->addWidget(keyWidgets.keyAlgorithm, row, 2);
+    grid->addWidget(keyWidgets.writeCertificateButton, row, 3);
+    grid->addWidget(keyWidgets.importCertificateButton, row, 4);
+}
+
+static int toolTipOptions()
+{
+    using namespace Kleo::Formatting;
+    static const int validityFlags = Validity | Issuer | ExpiryDates | CertificateUsage;
+    static const int ownerFlags = Subject | UserIDs | OwnerTrust;
+    static const int detailsFlags = StorageLocation | CertificateType | SerialNumber | Fingerprint;
+
+    const TooltipPreferences prefs;
+
+    int flags = KeyID;
+    flags |= prefs.showValidity() ? validityFlags : 0;
+    flags |= prefs.showOwnerInformation() ? ownerFlags : 0;
+    flags |= prefs.showCertificateDetails() ? detailsFlags : 0;
+    return flags;
+}
 }
 
 PIVCardWidget::PIVCardWidget(QWidget *parent):
@@ -60,75 +99,66 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     mSerialNumber(new QLabel(this)),
     mVersionLabel(new QLabel(this))
 {
-    auto grid = new QGridLayout;
-    int row = 0;
+    // Set up the scroll area
+    auto myLayout = new QVBoxLayout(this);
 
-    // Set up the scroll are
     auto area = new QScrollArea;
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
+    myLayout->addWidget(area);
+
     auto areaWidget = new QWidget;
+    area->setWidget(areaWidget);
+
     auto areaVLay = new QVBoxLayout(areaWidget);
+
+    auto grid = new QGridLayout;
     areaVLay->addLayout(grid);
     areaVLay->addStretch(1);
-    area->setWidget(areaWidget);
-    auto myLayout = new QVBoxLayout(this);
-    myLayout->addWidget(area);
+
+    const int columnCount = 5;
+    int row = 0;
 
     // Version and Serialnumber
     grid->addWidget(mVersionLabel, row++, 0, 1, 2);
     mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
 
+    grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
     grid->addWidget(mSerialNumber, row++, 1);
     mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
+    {
+        auto line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        grid->addWidget(line, row++, 0, 1, columnCount);
+    }
+
     // The keys
-    auto line1 = new QFrame();
-    line1->setFrameShape(QFrame::HLine);
-    grid->addWidget(line1, row++, 0, 1, 7);
     grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
 
-    mPIVAuthenticationKey = createKeyWidgets(PIVCard::pivAuthenticationKeyRef());
-    grid->addWidget(new QLabel(i18n("PIV authentication:")), row, 0);
-    grid->addWidget(mPIVAuthenticationKey.keyGrip, row, 1);
-    grid->addWidget(mPIVAuthenticationKey.keyAlgorithm, row, 2);
-    grid->addWidget(mPIVAuthenticationKey.generateButton, row, 3);
-    grid->addWidget(mPIVAuthenticationKey.writeCertificateButton, row, 4);
-    grid->addWidget(mPIVAuthenticationKey.importCertificateButton, row, 5);
-    row++;
+    {
+        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::pivAuthenticationKeyRef());
+        layoutKeyWidgets(grid, i18n("PIV authentication:"), keyWidgets);
+    }
+    {
+        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::cardAuthenticationKeyRef());
+        layoutKeyWidgets(grid, i18n("Card authentication:"), keyWidgets);
+    }
+    {
+        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::digitalSignatureKeyRef());
+        layoutKeyWidgets(grid, i18n("Digital signature:"), keyWidgets);
+    }
+    {
+        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::keyManagementKeyRef());
+        layoutKeyWidgets(grid, i18n("Key management:"), keyWidgets);
+    }
+    row = grid->rowCount();
 
-    mCardAuthenticationKey = createKeyWidgets(PIVCard::cardAuthenticationKeyRef());
-    grid->addWidget(new QLabel(i18n("Card authentication:")), row, 0);
-    grid->addWidget(mCardAuthenticationKey.keyGrip, row, 1);
-    grid->addWidget(mCardAuthenticationKey.keyAlgorithm, row, 2);
-    grid->addWidget(mCardAuthenticationKey.generateButton, row, 3);
-    grid->addWidget(mCardAuthenticationKey.writeCertificateButton, row, 4);
-    grid->addWidget(mCardAuthenticationKey.importCertificateButton, row, 5);
-    row++;
-
-    mDigitalSignatureKey = createKeyWidgets(PIVCard::digitalSignatureKeyRef());
-    grid->addWidget(new QLabel(i18n("Digital signature:")), row, 0);
-    grid->addWidget(mDigitalSignatureKey.keyGrip, row, 1);
-    grid->addWidget(mDigitalSignatureKey.keyAlgorithm, row, 2);
-    grid->addWidget(mDigitalSignatureKey.generateButton, row, 3);
-    grid->addWidget(mDigitalSignatureKey.writeCertificateButton, row, 4);
-    grid->addWidget(mDigitalSignatureKey.importCertificateButton, row, 5);
-    row++;
-
-    mKeyManagementKey = createKeyWidgets(PIVCard::keyManagementKeyRef());
-    grid->addWidget(new QLabel(i18n("Key management:")), row, 0);
-    grid->addWidget(mKeyManagementKey.keyGrip, row, 1);
-    grid->addWidget(mKeyManagementKey.keyAlgorithm, row, 2);
-    grid->addWidget(mKeyManagementKey.generateButton, row, 3);
-    grid->addWidget(mKeyManagementKey.writeCertificateButton, row, 4);
-    grid->addWidget(mKeyManagementKey.importCertificateButton, row, 5);
-    grid->addWidget(mKeyManagementKey.writeKeyButton, row, 6);
-    row++;
-
-    auto line2 = new QFrame();
-    line2->setFrameShape(QFrame::HLine);
-    grid->addWidget(line2, row++, 0, 1, 7);
+    {
+        auto line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        grid->addWidget(line, row++, 0, 1, columnCount);
+    }
 
     auto actionLayout = new QHBoxLayout;
 
@@ -155,7 +185,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     }
 
     actionLayout->addStretch(-1);
-    grid->addLayout(actionLayout, row++, 0, 1, 7);
+    grid->addLayout(actionLayout, row++, 0, 1, columnCount);
 
     grid->setColumnStretch(4, -1);
 }
@@ -166,6 +196,9 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const std::string &key
     keyWidgets.keyGrip = new QLabel(this);
     keyWidgets.keyGrip->setTextInteractionFlags(Qt::TextBrowserInteraction);
     keyWidgets.keyAlgorithm = new QLabel(this);
+    keyWidgets.keyAlgorithm->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    keyWidgets.certificateInfo = new QLabel(this);
+    keyWidgets.certificateInfo->setTextInteractionFlags(Qt::TextBrowserInteraction);
     keyWidgets.generateButton = new QPushButton(i18nc("@action:button", "Generate"), this);
     keyWidgets.generateButton->setEnabled(false);
     connect(keyWidgets.generateButton, &QPushButton::clicked,
@@ -187,6 +220,7 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const std::string &key
         connect(keyWidgets.writeKeyButton, &QPushButton::clicked,
                 this, [this, keyRef] () { writeKeyToCard(keyRef); });
     }
+    mKeyWidgets.insert(keyRef, keyWidgets);
     return keyWidgets;
 }
 
@@ -206,34 +240,54 @@ void PIVCardWidget::setCard(const PIVCard *card)
         mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
     }
 
-    updateKey(PIVCard::pivAuthenticationKeyRef(), card, mPIVAuthenticationKey);
-    updateKey(PIVCard::cardAuthenticationKeyRef(), card, mCardAuthenticationKey);
-    updateKey(PIVCard::digitalSignatureKeyRef(), card, mDigitalSignatureKey);
-    updateKey(PIVCard::keyManagementKeyRef(), card, mKeyManagementKey);
+    updateKeyWidgets(PIVCard::pivAuthenticationKeyRef(), card);
+    updateKeyWidgets(PIVCard::cardAuthenticationKeyRef(), card);
+    updateKeyWidgets(PIVCard::digitalSignatureKeyRef(), card);
+    updateKeyWidgets(PIVCard::keyManagementKeyRef(), card);
 }
 
-void PIVCardWidget::updateKey(const std::string &keyRef, const PIVCard *card, const KeyWidgets &widgets)
+void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)
 {
-    const std::string grip = card->keyGrip(keyRef);
+    KeyWidgets widgets = mKeyWidgets.value(keyRef);
+    const std::string grip = card ? card->keyGrip(keyRef) : widgets.keyGrip->text().toStdString();
     if (grip.empty()) {
-        widgets.keyGrip->setText(i18nc("@info", "Slot empty"));
+        widgets.certificateInfo->setText(i18nc("@info", "<em>slot empty</em>"));
+        widgets.certificateInfo->setToolTip(QString());
+        widgets.keyGrip->setText(QString());
         widgets.keyAlgorithm->setText(QString());
         widgets.generateButton->setText(i18nc("@action:button", "Generate"));
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Generate %1", PIVCard::keyDisplayName(keyRef)));
+        widgets.writeCertificateButton->setEnabled(false);
+        widgets.importCertificateButton->setEnabled(false);
     } else {
-        widgets.keyGrip->setText(QString::fromStdString(grip));
-        const std::string algo = card->keyAlgorithm(keyRef);
-        widgets.keyAlgorithm->setText(algo.empty() ? i18nc("@info unknown key algorithm", "unknown") : QString::fromStdString(algo));
+        const Key certificate = KeyCache::instance()->findSubkeyByKeyGrip(grip).parent();
+        if (!certificate.isNull() && certificate.protocol() == GpgME::CMS) {
+            widgets.certificateInfo->setText(
+                i18nc("X.509 certificate DN (validity, created: date)", "%1 (%2, created: %3)",
+                      DN(certificate.userID(0).id()).prettyDN(),
+                      Formatting::complianceStringShort(certificate),
+                      Formatting::creationDateString(certificate)));
+            widgets.certificateInfo->setToolTip(Formatting::toolTip(certificate, toolTipOptions()));
+            widgets.writeCertificateButton->setEnabled(true);
+        } else {
+            widgets.certificateInfo->setText(i18nc("@info", "<em>no matching certificate</em>"));
+            widgets.certificateInfo->setToolTip(QString());
+            widgets.writeCertificateButton->setEnabled(false);
+        }
+        if (card) {
+            // update information if called with card
+            widgets.keyGrip->setText(QString::fromStdString(grip));
+            const std::string algo = card->keyAlgorithm(keyRef);
+            widgets.keyAlgorithm->setText(algo.empty() ? i18nc("@info unknown key algorithm", "unknown") : QString::fromStdString(algo));
+            widgets.importCertificateButton->setEnabled(!card->certificateData(keyRef).empty());
+        }
         widgets.generateButton->setText(i18nc("@action:button", "Replace"));
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
     }
+
     widgets.generateButton->setEnabled(true);
-    widgets.importCertificateButton->setEnabled(!grip.empty() && !card->certificateData(keyRef).empty());
-    if (widgets.writeCertificateButton) {
-        widgets.writeCertificateButton->setEnabled(!grip.empty());
-    }
 }
 
 void PIVCardWidget::generateKey(const std::string &keyref)
@@ -265,8 +319,8 @@ void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
     auto cmd = new ImportCertificateFromPIVCardCommand(keyref, mCardSerialNumber);
     this->setEnabled(false);
     connect(cmd, &ImportCertificateFromPIVCardCommand::finished,
-            this, [this]() {
-                ReaderStatus::mutableInstance()->updateStatus();
+            this, [this, keyref] () {
+                this->updateKeyWidgets(keyref, nullptr);
                 this->setEnabled(true);
             });
     cmd->setParentWidget(this);

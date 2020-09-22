@@ -9,10 +9,12 @@
 #ifndef VIEW_PIVCARDWIDGET_H
 #define VIEW_PIVCARDWIDGET_H
 
+#include <QMap>
 #include <QWidget>
 
 #include <gpgme++/error.h>
 
+class QGridLayout;
 class QLabel;
 class QPushButton;
 
@@ -33,18 +35,19 @@ public:
 
     void setCard(const SmartCard::PIVCard* card);
 
-private:
     struct KeyWidgets {
         QLabel *keyGrip = nullptr;
         QLabel *keyAlgorithm = nullptr;
+        QLabel *certificateInfo = nullptr;
         QPushButton *generateButton = nullptr;
         QPushButton *writeCertificateButton = nullptr;
         QPushButton *importCertificateButton = nullptr;
         QPushButton *writeKeyButton = nullptr;
     };
 
+private:
     KeyWidgets createKeyWidgets(const std::string &keyRef);
-    void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, const KeyWidgets &widgets);
+    void updateKeyWidgets(const std::string &keyRef, const SmartCard::PIVCard *card);
     void generateKey(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
     void importCertificateFromCard(const std::string &keyref);
@@ -56,10 +59,7 @@ private:
     std::string mCardSerialNumber;
     QLabel *mSerialNumber = nullptr;
     QLabel *mVersionLabel = nullptr;
-    KeyWidgets mPIVAuthenticationKey;
-    KeyWidgets mCardAuthenticationKey;
-    KeyWidgets mDigitalSignatureKey;
-    KeyWidgets mKeyManagementKey;
+    QMap<std::string, KeyWidgets> mKeyWidgets;
 };
 } // namespace Kleo
 

@@ -180,6 +180,18 @@ static std::unique_ptr<DefaultAssuanTransaction> gpgagent_default_transact(std::
     return gpgagent_transact(gpgAgent, command, std::unique_ptr<DefaultAssuanTransaction>(new DefaultAssuanTransaction), err);
 }
 
+static const std::string gpgagent_data(std::shared_ptr<Context> gpgAgent, const char *command, Error &err)
+{
+    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, command, err);
+    if (t.get()) {
+        qCDebug(KLEOPATRA_LOG) << "gpgagent_data(" << command << "): got" << QString::fromStdString(t->data());
+        return t->data();
+    } else {
+        qCDebug(KLEOPATRA_LOG) << "gpgagent_data(" << command << "): t == NULL";
+        return std::string();
+    }
+}
+
 static const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
 {
     const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, what, err);
@@ -297,6 +309,51 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     ci.reset(ret);
 }
 
+static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)
+{
+    Error err;
+    const std::string command = std::string("SCD READKEY --info-only -- ") + keyRef;
+    const auto keyPairInfoLines = gpgagent_statuslines(gpg_agent, command.c_str(), err);
+    if (err) {
+        qCWarning(KLEOPATRA_LOG) << "readKeyPairInfoFromPIVCard(): Error on " << QString::fromStdString(command) << ":"
+                << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        return;
+    }
+    for (const auto &pair: keyPairInfoLines) {
+        if (pair.first == "KEYPAIRINFO") {
+            const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
+            if (info.grip.empty()) {
+                qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
+                        << QString::fromStdString(pair.second);
+                continue;
+            }
+            pivCard->setKeyAlgorithm(keyRef, info.algorithm);
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "readKeyPairInfoFromPIVCard(): Unexpected status line on "
+                    << QString::fromStdString(command) << ":" << QString::fromStdString(pair.first)
+                    << QString::fromStdString(pair.second);
+        }
+    }
+}
+
+static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)
+{
+    Error err;
+    const std::string command = std::string("SCD READCERT ") + keyRef;
+    const std::string certificateData = gpgagent_data(gpg_agent, command.c_str(), err);
+    if (err && err.code() != GPG_ERR_NOT_FOUND) {
+        qCWarning(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): Error on "
+                << QString::fromStdString(command) << ":" << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        return;
+    }
+    if (certificateData.empty()) {
+        qCDebug(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): No certificate stored on card";
+        return;
+    }
+    qCDebug(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): Found certificate stored on card";
+    pivCard->setCertificateData(keyRef, certificateData);
+}
+
 static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -319,28 +376,8 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
 
     for (const std::string &keyRef : PIVCard::supportedKeys()) {
         if (!pivCard->keyGrip(keyRef).empty()) {
-            const std::string command = std::string("SCD READKEY --info-only -- ") + keyRef;
-            const auto keyPairInfoLines = gpgagent_statuslines(gpg_agent, command.c_str(), err);
-            if (err) {
-                qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Error on " << QString::fromStdString(command) << ":"
-                        << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
-                break;
-            }
-            for (const auto &pair: keyPairInfoLines) {
-                if (pair.first == "KEYPAIRINFO") {
-                    const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
-                    if (info.grip.empty()) {
-                        qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
-                                << QString::fromStdString(pair.second);
-                        continue;
-                    }
-                    pivCard->setKeyAlgorithm(keyRef, info.algorithm);
-                } else {
-                    qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Unexpected status line on "
-                            << QString::fromStdString(command) << ":" << QString::fromStdString(pair.first)
-                            << QString::fromStdString(pair.second);
-                }
-            }
+            readKeyPairInfoFromPIVCard(keyRef, pivCard, gpg_agent);
+            readCertificateFromPIVCard(keyRef, pivCard, gpg_agent);
         }
     }
 

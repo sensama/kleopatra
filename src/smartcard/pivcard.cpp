@@ -170,6 +170,16 @@ void PIVCard::setKeyAlgorithm(const std::string &keyRef, const std::string &algo
     mMetaInfo.insert("KLEO-KEYALGO-" + keyRef, algorithm);
 }
 
+std::string PIVCard::certificateData(const std::string &keyRef) const
+{
+    return mMetaInfo.value("KLEO-CERTIFICATE-" + keyRef);
+}
+
+void PIVCard::setCertificateData(const std::string &keyRef, const std::string &data)
+{
+    mMetaInfo.insert("KLEO-CERTIFICATE-" + keyRef, data);
+}
+
 bool PIVCard::operator == (const Card& rhs) const
 {
     const PIVCard *other = dynamic_cast<const PIVCard *>(&rhs);

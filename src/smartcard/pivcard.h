@@ -9,9 +9,9 @@
 #ifndef SMARTCARD_PIVCARD_H
 #define SMARTCARD_PIVCARD_H
 
-#include <QMap>
-
 #include "card.h"
+
+#include <QMap>
 
 namespace Kleo
 {
@@ -45,6 +45,9 @@ public:
 
     std::string keyAlgorithm(const std::string &keyRef) const;
     void setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm);
+
+    std::string certificateData(const std::string &keyRef) const;
+    void setCertificateData(const std::string &keyRef, const std::string &data);
 
     bool operator == (const Card& other) const override;
 

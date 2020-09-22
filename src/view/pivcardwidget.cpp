@@ -11,6 +11,7 @@
 
 #include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
+#include "commands/importcertificatefrompivcardcommand.h"
 #include "commands/keytocardcommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
 #include "commands/setpivcardapplicationadministrationkeycommand.h"
@@ -85,7 +86,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     // The keys
     auto line1 = new QFrame();
     line1->setFrameShape(QFrame::HLine);
-    grid->addWidget(line1, row++, 0, 1, 6);
+    grid->addWidget(line1, row++, 0, 1, 7);
     grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
 
     mPIVAuthenticationKey = createKeyWidgets(PIVCard::pivAuthenticationKeyRef());
@@ -94,6 +95,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     grid->addWidget(mPIVAuthenticationKey.keyAlgorithm, row, 2);
     grid->addWidget(mPIVAuthenticationKey.generateButton, row, 3);
     grid->addWidget(mPIVAuthenticationKey.writeCertificateButton, row, 4);
+    grid->addWidget(mPIVAuthenticationKey.importCertificateButton, row, 5);
     row++;
 
     mCardAuthenticationKey = createKeyWidgets(PIVCard::cardAuthenticationKeyRef());
@@ -102,6 +104,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     grid->addWidget(mCardAuthenticationKey.keyAlgorithm, row, 2);
     grid->addWidget(mCardAuthenticationKey.generateButton, row, 3);
     grid->addWidget(mCardAuthenticationKey.writeCertificateButton, row, 4);
+    grid->addWidget(mCardAuthenticationKey.importCertificateButton, row, 5);
     row++;
 
     mDigitalSignatureKey = createKeyWidgets(PIVCard::digitalSignatureKeyRef());
@@ -110,6 +113,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     grid->addWidget(mDigitalSignatureKey.keyAlgorithm, row, 2);
     grid->addWidget(mDigitalSignatureKey.generateButton, row, 3);
     grid->addWidget(mDigitalSignatureKey.writeCertificateButton, row, 4);
+    grid->addWidget(mDigitalSignatureKey.importCertificateButton, row, 5);
     row++;
 
     mKeyManagementKey = createKeyWidgets(PIVCard::keyManagementKeyRef());
@@ -118,12 +122,13 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     grid->addWidget(mKeyManagementKey.keyAlgorithm, row, 2);
     grid->addWidget(mKeyManagementKey.generateButton, row, 3);
     grid->addWidget(mKeyManagementKey.writeCertificateButton, row, 4);
-    grid->addWidget(mKeyManagementKey.writeKeyButton, row, 5);
+    grid->addWidget(mKeyManagementKey.importCertificateButton, row, 5);
+    grid->addWidget(mKeyManagementKey.writeKeyButton, row, 6);
     row++;
 
     auto line2 = new QFrame();
     line2->setFrameShape(QFrame::HLine);
-    grid->addWidget(line2, row++, 0, 1, 6);
+    grid->addWidget(line2, row++, 0, 1, 7);
 
     auto actionLayout = new QHBoxLayout;
 
@@ -150,7 +155,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     }
 
     actionLayout->addStretch(-1);
-    grid->addLayout(actionLayout, row++, 0, 1, 6);
+    grid->addLayout(actionLayout, row++, 0, 1, 7);
 
     grid->setColumnStretch(4, -1);
 }
@@ -163,16 +168,24 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const std::string &key
     keyWidgets.keyAlgorithm = new QLabel(this);
     keyWidgets.generateButton = new QPushButton(i18nc("@action:button", "Generate"), this);
     keyWidgets.generateButton->setEnabled(false);
-    connect(keyWidgets.generateButton, &QPushButton::clicked, this, [this, keyRef] () { generateKey(keyRef); });
+    connect(keyWidgets.generateButton, &QPushButton::clicked,
+            this, [this, keyRef] () { generateKey(keyRef); });
     keyWidgets.writeCertificateButton = new QPushButton(i18nc("@action:button", "Write Certificate"));
     keyWidgets.writeCertificateButton->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     keyWidgets.writeCertificateButton->setEnabled(false);
-    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked, this, [this, keyRef] () { writeCertificateToCard(keyRef); });
+    connect(keyWidgets.writeCertificateButton, &QPushButton::clicked,
+            this, [this, keyRef] () { writeCertificateToCard(keyRef); });
+    keyWidgets.importCertificateButton = new QPushButton(i18nc("@action:button", "Import Certificate"));
+    keyWidgets.importCertificateButton->setToolTip(i18nc("@info:tooltip", "Import the certificate stored on the card"));
+    keyWidgets.importCertificateButton->setEnabled(false);
+    connect(keyWidgets.importCertificateButton, &QPushButton::clicked,
+            this, [this, keyRef] () { importCertificateFromCard(keyRef); });
     if (keyRef == PIVCard::keyManagementKeyRef()) {
         keyWidgets.writeKeyButton = new QPushButton(i18nc("@action:button", "Write Key"));
         keyWidgets.writeKeyButton->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
         keyWidgets.writeKeyButton->setEnabled(true);
-        connect(keyWidgets.writeKeyButton, &QPushButton::clicked, this, [this, keyRef] () { writeKeyToCard(keyRef); });
+        connect(keyWidgets.writeKeyButton, &QPushButton::clicked,
+                this, [this, keyRef] () { writeKeyToCard(keyRef); });
     }
     return keyWidgets;
 }
@@ -217,6 +230,7 @@ void PIVCardWidget::updateKey(const std::string &keyRef, const PIVCard *card, co
             i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
     }
     widgets.generateButton->setEnabled(true);
+    widgets.importCertificateButton->setEnabled(!grip.empty() && !card->certificateData(keyRef).empty());
     if (widgets.writeCertificateButton) {
         widgets.writeCertificateButton->setEnabled(!grip.empty());
     }
@@ -240,6 +254,19 @@ void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
     this->setEnabled(false);
     connect(cmd, &CertificateToPIVCardCommand::finished,
             this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->setParentWidget(this);
+    cmd->start();
+}
+
+void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
+{
+    auto cmd = new ImportCertificateFromPIVCardCommand(keyref, mCardSerialNumber);
+    this->setEnabled(false);
+    connect(cmd, &ImportCertificateFromPIVCardCommand::finished,
+            this, [this]() {
+                ReaderStatus::mutableInstance()->updateStatus();
                 this->setEnabled(true);
             });
     cmd->setParentWidget(this);

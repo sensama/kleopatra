@@ -39,6 +39,7 @@ private:
         QLabel *keyAlgorithm = nullptr;
         QPushButton *generateButton = nullptr;
         QPushButton *writeCertificateButton = nullptr;
+        QPushButton *importCertificateButton = nullptr;
         QPushButton *writeKeyButton = nullptr;
     };
 
@@ -46,6 +47,7 @@ private:
     void updateKey(const std::string &keyRef, const SmartCard::PIVCard *card, const KeyWidgets &widgets);
     void generateKey(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
+    void importCertificateFromCard(const std::string &keyref);
     void writeKeyToCard(const std::string &keyref);
     void changePin(const std::string &keyRef);
     void setAdminKey();

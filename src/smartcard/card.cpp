@@ -16,8 +16,8 @@ using namespace Kleo::SmartCard;
 Card::Card(): mCanLearn(false),
               mHasNullPin(false),
               mStatus(Status::NoCard),
-              mAppType(UnknownApplication),
-              mAppVersion(-1) {
+              mAppVersion(-1)
+{
 }
 
 void Card::setStatus(Status s)
@@ -40,14 +40,14 @@ std::string Card::serialNumber() const
     return mSerialNumber;
 }
 
-Card::AppType Card::appType() const
+std::string Card::appName() const
 {
-    return mAppType;
+    return mAppName;
 }
 
-void Card::setAppType(AppType t)
+void Card::setAppName(const std::string &name)
 {
-    mAppType = t;
+    mAppName = name;
 }
 
 void Card::setAppVersion(int version)
@@ -104,7 +104,7 @@ bool Card::operator == (const Card& other) const
 {
     return mStatus == other.status()
         && mSerialNumber == other.serialNumber()
-        && mAppType == other.appType()
+        && mAppName == other.appName()
         && mAppVersion == other.appVersion()
         && mPinStates == other.pinStates()
         && mSlot == other.slot()

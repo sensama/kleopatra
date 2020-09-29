@@ -22,18 +22,6 @@ namespace SmartCard
 class Card
 {
 public:
-    enum AppType {
-        UnknownApplication,
-        OpenPGPApplication,
-        PivApplication,
-        NksApplication,
-        P15Application,
-        DinSigApplication,
-        GeldkarteApplication,
-
-        NumAppTypes
-    };
-
     enum PinState {
         UnknownPinState,
         NullPin,
@@ -69,8 +57,8 @@ public:
     virtual void setSerialNumber(const std::string &sn);
     std::string serialNumber() const;
 
-    AppType appType() const;
-    void setAppType(AppType type);
+    std::string appName() const;
+    void setAppName(const std::string &name);
 
     void setAppVersion(int version);
     int appVersion() const;
@@ -95,7 +83,7 @@ private:
     bool mHasNullPin;
     Status mStatus;
     std::string mSerialNumber;
-    AppType mAppType;
+    std::string mAppName;
     int mAppVersion;
     std::vector<PinState> mPinStates;
     int mSlot;

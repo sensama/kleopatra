@@ -21,8 +21,10 @@ namespace SmartCard
 class PIVCard: public Card
 {
 public:
-    PIVCard ();
-    PIVCard (const std::string &serialno);
+    PIVCard();
+    PIVCard(const std::string &serialno);
+
+    static const std::string AppName;
 
     static std::string pivAuthenticationKeyRef();
     static std::string cardAuthenticationKeyRef();

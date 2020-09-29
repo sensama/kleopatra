@@ -1,6 +1,6 @@
 #ifndef SMARTCARD_NETKEYCARD_H
 #define SMARTCARD_NETKEYCARD_H
-/*  smartcard/openpgpcard.h
+/*  smartcard/netkeycard.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Intevation GmbH
@@ -17,13 +17,15 @@ namespace Kleo
 {
 namespace SmartCard
 {
-/** Class to work with OpenPGP Smartcards or compatible tokens */
+/** Class to work with NetKey smartcards or compatible tokens */
 class NetKeyCard: public Card
 {
 public:
-    NetKeyCard ();
+    NetKeyCard();
 
-    void setKeyPairInfo (const std::vector<std::string> &infos);
+    static const std::string AppName;
+
+    void setKeyPairInfo(const std::vector<std::string> &infos);
 
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;

@@ -113,13 +113,13 @@ public:
 
     void setCard(std::shared_ptr<Card> card)
     {
-        if (card->appType() == Card::OpenPGPApplication) {
+        if (card->appName() == SmartCard::OpenPGPCard::AppName) {
             mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
             mStack->setCurrentWidget(mPGPCardWidget);
-        } else if (card->appType() == Card::NksApplication) {
+        } else if (card->appName() == SmartCard::NetKeyCard::AppName) {
             mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
             mStack->setCurrentWidget(mNetKeyWidget);
-        } else if (card->appType() == Card::PivApplication) {
+        } else if (card->appName() == SmartCard::PIVCard::AppName) {
             mPIVCardWidget->setCard(static_cast<PIVCard *> (card.get()));
             mStack->setCurrentWidget(mPIVCardWidget);
         } else {

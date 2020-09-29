@@ -106,31 +106,6 @@ static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std
     return s << ')';
 }
 
-static const char *app_types[] = {
-    "_", // will hopefully never be used as an app-type :)
-    "openpgp",
-    "piv",
-    "nks",
-    "p15",
-    "dinsig",
-    "geldkarte",
-};
-static_assert(sizeof app_types / sizeof * app_types == Card::NumAppTypes, "");
-
-static Card::AppType parse_app_type(const std::string &s)
-{
-    qCDebug(KLEOPATRA_LOG) << "parse_app_type(" << s.c_str() << ")";
-    const char **it = std::find_if(std::begin(app_types), std::end(app_types),
-                                [&s](const char *type) {
-                                    return ::strcasecmp(s.c_str(), type) == 0;
-                                });
-    if (it == std::end(app_types)) {
-        qCDebug(KLEOPATRA_LOG) << "App type not found";
-        return Card::UnknownApplication;
-    }
-    return static_cast<Card::AppType>(it - std::begin(app_types));
-}
-
 static int parse_app_version(const std::string &s)
 {
     return std::atoi(s.c_str());
@@ -470,27 +445,27 @@ static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<
     }
     ci->setStatus(Card::CardPresent);
 
-    const auto verbatimType = scd_getattr_status(gpg_agent, "APPTYPE", err);
-    ci->setAppType(parse_app_type(verbatimType));
+    const auto appName = scd_getattr_status(gpg_agent, "APPTYPE", err);
+    ci->setAppName(appName);
     if (err.code()) {
         return ci;
     }
 
     // Handle different card types
-    if (ci->appType() == Card::NksApplication) {
+    if (ci->appName() == NetKeyCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci->serialNumber().c_str() << "end";
         handle_netkey_card(ci, gpg_agent);
         return ci;
-    } else if (ci->appType() == Card::OpenPGPApplication) {
+    } else if (ci->appName() == OpenPGPCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
         handle_openpgp_card(ci, gpg_agent);
         return ci;
-    } else if (ci->appType() == Card::PivApplication) {
+    } else if (ci->appName() == PIVCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found PIV card" << ci->serialNumber().c_str() << "end";
         handle_piv_card(ci, gpg_agent);
         return ci;
     } else {
-        qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << verbatimType.c_str();
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << appName.c_str();
         return ci;
     }
 

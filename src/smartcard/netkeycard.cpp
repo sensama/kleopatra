@@ -20,6 +20,9 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
+// static
+const std::string NetKeyCard::AppName = "nks";
+
 namespace
 {
 static std::string parse_keypairinfo(const std::string &kpi)
@@ -50,7 +53,7 @@ static GpgME::Key parse_keypairinfo_and_lookup_key(GpgME::Context *ctx, const st
 
 NetKeyCard::NetKeyCard()
 {
-    setAppType(Card::NksApplication);
+    setAppName(AppName);
 }
 
 void NetKeyCard::setKeyPairInfo(const std::vector<std::string> &infos)

@@ -115,20 +115,14 @@ void KeyToCardCommand::Private::start()
         return;
     }
 
-    switch (card->appType()) {
-    case SmartCard::Card::OpenPGPApplication: {
+    if (card->appName() == SmartCard::OpenPGPCard::AppName) {
         startKeyToOpenPGPCard();
-    }
-    break;
-    case SmartCard::Card::PivApplication: {
+    } else if (card->appName() == SmartCard::PIVCard::AppName) {
         startKeyToPIVCard();
-    }
-    break;
-    default: {
+    } else {
         error(i18n("Sorry! Transferring keys to this card is not supported."));
         finished();
         return;
-    }
     }
 }
 

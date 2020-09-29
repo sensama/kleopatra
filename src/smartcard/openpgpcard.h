@@ -17,12 +17,14 @@ namespace Kleo
 {
 namespace SmartCard
 {
-/** Class to work with OpenPGP Smartcards or compatible tokens */
+/** Class to work with OpenPGP smartcards or compatible tokens */
 class OpenPGPCard: public Card
 {
 public:
-    OpenPGPCard ();
-    OpenPGPCard (const std::string &serialno);
+    OpenPGPCard();
+    OpenPGPCard(const std::string &serialno);
+
+    static const std::string AppName;
 
     static std::string pinKeyRef();
     static std::string adminPinKeyRef();

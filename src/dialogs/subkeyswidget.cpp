@@ -9,6 +9,7 @@
 #include "subkeyswidget.h"
 #include "ui_subkeyswidget.h"
 
+#include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
 
 #include "commands/changeexpirycommand.h"
@@ -125,7 +126,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 
     if (subkey.isSecret() && Kleo::Commands::KeyToCardCommand::supported()) {
         const auto cards = SmartCard::ReaderStatus::instance()->getCards();
-        if (cards.size() && cards[0]->appType() == SmartCard::Card::OpenPGPApplication) {
+        if (cards.size() && cards[0]->appName() == SmartCard::OpenPGPCard::AppName) {
             const auto card = cards[0];
 
             if (!subkey.cardSerialNumber() || card->serialNumber() != subkey.cardSerialNumber()) {

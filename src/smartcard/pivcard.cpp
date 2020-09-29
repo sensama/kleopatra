@@ -18,9 +18,12 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
+// static
+const std::string PIVCard::AppName = "piv";
+
 PIVCard::PIVCard()
 {
-    setAppType(Card::PivApplication);
+    setAppName(AppName);
 }
 
 PIVCard::PIVCard(const std::string &serialno): PIVCard()

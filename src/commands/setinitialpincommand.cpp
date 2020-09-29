@@ -10,11 +10,12 @@
 #include <config-kleopatra.h>
 
 #include "setinitialpincommand.h"
-#include "command_p.h"
+#include "cardcommand_p.h"
 
-#include <dialogs/setinitialpindialog.h>
+#include "dialogs/setinitialpindialog.h"
 
-#include <smartcard/readerstatus.h>
+#include "smartcard/netkeycard.h"
+#include "smartcard/readerstatus.h"
 
 #include <KLocalizedString>
 
@@ -25,7 +26,7 @@ using namespace Kleo::Dialogs;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
-class SetInitialPinCommand::Private : public Command::Private
+class SetInitialPinCommand::Private : public CardCommand::Private
 {
     friend class ::Kleo::Commands::SetInitialPinCommand;
     SetInitialPinCommand *q_func() const
@@ -33,13 +34,12 @@ class SetInitialPinCommand::Private : public Command::Private
         return static_cast<SetInitialPinCommand *>(q);
     }
 public:
-    explicit Private(SetInitialPinCommand *qq);
+    explicit Private(SetInitialPinCommand *qq, const std::string &serialNumber);
     ~Private();
 
 private:
     void init()
     {
-
     }
 
     void ensureDialogCreated() const
@@ -52,11 +52,6 @@ private:
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setWindowTitle(i18nc("@title:window", "Set Initial Pin"));
-
-        const std::vector<Card::PinState> pinStates = ReaderStatus::instance()->pinStates(0);
-
-        dlg->setNksPinPresent(pinStates.size() >= 1 && pinStates[0] != Card::NullPin);
-        dlg->setSigGPinPresent(pinStates.size() >= 3 && pinStates[2] != Card::NullPin);
 
         connect(dlg, SIGNAL(nksPinRequested()), q_func(), SLOT(slotNksPinRequested()));
         connect(dlg, SIGNAL(sigGPinRequested()), q_func(), SLOT(slotSigGPinRequested()));
@@ -121,17 +116,16 @@ const SetInitialPinCommand::Private *SetInitialPinCommand::d_func() const
 #define q q_func()
 #define d d_func()
 
-SetInitialPinCommand::Private::Private(SetInitialPinCommand *qq)
-    : Command::Private(qq),
+SetInitialPinCommand::Private::Private(SetInitialPinCommand *qq, const std::string &serialNumber)
+    : CardCommand::Private(qq, serialNumber, nullptr),
       dialog()
 {
-
 }
 
 SetInitialPinCommand::Private::~Private() {}
 
-SetInitialPinCommand::SetInitialPinCommand()
-    : Command(new Private(this))
+SetInitialPinCommand::SetInitialPinCommand(const std::string &serialNumber)
+    : CardCommand(new Private(this, serialNumber))
 {
     d->init();
 }
@@ -146,6 +140,20 @@ QDialog *SetInitialPinCommand::dialog() const
 
 void SetInitialPinCommand::doStart()
 {
+    d->ensureDialogCreated();
+
+    const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(d->serialNumber());
+    if (!nksCard) {
+        d->error(i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(d->serialNumber())));
+        d->dialog->close();
+        finished();
+        return;
+    }
+
+    const std::vector<Card::PinState> pinStates = nksCard->pinStates();
+    d->dialog->setNksPinPresent(pinStates.size() >= 1 && pinStates[0] != Card::NullPin);
+    d->dialog->setSigGPinPresent(pinStates.size() >= 3 && pinStates[2] != Card::NullPin);
+
     d->ensureDialogVisible();
 }
 

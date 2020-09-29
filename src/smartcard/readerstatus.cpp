@@ -813,16 +813,6 @@ bool ReaderStatus::anyCardCanLearnKeys() const
     return d->anyCardCanLearnKeysImpl();
 }
 
-std::vector<Card::PinState> ReaderStatus::pinStates(unsigned int slot) const
-{
-    const auto ci = d->cardInfos();
-    if (slot < ci.size()) {
-        return ci[slot]->pinStates();
-    } else {
-        return std::vector<Card::PinState>();
-    }
-}
-
 void ReaderStatus::startSimpleTransaction(const QByteArray &command, QObject *receiver, const char *slot)
 {
     const Transaction t = { command, receiver, slot, nullptr };

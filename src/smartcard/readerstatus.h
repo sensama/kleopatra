@@ -47,8 +47,6 @@ public:
     std::string firstCardWithNullPin() const;
     bool anyCardCanLearnKeys() const;
 
-    std::vector<Card::PinState> pinStates(unsigned int slot) const;
-
     std::vector<std::shared_ptr<Card> > getCards() const;
 
     template <typename T>

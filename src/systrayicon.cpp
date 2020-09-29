@@ -83,9 +83,11 @@ private:
 
     void slotSetInitialPin()
     {
-        SetInitialPinCommand *cmd = new SetInitialPinCommand;
-        q->setAttentionWindow(cmd->dialog());
-        startCommand(cmd);
+        if (!firstCardWithNullPin.empty()) {
+            SetInitialPinCommand *cmd = new SetInitialPinCommand(firstCardWithNullPin);
+            q->setAttentionWindow(cmd->dialog());
+            startCommand(cmd);
+        }
     }
 
     void slotLearnCertificates()

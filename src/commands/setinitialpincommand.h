@@ -10,18 +10,18 @@
 #ifndef __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
 #define __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
 
-#include <commands/command.h>
+#include <commands/cardcommand.h>
 
 namespace Kleo
 {
 namespace Commands
 {
 
-class SetInitialPinCommand : public Command
+class SetInitialPinCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    SetInitialPinCommand();
+    SetInitialPinCommand(const std::string &serialNumber);
     ~SetInitialPinCommand() override;
 
     /* reimp */ static Restrictions restrictions()

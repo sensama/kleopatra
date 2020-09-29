@@ -106,6 +106,10 @@ void AuthenticatePIVCardApplicationCommand::doStart()
     d->authenticate(QByteArray::fromHex("010203040506070801020304050607080102030405060708"));
 }
 
+void AuthenticatePIVCardApplicationCommand::doCancel()
+{
+}
+
 void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArray& adminKey)
 {
     qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::authenticate()";
@@ -147,7 +151,7 @@ void AuthenticatePIVCardApplicationCommand::Private::ensureDialogCreated()
         return;
     }
 
-    dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidget());
+    dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setLabelText(prompt.isEmpty() ?
                          i18n("Please enter the PIV Card Application Administration Key in hex-encoded form.") :

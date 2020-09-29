@@ -32,6 +32,7 @@ public:
 
 private:
     void doStart() override;
+    void doCancel() override;
 
 private:
     class Private;

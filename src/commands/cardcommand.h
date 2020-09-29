@@ -11,40 +11,23 @@
 #ifndef __KLEOPATRA_COMMANDS_CARDCOMMAND_H__
 #define __KLEOPATRA_COMMANDS_CARDCOMMAND_H__
 
-#include <QObject>
-
-class QWidget;
-
-#include <utils/pimpl_ptr.h>
+#include "command.h"
 
 namespace Kleo
 {
 
-class CardCommand : public QObject
+class CardCommand : public Command
 {
     Q_OBJECT
 public:
     explicit CardCommand(const std::string &serialNumber, QWidget *parent);
     ~CardCommand() override;
 
-   void setAutoDelete(bool on);
-   bool autoDelete() const;
-
-public Q_SLOTS:
-    void start();
-    void cancel();
-
-Q_SIGNALS:
-    void finished();
-    void canceled();
-
-private:
-    virtual void doStart() = 0;
-    virtual void doCancel();
-
 protected:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
+    inline Private *d_func();
+    inline const Private *d_func() const;
+
 protected:
     explicit CardCommand(Private *pp);
 };

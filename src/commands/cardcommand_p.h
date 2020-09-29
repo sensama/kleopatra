@@ -12,58 +12,26 @@
 #define __KLEOPATRA_COMMANDS_CARDCOMMAND_P_H__
 
 #include "cardcommand.h"
+#include "command_p.h"
 
-#include <QPointer>
-
-#include <KMessageBox>
-
-class Kleo::CardCommand::Private
+class Kleo::CardCommand::Private : public Command::Private
 {
     friend class ::Kleo::CardCommand;
-protected:
-    CardCommand *const q;
+    Kleo::CardCommand *q_func() const
+    {
+        return static_cast<Kleo::CardCommand *>(q);
+    }
 public:
     explicit Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent);
-    virtual ~Private();
+    ~Private();
 
     std::string serialNumber() const
     {
         return serialNumber_;
     }
 
-    QWidget *parentWidget() const
-    {
-        return parentWidget_;
-    }
-
-    void finished()
-    {
-        Q_EMIT q->finished();
-        if (autoDelete) {
-            q->deleteLater();
-        }
-    }
-
-    void canceled()
-    {
-        Q_EMIT q->canceled();
-        finished();
-    }
-
-    void error(const QString &text, const QString &caption = QString(), KMessageBox::Options options = KMessageBox::Notify) const
-    {
-        KMessageBox::error(parentWidget(), text, caption, options);
-    }
-
-    void information(const QString &text, const QString &caption = QString(), const QString &dontShowAgainName = QString(), KMessageBox::Options options = KMessageBox::Notify) const
-    {
-        KMessageBox::information(parentWidget(), text, caption, dontShowAgainName, options);
-    }
-
 private:
-    bool autoDelete : 1;
     std::string serialNumber_;
-    QPointer<QWidget> parentWidget_;
 };
 
 #endif /* __KLEOPATRA_COMMANDS_CARDCOMMAND_P_H__ */

@@ -105,11 +105,15 @@ void SetPIVCardApplicationAdministrationKeyCommand::doStart()
     d->authenticate();
 }
 
+void SetPIVCardApplicationAdministrationKeyCommand::doCancel()
+{
+}
+
 void SetPIVCardApplicationAdministrationKeyCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "SetPIVCardApplicationAdministrationKeyCommand::authenticate()";
 
-    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidget());
+    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     cmd->setPrompt(i18n("Please enter the old PIV Card Application Administration Key in hex-encoded form."));
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });
@@ -148,7 +152,7 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::ensureDialogCreated
         return;
     }
 
-    dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidget());
+    dialog = new PIVCardApplicationAdministrationKeyInputDialog(parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setLabelText(newAdminKey.isEmpty() ?
                          i18n("Please enter the new PIV Card Application Administration Key in hex-encoded form. "

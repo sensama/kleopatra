@@ -13,7 +13,7 @@
 
 #include "keytocardcommand.h"
 
-#include "command_p.h"
+#include "cardcommand_p.h"
 
 #include "commands/authenticatepivcardapplicationcommand.h"
 
@@ -42,7 +42,7 @@ using namespace Kleo::Dialogs;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
-class KeyToCardCommand::Private : public Command::Private
+class KeyToCardCommand::Private : public CardCommand::Private
 {
     friend class ::Kleo::Commands::KeyToCardCommand;
     KeyToCardCommand *q_func() const
@@ -67,7 +67,6 @@ private:
     void authenticationCanceled();
 
 private:
-    std::string serialNumber;
     GpgME::Subkey subkey;
     std::string cardSlot;
     bool overwriteExistingAlreadyApproved = false;
@@ -90,15 +89,13 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
                                    const GpgME::Subkey &subkey_,
                                    const std::string &serialno)
-    : Command::Private(qq, nullptr),
-      serialNumber(serialno),
+    : CardCommand::Private(qq, serialno, nullptr),
       subkey(subkey_)
 {
 }
 
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialno)
-    : Command::Private(qq, nullptr)
-    , serialNumber(serialno)
+    : CardCommand::Private(qq, serialno, nullptr)
     , cardSlot(slot)
 {
 }
@@ -111,9 +108,9 @@ void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
 
-    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(serialNumber);
+    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(serialNumber());
     if (!card) {
-        error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(serialNumber)));
+        error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
@@ -175,9 +172,9 @@ static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent
 void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToOpenPGPCard()";
 
-    const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber);
+    const auto pgpCard = SmartCard::ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
     if (!pgpCard) {
-        error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber)));
+        error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
@@ -230,7 +227,7 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     const auto time = QDateTime::fromSecsSinceEpoch(subkey.creationTime());
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4")
-        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber))
+        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(slot)
         .arg(timestamp);
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
@@ -280,9 +277,9 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startKeyToPIVCard()";
 
-    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(serialNumber);
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
     if (!pivCard) {
-        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber)));
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
@@ -336,7 +333,7 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     }
 
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
-        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber))
+        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(QString::fromStdString(cardSlot));
     ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
 }
@@ -345,7 +342,7 @@ void KeyToCardCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticate()";
 
-    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber, parentWidgetOrView());
+    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });
     connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
@@ -369,12 +366,12 @@ void KeyToCardCommand::Private::authenticationCanceled()
 }
 
 KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)
-    : Command(new Private(this, key, serialno))
+    : CardCommand(new Private(this, key, serialno))
 {
 }
 
 KeyToCardCommand::KeyToCardCommand(const std::string& cardSlot, const std::string &serialno)
-    : Command(new Private(this, cardSlot, serialno))
+    : CardCommand(new Private(this, cardSlot, serialno))
 {
 }
 

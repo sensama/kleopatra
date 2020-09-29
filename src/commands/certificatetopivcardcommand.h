@@ -10,7 +10,7 @@
 #ifndef __KLEOPATRA_COMMANDS_CERTIFICATETOPIVCARDCOMMAND_H__
 #define __KLEOPATRA_COMMANDS_CERTIFICATETOPIVCARDCOMMAND_H__
 
-#include <commands/command.h>
+#include <commands/cardcommand.h>
 
 namespace GpgME
 {
@@ -22,7 +22,7 @@ namespace Kleo
 namespace Commands
 {
 
-class CertificateToPIVCardCommand : public Command
+class CertificateToPIVCardCommand : public CardCommand
 {
     Q_OBJECT
 public:

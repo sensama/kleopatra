@@ -126,7 +126,7 @@ void PIVGenerateCardKeyCommand::doStart()
             (d->keyRef == PIVCard::keyManagementKeyRef() ?
              i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
              QString());
-        const auto choice = KMessageBox::warningContinueCancel(d->parentWidget(), warningText,
+        const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(), warningText,
             i18nc("@title:window", "Overwrite existing key"),
             KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
         if (choice != KMessageBox::Continue) {
@@ -141,11 +141,15 @@ void PIVGenerateCardKeyCommand::doStart()
     d->dialog->show();
 }
 
+void PIVGenerateCardKeyCommand::doCancel()
+{
+}
+
 void PIVGenerateCardKeyCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::authenticate()";
 
-    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidget());
+    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });
     connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
@@ -222,7 +226,7 @@ void PIVGenerateCardKeyCommand::Private::ensureDialogCreated()
         return;
     }
 
-    dialog = new GenCardKeyDialog(GenCardKeyDialog::KeyAlgorithm, parentWidget());
+    dialog = new GenCardKeyDialog(GenCardKeyDialog::KeyAlgorithm, parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setSupportedAlgorithms(PIVCard::supportedAlgorithms(keyRef), "rsa2048");
 

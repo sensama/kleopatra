@@ -9,10 +9,12 @@
 
 #include "importcertificatefrompivcardcommand.h"
 
-#include "importcertificatescommand_p.h"
+#include "cardcommand_p.h"
 
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
+
+#include "commands/importcertificatefromdatacommand.h"
 
 #include <KLocalizedString>
 
@@ -22,7 +24,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
-class ImportCertificateFromPIVCardCommand::Private : public ImportCertificatesCommand::Private
+class ImportCertificateFromPIVCardCommand::Private : public CardCommand::Private
 {
     friend class ::Kleo::Commands::ImportCertificateFromPIVCardCommand;
     ImportCertificateFromPIVCardCommand *q_func() const
@@ -36,10 +38,12 @@ public:
 
 private:
     void start();
+    void importFinished();
+    void importCanceled();
 
 private:
-    std::string serialNumber;
     std::string cardSlot;
+    bool hasBeenCanceled = false;
 };
 
 ImportCertificateFromPIVCardCommand::Private *ImportCertificateFromPIVCardCommand::d_func()
@@ -57,8 +61,7 @@ const ImportCertificateFromPIVCardCommand::Private *ImportCertificateFromPIVCard
 
 ImportCertificateFromPIVCardCommand::Private::Private(ImportCertificateFromPIVCardCommand *qq,
                                                       const std::string &slot, const std::string &serialno)
-    : ImportCertificatesCommand::Private(qq, nullptr)
-    , serialNumber(serialno)
+    : CardCommand::Private(qq, serialno, nullptr)
     , cardSlot(slot)
 {
 }
@@ -71,9 +74,9 @@ void ImportCertificateFromPIVCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "ImportCertificateFromPIVCardCommand::Private::start()";
 
-    const auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(serialNumber);
+    const auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
     if (!pivCard) {
-        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber)));
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
@@ -85,11 +88,31 @@ void ImportCertificateFromPIVCardCommand::Private::start()
         return;
     }
 
-    startImport(GpgME::CMS, QByteArray::fromStdString(certificateData), i18n("Card Certificate"));
+    auto cmd = new ImportCertificateFromDataCommand(QByteArray::fromStdString(certificateData), GpgME::CMS, i18n("Card Certificate"));
+    connect(cmd, &ImportCertificateFromDataCommand::finished,
+            q, [this]() { importFinished(); });
+    connect(cmd, &ImportCertificateFromDataCommand::canceled,
+            q, [this]() { importCanceled(); });
+    cmd->start();
+}
+
+void ImportCertificateFromPIVCardCommand::Private::importFinished()
+{
+    qCDebug(KLEOPATRA_LOG) << "ImportCertificateFromPIVCardCommand::importFinished()";
+    if (!hasBeenCanceled) {
+        finished();
+    }
+}
+
+void ImportCertificateFromPIVCardCommand::Private::importCanceled()
+{
+    qCDebug(KLEOPATRA_LOG) << "ImportCertificateFromPIVCardCommand::importCanceled()";
+    hasBeenCanceled = true;
+    canceled();
 }
 
 ImportCertificateFromPIVCardCommand::ImportCertificateFromPIVCardCommand(const std::string& cardSlot, const std::string &serialno)
-    : ImportCertificatesCommand(new Private(this, cardSlot, serialno))
+    : CardCommand(new Private(this, cardSlot, serialno))
 {
 }
 
@@ -103,6 +126,10 @@ void ImportCertificateFromPIVCardCommand::doStart()
     qCDebug(KLEOPATRA_LOG) << "ImportCertificateFromPIVCardCommand::doStart()";
 
     d->start();
+}
+
+void ImportCertificateFromPIVCardCommand::doCancel()
+{
 }
 
 #undef q_func

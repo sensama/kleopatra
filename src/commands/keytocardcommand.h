@@ -12,7 +12,7 @@
 #ifndef __KLEOPATRA_COMMANDS_KEYTOCARDCOMMAND_H__
 #define __KLEOPATRA_COMMANDS_KEYTOCARDCOMMAND_H__
 
-#include <commands/command.h>
+#include <commands/cardcommand.h>
 
 #include <gpgme++/key.h>
 
@@ -21,7 +21,7 @@ namespace Kleo
 namespace Commands
 {
 
-class KeyToCardCommand : public Command
+class KeyToCardCommand : public CardCommand
 {
     Q_OBJECT
 public:

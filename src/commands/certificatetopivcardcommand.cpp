@@ -11,7 +11,7 @@
 
 #include "certificatetopivcardcommand.h"
 
-#include "command_p.h"
+#include "cardcommand_p.h"
 
 #include "commands/authenticatepivcardapplicationcommand.h"
 
@@ -37,7 +37,7 @@ using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
-class CertificateToPIVCardCommand::Private : public Command::Private
+class CertificateToPIVCardCommand::Private : public CardCommand::Private
 {
     friend class ::Kleo::Commands::CertificateToPIVCardCommand;
     CertificateToPIVCardCommand *q_func() const
@@ -57,7 +57,6 @@ private:
     void authenticationCanceled();
 
 private:
-    std::string serialNumber;
     std::string cardSlot;
     Key certificate;
     bool hasBeenCanceled = false;
@@ -77,8 +76,7 @@ const CertificateToPIVCardCommand::Private *CertificateToPIVCardCommand::d_func(
 
 
 CertificateToPIVCardCommand::Private::Private(CertificateToPIVCardCommand *qq, const std::string &slot, const std::string &serialno)
-    : Command::Private(qq, nullptr)
-    , serialNumber(serialno)
+    : CardCommand::Private(qq, serialno, nullptr)
     , cardSlot(slot)
 {
 }
@@ -112,9 +110,9 @@ void CertificateToPIVCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::Private::start()";
 
-    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(serialNumber);
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
     if (!pivCard) {
-        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber)));
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
@@ -134,7 +132,7 @@ void CertificateToPIVCardCommand::Private::start()
         "@info %1 name of card slot, %2 serial number of card",
         "<p>Please confirm that you want to write the following certificate to the %1 slot of card %2:</p>"
         "<center>%3</center>",
-        PIVCard::keyDisplayName(cardSlot), QString::fromStdString(serialNumber), certificateInfo);
+        PIVCard::keyDisplayName(cardSlot), QString::fromStdString(serialNumber()), certificateInfo);
     auto confirmButton = KStandardGuiItem::yes();
     confirmButton.setText(i18nc("@action:button", "Write certificate"));
     confirmButton.setToolTip(QString());
@@ -175,7 +173,7 @@ void CertificateToPIVCardCommand::Private::authenticate()
 {
     qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::authenticate()";
 
-    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber, parentWidgetOrView());
+    auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });
     connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,
@@ -199,7 +197,7 @@ void CertificateToPIVCardCommand::Private::authenticationCanceled()
 }
 
 CertificateToPIVCardCommand::CertificateToPIVCardCommand(const std::string& cardSlot, const std::string &serialno)
-    : Command(new Private(this, cardSlot, serialno))
+    : CardCommand(new Private(this, cardSlot, serialno))
 {
 }
 

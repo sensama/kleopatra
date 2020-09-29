@@ -29,12 +29,13 @@ class ImportCertificateFromDataCommand::Private : public ImportCertificatesComma
     }
 public:
     explicit Private(ImportCertificateFromDataCommand *qq,
-                     const QByteArray &data, GpgME::Protocol proto);
+                     const QByteArray &data, GpgME::Protocol proto, const QString &id);
     ~Private();
 
 private:
     QByteArray mData;
     GpgME::Protocol mProto;
+    QString mId;
 };
 
 ImportCertificateFromDataCommand::Private *ImportCertificateFromDataCommand::d_func()
@@ -48,8 +49,9 @@ const ImportCertificateFromDataCommand::Private *ImportCertificateFromDataComman
 
 ImportCertificateFromDataCommand::Private::Private(ImportCertificateFromDataCommand *qq,
                                                    const QByteArray &data,
-                                                   GpgME::Protocol proto)
-    : ImportCertificatesCommand::Private(qq, nullptr), mData(data), mProto(proto)
+                                                   GpgME::Protocol proto,
+                                                   const QString &id)
+    : ImportCertificatesCommand::Private(qq, nullptr), mData(data), mProto(proto), mId(id)
 {
 }
 
@@ -59,8 +61,9 @@ ImportCertificateFromDataCommand::Private::~Private() {}
 #define q q_func()
 
 ImportCertificateFromDataCommand::ImportCertificateFromDataCommand(const QByteArray &data,
-                                                                   GpgME::Protocol proto)
-    : ImportCertificatesCommand(new Private(this, data, proto))
+                                                                   GpgME::Protocol proto,
+                                                                   const QString &id)
+    : ImportCertificatesCommand(new Private(this, data, proto, id))
 {
 }
 
@@ -68,7 +71,7 @@ ImportCertificateFromDataCommand::~ImportCertificateFromDataCommand() {}
 
 void ImportCertificateFromDataCommand::doStart()
 {
-    d->startImport(d->mProto, d->mData, i18n("Notepad"));
+    d->startImport(d->mProto, d->mData, d->mId.isEmpty() ? i18n("Notepad") : d->mId);
 }
 
 #undef d

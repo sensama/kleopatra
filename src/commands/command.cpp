@@ -35,16 +35,27 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
+Command::Private::Private(Command *qq)
+    : q(qq),
+      autoDelete(true),
+      warnWhenRunningAtShutdown(true)
+{
+}
+
 Command::Private::Private(Command *qq, KeyListController *controller)
     : q(qq),
       autoDelete(true),
       warnWhenRunningAtShutdown(true),
-      indexes_(),
-      view_(),
-      parentWId(0),
       controller_(controller)
 {
+}
 
+Command::Private::Private(Command *qq, QWidget *parent)
+    : q(qq),
+      autoDelete(true),
+      warnWhenRunningAtShutdown(true),
+      parentWidget_(parent)
+{
 }
 
 Command::Private::~Private()
@@ -91,13 +102,13 @@ Command::Command(QAbstractItemView *v, Private *pp)
 }
 
 Command::Command(const GpgME::Key &key)
-    : QObject(nullptr), d(new Private(this, nullptr))
+    : QObject(nullptr), d(new Private(this))
 {
     d->keys_ = std::vector<Key>(1, key);
 }
 
 Command::Command(const std::vector<GpgME::Key> &keys)
-    : QObject(nullptr), d(new Private(this, nullptr))
+    : QObject(nullptr), d(new Private(this))
 {
     d->keys_ = keys;
 }

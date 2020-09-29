@@ -33,7 +33,9 @@ class Kleo::Command::Private
 protected:
     Command *const q;
 public:
+    explicit Private(Command *qq);
     explicit Private(Command *qq, KeyListController *controller);
+    explicit Private(Command *qq, QWidget *parent);
     virtual ~Private();
 
     QAbstractItemView *view() const
@@ -114,7 +116,7 @@ private:
     QList<QPersistentModelIndex> indexes_;
     QPointer<QAbstractItemView> view_;
     QPointer<QWidget> parentWidget_;
-    WId parentWId;
+    WId parentWId = 0;
     QPointer<KeyListController> controller_;
 };
 

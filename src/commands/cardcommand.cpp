@@ -15,11 +15,21 @@
 
 using namespace Kleo;
 
+CardCommand::Private *CardCommand::d_func()
+{
+    return static_cast<Private *>(d.get());
+}
+const CardCommand::Private *CardCommand::d_func() const
+{
+    return static_cast<const Private *>(d.get());
+}
+
+#define d d_func()
+#define q q_func()
+
 CardCommand::Private::Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent)
-    : q(qq),
-      autoDelete(true),
-      serialNumber_(serialNumber),
-      parentWidget_(parent)
+    : Command::Private(qq, parent)
+    , serialNumber_(serialNumber)
 {
 }
 
@@ -28,12 +38,12 @@ CardCommand::Private::~Private()
 }
 
 CardCommand::CardCommand(const std::string &serialNumber, QWidget *parent)
-    : QObject(parent), d(new Private(this, serialNumber, parent))
+    : Command(new Private(this, serialNumber, parent))
 {
 }
 
 CardCommand::CardCommand(Private *pp)
-    : QObject(pp->parentWidget_), d(pp)
+    : Command(pp)
 {
 }
 
@@ -41,27 +51,5 @@ CardCommand::~CardCommand()
 {
 }
 
-void CardCommand::setAutoDelete(bool on)
-{
-    d->autoDelete = on;
-}
-
-bool CardCommand::autoDelete() const
-{
-    return d->autoDelete;
-}
-
-void CardCommand::start()
-{
-    doStart();
-}
-
-void CardCommand::cancel()
-{
-    doCancel();
-    Q_EMIT canceled();
-}
-
-void CardCommand::doCancel()
-{
-}
+#undef q_func
+#undef d_func

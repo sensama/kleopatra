@@ -98,6 +98,10 @@ void ChangePinCommand::doStart()
     d->changePin();
 }
 
+void ChangePinCommand::doCancel()
+{
+}
+
 void ChangePinCommand::Private::changePin()
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::changePin()";

@@ -10,14 +10,14 @@
 #ifndef KLEOPATRA_COMMANDS_IMPORTCERTIFICATEFROMPIVCARDCOMMAND_H
 #define KLEOPATRA_COMMANDS_IMPORTCERTIFICATEFROMPIVCARDCOMMAND_H
 
-#include "importcertificatescommand.h"
+#include "cardcommand.h"
 
 namespace Kleo
 {
 namespace Commands
 {
 
-class ImportCertificateFromPIVCardCommand : public ImportCertificatesCommand
+class ImportCertificateFromPIVCardCommand : public CardCommand
 {
     Q_OBJECT
 public:
@@ -26,6 +26,7 @@ public:
 
 private:
     void doStart() override;
+    void doCancel() override;
 
 private:
     class Private;

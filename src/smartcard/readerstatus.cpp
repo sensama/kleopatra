@@ -557,7 +557,7 @@ public:
     }
 
 Q_SIGNALS:
-    void anyCardHasNullPinChanged(bool);
+    void firstCardWithNullPinChanged(const std::string &serialNumber);
     void anyCardCanLearnKeysChanged(bool);
     void cardChanged(unsigned int);
     void oneTransactionFinished(const GpgME::Error &err);
@@ -652,7 +652,7 @@ private:
 
                 unsigned int idx = 0;
                 bool anyLC = false;
-                bool anyNP = false;
+                std::string firstCardWithNullPin;
                 bool anyError = false;
                 while (nit != nend && oit != oend) {
                     const auto optr = (*oit).get();
@@ -664,8 +664,8 @@ private:
                     if ((*nit)->canLearnKeys()) {
                         anyLC = true;
                     }
-                    if ((*nit)->hasNullPin()) {
-                        anyNP = true;
+                    if ((*nit)->hasNullPin() && firstCardWithNullPin.empty()) {
+                        firstCardWithNullPin = (*nit)->serialNumber();
                     }
                     if ((*nit)->status() == Card::CardError) {
                         anyError = true;
@@ -675,7 +675,7 @@ private:
                     ++idx;
                 }
 
-                Q_EMIT anyCardHasNullPinChanged(anyNP);
+                Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
                 Q_EMIT anyCardCanLearnKeysChanged(anyLC);
 
                 if (anyError) {
@@ -730,8 +730,8 @@ public:
 
         connect(this, &::ReaderStatusThread::cardChanged,
                 q, &ReaderStatus::cardChanged);
-        connect(this, &::ReaderStatusThread::anyCardHasNullPinChanged,
-                q, &ReaderStatus::anyCardHasNullPinChanged);
+        connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged,
+                q, &ReaderStatus::firstCardWithNullPinChanged);
         connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,
                 q, &ReaderStatus::anyCardCanLearnKeysChanged);
 
@@ -748,11 +748,12 @@ public:
     }
 
 private:
-    bool anyCardHasNullPinImpl() const
+    std::string firstCardWithNullPinImpl() const
     {
         const auto cis = cardInfos();
-        return std::any_of(cis.cbegin(), cis.cend(),
-                           [](const std::shared_ptr<Card> &ci) { return ci->hasNullPin(); });
+        const auto firstWithNullPin = std::find_if(cis.cbegin(), cis.cend(),
+                                                   [](const std::shared_ptr<Card> &ci) { return ci->hasNullPin(); });
+        return firstWithNullPin != cis.cend() ? (*firstWithNullPin)->serialNumber() : std::string();
     }
 
     bool anyCardCanLearnKeysImpl() const
@@ -770,6 +771,8 @@ ReaderStatus::ReaderStatus(QObject *parent)
     : QObject(parent), d(new Private(this))
 {
     self = this;
+
+    qRegisterMetaType<std::string>("std::string");
 }
 
 ReaderStatus::~ReaderStatus()
@@ -800,9 +803,9 @@ Card::Status ReaderStatus::cardStatus(unsigned int slot) const
     return d->cardStatus(slot);
 }
 
-bool ReaderStatus::anyCardHasNullPin() const
+std::string ReaderStatus::firstCardWithNullPin() const
 {
-    return d->anyCardHasNullPinImpl();
+    return d->firstCardWithNullPinImpl();
 }
 
 bool ReaderStatus::anyCardCanLearnKeys() const

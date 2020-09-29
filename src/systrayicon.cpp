@@ -75,10 +75,10 @@ private:
         //triggering slotEnableDisableActions again
         const QSignalBlocker blocker(QApplication::clipboard());
         openCertificateManagerAction.setEnabled(!q->mainWindow() || !q->mainWindow()->isVisible());
-        setInitialPinAction.setEnabled(anyCardHasNullPin);
+        setInitialPinAction.setEnabled(!firstCardWithNullPin.empty());
         learnCertificatesAction.setEnabled(anyCardCanLearnKeys);
 
-        q->setAttentionWanted((anyCardHasNullPin || anyCardCanLearnKeys) && !q->attentionWindow());
+        q->setAttentionWanted((!firstCardWithNullPin.empty() || anyCardCanLearnKeys) && !q->attentionWindow());
     }
 
     void slotSetInitialPin()
@@ -102,9 +102,9 @@ private:
     }
 
 private:
-    bool anyCardHasNullPin;
-    bool anyCardCanLearnKeys;
-    bool learningInProgress;
+    std::string firstCardWithNullPin;
+    bool anyCardCanLearnKeys = false;
+    bool learningInProgress = false;
 
     QMenu menu;
     QAction openCertificateManagerAction;
@@ -125,8 +125,6 @@ private:
 
 SysTrayIcon::Private::Private(SysTrayIcon *qq)
     : q(qq),
-      anyCardHasNullPin(false),
-      anyCardCanLearnKeys(false),
       menu(),
       openCertificateManagerAction(i18n("&Open Certificate Manager..."), q),
       configureAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("&Configure %1...", KAboutData::applicationData().componentName()), q),
@@ -208,7 +206,7 @@ void SysTrayIcon::doActivated()
         if (aw->isVisible()) {
             return;    // ignore clicks while an attention window is open.
         }
-    if (d->anyCardHasNullPin) {
+    if (!d->firstCardWithNullPin.empty()) {
         d->slotSetInitialPin();
     } else if (d->anyCardCanLearnKeys) {
         d->slotLearnCertificates();
@@ -218,12 +216,12 @@ void SysTrayIcon::doActivated()
     }
 }
 
-void SysTrayIcon::setAnyCardHasNullPin(bool on)
+void SysTrayIcon::setFirstCardWithNullPin(const std::string &serialNumber)
 {
-    if (d->anyCardHasNullPin == on) {
+    if (d->firstCardWithNullPin == serialNumber) {
         return;
     }
-    d->anyCardHasNullPin = on;
+    d->firstCardWithNullPin = serialNumber;
     slotEnableDisableActions();
 }
 

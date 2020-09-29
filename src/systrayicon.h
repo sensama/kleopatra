@@ -31,7 +31,7 @@ public:
     void setLearningInProgress(bool value);
 
 public Q_SLOTS:
-    void setAnyCardHasNullPin(bool);
+    void setFirstCardWithNullPin(const std::string &serialNumber);
     void setAnyCardCanLearnKeys(bool);
 
 private:

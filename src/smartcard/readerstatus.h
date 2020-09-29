@@ -44,7 +44,7 @@ public:
     void startTransaction(const QByteArray &cmd, QObject *receiver, const char *slot, std::unique_ptr<GpgME::AssuanTransaction> transaction);
 
     Card::Status cardStatus(unsigned int slot) const;
-    bool anyCardHasNullPin() const;
+    std::string firstCardWithNullPin() const;
     bool anyCardCanLearnKeys() const;
 
     std::vector<Card::PinState> pinStates(unsigned int slot) const;
@@ -69,7 +69,7 @@ public Q_SLOTS:
     void startMonitoring();
 
 Q_SIGNALS:
-    void anyCardHasNullPinChanged(bool);
+    void firstCardWithNullPinChanged(const std::string &serialNumber);
     void anyCardCanLearnKeysChanged(bool);
     void cardChanged(unsigned int slot);
 

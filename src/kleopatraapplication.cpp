@@ -95,11 +95,11 @@ public:
         KDAB_SET_OBJECT_NAME(readerStatus);
 #ifndef QT_NO_SYSTEMTRAYICON
         sysTray = new SysTrayIcon();
-        sysTray->setAnyCardHasNullPin(readerStatus.anyCardHasNullPin());
+        sysTray->setFirstCardWithNullPin(readerStatus.firstCardWithNullPin());
         sysTray->setAnyCardCanLearnKeys(readerStatus.anyCardCanLearnKeys());
 
-        connect(&readerStatus, &SmartCard::ReaderStatus::anyCardHasNullPinChanged,
-                sysTray, &SysTrayIcon::setAnyCardHasNullPin);
+        connect(&readerStatus, &SmartCard::ReaderStatus::firstCardWithNullPinChanged,
+                sysTray, &SysTrayIcon::setFirstCardWithNullPin);
         connect(&readerStatus, &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged,
                 sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
 #endif

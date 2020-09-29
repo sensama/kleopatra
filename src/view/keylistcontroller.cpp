@@ -738,7 +738,7 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
     result |= find_root_restrictions(keys);
 
     if (const ReaderStatus *rs = ReaderStatus::instance()) {
-        if (rs->anyCardHasNullPin()) {
+        if (!rs->firstCardWithNullPin().empty()) {
             result |= Command::AnyCardHasNullPin;
         }
         if (rs->anyCardCanLearnKeys()) {

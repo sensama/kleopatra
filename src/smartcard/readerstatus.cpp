@@ -96,6 +96,11 @@ Q_DECLARE_METATYPE(GpgME::Error)
 
 namespace
 {
+static QDebug operator<<(QDebug s, const std::string &string)
+{
+    return s << QString::fromStdString(string);
+}
+
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
 {
     typedef std::pair<std::string, std::string> pair;
@@ -205,6 +210,38 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
     std::string cmd = "SCD GETATTR ";
     cmd += what;
     return gpgagent_status(gpgAgent, cmd.c_str(), err);
+}
+
+static std::string switchCard(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, Error &err)
+{
+    const std::string command = "SCD SWITCHCARD " + serialNumber;
+    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+    if (err) {
+        return std::string();
+    }
+    if (statusLines.size() == 1 && statusLines[0].first == "SERIALNO" && statusLines[0].second == serialNumber) {
+        return serialNumber;
+    }
+    qCWarning(KLEOPATRA_LOG) << "switchCard():" << command << "returned" << statusLines
+            << "(expected:" << "SERIALNO " + serialNumber << ")";
+    return std::string();
+}
+
+static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
+                             const std::string &appName, Error &err)
+{
+    const std::string command = "SCD SWITCHAPP " + appName;
+    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+    if (err) {
+        return std::string();
+    }
+    if (statusLines.size() == 1 && statusLines[0].first == "SERIALNO" &&
+        statusLines[0].second.find(serialNumber + ' ' + appName) == 0) {
+        return appName;
+    }
+    qCWarning(KLEOPATRA_LOG) << "switchApp():" << command << "returned" << statusLines
+            << "(expected:" << "SERIALNO " + serialNumber + ' ' + appName + "..." << ")";
+    return std::string();
 }
 
 static const char * get_openpgp_card_manufacturer_from_serial_number(const std::string &serialno)
@@ -574,6 +611,7 @@ private:
         while (true) {
             std::shared_ptr<Context> gpgAgent;
 
+            CardApp cardApp;
             QByteArray command;
             bool nullSlot = false;
             AssuanTransaction* assuanTransaction = nullptr;
@@ -604,6 +642,7 @@ private:
 
                 // make local copies of the interesting stuff so
                 // we can release the mutex again:
+                cardApp = item.front().cardApp;
                 command = item.front().command;
                 nullSlot = !item.front().slot;
                 // we take ownership of the assuan transaction
@@ -664,10 +703,16 @@ private:
                 }
             } else {
                 GpgME::Error err;
-                if (assuanTransaction) {
-                    (void)gpgagent_transact(gpgAgent, command.constData(), std::unique_ptr<AssuanTransaction>(assuanTransaction), err);
-                } else {
-                    (void)gpgagent_default_transact(gpgAgent, command.constData(), err);
+                switchCard(gpgAgent, cardApp.serialNumber, err);
+                if (!err) {
+                    switchApp(gpgAgent, cardApp.serialNumber, cardApp.appName, err);
+                }
+                if (!err) {
+                    if (assuanTransaction) {
+                        (void)gpgagent_transact(gpgAgent, command.constData(), std::unique_ptr<AssuanTransaction>(assuanTransaction), err);
+                    } else {
+                        (void)gpgagent_default_transact(gpgAgent, command.constData(), err);
+                    }
                 }
 
                 KDAB_SYNCHRONIZED(m_mutex)

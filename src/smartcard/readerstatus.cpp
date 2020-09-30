@@ -76,22 +76,6 @@ static const char *prettyFlags[] = {
 };
 static_assert(sizeof prettyFlags / sizeof * prettyFlags == Card::NumStates, "");
 
-#if 0
-We need this once we have support for multiple readers in scdaemons
-interface.
-static unsigned int parseFileName(const QString &fileName, bool *ok)
-{
-    QRegExp rx(QLatin1String("reader_(\\d+)\\.status"));
-    if (ok) {
-        *ok = false;
-    }
-    if (rx.exactMatch(QFileInfo(fileName).fileName())) {
-        return rx.cap(1).toUInt(ok, 10);
-    }
-    return 0;
-}
-#endif
-
 Q_DECLARE_METATYPE(GpgME::Error)
 
 namespace

@@ -116,6 +116,17 @@ struct CardApp {
     std::string appName;
 };
 
+static void logUnexpectedStatusLine(const std::pair<std::string, std::string> &line,
+                                    const std::string &prefix = std::string(),
+                                    const std::string &command = std::string())
+{
+    qCWarning(KLEOPATRA_LOG) << (!prefix.empty() ? QString::fromStdString(prefix + ": ") : QString())
+            << "Unexpected status line"
+            << (!command.empty() ? QString::fromStdString(" on " + command + ":") : QLatin1String(":"))
+            << QString::fromStdString(line.first)
+            << QString::fromStdString(line.second);
+}
+
 static int parse_app_version(const std::string &s)
 {
     return std::atoi(s.c_str());
@@ -210,6 +221,36 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
     std::string cmd = "SCD GETATTR ";
     cmd += what;
     return gpgagent_status(gpgAgent, cmd.c_str(), err);
+}
+
+static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, Error &err)
+{
+    std::vector<CardApp> result;
+    const std::string command = "SCD GETINFO all_active_apps";
+    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+    if (err) {
+        return result;
+    }
+    for (const auto &statusLine: statusLines) {
+        if (statusLine.first == "SERIALNO") {
+            const auto serialNumberAndApps = QByteArray::fromStdString(statusLine.second).split(' ');
+            if (serialNumberAndApps.size() >= 2) {
+                const auto serialNumber = serialNumberAndApps[0];
+                auto apps = serialNumberAndApps.mid(1);
+                // sort the apps to get a stable order independently of the currently selected application
+                std::sort(apps.begin(), apps.end());
+                for (const auto &app: apps) {
+                    qCDebug(KLEOPATRA_LOG) << "getCardsAndApps(): Found card" << serialNumber << "with app" << app;
+                    result.push_back({ serialNumber.toStdString(), app.toStdString() });
+                }
+            } else {
+                logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
+            }
+        } else {
+            logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
+        }
+    }
+    return result;
 }
 
 static std::string switchCard(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, Error &err)
@@ -346,9 +387,7 @@ static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCa
             }
             pivCard->setKeyAlgorithm(keyRef, info.algorithm);
         } else {
-            qCWarning(KLEOPATRA_LOG) << "readKeyPairInfoFromPIVCard(): Unexpected status line on "
-                    << QString::fromStdString(command) << ":" << QString::fromStdString(pair.first)
-                    << QString::fromStdString(pair.second);
+            logUnexpectedStatusLine(pair, "readKeyPairInfoFromPIVCard()", command);
         }
     }
 }
@@ -465,33 +504,52 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     nkCard->setKeyPairInfo(keyPairInfos);
 }
 
-static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<Context> &gpg_agent)
+static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, const std::string &appName, std::shared_ptr<Context> &gpg_agent)
 {
-    qCDebug(KLEOPATRA_LOG) << "get_card_status(" << slot << ',' << gpg_agent.get() << ')';
-    auto ci = std::shared_ptr<Card> (new Card());
-    if (slot != 0 || !gpg_agent) {
-        // In the future scdaemon should support multiple slots but
-        // not yet (2.1.18)
-        return ci;
+    qCDebug(KLEOPATRA_LOG) << "get_card_status(" << serialNumber << ',' << appName << ',' << gpg_agent.get() << ')';
+    auto ci = std::shared_ptr<Card>(new Card());
+
+    // select card
+    {
+        Error err;
+        const auto result = switchCard(gpg_agent, serialNumber, err);
+        if (err) {
+            if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
+                ci->setStatus(Card::NoCard);
+            } else {
+                ci->setStatus(Card::CardError);
+            }
+            return ci;
+        }
+        if (result.empty()) {
+            qCWarning(KLEOPATRA_LOG) << "get_card_status: switching card failed";
+            ci->setStatus(Card::CardError);
+            return ci;
+        }
+        ci->setStatus(Card::CardPresent);
     }
 
-    Error err;
-    ci->setSerialNumber(gpgagent_status(gpg_agent, "SCD SERIALNO", err));
-    if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
-        ci->setStatus(Card::NoCard);
-        return ci;
+    // select app
+    {
+        Error err;
+        const auto result = switchApp(gpg_agent, serialNumber, appName, err);
+        if (err) {
+            if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
+                ci->setStatus(Card::NoCard);
+            } else {
+                ci->setStatus(Card::CardError);
+            }
+            return ci;
+        }
+        if (result.empty()) {
+            qCWarning(KLEOPATRA_LOG) << "get_card_status: switching app failed";
+            ci->setStatus(Card::CardError);
+            return ci;
+        }
     }
-    if (err.code()) {
-        ci->setStatus(Card::CardError);
-        return ci;
-    }
-    ci->setStatus(Card::CardPresent);
 
-    const auto appName = scd_getattr_status(gpg_agent, "APPTYPE", err);
+    ci->setSerialNumber(serialNumber);
     ci->setAppName(appName);
-    if (err.code()) {
-        return ci;
-    }
 
     // Handle different card types
     if (ci->appName() == NetKeyCard::AppName) {
@@ -507,7 +565,7 @@ static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<
         handle_piv_card(ci, gpg_agent);
         return ci;
     } else {
-        qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << appName.c_str();
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << appName;
         return ci;
     }
 
@@ -516,12 +574,41 @@ static std::shared_ptr<Card> get_card_status(unsigned int slot, std::shared_ptr<
 
 static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Context> &gpgAgent)
 {
-    // Multiple smartcard readers are only supported internally by gnupg
-    // but not by scdaemon (Status gnupg 2.1.18)
-    // We still pretend that there can be multiple cards inserted
-    // at once but we don't handle it yet.
-    const auto ci = get_card_status(0, gpgAgent);
-    return std::vector<std::shared_ptr<Card> >(1, ci);
+    qCDebug(KLEOPATRA_LOG) << "update_cardinfo()";
+
+    // ensure that a card is present and that all cards are properly set up
+    {
+        Error err;
+        const std::string serialno = gpgagent_status(gpgAgent, "SCD SERIALNO --all", err);
+        if (err) {
+            auto ci = std::shared_ptr<Card>(new Card());
+            if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
+                ci->setStatus(Card::NoCard);
+            } else {
+                ci->setStatus(Card::CardError);
+            }
+            return std::vector<std::shared_ptr<Card> >(1, ci);
+        }
+    }
+
+    Error err;
+    const std::vector<CardApp> cardApps = getCardsAndApps(gpgAgent, err);
+    if (err) {
+        auto ci = std::shared_ptr<Card>(new Card());
+        if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
+            ci->setStatus(Card::NoCard);
+        } else {
+            ci->setStatus(Card::CardError);
+        }
+        return std::vector<std::shared_ptr<Card> >(1, ci);
+    }
+
+    std::vector<std::shared_ptr<Card> > cards;
+    for (const auto &cardApp: cardApps) {
+        const auto card = get_card_status(cardApp.serialNumber, cardApp.appName, gpgAgent);
+        cards.push_back(card);
+    }
+    return cards;
 }
 } // namespace
 
@@ -660,9 +747,6 @@ private:
 
                 std::vector<std::shared_ptr<Card> > newCards = update_cardinfo(gpgAgent);
 
-                newCards.resize(std::max(newCards.size(), oldCards.size()));
-                oldCards.resize(std::max(newCards.size(), oldCards.size()));
-
                 KDAB_SYNCHRONIZED(m_mutex)
                 m_cardInfos = newCards;
 
@@ -674,24 +758,30 @@ private:
                 bool anyLC = false;
                 std::string firstCardWithNullPin;
                 bool anyError = false;
-                while (nit != nend && oit != oend) {
-                    const auto optr = (*oit).get();
-                    const auto nptr = (*nit).get();
+                while (nit != nend || oit != oend) {
+                    const Card *optr = oit != oend ? (*oit).get() : nullptr;
+                    const Card *nptr = nit != nend ? (*nit).get() : nullptr;
                     if ((optr && !nptr) || (!optr && nptr) || (optr && nptr && *optr != *nptr)) {
                         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: slot" << idx << ": card Changed";
                         Q_EMIT cardChanged(idx);
                     }
-                    if ((*nit)->canLearnKeys()) {
-                        anyLC = true;
+                    if (nptr) {
+                        if (nptr->canLearnKeys()) {
+                            anyLC = true;
+                        }
+                        if (nptr->hasNullPin() && firstCardWithNullPin.empty()) {
+                            firstCardWithNullPin = (*nit)->serialNumber();
+                        }
+                        if (nptr->status() == Card::CardError) {
+                            anyError = true;
+                        }
                     }
-                    if ((*nit)->hasNullPin() && firstCardWithNullPin.empty()) {
-                        firstCardWithNullPin = (*nit)->serialNumber();
+                    if (nit != nend) {
+                        ++nit;
                     }
-                    if ((*nit)->status() == Card::CardError) {
-                        anyError = true;
+                    if (oit != oend) {
+                        ++oit;
                     }
-                    ++nit;
-                    ++oit;
                     ++idx;
                 }
 

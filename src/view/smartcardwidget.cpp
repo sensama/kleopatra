@@ -100,15 +100,18 @@ public:
 
         mStack->setCurrentWidget(mPlaceHolderWidget);
 
-        connect (ReaderStatus::instance(), &ReaderStatus::cardChanged, q, [this] (unsigned int /*slot*/) {
-                const auto cards = ReaderStatus::instance()->getCards();
-                if (!cards.size()) {
-                    setCard(std::shared_ptr<Card>(new Card()));
-                } else {
-                    // No support for multiple reader / cards currently
-                    setCard(cards[0]);
-                }
-            });
+        connect(ReaderStatus::instance(), &ReaderStatus::cardChanged,
+                q, [this] (unsigned int slot) {
+                    if (slot == 0) {
+                        const auto cards = ReaderStatus::instance()->getCards();
+                        if (!cards.size()) {
+                            setCard(std::shared_ptr<Card>(new Card()));
+                        } else {
+                            // No support for multiple reader / cards currently
+                            setCard(cards[0]);
+                        }
+                    }
+                });
     }
 
     void setCard(std::shared_ptr<Card> card)

@@ -106,6 +106,11 @@ static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std
     return s << ')';
 }
 
+struct CardApp {
+    std::string serialNumber;
+    std::string appName;
+};
+
 static int parse_app_version(const std::string &s)
 {
     return std::atoi(s.c_str());
@@ -484,14 +489,15 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
 } // namespace
 
 struct Transaction {
+    CardApp cardApp;
     QByteArray command;
     QPointer<QObject> receiver;
     const char *slot;
     AssuanTransaction* assuanTransaction;
 };
 
-static const Transaction updateTransaction = { "__update__", nullptr, nullptr, nullptr };
-static const Transaction quitTransaction   = { "__quit__",   nullptr, nullptr, nullptr };
+static const Transaction updateTransaction = { { "__all__", "__all__" }, "__update__", nullptr, nullptr, nullptr };
+static const Transaction quitTransaction   = { { "__all__", "__all__" }, "__quit__",   nullptr, nullptr, nullptr };
 
 namespace
 {
@@ -788,15 +794,18 @@ bool ReaderStatus::anyCardCanLearnKeys() const
     return d->anyCardCanLearnKeysImpl();
 }
 
-void ReaderStatus::startSimpleTransaction(const QByteArray &command, QObject *receiver, const char *slot)
+void ReaderStatus::startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const char *slot)
 {
-    const Transaction t = { command, receiver, slot, nullptr };
+    const CardApp cardApp = { card->serialNumber(), card->appName() };
+    const Transaction t = { cardApp, command, receiver, slot, nullptr };
     d->addTransaction(t);
 }
 
-void ReaderStatus::startTransaction(const QByteArray &command, QObject *receiver, const char *slot, std::unique_ptr<AssuanTransaction> transaction)
+void ReaderStatus::startTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const char *slot,
+                                    std::unique_ptr<AssuanTransaction> transaction)
 {
-    const Transaction t = { command, receiver, slot, transaction.release() };
+    const CardApp cardApp = { card->serialNumber(), card->appName() };
+    const Transaction t = { cardApp, command, receiver, slot, transaction.release() };
     d->addTransaction(t);
 }
 

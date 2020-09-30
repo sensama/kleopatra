@@ -163,10 +163,16 @@ void CertificateToPIVCardCommand::Private::startCertificateToPIVCard()
     }
     const QByteArray certificateData = dp.data();
 
-    const QString cmd = QStringLiteral("SCD WRITECERT %1")
-        .arg(QString::fromStdString(cardSlot));
+    const auto pivCard = SmartCard::ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
+    const QByteArray command = QByteArrayLiteral("SCD WRITECERT ") + QByteArray::fromStdString(cardSlot);
     auto transaction = std::unique_ptr<AssuanTransaction>(new WriteCertAssuanTransaction(certificateData));
-    ReaderStatus::mutableInstance()->startTransaction(cmd.toUtf8(), q_func(), "certificateToPIVCardDone", std::move(transaction));
+    ReaderStatus::mutableInstance()->startTransaction(pivCard, command, q_func(), "certificateToPIVCardDone", std::move(transaction));
 }
 
 void CertificateToPIVCardCommand::Private::authenticate()

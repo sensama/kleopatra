@@ -11,6 +11,7 @@
 
 #include "cardcommand_p.h"
 
+#include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
 #include "commands/authenticatepivcardapplicationcommand.h"
@@ -182,9 +183,16 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogAccepted(
         return;
     }
 
+    auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
     const QByteArray plusPercentEncodedAdminKey = newAdminKey.toPercentEncoding().replace(' ', '+');
     const QByteArray command = QByteArray("SCD SETATTR SET-ADM-KEY ") + plusPercentEncodedAdminKey;
-    ReaderStatus::mutableInstance()->startSimpleTransaction(command, q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command, q, "slotResult");
 }
 
 void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogRejected()

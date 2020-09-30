@@ -40,8 +40,9 @@ public:
     static const ReaderStatus *instance();
     static ReaderStatus *mutableInstance();
 
-    void startSimpleTransaction(const QByteArray &cmd, QObject *receiver, const char *slot);
-    void startTransaction(const QByteArray &cmd, QObject *receiver, const char *slot, std::unique_ptr<GpgME::AssuanTransaction> transaction);
+    void startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const char *slot);
+    void startTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const char *slot,
+                          std::unique_ptr<GpgME::AssuanTransaction> transaction);
 
     Card::Status cardStatus(unsigned int slot) const;
     std::string firstCardWithNullPin() const;

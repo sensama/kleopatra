@@ -36,7 +36,7 @@ using namespace Kleo::Commands;
 
 NetKeyWidget::NetKeyWidget(QWidget *parent) :
     QWidget(parent),
-    mSerialNumber(new QLabel(this)),
+    mSerialNumberLabel(new QLabel(this)),
     mVersionLabel(new QLabel(this)),
     mLearnKeysLabel(new QLabel(this)),
     mErrorLabel(new QLabel(this)),
@@ -62,11 +62,11 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     vLay->addWidget(mVersionLabel, 0, Qt::AlignLeft);
 
-    mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
     auto hLay1 = new QHBoxLayout;
     hLay1->addWidget(new QLabel(i18n("Serial number:")));
-    hLay1->addWidget(mSerialNumber);
+    hLay1->addWidget(mSerialNumberLabel);
     hLay1->addStretch(1);
     vLay->addLayout(hLay1);
 
@@ -156,9 +156,11 @@ NetKeyWidget::~NetKeyWidget()
 
 void NetKeyWidget::setCard(const NetKeyCard* card)
 {
+    mSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("1 is a Version number", "NetKey v%1 Card", card->appVersion()));
-    mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
+    mSerialNumberLabel->setText(QString::fromStdString(mSerialNumber));
 
+    mNullPinWidget->setSerialNumber(mSerialNumber);
     /* According to users of NetKey Cards it is fairly uncommon
      * to use SigG Certificates at all. So it should be optional to set the pins. */
     mNullPinWidget->setVisible(card->hasNKSNullPin() /*|| card->hasSigGNullPin()*/);
@@ -218,13 +220,17 @@ void NetKeyWidget::setNksPinSettingResult(const GpgME::Error &err)
 
 void NetKeyWidget::doChangePin(bool sigG)
 {
+    const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    if (!nksCard) {
+        KMessageBox::error(this, i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        return;
+    }
+
     if (sigG) {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD PW1.CH.SIG",
-                                 this, "setSigGPinSettingResult");
+        ReaderStatus::mutableInstance()->startSimpleTransaction(
+            nksCard, "SCD PASSWD PW1.CH.SIG", this, "setSigGPinSettingResult");
     } else {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD PW1.CH",
-                                 this, "setNksPinSettingResult");
+        ReaderStatus::mutableInstance()->startSimpleTransaction(
+            nksCard, "SCD PASSWD PW1.CH", this, "setNksPinSettingResult");
     }
 }

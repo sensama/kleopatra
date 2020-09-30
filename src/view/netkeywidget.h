@@ -34,7 +34,7 @@ public:
     explicit NetKeyWidget(QWidget *parent = nullptr);
     ~NetKeyWidget();
 
-    void setCard(const SmartCard::NetKeyCard* card);
+    void setCard(const SmartCard::NetKeyCard *card);
 
 private:
     void handleResult(const GpgME::Error &err, QPushButton *btn);
@@ -45,7 +45,8 @@ private Q_SLOTS:
     void setNksPinSettingResult(const GpgME::Error &err);
 
 private:
-    QLabel *mSerialNumber,
+    std::string mSerialNumber;
+    QLabel *mSerialNumberLabel,
            *mVersionLabel,
            *mLearnKeysLabel,
            *mErrorLabel;

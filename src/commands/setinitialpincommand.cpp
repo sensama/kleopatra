@@ -72,18 +72,26 @@ private:
     }
 
 private:
+    void setInitialPin(const char *pinRef, const char *resultSlot)
+    {
+        const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(serialNumber());
+        if (!nksCard) {
+            error(i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(serialNumber())));
+            return;
+        }
+
+        const QByteArray command = QByteArray("SCD PASSWD --nullpin ") + pinRef;
+        ReaderStatus::mutableInstance()->startSimpleTransaction(nksCard, command, dialog, resultSlot);
+    }
+
     void slotNksPinRequested()
     {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD --nullpin PW1.CH",
-                                 dialog, "setNksPinSettingResult");
+        setInitialPin("PW1.CH", "setNksPinSettingResult");
     }
 
     void slotSigGPinRequested()
     {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD --nullpin PW1.CH.SIG",
-                                 dialog, "setSigGPinSettingResult");
+        setInitialPin("PW1.CH.SIG", "setSigGPinSettingResult");
     }
 
     void slotDialogRejected()

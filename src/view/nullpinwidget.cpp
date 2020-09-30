@@ -10,6 +10,7 @@
 
 #include "kleopatra_debug.h"
 
+#include "smartcard/netkeycard.h"
 #include "smartcard/readerstatus.h"
 
 #include <gpgme++/error.h>
@@ -58,6 +59,11 @@ NullPinWidget::NullPinWidget(QWidget *parent)
     vLay->addLayout(hLayBtn);
 }
 
+void NullPinWidget::setSerialNumber(const std::string &serialNumber)
+{
+    mSerialNumber = serialNumber;
+}
+
 void NullPinWidget::doChangePin(bool sigG)
 {
     auto ret = KMessageBox::warningContinueCancel(this,
@@ -75,14 +81,18 @@ void NullPinWidget::doChangePin(bool sigG)
         return;
     }
 
+    const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    if (!nksCard) {
+        KMessageBox::error(this, i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        return;
+    }
+
     if (sigG) {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD --nullpin PW1.CH.SIG",
-                                 this, "setSigGPinSettingResult");
+        ReaderStatus::mutableInstance()->startSimpleTransaction(
+            nksCard, "SCD PASSWD --nullpin PW1.CH.SIG", this, "setSigGPinSettingResult");
     } else {
-        ReaderStatus::mutableInstance()
-        ->startSimpleTransaction("SCD PASSWD --nullpin PW1.CH",
-                                 this, "setNksPinSettingResult");
+        ReaderStatus::mutableInstance()->startSimpleTransaction(
+            nksCard, "SCD PASSWD --nullpin PW1.CH", this, "setNksPinSettingResult");
     }
 }
 

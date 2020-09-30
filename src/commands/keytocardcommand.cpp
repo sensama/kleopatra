@@ -224,7 +224,7 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
         .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(slot)
         .arg(timestamp);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
 }
 
 namespace {
@@ -329,7 +329,7 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
         .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(QString::fromStdString(cardSlot));
-    ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), q_func(), "keyToPIVCardDone");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, cmd.toUtf8(), q_func(), "keyToPIVCardDone");
 }
 
 void KeyToCardCommand::Private::authenticate()
@@ -395,7 +395,7 @@ void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
                                        "Key transferred to card")) == KMessageBox::Yes) {
             const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
             // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
-            ReaderStatus::mutableInstance()->startSimpleTransaction(cmd.toUtf8(), this, "deleteDone");
+            ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
         }
         */
         d->information(i18nc("@info", "Successfully copied the key to the card."),

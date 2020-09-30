@@ -26,6 +26,7 @@ class NullPinWidget: public QWidget
 public:
     explicit NullPinWidget(QWidget *parent = nullptr);
 
+    void setSerialNumber(const std::string &serialNumber);
     void setSigGVisible(bool val);
     void setNKSVisible(bool val);
 
@@ -38,6 +39,7 @@ private Q_SLOTS:
     void setNksPinSettingResult(const GpgME::Error &err);
 
 private:
+    std::string mSerialNumber;
     QPushButton *mNKSBtn,
                 *mSigGBtn;
 };

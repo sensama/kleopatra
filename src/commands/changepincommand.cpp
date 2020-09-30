@@ -105,19 +105,32 @@ void ChangePinCommand::doCancel()
 void ChangePinCommand::Private::changePin()
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::changePin()";
+
+    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(serialNumber());
+    if (!card) {
+        error(i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
     QByteArrayList command;
     command << "SCD PASSWD";
-    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+    if (card->appName() == OpenPGPCard::AppName && keyRef == OpenPGPCard::resetCodeKeyRef()) {
         // special handling for setting/changing the Reset Code of OpenPGP v2 cards
-        const auto card = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
-        const std::string firstTwoVersionChars = card->cardVersion().substr(0, 2);
+        const auto pgpCard = std::dynamic_pointer_cast<OpenPGPCard>(card);
+        if (!pgpCard) {
+            error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
+            finished();
+            return;
+        }
+        const std::string firstTwoVersionChars = pgpCard->cardVersion().substr(0, 2);
         const bool isVersion2 = !(firstTwoVersionChars == "1." || firstTwoVersionChars == "0.");
         if (isVersion2) {
             command << "--reset";
         }
     }
     command << QByteArray::fromStdString(keyRef);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(card, command.join(' '), q, "slotResult");
 }
 
 namespace {

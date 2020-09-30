@@ -112,7 +112,7 @@ void PIVGenerateCardKeyCommand::doStart()
     // check if key exists
     auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(d->serialNumber());
     if (!pivCard) {
-        d->error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(d->serialNumber())));
+        d->error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(d->serialNumber())));
         d->finished();
         return;
     }
@@ -176,6 +176,13 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::generateKey()";
 
+    auto pivCard = ReaderStatus::instance()->getCard<PIVCard>(serialNumber());
+    if (!pivCard) {
+        error(i18n("Failed to find the PIV card with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
     QByteArrayList command;
     command << "SCD GENKEY";
     if (overwriteExistingKey) {
@@ -185,7 +192,7 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
         command << "--algo=" + QByteArray::fromStdString(algorithm);
     }
     command << "--" << QByteArray::fromStdString(keyRef);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(command.join(' '), q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command.join(' '), q, "slotResult");
 }
 
 void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)

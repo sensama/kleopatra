@@ -374,9 +374,14 @@ void PGPCardWidget::changeNameRequested()
     const auto lastName = parts.takeLast();
     const QString formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
 
-    ReaderStatus::mutableInstance()
-    ->startSimpleTransaction(QStringLiteral("SCD SETATTR DISP-NAME %1").arg(formatted).toUtf8().constData(),
-                             this, "changeNameResult");
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    if (!pgpCard) {
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        return;
+    }
+
+    const QByteArray command = QByteArrayLiteral("SCD SETATTR DISP-NAME ") + formatted.toUtf8();
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, "changeNameResult");
 }
 
 void PGPCardWidget::changeNameResult(const GpgME::Error &err)
@@ -416,9 +421,14 @@ void PGPCardWidget::changeUrlRequested()
         break;
     }
 
-    ReaderStatus::mutableInstance()
-    ->startSimpleTransaction(QStringLiteral("SCD SETATTR PUBKEY-URL %1").arg(text).toUtf8().constData(),
-                             this, "changeUrlResult");
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    if (!pgpCard) {
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        return;
+    }
+
+    const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, "changeUrlResult");
 }
 
 void PGPCardWidget::changeUrlResult(const GpgME::Error &err)

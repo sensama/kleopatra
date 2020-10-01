@@ -118,23 +118,15 @@ std::string PIVCard::keyGrip(const std::string& keyRef) const
     return mMetaInfo.value("KEYPAIRINFO-" + keyRef);
 }
 
-namespace {
-static int parseAppVersion(const std::string &s) {
-    // s is a hex-encoded, unsigned int-packed version tuple
-    bool ok;
-    const auto appVersion = QByteArray::fromStdString(s).toUInt(&ok, 16);
-    return ok ? appVersion : -1;
-}
-}
-
 void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
     for (const auto &pair: infos) {
         qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
-        if (pair.first == "APPVERSION") {
-            setAppVersion(parseAppVersion(pair.second));
-        } else if (pair.first == "KEYPAIRINFO") {
+        if (parseCardInfo(pair.first, pair.second)) {
+            continue;
+        }
+        if (pair.first == "KEYPAIRINFO") {
             const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
             if (info.grip.empty()) {
                 qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"

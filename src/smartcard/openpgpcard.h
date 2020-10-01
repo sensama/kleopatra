@@ -29,25 +29,20 @@ public:
     static std::string adminPinKeyRef();
     static std::string resetCodeKeyRef();
 
-    void setSerialNumber(const std::string &sn) override;
-
     std::string encFpr() const;
     std::string sigFpr() const;
     std::string authFpr() const;
 
-    void setKeyPairInfo (const std::vector< std::pair<std::string, std::string> > &infos);
+    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
     bool operator == (const Card& other) const override;
 
     void setManufacturer(const std::string &manufacturer);
     std::string manufacturer() const;
 
-    std::string cardVersion() const;
     std::string cardHolder() const;
     std::string pubkeyUrl() const;
 private:
-    bool mIsV2 = false;
-    std::string mCardVersion;
     QMap <std::string, std::string> mMetaInfo;
     std::string mManufacturer;
 };

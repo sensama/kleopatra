@@ -208,9 +208,9 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
-    const QString version = QString::fromStdString(card->cardVersion());
+    const QString version = card->displayAppVersion();
 
-    mIs21 = versionIsAtLeast("2.1", card->cardVersion().c_str());
+    mIs21 = card->appVersion() >= 0x0201;
     const QString manufacturer = QString::fromStdString(card->manufacturer());
     const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1String("unknown");
     mVersionLabel->setText(manufacturerIsUnknown ?

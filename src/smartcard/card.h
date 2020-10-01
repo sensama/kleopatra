@@ -54,13 +54,19 @@ public:
     void setStatus(Status s);
     Status status() const;
 
-    virtual void setSerialNumber(const std::string &sn);
+    void setSerialNumber(const std::string &sn);
     std::string serialNumber() const;
 
     std::string appName() const;
 
     void setAppVersion(int version);
     int appVersion() const;
+    QString displayAppVersion() const;
+
+    std::string cardType() const;
+
+    int cardVersion() const;
+    QString displayCardVersion() const;
 
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
@@ -77,6 +83,8 @@ public:
 protected:
     void setAppName(const std::string &name);
 
+    bool parseCardInfo(const std::string &name, const std::string &value);
+
 private:
     bool mCanLearn = false;
     bool mHasNullPin = false;
@@ -84,6 +92,8 @@ private:
     std::string mSerialNumber;
     std::string mAppName;
     int mAppVersion = -1;
+    std::string mCardType;
+    int mCardVersion = -1;
     std::vector<PinState> mPinStates;
     QString mErrMsg;
 };

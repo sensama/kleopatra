@@ -68,11 +68,14 @@ std::string OpenPGPCard::authFpr() const
     return mMetaInfo.value("AUTHKEY-FPR");
 }
 
-void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::string> > &infos)
+void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
     for (const auto &pair: infos) {
         qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
+        if (parseCardInfo(pair.first, pair.second)) {
+            continue;
+        }
         if (pair.first == "KEY-FPR" ||
             pair.first == "KEY-TIME") {
             // Key fpr and key time need to be distinguished, the number
@@ -121,35 +124,6 @@ void OpenPGPCard::setKeyPairInfo(const std::vector< std::pair<std::string, std::
     }
 }
 
-void OpenPGPCard::setSerialNumber(const std::string &serialno)
-{
-    char version_buffer[6];
-    const char *version = "";
-
-    Card::setSerialNumber(serialno);
-    const bool isProperOpenPGPCardSerialNumber =
-        serialno.size() == 32 && serialno.substr(0, 12) == "D27600012401";
-    if (isProperOpenPGPCardSerialNumber) {
-        /* Reformat the version number to be better human readable.  */
-        const char *string = serialno.c_str();
-        char *p = version_buffer;
-        if (string[12] != '0') {
-            *p++ = string[12];
-        }
-        *p++ = string[13];
-        *p++ = '.';
-        if (string[14] != '0') {
-            *p++ = string[14];
-        }
-        *p++ = string[15];
-        *p++ = '\0';
-        version = version_buffer;
-    }
-
-    mIsV2 = !((*version == '1' || *version == '0') && version[1] == '.');
-    mCardVersion = version;
-}
-
 bool OpenPGPCard::operator == (const Card& rhs) const
 {
     const OpenPGPCard *other = dynamic_cast<const OpenPGPCard *>(&rhs);
@@ -162,7 +136,6 @@ bool OpenPGPCard::operator == (const Card& rhs) const
         && encFpr() == other->encFpr()
         && authFpr() == other->authFpr()
         && manufacturer() == other->manufacturer()
-        && cardVersion() == other->cardVersion()
         && cardHolder() == other->cardHolder()
         && pubkeyUrl() == other->pubkeyUrl();
 }
@@ -175,11 +148,6 @@ void OpenPGPCard::setManufacturer(const std::string &manufacturer)
 std::string OpenPGPCard::manufacturer() const
 {
     return mManufacturer;
-}
-
-std::string OpenPGPCard::cardVersion() const
-{
-    return mCardVersion;
 }
 
 std::string OpenPGPCard::cardHolder() const

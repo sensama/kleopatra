@@ -14,6 +14,28 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
+namespace {
+static QString formatVersion(int value)
+{
+    if (value < 0) {
+        return QString();
+    }
+
+    const unsigned int a = ((value >> 24) & 0xff);
+    const unsigned int b = ((value >> 16) & 0xff);
+    const unsigned int c = ((value >>  8) & 0xff);
+    const unsigned int d = ((value      ) & 0xff);
+    if (a) {
+        return QStringLiteral("%1.%2.%3.%4").arg(QString::number(a), QString::number(b), QString::number(c), QString::number(d));
+    } else if (b) {
+        return QStringLiteral("%1.%2.%3").arg(QString::number(b), QString::number(c), QString::number(d));
+    } else if (c) {
+        return QStringLiteral("%1.%2").arg(QString::number(c), QString::number(d));
+    }
+    return QString::number(d);
+}
+}
+
 Card::Card()
 {
 }
@@ -60,6 +82,26 @@ void Card::setAppVersion(int version)
 int Card::appVersion() const
 {
     return mAppVersion;
+}
+
+QString Card::displayAppVersion() const
+{
+    return formatVersion(mAppVersion);
+}
+
+std::string Card::cardType() const
+{
+    return mCardType;
+}
+
+int Card::cardVersion() const
+{
+    return mCardVersion;
+}
+
+QString Card::displayCardVersion() const
+{
+    return formatVersion(mCardVersion);
 }
 
 std::vector<Card::PinState> Card::pinStates() const
@@ -116,4 +158,30 @@ void Card::setErrorMsg(const QString &msg)
 QString Card::errorMsg() const
 {
     return mErrMsg;
+}
+
+namespace {
+static int parseHexEncodedVersionTuple(const std::string &s) {
+    // s is a hex-encoded, unsigned int-packed version tuple,
+    // i.e. each byte represents one part of the version tuple
+    bool ok;
+    const auto version = QByteArray::fromStdString(s).toUInt(&ok, 16);
+    return ok ? version : -1;
+}
+}
+
+bool Card::parseCardInfo(const std::string &name, const std::string &value)
+{
+    if (name == "APPVERSION") {
+        mAppVersion = parseHexEncodedVersionTuple(value);
+        return true;
+    } else if (name == "CARDTYPE") {
+        mCardType = value;
+        return true;
+    } else if (name == "CARDVERSION") {
+        mCardVersion = parseHexEncodedVersionTuple(value);
+        return true;
+    }
+
+    return false;
 }

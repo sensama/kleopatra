@@ -39,7 +39,7 @@ public:
 
     std::string keyGrip(const std::string &keyRef) const;
 
-    void setCardInfo (const std::vector< std::pair<std::string, std::string> > &infos);
+    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
     std::string displaySerialNumber() const;
     void setDisplaySerialNumber(const std::string &sn);

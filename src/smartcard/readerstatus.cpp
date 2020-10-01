@@ -341,12 +341,12 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
         pgpCard->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
     }
 
-    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --keypairinfo", err);
+    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
     if (err.code()) {
         ci->setStatus(Card::CardError);
         return;
     }
-    pgpCard->setKeyPairInfo(info);
+    pgpCard->setCardInfo(info);
     ci.reset(pgpCard);
 }
 

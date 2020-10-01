@@ -117,19 +117,9 @@ void ChangePinCommand::Private::changePin()
 
     QByteArrayList command;
     command << "SCD PASSWD";
-    if (card->appName() == OpenPGPCard::AppName && keyRef == OpenPGPCard::resetCodeKeyRef()) {
+    if (card->appName() == OpenPGPCard::AppName && card->appVersion() >= 0x0200 && keyRef == OpenPGPCard::resetCodeKeyRef()) {
         // special handling for setting/changing the Reset Code of OpenPGP v2 cards
-        const auto pgpCard = std::dynamic_pointer_cast<OpenPGPCard>(card);
-        if (!pgpCard) {
-            error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
-            finished();
-            return;
-        }
-        const std::string firstTwoVersionChars = pgpCard->cardVersion().substr(0, 2);
-        const bool isVersion2 = !(firstTwoVersionChars == "1." || firstTwoVersionChars == "0.");
-        if (isVersion2) {
-            command << "--reset";
-        }
+        command << "--reset";
     }
     command << QByteArray::fromStdString(keyRef);
     ReaderStatus::mutableInstance()->startSimpleTransaction(card, command.join(' '), q, "slotResult");

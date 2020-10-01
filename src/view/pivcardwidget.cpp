@@ -41,26 +41,6 @@ using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
 namespace {
-static QString formatVersion(int value)
-{
-    if (value < 0) {
-        return QLatin1String("n/a");
-    }
-
-    const unsigned int a = ((value >> 24) & 0xff);
-    const unsigned int b = ((value >> 16) & 0xff);
-    const unsigned int c = ((value >>  8) & 0xff);
-    const unsigned int d = ((value      ) & 0xff);
-    if (a) {
-        return QStringLiteral("%1.%2.%3.%4").arg(QString::number(a), QString::number(b), QString::number(c), QString::number(d));
-    } else if (b) {
-        return QStringLiteral("%1.%2.%3").arg(QString::number(b), QString::number(c), QString::number(d));
-    } else if (c) {
-        return QStringLiteral("%1.%2").arg(QString::number(c), QString::number(d));
-    }
-    return QString::number(d);
-}
-
 static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PIVCardWidget::KeyWidgets &keyWidgets)
 {
     int row = grid->rowCount();
@@ -231,11 +211,12 @@ PIVCardWidget::~PIVCardWidget()
 void PIVCardWidget::setCard(const PIVCard *card)
 {
     mCardSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("%1 version number", "PIV v%1 card", formatVersion(card->appVersion())));
+    mVersionLabel->setText(i18nc("%1 version number", "PIV v%1 card", card->displayAppVersion()));
 
     if (card->displaySerialNumber() != card->serialNumber()) {
-        mSerialNumber->setText(QStringLiteral("%1 (%2)").arg(QString::fromStdString(card->displaySerialNumber()),
-                                                             QString::fromStdString(card->serialNumber())));
+        mSerialNumber->setText(i18nc("%1 nice serial number, %2 real serial number", "%1 (%2)",
+                                     QString::fromStdString(card->displaySerialNumber()),
+                                     QString::fromStdString(card->serialNumber())));
     } else {
         mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
     }

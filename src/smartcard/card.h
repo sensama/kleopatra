@@ -9,8 +9,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include <QString>
 
@@ -18,7 +18,7 @@ namespace Kleo
 {
 namespace SmartCard
 {
-/** Class to work with Smartcards or other Hardware tokens. */
+/** Class representing an application on a smartcard or similar hardware token. */
 class Card
 {
 public:
@@ -46,10 +46,10 @@ public:
     };
 
     Card();
-    virtual ~Card() {}
+    virtual ~Card();
 
-    virtual bool operator == (const Card& other) const;
-    bool operator != (const Card& other) const;
+    virtual bool operator == (const Card &other) const;
+    bool operator != (const Card &other) const;
 
     void setStatus(Status s);
     Status status() const;
@@ -58,16 +58,12 @@ public:
     std::string serialNumber() const;
 
     std::string appName() const;
-    void setAppName(const std::string &name);
 
     void setAppVersion(int version);
     int appVersion() const;
 
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
-
-    void setSlot(int slot);
-    int slot() const;
 
     bool hasNullPin() const;
     void setHasNullPin(bool value);
@@ -78,15 +74,17 @@ public:
     QString errorMsg() const;
     void setErrorMsg(const QString &msg);
 
+protected:
+    void setAppName(const std::string &name);
+
 private:
-    bool mCanLearn;
-    bool mHasNullPin;
-    Status mStatus;
+    bool mCanLearn = false;
+    bool mHasNullPin = false;
+    Status mStatus = NoCard;
     std::string mSerialNumber;
     std::string mAppName;
-    int mAppVersion;
+    int mAppVersion = -1;
     std::vector<PinState> mPinStates;
-    int mSlot;
     QString mErrMsg;
 };
 } // namespace Smartcard

@@ -333,13 +333,12 @@ static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Er
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    auto ret = new OpenPGPCard();
-    ret->setSerialNumber(ci->serialNumber());
+    auto pgpCard = new OpenPGPCard(*ci);
 
-    ret->setManufacturer(get_manufacturer(gpg_agent, err));
+    pgpCard->setManufacturer(get_manufacturer(gpg_agent, err));
     if (err.code()) {
         // fallback, e.g. if gpg does not yet support querying for the MANUFACTURER attribute
-        ret->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
+        pgpCard->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
     }
 
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --keypairinfo", err);
@@ -347,8 +346,8 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
         ci->setStatus(Card::CardError);
         return;
     }
-    ret->setKeyPairInfo(info);
-    ci.reset(ret);
+    pgpCard->setKeyPairInfo(info);
+    ci.reset(pgpCard);
 }
 
 static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)
@@ -397,8 +396,7 @@ static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCa
 static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    auto pivCard = new PIVCard();
-    pivCard->setSerialNumber(ci->serialNumber());
+    auto pivCard = new PIVCard(*ci);
 
     const auto displaySerialnumber = scd_getattr_status(gpg_agent, "$DISPSERIALNO", err);
     if (err) {
@@ -427,8 +425,7 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
 static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
-    auto nkCard = new NetKeyCard();
-    nkCard->setSerialNumber(ci->serialNumber());
+    auto nkCard = new NetKeyCard(*ci);
     ci.reset(nkCard);
 
     ci->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
@@ -533,18 +530,17 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     }
 
     ci->setSerialNumber(serialNumber);
-    ci->setAppName(appName);
 
     // Handle different card types
-    if (ci->appName() == NetKeyCard::AppName) {
+    if (appName == NetKeyCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci->serialNumber().c_str() << "end";
         handle_netkey_card(ci, gpg_agent);
         return ci;
-    } else if (ci->appName() == OpenPGPCard::AppName) {
+    } else if (appName == OpenPGPCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
         handle_openpgp_card(ci, gpg_agent);
         return ci;
-    } else if (ci->appName() == PIVCard::AppName) {
+    } else if (appName == PIVCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found PIV card" << ci->serialNumber().c_str() << "end";
         handle_piv_card(ci, gpg_agent);
         return ci;

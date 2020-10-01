@@ -51,7 +51,8 @@ static GpgME::Key parse_keypairinfo_and_lookup_key(GpgME::Context *ctx, const st
 
 } // namespace
 
-NetKeyCard::NetKeyCard()
+NetKeyCard::NetKeyCard(const Card &card)
+    : Card(card)
 {
     setAppName(AppName);
 }

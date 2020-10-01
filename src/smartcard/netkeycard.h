@@ -21,7 +21,7 @@ namespace SmartCard
 class NetKeyCard: public Card
 {
 public:
-    NetKeyCard();
+    explicit NetKeyCard(const Card &card);
 
     static const std::string AppName;
 

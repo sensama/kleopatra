@@ -21,14 +21,10 @@ using namespace Kleo::SmartCard;
 // static
 const std::string PIVCard::AppName = "piv";
 
-PIVCard::PIVCard()
+PIVCard::PIVCard(const Card &card)
+    : Card(card)
 {
     setAppName(AppName);
-}
-
-PIVCard::PIVCard(const std::string &serialno): PIVCard()
-{
-    setSerialNumber(serialno);
 }
 
 // static

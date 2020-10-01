@@ -8,15 +8,17 @@
 */
 
 #include "card.h"
+
 #include "readerstatus.h"
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
-Card::Card(): mCanLearn(false),
-              mHasNullPin(false),
-              mStatus(Status::NoCard),
-              mAppVersion(-1)
+Card::Card()
+{
+}
+
+Card::~Card()
 {
 }
 
@@ -70,16 +72,6 @@ void Card::setPinStates(const std::vector<PinState> &pinStates)
     mPinStates = pinStates;
 }
 
-void Card::setSlot(int slot)
-{
-    mSlot = slot;
-}
-
-int Card::slot() const
-{
-    return mSlot;
-}
-
 bool Card::hasNullPin() const
 {
     return mHasNullPin;
@@ -100,19 +92,18 @@ void Card::setCanLearnKeys(bool value)
     mCanLearn = value;
 }
 
-bool Card::operator == (const Card& other) const
+bool Card::operator == (const Card &other) const
 {
     return mStatus == other.status()
         && mSerialNumber == other.serialNumber()
         && mAppName == other.appName()
         && mAppVersion == other.appVersion()
         && mPinStates == other.pinStates()
-        && mSlot == other.slot()
         && mCanLearn == other.canLearnKeys()
         && mHasNullPin == other.hasNullPin();
 }
 
-bool Card::operator != (const Card& other) const
+bool Card::operator != (const Card &other) const
 {
     return !operator==(other);
 }

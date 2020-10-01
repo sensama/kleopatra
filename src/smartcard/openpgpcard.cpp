@@ -29,14 +29,10 @@ using namespace Kleo::SmartCard;
 // static
 const std::string OpenPGPCard::AppName = "openpgp";
 
-OpenPGPCard::OpenPGPCard()
+OpenPGPCard::OpenPGPCard(const Card &card)
+    : Card(card)
 {
     setAppName(AppName);
-}
-
-OpenPGPCard::OpenPGPCard(const std::string &serialno): OpenPGPCard()
-{
-    setSerialNumber(serialno);
 }
 
 // static

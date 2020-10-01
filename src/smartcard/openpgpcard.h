@@ -21,8 +21,7 @@ namespace SmartCard
 class OpenPGPCard: public Card
 {
 public:
-    OpenPGPCard();
-    OpenPGPCard(const std::string &serialno);
+    explicit OpenPGPCard(const Card &card);
 
     static const std::string AppName;
 

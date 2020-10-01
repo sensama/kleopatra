@@ -237,7 +237,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 
 void PGPCardWidget::doChangePin(const std::string &keyRef)
 {
-    auto cmd = new ChangePinCommand(mRealSerial, this);
+    auto cmd = new ChangePinCommand(mRealSerial, OpenPGPCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished,
             this, [this]() {

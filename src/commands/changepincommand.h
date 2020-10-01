@@ -25,7 +25,7 @@ class ChangePinCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    explicit ChangePinCommand(const std::string &serialNumber, QWidget *parent);
+    explicit ChangePinCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent);
     ~ChangePinCommand() override;
 
     void setKeyRef(const std::string &keyRef);

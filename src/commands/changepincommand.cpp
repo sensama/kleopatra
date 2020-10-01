@@ -34,7 +34,7 @@ class ChangePinCommand::Private : public CardCommand::Private
         return static_cast<ChangePinCommand *>(q);
     }
 public:
-    explicit Private(ChangePinCommand *qq, const std::string &serialNumber, QWidget *p);
+    explicit Private(ChangePinCommand *qq, const std::string &serialNumber, const std::string &appName, QWidget *p);
     ~Private();
 
     void init();
@@ -46,6 +46,7 @@ private:
     void changePin();
 
 private:
+    std::string appName;
     std::string keyRef;
 };
 
@@ -61,8 +62,9 @@ const ChangePinCommand::Private *ChangePinCommand::d_func() const
 #define d d_func()
 #define q q_func()
 
-ChangePinCommand::Private::Private(ChangePinCommand *qq, const std::string &serialNumber, QWidget *p)
+ChangePinCommand::Private::Private(ChangePinCommand *qq, const std::string &serialNumber, const std::string &appName_, QWidget *p)
     : CardCommand::Private(qq, serialNumber, p)
+    , appName(appName_)
 {
 }
 
@@ -71,8 +73,8 @@ ChangePinCommand::Private::~Private()
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::Private::~Private()";
 }
 
-ChangePinCommand::ChangePinCommand(const std::string &serialNumber, QWidget *p)
-    : CardCommand(new Private(this, serialNumber, p))
+ChangePinCommand::ChangePinCommand(const std::string &serialNumber, const std::string &appName, QWidget *p)
+    : CardCommand(new Private(this, serialNumber, appName, p))
 {
     d->init();
 }
@@ -106,7 +108,7 @@ void ChangePinCommand::Private::changePin()
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::changePin()";
 
-    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(serialNumber());
+    const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
     if (!card) {
         error(i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();

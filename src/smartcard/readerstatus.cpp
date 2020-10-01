@@ -934,4 +934,16 @@ std::vector <std::shared_ptr<Card> > ReaderStatus::getCards() const
     return d->cardInfos();
 }
 
+std::shared_ptr<Card> ReaderStatus::getCard(const std::string &serialNumber, const std::string &appName) const
+{
+    for (const auto &card: d->cardInfos()) {
+        if (card->serialNumber() == serialNumber && card->appName() == appName) {
+            qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Found card with serial number" << serialNumber << "and app" << appName;
+            return card;
+        }
+    }
+    qCWarning(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Did not find card with serial number" << serialNumber << "and app" << appName;
+    return std::shared_ptr<Card>();
+}
+
 #include "readerstatus.moc"

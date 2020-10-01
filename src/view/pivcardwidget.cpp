@@ -329,7 +329,7 @@ void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
 
 void PIVCardWidget::writeKeyToCard(const std::string &keyref)
 {
-    auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber);
+    auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber, PIVCard::AppName);
     this->setEnabled(false);
     connect(cmd, &KeyToCardCommand::finished,
             this, [this]() {
@@ -341,7 +341,7 @@ void PIVCardWidget::writeKeyToCard(const std::string &keyref)
 
 void PIVCardWidget::changePin(const std::string &keyRef)
 {
-    auto cmd = new ChangePinCommand(mCardSerialNumber, this);
+    auto cmd = new ChangePinCommand(mCardSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished,
             this, [this]() {

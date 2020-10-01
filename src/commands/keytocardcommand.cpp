@@ -50,8 +50,8 @@ class KeyToCardCommand::Private : public CardCommand::Private
         return static_cast<KeyToCardCommand *>(q);
     }
 public:
-    explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey, const std::string &serialno);
-    explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialno);
+    explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey, const std::string &serialNumber, const std::string &appName);
+    explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
     ~Private();
 
 private:
@@ -67,6 +67,7 @@ private:
     void authenticationCanceled();
 
 private:
+    std::string appName;
     GpgME::Subkey subkey;
     std::string cardSlot;
     bool overwriteExistingAlreadyApproved = false;
@@ -88,14 +89,18 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
                                    const GpgME::Subkey &subkey_,
-                                   const std::string &serialno)
-    : CardCommand::Private(qq, serialno, nullptr),
-      subkey(subkey_)
+                                   const std::string &serialNumber,
+                                   const std::string &appName_
+                                  )
+    : CardCommand::Private(qq, serialNumber, nullptr)
+    , appName(appName_)
+    , subkey(subkey_)
 {
 }
 
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialno)
-    : CardCommand::Private(qq, serialno, nullptr)
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName_)
+    : CardCommand::Private(qq, serialNumber, nullptr)
+    , appName(appName_)
     , cardSlot(slot)
 {
 }
@@ -108,7 +113,7 @@ void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
 
-    const auto card = SmartCard::ReaderStatus::instance()->getCard<Card>(serialNumber());
+    const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
     if (!card) {
         error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
@@ -359,13 +364,13 @@ void KeyToCardCommand::Private::authenticationCanceled()
     canceled();
 }
 
-KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno)
-    : CardCommand(new Private(this, key, serialno))
+KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialNumber, const std::string &appName)
+    : CardCommand(new Private(this, key, serialNumber, appName))
 {
 }
 
-KeyToCardCommand::KeyToCardCommand(const std::string& cardSlot, const std::string &serialno)
-    : CardCommand(new Private(this, cardSlot, serialno))
+KeyToCardCommand::KeyToCardCommand(const std::string& cardSlot, const std::string &serialNumber, const std::string &appName)
+    : CardCommand(new Private(this, cardSlot, serialNumber, appName))
 {
 }
 

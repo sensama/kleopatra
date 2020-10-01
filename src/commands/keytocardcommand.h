@@ -25,8 +25,8 @@ class KeyToCardCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialno);
-    KeyToCardCommand(const std::string& cardSlot, const std::string &serialno);
+    KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialNumber, const std::string &appName);
+    KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName);
     ~KeyToCardCommand() override;
 
     static bool supported();

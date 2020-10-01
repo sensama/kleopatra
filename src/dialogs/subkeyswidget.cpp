@@ -134,7 +134,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
                 menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
                                 i18n("Transfer to smartcard"),
                                 q, [this, subkey, card]() {
-                    auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber());
+                    auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber(), card->appName());
                     ui.subkeysTree->setEnabled(false);
                     connect(cmd, &Kleo::Commands::KeyToCardCommand::finished,
                             q, [this]() { ui.subkeysTree->setEnabled(true); });

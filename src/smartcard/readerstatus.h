@@ -50,17 +50,12 @@ public:
 
     std::vector<std::shared_ptr<Card> > getCards() const;
 
+    std::shared_ptr<Card> getCard(const std::string &serialNumber, const std::string &appName) const;
+
     template <typename T>
     std::shared_ptr<T> getCard(const std::string &serialNumber) const
     {
-        for (const auto &card: getCards()) {
-            if (card->serialNumber() == serialNumber) {
-                qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Found card with serial number" << QString::fromStdString(serialNumber);
-                return std::dynamic_pointer_cast<T>(card);
-            }
-        }
-        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Did not find card with serial number" << QString::fromStdString(serialNumber);
-        return std::shared_ptr<T>();
+        return std::dynamic_pointer_cast<T>(getCard(serialNumber, T::AppName));
     }
 
 public Q_SLOTS:

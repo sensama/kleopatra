@@ -445,7 +445,7 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         // Tools menu
         {
-            "tools_refresh_x509_certificates", i18n("Refresh X.509 Certificates"), QString(),
+            "tools_refresh_x509_certificates", i18n("Refresh S/MIME Certificates"), QString(),
             "view-refresh", nullptr, nullptr, QString(), false, true
         },
         {

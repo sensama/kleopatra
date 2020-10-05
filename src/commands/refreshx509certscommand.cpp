@@ -33,6 +33,8 @@ RefreshX509CertsCommand::RefreshX509CertsCommand(QAbstractItemView *v, KeyListCo
 
 RefreshX509CertsCommand::~RefreshX509CertsCommand() {}
 
+/* aheinecke 2020: I think it's ok to use X.509 here in the windows because
+ * this is an expert thing and normally not used. */
 bool RefreshX509CertsCommand::preStartHook(QWidget *parent) const
 {
     return KMessageBox::warningContinueCancel(parent,

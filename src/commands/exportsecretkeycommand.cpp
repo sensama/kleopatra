@@ -75,7 +75,7 @@ bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
                     : Class::CMS | Class::Binary | Class::ExportedPSM, usePGPFileExt)));
 
     m_filename = FileDialog::getSaveFileNameEx(parent ? parent : d->parentWidgetOrView(),
-                          i18n("Export Secret Key"),
+                          i18n("Backup Secret Key"),
                           QStringLiteral("imp"),
                           proposedFileName,
                           protocol == GpgME::OpenPGP

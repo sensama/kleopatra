@@ -358,7 +358,7 @@ void KeyListController::createActions(KActionCollection *coll)
             "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E"), false, true
         },
         {
-            "file_export_secret_keys", i18n("Export Secret Keys..."), QString(),
+            "file_export_secret_keys", i18n("Backup Secret Keys..."), QString(),
             "view-certificate-export-secret", nullptr, nullptr, QString(), false, true
         },
         {

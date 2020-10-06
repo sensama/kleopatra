@@ -67,68 +67,9 @@ public:
 class SmartCardWidget::Private
 {
 public:
-    Private(SmartCardWidget *qq) : q(qq)
-    {
-        QPushButton *backBtn = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-left")), i18n("Back"));
-        QHBoxLayout *backH = new QHBoxLayout;
-        backH->addWidget(backBtn);
-        backH->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +
-                                    QStringLiteral("</h2>")));
-        backH->addStretch(-1);
+    Private(SmartCardWidget *qq);
 
-        QVBoxLayout *vLay = new QVBoxLayout(q);
-
-
-        connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT q->backRequested();});
-
-        vLay->addLayout(backH);
-
-        mStack = new QStackedWidget;
-        vLay->addWidget(mStack);
-
-        mPGPCardWidget = new PGPCardWidget(q);
-        mStack->addWidget(mPGPCardWidget);
-
-        mNetKeyWidget = new NetKeyWidget(q);
-        mStack->addWidget(mNetKeyWidget);
-
-        mPIVCardWidget = new PIVCardWidget(q);
-        mStack->addWidget(mPIVCardWidget);
-
-        mPlaceHolderWidget = new PlaceHolderWidget(q);
-        mStack->addWidget(mPlaceHolderWidget);
-
-        mStack->setCurrentWidget(mPlaceHolderWidget);
-
-        connect(ReaderStatus::instance(), &ReaderStatus::cardChanged,
-                q, [this] (unsigned int slot) {
-                    if (slot == 0) {
-                        const auto cards = ReaderStatus::instance()->getCards();
-                        if (!cards.size()) {
-                            setCard(std::shared_ptr<Card>(new Card()));
-                        } else {
-                            // No support for multiple reader / cards currently
-                            setCard(cards[0]);
-                        }
-                    }
-                });
-    }
-
-    void setCard(std::shared_ptr<Card> card)
-    {
-        if (card->appName() == SmartCard::OpenPGPCard::AppName) {
-            mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
-            mStack->setCurrentWidget(mPGPCardWidget);
-        } else if (card->appName() == SmartCard::NetKeyCard::AppName) {
-            mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
-            mStack->setCurrentWidget(mNetKeyWidget);
-        } else if (card->appName() == SmartCard::PIVCard::AppName) {
-            mPIVCardWidget->setCard(static_cast<PIVCard *> (card.get()));
-            mStack->setCurrentWidget(mPIVCardWidget);
-        } else {
-            mStack->setCurrentWidget(mPlaceHolderWidget);
-        }
-    }
+    void setCard(std::shared_ptr<Card> card);
 
 private:
     SmartCardWidget *const q;
@@ -138,6 +79,70 @@ private:
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
 };
+
+SmartCardWidget::Private::Private(SmartCardWidget *qq)
+    : q(qq)
+{
+    QPushButton *backBtn = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-left")), i18n("Back"));
+    QHBoxLayout *backH = new QHBoxLayout;
+    backH->addWidget(backBtn);
+    backH->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +
+                                QStringLiteral("</h2>")));
+    backH->addStretch(-1);
+
+    QVBoxLayout *vLay = new QVBoxLayout(q);
+
+
+    connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT q->backRequested();});
+
+    vLay->addLayout(backH);
+
+    mStack = new QStackedWidget;
+    vLay->addWidget(mStack);
+
+    mPGPCardWidget = new PGPCardWidget(q);
+    mStack->addWidget(mPGPCardWidget);
+
+    mNetKeyWidget = new NetKeyWidget(q);
+    mStack->addWidget(mNetKeyWidget);
+
+    mPIVCardWidget = new PIVCardWidget(q);
+    mStack->addWidget(mPIVCardWidget);
+
+    mPlaceHolderWidget = new PlaceHolderWidget(q);
+    mStack->addWidget(mPlaceHolderWidget);
+
+    mStack->setCurrentWidget(mPlaceHolderWidget);
+
+    connect(ReaderStatus::instance(), &ReaderStatus::cardChanged,
+            q, [this] (unsigned int slot) {
+                if (slot == 0) {
+                    const auto cards = ReaderStatus::instance()->getCards();
+                    if (!cards.size()) {
+                        setCard(std::shared_ptr<Card>(new Card()));
+                    } else {
+                        // No support for multiple reader / cards currently
+                        setCard(cards[0]);
+                    }
+                }
+            });
+}
+
+void SmartCardWidget::Private::setCard(std::shared_ptr<Card> card)
+{
+    if (card->appName() == SmartCard::OpenPGPCard::AppName) {
+        mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
+        mStack->setCurrentWidget(mPGPCardWidget);
+    } else if (card->appName() == SmartCard::NetKeyCard::AppName) {
+        mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
+        mStack->setCurrentWidget(mNetKeyWidget);
+    } else if (card->appName() == SmartCard::PIVCard::AppName) {
+        mPIVCardWidget->setCard(static_cast<PIVCard *> (card.get()));
+        mStack->setCurrentWidget(mPIVCardWidget);
+    } else {
+        mStack->setCurrentWidget(mPlaceHolderWidget);
+    }
+}
 
 SmartCardWidget::SmartCardWidget(QWidget *parent):
     QWidget(parent),

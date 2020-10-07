@@ -338,6 +338,23 @@ static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Er
     return manufacturerName;
 }
 
+static const std::string getDisplaySerialNumber(std::shared_ptr<Context> &gpgAgent, Error &err)
+{
+    const auto displaySerialnumber = scd_getattr_status(gpgAgent, "$DISPSERIALNO", err);
+    if (err && err.code() != GPG_ERR_INV_NAME) {
+        qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR $DISPSERIALNO failed:" << err;
+    }
+    return displaySerialnumber;
+}
+
+static bool setDisplaySerialNumber(Card *card, std::shared_ptr<Context> &gpgAgent)
+{
+    Error err;
+    const std::string displaySerialnumber = getDisplaySerialNumber(gpgAgent, err);
+    card->setDisplaySerialNumber(err ? QString::fromStdString(card->serialNumber()) : QString::fromStdString(displaySerialnumber));
+    return !err;
+}
+
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -355,6 +372,11 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
         return;
     }
     pgpCard->setCardInfo(info);
+
+    if (!setDisplaySerialNumber(pgpCard, gpg_agent)) {
+        pgpCard->setDisplaySerialNumber(QString::fromStdString(pgpCard->serialNumber()).mid(16, 12));
+    }
+
     ci.reset(pgpCard);
 }
 
@@ -404,18 +426,14 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     Error err;
     auto pivCard = new PIVCard(*ci);
 
-    const auto displaySerialnumber = scd_getattr_status(gpg_agent, "$DISPSERIALNO", err);
-    if (err) {
-        qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR $DISPSERIALNO failed:" << err;
-    }
-    pivCard->setDisplaySerialNumber(err ? ci->serialNumber() : displaySerialnumber);
-
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
     if (err) {
         ci->setStatus(Card::CardError);
         return;
     }
     pivCard->setCardInfo(info);
+
+    (void) setDisplaySerialNumber(pivCard, gpg_agent);
 
     for (const std::string &keyRef : PIVCard::supportedKeys()) {
         if (!pivCard->keyGrip(keyRef).empty()) {
@@ -446,6 +464,9 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         ci->setErrorMsg(QStringLiteral("NetKey v%1 cards are not supported.").arg(ci->appVersion()));
         return;
     }
+
+    (void) setDisplaySerialNumber(nkCard, gpg_agent);
+
     // the following only works for NKS v3...
     const auto chvStatus = QString::fromStdString(
             scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));

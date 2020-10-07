@@ -41,9 +41,6 @@ public:
 
     void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
-    std::string displaySerialNumber() const;
-    void setDisplaySerialNumber(const std::string &sn);
-
     std::string keyAlgorithm(const std::string &keyRef) const;
     void setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm);
 
@@ -53,7 +50,6 @@ public:
     bool operator == (const Card& other) const override;
 
 private:
-    std::string mDisplaySerialNumber;
     QMap <std::string, std::string> mMetaInfo;
 };
 } // namespace Smartcard

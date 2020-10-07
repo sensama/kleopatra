@@ -64,6 +64,16 @@ std::string Card::serialNumber() const
     return mSerialNumber;
 }
 
+QString Card::displaySerialNumber() const
+{
+    return mDisplaySerialNumber;
+}
+
+void Card::setDisplaySerialNumber(const QString &serialNumber)
+{
+    mDisplaySerialNumber = serialNumber;
+}
+
 std::string Card::appName() const
 {
     return mAppName;

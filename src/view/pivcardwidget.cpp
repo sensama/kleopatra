@@ -214,13 +214,8 @@ void PIVCardWidget::setCard(const PIVCard *card)
     mCardSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("%1 version number", "PIV v%1 card", card->displayAppVersion()));
 
-    if (card->displaySerialNumber() != card->serialNumber()) {
-        mSerialNumber->setText(i18nc("%1 nice serial number, %2 real serial number", "%1 (%2)",
-                                     QString::fromStdString(card->displaySerialNumber()),
-                                     QString::fromStdString(card->serialNumber())));
-    } else {
-        mSerialNumber->setText(QString::fromStdString(card->serialNumber()));
-    }
+    mSerialNumber->setText(card->displaySerialNumber());
+    mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
 
     updateKeyWidgets(PIVCard::pivAuthenticationKeyRef(), card);
     updateKeyWidgets(PIVCard::cardAuthenticationKeyRef(), card);

@@ -57,6 +57,9 @@ public:
     void setSerialNumber(const std::string &sn);
     std::string serialNumber() const;
 
+    QString displaySerialNumber() const;
+    void setDisplaySerialNumber(const QString &sn);
+
     std::string appName() const;
 
     void setAppVersion(int version);
@@ -90,6 +93,7 @@ private:
     bool mHasNullPin = false;
     Status mStatus = NoCard;
     std::string mSerialNumber;
+    QString mDisplaySerialNumber;
     std::string mAppName;
     int mAppVersion = -1;
     std::string mCardType;

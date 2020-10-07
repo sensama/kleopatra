@@ -141,16 +141,6 @@ void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string>
     }
 }
 
-std::string PIVCard::displaySerialNumber() const
-{
-    return mDisplaySerialNumber;
-}
-
-void PIVCard::setDisplaySerialNumber(const std::string &serialno)
-{
-    mDisplaySerialNumber = serialno;
-}
-
 std::string PIVCard::keyAlgorithm(const std::string &keyRef) const
 {
     return mMetaInfo.value("KLEO-KEYALGO-" + keyRef);

@@ -85,6 +85,14 @@ static QDebug operator<<(QDebug s, const std::string &string)
     return s << QString::fromStdString(string);
 }
 
+static QDebug operator<<(QDebug s, const GpgME::Error &err)
+{
+    const bool oldSetting = s.autoInsertSpaces();
+    s.nospace() << err.asString() << " (code: " << err.code() << ", source: " << err.source() << ")";
+    s.setAutoInsertSpaces(oldSetting);
+    return s.maybeSpace();
+}
+
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
 {
     typedef std::pair<std::string, std::string> pair;
@@ -144,7 +152,7 @@ static std::unique_ptr<T> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, 
     qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
     err = gpgAgent->assuanTransact(command, std::move(transaction));
     if (err.code()) {
-        qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "):" << QString::fromLocal8Bit(err.asString());
+        qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "): Error:" << err;
         if (err.code() >= GPG_ERR_ASS_GENERAL && err.code() <= GPG_ERR_ASS_UNKNOWN_INQUIRE) {
             qCDebug(KLEOPATRA_LOG) << "Assuan problem, killing context";
             gpgAgent.reset();
@@ -317,7 +325,7 @@ static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Er
         if (err.code() == GPG_ERR_INV_NAME) {
             qCDebug(KLEOPATRA_LOG) << "get_manufacturer(): Querying for attribute MANUFACTURER not yet supported; needs GnuPG 2.2.21+";
         } else {
-            qCDebug(KLEOPATRA_LOG) << "get_manufacturer(): GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+            qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR MANUFACTURER failed:" << err;
         }
         return std::string();
     }
@@ -356,8 +364,7 @@ static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCa
     const std::string command = std::string("SCD READKEY --info-only -- ") + keyRef;
     const auto keyPairInfoLines = gpgagent_statuslines(gpg_agent, command.c_str(), err);
     if (err) {
-        qCWarning(KLEOPATRA_LOG) << "readKeyPairInfoFromPIVCard(): Error on " << QString::fromStdString(command) << ":"
-                << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
         return;
     }
     for (const auto &pair: keyPairInfoLines) {
@@ -381,8 +388,7 @@ static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCa
     const std::string command = std::string("SCD READCERT ") + keyRef;
     const std::string certificateData = gpgagent_data(gpg_agent, command.c_str(), err);
     if (err && err.code() != GPG_ERR_NOT_FOUND) {
-        qCWarning(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): Error on "
-                << QString::fromStdString(command) << ":" << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
         return;
     }
     if (certificateData.empty()) {
@@ -400,8 +406,7 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
 
     const auto displaySerialnumber = scd_getattr_status(gpg_agent, "$DISPSERIALNO", err);
     if (err) {
-        qCWarning(KLEOPATRA_LOG) << "handle_piv_card(): Error on GETATTR $DISPSERIALNO:"
-                  << "GpgME::Error(" << err.encodedError() << " (" << err.asString() << "))";
+        qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR $DISPSERIALNO failed:" << err;
     }
     pivCard->setDisplaySerialNumber(err ? ci->serialNumber() : displaySerialnumber);
 
@@ -431,7 +436,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     ci->setAppVersion(parse_app_version(scd_getattr_status(gpg_agent, "NKS-VERSION", err)));
 
     if (err.code()) {
-        qCDebug(KLEOPATRA_LOG) << "NKS-VERSION resulted in error" << err.asString();
+        qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR NKS-VERSION failed:" << err;
         ci->setErrorMsg(QStringLiteral ("NKS-VERSION failed: ") + QString::fromUtf8(err.asString()));
         return;
     }
@@ -445,7 +450,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     const auto chvStatus = QString::fromStdString(
             scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));
     if (err.code()) {
-        qCDebug(KLEOPATRA_LOG) << "no CHV-STATUS" << err.asString();
+        qCDebug(KLEOPATRA_LOG) << "Running SCD GETATTR CHV-STATUS failed:" << err;
         ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + QString::fromUtf8(err.asString()));
         return;
     }

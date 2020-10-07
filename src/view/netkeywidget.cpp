@@ -56,6 +56,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mAreaWidget->setLayout(vLay);
     mArea->setWidget(mAreaWidget);
     auto scrollLay = new QVBoxLayout(this);
+    scrollLay->setContentsMargins(0, 0, 0, 0);
     scrollLay->addWidget(mArea);
 
     // Add general widgets

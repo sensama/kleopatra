@@ -81,6 +81,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
+    myLayout->setContentsMargins(0, 0, 0, 0);
 
     auto area = new QScrollArea;
     area->setFrameShape(QFrame::NoFrame);

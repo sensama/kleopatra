@@ -3,28 +3,34 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include "smartcardwidget.h"
+
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/netkeycard.h"
 #include "smartcard/pivcard.h"
+
 #include "view/pgpcardwidget.h"
 #include "view/netkeywidget.h"
 #include "view/pivcardwidget.h"
 
 #include "kleopatra_debug.h"
 
+#include <KLocalizedString>
+
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPointer>
 #include <QPushButton>
+#include <QTabWidget>
 #include <QVBoxLayout>
 #include <QStackedWidget>
-
-#include <KLocalizedString>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -69,15 +75,19 @@ class SmartCardWidget::Private
 public:
     Private(SmartCardWidget *qq);
 
-    void setCard(std::shared_ptr<Card> card);
+    void cardAddedOrChanged(const std::string &serialNumber, const std::string &appName);
+    void cardRemoved(const std::string &serialNumber, const std::string &appName);
+
+private:
+    template <typename C, typename W>
+    void cardAddedOrChanged(const std::string &serialNumber);
 
 private:
     SmartCardWidget *const q;
-    NetKeyWidget *mNetKeyWidget;
-    PGPCardWidget *mPGPCardWidget;
-    PIVCardWidget *mPIVCardWidget;
+    QMap<std::pair<std::string, std::string>, QPointer<QWidget> > mCardWidgets;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
+    QTabWidget *mTabWidget;
 };
 
 SmartCardWidget::Private::Private(SmartCardWidget *qq)
@@ -100,46 +110,70 @@ SmartCardWidget::Private::Private(SmartCardWidget *qq)
     mStack = new QStackedWidget;
     vLay->addWidget(mStack);
 
-    mPGPCardWidget = new PGPCardWidget(q);
-    mStack->addWidget(mPGPCardWidget);
-
-    mNetKeyWidget = new NetKeyWidget(q);
-    mStack->addWidget(mNetKeyWidget);
-
-    mPIVCardWidget = new PIVCardWidget(q);
-    mStack->addWidget(mPIVCardWidget);
-
-    mPlaceHolderWidget = new PlaceHolderWidget(q);
+    mPlaceHolderWidget = new PlaceHolderWidget;
     mStack->addWidget(mPlaceHolderWidget);
+
+    mTabWidget = new QTabWidget;
+    mStack->addWidget(mTabWidget);
 
     mStack->setCurrentWidget(mPlaceHolderWidget);
 
+    connect(ReaderStatus::instance(), &ReaderStatus::cardAdded,
+            q, [this] (const std::string &serialNumber, const std::string &appName) { cardAddedOrChanged(serialNumber, appName); });
     connect(ReaderStatus::instance(), &ReaderStatus::cardChanged,
-            q, [this] (unsigned int slot) {
-                if (slot == 0) {
-                    const auto cards = ReaderStatus::instance()->getCards();
-                    if (!cards.size()) {
-                        setCard(std::shared_ptr<Card>(new Card()));
-                    } else {
-                        // No support for multiple reader / cards currently
-                        setCard(cards[0]);
-                    }
-                }
-            });
+            q, [this] (const std::string &serialNumber, const std::string &appName) { cardAddedOrChanged(serialNumber, appName); });
+    connect(ReaderStatus::instance(), &ReaderStatus::cardRemoved,
+            q, [this] (const std::string &serialNumber, const std::string &appName) { cardRemoved(serialNumber, appName); });
 }
 
-void SmartCardWidget::Private::setCard(std::shared_ptr<Card> card)
+void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumber, const std::string &appName)
 {
-    if (card->appName() == SmartCard::OpenPGPCard::AppName) {
-        mPGPCardWidget->setCard(static_cast<OpenPGPCard *> (card.get()));
-        mStack->setCurrentWidget(mPGPCardWidget);
-    } else if (card->appName() == SmartCard::NetKeyCard::AppName) {
-        mNetKeyWidget->setCard(static_cast<NetKeyCard *> (card.get()));
-        mStack->setCurrentWidget(mNetKeyWidget);
-    } else if (card->appName() == SmartCard::PIVCard::AppName) {
-        mPIVCardWidget->setCard(static_cast<PIVCard *> (card.get()));
-        mStack->setCurrentWidget(mPIVCardWidget);
+    if (appName == SmartCard::NetKeyCard::AppName) {
+        cardAddedOrChanged<NetKeyCard, NetKeyWidget>(serialNumber);
+    } else if (appName == SmartCard::OpenPGPCard::AppName) {
+        cardAddedOrChanged<OpenPGPCard, PGPCardWidget>(serialNumber);
+    } else if (appName == SmartCard::PIVCard::AppName) {
+        cardAddedOrChanged<PIVCard, PIVCardWidget>(serialNumber);
     } else {
+        qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
+            << "App" << appName.c_str() << "is not supported";
+    }
+}
+
+template <typename C, typename W>
+void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumber)
+{
+    const auto card = ReaderStatus::instance()->getCard<C>(serialNumber);
+    if (!card) {
+        qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
+                                 << "New or changed card" << serialNumber.c_str() << "with app" << C::AppName.c_str() << "not found";
+        return;
+    }
+    W *cardWidget = dynamic_cast<W *>(mCardWidgets.value({serialNumber, C::AppName}).data());
+    if (!cardWidget) {
+        cardWidget = new W;
+        mCardWidgets.insert({serialNumber, C::AppName}, cardWidget);
+        const QString cardLabel = i18nc("@title:tab serial number of smartcard - smartcard application", "%1 - %2",
+                                        QString::fromStdString(serialNumber), QString::fromStdString(C::AppName));
+        mTabWidget->addTab(cardWidget, cardLabel);
+        if (mCardWidgets.size() == 1) {
+            mStack->setCurrentWidget(mTabWidget);
+        }
+    }
+    cardWidget->setCard(card.get());
+}
+
+void SmartCardWidget::Private::cardRemoved(const std::string &serialNumber, const std::string &appName)
+{
+    QWidget * cardWidget = mCardWidgets.take({serialNumber, appName});
+    if (cardWidget) {
+        const int index = mTabWidget->indexOf(cardWidget);
+        if (index != -1) {
+            mTabWidget->removeTab(index);
+        }
+        delete cardWidget;
+    }
+    if (mCardWidgets.empty()) {
         mStack->setCurrentWidget(mPlaceHolderWidget);
     }
 }

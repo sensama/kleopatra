@@ -120,6 +120,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     areaVLay->addStretch(1);
     area->setWidget(areaWidget);
     auto myLayout = new QVBoxLayout(this);
+    myLayout->setContentsMargins(0, 0, 0, 0);
     myLayout->addWidget(area);
 
     // Version and Serialnumber

@@ -644,7 +644,9 @@ public:
 Q_SIGNALS:
     void firstCardWithNullPinChanged(const std::string &serialNumber);
     void anyCardCanLearnKeysChanged(bool);
-    void cardChanged(unsigned int);
+    void cardAdded(const std::string &serialNumber, const std::string &appName);
+    void cardChanged(const std::string &serialNumber, const std::string &appName);
+    void cardRemoved(const std::string &serialNumber, const std::string &appName);
     void oneTransactionFinished(const GpgME::Error &err);
 
 public Q_SLOTS:
@@ -730,39 +732,39 @@ private:
                 KDAB_SYNCHRONIZED(m_mutex)
                 m_cardInfos = newCards;
 
-                std::vector<std::shared_ptr<Card> >::const_iterator
-                nit = newCards.begin(), nend = newCards.end(),
-                oit = oldCards.begin(), oend = oldCards.end();
-
-                unsigned int idx = 0;
                 bool anyLC = false;
                 std::string firstCardWithNullPin;
                 bool anyError = false;
-                while (nit != nend || oit != oend) {
-                    const Card *optr = oit != oend ? (*oit).get() : nullptr;
-                    const Card *nptr = nit != nend ? (*nit).get() : nullptr;
-                    if ((optr && !nptr) || (!optr && nptr) || (optr && nptr && *optr != *nptr)) {
-                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[2nd]: slot" << idx << ": card Changed";
-                        Q_EMIT cardChanged(idx);
-                    }
-                    if (nptr) {
-                        if (nptr->canLearnKeys()) {
-                            anyLC = true;
+                for (const auto &newCard: newCards) {
+                    const auto serialNumber = newCard->serialNumber();
+                    const auto appName = newCard->appName();
+                    const auto matchingOldCard = std::find_if(oldCards.cbegin(), oldCards.cend(),
+                        [serialNumber, appName] (const std::shared_ptr<Card> &card) {
+                            return card->serialNumber() == serialNumber && card->appName() == appName;
+                        });
+                    if (matchingOldCard == oldCards.cend()) {
+                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "was added";
+                        Q_EMIT cardAdded(serialNumber, appName);
+                    } else {
+                        if (*newCard != **matchingOldCard) {
+                            qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
+                            Q_EMIT cardChanged(serialNumber, appName);
                         }
-                        if (nptr->hasNullPin() && firstCardWithNullPin.empty()) {
-                            firstCardWithNullPin = (*nit)->serialNumber();
-                        }
-                        if (nptr->status() == Card::CardError) {
-                            anyError = true;
-                        }
+                        oldCards.erase(matchingOldCard);
                     }
-                    if (nit != nend) {
-                        ++nit;
+                    if (newCard->canLearnKeys()) {
+                        anyLC = true;
                     }
-                    if (oit != oend) {
-                        ++oit;
+                    if (newCard->hasNullPin() && firstCardWithNullPin.empty()) {
+                        firstCardWithNullPin = newCard->serialNumber();
                     }
-                    ++idx;
+                    if (newCard->status() == Card::CardError) {
+                        anyError = true;
+                    }
+                }
+                for (const auto &oldCard: oldCards) {
+                    qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << oldCard->serialNumber() << "with app" << oldCard->appName() << "was removed";
+                    Q_EMIT cardRemoved(oldCard->serialNumber(), oldCard->appName());
                 }
 
                 Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
@@ -824,8 +826,12 @@ public:
         watcher.addPath(Kleo::gnupgHomeDirectory());
         watcher.setDelay(100);
 
+        connect(this, &::ReaderStatusThread::cardAdded,
+                q, &ReaderStatus::cardAdded);
         connect(this, &::ReaderStatusThread::cardChanged,
                 q, &ReaderStatus::cardChanged);
+        connect(this, &::ReaderStatusThread::cardRemoved,
+                q, &ReaderStatus::cardRemoved);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged,
                 q, &ReaderStatus::firstCardWithNullPinChanged);
         connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,

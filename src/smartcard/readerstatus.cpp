@@ -557,6 +557,14 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     return ci;
 }
 
+static bool isCardNotPresentError(const GpgME::Error &err)
+{
+    // see fixup_scd_errors() in gpg-card.c
+    return err && ((err.code() == GPG_ERR_CARD_NOT_PRESENT) ||
+                   ((err.code() == GPG_ERR_ENODEV || err.code() == GPG_ERR_CARD_REMOVED) &&
+                    (err.sourceID() == GPG_ERR_SOURCE_SCD)));
+}
+
 static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Context> &gpgAgent)
 {
     qCDebug(KLEOPATRA_LOG) << "update_cardinfo()";
@@ -564,28 +572,33 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
     // ensure that a card is present and that all cards are properly set up
     {
         Error err;
-        const std::string serialno = gpgagent_status(gpgAgent, "SCD SERIALNO --all", err);
+        const char *command = "SCD SERIALNO --all";
+        const std::string serialno = gpgagent_status(gpgAgent, command, err);
         if (err) {
-            auto ci = std::shared_ptr<Card>(new Card());
-            if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
-                ci->setStatus(Card::NoCard);
+            if (isCardNotPresentError(err)) {
+                qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";
+                return std::vector<std::shared_ptr<Card> >();
             } else {
+                qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
+                auto ci = std::shared_ptr<Card>(new Card());
                 ci->setStatus(Card::CardError);
+                return std::vector<std::shared_ptr<Card> >(1, ci);
             }
-            return std::vector<std::shared_ptr<Card> >(1, ci);
         }
     }
 
     Error err;
     const std::vector<CardApp> cardApps = getCardsAndApps(gpgAgent, err);
     if (err) {
-        auto ci = std::shared_ptr<Card>(new Card());
-        if (err.code() == GPG_ERR_CARD_NOT_PRESENT || err.code() == GPG_ERR_CARD_REMOVED) {
-            ci->setStatus(Card::NoCard);
+        if (isCardNotPresentError(err)) {
+            qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";
+            return std::vector<std::shared_ptr<Card> >();
         } else {
+            qCWarning(KLEOPATRA_LOG) << "Getting active apps on all inserted cards failed:" << err;
+            auto ci = std::shared_ptr<Card>(new Card());
             ci->setStatus(Card::CardError);
+            return std::vector<std::shared_ptr<Card> >(1, ci);
         }
-        return std::vector<std::shared_ptr<Card> >(1, ci);
     }
 
     std::vector<std::shared_ptr<Card> > cards;

@@ -218,8 +218,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         i18nc("Placeholder is a version number", "Unknown OpenPGP v%1 card", version) :
         i18nc("First placeholder is manufacturer, second placeholder is a version number",
               "%1 OpenPGP v%2 card", manufacturer, version));
-    const QString sn = QString::fromStdString(card->serialNumber()).mid(16, 12);
-    mSerialNumber->setText(sn);
+    mSerialNumber->setText(card->displaySerialNumber());
     mRealSerial = card->serialNumber();
 
     const auto holder = QString::fromStdString(card->cardHolder());

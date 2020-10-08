@@ -37,6 +37,7 @@
 #include <QWaitCondition>
 #include <QThread>
 #include <QPointer>
+#include <QRegularExpression>
 
 #include <memory>
 #include <vector>
@@ -338,21 +339,44 @@ static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Er
     return manufacturerName;
 }
 
+static bool isOpenPGPCardSerialNumber(const std::string &serialNumber)
+{
+    return serialNumber.size() == 32 && serialNumber.substr(0, 12) == "D27600012401";
+}
+
 static const std::string getDisplaySerialNumber(std::shared_ptr<Context> &gpgAgent, Error &err)
 {
-    const auto displaySerialnumber = scd_getattr_status(gpgAgent, "$DISPSERIALNO", err);
+    const auto displaySerialNumber = scd_getattr_status(gpgAgent, "$DISPSERIALNO", err);
     if (err && err.code() != GPG_ERR_INV_NAME) {
         qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR $DISPSERIALNO failed:" << err;
     }
-    return displaySerialnumber;
+    return displaySerialNumber;
 }
 
-static bool setDisplaySerialNumber(Card *card, std::shared_ptr<Context> &gpgAgent)
+static void setDisplaySerialNumber(Card *card, std::shared_ptr<Context> &gpgAgent)
 {
+    static const QRegularExpression leadingZeros(QStringLiteral("^0*"));
+
     Error err;
-    const std::string displaySerialnumber = getDisplaySerialNumber(gpgAgent, err);
-    card->setDisplaySerialNumber(err ? QString::fromStdString(card->serialNumber()) : QString::fromStdString(displaySerialnumber));
-    return !err;
+    const QString displaySerialNumber = QString::fromStdString(getDisplaySerialNumber(gpgAgent, err));
+    if (card->cardType() == "yubikey" && isOpenPGPCardSerialNumber(card->serialNumber())
+            && !displaySerialNumber.startsWith(QLatin1String("yk-"))) {
+        // workaround for special Yubikey serial number being overwritten by OpenPGP card serial number (https://dev.gnupg.org/T5100)
+        card->setDisplaySerialNumber(
+            QLatin1String("yk-") + QString::fromStdString(card->serialNumber().substr(20, 8)).replace(leadingZeros, QString()));
+        return;
+    }
+    if (err) {
+        card->setDisplaySerialNumber(QString::fromStdString(card->serialNumber()));
+        return;
+    }
+    if (isOpenPGPCardSerialNumber(card->serialNumber()) && displaySerialNumber.size() == 12) {
+        // add a space between manufacturer id and card id for OpenPGP cards
+        card->setDisplaySerialNumber(displaySerialNumber.left(4) + QLatin1Char(' ') + displaySerialNumber.right(8));
+    } else {
+        card->setDisplaySerialNumber(displaySerialNumber);
+    }
+    return;
 }
 
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
@@ -373,9 +397,7 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     }
     pgpCard->setCardInfo(info);
 
-    if (!setDisplaySerialNumber(pgpCard, gpg_agent)) {
-        pgpCard->setDisplaySerialNumber(QString::fromStdString(pgpCard->serialNumber()).mid(16, 12));
-    }
+    setDisplaySerialNumber(pgpCard, gpg_agent);
 
     ci.reset(pgpCard);
 }
@@ -433,7 +455,7 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     }
     pivCard->setCardInfo(info);
 
-    (void) setDisplaySerialNumber(pivCard, gpg_agent);
+    setDisplaySerialNumber(pivCard, gpg_agent);
 
     for (const std::string &keyRef : PIVCard::supportedKeys()) {
         if (!pivCard->keyGrip(keyRef).empty()) {
@@ -465,7 +487,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         return;
     }
 
-    (void) setDisplaySerialNumber(nkCard, gpg_agent);
+    setDisplaySerialNumber(nkCard, gpg_agent);
 
     // the following only works for NKS v3...
     const auto chvStatus = QString::fromStdString(

@@ -6,7 +6,7 @@ project(kleopatra VERSION ${kleopatra_version})
 
 # The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version
 if (NOT RELEASE_SERVICE_VERSION)
-    set (RELEASE_SERVICE_VERSION "20.08.2")
+    set (RELEASE_SERVICE_VERSION "20.08.3")
 endif()
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)

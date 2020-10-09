@@ -149,7 +149,7 @@ void CertificateToPIVCardCommand::Private::start()
 
 void CertificateToPIVCardCommand::Private::startCertificateToPIVCard()
 {
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::startCertificateToPIVCard()";
+    qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::Private::startCertificateToPIVCard()";
 
     auto ctx = Context::createForProtocol(GpgME::CMS);
     QGpgME::QByteArrayDataProvider dp;

@@ -22,6 +22,7 @@
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
+#include "smartcard/utils.h"
 
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
@@ -50,7 +51,7 @@ class KeyToCardCommand::Private : public CardCommand::Private
         return static_cast<KeyToCardCommand *>(q);
     }
 public:
-    explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey, const std::string &serialNumber, const std::string &appName);
+    explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey);
     explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
     ~Private();
 
@@ -87,13 +88,8 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 #define d d_func()
 
 
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq,
-                                   const GpgME::Subkey &subkey_,
-                                   const std::string &serialNumber,
-                                   const std::string &appName_
-                                  )
-    : CardCommand::Private(qq, serialNumber, nullptr)
-    , appName(appName_)
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey_)
+    : CardCommand::Private(qq, "", nullptr)
     , subkey(subkey_)
 {
 }
@@ -109,9 +105,46 @@ KeyToCardCommand::Private::~Private()
 {
 }
 
+namespace {
+static std::shared_ptr<Card> getCardToTransferSubkeyTo(const Subkey &subkey, QWidget *parent)
+{
+    const std::vector<std::shared_ptr<Card> > suitableCards = KeyToCardCommand::getSuitableCards(subkey);
+    if (suitableCards.empty()) {
+        return std::shared_ptr<Card>();
+    } else if (suitableCards.size() == 1) {
+        return suitableCards[0];
+    }
+
+    QStringList options;
+    for (const auto &card: suitableCards) {
+        options.push_back(i18nc("smartcard application - serial number of smartcard", "%1 - %2",
+            displayAppName(card->appName()), card->displaySerialNumber()));
+    }
+
+    bool ok;
+    const QString choice = QInputDialog::getItem(parent, i18n("Select Card"),
+        i18n("Please select the card the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    if (!ok) {
+        return std::shared_ptr<Card>();
+    }
+    const int index = options.indexOf(choice);
+    return suitableCards[index];
+}
+}
+
 void KeyToCardCommand::Private::start()
 {
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::Private::start()";
+
+    if (!subkey.isNull() && serialNumber().empty()) {
+        const auto card = getCardToTransferSubkeyTo(subkey, parentWidgetOrView());
+        if (!card) {
+            finished();
+            return;
+        }
+        setSerialNumber(card->serialNumber());
+        appName = card->appName();
+    }
 
     const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
     if (!card) {
@@ -364,8 +397,8 @@ void KeyToCardCommand::Private::authenticationCanceled()
     canceled();
 }
 
-KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialNumber, const std::string &appName)
-    : CardCommand(new Private(this, key, serialNumber, appName))
+KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &subkey)
+    : CardCommand(new Private(this, subkey))
 {
 }
 
@@ -379,9 +412,19 @@ KeyToCardCommand::~KeyToCardCommand()
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
 }
 
-bool KeyToCardCommand::supported()
+// static
+std::vector<std::shared_ptr<Card> > KeyToCardCommand::getSuitableCards(const GpgME::Subkey &subkey)
 {
-    return true;
+    std::vector<std::shared_ptr<Card> > suitableCards;
+    if (subkey.isNull() || subkey.parent().protocol() != GpgME::OpenPGP) {
+        return suitableCards;
+    }
+    for (const auto &card: ReaderStatus::instance()->getCards()) {
+        if (card->appName() == OpenPGPCard::AppName) {
+            suitableCards.push_back(card);
+        }
+    }
+    return suitableCards;
 }
 
 void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)

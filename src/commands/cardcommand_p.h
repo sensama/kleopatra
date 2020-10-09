@@ -30,6 +30,12 @@ public:
         return serialNumber_;
     }
 
+protected:
+    void setSerialNumber(const std::string &serialNumber)
+    {
+        serialNumber_ = serialNumber;
+    }
+
 private:
     std::string serialNumber_;
 };

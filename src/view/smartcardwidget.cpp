@@ -15,6 +15,7 @@
 #include "smartcard/openpgpcard.h"
 #include "smartcard/netkeycard.h"
 #include "smartcard/pivcard.h"
+#include "smartcard/utils.h"
 
 #include "view/pgpcardwidget.h"
 #include "view/netkeywidget.h"
@@ -138,22 +139,6 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
         qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
             << "App" << appName.c_str() << "is not supported";
     }
-}
-
-namespace
-{
-QString displayAppName(const std::string &appName)
-{
-    if (appName == SmartCard::NetKeyCard::AppName) {
-        return i18nc("proper name of a type of smartcard", "NetKey");
-    } else if (appName == SmartCard::OpenPGPCard::AppName) {
-        return i18nc("proper name of a type of smartcard", "OpenPGP");
-    } else if (appName == SmartCard::PIVCard::AppName) {
-        return i18nc("proper name of a type of smartcard", "PIV");
-    } else {
-        return QString::fromStdString(appName);
-    }
-}
 }
 
 template <typename C, typename W>

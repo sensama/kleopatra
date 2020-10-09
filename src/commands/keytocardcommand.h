@@ -18,6 +18,14 @@
 
 namespace Kleo
 {
+namespace SmartCard
+{
+class Card;
+}
+}
+
+namespace Kleo
+{
 namespace Commands
 {
 
@@ -25,11 +33,11 @@ class KeyToCardCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    KeyToCardCommand(const GpgME::Subkey &key, const std::string &serialNumber, const std::string &appName);
+    KeyToCardCommand(const GpgME::Subkey &subkey);
     KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName);
     ~KeyToCardCommand() override;
 
-    static bool supported();
+    static std::vector<std::shared_ptr<Kleo::SmartCard::Card> > getSuitableCards(const GpgME::Subkey &subkey);
 
 public Q_SLOTS:
     void keyToOpenPGPCardDone(const GpgME::Error &err);

@@ -9,9 +9,6 @@
 #include "subkeyswidget.h"
 #include "ui_subkeyswidget.h"
 
-#include "smartcard/openpgpcard.h"
-#include "smartcard/readerstatus.h"
-
 #include "commands/changeexpirycommand.h"
 #include "commands/keytocardcommand.h"
 #include "commands/importpaperkeycommand.h"
@@ -40,6 +37,7 @@
 Q_DECLARE_METATYPE(GpgME::Subkey)
 
 using namespace Kleo;
+using namespace Kleo::Commands;
 
 class SubKeysWidget::Private
 {
@@ -78,13 +76,13 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         hasActions = true;
         menu->addAction(i18n("Change Expiry Date..."), q,
                 [this, subkey]() {
-                    auto cmd = new Kleo::Commands::ChangeExpiryCommand(subkey.parent());
+                    auto cmd = new ChangeExpiryCommand(subkey.parent());
                     if (subkey.keyID() != key.keyID()) {
                         // do not set the primary key as subkey
                         cmd->setSubkey(subkey);
                     }
                     ui.subkeysTree->setEnabled(false);
-                    connect(cmd, &Kleo::Commands::ChangeExpiryCommand::finished,
+                    connect(cmd, &ChangeExpiryCommand::finished,
                             q, [this]() {
                                 ui.subkeysTree->setEnabled(true);
                                 key.update();
@@ -115,34 +113,28 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-import")),
                         i18n("Restore printed backup"),
                         q, [this, subkey] () {
-            auto cmd = new Kleo::Commands::ImportPaperKeyCommand(subkey.parent());
+            auto cmd = new ImportPaperKeyCommand(subkey.parent());
             ui.subkeysTree->setEnabled(false);
-            connect(cmd, &Kleo::Commands::ImportPaperKeyCommand::finished,
+            connect(cmd, &ImportPaperKeyCommand::finished,
                     q, [this]() { ui.subkeysTree->setEnabled(true); });
             cmd->setParentWidget(q);
             cmd->start();
         });
     }
 
-    if (subkey.isSecret() && Kleo::Commands::KeyToCardCommand::supported()) {
-        const auto cards = SmartCard::ReaderStatus::instance()->getCards();
-        if (cards.size() && cards[0]->appName() == SmartCard::OpenPGPCard::AppName) {
-            const auto card = cards[0];
-
-            if (!subkey.cardSerialNumber() || card->serialNumber() != subkey.cardSerialNumber()) {
-                hasActions = true;
-                menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
-                                i18n("Transfer to smartcard"),
-                                q, [this, subkey, card]() {
-                    auto cmd = new Kleo::Commands::KeyToCardCommand(subkey, card->serialNumber(), card->appName());
-                    ui.subkeysTree->setEnabled(false);
-                    connect(cmd, &Kleo::Commands::KeyToCardCommand::finished,
-                            q, [this]() { ui.subkeysTree->setEnabled(true); });
-                    cmd->setParentWidget(q);
-                    cmd->start();
-                });
-            }
-        }
+    if (subkey.isSecret()) {
+        hasActions = true;
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
+                                      i18n("Transfer to smartcard"),
+                                      q, [this, subkey]() {
+            auto cmd = new KeyToCardCommand(subkey);
+            ui.subkeysTree->setEnabled(false);
+            connect(cmd, &KeyToCardCommand::finished,
+                    q, [this]() { ui.subkeysTree->setEnabled(true); });
+            cmd->setParentWidget(q);
+            cmd->start();
+        });
+        action->setEnabled(!KeyToCardCommand::getSuitableCards(subkey).empty());
     }
 
     if (hasActions) {

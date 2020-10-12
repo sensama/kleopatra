@@ -71,6 +71,8 @@ public:
     int cardVersion() const;
     QString displayCardVersion() const;
 
+    QString cardHolder() const;
+
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
 
@@ -98,6 +100,7 @@ private:
     int mAppVersion = -1;
     std::string mCardType;
     int mCardVersion = -1;
+    QString mCardHolder;
     std::vector<PinState> mPinStates;
     QString mErrMsg;
 };

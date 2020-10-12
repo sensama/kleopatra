@@ -40,7 +40,6 @@ public:
     void setManufacturer(const std::string &manufacturer);
     std::string manufacturer() const;
 
-    std::string cardHolder() const;
     std::string pubkeyUrl() const;
 private:
     QMap <std::string, std::string> mMetaInfo;

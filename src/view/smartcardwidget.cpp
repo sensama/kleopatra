@@ -141,6 +141,18 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
     }
 }
 
+namespace {
+static QString getCardLabel(const std::shared_ptr<Card> &card) {
+    if (!card->cardHolder().isEmpty()) {
+        return i18nc("@title:tab smartcard application - name of card holder - serial number of smartcard", "%1 - %2 - %3",
+                     displayAppName(card->appName()), card->cardHolder(), card->displaySerialNumber());
+    } else {
+        return i18nc("@title:tab smartcard application - serial number of smartcard", "%1 - %2",
+                     displayAppName(card->appName()), card->displaySerialNumber());
+    }
+}
+}
+
 template <typename C, typename W>
 void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumber)
 {
@@ -154,9 +166,7 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
     if (!cardWidget) {
         cardWidget = new W;
         mCardWidgets.insert({serialNumber, C::AppName}, cardWidget);
-        const QString cardLabel = i18nc("@title:tab smartcard application - serial number of smartcard", "%1 - %2",
-                                        displayAppName(C::AppName), card->displaySerialNumber());
-        mTabWidget->addTab(cardWidget, cardLabel);
+        mTabWidget->addTab(cardWidget, getCardLabel(card));
         if (mCardWidgets.size() == 1) {
             mStack->setCurrentWidget(mTabWidget);
         }

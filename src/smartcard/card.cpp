@@ -114,6 +114,11 @@ QString Card::displayCardVersion() const
     return formatVersion(mCardVersion);
 }
 
+QString Card::cardHolder() const
+{
+    return mCardHolder;
+}
+
 std::vector<Card::PinState> Card::pinStates() const
 {
     return mPinStates;
@@ -190,6 +195,12 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
         return true;
     } else if (name == "CARDVERSION") {
         mCardVersion = parseHexEncodedVersionTuple(value);
+        return true;
+    } else if (name == "DISP-NAME") {
+        auto list = QString::fromUtf8(QByteArray::fromStdString(value)).
+                    split(QStringLiteral("<<"), Qt::SkipEmptyParts);
+        std::reverse(list.begin(), list.end());
+        mCardHolder = list.join(QLatin1Char(' '));
         return true;
     }
 

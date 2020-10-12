@@ -150,13 +150,6 @@ std::string OpenPGPCard::manufacturer() const
     return mManufacturer;
 }
 
-std::string OpenPGPCard::cardHolder() const
-{
-    auto list = QString::fromStdString(mMetaInfo.value("DISP-NAME")).split(QStringLiteral("<<"));
-    std::reverse(list.begin(), list.end());
-    return list.join(QLatin1Char(' ')).toStdString();
-}
-
 std::string OpenPGPCard::pubkeyUrl() const
 {
     return mMetaInfo.value("PUBKEY-URL");

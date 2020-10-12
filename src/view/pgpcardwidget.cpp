@@ -221,7 +221,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mSerialNumber->setText(card->displaySerialNumber());
     mRealSerial = card->serialNumber();
 
-    const auto holder = QString::fromStdString(card->cardHolder());
+    const auto holder = card->cardHolder();
     const auto url = QString::fromStdString(card->pubkeyUrl());
     mCardHolderLabel->setText(holder.isEmpty() ? i18n("not set") : holder);
     mUrl = url;

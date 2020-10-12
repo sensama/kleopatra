@@ -194,7 +194,7 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const std::string &key
     keyWidgets.importCertificateButton->setEnabled(false);
     connect(keyWidgets.importCertificateButton, &QPushButton::clicked,
             this, [this, keyRef] () { importCertificateFromCard(keyRef); });
-    if (keyRef == PIVCard::keyManagementKeyRef()) {
+    if (keyRef == PIVCard::cardAuthenticationKeyRef() || keyRef == PIVCard::keyManagementKeyRef()) {
         keyWidgets.writeKeyButton = new QPushButton(i18nc("@action:button", "Write Key"));
         keyWidgets.writeKeyButton->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
         keyWidgets.writeKeyButton->setEnabled(true);

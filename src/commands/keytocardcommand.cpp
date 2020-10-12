@@ -266,6 +266,22 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
 }
 
 namespace {
+static std::vector<Key> getSigningCertificates()
+{
+    std::vector<Key> signingCertificates = KeyCache::instance()->secretKeys();
+    const auto it = std::remove_if(signingCertificates.begin(), signingCertificates.end(),
+                                   [](const Key &key) {
+                                       return ! (key.protocol() == GpgME::CMS &&
+                                                 !key.subkey(0).isNull() &&
+                                                 key.subkey(0).canSign() &&
+                                                 !key.subkey(0).canEncrypt() &&
+                                                 key.subkey(0).isSecret() &&
+                                                 !key.subkey(0).isCardKey());
+                                   });
+    signingCertificates.erase(it, signingCertificates.end());
+    return signingCertificates;
+}
+
 static std::vector<Key> getEncryptionCertificates()
 {
     std::vector<Key> encryptionCertificates = KeyCache::instance()->secretKeys();
@@ -283,12 +299,12 @@ static std::vector<Key> getEncryptionCertificates()
 
 Subkey KeyToCardCommand::Private::getSubkeyToTransferToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &/*card*/)
 {
-    if (cardSlot != PIVCard::keyManagementKeyRef()) {
+    if (cardSlot != PIVCard::cardAuthenticationKeyRef() && cardSlot != PIVCard::keyManagementKeyRef()) {
         return Subkey();
     }
 
-    const std::vector<Key> encryptionCertificates = getEncryptionCertificates();
-    if (encryptionCertificates.empty()) {
+    const std::vector<Key> certificates = cardSlot == PIVCard::cardAuthenticationKeyRef() ? getSigningCertificates() : getEncryptionCertificates();
+    if (certificates.empty()) {
         error(i18n("Sorry! No suitable certificate to write to this card slot was found."));
         return Subkey();
     }
@@ -296,7 +312,7 @@ Subkey KeyToCardCommand::Private::getSubkeyToTransferToPIVCard(const std::string
     auto dialog = new KeySelectionDialog(parentWidgetOrView());
     dialog->setWindowTitle(i18nc("@title:window", "Select Certificate"));
     dialog->setText(i18n("Please select the certificate whose key pair you want to write to the card:"));
-    dialog->setKeys(encryptionCertificates);
+    dialog->setKeys(certificates);
 
     if (dialog->exec() == QDialog::Rejected) {
         return Subkey();
@@ -316,8 +332,8 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
         return;
     }
 
-    if (cardSlot != PIVCard::keyManagementKeyRef()) {
-        // key to card is only supported for encryption keys
+    if (cardSlot != PIVCard::cardAuthenticationKeyRef() && cardSlot != PIVCard::keyManagementKeyRef()) {
+        // key to card is only supported for the Card Authentication key and the Key Management key
         finished();
         return;
     }

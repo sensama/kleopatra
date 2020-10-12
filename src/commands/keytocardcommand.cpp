@@ -290,7 +290,8 @@ static std::vector<Key> getEncryptionCertificates()
                                        return ! (key.protocol() == GpgME::CMS &&
                                                  !key.subkey(0).isNull() &&
                                                  key.subkey(0).canEncrypt() &&
-                                                 key.subkey(0).isSecret());
+                                                 key.subkey(0).isSecret() &&
+                                                 !key.subkey(0).isCardKey());
                                    });
     encryptionCertificates.erase(it, encryptionCertificates.end());
     return encryptionCertificates;

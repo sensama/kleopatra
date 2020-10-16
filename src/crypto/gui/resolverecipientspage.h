@@ -66,12 +66,6 @@ public:
     bool multipleProtocolsAllowed() const;
     void setMultipleProtocolsAllowed(bool allowed);
 
-    bool symmetricEncryptionSelected() const;
-    void setSymmetricEncryptionSelected(bool enabled);
-
-    bool symmetricEncryptionSelectable() const;
-    void setSymmetricEncryptionSelectable(bool selectable);
-
     /** if true, the user is allowed to remove/add recipients via the UI.
      * Defaults to @p false.
      */

@@ -30,7 +30,6 @@ public:
     explicit SearchBar(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SearchBar();
 
-    QString stringFilter() const;
     const std::shared_ptr<KeyFilter> &keyFilter() const;
 
     QLineEdit *lineEdit() const;

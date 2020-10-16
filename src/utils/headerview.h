@@ -30,12 +30,10 @@ public:
     std::vector<int> sectionSizes() const;
 
     void setSectionResizeMode(unsigned int logicalIndex, ResizeMode mode);
-    ResizeMode sectionResizeMode(unsigned int logicalIndex) const;
 private:
     //@{
     /*! Defined, but not implemented, to catch at least some usage errors */
     void setResizeMode(int, ResizeMode);
-    ResizeMode resizeMode() const;
     //@}
 private:
     class Private;

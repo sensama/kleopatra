@@ -109,9 +109,6 @@ public:
     bool isAsciiArmorEnabled() const;
     void setAsciiArmorEnabled(bool enabled);
 
-    bool removeUnencryptedFile() const;
-    void setRemoveUnencryptedFile(bool remove);
-
     bool keepResultPageOpenWhenDone() const;
     void setKeepResultPageOpenWhenDone(bool keep);
 

@@ -10,46 +10,6 @@ include_directories(
 
 ########### next target ###############
 
-if(PORT_ME_AWAY_FROM_EVENT_LOOPS)
-  set(test_keylistmodels_SRCS
-    test_keylistmodels.cpp
-    ${CMAKE_SOURCE_DIR}/src/models/keylistmodel.cpp
-    ${CMAKE_SOURCE_DIR}/src/models/keylistsortfilterproxymodel.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/formatting.cpp
-  )
-  if(KLEO_MODEL_TEST)
-    set(test_keylistmodels_SRCS
-      ${test_keylistmodels_SRCS}
-      ${CMAKE_SOURCE_DIR}/src/models/modeltest.cpp
-    )
-  endif()
-
-  add_executable(test_keylistmodels TEST ${test_keylistmodels_SRCS})
-
-  target_link_libraries(test_keylistmodels KF5::Libkleo )
-
-########### next target ###############
-
-  set(test_useridlistmodels_SRCS
-    test_useridlistmodels.cpp
-    ${CMAKE_SOURCE_DIR}/src/models/useridlistmodel.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/formatting.cpp
-  )
-  if(KLEO_MODEL_TEST)
-    set(test_useridlistmodels_SRCS
-      ${test_useridlistmodels_SRCS}
-      ${CMAKE_SOURCE_DIR}/src/models/modeltest.cpp
-    )
-  endif()
-
-  add_executable(test_useridlistmodels TEST ${test_useridlistmodels_SRCS})
-
-  target_link_libraries(test_useridlistmodels KF5::Libkleo )
-
-endif()
-
-########### next target ###############
-
 set(test_verify_SRCS test_verify.cpp)
 
 add_definitions(-DKLEO_TEST_GNUPGHOME="${CMAKE_CURRENT_BINARY_DIR}/gnupg_home")

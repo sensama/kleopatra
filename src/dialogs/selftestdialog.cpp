@@ -24,7 +24,6 @@
 #include <QApplication>
 #include "kleopatra_debug.h"
 
-#include <vector>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;

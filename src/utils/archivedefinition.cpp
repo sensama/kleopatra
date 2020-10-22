@@ -25,8 +25,6 @@
 #include <KConfig>
 #include <KShell>
 
-#include <QString>
-#include <QStringList>
 #include <QDir>
 #include <QMutex>
 #include <QCoreApplication>

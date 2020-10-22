@@ -39,7 +39,6 @@
 #include <QContextMenuEvent>
 
 #include <KSharedConfig>
-#include <KConfigGroup>
 #include <KLocalizedString>
 
 #include <gpgme++/gpgmepp_version.h>

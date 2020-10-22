@@ -24,7 +24,6 @@
 #include <KIconLoader>
 #include <KLocalizedString>
 
-#include <QString>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;

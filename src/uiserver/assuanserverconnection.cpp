@@ -51,12 +51,8 @@
 #include <QWidget>
 #include <QCoreApplication>
 
-#include <kleo-assuan.h>
 
-#include <vector>
 #include <map>
-#include <string>
-#include <memory>
 #include <algorithm>
 #include <functional>
 #include <type_traits>

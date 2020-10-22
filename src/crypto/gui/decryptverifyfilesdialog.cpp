@@ -23,7 +23,6 @@
 #include <QVBoxLayout>
 #include <QProgressBar>
 #include <QLabel>
-#include <QDialogButtonBox>
 #include <QPushButton>
 
 #include <vector>

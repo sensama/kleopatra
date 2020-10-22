@@ -43,8 +43,6 @@
 #include <QFileDialog>
 #include <QTemporaryDir>
 
-#include <memory>
-#include <vector>
 
 using namespace GpgME;
 using namespace Kleo;

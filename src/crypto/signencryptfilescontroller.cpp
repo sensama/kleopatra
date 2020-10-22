@@ -31,7 +31,6 @@
 #include <Libkleo/Exception>
 #include <Libkleo/Classify>
 
-#include <kmime/kmime_header_parsing.h>
 
 #include <KLocalizedString>
 #include "kleopatra_debug.h"

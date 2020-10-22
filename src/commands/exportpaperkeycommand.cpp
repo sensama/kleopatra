@@ -19,7 +19,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QProcess>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QTextDocument>

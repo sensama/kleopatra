@@ -9,7 +9,6 @@
 
 #include "view/waitwidget.h"
 
-#include <QDialog>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QTextEdit>

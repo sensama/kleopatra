@@ -40,7 +40,6 @@
 #include <QAbstractProxyModel>
 
 #include <map>
-#include <vector>
 
 using namespace Kleo;
 using namespace GpgME;

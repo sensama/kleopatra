@@ -9,7 +9,6 @@
 
 #include "certificatelineedit.h"
 
-#include <QLineEdit>
 #include <QCompleter>
 #include <QFontMetrics>
 #include <QPushButton>
@@ -18,7 +17,6 @@
 
 #include "kleopatra_debug.h"
 
-#include "dialogs/certificateselectiondialog.h"
 #include "commands/detailscommand.h"
 
 #include <Libkleo/KeyCache>

@@ -14,7 +14,6 @@
 #include "emailoperationspreferences.h"
 
 #include <crypto/gui/resultitemwidget.h>
-#include <crypto/taskcollection.h>
 
 #include <utils/scrollarea.h>
 

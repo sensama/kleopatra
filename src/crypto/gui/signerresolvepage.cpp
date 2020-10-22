@@ -21,7 +21,6 @@
 
 #include <utils/kleo_assert.h>
 
-#include <kmime/kmime_header_parsing.h>
 
 #include <gpgme++/key.h>
 

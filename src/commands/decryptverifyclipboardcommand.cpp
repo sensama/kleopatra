@@ -21,7 +21,6 @@
 #include <utils/output.h>
 
 
-#include <utils/types.h>
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>

@@ -34,8 +34,6 @@
 #include <QPointer>
 #include <QTimer>
 
-#include <memory>
-#include <vector>
 
 using namespace GpgME;
 using namespace Kleo;

@@ -26,7 +26,6 @@
 
 #include <gpg-error.h>
 
-#include "kleopatra_debug.h"
 #include "openpgpcard.h"
 #include "netkeycard.h"
 #include "pivcard.h"
@@ -39,8 +38,6 @@
 #include <QPointer>
 #include <QRegularExpression>
 
-#include <memory>
-#include <vector>
 #include <set>
 #include <list>
 #include <algorithm>

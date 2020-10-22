@@ -12,7 +12,6 @@
     SPDX-License-Identifier: GPL-2.0-only
 */
 
-#include <config-kleopatra.h>
 
 #include "configuredialog.h"
 

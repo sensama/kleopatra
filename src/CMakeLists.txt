@@ -63,6 +63,14 @@ endif()
 
 ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwidget.ui)
 
+if("${Gpgmepp_VERSION}" VERSION_GREATER_EQUAL "1.14.1")
+    set(_kleopatra_deviceinfowatcher_files
+        smartcard/deviceinfowatcher.cpp
+    )
+else()
+    set(_kleopatra_deviceinfowatcher_files)
+endif()
+
 set(_kleopatra_SRCS
   utils/gui-helper.cpp
   utils/filedialog.cpp
@@ -249,6 +257,8 @@ set(_kleopatra_SRCS
   smartcard/pivcard.cpp
   smartcard/keypairinfo.cpp
   smartcard/utils.cpp
+
+  ${_kleopatra_deviceinfowatcher_files}
 
   aboutdata.cpp
   systrayicon.cpp

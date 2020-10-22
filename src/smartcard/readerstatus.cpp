@@ -11,14 +11,27 @@
 
 #include <config-kleopatra.h>
 
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
+# define QGPGME_HAS_DEBUG
+# define GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
+#endif
+
 #include "readerstatus.h"
 
+#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
+# include "deviceinfowatcher.h"
+#endif
 #include "keypairinfo.h"
 
 #include <Libkleo/GnuPG>
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/Stl_Util>
+
+#ifdef QGPGME_HAS_DEBUG
+# include <QGpgME/Debug>
+#endif
 
 #include <gpgme++/context.h>
 #include <gpgme++/defaultassuantransaction.h>
@@ -83,6 +96,7 @@ static QDebug operator<<(QDebug s, const std::string &string)
     return s << QString::fromStdString(string);
 }
 
+#ifndef QGPGME_HAS_DEBUG
 static QDebug operator<<(QDebug s, const GpgME::Error &err)
 {
     const bool oldSetting = s.autoInsertSpaces();
@@ -90,6 +104,7 @@ static QDebug operator<<(QDebug s, const GpgME::Error &err)
     s.setAutoInsertSpaces(oldSetting);
     return s.maybeSpace();
 }
+#endif
 
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
 {
@@ -708,6 +723,12 @@ Q_SIGNALS:
     void oneTransactionFinished(const GpgME::Error &err);
 
 public Q_SLOTS:
+    void deviceStatusChanged(const QByteArray &details)
+    {
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::deviceStatusChanged(" << details << ")";
+        addTransaction(updateTransaction);
+    }
+
     void ping()
     {
         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::ping()";
@@ -880,10 +901,6 @@ public:
         qRegisterMetaType<Card::Status>("Kleo::SmartCard::Card::Status");
         qRegisterMetaType<GpgME::Error>("GpgME::Error");
 
-        watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
-        watcher.addPath(Kleo::gnupgHomeDirectory());
-        watcher.setDelay(100);
-
         connect(this, &::ReaderStatusThread::cardAdded,
                 q, &ReaderStatus::cardAdded);
         connect(this, &::ReaderStatusThread::cardChanged,
@@ -895,8 +912,21 @@ public:
         connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,
                 q, &ReaderStatus::anyCardCanLearnKeysChanged);
 
-        connect(&watcher, &FileSystemWatcher::triggered, this, &::ReaderStatusThread::ping);
+#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
+        if (DeviceInfoWatcher::isSupported()) {
+            qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
+            connect(&devInfoWatcher, &DeviceInfoWatcher::statusChanged, this, &::ReaderStatusThread::deviceStatusChanged);
+        } else
+#endif
+        {
+            qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using deprecated FileSystemWatcher";
 
+            watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
+            watcher.addPath(Kleo::gnupgHomeDirectory());
+            watcher.setDelay(100);
+
+            connect(&watcher, &FileSystemWatcher::triggered, this, &::ReaderStatusThread::ping);
+        }
     }
     ~Private()
     {
@@ -925,6 +955,9 @@ private:
 
 private:
     FileSystemWatcher watcher;
+#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
+    DeviceInfoWatcher devInfoWatcher;
+#endif
 };
 
 ReaderStatus::ReaderStatus(QObject *parent)
@@ -944,6 +977,11 @@ ReaderStatus::~ReaderStatus()
 void ReaderStatus::startMonitoring()
 {
     d->start();
+#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
+    if (DeviceInfoWatcher::isSupported()) {
+        d->devInfoWatcher.start();
+    }
+#endif
 }
 
 // static

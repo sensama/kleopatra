@@ -60,6 +60,8 @@
 
 #include "utils/kdtoolsglobal.h"
 
+#include "kleopatra_debug.h"
+
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace GpgME;

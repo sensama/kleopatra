@@ -18,8 +18,6 @@
 #include <vector>
 #include <memory>
 
-#include "kleopatra_debug.h"
-
 namespace GpgME
 {
 class AssuanTransaction;

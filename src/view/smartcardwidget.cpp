@@ -94,19 +94,10 @@ private:
 SmartCardWidget::Private::Private(SmartCardWidget *qq)
     : q(qq)
 {
-    QPushButton *backBtn = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-left")), i18n("Back"));
-    QHBoxLayout *backH = new QHBoxLayout;
-    backH->addWidget(backBtn);
-    backH->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +
-                                QStringLiteral("</h2>")));
-    backH->addStretch(-1);
-
     QVBoxLayout *vLay = new QVBoxLayout(q);
 
-
-    connect(backBtn, &QPushButton::clicked, q, [this] () {Q_EMIT q->backRequested();});
-
-    vLay->addLayout(backH);
+    vLay->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +
+                               QStringLiteral("</h2>")));
 
     mStack = new QStackedWidget;
     vLay->addWidget(mStack);

@@ -24,9 +24,6 @@ public:
 public Q_SLOTS:
     void reload();
 
-Q_SIGNALS:
-    void backRequested();
-
 private:
     class Private;
     std::shared_ptr<Private> d;

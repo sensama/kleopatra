@@ -98,6 +98,15 @@ static KGuiItem KStandardGuiItem_close()
 
 static bool isQuitting = false;
 
+namespace
+{
+static const std::vector<QString> mainViewActionNames = {
+    QStringLiteral("view_certificate_overview"),
+    QStringLiteral("manage_smartcard"),
+    QStringLiteral("pad_view")
+};
+}
+
 class MainWindow::Private
 {
     friend class ::MainWindow;
@@ -228,42 +237,37 @@ public:
         ui.searchBar->lineEdit()->setFocus();
     }
 
-    void toggleSmartcardView()
+    void showView(const QString &actionName, QWidget *widget)
     {
         const auto coll = q->actionCollection();
         if (coll) {
-            auto act = coll->action(QStringLiteral("pad_view"));
-            if (act) {
-                act->setChecked(false);
+            for ( const QString &name : mainViewActionNames ) {
+                if (auto action = coll->action(name)) {
+                    action->setChecked(name == actionName);
+                }
             }
         }
-        if (ui.stackWidget->currentWidget() == ui.scWidget) {
-            ui.stackWidget->setCurrentWidget(ui.searchTab);
-            checkWelcomePage();
-            return;
-        }
-        ui.stackWidget->setCurrentWidget(ui.scWidget);
+        ui.stackWidget->setCurrentWidget(widget);
     }
 
-    void togglePadView()
+    void showCertificateView()
     {
-        const auto coll = q->actionCollection();
-        if (coll) {
-            auto act = coll->action(QStringLiteral("manage_smartcard"));
-            if (act) {
-                act->setChecked(false);
-            }
-        }
-        if (ui.stackWidget->currentWidget() == ui.padWidget) {
-            ui.stackWidget->setCurrentWidget(ui.searchTab);
-            checkWelcomePage();
-            return;
-        }
+        showView(QStringLiteral("view_certificate_overview"),
+                 KeyCache::instance()->keys().empty() ? ui.welcomeWidget : ui.searchTab);
+    }
+
+    void showSmartcardView()
+    {
+        showView(QStringLiteral("manage_smartcard"), ui.scWidget);
+    }
+
+    void showPadView()
+    {
         if (!ui.padWidget) {
             ui.padWidget = new PadWidget;
             ui.stackWidget->addWidget(ui.padWidget);
         }
-        ui.stackWidget->setCurrentWidget(ui.padWidget);
+        showView(QStringLiteral("pad_view"), ui.padWidget);
         ui.stackWidget->resize(ui.padWidget->sizeHint());
     }
 
@@ -275,17 +279,13 @@ private:
         return ui.tabWidget.currentView();
     }
 
-    void checkWelcomePage()
+    void keyListingDone()
     {
         const auto curWidget = ui.stackWidget->currentWidget();
         if (curWidget == ui.scWidget || curWidget == ui.padWidget) {
            return;
         }
-        if (KeyCache::instance()->keys().empty()) {
-            ui.stackWidget->setCurrentWidget(ui.welcomeWidget);
-        } else {
-            ui.stackWidget->setCurrentWidget(ui.searchTab);
-        }
+        showCertificateView();
     }
 
 private:
@@ -358,17 +358,15 @@ MainWindow::Private::Private(MainWindow *qq)
     ui.tabWidget.setFlatModel(flatModel);
     ui.tabWidget.setHierarchicalModel(hierarchicalModel);
 
-    ui.stackWidget->setCurrentWidget(ui.searchTab);
-
     setupActions();
 
+    ui.stackWidget->setCurrentWidget(ui.searchTab);
+    if (auto action = q->actionCollection()->action(QStringLiteral("view_certificate_overview"))) {
+        action->setChecked(true);
+    }
+
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView*,QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView*,QPoint)));
-    connect(ui.scWidget, &SmartCardWidget::backRequested, q, [this]() {
-            auto action = q->actionCollection()->action(QStringLiteral("manage_smartcard"));
-            Q_ASSERT(action);
-            action->setChecked(false);
-        });
-    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this] () {checkWelcomePage();});
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this] () {keyListingDone();});
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
 
@@ -415,8 +413,12 @@ void MainWindow::Private::setupActions()
         },
 #endif
         {
-            "pad_view", i18nc("Title for a generic data input / output area supporting text actions.", "Notepad"),
-            i18n("Switch to Pad view."), "edittext", q, SLOT(togglePadView()), QString(), true, true
+            "view_certificate_overview", i18nc("@action show certificate overview", "Certificates"),
+            i18n("Show certificate overview"), "view-certificate", q, SLOT(showCertificateView()), QString(), false, true
+        },
+        {
+            "pad_view", i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
+            i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, SLOT(showPadView()), QString(), false, true
         },
         // most have been MOVED TO keylistcontroller.cpp
 #if 0
@@ -431,14 +433,20 @@ void MainWindow::Private::setupActions()
             nullptr, q, SLOT(selfTest()), QString(), false, true
         },
         {
-            "manage_smartcard", i18n("Manage Smartcards"),
-            i18n("Edit or initialize a crypto hardware token."), "secure-card", q, SLOT(toggleSmartcardView()), QString(), true, true
+            "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
+            i18n("Show smartcard management"), "secure-card", q, SLOT(showSmartcardView()), QString(), false, true
         }
 
         // most have been MOVED TO keylistcontroller.cpp
     };
 
     make_actions_from_data(action_data, /*sizeof action_data / sizeof *action_data,*/ coll);
+
+    for ( const QString &name : mainViewActionNames ) {
+        if (auto action = coll->action(name)) {
+            action->setCheckable(true);
+        }
+    }
 
     if (QAction *action = coll->action(QStringLiteral("configure_backend"))) {
         action->setMenuRole(QAction::NoRole);    //prevent Qt OS X heuristics for config* actions

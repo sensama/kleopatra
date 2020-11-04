@@ -45,6 +45,8 @@
             <Action name="certificates_distrust_root"/>
             <Separator/>
             <Action name="certificates_certify_certificate"/>
+            <Action name="certificates_revoke_certification"/>
+            <Separator/>
             <Action name="certificates_change_expiry"/>
             <Action name="certificates_change_passphrase"/>
             <Action name="certificates_add_userid"/>
@@ -107,6 +109,7 @@
     <Menu name="listview_popup">
         <text>&amp;Certificates</text>
         <Action name="certificates_certify_certificate"/>
+        <Action name="certificates_revoke_certification"/>
         <Action name="certificates_trust_root"/>
         <Action name="certificates_distrust_root"/>
         <Action name="certificates_change_owner_trust"/>

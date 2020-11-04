@@ -40,6 +40,7 @@
 #include "commands/changeownertrustcommand.h"
 #include "commands/changeroottrustcommand.h"
 #include "commands/certifycertificatecommand.h"
+#include "commands/revokecertificationcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/newcertificatecommand.h"
 #include "commands/checksumverifyfilescommand.h"
@@ -416,6 +417,10 @@ void KeyListController::createActions(KActionCollection *coll)
             "view-certificate-sign", nullptr, nullptr, QString(), false, true
         },
         {
+            "certificates_revoke_certification", i18n("Revoke Certification..."), i18n("Revoke the certification of the selected certificate"),
+            "view-certificate-revoke", nullptr, nullptr, QString(), false, true
+        },
+        {
             "certificates_change_expiry", i18n("Change Expiry Date..."), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
@@ -503,6 +508,10 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<DistrustRootCommand>(coll->action(QStringLiteral("certificates_distrust_root")));
     //---
     registerActionForCommand<CertifyCertificateCommand>(coll->action(QStringLiteral("certificates_certify_certificate")));
+    if (RevokeCertificationCommand::isSupported()) {
+        registerActionForCommand<RevokeCertificationCommand>(coll->action(QStringLiteral("certificates_revoke_certification")));
+    }
+    //---
     registerActionForCommand<ChangeExpiryCommand>(coll->action(QStringLiteral("certificates_change_expiry")));
     registerActionForCommand<ChangePassphraseCommand>(coll->action(QStringLiteral("certificates_change_passphrase")));
     registerActionForCommand<AddUserIDCommand>(coll->action(QStringLiteral("certificates_add_userid")));

@@ -15,6 +15,7 @@
 #include "commands/changepassphrasecommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
+#include "commands/revokecertificationcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
@@ -335,7 +336,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 
     QMenu *menu = new QMenu(q);
     menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
-                    i18n("Certify ..."),
+                    i18n("Certify..."),
                     q, [this, userID]() {
         auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
         ui.userIDTable->setEnabled(false);
@@ -347,6 +348,21 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         });
         cmd->start();
     });
+    if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                        i18n("Revoke Certification..."),
+                        q, [this, userID]() {
+            auto cmd = new Kleo::Commands::RevokeCertificationCommand(userID);
+            ui.userIDTable->setEnabled(false);
+            connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
+                    q, [this]() {
+                ui.userIDTable->setEnabled(true);
+                // Trigger an update when done
+                q->setKey(key);
+            });
+            cmd->start();
+        });
+    }
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
     menu->popup(ui.userIDTable->viewport()->mapToGlobal(p));
 }

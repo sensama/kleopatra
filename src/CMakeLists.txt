@@ -127,6 +127,8 @@ set(_kleopatra_SRCS
   dialogs/ownertrustdialog.cpp
   dialogs/selftestdialog.cpp
   dialogs/certifycertificatedialog.cpp
+  dialogs/revokecertificationwidget.cpp
+  dialogs/revokecertificationdialog.cpp
   dialogs/adduseriddialog.cpp
   dialogs/addemaildialog.cpp
   dialogs/exportcertificatesdialog.cpp
@@ -222,6 +224,7 @@ set(_kleopatra_SRCS
   commands/changeroottrustcommand.cpp
   commands/changepassphrasecommand.cpp
   commands/certifycertificatecommand.cpp
+  commands/revokecertificationcommand.cpp
   commands/selftestcommand.cpp
   commands/exportsecretkeycommand.cpp
   commands/exportopenpgpcertstoservercommand.cpp

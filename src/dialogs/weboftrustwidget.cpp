@@ -5,6 +5,9 @@
 
 #include "weboftrustwidget.h"
 
+#include "commands/certifycertificatecommand.h"
+#include "commands/revokecertificationcommand.h"
+
 #include <QHeaderView>
 #include <QVBoxLayout>
 #include <QTreeView>
@@ -24,12 +27,24 @@
 #include <KMessageBox>
 #include <KLocalizedString>
 
+#include <QMenu>
+
 using namespace Kleo;
 
 class WebOfTrustWidget::Private
 {
+    friend class ::Kleo::WebOfTrustWidget;
+    WebOfTrustWidget *const q;
+
+private:
+    GpgME::Key key;
+    UserIDListModel certificationsModel;
+    QGpgME::KeyListJob *keyListJob = nullptr;
+    QTreeView *certificationsTV = nullptr;
+
 public:
-    Private(WebOfTrustWidget *qq): keyListJob(nullptr), q(qq)
+    Private(WebOfTrustWidget *qq)
+        : q(qq)
     {
         certificationsModel.enableRemarks(Remarks::remarksEnabled());
 
@@ -44,11 +59,17 @@ public:
 
         connect(certificationsTV, &QAbstractItemView::doubleClicked,
                 q, [this] (const QModelIndex &idx) {
-                certificationDblClicked(idx);
-            });
+                    certificationDblClicked(idx);
+                });
+        certificationsTV->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(certificationsTV, &QWidget::customContextMenuRequested,
+                q, [this] (const QPoint &p) {
+                    contextMenuRequested(p);
+                });
     }
 
-    void certificationDblClicked(const QModelIndex &idx) {
+    void certificationDblClicked(const QModelIndex &idx)
+    {
         if (!idx.isValid()) {
             return;
         }
@@ -67,6 +88,57 @@ public:
         cmd->start();
     }
 
+    void addActionsForUserID(QMenu *menu, const GpgME::UserID &userID)
+    {
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
+                        i18n("Certify..."),
+                        q, [this, userID]() {
+            auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
+            cmd->setParentWidget(q);
+            certificationsTV->setEnabled(false);
+            connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
+                    q, [this]() {
+                certificationsTV->setEnabled(true);
+                // Trigger an update when done
+                q->setKey(key);
+            });
+            cmd->start();
+        });
+        if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
+            menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                            i18n("Revoke Certification..."),
+                            q, [this, userID]() {
+                auto cmd = new Kleo::Commands::RevokeCertificationCommand(userID);
+                cmd->setParentWidget(q);
+                certificationsTV->setEnabled(false);
+                connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
+                        q, [this]() {
+                    certificationsTV->setEnabled(true);
+                    // Trigger an update when done
+                    q->setKey(key);
+                });
+                cmd->start();
+            });
+        }
+    }
+
+    void contextMenuRequested(const QPoint &p)
+    {
+        const auto index = certificationsTV->indexAt(p);
+        const auto userID = certificationsModel.userID(index);
+        const auto signature = certificationsModel.signature(index);
+
+        if (userID.isNull() && signature.isNull()) {
+            return;
+        }
+
+        QMenu *menu = new QMenu(q);
+        if (!userID.isNull()) {
+            addActionsForUserID(menu, userID);
+        }
+        connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
+        menu->popup(certificationsTV->viewport()->mapToGlobal(p));
+    }
 
     void startSignatureListing()
     {
@@ -95,14 +167,6 @@ public:
         job->start(QStringList(QString::fromLatin1(key.primaryFingerprint())));
         keyListJob = job;
     }
-
-    GpgME::Key key;
-    UserIDListModel certificationsModel;
-    QGpgME::KeyListJob *keyListJob;
-    QTreeView *certificationsTV;
-
-private:
-    WebOfTrustWidget *const q;
 };
 
 
@@ -153,4 +217,3 @@ void WebOfTrustWidget::signatureListingDone(const GpgME::KeyListResult &result)
     }
     d->keyListJob = nullptr;
 }
-

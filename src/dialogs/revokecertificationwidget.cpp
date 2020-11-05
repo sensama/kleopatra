@@ -54,7 +54,7 @@ CertificationKeyFilter::CertificationKeyFilter(const GpgME::Key &certificationTa
     setCanCertify(DefaultKeyFilter::Set);
     setRevoked(DefaultKeyFilter::NotSet);
     setExpired(DefaultKeyFilter::NotSet);
-    setInvalid(DefaultKeyFilter::NotSet);
+    setIsBad(DefaultKeyFilter::NotSet);
     setDisabled(DefaultKeyFilter::NotSet);
 }
 

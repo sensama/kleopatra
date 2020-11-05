@@ -52,10 +52,7 @@ CertificationKeyFilter::CertificationKeyFilter(const GpgME::Key &certificationTa
     setIsOpenPGP(DefaultKeyFilter::Set);
     setHasSecret(DefaultKeyFilter::Set);
     setCanCertify(DefaultKeyFilter::Set);
-    setRevoked(DefaultKeyFilter::NotSet);
-    setExpired(DefaultKeyFilter::NotSet);
     setIsBad(DefaultKeyFilter::NotSet);
-    setDisabled(DefaultKeyFilter::NotSet);
 }
 
 bool CertificationKeyFilter::matches(const GpgME::Key &key, Kleo::KeyFilter::MatchContexts contexts) const

@@ -19,7 +19,15 @@ set(LIBKLEO_VERSION "5.15.41")
 set(QT_REQUIRED_VERSION "5.13.0")
 set(GPGME_REQUIRED_VERSION "1.11.1")
 
-find_package(ECM ${KF5_MIN_VERSION} CONFIG REQUIRED)
+if (WIN32)
+  set(KF5_WANT_VERSION "5.70.0")
+  set(KMIME_WANT_VERSION "5.12.0")
+else ()
+  set(KF5_WANT_VERSION ${KF5_MIN_VERSION})
+  set(KMIME_WANT_VERSION ${KMIME_VERSION})
+endif ()
+
+find_package(ECM ${KF5_WANT_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
@@ -43,20 +51,20 @@ include(ECMQtDeclareLoggingCategory)
 
 # Find KF5 packages
 if (NOT FORCE_DISABLE_KCMUTILS)
-  find_package(KF5KCMUtils ${KF5_MIN_VERSION} CONFIG REQUIRED)
+  find_package(KF5KCMUtils ${KF5_WANT_VERSION} CONFIG REQUIRED)
 endif()
-find_package(KF5WidgetsAddons ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5ConfigWidgets ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5CoreAddons ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Codecs ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5Config ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5I18n ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5IconThemes ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5ItemModels ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5XmlGui ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5WindowSystem ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5DocTools ${KF5_MIN_VERSION} CONFIG)
-find_package(KF5Crash ${KF5_MIN_VERSION} REQUIRED)
+find_package(KF5WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5ConfigWidgets ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5CoreAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5Codecs ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5Config ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5I18n ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5IconThemes ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5ItemModels ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5XmlGui ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5WindowSystem ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5DocTools ${KF5_WANT_VERSION} CONFIG)
+find_package(KF5Crash ${KF5_WANT_VERSION} REQUIRED)
 
 set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" TYPE OPTIONAL PURPOSE "Required to generate Kleopatra documentation.")
 
@@ -64,13 +72,13 @@ set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" 
 if (WIN32)
   # Only a replacement available for Windows so this
   # is required on other platforms.
-  find_package(KF5DBusAddons ${KF5_MIN_VERSION} CONFIG)
+  find_package(KF5DBusAddons ${KF5_WANT_VERSION} CONFIG)
   set_package_properties(KF5DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
                          URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
 else()
-  find_package(KF5DBusAddons ${KF5_MIN_VERSION} CONFIG REQUIRED)
+  find_package(KF5DBusAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
   set(_kleopatra_dbusaddons_libs KF5::DBusAddons)
 endif()
 
@@ -81,7 +89,7 @@ find_package(QGpgme ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
-find_package(KF5Mime ${KMIME_VERSION} CONFIG REQUIRED)
+find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
 
 find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 

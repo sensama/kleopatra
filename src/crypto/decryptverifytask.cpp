@@ -18,7 +18,7 @@
 #include <QGpgME/DecryptVerifyJob>
 
 #include <Libkleo/Dn>
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>

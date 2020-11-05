@@ -16,7 +16,7 @@
 #include <kleo-assuan.h>
 #include <gpg-error.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include "utils/wsastarter.h"
 #include "utils/hex.h"

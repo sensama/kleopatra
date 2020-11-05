@@ -15,7 +15,7 @@
 
 #include <crypto/verifychecksumscontroller.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

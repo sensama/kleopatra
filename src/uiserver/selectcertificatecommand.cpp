@@ -14,7 +14,7 @@
 #include <dialogs/certificateselectiondialog.h>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>
 
 #include <gpgme++/key.h>

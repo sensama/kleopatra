@@ -29,7 +29,7 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>
 
 #include <gpgme++/data.h>

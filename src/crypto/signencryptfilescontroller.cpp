@@ -28,7 +28,7 @@
 #include "utils/archivedefinition.h"
 #include "utils/path-helper.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/Classify>
 
 

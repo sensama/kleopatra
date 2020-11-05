@@ -13,7 +13,7 @@
 
 #include <crypto/newsignencryptemailcontroller.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

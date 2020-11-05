@@ -13,7 +13,7 @@
 
 #include <commands/importcertificatefromfilecommand.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <gpgme++/key.h>
 

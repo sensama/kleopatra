@@ -12,7 +12,7 @@
 #include "task_p.h"
 #include "kleopatra_debug.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <Libkleo/GnuPG>
 #include <utils/auditlog.h>

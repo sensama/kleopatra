@@ -14,7 +14,7 @@
 #include <utils/input.h>
 #include <utils/output.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <gpg-error.h>
 

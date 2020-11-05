@@ -11,7 +11,7 @@
 
 #include "hex.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

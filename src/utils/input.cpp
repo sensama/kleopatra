@@ -19,7 +19,7 @@
 #include "kleo_assert.h"
 #include "cached.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/Classify>
 
 #include "kleopatra_debug.h"

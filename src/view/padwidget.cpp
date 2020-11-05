@@ -10,7 +10,7 @@
 
 #include "kleopatra_debug.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>

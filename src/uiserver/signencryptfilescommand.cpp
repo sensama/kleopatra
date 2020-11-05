@@ -13,7 +13,7 @@
 
 #include <crypto/signencryptfilescontroller.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

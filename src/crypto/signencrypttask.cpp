@@ -19,7 +19,7 @@
 
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/SignJob>

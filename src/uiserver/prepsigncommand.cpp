@@ -15,7 +15,7 @@
 
 #include <utils/kleo_assert.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

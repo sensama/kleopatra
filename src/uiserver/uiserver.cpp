@@ -18,7 +18,7 @@
 #include <Libkleo/GnuPG>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>

@@ -12,7 +12,7 @@
 #include "log.h"
 #include "iodevicelogger.h"
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 #include <KRandom>

@@ -13,7 +13,7 @@
 
 #include <crypto/createchecksumscontroller.h>
 
-#include <Libkleo/Exception>
+#include <Libkleo/KleoException>
 
 #include <KLocalizedString>
 

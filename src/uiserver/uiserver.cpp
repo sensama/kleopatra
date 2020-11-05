@@ -274,7 +274,7 @@ void UiServer::Private::makeListeningSocket()
         }
     }
 
-    doMakeListeningSocket(QFile::encodeName(fileName));
+    doMakeListeningSocket(fileName.toUtf8());
 
     actualSocketName = suggestedSocketName;
 }

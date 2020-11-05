@@ -32,6 +32,7 @@
 
 #include <assuan.h>
 #include <gpg-error.h>
+#include <gpgme++/global.h>
 
 #include <algorithm>
 #include <string>
@@ -426,16 +427,8 @@ static QString to_error_string(int err)
 
 static QString gnupg_home_directory()
 {
-#ifdef Q_OS_WIN
-    return QFile::decodeName(default_homedir());
-#else
-    const QByteArray gnupgHome = qgetenv("GNUPGHOME");
-    if (!gnupgHome.isEmpty()) {
-        return QFile::decodeName(gnupgHome);
-    } else {
-        return QDir::homePath() + QLatin1String("/.gnupg");
-    }
-#endif
+    static const char *hDir = GpgME::dirInfo("homedir");
+    return QFile::decodeName(hDir);
 }
 
 static QString get_default_socket_name()
@@ -608,11 +601,7 @@ void Command::Private::run()
         // give it a bit of time to start up and try a couple of times
         for (int i = 0; err && i < 20; ++i) {
             msleep(500);
-#ifndef HAVE_ASSUAN2
-            err = assuan_socket_connect(&naked_ctx, QFile::encodeName(socketName).constData(), -1);
-#else
-            err = assuan_socket_connect(ctx.get(), QFile::encodeName(socketName).constData(), -1, 0);
-#endif
+            err = assuan_socket_connect(ctx.get(), socketName.toUtf8().constData(), -1, 0);
         }
     }
 

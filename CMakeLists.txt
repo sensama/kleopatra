@@ -18,6 +18,7 @@ set(KMIME_VERSION "5.17.40")
 set(LIBKLEO_VERSION "5.17.43")
 set(QT_REQUIRED_VERSION "5.15.0")
 set(GPGME_REQUIRED_VERSION "1.13.1")
+set(BOOST_REQUIRED_VERSION "1.58")
 
 if (WIN32)
   set(KF5_WANT_VERSION "5.70.0")
@@ -31,18 +32,14 @@ find_package(ECM ${KF5_WANT_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
-
 include(ECMInstallIcons)
 include(ECMSetupVersion)
 include(ECMAddTests)
-
 include(GenerateExportHeader)
 include(ECMGenerateHeaders)
-
 include(FeatureSummary)
 include(CheckFunctionExists)
 include(ECMGeneratePriFile)
-
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
@@ -66,7 +63,10 @@ find_package(KF5WindowSystem ${KF5_WANT_VERSION} CONFIG REQUIRED)
 find_package(KF5DocTools ${KF5_WANT_VERSION} CONFIG)
 find_package(KF5Crash ${KF5_WANT_VERSION} REQUIRED)
 
-set_package_properties(KF5DocTools PROPERTIES DESCRIPTION "Documentation tools" TYPE OPTIONAL PURPOSE "Required to generate Kleopatra documentation.")
+set_package_properties(KF5DocTools PROPERTIES
+    DESCRIPTION "Documentation tools"
+    PURPOSE "Required to generate Kleopatra documentation."
+    TYPE OPTIONAL)
 
 # Optional packages
 if (WIN32)
@@ -99,8 +99,7 @@ set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
-find_package(Boost 1.34.0 REQUIRED)
+find_package(Boost ${BOOST_REQUIRED_VERSION} MODULE REQUIRED)
 
 find_path(Boost_TOPOLOGICAL_SORT_DIR NAMES boost/graph/topological_sort.hpp PATHS ${Boost_INCLUDE_DIRS})
 if(NOT Boost_TOPOLOGICAL_SORT_DIR)
@@ -133,7 +132,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURR
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${Boost_INCLUDE_DIR}
+    ${Boost_INCLUDE_DIRS}
     ${ASSUAN2_INCLUDES}
     )
 

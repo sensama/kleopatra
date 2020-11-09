@@ -22,6 +22,11 @@
 
 #include <gpgme++/error.h>
 
+#include <gpg-error.h>
+#if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
+# define GPG_ERROR_HAS_NO_AUTH
+#endif
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -200,10 +205,12 @@ void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotResult():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
+#ifdef GPG_ERROR_HAS_NO_AUTH
         if (err.code() == GPG_ERR_NO_AUTH) {
             authenticate();
             return;
         }
+#endif
 
         error(i18nc("@info", "Generating key failed: %1", QString::fromLatin1(err.asString())),
               i18nc("@title", "Error"));

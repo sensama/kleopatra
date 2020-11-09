@@ -30,6 +30,11 @@
 
 #include <gpgme++/context.h>
 
+#include <gpg-error.h>
+#if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
+# define GPG_ERROR_HAS_NO_AUTH
+#endif
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -217,11 +222,13 @@ void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
     qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::certificateToPIVCardDone():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
+#ifdef GPG_ERROR_HAS_NO_AUTH
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
         if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
             d->authenticate();
             return;
         }
+#endif
 
         d->error(i18nc("@info", "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())),
                  i18nc("@title", "Error"));

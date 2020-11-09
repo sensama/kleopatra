@@ -35,6 +35,11 @@
 #include <QInputDialog>
 #include <QStringList>
 
+#include <gpg-error.h>
+#if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
+# define GPG_ERROR_HAS_NO_AUTH
+#endif
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -475,11 +480,13 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::keyToPIVCardDone():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
+#ifdef GPG_ERROR_HAS_NO_AUTH
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
         if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
             d->authenticate();
             return;
         }
+#endif
 
         d->error(i18nc("@info",
                        "Copying the key pair to the card failed: %1", QString::fromUtf8(err.asString())),

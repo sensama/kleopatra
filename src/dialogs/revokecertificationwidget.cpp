@@ -246,6 +246,11 @@ std::vector<GpgME::UserID> RevokeCertificationWidget::selectedUserIDs() const
     return d->mUserIDModel.checkedUserIDs();
 }
 
+void RevokeCertificationWidget::setCertificationKey(const GpgME::Key &key)
+{
+    d->mCertificationKeySelect->setDefaultKey(QString::fromLatin1(key.primaryFingerprint()));
+}
+
 GpgME::Key RevokeCertificationWidget::certificationKey() const
 {
     return d->mCertificationKeySelect->currentKey();

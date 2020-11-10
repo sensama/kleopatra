@@ -127,6 +127,11 @@ std::vector<GpgME::UserID> RevokeCertificationDialog::selectedUserIDs() const
     return d->mainWidget->selectedUserIDs();
 }
 
+void Kleo::RevokeCertificationDialog::setSelectedCertificationKey(const GpgME::Key &key)
+{
+    d->mainWidget->setCertificationKey(key);
+}
+
 Key RevokeCertificationDialog::selectedCertificationKey() const
 {
     return d->mainWidget->certificationKey();

@@ -13,10 +13,7 @@
 
 #include <commands/command.h>
 
-namespace GpgME
-{
-class UserID;
-}
+#include <gpgme++/key.h>
 
 namespace Kleo
 {
@@ -29,6 +26,7 @@ class RevokeCertificationCommand : public Command
 public:
     explicit RevokeCertificationCommand(QAbstractItemView *view, KeyListController *parent);
     explicit RevokeCertificationCommand(const GpgME::UserID &uid);
+    explicit RevokeCertificationCommand(const GpgME::UserID::Signature &signature);
     ~RevokeCertificationCommand() override;
 
     /* reimp */ static Restrictions restrictions()

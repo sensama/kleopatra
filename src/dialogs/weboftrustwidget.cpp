@@ -1,4 +1,8 @@
-/*  SPDX-FileCopyrightText: 2017 Intevation GmbH
+/*
+    This file is part of Kleopatra, the KDE keymanager
+    SPDX-FileCopyrightText: 2017 Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -18,6 +22,7 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 
+#include <Libkleo/KeyCache>
 #include <Libkleo/UserIDListModel>
 
 #include "kleopatra_debug.h"
@@ -122,6 +127,50 @@ public:
         }
     }
 
+    void addActionsForSignature(QMenu *menu, const GpgME::UserID::Signature &signature)
+    {
+        menu->addAction(QIcon::fromTheme(QStringLiteral("dialog-information")),
+                        i18n("Show Certificate Details..."),
+                        q, [this, signature]() {
+            auto cmd = Command::commandForQuery(QString::fromUtf8(signature.signerKeyID()));
+            cmd->setParentWId(q->winId());
+            cmd->start();
+        });
+        if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
+            auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                                          i18n("Revoke Certification..."),
+                                          q, [this, signature]() {
+                auto cmd = new Kleo::Commands::RevokeCertificationCommand(signature);
+                cmd->setParentWidget(q);
+                certificationsTV->setEnabled(false);
+                connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
+                        q, [this]() {
+                    certificationsTV->setEnabled(true);
+                    // Trigger an update when done
+                    q->setKey(key);
+                });
+                cmd->start();
+            });
+            const auto certificationKey = KeyCache::instance()->findByKeyIDOrFingerprint(signature.signerKeyID());
+            const bool isSelfSignature = qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID()) == 0;
+            action->setEnabled(!isSelfSignature && certificationKey.hasSecret() && !signature.isRevokation() && !signature.isExpired() && !signature.isInvalid());
+            if (isSelfSignature) {
+                action->setToolTip(i18n("Revokation of self-certifications is currently not possible."));
+            } else if (!certificationKey.hasSecret()) {
+                action->setToolTip(i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
+            } else if (signature.isRevokation()) {
+                action->setToolTip(i18n("You cannot revoke this revokation certification. (But you can re-certify the corresponding user ID.)"));
+            } else if (signature.isExpired()) {
+                action->setToolTip(i18n("You cannot revoke this expired certification."));
+            } else if (signature.isInvalid()) {
+                action->setToolTip(i18n("You cannot revoke this invalid certification."));
+            }
+            if (!action->isEnabled()) {
+                menu->setToolTipsVisible(true);
+            }
+        }
+    }
+
     void contextMenuRequested(const QPoint &p)
     {
         const auto index = certificationsTV->indexAt(p);
@@ -135,6 +184,9 @@ public:
         QMenu *menu = new QMenu(q);
         if (!userID.isNull()) {
             addActionsForUserID(menu, userID);
+        }
+        else if (!signature.isNull()) {
+            addActionsForSignature(menu, signature);
         }
         connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
         menu->popup(certificationsTV->viewport()->mapToGlobal(p));

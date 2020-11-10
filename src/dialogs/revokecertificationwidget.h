@@ -43,6 +43,9 @@ public:
     /* The user ids whose certifications shall be revoked */
     std::vector<GpgME::UserID> selectedUserIDs() const;
 
+    /* Set the selected certification key. Default: last used key */
+    void setCertificationKey(const GpgME::Key &key);
+
     /* The selected certification key */
     GpgME::Key certificationKey() const;
 

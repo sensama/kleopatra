@@ -18,12 +18,12 @@
 #include "dialogs/revokecertificationdialog.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
 
 #include <gpgme++/engineinfo.h>
-#include <gpgme++/key.h>
 
 #include <KLocalizedString>
 
@@ -62,6 +62,7 @@ private:
     void createJob();
 
 private:
+    Key certificationKey;
     Key certificationTarget;
     std::vector<UserID> uids;
     QPointer<RevokeCertificationDialog> dialog;
@@ -186,6 +187,14 @@ RevokeCertificationCommand::RevokeCertificationCommand(const GpgME::UserID &uid)
     d->init();
 }
 
+RevokeCertificationCommand::RevokeCertificationCommand(const GpgME::UserID::Signature &signature)
+    : Command(signature.parent().parent(), new Private(this, nullptr))
+{
+    std::vector<UserID>(1, signature.parent()).swap(d->uids);
+    d->certificationKey = KeyCache::instance()->findByKeyIDOrFingerprint(signature.signerKeyID());
+    d->init();
+}
+
 RevokeCertificationCommand::~RevokeCertificationCommand()
 {
     qCDebug(KLEOPATRA_LOG) << "~RevokeCertificationCommand()";
@@ -221,6 +230,9 @@ void RevokeCertificationCommand::doStart()
     d->dialog->setCertificateToRevoke(d->certificationTarget);
     if (!d->uids.empty()) {
         d->dialog->setSelectedUserIDs(d->uids);
+    }
+    if (!d->certificationKey.isNull()) {
+        d->dialog->setSelectedCertificationKey(d->certificationKey);
     }
     d->dialog->show();
 }

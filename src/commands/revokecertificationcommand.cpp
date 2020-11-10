@@ -120,18 +120,21 @@ void RevokeCertificationCommand::Private::slotDialogRejected()
 
 void RevokeCertificationCommand::Private::slotResult(const Error &err)
 {
-    if (!err && !err.isCanceled() && dialog && dialog->sendToServer()) {
-        ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(certificationTarget);
-        cmd->start();
-    } else if (!err) {
-        information(i18n("Revocation successful."),
-                    i18n("Revocation Succeeded"));
-    } else {
+    if (err.isCanceled()) {
+        // do nothing
+    } else if (err) {
         error(i18n("<p>An error occurred while trying to revoke the certification of<br/><br/>"
                    "<b>%1</b>:</p><p>\t%2</p>",
                    Formatting::formatForComboBox(certificationTarget),
                    QString::fromUtf8(err.asString())),
               i18n("Revocation Error"));
+    } else {
+        information(i18n("Revocation successful."),
+                    i18n("Revocation Succeeded"));
+        if (dialog && dialog->sendToServer()) {
+            ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(certificationTarget);
+            cmd->start();
+        }
     }
 
     finished();

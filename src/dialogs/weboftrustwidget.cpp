@@ -155,11 +155,11 @@ public:
             const bool isSelfSignature = qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID()) == 0;
             action->setEnabled(!isSelfSignature && certificationKey.hasSecret() && !signature.isRevokation() && !signature.isExpired() && !signature.isInvalid());
             if (isSelfSignature) {
-                action->setToolTip(i18n("Revokation of self-certifications is currently not possible."));
+                action->setToolTip(i18n("Revocation of self-certifications is currently not possible."));
             } else if (!certificationKey.hasSecret()) {
                 action->setToolTip(i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
             } else if (signature.isRevokation()) {
-                action->setToolTip(i18n("You cannot revoke this revokation certification. (But you can re-certify the corresponding user ID.)"));
+                action->setToolTip(i18n("You cannot revoke this revocation certification. (But you can re-certify the corresponding user ID.)"));
             } else if (signature.isExpired()) {
                 action->setToolTip(i18n("You cannot revoke this expired certification."));
             } else if (signature.isInvalid()) {

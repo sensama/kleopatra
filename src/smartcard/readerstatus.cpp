@@ -1050,4 +1050,16 @@ std::shared_ptr<Card> ReaderStatus::getCard(const std::string &serialNumber, con
     return std::shared_ptr<Card>();
 }
 
+// static
+std::string ReaderStatus::switchCard(std::shared_ptr<Context>& ctx, const std::string& serialNumber, Error& err)
+{
+    return ::switchCard(ctx, serialNumber, err);
+}
+
+// static
+std::string ReaderStatus::switchApp(std::shared_ptr<Context>& ctx, const std::string& serialNumber, const std::string& appName, Error& err)
+{
+    return ::switchApp(ctx, serialNumber, appName, err);
+}
+
 #include "readerstatus.moc"

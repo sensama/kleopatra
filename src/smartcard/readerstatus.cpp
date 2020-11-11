@@ -93,6 +93,11 @@ Q_DECLARE_METATYPE(GpgME::Error)
 
 namespace
 {
+static bool gpgHasMultiCardMultiAppSupport()
+{
+    return !(engineInfo(GpgME::GpgEngine).engineVersion() < "2.3.0");
+}
+
 static QDebug operator<<(QDebug s, const std::string &string)
 {
     return s << QString::fromStdString(string);
@@ -233,29 +238,45 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
 static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, Error &err)
 {
     std::vector<CardApp> result;
-    const std::string command = "SCD GETINFO all_active_apps";
-    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
-    if (err) {
-        return result;
-    }
-    for (const auto &statusLine: statusLines) {
-        if (statusLine.first == "SERIALNO") {
-            const auto serialNumberAndApps = QByteArray::fromStdString(statusLine.second).split(' ');
-            if (serialNumberAndApps.size() >= 2) {
-                const auto serialNumber = serialNumberAndApps[0];
-                auto apps = serialNumberAndApps.mid(1);
-                // sort the apps to get a stable order independently of the currently selected application
-                std::sort(apps.begin(), apps.end());
-                for (const auto &app: apps) {
-                    qCDebug(KLEOPATRA_LOG) << "getCardsAndApps(): Found card" << serialNumber << "with app" << app;
-                    result.push_back({ serialNumber.toStdString(), app.toStdString() });
+    if (gpgHasMultiCardMultiAppSupport()) {
+        const std::string command = "SCD GETINFO all_active_apps";
+        const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+        if (err) {
+            return result;
+        }
+        for (const auto &statusLine: statusLines) {
+            if (statusLine.first == "SERIALNO") {
+                const auto serialNumberAndApps = QByteArray::fromStdString(statusLine.second).split(' ');
+                if (serialNumberAndApps.size() >= 2) {
+                    const auto serialNumber = serialNumberAndApps[0];
+                    auto apps = serialNumberAndApps.mid(1);
+                    // sort the apps to get a stable order independently of the currently selected application
+                    std::sort(apps.begin(), apps.end());
+                    for (const auto &app: apps) {
+                        qCDebug(KLEOPATRA_LOG) << "getCardsAndApps(): Found card" << serialNumber << "with app" << app;
+                        result.push_back({ serialNumber.toStdString(), app.toStdString() });
+                    }
+                } else {
+                    logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
                 }
             } else {
                 logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
             }
-        } else {
-            logUnexpectedStatusLine(statusLine, "getCardsAndApps()", command);
         }
+    } else {
+        // use SCD SERIALNO to get the currently active card
+        const auto serialNumber = gpgagent_status(gpgAgent, "SCD SERIALNO", err);
+        if (err) {
+            return result;
+        }
+        // use SCD GETATTR APPTYPE to find out which app is active
+        auto appName = scd_getattr_status(gpgAgent, "APPTYPE", err);
+        std::transform(appName.begin(), appName.end(), appName.begin(),
+                       [](unsigned char c){ return std::tolower(c); });
+        if (err) {
+            return result;
+        }
+        result.push_back({ serialNumber, appName });
     }
     return result;
 }
@@ -552,8 +573,8 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     qCDebug(KLEOPATRA_LOG) << "get_card_status(" << serialNumber << ',' << appName << ',' << gpg_agent.get() << ')';
     auto ci = std::shared_ptr<Card>(new Card());
 
-    // select card
-    {
+    if (gpgHasMultiCardMultiAppSupport()) {
+        // select card
         Error err;
         const auto result = switchCard(gpg_agent, serialNumber, err);
         if (err) {
@@ -570,10 +591,12 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
             return ci;
         }
         ci->setStatus(Card::CardPresent);
+    } else {
+        ci->setStatus(Card::CardPresent);
     }
 
-    // select app
-    {
+    if (gpgHasMultiCardMultiAppSupport()) {
+        // select app
         Error err;
         const auto result = switchApp(gpg_agent, serialNumber, appName, err);
         if (err) {
@@ -629,7 +652,7 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
     // ensure that a card is present and that all cards are properly set up
     {
         Error err;
-        const char *command = "SCD SERIALNO --all";
+        const char *command = (gpgHasMultiCardMultiAppSupport()) ? "SCD SERIALNO --all" : "SCD SERIALNO";
         const std::string serialno = gpgagent_status(gpgAgent, command, err);
         if (err) {
             if (isCardNotPresentError(err)) {
@@ -856,9 +879,11 @@ private:
                 }
             } else {
                 GpgME::Error err;
-                switchCard(gpgAgent, cardApp.serialNumber, err);
-                if (!err) {
-                    switchApp(gpgAgent, cardApp.serialNumber, cardApp.appName, err);
+                if (gpgHasMultiCardMultiAppSupport()) {
+                    switchCard(gpgAgent, cardApp.serialNumber, err);
+                    if (!err) {
+                        switchApp(gpgAgent, cardApp.serialNumber, cardApp.appName, err);
+                    }
                 }
                 if (!err) {
                     if (assuanTransaction) {
@@ -1048,6 +1073,18 @@ std::shared_ptr<Card> ReaderStatus::getCard(const std::string &serialNumber, con
     }
     qCWarning(KLEOPATRA_LOG) << "ReaderStatus::getCard() - Did not find card with serial number" << serialNumber << "and app" << appName;
     return std::shared_ptr<Card>();
+}
+
+// static
+std::string ReaderStatus::switchCard(std::shared_ptr<Context>& ctx, const std::string& serialNumber, Error& err)
+{
+    return ::switchCard(ctx, serialNumber, err);
+}
+
+// static
+std::string ReaderStatus::switchApp(std::shared_ptr<Context>& ctx, const std::string& serialNumber, const std::string& appName, Error& err)
+{
+    return ::switchApp(ctx, serialNumber, appName, err);
 }
 
 #include "readerstatus.moc"

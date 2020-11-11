@@ -249,6 +249,25 @@ void PGPCardWidget::doChangePin(const std::string &keyRef)
 
 void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
 {
+    if (!(engineInfo(GpgME::GpgEngine).engineVersion() < "2.3.0")) {
+        GpgME::Error err;
+        std::unique_ptr<GpgME::Context> c = GpgME::Context::createForEngine(GpgME::AssuanEngine, &err);
+        if (err.code() == GPG_ERR_NOT_SUPPORTED) {
+            return;
+        }
+        auto assuanContext = std::shared_ptr<GpgME::Context>(c.release());
+        const auto serialNumber = ReaderStatus::switchCard(assuanContext, mRealSerial, err);
+        if (err || serialNumber != mRealSerial) {
+            qCWarning(KLEOPATRA_LOG) << "Switching to card" << QString::fromStdString(mRealSerial) << "failed";
+            return;
+        }
+        const auto appName = ReaderStatus::switchApp(assuanContext, mRealSerial, OpenPGPCard::AppName, err);
+        if (err || appName != OpenPGPCard::AppName) {
+            qCWarning(KLEOPATRA_LOG) << "Switching card to" << QString::fromStdString(OpenPGPCard::AppName) << "app failed";
+            return;
+        }
+    }
+
     const auto params = dlg->getKeyParams();
 
     auto progress = new QProgressDialog(this, Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::Dialog);

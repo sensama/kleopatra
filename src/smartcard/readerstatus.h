@@ -21,6 +21,8 @@
 namespace GpgME
 {
 class AssuanTransaction;
+class Context;
+class Error;
 }
 
 namespace Kleo
@@ -55,6 +57,10 @@ public:
     {
         return std::dynamic_pointer_cast<T>(getCard(serialNumber, T::AppName));
     }
+
+    static std::string switchCard(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber, GpgME::Error &err);
+    static std::string switchApp(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber,
+                                 const std::string &appName, GpgME::Error &err);
 
 public Q_SLOTS:
     void updateStatus();

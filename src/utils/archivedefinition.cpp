@@ -314,7 +314,14 @@ static QByteArray make_input(const QStringList &files, char sep)
 {
     QByteArray result;
     for (const QString &file : files) {
+#ifdef Q_OS_WIN
+        // As encoding is more complicated on windows with different
+        // 8 bit codepages we always use UTF-8 here and add this as an
+        // option in the libkleopatrarc.desktop archive definition.
+        result += file.toUtf8();
+#else
         result += QFile::encodeName(file);
+#endif
         result += sep;
     }
     return result;

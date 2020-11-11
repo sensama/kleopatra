@@ -22,6 +22,8 @@
 #include "commands/newcertificatecommand.h"
 
 #include <KLocalizedString>
+#include <KSharedConfig>
+#include <KConfigGroup>
 
 static const QString templ = QStringLiteral(
 "<h3>%1</h3>" // Welcome
@@ -79,12 +81,16 @@ public:
         mGenerateBtn->setToolTip(i18n("Create a new OpenPGP key pair") + QStringLiteral("<br>") +
                                  i18n("To create an S/MIME certificate request use \"New Key Pair\" from the 'File' Menu instead"));
 
+        KConfigGroup restrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
+        mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
+
         mImportBtn = new QToolButton();
         mImportBtn->setDefaultAction(importAction);
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         mImportBtn->setToolTip(i18n("Import from a file.") + QStringLiteral("<br>") +
                                i18n("To import from a public keyserver use \"Lookup on Server\" instead."));
+        mImportBtn->setEnabled(restrictions.readEntry("action/file_import_certificate", true));
 
         auto btnLayout = new QHBoxLayout;
         btnLayout->addStretch(-1);

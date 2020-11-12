@@ -12,6 +12,7 @@
 #include "kleopatra_debug.h"
 
 #include "commands/changepincommand.h"
+#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
@@ -105,6 +106,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     mEncryptionKey(new QLabel(this)),
     mAuthKey(new QLabel(this)),
     mUrlLabel(new QLabel(this)),
+    mKeyForCardKeysButton(new QPushButton(this)),
     mCardIsEmpty(false)
 {
     auto grid = new QGridLayout;
@@ -201,6 +203,11 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     actionLayout->addWidget(resetCodeButton);
     connect(resetCodeButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
 
+    mKeyForCardKeysButton->setText(i18n("Create Key for Card Keys"));
+    mKeyForCardKeysButton->setToolTip(i18n("Create an OpenPGP key for the keys stored on the card."));
+    actionLayout->addWidget(mKeyForCardKeysButton);
+    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PGPCardWidget::createKeyFromCardKeys);
+
     actionLayout->addStretch(-1);
     grid->addLayout(actionLayout, row++, 0, 1, 4);
 
@@ -233,6 +240,8 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     updateKey(mEncryptionKey, card->encFpr());
     updateKey(mAuthKey, card->authFpr());
     mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
+
+    mKeyForCardKeysButton->setEnabled(!mCardIsEmpty);
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef)
@@ -465,6 +474,17 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
                 i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
+}
+
+void PGPCardWidget::createKeyFromCardKeys()
+{
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mRealSerial, OpenPGPCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->start();
 }
 
 void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)

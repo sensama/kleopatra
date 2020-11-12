@@ -41,7 +41,6 @@
 #include <QGpgME/CryptoConfig>
 
 #include <gpgme++/global.h>
-#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/keygenerationresult.h>
 #include <gpgme++/context.h>
 

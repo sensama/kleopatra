@@ -38,7 +38,6 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 
-#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/data.h>
 #include <gpgme++/context.h>
 

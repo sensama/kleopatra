@@ -24,7 +24,6 @@
 #include <Libkleo/Classify>
 
 #include <gpgme++/key.h>
-#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/decryptionresult.h>
 
 #include <KLocalizedString>
@@ -37,10 +36,6 @@
 #include <QVBoxLayout>
 #include <KGuiItem>
 #include <KColorScheme>
-
-#if GPGMEPP_VERSION > 0x10B01 // > 1.11.1
-# define GPGME_HAS_LEGACY_NOMDC
-#endif
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -128,9 +123,7 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
     }
     const auto decResult = dvResult->decryptionResult();
 
-#ifdef GPGME_HAS_LEGACY_NOMDC
     if (decResult.isNull() || !decResult.error() || !decResult.isLegacyCipherNoMDC())
-#endif
     {
         return;
     }

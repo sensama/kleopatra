@@ -38,7 +38,6 @@
 #include <gpgme++/key.h>
 #include <gpgme++/verificationresult.h>
 #include <gpgme++/decryptionresult.h>
-#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/context.h>
 
 #include <gpg-error.h>
@@ -54,10 +53,6 @@
 
 #include <algorithm>
 #include <sstream>
-
-#if GPGMEPP_VERSION > 0x10B01 // > 1.11.1
-# define GPGME_HAS_LEGACY_NOMDC
-#endif
 
 using namespace Kleo::Crypto;
 using namespace Kleo;
@@ -450,11 +445,9 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     if (err.isCanceled()) {
         return i18n("<b>Decryption canceled.</b>");
     }
-#ifdef GPGME_HAS_LEGACY_NOMDC
     else if (result.isLegacyCipherNoMDC()) {
         return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
     }
-#endif
     else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
@@ -578,7 +571,6 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
         return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
     }
 
-#ifdef GPGME_HAS_LEGACY_NOMDC
     if (res.isLegacyCipherNoMDC()) {
         details += i18nc("Integrity protection was missing because an old cipher was used.",
                          "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
@@ -588,7 +580,6 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                          "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.") +
                    QStringLiteral("<br/><br/>");
     }
-#endif
 
     if (!recipients.empty()) {
         details += i18np("Recipient:", "Recipients:", res.numRecipients());
@@ -1100,7 +1091,6 @@ void DecryptVerifyTask::doStart()
     try {
         QGpgME::DecryptVerifyJob *const job = d->m_backend->decryptVerifyJob();
 
-#ifdef GPGME_HAS_LEGACY_NOMDC
         if (d->m_ignoreMDCError) {
             qCDebug(KLEOPATRA_LOG) << "Modifying job to ignore MDC errors.";
             auto ctx = QGpgME::Job::context(job);
@@ -1113,7 +1103,6 @@ void DecryptVerifyTask::doStart()
                 }
             }
         }
-#endif
         kleo_assert(job);
         d->registerJob(job);
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());

@@ -31,7 +31,6 @@
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
 #include <gpgme++/context.h>
-#include <gpgme++/gpgmepp_version.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
 
@@ -283,14 +282,9 @@ static QString make_report(const std::vector<ImportResult> &res, const QString &
     if (const int n = SUM(numSecretKeysUnchanged))
         lines.push_back(normalLine.subs(i18n("Secret keys unchanged:"))
                         .subs(n).toString());
-
-
-#if GPGMEPP_VERSION > 0x10A00 // 1.10.0
     if (const int n = SUM(numV3KeysSkipped))
         lines.push_back(normalLine.subs(i18n("Deprecated PGP-2 keys skipped:"))
                         .subs(n).toString());
-#endif
-
 
 #undef sum
 

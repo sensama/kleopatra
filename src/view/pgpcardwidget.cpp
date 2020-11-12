@@ -319,6 +319,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
     KMessageBox::information(this, i18nc("@info",
                              "Successfully generated a new key for this card."),
                              i18nc("@title", "Success"));
+    ReaderStatus::mutableInstance()->updateStatus();
 }
 
 void PGPCardWidget::genkeyRequested()

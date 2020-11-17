@@ -20,6 +20,11 @@
 
 #include <gpgme++/error.h>
 
+#include <gpg-error.h>
+#if GPG_ERROR_VERSION_NUMBER >= 0x12400 // 1.36
+# define GPG_ERROR_HAS_BAD_AUTH
+#endif
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -136,10 +141,12 @@ void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err
         return;
     }
     if (err) {
+#ifdef GPG_ERROR_HAS_BAD_AUTH
         if (err.code() == GPG_ERR_BAD_AUTH) {
             retryAskingForKey();
             return;
         }
+#endif
         error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())),
               i18nc("@title", "Error"));
     }

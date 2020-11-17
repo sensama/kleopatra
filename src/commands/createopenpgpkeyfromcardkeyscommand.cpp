@@ -17,6 +17,7 @@
 #include "dialogs/adduseriddialog.h"
 
 #include "smartcard/openpgpcard.h"
+#include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
 #include <Libkleo/Formatting>
@@ -90,14 +91,26 @@ CreateOpenPGPKeyFromCardKeysCommand::Private::~Private()
 
 void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
 {
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
-    if (!pgpCard) {
-        error(i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
+    const auto card = ReaderStatus::instance()->getCard(serialNumber(), appName);
+    if (!card) {
+        error(i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(serialNumber())));
         finished();
         return;
     }
 
-    const auto signingKey = KeyCache::instance()->findByKeyIDOrFingerprint(pgpCard->sigFpr());
+    Key signingKey;
+    if (card->appName() == OpenPGPCard::AppName) {
+        const auto pgpCard = std::dynamic_pointer_cast<OpenPGPCard>(card);
+        signingKey = KeyCache::instance()->findByKeyIDOrFingerprint(pgpCard->sigFpr());
+    } else if (appName == PIVCard::AppName) {
+        const auto pivCard = std::dynamic_pointer_cast<PIVCard>(card);
+        signingKey = KeyCache::instance()->findSubkeyByKeyGrip(pivCard->keyGrip(PIVCard::digitalSignatureKeyRef()), OpenPGP).parent();
+    } else {
+        qCWarning(KLEOPATRA_LOG) << "CreateOpenPGPKeyFromCardKeysCommand does not support card application" << QString::fromStdString(appName);
+        finished();
+        return;
+    }
+
     if (!signingKey.isNull()) {
         const QString message = i18nc("@info",
             "<p>There is already an OpenPGP key corresponding to the signing key on this card:</p><p>%1</p>"
@@ -115,7 +128,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
     ensureDialogCreated();
 
     dialog->setWindowTitle(i18n("Enter User ID"));
-    dialog->setName(pgpCard->cardHolder());
+    dialog->setName(card->cardHolder());
 
     dialog->show();
 }

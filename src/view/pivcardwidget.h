@@ -52,6 +52,7 @@ private:
     void writeCertificateToCard(const std::string &keyref);
     void importCertificateFromCard(const std::string &keyref);
     void writeKeyToCard(const std::string &keyref);
+    void createKeyFromCardKeys();
     void changePin(const std::string &keyRef);
     void setAdminKey();
 
@@ -59,6 +60,7 @@ private:
     std::string mCardSerialNumber;
     QLabel *mSerialNumber = nullptr;
     QLabel *mVersionLabel = nullptr;
+    QPushButton *mKeyForCardKeysButton = nullptr;
     QMap<std::string, KeyWidgets> mKeyWidgets;
 };
 } // namespace Kleo

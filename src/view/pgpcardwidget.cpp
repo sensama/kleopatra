@@ -203,7 +203,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     actionLayout->addWidget(resetCodeButton);
     connect(resetCodeButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
 
-    mKeyForCardKeysButton->setText(i18n("Create Key for Card Keys"));
+    mKeyForCardKeysButton->setText(i18n("Create OpenPGP Key"));
     mKeyForCardKeysButton->setToolTip(i18n("Create an OpenPGP key for the keys stored on the card."));
     actionLayout->addWidget(mKeyForCardKeysButton);
     connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PGPCardWidget::createKeyFromCardKeys);

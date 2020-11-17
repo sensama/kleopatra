@@ -13,6 +13,7 @@
 
 #include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
+#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/importcertificatefrompivcardcommand.h"
 #include "commands/keytocardcommand.h"
 #include "commands/pivgeneratecardkeycommand.h"
@@ -74,10 +75,11 @@ static int toolTipOptions()
 }
 }
 
-PIVCardWidget::PIVCardWidget(QWidget *parent):
-    QWidget(parent),
-    mSerialNumber(new QLabel(this)),
-    mVersionLabel(new QLabel(this))
+PIVCardWidget::PIVCardWidget(QWidget *parent)
+    : QWidget(parent)
+    , mSerialNumber(new QLabel(this))
+    , mVersionLabel(new QLabel(this))
+    , mKeyForCardKeysButton(new QPushButton(this))
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -142,6 +144,11 @@ PIVCardWidget::PIVCardWidget(QWidget *parent):
     }
 
     auto actionLayout = new QHBoxLayout;
+
+    mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
+    mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
+    actionLayout->addWidget(mKeyForCardKeysButton);
+    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PIVCardWidget::createKeyFromCardKeys);
 
     {
         auto button = new QPushButton(i18nc("@action:button", "Change PIN"));
@@ -221,6 +228,10 @@ void PIVCardWidget::setCard(const PIVCard *card)
     updateKeyWidgets(PIVCard::cardAuthenticationKeyRef(), card);
     updateKeyWidgets(PIVCard::digitalSignatureKeyRef(), card);
     updateKeyWidgets(PIVCard::keyManagementKeyRef(), card);
+
+    const bool signingKeyAvailable = !card->keyGrip(PIVCard::digitalSignatureKeyRef()).empty();
+    const bool encryptionKeyAvailable = !card->keyGrip(PIVCard::keyManagementKeyRef()).empty();
+    mKeyForCardKeysButton->setEnabled(signingKeyAvailable && encryptionKeyAvailable);
 }
 
 void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)
@@ -238,8 +249,8 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *c
         widgets.writeCertificateButton->setEnabled(false);
         widgets.importCertificateButton->setEnabled(false);
     } else {
-        const Key certificate = KeyCache::instance()->findSubkeyByKeyGrip(grip).parent();
-        if (!certificate.isNull() && certificate.protocol() == GpgME::CMS) {
+        const Key certificate = KeyCache::instance()->findSubkeyByKeyGrip(grip, GpgME::CMS).parent();
+        if (!certificate.isNull()) {
             widgets.certificateInfo->setText(
                 i18nc("X.509 certificate DN (validity, created: date)", "%1 (%2, created: %3)",
                       DN(certificate.userID(0).id()).prettyDN(),
@@ -313,6 +324,17 @@ void PIVCardWidget::writeKeyToCard(const std::string &keyref)
                 this->setEnabled(true);
             });
     cmd->setParentWidget(this);
+    cmd->start();
+}
+
+void PIVCardWidget::createKeyFromCardKeys()
+{
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mCardSerialNumber, PIVCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
     cmd->start();
 }
 

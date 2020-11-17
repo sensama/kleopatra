@@ -100,7 +100,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
     const auto signingKey = KeyCache::instance()->findByKeyIDOrFingerprint(pgpCard->sigFpr());
     if (!signingKey.isNull()) {
         const QString message = i18nc("@info",
-            "<p>There is already an OpenPGP key corresponding to the signing key on this card:</p><p>%1<p>"
+            "<p>There is already an OpenPGP key corresponding to the signing key on this card:</p><p>%1</p>"
             "<p>Do you still want to create an OpenPGP key for the card keys?</p>",
             Formatting::summaryLine(signingKey));
         const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,

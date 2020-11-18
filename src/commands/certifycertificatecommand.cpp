@@ -287,7 +287,10 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     job->setSigningKey(dialog->selectedSecretKey());
     job->setCheckLevel(dialog->selectedCheckLevel());
 #ifdef GPGME_HAS_REMARKS
-    job->setRemark(dialog->remarks());
+    if (!dialog->remarks().isEmpty()) {
+        // do not set an empty remark to avoid an empty signature notation (GnuPG bug T5142)
+        job->setRemark(dialog->remarks());
+    }
     // This also came with 1.14.0
     job->setDupeOk(true);
 #endif

@@ -41,6 +41,7 @@ public:
 
 private:
     bool preStartHook(QWidget *) const override;
+    void postSuccessHook(QWidget *) override;
 
     QStringList arguments() const override;
 
@@ -54,6 +55,7 @@ private:
 private:
     mutable QString m_filename;
     mutable bool m_armor;
+    bool mHasError = false;
 };
 
 }

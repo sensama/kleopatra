@@ -24,6 +24,8 @@
 #include <gpgme++/key.h>
 
 #include <KLocalizedString>
+#include <QFile>
+#include <QProcess>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -98,7 +100,7 @@ QStringList ExportSecretKeyCommand::arguments() const
         result << gpgSmPath();
     }
 
-    result << QStringLiteral("--yes") << QStringLiteral("--output") << m_filename;
+    result << QStringLiteral("--yes") << QStringLiteral("--output") << QStringLiteral("-");
 
     if (m_armor) {
         result << QStringLiteral("--armor");
@@ -147,6 +149,29 @@ QString ExportSecretKeyCommand::errorExitMessage(const QStringList &args) const
 
 QString ExportSecretKeyCommand::successMessage(const QStringList &) const
 {
+    if (mHasError) {
+        return QString();
+    }
     return i18nc("@info", "Secret key successfully exported.");
 }
 
+void ExportSecretKeyCommand::postSuccessHook(QWidget *)
+{
+    Q_ASSERT (process());
+    const auto data = process()->readAllStandardOutput();
+    if (!data.size()) {
+        d->error (i18nc("@info", "Possibly bad passphrase given."),
+                  errorCaption());
+        mHasError = true;
+        return;
+    }
+    QFile file(m_filename);
+    /* The filedialog already asked for replace ok. */
+    file.open(QIODevice::ReadWrite | QIODevice::Truncate);
+    if (file.write(data) != data.size()) {
+        d->error(i18nc("@info", "Failed to write data."),
+                 errorCaption());
+        mHasError = true;
+    }
+    file.close();
+}

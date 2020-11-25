@@ -18,6 +18,8 @@ namespace SmartCard
 struct KeyPairInfo {
     static KeyPairInfo fromStatusLine(const std::string &s);
 
+    void update(const KeyPairInfo &other);
+
     std::string grip;
     std::string keyRef;
     std::string usage;

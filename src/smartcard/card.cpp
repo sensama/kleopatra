@@ -11,6 +11,8 @@
 
 #include "readerstatus.h"
 
+#include "kleopatra_debug.h"
+
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
@@ -175,6 +177,22 @@ QString Card::errorMsg() const
     return mErrMsg;
 }
 
+const std::vector<KeyPairInfo> & Card::keyInfos() const
+{
+    return mKeyInfos;
+}
+
+const KeyPairInfo & Card::keyInfo(const std::string &keyRef) const
+{
+    static const KeyPairInfo nullKey;
+    for (const KeyPairInfo &k : mKeyInfos) {
+        if (k.keyRef == keyRef) {
+            return k;
+        }
+    }
+    return nullKey;
+}
+
 namespace {
 static int parseHexEncodedVersionTuple(const std::string &s) {
     // s is a hex-encoded, unsigned int-packed version tuple,
@@ -202,7 +220,27 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
         std::reverse(list.begin(), list.end());
         mCardHolder = list.join(QLatin1Char(' '));
         return true;
+    } else if (name == "KEYPAIRINFO") {
+        const KeyPairInfo info = KeyPairInfo::fromStatusLine(value);
+        if (info.grip.empty()) {
+            qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line" << QString::fromStdString(value);
+            setStatus(Card::CardError);
+        } else {
+            updateKeyInfo(info);
+        }
+        return true;
     }
 
     return false;
+}
+
+void Card::updateKeyInfo(const KeyPairInfo& keyPairInfo)
+{
+    for (KeyPairInfo &k : mKeyInfos) {
+        if (k.keyRef == keyPairInfo.keyRef) {
+            k.update(keyPairInfo);
+            return;
+        }
+    }
+    mKeyInfos.push_back(keyPairInfo);
 }

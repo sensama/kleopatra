@@ -9,6 +9,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include "keypairinfo.h"
+
 #include <string>
 #include <vector>
 
@@ -18,6 +20,7 @@ namespace Kleo
 {
 namespace SmartCard
 {
+
 /** Class representing an application on a smartcard or similar hardware token. */
 class Card
 {
@@ -85,10 +88,16 @@ public:
     QString errorMsg() const;
     void setErrorMsg(const QString &msg);
 
+    const std::vector<KeyPairInfo> & keyInfos() const;
+    const KeyPairInfo & keyInfo(const std::string &keyRef) const;
+
 protected:
     void setAppName(const std::string &name);
 
     bool parseCardInfo(const std::string &name, const std::string &value);
+
+private:
+    void updateKeyInfo(const KeyPairInfo &keyPairInfo);
 
 private:
     bool mCanLearn = false;
@@ -103,6 +112,7 @@ private:
     QString mCardHolder;
     std::vector<PinState> mPinStates;
     QString mErrMsg;
+    std::vector<KeyPairInfo> mKeyInfos;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

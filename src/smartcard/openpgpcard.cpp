@@ -98,26 +98,6 @@ void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::str
                 // Maybe more keyslots in the future?
                 qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
             }
-        } else if (pair.first == "KEYPAIRINFO") {
-            // Fun, same as above but the other way around.
-            const auto values = QString::fromStdString(pair.second).split(QLatin1Char(' '));
-            if (values.size() < 2) {
-                qCWarning(KLEOPATRA_LOG) << "Invalid entry.";
-                setStatus(Card::CardError);
-                continue;
-            }
-            const auto usage = values[1];
-            const auto grip = values[0].toStdString();
-            if (usage == QLatin1String("OPENPGP.1")) {
-                mMetaInfo.insert(std::string("SIG") + pair.first, grip);
-            } else if (usage == QLatin1String("OPENPGP.2")) {
-                mMetaInfo.insert(std::string("ENC") + pair.first, grip);
-            } else if (usage == QLatin1String("OPENPGP.3")) {
-                mMetaInfo.insert(std::string("AUTH") + pair.first, grip);
-            } else {
-                // Maybe more keyslots in the future?
-                qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
-            }
         } else {
             mMetaInfo.insert(pair.first, pair.second);
         }

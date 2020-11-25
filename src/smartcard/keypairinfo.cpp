@@ -37,3 +37,28 @@ KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s) {
     }
     return info;
 }
+
+void KeyPairInfo::update(const KeyPairInfo &other)
+{
+    Q_ASSERT(keyRef == other.keyRef);
+    if (keyRef != other.keyRef) {
+        return;
+    }
+    if (grip != other.grip) {
+        // reset all infos if the grip changed
+        grip = other.grip;
+        usage = std::string();
+        keyTime = std::string();
+        algorithm = std::string();
+    }
+    // now update all infos from other's infos unless other's infos are empty or not specified
+    if (!other.usage.empty() && other.usage != "-") {
+        usage = other.usage;
+    }
+    if (!other.keyTime.empty() && other.keyTime != "-") {
+        keyTime = other.keyTime;
+    }
+    if (!other.algorithm.empty() && other.algorithm != "-") {
+        algorithm = other.algorithm;
+    }
+}

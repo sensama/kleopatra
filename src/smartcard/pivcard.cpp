@@ -115,7 +115,7 @@ std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(cons
 
 std::string PIVCard::keyGrip(const std::string& keyRef) const
 {
-    return mMetaInfo.value("KEYPAIRINFO-" + keyRef);
+    return keyInfo(keyRef).grip;
 }
 
 void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
@@ -126,18 +126,7 @@ void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string>
         if (parseCardInfo(pair.first, pair.second)) {
             continue;
         }
-        if (pair.first == "KEYPAIRINFO") {
-            const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
-            if (info.grip.empty()) {
-                qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
-                        << QString::fromStdString(pair.second);
-                setStatus(Card::CardError);
-                continue;
-            }
-            mMetaInfo.insert("KEYPAIRINFO-" + info.keyRef, info.grip);
-        } else {
-            mMetaInfo.insert(pair.first, pair.second);
-        }
+        mMetaInfo.insert(pair.first, pair.second);
     }
 }
 

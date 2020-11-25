@@ -45,14 +45,15 @@ static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PI
 {
     int row = grid->rowCount();
     grid->addWidget(new QLabel(keyName), row, 0);
-    grid->addWidget(keyWidgets.certificateInfo, row, 1, 1, 2);
+    grid->addWidget(keyWidgets.keyGrip, row, 1);
+    grid->addWidget(keyWidgets.keyAlgorithm, row, 2);
     grid->addWidget(keyWidgets.generateButton, row, 3);
     if (keyWidgets.writeKeyButton) {
         grid->addWidget(keyWidgets.writeKeyButton, row, 4);
     }
+
     row++;
-    grid->addWidget(keyWidgets.keyGrip, row, 1);
-    grid->addWidget(keyWidgets.keyAlgorithm, row, 2);
+    grid->addWidget(keyWidgets.certificateInfo, row, 1, 1, 2);
     grid->addWidget(keyWidgets.writeCertificateButton, row, 3);
     grid->addWidget(keyWidgets.importCertificateButton, row, 4);
 }

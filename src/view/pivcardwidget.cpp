@@ -13,6 +13,7 @@
 
 #include "commands/certificatetopivcardcommand.h"
 #include "commands/changepincommand.h"
+#include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/importcertificatefrompivcardcommand.h"
 #include "commands/keytocardcommand.h"
@@ -56,6 +57,9 @@ static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PI
     grid->addWidget(keyWidgets.certificateInfo, row, 1, 1, 2);
     grid->addWidget(keyWidgets.writeCertificateButton, row, 3);
     grid->addWidget(keyWidgets.importCertificateButton, row, 4);
+    if (keyWidgets.createCSRButton) {
+        grid->addWidget(keyWidgets.createCSRButton, row, 5);
+    }
 }
 
 static int toolTipOptions()
@@ -182,6 +186,13 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &key
     keyWidgets.generateButton->setEnabled(false);
     connect(keyWidgets.generateButton, &QPushButton::clicked,
             this, [this, keyRef] () { generateKey(keyRef); });
+    if (keyInfo.canSign() || keyInfo.canEncrypt()) {
+        keyWidgets.createCSRButton = new QPushButton(i18nc("@action:button", "Create CSR"), this);
+        keyWidgets.createCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for this key"));
+        keyWidgets.createCSRButton->setEnabled(false);
+        connect(keyWidgets.createCSRButton, &QPushButton::clicked,
+                this, [this, keyRef] () { createCSR(keyRef); });
+    }
     keyWidgets.writeCertificateButton = new QPushButton(i18nc("@action:button", "Write Certificate"));
     keyWidgets.writeCertificateButton->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
     keyWidgets.writeCertificateButton->setEnabled(false);
@@ -237,6 +248,9 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *c
         widgets.generateButton->setText(i18nc("@action:button", "Generate"));
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Generate %1", PIVCard::keyDisplayName(keyRef)));
+        if (widgets.createCSRButton) {
+            widgets.createCSRButton->setEnabled(false);
+        }
         widgets.writeCertificateButton->setEnabled(false);
         widgets.importCertificateButton->setEnabled(false);
     } else {
@@ -264,6 +278,9 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *c
         widgets.generateButton->setText(i18nc("@action:button", "Replace"));
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
+        if (widgets.createCSRButton) {
+            widgets.createCSRButton->setEnabled(true);
+        }
     }
 
     widgets.generateButton->setEnabled(true);
@@ -278,6 +295,17 @@ void PIVCardWidget::generateKey(const std::string &keyref)
                 this->setEnabled(true);
             });
     cmd->setKeyRef(keyref);
+    cmd->start();
+}
+
+void PIVCardWidget::createCSR(const std::string &keyref)
+{
+    auto cmd = new CreateCSRForCardKeyCommand(keyref, mCardSerialNumber, PIVCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateCSRForCardKeyCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
     cmd->start();
 }
 

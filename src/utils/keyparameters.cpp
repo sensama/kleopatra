@@ -80,6 +80,11 @@ void KeyParameters::setKeyType(Subkey::PubkeyAlgo type)
     d->keyType = QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(type));
 }
 
+void KeyParameters::setKeyType(const QString &cardKeyRef)
+{
+    d->keyType = QLatin1String("card:") + cardKeyRef;
+}
+
 void KeyParameters::setKeyLength(unsigned int length)
 {
     d->setValue(QStringLiteral("Key-Length"), QString::number(length));

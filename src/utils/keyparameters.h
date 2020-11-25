@@ -34,6 +34,7 @@ public:
     ~KeyParameters();
 
     void setKeyType(GpgME::Subkey::PubkeyAlgo type);
+    void setKeyType(const QString &cardKeyRef);
     void setKeyLength(unsigned int length);
     void setKeyCurve(const QString &curve);
     void setKeyUsages(const QStringList &usages);

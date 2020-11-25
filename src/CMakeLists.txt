@@ -148,6 +148,7 @@ set(_kleopatra_SRCS
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
   dialogs/certificatedetailsinputwidget.cpp
   dialogs/createcsrforcardkeydialog.cpp
+  dialogs/csrcreationresultdialog.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp
@@ -251,6 +252,7 @@ set(_kleopatra_SRCS
   commands/certificatetopivcardcommand.cpp
   commands/importcertificatefrompivcardcommand.cpp
   commands/createopenpgpkeyfromcardkeyscommand.cpp
+  commands/createcsrforcardkeycommand.cpp
 
   ${_kleopatra_uiserver_files}
 

@@ -41,6 +41,7 @@ public:
         QLabel *keyAlgorithm = nullptr;
         QLabel *certificateInfo = nullptr;
         QPushButton *generateButton = nullptr;
+        QPushButton *createCSRButton = nullptr;
         QPushButton *writeCertificateButton = nullptr;
         QPushButton *importCertificateButton = nullptr;
         QPushButton *writeKeyButton = nullptr;
@@ -50,6 +51,7 @@ private:
     KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
     void updateKeyWidgets(const std::string &keyRef, const SmartCard::PIVCard *card);
     void generateKey(const std::string &keyref);
+    void createCSR(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
     void importCertificateFromCard(const std::string &keyref);
     void writeKeyToCard(const std::string &keyref);

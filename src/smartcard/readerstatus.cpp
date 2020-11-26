@@ -394,13 +394,6 @@ static void setDisplaySerialNumber(Card *card, std::shared_ptr<Context> &gpgAgen
 
     Error err;
     const QString displaySerialNumber = QString::fromStdString(getDisplaySerialNumber(gpgAgent, err));
-    if (card->cardType() == "yubikey" && isOpenPGPCardSerialNumber(card->serialNumber())
-            && !displaySerialNumber.startsWith(QLatin1String("yk-"))) {
-        // workaround for special Yubikey serial number being overwritten by OpenPGP card serial number (https://dev.gnupg.org/T5100)
-        card->setDisplaySerialNumber(
-            QLatin1String("yk-") + QString::fromStdString(card->serialNumber().substr(20, 8)).replace(leadingZeros, QString()));
-        return;
-    }
     if (err) {
         card->setDisplaySerialNumber(QString::fromStdString(card->serialNumber()));
         return;

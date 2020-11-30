@@ -729,8 +729,6 @@ public:
         // The email doesn't necessarily show up in ui.resultLE:
         connect(ui.emailLE, &QLineEdit::textChanged,
                 this, &QWizardPage::completeChanged);
-        connect(ui.addEmailToDnCB, &QAbstractButton::toggled,
-                this, &EnterDetailsPage::slotUpdateResultLabel);
         registerDialogPropertiesAsFields();
         registerField(QStringLiteral("dn"), ui.resultLE);
         registerField(QStringLiteral("name"), ui.nameLE);
@@ -1340,8 +1338,6 @@ void EnterDetailsPage::clearForm()
     ui.emailLE->clear();
     ui.emailLB->hide();
     ui.emailRequiredLB->hide();
-
-    ui.addEmailToDnCB->hide();
 }
 
 static int row_index_of(QWidget *w, QGridLayout *l)
@@ -1442,9 +1438,6 @@ void EnterDetailsPage::updateForm()
         if (attr == QLatin1String("EMAIL")) {
             row = row_index_of(ui.emailLE, ui.gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(QRegExp(regex));
-            if (!pgp()) {
-                ui.addEmailToDnCB->show();
-            }
         } else if (attr == QLatin1String("NAME") || attr == QLatin1String("CN")) {
             if ((pgp() && attr == QLatin1String("CN")) || (!pgp() && attr == QLatin1String("NAME"))) {
                 continue;
@@ -1481,7 +1474,6 @@ void EnterDetailsPage::updateForm()
     std::copy(lines.cbegin(), lines.cend(), std::back_inserter(lineList));
 
     widgets.push_back(ui.resultLE);
-    widgets.push_back(ui.addEmailToDnCB);
     widgets.push_back(ui.advancedPB);
 
     const KEMailSettings e;
@@ -1504,7 +1496,7 @@ QString EnterDetailsPage::cmsDN() const
             continue;
         }
         QString attr = attributeFromKey(it->attr);
-        if (attr == QLatin1String("EMAIL") && !ui.addEmailToDnCB->isChecked()) {
+        if (attr == QLatin1String("EMAIL")) {
             continue;
         }
         if (const char *const oid = oidForAttributeName(attr)) {

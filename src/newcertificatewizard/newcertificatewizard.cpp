@@ -28,8 +28,8 @@
 
 #include <utils/validation.h>
 #include <utils/filedialog.h>
-#include <Libkleo/GnuPG>
 
+#include <Libkleo/GnuPG>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Dn>
 #include <Libkleo/OidMap>
@@ -1286,16 +1286,6 @@ static QString attributeLabelWithColor(const QString &attr, bool pgp)
 static QString attributeFromKey(QString key)
 {
     return key.remove(QLatin1Char('!'));
-}
-
-static const char *oidForAttributeName(const QString &attr)
-{
-    QByteArray attrUtf8 = attr.toUtf8();
-    for (unsigned int i = 0; i < numOidMaps; ++i)
-        if (qstricmp(attrUtf8.constData(), oidmap[i].name) == 0) {
-            return oidmap[i].oid;
-        }
-    return nullptr;
 }
 
 QDir WizardPage::tmpDir() const

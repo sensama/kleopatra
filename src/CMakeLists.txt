@@ -143,6 +143,8 @@ set(_kleopatra_SRCS
   dialogs/gencardkeydialog.cpp
   dialogs/updatenotification.cpp
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
+  dialogs/certificatedetailsinputwidget.cpp
+  dialogs/createcsrforcardkeydialog.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp

@@ -22,12 +22,13 @@
 
 #include "ui_advancedsettingsdialog.h"
 
-#include <commands/exportsecretkeycommand.h>
-#include <commands/exportopenpgpcertstoservercommand.h>
-#include <commands/exportcertificatecommand.h>
+#include "commands/exportsecretkeycommand.h"
+#include "commands/exportopenpgpcertstoservercommand.h"
+#include "commands/exportcertificatecommand.h"
 
-#include <utils/validation.h>
-#include <utils/filedialog.h>
+#include "utils/validation.h"
+#include "utils/filedialog.h"
+#include "utils/keyparameters.h"
 
 #include <Libkleo/GnuPG>
 #include <Libkleo/Stl_Util>
@@ -1709,71 +1710,53 @@ QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
     return result;
 }
 
-static QString encode_dns(const QString &dns)
-{
-    return QLatin1String(QUrl::toAce(dns));
-}
-
-static QString encode_email(const QString &email)
-{
-    const int at = email.lastIndexOf(QLatin1Char('@'));
-    if (at < 0) {
-        return email;
-    }
-    return email.left(at + 1) + encode_dns(email.mid(at + 1));
-}
-
 QString KeyCreationPage::createGnupgKeyParms() const
 {
-    QString result;
-    QTextStream s(&result);
-    s     << "<GnupgKeyParms format=\"internal\">\n";
-    if (pgp()) {
-        s << "%ask-passphrase\n";
-    }
-    s     << "key-type:      " << Subkey::publicKeyAlgorithmAsString(keyType()) << '\n';
+    KeyParameters keyParameters(pgp() ? KeyParameters::OpenPGP : KeyParameters::CMS);
+
+    keyParameters.setKeyType(keyType());
     if (is_ecdsa(keyType()) || is_eddsa(keyType())) {
-        s << "key-curve:     " << keyCurve() << '\n';
-
+        keyParameters.setKeyCurve(keyCurve());
     } else if (const unsigned int strength = keyStrength()) {
-        s << "key-length:    " << strength                 << '\n';
+        keyParameters.setKeyLength(strength);
     }
-    s     << "key-usage:     " << keyUsages().join(QLatin1Char(' '))    << '\n';
-    if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
-        s << "subkey-type:   " << Subkey::publicKeyAlgorithmAsString(subkey) << '\n';
+    keyParameters.setKeyUsages(keyUsages());
 
+    if (subkeyType()) {
+        keyParameters.setSubkeyType(subkeyType());
         if (is_ecdh(subkeyType())) {
-            s << "subkey-curve: " << subkeyCurve()         << '\n';
+            keyParameters.setSubkeyCurve(subkeyCurve());
         } else if (const unsigned int strength = subkeyStrength()) {
-            s << "subkey-length: " << strength             << '\n';
+            keyParameters.setSubkeyLength(strength);
         }
-        s << "subkey-usage:  " << subkeyUsages().join(QLatin1Char(' ')) << '\n';
+        keyParameters.setSubkeyUsages(subkeyUsages());
     }
-    if (pgp() && expiryDate().isValid()) {
-        s << "expire-date:   " << expiryDate().toString(Qt::ISODate) << '\n';
-    }
+
     if (pgp()) {
+        if (expiryDate().isValid()) {
+            keyParameters.setExpirationDate(expiryDate());
+        }
         if (!name().isEmpty()) {
-            s << "name-real:     " << name()                   << '\n';
+            keyParameters.setName(name());
         }
         if (!email().isEmpty()) {
-            s << "name-email:    " << email()                  << '\n';
+            keyParameters.setEmail(email());
         }
     } else {
-        s << "name-dn:       " << dn()                     << '\n';
-        s << "name-email:    " << encode_email(email())    << '\n';
+        keyParameters.setDN(dn());
+        keyParameters.setEmail(email());
         Q_FOREACH (const QString &email, additionalEMailAddresses()) {
-            s << "name-email:    " << encode_email(email) << '\n';
+            keyParameters.addEmail(email);
         }
-        Q_FOREACH (const QString &dns,   dnsNames()) {
-            s << "name-dns:      " << encode_dns(dns)    << '\n';
+        Q_FOREACH (const QString &dns, dnsNames()) {
+            keyParameters.addDomainName(dns);
         }
-        Q_FOREACH (const QString &uri,   uris()) {
-            s << "name-uri:      " << uri                  << '\n';
+        Q_FOREACH (const QString &uri, uris()) {
+            keyParameters.addURI(uri);
         }
     }
-    s     << "</GnupgKeyParms>"                            << '\n';
-    s.flush();
+
+    const QString result = keyParameters.toString();
     qCDebug(KLEOPATRA_LOG) << '\n' << result;
     return result;
 }

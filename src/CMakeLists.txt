@@ -97,6 +97,7 @@ set(_kleopatra_SRCS
   utils/kuniqueservice.cpp
   utils/remarks.cpp
   utils/writecertassuantransaction.cpp
+  utils/keyparameters.cpp
 
   selftest/selftest.cpp
   selftest/enginecheck.cpp

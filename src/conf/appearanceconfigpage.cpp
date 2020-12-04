@@ -12,7 +12,6 @@
 
 #include "appearanceconfigwidget.h"
 
-#include <KMessageBox>
 
 #include <QVBoxLayout>
 

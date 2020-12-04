@@ -12,7 +12,6 @@
 #include "smimevalidationconfigurationwidget.h"
 
 #include <QVBoxLayout>
-#include <KMessageBox>
 
 using namespace Kleo::Config;
 

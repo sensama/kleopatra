@@ -49,7 +49,6 @@
 #include "kleopatra_options.h"
 
 #include <KLocalizedString>
-#include <KIconLoader>
 #include <KMessageBox>
 #include <KCrash>
 

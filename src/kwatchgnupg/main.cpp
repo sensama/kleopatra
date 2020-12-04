@@ -14,7 +14,6 @@
 #include <Kdelibs4ConfigMigrator>
 #include "utils/kuniqueservice.h"
 
-#include <KMessageBox>
 #include <KLocalizedString>
 #include <KCrash>
 #include "kwatchgnupg_debug.h"

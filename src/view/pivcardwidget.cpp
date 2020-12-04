@@ -27,7 +27,6 @@
 #include <Libkleo/KeyCache>
 
 #include <KLocalizedString>
-#include <KMessageBox>
 
 #include <QFrame>
 #include <QGridLayout>

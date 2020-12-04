@@ -44,7 +44,6 @@
 #include "pivcard.h"
 
 #include <QStringList>
-#include <QFileInfo>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QThread>

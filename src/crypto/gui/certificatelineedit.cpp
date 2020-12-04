@@ -10,7 +10,6 @@
 #include "certificatelineedit.h"
 
 #include <QCompleter>
-#include <QFontMetrics>
 #include <QPushButton>
 #include <QAction>
 #include <QSignalBlocker>

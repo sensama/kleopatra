@@ -22,9 +22,9 @@
 #include <QSpinBox>
 
 #include <QLabel>
-#include <QDateTimeEdit>
 #include <QCheckBox>
 #include <QLayout>
+#include <QTimeEdit>
 
 using namespace Kleo;
 

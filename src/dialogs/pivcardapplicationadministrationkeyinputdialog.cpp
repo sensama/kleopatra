@@ -16,7 +16,6 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KLocalizedString>
 
 #include "kleopatra_debug.h"
 

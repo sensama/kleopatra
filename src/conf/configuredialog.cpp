@@ -19,8 +19,6 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
-#include <QIcon>
-#include <QApplication>
 
 #if HAVE_KCMUTILS
 # include <KCMultiDialog>

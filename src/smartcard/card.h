@@ -76,6 +76,12 @@ public:
 
     QString cardHolder() const;
 
+    void setSigningKeyRef(const std::string &keyRef);
+    std::string signingKeyRef() const;
+
+    void setEncryptionKeyRef(const std::string &keyRef);
+    std::string encryptionKeyRef() const;
+
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
 
@@ -110,6 +116,8 @@ private:
     std::string mCardType;
     int mCardVersion = -1;
     QString mCardHolder;
+    std::string mSigningKeyRef;
+    std::string mEncryptionKeyRef;
     std::vector<PinState> mPinStates;
     QString mErrMsg;
     std::vector<KeyPairInfo> mKeyInfos;

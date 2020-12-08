@@ -121,6 +121,26 @@ QString Card::cardHolder() const
     return mCardHolder;
 }
 
+void Card::setSigningKeyRef(const std::string &keyRef)
+{
+    mSigningKeyRef = keyRef;
+}
+
+std::string Card::signingKeyRef() const
+{
+    return mSigningKeyRef;
+}
+
+void Card::setEncryptionKeyRef(const std::string &keyRef)
+{
+    mEncryptionKeyRef = keyRef;
+}
+
+std::string Card::encryptionKeyRef() const
+{
+    return mEncryptionKeyRef;
+}
+
 std::vector<Card::PinState> Card::pinStates() const
 {
     return mPinStates;

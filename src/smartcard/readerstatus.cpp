@@ -234,6 +234,21 @@ static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, 
     return gpgagent_status(gpgAgent, cmd.c_str(), err);
 }
 
+static const std::string getAttribute(std::shared_ptr<Context> &gpgAgent, const char *attribute, const char *versionHint)
+{
+    Error err;
+    const auto result = scd_getattr_status(gpgAgent, attribute, err);
+    if (err) {
+        if (err.code() == GPG_ERR_INV_NAME) {
+            qCDebug(KLEOPATRA_LOG) << "Querying for attribute" << attribute << "not yet supported; needs GnuPG" << versionHint;
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR " << attribute << " failed:" << err;
+        }
+        return std::string();
+    }
+    return result;
+}
+
 static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, Error &err)
 {
     std::vector<CardApp> result;
@@ -607,6 +622,9 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     }
 
     ci->setSerialNumber(serialNumber);
+
+    ci->setSigningKeyRef(getAttribute(gpg_agent, "$SIGNKEYID", "2.2.18"));
+    ci->setEncryptionKeyRef(getAttribute(gpg_agent, "$ENCRKEYID", "2.2.18"));
 
     // Handle different card types
     if (appName == NetKeyCard::AppName) {

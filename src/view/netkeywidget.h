@@ -39,6 +39,7 @@ public:
 private:
     void handleResult(const GpgME::Error &err, QPushButton *btn);
     void doChangePin(bool sigG);
+    void createKeyFromCardKeys();
 
 private Q_SLOTS:
     void setSigGPinSettingResult(const GpgME::Error &err);
@@ -52,6 +53,7 @@ private:
            *mErrorLabel;
     NullPinWidget *mNullPinWidget;
     QPushButton *mLearnKeysBtn,
+                *mKeyForCardKeysButton,
                 *mChangeNKSPINBtn,
                 *mChangeSigGPINBtn;
     KeyTreeView *mTreeView;

@@ -16,6 +16,7 @@
 
 #include "dialogs/adduseriddialog.h"
 
+#include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -91,7 +92,7 @@ CreateOpenPGPKeyFromCardKeysCommand::Private::~Private()
 
 void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
 {
-    if (appName != OpenPGPCard::AppName && appName != PIVCard::AppName) {
+    if (appName != NetKeyCard::AppName && appName != OpenPGPCard::AppName && appName != PIVCard::AppName) {
         qCWarning(KLEOPATRA_LOG) << "CreateOpenPGPKeyFromCardKeysCommand does not support card application" << QString::fromStdString(appName);
         finished();
         return;

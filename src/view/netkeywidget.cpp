@@ -15,6 +15,8 @@
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/readerstatus.h"
+
+#include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/learncardkeyscommand.h"
 #include "commands/detailscommand.h"
 
@@ -42,6 +44,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mErrorLabel(new QLabel(this)),
     mNullPinWidget(new NullPinWidget()),
     mLearnKeysBtn(new QPushButton(this)),
+    mKeyForCardKeysButton(new QPushButton(this)),
     mChangeNKSPINBtn(new QPushButton(this)),
     mChangeSigGPINBtn(new QPushButton(this)),
     mTreeView(new KeyTreeView(this)),
@@ -130,6 +133,13 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     vLay->addWidget(line2);
     vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), 0, Qt::AlignLeft);
 
+    auto actionLayout = new QHBoxLayout();
+
+    mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
+    mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
+    actionLayout->addWidget(mKeyForCardKeysButton);
+    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &NetKeyWidget::createKeyFromCardKeys);
+
     mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
     mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
 
@@ -142,12 +152,11 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
             doChangePin(true);
         });
 
-    auto hLay3 = new QHBoxLayout();
-    hLay3->addWidget(mChangeNKSPINBtn);
-    hLay3->addWidget(mChangeSigGPINBtn);
-    hLay3->addStretch(1);
+    actionLayout->addWidget(mChangeNKSPINBtn);
+    actionLayout->addWidget(mChangeSigGPINBtn);
+    actionLayout->addStretch(1);
 
-    vLay->addLayout(hLay3);
+    vLay->addLayout(actionLayout);
     vLay->addStretch(1);
 }
 
@@ -234,4 +243,15 @@ void NetKeyWidget::doChangePin(bool sigG)
         ReaderStatus::mutableInstance()->startSimpleTransaction(
             nksCard, "SCD PASSWD PW1.CH", this, "setNksPinSettingResult");
     }
+}
+
+void NetKeyWidget::createKeyFromCardKeys()
+{
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mSerialNumber, NetKeyCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->start();
 }

@@ -460,7 +460,7 @@ void MainWindow::Private::setupActions()
 
     focusToClickSearchAction = new QAction(i18n("Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);
-    coll->setDefaultShortcut(focusToClickSearchAction, QKeySequence(Qt::ALT + Qt::Key_Q));
+    coll->setDefaultShortcut(focusToClickSearchAction, QKeySequence(Qt::ALT | Qt::Key_Q));
     connect(focusToClickSearchAction, SIGNAL(triggered(bool)), q, SLOT(slotFocusQuickSearch()));
     clipboadMenu = new ClipboardMenu(q);
     clipboadMenu->setMainWindow(q);

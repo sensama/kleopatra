@@ -131,6 +131,11 @@ std::string Card::signingKeyRef() const
     return mSigningKeyRef;
 }
 
+bool Card::hasSigningKey() const
+{
+    return !keyInfo(mSigningKeyRef).grip.empty();
+}
+
 void Card::setEncryptionKeyRef(const std::string &keyRef)
 {
     mEncryptionKeyRef = keyRef;
@@ -139,6 +144,11 @@ void Card::setEncryptionKeyRef(const std::string &keyRef)
 std::string Card::encryptionKeyRef() const
 {
     return mEncryptionKeyRef;
+}
+
+bool Card::hasEncryptionKey() const
+{
+    return !keyInfo(mEncryptionKeyRef).grip.empty();
 }
 
 std::vector<Card::PinState> Card::pinStates() const

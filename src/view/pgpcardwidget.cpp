@@ -240,7 +240,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     updateKey(mAuthKey, card->authFpr());
     mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
 
-    mKeyForCardKeysButton->setEnabled(!mCardIsEmpty);
+    mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef)

@@ -78,9 +78,11 @@ public:
 
     void setSigningKeyRef(const std::string &keyRef);
     std::string signingKeyRef() const;
+    bool hasSigningKey() const;
 
     void setEncryptionKeyRef(const std::string &keyRef);
     std::string encryptionKeyRef() const;
+    bool hasEncryptionKey() const;
 
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);

@@ -228,9 +228,7 @@ void PIVCardWidget::setCard(const PIVCard *card)
     updateKeyWidgets(PIVCard::digitalSignatureKeyRef(), card);
     updateKeyWidgets(PIVCard::keyManagementKeyRef(), card);
 
-    const bool signingKeyAvailable = !card->keyGrip(PIVCard::digitalSignatureKeyRef()).empty();
-    const bool encryptionKeyAvailable = !card->keyGrip(PIVCard::keyManagementKeyRef()).empty();
-    mKeyForCardKeysButton->setEnabled(signingKeyAvailable && encryptionKeyAvailable);
+    mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
 }
 
 void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)

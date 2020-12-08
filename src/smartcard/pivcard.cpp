@@ -113,11 +113,6 @@ std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(cons
     };
 }
 
-std::string PIVCard::keyGrip(const std::string& keyRef) const
-{
-    return keyInfo(keyRef).grip;
-}
-
 void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";

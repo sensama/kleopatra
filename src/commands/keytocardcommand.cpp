@@ -364,7 +364,7 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
 
     // Check if we need to do the overwrite warning.
     if (!overwriteExistingAlreadyApproved) {
-        const std::string existingKey = pivCard->keyGrip(cardSlot);
+        const std::string existingKey = pivCard->keyInfo(cardSlot).grip;
         if (!existingKey.empty() && (existingKey != subkey.keyGrip())) {
             const QString decryptionWarning = (cardSlot == PIVCard::keyManagementKeyRef()) ?
                 i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :

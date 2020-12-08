@@ -234,7 +234,7 @@ void PIVCardWidget::setCard(const PIVCard *card)
 void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)
 {
     KeyWidgets widgets = mKeyWidgets.value(keyRef);
-    const std::string grip = card ? card->keyGrip(keyRef) : widgets.keyGrip->text().toStdString();
+    const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip->text().toStdString();
     if (grip.empty()) {
         widgets.certificateInfo->setText(i18nc("@info", "<em>slot empty</em>"));
         widgets.certificateInfo->setToolTip(QString());

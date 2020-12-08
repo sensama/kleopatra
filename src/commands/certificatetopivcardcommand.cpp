@@ -94,7 +94,7 @@ namespace {
 static Key getCertificateToWriteToPIVCard(const std::string &cardSlot, const std::shared_ptr<PIVCard> &card)
 {
     if (!cardSlot.empty()) {
-        const std::string cardKeygrip = card->keyGrip(cardSlot);
+        const std::string cardKeygrip = card->keyInfo(cardSlot).grip;
         const auto certificate = KeyCache::instance()->findSubkeyByKeyGrip(cardKeygrip).parent();
         if (certificate.isNull() || certificate.protocol() != GpgME::CMS) {
             return Key();

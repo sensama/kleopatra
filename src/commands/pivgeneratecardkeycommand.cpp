@@ -122,7 +122,7 @@ void PIVGenerateCardKeyCommand::doStart()
         return;
     }
 
-    auto existingKey = pivCard->keyGrip(d->keyRef);
+    auto existingKey = pivCard->keyInfo(d->keyRef).grip;
     if (!existingKey.empty()) {
         const QString warningText = i18nc("@info",
             "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"

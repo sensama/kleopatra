@@ -37,8 +37,6 @@ public:
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
 
-    std::string keyGrip(const std::string &keyRef) const;
-
     void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
     std::string keyAlgorithm(const std::string &keyRef) const;

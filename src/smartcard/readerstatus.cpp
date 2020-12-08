@@ -558,21 +558,12 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     }
     nkCard->setPinStates(states);
 
-    // check for keys to learn:
-    const std::unique_ptr<DefaultAssuanTransaction> result = gpgagent_default_transact(gpg_agent, "SCD LEARN --keypairinfo", err);
-    if (err.code() || !result.get()) {
-        if (err) {
-            ci->setErrorMsg(QString::fromLatin1(err.asString()));
-        } else {
-            ci->setErrorMsg(QStringLiteral("Invalid internal state. No result."));
-        }
+    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    if (err) {
+        ci->setStatus(Card::CardError);
         return;
     }
-    const std::vector<std::string> keyPairInfos = result->statusLine("KEYPAIRINFO");
-    if (keyPairInfos.empty()) {
-        return;
-    }
-    nkCard->setKeyPairInfo(keyPairInfos);
+    nkCard->setCardInfo(info);
 }
 
 static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, const std::string &appName, std::shared_ptr<Context> &gpg_agent)

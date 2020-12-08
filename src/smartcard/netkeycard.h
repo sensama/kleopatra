@@ -8,7 +8,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-
 #include "card.h"
 
 #include <gpgme++/key.h>
@@ -17,6 +16,8 @@ namespace Kleo
 {
 namespace SmartCard
 {
+struct KeyPairInfo;
+
 /** Class to work with NetKey smartcards or compatible tokens */
 class NetKeyCard: public Card
 {
@@ -25,12 +26,15 @@ public:
 
     static const std::string AppName;
 
-    void setKeyPairInfo(const std::vector<std::string> &infos);
+    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;
 
     std::vector <GpgME::Key> keys() const;
+
+private:
+    void setKeyPairInfo(const std::vector<KeyPairInfo> &infos);
 
 private:
     std::vector <GpgME::Key> mKeys;

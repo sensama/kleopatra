@@ -8,6 +8,8 @@
 
 #include "netkeycard.h"
 
+#include "keypairinfo.h"
+
 #include "kleopatra_debug.h"
 
 #include <gpgme++/error.h>
@@ -25,18 +27,12 @@ const std::string NetKeyCard::AppName = "nks";
 
 namespace
 {
-static std::string parse_keypairinfo(const std::string &kpi)
+static GpgME::Key lookup_key(GpgME::Context *ctx, const std::string &keyGrip)
 {
-    static const char hexchars[] = "0123456789abcdefABCDEF";
-    return '&' + kpi.substr(0, kpi.find_first_not_of(hexchars));
-}
-
-static GpgME::Key parse_keypairinfo_and_lookup_key(GpgME::Context *ctx, const std::string &kpi)
-{
-    if (!ctx) {
+    if (!ctx || keyGrip.empty()) {
         return GpgME::Key();
     }
-    const std::string pattern = parse_keypairinfo(kpi);
+    const std::string pattern = '&' + keyGrip;
     qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: pattern=" << pattern.c_str();
     if (const auto err = ctx->startKeyListing(pattern.c_str())) {
         qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: startKeyListing failed:" << err.asString();
@@ -57,7 +53,17 @@ NetKeyCard::NetKeyCard(const Card &card)
     setAppName(AppName);
 }
 
-void NetKeyCard::setKeyPairInfo(const std::vector<std::string> &infos)
+void NetKeyCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
+{
+    qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
+    for (const auto &pair: infos) {
+        qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
+        parseCardInfo(pair.first, pair.second);
+    }
+    setKeyPairInfo(keyInfos());
+}
+
+void NetKeyCard::setKeyPairInfo(const std::vector<KeyPairInfo> &infos)
 {
     // check that any of the keys are new
     const std::unique_ptr<GpgME::Context> klc(GpgME::Context::createForProtocol(GpgME::CMS));
@@ -70,7 +76,7 @@ void NetKeyCard::setKeyPairInfo(const std::vector<std::string> &infos)
     setCanLearnKeys(false);
     mKeys.clear();
     for (const auto &info: infos) {
-        const auto key = parse_keypairinfo_and_lookup_key(klc.get(), info);
+        const auto key = lookup_key(klc.get(), info.grip);
         if (key.isNull()) {
             setCanLearnKeys(true);
         }

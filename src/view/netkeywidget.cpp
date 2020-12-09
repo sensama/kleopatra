@@ -204,6 +204,10 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
 
     const auto keys = card->keys();
     mTreeView->setKeys(keys);
+
+    if (mKeyForCardKeysButton) {
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+    }
 }
 
 void NetKeyWidget::handleResult(const GpgME::Error &err, QPushButton *btn)

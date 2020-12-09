@@ -47,10 +47,10 @@ public:
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
 
-        const QStringList supported = QStringList() << QStringLiteral("OpenPGP v2.0 - v3.3")
-                                                    << QStringLiteral("Gnuk")
-                                                    << QStringLiteral("NetKey v3")
-                                                    << QStringLiteral("PIV");
+        const QStringList supported = QStringList() << i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 - v3.3")
+                                                    << i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk")
+                                                    << i18nc("NetKey refers to a smartcard protocol", "NetKey v3")
+                                                    << i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)");
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") +
                                   i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);

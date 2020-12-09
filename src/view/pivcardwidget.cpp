@@ -78,7 +78,6 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     : QWidget(parent)
     , mSerialNumber(new QLabel(this))
     , mVersionLabel(new QLabel(this))
-    , mKeyForCardKeysButton(new QPushButton(this))
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -144,10 +143,13 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
 
     auto actionLayout = new QHBoxLayout;
 
-    mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
-    mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
-    actionLayout->addWidget(mKeyForCardKeysButton);
-    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PIVCardWidget::createKeyFromCardKeys);
+    if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
+        mKeyForCardKeysButton = new QPushButton(this);
+        mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
+        mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
+        actionLayout->addWidget(mKeyForCardKeysButton);
+        connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PIVCardWidget::createKeyFromCardKeys);
+    }
 
     {
         auto button = new QPushButton(i18nc("@action:button", "Change PIN"));
@@ -228,7 +230,9 @@ void PIVCardWidget::setCard(const PIVCard *card)
     updateKeyWidgets(PIVCard::digitalSignatureKeyRef(), card);
     updateKeyWidgets(PIVCard::keyManagementKeyRef(), card);
 
-    mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+    if (mKeyForCardKeysButton) {
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+    }
 }
 
 void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)

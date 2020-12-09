@@ -105,7 +105,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     mEncryptionKey(new QLabel(this)),
     mAuthKey(new QLabel(this)),
     mUrlLabel(new QLabel(this)),
-    mKeyForCardKeysButton(new QPushButton(this)),
     mCardIsEmpty(false)
 {
     auto grid = new QGridLayout;
@@ -202,10 +201,13 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     actionLayout->addWidget(resetCodeButton);
     connect(resetCodeButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
 
-    mKeyForCardKeysButton->setText(i18n("Create OpenPGP Key"));
-    mKeyForCardKeysButton->setToolTip(i18n("Create an OpenPGP key for the keys stored on the card."));
-    actionLayout->addWidget(mKeyForCardKeysButton);
-    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PGPCardWidget::createKeyFromCardKeys);
+    if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
+        mKeyForCardKeysButton = new QPushButton(this);
+        mKeyForCardKeysButton->setText(i18n("Create OpenPGP Key"));
+        mKeyForCardKeysButton->setToolTip(i18n("Create an OpenPGP key for the keys stored on the card."));
+        actionLayout->addWidget(mKeyForCardKeysButton);
+        connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &PGPCardWidget::createKeyFromCardKeys);
+    }
 
     actionLayout->addStretch(-1);
     grid->addLayout(actionLayout, row++, 0, 1, 4);
@@ -240,7 +242,9 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     updateKey(mAuthKey, card->authFpr());
     mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
 
-    mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+    if (mKeyForCardKeysButton) {
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+    }
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef)

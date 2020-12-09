@@ -25,6 +25,8 @@ public:
     explicit CreateOpenPGPKeyFromCardKeysCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent = nullptr);
     ~CreateOpenPGPKeyFromCardKeysCommand() override;
 
+    static bool isSupported();
+
 private:
     void doStart() override;
     void doCancel() override;

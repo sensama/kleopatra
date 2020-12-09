@@ -44,7 +44,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mErrorLabel(new QLabel(this)),
     mNullPinWidget(new NullPinWidget()),
     mLearnKeysBtn(new QPushButton(this)),
-    mKeyForCardKeysButton(new QPushButton(this)),
     mChangeNKSPINBtn(new QPushButton(this)),
     mChangeSigGPINBtn(new QPushButton(this)),
     mTreeView(new KeyTreeView(this)),
@@ -135,10 +134,13 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
 
     auto actionLayout = new QHBoxLayout();
 
-    mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
-    mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
-    actionLayout->addWidget(mKeyForCardKeysButton);
-    connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &NetKeyWidget::createKeyFromCardKeys);
+    if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
+        mKeyForCardKeysButton = new QPushButton(this);
+        mKeyForCardKeysButton->setText(i18nc("@action:button", "Create OpenPGP Key"));
+        mKeyForCardKeysButton->setToolTip(i18nc("@info:tooltip", "Create an OpenPGP key for the keys stored on the card."));
+        actionLayout->addWidget(mKeyForCardKeysButton);
+        connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &NetKeyWidget::createKeyFromCardKeys);
+    }
 
     mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
     mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));

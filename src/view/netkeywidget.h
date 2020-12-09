@@ -47,17 +47,17 @@ private Q_SLOTS:
 
 private:
     std::string mSerialNumber;
-    QLabel *mSerialNumberLabel,
-           *mVersionLabel,
-           *mLearnKeysLabel,
-           *mErrorLabel;
-    NullPinWidget *mNullPinWidget;
-    QPushButton *mLearnKeysBtn,
-                *mKeyForCardKeysButton,
-                *mChangeNKSPINBtn,
-                *mChangeSigGPINBtn;
-    KeyTreeView *mTreeView;
-    QScrollArea *mArea;
+    QLabel *mSerialNumberLabel = nullptr,
+           *mVersionLabel = nullptr,
+           *mLearnKeysLabel = nullptr,
+           *mErrorLabel = nullptr;
+    NullPinWidget *mNullPinWidget = nullptr;
+    QPushButton *mLearnKeysBtn = nullptr,
+                *mKeyForCardKeysButton = nullptr,
+                *mChangeNKSPINBtn = nullptr,
+                *mChangeSigGPINBtn = nullptr;
+    KeyTreeView *mTreeView = nullptr;
+    QScrollArea *mArea = nullptr;
 };
 } // namespace Kleo
 

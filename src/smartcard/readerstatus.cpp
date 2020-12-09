@@ -499,10 +499,10 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
 
     setDisplaySerialNumber(pivCard, gpg_agent);
 
-    for (const std::string &keyRef : PIVCard::supportedKeys()) {
-        if (!pivCard->keyInfo(keyRef).grip.empty()) {
-            readKeyPairInfoFromPIVCard(keyRef, pivCard, gpg_agent);
-            readCertificateFromPIVCard(keyRef, pivCard, gpg_agent);
+    for (const KeyPairInfo &keyInfo : pivCard->keyInfos()) {
+        if (!keyInfo.grip.empty()) {
+            readKeyPairInfoFromPIVCard(keyInfo.keyRef, pivCard, gpg_agent);
+            readCertificateFromPIVCard(keyInfo.keyRef, pivCard, gpg_agent);
         }
     }
 

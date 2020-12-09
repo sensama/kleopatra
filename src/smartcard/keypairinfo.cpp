@@ -38,6 +38,26 @@ KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s) {
     return info;
 }
 
+bool KeyPairInfo::canAuthenticate() const
+{
+    return usage.find('a') != std::string::npos;
+}
+
+bool KeyPairInfo::canCertify() const
+{
+    return usage.find('c') != std::string::npos;
+}
+
+bool KeyPairInfo::canEncrypt() const
+{
+    return usage.find('e') != std::string::npos;
+}
+
+bool KeyPairInfo::canSign() const
+{
+    return usage.find('s') != std::string::npos;
+}
+
 void KeyPairInfo::update(const KeyPairInfo &other)
 {
     Q_ASSERT(keyRef == other.keyRef);

@@ -101,6 +101,7 @@ public:
 
 protected:
     void setAppName(const std::string &name);
+    void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);
 
     bool parseCardInfo(const std::string &name, const std::string &value);
 

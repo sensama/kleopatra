@@ -18,10 +18,15 @@ namespace SmartCard
 struct KeyPairInfo {
     static KeyPairInfo fromStatusLine(const std::string &s);
 
+    bool canAuthenticate() const;
+    bool canCertify() const;
+    bool canEncrypt() const;
+    bool canSign() const;
+
     void update(const KeyPairInfo &other);
 
-    std::string grip;
     std::string keyRef;
+    std::string grip;
     std::string usage;
     std::string keyTime;
     std::string algorithm;

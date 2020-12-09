@@ -23,6 +23,7 @@ namespace Kleo
 
 namespace SmartCard
 {
+class KeyPairInfo;
 class PIVCard;
 } // namespace SmartCard
 
@@ -46,7 +47,7 @@ public:
     };
 
 private:
-    KeyWidgets createKeyWidgets(const std::string &keyRef);
+    KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
     void updateKeyWidgets(const std::string &keyRef, const SmartCard::PIVCard *card);
     void generateKey(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);

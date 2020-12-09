@@ -25,6 +25,7 @@ PIVCard::PIVCard(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
+    setInitialKeyInfos(PIVCard::supportedKeys());
 }
 
 // static
@@ -64,16 +65,16 @@ std::string PIVCard::pukKeyRef()
 }
 
 // static
-const std::vector<std::string> & PIVCard::supportedKeys()
+const std::vector<KeyPairInfo> & PIVCard::supportedKeys()
 {
-    static const std::vector<std::string> keyRefs = {
-        PIVCard::pivAuthenticationKeyRef(),
-        PIVCard::cardAuthenticationKeyRef(),
-        PIVCard::digitalSignatureKeyRef(),
-        PIVCard::keyManagementKeyRef()
+    static const std::vector<KeyPairInfo> keyInfos = {
+        {PIVCard::pivAuthenticationKeyRef(), "", "a", "", ""},
+        {PIVCard::cardAuthenticationKeyRef(), "", "a", "", ""},
+        {PIVCard::digitalSignatureKeyRef(), "", "sc", "", ""},
+        {PIVCard::keyManagementKeyRef(), "", "e", "", ""}
     };
 
-    return keyRefs;
+    return keyInfos;
 }
 
 // static

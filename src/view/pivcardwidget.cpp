@@ -118,21 +118,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     // The keys
     grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
 
-    {
-        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::pivAuthenticationKeyRef());
-        layoutKeyWidgets(grid, i18n("PIV authentication:"), keyWidgets);
-    }
-    {
-        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::cardAuthenticationKeyRef());
-        layoutKeyWidgets(grid, i18n("Card authentication:"), keyWidgets);
-    }
-    {
-        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::digitalSignatureKeyRef());
-        layoutKeyWidgets(grid, i18n("Digital signature:"), keyWidgets);
-    }
-    {
-        KeyWidgets keyWidgets = createKeyWidgets(PIVCard::keyManagementKeyRef());
-        layoutKeyWidgets(grid, i18n("Key management:"), keyWidgets);
+    for (const auto &keyInfo : PIVCard::supportedKeys()) {
+        KeyWidgets keyWidgets = createKeyWidgets(keyInfo);
+        layoutKeyWidgets(grid, PIVCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
     }
     row = grid->rowCount();
 
@@ -180,8 +168,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     grid->setColumnStretch(4, -1);
 }
 
-PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const std::string &keyRef)
+PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &keyInfo)
 {
+    const std::string keyRef = keyInfo.keyRef;
     KeyWidgets keyWidgets;
     keyWidgets.keyGrip = new QLabel(this);
     keyWidgets.keyGrip->setTextInteractionFlags(Qt::TextBrowserInteraction);

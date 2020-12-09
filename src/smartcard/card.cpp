@@ -207,6 +207,11 @@ QString Card::errorMsg() const
     return mErrMsg;
 }
 
+void Card::setInitialKeyInfos(const std::vector<KeyPairInfo> &infos)
+{
+    mKeyInfos = infos;
+}
+
 const std::vector<KeyPairInfo> & Card::keyInfos() const
 {
     return mKeyInfos;

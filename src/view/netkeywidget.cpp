@@ -206,7 +206,7 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     mTreeView->setKeys(keys);
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+        mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey());
     }
 }
 

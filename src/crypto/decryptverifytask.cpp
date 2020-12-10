@@ -62,11 +62,6 @@ using namespace KMime::Types;
 namespace
 {
 
-static Error make_error(const gpg_err_code_t code)
-{
-    return Error(gpg_error(code));
-}
-
 static AuditLog auditLogFromSender(QObject *sender)
 {
     return AuditLog::fromJob(qobject_cast<const QGpgME::Job *>(sender));
@@ -981,10 +976,10 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
             emitResult(q->fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         } catch (const std::exception &e) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
             return;
         } catch (...) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
             return;
         }
     }
@@ -1110,9 +1105,9 @@ void DecryptVerifyTask::doStart()
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
     } catch (const std::exception &e) {
-        d->emitResult(fromDecryptVerifyResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
     } catch (...) {
-        d->emitResult(fromDecryptVerifyResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
     }
 
 }
@@ -1165,10 +1160,10 @@ void DecryptTask::Private::slotResult(const DecryptionResult &result, const QByt
             emitResult(q->fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         } catch (const std::exception &e) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
             return;
         } catch (...) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
             return;
         }
     }
@@ -1268,9 +1263,9 @@ void DecryptTask::doStart()
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
     } catch (const std::exception &e) {
-        d->emitResult(fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
     } catch (...) {
-        d->emitResult(fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
     }
 }
 
@@ -1323,10 +1318,10 @@ void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, con
             emitResult(q->fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
         } catch (const std::exception &e) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
             return;
         } catch (...) {
-            emitResult(q->fromDecryptResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
+            emitResult(q->fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
             return;
         }
     }
@@ -1426,9 +1421,9 @@ void VerifyOpaqueTask::doStart()
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
     } catch (const std::exception &e) {
-        d->emitResult(fromVerifyOpaqueResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
     } catch (...) {
-        d->emitResult(fromVerifyOpaqueResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
     }
 }
 
@@ -1476,9 +1471,9 @@ void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
     } catch (const GpgME::Exception &e) {
         emitResult(q->fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
     } catch (const std::exception &e) {
-        emitResult(q->fromVerifyDetachedResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
+        emitResult(q->fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), auditLog));
     } catch (...) {
-        emitResult(q->fromVerifyDetachedResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
+        emitResult(q->fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), auditLog));
     }
 }
 
@@ -1581,9 +1576,9 @@ void VerifyDetachedTask::doStart()
     } catch (const GpgME::Exception &e) {
         d->emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
     } catch (const std::exception &e) {
-        d->emitResult(fromVerifyDetachedResult(make_error(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
     } catch (...) {
-        d->emitResult(fromVerifyDetachedResult(make_error(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
     }
 }
 

@@ -131,7 +131,7 @@ void ChangePassphraseCommand::Private::startJob()
 {
     const Error err = job
                       ? job->start(key)
-                      : Error(gpg_error(GPG_ERR_NOT_SUPPORTED))
+                      : Error::fromCode(GPG_ERR_NOT_SUPPORTED)
                       ;
     if (err) {
         showErrorDialog(err);

@@ -131,26 +131,10 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::start()
 
 void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogAccepted()
 {
-    if (!(engineInfo(GpgEngine).engineVersion() < "2.3.0")) {
-        Error err;
-        std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
-        if (err.code() == GPG_ERR_NOT_SUPPORTED) {
-            finished();
-            return;
-        }
-        auto assuanContext = std::shared_ptr<Context>(c.release());
-        const auto resultSerialNumber = ReaderStatus::switchCard(assuanContext, serialNumber(), err);
-        if (err || resultSerialNumber != serialNumber()) {
-            qCWarning(KLEOPATRA_LOG) << "Switching to card" << QString::fromStdString(serialNumber()) << "failed";
-            finished();
-            return;
-        }
-        const auto resultAppName = ReaderStatus::switchApp(assuanContext, serialNumber(), appName, err);
-        if (err || resultAppName != appName) {
-            qCWarning(KLEOPATRA_LOG) << "Switching card to" << QString::fromStdString(appName) << "app failed";
-            finished();
-            return;
-        }
+    const Error err = ReaderStatus::switchCardAndApp(serialNumber(), appName);
+    if (err) {
+        finished();
+        return;
     }
 
     const auto backend = openpgp();

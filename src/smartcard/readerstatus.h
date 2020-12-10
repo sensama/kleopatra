@@ -61,6 +61,7 @@ public:
     static std::string switchCard(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber, GpgME::Error &err);
     static std::string switchApp(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber,
                                  const std::string &appName, GpgME::Error &err);
+    static GpgME::Error switchCardAndApp(const std::string &serialNumber, const std::string &appName);
 
 public Q_SLOTS:
     void updateStatus();

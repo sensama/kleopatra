@@ -1088,4 +1088,34 @@ std::string ReaderStatus::switchApp(std::shared_ptr<Context>& ctx, const std::st
     return ::switchApp(ctx, serialNumber, appName, err);
 }
 
+// static
+Error ReaderStatus::switchCardAndApp(const std::string &serialNumber, const std::string &appName)
+{
+    Error err;
+    if (!(engineInfo(GpgEngine).engineVersion() < "2.3.0")) {
+        std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
+        if (err.code() == GPG_ERR_NOT_SUPPORTED) {
+            return err;
+        }
+        auto assuanContext = std::shared_ptr<Context>(c.release());
+        const auto resultSerialNumber = switchCard(assuanContext, serialNumber, err);
+        if (err || resultSerialNumber != serialNumber) {
+            qCWarning(KLEOPATRA_LOG) << "Switching to card" << QString::fromStdString(serialNumber) << "failed";
+            if (!err) {
+                err = Error::fromCode(GPG_ERR_UNEXPECTED);
+            }
+            return err;
+        }
+        const auto resultAppName = switchApp(assuanContext, serialNumber, appName, err);
+        if (err || resultAppName != appName) {
+            qCWarning(KLEOPATRA_LOG) << "Switching card to" << QString::fromStdString(appName) << "app failed";
+            if (!err) {
+                err = Error::fromCode(GPG_ERR_UNEXPECTED);
+            }
+            return err;
+        }
+    }
+    return err;
+}
+
 #include "readerstatus.moc"

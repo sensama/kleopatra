@@ -16,7 +16,7 @@
 
 class QIODevice;
 class QString;
-class QStringList;
+#include <QStringList>
 class QByteArray;
 class QFile;
 class QDir;

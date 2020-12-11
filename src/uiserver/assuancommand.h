@@ -31,7 +31,7 @@
 
 class QVariant;
 class QObject;
-class QStringList;
+#include <QStringList>
 
 struct assuan_context_s;
 

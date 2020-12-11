@@ -14,7 +14,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo
 {

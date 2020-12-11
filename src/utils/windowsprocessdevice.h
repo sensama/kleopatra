@@ -14,7 +14,7 @@
 #include <QIODevice>
 
 class QString;
-class QStringList;
+#include <QStringList>
 
 
 namespace Kleo

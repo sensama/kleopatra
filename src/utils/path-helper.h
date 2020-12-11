@@ -11,7 +11,7 @@
 #define __KLEOPATRA_UTILS_PATH_HELPER_H__
 
 class QString;
-class QStringList;
+#include <QStringList>
 class QDir;
 
 namespace Kleo

@@ -18,7 +18,7 @@
 
 class QIODevice;
 class QString;
-class QStringList;
+#include <QStringList>
 class QDir;
 class QWidget;
 

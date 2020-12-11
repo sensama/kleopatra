@@ -16,7 +16,7 @@
 
 class QRegExp;
 class QString;
-class QStringList;
+#include <QStringList>
 
 namespace Kleo
 {

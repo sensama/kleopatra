@@ -14,7 +14,7 @@
 
 #include "utils/types.h"
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo
 {

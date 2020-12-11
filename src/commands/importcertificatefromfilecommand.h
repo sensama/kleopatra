@@ -12,7 +12,7 @@
 
 #include "importcertificatescommand.h"
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo
 {

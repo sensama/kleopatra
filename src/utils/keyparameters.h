@@ -17,7 +17,7 @@
 
 class QDate;
 class QString;
-class QStringList;
+#include <QStringList>
 
 namespace Kleo
 {

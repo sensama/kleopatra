@@ -20,7 +20,7 @@ class QComboBox;
 class QLabel;
 class QListWidget;
 class QListWidgetItem;
-class QStringList;
+#include <QStringList>
 class QToolButton;
 
 class Kleo::Crypto::Gui::ResolveRecipientsPage::ListWidget : public QWidget

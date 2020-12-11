@@ -12,7 +12,7 @@
 
 #include <commands/command.h>
 
-class QStringList;
+#include <QStringList>
 class QString;
 class QProcess;
 

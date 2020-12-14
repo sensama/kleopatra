@@ -16,7 +16,6 @@
 
 #include "ui_chooseprotocolpage.h"
 #include "ui_enterdetailspage.h"
-#include "ui_overviewpage.h"
 #include "ui_keycreationpage.h"
 #include "ui_resultpage.h"
 
@@ -735,6 +734,8 @@ public:
         registerField(QStringLiteral("name"), ui.nameLE);
         registerField(QStringLiteral("email"), ui.emailLE);
         updateForm();
+        setCommitPage(true);
+        setButtonText(QWizard::CommitButton, i18nc("@action", "Create"));
     }
 
     bool isComplete() const override;
@@ -769,38 +770,6 @@ private:
     QMap<QString, QString> savedValues;
     AdvancedSettingsDialog dialog;
     Ui_EnterDetailsPage ui;
-};
-
-class OverviewPage : public WizardPage
-{
-    Q_OBJECT
-public:
-    explicit OverviewPage(QWidget *p = nullptr)
-        : WizardPage(p), ui()
-    {
-        ui.setupUi(this);
-        setCommitPage(true);
-        setButtonText(QWizard::CommitButton, i18nc("@action", "Create"));
-    }
-
-    void initializePage() override {
-        slotShowDetails();
-    }
-
-private Q_SLOTS:
-    void slotShowDetails()
-    {
-        ui.textBrowser->setHtml(i18nFormatGnupgKeyParms(ui.showAllDetailsCB->isChecked()));
-    }
-
-private:
-    QStringList i18nKeyUsages() const;
-    QStringList i18nSubkeyUsages() const;
-    QStringList i18nCombinedKeyUsages() const;
-    QString i18nFormatGnupgKeyParms(bool details) const;
-
-private:
-    Ui_OverviewPage ui;
 };
 
 class KeyCreationPage : public WizardPage
@@ -1157,9 +1126,9 @@ private:
         const bool encr = encryptionAllowed();
         setField(QStringLiteral("signingAllowed"),    !sign);
         setField(QStringLiteral("encryptionAllowed"), !encr);
-        // restart and skip to Overview Page:
+        // restart and skip to enter details Page:
         wizard()->restart();
-        for (int i = wizard()->currentId(); i < NewCertificateWizard::OverviewPageId; ++i) {
+        for (int i = wizard()->currentId(); i < NewCertificateWizard::EnterDetailsPageId; ++i) {
             wizard()->next();
         }
     }
@@ -1192,20 +1161,17 @@ private:
     struct Ui {
         ChooseProtocolPage chooseProtocolPage;
         EnterDetailsPage enterDetailsPage;
-        OverviewPage overviewPage;
         KeyCreationPage keyCreationPage;
         ResultPage resultPage;
 
         explicit Ui(NewCertificateWizard *q)
             : chooseProtocolPage(q),
               enterDetailsPage(q),
-              overviewPage(q),
               keyCreationPage(q),
               resultPage(q)
         {
             KDAB_SET_OBJECT_NAME(chooseProtocolPage);
             KDAB_SET_OBJECT_NAME(enterDetailsPage);
-            KDAB_SET_OBJECT_NAME(overviewPage);
             KDAB_SET_OBJECT_NAME(keyCreationPage);
             KDAB_SET_OBJECT_NAME(resultPage);
 
@@ -1213,7 +1179,6 @@ private:
 
             q->setPage(ChooseProtocolPageId, &chooseProtocolPage);
             q->setPage(EnterDetailsPageId,   &enterDetailsPage);
-            q->setPage(OverviewPageId,       &overviewPage);
             q->setPage(KeyCreationPageId,    &keyCreationPage);
             q->setPage(ResultPageId,         &resultPage);
 
@@ -1589,25 +1554,6 @@ QStringList KeyCreationPage::keyUsages() const
     return usages;
 }
 
-QStringList OverviewPage::i18nKeyUsages() const
-{
-    QStringList usages;
-    if (signingAllowed()) {
-        usages << i18n("Sign");
-    }
-    if (encryptionAllowed() && !is_ecdh(subkeyType()) &&
-        !is_dsa(keyType()) && !is_rsa(subkeyType())) {
-        usages << i18n("Encrypt");
-    }
-    if (authenticationAllowed()) {
-        usages << i18n("Authenticate");
-    }
-    if (usages.empty() && certificationAllowed()) {
-        usages << i18n("Certify");
-    }
-    return usages;
-}
-
 QStringList KeyCreationPage::subkeyUsages() const
 {
     QStringList usages;
@@ -1617,22 +1563,6 @@ QStringList KeyCreationPage::subkeyUsages() const
         usages << QStringLiteral("encrypt");
     }
     return usages;
-}
-
-QStringList OverviewPage::i18nSubkeyUsages() const
-{
-    QStringList usages;
-    if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
-                                is_ecdh(subkeyType()))) {
-        Q_ASSERT(subkeyType());
-        usages << i18n("Encrypt");
-    }
-    return usages;
-}
-
-QStringList OverviewPage::i18nCombinedKeyUsages() const
-{
-    return i18nSubkeyUsages() + i18nKeyUsages();
 }
 
 namespace
@@ -1653,61 +1583,6 @@ QTextStream &operator<<(QTextStream &s, const Row<T> &row)
         return s << "<tr><td>" << row.key << "</td><td>" << row.value << "</td></tr>";
     }
 }
-}
-
-QString OverviewPage::i18nFormatGnupgKeyParms(bool details) const
-{
-    QString result;
-    QTextStream s(&result);
-    s             << "<table>";
-    if (pgp()) {
-        if (!name().isEmpty()) {
-            s         << Row<        >(i18n("Name:"),              name());
-        }
-    }
-    if (!email().isEmpty()) {
-        s             << Row<        >(i18n("Email Address:"),     email());
-    }
-    if (!pgp()) {
-        s         << Row<        >(i18n("Subject-DN:"),        DN(dn()).dn(QStringLiteral(",<br>")));
-    }
-    if (details) {
-        s         << Row<        >(i18n("Key Type:"),          QLatin1String(Subkey::publicKeyAlgorithmAsString(keyType())));
-        if (is_ecdsa(keyType()) || is_eddsa(keyType())) {
-            s     << Row<        >(i18n("Key Curve:"),         keyCurve());
-        } else if (const unsigned int strength = keyStrength()) {
-            s     << Row<        >(i18n("Key Strength:"),      i18np("1 bit", "%1 bits", strength));
-        } else {
-            s     << Row<        >(i18n("Key Strength:"),      i18n("default"));
-        }
-        s         << Row<        >(i18n("Usage:"), i18nCombinedKeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
-        if (const Subkey::PubkeyAlgo subkey = subkeyType()) {
-            s     << Row<        >(i18n("Subkey Type:"),       QLatin1String(Subkey::publicKeyAlgorithmAsString(subkey)));
-            if (is_ecdh(subkeyType())) {
-                s << Row<        >(i18n("Key Curve:"),         subkeyCurve());
-            } else if (const unsigned int strength = subkeyStrength()) {
-                s << Row<        >(i18n("Subkey Strength:"),   i18np("1 bit", "%1 bits", strength));
-            } else {
-                s << Row<        >(i18n("Subkey Strength:"),   i18n("default"));
-            }
-            s     << Row<        >(i18n("Subkey Usage:"),      i18nSubkeyUsages().join(i18nc("separator for key usages", ",&nbsp;")));
-        }
-    }
-    if (pgp() && details && expiryDate().isValid()) {
-        s         << Row<        >(i18n("Valid Until:"),       QLocale().toString(expiryDate()));
-    }
-    if (!pgp() && details) {
-        Q_FOREACH (const QString &email, additionalEMailAddresses()) {
-            s     << Row<        >(i18n("Add. Email Address:"), email);
-        }
-        Q_FOREACH (const QString &dns,   dnsNames()) {
-            s     << Row<        >(i18n("DNS Name:"),          dns);
-        }
-        Q_FOREACH (const QString &uri,   uris()) {
-            s     << Row<        >(i18n("URI:"),               uri);
-        }
-    }
-    return result;
 }
 
 QString KeyCreationPage::createGnupgKeyParms() const

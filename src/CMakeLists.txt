@@ -314,7 +314,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
   newcertificatewizard/listwidget.ui
   newcertificatewizard/chooseprotocolpage.ui
   newcertificatewizard/enterdetailspage.ui
-  newcertificatewizard/overviewpage.ui
   newcertificatewizard/keycreationpage.ui
   newcertificatewizard/resultpage.ui
   newcertificatewizard/advancedsettingsdialog.ui

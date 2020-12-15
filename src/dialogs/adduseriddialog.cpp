@@ -207,6 +207,10 @@ private:
             }
 
             std::copy(lines.begin(), lines.end(), std::back_inserter(lineList));
+
+            QObject::connect(nameLE, SIGNAL(textChanged(QString)), qq, SLOT(slotUserIDChanged()));
+            QObject::connect(emailLE, SIGNAL(textChanged(QString)), qq, SLOT(slotUserIDChanged()));
+            QObject::connect(commentLE, SIGNAL(textChanged(QString)), qq, SLOT(slotUserIDChanged()));
         }
 
         QPushButton *okPB() const

@@ -156,6 +156,8 @@ public:
         ui.gridLayout = new QGridLayout();
         mainLayout->addLayout(ui.gridLayout);
 
+        createForm();
+
         mainLayout->addStretch(1);
 
         ui.dn = new QLineEdit();
@@ -190,12 +192,26 @@ public:
         ui.error->clear();
         mainLayout->addWidget(ui.error);
 
-        createForm();
-        fixTabOrder();
+        // select the preset text in the first line edit
+        if (!ui.lines.empty()) {
+            ui.lines.first().edit->selectAll();
+        }
+
+        // explicitly update DN and check requirements after setup is complete
+        updateDN();
+        checkRequirements();
     }
 
     ~Private()
     {
+        // remember current attribute values as presets for next certificate
+        KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
+        for ( const Line &line : ui.lines ) {
+            const QString attr = attributeFromKey(line.attr);
+            const QString value = line.edit->text().trimmed();
+            config.writeEntry(attr, value);
+        }
+        config.sync();
     }
 
     void createForm()
@@ -246,17 +262,6 @@ public:
             }
             connect(le, &QLineEdit::textChanged, [this] () { checkRequirements(); });
         }
-    }
-
-    void fixTabOrder()
-    {
-        QVector<QWidget *> widgets;
-        widgets.reserve(ui.lines.size() + 1);
-        for ( const Line &line : ui.lines ) {
-            widgets.push_back(line.edit);
-        }
-        widgets.push_back(ui.dn);
-        kdtools::for_each_adjacent_pair(widgets.begin(), widgets.end(), &QWidget::setTabOrder);
     }
 
     void updateDN()

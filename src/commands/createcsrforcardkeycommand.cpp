@@ -15,17 +15,20 @@
 #include "cardcommand_p.h"
 
 #include "dialogs/createcsrforcardkeydialog.h"
-#include "dialogs/csrcreationresultdialog.h"
 
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
+#include "utils/filedialog.h"
 #include "utils/keyparameters.h"
 
 #include <Libkleo/Formatting>
 
 #include <KLocalizedString>
 
+#include <QDateTime>
+#include <QFile>
+#include <KLocalizedString>
 #include <QUrl>
 
 #include <QGpgME/Protocol>
@@ -64,6 +67,8 @@ private:
     void slotDialogAccepted();
     void slotDialogRejected();
     void slotResult(const KeyGenerationResult &result, const QByteArray &request);
+
+    QUrl saveRequest(const QByteArray &request);
 
     void ensureDialogCreated();
 
@@ -194,14 +199,59 @@ void CreateCSRForCardKeyCommand::Private::slotResult(const KeyGenerationResult &
         error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", QString::fromUtf8(result.error().asString())),
               i18nc("@title", "Error"));
     } else {
-        auto resultDialog = new CSRCreationResultDialog;
-        applyWindowID(resultDialog);
-        resultDialog->setAttribute(Qt::WA_DeleteOnClose);
-        resultDialog->setCSR(request);
-        resultDialog->show();
+        const QUrl url = saveRequest(request);
+        if (!url.isEmpty()) {
+            information(xi18nc("@info", "<para>Successfully wrote request to <filename>%1</filename>.</para>"
+                                        "<para>You should now send the request to the Certification Authority (CA).</para>",
+                               url.toLocalFile()),
+                        i18nc("@title", "Request Saved"));
+        }
     }
 
     finished();
+}
+
+namespace
+{
+struct SaveToFileResult {
+    QUrl url;
+    QString errorMessage;
+};
+
+SaveToFileResult saveRequestToFile(const QString &filename, const QByteArray &request, QIODevice::OpenMode mode)
+{
+    QFile file(filename);
+    if (file.open(mode)) {
+        const auto bytesWritten = file.write(request);
+        if (bytesWritten < request.size()) {
+            return { QUrl(), file.errorString() };
+        }
+        return { QUrl::fromLocalFile(file.fileName()), QString() };
+    }
+    return { QUrl(), file.errorString() };
+}
+}
+
+QUrl CreateCSRForCardKeyCommand::Private::saveRequest(const QByteArray &request)
+{
+    const QString proposedFilename = QLatin1String("request_%1.p10").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")));
+
+    while (true) {
+        const QString filePath = FileDialog::getSaveFileNameEx(
+            parentWidgetOrView(), i18nc("@title", "Save Request"), QStringLiteral("save_csr"), proposedFilename, i18n("PKCS#10 Requests (*.p10)"));
+        if (filePath.isEmpty()) {
+            // user canceled the dialog
+            return QUrl();
+        }
+        const auto result = saveRequestToFile(filePath, request, QIODevice::NewOnly);
+        if (result.url.isEmpty()) {
+            qCDebug(KLEOPATRA_LOG) << "Writing request to file" << filePath << "failed:" << result.errorMessage;
+            error(xi18nc("@info", "<para>Saving the request failed.</para><para><message>%1</message></para>", result.errorMessage),
+                  i18nc("@title", "Error Saving Request"));
+        } else {
+            return result.url;
+        }
+    }
 }
 
 void CreateCSRForCardKeyCommand::Private::ensureDialogCreated()

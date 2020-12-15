@@ -29,6 +29,9 @@ if(WIN32)
 endif()
 
 add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
+if (COMPILE_WITH_CMAKE_SUPPORT)
+    set_target_properties(kwatchgnupg PROPERTIES UNITY_BUILD ON)
+endif()
 
 
 target_link_libraries(kwatchgnupg

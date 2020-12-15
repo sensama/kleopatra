@@ -31,6 +31,10 @@ set_target_properties(kleopatraclientcore PROPERTIES
   VERSION ${libkleopatraclient_version}
   SOVERSION ${libkleopatraclient_soversion}
 )
+if (COMPILE_WITH_CMAKE_SUPPORT)
+    set_target_properties(kleopatraclientcore PROPERTIES UNITY_BUILD ON)
+endif()
+
 
 if(WIN32)
   if(ASSUAN2_FOUND)

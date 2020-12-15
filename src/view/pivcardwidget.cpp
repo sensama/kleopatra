@@ -28,6 +28,7 @@
 #include <Libkleo/KeyCache>
 
 #include <KLocalizedString>
+#include <KSeparator>
 
 #include <QFrame>
 #include <QGridLayout>
@@ -98,41 +99,34 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
 
     auto areaVLay = new QVBoxLayout(areaWidget);
 
-    auto grid = new QGridLayout;
-    areaVLay->addLayout(grid);
-    areaVLay->addStretch(1);
-
-    const int columnCount = 5;
-    int row = 0;
-
-    // Version and Serialnumber
-    grid->addWidget(mVersionLabel, row++, 0, 1, 2);
-    mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-    grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-    grid->addWidget(mSerialNumber, row++, 1);
-    mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
+    auto cardInfoGrid = new QGridLayout;
     {
-        auto line = new QFrame();
-        line->setFrameShape(QFrame::HLine);
-        grid->addWidget(line, row++, 0, 1, columnCount);
+        int row = 0;
+
+        // Version and Serialnumber
+        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
+        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
+        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
+        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+        cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
+    areaVLay->addLayout(cardInfoGrid);
 
-    // The keys
-    grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
+    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
+    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
+
+    auto keysGrid = new QGridLayout;
     for (const auto &keyInfo : PIVCard::supportedKeys()) {
         KeyWidgets keyWidgets = createKeyWidgets(keyInfo);
-        layoutKeyWidgets(grid, PIVCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
+        layoutKeyWidgets(keysGrid, PIVCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
     }
-    row = grid->rowCount();
+    areaVLay->addLayout(keysGrid);
 
-    {
-        auto line = new QFrame();
-        line->setFrameShape(QFrame::HLine);
-        grid->addWidget(line, row++, 0, 1, columnCount);
-    }
+    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
     auto actionLayout = new QHBoxLayout;
 
@@ -167,9 +161,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     }
 
     actionLayout->addStretch(-1);
-    grid->addLayout(actionLayout, row++, 0, 1, columnCount);
+    areaVLay->addLayout(actionLayout);
 
-    grid->setColumnStretch(4, -1);
+    areaVLay->addStretch(1);
 }
 
 PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &keyInfo)

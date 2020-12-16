@@ -43,6 +43,7 @@
 #include <gpgme++/global.h>
 #include <gpgme++/keygenerationresult.h>
 #include <gpgme++/context.h>
+#include <gpgme++/interfaces/passphraseprovider.h>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -100,6 +101,16 @@ static const QStringList curveNames {
     { QStringLiteral("NIST P-256") },
     { QStringLiteral("NIST P-384") },
     { QStringLiteral("NIST P-521") },
+};
+
+class EmptyPassphraseProvider: public PassphraseProvider
+{
+public:
+    char *getPassphrase(const char * /*useridHint*/, const char * /*description*/,
+                        bool /*previousWasBad*/, bool &/*canceled*/) Q_DECL_OVERRIDE
+    {
+        return gpgrt_strdup ("");
+    }
 };
 
 static void set_tab_order(const QList<QWidget *> &wl)
@@ -361,6 +372,7 @@ protected:
     FIELD(QString, name)
     FIELD(QString, email)
     FIELD(QString, dn)
+    FIELD(bool, protectedKey)
 
     FIELD(Subkey::PubkeyAlgo, keyType)
     FIELD(int, keyStrength)
@@ -775,9 +787,28 @@ public:
         registerField(QStringLiteral("dn"), ui.resultLE);
         registerField(QStringLiteral("name"), ui.nameLE);
         registerField(QStringLiteral("email"), ui.emailLE);
+        registerField(QStringLiteral("protectedKey"), ui.withPassCB);
         updateForm();
         setCommitPage(true);
         setButtonText(QWizard::CommitButton, i18nc("@action", "Create"));
+
+        const auto conf = QGpgME::cryptoConfig();
+        if (!conf) {
+            qCWarning(KLEOPATRA_LOG) << "Failed to obtain cryptoConfig.";
+            return;
+        }
+        const auto entry = conf->entry(QStringLiteral("gpg-agent"),
+                                   QStringLiteral("Passphrase policy"),
+                                   QStringLiteral("enforce-passphrase-constraints"));
+        if (entry && entry->boolValue()) {
+            qCDebug(KLEOPATRA_LOG) << "Disabling passphrace cb because of agent config.";
+            ui.withPassCB->setEnabled(false);
+            ui.withPassCB->setChecked(true);
+        } else {
+            const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
+            ui.withPassCB->setChecked(config.readEntry("WithPassphrase", false));
+            ui.withPassCB->setEnabled(!config.isEntryImmutable("WithPassphrase"));
+        }
     }
 
     bool isComplete() const override;
@@ -845,6 +876,11 @@ private:
         if (!j) {
             return;
         }
+        if (!protectedKey ()) {
+            auto ctx = QGpgME::Job::context(j);
+            ctx->setPassphraseProvider(&mEmptyPWProvider);
+            ctx->setPinentryMode(Context::PinentryLoopback);
+        }
         connect(j, &QGpgME::KeyGenerationJob::result,
                 this, &KeyCreationPage::slotResult);
         if (const Error err = j->start(createGnupgKeyParms()))
@@ -857,6 +893,7 @@ private:
     QStringList keyUsages() const;
     QStringList subkeyUsages() const;
     QString createGnupgKeyParms() const;
+    EmptyPassphraseProvider mEmptyPWProvider;
 
 private Q_SLOTS:
     void slotResult(const GpgME::KeyGenerationResult &result, const QByteArray &request, const QString &auditLog)

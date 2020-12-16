@@ -125,7 +125,6 @@ public:
         : q(qq),
           ui(q)
     {
-
     }
 
 private:
@@ -223,7 +222,8 @@ private:
 AddUserIDDialog::AddUserIDDialog(QWidget *p)
     : QDialog(p), d(new Private(this))
 {
-
+    // explicitly trigger an update after setup is complete
+    d->slotUserIDChanged();
 }
 
 AddUserIDDialog::~AddUserIDDialog() {}
@@ -316,7 +316,6 @@ bool AddUserIDDialog::Private::isComplete() const
 
 void AddUserIDDialog::Private::slotUserIDChanged()
 {
-
     ui.okPB()->setEnabled(isComplete());
 
     const QString name = q->name();

@@ -16,6 +16,7 @@
 #include "smartcard/netkeycard.h"
 #include "smartcard/readerstatus.h"
 
+#include "commands/changepincommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 #include "commands/learncardkeyscommand.h"
 #include "commands/detailscommand.h"
@@ -145,14 +146,8 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
     mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
 
-    connect(mChangeNKSPINBtn, &QPushButton::clicked, this, [this] () {
-            mChangeNKSPINBtn->setEnabled(false);
-            doChangePin(false);
-        });
-    connect(mChangeSigGPINBtn, &QPushButton::clicked, this, [this] () {
-            mChangeSigGPINBtn->setEnabled(false);
-            doChangePin(true);
-        });
+    connect(mChangeNKSPINBtn, &QPushButton::clicked, this, [this] () { doChangePin(NetKeyCard::nksPinKeyRef()); });
+    connect(mChangeSigGPINBtn, &QPushButton::clicked, this, [this] () { doChangePin(NetKeyCard::sigGPinKeyRef()); });
 
     actionLayout->addWidget(mChangeNKSPINBtn);
     actionLayout->addWidget(mChangeSigGPINBtn);
@@ -210,45 +205,16 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     }
 }
 
-void NetKeyWidget::handleResult(const GpgME::Error &err, QPushButton *btn)
+void NetKeyWidget::doChangePin(const std::string &keyRef)
 {
-    btn->setEnabled(true);
-    if (err.isCanceled()) {
-        return;
-    }
-    if (err) {
-        KMessageBox::error(this, i18nc("@info",
-                           "Failed to set PIN: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
-        return;
-    }
-}
-
-void NetKeyWidget::setSigGPinSettingResult(const GpgME::Error &err)
-{
-    handleResult(err, mChangeSigGPINBtn);
-}
-
-void NetKeyWidget::setNksPinSettingResult(const GpgME::Error &err)
-{
-    handleResult(err, mChangeNKSPINBtn);
-}
-
-void NetKeyWidget::doChangePin(bool sigG)
-{
-    const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
-    if (!nksCard) {
-        KMessageBox::error(this, i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(mSerialNumber)));
-        return;
-    }
-
-    if (sigG) {
-        ReaderStatus::mutableInstance()->startSimpleTransaction(
-            nksCard, "SCD PASSWD PW1.CH.SIG", this, "setSigGPinSettingResult");
-    } else {
-        ReaderStatus::mutableInstance()->startSimpleTransaction(
-            nksCard, "SCD PASSWD PW1.CH", this, "setNksPinSettingResult");
-    }
+    auto cmd = new ChangePinCommand(mSerialNumber, NetKeyCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &ChangePinCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->setKeyRef(keyRef);
+    cmd->start();
 }
 
 void NetKeyWidget::createKeyFromCardKeys()

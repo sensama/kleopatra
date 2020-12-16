@@ -53,6 +53,18 @@ NetKeyCard::NetKeyCard(const Card &card)
     setAppName(AppName);
 }
 
+// static
+std::string NetKeyCard::nksPinKeyRef()
+{
+    return std::string("PW1.CH");
+}
+
+// static
+std::string NetKeyCard::sigGPinKeyRef()
+{
+    return std::string("PW1.CH.SIG");
+}
+
 void NetKeyCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
 {
     qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";

@@ -26,6 +26,9 @@ public:
 
     static const std::string AppName;
 
+    static std::string nksPinKeyRef();
+    static std::string sigGPinKeyRef();
+
     void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
 
     bool hasSigGNullPin() const;

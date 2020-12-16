@@ -37,13 +37,8 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
-    void handleResult(const GpgME::Error &err, QPushButton *btn);
-    void doChangePin(bool sigG);
+    void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
-
-private Q_SLOTS:
-    void setSigGPinSettingResult(const GpgME::Error &err);
-    void setNksPinSettingResult(const GpgME::Error &err);
 
 private:
     std::string mSerialNumber;

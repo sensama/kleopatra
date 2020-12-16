@@ -66,6 +66,12 @@
 #include <KEMailSettings>
 #include <QLocale>
 
+#ifdef Q_OS_WIN
+# include <windows.h>
+# define SECURITY_WIN32
+# include <secext.h> // For GetUserNameEx
+#endif
+
 using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace Kleo::Commands;
@@ -265,6 +271,42 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
 
     qCWarning(KLEOPATRA_LOG) << "Failed to parse default_pubkey_algo:" << algoString;
 }
+
+/* Use Windows API to query the user name and email.
+   EXTENDED_NAME_FORMAT is documented in MSDN */
+#ifdef Q_OS_WIN
+QString win_get_user_name (EXTENDED_NAME_FORMAT what)
+{
+  QString ret;
+  wchar_t tmp[1];
+  ULONG nSize = 1;
+  if (what == NameUnknown) {
+      if (GetUserNameW (tmp, &nSize)) {
+          qCWarning (KLEOPATRA_LOG) << "Got empty username";
+          return ret;
+      }
+  } else if (GetUserNameExW (what, tmp, &nSize)) {
+      return ret;
+  }
+
+  /* nSize now contains the required size of the buffer */
+  wchar_t *buf = new wchar_t[nSize];
+
+  if (what == NameUnknown) {
+      if (!GetUserNameW (buf, &nSize)) {
+          qCWarning (KLEOPATRA_LOG) << "Failed to get username";
+          delete[] buf;
+          return ret;
+      }
+  } else if (!GetUserNameExW (what, buf, &nSize)) {
+      delete[] buf;
+      return ret;
+  }
+  ret = QString::fromWCharArray (buf, nSize);
+  delete[] buf;
+  return ret.trimmed();
+}
+#endif
 
 Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
 namespace Kleo
@@ -1434,10 +1476,25 @@ void EnterDetailsPage::updateForm()
 
     const KEMailSettings e;
     if (ui.nameLE->text().isEmpty()) {
-        ui.nameLE->setText(e.getSetting(KEMailSettings::RealName));
+        auto name = e.getSetting(KEMailSettings::RealName);
+#ifdef Q_OS_WIN
+        if (name.isEmpty()) {
+            name = win_get_user_name(NameDisplay);
+        }
+        if (name.isEmpty()) {
+            name = win_get_user_name(NameUnknown);
+        }
+#endif
+        ui.nameLE->setText(name);
     }
     if (ui.emailLE->text().isEmpty()) {
-        ui.emailLE->setText(e.getSetting(KEMailSettings::EmailAddress));
+        auto mbox = e.getSetting(KEMailSettings::EmailAddress);
+#ifdef Q_OS_WIN
+        if (mbox.isEmpty()) {
+            mbox = win_get_user_name(NameUserPrincipal);
+        }
+#endif
+        ui.emailLE->setText(mbox);
     }
 
     set_tab_order(widgets);

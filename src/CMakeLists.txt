@@ -337,6 +337,10 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 endif()
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
+if (WIN32)
+  set(_kleopatra_platform_libs "secur32")
+endif ()
+
 target_link_libraries(kleopatra_bin
   Gpgmepp
   QGpgme
@@ -355,6 +359,7 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_uiserver_extra_libs}
   ${_kleopatra_dbusaddons_libs}
   kleopatraclientcore
+  ${_kleopatra_platform_libs}
 )
 
 install(TARGETS kleopatra_bin ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

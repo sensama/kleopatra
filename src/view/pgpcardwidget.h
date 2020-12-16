@@ -3,13 +3,17 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #ifndef VIEW_PGPCARDWIDGET_H
 #define VIEW_PGPCARDWIDGET_H
 
+#include <QMap>
 #include <QWidget>
+
 #include <gpgme++/error.h>
 
 #include <string>
@@ -23,6 +27,7 @@ class GenCardKeyDialog;
 
 namespace SmartCard
 {
+struct KeyPairInfo;
 class OpenPGPCard;
 } // namespace SmartCard
 
@@ -36,6 +41,11 @@ public:
     void doGenKey(GenCardKeyDialog *dlg);
     void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
+    struct KeyWidgets {
+        std::string keyGrip;
+        QLabel *keyFingerprint = nullptr;
+    };
+
 public Q_SLOTS:
     void genkeyRequested();
     void changeNameRequested();
@@ -45,16 +55,17 @@ public Q_SLOTS:
     void createKeyFromCardKeys();
 
 private:
+    KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
+    void updateKeyWidgets(const std::string &keyRef, const SmartCard::OpenPGPCard *card);
     void doChangePin(const std::string &keyRef);
-    void updateKey(QLabel *label, const std::string &fpr);
+
+private:
     QLabel *mSerialNumber = nullptr,
            *mCardHolderLabel = nullptr,
            *mVersionLabel = nullptr,
-           *mSigningKey = nullptr,
-           *mEncryptionKey = nullptr,
-           *mAuthKey = nullptr,
            *mUrlLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
+    QMap<std::string, KeyWidgets> mKeyWidgets;
     QString mUrl;
     bool mCardIsEmpty = false;
     bool mIs21 = false;

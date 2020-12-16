@@ -23,7 +23,7 @@ namespace Kleo
 
 namespace SmartCard
 {
-class KeyPairInfo;
+struct KeyPairInfo;
 class PIVCard;
 } // namespace SmartCard
 

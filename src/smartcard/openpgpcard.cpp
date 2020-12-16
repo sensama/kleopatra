@@ -3,6 +3,8 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -20,8 +22,9 @@
 
 #include "openpgpcard.h"
 
-#include "kleopatra_debug.h"
+#include <KLocalizedString>
 
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -33,6 +36,25 @@ OpenPGPCard::OpenPGPCard(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
+    setInitialKeyInfos(OpenPGPCard::supportedKeys());
+}
+
+// static
+std::string OpenPGPCard::pgpSigKeyRef()
+{
+    return std::string("OPENPGP.1");
+}
+
+// static
+std::string OpenPGPCard::pgpEncKeyRef()
+{
+    return std::string("OPENPGP.2");
+}
+
+// static
+std::string OpenPGPCard::pgpAuthKeyRef()
+{
+    return std::string("OPENPGP.3");
 }
 
 // static
@@ -53,19 +75,28 @@ std::string OpenPGPCard::resetCodeKeyRef()
     return std::string("OPENPGP.2");
 }
 
-std::string OpenPGPCard::sigFpr() const
+// static
+const std::vector<KeyPairInfo> & OpenPGPCard::supportedKeys()
 {
-    return mMetaInfo.value("SIGKEY-FPR");
+    static const std::vector<KeyPairInfo> keyInfos = {
+        {OpenPGPCard::pgpSigKeyRef(), "", "sc", "", ""},
+        {OpenPGPCard::pgpEncKeyRef(), "", "e", "", ""},
+        {OpenPGPCard::pgpAuthKeyRef(), "", "a", "", ""}
+    };
+
+    return keyInfos;
 }
 
-std::string OpenPGPCard::encFpr() const
+// static
+QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
 {
-    return mMetaInfo.value("ENCKEY-FPR");
-}
+    static const QMap<std::string, QString> displayNames = {
+        { OpenPGPCard::pgpSigKeyRef(), i18n("Signature") },
+        { OpenPGPCard::pgpEncKeyRef(), i18n("Encryption") },
+        { OpenPGPCard::pgpAuthKeyRef(), i18n("Authentication") }
+    };
 
-std::string OpenPGPCard::authFpr() const
-{
-    return mMetaInfo.value("AUTHKEY-FPR");
+    return displayNames.value(keyRef);
 }
 
 void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
@@ -76,24 +107,18 @@ void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::str
         if (parseCardInfo(pair.first, pair.second)) {
             continue;
         }
-        if (pair.first == "KEY-FPR" ||
-            pair.first == "KEY-TIME") {
-            // Key fpr and key time need to be distinguished, the number
-            // of the key decides the usage.
+        if (pair.first == "KEY-FPR") {
             const auto values = QString::fromStdString(pair.second).split(QLatin1Char(' '));
             if (values.size() < 2) {
                 qCWarning(KLEOPATRA_LOG) << "Invalid entry.";
                 setStatus(Card::CardError);
                 continue;
             }
-            const auto usage = values[0];
+            const auto keyNumber = values[0];
+            const std::string keyRef = "OPENPGP." + keyNumber.toStdString();
             const auto fpr = values[1].toStdString();
-            if (usage == QLatin1Char('1')) {
-                mMetaInfo.insert(std::string("SIG") + pair.first, fpr);
-            } else if (usage == QLatin1Char('2')) {
-                mMetaInfo.insert(std::string("ENC") + pair.first, fpr);
-            } else if (usage == QLatin1Char('3')) {
-                mMetaInfo.insert(std::string("AUTH") + pair.first, fpr);
+            if (keyNumber == QLatin1Char('1') || keyNumber == QLatin1Char('2') || keyNumber == QLatin1Char('3')) {
+                mMetaInfo.insert("KLEO-FPR-" + keyRef, fpr);
             } else {
                 // Maybe more keyslots in the future?
                 qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
@@ -104,6 +129,11 @@ void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::str
     }
 }
 
+std::string OpenPGPCard::keyFingerprint(const std::string &keyRef) const
+{
+    return mMetaInfo.value("KLEO-FPR-" + keyRef);
+}
+
 bool OpenPGPCard::operator == (const Card& rhs) const
 {
     const OpenPGPCard *other = dynamic_cast<const OpenPGPCard *>(&rhs);
@@ -112,12 +142,8 @@ bool OpenPGPCard::operator == (const Card& rhs) const
     }
 
     return Card::operator ==(rhs)
-        && sigFpr() == other->sigFpr()
-        && encFpr() == other->encFpr()
-        && authFpr() == other->authFpr()
-        && manufacturer() == other->manufacturer()
-        && cardHolder() == other->cardHolder()
-        && pubkeyUrl() == other->pubkeyUrl();
+        && mMetaInfo == other->mMetaInfo
+        && mManufacturer == other->mManufacturer;
 }
 
 void OpenPGPCard::setManufacturer(const std::string &manufacturer)

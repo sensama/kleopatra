@@ -3,6 +3,8 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -34,6 +36,7 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KSeparator>
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
@@ -94,6 +97,13 @@ class GenKeyThread: public QThread
 
         std::string mBkpFile;
 };
+
+static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PGPCardWidget::KeyWidgets &keyWidgets)
+{
+    int row = grid->rowCount();
+    grid->addWidget(new QLabel(keyName), row, 0);
+    grid->addWidget(keyWidgets.keyFingerprint, row, 1);
+}
 } // Namespace
 
 PGPCardWidget::PGPCardWidget(QWidget *parent):
@@ -101,83 +111,85 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     mSerialNumber(new QLabel(this)),
     mCardHolderLabel(new QLabel(this)),
     mVersionLabel(new QLabel(this)),
-    mSigningKey(new QLabel(this)),
-    mEncryptionKey(new QLabel(this)),
-    mAuthKey(new QLabel(this)),
     mUrlLabel(new QLabel(this)),
     mCardIsEmpty(false)
 {
-    auto grid = new QGridLayout;
-    int row = 0;
+    // Set up the scroll area
+    auto myLayout = new QVBoxLayout(this);
+    myLayout->setContentsMargins(0, 0, 0, 0);
 
-    // Set up the scroll are
     auto area = new QScrollArea;
     area->setFrameShape(QFrame::NoFrame);
     area->setWidgetResizable(true);
-    auto areaWidget = new QWidget;
-    auto areaVLay = new QVBoxLayout(areaWidget);
-    areaVLay->addLayout(grid);
-    areaVLay->addStretch(1);
-    area->setWidget(areaWidget);
-    auto myLayout = new QVBoxLayout(this);
-    myLayout->setContentsMargins(0, 0, 0, 0);
     myLayout->addWidget(area);
 
-    // Version and Serialnumber
-    grid->addWidget(mVersionLabel, row++, 0, 1, 2);
-    mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    grid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
+    auto areaWidget = new QWidget;
+    area->setWidget(areaWidget);
 
-    grid->addWidget(mSerialNumber, row++, 1);
-    mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    auto areaVLay = new QVBoxLayout(areaWidget);
 
-    // Cardholder Row
-    grid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.",
-                    "Cardholder:")), row, 0);
+    auto cardInfoGrid = new QGridLayout;
+    {
+        int row = 0;
 
-    grid->addWidget(mCardHolderLabel, row, 1);
-    mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    auto nameButtton = new QPushButton;
-    nameButtton->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
-    nameButtton->setToolTip(i18n("Change"));
-    grid->addWidget(nameButtton, row++, 2);
-    connect(nameButtton, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
+        // Version and Serialnumber
+        cardInfoGrid->addWidget(mVersionLabel, row, 0, 1, 2);
+        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        row++;
 
-    // URL Row
-    grid->addWidget(new QLabel(i18nc("The URL under which a public key that "
-                                     "corresponds to a smartcard can be downloaded",
-                                     "Pubkey URL:")), row, 0);
-    grid->addWidget(mUrlLabel, row, 1);
+        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
+        cardInfoGrid->addWidget(mSerialNumber, row, 1);
+        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        row++;
 
-    mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    auto urlButtton = new QPushButton;
-    urlButtton->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
-    urlButtton->setToolTip(i18n("Change"));
-    grid->addWidget(urlButtton, row++, 2);
-    connect(urlButtton, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
+        // Cardholder Row
+        cardInfoGrid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.",
+                                                 "Cardholder:")), row, 0);
+        cardInfoGrid->addWidget(mCardHolderLabel, row, 1);
+        mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        {
+            auto button = new QPushButton;
+            button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
+            button->setToolTip(i18n("Change"));
+            cardInfoGrid->addWidget(button, row, 2);
+            connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
+        }
+        row++;
+
+        // URL Row
+        cardInfoGrid->addWidget(new QLabel(i18nc("The URL under which a public key that "
+                                                 "corresponds to a smartcard can be downloaded",
+                                                 "Pubkey URL:")), row, 0);
+        cardInfoGrid->addWidget(mUrlLabel, row, 1);
+        mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        {
+            auto button = new QPushButton;
+            button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
+            button->setToolTip(i18n("Change"));
+            cardInfoGrid->addWidget(button, row, 2);
+            connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
+        }
+
+        cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
+    }
+    areaVLay->addLayout(cardInfoGrid);
+
+    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
     // The keys
-    auto line1 = new QFrame();
-    line1->setFrameShape(QFrame::HLine);
-    grid->addWidget(line1, row++, 0, 1, 4);
-    grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))), row++, 0);
+    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
 
-    grid->addWidget(new QLabel(i18n("Signature:")), row, 0);
-    grid->addWidget(mSigningKey, row++, 1);
-    mSigningKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    auto keysGrid = new QGridLayout;
+    for (const auto &keyInfo : OpenPGPCard::supportedKeys()) {
+        KeyWidgets keyWidgets = createKeyWidgets(keyInfo);
+        layoutKeyWidgets(keysGrid, OpenPGPCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
+    }
+    keysGrid->setColumnStretch(keysGrid->columnCount(), 1);
+    areaVLay->addLayout(keysGrid);
 
-    grid->addWidget(new QLabel(i18n("Encryption:")), row, 0);
-    grid->addWidget(mEncryptionKey, row++, 1);
-    mEncryptionKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
-    grid->addWidget(new QLabel(i18n("Authentication:")), row, 0);
-    grid->addWidget(mAuthKey, row++, 1);
-    mAuthKey->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-    auto line2 = new QFrame();
-    line2->setFrameShape(QFrame::HLine);
-    grid->addWidget(line2, row++, 0, 1, 4);
-    grid->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), row++, 0);
+    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))));
 
     auto actionLayout = new QHBoxLayout;
 
@@ -210,9 +222,19 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     }
 
     actionLayout->addStretch(-1);
-    grid->addLayout(actionLayout, row++, 0, 1, 4);
+    areaVLay->addLayout(actionLayout);
 
-    grid->setColumnStretch(4, -1);
+    areaVLay->addStretch(1);
+}
+
+PGPCardWidget::KeyWidgets PGPCardWidget::createKeyWidgets(const KeyPairInfo &keyInfo)
+{
+    const std::string keyRef = keyInfo.keyRef;
+    KeyWidgets keyWidgets;
+    keyWidgets.keyFingerprint = new QLabel(this);
+    keyWidgets.keyFingerprint->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    mKeyWidgets.insert(keyRef, keyWidgets);
+    return keyWidgets;
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
@@ -237,10 +259,12 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
                        QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
 
-    updateKey(mSigningKey, card->sigFpr());
-    updateKey(mEncryptionKey, card->encFpr());
-    updateKey(mAuthKey, card->authFpr());
-    mCardIsEmpty = card->authFpr().empty() && card->sigFpr().empty() && card->encFpr().empty();
+    updateKeyWidgets(OpenPGPCard::pgpSigKeyRef(), card);
+    updateKeyWidgets(OpenPGPCard::pgpEncKeyRef(), card);
+    updateKeyWidgets(OpenPGPCard::pgpAuthKeyRef(), card);
+    mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty()
+        && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
+        && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
 
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
@@ -476,37 +500,40 @@ void PGPCardWidget::createKeyFromCardKeys()
     cmd->start();
 }
 
-void PGPCardWidget::updateKey(QLabel *label, const std::string &fpr)
+void PGPCardWidget::updateKeyWidgets(const std::string &keyRef, const OpenPGPCard *card)
 {
-    label->setText(QString::fromStdString(fpr));
+    KeyWidgets widgets = mKeyWidgets.value(keyRef);
+    const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip;
+    widgets.keyGrip = grip;
+    if (grip.empty()) {
+        widgets.keyFingerprint->setText(i18n("Slot empty"));
+    } else {
+        if (card) {
+            // update information if called with card
+            std::string fpr = card->keyFingerprint(keyRef);
+            widgets.keyFingerprint->setText(QString::fromStdString(fpr));
 
-    if (fpr.empty()) {
-        label->setText(i18n("Slot empty"));
-        return;
+            std::string keyid = fpr;
+            keyid.erase(0, keyid.size() - 16);
+            const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
+            if (subkeys.empty() || subkeys[0].isNull()) {
+                widgets.keyFingerprint->setToolTip(i18n("Public key not found."));
+            } else {
+                QStringList toolTips;
+                toolTips.reserve(subkeys.size());
+                for (const auto &sub: subkeys) {
+                    // Yep you can have one subkey associated with multiple
+                    // primary keys.
+                    toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
+                                                    Formatting::StorageLocation |
+                                                    Formatting::ExpiryDates |
+                                                    Formatting::UserIDs |
+                                                    Formatting::Fingerprint);
+                }
+                widgets.keyFingerprint->setToolTip(toolTips.join(QLatin1String("<br/>")));
+            }
+        }
     }
-
-    std::vector<std::string> vec;
-    std::string keyid = fpr;
-    keyid.erase(0, keyid.size() - 16);
-    vec.push_back(keyid);
-    const auto subkeys = KeyCache::instance()->findSubkeysByKeyID(vec);
-    if (subkeys.empty() || subkeys[0].isNull()) {
-        label->setToolTip(i18n("Public key not found."));
-        return;
-    }
-    QStringList toolTips;
-    toolTips.reserve(subkeys.size());
-    for (const auto &sub: subkeys) {
-        // Yep you can have one subkey associated with multiple
-        // primary keys.
-        toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                                        Formatting::StorageLocation |
-                                        Formatting::ExpiryDates |
-                                        Formatting::UserIDs |
-                                        Formatting::Fingerprint);
-    }
-    label->setToolTip(toolTips.join(QLatin1String("<br/>")));
-    return;
 }
 
 #include "pgpcardwidget.moc"

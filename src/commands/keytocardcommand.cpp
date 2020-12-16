@@ -236,13 +236,13 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     std::string existingKey;
     QString encKeyWarning;
     if (slot == 1) {
-        existingKey = pgpCard->sigFpr();
+        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpSigKeyRef());
     } else if (slot == 2) {
-        existingKey = pgpCard->encFpr();
+        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpEncKeyRef());
         encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
                                 "encrypted for the existing key.");
     } else if (slot == 3) {
-        existingKey = pgpCard->authFpr();
+        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpAuthKeyRef());
     }
     if (!existingKey.empty()) {
         const QString message = i18nc("@info",

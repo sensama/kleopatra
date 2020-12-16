@@ -43,7 +43,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
     mVersionLabel(new QLabel(this)),
     mLearnKeysLabel(new QLabel(this)),
     mErrorLabel(new QLabel(this)),
-    mNullPinWidget(new NullPinWidget()),
+    mNullPinWidget(new NullPinWidget(this)),
     mLearnKeysBtn(new QPushButton(this)),
     mChangeNKSPINBtn(new QPushButton(this)),
     mChangeSigGPINBtn(new QPushButton(this)),

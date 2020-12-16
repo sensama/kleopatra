@@ -42,11 +42,9 @@ NullPinWidget::NullPinWidget(QWidget *parent)
     mSigGBtn = new QPushButton(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
 
     connect(mNKSBtn, &QPushButton::clicked, this, [this] () {
-            mNKSBtn->setEnabled(false);
             doChangePin(false);
         });
     connect(mSigGBtn, &QPushButton::clicked, this, [this] () {
-            mSigGBtn->setEnabled(false);
             doChangePin(true);
         });
 
@@ -66,6 +64,7 @@ void NullPinWidget::setSerialNumber(const std::string &serialNumber)
 
 void NullPinWidget::doChangePin(bool sigG)
 {
+    parentWidget()->setEnabled(false);
     auto ret = KMessageBox::warningContinueCancel(this,
             i18n("Setting a PIN is required but <b>can't be reverted</b>.") +
             QStringLiteral("<p>%1</p><p>%2</p>").arg(
@@ -78,12 +77,14 @@ void NullPinWidget::doChangePin(bool sigG)
             KStandardGuiItem::cancel());
 
     if (ret != KMessageBox::Continue) {
+        parentWidget()->setEnabled(true);
         return;
     }
 
     const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
     if (!nksCard) {
         KMessageBox::error(this, i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        parentWidget()->setEnabled(true);
         return;
     }
 
@@ -96,24 +97,16 @@ void NullPinWidget::doChangePin(bool sigG)
     }
 }
 
-void NullPinWidget::handleResult(const GpgME::Error &err, QPushButton *btn)
+void NullPinWidget::handleResult(const GpgME::Error &err)
 {
-    btn->setEnabled(true);
-    if (err.isCanceled()) {
-        return;
-    }
     if (err) {
         KMessageBox::error(this, i18nc("@info",
                            "Failed to set PIN: %1", QString::fromLatin1(err.asString())),
                            i18nc("@title", "Error"));
-        return;
+    } else if (!err.isCanceled()) {
+        ReaderStatus::mutableInstance()->updateStatus();
     }
-    btn->setVisible(false);
-
-    if (!mNKSBtn->isVisible() && !mSigGBtn->isVisible()) {
-        // Both pins are set, we can hide.
-        setVisible(false);
-    }
+    parentWidget()->setEnabled(true);
 }
 
 void NullPinWidget::setSigGVisible(bool val)
@@ -128,10 +121,10 @@ void NullPinWidget::setNKSVisible(bool val)
 
 void NullPinWidget::setSigGPinSettingResult(const GpgME::Error &err)
 {
-    handleResult(err, mSigGBtn);
+    handleResult(err);
 }
 
 void NullPinWidget::setNksPinSettingResult(const GpgME::Error &err)
 {
-    handleResult(err, mNKSBtn);
+    handleResult(err);
 }

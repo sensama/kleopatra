@@ -32,7 +32,7 @@ public:
 
 private:
     void doChangePin(bool sigG);
-    void handleResult(const GpgME::Error &err, QPushButton *btn);
+    void handleResult(const GpgME::Error &err);
 
 private Q_SLOTS:
     void setSigGPinSettingResult(const GpgME::Error &err);

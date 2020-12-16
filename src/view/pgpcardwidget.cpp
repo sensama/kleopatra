@@ -14,6 +14,7 @@
 #include "kleopatra_debug.h"
 
 #include "commands/changepincommand.h"
+#include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 
 #include "smartcard/openpgpcard.h"
@@ -103,6 +104,9 @@ static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PG
     int row = grid->rowCount();
     grid->addWidget(new QLabel(keyName), row, 0);
     grid->addWidget(keyWidgets.keyFingerprint, row, 1);
+    if (keyWidgets.createCSRButton) {
+        grid->addWidget(keyWidgets.createCSRButton, row, 2);
+    }
 }
 } // Namespace
 
@@ -233,6 +237,14 @@ PGPCardWidget::KeyWidgets PGPCardWidget::createKeyWidgets(const KeyPairInfo &key
     KeyWidgets keyWidgets;
     keyWidgets.keyFingerprint = new QLabel(this);
     keyWidgets.keyFingerprint->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
+    {
+        keyWidgets.createCSRButton = new QPushButton(i18nc("@action:button", "Create CSR"), this);
+        keyWidgets.createCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for this key"));
+        keyWidgets.createCSRButton->setEnabled(false);
+        connect(keyWidgets.createCSRButton, &QPushButton::clicked,
+                this, [this, keyRef] () { createCSR(keyRef); });
+    }
     mKeyWidgets.insert(keyRef, keyWidgets);
     return keyWidgets;
 }
@@ -500,6 +512,17 @@ void PGPCardWidget::createKeyFromCardKeys()
     cmd->start();
 }
 
+void PGPCardWidget::createCSR(const std::string &keyref)
+{
+    auto cmd = new CreateCSRForCardKeyCommand(keyref, mRealSerial, OpenPGPCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateCSRForCardKeyCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->start();
+}
+
 void PGPCardWidget::updateKeyWidgets(const std::string &keyRef, const OpenPGPCard *card)
 {
     KeyWidgets widgets = mKeyWidgets.value(keyRef);
@@ -507,6 +530,9 @@ void PGPCardWidget::updateKeyWidgets(const std::string &keyRef, const OpenPGPCar
     widgets.keyGrip = grip;
     if (grip.empty()) {
         widgets.keyFingerprint->setText(i18n("Slot empty"));
+        if (widgets.createCSRButton) {
+            widgets.createCSRButton->setEnabled(false);
+        }
     } else {
         if (card) {
             // update information if called with card
@@ -532,6 +558,9 @@ void PGPCardWidget::updateKeyWidgets(const std::string &keyRef, const OpenPGPCar
                 }
                 widgets.keyFingerprint->setToolTip(toolTips.join(QLatin1String("<br/>")));
             }
+        }
+        if (widgets.createCSRButton) {
+            widgets.createCSRButton->setEnabled(true);
         }
     }
 }

@@ -44,6 +44,7 @@ public:
     struct KeyWidgets {
         std::string keyGrip;
         QLabel *keyFingerprint = nullptr;
+        QPushButton *createCSRButton = nullptr;
     };
 
 public Q_SLOTS:
@@ -53,6 +54,7 @@ public Q_SLOTS:
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
     void createKeyFromCardKeys();
+    void createCSR(const std::string &keyref);
 
 private:
     KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);

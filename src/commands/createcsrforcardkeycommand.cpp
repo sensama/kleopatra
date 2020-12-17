@@ -16,6 +16,7 @@
 
 #include "dialogs/createcsrforcardkeydialog.h"
 
+#include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -125,7 +126,7 @@ QStringList getKeyUsages(const KeyPairInfo &keyInfo)
 
 void CreateCSRForCardKeyCommand::Private::start()
 {
-    if (appName != OpenPGPCard::AppName && appName != PIVCard::AppName) {
+    if (appName != NetKeyCard::AppName && appName != OpenPGPCard::AppName && appName != PIVCard::AppName) {
         qCWarning(KLEOPATRA_LOG) << "CreateCSRForCardKeyCommand does not support card application" << QString::fromStdString(appName);
         finished();
         return;

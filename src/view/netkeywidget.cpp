@@ -18,11 +18,13 @@
 
 #include "commands/changepincommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
+#include "commands/createcsrforcardkeycommand.h"
 #include "commands/learncardkeyscommand.h"
 #include "commands/detailscommand.h"
 
 #include <Libkleo/KeyListModel>
 
+#include <QInputDialog>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -32,6 +34,9 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+
+#include <gpgme++/context.h>
+#include <gpgme++/engineinfo.h>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -143,6 +148,15 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
         connect(mKeyForCardKeysButton, &QPushButton::clicked, this, &NetKeyWidget::createKeyFromCardKeys);
     }
 
+    if (!(engineInfo(GpgME::GpgSMEngine).engineVersion() < "2.2.26")) { // see https://dev.gnupg.org/T5184
+        mCreateCSRButton = new QPushButton(this);
+        mCreateCSRButton->setText(i18nc("@action:button", "Create CSR"));
+        mCreateCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for a key stored on the card"));
+        mCreateCSRButton->setEnabled(false);
+        actionLayout->addWidget(mCreateCSRButton);
+        connect(mCreateCSRButton, &QPushButton::clicked, this, [this] () { createCSR(); });
+    }
+
     mChangeNKSPINBtn->setText(i18nc("NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
     mChangeSigGPINBtn->setText(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
 
@@ -159,6 +173,23 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
 
 NetKeyWidget::~NetKeyWidget()
 {
+}
+
+namespace
+{
+std::vector<KeyPairInfo> getUsableSigningKeys(const NetKeyCard *netKeyCard)
+{
+    std::vector<KeyPairInfo> keys;
+
+    for (const auto &key : netKeyCard->keyInfos()) {
+        if (key.canSign() && (((key.keyRef.substr(0, 9) == "NKS-NKS3.") && !netKeyCard->hasNKSNullPin()) ||
+                              ((key.keyRef.substr(0, 9) == "NKS-SIGG.") && !netKeyCard->hasSigGNullPin()))) {
+            keys.push_back(key);
+        }
+    }
+
+    return keys;
+}
 }
 
 void NetKeyWidget::setCard(const NetKeyCard* card)
@@ -203,6 +234,9 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey());
     }
+    if (mCreateCSRButton) {
+        mCreateCSRButton->setEnabled(!getUsableSigningKeys(card).empty());
+    }
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)
@@ -222,6 +256,49 @@ void NetKeyWidget::createKeyFromCardKeys()
     auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mSerialNumber, NetKeyCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->start();
+}
+
+namespace
+{
+std::string getKeyRef(const std::vector<KeyPairInfo> &keys, QWidget *parent)
+{
+    QStringList options;
+    for (const auto &key : keys) {
+        options << QStringLiteral("%1 - %2").arg(QString::fromStdString(key.keyRef), QString::fromStdString(key.grip));
+    }
+
+    bool ok;
+    const QString choice = QInputDialog::getItem(parent, i18n("Select Key"),
+        i18n("Please select the key you want to create a certificate signing request for:"), options, /* current= */ 0, /* editable= */ false, &ok);
+    return ok ? keys[options.indexOf(choice)].keyRef : std::string();
+}
+}
+
+void NetKeyWidget::createCSR()
+{
+    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    if (!netKeyCard) {
+        KMessageBox::error(this,
+                           i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        return;
+    }
+    const auto usableKeys = getUsableSigningKeys(netKeyCard.get());
+    if (usableKeys.empty()) {
+        KMessageBox::error(this,
+                           i18n("Sorry! No keys suitable for creating a certificate signing request found on the smartcard."));
+        return;
+    }
+    const auto keyRef = getKeyRef(usableKeys, this);
+    if (keyRef.empty()) {
+        return;
+    }
+    auto cmd = new CreateCSRForCardKeyCommand(keyRef, mSerialNumber, NetKeyCard::AppName, this);
+    this->setEnabled(false);
+    connect(cmd, &CreateCSRForCardKeyCommand::finished,
             this, [this]() {
                 this->setEnabled(true);
             });

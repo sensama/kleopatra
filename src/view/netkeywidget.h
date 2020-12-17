@@ -39,6 +39,7 @@ public:
 private:
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
+    void createCSR();
 
 private:
     std::string mSerialNumber;
@@ -49,6 +50,7 @@ private:
     NullPinWidget *mNullPinWidget = nullptr;
     QPushButton *mLearnKeysBtn = nullptr,
                 *mKeyForCardKeysButton = nullptr,
+                *mCreateCSRButton = nullptr,
                 *mChangeNKSPINBtn = nullptr,
                 *mChangeSigGPINBtn = nullptr;
     KeyTreeView *mTreeView = nullptr;

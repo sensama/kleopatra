@@ -197,7 +197,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     auto actionLayout = new QHBoxLayout;
 
     {
-        auto generateButton = new QPushButton(i18n("Generate new Keys"));
+        auto generateButton = new QPushButton(i18n("Generate New Keys"));
         generateButton->setToolTip(i18n("Create a new primary key and generate subkeys on the card."));
         actionLayout->addWidget(generateButton);
         connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
@@ -207,6 +207,12 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
         pinButton->setToolTip(i18n("Change the PIN required for using the keys on the smartcard."));
         actionLayout->addWidget(pinButton);
         connect(pinButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::pinKeyRef()); });
+    }
+    {
+        auto unblockButton = new QPushButton(i18n("Unblock Card"));
+        unblockButton->setToolTip(i18n("Unblock the smartcard and set a new PIN."));
+        actionLayout->addWidget(unblockButton);
+        connect(unblockButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
     }
     {
         auto pukButton = new QPushButton(i18n("Change Admin PIN"));

@@ -132,31 +132,37 @@ void ChangePinCommand::Private::changePin()
 }
 
 namespace {
-static QString errorMessage(const std::string &keyRef, const QString &errorText)
+static QString errorMessage(const std::string &keyRef, ChangePinCommand::ChangePinMode mode, const QString &errorText)
 {
     // see cmd_passwd() in gpg-card.c
     if (keyRef == PIVCard::pukKeyRef()) {
         return i18nc("@info", "Changing the PUK failed: %1", errorText);
     }
+    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+        return i18nc("@info", "Unblocking the PIN failed: %1", errorText);
+    }
     if (keyRef == OpenPGPCard::adminPinKeyRef()) {
         return i18nc("@info", "Changing the Admin PIN failed: %1", errorText);
     }
-    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+    if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
         return i18nc("@info", "Changing the Reset Code failed: %1", errorText);
     }
     return i18nc("@info", "Changing the PIN failed: %1", errorText);
 }
 
-static QString successMessage(const std::string &keyRef)
+static QString successMessage(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
 {
     // see cmd_passwd() in gpg-card.c
     if (keyRef == PIVCard::pukKeyRef()) {
         return i18nc("@info", "PUK successfully changed.");
     }
+    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+        return i18nc("@info", "Unblocked and set a new PIN successfully.");
+    }
     if (keyRef == OpenPGPCard::adminPinKeyRef()) {
         return i18nc("@info", "Admin PIN changed successfully.");
     }
-    if (keyRef == OpenPGPCard::resetCodeKeyRef()) {
+    if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
         return i18nc("@info", "Reset Code changed successfully.");
     }
     return i18nc("@info", "PIN changed successfully.");
@@ -168,10 +174,10 @@ void ChangePinCommand::Private::slotResult(const GpgME::Error& err)
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::slotResult():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
-        error(errorMessage(keyRef, QString::fromLatin1(err.asString())),
+        error(errorMessage(keyRef, mode, QString::fromLatin1(err.asString())),
               i18nc("@title", "Error"));
     } else if (!err.isCanceled()) {
-        information(successMessage(keyRef), i18nc("@title", "Success"));
+        information(successMessage(keyRef, mode), i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
     finished();

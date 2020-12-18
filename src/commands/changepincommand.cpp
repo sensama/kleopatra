@@ -48,6 +48,7 @@ private:
 private:
     std::string appName;
     std::string keyRef;
+    ChangePinMode mode = NormalMode;
 };
 
 ChangePinCommand::Private *ChangePinCommand::d_func()
@@ -93,6 +94,12 @@ void ChangePinCommand::setKeyRef(const std::string &keyRef)
     d->keyRef = keyRef;
 }
 
+void ChangePinCommand::setMode(ChangePinMode mode)
+{
+    d->mode = mode;
+}
+
+
 void ChangePinCommand::doStart()
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::doStart()";
@@ -117,8 +124,7 @@ void ChangePinCommand::Private::changePin()
 
     QByteArrayList command;
     command << "SCD PASSWD";
-    if (card->appName() == OpenPGPCard::AppName && card->appVersion() >= 0x0200 && keyRef == OpenPGPCard::resetCodeKeyRef()) {
-        // special handling for setting/changing the Reset Code of OpenPGP v2 cards
+    if (mode == ResetMode) {
         command << "--reset";
     }
     command << QByteArray::fromStdString(keyRef);

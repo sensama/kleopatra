@@ -11,6 +11,8 @@
 #ifndef VIEW_PGPCARDWIDGET_H
 #define VIEW_PGPCARDWIDGET_H
 
+#include "commands/changepincommand.h"
+
 #include <QMap>
 #include <QWidget>
 
@@ -59,7 +61,7 @@ public Q_SLOTS:
 private:
     KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
     void updateKeyWidgets(const std::string &keyRef, const SmartCard::OpenPGPCard *card);
-    void doChangePin(const std::string &keyRef);
+    void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
     QLabel *mSerialNumber = nullptr,

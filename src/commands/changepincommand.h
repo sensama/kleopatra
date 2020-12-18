@@ -25,10 +25,16 @@ class ChangePinCommand : public CardCommand
 {
     Q_OBJECT
 public:
+    enum ChangePinMode {
+        NormalMode = 0,
+        ResetMode = 1
+    };
+
     explicit ChangePinCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent);
     ~ChangePinCommand() override;
 
     void setKeyRef(const std::string &keyRef);
+    void setMode(ChangePinMode mode = NormalMode);
 
 private:
     void doStart() override;

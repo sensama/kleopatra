@@ -13,7 +13,6 @@
 
 #include "kleopatra_debug.h"
 
-#include "commands/changepincommand.h"
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 
@@ -215,7 +214,8 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
     pukButton->setToolTip(i18n("Change the PIN required to reset the smartcard to an empty state."));
     actionLayout->addWidget(resetCodeButton);
-    connect(resetCodeButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef()); });
+    connect(resetCodeButton, &QPushButton::clicked,
+            this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode); });
 
     if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
         mKeyForCardKeysButton = new QPushButton(this);
@@ -283,7 +283,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     }
 }
 
-void PGPCardWidget::doChangePin(const std::string &keyRef)
+void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
 {
     auto cmd = new ChangePinCommand(mRealSerial, OpenPGPCard::AppName, this);
     this->setEnabled(false);
@@ -292,6 +292,7 @@ void PGPCardWidget::doChangePin(const std::string &keyRef)
                 this->setEnabled(true);
             });
     cmd->setKeyRef(keyRef);
+    cmd->setMode(mode);
     cmd->start();
 }
 

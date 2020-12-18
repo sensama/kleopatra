@@ -196,26 +196,31 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
 
     auto actionLayout = new QHBoxLayout;
 
-    auto generateButton = new QPushButton(i18n("Generate new Keys"));
-    generateButton->setToolTip(i18n("Create a new primary key and generate subkeys on the card."));
-    actionLayout->addWidget(generateButton);
-    connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
-
-    auto pinButtton = new QPushButton(i18n("Change PIN"));
-    pinButtton->setToolTip(i18n("Change the PIN required to unblock the smartcard."));
-    actionLayout->addWidget(pinButtton);
-    connect(pinButtton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::pinKeyRef()); });
-
-    auto pukButton = new QPushButton(i18n("Change Admin PIN"));
-    pukButton->setToolTip(i18n("Change the PIN required to unlock the smartcard."));
-    actionLayout->addWidget(pukButton);
-    connect(pukButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::adminPinKeyRef()); });
-
-    auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
-    pukButton->setToolTip(i18n("Change the PIN required to reset the smartcard to an empty state."));
-    actionLayout->addWidget(resetCodeButton);
-    connect(resetCodeButton, &QPushButton::clicked,
-            this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode); });
+    {
+        auto generateButton = new QPushButton(i18n("Generate new Keys"));
+        generateButton->setToolTip(i18n("Create a new primary key and generate subkeys on the card."));
+        actionLayout->addWidget(generateButton);
+        connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
+    }
+    {
+        auto pinButton = new QPushButton(i18n("Change PIN"));
+        pinButton->setToolTip(i18n("Change the PIN required for using the keys on the smartcard."));
+        actionLayout->addWidget(pinButton);
+        connect(pinButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::pinKeyRef()); });
+    }
+    {
+        auto pukButton = new QPushButton(i18n("Change Admin PIN"));
+        pukButton->setToolTip(i18n("Change the PIN required for administrative operations."));
+        actionLayout->addWidget(pukButton);
+        connect(pukButton, &QPushButton::clicked, this, [this] () { doChangePin(OpenPGPCard::adminPinKeyRef()); });
+    }
+    {
+        auto resetCodeButton = new QPushButton(i18n("Change Reset Code"));
+        resetCodeButton->setToolTip(i18n("Change the PIN required to unblock the smartcard and set a new PIN."));
+        actionLayout->addWidget(resetCodeButton);
+        connect(resetCodeButton, &QPushButton::clicked,
+                this, [this] () { doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode); });
+    }
 
     if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
         mKeyForCardKeysButton = new QPushButton(this);

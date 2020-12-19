@@ -16,7 +16,7 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 set(KF5_MIN_VERSION "5.77.0")
 set(KMIME_VERSION "5.16.40")
 set(LIBKLEO_VERSION "5.16.42")
-set(QT_REQUIRED_VERSION "5.13.0")
+set(QT_REQUIRED_VERSION "5.14.0")
 set(GPGME_REQUIRED_VERSION "1.13.1")
 
 if (WIN32)

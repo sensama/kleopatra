@@ -118,13 +118,9 @@ void KConfigBasedRecipientPreferences::Private::writePrefs()
     if (!m_dirty) {
         return;
     }
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    const QSet<QByteArray> keys = pgpPrefs.keys().toSet() + cmsPrefs.keys().toSet();
-#else
     const auto pgpPrefsKeys = pgpPrefs.keys();
     const auto cmsPrefsKeys = cmsPrefs.keys();
     const QSet<QByteArray> keys = QSet<QByteArray>(pgpPrefsKeys.begin(), pgpPrefsKeys.end()) + QSet<QByteArray>(cmsPrefsKeys.begin(), cmsPrefsKeys.end());
-#endif
 
 
     int n = 0;

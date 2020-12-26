@@ -8,7 +8,6 @@
 */
 
 #include <config-kleopatra.h>
-#include <kwidgetsaddons_version.h>
 #include "mainwindow.h"
 #include "aboutdata.h"
 
@@ -465,11 +464,7 @@ void MainWindow::Private::setupActions()
     clipboadMenu = new ClipboardMenu(q);
     clipboadMenu->setMainWindow(q);
     clipboadMenu->clipboardMenu()->setIcon(QIcon::fromTheme(QStringLiteral("edit-paste")));
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 77, 0)
     clipboadMenu->clipboardMenu()->setPopupMode(QToolButton::InstantPopup);
-#else
-    clipboadMenu->clipboardMenu()->setDelayed(false);
-#endif
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
     q->setStandardToolBarMenuEnabled(true);

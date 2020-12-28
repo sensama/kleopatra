@@ -25,6 +25,8 @@
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "commands/exportcertificatecommand.h"
 
+#include "kleopatraapplication.h"
+
 #include "utils/validation.h"
 #include "utils/filedialog.h"
 #include "utils/keyparameters.h"
@@ -945,7 +947,18 @@ private Q_SLOTS:
                  QString::fromLatin1(result.fingerprint()) : QString());
         job = nullptr;
         Q_EMIT completeChanged();
-        QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);
+        const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
+        if (config.readEntry("SkipResultPage", false)) {
+            if (result.fingerprint()) {
+                KleopatraApplication::instance()->slotActivateRequested(QStringList() <<
+                       QStringLiteral("kleopatra") << QStringLiteral("--query") << QLatin1String(result.fingerprint()), QString());
+                QMetaObject::invokeMethod(wizard(), "close", Qt::QueuedConnection);
+            } else {
+                QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);
+            }
+        } else {
+            QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);
+        }
     }
 
 private:

@@ -44,12 +44,14 @@ static QString engine_name(GpgME::Engine eng)
 
 static QString test_name(GpgME::Engine eng)
 {
-    static const char *names[] = {
-        I18NC_NOOP("@title", "GPG (OpenPGP Backend) installation"),
-        I18NC_NOOP("@title", "GpgSM (S/MIME Backend) installation"),
-        I18NC_NOOP("@title", "GpgConf (Configuration) installation"),
-    };
-    return i18nc("@title", names[eng]);
+    if (eng == GpgME::GpgEngine) {
+        return i18nc("@title", "GPG (OpenPGP Backend) installation");
+    } else if (eng == GpgME::GpgSMEngine) {
+        return i18nc("@title", "GpgSM (S/MIME Backend) installation");
+    } else if (eng == GpgME::GpgConfEngine) {
+        return i18nc ("@title", "GpgConf (Configuration) installation");
+    }
+    return QStringLiteral("unknown");
 }
 
 namespace

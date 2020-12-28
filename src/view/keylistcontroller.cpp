@@ -620,7 +620,7 @@ void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
 
 void KeyListController::Private::slotActivated(const QModelIndex &idx)
 {
-    Q_UNUSED(idx);
+    Q_UNUSED(idx)
     QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
     if (!view || !std::binary_search(views.cbegin(), views.cend(), view)) {
         return;
@@ -630,8 +630,8 @@ void KeyListController::Private::slotActivated(const QModelIndex &idx)
 
 void KeyListController::Private::slotSelectionChanged(const QItemSelection &old, const QItemSelection &new_)
 {
-    Q_UNUSED(old);
-    Q_UNUSED(new_);
+    Q_UNUSED(old)
+    Q_UNUSED(new_)
 
     const QItemSelectionModel *const sm = qobject_cast<QItemSelectionModel *>(q->sender());
     if (!sm) {

@@ -73,7 +73,7 @@ public:
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override
     {
-        Q_UNUSED(watched);
+        Q_UNUSED(watched)
         if (event->type() == QEvent::ContextMenu) {
             QContextMenuEvent *e = static_cast<QContextMenuEvent *>(event);
 

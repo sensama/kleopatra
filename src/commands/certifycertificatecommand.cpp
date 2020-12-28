@@ -144,17 +144,17 @@ CertifyCertificateCommand::~CertifyCertificateCommand()
 
 void CertifyCertificateCommand::setCertificationExportable(bool on)
 {
-    Q_UNUSED(on);
+    Q_UNUSED(on)
 }
 
 void CertifyCertificateCommand::setCertificationRevocable(bool on)
 {
-    Q_UNUSED(on);
+    Q_UNUSED(on)
 }
 
 void CertifyCertificateCommand::setCertifyingKey(const Key &signer)
 {
-    Q_UNUSED(signer);
+    Q_UNUSED(signer)
 }
 
 void CertifyCertificateCommand::setUserIDs(const std::vector<UserID> &uids)

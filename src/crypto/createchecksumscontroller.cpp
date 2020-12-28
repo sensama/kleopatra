@@ -517,7 +517,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         const std::function<void(int)> &progress,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    Q_UNUSED(allowAddition);
+    Q_UNUSED(allowAddition)
     if (!checksumDefinition) {
         return std::vector<Dir>();
     }

@@ -405,7 +405,7 @@ std::shared_ptr<Input> Input::createFromClipboard()
 
 static QByteArray dataFromClipboard(QClipboard::Mode mode)
 {
-    Q_UNUSED(mode);
+    Q_UNUSED(mode)
     if (QClipboard *const cb = QApplication::clipboard()) {
         return cb->text().toUtf8();
     } else {

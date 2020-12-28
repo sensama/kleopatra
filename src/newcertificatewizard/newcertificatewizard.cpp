@@ -850,7 +850,7 @@ private:
 private Q_SLOTS:
     void slotResult(const GpgME::KeyGenerationResult &result, const QByteArray &request, const QString &auditLog)
     {
-        Q_UNUSED(auditLog);
+        Q_UNUSED(auditLog)
         if (result.error().code() || (pgp() && !result.fingerprint())) {
             setField(QStringLiteral("error"), result.error().isCanceled()
                      ? i18n("Operation canceled.")

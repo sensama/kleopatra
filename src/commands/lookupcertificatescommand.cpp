@@ -323,7 +323,7 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
 
 void LookupCertificatesCommand::Private::slotSaveAsRequested(const std::vector<Key> &keys)
 {
-    Q_UNUSED(keys);
+    Q_UNUSED(keys)
     qCDebug(KLEOPATRA_LOG) << "not implemented";
 }
 

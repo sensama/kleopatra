@@ -229,7 +229,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
 void CertificateDetailsWidget::Private::revokeUID(const GpgME::UserID &uid)
 {
-    Q_UNUSED(uid);
+    Q_UNUSED(uid)
     qCWarning(KLEOPATRA_LOG) << "Revoking UserID is not implemented. How did you even get here?!?!";
 }
 

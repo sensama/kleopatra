@@ -175,7 +175,7 @@ void DecryptVerifyFilesController::Private::slotWizardCanceled()
 void DecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_ASSERT(task);
-    Q_UNUSED(task);
+    Q_UNUSED(task)
 
     // We could just delete the tasks here, but we can't use
     // Qt::QueuedConnection here (we need sender()) and other slots

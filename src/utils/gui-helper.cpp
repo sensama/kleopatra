@@ -77,7 +77,7 @@ void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
                      SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
     }
 #else
-    Q_UNUSED(stayOnTop);
+    Q_UNUSED(stayOnTop)
 #endif
 }
 

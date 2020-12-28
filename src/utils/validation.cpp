@@ -36,7 +36,7 @@ public:
 
     State validate(QString &str, int &pos) const override
     {
-        Q_UNUSED(pos);
+        Q_UNUSED(pos)
         if (KEmailAddress::isValidSimpleAddress(str)) {
             return Acceptable;
         }

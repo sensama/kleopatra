@@ -240,7 +240,7 @@ std::shared_ptr<EncryptEMailTask> EncryptEMailController::Private::takeRunnable(
 
 void EncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    Q_UNUSED(result);
+    Q_UNUSED(result)
     Q_ASSERT(task);
 
     // We could just delete the tasks here, but we can't use

@@ -71,7 +71,7 @@ ResultPage::Private::Private(ResultPage *qq) : q(qq)
 
 void ResultPage::Private::progress(const QString &msg, int progress, int total)
 {
-    Q_UNUSED(msg);
+    Q_UNUSED(msg)
     Q_ASSERT(progress >= 0);
     Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
@@ -155,7 +155,7 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 
     Q_FOREACH (const std::shared_ptr<Task> &i, d->m_tasks->tasks()) {    // create labels for all tags in collection
         Q_ASSERT(i && d->labelForTag(i->tag()));
-        Q_UNUSED(i);
+        Q_UNUSED(i)
     }
     Q_EMIT completeChanged();
 }

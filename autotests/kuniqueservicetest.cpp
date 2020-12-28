@@ -50,7 +50,7 @@ public:
 private Q_SLOTS:
     void slotActivateRequested(const QStringList &args, const QString &workingDirectory)
     {
-        Q_UNUSED(workingDirectory);
+        Q_UNUSED(workingDirectory)
         qDebug() << "Application executed with args" << args;
 
         ++m_callCount;

@@ -158,8 +158,8 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
         }
     }
 #else
-    Q_UNUSED(parent);
-    Q_UNUSED(force);
+    Q_UNUSED(parent)
+    Q_UNUSED(force)
 #endif
 }
 

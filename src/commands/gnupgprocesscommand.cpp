@@ -371,7 +371,7 @@ QString GnuPGProcessCommand::successCaption() const
 
 QString GnuPGProcessCommand::successMessage(const QStringList &args) const
 {
-    Q_UNUSED(args);
+    Q_UNUSED(args)
     return QString();
 }
 

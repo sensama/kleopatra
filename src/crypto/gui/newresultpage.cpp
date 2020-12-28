@@ -75,7 +75,7 @@ NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex
 
 void NewResultPage::Private::progress(const QString &msg, int progress, int total)
 {
-    Q_UNUSED(msg);
+    Q_UNUSED(msg)
     Q_ASSERT(progress >= 0);
     Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);

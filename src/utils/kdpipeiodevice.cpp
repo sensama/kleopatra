@@ -302,8 +302,8 @@ bool KDPipeIODevice::open(Qt::HANDLE h, OpenMode mode)
 #ifdef Q_OS_WIN32
     return d->doOpen(-1, h, mode);
 #else
-    Q_UNUSED(h);
-    Q_UNUSED(mode);
+    Q_UNUSED(h)
+    Q_UNUSED(mode)
     Q_ASSERT(!"KDPipeIODevice::open( Qt::HANDLE, OpenMode ) should never be called except on Windows.");
     return false;
 #endif

@@ -123,7 +123,7 @@ private:
             QPushButton *const ok = buttonBox.addButton(QDialogButtonBox::Ok);
             ok->setEnabled(false);
             QPushButton *const cancel = buttonBox.addButton(QDialogButtonBox::Close);
-            Q_UNUSED(cancel);
+            Q_UNUSED(cancel)
             QPushButton *const reload = buttonBox.addButton(i18n("Reload"),    QDialogButtonBox::ActionRole);
             QPushButton *const import = buttonBox.addButton(i18n("Import..."),    QDialogButtonBox::ActionRole);
             QPushButton *const lookup = buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
@@ -357,7 +357,7 @@ void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &i
     Q_ASSERT(view);
     const auto *const model = ui.tabWidget.currentModel();
     Q_ASSERT(model);
-    Q_UNUSED(model);
+    Q_UNUSED(model)
     QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
     sm->select(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);

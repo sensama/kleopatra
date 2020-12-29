@@ -67,6 +67,7 @@
 
 #include <KSharedConfig>
 #include <KEMailSettings>
+#include <KEmailAddress>
 #include <QLocale>
 
 #ifdef Q_OS_WIN
@@ -288,7 +289,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
 /* Use Windows API to query the user name and email.
    EXTENDED_NAME_FORMAT is documented in MSDN */
 #ifdef Q_OS_WIN
-QString win_get_user_name (EXTENDED_NAME_FORMAT what)
+static QString win_get_user_name (EXTENDED_NAME_FORMAT what)
 {
   QString ret;
   wchar_t tmp[1];
@@ -320,6 +321,19 @@ QString win_get_user_name (EXTENDED_NAME_FORMAT what)
   return ret.trimmed();
 }
 #endif
+
+static QString env_get_user_name (bool mbox)
+{
+    const auto var = qEnvironmentVariable("EMAIL");
+    if (!var.isEmpty()) {
+        QString name, addrspec, comment;
+        const auto result = KEmailAddress::splitAddress (var, name, addrspec, comment);
+        if (result == KEmailAddress::AddressOk) {
+            return (mbox ? addrspec : name);
+        }
+    }
+    return QString ();
+}
 
 Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
 namespace Kleo
@@ -1535,6 +1549,9 @@ void EnterDetailsPage::updateForm()
             name = win_get_user_name(NameUnknown);
         }
 #endif
+        if (name.isEmpty()) {
+            name = env_get_user_name (false);
+        }
         ui.nameLE->setText(name);
     }
     if (ui.emailLE->text().isEmpty()) {
@@ -1544,6 +1561,9 @@ void EnterDetailsPage::updateForm()
             mbox = win_get_user_name(NameUserPrincipal);
         }
 #endif
+        if (mbox.isEmpty()) {
+            mbox = env_get_user_name (true);
+        }
         ui.emailLE->setText(mbox);
     }
 

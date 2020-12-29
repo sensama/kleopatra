@@ -1476,7 +1476,7 @@ void EnterDetailsPage::updateForm()
         if (pgp()) {
             attrOrder << QStringLiteral("NAME") << QStringLiteral("EMAIL");
         } else {
-            attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O!") << QStringLiteral("C!") << QStringLiteral("EMAIL!");
+            attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C") << QStringLiteral("EMAIL!");
         }
     }
 

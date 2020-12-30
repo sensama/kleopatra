@@ -1,7 +1,7 @@
 set(kleopatra_version 3.1.14)
 # The following is for Windows. Keep in line with kleopatra_version.
 set(kleopatra_fileversion 3,1,14,0)
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(kleopatra VERSION ${kleopatra_version})
 
 # The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version

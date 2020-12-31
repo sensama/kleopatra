@@ -332,9 +332,9 @@ ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_SRCS})
 qt5_add_resources(_kleopatra_SRCS kleopatra.qrc)
 
 add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_uiserver_SRCS})
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(kleopatra_bin PROPERTIES UNITY_BUILD ON)
-endif()
+#if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+#    set_target_properties(kleopatra_bin PROPERTIES UNITY_BUILD ON)
+#endif()
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
 if (WIN32)

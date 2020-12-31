@@ -69,7 +69,9 @@ target_link_libraries(kcm_kleopatra
   ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
 )
-
+if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
+    set_target_properties(kcm_kleopatra PROPERTIES UNITY_BUILD ON)
+endif()
 install(TARGETS kcm_kleopatra DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### install files ###############

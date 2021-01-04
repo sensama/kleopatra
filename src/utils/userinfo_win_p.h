@@ -14,6 +14,8 @@
 #define SECURITY_WIN32
 #include <secext.h> // For GetUserNameEx
 
+#include <QString>
+
 QString win_get_user_name(EXTENDED_NAME_FORMAT what);
 
 #endif // __KLEOPATRA_UTILS_USERINFO_WIN_P_H__

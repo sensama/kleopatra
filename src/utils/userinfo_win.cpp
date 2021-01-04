@@ -8,6 +8,7 @@
 */
 
 #include "userinfo_win_p.h"
+#include "kleopatra_debug.h"
 
 /* Use Windows API to query the user name and email.
    EXTENDED_NAME_FORMAT is documented in MSDN */

@@ -9,6 +9,8 @@
 
 #include "gencardkeydialog.h"
 
+#include "utils/userinfo.h"
+
 #include <QDialogButtonBox>
 #include <QLineEdit>
 #include <QComboBox>
@@ -18,7 +20,6 @@
 #include <QPushButton>
 #include <QLabel>
 
-#include <KEMailSettings>
 #include <KEmailAddress>
 #include <KLocalizedString>
 #include <KColorScheme>
@@ -43,17 +44,16 @@ public:
 
         int row = 0;
 
-        const KEMailSettings e;
         if (requiredAttributes & KeyOwnerName) {
             auto nameLabel = new QLabel(i18n("Name:"));
-            mNameEdit = new QLineEdit(e.getSetting(KEMailSettings::RealName));
+            mNameEdit = new QLineEdit(userFullName());
 
             grid->addWidget(nameLabel, row, 0);
             grid->addWidget(mNameEdit, row++, 1);
         }
         if (requiredAttributes & KeyOwnerEmail) {
             auto mailLabel = new QLabel(i18n("EMail:"));
-            mEmailEdit = new QLineEdit(e.getSetting(KEMailSettings::EmailAddress));
+            mEmailEdit = new QLineEdit(userEmailAddress());
             connect(mEmailEdit, &QLineEdit::textChanged, q, [this]() {checkAcceptable();});
             mInvalidEmailLabel = new QLabel(QStringLiteral("<font size='small' color='%1'>%2</font>").arg(
                 KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color().name(), i18n("Invalid EMail")));

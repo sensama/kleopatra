@@ -16,7 +16,8 @@ if(WIN32)
       utils/gnupg-registry.c
       selftest/registrycheck.cpp
       utils/windowsprocessdevice.cpp
-      )
+      utils/userinfo_win.cpp
+  )
 else()
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_unix.cpp)
   set(_kleopatra_extra_SRCS)
@@ -100,6 +101,7 @@ set(_kleopatra_SRCS
   utils/remarks.cpp
   utils/writecertassuantransaction.cpp
   utils/keyparameters.cpp
+  utils/userinfo.cpp
 
   selftest/selftest.cpp
   selftest/enginecheck.cpp

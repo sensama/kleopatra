@@ -30,6 +30,7 @@
 #include "utils/validation.h"
 #include "utils/filedialog.h"
 #include "utils/keyparameters.h"
+#include "utils/userinfo.h"
 
 #include <Libkleo/GnuPG>
 #include <Libkleo/Stl_Util>
@@ -66,15 +67,7 @@
 #include <algorithm>
 
 #include <KSharedConfig>
-#include <KEMailSettings>
-#include <KEmailAddress>
 #include <QLocale>
-
-#ifdef Q_OS_WIN
-# include <windows.h>
-# define SECURITY_WIN32
-# include <secext.h> // For GetUserNameEx
-#endif
 
 using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
@@ -284,55 +277,6 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     }
 
     qCWarning(KLEOPATRA_LOG) << "Failed to parse default_pubkey_algo:" << algoString;
-}
-
-/* Use Windows API to query the user name and email.
-   EXTENDED_NAME_FORMAT is documented in MSDN */
-#ifdef Q_OS_WIN
-static QString win_get_user_name (EXTENDED_NAME_FORMAT what)
-{
-  QString ret;
-  wchar_t tmp[1];
-  ULONG nSize = 1;
-  if (what == NameUnknown) {
-      if (GetUserNameW (tmp, &nSize)) {
-          qCWarning (KLEOPATRA_LOG) << "Got empty username";
-          return ret;
-      }
-  } else if (GetUserNameExW (what, tmp, &nSize)) {
-      return ret;
-  }
-
-  /* nSize now contains the required size of the buffer */
-  wchar_t *buf = new wchar_t[nSize];
-
-  if (what == NameUnknown) {
-      if (!GetUserNameW (buf, &nSize)) {
-          qCWarning (KLEOPATRA_LOG) << "Failed to get username";
-          delete[] buf;
-          return ret;
-      }
-  } else if (!GetUserNameExW (what, buf, &nSize)) {
-      delete[] buf;
-      return ret;
-  }
-  ret = QString::fromWCharArray (buf, nSize);
-  delete[] buf;
-  return ret.trimmed();
-}
-#endif
-
-static QString env_get_user_name (bool mbox)
-{
-    const auto var = qEnvironmentVariable("EMAIL");
-    if (!var.isEmpty()) {
-        QString name, addrspec, comment;
-        const auto result = KEmailAddress::splitAddress (var, name, addrspec, comment);
-        if (result == KEmailAddress::AddressOk) {
-            return (mbox ? addrspec : name);
-        }
-    }
-    return QString ();
 }
 
 Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
@@ -1543,33 +1487,11 @@ void EnterDetailsPage::updateForm()
     widgets.push_back(ui.resultLE);
     widgets.push_back(ui.advancedPB);
 
-    const KEMailSettings e;
     if (ui.nameLE->text().isEmpty()) {
-        auto name = e.getSetting(KEMailSettings::RealName);
-#ifdef Q_OS_WIN
-        if (name.isEmpty()) {
-            name = win_get_user_name(NameDisplay);
-        }
-        if (name.isEmpty()) {
-            name = win_get_user_name(NameUnknown);
-        }
-#endif
-        if (name.isEmpty()) {
-            name = env_get_user_name (false);
-        }
-        ui.nameLE->setText(name);
+        ui.nameLE->setText(userFullName());
     }
     if (ui.emailLE->text().isEmpty()) {
-        auto mbox = e.getSetting(KEMailSettings::EmailAddress);
-#ifdef Q_OS_WIN
-        if (mbox.isEmpty()) {
-            mbox = win_get_user_name(NameUserPrincipal);
-        }
-#endif
-        if (mbox.isEmpty()) {
-            mbox = env_get_user_name (true);
-        }
-        ui.emailLE->setText(mbox);
+        ui.emailLE->setText(userEmailAddress());
     }
 
     set_tab_order(widgets);

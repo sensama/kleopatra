@@ -12,6 +12,7 @@
 
 #include "certificatedetailsinputwidget.h"
 
+#include <utils/userinfo.h>
 #include <utils/validation.h>
 
 #include <Libkleo/Dn>
@@ -19,7 +20,6 @@
 #include <Libkleo/Stl_Util>
 
 #include <KConfigGroup>
-#include <KEMailSettings>
 #include <KLocalizedString>
 #include <KSharedConfig>
 
@@ -216,7 +216,6 @@ public:
 
     void createForm()
     {
-        const KEMailSettings emailSettings;
         const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
         QStringList attrOrder = config.readEntry("DNAttributeOrder", QStringList());
@@ -235,8 +234,8 @@ public:
             if (attr.isEmpty()) {
                 continue;
             }
-            const QString defaultPreset = (attr == QLatin1String("CN")) ? emailSettings.getSetting(KEMailSettings::RealName) :
-                                          (attr == QLatin1String("EMAIL")) ? emailSettings.getSetting(KEMailSettings::EmailAddress) :
+            const QString defaultPreset = (attr == QLatin1String("CN")) ? userFullName() :
+                                          (attr == QLatin1String("EMAIL")) ? userEmailAddress() :
                                           QString();
             const QString preset = config.readEntry(attr, defaultPreset);
             const bool required = key.endsWith(QLatin1Char('!'));

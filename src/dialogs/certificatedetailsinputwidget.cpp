@@ -225,8 +225,8 @@ public:
                       << QStringLiteral("EMAIL!")
                       << QStringLiteral("L")
                       << QStringLiteral("OU")
-                      << QStringLiteral("O!")
-                      << QStringLiteral("C!");
+                      << QStringLiteral("O")
+                      << QStringLiteral("C");
         }
 
         for (const QString &rawKey : attrOrder) {

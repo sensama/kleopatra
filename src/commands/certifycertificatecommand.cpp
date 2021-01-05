@@ -269,7 +269,7 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
               i18n("Certification Error"));
     }
     if (!dialog->remarks().isEmpty()) {
-        Remarks::enableRemarks(true);
+        Remarks::enableRemarks();
     }
 
     finished();

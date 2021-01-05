@@ -21,11 +21,11 @@ bool Remarks::remarksEnabled()
     return conf.readEntry("RemarksEnabled", false);
 }
 
-void Remarks::enableRemarks(bool enable)
+void Remarks::enableRemarks()
 {
     KConfigGroup conf(KSharedConfig::openConfig(), "RemarkSettings");
-    conf.writeEntry("RemarksEnabled", enable);
-    KeyCache::mutableInstance()->enableRemarks(enable);
+    conf.writeEntry("RemarksEnabled", true);
+    KeyCache::mutableInstance()->enableRemarks(true);
 }
 
 GpgME::Key Remarks::remarkKey()

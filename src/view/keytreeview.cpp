@@ -90,8 +90,8 @@ protected:
 
                 connect(mHeaderPopup, &QMenu::triggered, this, [this] (QAction *action) {
                     const int col = action->data().toInt();
-                    if (col == REMARK_COLUMN) {
-                        Remarks::enableRemarks(action->isChecked());
+                    if ((col == REMARK_COLUMN) && action->isChecked()) {
+                        Remarks::enableRemarks();
                     }
                     if (action->isChecked()) {
                         showColumn(col);
@@ -440,8 +440,8 @@ void KeyTreeView::restoreLayout()
 
             header->resizeSection(i, width ? width : 100);
             header->moveSection(header->visualIndex(i), order);
-            if (i == REMARK_COLUMN) {
-                Remarks::enableRemarks(visible);
+            if ((i == REMARK_COLUMN) && visible) {
+                Remarks::enableRemarks();
             }
             if (!visible) {
                 m_view->hideColumn(i);

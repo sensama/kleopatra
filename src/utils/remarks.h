@@ -18,7 +18,7 @@ namespace Remarks
 {
 /* Helper functions to work with remark configuration */
 bool remarksEnabled();
-void enableRemarks(bool enable);
+void enableRemarks();
 /* Read / write a single remark key into configuration. */
 GpgME::Key remarkKey();
 void setRemarkKey(const GpgME::Key &key);

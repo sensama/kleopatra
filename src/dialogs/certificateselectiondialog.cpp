@@ -14,6 +14,8 @@
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
 
+#include "utils/tags.h"
+
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyCache>
 
@@ -37,6 +39,11 @@
 #include <QVBoxLayout>
 
 #include <algorithm>
+
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
+# define GPGME_HAS_REMARKS
+#endif
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -162,6 +169,11 @@ CertificateSelectionDialog::Private::Private(CertificateSelectionDialog *qq)
 {
     ui.tabWidget.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(q));
     ui.tabWidget.setHierarchicalModel(AbstractKeyListModel::createHierarchicalKeyListModel(q));
+#ifdef GPGME_HAS_REMARKS
+    const auto tagKeys = Tags::tagKeys();
+    ui.tabWidget.flatModel()->setRemarkKeys(tagKeys);
+    ui.tabWidget.hierarchicalModel()->setRemarkKeys(tagKeys);
+#endif
     ui.tabWidget.connectSearchBar(&ui.searchBar);
 
     connect(&ui.tabWidget, SIGNAL(currentViewChanged(QAbstractItemView*)),

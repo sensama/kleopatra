@@ -13,6 +13,7 @@
 #include "appearanceconfigwidget.h"
 #include "ui_appearanceconfigwidget.h"
 
+#include "tagspreferences.h"
 #include "tooltippreferences.h"
 
 #include <QGpgME/Protocol>
@@ -330,6 +331,7 @@ public:
         connect(tooltipValidityCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipValidityChanged(bool)));
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
+        connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
     }
 
 private:
@@ -353,6 +355,7 @@ private:
     void slotTooltipValidityChanged(bool);
     void slotTooltipOwnerChanged(bool);
     void slotTooltipDetailsChanged(bool);
+    void slotUseTagsChanged(bool);
 
 private:
     Kleo::DNAttributeOrderConfigWidget *dnOrderWidget;
@@ -448,6 +451,9 @@ void AppearanceConfigWidget::load()
     d->tooltipValidityCheckBox->setChecked(prefs.showValidity());
     d->tooltipOwnerCheckBox->setChecked(prefs.showOwnerInformation());
     d->tooltipDetailsCheckBox->setChecked(prefs.showCertificateDetails());
+
+    const TagsPreferences tagsPrefs;
+    d->useTagsCheckBox->setChecked(tagsPrefs.useTags());
 }
 
 void AppearanceConfigWidget::save()
@@ -483,6 +489,9 @@ void AppearanceConfigWidget::save()
         KConfigGroup group(config, groups[i]);
         save_to_config(item, group);
     }
+
+    TagsPreferences tagsPrefs;
+    tagsPrefs.setUseTags(d->useTagsCheckBox->isChecked());
 
     config->sync();
     KeyFilterManager::instance()->reload();
@@ -610,6 +619,11 @@ void AppearanceConfigWidget::Private::slotTooltipOwnerChanged(bool)
 }
 
 void AppearanceConfigWidget::Private::slotTooltipDetailsChanged(bool)
+{
+    Q_EMIT q->changed();
+}
+
+void AppearanceConfigWidget::Private::slotUseTagsChanged(bool)
 {
     Q_EMIT q->changed();
 }

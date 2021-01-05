@@ -7,6 +7,9 @@
 */
 
 #include "remarks.h"
+
+#include "tagspreferences.h"
+
 #include "kleopatra_debug.h"
 
 #include <KSharedConfig>
@@ -17,21 +20,18 @@ using namespace Kleo;
 
 bool Remarks::remarksEnabled()
 {
-    const KConfigGroup conf(KSharedConfig::openConfig(), "RemarkSettings");
-    return conf.readEntry("RemarksEnabled", false);
+    return TagsPreferences().useTags();
 }
 
 void Remarks::enableRemarks()
 {
-    KConfigGroup conf(KSharedConfig::openConfig(), "RemarkSettings");
-    conf.writeEntry("RemarksEnabled", true);
+    TagsPreferences().setUseTags(true);
     KeyCache::mutableInstance()->enableRemarks(true);
 }
 
 GpgME::Key Remarks::remarkKey()
 {
-    const KConfigGroup conf(KSharedConfig::openConfig(), "RemarkSettings");
-    const auto remarkKeyFpr = conf.readEntry("RemarkKeyFpr", QString());
+    const auto remarkKeyFpr = TagsPreferences().tagKey();
     GpgME::Key key;
     if (remarkKeyFpr.isEmpty()) {
         return key;
@@ -61,6 +61,5 @@ std::vector<GpgME::Key> Remarks::remarkKeys()
 
 void Remarks::setRemarkKey(const GpgME::Key &key)
 {
-    KConfigGroup conf(KSharedConfig::openConfig(), "RemarkSettings");
-    conf.writeEntry("RemarkKeyFpr", key.isNull() ? QString() : QString::fromLatin1(key.primaryFingerprint()));
+    TagsPreferences().setTagKey(key.isNull() ? QString() : QString::fromLatin1(key.primaryFingerprint()));
 }

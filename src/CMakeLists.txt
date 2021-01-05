@@ -326,6 +326,7 @@ kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/emailoperationspreferences.kcfgc
   kcfg/fileoperationspreferences.kcfgc
   kcfg/smimevalidationpreferences.kcfgc
+  kcfg/tagspreferences.kcfgc
 )
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.png")

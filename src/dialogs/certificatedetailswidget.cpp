@@ -32,7 +32,6 @@
 #include <gpgme++/keylistresult.h>
 #include <gpgme++/tofuinfo.h>
 
-#include <QGpgME/Debug>
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 
@@ -46,6 +45,9 @@
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
 # define GPGME_HAS_REMARKS
+#endif
+#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
+#include <QGpgME/Debug>
 #endif
 
 #define HIDE_ROW(row) \

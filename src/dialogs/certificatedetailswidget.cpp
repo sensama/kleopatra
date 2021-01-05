@@ -46,8 +46,9 @@
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
 # define GPGME_HAS_REMARKS
 #endif
-#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
-#include <QGpgME/Debug>
+#if GPGMEPP_VERSION >= 0x10F00 // 1.15.0
+# define GPGME_HAS_WITH_SECRET
+# include <QGpgME/Debug>
 #endif
 
 #define HIDE_ROW(row) \
@@ -603,15 +604,21 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
     ctx->addKeyListMode(GpgME::SignatureNotations);
+#ifdef GPGME_HAS_WITH_SECRET
     if (key.hasSecret()) {
         ctx->addKeyListMode(GpgME::WithSecret);
     }
+#endif
 
     // Windows QGpgME new style connect problem makes this necessary.
     connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
             this, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
 
+#ifdef GPGME_HAS_WITH_SECRET
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
+#else
+    job->start(QStringList() << QLatin1String(key.primaryFingerprint()), key.hasSecret());
+#endif
 }
 
 GpgME::Key CertificateDetailsWidget::key() const

@@ -48,7 +48,7 @@ public:
 
     void setCertificateToCertify(const GpgME::Key &key);
 
-    QString remarks() const;
+    QString tags() const;
 
 private:
     CertifyWidget *mCertWidget;

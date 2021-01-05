@@ -20,7 +20,8 @@
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
-#include "utils/remarks.h"
+
+#include "utils/tags.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/Dn>
@@ -200,14 +201,14 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(2, Qt::ToolTipRole, toolTip);
 
         GpgME::Error err;
-        QStringList remarkList;
+        QStringList tagList;
 #ifdef GPGME_HAS_REMARKS
-        for (const auto &rem: uid.remarks(Remarks::remarkKeys(), err)) {
-            remarkList << QString::fromStdString(rem);
+        for (const auto &tag: uid.remarks(Tags::tagKeys(), err)) {
+            tagList << QString::fromStdString(tag);
         }
 #endif
-        const auto remark = remarkList.join(QStringLiteral("; "));
-        item->setData(3, Qt::DisplayRole, remark);
+        const auto tags = tagList.join(QStringLiteral("; "));
+        item->setData(3, Qt::DisplayRole, tags);
         item->setData(3, Qt::ToolTipRole, toolTip);
 
         ui.userIDTable->addTopLevelItem(item);
@@ -222,7 +223,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
             ui.userIDTable->setItemWidget(item, 4, button);
         }
     }
-    if (!Remarks::remarksEnabled()) {
+    if (!Tags::tagsEnabled()) {
         ui.userIDTable->hideColumn(3);
     }
 }

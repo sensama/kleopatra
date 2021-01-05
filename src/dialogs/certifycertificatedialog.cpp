@@ -144,7 +144,7 @@ std::vector<unsigned int> CertifyCertificateDialog::selectedUserIDs() const
     return mCertWidget->selectedUserIDs();
 }
 
-QString CertifyCertificateDialog::remarks() const
+QString CertifyCertificateDialog::tags() const
 {
-    return mCertWidget->remarks();
+    return mCertWidget->tags();
 }

@@ -27,7 +27,7 @@
 
 #include "kleopatra_debug.h"
 #include "commands/command.h"
-#include "utils/remarks.h"
+#include "utils/tags.h"
 
 #include <KMessageBox>
 #include <KLocalizedString>
@@ -51,7 +51,7 @@ public:
     Private(WebOfTrustWidget *qq)
         : q(qq)
     {
-        certificationsModel.enableRemarks(Remarks::remarksEnabled());
+        certificationsModel.enableRemarks(Tags::tagsEnabled());
 
         certificationsTV = new QTreeView;
         certificationsTV->setModel(&certificationsModel);
@@ -202,7 +202,7 @@ public:
             return;
         }
 
-        if (Remarks::remarksEnabled()) {
+        if (Tags::tagsEnabled()) {
             job->addMode(GpgME::SignatureNotations);
         }
 

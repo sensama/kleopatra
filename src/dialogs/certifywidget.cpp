@@ -10,8 +10,6 @@
 
 #include "kleopatra_debug.h"
 
-#include "utils/remarks.h"
-
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -216,8 +214,7 @@ class CertifyWidget::Private
 {
 public:
     Private(CertifyWidget *qq) : q(qq),
-        mFprLabel(new QLabel),
-        remarkTextChanged(false)
+        mFprLabel(new QLabel)
     {
         QVBoxLayout *mainLay = new QVBoxLayout(q);
         mainLay->addWidget(mFprLabel);
@@ -254,8 +251,8 @@ public:
         publishLay->addSpacing(20);
         publishLay->addWidget(mPublishCB);
 
-        mRemarkLE = new QLineEdit;
-        mRemarkLE->setPlaceholderText(i18n("Tags"));
+        mTagsLE = new QLineEdit;
+        mTagsLE->setPlaceholderText(i18n("Tags"));
 
         auto infoBtn = new QPushButton;
         infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
@@ -270,17 +267,17 @@ public:
                                msg, infoBtn, QRect(), 30000);
         });
 
-        auto remarkLay = new QHBoxLayout;
-        remarkLay->addWidget(infoBtn);
-        remarkLay->addWidget(mRemarkLE);
+        auto tagsLay = new QHBoxLayout;
+        tagsLay->addWidget(infoBtn);
+        tagsLay->addWidget(mTagsLE);
 
         advLay->addWidget(mExportCB);
         advLay->addLayout(publishLay);
-        advLay->addLayout(remarkLay);
+        advLay->addLayout(tagsLay);
 
 #ifndef GPGME_HAS_REMARKS
         // Hide it if we do not have remark support
-        mRemarkLE->setVisible(false);
+        mTagsLE->setVisible(false);
         infoBtn->setVisible(false);
 #endif
 
@@ -294,7 +291,7 @@ public:
 
         connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this] (const GpgME::Key &) {
 #ifdef GPGME_HAS_REMARKS
-            updateRemark();
+            updateTags();
 #endif
         });
 
@@ -313,9 +310,9 @@ public:
         mPublishCB->setChecked(conf.readEntry("PublishCheckState", false));
     }
 
-    void updateRemark()
+    void updateTags()
     {
-        if (mRemarkLE->isModified()) {
+        if (mTagsLE->isModified()) {
             return;
         }
 #ifdef GPGME_HAS_REMARKS
@@ -341,7 +338,7 @@ public:
             if (!remark.isEmpty()) {
                 selectUserIDs(uidsWithRemark);
             }
-            mRemarkLE->setText(remark);
+            mTagsLE->setText(remark);
         }
 #endif
     }
@@ -354,7 +351,7 @@ public:
         mUserIDModel.setKey(key);
         mTarget = key;
 
-        updateRemark();
+        updateTags();
     }
 
     GpgME::Key secKey() const
@@ -396,9 +393,9 @@ public:
         return mPublishCB->isChecked();
     }
 
-    QString remarks() const
+    QString tags() const
     {
-        return mRemarkLE->text().trimmed();
+        return mTagsLE->text().trimmed();
     }
 
     GpgME::Key target() const
@@ -412,11 +409,10 @@ private:
     KeySelectionCombo *mSecKeySelect;
     QCheckBox *mExportCB;
     QCheckBox *mPublishCB;
-    QLineEdit *mRemarkLE;
+    QLineEdit *mTagsLE;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;
-    bool remarkTextChanged;
 };
 
 CertifyWidget::CertifyWidget(QWidget *parent) :
@@ -455,9 +451,9 @@ bool CertifyWidget::exportableSelected() const
     return d->exportableSelected();
 }
 
-QString CertifyWidget::remarks() const
+QString CertifyWidget::tags() const
 {
-    return d->remarks();
+    return d->tags();
 }
 
 bool CertifyWidget::publishSelected() const

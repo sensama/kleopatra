@@ -17,7 +17,7 @@
 
 #include "exportopenpgpcertstoservercommand.h"
 #include "dialogs/certifycertificatedialog.h"
-#include "utils/remarks.h"
+#include "utils/tags.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
@@ -268,8 +268,8 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
               QString::fromUtf8(err.asString())),
               i18n("Certification Error"));
     }
-    if (!dialog->remarks().isEmpty()) {
-        Remarks::enableRemarks();
+    if (!dialog->tags().isEmpty()) {
+        Tags::enableTags();
     }
 
     finished();
@@ -287,9 +287,9 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     job->setSigningKey(dialog->selectedSecretKey());
     job->setCheckLevel(dialog->selectedCheckLevel());
 #ifdef GPGME_HAS_REMARKS
-    if (!dialog->remarks().isEmpty()) {
+    if (!dialog->tags().isEmpty()) {
         // do not set an empty remark to avoid an empty signature notation (GnuPG bug T5142)
-        job->setRemark(dialog->remarks());
+        job->setRemark(dialog->tags());
     }
     // This also came with 1.14.0
     job->setDupeOk(true);

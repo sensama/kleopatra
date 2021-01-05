@@ -98,7 +98,7 @@ set(_kleopatra_SRCS
   utils/auditlog.cpp
   utils/clipboardmenu.cpp
   utils/kuniqueservice.cpp
-  utils/remarks.cpp
+  utils/tags.cpp
   utils/writecertassuantransaction.cpp
   utils/keyparameters.cpp
   utils/userinfo.cpp

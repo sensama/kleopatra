@@ -46,8 +46,8 @@ public:
     /* Should the signature be exportable */
     bool exportableSelected() const;
 
-    /* Additional remarks (search tags) for the key */
-    QString remarks() const;
+    /* Additional tags for the key */
+    QString tags() const;
 
     /* Should the signed key be be published */
     bool publishSelected() const;

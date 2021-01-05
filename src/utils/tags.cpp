@@ -1,12 +1,12 @@
-/*  utils/remarks.cpp
+/*  utils/tags.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2019 g 10code GmbH
+    SPDX-FileCopyrightText: 2019 g10code GmbH
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "remarks.h"
+#include "tags.h"
 
 #include "tagspreferences.h"
 
@@ -18,33 +18,33 @@
 
 using namespace Kleo;
 
-bool Remarks::remarksEnabled()
+bool Tags::tagsEnabled()
 {
     return TagsPreferences().useTags();
 }
 
-void Remarks::enableRemarks()
+void Tags::enableTags()
 {
     TagsPreferences().setUseTags(true);
     KeyCache::mutableInstance()->enableRemarks(true);
 }
 
-GpgME::Key Remarks::remarkKey()
+GpgME::Key Tags::tagKey()
 {
-    const auto remarkKeyFpr = TagsPreferences().tagKey();
+    const auto tagKeyFpr = TagsPreferences().tagKey();
     GpgME::Key key;
-    if (remarkKeyFpr.isEmpty()) {
+    if (tagKeyFpr.isEmpty()) {
         return key;
     }
-    key = KeyCache::instance()->findByKeyIDOrFingerprint(remarkKeyFpr.toLatin1().constData());
+    key = KeyCache::instance()->findByKeyIDOrFingerprint(tagKeyFpr.toLatin1().constData());
     if (key.isNull()) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find remark key: " << remarkKeyFpr;
+        qCDebug(KLEOPATRA_LOG) << "Failed to find tag key: " << tagKeyFpr;
         return key;
     }
     return key;
 }
 
-std::vector<GpgME::Key> Remarks::remarkKeys()
+std::vector<GpgME::Key> Tags::tagKeys()
 {
     std::vector<GpgME::Key> ret;
     for (const auto &key: KeyCache::instance()->keys()) {
@@ -59,7 +59,7 @@ std::vector<GpgME::Key> Remarks::remarkKeys()
     return ret;
 }
 
-void Remarks::setRemarkKey(const GpgME::Key &key)
+void Tags::setTagKey(const GpgME::Key &key)
 {
     TagsPreferences().setTagKey(key.isNull() ? QString() : QString::fromLatin1(key.primaryFingerprint()));
 }

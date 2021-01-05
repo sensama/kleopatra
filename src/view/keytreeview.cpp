@@ -17,7 +17,7 @@
 #include <Libkleo/Predicates>
 
 #include "utils/headerview.h"
-#include "utils/remarks.h"
+#include "utils/tags.h"
 
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KeyFilter>
@@ -46,7 +46,7 @@
 # define GPGME_HAS_REMARKS
 #endif
 
-#define REMARK_COLUMN 13
+#define TAGS_COLUMN 13
 
 using namespace Kleo;
 using namespace GpgME;
@@ -90,8 +90,8 @@ protected:
 
                 connect(mHeaderPopup, &QMenu::triggered, this, [this] (QAction *action) {
                     const int col = action->data().toInt();
-                    if ((col == REMARK_COLUMN) && action->isChecked()) {
-                        Remarks::enableRemarks();
+                    if ((col == TAGS_COLUMN) && action->isChecked()) {
+                        Tags::enableTags();
                     }
                     if (action->isChecked()) {
                         showColumn(col);
@@ -287,7 +287,7 @@ void KeyTreeView::init()
                                                      << KeyListModelInterface::Issuer
                                                      << KeyListModelInterface::SerialNumber
 #ifdef GPGME_HAS_REMARKS
-    // If a column is added before this REMARK_COLUMN define has to be updated accordingly
+    // If a column is added before this TAGS_COLUMN define has to be updated accordingly
                                                      << KeyListModelInterface::Remarks
 #endif
     );
@@ -325,7 +325,7 @@ void KeyTreeView::init()
          * the model is already populated. */
         QTimer::singleShot(0, [this] () {
             restoreExpandState();
-            setupRemarkKeys();
+            setUpTagKeys();
             if (!m_onceResized) {
                 m_onceResized = true;
                 resizeColumns();
@@ -364,15 +364,15 @@ void KeyTreeView::restoreExpandState()
     }
 }
 
-void KeyTreeView::setupRemarkKeys()
+void KeyTreeView::setUpTagKeys()
 {
 #ifdef GPGME_HAS_REMARKS
-    const auto remarkKeys = Remarks::remarkKeys();
+    const auto tagKeys = Tags::tagKeys();
     if (m_hierarchicalModel) {
-        m_hierarchicalModel->setRemarkKeys(remarkKeys);
+        m_hierarchicalModel->setRemarkKeys(tagKeys);
     }
     if (m_flatModel) {
-        m_flatModel->setRemarkKeys(remarkKeys);
+        m_flatModel->setRemarkKeys(tagKeys);
     }
 #endif
 }
@@ -440,8 +440,8 @@ void KeyTreeView::restoreLayout()
 
             header->resizeSection(i, width ? width : 100);
             header->moveSection(header->visualIndex(i), order);
-            if ((i == REMARK_COLUMN) && visible) {
-                Remarks::enableRemarks();
+            if ((i == TAGS_COLUMN) && visible) {
+                Tags::enableTags();
             }
             if (!visible) {
                 m_view->hideColumn(i);

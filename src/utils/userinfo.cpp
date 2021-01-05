@@ -72,3 +72,13 @@ QString Kleo::userEmailAddress()
     }
     return mbox;
 }
+
+bool Kleo::userIsElevated()
+{
+#ifdef Q_OS_WIN
+    static bool ret = win_user_is_elevated();
+    return ret;
+#else
+    return false;
+#endif
+}

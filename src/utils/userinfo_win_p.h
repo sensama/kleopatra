@@ -18,4 +18,6 @@
 
 QString win_get_user_name(EXTENDED_NAME_FORMAT what);
 
+bool win_user_is_elevated();
+
 #endif // __KLEOPATRA_UTILS_USERINFO_WIN_P_H__

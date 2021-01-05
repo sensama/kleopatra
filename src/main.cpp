@@ -24,6 +24,7 @@
 #include <Libkleo/GnuPG>
 #include <utils/archivedefinition.h>
 #include "utils/kuniqueservice.h"
+#include "utils/userinfo.h"
 
 #include <uiserver/uiserver.h>
 #include <uiserver/assuancommand.h>
@@ -102,6 +103,26 @@ int main(int argc, char **argv)
     timer.start();
 
     KLocalizedString::setApplicationDomain("kleopatra");
+
+    if (Kleo::userIsElevated()) {
+        /* This is a safeguard against bugreports that something fails because
+         * of permission problems on windows.  Some users still have the Windows
+         * Vista behavior of running things as Administrator.  This can break
+         * GnuPG in horrible ways for example if a stale lockfile is left that
+         * can't be removed without another elevation.
+         *
+         * Note: This is not the same as running as root on Linux. Elevated means
+         * that you are temporarily running with the "normal" user environment but
+         * with elevated permissions.
+         * */
+        KMessageBox::sorry(nullptr, xi18nc("@info",
+                                     "<para><application>Kleopatra</application> cannot be run as adminstrator without "
+                                     "breaking file permissions in the GnuPG data folder.</para>"
+                                     "<para>To manage keys for other users please manage them as a normal user and "
+                                     "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>"),
+                           i18nc("@title", "Running as Administrator"));
+        return EXIT_FAILURE;
+    }
 
     KUniqueService service;
     QObject::connect(&service, &KUniqueService::activateRequested,

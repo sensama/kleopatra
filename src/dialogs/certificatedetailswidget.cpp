@@ -32,6 +32,7 @@
 #include <gpgme++/keylistresult.h>
 #include <gpgme++/tofuinfo.h>
 
+#include <QGpgME/Debug>
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 
@@ -204,8 +205,12 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         QStringList tagList;
 #ifdef GPGME_HAS_REMARKS
         for (const auto &tag: uid.remarks(Tags::tagKeys(), err)) {
+            if (err) {
+                qCWarning(KLEOPATRA_LOG) << "Getting remarks for user id" << uid.id() << "failed:" << err;
+            }
             tagList << QString::fromStdString(tag);
         }
+        qCDebug(KLEOPATRA_LOG) << "tagList:" << tagList;
 #endif
         const auto tags = tagList.join(QStringLiteral("; "));
         item->setData(3, Qt::DisplayRole, tags);
@@ -595,14 +600,16 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
 
     auto ctx = QGpgME::Job::context(job);
     ctx->addKeyListMode(GpgME::WithTofu);
-    ctx->addKeyListMode(GpgME::Signatures);
     ctx->addKeyListMode(GpgME::SignatureNotations);
+    if (key.hasSecret()) {
+        ctx->addKeyListMode(GpgME::WithSecret);
+    }
 
     // Windows QGpgME new style connect problem makes this necessary.
     connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
             this, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
 
-    job->start(QStringList() << QLatin1String(key.primaryFingerprint()), key.hasSecret());
+    job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }
 
 GpgME::Key CertificateDetailsWidget::key() const

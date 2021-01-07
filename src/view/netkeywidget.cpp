@@ -241,6 +241,13 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)
 {
+    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    if (!netKeyCard) {
+        KMessageBox::error(this,
+                           i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        return;
+    }
+
     auto cmd = new ChangePinCommand(mSerialNumber, NetKeyCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished,
@@ -248,6 +255,10 @@ void NetKeyWidget::doChangePin(const std::string &keyRef)
                 this->setEnabled(true);
             });
     cmd->setKeyRef(keyRef);
+    if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin())
+        || (keyRef == NetKeyCard::sigGPinKeyRef() && netKeyCard->hasSigGNullPin())) {
+        cmd->setMode(ChangePinCommand::NullPinMode);
+    }
     cmd->start();
 }
 

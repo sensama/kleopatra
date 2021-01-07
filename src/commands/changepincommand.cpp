@@ -126,6 +126,8 @@ void ChangePinCommand::Private::changePin()
     command << "SCD PASSWD";
     if (mode == ResetMode) {
         command << "--reset";
+    } else if (mode == NullPinMode) {
+        command << "--nullpin";
     }
     command << QByteArray::fromStdString(keyRef);
     ReaderStatus::mutableInstance()->startSimpleTransaction(card, command.join(' '), q, "slotResult");

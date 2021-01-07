@@ -11,6 +11,7 @@
 
 #include "cardcommand_p.h"
 
+#include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -149,6 +150,20 @@ static QString errorMessage(const std::string &keyRef, ChangePinCommand::ChangeP
     if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
         return i18nc("@info", "Changing the Reset Code failed: %1", errorText);
     }
+    if (keyRef == NetKeyCard::nksPinKeyRef()) {
+        if (mode == ChangePinCommand::NullPinMode) {
+            return i18nc("@info", "Setting the NKS PIN failed: %1", errorText);
+        } else {
+            return i18nc("@info", "Changing the NKS PIN failed: %1", errorText);
+        }
+    }
+    if (keyRef == NetKeyCard::sigGPinKeyRef()) {
+        if (mode == ChangePinCommand::NullPinMode) {
+            return i18nc("@info", "Setting the SigG PIN failed: %1", errorText);
+        } else {
+            return i18nc("@info", "Changing the SigG PIN failed: %1", errorText);
+        }
+    }
     return i18nc("@info", "Changing the PIN failed: %1", errorText);
 }
 
@@ -166,6 +181,20 @@ static QString successMessage(const std::string &keyRef, ChangePinCommand::Chang
     }
     if (keyRef == OpenPGPCard::resetCodeKeyRef() && mode == ChangePinCommand::ResetMode) {
         return i18nc("@info", "Reset Code changed successfully.");
+    }
+    if (keyRef == NetKeyCard::nksPinKeyRef()) {
+        if (mode == ChangePinCommand::NullPinMode) {
+            return i18nc("@info", "NKS PIN set successfully.");
+        } else {
+            return i18nc("@info", "NKS PIN changed successfully.");
+        }
+    }
+    if (keyRef == NetKeyCard::sigGPinKeyRef()) {
+        if (mode == ChangePinCommand::NullPinMode) {
+            return i18nc("@info", "SigG PIN set successfully.");
+        } else {
+            return i18nc("@info", "SigG PIN changed successfully.");
+        }
     }
     return i18nc("@info", "PIN changed successfully.");
 }

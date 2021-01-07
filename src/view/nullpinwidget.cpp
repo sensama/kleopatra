@@ -11,9 +11,8 @@
 #include "kleopatra_debug.h"
 
 #include "smartcard/netkeycard.h"
-#include "smartcard/readerstatus.h"
 
-#include <gpgme++/error.h>
+#include "commands/changepincommand.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -24,6 +23,7 @@
 #include <KMessageBox>
 
 using namespace Kleo;
+using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
 NullPinWidget::NullPinWidget(QWidget *parent)
@@ -42,10 +42,10 @@ NullPinWidget::NullPinWidget(QWidget *parent)
     mSigGBtn = new QPushButton(i18nc("SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
 
     connect(mNKSBtn, &QPushButton::clicked, this, [this] () {
-            doChangePin(false);
+            doChangePin(NetKeyCard::nksPinKeyRef());
         });
     connect(mSigGBtn, &QPushButton::clicked, this, [this] () {
-            doChangePin(true);
+            doChangePin(NetKeyCard::sigGPinKeyRef());
         });
 
     auto hLayBtn = new QHBoxLayout;
@@ -62,7 +62,7 @@ void NullPinWidget::setSerialNumber(const std::string &serialNumber)
     mSerialNumber = serialNumber;
 }
 
-void NullPinWidget::doChangePin(bool sigG)
+void NullPinWidget::doChangePin(const std::string &keyRef)
 {
     parentWidget()->setEnabled(false);
     auto ret = KMessageBox::warningContinueCancel(this,
@@ -81,32 +81,14 @@ void NullPinWidget::doChangePin(bool sigG)
         return;
     }
 
-    const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
-    if (!nksCard) {
-        KMessageBox::error(this, i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(mSerialNumber)));
-        parentWidget()->setEnabled(true);
-        return;
-    }
-
-    if (sigG) {
-        ReaderStatus::mutableInstance()->startSimpleTransaction(
-            nksCard, "SCD PASSWD --nullpin PW1.CH.SIG", this, "setSigGPinSettingResult");
-    } else {
-        ReaderStatus::mutableInstance()->startSimpleTransaction(
-            nksCard, "SCD PASSWD --nullpin PW1.CH", this, "setNksPinSettingResult");
-    }
-}
-
-void NullPinWidget::handleResult(const GpgME::Error &err)
-{
-    if (err) {
-        KMessageBox::error(this, i18nc("@info",
-                           "Failed to set PIN: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
-    } else if (!err.isCanceled()) {
-        ReaderStatus::mutableInstance()->updateStatus();
-    }
-    parentWidget()->setEnabled(true);
+    auto cmd = new ChangePinCommand(mSerialNumber, NetKeyCard::AppName, this);
+    connect(cmd, &ChangePinCommand::finished,
+            this, [this]() {
+                this->parentWidget()->setEnabled(true);
+            });
+    cmd->setKeyRef(keyRef);
+    cmd->setMode(ChangePinCommand::NullPinMode);
+    cmd->start();
 }
 
 void NullPinWidget::setSigGVisible(bool val)
@@ -117,14 +99,4 @@ void NullPinWidget::setSigGVisible(bool val)
 void NullPinWidget::setNKSVisible(bool val)
 {
     mNKSBtn->setVisible(val);
-}
-
-void NullPinWidget::setSigGPinSettingResult(const GpgME::Error &err)
-{
-    handleResult(err);
-}
-
-void NullPinWidget::setNksPinSettingResult(const GpgME::Error &err)
-{
-    handleResult(err);
 }

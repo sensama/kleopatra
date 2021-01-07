@@ -31,12 +31,7 @@ public:
     void setNKSVisible(bool val);
 
 private:
-    void doChangePin(bool sigG);
-    void handleResult(const GpgME::Error &err);
-
-private Q_SLOTS:
-    void setSigGPinSettingResult(const GpgME::Error &err);
-    void setNksPinSettingResult(const GpgME::Error &err);
+    void doChangePin(const std::string &keyRef);
 
 private:
     std::string mSerialNumber;

@@ -196,7 +196,7 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
 {
     mSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("1 is a Version number", "NetKey v%1 Card", card->appVersion()));
-    mSerialNumberLabel->setText(QString::fromStdString(mSerialNumber));
+    mSerialNumberLabel->setText(card->displaySerialNumber());
 
     mNullPinWidget->setSerialNumber(mSerialNumber);
     /* According to users of NetKey Cards it is fairly uncommon

@@ -39,7 +39,7 @@ QString win_get_user_name(EXTENDED_NAME_FORMAT what)
       delete[] buf;
       return ret;
   }
-  ret = QString::fromWCharArray (buf, nSize);
+  ret = QString::fromWCharArray (buf);
   delete[] buf;
   return ret.trimmed();
 }

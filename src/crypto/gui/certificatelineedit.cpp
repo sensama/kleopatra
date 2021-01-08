@@ -80,6 +80,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          KeyFilter *filter)
     : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
+      mCompleterFilterModel(new ProxyModel(this)),
       mFilter(std::shared_ptr<KeyFilter>(filter)),
       mLineAction(new QAction(this))
 {
@@ -87,11 +88,10 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     setClearButtonEnabled(true);
     addAction(mLineAction, QLineEdit::LeadingPosition);
 
+    mCompleterFilterModel->setKeyFilter(mFilter);
+    mCompleterFilterModel->setSourceModel(model);
     auto *completer = new QCompleter(this);
-    auto *completeFilterModel = new ProxyModel(completer);
-    completeFilterModel->setKeyFilter(mFilter);
-    completeFilterModel->setSourceModel(model);
-    completer->setModel(completeFilterModel);
+    completer->setModel(mCompleterFilterModel);
     completer->setCompletionColumn(KeyListModelInterface::Summary);
     completer->setFilterMode(Qt::MatchContains);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -252,6 +252,8 @@ void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     mFilter = filter;
     mFilterModel->setKeyFilter(filter);
+    mCompleterFilterModel->setKeyFilter(mFilter);
+    updateKey();
 }
 
 #include "certificatelineedit.moc"

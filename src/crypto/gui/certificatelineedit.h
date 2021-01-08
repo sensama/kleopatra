@@ -84,6 +84,7 @@ private Q_SLOTS:
 
 private:
     KeyListSortFilterProxyModel *const mFilterModel;
+    KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;

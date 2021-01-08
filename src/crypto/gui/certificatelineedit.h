@@ -79,6 +79,7 @@ private Q_SLOTS:
     void updateKey();
     void dialogRequested();
     void editChanged();
+    void editFinished();
     void checkLocate();
 
 private:

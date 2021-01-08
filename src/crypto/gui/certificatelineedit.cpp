@@ -105,7 +105,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keyListingDone,
             this, &CertificateLineEdit::updateKey);
     connect(this, &QLineEdit::editingFinished,
-            this, &CertificateLineEdit::updateKey);
+            this, &CertificateLineEdit::editFinished);
     connect(this, &QLineEdit::textChanged,
             this, &CertificateLineEdit::editChanged);
     connect(mLineAction, &QAction::triggered,
@@ -127,6 +127,13 @@ void CertificateLineEdit::editChanged()
         mEditStarted = true;
     }
     mEditFinished = false;
+}
+
+void CertificateLineEdit::editFinished()
+{
+    mEditStarted = false;
+    mEditFinished = true;
+    updateKey();
 }
 
 void CertificateLineEdit::checkLocate()

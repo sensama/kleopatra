@@ -167,6 +167,9 @@ void CertificateLineEdit::updateKey()
             if (mEditFinished) {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")).pixmap(KIconLoader::SizeSmallMedium));
                 mLineAction->setToolTip(i18n("Multiple certificates"));
+            } else {
+                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
+                mLineAction->setToolTip(i18n("Open selection dialog."));
             }
         } else if (mFilterModel->rowCount() == 1) {
             newKey = mFilterModel->data(mFilterModel->index(0, 0), KeyListModelInterface::KeyRole).value<Key>();

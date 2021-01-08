@@ -760,11 +760,6 @@ public:
         const auto entry = conf->entry(QStringLiteral("gpg-agent"),
                                    QStringLiteral("Passphrase policy"),
                                    QStringLiteral("enforce-passphrase-constraints"));
-        if (!pgp()) {
-            // GnuPG / GPGME as of 2.2.27 do not support
-            // pinentry mode and passphrase setting for S/MIME
-            ui.withPassCB->setVisible(false);
-        }
         if (entry && entry->boolValue()) {
             qCDebug(KLEOPATRA_LOG) << "Disabling passphrace cb because of agent config.";
             ui.withPassCB->setEnabled(false);
@@ -800,6 +795,7 @@ private Q_SLOTS:
     void slotUpdateResultLabel()
     {
         ui.resultLE->setText(pgp() ? pgpUserID() : cmsDN());
+        ui.withPassCB->setVisible(pgp());
     }
 
 private:

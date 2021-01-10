@@ -12,7 +12,7 @@
 #include "command.h"
 
 #include <QThread>
-#include <QMutex>
+#include <QRecursiveMutex>
 
 #include <QString>
 #include <QStringList>
@@ -32,7 +32,7 @@ public:
     explicit Private(Command *qq)
         : QThread(),
           q(qq),
-          mutex(QMutex::Recursive),
+          mutex(),
           inputs(),
           outputs()
     {
@@ -47,7 +47,7 @@ private:
     void run() override;
 
 private:
-    QMutex mutex;
+    QRecursiveMutex mutex;
     struct Option {
         QVariant value;
         bool hasValue : 1;

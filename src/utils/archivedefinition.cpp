@@ -69,6 +69,7 @@ static const QLatin1String EXTENSIONS_ENTRY("extensions");
 static const QLatin1String EXTENSIONS_OPENPGP_ENTRY("extensions-openpgp");
 static const QLatin1String EXTENSIONS_CMS_ENTRY("extensions-cms");
 static const QLatin1String FILE_PLACEHOLDER("%f");
+static const QLatin1String FILE_PLACEHOLDER_7BIT("%F");
 static const QLatin1String INSTALLPATH_PLACEHOLDER("%I");
 static const QLatin1String NULL_SEPARATED_STDIN_INDICATOR("0|");
 static const QLatin1Char   NEWLINE_SEPARATED_STDIN_INDICATOR('|');
@@ -134,9 +135,11 @@ static void parse_command(QString cmdline, const QString &id, const QString &whi
         throw ArchiveDefinitionError(id, i18n("Cannot use both %f and | in '%1'", whichCommand));
     }
     cmdline.replace(FILE_PLACEHOLDER,        QLatin1String("__files_go_here__"))
-    .replace(INSTALLPATH_PLACEHOLDER, QStringLiteral("__path_goes_here__"));
+    .replace(INSTALLPATH_PLACEHOLDER, QStringLiteral("__path_goes_here__"))
+    .replace(FILE_PLACEHOLDER_7BIT, QStringLiteral("__file7Bit_go_here__"));
     l = KShell::splitArgs(cmdline, KShell::AbortOnMeta | KShell::TildeExpand, &errors);
     l = l.replaceInStrings(QStringLiteral("__files_go_here__"), FILE_PLACEHOLDER);
+    l = l.replaceInStrings(QStringLiteral("__file7Bit_go_here__"), FILE_PLACEHOLDER_7BIT);
     if (l.indexOf(QRegExp(QLatin1String(".*__path_goes_here__.*"))) >= 0) {
         l = l.replaceInStrings(QStringLiteral("__path_goes_here__"), ArchiveDefinition::installPath());
     }
@@ -289,6 +292,18 @@ private:
     QStringList doGetUnpackArguments(GpgME::Protocol p, const QString &file) const override
     {
         QStringList copy = m_unpackArguments[p];
+        if (copy.contains(FILE_PLACEHOLDER_7BIT)) {
+            /* This is a crutch for missing a way to provide Unicode arguments
+             * to gpgtar unless gpgtar offers a unicode interface we have
+             * no defined way to provide non 7Bit arguments. So we filter out
+             * the chars and replace them by _ to avoid completely broken
+             * folder names when unpacking. This is only relevant for the
+             * unpacked folder and does not effect files in the archive. */
+            const QRegExp non7Bit(QStringLiteral("[^\\x{0000}-\\x{007F}]"));
+            QString underscore_filename = file;
+            underscore_filename.replace(non7Bit, QStringLiteral("_"));
+            copy.replaceInStrings(FILE_PLACEHOLDER_7BIT, underscore_filename);
+        }
         copy.replaceInStrings(FILE_PLACEHOLDER, file);
         return copy;
     }

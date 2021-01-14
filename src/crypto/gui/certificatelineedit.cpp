@@ -20,6 +20,7 @@
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
+#include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Formatting>
@@ -60,8 +61,7 @@ public:
 
         switch (role) {
         case Qt::DecorationRole: {
-            const auto key = KeyListSortFilterProxyModel::data(index,
-                    Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+            const auto key = KeyListSortFilterProxyModel::data(index, KeyList::KeyRole).value<GpgME::Key>();
             Q_ASSERT(!key.isNull());
             if (key.isNull()) {
                 return QVariant();
@@ -92,12 +92,12 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     mCompleterFilterModel->setSourceModel(model);
     auto *completer = new QCompleter(this);
     completer->setModel(mCompleterFilterModel);
-    completer->setCompletionColumn(KeyListModelInterface::Summary);
+    completer->setCompletionColumn(KeyList::Summary);
     completer->setFilterMode(Qt::MatchContains);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     setCompleter(completer);
     mFilterModel->setSourceModel(model);
-    mFilterModel->setFilterKeyColumn(KeyListModelInterface::Summary);
+    mFilterModel->setFilterKeyColumn(KeyList::Summary);
     if (filter) {
         mFilterModel->setKeyFilter(mFilter);
     }
@@ -172,7 +172,8 @@ void CertificateLineEdit::updateKey()
                 mLineAction->setToolTip(i18n("Open selection dialog."));
             }
         } else if (mFilterModel->rowCount() == 1) {
-            newKey = mFilterModel->data(mFilterModel->index(0, 0), KeyListModelInterface::KeyRole).value<Key>();
+            const auto index = mFilterModel->index(0, 0);
+            newKey = mFilterModel->data(index, KeyList::KeyRole).value<Key>();
             mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
                                     QStringLiteral("<br/>Click here for details."));
             /* FIXME: This needs to be solved by a multiple UID supporting model */

@@ -11,6 +11,7 @@
 
 #include "keytreeview.h"
 
+#include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyRearrangeColumnsProxyModel>
@@ -273,22 +274,22 @@ void KeyTreeView::init()
 
     KeyRearrangeColumnsProxyModel *rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
-    rearangingModel->setSourceColumns(QVector<int>() << KeyListModelInterface::PrettyName
-                                                     << KeyListModelInterface::PrettyEMail
-                                                     << KeyListModelInterface::Validity
-                                                     << KeyListModelInterface::ValidFrom
-                                                     << KeyListModelInterface::ValidUntil
-                                                     << KeyListModelInterface::TechnicalDetails
-                                                     << KeyListModelInterface::KeyID
-                                                     << KeyListModelInterface::Fingerprint
-                                                     << KeyListModelInterface::OwnerTrust
-                                                     << KeyListModelInterface::Origin
-                                                     << KeyListModelInterface::LastUpdate
-                                                     << KeyListModelInterface::Issuer
-                                                     << KeyListModelInterface::SerialNumber
+    rearangingModel->setSourceColumns(QVector<int>() << KeyList::PrettyName
+                                                     << KeyList::PrettyEMail
+                                                     << KeyList::Validity
+                                                     << KeyList::ValidFrom
+                                                     << KeyList::ValidUntil
+                                                     << KeyList::TechnicalDetails
+                                                     << KeyList::KeyID
+                                                     << KeyList::Fingerprint
+                                                     << KeyList::OwnerTrust
+                                                     << KeyList::Origin
+                                                     << KeyList::LastUpdate
+                                                     << KeyList::Issuer
+                                                     << KeyList::SerialNumber
 #ifdef GPGME_HAS_REMARKS
     // If a column is added before this TAGS_COLUMN define has to be updated accordingly
-                                                     << KeyListModelInterface::Remarks
+                                                     << KeyList::Remarks
 #endif
     );
     m_view->setModel(rearangingModel);
@@ -300,7 +301,7 @@ void KeyTreeView::init()
         if (!index.isValid()) {
             return;
         }
-        const auto &key = index.data(Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+        const auto &key = index.data(KeyList::KeyRole).value<GpgME::Key>();
         const auto fpr = QString::fromLatin1(key.primaryFingerprint());
 
         if (m_expandedKeys.contains(fpr)) {
@@ -314,7 +315,7 @@ void KeyTreeView::init()
         if (!index.isValid()) {
             return;
         }
-        const auto &key = index.data(Kleo::KeyListModelInterface::KeyRole).value<GpgME::Key>();
+        const auto &key = index.data(KeyList::KeyRole).value<GpgME::Key>();
         m_expandedKeys.removeAll(QString::fromLatin1(key.primaryFingerprint()));
         m_group.writeEntry("Expanded", m_expandedKeys);
     });
@@ -688,8 +689,8 @@ bool KeyTreeView::connectSearchBar(const QObject *bar)
 
 void KeyTreeView::resizeColumns()
 {
-    m_view->setColumnWidth(KeyListModelInterface::PrettyName, 260);
-    m_view->setColumnWidth(KeyListModelInterface::PrettyEMail, 260);
+    m_view->setColumnWidth(KeyList::PrettyName, 260);
+    m_view->setColumnWidth(KeyList::PrettyEMail, 260);
 
     for (int i = 2; i < m_view->model()->columnCount(); ++i) {
         m_view->resizeColumnToContents(i);

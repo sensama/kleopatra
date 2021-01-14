@@ -16,6 +16,7 @@
 #include "certifycertificatecommand.h"
 #include "kleopatra_debug.h"
 
+#include <Libkleo/KeyList>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
@@ -88,7 +89,7 @@ protected:
         if (!index.isValid() || role != Qt::ToolTipRole) {
             return AbstractKeyListSortFilterProxyModel::data(index, role);
         }
-        const QString fpr = index.data(FingerprintRole).toString();
+        const QString fpr = index.data(KeyList::FingerprintRole).toString();
         // find information:
         const std::vector<Import>::const_iterator it
             = qBinaryFind(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
@@ -118,7 +119,7 @@ protected:
         //
         // 1. Check that this is an imported key:
         //
-        const QString fpr = index.data(FingerprintRole).toString();
+        const QString fpr = index.data(KeyList::FingerprintRole).toString();
 
         return std::binary_search(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
                                   fpr.toLatin1().constData(),

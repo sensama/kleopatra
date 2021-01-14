@@ -11,6 +11,7 @@ endif()
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
+option(ENABLE_GROUP_SUPPORT "Enable experimental support for groups of keys [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.78.0")
@@ -144,6 +145,11 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()
 add_definitions(-DQT_NO_EMIT)
+
+if(ENABLE_GROUP_SUPPORT)
+    message(STATUS "Enabling experimental group support")
+    add_definitions(-DGROUP_SUPPORT)
+endif()
 
 kde_enable_exceptions()
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" FALSE)

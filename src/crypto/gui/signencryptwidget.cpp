@@ -23,6 +23,7 @@
 
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -94,7 +95,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-    mModel->useKeyCache(true, false);
+#ifdef GROUP_SUPPORT
+    mModel->useKeyCache(true, KeyList::IncludeGroups);
+#else
+    mModel->useKeyCache(true, KeyList::AllKeys);
+#endif
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
@@ -302,7 +307,7 @@ void SignEncryptWidget::recipientsChanged()
 {
     bool oneEmpty = false;
     for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
-        if (w->key().isNull()) {
+        if (w->key().isNull() && w->group().isNull()) {
             oneEmpty = true;
             break;
         }
@@ -338,8 +343,12 @@ QVector <Key> SignEncryptWidget::recipients() const
             break;
         }
         const Key k = w->key();
+        const KeyGroup g = w->group();
         if (!k.isNull()) {
             ret << k;
+        } else if (!g.isNull()) {
+            const auto keys = g.keys();
+            std::copy(keys.begin(), keys.end(), std::back_inserter(ret));
         }
     }
     const Key k = selfKey();
@@ -510,7 +519,7 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 bool SignEncryptWidget::validate()
 {
     for (const auto edit: qAsConst(mRecpWidgets)) {
-        if (!edit->isEmpty() && edit->key().isNull()) {
+        if (!edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
             KMessageBox::error(this, i18nc("%1 is user input that could not be found",
                         "Could not find a key for '%1'", edit->text().toHtmlEscaped()),
                     i18n("Failed to find recipient"), KMessageBox::Notify);

@@ -3,6 +3,8 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -38,6 +40,7 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key)
+Q_DECLARE_METATYPE(KeyGroup)
 
 static QStringList s_lookedUpKeys;
 
@@ -62,11 +65,17 @@ public:
         switch (role) {
         case Qt::DecorationRole: {
             const auto key = KeyListSortFilterProxyModel::data(index, KeyList::KeyRole).value<GpgME::Key>();
-            Q_ASSERT(!key.isNull());
-            if (key.isNull()) {
-                return QVariant();
+            if (!key.isNull()) {
+                return Kleo::Formatting::iconForUid(key.userID(0));
             }
-            return Kleo::Formatting::iconForUid(key.userID(0));
+
+            const auto group = KeyListSortFilterProxyModel::data(index, KeyList::GroupRole).value<KeyGroup>();
+            if (!group.isNull()) {
+                return QIcon::fromTheme(QStringLiteral("group"));
+            }
+
+            Q_ASSERT(!key.isNull() || !group.isNull());
+            return QVariant();
         }
         default:
             return KeyListSortFilterProxyModel::data(index, role);
@@ -138,8 +147,8 @@ void CertificateLineEdit::editFinished()
 
 void CertificateLineEdit::checkLocate()
 {
-    if (!key().isNull()) {
-        // Already have a key
+    if (!key().isNull() || !group().isNull()) {
+        // Already have a key or group
         return;
     }
 
@@ -158,6 +167,7 @@ void CertificateLineEdit::updateKey()
 {
     const auto mailText = text();
     auto newKey = Key();
+    auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
         mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
         mLineAction->setToolTip(i18n("Open selection dialog."));
@@ -174,21 +184,34 @@ void CertificateLineEdit::updateKey()
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
             newKey = mFilterModel->data(index, KeyList::KeyRole).value<Key>();
-            mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
-                                    QStringLiteral("<br/>Click here for details."));
-            /* FIXME: This needs to be solved by a multiple UID supporting model */
-            mLineAction->setIcon(Formatting::iconForUid(newKey.userID(0)));
+            newGroup = mFilterModel->data(index, KeyList::GroupRole).value<KeyGroup>();
+            Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
+            if (!newKey.isNull()) {
+                /* FIXME: This needs to be solved by a multiple UID supporting model */
+                mLineAction->setIcon(Formatting::iconForUid(newKey.userID(0)));
+                mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
+                                        QStringLiteral("<br/>Click here for details."));
+            } else if (!newGroup.isNull()) {
+                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("group")));
+                mLineAction->setToolTip(QString());
+            } else {
+                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
+                mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
+            }
         } else {
             mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
             mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
         }
     }
     mKey = newKey;
+    mGroup = newGroup;
 
-    if (mKey.isNull()) {
+    if (!mKey.isNull()) {
+        setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
+    } else if (!mGroup.isNull()) {
         setToolTip(QString());
     } else {
-        setToolTip(Formatting::toolTip(newKey, Formatting::ToolTipOption::AllOptions));
+        setToolTip(QString());
     }
 
     Q_EMIT keyChanged();
@@ -204,6 +227,15 @@ Key CertificateLineEdit::key() const
         return mKey;
     } else {
         return Key();
+    }
+}
+
+KeyGroup CertificateLineEdit::group() const
+{
+    if (isEnabled()) {
+        return mGroup;
+    } else {
+        return KeyGroup();
     }
 }
 

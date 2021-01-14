@@ -3,11 +3,15 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #ifndef CRYPTO_GUI_CERTIFICATELINEEDIT_H
 #define CRYPTO_GUI_CERTIFICATELINEEDIT_H
+
+#include <Libkleo/KeyGroup>
 
 #include <QLineEdit>
 
@@ -53,6 +57,8 @@ public:
     /** Get the selected key */
     GpgME::Key key() const;
 
+    KeyGroup group() const;
+
     /** Check if the text is empty */
     bool isEmpty() const;
 
@@ -88,6 +94,7 @@ private:
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;
+    KeyGroup mGroup;
     GpgME::Protocol mCurrentProto;
     std::shared_ptr<KeyFilter> mFilter;
     bool mEditStarted = false;

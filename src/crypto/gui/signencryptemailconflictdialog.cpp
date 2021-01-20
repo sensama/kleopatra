@@ -155,13 +155,13 @@ private:
 
         bool first;
         first = true;
-        Q_FOREACH (const CertificateSelectionLine &line, ui.signers) {
+        for (const CertificateSelectionLine &line : qAsConst(ui.signers)) {
             line.showHide(proto, first, showAll, sign);
         }
         ui.selectSigningCertificatesGB.setVisible(sign && (showAll || !first));
 
         first = true;
-        Q_FOREACH (const CertificateSelectionLine &line, ui.recipients) {
+        for (const CertificateSelectionLine &line : qAsConst(ui.recipients)) {
             line.showHide(proto, first, showAll, encrypt);
         }
         ui.selectEncryptionCertificatesGB.setVisible(encrypt && (showAll || !first));

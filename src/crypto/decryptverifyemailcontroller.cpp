@@ -171,7 +171,7 @@ void DecryptVerifyEMailController::Private::schedule()
     }
     if (!m_runningTask) {
         kleo_assert(m_runnableTasks.empty());
-        Q_FOREACH (const std::shared_ptr<const DecryptVerifyResult> &i, m_results) {
+        for (const std::shared_ptr<const DecryptVerifyResult> &i : qAsConst(m_results)) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
         // if there is a popup, wait for either the client cancel or the user closing the popup.

@@ -195,7 +195,7 @@ void EncryptEMailController::start()
     coll->setTasks(tmp);
     d->ensureWizardCreated();
     d->wizard->setTaskCollection(coll);
-    Q_FOREACH (const std::shared_ptr<Task> &t, tmp) {
+    for (const std::shared_ptr<Task> &t : qAsConst(tmp)) {
         connectTask(t);
     }
     d->schedule();

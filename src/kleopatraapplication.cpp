@@ -255,7 +255,8 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Query and Search treat positional arguments differently, see below.
     if (!queryMode) {
-        Q_FOREACH (const QString &file, parser.positionalArguments()) {
+        const auto positionalArguments = parser.positionalArguments();
+        for (const QString &file : positionalArguments) {
             // We do not check that file exists here. Better handle
             // these errors in the UI.
             if (QFileInfo(file).isAbsolute()) {
@@ -379,7 +380,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 openOrRaiseMainWindow();
             }
         } else {
-            Q_FOREACH (const QString& fileName, files) {
+            for (const QString& fileName : qAsConst(files)) {
                 QFileInfo fi(fileName);
                 if (!fi.isReadable()) {
                     errors << i18n("Cannot read \"%1\"", fileName);

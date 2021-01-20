@@ -135,7 +135,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     mEncOtherChk->setChecked(true);
     connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
-            Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
+            for (CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
                 edit->setEnabled(toggled);
             }
             updateOp();
@@ -301,7 +301,7 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 void SignEncryptWidget::recipientsChanged()
 {
     bool oneEmpty = false;
-    Q_FOREACH (const CertificateLineEdit *w, mRecpWidgets) {
+    for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
         if (w->key().isNull()) {
             oneEmpty = true;
             break;
@@ -332,7 +332,7 @@ Key SignEncryptWidget::selfKey() const
 QVector <Key> SignEncryptWidget::recipients() const
 {
     QVector<Key> ret;
-    Q_FOREACH (const CertificateLineEdit *w, mRecpWidgets) {
+    for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
             break;
@@ -401,7 +401,7 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
         return;
     }
     int emptyEdits = 0;
-    Q_FOREACH (const CertificateLineEdit *edit, mRecpWidgets) {
+    for (const CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
         if (edit->isEmpty()) {
             emptyEdits++;
         }
@@ -491,7 +491,7 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(proto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(proto)));
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(proto));
-    Q_FOREACH (CertificateLineEdit *edit, mRecpWidgets) {
+    for (CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
         edit->setKeyFilter(encFilter);
     }
 

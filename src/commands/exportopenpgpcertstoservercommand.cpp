@@ -83,7 +83,8 @@ QStringList ExportOpenPGPCertsToServerCommand::arguments() const
         result << QStringLiteral("--keyserver") << QStringLiteral("keys.gnupg.net");
     }
     result << QStringLiteral("--send-keys");
-    Q_FOREACH (const Key &key, d->keys()) {
+    const auto keys = d->keys();
+    for (const Key &key : keys) {
         result << QLatin1String(key.primaryFingerprint());
     }
     return result;

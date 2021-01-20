@@ -106,8 +106,8 @@ protected:
                 });
             }
 
-            foreach (QAction *action, mColumnActions) {
-                int column = action->data().toInt();
+            for (QAction *action : qAsConst(mColumnActions)) {
+                const int column = action->data().toInt();
                 action->setChecked(!isColumnHidden(column));
             }
 

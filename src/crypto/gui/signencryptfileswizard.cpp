@@ -255,7 +255,8 @@ public:
     void setOutputNames(const QMap<int, QString> &names) {
         Q_ASSERT(mOutNames.isEmpty());
         mOutNames = names;
-        Q_FOREACH (int i, mOutNames.keys()) {
+        const auto keys = mOutNames.keys();
+        for (int i : keys) {
             mRequester[i] = createRequester(i, mOutLayout);
         }
         updateFileWidgets();

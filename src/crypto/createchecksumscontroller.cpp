@@ -167,10 +167,12 @@ static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDe
 {
     QList<QRegExp> result;
     for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
-        if (cd)
-            Q_FOREACH (const QString &pattern, cd->patterns()) {
+        if (cd) {
+            const auto patterns = cd->patterns();
+            for (const QString &pattern : patterns) {
                 result.push_back(QRegExp(pattern, fs_cs));
             }
+        }
     return result;
 }
 
@@ -445,7 +447,8 @@ static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fi
 {
     for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions) {
         if (cd) {
-            Q_FOREACH (const QString &pattern, cd->patterns()) {
+            const auto patterns = cd->patterns();
+            for (const QString &pattern : patterns) {
                 if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
                     return cd;
                 }
@@ -683,7 +686,7 @@ void CreateChecksumsController::Private::run()
             const quint64 factor = total / std::numeric_limits<int>::max() + 1;
 
             quint64 done = 0;
-            Q_FOREACH (const Dir &dir, dirs) {
+            for (const Dir &dir : dirs) {
                 Q_EMIT progress(done / factor, total / factor,
                                 i18n("Checksumming (%2) in %1", dir.checksumDefinition->label(), dir.dir.path()));
                 bool fatal = false;

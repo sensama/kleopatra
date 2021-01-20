@@ -124,7 +124,7 @@ void ResolveRecipientsPage::ListWidget::setProtocol(GpgME::Protocol prot)
         return;
     }
     m_protocol = prot;
-    Q_FOREACH (ItemWidget *i, widgets) {
+    for (ItemWidget *i : qAsConst(widgets)) {
         i->setProtocol(prot);
     }
 }
@@ -291,7 +291,7 @@ void ResolveRecipientsPage::ItemWidget::resetCertificates()
     }
 
     m_certCombo->clear();
-    Q_FOREACH (const Key &i, certs) {
+    for (const Key &i : qAsConst(certs)) {
         addCertificateToComboBox(i);
     }
     if (!m_selectedCertificates[m_protocol].isNull()) {
@@ -550,7 +550,7 @@ void ResolveRecipientsPage::Private::addRecipient()
     const std::vector<Key> keys = dlg->selectedCertificates();
 
     int i = 0;
-    Q_FOREACH (const Key &key, keys) {
+    for (const Key &key : keys) {
         const QStringList existing = m_listWidget->identifiers();
         QString rec = i18n("Recipient");
         while (existing.contains(rec)) {
@@ -603,7 +603,7 @@ void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients
     uint cmsCount = 0;
     uint pgpCount = 0;
     uint senders = 0;
-    Q_FOREACH (const Mailbox &mb, encryptToSelfRecipients) {
+    for (const Mailbox &mb : encryptToSelfRecipients) {
         const QString id = QLatin1String("sender-") + QString::number(++senders);
         d->m_listWidget->addEntry(id, i18n("Sender"), mb);
         const std::vector<Key> pgp = makeSuggestions(d->m_recipientPreferences, mb, OpenPGP);
@@ -612,7 +612,7 @@ void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients
         cmsCount += !cms.empty();
         d->m_listWidget->setCertificates(id, pgp, cms);
     }
-    Q_FOREACH (const Mailbox &i, recipients) {
+    for (const Mailbox &i : recipients) {
         //TODO:
         const QString address = i.prettyAddress();
         d->addRecipient(i);

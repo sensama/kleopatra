@@ -142,7 +142,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     m_runnableTasks.swap(tasks);
 
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    Q_FOREACH (const std::shared_ptr<Task> &i, m_runnableTasks) {
+    for (const std::shared_ptr<Task> &i : qAsConst(m_runnableTasks)) {
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);

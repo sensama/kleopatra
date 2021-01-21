@@ -88,6 +88,7 @@ protected Q_SLOTS:
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
     void addRecipient();
+    void dialogRequested(CertificateLineEdit *w);
 
 protected:
     void loadKeys();

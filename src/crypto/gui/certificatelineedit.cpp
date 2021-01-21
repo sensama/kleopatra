@@ -18,8 +18,6 @@
 
 #include "kleopatra_debug.h"
 
-#include "commands/detailscommand.h"
-
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyList>
@@ -36,7 +34,6 @@
 #include <QGpgME/Protocol>
 
 using namespace Kleo;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key)
@@ -237,35 +234,6 @@ KeyGroup CertificateLineEdit::group() const
     } else {
         return KeyGroup();
     }
-}
-
-void CertificateLineEdit::dialogRequested()
-{
-    if (!mKey.isNull()) {
-        auto cmd = new Commands::DetailsCommand(mKey, nullptr);
-        cmd->start();
-        return;
-    }
-
-    CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
-
-    dlg->setKeyFilter(mFilter);
-
-    if (dlg->exec()) {
-        const std::vector<Key> keys = dlg->selectedCertificates();
-        if (!keys.size()) {
-            return;
-        }
-        for (unsigned int i = 0; i < keys.size(); i++) {
-            if (!i) {
-                setKey(keys[i]);
-            } else {
-                Q_EMIT addRequested(keys[i]);
-            }
-        }
-    }
-    delete dlg;
-    updateKey();
 }
 
 void CertificateLineEdit::setKey(const Key &k)

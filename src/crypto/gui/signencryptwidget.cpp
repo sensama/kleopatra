@@ -14,6 +14,10 @@
 #include "certificatelineedit.h"
 #include "unknownrecipientwidget.h"
 
+#include "commands/detailscommand.h"
+
+#include "dialogs/certificateselectiondialog.h"
+
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGroupBox>
@@ -244,13 +248,42 @@ void SignEncryptWidget::addRecipient(const Key &key)
             this, &SignEncryptWidget::recpRemovalRequested);
     connect(certSel, &CertificateLineEdit::editingStarted,
             this, static_cast<void (SignEncryptWidget::*)()>(&SignEncryptWidget::addRecipient));
-    connect(certSel, &CertificateLineEdit::addRequested,
-            this, static_cast<void (SignEncryptWidget::*)(const Key&)>(&SignEncryptWidget::addRecipient));
+    connect(certSel, &CertificateLineEdit::dialogRequested,
+            this, [this, certSel] () { dialogRequested(certSel); });
 
     if (!key.isNull()) {
         certSel->setKey(key);
         mAddedKeys << key;
     }
+}
+
+void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit)
+{
+    if (!certificateLineEdit->key().isNull()) {
+        auto cmd = new Commands::DetailsCommand(certificateLineEdit->key(), nullptr);
+        cmd->start();
+        return;
+    }
+
+    CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
+
+    dlg->setKeyFilter(std::make_shared<EncryptCertificateFilter>(mCurrentProto));
+
+    if (dlg->exec()) {
+        const std::vector<Key> keys = dlg->selectedCertificates();
+        if (!keys.size()) {
+            return;
+        }
+        for (unsigned int i = 0; i < keys.size(); i++) {
+            if (!i) {
+                certificateLineEdit->setKey(keys[i]);
+            } else {
+                addRecipient(keys[i]);
+            }
+        }
+    }
+    delete dlg;
+    recipientsChanged();
 }
 
 void SignEncryptWidget::clearAddedRecipients()

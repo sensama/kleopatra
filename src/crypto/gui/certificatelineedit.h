@@ -17,8 +17,6 @@
 
 #include <gpgme++/key.h>
 
-#include "dialogs/certificateselectiondialog.h"
-
 #include <memory>
 
 class QLabel;
@@ -78,12 +76,11 @@ Q_SIGNALS:
     /** Emitted when the entry is no longer empty. */
     void editingStarted();
 
-    /** Emitted when the certselectiondialog resulted in multiple certificates. */
-    void addRequested(const GpgME::Key &key);
+    /** Emitted when the details dialog or the selection dialog is requested. */
+    void dialogRequested();
 
 private Q_SLOTS:
     void updateKey();
-    void dialogRequested();
     void editChanged();
     void editFinished();
     void checkLocate();

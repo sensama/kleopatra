@@ -558,13 +558,32 @@ void FileOutput::doFinalize()
         m_tmpFile->close();
     }
 
-    const QString tmpFileName = remover.file = m_tmpFile->oldFileName();
+    QString tmpFileName = remover.file = m_tmpFile->oldFileName();
 
     m_tmpFile->setAutoRemove(false);
     QPointer<QObject> guard = m_tmpFile.get();
     m_tmpFile.reset(); // really close the file - needed on Windows for renaming :/
     kleo_assert(!guard);   // if this triggers, we need to audit for holder of std::shared_ptr<QIODevice>s.
 
+    const QFileInfo fi(tmpFileName);
+    bool qtbug83365_workaround = false;
+    if (!fi.exists()) {
+        /* QT Bug 83365 since qt 5.13 causes the filename of temporary files
+         * in UNC path name directories (unmounted samba shares) to start with
+         * UNC/ instead of the // that Qt can actually handle for things like
+         * rename and remove. So if we can't find our temporary file we try
+         * to workaround that bug. */
+        qCDebug(KLEOPATRA_LOG) << "failure to find " << tmpFileName;
+        if (tmpFileName.startsWith(QStringLiteral("UNC"))) {
+            tmpFileName.replace(QRegExp(QStringLiteral("^UNC")), QStringLiteral("/"));
+            qtbug83365_workaround = true;
+        }
+        const QFileInfo fi2(tmpFileName);
+        if (!fi2.exists()) {
+            throw Exception(gpg_error(GPG_ERR_EIO),
+                    QStringLiteral("Could not find temporary file \"%1\".").arg(m_fileName));
+        }
+    }
     qCDebug(KLEOPATRA_LOG) << this << " renaming " << tmpFileName << "->" << m_fileName;
 
     if (QFile::rename(tmpFileName, m_fileName)) {
@@ -595,6 +614,9 @@ void FileOutput::doFinalize()
 
         if (!m_attachedInput.expired()) {
             m_attachedInput.lock()->outputFinalized();
+        }
+        if (qtbug83365_workaround) {
+            QFile::remove(tmpFileName);
         }
         return;
     }

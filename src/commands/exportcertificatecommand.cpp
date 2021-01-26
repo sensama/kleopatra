@@ -3,6 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -13,8 +14,6 @@
 #include "fileoperationspreferences.h"
 
 #include "command_p.h"
-
-#include <dialogs/exportcertificatesdialog.h>
 
 #include <utils/filedialog.h>
 
@@ -31,12 +30,13 @@
 
 #include <QMap>
 #include <QPointer>
+#include <QRegExp>
+#include <QFileInfo>
 
 #include <algorithm>
 #include <vector>
 
 using namespace Kleo;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
@@ -163,29 +163,26 @@ void ExportCertificateCommand::doStart()
 bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protocol)
 {
     if (protocol == UnknownProtocol) {
-        if (!fileNames[OpenPGP].isEmpty() && !fileNames[CMS].isEmpty()) {
+        if (!fileNames[GpgME::OpenPGP].isEmpty() && !fileNames[GpgME::CMS].isEmpty()) {
             return true;
         }
-        const QPointer<ExportCertificatesDialog> dlg(new ExportCertificatesDialog);
-        applyWindowID(dlg);
-        dlg->setOpenPgpExportFileName(fileNames[OpenPGP]);
-        dlg->setCmsExportFileName(fileNames[CMS]);
-        const bool accepted = dlg->exec() == QDialog::Accepted && dlg;
-        if (accepted) {
-            fileNames[OpenPGP] = dlg->openPgpExportFileName();
-            fileNames[CMS] = dlg->cmsExportFileName();
-        } else {
-            fileNames.clear();
+
+        /* Unkown protocol ask for first PGP Export file name */
+        if (fileNames[GpgME::OpenPGP].isEmpty() && !requestFileNames(GpgME::OpenPGP)) {
+            return false;
         }
-        delete dlg;
-        return accepted;
+        /* And then for CMS */
+        return requestFileNames(GpgME::CMS);
     }
 
     if (!fileNames[protocol].isEmpty()) {
         return true;
     }
 
-    QString proposedFileName;
+    KConfigGroup config(KSharedConfig::openConfig(), "ExportDialog");
+    const auto lastDir = config.readEntry("LastDirectory", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+
+    QString proposedFileName = lastDir + QLatin1Char('/');
     if (keys().size() == 1) {
         const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
         const auto key = keys().front();
@@ -194,21 +191,50 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
             name = Formatting::prettyEMail(key);
         }
         /* Not translated so it's better to use in tutorials etc. */
-        proposedFileName = QStringLiteral("%1_%2_public.%3").arg(name).arg(
+        proposedFileName += QStringLiteral("%1_%2_public.%3").arg(name).arg(
                 Formatting::prettyKeyID(key.shortKeyID())).arg(
                 QString::fromLatin1(outputFileExtension(protocol == OpenPGP
                         ? Class::OpenPGP | Class::Ascii | Class::Certificate
                         : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt)));
     }
+    if (protocol == GpgME::CMS) {
+        if (!fileNames[GpgME::OpenPGP].isEmpty()) {
+            /* If the user has already selected a PGP file name then use that as basis
+             * for a proposal for the S/MIME file. */
+            proposedFileName = fileNames[GpgME::OpenPGP];
+            proposedFileName.replace(QRegExp(QStringLiteral(".asc$")), QStringLiteral(".pem"));
+            proposedFileName.replace(QRegExp(QStringLiteral(".gpg$")), QStringLiteral(".der"));
+            proposedFileName.replace(QRegExp(QStringLiteral(".pgp$")), QStringLiteral(".der"));
+        }
+    }
 
-    const QString fname = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
-                          i18n("Export Certificates"),
+    if (proposedFileName.isEmpty()) {
+        proposedFileName = lastDir;
+        proposedFileName += i18nc("A generic filename for exported certificates", "certificates");
+        proposedFileName += protocol == GpgME::OpenPGP ? QStringLiteral(".asc") : QStringLiteral(".pem");
+    }
+
+    auto fname = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
+                          i18nc("1 is protocol", "Export %1 Certificates", Formatting::displayName(protocol)),
                           QStringLiteral("imp"),
                           proposedFileName,
                           protocol == GpgME::OpenPGP
                           ? i18n("OpenPGP Certificates") + QLatin1String(" (*.asc *.gpg *.pgp)")
                           : i18n("S/MIME Certificates")  + QLatin1String(" (*.pem *.der)"));
+
+    if (!fname.isEmpty() && protocol == GpgME::CMS && fileNames[GpgME::OpenPGP] == fname) {
+        KMessageBox::error(parentWidgetOrView(),
+                         i18n("You have to select different filenames for different protocols."),
+                         i18n("Export Error"));
+        return false;
+    }
+    const QFileInfo fi(fname);
+    if (fi.suffix().isEmpty()) {
+        fname += protocol == GpgME::OpenPGP ? QStringLiteral(".asc") : QStringLiteral(".pem");
+    }
+
     fileNames[protocol] = fname;
+    config.writeEntry("LastDirectory", fi.absolutePath());
     return !fname.isEmpty();
 }
 

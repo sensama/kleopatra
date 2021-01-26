@@ -136,7 +136,6 @@ set(_kleopatra_SRCS
   dialogs/revokecertificationdialog.cpp
   dialogs/adduseriddialog.cpp
   dialogs/addemaildialog.cpp
-  dialogs/exportcertificatesdialog.cpp
   dialogs/deletecertificatesdialog.cpp
   dialogs/setinitialpindialog.cpp
   dialogs/certificatedetailswidget.cpp

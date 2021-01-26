@@ -115,13 +115,16 @@ int main(int argc, char **argv)
          * that you are temporarily running with the "normal" user environment but
          * with elevated permissions.
          * */
-        KMessageBox::sorry(nullptr, xi18nc("@info",
-                                     "<para><application>Kleopatra</application> cannot be run as adminstrator without "
-                                     "breaking file permissions in the GnuPG data folder.</para>"
-                                     "<para>To manage keys for other users please manage them as a normal user and "
-                                     "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>"),
-                           i18nc("@title", "Running as Administrator"));
-        return EXIT_FAILURE;
+        if (KMessageBox::warningContinueCancel(nullptr, xi18nc("@info",
+                                               "<para><application>Kleopatra</application> cannot be run as adminstrator without "
+                                               "breaking file permissions in the GnuPG data folder.</para>"
+                                               "<para>To manage keys for other users please manage them as a normal user and "
+                                               "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>") +
+                                               xi18n("<para>Are you sure that you want to continue?</para>"),
+                                               i18nc("@title", "Running as Administrator")) != KMessageBox::Continue) {
+            return EXIT_FAILURE;
+        }
+        qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
     }
 
     KUniqueService service;

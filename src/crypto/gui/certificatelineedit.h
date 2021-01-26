@@ -63,6 +63,9 @@ public:
     /** Set the preselected Key for this widget. */
     void setKey(const GpgME::Key &key);
 
+    /** Set the preselected group for this widget. */
+    void setGroup(const KeyGroup &group);
+
     /** Set the used keyfilter. */
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
 

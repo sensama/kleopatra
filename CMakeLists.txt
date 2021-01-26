@@ -16,7 +16,7 @@ option(ENABLE_GROUP_SUPPORT "Enable experimental support for groups of keys [def
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.78.0")
 set(KMIME_VERSION "5.16.40")
-set(LIBKLEO_VERSION "5.16.43")
+set(LIBKLEO_VERSION "5.16.44")
 set(QT_REQUIRED_VERSION "5.14.0")
 set(GPGME_REQUIRED_VERSION "1.13.1")
 

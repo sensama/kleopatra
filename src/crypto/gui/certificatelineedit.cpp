@@ -244,6 +244,15 @@ void CertificateLineEdit::setKey(const Key &k)
     updateKey();
 }
 
+void CertificateLineEdit::setGroup(const KeyGroup &group)
+{
+    QSignalBlocker blocky(this);
+    const QString summary = Formatting::summaryLine(group);
+    qCDebug(KLEOPATRA_LOG) << "Setting KeyGroup. " << summary;
+    setText(summary);
+    updateKey();
+}
+
 bool CertificateLineEdit::isEmpty() const
 {
     return text().isEmpty();

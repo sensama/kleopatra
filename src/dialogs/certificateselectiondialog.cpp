@@ -11,11 +11,13 @@
 
 #include "certificateselectiondialog.h"
 
+#include <view/keytreeview.h>
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
 
 #include "utils/tags.h"
 
+#include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyCache>
 
@@ -85,9 +87,9 @@ private:
     void slotDoubleClicked(const QModelIndex &idx);
 
 private:
-    bool acceptable(const std::vector<Key> &keys)
+    bool acceptable(const std::vector<Key> &keys, const std::vector<KeyGroup> &groups)
     {
-        return !keys.empty();
+        return !keys.empty() || !groups.empty();
     }
     void updateLabelText()
     {
@@ -236,21 +238,46 @@ void CertificateSelectionDialog::setKeyFilter(const std::shared_ptr<KeyFilter> &
     d->ui.tabWidget.setKeyFilter(filter);
 }
 
-void CertificateSelectionDialog::selectCertificates(const std::vector<Key> &keys)
+namespace
 {
-    const QAbstractItemView *const view = d->ui.tabWidget.currentView();
+
+void selectRows(const QAbstractItemView *view, const QModelIndexList &indexes)
+{
     if (!view) {
         return;
     }
-    const auto *const model = d->ui.tabWidget.currentModel();
-    Q_ASSERT(model);
     QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
 
-    Q_FOREACH (const QModelIndex &idx, model->indexes(keys))
+    for (const QModelIndex &idx : qAsConst(indexes)) {
         if (idx.isValid()) {
             sm->select(idx, QItemSelectionModel::Select | QItemSelectionModel::Rows);
         }
+    }
+}
+
+QModelIndexList getGroupIndexes(const KeyListModelInterface *model, const std::vector<KeyGroup> &groups)
+{
+    QModelIndexList indexes;
+    indexes.reserve(groups.size());
+    std::transform(groups.begin(), groups.end(),
+                   std::back_inserter(indexes),
+                   [model] (const KeyGroup &group) {
+                       return model->index(group);
+                   });
+    indexes.erase(std::remove_if(indexes.begin(), indexes.end(),
+                                 [] (const QModelIndex &index) { return !index.isValid(); }),
+                  indexes.end());
+    return indexes;
+}
+
+}
+
+void CertificateSelectionDialog::selectCertificates(const std::vector<Key> &keys)
+{
+    const auto *const model = d->ui.tabWidget.currentModel();
+    Q_ASSERT(model);
+    selectRows(d->ui.tabWidget.currentView(), model->indexes(keys));
 }
 
 void CertificateSelectionDialog::selectCertificate(const Key &key)
@@ -258,23 +285,59 @@ void CertificateSelectionDialog::selectCertificate(const Key &key)
     selectCertificates(std::vector<Key>(1, key));
 }
 
-std::vector<Key> CertificateSelectionDialog::selectedCertificates() const
+void CertificateSelectionDialog::selectGroups(const std::vector<KeyGroup> &groups)
 {
-    const QAbstractItemView *const view = d->ui.tabWidget.currentView();
-    if (!view) {
-        return std::vector<Key>();
-    }
     const auto *const model = d->ui.tabWidget.currentModel();
     Q_ASSERT(model);
+    selectRows(d->ui.tabWidget.currentView(), getGroupIndexes(model, groups));
+}
+
+namespace
+{
+
+QModelIndexList getSelectedRows(const QAbstractItemView *view)
+{
+    if (!view) {
+        return {};
+    }
     const QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
-    return model->keys(sm->selectedRows());
+    return sm->selectedRows();
+}
+
+std::vector<KeyGroup> getGroups(const KeyListModelInterface *model, const QModelIndexList &indexes)
+{
+    std::vector<KeyGroup> groups;
+    groups.reserve(indexes.size());
+    std::transform(indexes.begin(), indexes.end(),
+                   std::back_inserter(groups),
+                   [model](const QModelIndex &idx) {
+                       return model->group(idx);
+                   });
+    groups.erase(std::remove_if(groups.begin(), groups.end(), std::mem_fn(&Kleo::KeyGroup::isNull)), groups.end());
+    return groups;
+}
+
+}
+
+std::vector<Key> CertificateSelectionDialog::selectedCertificates() const
+{
+    const KeyListModelInterface *const model = d->ui.tabWidget.currentModel();
+    Q_ASSERT(model);
+    return model->keys(getSelectedRows(d->ui.tabWidget.currentView()));
 }
 
 Key CertificateSelectionDialog::selectedCertificate() const
 {
     const std::vector<Key> keys = selectedCertificates();
     return keys.empty() ? Key() : keys.front();
+}
+
+std::vector<KeyGroup> CertificateSelectionDialog::selectedGroups() const
+{
+    const KeyListModelInterface *const model = d->ui.tabWidget.currentModel();
+    Q_ASSERT(model);
+    return getGroups(model, getSelectedRows(d->ui.tabWidget.currentView()));
 }
 
 void CertificateSelectionDialog::hideEvent(QHideEvent *e)
@@ -291,14 +354,20 @@ void CertificateSelectionDialog::Private::slotKeysMayHaveChanged()
     q->setEnabled(true);
     std::vector<Key> keys = (options & SecretKeys) ? KeyCache::instance()->secretKeys() : KeyCache::instance()->keys();
     q->filterAllowedKeys(keys, options);
-    const std::vector<Key> selected = q->selectedCertificates();
+    const std::vector<KeyGroup> groups = (options & IncludeGroups) ? KeyCache::instance()->groups() : std::vector<KeyGroup>();
+
+    const std::vector<Key> selectedKeys = q->selectedCertificates();
+    const std::vector<KeyGroup> selectedGroups = q->selectedGroups();
     if (AbstractKeyListModel *const model = ui.tabWidget.flatModel()) {
         model->setKeys(keys);
+        model->setGroups(groups);
     }
     if (AbstractKeyListModel *const model = ui.tabWidget.hierarchicalModel()) {
         model->setKeys(keys);
+        model->setGroups(groups);
     }
-    q->selectCertificates(selected);
+    q->selectCertificates(selectedKeys);
+    q->selectGroups(selectedGroups);
 }
 
 void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int options)
@@ -359,7 +428,7 @@ void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemVi
 void CertificateSelectionDialog::Private::slotSelectionChanged()
 {
     if (QPushButton *const pb = ui.buttonBox.button(QDialogButtonBox::Ok)) {
-        pb->setEnabled(acceptable(q->selectedCertificates()));
+        pb->setEnabled(acceptable(q->selectedCertificates(), q->selectedGroups()));
     }
 }
 
@@ -378,7 +447,7 @@ void CertificateSelectionDialog::Private::slotDoubleClicked(const QModelIndex &i
 
 void CertificateSelectionDialog::accept()
 {
-    if (d->acceptable(selectedCertificates())) {
+    if (d->acceptable(selectedCertificates(), selectedGroups())) {
         QDialog::accept();
     }
 }

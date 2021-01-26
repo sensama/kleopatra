@@ -26,6 +26,7 @@ namespace Kleo
 {
 
 class KeyFilter;
+class KeyGroup;
 
 namespace Dialogs
 {
@@ -50,6 +51,8 @@ public:
         Certificates    = 0x00,
         SecretKeys      = 0x20,
 
+        IncludeGroups   = 0x40,
+
         OptionMask
     };
     Q_DECLARE_FLAGS(Options, Option)
@@ -68,6 +71,9 @@ public:
 
     std::vector<GpgME::Key> selectedCertificates() const;
     GpgME::Key selectedCertificate() const;
+
+    void selectGroups(const std::vector<Kleo::KeyGroup> &groups);
+    std::vector<Kleo::KeyGroup> selectedGroups() const;
 
     static void filterAllowedKeys(std::vector<GpgME::Key> &keys, int options);
 

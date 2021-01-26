@@ -302,6 +302,9 @@ void KeyTreeView::init()
             return;
         }
         const auto &key = index.data(KeyList::KeyRole).value<GpgME::Key>();
+        if (key.isNull()) {
+            return;
+        }
         const auto fpr = QString::fromLatin1(key.primaryFingerprint());
 
         if (m_expandedKeys.contains(fpr)) {
@@ -316,6 +319,9 @@ void KeyTreeView::init()
             return;
         }
         const auto &key = index.data(KeyList::KeyRole).value<GpgME::Key>();
+        if (key.isNull()) {
+            return;
+        }
         m_expandedKeys.removeAll(QString::fromLatin1(key.primaryFingerprint()));
         m_group.writeEntry("Expanded", m_expandedKeys);
     });

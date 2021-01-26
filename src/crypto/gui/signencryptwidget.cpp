@@ -12,6 +12,7 @@
 #include "kleopatra_debug.h"
 
 #include "certificatelineedit.h"
+#include "settings.h"
 #include "unknownrecipientwidget.h"
 
 #include "commands/detailscommand.h"
@@ -99,11 +100,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-#ifdef GROUP_SUPPORT
-    mModel->useKeyCache(true, KeyList::IncludeGroups);
-#else
-    mModel->useKeyCache(true, KeyList::AllKeys);
-#endif
+    if (Settings().groupsEnabled()) {
+        mModel->useKeyCache(true, KeyList::IncludeGroups);
+    } else {
+        mModel->useKeyCache(true, KeyList::AllKeys);
+    }
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
@@ -278,11 +279,11 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
     CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
 
     dlg->setKeyFilter(std::make_shared<EncryptCertificateFilter>(mCurrentProto));
-#ifdef GROUP_SUPPORT
-    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
-#else
-    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection);
-#endif
+    if (Settings().groupsEnabled()) {
+        dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
+    } else {
+        dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection);
+    }
 
     if (dlg->exec()) {
         const std::vector<Key> keys = dlg->selectedCertificates();

@@ -52,6 +52,7 @@ kconfig_add_kcfg_files(kcm_kleopatra_PART_SRCS
   ${kleopatra_SOURCE_DIR}/src/kcfg/emailoperationspreferences.kcfgc
   ${kleopatra_SOURCE_DIR}/src/kcfg/fileoperationspreferences.kcfgc
   ${kleopatra_SOURCE_DIR}/src/kcfg/tagspreferences.kcfgc
+  ${kleopatra_SOURCE_DIR}/src/kcfg/settings.kcfgc
 )
 
 add_library(kcm_kleopatra MODULE ${kcm_kleopatra_PART_SRCS})

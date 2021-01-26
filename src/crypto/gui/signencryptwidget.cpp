@@ -219,16 +219,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     loadKeys();
     setProtocol(GpgME::UnknownProtocol);
-    addRecipient(Key());
+    addRecipientWidget();
     updateOp();
 }
 
-void SignEncryptWidget::addRecipient()
-{
-    addRecipient(Key());
-}
-
-void SignEncryptWidget::addRecipient(const Key &key)
+CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
     CertificateLineEdit *certSel = new CertificateLineEdit(mModel, this,
                                                            new EncryptCertificateFilter(mCurrentProto));
@@ -247,13 +242,28 @@ void SignEncryptWidget::addRecipient(const Key &key)
     connect(certSel, &CertificateLineEdit::wantsRemoval,
             this, &SignEncryptWidget::recpRemovalRequested);
     connect(certSel, &CertificateLineEdit::editingStarted,
-            this, static_cast<void (SignEncryptWidget::*)()>(&SignEncryptWidget::addRecipient));
+            this, [this] () { addRecipientWidget(); });
     connect(certSel, &CertificateLineEdit::dialogRequested,
             this, [this, certSel] () { dialogRequested(certSel); });
 
+    return certSel;
+}
+
+void SignEncryptWidget::addRecipient(const Key &key)
+{
+    CertificateLineEdit *certSel = addRecipientWidget();
     if (!key.isNull()) {
         certSel->setKey(key);
         mAddedKeys << key;
+    }
+}
+
+void SignEncryptWidget::addRecipient(const KeyGroup &group)
+{
+    CertificateLineEdit *certSel = addRecipientWidget();
+    if (!group.isNull()) {
+        certSel->setGroup(group);
+        mAddedGroups << group;
     }
 }
 
@@ -268,17 +278,33 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
     CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
 
     dlg->setKeyFilter(std::make_shared<EncryptCertificateFilter>(mCurrentProto));
+#ifdef GROUP_SUPPORT
+    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
+#else
+    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection);
+#endif
 
     if (dlg->exec()) {
         const std::vector<Key> keys = dlg->selectedCertificates();
-        if (!keys.size()) {
+        const std::vector<KeyGroup> groups = dlg->selectedGroups();
+        if (keys.size() == 0 && groups.size() == 0) {
             return;
         }
-        for (unsigned int i = 0; i < keys.size(); i++) {
-            if (!i) {
-                certificateLineEdit->setKey(keys[i]);
+        bool isFirstItem = true;
+        for (const Key &key : keys) {
+            if (isFirstItem) {
+                certificateLineEdit->setKey(key);
+                isFirstItem = false;
             } else {
-                addRecipient(keys[i]);
+                addRecipient(key);
+            }
+        }
+        for (const KeyGroup &group : groups) {
+            if (isFirstItem) {
+                certificateLineEdit->setGroup(group);
+                isFirstItem = false;
+            } else {
+                addRecipient(group);
             }
         }
     }
@@ -295,6 +321,10 @@ void SignEncryptWidget::clearAddedRecipients()
 
     for (auto &key: qAsConst(mAddedKeys)) {
         removeRecipient(key);
+    }
+
+    for (auto &group: qAsConst(mAddedGroups)) {
+        removeRecipient(group);
     }
 }
 
@@ -346,7 +376,7 @@ void SignEncryptWidget::recipientsChanged()
         }
     }
     if (!oneEmpty) {
-        addRecipient();
+        addRecipientWidget();
     }
     updateOp();
 }
@@ -481,6 +511,21 @@ void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
         if (editKey.primaryFingerprint() &&
             key.primaryFingerprint() &&
             !strcmp(editKey.primaryFingerprint(), key.primaryFingerprint())) {
+            recpRemovalRequested(edit);
+            return;
+        }
+    }
+}
+
+void SignEncryptWidget::removeRecipient(const KeyGroup &group)
+{
+    for (CertificateLineEdit *edit: qAsConst(mRecpWidgets)) {
+        const auto editGroup = edit->group();
+        if (group.isNull() && editGroup.isNull()) {
+            recpRemovalRequested(edit);
+            return;
+        }
+        if (editGroup.name() == group.name()) {
             recpRemovalRequested(edit);
             return;
         }

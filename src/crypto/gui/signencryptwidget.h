@@ -19,6 +19,7 @@ class QCheckBox;
 namespace Kleo
 {
 class CertificateLineEdit;
+class KeyGroup;
 class KeySelectionCombo;
 class AbstractKeyListModel;
 class UnknownRecipientWidget;
@@ -71,6 +72,9 @@ public:
     /** Add a recipient with the key key */
     void addRecipient(const GpgME::Key &key);
 
+    /** Add a group of recipients */
+    void addRecipient(const Kleo::KeyGroup &group);
+
     /** Add a placehoder for an unknown key */
     void addUnknownRecipient(const char *keyId);
 
@@ -80,6 +84,9 @@ public:
     /** Remove a Recipient key */
     void removeRecipient(const GpgME::Key &key);
 
+    /** Remove a recipient group */
+    void removeRecipient(const Kleo::KeyGroup &group);
+
     /** Validate that each line edit with content has a key. */
     bool validate();
 
@@ -87,7 +94,6 @@ protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
-    void addRecipient();
     void dialogRequested(CertificateLineEdit *w);
 
 protected:
@@ -103,11 +109,15 @@ Q_SIGNALS:
     void keysChanged();
 
 private:
+    CertificateLineEdit* addRecipientWidget();
+
+private:
     KeySelectionCombo *mSigSelect = nullptr;
     KeySelectionCombo *mSelfSelect = nullptr;
     QVector<CertificateLineEdit *> mRecpWidgets;
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
     QVector<GpgME::Key> mAddedKeys;
+    QVector<KeyGroup> mAddedGroups;
     QGridLayout *mRecpLayout = nullptr;
     QString mOp;
     AbstractKeyListModel *mModel = nullptr;

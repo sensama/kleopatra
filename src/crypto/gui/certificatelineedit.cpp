@@ -189,8 +189,8 @@ void CertificateLineEdit::updateKey()
                 mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
                                         QStringLiteral("<br/>Click here for details."));
             } else if (!newGroup.isNull()) {
-                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("group")));
-                mLineAction->setToolTip(QString());
+                mLineAction->setIcon(Formatting::validityIcon(newGroup));
+                mLineAction->setToolTip(Formatting::validity(newGroup));
             } else {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
@@ -206,7 +206,7 @@ void CertificateLineEdit::updateKey()
     if (!mKey.isNull()) {
         setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
-        setToolTip(QString());
+        setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     } else {
         setToolTip(QString());
     }

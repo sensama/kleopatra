@@ -581,7 +581,7 @@ void FileOutput::doFinalize()
         const QFileInfo fi2(tmpFileName);
         if (!fi2.exists()) {
             throw Exception(gpg_error(GPG_ERR_EIO),
-                    QStringLiteral("Could not find temporary file \"%1\".").arg(m_fileName));
+                    QStringLiteral("Could not find temporary file \"%1\".").arg(tmpFileName));
         }
     }
     qCDebug(KLEOPATRA_LOG) << this << " renaming " << tmpFileName << "->" << m_fileName;

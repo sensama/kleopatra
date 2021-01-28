@@ -142,6 +142,7 @@ public:
         watcher->addPath(gnupgHomeDirectory());
         watcher->setDelay(1000);
         keyCache->addFileSystemWatcher(watcher);
+        keyCache->setGroupsConfig(QStringLiteral("kleopatragroupsrc"));
     }
 
     void setupLogging()

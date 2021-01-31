@@ -144,6 +144,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()
 add_definitions(-DQT_NO_EMIT)
+remove_definitions(-DQT_NO_FOREACH)
 
 kde_enable_exceptions()
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" FALSE)

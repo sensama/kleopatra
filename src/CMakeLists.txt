@@ -276,6 +276,7 @@ set(_kleopatra_SRCS
   kleopatraapplication.cpp
   mainwindow.cpp
   main.cpp
+  kleopatra.qrc
 )
 
 if(WIN32)
@@ -331,8 +332,6 @@ kconfig_add_kcfg_files(_kleopatra_SRCS
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.png")
 ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_SRCS})
-
-qt5_add_resources(_kleopatra_SRCS kleopatra.qrc)
 
 add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_uiserver_SRCS})
 #if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)

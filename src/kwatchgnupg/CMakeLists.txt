@@ -14,6 +14,7 @@ set(kwatchgnupg_SRCS
   aboutdata.cpp
   tray.cpp
   main.cpp
+  kwatchgnupg.qrc
 )
 
 ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDENTIFIER KWATCHGNUPG_LOG CATEGORY_NAME org.kde.pim.kwatchgnupg
@@ -21,8 +22,6 @@ ecm_qt_declare_logging_category(kwatchgnupg_SRCS HEADER kwatchgnupg_debug.h IDEN
         OLD_CATEGORY_NAMES log_kwatchgnupg
         EXPORT KLEOPATRA
     )
-
-qt5_add_resources(kwatchgnupg_SRCS kwatchgnupg.qrc)
 
 if(WIN32)
   set(kwatchgnupg_SRCS ${kwatchgnupg_SRCS} ../utils/gnupg-registry.c)

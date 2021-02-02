@@ -187,10 +187,11 @@ void CertificateLineEdit::updateKey()
                 /* FIXME: This needs to be solved by a multiple UID supporting model */
                 mLineAction->setIcon(Formatting::iconForUid(newKey.userID(0)));
                 mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
-                                        QStringLiteral("<br/>Click here for details."));
+                                        QLatin1String("<br/>") + i18n("Click for details."));
             } else if (!newGroup.isNull()) {
                 mLineAction->setIcon(Formatting::validityIcon(newGroup));
-                mLineAction->setToolTip(Formatting::validity(newGroup));
+                mLineAction->setToolTip(Formatting::validity(newGroup) +
+                                        QLatin1String("<br/>") + i18n("Click for details."));
             } else {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));

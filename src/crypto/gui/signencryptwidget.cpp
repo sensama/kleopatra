@@ -18,6 +18,7 @@
 #include "commands/detailscommand.h"
 
 #include "dialogs/certificateselectiondialog.h"
+#include "dialogs/groupdetailsdialog.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -273,6 +274,13 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
     if (!certificateLineEdit->key().isNull()) {
         auto cmd = new Commands::DetailsCommand(certificateLineEdit->key(), nullptr);
         cmd->start();
+        return;
+    }
+    if (!certificateLineEdit->group().isNull()) {
+        GroupDetailsDialog *dlg = new GroupDetailsDialog;
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        dlg->setGroup(certificateLineEdit->group());
+        dlg->show();
         return;
     }
 

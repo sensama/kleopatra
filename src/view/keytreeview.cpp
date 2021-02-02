@@ -226,9 +226,7 @@ void KeyTreeView::init()
     KDAB_SET_OBJECT_NAME(m_proxy);
     KDAB_SET_OBJECT_NAME(m_view);
 
-    if (!m_group.isValid()) {
-        m_group = KSharedConfig::openConfig()->group("KeyTreeView_default");
-    } else {
+    if (m_group.isValid()) {
         // Reopen as non const
         KConfig *conf = m_group.config();
         m_group = conf->group(m_group.name());
@@ -295,7 +293,9 @@ void KeyTreeView::init()
     m_view->setModel(rearangingModel);
 
     /* Handle expansion state */
-    m_expandedKeys = m_group.readEntry("Expanded", QStringList());
+    if (m_group.isValid()) {
+        m_expandedKeys = m_group.readEntry("Expanded", QStringList());
+    }
 
     connect(m_view, &QTreeView::expanded, this, [this] (const QModelIndex &index) {
         if (!index.isValid()) {
@@ -311,7 +311,9 @@ void KeyTreeView::init()
             return;
         }
         m_expandedKeys << fpr;
-        m_group.writeEntry("Expanded", m_expandedKeys);
+        if (m_group.isValid()) {
+            m_group.writeEntry("Expanded", m_expandedKeys);
+        }
     });
 
     connect(m_view, &QTreeView::collapsed, this, [this] (const QModelIndex &index) {
@@ -323,7 +325,9 @@ void KeyTreeView::init()
             return;
         }
         m_expandedKeys.removeAll(QString::fromLatin1(key.primaryFingerprint()));
-        m_group.writeEntry("Expanded", m_expandedKeys);
+        if (m_group.isValid()) {
+            m_group.writeEntry("Expanded", m_expandedKeys);
+        }
     });
 
     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this] () {
@@ -340,7 +344,9 @@ void KeyTreeView::init()
         });
     });
     resizeColumns();
-    restoreLayout();
+    if (m_group.isValid()) {
+        restoreLayout(m_group);
+    }
 }
 
 void KeyTreeView::restoreExpandState()
@@ -384,7 +390,7 @@ void KeyTreeView::setUpTagKeys()
 #endif
 }
 
-void KeyTreeView::saveLayout()
+void KeyTreeView::saveLayout(KConfigGroup &group)
 {
     QHeaderView *header = m_view->header();
 
@@ -401,25 +407,25 @@ void KeyTreeView::saveLayout()
         columnOrder << QVariant(header->visualIndex(i));
     }
 
-    m_group.writeEntry("ColumnVisibility", columnVisibility);
-    m_group.writeEntry("ColumnOrder", columnOrder);
-    m_group.writeEntry("ColumnWidths", columnWidths);
+    group.writeEntry("ColumnVisibility", columnVisibility);
+    group.writeEntry("ColumnOrder", columnOrder);
+    group.writeEntry("ColumnWidths", columnWidths);
 
-    m_group.writeEntry("SortAscending", (int)header->sortIndicatorOrder());
+    group.writeEntry("SortAscending", (int)header->sortIndicatorOrder());
     if (header->isSortIndicatorShown()) {
-        m_group.writeEntry("SortColumn", header->sortIndicatorSection());
+        group.writeEntry("SortColumn", header->sortIndicatorSection());
     } else {
-        m_group.writeEntry("SortColumn", -1);
+        group.writeEntry("SortColumn", -1);
     }
 }
 
-void KeyTreeView::restoreLayout()
+void KeyTreeView::restoreLayout(const KConfigGroup &group)
 {
     QHeaderView *header = m_view->header();
 
-    QVariantList columnVisibility = m_group.readEntry("ColumnVisibility", QVariantList());
-    QVariantList columnOrder = m_group.readEntry("ColumnOrder", QVariantList());
-    QVariantList columnWidths = m_group.readEntry("ColumnWidths", QVariantList());
+    QVariantList columnVisibility = group.readEntry("ColumnVisibility", QVariantList());
+    QVariantList columnOrder = group.readEntry("ColumnOrder", QVariantList());
+    QVariantList columnWidths = group.readEntry("ColumnWidths", QVariantList());
 
     if (columnVisibility.isEmpty()) {
         // if config is empty then use default settings
@@ -457,8 +463,8 @@ void KeyTreeView::restoreLayout()
         m_onceResized = true;
     }
 
-    int sortOrder = m_group.readEntry("SortAscending", (int)Qt::AscendingOrder);
-    int sortColumn = m_group.readEntry("SortColumn", 0);
+    int sortOrder = group.readEntry("SortAscending", (int)Qt::AscendingOrder);
+    int sortColumn = group.readEntry("SortColumn", 0);
     if (sortColumn >= 0) {
         m_view->sortByColumn(sortColumn, (Qt::SortOrder)sortOrder);
     }
@@ -466,7 +472,9 @@ void KeyTreeView::restoreLayout()
 
 KeyTreeView::~KeyTreeView()
 {
-    saveLayout();
+    if (m_group.isValid()) {
+        saveLayout(m_group);
+    }
 }
 
 static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)

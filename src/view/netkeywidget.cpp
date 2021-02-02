@@ -24,6 +24,9 @@
 
 #include <Libkleo/KeyListModel>
 
+#include <KConfigGroup>
+#include <KSharedConfig>
+
 #include <QInputDialog>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -169,10 +172,15 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
 
     vLay->addLayout(actionLayout);
     vLay->addStretch(1);
+
+    const KConfigGroup configGroup(KSharedConfig::openConfig(), "NetKeyCardView");
+    mTreeView->restoreLayout(configGroup);
 }
 
 NetKeyWidget::~NetKeyWidget()
 {
+    KConfigGroup configGroup(KSharedConfig::openConfig(), "NetKeyCardView");
+    mTreeView->saveLayout(configGroup);
 }
 
 namespace

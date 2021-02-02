@@ -62,6 +62,8 @@ public:
     void readConfig()
     {
         KConfigGroup dialog(KSharedConfig::openConfig(), "DeleteCertificatesDialog");
+        ui.selectedKTV.restoreLayout(dialog);
+        ui.unselectedKTV.restoreLayout(dialog);
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
         if (size.isValid()) {
             q->resize(size);
@@ -71,6 +73,7 @@ public:
     void writeConfig()
     {
         KConfigGroup dialog(KSharedConfig::openConfig(), "DeleteCertificatesDialog");
+        ui.selectedKTV.saveLayout(dialog);
         dialog.writeEntry("Size", q->size());
         dialog.sync();
     }

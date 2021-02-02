@@ -39,7 +39,7 @@ public:
     explicit KeyTreeView(QWidget *parent = nullptr);
     KeyTreeView(const QString &stringFilter, const std::shared_ptr<KeyFilter> &keyFilter,
                 AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent,
-                const KConfigGroup &group = KConfigGroup());
+                const KConfigGroup &group);
     ~KeyTreeView();
 
     QTreeView *view() const
@@ -111,6 +111,9 @@ public:
     bool connectSearchBar(const QObject *bar);
     void resizeColumns();
 
+    void saveLayout(KConfigGroup &group);
+    void restoreLayout(const KConfigGroup &group);
+
 public Q_SLOTS:
     virtual void setStringFilter(const QString &text);
     virtual void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
@@ -128,8 +131,6 @@ private:
     void init();
     void addKeysImpl(const std::vector<GpgME::Key> &, bool);
     void restoreExpandState();
-    void saveLayout();
-    void restoreLayout();
     void setUpTagKeys();
 
 private:

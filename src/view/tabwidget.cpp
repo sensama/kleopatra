@@ -838,7 +838,8 @@ QAbstractItemView *TabWidget::addView(const KConfigGroup &group)
 
 QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
 {
-    Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip);
+    const KConfigGroup group = KSharedConfig::openConfig()->group("KeyTreeView_default");
+    Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip, nullptr, group);
     page->setTemporary(true);
     QAbstractItemView *v = d->addView(page, d->currentPage());
     d->tabWidget.setCurrentIndex(d->tabWidget.count() - 1);

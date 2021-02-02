@@ -458,7 +458,7 @@ void KeyTreeView::restoreLayout()
     }
 
     int sortOrder = m_group.readEntry("SortAscending", (int)Qt::AscendingOrder);
-    int sortColumn = m_group.readEntry("SortColumn", -1);
+    int sortColumn = m_group.readEntry("SortColumn", 0);
     if (sortColumn >= 0) {
         m_view->sortByColumn(sortColumn, (Qt::SortOrder)sortOrder);
     }

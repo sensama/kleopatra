@@ -42,7 +42,7 @@ PIVCardApplicationAdministrationKeyInputDialog::Private::Private(PIVCardApplicat
     mHexEncodedAdminKeyEdit(new QLineEdit(qq)),
     mOkButton(nullptr)
 {
-    auto *vBox = new QVBoxLayout(q);
+    auto vBox = new QVBoxLayout(q);
 
     {
         mLabel->setWordWrap(true);

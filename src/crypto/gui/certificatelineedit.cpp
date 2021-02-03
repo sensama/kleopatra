@@ -96,7 +96,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
-    auto *completer = new QCompleter(this);
+    auto completer = new QCompleter(this);
     completer->setModel(mCompleterFilterModel);
     completer->setCompletionColumn(KeyList::Summary);
     completer->setFilterMode(Qt::MatchContains);

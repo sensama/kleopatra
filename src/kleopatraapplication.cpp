@@ -628,11 +628,11 @@ void KleopatraApplication::checksumFiles(const QStringList &files, GpgME::Protoc
     }
 
     if (!verifyFiles.isEmpty()) {
-        auto *const cmd = new ChecksumVerifyFilesCommand(verifyFiles, nullptr);
+        auto const cmd = new ChecksumVerifyFilesCommand(verifyFiles, nullptr);
         cmd->start();
     }
     if (!createFiles.isEmpty()) {
-        auto *const cmd = new ChecksumCreateFilesCommand(createFiles, nullptr);
+        auto const cmd = new ChecksumCreateFilesCommand(createFiles, nullptr);
         cmd->start();
     }
 }

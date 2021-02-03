@@ -39,8 +39,8 @@ public:
         mAlgorithmCombo(nullptr),
         mBackupCheckBox(nullptr)
     {
-        auto *vBox = new QVBoxLayout(q);
-        auto *grid = new QGridLayout;
+        auto vBox = new QVBoxLayout(q);
+        auto grid = new QGridLayout;
 
         int row = 0;
 

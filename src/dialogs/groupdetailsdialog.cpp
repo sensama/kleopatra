@@ -130,5 +130,6 @@ void GroupDetailsDialog::setGroup(const KeyGroup &group)
 {
     d->group = group;
     d->ui.groupNameLabel->setText(group.name());
-    d->ui.treeView->setKeys(group.keys());
+    const KeyGroup::Keys &keys = group.keys();
+    d->ui.treeView->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
 }

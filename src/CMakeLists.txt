@@ -150,6 +150,7 @@ set(_kleopatra_SRCS
   dialogs/certificatedetailsinputwidget.cpp
   dialogs/createcsrforcardkeydialog.cpp
   dialogs/groupdetailsdialog.cpp
+  dialogs/editgroupdialog.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp

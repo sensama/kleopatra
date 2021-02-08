@@ -110,6 +110,18 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keyListingDone,
             this, &CertificateLineEdit::updateKey);
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
+            this, [this] (const KeyGroup &group) {
+                if (group.id() == mGroup.id()) {
+                    QSignalBlocker blocky(this);
+                    mGroup = group;
+                    setText(Formatting::summaryLine(mGroup));
+                    setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
+                    mLineAction->setIcon(Formatting::validityIcon(mGroup));
+                    mLineAction->setToolTip(Formatting::validity(mGroup) +
+                                            QLatin1String("<br/>") + i18n("Click for details."));
+                }
+            });
     connect(this, &QLineEdit::editingFinished,
             this, &CertificateLineEdit::editFinished);
     connect(this, &QLineEdit::textChanged,

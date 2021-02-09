@@ -10,8 +10,6 @@
 
 #include "editgroupdialog.h"
 
-#include <Libkleo/KeyCache>
-#include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
@@ -81,7 +79,6 @@ class EditGroupDialog::Private
     ProxyModel *availableKeysFilterModel = nullptr;
     AbstractKeyListModel *groupKeysModel = nullptr;
     ProxyModel *groupKeysFilterModel = nullptr;
-    KeyGroup group;
 
 public:
     Private(EditGroupDialog *qq)
@@ -221,8 +218,6 @@ private:
 
     void addKeysToGroup();
     void removeKeysFromGroup();
-
-    void updateGroupKeysKeepingSelection();
 };
 
 namespace {
@@ -252,32 +247,20 @@ void setSelectedKeys(const QListView *view, const std::vector<Key> &keys)
 
 void EditGroupDialog::Private::addKeysToGroup()
 {
+    const std::vector<Key> selectedGroupKeys = getSelectedKeys(ui.groupKeysList);
+
     const std::vector<Key> selectedKeys = getSelectedKeys(ui.availableKeysList);
-    qCDebug(KLEOPATRA_LOG) << "Number of selected keys:" << selectedKeys.size();
-    const auto numKeysAdded = std::count_if(selectedKeys.cbegin(), selectedKeys.cend(),
-                                            [this] (const Key &key) { return group.insert(key); });
-    qCDebug(KLEOPATRA_LOG) << "Number of added keys:" << numKeysAdded;
-    if (numKeysAdded > 0) {
-        updateGroupKeysKeepingSelection();
-    }
+    groupKeysModel->addKeys(selectedKeys);
+
+    setSelectedKeys(ui.groupKeysList, selectedGroupKeys);
 }
 
 void EditGroupDialog::Private::removeKeysFromGroup()
 {
     const std::vector<Key> selectedKeys = getSelectedKeys(ui.groupKeysList);
     for (const Key &key : selectedKeys) {
-        group.erase(key);
+        groupKeysModel->removeKey(key);
     }
-    const KeyGroup::Keys &keys = group.keys();
-    groupKeysModel->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
-}
-
-void EditGroupDialog::Private::updateGroupKeysKeepingSelection()
-{
-    const std::vector<Key> selectedGroupKeys = getSelectedKeys(ui.groupKeysList);
-    const KeyGroup::Keys &keys = group.keys();
-    groupKeysModel->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
-    setSelectedKeys(ui.groupKeysList, selectedGroupKeys);
 }
 
 EditGroupDialog::EditGroupDialog(QWidget *parent)
@@ -291,18 +274,25 @@ EditGroupDialog::~EditGroupDialog()
 {
 }
 
-void EditGroupDialog::setGroup(const KeyGroup &group)
+void EditGroupDialog::setGroupName(const QString &name)
 {
-    d->group = group;
-    d->ui.groupNameLabel->setText(group.name());
-    const KeyGroup::Keys &keys = group.keys();
-    d->groupKeysModel->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
+    d->ui.groupNameLabel->setText(name);
 }
 
-void EditGroupDialog::accept()
+void EditGroupDialog::setGroupKeys(const std::vector<Key> &keys)
 {
-    KeyCache::mutableInstance()->update(d->group);
-    QDialog::accept();
+    d->groupKeysModel->setKeys(keys);
+}
+
+std::vector<Key> EditGroupDialog::groupKeys() const
+{
+    std::vector<Key> keys;
+    keys.reserve(d->groupKeysModel->rowCount());
+    for (int row = 0; row < d->groupKeysModel->rowCount(); ++row) {
+        const QModelIndex index = d->groupKeysModel->index(row, 0);
+        keys.push_back(d->groupKeysModel->key(index));
+    }
+    return keys;
 }
 
 #include "editgroupdialog.moc"

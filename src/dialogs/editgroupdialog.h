@@ -13,10 +13,15 @@
 
 #include <QDialog>
 
+#include <vector>
+
+namespace GpgME
+{
+class Key;
+}
+
 namespace Kleo
 {
-class KeyGroup;
-
 namespace Dialogs
 {
 
@@ -27,9 +32,10 @@ public:
     explicit EditGroupDialog(QWidget *parent = nullptr);
     ~EditGroupDialog() override;
 
-    void setGroup(const Kleo::KeyGroup &group);
+    void setGroupName(const QString &name);
 
-    void accept() override;
+    void setGroupKeys(const std::vector<GpgME::Key> &keys);
+    std::vector<GpgME::Key> groupKeys() const;
 
 private:
     class Private;

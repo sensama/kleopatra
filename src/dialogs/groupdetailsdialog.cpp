@@ -10,8 +10,8 @@
 
 #include "groupdetailsdialog.h"
 
+#include "commands/editgroupcommand.h"
 #include "commands/detailscommand.h"
-#include "dialogs/editgroupdialog.h"
 #include "view/keytreeview.h"
 
 #include <Libkleo/KeyGroup>
@@ -122,9 +122,8 @@ private:
 
     void editGroup()
     {
-        auto dialog = new EditGroupDialog(q->parentWidget());
-        dialog->setGroup(group);
-        dialog->show();
+        auto cmd = new EditGroupCommand(group, q->parentWidget());
+        cmd->start();
         q->reject();
     }
 };

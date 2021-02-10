@@ -33,6 +33,7 @@ public:
     ~EditGroupDialog() override;
 
     void setGroupName(const QString &name);
+    QString groupName() const;
 
     void setGroupKeys(const std::vector<GpgME::Key> &keys);
     std::vector<GpgME::Key> groupKeys() const;

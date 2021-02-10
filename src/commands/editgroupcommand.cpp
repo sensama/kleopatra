@@ -82,6 +82,7 @@ void EditGroupCommand::Private::start()
 
 void EditGroupCommand::Private::slotDialogAccepted()
 {
+    group.setName(dialog->groupName());
     group.setKeys(dialog->groupKeys());
     KeyCache::mutableInstance()->update(group);
 

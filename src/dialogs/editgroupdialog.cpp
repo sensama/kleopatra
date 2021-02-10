@@ -68,7 +68,7 @@ class EditGroupDialog::Private
     EditGroupDialog *const q;
 
     struct {
-        QLabel *groupNameLabel = nullptr;
+        QLineEdit *groupNameEdit = nullptr;
         QLineEdit *availableKeysFilter = nullptr;
         QListView *availableKeysList = nullptr;
         QLineEdit *groupKeysFilter = nullptr;
@@ -86,9 +86,11 @@ public:
     {
         auto mainLayout = new QVBoxLayout(q);
 
-        ui.groupNameLabel = new QLabel();
-        ui.groupNameLabel->setWordWrap(true);
-        mainLayout->addWidget(ui.groupNameLabel);
+        auto groupNameLayout = new QHBoxLayout();
+        groupNameLayout->addWidget(new QLabel(i18nc("Name of a group of keys", "Name:")));
+        ui.groupNameEdit = new QLineEdit();
+        groupNameLayout->addWidget(ui.groupNameEdit);
+        mainLayout->addLayout(groupNameLayout);
 
         mainLayout->addWidget(new KSeparator(Qt::Horizontal));
 
@@ -167,10 +169,16 @@ public:
         mainLayout->addWidget(new KSeparator(Qt::Horizontal));
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-        KGuiItem::assign(ui.buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
+        QPushButton *okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
+        KGuiItem::assign(okButton, KStandardGuiItem::ok());
         KGuiItem::assign(ui.buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
+        okButton->setEnabled(false);
         mainLayout->addWidget(ui.buttonBox);
 
+        connect(ui.groupNameEdit, &QLineEdit::textChanged,
+                q, [okButton] (const QString &text) {
+                    okButton->setEnabled(!text.trimmed().isEmpty());
+                });
         connect(ui.availableKeysFilter, &QLineEdit::textChanged, availableKeysFilterModel, &QSortFilterProxyModel::setFilterFixedString);
         connect(ui.availableKeysList->selectionModel(), &QItemSelectionModel::selectionChanged,
                 q, [addButton] (const QItemSelection &selected, const QItemSelection &) {
@@ -276,7 +284,12 @@ EditGroupDialog::~EditGroupDialog()
 
 void EditGroupDialog::setGroupName(const QString &name)
 {
-    d->ui.groupNameLabel->setText(name);
+    d->ui.groupNameEdit->setText(name);
+}
+
+QString EditGroupDialog::groupName() const
+{
+    return d->ui.groupNameEdit->text().trimmed();
 }
 
 void EditGroupDialog::setGroupKeys(const std::vector<Key> &keys)

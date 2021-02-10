@@ -231,13 +231,23 @@ void Command::applyWindowID(QWidget *w) const
     if (w) {
         if (d->parentWId) {
             if (QWidget *pw = QWidget::find(d->parentWId)) {
+                // remember the current focus widget; re-parenting resets it
+                QWidget *focusWidget = w->focusWidget();
                 w->setParent(pw, w->windowFlags());
+                if (focusWidget) {
+                    focusWidget->setFocus();
+                }
             } else {
                 w->setAttribute(Qt::WA_NativeWindow, true);
                 KWindowSystem::setMainWindow(w->windowHandle(), d->parentWId);
             }
         } else {
+            // remember the current focus widget; re-parenting resets it
+            QWidget *focusWidget = w->focusWidget();
             w->setParent(d->parentWidgetOrView(), w->windowFlags());
+            if (focusWidget) {
+                focusWidget->setFocus();
+            }
         }
     }
 }

@@ -194,6 +194,9 @@ public:
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &EditGroupDialog::accept);
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &EditGroupDialog::reject);
 
+        // give initial keyboard focus to the keys filter
+        ui.availableKeysFilter->setFocus();
+
         // calculate default size with enough space for the key list
         const auto fm = q->fontMetrics();
         const QSize sizeHint = q->sizeHint();

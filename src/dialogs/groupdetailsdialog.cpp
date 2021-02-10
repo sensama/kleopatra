@@ -147,7 +147,7 @@ QString editButtonToolTip(const KeyGroup &group)
     switch (group.source()) {
         case KeyGroup::ApplicationConfig:
             if (group.isImmutable()) {
-                return i18n("This group is locked down. It cannot be editted by you.");
+                return i18n("This group is locked down. It cannot be edited by you.");
             } else {
                 return i18n("Edit this group");
             }

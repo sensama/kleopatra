@@ -112,7 +112,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
             this, &CertificateLineEdit::updateKey);
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
             this, [this] (const KeyGroup &group) {
-                if (group.id() == mGroup.id()) {
+                if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
                     QSignalBlocker blocky(this);
                     mGroup = group;
                     setText(Formatting::summaryLine(mGroup));

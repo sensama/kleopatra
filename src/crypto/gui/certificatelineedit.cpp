@@ -122,6 +122,13 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                             QLatin1String("<br/>") + i18n("Click for details."));
                 }
             });
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved,
+            this, [this] (const KeyGroup &group) {
+                if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
+                    // queue the update to ensure that the model has been updated
+                    QMetaObject::invokeMethod(this, &CertificateLineEdit::updateKey, Qt::QueuedConnection);
+                }
+            });
     connect(this, &QLineEdit::editingFinished,
             this, &CertificateLineEdit::editFinished);
     connect(this, &QLineEdit::textChanged,

@@ -43,6 +43,7 @@ class GroupDetailsDialog::Private
 
     struct {
         QLabel *groupNameLabel = nullptr;
+        QLabel *groupCommentLabel = nullptr;
         KeyTreeView *treeView = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
     } ui;
@@ -57,6 +58,11 @@ public:
         ui.groupNameLabel = new QLabel();
         ui.groupNameLabel->setWordWrap(true);
         mainLayout->addWidget(ui.groupNameLabel);
+
+        ui.groupCommentLabel = new QLabel();
+        ui.groupCommentLabel->setWordWrap(true);
+        ui.groupCommentLabel->setVisible(false);
+        mainLayout->addWidget(ui.groupCommentLabel);
 
         ui.treeView = new KeyTreeView(q);
         ui.treeView->view()->setRootIsDecorated(false);
@@ -126,10 +132,25 @@ GroupDetailsDialog::~GroupDetailsDialog()
 {
 }
 
+namespace
+{
+QString groupComment(const KeyGroup &group)
+{
+    switch (group.source()) {
+    case KeyGroup::GnuPGConfig:
+        return i18n("Note: This group is defined in the configuration files of gpg.");
+    default:
+        return QString();
+    }
+}
+}
+
 void GroupDetailsDialog::setGroup(const KeyGroup &group)
 {
     d->group = group;
     d->ui.groupNameLabel->setText(group.name());
+    d->ui.groupCommentLabel->setText(groupComment(group));
+    d->ui.groupCommentLabel->setVisible(!d->ui.groupCommentLabel->text().isEmpty());
     const KeyGroup::Keys &keys = group.keys();
     d->ui.treeView->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
 }

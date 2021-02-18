@@ -194,9 +194,6 @@ public:
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &EditGroupDialog::accept);
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &EditGroupDialog::reject);
 
-        // give initial keyboard focus to the keys filter
-        ui.availableKeysFilter->setFocus();
-
         // calculate default size with enough space for the key list
         const auto fm = q->fontMetrics();
         const QSize sizeHint = q->sizeHint();
@@ -283,6 +280,20 @@ EditGroupDialog::EditGroupDialog(QWidget *parent)
 
 EditGroupDialog::~EditGroupDialog()
 {
+}
+
+void EditGroupDialog::setInitialFocus(FocusWidget widget)
+{
+    switch (widget) {
+    case GroupName:
+        d->ui.groupNameEdit->setFocus();
+        break;
+    case KeysFilter:
+        d->ui.availableKeysFilter->setFocus();
+        break;
+    default:
+        qCDebug(KLEOPATRA_LOG) << "EditGroupDialog::setInitialFocus - invalid focus widget:" << widget;
+    }
 }
 
 void EditGroupDialog::setGroupName(const QString &name)

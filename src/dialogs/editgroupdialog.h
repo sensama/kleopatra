@@ -29,8 +29,15 @@ class EditGroupDialog : public QDialog
 {
     Q_OBJECT
 public:
+    enum FocusWidget {
+        GroupName,
+        KeysFilter
+    };
+
     explicit EditGroupDialog(QWidget *parent = nullptr);
     ~EditGroupDialog() override;
+
+    void setInitialFocus(FocusWidget widget);
 
     void setGroupName(const QString &name);
     QString groupName() const;

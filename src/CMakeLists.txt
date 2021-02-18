@@ -255,7 +255,6 @@ set(_kleopatra_SRCS
   commands/importcertificatefrompivcardcommand.cpp
   commands/createopenpgpkeyfromcardkeyscommand.cpp
   commands/createcsrforcardkeycommand.cpp
-  commands/editgroupcommand.cpp
 
   ${_kleopatra_uiserver_files}
 

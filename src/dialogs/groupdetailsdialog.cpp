@@ -10,7 +10,6 @@
 
 #include "groupdetailsdialog.h"
 
-#include "commands/editgroupcommand.h"
 #include "commands/detailscommand.h"
 #include "view/keytreeview.h"
 
@@ -46,7 +45,6 @@ class GroupDetailsDialog::Private
         QLabel *groupNameLabel = nullptr;
         KeyTreeView *treeView = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
-        QPushButton *editButton = nullptr;
     } ui;
     KeyGroup group;
 
@@ -71,10 +69,6 @@ public:
 
         ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
         KGuiItem::assign(ui.buttonBox->button(QDialogButtonBox::Close), KStandardGuiItem::close());
-        ui.editButton = ui.buttonBox->addButton(i18n("Edit"), QDialogButtonBox::ActionRole);
-        ui.editButton->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
-        ui.editButton->setEnabled(false);
-        connect(ui.editButton, &QPushButton::clicked, q, [this] () { editGroup(); });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::close);
         mainLayout->addWidget(ui.buttonBox);
 
@@ -119,13 +113,6 @@ private:
             cmd->start();
         }
     }
-
-    void editGroup()
-    {
-        auto cmd = new EditGroupCommand(group, q->parentWidget());
-        cmd->start();
-        q->reject();
-    }
 };
 
 GroupDetailsDialog::GroupDetailsDialog(QWidget *parent)
@@ -139,34 +126,10 @@ GroupDetailsDialog::~GroupDetailsDialog()
 {
 }
 
-namespace
-{
-QString editButtonToolTip(const KeyGroup &group)
-{
-    switch (group.source()) {
-        case KeyGroup::ApplicationConfig:
-            if (group.isImmutable()) {
-                return i18n("This group is locked down. It cannot be edited by you.");
-            } else {
-                return i18n("Edit this group");
-            }
-        case KeyGroup::GnuPGConfig:
-            return i18n("This group cannot be edited with Kleopatra. It is defined in the configuration files of gpg.");
-        case KeyGroup::Tags:
-            return i18n("This group is implicitly defined by tags assigned to keys. You need to change the tags of keys to add keys to or remove keys from the group.");
-        case KeyGroup::UnknownSource:
-            ;
-    }
-    return i18n("This group cannot be edited with Kleopatra.");
-}
-}
-
 void GroupDetailsDialog::setGroup(const KeyGroup &group)
 {
     d->group = group;
     d->ui.groupNameLabel->setText(group.name());
     const KeyGroup::Keys &keys = group.keys();
     d->ui.treeView->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
-    d->ui.editButton->setEnabled(!group.isImmutable());
-    d->ui.editButton->setToolTip(editButtonToolTip(group));
 }

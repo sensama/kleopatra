@@ -128,10 +128,10 @@ bool SigningCertificateSelectionWidget::rememberAsDefault() const
     return d->ui.rememberCO->isChecked();
 }
 
-void SigningCertificateSelectionWidget::setAllowedProtocols(const QVector<GpgME::Protocol> &allowedProtocols)
+void SigningCertificateSelectionWidget::setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols)
 {
-    setAllowedProtocols(allowedProtocols.contains(GpgME::OpenPGP),
-                        allowedProtocols.contains(GpgME::CMS));
+    setAllowedProtocols(allowedProtocols.find(GpgME::OpenPGP) != allowedProtocols.end(),
+                        allowedProtocols.find(GpgME::CMS) != allowedProtocols.end());
 }
 
 void SigningCertificateSelectionWidget::setAllowedProtocols(bool pgp, bool cms)

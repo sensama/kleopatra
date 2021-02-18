@@ -15,6 +15,8 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <set>
+
 template <typename K, typename U> class QMap;
 
 namespace GpgME
@@ -36,7 +38,7 @@ public:
     explicit SigningCertificateSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SigningCertificateSelectionWidget();
 
-    void setAllowedProtocols(const QVector<GpgME::Protocol> &allowedProtocols);
+    void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setAllowedProtocols(bool pgp, bool cms);
     void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);
     void setSelectedCertificates(const GpgME::Key &pgp, const GpgME::Key &cms);

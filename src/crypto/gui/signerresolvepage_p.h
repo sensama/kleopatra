@@ -18,6 +18,7 @@ class QLabel;
 
 #include <vector>
 #include <map>
+#include <set>
 
 namespace Kleo
 {
@@ -33,7 +34,7 @@ public:
     explicit AbstractSigningProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     virtual void setProtocolChecked(GpgME::Protocol protocol, bool checked) = 0;
     virtual bool isProtocolChecked(GpgME::Protocol protocol) const = 0;
-    virtual std::vector<GpgME::Protocol> checkedProtocols() const = 0;
+    virtual std::set<GpgME::Protocol> checkedProtocols() const = 0;
     virtual void setCertificate(GpgME::Protocol protocol, const GpgME::Key &key) = 0;
 
 Q_SIGNALS:
@@ -47,7 +48,7 @@ public:
     explicit SigningProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     void setProtocolChecked(GpgME::Protocol protocol, bool checked) override;
     bool isProtocolChecked(GpgME::Protocol protocol) const override;
-    std::vector<GpgME::Protocol> checkedProtocols() const override;
+    std::set<GpgME::Protocol> checkedProtocols() const override;
     void setCertificate(GpgME::Protocol protocol, const GpgME::Key &key) override;
 
     void setExclusive(bool exclusive);
@@ -66,7 +67,7 @@ public:
     explicit ReadOnlyProtocolSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     void setProtocolChecked(GpgME::Protocol protocol, bool checked) override;
     bool isProtocolChecked(GpgME::Protocol protocol) const override;
-    std::vector<GpgME::Protocol> checkedProtocols() const override;
+    std::set<GpgME::Protocol> checkedProtocols() const override;
     void setCertificate(GpgME::Protocol protocol, const GpgME::Key &key) override;
 
 private:

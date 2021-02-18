@@ -55,7 +55,7 @@ SignerResolveValidator::SignerResolveValidator(SignerResolvePage *page)
 void SignerResolveValidator::update() const
 {
     const bool haveSelected = !m_page->selectedProtocols().empty();
-    const std::vector<Protocol> missing = m_page->selectedProtocolsWithoutSigningCertificate();
+    const std::set<Protocol> missing = m_page->selectedProtocolsWithoutSigningCertificate();
 
     complete = haveSelected && missing.empty();
     expl.clear();
@@ -69,9 +69,13 @@ void SignerResolveValidator::update() const
 
     Q_ASSERT(missing.size() <= 2);
     if (missing.size() == 1) {
-        expl = i18n("You need to select an %1 signing certificate to proceed.", Formatting::displayName(missing[0]));
+        if (missing.find(OpenPGP) != missing.end()) {
+            expl = i18n("You need to select an OpenPGP signing certificate to proceed.");
+        } else {
+            expl = i18n("You need to select an S/MIME signing certificate to proceed.");
+        }
     } else {
-        expl = i18n("You need to select %1 and %2 signing certificates to proceed.", Formatting::displayName(missing[0]), Formatting::displayName(missing[1]));
+        expl = i18n("You need to select an OpenPGP signing certificate and an S/MIME signing certificate to proceed.");
     }
 }
 

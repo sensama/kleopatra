@@ -55,7 +55,7 @@ bool SigningCertificateSelectionDialog::rememberAsDefault() const
     return widget->rememberAsDefault();
 }
 
-void SigningCertificateSelectionDialog::setAllowedProtocols(const QVector<GpgME::Protocol> &allowedProtocols)
+void SigningCertificateSelectionDialog::setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols)
 {
     widget->setAllowedProtocols(allowedProtocols);
 }

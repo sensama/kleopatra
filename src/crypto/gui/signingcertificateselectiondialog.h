@@ -15,6 +15,8 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <set>
+
 template <typename K, typename U> class QMap;
 
 namespace Kleo
@@ -33,7 +35,7 @@ public:
     explicit SigningCertificateSelectionDialog(QWidget *parent = nullptr);
     ~SigningCertificateSelectionDialog();
 
-    void setAllowedProtocols(const QVector<GpgME::Protocol> &allowedProtocols);
+    void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);
     Q_REQUIRED_RESULT QMap<GpgME::Protocol, GpgME::Key> selectedCertificates() const;
 

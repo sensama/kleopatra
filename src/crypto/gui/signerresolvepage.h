@@ -18,6 +18,7 @@
 #include <kmime/kmime_header_parsing.h>
 
 #include <memory>
+#include <set>
 #include <vector>
 
 namespace GpgME
@@ -67,9 +68,9 @@ public:
     void setPresetProtocol(GpgME::Protocol protocol);
     void setPresetProtocols(const std::vector<GpgME::Protocol> &protocols);
 
-    std::vector<GpgME::Protocol> selectedProtocols() const;
+    std::set<GpgME::Protocol> selectedProtocols() const;
 
-    std::vector<GpgME::Protocol> selectedProtocolsWithoutSigningCertificate() const;
+    std::set<GpgME::Protocol> selectedProtocolsWithoutSigningCertificate() const;
 
     void setMultipleProtocolsAllowed(bool allowed);
     bool multipleProtocolsAllowed() const;

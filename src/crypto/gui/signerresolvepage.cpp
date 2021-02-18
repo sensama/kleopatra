@@ -118,7 +118,11 @@ SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, 
 {
 
     m_buttonGroup = new QButtonGroup(this);
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(m_buttonGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &SigningProtocolSelectionWidget::userSelectionChanged);
+#else
+    connect(m_buttonGroup, &QButtonGroup::idClicked, this, &SigningProtocolSelectionWidget::userSelectionChanged);
+#endif
 
     QVBoxLayout *const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

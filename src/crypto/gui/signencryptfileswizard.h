@@ -76,8 +76,8 @@ public:
     void setTaskCollection(const std::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
 
     // Outputs
-    QVector<GpgME::Key> resolvedRecipients() const;
-    QVector<GpgME::Key> resolvedSigners() const;
+    std::vector<GpgME::Key> resolvedRecipients() const;
+    std::vector<GpgME::Key> resolvedSigners() const;
     bool encryptSymmetric() const;
 
     void setLabelText(const QString &label) const;

@@ -34,7 +34,7 @@ public:
 
     /** Returns the list of recipients selected in the dialog
      * or an empty list if encryption is disabled */
-    QVector <GpgME::Key> recipients() const;
+    std::vector<GpgME::Key> recipients() const;
 
     /** Returns the selected signing key or a null key if signing
      * is disabled. */

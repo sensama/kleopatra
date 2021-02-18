@@ -406,9 +406,9 @@ Key SignEncryptWidget::selfKey() const
     return Key();
 }
 
-QVector <Key> SignEncryptWidget::recipients() const
+std::vector<Key> SignEncryptWidget::recipients() const
 {
-    QVector<Key> ret;
+    std::vector<Key> ret;
     for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
@@ -417,7 +417,7 @@ QVector <Key> SignEncryptWidget::recipients() const
         const Key k = w->key();
         const KeyGroup g = w->group();
         if (!k.isNull()) {
-            ret << k;
+            ret.push_back(k);
         } else if (!g.isNull()) {
             const auto keys = g.keys();
             std::copy(keys.begin(), keys.end(), std::back_inserter(ret));
@@ -425,7 +425,7 @@ QVector <Key> SignEncryptWidget::recipients() const
     }
     const Key k = selfKey();
     if (!k.isNull()) {
-        ret << k;
+        ret.push_back(k);
     }
     return ret;
 }
@@ -454,12 +454,12 @@ bool SignEncryptWidget::isDeVsAndValid() const
 void SignEncryptWidget::updateOp()
 {
     const Key sigKey = signKey();
-    const QVector<Key> recp = recipients();
+    const std::vector<Key> recp = recipients();
 
     QString newOp;
-    if (!sigKey.isNull() && (!recp.isEmpty() || encryptSymmetric())) {
+    if (!sigKey.isNull() && (!recp.empty() || encryptSymmetric())) {
         newOp = i18nc("@action", "Sign / Encrypt");
-    } else if (!recp.isEmpty() || encryptSymmetric()) {
+    } else if (!recp.empty() || encryptSymmetric()) {
         newOp = i18nc("@action", "Encrypt");
     } else if (!sigKey.isNull()) {
         newOp = i18nc("@action", "Sign");

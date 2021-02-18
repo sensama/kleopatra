@@ -507,26 +507,26 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         const bool archive = (wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) ||
                              ((operation & ArchiveMask) == ArchiveForced);
 
-        const QVector<Key> recipients = wizard->resolvedRecipients();
-        const QVector<Key> signers = wizard->resolvedSigners();
+        const std::vector<Key> recipients = wizard->resolvedRecipients();
+        const std::vector<Key> signers = wizard->resolvedSigners();
 
         const FileOperationsPreferences prefs;
         const bool ascii = prefs.addASCIIArmor();
 
-        QVector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
+        std::vector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
         Q_FOREACH (const Key &k, recipients) {
             if (k.protocol() == GpgME::OpenPGP) {
-                pgpRecipients << k;
+                pgpRecipients.push_back(k);
             } else {
-                cmsRecipients << k;
+                cmsRecipients.push_back(k);
             }
         }
 
         Q_FOREACH (const Key &k, signers) {
             if (k.protocol() == GpgME::OpenPGP) {
-                pgpSigners << k;
+                pgpSigners.push_back(k);
             } else {
-                cmsSigners << k;
+                cmsSigners.push_back(k);
             }
         }
 
@@ -539,10 +539,10 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             tasks = createArchiveSignEncryptTasksForFiles(files,
                     getDefaultAd(),
                     ascii,
-                    pgpRecipients.toStdVector(),
-                    pgpSigners.toStdVector(),
-                    cmsRecipients.toStdVector(),
-                    cmsSigners.toStdVector(),
+                    pgpRecipients,
+                    pgpSigners,
+                    cmsRecipients,
+                    cmsSigners,
                     wizard->outputNames(),
                     wizard->encryptSymmetric());
 
@@ -550,10 +550,10 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             Q_FOREACH (const QString &file, files) {
                 const std::vector< std::shared_ptr<SignEncryptTask> > created =
                     createSignEncryptTasksForFileInfo(QFileInfo(file), ascii,
-                            pgpRecipients.toStdVector(),
-                            pgpSigners.toStdVector(),
-                            cmsRecipients.toStdVector(),
-                            cmsSigners.toStdVector(),
+                            pgpRecipients,
+                            pgpSigners,
+                            cmsRecipients,
+                            cmsSigners,
                             buildOutputNamesForDir(file, wizard->outputNames()),
                             wizard->encryptSymmetric());
                 tasks.insert(tasks.end(), created.begin(), created.end());

@@ -194,21 +194,20 @@ public:
         return true;
     }
 
-    QVector<Key> recipients() const
+    std::vector<Key> recipients() const
     {
         return mWidget->recipients();
     }
 
     /* In the future we might find a usecase for multiple
      * signers */
-    QVector<Key> signers() const
+    std::vector<Key> signers() const
     {
-        QVector<Key> ret;
         const Key k = mWidget->signKey();
         if (!k.isNull()) {
-            ret << k;
+            return {k};
         }
-        return ret;
+        return {};
     }
 
 private:
@@ -309,7 +308,7 @@ private Q_SLOTS:
         if (mRequester.isEmpty()) {
             return;
         }
-        const QVector<Key> recipients = mWidget->recipients();
+        const std::vector<Key> recipients = mWidget->recipients();
         const Key sigKey = mWidget->signKey();
         bool pgp = mWidget->encryptSymmetric();
         bool cms = false;
@@ -461,12 +460,12 @@ void SignEncryptFilesWizard::setArchiveMutable(bool archive)
     mSigEncPage->setArchiveMutable(archive);
 }
 
-QVector<Key> SignEncryptFilesWizard::resolvedRecipients() const
+std::vector<Key> SignEncryptFilesWizard::resolvedRecipients() const
 {
     return mSigEncPage->recipients();
 }
 
-QVector<Key> SignEncryptFilesWizard::resolvedSigners() const
+std::vector<Key> SignEncryptFilesWizard::resolvedSigners() const
 {
     return mSigEncPage->signers();
 }

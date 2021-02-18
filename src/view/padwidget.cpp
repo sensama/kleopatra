@@ -378,8 +378,9 @@ public:
 
         const auto sigKey = mSigEncWidget->signKey();
 
-        bool encrypt = mSigEncWidget->encryptSymmetric() || !mSigEncWidget->recipients().isEmpty();
-        bool sign = !sigKey.isNull();
+        const std::vector<GpgME::Key> recipients = mSigEncWidget->recipients();
+        const bool encrypt = mSigEncWidget->encryptSymmetric() || !recipients.empty();
+        const bool sign = !sigKey.isNull();
 
         if (sign) {
             task->setSign(true);
@@ -390,7 +391,7 @@ public:
             task->setSign(false);
         }
         task->setEncrypt(encrypt);
-        task->setRecipients(mSigEncWidget->recipients().toStdVector());
+        task->setRecipients(recipients);
         task->setEncryptSymmetric(mSigEncWidget->encryptSymmetric());
         task->setAsciiArmor(true);
 

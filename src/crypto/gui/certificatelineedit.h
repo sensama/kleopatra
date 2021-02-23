@@ -19,6 +19,7 @@
 
 #include <memory>
 
+class QCompleter;
 class QLabel;
 class QAction;
 
@@ -91,6 +92,7 @@ private Q_SLOTS:
 private:
     KeyListSortFilterProxyModel *const mFilterModel;
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
+    QCompleter *mCompleter = nullptr;
     QLabel *mStatusLabel,
            *mStatusIcon;
     GpgME::Key mKey;

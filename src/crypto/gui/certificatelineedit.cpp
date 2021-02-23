@@ -87,6 +87,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
       mCompleterFilterModel(new ProxyModel(this)),
+      mCompleter(new QCompleter(this)),
       mFilter(std::shared_ptr<KeyFilter>(filter)),
       mLineAction(new QAction(this))
 {
@@ -96,12 +97,11 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
-    auto completer = new QCompleter(this);
-    completer->setModel(mCompleterFilterModel);
-    completer->setCompletionColumn(KeyList::Summary);
-    completer->setFilterMode(Qt::MatchContains);
-    completer->setCaseSensitivity(Qt::CaseInsensitive);
-    setCompleter(completer);
+    mCompleter->setModel(mCompleterFilterModel);
+    mCompleter->setCompletionColumn(KeyList::Summary);
+    mCompleter->setFilterMode(Qt::MatchContains);
+    mCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    setCompleter(mCompleter);
     mFilterModel->setSourceModel(model);
     mFilterModel->setFilterKeyColumn(KeyList::Summary);
     if (filter) {
@@ -114,29 +114,42 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
             this, [this] (const KeyGroup &group) {
                 if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
                     QSignalBlocker blocky(this);
-                    mGroup = group;
-                    setText(Formatting::summaryLine(mGroup));
-                    setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
-                    mLineAction->setIcon(Formatting::validityIcon(mGroup));
-                    mLineAction->setToolTip(Formatting::validity(mGroup) +
-                                            QLatin1String("<br/>") + i18n("Click for details."));
+                    setText(Formatting::summaryLine(group));
+                    // queue the update to ensure that the model has been updated
+                    QMetaObject::invokeMethod(this, &CertificateLineEdit::updateKey, Qt::QueuedConnection);
                 }
             });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved,
             this, [this] (const KeyGroup &group) {
                 if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
+                    mGroup = KeyGroup();
+                    QSignalBlocker blocky(this);
+                    clear();
                     // queue the update to ensure that the model has been updated
                     QMetaObject::invokeMethod(this, &CertificateLineEdit::updateKey, Qt::QueuedConnection);
                 }
             });
     connect(this, &QLineEdit::editingFinished,
-            this, &CertificateLineEdit::editFinished);
+            this, [this] () {
+                // queue the call of editFinished() to ensure that QCompleter::activated is handled first
+                QMetaObject::invokeMethod(this, &CertificateLineEdit::editFinished, Qt::QueuedConnection);
+            });
     connect(this, &QLineEdit::textChanged,
             this, &CertificateLineEdit::editChanged);
     connect(mLineAction, &QAction::triggered,
             this, &CertificateLineEdit::dialogRequested);
-    connect(this, &QLineEdit::editingFinished, this,
-            &CertificateLineEdit::checkLocate);
+    connect(mCompleter, QOverload<const QModelIndex &>::of(&QCompleter::activated),
+            this, [this] (const QModelIndex &index) {
+                Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
+                KeyGroup group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
+                if (!key.isNull()) {
+                    setKey(key);
+                } else if (!group.isNull()) {
+                    setGroup(group);
+                } else {
+                    qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
+                }
+            });
     updateKey();
 
     /* Take ownership of the model to prevent double deletion when the
@@ -159,6 +172,7 @@ void CertificateLineEdit::editFinished()
     mEditStarted = false;
     mEditFinished = true;
     updateKey();
+    checkLocate();
 }
 
 void CertificateLineEdit::checkLocate()
@@ -181,6 +195,8 @@ void CertificateLineEdit::checkLocate()
 
 void CertificateLineEdit::updateKey()
 {
+    static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
+
     const auto mailText = text();
     auto newKey = Key();
     auto newGroup = KeyGroup();
@@ -190,28 +206,42 @@ void CertificateLineEdit::updateKey()
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {
-            if (mEditFinished) {
-                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")).pixmap(KIconLoader::SizeSmallMedium));
-                mLineAction->setToolTip(i18n("Multiple certificates"));
-            } else {
-                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
-                mLineAction->setToolTip(i18n("Open selection dialog."));
+            // keep current key or group if they still match
+            if (!mKey.isNull()) {
+                for (int row = 0; row < mFilterModel->rowCount(); ++row) {
+                    const QModelIndex index = mFilterModel->index(row, 0);
+                    Key key = mFilterModel->key(index);
+                    if (!key.isNull() && keysHaveSameFingerprint(key, mKey)) {
+                        newKey = mKey;
+                        break;
+                    }
+                }
+            } else if (!mGroup.isNull()) {
+                newGroup = mGroup;
+                for (int row = 0; row < mFilterModel->rowCount(); ++row) {
+                    const QModelIndex index = mFilterModel->index(row, 0);
+                    KeyGroup group = mFilterModel->group(index);
+                    if (!group.isNull() && group.source() == mGroup.source() && group.id() == mGroup.id()) {
+                        newGroup = mGroup;
+                        break;
+                    }
+                }
+            }
+            if (newKey.isNull() && newGroup.isNull()) {
+                if (mEditFinished) {
+                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")).pixmap(KIconLoader::SizeSmallMedium));
+                    mLineAction->setToolTip(i18n("Multiple certificates"));
+                } else {
+                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
+                    mLineAction->setToolTip(i18n("Open selection dialog."));
+                }
             }
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
             newKey = mFilterModel->data(index, KeyList::KeyRole).value<Key>();
             newGroup = mFilterModel->data(index, KeyList::GroupRole).value<KeyGroup>();
             Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
-            if (!newKey.isNull()) {
-                /* FIXME: This needs to be solved by a multiple UID supporting model */
-                mLineAction->setIcon(Formatting::iconForUid(newKey.userID(0)));
-                mLineAction->setToolTip(Formatting::validity(newKey.userID(0)) +
-                                        QLatin1String("<br/>") + i18n("Click for details."));
-            } else if (!newGroup.isNull()) {
-                mLineAction->setIcon(Formatting::validityIcon(newGroup));
-                mLineAction->setToolTip(Formatting::validity(newGroup) +
-                                        QLatin1String("<br/>") + i18n("Click for details."));
-            } else {
+            if (newKey.isNull() && newGroup.isNull()) {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
             }
@@ -224,8 +254,15 @@ void CertificateLineEdit::updateKey()
     mGroup = newGroup;
 
     if (!mKey.isNull()) {
+        /* FIXME: This needs to be solved by a multiple UID supporting model */
+        mLineAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
+        mLineAction->setToolTip(Formatting::validity(mKey.userID(0)) +
+                                QLatin1String("<br/>") + i18n("Click for details."));
         setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
+        mLineAction->setIcon(Formatting::validityIcon(mGroup));
+        mLineAction->setToolTip(Formatting::validity(mGroup) +
+                                QLatin1String("<br/>") + i18n("Click for details."));
         setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     } else {
         setToolTip(QString());
@@ -256,16 +293,20 @@ KeyGroup CertificateLineEdit::group() const
     }
 }
 
-void CertificateLineEdit::setKey(const Key &k)
+void CertificateLineEdit::setKey(const Key &key)
 {
+    mKey = key;
+    mGroup = KeyGroup();
     QSignalBlocker blocky(this);
-    qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(k);
-    setText(Formatting::summaryLine(k));
+    qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(key);
+    setText(Formatting::summaryLine(key));
     updateKey();
 }
 
 void CertificateLineEdit::setGroup(const KeyGroup &group)
 {
+    mGroup = group;
+    mKey = Key();
     QSignalBlocker blocky(this);
     const QString summary = Formatting::summaryLine(group);
     qCDebug(KLEOPATRA_LOG) << "Setting KeyGroup. " << summary;

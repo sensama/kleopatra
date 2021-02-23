@@ -42,13 +42,10 @@ GroupsConfigPage::Private::Private(GroupsConfigPage *qq)
 {
 }
 
-GroupsConfigPage::GroupsConfigPage(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args)
+GroupsConfigPage::GroupsConfigPage(QWidget *parent)
+    : QWidget(parent)
     , d(new Private(this))
 {
-    // do not show the Defaults button; it has no effect
-    setButtons(buttons() & ~KCModule::Default);
-
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
@@ -59,15 +56,15 @@ GroupsConfigPage::GroupsConfigPage(QWidget *parent, const QVariantList &args)
 
     layout->addWidget(d->widget);
 
-    connect(d->widget, &GroupsConfigWidget::changed, this, &GroupsConfigPage::markAsChanged);
+    connect(d->widget, &GroupsConfigWidget::changed, this, [this] () { Q_EMIT changed(true); });
 }
 
 GroupsConfigPage::~GroupsConfigPage() = default;
 
 void GroupsConfigPage::load()
 {
-    qCDebug(KLEOPATRA_LOG) << "GroupsConfigPage::load()";
     d->widget->setGroups(KeyCache::instance()->configurableGroups());
+    Q_EMIT changed(false);
 }
 
 void GroupsConfigPage::save()
@@ -76,14 +73,4 @@ void GroupsConfigPage::save()
 
     // reload after saving to ensure that the groups reflect the saved groups (e.g. in case of immutable entries)
     load();
-}
-
-extern "C"
-{
-    Q_DECL_EXPORT KCModule *create_kleopatra_config_groups(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
-    {
-        GroupsConfigPage *page = new GroupsConfigPage(parent, args);
-        page->setObjectName(QStringLiteral("kleopatra_config_groups"));
-        return page;
-    }
 }

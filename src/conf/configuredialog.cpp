@@ -35,7 +35,6 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
 {
     setFaceType(KPageDialog::List);
     setWindowTitle(i18nc("@title:window", "Configure"));
-    addModule(QStringLiteral("kleopatra_config_groups"));
     addModule(QStringLiteral("kleopatra_config_dirserv"));
     addModule(QStringLiteral("kleopatra_config_appear"));
     addModule(QStringLiteral("kleopatra_config_cryptooperations"));

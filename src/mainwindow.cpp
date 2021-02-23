@@ -25,6 +25,8 @@
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/signencryptfilescommand.h"
 
+#include "conf/groupsconfigdialog.h"
+
 #include "utils/detail_p.h"
 #include <Libkleo/GnuPG>
 #include "utils/action_data.h"
@@ -49,6 +51,7 @@
 #include <KEditToolBar>
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
+#include <KConfigDialog>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>
@@ -191,6 +194,16 @@ public:
     {
         createAndStart<SelfTestCommand>();
     }
+
+    void configureGroups()
+    {
+        if (KConfigDialog::showDialog(GroupsConfigDialog::dialogName())) {
+            return;
+        }
+        KConfigDialog *dialog = new GroupsConfigDialog(q);
+        dialog->show();
+    }
+
     void configureBackend();
 
     void showHandbook();
@@ -430,6 +443,10 @@ void MainWindow::Private::setupActions()
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
             nullptr, q, SLOT(selfTest()), QString(), false, true
+        },
+        {
+            "configure_groups", i18n("Configure Groups..."), QString(),
+            "group", q, SLOT(configureGroups()), QString(), false, true
         },
         {
             "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),

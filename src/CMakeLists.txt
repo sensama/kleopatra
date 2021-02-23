@@ -259,6 +259,9 @@ set(_kleopatra_SRCS
   ${_kleopatra_uiserver_files}
 
   conf/configuredialog.cpp
+  conf/groupsconfigdialog.cpp
+  conf/groupsconfigpage.cpp
+  conf/groupsconfigwidget.cpp
 
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp

@@ -45,6 +45,7 @@ private:
     Q_PRIVATE_SLOT(d, void selfTest())
     Q_PRIVATE_SLOT(d, void configureBackend())
     Q_PRIVATE_SLOT(d, void configureToolbars())
+    Q_PRIVATE_SLOT(d, void configureGroups())
     Q_PRIVATE_SLOT(d, void editKeybindings())
     Q_PRIVATE_SLOT(d, void gnupgLogViewer())
     Q_PRIVATE_SLOT(d, void slotConfigCommitted())

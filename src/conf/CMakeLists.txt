@@ -37,9 +37,6 @@ set(kcm_kleopatra_PART_SRCS
   appearanceconfigpage.cpp
   appearanceconfigwidget.cpp
   gnupgsystemconfigurationpage.cpp
-  groupsconfigpage.cpp
-  groupsconfigwidget.cpp
-  ${kleopatra_SOURCE_DIR}/src/dialogs/editgroupdialog.cpp
   ${kleopatra_BINARY_DIR}/src/kleopatra_debug.cpp
   ${_kcm_kleopatra_libkleopatraclient_extra_SRCS}
 )
@@ -85,7 +82,6 @@ install(FILES
   kleopatra_config_dirserv.desktop
   kleopatra_config_appear.desktop
   kleopatra_config_gnupgsystem.desktop
-  kleopatra_config_groups.desktop
   ${_kcm_kleopatra_libkleopatraclient_extra_install_FILES}
   DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
 )

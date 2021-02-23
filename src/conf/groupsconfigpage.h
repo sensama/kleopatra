@@ -11,17 +11,21 @@
 #ifndef __KLEOPATRA_CONF_GROUPSCONFIGPAGE_H__
 #define __KLEOPATRA_CONF_GROUPSCONFIGPAGE_H__
 
-#include <KCModule>
+#include <QWidget>
 
-class GroupsConfigPage : public KCModule
+class GroupsConfigPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GroupsConfigPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+    explicit GroupsConfigPage(QWidget *parent = nullptr);
     ~GroupsConfigPage() override;
 
-    void load() override;
-    void save() override;
+public Q_SLOTS:
+    void load();
+    void save();
+
+Q_SIGNALS:
+    void changed(bool state);
 
 private:
     class Private;

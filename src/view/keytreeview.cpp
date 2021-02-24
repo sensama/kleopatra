@@ -125,6 +125,13 @@ private:
     QList<QAction *> mColumnActions;
 };
 
+const KeyListModelInterface * keyListModel(const QTreeView &view)
+{
+    const KeyListModelInterface *const klmi = dynamic_cast<KeyListModelInterface *>(view.model());
+    Q_ASSERT(klmi);
+    return klmi;
+}
+
 } // anon namespace
 
 KeyTreeView::KeyTreeView(QWidget *parent)
@@ -356,7 +363,7 @@ void KeyTreeView::restoreExpandState()
         return;
     }
     for (const auto &fpr: qAsConst(m_expandedKeys)) {
-        const KeyListModelInterface *km = dynamic_cast<const KeyListModelInterface*> (m_view->model());
+        const KeyListModelInterface *const km = keyListModel(*m_view);
         if (!km) {
             qCWarning(KLEOPATRA_LOG) << "invalid model";
             return;
@@ -534,26 +541,32 @@ void KeyTreeView::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
     Q_EMIT keyFilterChanged(filter);
 }
 
-static QItemSelection itemSelectionFromKeys(const std::vector<Key> &keys, const KeyListSortFilterProxyModel &proxy)
+namespace
 {
-    QItemSelection result;
-    for (const Key &key : keys) {
-        const QModelIndex mi = proxy.index(key);
-        if (mi.isValid()) {
-            result.merge(QItemSelection(mi, mi), QItemSelectionModel::Select);
-        }
-    }
-    return result;
+QItemSelection itemSelectionFromKeys(const std::vector<Key> &keys, const QTreeView &view)
+{
+    const QModelIndexList indexes = keyListModel(view)->indexes(keys);
+    return std::accumulate(
+        indexes.cbegin(), indexes.cend(),
+        QItemSelection(),
+        [] (QItemSelection &selection, const QModelIndex &index) {
+            if (index.isValid()) {
+                selection.merge(QItemSelection(index, index), QItemSelectionModel::Select);
+            }
+            return selection;
+        });
+}
 }
 
 void KeyTreeView::selectKeys(const std::vector<Key> &keys)
 {
-    m_view->selectionModel()->select(itemSelectionFromKeys(keys, *m_proxy), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    m_view->selectionModel()->select(itemSelectionFromKeys(keys, *m_view),
+                                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 }
 
 std::vector<Key> KeyTreeView::selectedKeys() const
 {
-    return m_proxy->keys(m_view->selectionModel()->selectedRows());
+    return keyListModel(*m_view)->keys(m_view->selectionModel()->selectedRows());
 }
 
 void KeyTreeView::setHierarchicalView(bool on)
@@ -569,8 +582,8 @@ void KeyTreeView::setHierarchicalView(bool on)
         qCWarning(KLEOPATRA_LOG) << "flat view requested, but no flat model set";
         return;
     }
-    const std::vector<Key> selectedKeys = m_proxy->keys(m_view->selectionModel()->selectedRows());
-    const Key currentKey = m_proxy->key(m_view->currentIndex());
+    const std::vector<Key> selectedKeys = this->selectedKeys();
+    const Key currentKey = keyListModel(*m_view)->key(m_view->currentIndex());
 
     m_isHierarchical = on;
     find_last_proxy(m_proxy)->setSourceModel(model());
@@ -579,9 +592,9 @@ void KeyTreeView::setHierarchicalView(bool on)
     }
     selectKeys(selectedKeys);
     if (!currentKey.isNull()) {
-        const QModelIndex currentIndex = m_proxy->index(currentKey);
+        const QModelIndex currentIndex = keyListModel(*m_view)->index(currentKey);
         if (currentIndex.isValid()) {
-            m_view->selectionModel()->setCurrentIndex(m_proxy->index(currentKey), QItemSelectionModel::NoUpdate);
+            m_view->selectionModel()->setCurrentIndex(currentIndex, QItemSelectionModel::NoUpdate);
             m_view->scrollTo(currentIndex);
         }
     }

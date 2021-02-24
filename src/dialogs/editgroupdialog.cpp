@@ -10,6 +10,7 @@
 
 #include "editgroupdialog.h"
 
+#include "commands/detailscommand.h"
 #include "view/keytreeview.h"
 
 #include <Libkleo/KeyListModel>
@@ -146,12 +147,16 @@ public:
                 q, [addButton] (const QItemSelection &selected, const QItemSelection &) {
                     addButton->setEnabled(!selected.isEmpty());
                 });
+        connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked,
+                q, [this] (const QModelIndex &index) { showKeyDetails(index); });
         connect(ui.groupKeysFilter, &QLineEdit::textChanged,
                 ui.groupKeysList, &KeyTreeView::setStringFilter);
         connect(ui.groupKeysList->view()->selectionModel(), &QItemSelectionModel::selectionChanged,
                 q, [removeButton] (const QItemSelection &selected, const QItemSelection &) {
                     removeButton->setEnabled(!selected.isEmpty());
                 });
+        connect(ui.groupKeysList->view(), &QAbstractItemView::doubleClicked,
+                q, [this] (const QModelIndex &index) { showKeyDetails(index); });
         connect(addButton, &QPushButton::clicked, q, [this] () { addKeysToGroup(); });
         connect(removeButton, &QPushButton::clicked, q, [this] () { removeKeysFromGroup(); });
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &EditGroupDialog::accept);
@@ -175,6 +180,7 @@ private:
     {
         KConfigGroup configGroup(KSharedConfig::openConfig(), "EditGroupDialog");
         configGroup.writeEntry("Size", q->size());
+
         KConfigGroup availableKeysConfig = configGroup.group("AvailableKeysView");
         ui.availableKeysList->saveLayout(availableKeysConfig);
 
@@ -197,6 +203,19 @@ private:
         const QSize size = configGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);
+        }
+    }
+
+    void showKeyDetails(const QModelIndex &index)
+    {
+        if (!index.isValid()) {
+            return;
+        }
+        const GpgME::Key key = index.model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
+        if (!key.isNull()) {
+            auto cmd = new DetailsCommand(key, nullptr);
+            cmd->setParentWidget(q);
+            cmd->start();
         }
     }
 

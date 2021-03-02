@@ -88,13 +88,8 @@ protected:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void reload())
-    Q_PRIVATE_SLOT(d, void create())
-    Q_PRIVATE_SLOT(d, void lookup())
-    Q_PRIVATE_SLOT(d, void slotKeysMayHaveChanged())
     Q_PRIVATE_SLOT(d, void slotSelectionChanged())
     Q_PRIVATE_SLOT(d, void slotDoubleClicked(QModelIndex))
-    Q_PRIVATE_SLOT(d, void slotCurrentViewChanged(QAbstractItemView *))
 };
 
 }

@@ -138,37 +138,36 @@ private:
         vlay->addWidget(&ui.tabWidget, 1);
         vlay->addWidget(&ui.buttonBox);
 
-        QPushButton *const ok = ui.buttonBox.addButton(QDialogButtonBox::Ok);
-        ok->setEnabled(false);
-        QPushButton *const cancel = ui.buttonBox.addButton(QDialogButtonBox::Close);
-        Q_UNUSED(cancel)
-        QPushButton *const reload = ui.buttonBox.addButton(i18n("Reload"), QDialogButtonBox::ActionRole);
-        QPushButton *const import = ui.buttonBox.addButton(i18n("Import..."), QDialogButtonBox::ActionRole);
-        QPushButton *const lookup = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
-        QPushButton *const create = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
-        QPushButton *const groups = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
+        QPushButton *const okButton = ui.buttonBox.addButton(QDialogButtonBox::Ok);
+        okButton->setEnabled(false);
+        ui.buttonBox.addButton(QDialogButtonBox::Close);
+        QPushButton *const reloadButton = ui.buttonBox.addButton(i18n("Reload"), QDialogButtonBox::ActionRole);
+        QPushButton *const importButton = ui.buttonBox.addButton(i18n("Import..."), QDialogButtonBox::ActionRole);
+        QPushButton *const lookupButton = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
+        QPushButton *const createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
+        QPushButton *const groupsButton = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
 
-        import->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
-        lookup->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));
-        reload->setToolTip(i18nc("@info:tooltip", "Refresh certificate list"));
-        create->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
-        groups->setToolTip(i18nc("@info:tooltip", "Manage certificate groups"));
+        importButton->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
+        lookupButton->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));
+        reloadButton->setToolTip(i18nc("@info:tooltip", "Refresh certificate list"));
+        createButton->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
+        groupsButton->setToolTip(i18nc("@info:tooltip", "Manage certificate groups"));
 
         connect(&ui.buttonBox, &QDialogButtonBox::accepted, q, &CertificateSelectionDialog::accept);
         connect(&ui.buttonBox, &QDialogButtonBox::rejected, q, &CertificateSelectionDialog::reject);
-        connect(reload,     SIGNAL(clicked()),  q, SLOT(reload()));
-        connect(lookup,     SIGNAL(clicked()),  q, SLOT(lookup()));
-        connect(create,     SIGNAL(clicked()),  q, SLOT(create()));
-        connect(groups, &QPushButton::clicked, q, [this] () { manageGroups(); });
-        connect(KeyCache::instance().get(), SIGNAL(keysMayHaveChanged()),
-                q, SLOT(slotKeysMayHaveChanged()));
+        connect(reloadButton, &QPushButton::clicked, q, [this] () { reload(); });
+        connect(lookupButton, &QPushButton::clicked, q, [this] () { lookup(); });
+        connect(createButton, &QPushButton::clicked, q, [this] () { create(); });
+        connect(groupsButton, &QPushButton::clicked, q, [this] () { manageGroups(); });
+        connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
+                q, [this] () { slotKeysMayHaveChanged(); });
 
-        connect(import, &QPushButton::clicked, q, [import, q] () {
-            import->setEnabled(false);
+        connect(importButton, &QPushButton::clicked, q, [importButton, q] () {
+            importButton->setEnabled(false);
             auto cmd = new Kleo::ImportCertificateFromFileCommand();
             connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished,
-                    q, [import]() {
-                import->setEnabled(true);
+                    q, [importButton]() {
+                importButton->setEnabled(true);
             });
             cmd->setParentWidget(q);
             cmd->start();
@@ -189,8 +188,8 @@ CertificateSelectionDialog::Private::Private(CertificateSelectionDialog *qq)
 #endif
     ui.tabWidget.connectSearchBar(&ui.searchBar);
 
-    connect(&ui.tabWidget, SIGNAL(currentViewChanged(QAbstractItemView*)),
-            q, SLOT(slotCurrentViewChanged(QAbstractItemView*)));
+    connect(&ui.tabWidget, &TabWidget::currentViewChanged,
+            q, [this] (QAbstractItemView *view) { slotCurrentViewChanged(view); });
 
     updateLabelText();
     q->setWindowTitle(i18nc("@title:window", "Certificate Selection"));

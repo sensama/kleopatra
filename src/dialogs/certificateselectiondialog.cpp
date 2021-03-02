@@ -11,6 +11,8 @@
 
 #include "certificateselectiondialog.h"
 
+#include "settings.h"
+
 #include "conf/groupsconfigdialog.h"
 
 #include <view/keytreeview.h>
@@ -146,6 +148,7 @@ private:
         QPushButton *const lookupButton = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
         QPushButton *const createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
         QPushButton *const groupsButton = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
+        groupsButton->setVisible(Settings().groupsEnabled());
 
         importButton->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
         lookupButton->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));

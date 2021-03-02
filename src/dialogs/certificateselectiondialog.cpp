@@ -11,6 +11,8 @@
 
 #include "certificateselectiondialog.h"
 
+#include "conf/groupsconfigdialog.h"
+
 #include <view/keytreeview.h>
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
@@ -29,6 +31,7 @@
 #include <gpgme++/key.h>
 
 #include <KLocalizedString>
+#include <KConfigDialog>
 #include <KConfigGroup>
 #include <KSharedConfig>
 
@@ -81,6 +84,17 @@ private:
         cmd->setParentWidget(q);
         cmd->start();
     }
+    void manageGroups()
+    {
+        KConfigDialog *dialog = KConfigDialog::exists(GroupsConfigDialog::dialogName());
+        if (dialog) {
+            // reparent the dialog to ensure it's shown on top of the modal CertificateSelectionDialog
+            dialog->setParent(q, Qt::Dialog);
+        } else {
+            dialog = new GroupsConfigDialog(q);
+        }
+        dialog->show();
+    }
     void slotKeysMayHaveChanged();
     void slotCurrentViewChanged(QAbstractItemView *newView);
     void slotSelectionChanged();
@@ -132,17 +146,20 @@ private:
         QPushButton *const import = ui.buttonBox.addButton(i18n("Import..."), QDialogButtonBox::ActionRole);
         QPushButton *const lookup = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
         QPushButton *const create = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
+        QPushButton *const groups = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
 
         import->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
         lookup->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));
         reload->setToolTip(i18nc("@info:tooltip", "Refresh certificate list"));
         create->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
+        groups->setToolTip(i18nc("@info:tooltip", "Manage certificate groups"));
 
         connect(&ui.buttonBox, &QDialogButtonBox::accepted, q, &CertificateSelectionDialog::accept);
         connect(&ui.buttonBox, &QDialogButtonBox::rejected, q, &CertificateSelectionDialog::reject);
         connect(reload,     SIGNAL(clicked()),  q, SLOT(reload()));
         connect(lookup,     SIGNAL(clicked()),  q, SLOT(lookup()));
         connect(create,     SIGNAL(clicked()),  q, SLOT(create()));
+        connect(groups, &QPushButton::clicked, q, [this] () { manageGroups(); });
         connect(KeyCache::instance().get(), SIGNAL(keysMayHaveChanged()),
                 q, SLOT(slotKeysMayHaveChanged()));
 

@@ -114,7 +114,7 @@ private:
     }
 
 private:
-    QPointer<QAbstractItemView> lastView;
+    QSet<QAbstractItemView *> connectedViews;
     QString customLabelText;
     Options options;
 
@@ -417,20 +417,13 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
 void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemView *newView)
 {
-    if (lastView) {
-        disconnect(lastView, SIGNAL(doubleClicked(QModelIndex)),
-                   q, SLOT(slotDoubleClicked(QModelIndex)));
-        Q_ASSERT(lastView->selectionModel());
-        disconnect(lastView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                   q, SLOT(slotSelectionChanged()));
-    }
-    lastView = newView;
-    if (newView) {
-        connect(newView, SIGNAL(doubleClicked(QModelIndex)),
-                q, SLOT(slotDoubleClicked(QModelIndex)));
+    if (!connectedViews.contains(newView)) {
+        connectedViews.insert(newView);
+        connect(newView, &QAbstractItemView::doubleClicked,
+                q, [this] (const QModelIndex &index) { slotDoubleClicked(index); });
         Q_ASSERT(newView->selectionModel());
-        connect(newView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                q, SLOT(slotSelectionChanged()));
+        connect(newView->selectionModel(), &QItemSelectionModel::selectionChanged,
+                q, [this] (const QItemSelection &, const QItemSelection &) { slotSelectionChanged(); });
     }
     slotSelectionChanged();
 }

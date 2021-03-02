@@ -357,7 +357,7 @@ private:
     void collapseAll(Page *page);
 
     void enableDisableCurrentPageActions();
-    void enableDisablePageActions(QAction *actions[], const Page *page);
+    void enableDisablePageActions(const std::vector<QAction *> &actions, const Page *page);
 
     Page *currentPage() const
     {
@@ -403,9 +403,9 @@ private:
 
         NumPageActions
     };
-    QAction *newAction;
-    QAction *currentPageActions[NumPageActions];
-    QAction *otherPageActions[NumPageActions];
+    QAction *newAction = nullptr;
+    std::vector<QAction *> currentPageActions;
+    std::vector<QAction *> otherPageActions;
     bool actionsCreated;
 };
 
@@ -441,7 +441,7 @@ void TabWidget::Private::slotContextMenu(const QPoint &p)
     Page *const contextMenuPage = static_cast<Page *>(tabWidget.widget(tabUnderPos));
     const Page *const current = currentPage();
 
-    QAction **const actions = contextMenuPage == current ? currentPageActions : otherPageActions;
+    const std::vector<QAction *> actions = contextMenuPage == current ? currentPageActions : otherPageActions;
 
     enableDisablePageActions(actions, contextMenuPage);
 
@@ -498,7 +498,7 @@ void TabWidget::Private::enableDisableCurrentPageActions()
     enableDisablePageActions(currentPageActions, page);
 }
 
-void TabWidget::Private::enableDisablePageActions(QAction *actions[], const Page *p)
+void TabWidget::Private::enableDisablePageActions(const std::vector<QAction *> &actions, const Page *p)
 {
     actions[Rename]      ->setEnabled(p && p->canBeRenamed());
     actions[Duplicate]   ->setEnabled(p);
@@ -805,18 +805,22 @@ void TabWidget::createActions(KActionCollection *coll)
         },
     };
 
+    d->currentPageActions.reserve(d->NumPageActions);
     for (int i = 0; i < d->NumPageActions; ++i) {
-        d->currentPageActions[i] = make_action_from_data(actionData[i], coll);
+        d->currentPageActions.push_back(make_action_from_data(actionData[i], coll));
     }
 
+    d->otherPageActions.reserve(d->NumPageActions);
     for (int i = 0; i < d->NumPageActions; ++i) {
-        action_data ad = actionData[i];
-        Q_ASSERT(QString::fromLatin1(ad.name).startsWith(QLatin1String("window_")));
-        ad.name = ad.name + strlen("window_");
-        ad.tooltip.clear();
-        ad.receiver = nullptr;
-        ad.shortcut.clear();
-        d->otherPageActions[i] = make_action_from_data(ad, coll);
+        // create actions for the context menu of the currently not active tabs,
+        // but do not add those actions to the action collection
+        const action_data ad = actionData[i];
+        auto *action = new QAction(ad.text, coll);
+        if (ad.icon) {
+            action->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
+        }
+        action->setEnabled(ad.enabled);
+        d->otherPageActions.push_back(action);
     }
 
     d->setCornerAction(d->newAction,                 Qt::TopLeftCorner);

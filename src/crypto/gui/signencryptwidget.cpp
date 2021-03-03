@@ -283,7 +283,11 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
     CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
 
     dlg->setKeyFilter(std::make_shared<EncryptCertificateFilter>(mCurrentProto));
-    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
+    dlg->setOptions(CertificateSelectionDialog::Options(
+        CertificateSelectionDialog::MultiSelection |
+        CertificateSelectionDialog::EncryptOnly |
+        CertificateSelectionDialog::optionsFromProtocol(mCurrentProto) |
+        CertificateSelectionDialog::IncludeGroups));
 
     if (dlg->exec()) {
         const std::vector<Key> keys = dlg->selectedCertificates();

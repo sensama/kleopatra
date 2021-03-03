@@ -39,12 +39,21 @@ public:
     void defaults() override;
 
 private:
+    enum EntryMultiplicity {
+        SingleValue,
+        ListValue
+    };
+    enum ShowError {
+        DoNotShowError,
+        DoShowError
+    };
+
     QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
                                            const char *groupName,
                                            const char *entryName,
                                            QGpgME::CryptoConfigEntry::ArgType argType,
-                                           bool isList,
-                                           bool showError = true);
+                                           EntryMultiplicity multiplicity,
+                                           ShowError showError);
 
     Kleo::DirectoryServicesWidget *mWidget;
     QTimeEdit *mTimeout;

@@ -195,17 +195,17 @@ void DirectoryServicesConfigurationPage::load()
 
     // gpgsm/Configuration/keyserver is not provided by older gpgconf versions;
     if ((mX509ServicesEntry = configEntry(s_x509services_new_componentName, s_x509services_new_groupName, s_x509services_new_entryName,
-                                          QGpgME::CryptoConfigEntry::ArgType_LDAPURL, /*isList=*/true, /*showError=*/false))) {
+                                          QGpgME::CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     } else if ((mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_groupName, s_x509services_entryName,
-                                     QGpgME::CryptoConfigEntry::ArgType_LDAPURL, true))) {
+                                     QGpgME::CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     }
 
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
 
     mOpenPGPServiceEntry = configEntry(s_pgpservice_componentName, s_pgpservice_groupName, s_pgpservice_entryName,
-                                       QGpgME::CryptoConfigEntry::ArgType_String, false);
+                                       QGpgME::CryptoConfigEntry::ArgType_String, SingleValue, DoShowError);
     if (mOpenPGPServiceEntry) {
         mWidget->addOpenPGPServices(string2urls(parseKeyserver(mOpenPGPServiceEntry->stringValue()).url));
     }
@@ -229,14 +229,14 @@ void DirectoryServicesConfigurationPage::load()
         readOnlyProtocols = DirectoryServicesWidget::X509Protocol;
     }
 
-    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, false);
+    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
     if (mTimeoutConfigEntry) {
         QTime time = QTime(0, 0, 0, 0).addSecs(mTimeoutConfigEntry->uintValue());
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
         mTimeout->setTime(time);
     }
 
-    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, false);
+    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName, QGpgME::CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
     if (mMaxItemsConfigEntry) {
         mMaxItems->blockSignals(true);   // KNumInput emits valueChanged from setValue!
         mMaxItems->setValue(mMaxItemsConfigEntry->uintValue());
@@ -247,7 +247,7 @@ void DirectoryServicesConfigurationPage::load()
     mMaxItemsLabel->setEnabled(maxItemsEnabled);
 
 #ifdef NOT_USEFUL_CURRENTLY
-    mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, QGpgME::CryptoConfigEntry::ArgType_None, false);
+    mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, QGpgME::CryptoConfigEntry::ArgType_None, SingleValue, DoShowError);
     if (mAddNewServersConfigEntry) {
         mAddNewServersCB->setChecked(mAddNewServersConfigEntry->boolValue());
     }
@@ -347,19 +347,19 @@ QGpgME::CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const
         const char *groupName,
         const char *entryName,
         QGpgME::CryptoConfigEntry::ArgType argType,
-        bool isList,
-        bool showError)
+        EntryMultiplicity multiplicity,
+        ShowError showError)
 {
     QGpgME::CryptoConfigEntry *entry = mConfig->entry(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
 
     if (!entry) {
-        if (showError) {
+        if (showError == DoShowError) {
             KMessageBox::error(this, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2/%3", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName)));
         }
         return nullptr;
     }
-    if (entry->argType() != argType || entry->isList() != isList) {
-        if (showError) {
+    if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
+        if (showError == DoShowError) {
             KMessageBox::error(this, i18n("Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName), entry->argType(), entry->isList()));
         }
         return nullptr;

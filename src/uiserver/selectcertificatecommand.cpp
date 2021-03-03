@@ -97,15 +97,22 @@ static const struct {
 
 int SelectCertificateCommand::doStart()
 {
-
     d->ensureDialogCreated();
 
     CertificateSelectionDialog::Options opts;
-    for (unsigned int i = 0; i < sizeof option_table / sizeof * option_table; ++i)
+    for (unsigned int i = 0; i < sizeof option_table / sizeof * option_table; ++i) {
         if (hasOption(option_table[i].name)) {
             opts |= option_table[i].option;
         }
-
+    }
+    if (opts & CertificateSelectionDialog::AnyCertificate == 0) {
+        // neither sign-only nor encrypt-only => any usage
+        opts |= CertificateSelectionDialog::AnyCertificate;
+    }
+    if (opts & CertificateSelectionDialog::AnyFormat == 0) {
+        // neither openpgp-only nor x509-only => any protocol
+        opts |= CertificateSelectionDialog::AnyFormat;
+    }
     d->dialog->setOptions(opts);
 
     if (const int err = inquire("SELECTED_CERTIFICATES",

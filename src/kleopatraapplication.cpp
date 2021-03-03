@@ -17,6 +17,8 @@
 #include "mainwindow.h"
 #include "kleopatra_options.h"
 #include "systrayicon.h"
+#include "settings.h"
+
 #include <smartcard/readerstatus.h>
 #include <conf/configuredialog.h>
 
@@ -143,6 +145,7 @@ public:
         watcher->setDelay(1000);
         keyCache->addFileSystemWatcher(watcher);
         keyCache->setGroupsConfig(QStringLiteral("kleopatragroupsrc"));
+        keyCache->setGroupsEnabled(Settings().groupsEnabled());
     }
 
     void setupLogging()

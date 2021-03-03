@@ -101,11 +101,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     QVBoxLayout *lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-    if (Settings().groupsEnabled()) {
-        mModel->useKeyCache(true, KeyList::IncludeGroups);
-    } else {
-        mModel->useKeyCache(true, KeyList::AllKeys);
-    }
+    mModel->useKeyCache(true, KeyList::IncludeGroups);
 
     /* The signature selection */
     QHBoxLayout *sigLay = new QHBoxLayout;
@@ -287,11 +283,7 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
     CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
 
     dlg->setKeyFilter(std::make_shared<EncryptCertificateFilter>(mCurrentProto));
-    if (Settings().groupsEnabled()) {
-        dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
-    } else {
-        dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection);
-    }
+    dlg->setOptions(dlg->options() | CertificateSelectionDialog::MultiSelection | CertificateSelectionDialog::IncludeGroups);
 
     if (dlg->exec()) {
         const std::vector<Key> keys = dlg->selectedCertificates();

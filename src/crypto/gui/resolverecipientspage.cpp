@@ -220,15 +220,6 @@ bool ResolveRecipientsPage::ItemWidget::isSelected() const
     return m_selected;
 }
 
-static CertificateSelectionDialog::Option protocol2option(GpgME::Protocol proto)
-{
-    switch (proto) {
-    case OpenPGP: return CertificateSelectionDialog::OpenPGPFormat;
-    case CMS:     return CertificateSelectionDialog::CMSFormat;
-    default:      return CertificateSelectionDialog::AnyFormat;
-    }
-}
-
 static CertificateSelectionDialog *createCertificateSelectionDialog(QWidget *parent, GpgME::Protocol prot)
 {
     CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(parent);
@@ -236,7 +227,7 @@ static CertificateSelectionDialog *createCertificateSelectionDialog(QWidget *par
         CertificateSelectionDialog::SingleSelection |
         CertificateSelectionDialog::EncryptOnly |
         CertificateSelectionDialog::MultiSelection |
-        protocol2option(prot);
+        CertificateSelectionDialog::optionsFromProtocol(prot);
     dlg->setOptions(options);
     return dlg;
 }

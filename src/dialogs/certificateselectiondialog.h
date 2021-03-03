@@ -14,6 +14,8 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <gpgme++/global.h>
+
 #include <memory>
 #include <vector>
 
@@ -56,6 +58,8 @@ public:
         OptionMask
     };
     Q_DECLARE_FLAGS(Options, Option)
+
+    static Option optionsFromProtocol(GpgME::Protocol proto);
 
     explicit CertificateSelectionDialog(QWidget *parent = nullptr);
     ~CertificateSelectionDialog() override;

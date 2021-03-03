@@ -57,6 +57,16 @@ using namespace Kleo::Dialogs;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
+
+CertificateSelectionDialog::Option CertificateSelectionDialog::optionsFromProtocol(Protocol proto)
+{
+    switch (proto) {
+    case OpenPGP: return CertificateSelectionDialog::OpenPGPFormat;
+    case CMS:     return CertificateSelectionDialog::CMSFormat;
+    default:      return CertificateSelectionDialog::AnyFormat;
+    }
+}
+
 class CertificateSelectionDialog::Private
 {
     friend class ::Kleo::Dialogs::CertificateSelectionDialog;

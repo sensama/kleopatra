@@ -9,7 +9,14 @@
      <label>Enable Groups (Experimental)</label>
      <tooltip>Enable usage of groups of keys.</tooltip>
      <whatsthis>Enable usage of groups of keys. This is an experimental feature.</whatsthis>
-     <default>false</default>
+     <code>
+        #ifdef _WIN32
+            static const bool groups_enabled_default=false;
+        #else
+            static const bool groups_enabled_default=true;
+        #endif
+     </code>
+     <default code="true">groups_enabled_default</default>
    </entry>
  </group>
 </kcfg>

@@ -118,7 +118,7 @@ private:
 private:
     QSet<QAbstractItemView *> connectedViews;
     QString customLabelText;
-    Options options;
+    Options options = AnyCertificate | AnyFormat;
 
     struct UI {
         QLabel label;
@@ -226,6 +226,8 @@ QString CertificateSelectionDialog::customLabelText() const
 
 void CertificateSelectionDialog::setOptions(Options options)
 {
+    Q_ASSERT((options & CertificateSelectionDialog::AnyCertificate) != 0);
+    Q_ASSERT((options & CertificateSelectionDialog::AnyFormat) != 0);
     if (d->options == options) {
         return;
     }

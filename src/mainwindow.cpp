@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 #include "mainwindow.h"
 #include "aboutdata.h"
+#include "settings.h"
 
 #include "view/padwidget.h"
 #include "view/searchbar.h"
@@ -457,6 +458,12 @@ void MainWindow::Private::setupActions()
     };
 
     make_actions_from_data(action_data, /*sizeof action_data / sizeof *action_data,*/ coll);
+
+    if (!Settings().groupsEnabled()) {
+        if (auto *action = coll->action(QStringLiteral("configure_groups"))) {
+            delete action;
+        }
+    }
 
     for ( const QString &name : mainViewActionNames ) {
         if (auto action = coll->action(name)) {

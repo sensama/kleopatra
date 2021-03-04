@@ -117,6 +117,7 @@ static const char s_pgpservice_componentName[] = "dirmngr";
 static const char s_pgpservice_groupName[] = "Keyserver";
 static const char s_pgpservice_entryName[] = "keyserver";
 
+// legacy config entry used until GnuPG 2.2
 static const char s_pgpservice_legacy_componentName[] = "gpg";
 static const char s_pgpservice_legacy_groupName[] = "Keyserver";
 static const char s_pgpservice_legacy_entryName[] = "keyserver";
@@ -126,8 +127,13 @@ static const char s_timeout_groupName[] = "LDAP";
 static const char s_timeout_entryName[] = "ldaptimeout";
 
 static const char s_maxitems_componentName[] = "dirmngr";
-static const char s_maxitems_groupName[] = "LDAP";
+static const char s_maxitems_groupName[] = "Configuration";
 static const char s_maxitems_entryName[] = "max-replies";
+
+// legacy config entry used until GnuPG 2.2
+static const char s_maxitems_legacy_componentName[] = "dirmngr";
+static const char s_maxitems_legacy_groupName[] = "LDAP";
+static const char s_maxitems_legacy_entryName[] = "max-replies";
 
 #ifdef NOT_USEFUL_CURRENTLY
 static const char s_addnewservers_componentName[] = "dirmngr";
@@ -265,10 +271,23 @@ void DirectoryServicesConfigurationPage::load()
         mTimeout->setTime(time);
     }
 
-    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
+    {
+        auto *const newEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName,
+                                           CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
+        auto *const legacyEntry = configEntry(s_maxitems_legacy_componentName, s_maxitems_legacy_groupName, s_maxitems_legacy_entryName,
+                                              CryptoConfigEntry::ArgType_UInt, SingleValue, DoNotShowError);
+        mMaxItemsConfigEntry = newEntry ? newEntry : legacyEntry;
+        if (!mMaxItemsConfigEntry) {
+            qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entry"
+                << s_maxitems_componentName << "/" << s_maxitems_groupName << "/" << s_maxitems_entryName;
+        }
+    }
     if (mMaxItemsConfigEntry) {
+        const int value = mMaxItemsConfigEntry->argType() == CryptoConfigEntry::ArgType_Int ?
+                          mMaxItemsConfigEntry->intValue() :
+                          static_cast<int>(mMaxItemsConfigEntry->uintValue());
         mMaxItems->blockSignals(true);   // KNumInput emits valueChanged from setValue!
-        mMaxItems->setValue(mMaxItemsConfigEntry->uintValue());
+        mMaxItems->setValue(value);
         mMaxItems->blockSignals(false);
     }
     const bool maxItemsEnabled = mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly();

@@ -249,9 +249,18 @@ void DirectoryServicesConfigurationPage::load()
         readOnlyProtocols = DirectoryServicesWidget::X509Protocol;
     }
 
-    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
+    // read LDAP timeout
+    // first try to read the config entry as int (GnuPG 2.3)
+    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
+    if (!mTimeoutConfigEntry) {
+        // if this fails, then try to read the config entry as unsigned int (GnuPG <= 2.2)
+        mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
+    }
     if (mTimeoutConfigEntry) {
-        QTime time = QTime(0, 0, 0, 0).addSecs(mTimeoutConfigEntry->uintValue());
+        const int ldapTimeout = mTimeoutConfigEntry->argType() == CryptoConfigEntry::ArgType_Int ?
+                                mTimeoutConfigEntry->intValue() :
+                                static_cast<int>(mTimeoutConfigEntry->uintValue());
+        const QTime time = QTime(0, 0, 0, 0).addSecs(ldapTimeout);
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
         mTimeout->setTime(time);
     }

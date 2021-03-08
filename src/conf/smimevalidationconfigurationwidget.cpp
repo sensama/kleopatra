@@ -132,35 +132,40 @@ static void initializeDirmngrCheckbox(QCheckBox *cb, CryptoConfigEntry *entry)
 }
 
 struct SMIMECryptoConfigEntries {
+    enum ShowError {
+        DoNotShowError,
+        DoShowError
+    };
+
     SMIMECryptoConfigEntries(CryptoConfig *config)
         : mConfig(config),
           // Checkboxes
-          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None, false)),
-          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None, false)),
-          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None, false)),
-          mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None, false)),
-          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
-          mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None, false)),
-          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
+          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None)),
+          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None)),
+          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None)),
+          mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None)),
+          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)), // legacy entry -> ignore error
+          mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None)),
+          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None)),
           // dirmngr-0.9.0 options
-          mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None, false)),
-          mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None, false)),
-          mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None, false)),
-          mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None, false)),
-          mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None, false)),
-          mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None, false)),
+          mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None)),
+          mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None)),
+          mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None)),
+          mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None)),
+          mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None)),
+          mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None)),
           // Other widgets
-          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String, false)),
-          mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String, false)),
-          mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String, false)),
-          mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String, false))
+          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String)),
+          mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String)),
+          mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String)),
+          mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String))
     {
     }
 
     CryptoConfigEntry *configEntry(const char *componentName,
                                    const char *entryName,
                                    int argType,
-                                   bool isList);
+                                   ShowError showError=DoShowError);
 
     CryptoConfig *const mConfig;
 
@@ -367,15 +372,19 @@ void SMimeValidationConfigurationWidget::save() const
 CryptoConfigEntry *SMIMECryptoConfigEntries::configEntry(const char *componentName,
         const char *entryName,
         int /*CryptoConfigEntry::ArgType*/ argType,
-        bool isList)
+        ShowError showError)
 {
     CryptoConfigEntry *const entry = getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
-        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2").arg(QLatin1String(componentName), QLatin1String(entryName));
+        if (showError == DoShowError) {
+            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2").arg(QLatin1String(componentName), QLatin1String(entryName));
+        }
         return nullptr;
     }
-    if (entry->argType() != argType || entry->isList() != isList) {
-        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4").arg(QLatin1String(componentName), QLatin1String(entryName)).arg(entry->argType()).arg(entry->isList());
+    if (entry->argType() != argType || entry->isList()) {
+        if (showError == DoShowError) {
+            qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4").arg(QLatin1String(componentName), QLatin1String(entryName)).arg(entry->argType()).arg(entry->isList());
+        }
         return nullptr;
     }
     return entry;

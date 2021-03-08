@@ -38,6 +38,11 @@
 #include <QFileDialog>
 #include <KSharedConfig>
 
+#include <gpgme++/gpgmepp_version.h>
+#if GPGMEPP_VERSION >= 0x10F02 // 1.15.2
+# define CRYPTOCONFIG_HAS_GROUPLESS_ENTRY_OVERLOAD
+#endif
+
 KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     : KXmlGuiWindow(parent, Qt::Window), mConfig(nullptr)
 {
@@ -137,29 +142,49 @@ void KWatchGnuPGMainWindow::startWatcher()
             this, SLOT(slotWatcherExited(int,QProcess::ExitStatus)));
 }
 
+namespace
+{
+QGpgME::CryptoConfigEntry *getCryptoConfigEntry(const QGpgME::CryptoConfig *config, const QString &componentName, const char *entryName)
+{
+    // copied from utils/compat.cpp in libkleopatra
+#ifdef CRYPTOCONFIG_HAS_GROUPLESS_ENTRY_OVERLOAD
+    return config->entry(componentName, QString::fromLatin1(entryName));
+#else
+    const CryptoConfigComponent *const comp = config->component(QString::fromLatin1(componentName));
+    const QStringList groupNames = comp->groupList();
+    for (const auto &groupName : groupNames) {
+        const CryptoConfigGroup *const group = comp ? comp->group(groupName) : nullptr;
+        if (CryptoConfigEntry *const entry = group->entry(QString::fromLatin1(entryName))) {
+            return entry;
+        }
+    }
+    return nullptr;
+#endif
+}
+}
+
 void KWatchGnuPGMainWindow::setGnuPGConfig()
 {
     QStringList logclients;
     // Get config object
-    QGpgME::CryptoConfig *cconfig = QGpgME::cryptoConfig();
+    QGpgME::CryptoConfig *const cconfig = QGpgME::cryptoConfig();
     if (!cconfig) {
         return;
     }
-    //Q_ASSERT( cconfig );
     KConfigGroup config(KSharedConfig::openConfig(), "WatchGnuPG");
     const QStringList comps = cconfig->componentList();
     for (QStringList::const_iterator it = comps.constBegin(); it != comps.constEnd(); ++it) {
-        QGpgME::CryptoConfigComponent *comp = cconfig->component(*it);
+        const QGpgME::CryptoConfigComponent *const comp = cconfig->component(*it);
         Q_ASSERT(comp);
-        // Look for log-file entry in Debug group
-        QGpgME::CryptoConfigGroup *group = comp->group(QStringLiteral("Debug"));
-        if (group) {
-            QGpgME::CryptoConfigEntry *entry = group->entry(QStringLiteral("log-file"));
+        {
+            QGpgME::CryptoConfigEntry *const entry = getCryptoConfigEntry(cconfig, comp->name(), "log-file");
             if (entry) {
                 entry->setStringValue(QLatin1String("socket://") + config.readEntry("Socket", WATCHGNUPGSOCKET));
                 logclients << QStringLiteral("%1 (%2)").arg(*it, comp->description());
             }
-            entry = group->entry(QStringLiteral("debug-level"));
+        }
+        {
+            QGpgME::CryptoConfigEntry *const entry = getCryptoConfigEntry(cconfig, comp->name(), "debug-level");
             if (entry) {
                 entry->setStringValue(config.readEntry("LogLevel", "basic"));
             }

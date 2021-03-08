@@ -150,7 +150,8 @@ QGpgME::CryptoConfigEntry *getCryptoConfigEntry(const QGpgME::CryptoConfig *conf
 #ifdef CRYPTOCONFIG_HAS_GROUPLESS_ENTRY_OVERLOAD
     return config->entry(componentName, QString::fromLatin1(entryName));
 #else
-    const CryptoConfigComponent *const comp = config->component(QString::fromLatin1(componentName));
+    using namespace QGpgME;
+    const CryptoConfigComponent *const comp = config->component(componentName);
     const QStringList groupNames = comp->groupList();
     for (const auto &groupName : groupNames) {
         const CryptoConfigGroup *const group = comp ? comp->group(groupName) : nullptr;

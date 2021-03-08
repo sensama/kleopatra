@@ -73,8 +73,7 @@ private:
             } sources[] = {
                 { intervalRefreshCB, SIGNAL(toggled(bool)) },
                 { intervalRefreshSB, SIGNAL(valueChanged(int)) },
-                { CRLRB, SIGNAL(toggled(bool)) },
-                { OCSPRB, SIGNAL(toggled(bool)) },
+                { OCSPCB, SIGNAL(toggled(bool)) },
                 { OCSPResponderURL, SIGNAL(textChanged(QString)) },
                 { OCSPResponderSignature, SIGNAL(selectedCertificatesChanged(QStringList)) },
                 { doNotCheckCertPolicyCB, SIGNAL(toggled(bool)) },
@@ -229,13 +228,9 @@ void SMimeValidationConfigurationWidget::load()
     // Initialize GUI items from the config entries
 
     if (e.mCheckUsingOCSPConfigEntry) {
-        const bool b = e.mCheckUsingOCSPConfigEntry->boolValue();
-        d->ui.OCSPRB->setChecked(b);
-        d->ui.CRLRB->setChecked(!b);
-        d->ui.OCSPGroupBox->setEnabled(b);
-    } else {
-        d->ui.OCSPGroupBox->setEnabled(false);
+        d->ui.OCSPCB->setChecked(e.mCheckUsingOCSPConfigEntry->boolValue());
     }
+    d->ui.OCSPGroupBox->setEnabled(d->ui.OCSPCB->isChecked());
 
     if (e.mDoNotCheckCertPolicyConfigEntry) {
         d->ui.doNotCheckCertPolicyCB->setChecked(e.mDoNotCheckCertPolicyConfigEntry->boolValue());
@@ -320,7 +315,7 @@ void SMimeValidationConfigurationWidget::save() const
     // "configure backend" button.
     const SMIMECryptoConfigEntries e(config);
 
-    const bool b = d->ui.OCSPRB->isChecked();
+    const bool b = d->ui.OCSPCB->isChecked();
     if (e.mCheckUsingOCSPConfigEntry && e.mCheckUsingOCSPConfigEntry->boolValue() != b) {
         e.mCheckUsingOCSPConfigEntry->setBoolValue(b);
     }

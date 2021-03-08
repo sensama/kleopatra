@@ -63,20 +63,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QRadioButton" name="CRLRB" >
-     <property name="whatsThis" >
-      <string>If this option is selected, S/MIME certificates are validated using Certificate Revocation Lists (CRLs).</string>
-     </property>
-     <property name="text" >
-      <string>Validate certificates using CRLs</string>
-     </property>
-     <property name="checked" >
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QRadioButton" name="OCSPRB" >
+    <widget class="QCheckBox" name="OCSPCB" >
      <property name="whatsThis" >
       <string>If this option is selected, S/MIME certificates are validated online using the Online Certificates Status Protocol (OCSP). Fill in the URL of the OCSP responder below.</string>
      </property>
@@ -330,10 +317,10 @@ The syntax is "HOST" or "HOST:PORT". If PORT is omitted, port 389 (standard LDAP
  <resources/>
  <connections>
   <connection>
-   <sender>CRLRB</sender>
+   <sender>OCSPCB</sender>
    <signal>toggled(bool)</signal>
    <receiver>OCSPGroupBox</receiver>
-   <slot>setDisabled(bool)</slot>
+   <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>

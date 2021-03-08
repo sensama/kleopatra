@@ -1740,9 +1740,7 @@ void AdvancedSettingsDialog::loadDefaultGnuPGKeyType()
         qCWarning(KLEOPATRA_LOG) << "Failed to obtain cryptoConfig.";
         return;
     }
-    const auto entry = conf->entry(protocol == CMS ? QStringLiteral("gpgsm") : QStringLiteral("gpg"),
-                                   QStringLiteral("Configuration"),
-                                   QStringLiteral("default_pubkey_algo"));
+    const auto entry = getCryptoConfigEntry(conf, protocol == CMS ? "gpgsm" : "gpg", "default_pubkey_algo");
     if (!entry) {
         qCDebug(KLEOPATRA_LOG) << "GnuPG does not have default key type. Fallback to RSA";
         setKeyType(Subkey::AlgoRSA);

@@ -15,6 +15,7 @@
 
 #include "detailscommand.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 
 #include <dialogs/lookupcertificatesdialog.h>
@@ -376,9 +377,9 @@ static bool haveX509DirectoryServerConfigured()
     if (!config) {
         return false;
     }
-    const QGpgME::CryptoConfigEntry *entry = config->entry(QStringLiteral("dirmngr"), QStringLiteral("LDAP"), QStringLiteral("LDAP Server"));
+    const QGpgME::CryptoConfigEntry *entry = getCryptoConfigEntry(config, "dirmngr", "LDAP Server");
     bool entriesExist = entry && !entry->urlValueList().empty();
-    entry = config->entry(QStringLiteral("gpgsm"), QStringLiteral("Configuration"), QStringLiteral("keyserver"));
+    entry = getCryptoConfigEntry(config, "gpgsm", "keyserver");
     entriesExist |= entry && !entry->urlValueList().empty();
     return entriesExist;
 }

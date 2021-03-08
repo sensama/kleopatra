@@ -32,6 +32,7 @@
 #include "utils/keyparameters.h"
 #include "utils/userinfo.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Dn>
@@ -757,9 +758,7 @@ public:
             qCWarning(KLEOPATRA_LOG) << "Failed to obtain cryptoConfig.";
             return;
         }
-        const auto entry = conf->entry(QStringLiteral("gpg-agent"),
-                                   QStringLiteral("Passphrase policy"),
-                                   QStringLiteral("enforce-passphrase-constraints"));
+        const auto entry = getCryptoConfigEntry(conf, "gpg-agent", "enforce-passphrase-constraints");
         if (entry && entry->boolValue()) {
             qCDebug(KLEOPATRA_LOG) << "Disabling passphrace cb because of agent config.";
             ui.withPassCB->setEnabled(false);

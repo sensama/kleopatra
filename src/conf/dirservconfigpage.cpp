@@ -10,6 +10,10 @@
 #include <config-kleopatra.h>
 
 #include "dirservconfigpage.h"
+
+#include "compat.h"
+
+#include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
 #include <Libkleo/CryptoConfigModule>
 
@@ -105,39 +109,27 @@ private:
 
 #endif
 
-static const char s_x509services_componentName[] = "dirmngr";
-static const char s_x509services_groupName[] = "LDAP";
-static const char s_x509services_entryName[] = "LDAP Server";
+static const char s_x509services_componentName[] = "gpgsm";
+static const char s_x509services_entryName[] = "keyserver";
 
-static const char s_x509services_new_componentName[] = "gpgsm";
-static const char s_x509services_new_groupName[] = "Configuration";
-static const char s_x509services_new_entryName[] = "keyserver";
+static const char s_x509services_legacy_componentName[] = "dirmngr";
+static const char s_x509services_legacy_entryName[] = "LDAP Server";
 
 static const char s_pgpservice_componentName[] = "dirmngr";
-static const char s_pgpservice_groupName[] = "Keyserver";
 static const char s_pgpservice_entryName[] = "keyserver";
 
 // legacy config entry used until GnuPG 2.2
 static const char s_pgpservice_legacy_componentName[] = "gpg";
-static const char s_pgpservice_legacy_groupName[] = "Keyserver";
 static const char s_pgpservice_legacy_entryName[] = "keyserver";
 
 static const char s_timeout_componentName[] = "dirmngr";
-static const char s_timeout_groupName[] = "LDAP";
 static const char s_timeout_entryName[] = "ldaptimeout";
 
 static const char s_maxitems_componentName[] = "dirmngr";
-static const char s_maxitems_groupName[] = "Configuration";
 static const char s_maxitems_entryName[] = "max-replies";
-
-// legacy config entry used until GnuPG 2.2
-static const char s_maxitems_legacy_componentName[] = "dirmngr";
-static const char s_maxitems_legacy_groupName[] = "LDAP";
-static const char s_maxitems_legacy_entryName[] = "max-replies";
 
 #ifdef NOT_USEFUL_CURRENTLY
 static const char s_addnewservers_componentName[] = "dirmngr";
-static const char s_addnewservers_groupName[] = "LDAP";
 static const char s_addnewservers_entryName[] = "add-servers";
 #endif
 
@@ -201,24 +193,22 @@ static QList<QUrl> string2urls(const QString &str)
 
 void DirectoryServicesConfigurationPage::load()
 {
-
     mWidget->clear();
 
-    // gpgsm/Configuration/keyserver is not provided by older gpgconf versions;
-    if ((mX509ServicesEntry = configEntry(s_x509services_new_componentName, s_x509services_new_groupName, s_x509services_new_entryName,
+    // gpgsm's keyserver option is not provided by very old gpgconf versions
+    if ((mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
                                           CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
-    } else if ((mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_groupName, s_x509services_entryName,
-                                     CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError))) {
+    } else if ((mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
+                                                 CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError))) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     }
-
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
 
     {
-        auto *const newEntry = configEntry(s_pgpservice_componentName, s_pgpservice_groupName, s_pgpservice_entryName,
+        auto *const newEntry = configEntry(s_pgpservice_componentName, s_pgpservice_entryName,
                                            CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
-        auto *const legacyEntry = configEntry(s_pgpservice_legacy_componentName, s_pgpservice_legacy_groupName, s_pgpservice_legacy_entryName,
+        auto *const legacyEntry = configEntry(s_pgpservice_legacy_componentName, s_pgpservice_legacy_entryName,
                                               CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
         mOpenPGPServiceEntry = newEntry ? newEntry : legacyEntry;
 
@@ -226,13 +216,13 @@ void DirectoryServicesConfigurationPage::load()
         if (newEntry && legacyEntry && !newEntry->isSet() && legacyEntry->isSet()) {
             // use value of legacy entry if value of new entry is unset
             qCDebug(KLEOPATRA_LOG) << "Using value of legacy entry for config entry"
-                << s_pgpservice_componentName << "/" << s_pgpservice_groupName << "/" << s_pgpservice_entryName;
+                << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
             stringValue = legacyEntry->stringValue();
         } else if (mOpenPGPServiceEntry) {
             stringValue = mOpenPGPServiceEntry->stringValue();
         } else {
             qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entry"
-                << s_pgpservice_componentName << "/" << s_pgpservice_groupName << "/" << s_pgpservice_entryName;
+                << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
         mWidget->addOpenPGPServices(string2urls(parseKeyserver(stringValue).url));
         mWidget->setOpenPGPReadOnly(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isReadOnly());
@@ -257,10 +247,10 @@ void DirectoryServicesConfigurationPage::load()
 
     // read LDAP timeout
     // first try to read the config entry as int (GnuPG 2.3)
-    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
+    mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_entryName, CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
     if (!mTimeoutConfigEntry) {
         // if this fails, then try to read the config entry as unsigned int (GnuPG <= 2.2)
-        mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_groupName, s_timeout_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
+        mTimeoutConfigEntry = configEntry(s_timeout_componentName, s_timeout_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
     }
     if (mTimeoutConfigEntry) {
         const int ldapTimeout = mTimeoutConfigEntry->argType() == CryptoConfigEntry::ArgType_Int ?
@@ -271,16 +261,12 @@ void DirectoryServicesConfigurationPage::load()
         mTimeout->setTime(time);
     }
 
-    {
-        auto *const newEntry = configEntry(s_maxitems_componentName, s_maxitems_groupName, s_maxitems_entryName,
-                                           CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
-        auto *const legacyEntry = configEntry(s_maxitems_legacy_componentName, s_maxitems_legacy_groupName, s_maxitems_legacy_entryName,
-                                              CryptoConfigEntry::ArgType_UInt, SingleValue, DoNotShowError);
-        mMaxItemsConfigEntry = newEntry ? newEntry : legacyEntry;
-        if (!mMaxItemsConfigEntry) {
-            qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entry"
-                << s_maxitems_componentName << "/" << s_maxitems_groupName << "/" << s_maxitems_entryName;
-        }
+    // read max-replies config entry
+    // first try to read the config entry as int (GnuPG 2.3)
+    mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_entryName, CryptoConfigEntry::ArgType_Int, SingleValue, DoNotShowError);
+    if (!mMaxItemsConfigEntry) {
+        // if this fails, then try to read the config entry as unsigned int (GnuPG <= 2.2)
+        mMaxItemsConfigEntry = configEntry(s_maxitems_componentName, s_maxitems_entryName, CryptoConfigEntry::ArgType_UInt, SingleValue, DoShowError);
     }
     if (mMaxItemsConfigEntry) {
         const int value = mMaxItemsConfigEntry->argType() == CryptoConfigEntry::ArgType_Int ?
@@ -392,26 +378,23 @@ extern "C"
 
 // Find config entry for ldap servers. Implements runtime checks on the configuration option.
 CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *componentName,
-        const char *groupName,
         const char *entryName,
         CryptoConfigEntry::ArgType argType,
         EntryMultiplicity multiplicity,
         ShowError showError)
 {
-    CryptoConfigEntry *entry = mConfig->entry(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
-
+    CryptoConfigEntry *const entry = Kleo::getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
         if (showError == DoShowError) {
-            KMessageBox::error(this, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2/%3", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName)));
+            KMessageBox::error(this, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
         if (showError == DoShowError) {
-            KMessageBox::error(this, i18n("Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5", QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName), entry->argType(), entry->isList()));
+            KMessageBox::error(this, i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4", QLatin1String(componentName), QLatin1String(entryName), entry->argType(), entry->isList()));
         }
         return nullptr;
     }
     return entry;
 }
-

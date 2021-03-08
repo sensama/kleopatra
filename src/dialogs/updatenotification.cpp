@@ -8,6 +8,7 @@
 */
 #include "updatenotification.h"
 
+#include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 
 #include "kleopatra_debug.h"
@@ -44,9 +45,7 @@ namespace
 static void gpgconf_set_update_check(bool value)
 {
     auto conf = QGpgME::cryptoConfig();
-    auto entry = conf->entry(QStringLiteral("dirmngr"),
-                             QStringLiteral("Enforcement"),
-                             QStringLiteral("allow-version-check"));
+    auto entry = getCryptoConfigEntry(conf, "dirmngr", "allow-version-check");
     if (!entry) {
         qCDebug(KLEOPATRA_LOG) << "allow-version-check entry not found";
         return;

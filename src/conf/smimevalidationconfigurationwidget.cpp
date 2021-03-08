@@ -15,6 +15,8 @@
 
 #include "smimevalidationpreferences.h"
 
+#include <Libkleo/Compat>
+
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
@@ -133,31 +135,29 @@ struct SMIMECryptoConfigEntries {
     SMIMECryptoConfigEntries(CryptoConfig *config)
         : mConfig(config),
           // Checkboxes
-          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "Security", "enable-ocsp", CryptoConfigEntry::ArgType_None, false)),
-          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "OCSP", "allow-ocsp", CryptoConfigEntry::ArgType_None, false)),
-          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "Security", "disable-policy-checks", CryptoConfigEntry::ArgType_None, false)),
-          mNeverConsultConfigEntry(configEntry("gpgsm", "Security", "disable-crl-checks", CryptoConfigEntry::ArgType_None, false)),
-          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "Security", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
-          mFetchMissingConfigEntry(configEntry("gpgsm", "Security", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None, false)),
-          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "Security", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
+          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None, false)),
+          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None, false)),
+          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None, false)),
+          mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None, false)),
+          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
+          mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None, false)),
+          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None, false)),
           // dirmngr-0.9.0 options
-          mIgnoreServiceURLEntry(configEntry("dirmngr", "OCSP", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None, false)),
-          mIgnoreHTTPDPEntry(configEntry("dirmngr", "HTTP", "ignore-http-dp", CryptoConfigEntry::ArgType_None, false)),
-          mDisableHTTPEntry(configEntry("dirmngr", "HTTP", "disable-http", CryptoConfigEntry::ArgType_None, false)),
-          mHonorHTTPProxy(configEntry("dirmngr", "HTTP", "honor-http-proxy", CryptoConfigEntry::ArgType_None, false)),
-          mIgnoreLDAPDPEntry(configEntry("dirmngr", "LDAP", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None, false)),
-          mDisableLDAPEntry(configEntry("dirmngr", "LDAP", "disable-ldap", CryptoConfigEntry::ArgType_None, false)),
+          mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None, false)),
+          mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None, false)),
+          mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None, false)),
+          mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None, false)),
+          mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None, false)),
+          mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None, false)),
           // Other widgets
-          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "OCSP", "ocsp-responder", CryptoConfigEntry::ArgType_String, false)),
-          mOCSPResponderSignature(configEntry("dirmngr", "OCSP", "ocsp-signer", CryptoConfigEntry::ArgType_String, false)),
-          mCustomHTTPProxy(configEntry("dirmngr", "HTTP", "http-proxy", CryptoConfigEntry::ArgType_String, false)),
-          mCustomLDAPProxy(configEntry("dirmngr", "LDAP", "ldap-proxy", CryptoConfigEntry::ArgType_String, false))
+          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String, false)),
+          mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String, false)),
+          mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String, false)),
+          mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String, false))
     {
-
     }
 
     CryptoConfigEntry *configEntry(const char *componentName,
-                                   const char *groupName,
                                    const char *entryName,
                                    int argType,
                                    bool isList);
@@ -365,18 +365,17 @@ void SMimeValidationConfigurationWidget::save() const
 }
 
 CryptoConfigEntry *SMIMECryptoConfigEntries::configEntry(const char *componentName,
-        const char *groupName,
         const char *entryName,
         int /*CryptoConfigEntry::ArgType*/ argType,
         bool isList)
 {
-    CryptoConfigEntry *const entry = mConfig->entry(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
+    CryptoConfigEntry *const entry = getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
-        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2/%3").arg(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName));
+        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2").arg(QLatin1String(componentName), QLatin1String(entryName));
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != isList) {
-        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5").arg(QLatin1String(componentName), QLatin1String(groupName), QLatin1String(entryName)).arg(entry->argType()).arg(entry->isList());
+        qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4").arg(QLatin1String(componentName), QLatin1String(entryName)).arg(entry->argType()).arg(entry->isList());
         return nullptr;
     }
     return entry;

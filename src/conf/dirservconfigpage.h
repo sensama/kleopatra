@@ -49,7 +49,6 @@ private:
     };
 
     QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
-                                           const char *groupName,
                                            const char *entryName,
                                            QGpgME::CryptoConfigEntry::ArgType argType,
                                            EntryMultiplicity multiplicity,

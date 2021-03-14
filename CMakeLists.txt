@@ -6,14 +6,14 @@ project(kleopatra VERSION ${kleopatra_version})
 
 # The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version
 if (NOT RELEASE_SERVICE_VERSION)
-    set (RELEASE_SERVICE_VERSION "21.03.80")
+    set (RELEASE_SERVICE_VERSION "21.07.40")
 endif()
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.79.0")
+set(KF5_MIN_VERSION "5.80.0")
 set(KMIME_VERSION "5.16.40")
 set(LIBKLEO_VERSION "5.16.53")
 set(QT_REQUIRED_VERSION "5.14.0")
@@ -139,7 +139,7 @@ include_directories(
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055000)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

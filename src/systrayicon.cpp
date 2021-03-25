@@ -140,7 +140,7 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
       aboutDialog()
 {
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));
-    q->setAttentionIcon(QIcon::fromTheme(QStringLiteral("secure-card")));
+    q->setAttentionIcon(QIcon::fromTheme(QStringLiteral("auth-sim-locked")));
 
     KDAB_SET_OBJECT_NAME(menu);
     KDAB_SET_OBJECT_NAME(openCertificateManagerAction);

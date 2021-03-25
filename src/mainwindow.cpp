@@ -451,7 +451,7 @@ void MainWindow::Private::setupActions()
         },
         {
             "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
-            i18n("Show smartcard management"), "secure-card", q, SLOT(showSmartcardView()), QString(), false, true
+            i18n("Show smartcard management"), "auth-sim-locked", q, SLOT(showSmartcardView()), QString(), false, true
         }
 
         // most have been MOVED TO keylistcontroller.cpp

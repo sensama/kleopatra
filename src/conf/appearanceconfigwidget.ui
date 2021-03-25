@@ -12,84 +12,6 @@
   <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
     <widget class="QTabWidget" name="tabWidget" >
-     <widget class="QWidget" name="tab_tags" >
-      <attribute name="title" >
-       <string>Tags</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_tags" >
-       <item>
-        <widget class="QCheckBox" name="useTagsCheckBox" >
-         <property name="text" >
-          <string>Use tags</string>
-         </property>
-         <property name="toolTip" >
-          <string>Enable display and usage of tags attached to keys.</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab" >
-      <attribute name="title" >
-       <string>Tooltips</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout" >
-       <item>
-        <widget class="QLabel" name="label" >
-         <property name="text" >
-          <string>Show the following information in certificate list tooltips:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="tooltipValidityCheckBox" >
-         <property name="text" >
-          <string>Show validity</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="tooltipOwnerCheckBox" >
-         <property name="text" >
-          <string>Show owner information</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="tooltipDetailsCheckBox" >
-         <property name="text" >
-          <string>Show technical details</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="tab_2" >
       <attribute name="title" >
        <string>Certificate Categories</string>
@@ -197,6 +119,84 @@
           </widget>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Tooltips</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout" >
+       <item>
+        <widget class="QLabel" name="label" >
+         <property name="text" >
+          <string>Show the following information in certificate list tooltips:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="tooltipValidityCheckBox" >
+         <property name="text" >
+          <string>Show validity</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="tooltipOwnerCheckBox" >
+         <property name="text" >
+          <string>Show owner information</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="tooltipDetailsCheckBox" >
+         <property name="text" >
+          <string>Show technical details</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_tags" >
+      <attribute name="title" >
+       <string>Tags</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_tags" >
+       <item>
+        <widget class="QCheckBox" name="useTagsCheckBox" >
+         <property name="text" >
+          <string>Use tags</string>
+         </property>
+         <property name="toolTip" >
+          <string>Enable display and usage of tags attached to keys.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

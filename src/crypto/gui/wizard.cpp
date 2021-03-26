@@ -14,6 +14,8 @@
 
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Algorithm>
+
 #include <KGuiItem>
 #include <KLocalizedString>
 #include <QPushButton>
@@ -260,7 +262,7 @@ void Wizard::next()
         current->onNext();
     }
     onNext(d->currentId);
-    std::vector<int>::const_iterator it = qBinaryFind(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);
+    std::vector<int>::const_iterator it = Kleo::binary_find(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);
     Q_ASSERT(it != d->pageOrder.end());
 
     do {
@@ -281,7 +283,7 @@ int Wizard::Private::previousPage() const
         return InvalidPage;
     }
 
-    std::vector<int>::const_iterator it = qBinaryFind(pageOrder.begin(), pageOrder.end(), currentId);
+    std::vector<int>::const_iterator it = Kleo::binary_find(pageOrder.begin(), pageOrder.end(), currentId);
     if (it == pageOrder.begin() || it == pageOrder.end()) {
         return InvalidPage;
     }

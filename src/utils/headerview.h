@@ -29,7 +29,6 @@ public:
     void setSectionSizes(const std::vector<int> &sizes);
     std::vector<int> sectionSizes() const;
 
-    void setSectionResizeMode(unsigned int logicalIndex, ResizeMode mode);
 private:
     //@{
     /*! Defined, but not implemented, to catch at least some usage errors */

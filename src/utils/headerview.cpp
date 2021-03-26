@@ -64,7 +64,6 @@ public:
     Private(HeaderView *qq)
         : q(qq),
           mousePressed(false),
-          modes(),
           sizes()
     {
         connect(q, SIGNAL(sectionCountChanged(int,int)), q, SLOT(_klhv_slotSectionCountChanged(int,int)));
@@ -81,9 +80,6 @@ public:
             return;
         }
         ensureNumSections(newCount);
-        for (unsigned int i = 0, end = std::min<unsigned int>(newCount, modes.size()); i < end; ++i) {
-            q->QHeaderView::setSectionResizeMode(i, modes[i]);
-        }
         apply_section_sizes(q, sizes);
     }
 
@@ -96,16 +92,12 @@ public:
 
     void ensureNumSections(unsigned int num)
     {
-        if (num > modes.size()) {
-            modes.resize(num, QHeaderView::Interactive);
-        }
         if (num > sizes.size()) {
             sizes.resize(num, q->defaultSectionSize());
         }
     }
 
     bool mousePressed : 1;
-    std::vector<QHeaderView::ResizeMode> modes;
     std::vector<int> sizes;
 };
 
@@ -172,15 +164,6 @@ void HeaderView::setSectionSizes(const std::vector<int> &sizes)
 std::vector<int> HeaderView::sectionSizes() const
 {
     return section_sizes(this);
-}
-
-void HeaderView::setSectionResizeMode(unsigned int section, ResizeMode mode)
-{
-    d->ensureNumSections(section + 1);
-    d->modes[section] = mode;
-    if (section < static_cast<unsigned int>(count())) {
-        QHeaderView::setSectionResizeMode(section, mode);
-    }
 }
 
 #if 0

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_ENCRYPTCLIPBOARDCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_ENCRYPTCLIPBOARDCOMMAND_H__
+#pragma once
 
 #include <commands/command.h>
 
@@ -49,4 +48,3 @@ private:
 
 #endif // QT_NO_CLIPBOARD
 
-#endif // __KLEOPATRA_COMMMANDS_ENCRYPTCLIPBOARDCOMMAND_H__

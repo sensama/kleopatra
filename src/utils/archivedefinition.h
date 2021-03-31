@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_ARCHIVEDEFINITION_H__
-#define __KLEOPATRA_UTILS_ARCHIVEDEFINITION_H__
+#pragma once
 
 #include <QString>
 #include <QStringList>
@@ -107,5 +106,4 @@ private:
 
 Q_DECLARE_METATYPE(std::shared_ptr<Kleo::ArchiveDefinition>)
 
-#endif /* __KLEOPATRA_UTILS_ARCHIVEDEFINITION_H__ */
 

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_IMPORTCERTIFICATEFROMDATACOMMAND_H__
-#define __KLEOPATRA_IMPORTCERTIFICATEFROMDATACOMMAND_H__
+#pragma once
 
 #include "importcertificatescommand.h"
 
@@ -37,5 +36,4 @@ private:
 };
 }
 
-#endif // __KLEOPATRA_IMPORTCERTIFICATEFROMDATACOMMAND_H__
 

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef DIRSERVCONFIGPAGE_H
-#define DIRSERVCONFIGPAGE_H
+#pragma once
 
 #include <KCModule>
 
@@ -69,4 +68,3 @@ private:
     QGpgME::CryptoConfig *mConfig;
 };
 
-#endif

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_SELFTEST_ENGINECHECK_H__
-#define __KLEOPATRA_SELFTEST_ENGINECHECK_H__
+#pragma once
 
 #include <selftest/selftest.h>
 
@@ -25,4 +24,3 @@ std::shared_ptr<SelfTest> makeGpgConfEngineCheckSelfTest();
 
 }
 
-#endif /* __KLEOPATRA_SELFTEST_ENGINECHECK_H__ */

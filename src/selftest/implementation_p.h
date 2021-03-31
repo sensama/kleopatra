@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_SELFTEST_IMPLEMENTATION_P_H__
-#define __KLEOPATRA_SELFTEST_IMPLEMENTATION_P_H__
+#pragma once
 
 #include <selftest/selftest.h>
 
@@ -68,4 +67,3 @@ protected:
 }
 }
 
-#endif /* __KLEOPATRA_SELFTEST_IMPLEMENTATION_P_H__ */

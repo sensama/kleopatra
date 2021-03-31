@@ -7,8 +7,7 @@
 **
 **********************************************************************/
 
-#ifndef __KDTOOLS_KDTOOLSGLOBAL_H__
-#define __KDTOOLS_KDTOOLSGLOBAL_H__
+#pragma once
 
 #include <qglobal.h>
 
@@ -57,5 +56,4 @@ inline T &__kdtools__dereference_for_methodcall(T *o)
 #define KDAB_SYNCHRONIZED( mutex ) if ( bool __counter_##__LINE__ = false ) {} else \
         for ( QMutexLocker __locker_##__LINE__( &__kdtools__dereference_for_methodcall( mutex ) ) ; !__counter_##__LINE__ ; __counter_##__LINE__ = true )
 
-#endif /* __KDTOOLS_KDTOOLSGLOBAL_H__ */
 

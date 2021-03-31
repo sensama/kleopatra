@@ -1,5 +1,4 @@
-#ifndef VIEW_WELCOMEWIDGET_H
-#define VIEW_WELCOMEWIDGET_H
+#pragma once
 /*  view/welcomewidget.h
 
     This file is part of Kleopatra, the KDE keymanager
@@ -27,4 +26,3 @@ private:
 };
 } // namespace Kleo
 
-#endif // VIEW_WELCOMEWIDGET_H

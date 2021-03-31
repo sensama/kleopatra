@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
-#define __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__
+#pragma once
 
 #include <commands/cardcommand.h>
 
@@ -48,4 +47,3 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_COMMANDS_SETINITIALPINCOMMAND_H__ */

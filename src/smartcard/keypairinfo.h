@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef SMARTCARD_KEYPAIRINFO_H
-#define SMARTCARD_KEYPAIRINFO_H
+#pragma once
 
 #include <string>
 
@@ -34,4 +33,3 @@ struct KeyPairInfo {
 } // namespace Smartcard
 } // namespace Kleopatra
 
-#endif // SMARTCARD_PIVCARD_H

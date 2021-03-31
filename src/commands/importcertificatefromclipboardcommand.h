@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
-#define __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
+#pragma once
 
 #include "importcertificatescommand.h"
 
@@ -39,5 +38,4 @@ private:
 
 #endif // QT_NO_CLIPBOARD
 
-#endif // __KLEOPATRA_IMPORTCERTIFICATEFROMCLIPBOARDCOMMAND_H__
 

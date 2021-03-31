@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_KLEO_ASSERT_H__
-#define __KLEOPATRA_UTILS_KLEO_ASSERT_H__
+#pragma once
 
 #include <Libkleo/KleoException>
 
@@ -71,4 +70,3 @@
 # define notImplemented() kleo_assert( !"Sorry, not yet implemented" )
 #endif
 
-#endif /* __KLEOPATRA_UTILS_KLEO_ASSERT_H__ */

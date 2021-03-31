@@ -7,8 +7,7 @@
 **
 **********************************************************************/
 
-#ifndef __KDABTOOLS__CPP__CHECKER_H__
-#define __KDABTOOLS__CPP__CHECKER_H__
+#pragma once
 
 #include "kdtoolsglobal.h"
 
@@ -120,5 +119,4 @@ public:
 #define KDAB_CHECK_CTOR __KDAB_CHECK_HELPER__( false, true )
 #define KDAB_CHECK_DTOR __KDAB_CHECK_HELPER__( true, false )
 
-#endif /* __KDABTOOLS__CPP__CHECKER_H__ */
 

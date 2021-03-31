@@ -7,8 +7,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef __LIBKLEOPATRACLIENT_CORE_DECRYPTVERIFYFILESCOMMAND_H__
-#define __LIBKLEOPATRACLIENT_CORE_DECRYPTVERIFYFILESCOMMAND_H__
+#pragma once
 
 #include <libkleopatraclient/core/command.h>
 
@@ -32,4 +31,3 @@ public:
 
 }
 
-#endif /* __LIBKLEOPATRACLIENT_CORE_DECRYPTVERIFYFILESCOMMAND_H__ */

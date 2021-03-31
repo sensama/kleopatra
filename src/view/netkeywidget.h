@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef VIEW_NETKEYWIDGET_H
-#define VIEW_NETKEYWIDGET_H
+#pragma once
 
 #include <QWidget>
 #include <gpgme++/error.h>
@@ -58,4 +57,3 @@ private:
 };
 } // namespace Kleo
 
-#endif // VIEW_NETKEYWIDGET_H

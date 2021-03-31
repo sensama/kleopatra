@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef CRLVIEW_H
-#define CRLVIEW_H
+#pragma once
 
 #include <QDialog>
 #include <QString>
@@ -46,4 +45,3 @@ private:
     QString      _buffer;
 };
 
-#endif // CRLVIEW_H

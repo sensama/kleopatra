@@ -3,8 +3,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEO_WAITWIDGET_H
-#define KLEO_WAITWIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -28,4 +27,3 @@ private:
 };
 
 } // namespace Kleo
-#endif

@@ -5,8 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEO_TEST_H
-#define KLEO_TEST_H
+#pragma once
 
 #include <QTest>
 #include <KAboutData>
@@ -30,4 +29,3 @@
         return QTest::qExec( &tc, argc, argv ); \
     }
 
-#endif

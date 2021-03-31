@@ -12,8 +12,7 @@
     SPDX-License-Identifier: GPL-2.0-only
 */
 
-#ifndef __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
-#define __KLEOPATRA_CONF_CONFIGUREDIALOG_H__
+#pragma once
 
 #include <config-kleopatra.h>
 
@@ -41,4 +40,3 @@ protected:
 
 };
 
-#endif /* __KLEOPATRA_CONF_CONFIGUREDIALOG_H__ */

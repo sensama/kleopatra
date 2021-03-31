@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_SMARTCARD_DEVICEINFOWATCHER_H__
-#define __KLEOPATRA_SMARTCARD_DEVICEINFOWATCHER_H__
+#pragma once
 
 #include <QObject>
 
@@ -38,4 +37,3 @@ private:
 
 }
 
-#endif // __KLEOPATRA_SMARTCARD_DEVICEINFOWATCHER_H__

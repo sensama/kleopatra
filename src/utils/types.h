@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_TYPES_H__
-#define __KLEOPATRA_UTILS_TYPES_H__
+#pragma once
 
 #include <utils/pimpl_ptr.h>
 
@@ -65,4 +64,3 @@ private:
 
 }
 
-#endif // __KLEOPATRA_UTILS_TYPES_H__

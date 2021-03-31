@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_REVOKECERTIFICATIONCOMMAND_H__
-#define __KLEOPATRA_COMMANDS_REVOKECERTIFICATIONCOMMAND_H__
+#pragma once
 
 #include <commands/command.h>
 
@@ -52,4 +51,3 @@ private:
 } // namespace Commands
 } // namespace Kleo
 
-#endif // __KLEOPATRA_COMMANDS_REVOKECERTIFICATIONCOMMAND_H__

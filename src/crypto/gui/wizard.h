@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_WIZARD_H__
-#define __KLEOPATRA_CRYPTO_GUI_WIZARD_H__
+#pragma once
 
 #include <utils/pimpl_ptr.h>
 
@@ -76,5 +75,4 @@ private:
 }
 }
 
-#endif // __KLEOPATRA_WIZARD_H__ 
 

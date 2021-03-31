@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_SELFTEST_SELFTEST_H__
-#define __KLEOPATRA_SELFTEST_SELFTEST_H__
+#pragma once
 
 class QString;
 
@@ -38,4 +37,3 @@ public:
 
 }
 
-#endif /* __KLEOPATRA_SELFTEST_SELFTEST_H__ */

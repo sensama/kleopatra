@@ -10,8 +10,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRAAPPLICATION_H__
-#define __KLEOPATRAAPPLICATION_H__
+#pragma once
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -101,4 +100,3 @@ private:
     kdtools::pimpl_ptr<Private> d;
 };
 
-#endif // __KLEOPATRAAPPLICATION_H__

@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef DIALOGS_GENCARDKEYDIALOG_H
-#define DIALOGS_GENCARDKEYDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -59,4 +58,3 @@ private:
 } // namespace Kleo
 
 
-#endif // DIALOGS_GENCARDKEYDIALOG_H

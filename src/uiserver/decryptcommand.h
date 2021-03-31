@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UISERVER_DECRYPTCOMMAND_H__
-#define __KLEOPATRA_UISERVER_DECRYPTCOMMAND_H__
+#pragma once
 
 #include <uiserver/decryptverifycommandemailbase.h>
 
@@ -39,4 +38,3 @@ public:
 
 }
 
-#endif // __KLEOPATRA_UISERVER_DECRYPTCOMMAND_H__

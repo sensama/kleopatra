@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UISERVER_SELECTCERTIFICATECOMMAND_H__
-#define __KLEOPATRA_UISERVER_SELECTCERTIFICATECOMMAND_H__
+#pragma once
 
 #include "assuancommand.h"
 #include <QObject>
@@ -42,4 +41,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_UISERVER_SELECTCERTIFICATECOMMAND_H__ */

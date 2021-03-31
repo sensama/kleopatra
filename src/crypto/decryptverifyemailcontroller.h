@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_DECRYPTVERIFYEMAILCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_DECRYPTVERIFYEMAILCONTROLLER_H__
+#pragma once
 
 #include <crypto/controller.h>
 
@@ -92,4 +91,3 @@ private:
 
 Q_DECLARE_METATYPE(GpgME::VerificationResult)
 
-#endif // __KLEOPATRA_CTYPTO_DECRYPTVERIFYEMAILCONTROLLER_H__

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTWIZARD_H__
-#define __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTWIZARD_H__
+#pragma once
 
 #include <crypto/gui/wizard.h>
 
@@ -137,4 +136,3 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_CRYPTO_GUI_SIGNENCRYPTWIZARD_H__ */

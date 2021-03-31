@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA__SMARTCARD__READERSTATUS_H___
-#define __KLEOPATRA__SMARTCARD__READERSTATUS_H___
+#pragma once
 
 #include <QObject>
 #include <QMetaType>
@@ -84,4 +83,3 @@ private:
 
 Q_DECLARE_METATYPE(Kleo::SmartCard::Card::Status)
 
-#endif /* __KLEOPATRA__SMARTCARD__READERSTATUS_H___ */

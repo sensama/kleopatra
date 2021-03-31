@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef SMARTCARD_UTILS_H
-#define SMARTCARD_UTILS_H
+#pragma once
 
 #include <string>
 
@@ -23,4 +22,3 @@ QString displayAppName(const std::string &appName);
 } // namespace Smartcard
 } // namespace Kleopatra
 
-#endif // SMARTCARD_UTILS_H

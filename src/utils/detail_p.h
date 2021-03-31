@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_DETAIL_P_H__
-#define __KLEOPATRA_UTILS_DETAIL_P_H__
+#pragma once
 
 #include <kleo-assuan.h>
 
@@ -87,4 +86,3 @@ static inline qulonglong assuanFD2int(assuan_fd_t fd)
 }
 }
 
-#endif /* __KLEOPATRA_UTILS_DETAIL_P_H__ */

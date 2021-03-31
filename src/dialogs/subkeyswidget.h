@@ -3,8 +3,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEO_SUBKEYSWIDGET_H
-#define KLEO_SUBKEYSWIDGET_H
+#pragma once
 
 #include <QWidget>
 #include <QDialog>
@@ -44,4 +43,3 @@ private:
     void writeConfig();
 };
 
-#endif

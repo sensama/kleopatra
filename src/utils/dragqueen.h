@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_DRAGQUEEN_H__
-#define __KLEOPATRA_UTILS_DRAGQUEEN_H__
+#pragma once
 
 #include <QLabel>
 #include <QPointer>
@@ -45,5 +44,4 @@ private:
 
 }
 
-#endif // __KLEOPATRA_CRYPTO_GUI_DRAGQUEEN_H__
 

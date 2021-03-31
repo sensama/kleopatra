@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_DIALOGS_CERTIFICATESELECTIONDIALOG_H__
-#define __KLEOPATRA_DIALOGS_CERTIFICATESELECTIONDIALOG_H__
+#pragma once
 
 #include <QDialog>
 
@@ -99,4 +98,3 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Dialogs::CertificateSelectionDialog::Options)
 
-#endif /* __KLEOPATRA_DIALOGS_CERTIFICATESELECTIONDIALOG_H__ */

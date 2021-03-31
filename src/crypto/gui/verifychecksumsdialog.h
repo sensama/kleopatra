@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_VERIFYCHECKSUMSDIALOG_H__
-#define __KLEOPATRA_CRYPTO_GUI_VERIFYCHECKSUMSDIALOG_H__
+#pragma once
 
 #include <QDialog>
 #include <QMetaType>
@@ -63,4 +62,3 @@ Q_DECLARE_METATYPE(Kleo::Crypto::Gui::VerifyChecksumsDialog::Status)
 
 #endif // QT_NO_DIRMODEL
 
-#endif // __KLEOPATRA_CRYPTO_GUI_RESULTITEMWIDGET_H__

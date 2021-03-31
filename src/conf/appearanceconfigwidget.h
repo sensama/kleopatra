@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#ifndef __KLEOPATRA_CONFIG_APPEARANCECONFIGWIDGET_H__
-#define __KLEOPATRA_CONFIG_APPEARANCECONFIGWIDGET_H__
+#pragma once
 
 #include <QWidget>
 
@@ -60,4 +59,3 @@ private:
 }
 }
 
-#endif // __KLEOPATRA_CONFIG_APPEARANCECONFIGWIDGET_H__

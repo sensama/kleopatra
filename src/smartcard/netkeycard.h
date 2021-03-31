@@ -1,5 +1,4 @@
-#ifndef SMARTCARD_NETKEYCARD_H
-#define SMARTCARD_NETKEYCARD_H
+#pragma once
 /*  smartcard/netkeycard.h
 
     This file is part of Kleopatra, the KDE keymanager
@@ -45,5 +44,4 @@ private:
 } // namespace Smartcard
 } // namespace Kleopatra
 
-#endif // SMARTCARD_CARD_H
 

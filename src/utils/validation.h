@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_VALIDATION_H__
-#define __KLEOPATRA_UTILS_VALIDATION_H__
+#pragma once
 
 #include <QObject>
 class QValidator;
@@ -30,4 +29,3 @@ QValidator *pgpComment(const QRegExp &additionalRegExp, QObject *parent = nullpt
 }
 }
 
-#endif /* __KLEOPATRA_UTILS_VALIDATION_H__ */

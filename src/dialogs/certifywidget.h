@@ -1,5 +1,4 @@
-#ifndef SRC_VIEW_CERTIFYWIDGET_H
-#define SRC_VIEW_CERTIFYWIDGET_H
+#pragma once
 /*  dialogs/certifywidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
@@ -59,4 +58,3 @@ private:
 
 } // namespace Kleo
 
-#endif // SRC_VIEW_CERTIFYWIDGET_H

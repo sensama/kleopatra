@@ -7,8 +7,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef __LIBKLEOPATRACLIENT_CORE_INITIALIZATION_H__
-#define __LIBKLEOPATRACLIENT_CORE_INITIALIZATION_H__
+#pragma once
 
 #include "kleopatraclientcore_export.h"
 
@@ -24,4 +23,3 @@ public:
 
 }
 
-#endif /* __LIBKLEOPATRACLIENT_CORE_INITIALIZATION_H__ */

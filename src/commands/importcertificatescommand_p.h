@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_IMPORTCERTIFICATESCOMMAND_P_H__
-#define __KLEOPATRA_IMPORTCERTIFICATESCOMMAND_P_H__
+#pragma once
 
 #include "command_p.h"
 #include "importcertificatescommand.h"
@@ -90,5 +89,4 @@ inline const Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesC
 inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(Private *pp) : Command(pp) {}
 inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, Private *pp) : Command(v, pp) {}
 
-#endif /* __KLEOPATRA_IMPORTCERTIFICATESCOMMAND_P_H__ */
 

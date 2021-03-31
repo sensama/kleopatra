@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KLEOPATRA_GNUPGSYSTEMCONFIGURATIONPAGE_H
-#define KLEOPATRA_GNUPGSYSTEMCONFIGURATIONPAGE_H
+#pragma once
 
 #include <KCModule>
 namespace Kleo
@@ -38,4 +37,3 @@ private:
 }
 }
 
-#endif // KLEOPATRA_GNUPGSYSTEMCONFIGURATIONPAGE_H

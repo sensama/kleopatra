@@ -1,5 +1,4 @@
-#ifndef VIEW_SMARTCARDWIDGET_H
-#define VIEW_SMARTCARDWIDGET_H
+#pragma once
 /*  view/smartcardwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
@@ -30,4 +29,3 @@ private:
 };
 
 } // namespace Kleo
-#endif // VIEW_SMARTCARDWIDGET_H

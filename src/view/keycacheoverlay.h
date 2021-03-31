@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef VIEW_KEYCACHEOVERLAY_H
-#define VIEW_KEYCACHEOVERLAY_H
+#pragma once
 
 #include <QWidget>
 #include <QTimer>
@@ -48,4 +47,3 @@ private:
 
 } // namespace Kleo
 
-#endif // VIEW_KEYCACHEOVERLAY_H

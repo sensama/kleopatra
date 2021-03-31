@@ -9,8 +9,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef CRYPTO_GUI_CERTIFICATESELECTIONLINE_H
-#define CRYPTO_GUI_CERTIFICATESELECTIONLINE_H
+#pragma once
 
 #include <QString>
 #include <vector>
@@ -88,4 +87,3 @@ private:
 
 } // namespace Kleo
 
-#endif // CRYPTO_GUI_CERTIFICATESELECTIONLINE_H

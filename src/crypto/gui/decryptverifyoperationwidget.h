@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_DECRYPTVERIFYOPERATIONWIDGET_H__
-#define __KLEOPATRA_CRYPTO_GUI_DECRYPTVERIFYOPERATIONWIDGET_H__
+#pragma once
 
 #include <QWidget>
 
@@ -68,4 +67,3 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_UISERVER_DECRYPTVERIFYOPERATIONWIDGET_H__ */

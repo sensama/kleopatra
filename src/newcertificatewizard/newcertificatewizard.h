@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_NEWCERTIFICATEWIZARD_NEWCERTIFICATEWIZARD_H__
-#define __KLEOPATRA_NEWCERTIFICATEWIZARD_NEWCERTIFICATEWIZARD_H__
+#pragma once
 
 #include <QWizard>
 
@@ -52,4 +51,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_NEWCERTIFICATEWIZARD_NEWCERTIFICATEWIZARD_H__ */

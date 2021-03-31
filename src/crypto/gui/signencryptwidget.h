@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef CRYPTO_GUI_SIGNENCRYPTWIDGET_H
-#define CRYPTO_GUI_SIGNENCRYPTWIDGET_H
+#pragma once
 
 #include <QWidget>
 #include <QVector>
@@ -130,4 +129,3 @@ private:
     const bool mIsExclusive;
 };
 } // namespace Kleo
-#endif // CRYPTO_GUI_SIGNENCRYPTWIDGET_H

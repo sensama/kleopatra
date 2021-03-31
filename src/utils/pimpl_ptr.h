@@ -7,8 +7,7 @@
 **
 **********************************************************************/
 
-#ifndef __KDTOOLSCORE__PIMPL_PTR_H__
-#define __KDTOOLSCORE__PIMPL_PTR_H__
+#pragma once
 
 #include <utils/kdtoolsglobal.h>
 
@@ -69,5 +68,4 @@ void operator!=(const pimpl_ptr<T> &, const pimpl_ptr<S> &);
 
 } // namespace kdtools
 
-#endif /* __KDTOOLSCORE__PIMPL_PTR_H__ */
 

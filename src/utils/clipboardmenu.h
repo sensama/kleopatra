@@ -4,8 +4,7 @@
   SPDX-License-Identifier: GPL-2.0-only
 */
 
-#ifndef CLIPBOARDMENU_H
-#define CLIPBOARDMENU_H
+#pragma once
 
 #include <QObject>
 class KActionMenu;
@@ -46,4 +45,3 @@ private:
     MainWindow *mWindow;
 };
 
-#endif // CLIPBOARDMENU_H

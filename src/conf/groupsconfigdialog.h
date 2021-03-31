@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CONF_GROUPSCONFIGDIALOG_H__
-#define __KLEOPATRA_CONF_GROUPSCONFIGDIALOG_H__
+#pragma once
 
 #include <KConfigDialog>
 
@@ -34,4 +33,3 @@ private:
     const std::unique_ptr<Private> d;
 };
 
-#endif /* __KLEOPATRA_CONF_GROUPSCONFIGDIALOG_H__ */

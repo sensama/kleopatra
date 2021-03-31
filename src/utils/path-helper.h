@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_PATH_HELPER_H__
-#define __KLEOPATRA_UTILS_PATH_HELPER_H__
+#pragma once
 
 class QString;
 #include <QStringList>
@@ -26,4 +25,3 @@ bool recursivelyCopy(const QString &src, const QString &dest);
 bool moveDir(const QString &src, const QString &dest);
 }
 
-#endif /* __KLEOPATRA_UTILS_PATH_HELPER_H__ */

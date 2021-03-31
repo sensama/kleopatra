@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEO_UISERVER_PREPSIGNCOMMAND_H__
-#define __KLEO_UISERVER_PREPSIGNCOMMAND_H__
+#pragma once
 
 #include "assuancommand.h"
 
@@ -38,4 +37,3 @@ private:
 
 }
 
-#endif /*__KLEO_UISERVER_PREPSIGNCOMMAND_H__*/

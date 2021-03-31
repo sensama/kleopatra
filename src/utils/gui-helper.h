@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_GUI_HELPER_H__
-#define __KLEOPATRA_UTILS_GUI_HELPER_H__
+#pragma once
 
 #include <QAbstractButton>
 
@@ -38,4 +37,3 @@ void aggressive_raise(QWidget *w, bool stayOnTop);
 
 }
 
-#endif /* __KLEOPATRA_UTILS_GUI_HELPER_H__ */

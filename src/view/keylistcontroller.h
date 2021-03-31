@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_CONTROLLERS_KEYLISTCONTROLLER_H__
-#define __KLEOPATRA_CONTROLLERS_KEYLISTCONTROLLER_H__
+#pragma once
 
 #include <QObject>
 
@@ -112,4 +111,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_CONTROLLERS_KEYLISTCONTROLLER_H__ */

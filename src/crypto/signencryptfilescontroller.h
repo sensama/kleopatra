@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_SIGNENCRYPTFILESCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_SIGNENCRYPTFILESCONTROLLER_H__
+#pragma once
 
 #include <crypto/controller.h>
 
@@ -79,5 +78,4 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_UISERVER_SIGNENCRYPTFILESCONTROLLER_H__ */
 

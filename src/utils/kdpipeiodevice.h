@@ -4,8 +4,7 @@
   SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef __KDTOOLSCORE_KDPIPEIODEVICE_H__
-#define __KDTOOLSCORE_KDPIPEIODEVICE_H__
+#pragma once
 
 #include <QIODevice>
 
@@ -62,5 +61,4 @@ private:
     Private *d;
 };
 
-#endif /* __KDTOOLSCORE_KDPIPEIODEVICE_H__ */
 

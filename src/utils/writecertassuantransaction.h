@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_WRITECERTASSUANTRANSACTION_H__
-#define __KLEOPATRA_WRITECERTASSUANTRANSACTION_H__
+#pragma once
 
 #include <gpgme++/data.h>
 #include <gpgme++/defaultassuantransaction.h>
@@ -32,4 +31,3 @@ private:
 
 } // namespace Kleo
 
-#endif // __KLEOPATRA_WRITECERTASSUANTRANSACTION_H__

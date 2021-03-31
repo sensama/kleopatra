@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_VERIFYCHECKSUMSCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_VERIFYCHECKSUMSCONTROLLER_H__
+#pragma once
 
 #include <crypto/controller.h>
 
@@ -53,5 +52,4 @@ private:
 
 #endif // QT_NO_DIRMODEL
 
-#endif /* __KLEOPATRA_UISERVER_VERIFYCHECKSUMSCONTROLLER_H__ */
 

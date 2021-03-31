@@ -8,8 +8,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef CRYPTO_GUI_CERTIFICATELINEEDIT_H
-#define CRYPTO_GUI_CERTIFICATELINEEDIT_H
+#pragma once
 
 #include <Libkleo/KeyGroup>
 
@@ -104,4 +103,3 @@ private:
     QAction *const mLineAction;
 };
 }
-#endif

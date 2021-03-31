@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_CACHED_H__
-#define __KLEOPATRA_UTILS_CACHED_H__
+#pragma once
 
 #include <type_traits>
 
@@ -57,4 +56,3 @@ public:
 
 }
 
-#endif /* __KLEOPATRA_UTILS_CACHED_H__ */

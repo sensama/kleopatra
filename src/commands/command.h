@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_COMMAND_H__
-#define __KLEOPATRA_COMMANDS_COMMAND_H__
+#pragma once
 
 #include <QObject>
 
@@ -136,4 +135,3 @@ protected:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Command::Restrictions)
 
-#endif /* __KLEOPATRA_COMMANDS_COMMAND_H__ */

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_HEADERVIEW_H__
-#define __KLEOPATRA_UTILS_HEADERVIEW_H__
+#pragma once
 
 #include <QHeaderView>
 
@@ -43,4 +42,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_UTILS_HEADERVIEW_H__ */

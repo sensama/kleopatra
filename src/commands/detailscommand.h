@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_DETAILSCOMMAND_H__
-#define __KLEOPATRA_COMMANDS_DETAILSCOMMAND_H__
+#pragma once
 
 #include <commands/command.h>
 
@@ -51,4 +50,3 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_COMMANDS_DETAILSCOMMAND_H__ */

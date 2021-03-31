@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_USERINFO_H__
-#define __KLEOPATRA_UTILS_USERINFO_H__
+#pragma once
 
 class QString;
 
@@ -29,4 +28,3 @@ namespace Kleo
     bool userIsElevated();
 }
 
-#endif // __KLEOPATRA_UTILS_USERINFO_H__

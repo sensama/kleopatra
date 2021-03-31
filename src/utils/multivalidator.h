@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_MULTIVALIDATOR_H__
-#define __KLEOPATRA_UTILS_MULTIVALIDATOR_H__
+#pragma once
 
 #include <QValidator>
 #include <QList>
@@ -53,4 +52,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_UTILS_MULTIVALIDATOR_H__ */

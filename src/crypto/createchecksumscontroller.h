@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_CREATECHECKSUMSCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_CREATECHECKSUMSCONTROLLER_H__
+#pragma once
 
 #include <crypto/controller.h>
 
@@ -53,5 +52,4 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_UISERVER_CREATECHECKSUMSCONTROLLER_H__ */
 

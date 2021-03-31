@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_COMMAND_P_H__
-#define __KLEOPATRA_COMMANDS_COMMAND_P_H__
+#pragma once
 
 #include "command.h"
 #include "view/keylistcontroller.h"
@@ -120,4 +119,3 @@ private:
     QPointer<KeyListController> controller_;
 };
 
-#endif /* __KLEOPATRA_COMMANDS_COMMAND_P_H__ */

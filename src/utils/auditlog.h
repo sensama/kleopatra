@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_AUDITLOG_H__
-#define __KLEOPATRA_UTILS_AUDITLOG_H__
+#pragma once
 
 #include <QString>
 #include <gpgme++/error.h>
@@ -53,4 +52,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_UTILS_HEX_H__ */

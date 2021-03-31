@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_ACTIONDATA_H__
-#define __KLEOPATRA_UTILS_ACTIONDATA_H__
+#pragma once
 
 #include <QString>
 
@@ -43,4 +42,3 @@ QAction *make_action_from_data(const action_data &ad, KActionCollection *coll);
 QAction *createAction(const action_data &ad, KActionCollection *coll);
 }
 
-#endif /* __KLEOPATRA_UTILS_ACTIONDATA_H__ */

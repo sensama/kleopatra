@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __ABOUTDATA_H__
-#define __ABOUTDATA_H__
+#pragma once
 
 #include <KAboutData>
 
@@ -24,4 +23,3 @@ public:
     AboutGpg4WinData();
 };
 
-#endif // __ABOUTDATA_H__

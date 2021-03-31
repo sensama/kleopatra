@@ -1,5 +1,4 @@
-#ifndef VIEW_NULLPINWIDGET_H
-#define VIEW_NULLPINWIDGET_H
+#pragma once
 /*  view/nullpinwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
@@ -41,4 +40,3 @@ private:
 
 } // namespace Kleo
 
-#endif // VIEW_NULLPINWIDGET_H

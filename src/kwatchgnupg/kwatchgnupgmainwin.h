@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KWATCHGNUPGMAINWIN_H
-#define KWATCHGNUPGMAINWIN_H
+#pragma once
 
 #include <kxmlguiwindow.h>
 #include <QProcess>
@@ -56,5 +55,4 @@ private:
     KWatchGnuPGConfig *mConfig;
 };
 
-#endif /* KWATCHGNUPGMAINWIN_H */
 

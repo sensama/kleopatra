@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__
-#define __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__
+#pragma once
 
 #include <QSystemTrayIcon>
 
@@ -65,4 +64,3 @@ private:
 
 #endif // QT_NO_SYSTEMTRAYICON
 
-#endif /* __KLEOPATRA_UTILS_SYSTEMTRAYICON_H__ */

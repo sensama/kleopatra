@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_IMPORTPAPERKEYCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_IMPORTPAPERKEYCOMMAND_H__
+#pragma once
 
 #include <commands/gnupgprocesscommand.h>
 
@@ -64,4 +63,3 @@ private:
 }
 }
 
-#endif // __KLEOPATRA_COMMMANDS_IMPORTPAPERKEYCOMMAND_H__

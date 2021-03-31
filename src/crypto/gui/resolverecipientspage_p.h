@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_GUI_RESOLVERECIPIENTSPAGE_P_H__
-#define __KLEOPATRA_CRYPTO_GUI_RESOLVERECIPIENTSPAGE_P_H__
+#pragma once
 
 #include <crypto/gui/resolverecipientspage.h>
 
@@ -106,4 +105,3 @@ private:
     bool m_selected;
 };
 
-#endif // __KLEOPATRA_CRYPTO_GUI_RESOLVERECIPIENTSPAGE_P_H__

@@ -3,8 +3,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEO_WEBOFTRUSTWIDGET_H
-#define KLEO_WEBOFTRUSTWIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -35,5 +34,4 @@ private:
     const QScopedPointer<Private> d;
 };
 } // namespace Kleo
-#endif
 

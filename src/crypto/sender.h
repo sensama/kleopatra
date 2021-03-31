@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_SENDER_H__
-#define __KLEOPATRA_CRYPTO_SENDER_H__
+#pragma once
 
 #include <gpgme++/global.h>
 
@@ -89,4 +88,3 @@ inline bool operator!=(const Sender &lhs, const Sender &rhs)
 } // namespace Crypto
 } // namespace Kleo
 
-#endif /* __KLEOPATRA_CRYPTO_SENDER_H__ */

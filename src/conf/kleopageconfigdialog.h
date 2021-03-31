@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-only
 */
 
-#ifndef __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__
-#define __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__
+#pragma once
 
 #include <KPageDialog>
 #include <QList>
@@ -49,4 +48,3 @@ private:
     QMap<QString, QString> mHelpUrls;
 };
 
-#endif /* __KLEOPATRA_CONF_KLEOPAGECONFIGDIALOG_H__ */

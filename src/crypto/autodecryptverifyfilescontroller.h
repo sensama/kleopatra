@@ -10,8 +10,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__
+#pragma once
 
 #include "crypto/decryptverifyfilescontroller.h"
 
@@ -56,4 +55,3 @@ private:
 }
 }
 
-#endif // __KLEOPATRA_CRYPTO_AUTODECRYPTVERIFYFILESCONTROLLER_H__

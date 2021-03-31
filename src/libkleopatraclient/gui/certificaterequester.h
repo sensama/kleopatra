@@ -7,8 +7,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef __LIBKLEOPATRACLIENT_GUI_CERTIFICATEREQUESTER_H__
-#define __LIBKLEOPATRACLIENT_GUI_CERTIFICATEREQUESTER_H__
+#pragma once
 
 #include "kleopatraclientgui_export.h"
 
@@ -70,4 +69,3 @@ private:
 }
 }
 
-#endif /* __LIBKLEOPATRACLIENT_GUI_CERTIFICATEREQUESTER_H__ */

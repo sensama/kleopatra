@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UISERVER_ASSUANCOMMAND_H__
-#define __KLEOPATRA_UISERVER_ASSUANCOMMAND_H__
+#pragma once
 
 #include <utils/pimpl_ptr.h>
 #include <utils/types.h>
@@ -384,4 +383,3 @@ protected:
 
 }
 
-#endif /* __KLEOPATRA_UISERVER_ASSUANCOMMAND_H__ */

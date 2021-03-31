@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_UISERVER_UISERVER_P_H__
-#define __KLEOPATRA_UISERVER_UISERVER_P_H__
+#pragma once
 
 #include "uiserver.h"
 
@@ -73,4 +72,3 @@ private:
 
 }
 
-#endif /* __KLEOPATRA_UISERVER_UISERVER_P_H__ */

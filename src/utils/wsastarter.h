@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_WSASTARTER_H__
-#define __KLEOPATRA_UTILS_WSASTARTER_H__
+#pragma once
 
 namespace Kleo
 {
@@ -22,4 +21,3 @@ struct WSAStarter {
 
 } // namespace Kleo
 
-#endif // __KLEOPATRA_UTILS_WSASTARTER_H__

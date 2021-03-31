@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEO_ASSUAN_H__
-#define __KLEO_ASSUAN_H__
+#pragma once
 
 #ifndef _ASSUAN_ONLY_GPG_ERRORS
 #define _ASSUAN_ONLY_GPG_ERRORS
@@ -45,4 +44,3 @@ typedef int assuan_fd_t;
  */
 #endif
 
-#endif /* __KLEOPATRA_ASSUAN_H__ */

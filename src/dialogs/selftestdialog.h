@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_DIALOGS_SELFTESTDIALOG_H__
-#define __KLEOPATRA_DIALOGS_SELFTESTDIALOG_H__
+#pragma once
 
 #include <QDialog>
 
@@ -58,4 +57,3 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_DIALOGS_SELFTESTDIALOG_H__ */

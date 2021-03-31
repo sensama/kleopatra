@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KWATCHGNUPGCONFIG_H
-#define KWATCHGNUPGCONFIG_H
+#pragma once
 
 #include <QDialog>
 
@@ -48,5 +47,4 @@ private:
     QDialogButtonBox *mButtonBox;
 };
 
-#endif /* KWATCHGNUPGCONFIG_H */
 

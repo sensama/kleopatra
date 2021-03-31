@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef __KLEOPATRA_COMMMANDS_CHANGEPINCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_CHANGEPINCOMMAND_H__
+#pragma once
 
 #include "cardcommand.h"
 
@@ -51,5 +50,4 @@ private:
 } // namespace Commands
 } // namespace Kleo
 
-#endif // __KLEOPATRA_COMMMANDS_CHANGEPINCOMMAND_H__
 

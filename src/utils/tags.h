@@ -5,8 +5,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KLEOPATRA_UTILS_TAGS_H
-#define KLEOPATRA_UTILS_TAGS_H
+#pragma once
 
 #include <gpgme++/key.h>
 
@@ -28,4 +27,3 @@ void setTagKey(const GpgME::Key &key);
 std::vector<GpgME::Key> tagKeys();
 }
 } // namespace Kleo
-#endif // KLEOPATRA_UTILS_TAGS_H

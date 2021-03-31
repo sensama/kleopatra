@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_ENCRYPTEMAILCONTROLLER_H__
-#define __KLEOPATRA_CRYPTO_ENCRYPTEMAILCONTROLLER_H__
+#pragma once
 
 #include <crypto/controller.h>
 
@@ -92,5 +91,4 @@ private:
 } // Crypto
 } // Kleo
 
-#endif /* __KLEOPATRA_CRYPTO_ENCRYPTEMAILCONTROLLER_H__ */
 

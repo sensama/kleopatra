@@ -7,8 +7,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef KLEOPATRA_OPTIONS_H
-#define KLEOPATRA_OPTIONS_H
+#pragma once
 
 #include <config-kleopatra.h>
 
@@ -90,4 +89,3 @@ static void kleopatra_options(QCommandLineParser *parser)
                                   i18n("String or Fingerprint for query and search"),
                                   QStringLiteral("-- [query..]"));
 }
-#endif

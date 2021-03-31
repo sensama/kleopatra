@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_INPUT_H__
-#define __KLEOPATRA_UTILS_INPUT_H__
+#pragma once
 
 #include <kleo-assuan.h> // for assuan_fd_t
 
@@ -57,5 +56,4 @@ public:
 };
 }
 
-#endif /* __KLEOPATRA_UTILS_INPUT_H__ */
 

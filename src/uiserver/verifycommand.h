@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UISERVER_VERIFYCOMMAND_H__
-#define __KLEOPATRA_UISERVER_VERIFYCOMMAND_H__
+#pragma once
 
 #include "assuancommand.h"
 
@@ -40,4 +39,3 @@ public:
 
 }
 
-#endif // __KLEOPATRA_UISERVER_VERIFYCOMMAND_H__

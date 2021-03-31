@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_INPUT_P_H__
-#define __KLEOPATRA_UTILS_INPUT_P_H__
+#pragma once
 
 #include "input.h"
 #include "cached.h"
@@ -65,4 +64,3 @@ private:
 
 }
 
-#endif

@@ -7,8 +7,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef CRYPTO_GUI_DECRYPTVERIFYFILESDIALOG_H
-#define CRYPTO_GUI_DECRYPTVERIFYFILESDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QString>
@@ -73,4 +72,3 @@ private:
 } //namespace Crypto;
 } // namespace Kleo
 
-#endif // CRYPTO_GUI_DECRYPTVERIFYFILESDIALOG_H

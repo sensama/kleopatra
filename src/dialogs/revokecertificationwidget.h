@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_DIALOGS_REVOKECERTIFICATIONWIDGET_H__
-#define __KLEOPATRA_DIALOGS_REVOKECERTIFICATIONWIDGET_H__
+#pragma once
 
 #include <QWidget>
 
@@ -61,4 +60,3 @@ private:
 
 } // namespace Kleo
 
-#endif // __KLEOPATRA_DIALOGS_REVOKECERTIFICATIONWIDGET_H__

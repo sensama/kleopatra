@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef TRAY_H
-#define TRAY_H
+#pragma once
 
 #include <QIcon>
 #include <KStatusNotifierItem>
@@ -29,5 +28,4 @@ private:
     QIcon mAttentionPix;
 };
 
-#endif /* TRAY_H */
 

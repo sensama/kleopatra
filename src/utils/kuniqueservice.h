@@ -1,5 +1,4 @@
-#ifndef KUNIQUESERVICE_H
-#define KUNIQUESERVICE_H
+#pragma once
 /*
     kuniqueservice.h
 
@@ -67,4 +66,3 @@ private:
     Q_DECLARE_PRIVATE(KUniqueService)
     KUniqueServicePrivate *d_ptr;
 };
-#endif // KUNIQUESERVICE_H

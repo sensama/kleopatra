@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMMANDS_SIGNENCRYPTFOLDERCOMMAND_H__
-#define __KLEOPATRA_COMMMANDS_SIGNENCRYPTFOLDERCOMMAND_H__
+#pragma once
 
 #include "signencryptfilescommand.h"
 
@@ -34,4 +33,3 @@ protected:
 }
 }
 
-#endif // __KLEOPATRA_COMMMANDS_SIGNENCRYPTFOLDERCOMMAND_H__

@@ -8,8 +8,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_CARDCOMMAND_P_H__
-#define __KLEOPATRA_COMMANDS_CARDCOMMAND_P_H__
+#pragma once
 
 #include "cardcommand.h"
 #include "command_p.h"
@@ -40,4 +39,3 @@ private:
     std::string serialNumber_;
 };
 
-#endif /* __KLEOPATRA_COMMANDS_CARDCOMMAND_P_H__ */

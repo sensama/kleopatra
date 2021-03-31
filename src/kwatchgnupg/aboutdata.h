@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef ABOUTDATA_H
-#define ABOUTDATA_H
+#pragma once
 
 #include <KAboutData>
 
@@ -18,4 +17,3 @@ public:
     AboutData();
 };
 
-#endif // ABOUTDATA_H

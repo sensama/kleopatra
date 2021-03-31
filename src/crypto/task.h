@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_CRYPTO_TASK_H__
-#define __KLEOPATRA_CRYPTO_TASK_H__
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -129,5 +128,4 @@ private:
 }
 }
 
-#endif /* __KLEOPATRA_CRYPTO_TASK_H__ */
 

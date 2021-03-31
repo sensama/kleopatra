@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_IODEVICELOGGER_H__
-#define __KLEOPATRA_IODEVICELOGGER_H__
+#pragma once
 
 #include <QIODevice>
 
@@ -54,4 +53,3 @@ private:
 };
 }
 
-#endif // __KLEOPATRA_IODEVICELOGGER_H__

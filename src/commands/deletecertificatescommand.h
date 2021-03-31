@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_COMMANDS_DELETECERTIFICATESCOMMAND_H__
-#define __KLEOPATRA_COMMANDS_DELETECERTIFICATESCOMMAND_H__
+#pragma once
 
 #include "command.h"
 
@@ -42,5 +41,4 @@ private:
 };
 }
 
-#endif // __KLEOPATRA_COMMANDS_DELETECERTIFICATESCOMMAND_H__
 

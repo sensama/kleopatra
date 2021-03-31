@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef DIALOGS_UPDATENOTIFICATION_H
-#define DIALOGS_UPDATENOTIFICATION_H
+#pragma once
 
 #include <QString>
 #include <QDialog>
@@ -35,4 +34,3 @@ public:
     UpdateNotification(QWidget *parent, const QString &version);
 };
 } // namespace Kleo
-#endif // DIALOGS_UPDATENOTIFICATION_H

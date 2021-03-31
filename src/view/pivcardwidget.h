@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef VIEW_PIVCARDWIDGET_H
-#define VIEW_PIVCARDWIDGET_H
+#pragma once
 
 #include <QMap>
 #include <QWidget>
@@ -68,4 +67,3 @@ private:
 };
 } // namespace Kleo
 
-#endif // VIEW_PIVCARDWIDGET_H

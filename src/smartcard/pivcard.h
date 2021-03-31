@@ -6,8 +6,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef SMARTCARD_PIVCARD_H
-#define SMARTCARD_PIVCARD_H
+#pragma once
 
 #include "card.h"
 
@@ -55,4 +54,3 @@ private:
 } // namespace Smartcard
 } // namespace Kleopatra
 
-#endif // SMARTCARD_PIVCARD_H

@@ -8,8 +8,7 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-#ifndef VIEW_PGPCARDWIDGET_H
-#define VIEW_PGPCARDWIDGET_H
+#pragma once
 
 #include "commands/changepincommand.h"
 
@@ -77,4 +76,3 @@ private:
 };
 } // namespace Kleo
 
-#endif // VIEW_PGPCARDWIDGET_H

@@ -1,5 +1,4 @@
-#ifndef __LIBKLEOPATRACLIENT_TESTS_TEST_UTIL_H__
-#define __LIBKLEOPATRACLIENT_TESTS_TEST_UTIL_H__
+#pragma once
 
 #include <QStringList>
 #include <QFileInfo>
@@ -14,4 +13,3 @@ static QStringList filePathsFromArgs(int argc, char *argv[])
     return result;
 }
 
-#endif /* __LIBKLEOPATRACLIENT_TESTS_TEST_UTIL_H__ */

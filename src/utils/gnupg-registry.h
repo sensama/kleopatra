@@ -8,8 +8,7 @@
 
 /* keep this in sync with svn://cvs.gnupg.org/gpgex/trunk/src/registry.h (last checked against rev. 19) */
 
-#ifndef REGISTRY_H
-#define REGISTRY_H
+#pragma once
 
 #include <windows.h>
 
@@ -37,4 +36,3 @@ char *read_w32_registry_string(const char *root, const char *dir,
 }
 #endif
 
-#endif /* ! REGISTRY_H */

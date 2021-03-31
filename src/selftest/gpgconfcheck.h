@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_SELFTEST_GPGCONFCHECK_H__
-#define __KLEOPATRA_SELFTEST_GPGCONFCHECK_H__
+#pragma once
 
 #include <selftest/selftest.h>
 
@@ -23,4 +22,3 @@ std::shared_ptr<SelfTest> makeGpgConfCheckConfigurationSelfTest(const char *comp
 
 }
 
-#endif /* __KLEOPATRA_SELFTEST_GPGCONFCHECK_H__ */

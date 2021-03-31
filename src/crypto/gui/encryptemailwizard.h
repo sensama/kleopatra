@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_ENCRYPTEMAILWIZARD_H__
-#define __KLEOPATRA_ENCRYPTEMAILWIZARD_H__
+#pragma once
 
 #include <crypto/gui/signencryptwizard.h>
 
@@ -36,4 +35,3 @@ private:
 }
 }
 }
-#endif // __KLEOPATRA_ENCRYPTEMAILWIZARD_H__

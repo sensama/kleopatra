@@ -3,8 +3,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEO_EXPORTDIALOG_H
-#define KLEO_EXPORTDIALOG_H
+#pragma once
 
 #include <QWidget>
 #include <QDialog>
@@ -55,4 +54,3 @@ private:
 };
 
 } // namespace Kleo
-#endif

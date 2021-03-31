@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_UTILS_SCROLLAREA_H__
-#define __KLEOPATRA_UTILS_SCROLLAREA_H__
+#pragma once
 
 #include <QScrollArea>
 
@@ -29,5 +28,4 @@ public:
 
 }
 
-#endif // __KLEOPATRA_CRYPTO_GUI_SCROLLAREA_H__
 

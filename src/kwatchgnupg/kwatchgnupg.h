@@ -6,8 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KWATCHGNUPG_H
-#define KWATCHGNUPG_H
+#pragma once
 
 #include <QString>
 #include <Libkleo/GnuPG>
@@ -15,5 +14,4 @@
 #define WATCHGNUPGBINARY QStringLiteral("watchgnupg")
 #define WATCHGNUPGSOCKET QString( Kleo::gnupgHomeDirectory() + QLatin1String("/log-socket") )
 
-#endif /* KWATCHGNUPG_H */
 

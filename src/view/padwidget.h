@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef KLEOPATRA_VIEW_PADWIDGET
-#define KLEOPATRA_VIEW_PADWIDGET
+#pragma once
 
 #include <QWidget>
 #include <memory>
@@ -29,4 +28,3 @@ private:
 };
 } // namespace Kleo
 
-#endif // DIALOGS_CLIPBOARD_H

@@ -7,8 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_SYSTRAYICON_H__
-#define __KLEOPATRA_SYSTRAYICON_H__
+#pragma once
 
 #include <utils/systemtrayicon.h>
 #ifndef QT_NO_SYSTEMTRAYICON
@@ -48,4 +47,3 @@ private:
 
 #endif // QT_NO_SYSTEMTRAYICON
 
-#endif /* __KLEOPATRA_SYSTRAYICON_H__ */

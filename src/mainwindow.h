@@ -10,8 +10,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#ifndef __KLEOPATRA_MAINWINDOW_DESKTOP_H__
-#define __KLEOPATRA_MAINWINDOW_DESKTOP_H__
+#pragma once
 
 #include <KXmlGuiWindow>
 
@@ -58,4 +57,3 @@ private:
     Q_PRIVATE_SLOT(d, void openCompendium())
 };
 
-#endif /* __KLEOPATRA_MAINWINDOW_DESKTOP_H__ */

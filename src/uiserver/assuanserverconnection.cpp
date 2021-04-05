@@ -57,7 +57,7 @@
 #include <functional>
 #include <type_traits>
 
-#include <errno.h>
+#include <cerrno>
 
 #ifdef __GLIBCXX__
 # include <ext/algorithm> // for is_sorted

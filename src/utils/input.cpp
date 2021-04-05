@@ -35,7 +35,7 @@
 #include <QFileInfo>
 #include <QProcess>
 
-#include <errno.h>
+#include <cerrno>
 
 using namespace Kleo;
 

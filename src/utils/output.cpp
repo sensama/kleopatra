@@ -39,7 +39,7 @@
 # include <windows.h>
 #endif
 
-#include <errno.h>
+#include <cerrno>
 
 using namespace Kleo;
 using namespace Kleo::_detail;

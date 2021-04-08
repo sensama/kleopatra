@@ -22,11 +22,11 @@ ecm_mark_as_test(test_verify)
 
 target_link_libraries(test_verify
   KF5::Libkleo
-  Qt5::Test
+  Qt::Test
   QGpgme
   KF5::CoreAddons
   KF5::I18n
-  Qt5::Widgets
+  Qt::Widgets
 )
 
 ########### next target ###############

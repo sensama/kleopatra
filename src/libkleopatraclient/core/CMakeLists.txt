@@ -64,6 +64,6 @@ else()
   endif()
 endif()
 
-target_link_libraries(kleopatraclientcore Qt5::Widgets KF5::I18n Gpgmepp)
+target_link_libraries(kleopatraclientcore Qt::Widgets KF5::I18n Gpgmepp)
 
 install(TARGETS kleopatraclientcore ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

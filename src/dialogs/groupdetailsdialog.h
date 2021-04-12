@@ -12,6 +12,8 @@
 
 #include <QDialog>
 
+#include <memory>
+
 namespace Kleo
 {
 class KeyGroup;

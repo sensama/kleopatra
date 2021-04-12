@@ -12,6 +12,7 @@
 
 #include <QWidget>
 
+#include <memory>
 #include <vector>
 
 namespace Kleo

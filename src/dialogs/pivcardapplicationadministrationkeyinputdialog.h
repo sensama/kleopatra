@@ -10,6 +10,8 @@
 
 #include <QDialog>
 
+#include <memory>
+
 namespace Kleo
 {
 namespace Dialogs

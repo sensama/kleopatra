@@ -15,6 +15,8 @@
 #include <QHash>
 #include "crypto/task.h"
 
+#include <memory>
+
 class QVBoxLayout;
 class QProgressBar;
 template <typename K, typename U> class QHash;

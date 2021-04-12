@@ -12,6 +12,8 @@
 
 #include <QWidget>
 
+#include <memory>
+
 class GroupsConfigPage : public QWidget
 {
     Q_OBJECT

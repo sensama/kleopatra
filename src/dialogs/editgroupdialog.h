@@ -12,6 +12,7 @@
 
 #include <QDialog>
 
+#include <memory>
 #include <vector>
 
 namespace GpgME

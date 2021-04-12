@@ -12,6 +12,8 @@
 
 #include <QWidget>
 
+#include <memory>
+
 namespace Kleo
 {
 namespace Dialogs

@@ -13,6 +13,8 @@
 
 #include <QDialog>
 
+#include <memory>
+
 namespace GpgME
 {
 class Key;

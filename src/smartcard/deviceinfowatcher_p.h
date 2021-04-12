@@ -16,6 +16,8 @@
 
 #include <QThread>
 
+#include <memory>
+
 namespace Kleo
 {
 

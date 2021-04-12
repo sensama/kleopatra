@@ -15,6 +15,7 @@
 
 #include <gpgme++/global.h>
 
+#include <memory>
 #include <vector>
 
 namespace GpgME

@@ -12,6 +12,8 @@
 
 #include <KConfigDialog>
 
+#include <memory>
+
 class GroupsConfigDialog : public KConfigDialog
 {
     Q_OBJECT

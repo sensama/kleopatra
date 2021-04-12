@@ -15,6 +15,8 @@
 
 #include <gpgme++/key.h>
 
+#include <memory>
+
 namespace Kleo
 {
 namespace SmartCard

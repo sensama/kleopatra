@@ -20,7 +20,7 @@
 #include <QComboBox>
 #include <QHBoxLayout>
 #include <QPushButton>
-
+#include <QSortFilterProxyModel>
 
 #include <Libkleo/GnuPG>
 #include <qgpgme/keylistjob.h>
@@ -93,6 +93,7 @@ private:
     }
 
 private:
+    QSortFilterProxyModel *proxyModel;
     QLineEdit *lineEdit;
     QComboBox *combo;
     QPushButton *certifyButton;
@@ -120,7 +121,10 @@ SearchBar::Private::Private(SearchBar *qq)
     layout->addWidget(certifyButton);
     showOrHideCertifyButton();
 
-    combo->setModel(KeyFilterManager::instance()->model());
+    proxyModel = new QSortFilterProxyModel{q};
+    proxyModel->setSourceModel(KeyFilterManager::instance()->model());
+    proxyModel->sort(0, Qt::AscendingOrder);
+    combo->setModel(proxyModel);
 
     KDAB_SET_OBJECT_NAME(layout);
     KDAB_SET_OBJECT_NAME(lineEdit);

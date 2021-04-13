@@ -288,6 +288,25 @@ void DirectoryServicesConfigurationPage::load()
 #endif
 }
 
+namespace
+{
+void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value) {
+    if (!configEntry) {
+        return;
+    }
+    if (configEntry->argType() == CryptoConfigEntry::ArgType_Int) {
+        if (configEntry->intValue() != value) {
+            configEntry->setIntValue(value);
+        }
+    } else {
+        const unsigned int newValue = static_cast<unsigned>(value);
+        if (configEntry->uintValue() != newValue) {
+            configEntry->setUIntValue(newValue);
+        }
+    }
+}
+}
+
 void DirectoryServicesConfigurationPage::save()
 {
     if (mX509ServicesEntry) {
@@ -305,14 +324,11 @@ void DirectoryServicesConfigurationPage::save()
         }
     }
 
-    QTime time(mTimeout->time());
-    unsigned int timeout = time.minute() * 60 + time.second();
-    if (mTimeoutConfigEntry && mTimeoutConfigEntry->uintValue() != timeout) {
-        mTimeoutConfigEntry->setUIntValue(timeout);
-    }
-    if (mMaxItemsConfigEntry && mMaxItemsConfigEntry->uintValue() != (uint)mMaxItems->value()) {
-        mMaxItemsConfigEntry->setUIntValue(mMaxItems->value());
-    }
+    const QTime time{mTimeout->time()};
+    updateIntegerConfigEntry(mTimeoutConfigEntry, time.minute() * 60 + time.second());
+
+    updateIntegerConfigEntry(mMaxItemsConfigEntry, mMaxItems->value());
+
 #ifdef NOT_USEFUL_CURRENTLY
     if (mAddNewServersConfigEntry && mAddNewServersConfigEntry->boolValue() != mAddNewServersCB->isChecked()) {
         mAddNewServersConfigEntry->setBoolValue(mAddNewServersCB->isChecked());

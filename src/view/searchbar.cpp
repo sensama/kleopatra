@@ -29,6 +29,27 @@
 
 using namespace Kleo;
 
+namespace
+{
+
+class ProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    using QSortFilterProxyModel::QSortFilterProxyModel;
+
+protected:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override
+    {
+        const QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+        const auto matchContexts = qvariant_cast<KeyFilter::MatchContexts>(sourceModel()->data(index, KeyFilterManager::FilterMatchContextsRole));
+        return matchContexts & KeyFilter::Filtering;
+    }
+};
+
+}
+
 class SearchBar::Private
 {
     friend class ::Kleo::SearchBar;
@@ -45,7 +66,7 @@ private:
 
     std::shared_ptr<KeyFilter> keyFilter(int idx) const
     {
-        const QModelIndex mi = KeyFilterManager::instance()->model()->index(idx, 0);
+        const QModelIndex mi = proxyModel->mapToSource(proxyModel->index(idx, 0));
         return KeyFilterManager::instance()->fromModelIndex(mi);
     }
 
@@ -93,7 +114,7 @@ private:
     }
 
 private:
-    QSortFilterProxyModel *proxyModel;
+    ProxyModel *proxyModel;
     QLineEdit *lineEdit;
     QComboBox *combo;
     QPushButton *certifyButton;
@@ -121,7 +142,7 @@ SearchBar::Private::Private(SearchBar *qq)
     layout->addWidget(certifyButton);
     showOrHideCertifyButton();
 
-    proxyModel = new QSortFilterProxyModel{q};
+    proxyModel = new ProxyModel{q};
     proxyModel->setSourceModel(KeyFilterManager::instance()->model());
     proxyModel->sort(0, Qt::AscendingOrder);
     combo->setModel(proxyModel);
@@ -160,9 +181,10 @@ void SearchBar::setStringFilter(const QString &filter)
 // slot
 void SearchBar::setKeyFilter(const std::shared_ptr<KeyFilter> &kf)
 {
-    const QModelIndex idx = KeyFilterManager::instance()->toModelIndex(kf);
-    if (idx.isValid()) {
-        d->combo->setCurrentIndex(idx.row());
+    const QModelIndex sourceIndex = KeyFilterManager::instance()->toModelIndex(kf);
+    const QModelIndex proxyIndex = d->proxyModel->mapFromSource(sourceIndex);
+    if (proxyIndex.isValid()) {
+        d->combo->setCurrentIndex(proxyIndex.row());
     } else {
         d->combo->setCurrentIndex(0);
     }
@@ -186,4 +208,4 @@ QLineEdit *SearchBar::lineEdit() const
 }
 
 #include "moc_searchbar.cpp"
-
+#include "searchbar.moc"

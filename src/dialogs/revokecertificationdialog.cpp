@@ -61,14 +61,14 @@ RevokeCertificationDialog::Private::~Private()
 
 void RevokeCertificationDialog::Private::saveGeometry()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "RevokeCertificationDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "RevokeCertificationDialog");
     cfgGroup.writeEntry("geometry", q->saveGeometry());
     cfgGroup.sync();
 }
 
 void RevokeCertificationDialog::Private::restoreGeometry(const QSize &defaultSize)
 {
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "RevokeCertificationDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "RevokeCertificationDialog");
     const QByteArray geometry = cfgGroup.readEntry("geometry", QByteArray());
     if (!geometry.isEmpty()) {
         q->restoreGeometry(geometry);

@@ -75,7 +75,7 @@ public:
 private:
     void readConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openConfig(), "DumpCrlCacheDialog");
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), "DumpCrlCacheDialog");
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
         if (size.isValid()) {
             resize(size);
@@ -84,7 +84,7 @@ private:
 
     void writeConfig()
     {
-        KConfigGroup dialog(KSharedConfig::openConfig(), "DumpCrlCacheDialog");
+        KConfigGroup dialog(KSharedConfig::openStateConfig(), "DumpCrlCacheDialog");
         dialog.writeEntry("Size", size());
         dialog.sync();
     }

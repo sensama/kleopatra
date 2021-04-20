@@ -647,7 +647,7 @@ CertificateDetailsDialog::~CertificateDetailsDialog()
 
 void CertificateDetailsDialog::readConfig()
 {
-    KConfigGroup dialog(KSharedConfig::openConfig(), "CertificateDetailsDialog");
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), "CertificateDetailsDialog");
     const QSize size = dialog.readEntry("Size", QSize(730, 280));
     if (size.isValid()) {
         resize(size);
@@ -656,7 +656,7 @@ void CertificateDetailsDialog::readConfig()
 
 void CertificateDetailsDialog::writeConfig()
 {
-    KConfigGroup dialog(KSharedConfig::openConfig(), "CertificateDetailsDialog");
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), "CertificateDetailsDialog");
     dialog.writeEntry("Size", size());
     dialog.sync();
 }

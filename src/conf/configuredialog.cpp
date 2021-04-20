@@ -44,7 +44,7 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
     // the KCMultiDialog starts with the size of the first kcm, not
     // the largest one. This way at least after the first showing of
     // the largest kcm the size is kept.
-    const KConfigGroup geometry(KSharedConfig::openConfig(), "Geometry");
+    const KConfigGroup geometry(KSharedConfig::openStateConfig(), "Geometry");
     const int width = geometry.readEntry("ConfigureDialogWidth", 0);
     const int height = geometry.readEntry("ConfigureDialogHeight", 0);
     if (width != 0 && height != 0) {
@@ -55,7 +55,7 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
 void ConfigureDialog::hideEvent(QHideEvent *e)
 {
     const QSize minSize = minimumSizeHint();
-    KConfigGroup geometry(KSharedConfig::openConfig(), "Geometry");
+    KConfigGroup geometry(KSharedConfig::openStateConfig(), "Geometry");
     geometry.writeEntry("ConfigureDialogWidth", minSize.width());
     geometry.writeEntry("ConfigureDialogHeight", minSize.height());
 #if HAVE_KCMUTILS

@@ -47,14 +47,14 @@ public:
 private:
     void saveLayout()
     {
-        KConfigGroup configGroup(KSharedConfig::openConfig(), "GroupsConfigDialog");
+        KConfigGroup configGroup(KSharedConfig::openStateConfig(), "GroupsConfigDialog");
         configGroup.writeEntry("Size", q->size());
         configGroup.sync();
     }
 
     void restoreLayout(const QSize &defaultSize = QSize())
     {
-        const KConfigGroup configGroup(KSharedConfig::openConfig(), "GroupsConfigDialog");
+        const KConfigGroup configGroup(KSharedConfig::openStateConfig(), "GroupsConfigDialog");
         const QSize size = configGroup.readEntry("Size", defaultSize);
         if (size.isValid()) {
             q->resize(size);

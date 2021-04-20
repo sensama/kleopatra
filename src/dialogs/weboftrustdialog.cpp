@@ -21,7 +21,7 @@ using namespace Kleo;
 WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
     : QDialog(parent)
 {
-    KConfigGroup dialog(KSharedConfig::openConfig(), "WebOfTrustDialog");
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), "WebOfTrustDialog");
     const QSize size = dialog.readEntry("Size", QSize(900, 400));
     if (size.isValid()) {
         resize(size);
@@ -50,7 +50,7 @@ GpgME::Key WebOfTrustDialog::key() const
 
 WebOfTrustDialog::~WebOfTrustDialog()
 {
-    KConfigGroup dialog(KSharedConfig::openConfig(), "WebOfTrustDialog");
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), "WebOfTrustDialog");
     dialog.writeEntry("Size", size());
     dialog.sync();
 }

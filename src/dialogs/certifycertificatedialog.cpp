@@ -78,7 +78,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     });
 
     mainLay->addWidget(buttonBox);
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "CertifyDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
     const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
     if (!geom.isEmpty()) {
         restoreGeometry(geom);
@@ -89,7 +89,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
 
 CertifyCertificateDialog::~CertifyCertificateDialog()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "CertifyDialog");
+    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
     cfgGroup.writeEntry("geometry", saveGeometry());
     cfgGroup.sync();
 }

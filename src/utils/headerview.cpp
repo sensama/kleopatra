@@ -109,49 +109,6 @@ HeaderView::HeaderView(Qt::Orientation o, QWidget *p)
 
 HeaderView::~HeaderView() {}
 
-#if 0
-static std::vector<int> calculate_section_sizes(const std::vector<int> &oldSizes, int newLength, const std::vector<QHeaderView::ResizeMode> &modes, int minSize)
-{
-
-    if (oldSizes.empty()) {
-        hvDebug() << "no existing sizes";
-        return std::vector<int>();
-    }
-
-    int oldLength = 0, fixedLength = 0, stretchLength = 0;
-    int numStretchSections = 0;
-    for (unsigned int i = 0, end = oldSizes.size(); i != end; ++i) {
-        oldLength += oldSizes[i];
-        if (lookup(modes, i, QHeaderView::Fixed) == QHeaderView::Stretch) {
-            stretchLength += oldSizes[i];
-            ++numStretchSections;
-        } else {
-            fixedLength += oldSizes[i];
-        }
-    }
-
-    if (oldLength <= 0) {
-        hvDebug() << "no existing lengths - returning equidistant sizes";
-        return std::vector<int>(oldSizes.size(), newLength / oldSizes.size());
-    }
-
-    const int stretchableSpace = std::max(newLength - fixedLength, 0);
-
-    std::vector<int> newSizes;
-    newSizes.reserve(oldSizes.size());
-    for (unsigned int i = 0, end = oldSizes.size(); i != end; ++i)
-        newSizes.push_back(std::max(minSize,
-                                    lookup(modes, i, QHeaderView::Fixed) == QHeaderView::Stretch
-                                    ? stretchLength ? stretchableSpace * oldSizes[i] / stretchLength : stretchableSpace / numStretchSections
-                                    : oldSizes[i]));
-
-    hvDebug() << "\noldSizes = " << oldSizes << "/" << oldLength
-              << "\nnewSizes = " << newSizes << "/" << newLength;
-
-    return newSizes;
-}
-#endif
-
 void HeaderView::setSectionSizes(const std::vector<int> &sizes)
 {
     hvDebug() << sizes;
@@ -165,54 +122,5 @@ std::vector<int> HeaderView::sectionSizes() const
 {
     return section_sizes(this);
 }
-
-#if 0
-void HeaderView::setModel(QAbstractItemModel *model)
-{
-
-    hvDebug() << "before" << section_sizes(this);
-
-    QHeaderView::setModel(model);
-
-    hvDebug() << "after " << section_sizes(this);
-
-}
-
-void HeaderView::setRootIndex(const QModelIndex &idx)
-{
-    hvDebug() << "before" << section_sizes(this);
-    QHeaderView::setRootIndex(idx);
-    hvDebug() << "after " << section_sizes(this);
-}
-
-void HeaderView::mousePressEvent(QMouseEvent *e)
-{
-    d->mousePressed = true;
-    QHeaderView::mousePressEvent(e);
-}
-
-void HeaderView::mouseReleaseEvent(QMouseEvent *e)
-{
-    d->mousePressed = false;
-    QHeaderView::mouseReleaseEvent(e);
-}
-
-void HeaderView::updateGeometries()
-{
-
-    const std::vector<int> oldSizes = d->mousePressed ? section_sizes(this) : d->sizes;
-
-    hvDebug() << "before" << section_sizes(this) << '(' << d->sizes << ')';
-
-    QHeaderView::updateGeometries();
-
-    hvDebug() << "after " << section_sizes(this);
-
-    const std::vector<int> newSizes = calculate_section_sizes(oldSizes, width(), d->modes, minimumSectionSize());
-    d->sizes = newSizes;
-
-    apply_section_sizes(this, newSizes);
-}
-#endif
 
 #include "moc_headerview.cpp"

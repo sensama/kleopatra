@@ -42,6 +42,7 @@
 #include "openpgpcard.h"
 #include "netkeycard.h"
 #include "pivcard.h"
+#include "p15card.h"
 
 #include <QStringList>
 #include <QMutex>
@@ -509,6 +510,28 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     ci.reset(pivCard);
 }
 
+static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
+{
+    Error err;
+    auto p15Card = new P15Card(*ci);
+
+    auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    if (err) {
+        ci->setStatus(Card::CardError);
+        return;
+    }
+    const auto fprs = gpgagent_statuslines(gpg_agent, "SCD GETATTR KEY-FPR", err);
+    if (!err) {
+        info.insert(info.end(), fprs.begin(), fprs.end());
+    }
+    p15Card->setCardInfo(info);
+    p15Card->setManufacturer(get_manufacturer(gpg_agent, err));
+
+    setDisplaySerialNumber(p15Card, gpg_agent);
+
+    ci.reset(p15Card);
+}
+
 static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -629,6 +652,10 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     } else if (appName == PIVCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found PIV card" << ci->serialNumber().c_str() << "end";
         handle_piv_card(ci, gpg_agent);
+        return ci;
+    } else if (appName == P15Card::AppName) {
+        qCDebug(KLEOPATRA_LOG) << "get_card_status: found P15 card" << ci->serialNumber().c_str() << "end";
+        handle_p15_card(ci, gpg_agent);
         return ci;
     } else {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << appName;

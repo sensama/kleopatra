@@ -14,12 +14,14 @@
 #include "smartcard/readerstatus.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/netkeycard.h"
+#include "smartcard/p15card.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/utils.h"
 
 #include "view/pgpcardwidget.h"
 #include "view/netkeywidget.h"
 #include "view/pivcardwidget.h"
+#include "view/p15cardwidget.h"
 
 #include "kleopatra_debug.h"
 
@@ -50,7 +52,8 @@ public:
         const QStringList supported = QStringList() << i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 - v3.3")
                                                     << i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk")
                                                     << i18nc("NetKey refers to a smartcard protocol", "NetKey v3")
-                                                    << i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)");
+                                                    << i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)")
+                                                    << i18nc("CardOS is a smartcard operating system", "CardOS 5 (various apps)");
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") +
                                   i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);
@@ -126,6 +129,8 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
         cardAddedOrChanged<OpenPGPCard, PGPCardWidget>(serialNumber);
     } else if (appName == SmartCard::PIVCard::AppName) {
         cardAddedOrChanged<PIVCard, PIVCardWidget>(serialNumber);
+    } else if (appName == SmartCard::P15Card::AppName) {
+        cardAddedOrChanged<P15Card, P15CardWidget>(serialNumber);
     } else {
         qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
             << "App" << appName.c_str() << "is not supported";

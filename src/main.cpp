@@ -16,7 +16,10 @@
 #include "kleopatraapplication.h"
 #include "mainwindow.h"
 
+#include <kcoreaddons_version.h>
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
+#endif
 
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
@@ -151,13 +154,13 @@ int main(int argc, char **argv)
 
     parser.process(QApplication::arguments());
     aboutData.processCommandLine(&parser);
-
+#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kleopatra"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kleopatrarc")
                                          << QStringLiteral("libkleopatrarc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kleopatra.rc"));
     migrate.migrate();
-
+#endif
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
 
     // Initialize GpgME

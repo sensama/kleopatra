@@ -11,8 +11,6 @@
 
 #include "dirservconfigpage.h"
 
-#include "compat.h"
-
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
 #include <Libkleo/CryptoConfigModule>

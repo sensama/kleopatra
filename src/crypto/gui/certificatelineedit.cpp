@@ -26,7 +26,6 @@
 #include <Libkleo/Formatting>
 
 #include <KLocalizedString>
-#include <KIconLoader>
 
 #include <gpgme++/key.h>
 
@@ -229,7 +228,7 @@ void CertificateLineEdit::updateKey()
             }
             if (newKey.isNull() && newGroup.isNull()) {
                 if (mEditFinished) {
-                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")).pixmap(KIconLoader::SizeSmallMedium));
+                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
                     mLineAction->setToolTip(i18n("Multiple certificates"));
                 } else {
                     mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));

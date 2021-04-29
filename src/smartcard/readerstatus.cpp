@@ -524,6 +524,10 @@ static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     if (!err) {
         info.insert(info.end(), fprs.begin(), fprs.end());
     }
+
+    /* Create the key stubs */
+    gpgagent_statuslines(gpg_agent, "READKEY --card -- $SIGNKEYID", err);
+
     p15Card->setCardInfo(info);
     p15Card->setManufacturer(get_manufacturer(gpg_agent, err));
 

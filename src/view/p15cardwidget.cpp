@@ -23,6 +23,17 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 
+#include <QGpgME/Protocol>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/CryptoConfig>
+#include <gpgme++/keylistresult.h>
+#include <gpgme++/importresult.h>
+
+#include <Libkleo/GnuPG>
+
+#include "kleopatra_debug.h"
+
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
@@ -32,6 +43,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     , mVersionLabel(new QLabel(this))
     , mSigFprLabel(new QLabel(this))
     , mEncFprLabel(new QLabel(this))
+    , mStatusLabel(new QLabel(this))
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -62,6 +74,8 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
     areaVLay->addLayout(cardInfoGrid);
+    areaVLay->addWidget(mStatusLabel);
+    mStatusLabel->setVisible(false);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
@@ -77,19 +91,77 @@ P15CardWidget::~P15CardWidget()
 {
 }
 
+void P15CardWidget::searchPGPFpr(const std::string &fpr)
+{
+    /* Only do auto import from LDAP */
+    auto conf = QGpgME::cryptoConfig();
+    Q_ASSERT (conf);
+    const QString cmp = engineIsVersion(2, 3, 0) ? QStringLiteral("dirmngr") : QStringLiteral("gpg");
+    const auto entry = conf->entry(cmp, QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
+    if (!entry || !entry->stringValue().startsWith(QStringLiteral("ldap"))) {
+        return;
+    }
+    static std::vector<std::string> fprs;
+    if (fpr.empty() || std::find(fprs.begin(), fprs.end(), fpr) != fprs.end()) {
+        qCDebug(KLEOPATRA_LOG) << "Already looked for " << fpr.c_str() << "on ldap server";
+        return;
+    }
+    mStatusLabel->setText(i18n("Searching in directory service..."));
+    mStatusLabel->setVisible(true);
+    fprs.push_back (fpr);
+    qCDebug(KLEOPATRA_LOG) << "Looking for:" << fpr.c_str() << "on ldap server";
+    QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob(true);
+    connect(job, &QGpgME::KeyListJob::result, job, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
+        if (keys.size() == 1) {
+            auto importJob = QGpgME::openpgp()->importFromKeyserverJob();
+            qCDebug(KLEOPATRA_LOG) << "Importing: " << keys[0].primaryFingerprint();
+            connect(importJob, &QGpgME::ImportFromKeyserverJob::result, importJob, [this](GpgME::ImportResult, QString, GpgME::Error) {
+                qCDebug(KLEOPATRA_LOG) << "import job done";
+                mStatusLabel->setText(i18n("Automatic import finished."));
+                setCard(mCard);
+            });
+            importJob->start(keys);
+        } else if (keys.size() > 1) {
+            qCDebug(KLEOPATRA_LOG) << "Multiple keys found on server";
+            mStatusLabel->setText(i18n("Error multiple keys found on server."));
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "No key found";
+            mStatusLabel->setText(i18n("Key not found in directory service."));
+        }
+    });
+    job->start(QStringList() << QString::fromStdString(fpr));
+
+}
+
 void P15CardWidget::setCard(const P15Card *card)
 {
+    mCard = card;
     mCardSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card",
                            QString::fromStdString(card->manufacturer())));
     mSerialNumber->setText(card->displaySerialNumber());
     mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
 
+    const auto sigInfo = card->keyInfo(card->signingKeyRef());
+    if (!sigInfo.grip.empty()) {
+        const auto key = KeyCache::instance()->findSubkeyByKeyGrip(sigInfo.grip, GpgME::OpenPGP).parent();
+        if (key.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << "Failed to find key for grip:" << sigInfo.grip.c_str();
+            const auto pgpSigFpr = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+            if (!pgpSigFpr.empty()) {
+                qCDebug(KLEOPATRA_LOG) << "Should be pgp key:" << pgpSigFpr.c_str();
+                searchPGPFpr(pgpSigFpr);
+            }
+        } else {
+            mStatusLabel->setVisible(false);
+        }
+    }
+
     std::string keyid = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
     if (!keyid.empty()) {
         QString text = i18n("Signing key:") +
             QStringLiteral("\t%1 (%2)")
-            .arg(QString::fromStdString(keyid))
+            .arg(Formatting::prettyID(keyid.c_str()))
             .arg(QString::fromStdString(card->signingKeyRef()));
         text += QStringLiteral("<br/><br/>");
 
@@ -118,7 +190,8 @@ void P15CardWidget::setCard(const P15Card *card)
     keyid = card->appKeyFingerprint(OpenPGPCard::pgpEncKeyRef());
     if (!keyid.empty()) {
         mEncFprLabel->setText(i18n("Encryption key:") +
-                QStringLiteral(" %1 (%2)").arg(QString::fromStdString(keyid))
+                QStringLiteral(" %1 (%2)")
+                .arg(Formatting::prettyID(keyid.c_str()))
                 .arg(QString::fromStdString(card->encryptionKeyRef())));
         keyid.erase(0, keyid.size() - 16);
         const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});

@@ -29,13 +29,15 @@ public:
     ~P15CardWidget();
 
     void setCard(const SmartCard::P15Card* card);
-
 private:
+    void searchPGPFpr(const std::string &fpr);
     std::string mCardSerialNumber;
     QLabel *mSerialNumber = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mSigFprLabel  = nullptr;
     QLabel *mEncFprLabel  = nullptr;
+    QLabel *mStatusLabel = nullptr;
+    const SmartCard::P15Card *mCard = nullptr;
 };
 
 }

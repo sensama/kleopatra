@@ -11,6 +11,7 @@
 
 #include "smartcard/p15card.h"
 #include "smartcard/openpgpcard.h"
+#include "smartcard/readerstatus.h"
 
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -111,6 +112,11 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     fprs.push_back (fpr);
     qCDebug(KLEOPATRA_LOG) << "Looking for:" << fpr.c_str() << "on ldap server";
     QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob(true);
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, fpr] () {
+            qCDebug(KLEOPATRA_LOG) << "Updating key info after changes";
+            ReaderStatus::mutableInstance()->updateStatus();
+            updateSigKeyWidgets(fpr);
+    });
     connect(job, &QGpgME::KeyListJob::result, job, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
         if (keys.size() == 1) {
             auto importJob = QGpgME::openpgp()->importFromKeyserverJob();
@@ -118,7 +124,6 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
             connect(importJob, &QGpgME::ImportFromKeyserverJob::result, importJob, [this](GpgME::ImportResult, QString, GpgME::Error) {
                 qCDebug(KLEOPATRA_LOG) << "import job done";
                 mStatusLabel->setText(i18n("Automatic import finished."));
-                setCard(mCard);
             });
             importJob->start(keys);
         } else if (keys.size() > 1) {
@@ -133,36 +138,13 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
 
 }
 
-void P15CardWidget::setCard(const P15Card *card)
+void P15CardWidget::updateSigKeyWidgets(const std::string &fpr)
 {
-    mCard = card;
-    mCardSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card",
-                           QString::fromStdString(card->manufacturer())));
-    mSerialNumber->setText(card->displaySerialNumber());
-    mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
-
-    const auto sigInfo = card->keyInfo(card->signingKeyRef());
-    if (!sigInfo.grip.empty()) {
-        const auto key = KeyCache::instance()->findSubkeyByKeyGrip(sigInfo.grip, GpgME::OpenPGP).parent();
-        if (key.isNull()) {
-            qCDebug(KLEOPATRA_LOG) << "Failed to find key for grip:" << sigInfo.grip.c_str();
-            const auto pgpSigFpr = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
-            if (!pgpSigFpr.empty()) {
-                qCDebug(KLEOPATRA_LOG) << "Should be pgp key:" << pgpSigFpr.c_str();
-                searchPGPFpr(pgpSigFpr);
-            }
-        } else {
-            mStatusLabel->setVisible(false);
-        }
-    }
-
-    std::string keyid = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+    std::string keyid = fpr;
     if (!keyid.empty()) {
         QString text = i18n("Signing key:") +
             QStringLiteral("\t%1 (%2)")
-            .arg(Formatting::prettyID(keyid.c_str()))
-            .arg(QString::fromStdString(card->signingKeyRef()));
+            .arg(Formatting::prettyID(keyid.c_str()));
         text += QStringLiteral("<br/><br/>");
 
         keyid.erase(0, keyid.size() - 16);
@@ -187,6 +169,33 @@ void P15CardWidget::setCard(const P15Card *card)
     } else {
         mSigFprLabel->setVisible(false);
     }
+}
+
+void P15CardWidget::setCard(const P15Card *card)
+{
+    mCardSerialNumber = card->serialNumber();
+    mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card",
+                           QString::fromStdString(card->manufacturer())));
+    mSerialNumber->setText(card->displaySerialNumber());
+    mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
+
+    const auto sigInfo = card->keyInfo(card->signingKeyRef());
+    if (!sigInfo.grip.empty()) {
+        const auto key = KeyCache::instance()->findSubkeyByKeyGrip(sigInfo.grip, GpgME::OpenPGP).parent();
+        if (key.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << "Failed to find key for grip:" << sigInfo.grip.c_str();
+            const auto pgpSigFpr = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+            if (!pgpSigFpr.empty()) {
+                qCDebug(KLEOPATRA_LOG) << "Should be pgp key:" << pgpSigFpr.c_str();
+                searchPGPFpr(pgpSigFpr);
+            }
+        } else {
+            mStatusLabel->setVisible(false);
+        }
+    }
+
+    std::string keyid = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+    updateSigKeyWidgets(keyid);
     keyid = card->appKeyFingerprint(OpenPGPCard::pgpEncKeyRef());
     if (!keyid.empty()) {
         mEncFprLabel->setText(i18n("Encryption key:") +

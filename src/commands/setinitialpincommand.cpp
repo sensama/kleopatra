@@ -48,7 +48,7 @@ private:
             return;
         }
 
-        SetInitialPinDialog *dlg = new SetInitialPinDialog;
+        auto dlg = new SetInitialPinDialog;
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setWindowTitle(i18nc("@title:window", "Set Initial Pin"));

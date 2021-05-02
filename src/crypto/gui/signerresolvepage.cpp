@@ -77,11 +77,11 @@ AbstractSigningProtocolSelectionWidget::AbstractSigningProtocolSelectionWidget(Q
 
 ReadOnlyProtocolSelectionWidget::ReadOnlyProtocolSelectionWidget(QWidget *p, Qt::WindowFlags f) : AbstractSigningProtocolSelectionWidget(p, f)
 {
-    QVBoxLayout *const layout = new QVBoxLayout(this);
+    auto const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     const auto supportedProtocolsLst = supportedProtocols();
     for (const Protocol i: supportedProtocolsLst) {
-        QLabel *const l = new QLabel;
+        auto const l = new QLabel;
         l->setText(formatLabel(i, Key()));
         layout->addWidget(l);
         m_labels[i] =  l;
@@ -120,10 +120,10 @@ SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, 
     m_buttonGroup = new QButtonGroup(this);
     connect(m_buttonGroup, &QButtonGroup::idClicked, this, &SigningProtocolSelectionWidget::userSelectionChanged);
 
-    QVBoxLayout *const layout = new QVBoxLayout(this);
+    auto const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
-        QCheckBox *const b = new QCheckBox;
+        auto const b = new QCheckBox;
         b->setText(formatLabel(i, Key()));
         m_buttons[i] = b;
         layout->addWidget(b);
@@ -151,7 +151,7 @@ bool SigningProtocolSelectionWidget::isProtocolChecked(Protocol p) const
 std::set<Protocol> SigningProtocolSelectionWidget::checkedProtocols() const
 {
     std::set<Protocol> res;
-    for (std::map<Protocol, QCheckBox *>::const_iterator it = m_buttons.begin(), end = m_buttons.end();
+    for (auto it = m_buttons.begin(), end = m_buttons.end();
             it != end;
             ++it)
         if (it->second->isChecked()) {
@@ -171,13 +171,13 @@ void SigningProtocolSelectionWidget::setExclusive(bool exclusive)
 
 QCheckBox *SigningProtocolSelectionWidget::button(Protocol p) const
 {
-    const std::map<Protocol, QCheckBox *>::const_iterator it = m_buttons.find(p);
+    const auto it = m_buttons.find(p);
     return it == m_buttons.end() ? nullptr : it->second;
 }
 
 QLabel *ReadOnlyProtocolSelectionWidget::label(Protocol p) const
 {
-    const std::map<Protocol, QLabel *>::const_iterator it = m_labels.find(p);
+    const auto it = m_labels.find(p);
     return it == m_labels.end() ? nullptr : it->second;
 }
 
@@ -279,7 +279,7 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
     , validator(new ValidatorImpl)
 
 {
-    QVBoxLayout *layout = new QVBoxLayout(q);
+    auto layout = new QVBoxLayout(q);
 
     signEncryptGroup = new QButtonGroup(q);
     q->connect(signEncryptGroup, SIGNAL(buttonClicked(int)), q, SLOT(operationButtonClicked(int)));
@@ -310,7 +310,7 @@ SignerResolvePage::Private::Private(SignerResolvePage *qq)
 
     signingCertificateBox = new QGroupBox;
     signingCertificateBox->setTitle(i18n("Signing Options"));
-    QGridLayout *signerLayout = new QGridLayout(signingCertificateBox);
+    auto signerLayout = new QGridLayout(signingCertificateBox);
     signerLayout->setColumnStretch(1, 1);
 
     signerLabelLabel = new QLabel;
@@ -456,7 +456,7 @@ void SignerResolvePage::Private::selectCertificates()
 
 void SignerResolvePage::Private::operationButtonClicked(int mode_)
 {
-    const Operation op = static_cast<SignerResolvePage::Operation>(mode_);
+    const auto op = static_cast<SignerResolvePage::Operation>(mode_);
     signingCertificateBox->setEnabled(op != EncryptOnly);
     encryptBox->setEnabled(op != SignOnly);
     if (op == SignAndEncrypt) {

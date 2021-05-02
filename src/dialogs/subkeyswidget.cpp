@@ -66,7 +66,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     }
     const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
 
-    QMenu *menu = new QMenu(q);
+    auto menu = new QMenu(q);
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     bool hasActions = false;

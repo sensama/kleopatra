@@ -97,7 +97,7 @@ private:
 SmartCardWidget::Private::Private(SmartCardWidget *qq)
     : q(qq)
 {
-    QVBoxLayout *vLay = new QVBoxLayout(q);
+    auto vLay = new QVBoxLayout(q);
 
     vLay->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") +
                                QStringLiteral("</h2>")));

@@ -256,7 +256,7 @@ void CertifyCertificateCommand::Private::slotDialogRejected()
 void CertifyCertificateCommand::Private::slotResult(const Error &err)
 {
     if (!err && !err.isCanceled() && dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
-        ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(key());
+        auto const cmd = new ExportOpenPGPCertsToServerCommand(key());
         cmd->start();
     } else if (!err) {
         information(i18n("Certification successful."),

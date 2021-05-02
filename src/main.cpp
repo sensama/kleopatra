@@ -89,7 +89,7 @@ static bool selfCheck()
 
 static void fillKeyCache(Kleo::UiServer *server)
 {
-    Kleo::ReloadKeysCommand *cmd = new Kleo::ReloadKeysCommand(nullptr);
+    auto cmd = new Kleo::ReloadKeysCommand(nullptr);
     QObject::connect(cmd, SIGNAL(finished()), server, SLOT(enableCryptoCommands()));
     cmd->start();
 }

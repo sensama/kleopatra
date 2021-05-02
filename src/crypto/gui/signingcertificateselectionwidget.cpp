@@ -93,7 +93,7 @@ std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(G
 {
     Q_ASSERT(prot != GpgME::UnknownProtocol);
     std::vector<GpgME::Key> keys = KeyCache::instance()->keys();
-    std::vector<GpgME::Key>::iterator end = keys.end();
+    auto end = keys.end();
 
     end = std::remove_if(keys.begin(), end, [prot](const GpgME::Key &key) { return key.protocol() != prot; });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.hasSecret(); });

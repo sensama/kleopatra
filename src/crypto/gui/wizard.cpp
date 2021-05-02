@@ -75,13 +75,13 @@ Wizard::Private::Private(Wizard *qq)
     connect(nextPageTimer, &QTimer::timeout, q, &Wizard::next);
     nextItem = KGuiItem(i18n("&Next"));
     finishItem = KStandardGuiItem::ok();
-    QVBoxLayout *const top = new QVBoxLayout(q);
+    auto const top = new QVBoxLayout(q);
     top->setContentsMargins(0, 0, 0, 0);
     titleFrame = new QFrame;
     titleFrame->setFrameShape(QFrame::StyledPanel);
     titleFrame->setAutoFillBackground(true);
     titleFrame->setBackgroundRole(QPalette::Base);
-    QVBoxLayout *const titleLayout = new QVBoxLayout(titleFrame);
+    auto const titleLayout = new QVBoxLayout(titleFrame);
     titleLabel = new QLabel;
     titleLayout->addWidget(titleLabel);
     subTitleLabel = new QLabel;
@@ -96,16 +96,16 @@ Wizard::Private::Private(Wizard *qq)
     explanationFrame->setFrameShape(QFrame::StyledPanel);
     explanationFrame->setAutoFillBackground(true);
     explanationFrame->setBackgroundRole(QPalette::Base);
-    QVBoxLayout *const explanationLayout = new QVBoxLayout(explanationFrame);
+    auto const explanationLayout = new QVBoxLayout(explanationFrame);
     explanationLabel = new QLabel;
     explanationLabel->setWordWrap(true);
     explanationLayout->addWidget(explanationLabel);
     top->addWidget(explanationFrame);
     explanationFrame->setVisible(false);
 
-    QWidget *buttonWidget = new QWidget;
-    QHBoxLayout *buttonLayout = new QHBoxLayout(buttonWidget);
-    QDialogButtonBox *const box = new QDialogButtonBox;
+    auto buttonWidget = new QWidget;
+    auto buttonLayout = new QHBoxLayout(buttonWidget);
+    auto const box = new QDialogButtonBox;
 
     cancelButton = box->addButton(QDialogButtonBox::Cancel);
     q->connect(cancelButton, &QPushButton::clicked, q, &Wizard::reject);
@@ -262,7 +262,7 @@ void Wizard::next()
         current->onNext();
     }
     onNext(d->currentId);
-    std::vector<int>::const_iterator it = Kleo::binary_find(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);
+    auto it = Kleo::binary_find(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);
     Q_ASSERT(it != d->pageOrder.end());
 
     do {
@@ -283,7 +283,7 @@ int Wizard::Private::previousPage() const
         return InvalidPage;
     }
 
-    std::vector<int>::const_iterator it = Kleo::binary_find(pageOrder.begin(), pageOrder.end(), currentId);
+    auto it = Kleo::binary_find(pageOrder.begin(), pageOrder.end(), currentId);
     if (it == pageOrder.begin() || it == pageOrder.end()) {
         return InvalidPage;
     }
@@ -310,7 +310,7 @@ const WizardPage *Wizard::page(int id) const
         return nullptr;
     }
 
-    const std::map<int, WizardPage *>::const_iterator it = d->idToPage.find(id);
+    const auto it = d->idToPage.find(id);
     kleo_assert(it != d->idToPage.end());
     return (*it).second;
 }
@@ -341,7 +341,7 @@ WizardPage *Wizard::page(int id)
         return nullptr;
     }
 
-    const std::map<int, WizardPage *>::const_iterator it = d->idToPage.find(id);
+    const auto it = d->idToPage.find(id);
     kleo_assert(it != d->idToPage.end());
     return (*it).second;
 }

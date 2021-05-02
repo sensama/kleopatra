@@ -48,7 +48,7 @@ ResolveRecipientsPage::ListWidget::ListWidget(QWidget *parent, Qt::WindowFlags f
 {
     m_listWidget = new QListWidget;
     m_listWidget->setSelectionMode(QAbstractItemView::MultiSelection);
-    QVBoxLayout *const layout = new QVBoxLayout(this);
+    auto const layout = new QVBoxLayout(this);
     layout->addWidget(m_listWidget);
     connect(m_listWidget, &QListWidget::itemSelectionChanged, this, &ListWidget::onSelectionChange);
 }
@@ -80,9 +80,9 @@ void ResolveRecipientsPage::ListWidget::addEntry(const QString &id, const QStrin
 void ResolveRecipientsPage::ListWidget::addEntry(const QString &id, const QString &name, const Mailbox &mbox)
 {
     Q_ASSERT(!widgets.contains(id) && !items.contains(id));
-    QListWidgetItem *item = new QListWidgetItem;
+    auto item = new QListWidgetItem;
     item->setData(IdRole, id);
-    ItemWidget *wid = new ItemWidget(id, name, mbox, this);
+    auto wid = new ItemWidget(id, name, mbox, this);
     connect(wid, &ItemWidget::changed, this, &ListWidget::completeChanged);
     wid->setProtocol(m_protocol);
     item->setSizeHint(wid->sizeHint());
@@ -164,7 +164,7 @@ ResolveRecipientsPage::ItemWidget::ItemWidget(const QString &id, const QString &
 {
     Q_ASSERT(!m_id.isEmpty());
     setAutoFillBackground(true);
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addSpacing(15);
     m_nameLabel = new QLabel;
@@ -222,7 +222,7 @@ bool ResolveRecipientsPage::ItemWidget::isSelected() const
 
 static CertificateSelectionDialog *createCertificateSelectionDialog(QWidget *parent, GpgME::Protocol prot)
 {
-    CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(parent);
+    auto const dlg = new CertificateSelectionDialog(parent);
     const CertificateSelectionDialog::Options options =
         CertificateSelectionDialog::SingleSelection |
         CertificateSelectionDialog::EncryptOnly |
@@ -370,7 +370,7 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
 {
     connect(q, SIGNAL(completeChanged()), q, SLOT(completeChangedInternal()));
     q->setTitle(i18n("<b>Recipients</b>"));
-    QVBoxLayout *const layout = new QVBoxLayout(q);
+    auto const layout = new QVBoxLayout(q);
     m_listWidget = new ListWidget;
     connect(m_listWidget, SIGNAL(selectionChanged()), q, SLOT(selectionChanged()));
     connect(m_listWidget, &ListWidget::completeChanged, q, &WizardPage::completeChanged);
@@ -379,8 +379,8 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     m_additionalRecipientsLabel->setWordWrap(true);
     layout->addWidget(m_additionalRecipientsLabel);
     m_additionalRecipientsLabel->setVisible(false);
-    QWidget *buttonWidget = new QWidget;
-    QHBoxLayout *buttonLayout = new QHBoxLayout(buttonWidget);
+    auto buttonWidget = new QWidget;
+    auto buttonLayout = new QHBoxLayout(buttonWidget);
     buttonLayout->setContentsMargins(0, 0, 0, 0);
     m_addButton = new QPushButton;
     connect(m_addButton, SIGNAL(clicked()), q, SLOT(addRecipient()));
@@ -394,9 +394,9 @@ ResolveRecipientsPage::Private::Private(ResolveRecipientsPage *qq)
     buttonLayout->addWidget(m_removeButton);
     buttonLayout->addStretch();
     layout->addWidget(buttonWidget);
-    QWidget *protocolWidget = new QWidget;
-    QHBoxLayout *protocolLayout = new QHBoxLayout(protocolWidget);
-    QButtonGroup *protocolGroup = new QButtonGroup(q);
+    auto protocolWidget = new QWidget;
+    auto protocolLayout = new QHBoxLayout(protocolWidget);
+    auto protocolGroup = new QButtonGroup(q);
     connect(protocolGroup, SIGNAL(buttonClicked(int)), q, SLOT(protocolSelected(int)));
     m_pgpRB = new QRadioButton;
     m_pgpRB->setText(i18n("OpenPGP"));
@@ -481,7 +481,7 @@ void ResolveRecipientsPage::Private::setSelectedProtocol(Protocol protocol)
 
 void ResolveRecipientsPage::Private::protocolSelected(int p)
 {
-    const Protocol protocol = static_cast<Protocol>(p);
+    const auto protocol = static_cast<Protocol>(p);
     Q_ASSERT(protocol != UnknownProtocol);
     setSelectedProtocol(protocol);
 }

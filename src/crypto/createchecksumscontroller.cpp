@@ -211,7 +211,7 @@ private:
             progressDialog->close();
         }
 #endif // QT_NO_PROGRESSDIALOG
-        ResultDialog *const dlg = new ResultDialog(created, errors);
+        auto const dlg = new ResultDialog(created, errors);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         q->bringToForeground(dlg);
         if (!errors.empty())
@@ -560,7 +560,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
     std::vector<Dir> dirs;
     dirs.reserve(dirs2files.size());
 
-    for (std::map<QDir, QStringList, less_dir>::const_iterator it = dirs2files.begin(), end = dirs2files.end(); it != end; ++it) {
+    for (auto it = dirs2files.begin(), end = dirs2files.end(); it != end; ++it) {
 
         const QStringList inputFiles = remove_checksum_files(it->second, patterns);
         if (inputFiles.empty()) {

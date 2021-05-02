@@ -198,7 +198,7 @@ namespace
 template <typename C>
 void collectGarbage(C &c)
 {
-    typename C::iterator it = c.begin();
+    auto it = c.begin();
     while (it != c.end() /*sic!*/)
         if (it->second) {
             ++it;
@@ -220,7 +220,7 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
 
     if (id != 0) {
 
-        const std::map<unsigned int, QPointer<DecryptVerifyEMailWizard> >::const_iterator it
+        const auto it
             = s_wizards.find(id);
 
         if (it != s_wizards.end()) {
@@ -230,7 +230,7 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
 
     }
 
-    DecryptVerifyEMailWizard *w = new DecryptVerifyEMailWizard;
+    auto w = new DecryptVerifyEMailWizard;
     w->setWindowTitle(i18nc("@title:window", "Decrypt/Verify E-Mail"));
     w->setAttribute(Qt::WA_DeleteOnClose);
 

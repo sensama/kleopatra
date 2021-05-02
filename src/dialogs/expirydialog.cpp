@@ -106,11 +106,11 @@ private:
         explicit UI(Dialogs::ExpiryDialog *qq)
             : Ui::ExpiryDialog()
         {
-            QWidget *mainWidget = new QWidget(qq);
+            auto mainWidget = new QWidget(qq);
 
             setupUi(mainWidget);
-            QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
-            QVBoxLayout *mainLayout = new QVBoxLayout;
+            auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
+            auto mainLayout = new QVBoxLayout;
             qq->setLayout(mainLayout);
             mainLayout->addWidget(mainWidget);
             QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);

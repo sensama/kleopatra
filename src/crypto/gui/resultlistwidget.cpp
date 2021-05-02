@@ -147,7 +147,7 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
     Q_ASSERT(result);
     Q_ASSERT(std::any_of(m_collections.cbegin(), m_collections.cend(),
                        [](const std::shared_ptr<TaskCollection> &t) { return !t->isEmpty(); }));
-    ResultItemWidget *wid = new ResultItemWidget(result);
+    auto wid = new ResultItemWidget(result);
     q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
     q->connect(wid, &ResultItemWidget::closeButtonClicked, q, &ResultListWidget::close);
     addResultWidget(wid);

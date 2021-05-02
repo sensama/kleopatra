@@ -329,7 +329,7 @@ public:
 #ifndef HAVE_ASSUAN2
     typedef int(*_Handler)(assuan_context_s *, char *);
 #else
-    typedef gpg_error_t(*_Handler)(assuan_context_s *, char *);
+    using _Handler = gpg_error_t (*)(assuan_context_s *, char *);
 #endif
     virtual _Handler _handler() const = 0;
 

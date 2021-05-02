@@ -211,7 +211,7 @@ private:
         if (!index.isValid()) {
             return;
         }
-        const GpgME::Key key = index.model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
+        const auto key = index.model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
         if (!key.isNull()) {
             auto cmd = new DetailsCommand(key, nullptr);
             cmd->setParentWidget(q);

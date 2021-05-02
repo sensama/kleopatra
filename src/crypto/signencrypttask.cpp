@@ -545,7 +545,7 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
 
 void SignEncryptTask::Private::slotResult(const SigningResult &result)
 {
-    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
+    const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (input->failed()) {
@@ -572,7 +572,7 @@ void SignEncryptTask::Private::slotResult(const SigningResult &result)
 
 void SignEncryptTask::Private::slotResult(const SigningResult &sresult, const EncryptionResult &eresult)
 {
-    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
+    const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (input->failed()) {
@@ -600,7 +600,7 @@ void SignEncryptTask::Private::slotResult(const SigningResult &sresult, const En
 
 void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
 {
-    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
+    const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLog auditLog = AuditLog::fromJob(job);
     bool outputCreated = false;
     if (input->failed()) {

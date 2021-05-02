@@ -238,7 +238,7 @@ public:
     void slotConfigCommitted();
     void slotContextMenuRequested(QAbstractItemView *, const QPoint &p)
     {
-        if (QMenu *const menu = qobject_cast<QMenu *>(q->factory()->container(QStringLiteral("listview_popup"), q))) {
+        if (auto const menu = qobject_cast<QMenu *>(q->factory()->container(QStringLiteral("listview_popup"), q))) {
             menu->exec(p);
         } else {
             qCDebug(KLEOPATRA_LOG) << "no \"listview_popup\" <Menu> in kleopatra's ui.rc file";
@@ -324,14 +324,14 @@ MainWindow::Private::UI::UI(MainWindow *q)
     KDAB_SET_OBJECT_NAME(tabWidget);
 
     searchTab = new QWidget;
-    QVBoxLayout *vbox = new QVBoxLayout(searchTab);
+    auto vbox = new QVBoxLayout(searchTab);
     vbox->setSpacing(0);
     searchBar = new SearchBar;
     vbox->addWidget(searchBar);
     tabWidget.connectSearchBar(searchBar);
     vbox->addWidget(&tabWidget);
 
-    QWidget *mainWidget = new QWidget;
+    auto mainWidget = new QWidget;
     auto mainLayout = new QVBoxLayout(mainWidget);
     stackWidget = new QStackedWidget;
 
@@ -460,7 +460,7 @@ void MainWindow::Private::setupActions()
     make_actions_from_data(action_data, /*sizeof action_data / sizeof *action_data,*/ coll);
 
     if (!Settings().groupsEnabled()) {
-        if (auto *action = coll->action(QStringLiteral("configure_groups"))) {
+        if (auto action = coll->action(QStringLiteral("configure_groups"))) {
             delete action;
         }
     }

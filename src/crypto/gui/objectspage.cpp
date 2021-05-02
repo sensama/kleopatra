@@ -51,13 +51,13 @@ ObjectsPage::Private::Private(ObjectsPage *qq)
     : q(qq)
 {
     q->setTitle(i18n("<b>Objects</b>"));
-    QVBoxLayout *const top = new QVBoxLayout(q);
+    auto const top = new QVBoxLayout(q);
     fileListWidget = new QListWidget;
     fileListWidget->setSelectionMode(QAbstractItemView::MultiSelection);
     connect(fileListWidget, SIGNAL(itemSelectionChanged()), q, SLOT(listSelectionChanged()));
     top->addWidget(fileListWidget);
-    QWidget *const buttonWidget = new QWidget;
-    QHBoxLayout *const buttonLayout = new QHBoxLayout(buttonWidget);
+    auto const buttonWidget = new QWidget;
+    auto const buttonLayout = new QHBoxLayout(buttonWidget);
     removeButton = new QPushButton;
     removeButton->setText(i18n("Remove Selected"));
     connect(removeButton, SIGNAL(clicked()), q, SLOT(remove()));
@@ -116,7 +116,7 @@ void ObjectsPage::setFiles(const QStringList &list)
 
 void ObjectsPage::Private::addFile(const QFileInfo &info)
 {
-    QListWidgetItem *const item = new QListWidgetItem;
+    auto const item = new QListWidgetItem;
     if (info.isDir()) {
         item->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
     }

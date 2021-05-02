@@ -311,12 +311,12 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     setWaitForMoreJobs(true);
     if (!pgp.empty())
         startImport(OpenPGP, pgp,
-                    i18nc("@title %1:\"OpenPGP\" or \"CMS\"",
+                    i18nc(R"(@title %1:"OpenPGP" or "CMS")",
                           "%1 Certificate Server",
                           Formatting::displayName(OpenPGP)));
     if (!cms.empty())
         startImport(CMS, cms,
-                    i18nc("@title %1:\"OpenPGP\" or \"CMS\"",
+                    i18nc(R"(@title %1:"OpenPGP" or "CMS")",
                           "%1 Certificate Server",
                           Formatting::displayName(CMS)));
     setWaitForMoreJobs(false);

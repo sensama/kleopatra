@@ -83,7 +83,7 @@ void SignCommand::Private::checkForErrors() const
         throw Exception(makeError(GPG_ERR_INV_VALUE),
                         i18n("MESSAGE command is not allowed before SIGN"));
 
-    const std::shared_ptr<NewSignEncryptEMailController> m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto m = q->mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (m && m->isSigning()) {
 
@@ -121,7 +121,7 @@ int SignCommand::doStart()
 
     d->checkForErrors();
 
-    const std::shared_ptr<NewSignEncryptEMailController> seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
+    const auto seec = mementoContent< std::shared_ptr<NewSignEncryptEMailController> >(NewSignEncryptEMailController::mementoName());
 
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:

@@ -99,7 +99,7 @@ public:
         clear();
         const std::vector<GpgME::UserID> uids = key.userIDs();
         for (const auto &uid : uids) {
-            QStandardItem *const item = new QStandardItem;
+            auto const item = new QStandardItem;
             item->setText(Formatting::prettyUserID(uid));
             item->setCheckable(true);
             item->setEditable(false);
@@ -160,7 +160,7 @@ public:
         , mCertificationKeySelect(new KeySelectionCombo(/* secretOnly = */ true))
         , mPublishCB(new QCheckBox)
     {
-        QVBoxLayout *mainLayout = new QVBoxLayout(q);
+        auto mainLayout = new QVBoxLayout(q);
         mainLayout->addWidget(mFprLabel);
 
         auto certKeyLayout = new QHBoxLayout;

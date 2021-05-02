@@ -148,7 +148,7 @@ void PIVCard::setCertificateData(const std::string &keyRef, const std::string &d
 
 bool PIVCard::operator == (const Card& rhs) const
 {
-    const PIVCard *other = dynamic_cast<const PIVCard *>(&rhs);
+    const auto other = dynamic_cast<const PIVCard *>(&rhs);
     if (!other) {
         return false;
     }

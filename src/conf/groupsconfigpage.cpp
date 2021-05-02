@@ -46,7 +46,7 @@ GroupsConfigPage::GroupsConfigPage(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    auto layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
 
     d->widget = new Kleo::GroupsConfigWidget(this);

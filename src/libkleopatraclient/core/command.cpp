@@ -210,7 +210,7 @@ QVariant Command::optionValue(const char *name) const
     }
     const QMutexLocker locker(&d->mutex);
 
-    const std::map<std::string, Private::Option>::const_iterator it = d->inputs.options.find(name);
+    const auto it = d->inputs.options.find(name);
     if (it == d->inputs.options.end()) {
         return QVariant();
     } else {
@@ -262,7 +262,7 @@ bool Command::isOptionCritical(const char *name) const
         return false;
     }
     const QMutexLocker locker(&d->mutex);
-    const std::map<std::string, Private::Option>::const_iterator it = d->inputs.options.find(name);
+    const auto it = d->inputs.options.find(name);
     return it != d->inputs.options.end() && it->second.isCritical;
 }
 
@@ -331,7 +331,7 @@ void Command::unsetInquireData(const char *what)
 QByteArray Command::inquireData(const char *what) const
 {
     const QMutexLocker locker(&d->mutex);
-    const std::map<std::string, QByteArray>::const_iterator it = d->inputs.inquireData.find(what);
+    const auto it = d->inputs.inquireData.find(what);
     if (it == d->inputs.inquireData.end()) {
         return QByteArray();
     } else {
@@ -342,7 +342,7 @@ QByteArray Command::inquireData(const char *what) const
 bool Command::isInquireDataSet(const char *what) const
 {
     const QMutexLocker locker(&d->mutex);
-    const std::map<std::string, QByteArray>::const_iterator it = d->inputs.inquireData.find(what);
+    const auto it = d->inputs.inquireData.find(what);
     return it != d->inputs.inquireData.end();
 }
 
@@ -377,7 +377,7 @@ static void my_assuan_release(assuan_context_t ctx)
 }
 #endif
 
-typedef std::shared_ptr<std::remove_pointer<assuan_context_t>::type > AssuanContextBase;
+using AssuanContextBase = std::shared_ptr<std::remove_pointer<assuan_context_t>::type>;
 namespace
 {
 struct AssuanClientContext : AssuanContextBase {
@@ -400,7 +400,7 @@ struct AssuanClientContext : AssuanContextBase {
 
 #ifdef HAVE_ASSUAN2
 // compatibility typedef - remove when we require assuan v2...
-typedef gpg_error_t assuan_error_t;
+using assuan_error_t = gpg_error_t;
 #endif
 
 static assuan_error_t
@@ -488,7 +488,7 @@ static assuan_error_t command_inquire_cb(void *opaque, const char *what)
         return 0;
     }
     const inquire_data &id = *static_cast<const inquire_data *>(opaque);
-    const std::map<std::string, QByteArray>::const_iterator it = id.map->find(what);
+    const auto it = id.map->find(what);
     if (it != id.map->end()) {
         const QByteArray &v = it->second;
         assuan_send_data(id.ctx->get(), v.data(), v.size());
@@ -646,7 +646,7 @@ void Command::Private::run()
         }
     }
 
-    for (std::map<std::string, Option>::const_iterator it = in.options.begin(), end = in.options.end(); it != end; ++it)
+    for (auto it = in.options.begin(), end = in.options.end(); it != end; ++it)
         if ((err = send_option(ctx, it->first.c_str(), it->second.hasValue ? it->second.value.toString() : QVariant()))) {
             if (it->second.isCritical) {
                 out.errorString = i18n("Failed to send critical option %1: %2", QString::fromLatin1(it->first.c_str()), to_error_string(err));

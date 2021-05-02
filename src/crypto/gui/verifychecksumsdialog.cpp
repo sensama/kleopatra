@@ -181,7 +181,7 @@ struct BaseWidget {
     void setBase(const QString &base)
     {
         label.setText(base);
-        if (QDirModel *fsm = qobject_cast<QDirModel *>(proxy.sourceModel())) {
+        if (auto fsm = qobject_cast<QDirModel *>(proxy.sourceModel())) {
             view.setRootIndex(proxy.mapFromSource(fsm->index(base)));
         } else {
             qCWarning(KLEOPATRA_LOG) << "expect a QDirModel-derived class as proxy.sourceModel(), got ";

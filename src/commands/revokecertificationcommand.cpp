@@ -132,7 +132,7 @@ void RevokeCertificationCommand::Private::slotResult(const Error &err)
         information(i18n("Revocation successful."),
                     i18n("Revocation Succeeded"));
         if (dialog && dialog->sendToServer()) {
-            ExportOpenPGPCertsToServerCommand *const cmd = new ExportOpenPGPCertsToServerCommand(certificationTarget);
+            auto const cmd = new ExportOpenPGPCertsToServerCommand(certificationTarget);
             cmd->start();
         }
     }

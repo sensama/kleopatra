@@ -186,7 +186,7 @@ std::unique_ptr<QGpgME::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::
 
 void EncryptEMailTask::Private::slotResult(const EncryptionResult &result)
 {
-    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
+    const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     if (result.error().code()) {
         output->cancel();
     } else {

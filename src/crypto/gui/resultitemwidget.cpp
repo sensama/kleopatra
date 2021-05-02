@@ -243,14 +243,14 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     const QString styleSheet = QStringLiteral("QFrame,QLabel { background-color: %1; margin: 0px; }"
                                               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
                                               "QLabel { color: %3; padding: 5px; border-radius: 3px }").arg(color.name()).arg(color.darker(150).name()).arg(txtColor.name());
-    QVBoxLayout *topLayout = new QVBoxLayout(this);
-    QFrame *frame = new QFrame;
+    auto topLayout = new QVBoxLayout(this);
+    auto frame = new QFrame;
     frame->setObjectName(QStringLiteral("resultFrame"));
     frame->setStyleSheet(styleSheet);
     topLayout->addWidget(frame);
-    QHBoxLayout *layout = new QHBoxLayout(frame);
-    QVBoxLayout *vlay = new QVBoxLayout();
-    QLabel *overview = new QLabel;
+    auto layout = new QHBoxLayout(frame);
+    auto vlay = new QVBoxLayout();
+    auto overview = new QLabel;
     overview->setWordWrap(true);
     overview->setTextFormat(Qt::RichText);
     overview->setText(d->m_result->overview());
@@ -263,7 +263,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 
     const QString details = d->m_result->details();
 
-    QVBoxLayout *actionLayout = new QVBoxLayout;
+    auto actionLayout = new QVBoxLayout;
     layout->addLayout(actionLayout);
 
     d->addKeyImportButton(actionLayout, false);

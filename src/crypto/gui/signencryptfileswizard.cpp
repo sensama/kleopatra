@@ -229,12 +229,12 @@ private:
             { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
         };
 
-        FileNameRequester *req = new FileNameRequester(forKind == SignEncryptFilesWizard::Directory ?
+        auto req = new FileNameRequester(forKind == SignEncryptFilesWizard::Directory ?
                                                        QDir::Dirs : QDir::Files, this);
         req->setFileName(mOutNames[forKind]);
-        QHBoxLayout *hLay = new QHBoxLayout;
-        QLabel *iconLabel = new QLabel;
-        QWidget *ret = new QWidget;
+        auto hLay = new QHBoxLayout;
+        auto iconLabel = new QLabel;
+        auto ret = new QWidget;
         iconLabel->setPixmap(QIcon::fromTheme(icons[forKind]).pixmap(32,32));
         hLay->addWidget(iconLabel);
         iconLabel->setToolTip(toolTips[forKind]);

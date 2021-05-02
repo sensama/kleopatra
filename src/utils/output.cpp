@@ -624,7 +624,7 @@ void FileOutput::doFinalize()
     qCDebug(KLEOPATRA_LOG) << this << "failed";
 
     throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                    i18n("Could not rename file \"%1\" to \"%2\"",
+                    i18n(R"(Could not rename file "%1" to "%2")",
                          tmpFileName, m_fileName));
 }
 

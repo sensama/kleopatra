@@ -21,7 +21,7 @@ using namespace Kleo::Config;
 AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     mWidget = new AppearanceConfigWidget(this);
     lay->addWidget(mWidget);
 
@@ -50,7 +50,7 @@ extern "C"
 {
     Q_DECL_EXPORT KCModule *create_kleopatra_config_appear(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
     {
-        AppearanceConfigurationPage *page =
+        auto page =
             new AppearanceConfigurationPage(parent, args);
         page->setObjectName(QStringLiteral("kleopatra_config_appear"));
         return page;

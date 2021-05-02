@@ -84,7 +84,7 @@ private:
     void slotSetInitialPin()
     {
         if (!firstCardWithNullPin.empty()) {
-            SetInitialPinCommand *cmd = new SetInitialPinCommand(firstCardWithNullPin);
+            auto cmd = new SetInitialPinCommand(firstCardWithNullPin);
             q->setAttentionWindow(cmd->dialog());
             startCommand(cmd);
         }
@@ -92,7 +92,7 @@ private:
 
     void slotLearnCertificates()
     {
-        LearnCardKeysCommand *cmd = new LearnCardKeysCommand(GpgME::CMS);
+        auto cmd = new LearnCardKeysCommand(GpgME::CMS);
         q->setAttentionWindow(cmd->dialog());
         startCommand(cmd);
     }

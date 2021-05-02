@@ -45,7 +45,7 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     mCertWidget = new CertifyWidget(this);
     mainLay->addWidget(mCertWidget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox();
+    auto buttonBox = new QDialogButtonBox();
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
                                   QDialogButtonBox::Ok);
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());

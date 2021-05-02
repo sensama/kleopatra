@@ -941,7 +941,7 @@ public:
         registerField(QStringLiteral("result"), ui.resultTB,  "plainText");
         registerField(QStringLiteral("url"),    ui.dragQueen, "url");
         // hidden field, since QWizard can't deal with non-widget-backed fields...
-        QLineEdit *le = new QLineEdit(this);
+        auto le = new QLineEdit(this);
         le->hide();
         registerField(QStringLiteral("fingerprint"), le);
     }
@@ -1058,7 +1058,7 @@ private Q_SLOTS:
         if (!pgp() || exportCertificateCommand) {
             return;
         }
-        ExportCertificateCommand *cmd = new ExportCertificateCommand(key());
+        auto cmd = new ExportCertificateCommand(key());
         connect(cmd, &ExportCertificateCommand::finished, this, &ResultPage::slotSendCertificateByEMailContinuation);
         cmd->setOpenPGPFileName(tmpDir().absoluteFilePath(fingerprint() + QLatin1String(".asc")));
         cmd->start();
@@ -1360,12 +1360,12 @@ static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, cons
     Q_ASSERT(row >= 0);
     Q_ASSERT(row < l->rowCount());
 
-    QLabel *lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
+    auto lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
     Q_ASSERT(lb);
-    QLineEdit *le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
+    auto le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
     Q_ASSERT(le);
     lb->setBuddy(le);   // For better accessibility
-    QLabel *reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
+    auto reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
     Q_ASSERT(reqLB);
 
     lb->setText(i18nc("interpunctation for labels", "%1:", label));

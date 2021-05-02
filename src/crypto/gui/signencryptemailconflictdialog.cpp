@@ -57,7 +57,7 @@ Q_DECLARE_METATYPE(GpgME::UserID)
 static CertificateSelectionDialog *
 create_certificate_selection_dialog(QWidget *parent, Protocol proto)
 {
-    CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(parent);
+    auto const dlg = new CertificateSelectionDialog(parent);
     dlg->setOptions(proto == OpenPGP ? CertificateSelectionDialog::OpenPGPFormat :
                     proto == CMS     ? CertificateSelectionDialog::CMSFormat : CertificateSelectionDialog::AnyFormat);
     return dlg;

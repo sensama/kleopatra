@@ -19,7 +19,7 @@ using namespace Kleo;
 
 namespace
 {
-typedef QMap<QString, QString> Map;
+using Map = QMap<QString, QString>;
 Q_GLOBAL_STATIC(Map, dir_id_2_dir_map)
 }
 

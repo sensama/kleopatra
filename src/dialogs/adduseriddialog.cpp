@@ -89,11 +89,11 @@ static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, cons
     Q_ASSERT(row >= 0);
     Q_ASSERT(row < l->rowCount());
 
-    QLabel *lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
+    auto lb = qobject_cast<QLabel *>(l->itemAtPosition(row, 0)->widget());
     Q_ASSERT(lb);
-    QLineEdit *le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
+    auto le = qobject_cast<QLineEdit *>(l->itemAtPosition(row, 1)->widget());
     Q_ASSERT(le);
-    QLabel *reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
+    auto reqLB = qobject_cast<QLabel *>(l->itemAtPosition(row, 2)->widget());
     Q_ASSERT(reqLB);
 
     lb->setText(i18nc("interpunctation for labels", "%1:", label));

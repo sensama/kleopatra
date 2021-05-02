@@ -243,7 +243,7 @@ void OperationsWidget::ensureIndexAvailable(unsigned int idx)
         if (i) {
             blay.insertWidget(blay.count() - 1, new HLine(m_ui.scrollArea.widget()));
         }
-        DecryptVerifyOperationWidget *w = new DecryptVerifyOperationWidget(m_ui.scrollArea.widget());
+        auto w = new DecryptVerifyOperationWidget(m_ui.scrollArea.widget());
         blay.insertWidget(blay.count() - 1, w);
         w->show();
         m_widgets.push_back(w);

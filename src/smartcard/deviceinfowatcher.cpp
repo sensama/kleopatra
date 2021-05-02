@@ -94,7 +94,7 @@ DeviceInfoWatcher::Private::~Private()
 
 void DeviceInfoWatcher::Private::start()
 {
-    DeviceInfoWatcher::Worker *worker = new DeviceInfoWatcher::Worker;
+    auto worker = new DeviceInfoWatcher::Worker;
     worker->moveToThread(&workerThread);
     connect(&workerThread, &QThread::started, worker, &DeviceInfoWatcher::Worker::start);
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);

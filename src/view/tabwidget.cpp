@@ -686,7 +686,7 @@ void TabWidget::Private::setCornerAction(QAction *action, Qt::Corner corner)
     if (!action) {
         return;
     }
-    QToolButton *b = new QToolButton;
+    auto b = new QToolButton;
     b->setDefaultAction(action);
     tabWidget.setCornerWidget(b, corner);
 }
@@ -737,7 +737,7 @@ KeyListModelInterface *TabWidget::currentModel() const
     if (!view) {
         return nullptr;
     }
-    QAbstractProxyModel *const proxy = qobject_cast<QAbstractProxyModel *>(view->model());
+    auto const proxy = qobject_cast<QAbstractProxyModel *>(view->model());
     if (!proxy) {
         return nullptr;
     }
@@ -815,7 +815,7 @@ void TabWidget::createActions(KActionCollection *coll)
         // create actions for the context menu of the currently not active tabs,
         // but do not add those actions to the action collection
         const action_data ad = actionData[i];
-        auto *action = new QAction(ad.text, coll);
+        auto action = new QAction(ad.text, coll);
         if (ad.icon) {
             action->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
         }
@@ -857,7 +857,7 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     }
 
     if (!actionsCreated) {
-        KActionCollection *coll = new KActionCollection(q);
+        auto coll = new KActionCollection(q);
         q->createActions(coll);
     }
 

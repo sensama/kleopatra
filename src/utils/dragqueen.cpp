@@ -126,7 +126,7 @@ DragQueen::~DragQueen()
 
 void DragQueen::setUrl(const QString &url)
 {
-    QMimeData *data = new QMimeData;
+    auto data = new QMimeData;
     QList<QUrl> urls;
     urls.push_back(QUrl(url));
     data->setUrls(urls);
@@ -184,7 +184,7 @@ void DragQueen::mouseMoveEvent(QMouseEvent *e)
     if (m_data &&
             (e->buttons() & Qt::LeftButton) &&
             (m_dragStartPosition - e->pos()).manhattanLength() > QApplication::startDragDistance()) {
-        QDrag *drag = new QDrag(this);
+        auto drag = new QDrag(this);
         const QPixmap pix = pixmap(Qt::ReturnByValue);
         if (!pix.isNull()) {
             drag->setPixmap(pix);

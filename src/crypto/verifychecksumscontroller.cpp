@@ -405,7 +405,7 @@ static QStringList find_base_directories(const QStringList &files)
     bool changed;
     do {
         changed = false;
-        std::set<QDir, less_dir>::iterator it = dirs.begin();
+        auto it = dirs.begin();
         while (it != dirs.end()) {
             QDir dir = *it;
             if (dir.cdUp() && dirs.count(dir)) {
@@ -486,7 +486,7 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
     std::vector<SumFile> sumfiles;
     sumfiles.reserve(dirs2sums.size());
 
-    for (std::map<QDir, std::set<QString, less_file>, less_dir>::const_iterator it = dirs2sums.begin(), end = dirs2sums.end(); it != end; ++it) {
+    for (auto it = dirs2sums.begin(), end = dirs2sums.end(); it != end; ++it) {
 
         if (it->second.empty()) {
             continue;

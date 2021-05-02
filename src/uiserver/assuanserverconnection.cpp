@@ -87,7 +87,7 @@ static void my_assuan_release(assuan_context_t ctx)
 
 #endif
 // std::shared_ptr for assuan_context_t w/ deleter enforced to assuan_deinit_server:
-typedef std::shared_ptr<std::remove_pointer<assuan_context_t>::type> AssuanContextBase;
+using AssuanContextBase = std::shared_ptr<std::remove_pointer<assuan_context_t>::type>;
 struct AssuanContext : AssuanContextBase {
     AssuanContext() : AssuanContextBase() {}
 #ifndef HAVE_ASSUAN2
@@ -128,7 +128,7 @@ static std::map<std::string, std::string> upcase_option(const char *option, std:
 {
     std::string value;
     bool value_found = false;
-    std::map<std::string, std::string>::iterator it = options.begin();
+    auto it = options.begin();
     while (it != options.end())
         if (qstricmp(it->first.c_str(), option) == 0) {
             value = it->second;
@@ -568,7 +568,7 @@ private:
             (conn.*which).push_back(io);
 
             if (binOpt && !in) {
-                Output *out = reinterpret_cast <Output *>(io.get());
+                auto out = reinterpret_cast <Output *>(io.get());
                 out->setBinaryOpt(true);
                 qCDebug(KLEOPATRA_LOG) << "Configured output for binary data";
             }
@@ -756,7 +756,7 @@ private:
     QByteArray dumpOptions() const
     {
         QByteArray result;
-        for (std::map<std::string, QVariant>::const_iterator it = options.begin(), end = options.end(); it != end; ++it) {
+        for (auto it = options.begin(), end = options.end(); it != end; ++it) {
             result += it->first.c_str() + it->second.toString().toUtf8() + '\n';
         }
         return result;
@@ -800,7 +800,7 @@ private:
     QByteArray dumpMementos() const
     {
         QByteArray result;
-        for (std::map< QByteArray, std::shared_ptr<AssuanCommand::Memento> >::const_iterator it = mementos.begin(), end = mementos.end(); it != end; ++it) {
+        for (auto it = mementos.begin(), end = mementos.end(); it != end; ++it) {
             char buf[2 + 2 * sizeof(void *) + 2];
             sprintf(buf, "0x%p\n", (void *)it->second.get());
             buf[sizeof(buf) - 1] = '\0';
@@ -1093,7 +1093,7 @@ public:
 #  endif
     {
         Q_ASSERT(cb_data);
-        InquiryHandler *this_ = static_cast<InquiryHandler *>(cb_data);
+        auto this_ = static_cast<InquiryHandler *>(cb_data);
         Q_EMIT this_->signal(rc, QByteArray::fromRawData(reinterpret_cast<const char *>(buffer), buflen), this_->keyword);
         std::free(buffer);
         delete this_;
@@ -1215,7 +1215,7 @@ bool AssuanCommand::hasOption(const char *opt) const
 
 QVariant AssuanCommand::option(const char *opt) const
 {
-    const std::map<std::string, QVariant>::const_iterator it = d->options.find(opt);
+    const auto it = d->options.find(opt);
     if (it == d->options.end()) {
         return QVariant();
     } else {
@@ -1264,12 +1264,12 @@ std::shared_ptr<AssuanCommand::Memento> AssuanCommand::memento(const QByteArray 
     if (const unsigned int id = sessionId()) {
         const std::shared_ptr<SessionDataHandler> sdh = SessionDataHandler::instance();
         const std::shared_ptr<SessionData> sd = sdh->sessionData(id);
-        const std::map< QByteArray, std::shared_ptr<Memento> >::const_iterator it = sd->mementos.find(tag);
+        const auto it = sd->mementos.find(tag);
         if (it != sd->mementos.end()) {
             return it->second;
         }
     }
-    const std::map< QByteArray, std::shared_ptr<Memento> >::const_iterator it = mementos().find(tag);
+    const auto it = mementos().find(tag);
     if (it == mementos().end()) {
         return std::shared_ptr<Memento>();
     } else {
@@ -1502,7 +1502,7 @@ gpg_error_t AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, cons
 
     try {
 
-        const std::vector< std::shared_ptr<AssuanCommandFactory> >::const_iterator it
+        const auto it
             = std::lower_bound(conn.factories.begin(), conn.factories.end(), commandName, _detail::ByName<std::less>());
         kleo_assert(it != conn.factories.end());
         kleo_assert(*it);
@@ -1526,7 +1526,7 @@ gpg_error_t AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, cons
         cmd->d->sessionId             = conn.sessionId;
 
         const std::map<std::string, std::string> cmdline_options = parse_commandline(line);
-        for (std::map<std::string, std::string>::const_iterator it = cmdline_options.begin(), end = cmdline_options.end(); it != end; ++it) {
+        for (auto it = cmdline_options.begin(), end = cmdline_options.end(); it != end; ++it) {
             cmd->d->options[it->first] = QString::fromUtf8(it->second.c_str());
         }
 

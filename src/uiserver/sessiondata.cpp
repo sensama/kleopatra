@@ -72,7 +72,7 @@ void SessionDataHandler::exitSession(unsigned int id)
 
 std::shared_ptr<SessionData> SessionDataHandler::sessionDataInternal(unsigned int id) const
 {
-    std::map< unsigned int, std::shared_ptr<SessionData> >::iterator
+    auto
     it = data.lower_bound(id);
     if (it == data.end() || it->first != id) {
         const std::shared_ptr<SessionData> sd(new SessionData);
@@ -95,7 +95,7 @@ void SessionDataHandler::slotCollectGarbage()
 {
     const QMutexLocker locker(&mutex);
     unsigned int alive = 0;
-    std::map< unsigned int, std::shared_ptr<SessionData> >::iterator it = data.begin(), end = data.end();
+    auto it = data.begin(), end = data.end();
     while (it != end)
         if (it->second->ripe) {
             data.erase(it++);

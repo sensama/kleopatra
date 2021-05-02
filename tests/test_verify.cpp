@@ -142,7 +142,7 @@ private Q_SLOTS:
         QTest::qWait(1000);   // ### we need to enter the event loop, can be done nicer though
 
         QCOMPARE(spy.count(), 1);
-        GpgME::VerificationResult result = spy.takeFirst().at(0).value<GpgME::VerificationResult>();
+        auto result = spy.takeFirst().at(0).value<GpgME::VerificationResult>();
         QCOMPARE(result.numSignatures(), 1U);
 
         GpgME::Signature sig = result.signature(0);

@@ -115,7 +115,7 @@ void TaskCollection::Private::taskStarted()
 
 void TaskCollection::Private::calculateAndEmitProgress()
 {
-    typedef std::map<int, std::shared_ptr<Task> >::const_iterator ConstIterator;
+    using ConstIterator = std::map<int, std::shared_ptr<Task>>::const_iterator;
 
     quint64 total = 0;
     quint64 processed = 0;
@@ -135,7 +135,7 @@ void TaskCollection::Private::calculateAndEmitProgress()
     }
 
     bool unknowable = false;
-    for (ConstIterator it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
+    for (auto it = m_tasks.begin(), end = m_tasks.end(); it != end; ++it) {
         // Sum up progress and totals
         const std::shared_ptr<Task> &i = it->second;
         Q_ASSERT(i);
@@ -190,16 +190,16 @@ bool TaskCollection::allTasksHaveErrors() const
 
 std::shared_ptr<Task> TaskCollection::taskById(int id) const
 {
-    const std::map<int, std::shared_ptr<Task> >::const_iterator it = d->m_tasks.find(id);
+    const auto it = d->m_tasks.find(id);
     return it != d->m_tasks.end() ? it->second : std::shared_ptr<Task>();
 }
 
 std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
 {
-    typedef std::map<int, std::shared_ptr<Task> >::const_iterator ConstIterator;
+    using ConstIterator = std::map<int, std::shared_ptr<Task>>::const_iterator;
     std::vector<std::shared_ptr<Task> > res;
     res.reserve(d->m_tasks.size());
-    for (ConstIterator it = d->m_tasks.begin(), end = d->m_tasks.end(); it != end; ++it) {
+    for (auto it = d->m_tasks.begin(), end = d->m_tasks.end(); it != end; ++it) {
         res.push_back(it->second);
     }
     return res;

@@ -343,7 +343,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 
     const auto userID = item->data(0, Qt::UserRole).value<GpgME::UserID>();
 
-    QMenu *menu = new QMenu(q);
+    auto menu = new QMenu(q);
     menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
                     i18n("Certify..."),
                     q, [this, userID]() {

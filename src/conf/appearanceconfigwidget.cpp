@@ -301,7 +301,7 @@ public:
             l->setContentsMargins(0, 0, 0, 0);
         }
 
-        QWidget *w = new QWidget;
+        auto w = new QWidget;
         dnOrderWidget = Kleo::DNAttributeMapper::instance()->configWidget(w);
         dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));
         (new QVBoxLayout(w))->addWidget(dnOrderWidget);

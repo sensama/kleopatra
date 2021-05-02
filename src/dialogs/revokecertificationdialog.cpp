@@ -87,7 +87,7 @@ RevokeCertificationDialog::RevokeCertificationDialog(QWidget *p, Qt::WindowFlags
     d->mainWidget = new RevokeCertificationWidget(this);
     mainLay->addWidget(d->mainWidget);
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox();
+    auto buttonBox = new QDialogButtonBox();
     mainLay->addWidget(buttonBox);
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
                                   QDialogButtonBox::Ok);

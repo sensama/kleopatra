@@ -49,7 +49,7 @@ public:
     {
         QWidget *w = QItemDelegate::createEditor(p, o, i);
         if (!m_rx.isEmpty())
-            if (QLineEdit *const le = qobject_cast<QLineEdit *>(w)) {
+            if (auto const le = qobject_cast<QLineEdit *>(w)) {
                 le->setValidator(new QRegExpValidator(m_rx, le));
             }
         return w;

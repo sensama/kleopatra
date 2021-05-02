@@ -66,10 +66,10 @@ namespace
     {
         Q_ASSERT(l);
 
-        QLabel *lb = new QLabel(l->parentWidget());
+        auto lb = new QLabel(l->parentWidget());
         lb->setText(i18nc("interpunctation for labels", "%1:", label));
 
-        QLineEdit *le = new QLineEdit(l->parentWidget());
+        auto le = new QLineEdit(l->parentWidget());
         le->setText(preset);
         delete le->validator();
         if (validator) {
@@ -80,7 +80,7 @@ namespace
         }
         le->setReadOnly(readonly && le->hasAcceptableInput());
 
-        QLabel *reqLB = new QLabel(l->parentWidget());
+        auto reqLB = new QLabel(l->parentWidget());
         reqLB->setText(required ? i18n("(required)") : i18n("(optional)"));
 
         const int row = l->rowCount();

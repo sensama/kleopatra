@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
     KUniqueService service;
 
-    KWatchGnuPGMainWindow *mMainWin = new KWatchGnuPGMainWindow();
+    auto mMainWin = new KWatchGnuPGMainWindow();
     mMainWin->show();
     return app.exec();
 }

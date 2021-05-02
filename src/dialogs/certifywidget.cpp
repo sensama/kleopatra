@@ -163,7 +163,7 @@ public:
                 i++;
                 continue;
             }
-            QStandardItem *const item = new QStandardItem;
+            auto const item = new QStandardItem;
             item->setText(Formatting::prettyUserID(uid));
             item->setData(i, UserIDIndex);
             item->setCheckable(true);
@@ -216,7 +216,7 @@ public:
     Private(CertifyWidget *qq) : q(qq),
         mFprLabel(new QLabel)
     {
-        QVBoxLayout *mainLay = new QVBoxLayout(q);
+        auto mainLay = new QVBoxLayout(q);
         mainLay->addWidget(mFprLabel);
 
         auto secKeyLay = new QHBoxLayout;

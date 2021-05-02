@@ -52,7 +52,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     : QDialog(parent)
 {
     setWindowTitle(i18nc("@title:window", "Configure KWatchGnuPG"));
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    auto mainLayout = new QVBoxLayout(this);
 
     mButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
     QPushButton *okButton = mButtonBox->button(QDialogButtonBox::Ok);
@@ -60,24 +60,24 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(mButtonBox, &QDialogButtonBox::rejected, this, &KWatchGnuPGConfig::reject);
 
-    QWidget *top = new QWidget;
+    auto top = new QWidget;
     mainLayout->addWidget(top);
     mainLayout->addWidget(mButtonBox);
 
-    QVBoxLayout *vlay = new QVBoxLayout(top);
+    auto vlay = new QVBoxLayout(top);
     vlay->setContentsMargins(0, 0, 0, 0);
 
-    QGroupBox *group = new QGroupBox(i18n("WatchGnuPG"), top);
+    auto group = new QGroupBox(i18n("WatchGnuPG"), top);
     vlay->addWidget(group);
 
-    QGridLayout *glay = new QGridLayout(group);
+    auto glay = new QGridLayout(group);
     glay->setColumnStretch(1, 1);
 
     int row = -1;
 
     ++row;
     mExeED = new Kleo::FileNameRequester(group);
-    QLabel *label = new QLabel(i18n("&Executable:"), group);
+    auto label = new QLabel(i18n("&Executable:"), group);
     label->setBuddy(mExeED);
     glay->addWidget(label, row, 0);
     glay->addWidget(mExeED, row, 1);
@@ -126,7 +126,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     label->setBuddy(mLoglenSB);
     glay->addWidget(label, row, 0);
     glay->addWidget(mLoglenSB, row, 1);
-    QPushButton *button = new QPushButton(i18n("Set &Unlimited"), group);
+    auto button = new QPushButton(i18n("Set &Unlimited"), group);
     glay->addWidget(button, row, 2);
 
     connect(mLoglenSB, static_cast<void (KPluralHandlingSpinBox::*)(int)>(&KPluralHandlingSpinBox::valueChanged), this, &KWatchGnuPGConfig::slotChanged);

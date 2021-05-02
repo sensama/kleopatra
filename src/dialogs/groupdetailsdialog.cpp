@@ -112,7 +112,7 @@ private:
 
     void showKeyDetails(const QModelIndex &index)
     {
-        const GpgME::Key key = ui.treeView->view()->model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
+        const auto key = ui.treeView->view()->model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
         if (!key.isNull()) {
             auto cmd = new DetailsCommand(key, nullptr);
             cmd->setParentWidget(q);

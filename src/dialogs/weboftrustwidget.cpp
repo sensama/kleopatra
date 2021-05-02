@@ -181,7 +181,7 @@ public:
             return;
         }
 
-        QMenu *menu = new QMenu(q);
+        auto menu = new QMenu(q);
         if (!userID.isNull()) {
             addActionsForUserID(menu, userID);
         }

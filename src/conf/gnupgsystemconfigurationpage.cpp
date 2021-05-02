@@ -21,7 +21,7 @@ using namespace Kleo::Config;
 GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
@@ -68,7 +68,7 @@ void GnuPGSystemConfigurationPage::defaults()
 
 extern "C" Q_DECL_EXPORT KCModule *create_kleopatra_config_gnupgsystem(QWidget *parent, const QVariantList &args)
 {
-    GnuPGSystemConfigurationPage *page =
+    auto page =
         new GnuPGSystemConfigurationPage(parent, args);
     page->setObjectName(QStringLiteral("kleopatra_config_gnupgsystem"));
     return page;

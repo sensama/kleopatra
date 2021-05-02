@@ -21,7 +21,7 @@ using namespace Kleo::Config;
 CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
@@ -49,7 +49,7 @@ extern "C"
 {
     Q_DECL_EXPORT KCModule *create_kleopatra_config_cryptooperations(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
     {
-        CryptoOperationsConfigurationPage *page =
+        auto page =
             new CryptoOperationsConfigurationPage(parent, args);
         page->setObjectName(QStringLiteral("kleopatra_config_cryptooperations"));
         return page;

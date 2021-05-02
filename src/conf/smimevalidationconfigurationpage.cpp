@@ -18,7 +18,7 @@ using namespace Kleo::Config;
 SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
     mWidget = new SMimeValidationConfigurationWidget(this);
@@ -46,7 +46,7 @@ void SMimeValidationConfigurationPage::defaults()
 
 extern "C" Q_DECL_EXPORT KCModule *create_kleopatra_config_smimevalidation(QWidget *parent, const QVariantList &args)
 {
-    SMimeValidationConfigurationPage *page =
+    auto page =
         new SMimeValidationConfigurationPage(parent, args);
     page->setObjectName(QStringLiteral("kleopatra_config_smimevalidation"));
     return page;

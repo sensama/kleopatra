@@ -98,14 +98,14 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
       mRecpRowCount(2),
       mIsExclusive(sigEncExclusive)
 {
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
     mModel->useKeyCache(true, KeyList::IncludeGroups);
 
     /* The signature selection */
-    QHBoxLayout *sigLay = new QHBoxLayout;
-    QGroupBox *sigGrp = new QGroupBox(i18n("Prove authenticity (sign)"));
+    auto sigLay = new QHBoxLayout;
+    auto sigGrp = new QGroupBox(i18n("Prove authenticity (sign)"));
     mSigChk = new QCheckBox(i18n("Sign as:"));
     mSigChk->setChecked(true);
 
@@ -124,8 +124,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     // Recipient selection
     mRecpLayout = new QGridLayout;
     mRecpLayout->setAlignment(Qt::AlignTop);
-    QVBoxLayout *encBoxLay = new QVBoxLayout;
-    QGroupBox *encBox = new QGroupBox(i18nc("@action", "Encrypt"));
+    auto encBoxLay = new QVBoxLayout;
+    auto encBox = new QGroupBox(i18nc("@action", "Encrypt"));
     encBox->setLayout(encBoxLay);
     encBox->setAlignment(Qt::AlignLeft);
 
@@ -149,8 +149,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         });
 
     // Scroll area for other keys
-    QWidget *recipientWidget = new QWidget;
-    QScrollArea *recipientScroll = new QScrollArea;
+    auto recipientWidget = new QWidget;
+    auto recipientScroll = new QScrollArea;
     recipientWidget->setLayout(mRecpLayout);
     recipientScroll->setWidget(recipientWidget);
     recipientScroll->setWidgetResizable(true);
@@ -223,7 +223,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
 CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
-    CertificateLineEdit *certSel = new CertificateLineEdit(mModel, this,
+    auto certSel = new CertificateLineEdit(mModel, this,
                                                            new EncryptCertificateFilter(mCurrentProto));
     mRecpWidgets << certSel;
 
@@ -273,14 +273,14 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
         return;
     }
     if (!certificateLineEdit->group().isNull()) {
-        GroupDetailsDialog *dlg = new GroupDetailsDialog;
+        auto dlg = new GroupDetailsDialog;
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setGroup(certificateLineEdit->group());
         dlg->show();
         return;
     }
 
-    CertificateSelectionDialog *const dlg = new CertificateSelectionDialog(this);
+    auto const dlg = new CertificateSelectionDialog(this);
 
     dlg->setOptions(CertificateSelectionDialog::Options(
         CertificateSelectionDialog::MultiSelection |

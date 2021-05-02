@@ -260,7 +260,7 @@ std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_de
     }
 
     for (;;) {
-        const std::vector<std::shared_ptr<ArchiveDefinition> >::const_iterator it
+        const auto it
             = std::find_if(ads.begin(), ads.end(), FindExtension(extension, proto));
         if (it != ads.end()) {
             return *it;

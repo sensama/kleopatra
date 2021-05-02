@@ -395,14 +395,14 @@ bool KDPipeIODevice::Private::doOpen(int fd_, Qt::HANDLE handle_, OpenMode mode_
     std::unique_ptr<Writer> writer_;
 
     if (mode_ & ReadOnly) {
-        reader_.reset(new Reader(fd_, handle_));
+        reader_ = std::make_unique<Reader>(fd_, handle_);
         QDebug("KDPipeIODevice::doOpen (%p): created reader (%p) for fd %d", (void *)this,
                (void *)reader_.get(), fd_);
         connect(reader_.get(), &Reader::readyRead, this, &Private::emitReadyRead,
                 Qt::QueuedConnection);
     }
     if (mode_ & WriteOnly) {
-        writer_.reset(new Writer(fd_, handle_));
+        writer_ = std::make_unique<Writer>(fd_, handle_);
         QDebug("KDPipeIODevice::doOpen (%p): created writer (%p) for fd %d",
                (void *)this, (void *)writer_.get(), fd_);
         connect(writer_.get(), &Writer::bytesWritten, q, &QIODevice::bytesWritten,

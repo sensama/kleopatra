@@ -23,7 +23,7 @@ namespace _detail
 
 template <template <typename U> class Op>
 struct ByName {
-    typedef bool result_type;
+    using result_type = bool;
 
     template <typename T>
     bool operator()(const T &lhs, const T &rhs) const

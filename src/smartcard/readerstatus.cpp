@@ -51,12 +51,13 @@
 #include <QPointer>
 #include <QRegularExpression>
 
-#include <set>
-#include <list>
 #include <algorithm>
-#include <iterator>
-#include <utility>
 #include <cstdlib>
+#include <iterator>
+#include <list>
+#include <memory>
+#include <set>
+#include <utility>
 
 #include "utils/kdtoolsglobal.h"
 
@@ -115,7 +116,7 @@ static QDebug operator<<(QDebug s, const GpgME::Error &err)
 
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
 {
-    typedef std::pair<std::string, std::string> pair;
+    using pair = std::pair<std::string, std::string>;
     s << '(';
     for (const pair &p : v) {
         s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << '\n';
@@ -185,7 +186,7 @@ static std::unique_ptr<T> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, 
 
 static std::unique_ptr<DefaultAssuanTransaction> gpgagent_default_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
 {
-    return gpgagent_transact(gpgAgent, command, std::unique_ptr<DefaultAssuanTransaction>(new DefaultAssuanTransaction), err);
+    return gpgagent_transact(gpgAgent, command, std::make_unique<DefaultAssuanTransaction>(), err);
 }
 
 static const std::string gpgagent_data(std::shared_ptr<Context> gpgAgent, const char *command, Error &err)

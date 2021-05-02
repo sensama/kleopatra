@@ -28,7 +28,7 @@ class Key;
 
 class QFileInfo;
 template <typename T> class QList;
-typedef QList<QFileInfo> QFileInfoList;
+using QFileInfoList = QList<QFileInfo>;
 
 namespace Kleo
 {

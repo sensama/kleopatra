@@ -123,7 +123,7 @@ private:
 SearchBar::Private::Private(SearchBar *qq)
     : q(qq)
 {
-    QHBoxLayout *layout = new QHBoxLayout(q);
+    auto layout = new QHBoxLayout(q);
     layout->setContentsMargins(0, 0, 0, 0);
     lineEdit = new QLineEdit(q);
     lineEdit->setClearButtonEnabled(true);

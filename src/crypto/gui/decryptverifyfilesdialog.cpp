@@ -139,7 +139,7 @@ void DecryptVerifyFilesDialog::started(const std::shared_ptr<Task> &task)
     if (tag.isEmpty()) {
         label->setText(i18nc("number, operation description", "Operation %1: %2", m_tasks->numberOfCompletedTasks() + 1, task->label()));
     } else {
-        label->setText(i18nc("tag( \"OpenPGP\" or \"CMS\"),  operation description", "%1: %2", tag, task->label()));
+        label->setText(i18nc(R"(tag( "OpenPGP" or "CMS"),  operation description)", "%1: %2", tag, task->label()));
     }
     if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->button(m_saveButton)->setEnabled(false);

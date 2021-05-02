@@ -75,7 +75,7 @@ class GenKeyThread: public QThread
         }
     protected:
         void run() override {
-            GpgME::GpgGenCardKeyInteractor *ei = new GpgME::GpgGenCardKeyInteractor(mSerial);
+            auto ei = new GpgME::GpgGenCardKeyInteractor(mSerial);
             ei->setAlgo(GpgME::GpgGenCardKeyInteractor::RSA);
             ei->setKeySize(QByteArray::fromStdString(mParams.algorithm).toInt());
             ei->setNameUtf8(mParams.name.toStdString());
@@ -325,7 +325,7 @@ void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
     progress->setCancelButton(nullptr);
     progress->setWindowTitle(i18nc("@title:window", "Generating Keys"));
     progress->setLabel(new QLabel(i18n("This may take several minutes...")));
-    GenKeyThread *workerThread = new GenKeyThread(params, mRealSerial);
+    auto workerThread = new GenKeyThread(params, mRealSerial);
     connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
             progress->accept();
             progress->deleteLater();
@@ -385,7 +385,7 @@ void PGPCardWidget::genkeyRequested()
         }
     }
 
-    GenCardKeyDialog *dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
+    auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
     std::vector<std::pair<std::string, QString>> algos = {
         { "1024", QStringLiteral("RSA 1024") },
         { "2048", QStringLiteral("RSA 2048") },

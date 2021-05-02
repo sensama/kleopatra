@@ -218,11 +218,11 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 
 void CryptoOperationsConfigWidget::setupGui()
 {
-    QVBoxLayout *baseLay = new QVBoxLayout(this);
+    auto baseLay = new QVBoxLayout(this);
     baseLay->setContentsMargins(0, 0, 0, 0);
 
-    QGroupBox *mailGrp = new QGroupBox(i18n("EMail Operations"));
-    QVBoxLayout *mailGrpLayout = new QVBoxLayout;
+    auto mailGrp = new QGroupBox(i18n("EMail Operations"));
+    auto mailGrpLayout = new QVBoxLayout;
     mQuickSignCB = new QCheckBox(i18n("Don't confirm signing certificate if there is only one valid certificate for the identity"));
     mQuickEncryptCB = new QCheckBox(i18n("Don't confirm encryption certificates if there is exactly one valid certificate for each recipient"));
     mailGrpLayout->addWidget(mQuickSignCB);
@@ -230,9 +230,9 @@ void CryptoOperationsConfigWidget::setupGui()
     mailGrp->setLayout(mailGrpLayout);
     baseLay->addWidget(mailGrp);
 
-    QGroupBox *fileGrp = new QGroupBox(i18n("File Operations"));
-    QVBoxLayout *fileGrpLay = new QVBoxLayout;
-    mPGPFileExtCB = new QCheckBox(i18n("Create OpenPGP encrypted files with \".pgp\" file extensions instead of \".gpg\""));
+    auto fileGrp = new QGroupBox(i18n("File Operations"));
+    auto fileGrpLay = new QVBoxLayout;
+    mPGPFileExtCB = new QCheckBox(i18n(R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
     mASCIIArmorCB = new QCheckBox(i18n("Create signed or encrypted files as text files."));
     mASCIIArmorCB->setToolTip(i18nc("@info", "Set this option to encode encrypted or signed files as base64 encoded text. "
                                              "So that they can be opened with an editor or sent in a mail body. "
@@ -246,13 +246,13 @@ void CryptoOperationsConfigWidget::setupGui()
     fileGrpLay->addWidget(mASCIIArmorCB);
     fileGrpLay->addWidget(mTmpDirCB);
 
-    QGridLayout *comboLay = new QGridLayout;
-    QLabel *chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
+    auto comboLay = new QGridLayout;
+    auto chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
     comboLay->addWidget(chkLabel, 0, 0);
     mChecksumDefinitionCB = new QComboBox;
     comboLay->addWidget(mChecksumDefinitionCB, 0, 1);
 
-    QLabel *archLabel = new QLabel(i18n("Archive command to use when archiving files:"));
+    auto archLabel = new QLabel(i18n("Archive command to use when archiving files:"));
     comboLay->addWidget(archLabel, 1, 0);
     mArchiveDefinitionCB = new QComboBox;
     comboLay->addWidget(mArchiveDefinitionCB, 1, 1);
@@ -372,7 +372,7 @@ void CryptoOperationsConfigWidget::save()
 
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {
-        const std::shared_ptr<ChecksumDefinition> cd = qvariant_cast< std::shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
+        const auto cd = qvariant_cast< std::shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
         ChecksumDefinition::setDefaultChecksumDefinition(cd);
     }
 

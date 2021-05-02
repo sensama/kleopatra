@@ -59,11 +59,11 @@ private:
         explicit UI(Dialogs::OwnerTrustDialog *qq)
             : Ui::OwnerTrustDialog(), q(qq)
         {
-            QWidget *mainWidget = new QWidget(q);
+            auto mainWidget = new QWidget(q);
 
             setupUi(mainWidget);
-            QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-            QVBoxLayout *mainLayout = new QVBoxLayout(q);
+            auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+            auto mainLayout = new QVBoxLayout(q);
             mainLayout->addWidget(mainWidget);
             okButton = buttonBox->button(QDialogButtonBox::Ok);
             okButton->setDefault(true);

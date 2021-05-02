@@ -232,7 +232,7 @@ static QString collect_micalgs(const GpgME::SigningResult &result, GpgME::Protoc
 
 void SignEMailTask::Private::slotResult(const SigningResult &result)
 {
-    const QGpgME::Job *const job = qobject_cast<const QGpgME::Job *>(q->sender());
+    const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     if (result.error().code()) {
         output->cancel();
     } else {

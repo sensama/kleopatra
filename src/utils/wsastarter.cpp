@@ -16,7 +16,7 @@ using namespace Kleo;
 #ifdef _WIN32
 # include <winsock2.h>
 #else
-typedef int WSADATA;
+using WSADATA = int;
 static inline int WSAStartup(int, int *)
 {
     return 0;

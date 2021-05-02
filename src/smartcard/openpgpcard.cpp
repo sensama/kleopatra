@@ -136,7 +136,7 @@ std::string OpenPGPCard::keyFingerprint(const std::string &keyRef) const
 
 bool OpenPGPCard::operator == (const Card& rhs) const
 {
-    const OpenPGPCard *other = dynamic_cast<const OpenPGPCard *>(&rhs);
+    const auto other = dynamic_cast<const OpenPGPCard *>(&rhs);
     if (!other) {
         return false;
     }

@@ -76,7 +76,7 @@ protected:
     {
         Q_UNUSED(watched)
         if (event->type() == QEvent::ContextMenu) {
-            QContextMenuEvent *e = static_cast<QContextMenuEvent *>(event);
+            auto e = static_cast<QContextMenuEvent *>(event);
 
             if (!mHeaderPopup) {
                 mHeaderPopup = new QMenu(this);
@@ -100,7 +100,7 @@ protected:
                         hideColumn(col);
                     }
 
-                    KeyTreeView *tv = qobject_cast<KeyTreeView *> (parent());
+                    auto tv = qobject_cast<KeyTreeView *> (parent());
                     if (tv) {
                         tv->resizeColumns();
                     }
@@ -191,7 +191,7 @@ void KeyTreeView::setColumnSizes(const std::vector<int> &sizes)
     Q_ASSERT(m_view);
     Q_ASSERT(m_view->header());
     Q_ASSERT(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
-    if (HeaderView *const hv = static_cast<HeaderView *>(m_view->header())) {
+    if (auto const hv = static_cast<HeaderView *>(m_view->header())) {
         hv->setSectionSizes(sizes);
     }
 }
@@ -221,7 +221,7 @@ std::vector<int> KeyTreeView::columnSizes() const
     Q_ASSERT(m_view);
     Q_ASSERT(m_view->header());
     Q_ASSERT(qobject_cast<HeaderView *>(m_view->header()) == static_cast<HeaderView *>(m_view->header()));
-    if (HeaderView *const hv = static_cast<HeaderView *>(m_view->header())) {
+    if (auto const hv = static_cast<HeaderView *>(m_view->header())) {
         return hv->sectionSizes();
     } else {
         return std::vector<int>();
@@ -247,7 +247,7 @@ void KeyTreeView::init()
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(m_view);
 
-    HeaderView *headerView = new HeaderView(Qt::Horizontal);
+    auto headerView = new HeaderView(Qt::Horizontal);
     KDAB_SET_OBJECT_NAME(headerView);
     headerView->installEventFilter(m_view);
     headerView->setSectionsMovable(true);
@@ -277,7 +277,7 @@ void KeyTreeView::init()
     m_proxy->setKeyFilter(m_keyFilter);
     m_proxy->setSortCaseSensitivity(Qt::CaseInsensitive);
 
-    KeyRearrangeColumnsProxyModel *rearangingModel = new KeyRearrangeColumnsProxyModel(this);
+    auto rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
     rearangingModel->setSourceColumns(QVector<int>() << KeyList::PrettyName
                                                      << KeyList::PrettyEMail
@@ -487,7 +487,7 @@ KeyTreeView::~KeyTreeView()
 static QAbstractProxyModel *find_last_proxy(QAbstractProxyModel *pm)
 {
     Q_ASSERT(pm);
-    while (QAbstractProxyModel *const sm = qobject_cast<QAbstractProxyModel *>(pm->sourceModel())) {
+    while (auto const sm = qobject_cast<QAbstractProxyModel *>(pm->sourceModel())) {
         pm = sm;
     }
     return pm;

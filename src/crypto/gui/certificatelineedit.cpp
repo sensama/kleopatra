@@ -140,7 +140,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     connect(mCompleter, QOverload<const QModelIndex &>::of(&QCompleter::activated),
             this, [this] (const QModelIndex &index) {
                 Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
-                KeyGroup group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
+                auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
                 if (!key.isNull()) {
                     setKey(key);
                 } else if (!group.isNull()) {

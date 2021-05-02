@@ -135,7 +135,7 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     : KCModule(parent, args)
 {
     mConfig = QGpgME::cryptoConfig();
-    QGridLayout *glay = new QGridLayout(this);
+    auto glay = new QGridLayout(this);
     glay->setContentsMargins(0, 0, 0, 0);
 
     int row = 0;
@@ -148,7 +148,7 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
     // LDAP timeout
     ++row;
-    QLabel *label = new QLabel(i18n("LDAP &timeout (minutes:seconds):"), this);
+    auto label = new QLabel(i18n("LDAP &timeout (minutes:seconds):"), this);
     mTimeout = new QTimeEdit(this);
     mTimeout->setDisplayFormat(QStringLiteral("mm:ss"));
     connect(mTimeout, SIGNAL(timeChanged(QTime)), this, SLOT(changed()));
@@ -204,9 +204,9 @@ void DirectoryServicesConfigurationPage::load()
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
 
     {
-        auto *const newEntry = configEntry(s_pgpservice_componentName, s_pgpservice_entryName,
+        auto const newEntry = configEntry(s_pgpservice_componentName, s_pgpservice_entryName,
                                            CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
-        auto *const legacyEntry = configEntry(s_pgpservice_legacy_componentName, s_pgpservice_legacy_entryName,
+        auto const legacyEntry = configEntry(s_pgpservice_legacy_componentName, s_pgpservice_legacy_entryName,
                                               CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
         mOpenPGPServiceEntry = newEntry ? newEntry : legacyEntry;
 
@@ -297,7 +297,7 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
             configEntry->setIntValue(value);
         }
     } else {
-        const unsigned int newValue = static_cast<unsigned>(value);
+        const auto newValue = static_cast<unsigned>(value);
         if (configEntry->uintValue() != newValue) {
             configEntry->setUIntValue(newValue);
         }
@@ -383,7 +383,7 @@ extern "C"
 {
     Q_DECL_EXPORT KCModule *create_kleopatra_config_dirserv(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
     {
-        DirectoryServicesConfigurationPage *page =
+        auto page =
             new DirectoryServicesConfigurationPage(parent, args);
         page->setObjectName(QStringLiteral("kleopatra_config_dirserv"));
         return page;

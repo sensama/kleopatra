@@ -83,7 +83,7 @@ private:
     }
     void create()
     {
-        NewCertificateCommand *cmd = new NewCertificateCommand(nullptr);
+        auto cmd = new NewCertificateCommand(nullptr);
         cmd->setParentWidget(q);
         if ((options & AnyFormat) != AnyFormat) {
             cmd->setProtocol((options & OpenPGPFormat) ? OpenPGP : CMS);
@@ -144,7 +144,7 @@ private:
         KDAB_SET_OBJECT_NAME(ui.tabWidget);
         KDAB_SET_OBJECT_NAME(ui.buttonBox);
 
-        auto *vlay = new QVBoxLayout(q);
+        auto vlay = new QVBoxLayout(q);
         vlay->addWidget(&ui.label);
         vlay->addWidget(&ui.searchBar);
         vlay->addWidget(&ui.tabWidget, 1);
@@ -397,7 +397,7 @@ void CertificateSelectionDialog::Private::slotKeysMayHaveChanged()
 
 void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int options)
 {
-    std::vector<Key>::iterator end = keys.end();
+    auto end = keys.end();
 
     switch (options & AnyFormat) {
     case OpenPGPFormat:

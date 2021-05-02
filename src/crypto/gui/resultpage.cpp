@@ -55,7 +55,7 @@ public:
 ResultPage::Private::Private(ResultPage *qq) : q(qq)
 {
     QBoxLayout *const layout = new QVBoxLayout(q);
-    QWidget *const labels = new QWidget;
+    auto const labels = new QWidget;
     m_progressLabelLayout = new QVBoxLayout(labels);
     layout->addWidget(labels);
     m_progressBar = new QProgressBar;
@@ -112,7 +112,7 @@ void ResultPage::Private::started(const std::shared_ptr<Task> &task)
     if (tag.isEmpty()) {
         label->setText(i18nc("number, operation description", "Operation %1: %2", m_tasks->numberOfCompletedTasks() + 1, task->label()));
     } else {
-        label->setText(i18nc("tag( \"OpenPGP\" or \"CMS\"),  operation description", "%1: %2", tag, task->label()));
+        label->setText(i18nc(R"(tag( "OpenPGP" or "CMS"),  operation description)", "%1: %2", tag, task->label()));
     }
 }
 
@@ -165,7 +165,7 @@ QLabel *ResultPage::Private::labelForTag(const QString &tag)
     if (QLabel *const label = m_progressLabelByTag.value(tag)) {
         return label;
     }
-    QLabel *label = new QLabel;
+    auto label = new QLabel;
     label->setTextFormat(Qt::RichText);
     label->setWordWrap(true);
     m_progressLabelLayout->addWidget(label);

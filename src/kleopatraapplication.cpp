@@ -214,7 +214,7 @@ KleopatraApplication::~KleopatraApplication()
 
 namespace
 {
-typedef void (KleopatraApplication::*Func)(const QStringList &, GpgME::Protocol);
+using Func = void (KleopatraApplication::*)(const QStringList &, GpgME::Protocol);
 }
 
 void KleopatraApplication::slotActivateRequested(const QStringList &arguments,
@@ -317,7 +317,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         if (needle.isEmpty()) {
             return i18n("No search string specified for --search");
         }
-        LookupCertificatesCommand *const cmd = new LookupCertificatesCommand(needle, nullptr);
+        auto const cmd = new LookupCertificatesCommand(needle, nullptr);
         cmd->setParentWId(parentId);
         cmd->start();
         return QString();
@@ -366,7 +366,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         if (parser.isSet(opt) && found.isEmpty()) {
             found = opt;
         } else if (parser.isSet(opt)) {
-            return i18n("Ambiguous commands \"%1\" and \"%2\"", found, opt);
+            return i18n(R"(Ambiguous commands "%1" and "%2")", found, opt);
         }
     }
 
@@ -495,7 +495,7 @@ void KleopatraApplication::restoreMainWindow()
         return;
     }
 
-    MainWindow *mw = new MainWindow;
+    auto mw = new MainWindow;
     if (KMainWindow::canBeRestored(1)) {
         // restore to hidden state, Mainwindow::readProperties() will
         // restore saved visibility.
@@ -569,7 +569,7 @@ void KleopatraApplication::importCertificatesFromFile(const QStringList &files, 
 
 void KleopatraApplication::encryptFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
+    auto const cmd = new SignEncryptFilesCommand(files, nullptr);
     cmd->setEncryptionPolicy(Force);
     cmd->setSigningPolicy(Allow);
     if (proto != GpgME::UnknownProtocol) {
@@ -580,7 +580,7 @@ void KleopatraApplication::encryptFiles(const QStringList &files, GpgME::Protoco
 
 void KleopatraApplication::signFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
+    auto const cmd = new SignEncryptFilesCommand(files, nullptr);
     cmd->setSigningPolicy(Force);
     cmd->setEncryptionPolicy(Deny);
     if (proto != GpgME::UnknownProtocol) {
@@ -591,7 +591,7 @@ void KleopatraApplication::signFiles(const QStringList &files, GpgME::Protocol p
 
 void KleopatraApplication::signEncryptFiles(const QStringList &files, GpgME::Protocol proto)
 {
-    SignEncryptFilesCommand *const cmd = new SignEncryptFilesCommand(files, nullptr);
+    auto const cmd = new SignEncryptFilesCommand(files, nullptr);
     if (proto != GpgME::UnknownProtocol) {
         cmd->setProtocol(proto);
     }
@@ -600,21 +600,21 @@ void KleopatraApplication::signEncryptFiles(const QStringList &files, GpgME::Pro
 
 void KleopatraApplication::decryptFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
+    auto const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->setOperation(Decrypt);
     cmd->start();
 }
 
 void KleopatraApplication::verifyFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
+    auto const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->setOperation(Verify);
     cmd->start();
 }
 
 void KleopatraApplication::decryptVerifyFiles(const QStringList &files, GpgME::Protocol /*proto*/)
 {
-    DecryptVerifyFilesCommand *const cmd = new DecryptVerifyFilesCommand(files, nullptr);
+    auto const cmd = new DecryptVerifyFilesCommand(files, nullptr);
     cmd->start();
 }
 

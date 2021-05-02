@@ -39,7 +39,7 @@ private:
             return;
         }
 
-        CertificateDetailsDialog *dlg = new CertificateDetailsDialog;
+        auto dlg = new CertificateDetailsDialog;
         applyWindowID(dlg);
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         connect(dlg, &QDialog::finished, q_func(), [this] (int) {

@@ -527,7 +527,8 @@ static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     }
 
     /* Create the key stubs */
-    gpgagent_statuslines(gpg_agent, "READKEY --card -- $SIGNKEYID", err);
+    gpgagent_statuslines(gpg_agent, "READKEY --card --no-data -- $SIGNKEYID", err);
+    gpgagent_statuslines(gpg_agent, "READKEY --card --no-data -- $ENCRKEYID", err);
 
     p15Card->setCardInfo(info);
     p15Card->setManufacturer(get_manufacturer(gpg_agent, err));

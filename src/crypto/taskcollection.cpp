@@ -115,8 +115,6 @@ void TaskCollection::Private::taskStarted()
 
 void TaskCollection::Private::calculateAndEmitProgress()
 {
-    using ConstIterator = std::map<int, std::shared_ptr<Task>>::const_iterator;
-
     quint64 total = 0;
     quint64 processed = 0;
 
@@ -196,7 +194,6 @@ std::shared_ptr<Task> TaskCollection::taskById(int id) const
 
 std::vector<std::shared_ptr<Task> > TaskCollection::tasks() const
 {
-    using ConstIterator = std::map<int, std::shared_ptr<Task>>::const_iterator;
     std::vector<std::shared_ptr<Task> > res;
     res.reserve(d->m_tasks.size());
     for (auto it = d->m_tasks.begin(), end = d->m_tasks.end(); it != end; ++it) {

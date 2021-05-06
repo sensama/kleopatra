@@ -134,40 +134,11 @@ CertifyCertificateCommand::CertifyCertificateCommand(const std::vector<GpgME::Us
 
 void CertifyCertificateCommand::Private::init()
 {
-
 }
 
 CertifyCertificateCommand::~CertifyCertificateCommand()
 {
     qCDebug(KLEOPATRA_LOG);
-}
-
-void CertifyCertificateCommand::setCertificationExportable(bool on)
-{
-    Q_UNUSED(on)
-}
-
-void CertifyCertificateCommand::setCertificationRevocable(bool on)
-{
-    Q_UNUSED(on)
-}
-
-void CertifyCertificateCommand::setCertifyingKey(const Key &signer)
-{
-    Q_UNUSED(signer)
-}
-
-void CertifyCertificateCommand::setUserIDs(const std::vector<UserID> &uids)
-{
-    d->uids = uids;
-    if (!uids.empty() && d->key().isNull()) {
-        setKey(uids.front().parent());
-    }
-}
-
-void CertifyCertificateCommand::setUserID(const UserID &uid)
-{
-    setUserIDs(std::vector<UserID>(1, uid));
 }
 
 void CertifyCertificateCommand::doStart()

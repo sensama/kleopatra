@@ -37,14 +37,6 @@ public:
         return OnlyOneKey | MustBeOpenPGP;
     }
 
-    void setCertificationExportable(bool on);
-    void setCertificationRevocable(bool on);
-
-    void setCertifyingKey(const GpgME::Key &key);
-
-    void setUserID(const GpgME::UserID &uid);
-    void setUserIDs(const std::vector<GpgME::UserID> &uids);
-
 private:
     void doStart() override;
     void doCancel() override;

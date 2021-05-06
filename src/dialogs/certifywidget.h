@@ -53,6 +53,11 @@ public:
     /* Should the signed key be be published */
     bool publishSelected() const;
 
+    bool isValid() const;
+
+Q_SIGNALS:
+    void changed() const;
+
 private:
     class Private;
     std::unique_ptr<Private> d;

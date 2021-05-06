@@ -45,39 +45,23 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     mCertWidget = new CertifyWidget(this);
     mainLay->addWidget(mCertWidget);
 
-    auto buttonBox = new QDialogButtonBox();
+    auto buttonBox = new QDialogButtonBox{this};
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
                                   QDialogButtonBox::Ok);
-    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
+    const auto okButton = buttonBox->button(QDialogButtonBox::Ok);
+    KGuiItem::assign(okButton, KStandardGuiItem::ok());
+    okButton->setText(i18n("Certify"));
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
-
-    buttonBox->button(QDialogButtonBox::Ok)->setText(i18n("Certify"));
-    connect(buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked,
-            this, [this] () {
-        KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
-        const auto lastKey = mCertWidget->secKey();
-        // Do not accept if the keys are the same.
-        if (!lastKey.isNull() && !mCertWidget->target().isNull() &&
-            !strcmp(lastKey.primaryFingerprint(),
-                    mCertWidget->target().primaryFingerprint())) {
-            KMessageBox::error(this, i18n("You cannot certify using the same key."),
-                               i18n("Invalid Selection"), KMessageBox::Notify);
-            return;
-        }
-
-        if (!lastKey.isNull()) {
-            conf.writeEntry("LastKey", lastKey.primaryFingerprint());
-        }
-        conf.writeEntry("ExportCheckState", mCertWidget->exportableSelected());
-        conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
-        accept();
-    });
-    connect(buttonBox->button(QDialogButtonBox::Cancel), &QAbstractButton::clicked,
-            this, [this] () {
-        close();
-    });
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &CertifyCertificateDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::close);
 
     mainLay->addWidget(buttonBox);
+
+    okButton->setEnabled(mCertWidget->isValid());
+    connect(mCertWidget, &CertifyWidget::changed, this, [this, okButton] () {
+        okButton->setEnabled(mCertWidget->isValid());
+    });
+
     KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
     const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
     if (!geom.isEmpty()) {
@@ -147,4 +131,21 @@ std::vector<unsigned int> CertifyCertificateDialog::selectedUserIDs() const
 QString CertifyCertificateDialog::tags() const
 {
     return mCertWidget->tags();
+}
+
+void CertifyCertificateDialog::accept()
+{
+    if (!mCertWidget->isValid()) {
+        return;
+    }
+
+    KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
+    const auto lastKey = mCertWidget->secKey();
+    if (!lastKey.isNull()) {
+        conf.writeEntry("LastKey", lastKey.primaryFingerprint());
+    }
+    conf.writeEntry("ExportCheckState", mCertWidget->exportableSelected());
+    conf.writeEntry("PublishCheckState", mCertWidget->publishSelected());
+
+    QDialog::accept();
 }

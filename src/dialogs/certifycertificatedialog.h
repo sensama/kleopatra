@@ -48,6 +48,9 @@ public:
 
     QString tags() const;
 
+public Q_SLOTS:
+    void accept() override;
+
 private:
     CertifyWidget *mCertWidget;
 };

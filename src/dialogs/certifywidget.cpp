@@ -18,6 +18,7 @@
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Predicates>
 
 #include <QCheckBox>
 #include <QHBoxLayout>
@@ -206,15 +207,14 @@ static bool uidEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
             && qstrcmp(lhs.id(), rhs.id()) == 0;
 }
 
-} // anonymous namespace
+}
 
-
-// Use of pimpl as this might be moved to libkleo
 class CertifyWidget::Private
 {
 public:
-    Private(CertifyWidget *qq) : q(qq),
-        mFprLabel(new QLabel)
+    Private(CertifyWidget *qq)
+        : q{qq}
+        , mFprLabel{new QLabel{q}}
     {
         auto mainLay = new QVBoxLayout(q);
         mainLay->addWidget(mFprLabel);
@@ -245,8 +245,8 @@ public:
 
         auto advLay = new QVBoxLayout;
 
-        mExportCB = new QCheckBox(i18n("Certify for everyone to see. (exportable)"));
-        mPublishCB = new QCheckBox(i18n("Publish on keyserver afterwards."));
+        mExportCB = new QCheckBox(i18n("Certify for everyone to see (exportable)"));
+        mPublishCB = new QCheckBox(i18n("Publish on keyserver afterwards"));
         auto publishLay = new QHBoxLayout;
         publishLay->addSpacing(20);
         publishLay->addWidget(mPublishCB);
@@ -258,7 +258,7 @@ public:
         infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
         infoBtn->setFlat(true);
 
-        connect(infoBtn, &QPushButton::clicked, q, [this, infoBtn] () {
+        connect(infoBtn, &QPushButton::clicked, q, [infoBtn] () {
             const QString msg = i18n("You can use this to add additional info to a "
                                      "certification.") + QStringLiteral("<br/><br/>") +
                                      i18n("Tags created by anyone with full certification trust "
@@ -285,6 +285,8 @@ public:
 
         mPublishCB->setEnabled(false);
 
+        connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, &CertifyWidget::changed);
+
         connect(mExportCB, &QCheckBox::toggled, [this] (bool on) {
             mPublishCB->setEnabled(on);
         });
@@ -293,14 +295,13 @@ public:
 #ifdef GPGME_HAS_REMARKS
             updateTags();
 #endif
+            Q_EMIT q->changed();
         });
 
         loadConfig();
     }
 
-    ~Private()
-    {
-    }
+    ~Private() = default;
 
     void loadConfig()
     {
@@ -403,6 +404,23 @@ public:
         return mTarget;
     }
 
+    bool isValid() const
+    {
+        // do not accept null keys
+        if (mTarget.isNull() || mSecKeySelect->currentKey().isNull()) {
+            return false;
+        }
+        // do not accept empty list of user ids
+        if (selectedUserIDs().empty()) {
+            return false;
+        }
+        // do not accept if the keys are the same
+        if (_detail::ByFingerprint<std::equal_to>()(mTarget, mSecKeySelect->currentKey())) {
+            return false;
+        }
+        return true;
+    }
+
 private:
     CertifyWidget *const q;
     QLabel *mFprLabel = nullptr;
@@ -461,6 +479,11 @@ QString CertifyWidget::tags() const
 bool CertifyWidget::publishSelected() const
 {
     return d->publishSelected();
+}
+
+bool CertifyWidget::isValid() const
+{
+    return d->isValid();
 }
 
 // For UserID model

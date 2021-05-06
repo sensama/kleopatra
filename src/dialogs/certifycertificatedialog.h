@@ -31,7 +31,8 @@ public:
 
     bool exportableCertificationSelected() const;
 
-    bool trustCertificationSelected() const;
+    bool trustSignatureSelected() const;
+    QString trustSignatureDomain() const;
 
     bool nonRevocableCertificationSelected() const;
 

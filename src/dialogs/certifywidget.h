@@ -53,6 +53,12 @@ public:
     /* Should the signed key be be published */
     bool publishSelected() const;
 
+    /* Whether a trust signature should be created */
+    bool trustSignatureSelected() const;
+
+    /* The domain to use to limit the scope of the trust signature */
+    QString trustSignatureDomain() const;
+
     bool isValid() const;
 
 Q_SIGNALS:

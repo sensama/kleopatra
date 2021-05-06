@@ -89,9 +89,14 @@ bool CertifyCertificateDialog::exportableCertificationSelected() const
     return mCertWidget->exportableSelected();
 }
 
-bool CertifyCertificateDialog::trustCertificationSelected() const
+bool CertifyCertificateDialog::trustSignatureSelected() const
 {
-    return false;
+    return mCertWidget->trustSignatureSelected();
+}
+
+QString CertifyCertificateDialog::trustSignatureDomain() const
+{
+    return mCertWidget->trustSignatureDomain();
 }
 
 bool CertifyCertificateDialog::nonRevocableCertificationSelected() const

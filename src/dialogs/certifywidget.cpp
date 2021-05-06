@@ -6,6 +6,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include <config-kleopatra.h>
+
 #include "certifywidget.h"
 
 #include "kleopatra_debug.h"
@@ -215,6 +217,8 @@ public:
     Private(CertifyWidget *qq)
         : q{qq}
         , mFprLabel{new QLabel{q}}
+        , mTrustSignatureCB{new QCheckBox{q}}
+        , mTrustSignatureDomainLE{new QLineEdit{q}}
     {
         auto mainLay = new QVBoxLayout(q);
         mainLay->addWidget(mFprLabel);
@@ -281,6 +285,17 @@ public:
         infoBtn->setVisible(false);
 #endif
 
+#ifndef QGPGME_SUPPORTS_TRUST_SIGNATURES
+        mTrustSignatureCB->setVisible(false);
+        mTrustSignatureDomainLE->setVisible(false);
+#endif
+        mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
+        mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));
+        mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
+
+        advLay->addWidget(mTrustSignatureCB);
+        advLay->addWidget(mTrustSignatureDomainLE);
+
         expander->setContentLayout(advLay);
 
         mPublishCB->setEnabled(false);
@@ -297,6 +312,12 @@ public:
 #endif
             Q_EMIT q->changed();
         });
+
+        connect(mTrustSignatureCB, &QCheckBox::toggled, q, [this] (bool on) {
+            mTrustSignatureDomainLE->setEnabled(on);
+            Q_EMIT q->changed();
+        });
+        connect(mTrustSignatureDomainLE, &QLineEdit::textChanged, q, &CertifyWidget::changed);
 
         loadConfig();
     }
@@ -406,6 +427,9 @@ public:
 
     bool isValid() const
     {
+        static const QRegularExpression domainNameRegExp{QStringLiteral(R"(^\s*((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}\s*$)"),
+                                                         QRegularExpression::CaseInsensitiveOption};
+
         // do not accept null keys
         if (mTarget.isNull() || mSecKeySelect->currentKey().isNull()) {
             return false;
@@ -418,16 +442,21 @@ public:
         if (_detail::ByFingerprint<std::equal_to>()(mTarget, mSecKeySelect->currentKey())) {
             return false;
         }
+        if (mTrustSignatureCB->isChecked() && !domainNameRegExp.match(mTrustSignatureDomainLE->text()).hasMatch()) {
+            return false;
+        }
         return true;
     }
 
-private:
+public:
     CertifyWidget *const q;
     QLabel *mFprLabel = nullptr;
     KeySelectionCombo *mSecKeySelect = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;
+    QCheckBox *mTrustSignatureCB = nullptr;
+    QLineEdit *mTrustSignatureDomainLE = nullptr;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;
@@ -479,6 +508,16 @@ QString CertifyWidget::tags() const
 bool CertifyWidget::publishSelected() const
 {
     return d->publishSelected();
+}
+
+bool CertifyWidget::trustSignatureSelected() const
+{
+    return d->mTrustSignatureCB->isChecked();
+}
+
+QString CertifyWidget::trustSignatureDomain() const
+{
+    return d->mTrustSignatureDomainLE->text().trimmed();
 }
 
 bool CertifyWidget::isValid() const

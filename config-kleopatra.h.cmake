@@ -26,3 +26,6 @@
 
 /* DBus available */
 #cmakedefine01 HAVE_QDBUS
+
+/* Defined if QGpgME supports trust signatures */
+#cmakedefine QGPGME_SUPPORTS_TRUST_SIGNATURES 1

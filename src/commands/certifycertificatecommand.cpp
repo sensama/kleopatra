@@ -88,7 +88,6 @@ CertifyCertificateCommand::Private::Private(CertifyCertificateCommand *qq, KeyLi
       dialog(),
       job()
 {
-
 }
 
 CertifyCertificateCommand::Private::~Private()
@@ -264,6 +263,12 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     }
     // This also came with 1.14.0
     job->setDupeOk(true);
+#endif
+#ifdef QGPGME_SUPPORTS_TRUST_SIGNATURES
+    if (dialog->trustSignatureSelected() && !dialog->trustSignatureDomain().isEmpty()) {
+        // always create level 1 trust signatures with complete trust
+        job->setTrustSignature(TrustSignatureTrust::Complete, 1, dialog->trustSignatureDomain());
+    }
 #endif
 
     if (const Error err = job->start(key())) {

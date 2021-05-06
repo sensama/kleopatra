@@ -38,7 +38,6 @@ public:
     void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
     std::vector<unsigned int> selectedUserIDs() const;
 
-    void setCertificatesWithSecretKeys(const std::vector<GpgME::Key> &keys);
     GpgME::Key selectedSecretKey() const;
 
     bool sendToServer() const;

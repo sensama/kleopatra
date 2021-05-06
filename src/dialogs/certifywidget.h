@@ -27,6 +27,8 @@ class CertifyWidget : public QWidget
 public:
     explicit CertifyWidget(QWidget *parent = nullptr);
 
+    ~CertifyWidget() override;
+
     /* Set the key to certify */
     void setTarget(const GpgME::Key &key);
 
@@ -53,7 +55,7 @@ public:
 
 private:
     class Private;
-    std::shared_ptr<Private> d;
+    std::unique_ptr<Private> d;
 };
 
 } // namespace Kleo

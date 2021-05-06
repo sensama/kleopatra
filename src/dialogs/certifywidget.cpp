@@ -405,21 +405,23 @@ public:
 
 private:
     CertifyWidget *const q;
-    QLabel *mFprLabel;
-    KeySelectionCombo *mSecKeySelect;
-    QCheckBox *mExportCB;
-    QCheckBox *mPublishCB;
-    QLineEdit *mTagsLE;
+    QLabel *mFprLabel = nullptr;
+    KeySelectionCombo *mSecKeySelect = nullptr;
+    QCheckBox *mExportCB = nullptr;
+    QCheckBox *mPublishCB = nullptr;
+    QLineEdit *mTagsLE = nullptr;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;
 };
 
-CertifyWidget::CertifyWidget(QWidget *parent) :
-    QWidget(parent),
-    d(new Private(this))
+CertifyWidget::CertifyWidget(QWidget *parent)
+    : QWidget{parent}
+    , d{std::make_unique<Private>(this)}
 {
 }
+
+Kleo::CertifyWidget::~CertifyWidget() = default;
 
 void CertifyWidget::setTarget(const GpgME::Key &key)
 {

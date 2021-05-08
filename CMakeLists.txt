@@ -13,7 +13,7 @@ option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing 
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.81.0")
+set(KF5_MIN_VERSION "5.82.0")
 set(KMIME_VERSION "5.17.40")
 set(LIBKLEO_VERSION "5.17.43")
 set(QT_REQUIRED_VERSION "5.15.0")
@@ -138,7 +138,7 @@ include_directories(
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 #add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055300)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

@@ -402,6 +402,19 @@ public:
 #endif
     }
 
+    void updateTrustSignatureDomain()
+    {
+        if (mTrustSignatureDomainLE->text().isEmpty() && mTarget.numUserIDs() == 1) {
+            // try to guess the domain to use for the trust signature
+            const auto address = mTarget.userID(0).addrSpec();
+            const auto atPos = address.find('@');
+            if (atPos != std::string::npos) {
+                const auto domain = address.substr(atPos + 1);
+                mTrustSignatureDomainLE->setText(QString::fromUtf8(domain.c_str(), domain.size()));
+            }
+        }
+    }
+
     void setTarget(const GpgME::Key &key)
     {
         mFprLabel->setText(i18n("Fingerprint: <b>%1</b>",
@@ -411,6 +424,7 @@ public:
         mTarget = key;
 
         updateTags();
+        updateTrustSignatureDomain();
     }
 
     GpgME::Key secKey() const

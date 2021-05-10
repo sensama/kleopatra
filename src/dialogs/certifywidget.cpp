@@ -14,6 +14,7 @@
 
 #include <KLocalizedString>
 #include <KConfigGroup>
+#include <KSeparator>
 #include <KSharedConfig>
 
 #include <Libkleo/DefaultKeyFilter>
@@ -54,7 +55,6 @@ class AnimatedExpander: public QWidget
     Q_OBJECT
 public:
     explicit AnimatedExpander(const QString &title = QString(),
-                              const int animationDuration = 300,
                               QWidget *parent = nullptr);
     void setContentLayout(QLayout *contentLayout);
 
@@ -67,10 +67,8 @@ private:
     int animationDuration{300};
 };
 
-AnimatedExpander::AnimatedExpander(const QString &title,
-                                   const int animationDuration, QWidget *parent):
-    QWidget(parent),
-    animationDuration(animationDuration)
+AnimatedExpander::AnimatedExpander(const QString &title, QWidget *parent):
+    QWidget(parent)
 {
     toggleButton.setStyleSheet(QStringLiteral("QToolButton { border: none; }"));
     toggleButton.setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -209,6 +207,26 @@ static bool uidEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
             && qstrcmp(lhs.id(), rhs.id()) == 0;
 }
 
+auto checkBoxSize(const QCheckBox *checkBox)
+{
+    QStyleOptionButton opt;
+    return checkBox->style()->sizeFromContents(QStyle::CT_CheckBox, &opt, QSize(), checkBox);
+}
+
+auto createInfoButton(const QString &text, QWidget *parent)
+{
+    auto infoBtn = new QPushButton{parent};
+    infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
+    infoBtn->setFlat(true);
+
+    QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text] () {
+        QToolTip::showText(infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0),
+                           text, infoBtn, QRect(), 30000);
+    });
+
+    return infoBtn;
+}
+
 }
 
 class CertifyWidget::Private
@@ -217,88 +235,92 @@ public:
     Private(CertifyWidget *qq)
         : q{qq}
         , mFprLabel{new QLabel{q}}
+        , mSecKeySelect{new KeySelectionCombo{/* secretOnly= */true, q}}
+        , mExportCB{new QCheckBox{q}}
+        , mPublishCB{new QCheckBox{q}}
+        , mTagsLE{new QLineEdit{q}}
         , mTrustSignatureCB{new QCheckBox{q}}
         , mTrustSignatureDomainLE{new QLineEdit{q}}
     {
-        auto mainLay = new QVBoxLayout(q);
+        auto mainLay = new QVBoxLayout{q};
         mainLay->addWidget(mFprLabel);
 
-        auto secKeyLay = new QHBoxLayout;
+        auto secKeyLay = new QHBoxLayout{q};
         secKeyLay->addWidget(new QLabel(i18n("Certify with:")));
 
-        mSecKeySelect = new KeySelectionCombo(true);
         mSecKeySelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SecKeyFilter()));
 
         secKeyLay->addWidget(mSecKeySelect, 1);
         mainLay->addLayout(secKeyLay);
 
-        auto splitLine = new QFrame;
-        splitLine->setFrameShape(QFrame::HLine);
-        splitLine->setFrameShadow(QFrame::Sunken);
-        splitLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+        mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        mainLay->addWidget(splitLine);
-
-        auto listView = new QListView;
+        auto listView = new QListView{q};
         listView->setModel(&mUserIDModel);
         mainLay->addWidget(listView, 1);
 
         // Setup the advanced area
-        auto expander = new AnimatedExpander(i18n("Advanced"));
+        auto expander = new AnimatedExpander{i18n("Advanced"), q};
         mainLay->addWidget(expander);
 
-        auto advLay = new QVBoxLayout;
+        auto advLay = new QVBoxLayout{q};
 
-        mExportCB = new QCheckBox(i18n("Certify for everyone to see (exportable)"));
-        mPublishCB = new QCheckBox(i18n("Publish on keyserver afterwards"));
-        auto publishLay = new QHBoxLayout;
-        publishLay->addSpacing(20);
-        publishLay->addWidget(mPublishCB);
-
-        mTagsLE = new QLineEdit;
-        mTagsLE->setPlaceholderText(i18n("Tags"));
-
-        auto infoBtn = new QPushButton;
-        infoBtn->setIcon(QIcon::fromTheme(QStringLiteral("help-contextual")));
-        infoBtn->setFlat(true);
-
-        connect(infoBtn, &QPushButton::clicked, q, [infoBtn] () {
-            const QString msg = i18n("You can use this to add additional info to a "
-                                     "certification.") + QStringLiteral("<br/><br/>") +
-                                     i18n("Tags created by anyone with full certification trust "
-                                          "are shown in the keylist and can be searched.");
-            QToolTip::showText(infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0),
-                               msg, infoBtn, QRect(), 30000);
-        });
-
-        auto tagsLay = new QHBoxLayout;
-        tagsLay->addWidget(infoBtn);
-        tagsLay->addWidget(mTagsLE);
-
+        mExportCB->setText(i18n("Certify for everyone to see (exportable)"));
         advLay->addWidget(mExportCB);
-        advLay->addLayout(publishLay);
-        advLay->addLayout(tagsLay);
+
+        {
+            auto layout = new QHBoxLayout{q};
+
+            mPublishCB->setText(i18n("Publish on keyserver afterwards"));
+            mPublishCB->setEnabled(mExportCB->isChecked());
+
+            layout->addSpacing(checkBoxSize(mExportCB).width());
+            layout->addWidget(mPublishCB);
+
+            advLay->addLayout(layout);
+        }
 
 #ifndef GPGME_HAS_REMARKS
-        // Hide it if we do not have remark support
         mTagsLE->setVisible(false);
-        infoBtn->setVisible(false);
+#else
+        {
+            auto tagsLay = new QHBoxLayout{q};
+
+            mTagsLE->setPlaceholderText(i18n("Tags"));
+            auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") +
+                                            QStringLiteral("<br/><br/>") +
+                                            i18n("Tags created by anyone with full certification trust "
+                                                "are shown in the keylist and can be searched."),
+                                            q);
+
+            tagsLay->addWidget(new QLabel{i18n("Tags:"), q});
+            tagsLay->addWidget(mTagsLE, 1);
+            tagsLay->addWidget(infoBtn);
+
+            advLay->addLayout(tagsLay);
+        }
 #endif
 
 #ifndef QGPGME_SUPPORTS_TRUST_SIGNATURES
         mTrustSignatureCB->setVisible(false);
         mTrustSignatureDomainLE->setVisible(false);
-#endif
+#else
         mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
-        mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));
-        mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
-
         advLay->addWidget(mTrustSignatureCB);
-        advLay->addWidget(mTrustSignatureDomainLE);
+        {
+            auto layout = new QHBoxLayout{q};
+
+            mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));
+            mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
+
+            layout->addSpacing(checkBoxSize(mTrustSignatureCB).width());
+            layout->addWidget(mTrustSignatureDomainLE);
+
+            advLay->addLayout(layout);
+        }
+#endif
 
         expander->setContentLayout(advLay);
-
-        mPublishCB->setEnabled(false);
 
         connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, &CertifyWidget::changed);
 

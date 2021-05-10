@@ -305,8 +305,23 @@ public:
         mTrustSignatureCB->setVisible(false);
         mTrustSignatureDomainLE->setVisible(false);
 #else
-        mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
-        advLay->addWidget(mTrustSignatureCB);
+        {
+            auto layout = new QHBoxLayout{q};
+
+            mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
+            auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") +
+                                            QStringLiteral("<br/><br/>") +
+                                            i18n("All certificates with email addresses belonging to the domain "
+                                                 "that have been certified by the trusted introducer are treated "
+                                                 "as certified, i.e. a trusted introducer acts as a kind of "
+                                                 "intermediate CA for a domain."),
+                                            q);
+
+            layout->addWidget(mTrustSignatureCB, 1);
+            layout->addWidget(infoBtn);
+
+            advLay->addLayout(layout);
+        }
         {
             auto layout = new QHBoxLayout{q};
 

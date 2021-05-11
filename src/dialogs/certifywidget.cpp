@@ -136,6 +136,25 @@ public:
         setCanCertify(DefaultKeyFilter::Set);
         setIsOpenPGP(DefaultKeyFilter::Set);
     }
+
+    bool matches(const GpgME::Key &key, Kleo::KeyFilter::MatchContexts contexts) const override
+    {
+        if (!(availableMatchContexts() & contexts)) {
+            return false;
+        }
+        if (_detail::ByFingerprint<std::equal_to>()(key, mExcludedKey)) {
+            return false;
+        }
+        return DefaultKeyFilter::matches(key, contexts);
+    }
+
+    void setExcludedKey(const GpgME::Key &key)
+    {
+        mExcludedKey = key;
+    }
+
+private:
+    GpgME::Key mExcludedKey;
 };
 
 class UserIDModel : public QStandardItemModel
@@ -248,7 +267,7 @@ public:
         auto secKeyLay = new QHBoxLayout{q};
         secKeyLay->addWidget(new QLabel(i18n("Certify with:")));
 
-        mSecKeySelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SecKeyFilter()));
+        mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
 
         secKeyLay->addWidget(mSecKeySelect, 1);
         mainLay->addLayout(secKeyLay);
@@ -423,6 +442,10 @@ public:
         mUserIDModel.setKey(key);
         mTarget = key;
 
+        auto keyFilter = std::make_shared<SecKeyFilter>();
+        keyFilter->setExcludedKey(mTarget);
+        mSecKeySelect->setKeyFilter(keyFilter);
+
         updateTags();
         updateTrustSignatureDomain();
     }
@@ -489,7 +512,8 @@ public:
         if (selectedUserIDs().empty()) {
             return false;
         }
-        // do not accept if the keys are the same
+        // do not accept if the key to certify is selected as certification key;
+        // this shouldn't happen because the key to certify is excluded from the choice, but better safe than sorry
         if (_detail::ByFingerprint<std::equal_to>()(mTarget, mSecKeySelect->currentKey())) {
             return false;
         }

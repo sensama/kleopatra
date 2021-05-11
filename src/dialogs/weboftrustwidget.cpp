@@ -11,28 +11,26 @@
 
 #include "commands/certifycertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
-
-#include <QHeaderView>
-#include <QVBoxLayout>
-#include <QTreeView>
-
-#include <gpgme++/key.h>
-#include <gpgme++/keylistresult.h>
-
-#include <QGpgME/Protocol>
-#include <QGpgME/KeyListJob>
+#include "utils/tags.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/UserIDListModel>
 
-#include "kleopatra_debug.h"
-#include "commands/command.h"
-#include "utils/tags.h"
-
-#include <KMessageBox>
 #include <KLocalizedString>
+#include <KMessageBox>
 
+#include <QHeaderView>
 #include <QMenu>
+#include <QTreeView>
+#include <QVBoxLayout>
+
+#include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
+
+#include <gpgme++/key.h>
+#include <gpgme++/keylistresult.h>
+
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 
@@ -49,7 +47,7 @@ private:
 
 public:
     Private(WebOfTrustWidget *qq)
-        : q(qq)
+        : q{qq}
     {
         certificationsModel.enableRemarks(Tags::tagsEnabled());
 
@@ -222,11 +220,13 @@ public:
 };
 
 
-WebOfTrustWidget::WebOfTrustWidget(QWidget *parent) :
-    QWidget(parent),
-    d(new Private(this))
+WebOfTrustWidget::WebOfTrustWidget(QWidget *parent)
+    : QWidget{parent}
+    , d{std::make_unique<Private>(this)}
 {
 }
+
+WebOfTrustWidget::~WebOfTrustWidget() = default;
 
 GpgME::Key WebOfTrustWidget::key() const
 {
@@ -245,10 +245,6 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
     d->certificationsTV->expandAll();
     d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();
-}
-
-WebOfTrustWidget::~WebOfTrustWidget()
-{
 }
 
 void WebOfTrustWidget::signatureListingNextKey(const GpgME::Key &key)

@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+#include <memory>
+
 namespace GpgME {
 class Key;
 class KeyListResult;
@@ -20,7 +22,7 @@ class WebOfTrustWidget : public QWidget
 
 public:
     explicit WebOfTrustWidget(QWidget *parent = nullptr);
-    ~WebOfTrustWidget();
+    ~WebOfTrustWidget() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
@@ -31,7 +33,7 @@ private Q_SLOTS:
 
 private:
     class Private;
-    const QScopedPointer<Private> d;
+    const std::unique_ptr<Private> d;
 };
 } // namespace Kleo
 

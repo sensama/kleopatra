@@ -55,6 +55,9 @@ public:
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(true);
         certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        if (!Tags::tagsEnabled()) {
+            certificationsTV->hideColumn(static_cast<int>(UserIDListModel::Column::Tags));
+        }
 
         auto vLay = new QVBoxLayout(q);
         vLay->setContentsMargins(0, 0, 0, 0);

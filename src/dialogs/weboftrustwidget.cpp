@@ -239,7 +239,7 @@ GpgME::Key WebOfTrustWidget::key() const
 void WebOfTrustWidget::setKey(const GpgME::Key &key)
 {
     if (key.protocol() != GpgME::OpenPGP) {
-        qCDebug(KLEOPATRA_LOG) << "Trust chain is only supported for CMS keys";
+        qCDebug(KLEOPATRA_LOG) << "List of Certifications is only supported for OpenPGP keys";
         return;
     }
 

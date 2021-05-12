@@ -7,6 +7,7 @@
 
 #include <QWidget>
 
+#include <memory>
 #include <vector>
 
 namespace GpgME {
@@ -28,7 +29,7 @@ public:
 
 private:
     class Private;
-    const QScopedPointer<Private> d;
+    std::unique_ptr<Private> d;
 
     // Windows QGpgME new style connect problem makes this necessary.
     Q_PRIVATE_SLOT(d, void keyListDone(const GpgME::KeyListResult &,

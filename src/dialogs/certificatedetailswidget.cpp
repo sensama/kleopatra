@@ -521,8 +521,8 @@ void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)
 }
 
 CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
-    : QWidget(parent)
-    , d(new Private(this))
+    : QWidget{parent}
+    , d{std::make_unique<Private>(this)}
 {
     d->ui.setupUi(this);
 
@@ -555,9 +555,7 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
             this, [this]() { d->keysMayHaveChanged(); });
 }
 
-CertificateDetailsWidget::~CertificateDetailsWidget()
-{
-}
+CertificateDetailsWidget::~CertificateDetailsWidget() = default;
 
 void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &,
                                                     const std::vector<GpgME::Key> &keys,

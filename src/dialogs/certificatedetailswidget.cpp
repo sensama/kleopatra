@@ -870,15 +870,16 @@ CertificateDetailsWidget::~CertificateDetailsWidget() = default;
 void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &,
                                                     const std::vector<GpgME::Key> &keys,
                                                     const QString &,
-                                                    const GpgME::Error &) {
-        updateInProgress = false;
-        if (keys.size() != 1) {
-            qCWarning(KLEOPATRA_LOG) << "Invalid keylist result in update.";
-            return;
-        }
-        // As we listen for keysmayhavechanged we get the update
-        // after updating the keycache.
-        KeyCache::mutableInstance()->insert(keys);
+                                                    const GpgME::Error &)
+{
+    updateInProgress = false;
+    if (keys.size() != 1) {
+        qCWarning(KLEOPATRA_LOG) << "Invalid keylist result in update.";
+        return;
+    }
+    // As we listen for keysmayhavechanged we get the update
+    // after updating the keycache.
+    KeyCache::mutableInstance()->insert(keys);
 }
 
 void CertificateDetailsWidget::Private::setUpdatedKey(const GpgME::Key &k)

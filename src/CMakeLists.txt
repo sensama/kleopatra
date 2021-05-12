@@ -318,7 +318,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/selftestdialog.ui
   dialogs/adduseriddialog.ui
   dialogs/setinitialpindialog.ui
-  dialogs/certificatedetailswidget.ui
   dialogs/trustchainwidget.ui
   dialogs/subkeyswidget.ui
   newcertificatewizard/listwidget.ui

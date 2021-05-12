@@ -5,7 +5,7 @@
 */
 
 #include "certificatedetailswidget.h"
-#include "ui_certificatedetailswidget.h"
+
 #include "kleopatra_debug.h"
 #include "exportdialog.h"
 #include "trustchainwidget.h"
@@ -27,6 +27,8 @@
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
 
+#include <KLocalizedString>
+
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
@@ -36,8 +38,16 @@
 #include <QGpgME/KeyListJob>
 
 #include <QDateTime>
-#include <QMenu>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QLocale>
+#include <QMenu>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QToolButton>
+#include <QTreeWidget>
 
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
@@ -59,9 +69,7 @@ using namespace Kleo;
 class CertificateDetailsWidget::Private
 {
 public:
-    Private(CertificateDetailsWidget *parent)
-        : updateInProgress (false), q(parent)
-    {}
+    Private(CertificateDetailsWidget *qq);
 
     void setupCommonProperties();
     void setupPGPProperties();
@@ -90,12 +98,263 @@ public:
                      const std::vector<GpgME::Key> &, const QString &,
                      const GpgME::Error &);
 
-    Ui::CertificateDetailsWidget ui;
-    GpgME::Key key;
-    bool updateInProgress;
 private:
     CertificateDetailsWidget *const q;
+
+public:
+    GpgME::Key key;
+    bool updateInProgress = false;
+
+private:
+    struct UI {
+        QGridLayout *gridLayout_2;
+        QHBoxLayout *hboxLayout_1;
+        QPushButton *addUserIDBtn;
+        QPushButton *changePassphraseBtn;
+        QPushButton *trustChainDetailsBtn;
+        QPushButton *genRevokeBtn;
+        QPushButton *certifyBtn;
+        QGroupBox *groupBox;
+        QGridLayout *gridLayout;
+        QLabel *validFromLbl;
+        QLabel *validFrom;
+        QSpacerItem *horizontalSpacer_3;
+        QLabel *expiresLbl;
+        QHBoxLayout *horizontalLayout_3;
+        QLabel *expires;
+        QToolButton *changeExpirationBtn;
+        QLabel *typeLbl;
+        QLabel *type;
+        QLabel *fingerprintLbl;
+        QLabel *fingerprint;
+        QLabel *publishingLbl;
+        QPushButton *publishing;
+        QLabel *smimeIssuerLbl;
+        QLabel *smimeIssuer;
+        QLabel *compliance;
+        QLabel *complianceLbl;
+        QHBoxLayout *horizontalLayout;
+        QPushButton *moreDetailsBtn;
+        QPushButton *exportBtn;
+        QPushButton *webOfTrustBtn;
+        QSpacerItem *horizontalSpacer;
+        QTreeWidget *userIDTable;
+        QLabel *label;
+        QLabel *smimeOwnerLbl;
+        QLabel *smimeRelatedAddresses;
+        QLabel *smimeOwner;
+
+        void setupUi(QWidget *parent)
+        {
+            gridLayout_2 = new QGridLayout(parent);
+            gridLayout_2->setContentsMargins(0, 0, 0, 0);
+            hboxLayout_1 = new QHBoxLayout();
+            addUserIDBtn = new QPushButton(i18n("Add email address"), parent);
+
+            hboxLayout_1->addWidget(addUserIDBtn);
+
+            changePassphraseBtn = new QPushButton(i18n("Change passphrase"), parent);
+
+            hboxLayout_1->addWidget(changePassphraseBtn);
+
+            trustChainDetailsBtn = new QPushButton(i18n("Trust chain details..."), parent);
+
+            hboxLayout_1->addWidget(trustChainDetailsBtn);
+
+            genRevokeBtn = new QPushButton(i18n("Generate revocation certificate"), parent);
+            genRevokeBtn->setToolTip(u"<html>" +
+                                     i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
+                                          "declare that a key shall not anymore be used.  It is not possible "
+                                          "to retract such a revocation certificate once it has been published.") +
+                                     u"</html>");
+
+            hboxLayout_1->addWidget(genRevokeBtn);
+
+            certifyBtn = new QPushButton(i18n("Certify"), parent);
+
+            hboxLayout_1->addWidget(certifyBtn);
+
+            gridLayout_2->addLayout(hboxLayout_1, 4, 0, 1, 3);
+
+            groupBox = new QGroupBox(i18n("Certificate Details"), parent);
+            groupBox->setFlat(false);
+            gridLayout = new QGridLayout(groupBox);
+            validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
+
+            gridLayout->addWidget(validFromLbl, 0, 0, 1, 1);
+
+            validFrom = new QLabel(groupBox);
+            validFrom->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+
+            gridLayout->addWidget(validFrom, 0, 1, 1, 1);
+
+            horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+            gridLayout->addItem(horizontalSpacer_3, 0, 2, 1, 1);
+
+            expiresLbl = new QLabel(i18n("Expires:"), groupBox);
+
+            gridLayout->addWidget(expiresLbl, 1, 0, 1, 1);
+
+            horizontalLayout_3 = new QHBoxLayout();
+            expires = new QLabel(groupBox);
+            expires->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+
+            horizontalLayout_3->addWidget(expires);
+
+            changeExpirationBtn = new QToolButton(groupBox);
+            changeExpirationBtn->setToolTip(i18n("Change"));
+            changeExpirationBtn->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
+            changeExpirationBtn->setIconSize(QSize(16, 16));
+            changeExpirationBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+            horizontalLayout_3->addWidget(changeExpirationBtn);
+
+
+            gridLayout->addLayout(horizontalLayout_3, 1, 1, 1, 1);
+
+            typeLbl = new QLabel(i18n("Type:"), groupBox);
+
+            gridLayout->addWidget(typeLbl, 2, 0, 1, 1);
+
+            type = new QLabel(groupBox);
+            type->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+
+            gridLayout->addWidget(type, 2, 1, 1, 1);
+
+            fingerprintLbl = new QLabel(i18n("Fingerprint:"), groupBox);
+
+            gridLayout->addWidget(fingerprintLbl, 3, 0, 1, 1);
+
+            fingerprint = new QLabel(groupBox);
+            fingerprint->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+
+            gridLayout->addWidget(fingerprint, 3, 1, 1, 2);
+
+            publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
+
+            gridLayout->addWidget(publishingLbl, 4, 0, 1, 1);
+
+            publishing = new QPushButton(i18n("Publish Certificate"), groupBox);
+
+            gridLayout->addWidget(publishing, 4, 1, 1, 1);
+
+            smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
+
+            gridLayout->addWidget(smimeIssuerLbl, 5, 0, 1, 1);
+
+            smimeIssuer = new QLabel(groupBox);
+            smimeIssuer->setWordWrap(true);
+            smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout->addWidget(smimeIssuer, 5, 1, 1, 2);
+
+            compliance = new QLabel(i18n("Compliance:"), groupBox);
+            compliance->setWordWrap(true);
+            compliance->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout->addWidget(compliance, 6, 0, 1, 1);
+
+            complianceLbl = new QLabel(groupBox);
+            complianceLbl->setWordWrap(true);
+            complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout->addWidget(complianceLbl, 6, 1, 1, 2);
+
+            horizontalLayout = new QHBoxLayout();
+            moreDetailsBtn = new QPushButton(i18n("More details..."), groupBox);
+
+            horizontalLayout->addWidget(moreDetailsBtn);
+
+            exportBtn = new QPushButton(i18n("Export..."), groupBox);
+
+            horizontalLayout->addWidget(exportBtn);
+
+            webOfTrustBtn = new QPushButton(i18n("Certifications..."), groupBox);
+
+            horizontalLayout->addWidget(webOfTrustBtn);
+
+            horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+            horizontalLayout->addItem(horizontalSpacer);
+
+
+            gridLayout->addLayout(horizontalLayout, 7, 0, 1, 3);
+
+
+            gridLayout_2->addWidget(groupBox, 6, 0, 1, 3);
+
+            userIDTable = new QTreeWidget(parent);
+            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+            userIDTable->setHeaderItem(__qtreewidgetitem);
+            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+            userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
+            userIDTable->setRootIsDecorated(false);
+            userIDTable->setUniformRowHeights(true);
+            userIDTable->setAllColumnsShowFocus(true);
+
+            gridLayout_2->addWidget(userIDTable, 3, 0, 1, 3);
+
+            label = new QLabel(i18n("You can use this certificate to secure communication with the following email addresses:"), parent);
+            label->setWordWrap(true);
+
+            gridLayout_2->addWidget(label, 0, 0, 1, 3);
+
+            smimeOwnerLbl = new QLabel(i18n("Owner:"), parent);
+
+            gridLayout_2->addWidget(smimeOwnerLbl, 1, 0, 1, 1);
+
+            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
+            QFont font;
+            font.setBold(true);
+            font.setWeight(75);
+            smimeRelatedAddresses->setFont(font);
+
+            gridLayout_2->addWidget(smimeRelatedAddresses, 2, 0, 1, 1);
+
+            smimeOwner = new QLabel(parent);
+            smimeOwner->setWordWrap(true);
+            smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout_2->addWidget(smimeOwner, 1, 1, 1, 2);
+        }
+    } ui;
 };
+
+CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
+    : q{qq}
+{
+    ui.setupUi(q);
+
+    connect(ui.addUserIDBtn, &QPushButton::clicked,
+            q, [this]() { addUserID(); });
+    connect(ui.changePassphraseBtn, &QPushButton::clicked,
+            q, [this]() { changePassphrase(); });
+    connect(ui.genRevokeBtn, &QPushButton::clicked,
+            q, [this]() { genRevokeCert(); });
+    connect(ui.changeExpirationBtn, &QPushButton::clicked,
+            q, [this]() { changeExpiration(); });
+    connect(ui.smimeOwner, &QLabel::linkActivated,
+            q, [this](const QString &link) { smimeLinkActivated(link); });
+    connect(ui.smimeIssuer, &QLabel::linkActivated,
+            q, [this](const QString &link) { smimeLinkActivated(link); });
+    connect(ui.trustChainDetailsBtn, &QPushButton::pressed,
+            q, [this]() { showTrustChainDialog(); });
+    connect(ui.moreDetailsBtn, &QPushButton::pressed,
+            q, [this]() { showMoreDetails(); });
+    connect(ui.publishing, &QPushButton::pressed,
+            q, [this]() { publishCertificate(); });
+    connect(ui.certifyBtn, &QPushButton::clicked,
+            q, [this]() { certifyClicked(); });
+    connect(ui.webOfTrustBtn, &QPushButton::clicked,
+            q, [this]() { webOfTrustClicked(); });
+    connect(ui.exportBtn, &QPushButton::clicked,
+            q, [this]() { exportClicked(); });
+
+    connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
+            q, [this]() { keysMayHaveChanged(); });
+}
 
 void CertificateDetailsWidget::Private::setupCommonProperties()
 {
@@ -524,35 +783,6 @@ CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)
     : QWidget{parent}
     , d{std::make_unique<Private>(this)}
 {
-    d->ui.setupUi(this);
-
-    connect(d->ui.addUserIDBtn, &QPushButton::clicked,
-            this, [this]() { d->addUserID(); });
-    connect(d->ui.changePassphraseBtn, &QPushButton::clicked,
-            this, [this]() { d->changePassphrase(); });
-    connect(d->ui.genRevokeBtn, &QPushButton::clicked,
-            this, [this]() { d->genRevokeCert(); });
-    connect(d->ui.changeExpirationBtn, &QPushButton::clicked,
-            this, [this]() { d->changeExpiration(); });
-    connect(d->ui.smimeOwner, &QLabel::linkActivated,
-            this, [this](const QString &link) { d->smimeLinkActivated(link); });
-    connect(d->ui.smimeIssuer, &QLabel::linkActivated,
-            this, [this](const QString &link) { d->smimeLinkActivated(link); });
-    connect(d->ui.trustChainDetailsBtn, &QPushButton::pressed,
-            this, [this]() { d->showTrustChainDialog(); });
-    connect(d->ui.moreDetailsBtn, &QPushButton::pressed,
-            this, [this]() { d->showMoreDetails(); });
-    connect(d->ui.publishing, &QPushButton::pressed,
-            this, [this]() { d->publishCertificate(); });
-    connect(d->ui.certifyBtn, &QPushButton::clicked,
-            this, [this]() { d->certifyClicked(); });
-    connect(d->ui.webOfTrustBtn, &QPushButton::clicked,
-            this, [this]() { d->webOfTrustClicked(); });
-    connect(d->ui.exportBtn, &QPushButton::clicked,
-            this, [this]() { d->exportClicked(); });
-
-    connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            this, [this]() { d->keysMayHaveChanged(); });
 }
 
 CertificateDetailsWidget::~CertificateDetailsWidget() = default;

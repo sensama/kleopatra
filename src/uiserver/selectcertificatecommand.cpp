@@ -105,11 +105,11 @@ int SelectCertificateCommand::doStart()
             opts |= option_table[i].option;
         }
     }
-    if (opts & CertificateSelectionDialog::AnyCertificate == 0) {
+    if ((opts & CertificateSelectionDialog::AnyCertificate) == 0) {
         // neither sign-only nor encrypt-only => any usage
         opts |= CertificateSelectionDialog::AnyCertificate;
     }
-    if (opts & CertificateSelectionDialog::AnyFormat == 0) {
+    if ((opts & CertificateSelectionDialog::AnyFormat) == 0) {
         // neither openpgp-only nor x509-only => any protocol
         opts |= CertificateSelectionDialog::AnyFormat;
     }

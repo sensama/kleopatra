@@ -139,6 +139,7 @@ set(_kleopatra_SRCS
   dialogs/addemaildialog.cpp
   dialogs/deletecertificatesdialog.cpp
   dialogs/setinitialpindialog.cpp
+  dialogs/certificatedetailsdialog.cpp
   dialogs/certificatedetailswidget.cpp
   dialogs/trustchainwidget.cpp
   dialogs/weboftrustwidget.cpp

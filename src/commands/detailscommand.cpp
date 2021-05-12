@@ -12,7 +12,7 @@
 #include "detailscommand.h"
 #include "command_p.h"
 
-#include <dialogs/certificatedetailswidget.h>
+#include <dialogs/certificatedetailsdialog.h>
 
 #include "kleopatra_debug.h"
 

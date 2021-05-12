@@ -6,13 +6,12 @@
 #pragma once
 
 #include <QWidget>
-#include <QDialog>
 
 #include <vector>
 
 namespace GpgME {
-class Key;
 class Error;
+class Key;
 class KeyListResult;
 }
 
@@ -22,7 +21,7 @@ class CertificateDetailsWidget : public QWidget
 
 public:
     explicit CertificateDetailsWidget(QWidget *parent = nullptr);
-    ~CertificateDetailsWidget();
+    ~CertificateDetailsWidget() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
@@ -36,20 +35,3 @@ private:
                    const std::vector<GpgME::Key> &, const QString &,
                    const GpgME::Error &))
 };
-
-
-class CertificateDetailsDialog : public QDialog
-{
-    Q_OBJECT
-public:
-    explicit CertificateDetailsDialog(QWidget *parent = nullptr);
-    ~CertificateDetailsDialog();
-
-    void setKey(const GpgME::Key &key);
-    GpgME::Key key() const;
-
-private:
-    void readConfig();
-    void writeConfig();
-};
-

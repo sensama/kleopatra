@@ -36,10 +36,7 @@
 #include <QGpgME/KeyListJob>
 
 #include <QDateTime>
-#include <QDialogButtonBox>
 #include <QMenu>
-#include <KConfigGroup>
-#include <KSharedConfig>
 #include <QLocale>
 
 #include <gpgme++/gpgmepp_version.h>
@@ -624,55 +621,6 @@ void CertificateDetailsWidget::setKey(const GpgME::Key &key)
 GpgME::Key CertificateDetailsWidget::key() const
 {
     return d->key;
-}
-
-CertificateDetailsDialog::CertificateDetailsDialog(QWidget *parent)
-    : QDialog(parent)
-{
-    setWindowTitle(i18nc("@title:window", "Certificate Details"));
-    auto l = new QVBoxLayout(this);
-    l->addWidget(new CertificateDetailsWidget(this));
-
-    auto bbox = new QDialogButtonBox(this);
-    auto btn = bbox->addButton(QDialogButtonBox::Close);
-    connect(btn, &QPushButton::pressed, this, &QDialog::accept);
-    l->addWidget(bbox);
-    readConfig();
-}
-
-CertificateDetailsDialog::~CertificateDetailsDialog()
-{
-    writeConfig();
-}
-
-void CertificateDetailsDialog::readConfig()
-{
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), "CertificateDetailsDialog");
-    const QSize size = dialog.readEntry("Size", QSize(730, 280));
-    if (size.isValid()) {
-        resize(size);
-    }
-}
-
-void CertificateDetailsDialog::writeConfig()
-{
-    KConfigGroup dialog(KSharedConfig::openStateConfig(), "CertificateDetailsDialog");
-    dialog.writeEntry("Size", size());
-    dialog.sync();
-}
-
-void CertificateDetailsDialog::setKey(const GpgME::Key &key)
-{
-    auto w = findChild<CertificateDetailsWidget*>();
-    Q_ASSERT(w);
-    w->setKey(key);
-}
-
-GpgME::Key CertificateDetailsDialog::key() const
-{
-    auto w = findChild<CertificateDetailsWidget*>();
-    Q_ASSERT(w);
-    return w->key();
 }
 
 #include "moc_certificatedetailswidget.cpp"

@@ -4,6 +4,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include <config-kleopatra.h>
+
 #include "certificatedetailswidget.h"
 
 #include "kleopatra_debug.h"
@@ -49,6 +51,8 @@
 #include <QToolButton>
 #include <QTreeWidget>
 
+#include <set>
+
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
 # define GPGME_HAS_REMARKS
@@ -61,6 +65,10 @@
 #define HIDE_ROW(row) \
     ui.row->setVisible(false); \
     ui.row##Lbl->setVisible(false);
+
+#define SHOW_ROW(row) \
+    ui.row->setVisible(true); \
+    ui.row##Lbl->setVisible(true);
 
 Q_DECLARE_METATYPE(GpgME::UserID)
 
@@ -133,6 +141,8 @@ private:
         QLabel *smimeIssuer;
         QLabel *compliance;
         QLabel *complianceLbl;
+        QLabel *trustedIntroducerLbl;
+        QLabel *trustedIntroducer;
         QHBoxLayout *horizontalLayout;
         QPushButton *moreDetailsBtn;
         QPushButton *exportBtn;
@@ -179,22 +189,24 @@ private:
             groupBox = new QGroupBox(i18n("Certificate Details"), parent);
             groupBox->setFlat(false);
             gridLayout = new QGridLayout(groupBox);
+            int row = 0;
             validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
 
-            gridLayout->addWidget(validFromLbl, 0, 0, 1, 1);
+            gridLayout->addWidget(validFromLbl, row, 0, 1, 1);
 
             validFrom = new QLabel(groupBox);
             validFrom->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-            gridLayout->addWidget(validFrom, 0, 1, 1, 1);
+            gridLayout->addWidget(validFrom, row, 1, 1, 1);
 
             horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-            gridLayout->addItem(horizontalSpacer_3, 0, 2, 1, 1);
+            gridLayout->addItem(horizontalSpacer_3, row, 2, 1, 1);
+            row++;
 
             expiresLbl = new QLabel(i18n("Expires:"), groupBox);
 
-            gridLayout->addWidget(expiresLbl, 1, 0, 1, 1);
+            gridLayout->addWidget(expiresLbl, row, 0, 1, 1);
 
             horizontalLayout_3 = new QHBoxLayout();
             expires = new QLabel(groupBox);
@@ -210,56 +222,75 @@ private:
 
             horizontalLayout_3->addWidget(changeExpirationBtn);
 
-
-            gridLayout->addLayout(horizontalLayout_3, 1, 1, 1, 1);
+            gridLayout->addLayout(horizontalLayout_3, row, 1, 1, 1);
+            row++;
 
             typeLbl = new QLabel(i18n("Type:"), groupBox);
 
-            gridLayout->addWidget(typeLbl, 2, 0, 1, 1);
+            gridLayout->addWidget(typeLbl, row, 0, 1, 1);
 
             type = new QLabel(groupBox);
             type->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-            gridLayout->addWidget(type, 2, 1, 1, 1);
+            gridLayout->addWidget(type, row, 1, 1, 1);
+            row++;
 
             fingerprintLbl = new QLabel(i18n("Fingerprint:"), groupBox);
 
-            gridLayout->addWidget(fingerprintLbl, 3, 0, 1, 1);
+            gridLayout->addWidget(fingerprintLbl, row, 0, 1, 1);
 
             fingerprint = new QLabel(groupBox);
             fingerprint->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
 
-            gridLayout->addWidget(fingerprint, 3, 1, 1, 2);
+            gridLayout->addWidget(fingerprint, row, 1, 1, 2);
+            row++;
 
             publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
 
-            gridLayout->addWidget(publishingLbl, 4, 0, 1, 1);
+            gridLayout->addWidget(publishingLbl, row, 0, 1, 1);
 
             publishing = new QPushButton(i18n("Publish Certificate"), groupBox);
 
-            gridLayout->addWidget(publishing, 4, 1, 1, 1);
+            gridLayout->addWidget(publishing, row, 1, 1, 1);
+            row++;
 
             smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
 
-            gridLayout->addWidget(smimeIssuerLbl, 5, 0, 1, 1);
+            gridLayout->addWidget(smimeIssuerLbl, row, 0, 1, 1);
 
             smimeIssuer = new QLabel(groupBox);
             smimeIssuer->setWordWrap(true);
             smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-            gridLayout->addWidget(smimeIssuer, 5, 1, 1, 2);
+            gridLayout->addWidget(smimeIssuer, row, 1, 1, 2);
+            row++;
 
             compliance = new QLabel(i18n("Compliance:"), groupBox);
             compliance->setWordWrap(true);
             compliance->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-            gridLayout->addWidget(compliance, 6, 0, 1, 1);
+            gridLayout->addWidget(compliance, row, 0, 1, 1);
 
             complianceLbl = new QLabel(groupBox);
             complianceLbl->setWordWrap(true);
             complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-            gridLayout->addWidget(complianceLbl, 6, 1, 1, 2);
+            gridLayout->addWidget(complianceLbl, row, 1, 1, 2);
+            row++;
+
+            trustedIntroducerLbl = new QLabel(i18n("Trusted introducer for:"), groupBox);
+            trustedIntroducerLbl->setToolTip(i18n("See certifications for details."));
+            trustedIntroducerLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout->addWidget(trustedIntroducerLbl, row, 0, 1, 1);
+
+            trustedIntroducer = new QLabel(groupBox);
+            trustedIntroducer->setWordWrap(true);
+            trustedIntroducer->setToolTip(i18n("See certifications for details."));
+            trustedIntroducer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout->addWidget(trustedIntroducer, row, 1, 1, 2);
+            row++;
 
             horizontalLayout = new QHBoxLayout();
             moreDetailsBtn = new QPushButton(i18n("More details..."), groupBox);
@@ -278,9 +309,7 @@ private:
 
             horizontalLayout->addItem(horizontalSpacer);
 
-
-            gridLayout->addLayout(horizontalLayout, 7, 0, 1, 3);
-
+            gridLayout->addLayout(horizontalLayout, row, 0, 1, 3);
 
             gridLayout_2->addWidget(groupBox, 6, 0, 1, 3);
 
@@ -693,6 +722,44 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
     return html;
 }
 
+#ifdef GPGMEPP_SUPPORTS_TRUST_SIGNATURES
+namespace
+{
+auto isGood(const GpgME::UserID::Signature &signature)
+{
+    return signature.status() == GpgME::UserID::Signature::NoError &&
+           !signature.isInvalid() &&
+           0x10 <= signature.certClass() && signature.certClass() <= 0x13;
+}
+
+auto accumulateTrustDomains(const std::vector<GpgME::UserID::Signature> &signatures)
+{
+    return std::accumulate(
+        std::begin(signatures), std::end(signatures),
+        std::set<QString>(),
+        [] (auto domains, const auto &signature) {
+            if (isGood(signature) && signature.isTrustSignature()) {
+                domains.insert(Formatting::trustSignatureDomain(signature));
+            }
+            return domains;
+        }
+    );
+}
+
+auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
+{
+    return std::accumulate(
+        std::begin(userIds), std::end(userIds),
+        std::set<QString>(),
+        [] (auto domains, const auto &userID) {
+            const auto newDomains = accumulateTrustDomains(userID.signatures());
+            std::copy(std::begin(newDomains), std::end(newDomains), std::inserter(domains, std::end(domains)));
+            return domains;
+        }
+    );
+}
+}
+#endif
 
 void CertificateDetailsWidget::Private::setupPGPProperties()
 {
@@ -704,6 +771,18 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
             q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
+
+#ifdef GPGMEPP_SUPPORTS_TRUST_SIGNATURES
+    const auto trustDomains = accumulateTrustDomains(key.userIDs());
+    if (trustDomains.empty()) {
+        HIDE_ROW(trustedIntroducer)
+    } else {
+        SHOW_ROW(trustedIntroducer)
+        ui.trustedIntroducer->setText(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
+    }
+#else
+    HIDE_ROW(trustedIntroducer)
+#endif
 }
 
 static QString formatDNToolTip(const Kleo::DN &dn)
@@ -733,6 +812,7 @@ static QString formatDNToolTip(const Kleo::DN &dn)
 void CertificateDetailsWidget::Private::setupSMIMEProperties()
 {
     HIDE_ROW(publishing)
+    HIDE_ROW(trustedIntroducer)
 
     const auto ownerId = key.userID(0);
     const Kleo::DN dn(ownerId.id());

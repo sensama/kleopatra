@@ -107,23 +107,6 @@ void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::str
         if (parseCardInfo(pair.first, pair.second)) {
             continue;
         }
-        if (pair.first == "KEY-FPR") {
-            const auto values = QString::fromStdString(pair.second).split(QLatin1Char(' '));
-            if (values.size() < 2) {
-                qCWarning(KLEOPATRA_LOG) << "Invalid entry.";
-                setStatus(Card::CardError);
-                continue;
-            }
-            const auto keyNumber = values[0];
-            const std::string keyRef = "OPENPGP." + keyNumber.toStdString();
-            const auto fpr = values[1].toStdString();
-            if (keyNumber == QLatin1Char('1') || keyNumber == QLatin1Char('2') || keyNumber == QLatin1Char('3')) {
-                addCardInfo("KLEO-FPR-" + keyRef, fpr);
-            } else {
-                // Maybe more keyslots in the future?
-                qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
-            }
-        }
     }
 }
 

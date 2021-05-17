@@ -265,6 +265,23 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
             updateKeyInfo(info);
         }
         return true;
+    } else if (name == "KEY-FPR") {
+        // handle OpenPGP key fingerprints
+        const auto values = QString::fromStdString(value).split(QLatin1Char(' '));
+        if (values.size() < 2) {
+            qCWarning(KLEOPATRA_LOG) << "Invalid KEY-FPR status line" << QString::fromStdString(value);
+            setStatus(Card::CardError);
+        }
+        const auto keyNumber = values[0];
+        const std::string keyRef = "OPENPGP." + keyNumber.toStdString();
+        const auto fpr = values[1].toStdString();
+        if (keyNumber == QLatin1Char('1') || keyNumber == QLatin1Char('2') || keyNumber == QLatin1Char('3')) {
+            addCardInfo("KLEO-FPR-" + keyRef, fpr);
+        } else {
+            // Maybe more keyslots in the future?
+            qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot" << keyNumber;
+        }
+        return true;
     } else {
         mCardInfo.insert({name, value});
     }

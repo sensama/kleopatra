@@ -101,6 +101,20 @@ QString Card::displayAppVersion() const
     return formatVersion(mAppVersion);
 }
 
+void Card::setManufacturer(const std::string &value)
+{
+    if (!manufacturer().empty()) {
+        qCDebug(KLEOPATRA_LOG) << "Card manufacturer is already set; overwriting existing value";
+        mCardInfo.erase("MANUFACTURER");
+    }
+    mCardInfo.insert({"MANUFACTURER", value});
+}
+
+std::string Card::manufacturer() const
+{
+    return cardInfo("MANUFACTURER");
+}
+
 std::string Card::cardType() const
 {
     return mCardType;
@@ -285,6 +299,17 @@ void Card::parseCardInfo(const std::string &name, const std::string &value)
         } else {
             // Maybe more keyslots in the future?
             qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot" << keyNumber;
+        }
+    } else if (name == "MANUFACTURER") {
+        // the value of MANUFACTURER is the manufacturer ID as unsigned number
+        // optionally followed by the name of the manufacturer, e.g.
+        // 6 Yubico
+        // 65534 unmanaged S/N range
+        // for PKCS#15 cards the manufacturer ID is always 0, e.g.
+        // 0 www.atos.net/cardos [R&S]
+        const auto startOfManufacturerName = value.find(' ');
+        if (startOfManufacturerName != std::string::npos) {
+            addCardInfo(name, value.substr(startOfManufacturerName + 1));
         }
     } else {
         mCardInfo.insert({name, value});

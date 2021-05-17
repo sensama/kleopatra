@@ -366,30 +366,6 @@ static const char * get_openpgp_card_manufacturer_from_serial_number(const std::
     }
 }
 
-static const std::string get_manufacturer(std::shared_ptr<Context> &gpgAgent, Error &err)
-{
-    // The result of SCD GETATTR MANUFACTURER is the manufacturer ID as unsigned number
-    // optionally followed by the name of the manufacturer, e.g.
-    // 6 Yubico
-    // 65534 unmanaged S/N range
-    const auto manufacturerIdAndName = scd_getattr_status(gpgAgent, "MANUFACTURER", err);
-    if (err.code()) {
-        if (err.code() == GPG_ERR_INV_NAME) {
-            qCDebug(KLEOPATRA_LOG) << "get_manufacturer(): Querying for attribute MANUFACTURER not yet supported; needs GnuPG 2.2.21+";
-        } else {
-            qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR MANUFACTURER failed:" << err;
-        }
-        return std::string();
-    }
-    const auto startOfManufacturerName = manufacturerIdAndName.find(' ');
-    if (startOfManufacturerName == std::string::npos) {
-        // only ID without manufacturer name
-        return "unknown";
-    }
-    const auto manufacturerName = manufacturerIdAndName.substr(startOfManufacturerName + 1);
-    return manufacturerName;
-}
-
 static bool isOpenPGPCardSerialNumber(const std::string &serialNumber)
 {
     return serialNumber.size() == 32 && serialNumber.substr(0, 12) == "D27600012401";
@@ -428,18 +404,17 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     Error err;
     auto pgpCard = new OpenPGPCard(*ci);
 
-    pgpCard->setManufacturer(get_manufacturer(gpg_agent, err));
-    if (err.code()) {
-        // fallback, e.g. if gpg does not yet support querying for the MANUFACTURER attribute
-        pgpCard->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
-    }
-
     const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
     if (err.code()) {
         ci->setStatus(Card::CardError);
         return;
     }
     pgpCard->setCardInfo(info);
+
+    if (pgpCard->manufacturer().empty()) {
+        // fallback in case MANUFACTURER is not yet included in the card info
+        pgpCard->setManufacturer(get_openpgp_card_manufacturer_from_serial_number(ci->serialNumber()));
+    }
 
     setDisplaySerialNumber(pgpCard, gpg_agent);
 
@@ -531,7 +506,6 @@ static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     gpgagent_statuslines(gpg_agent, "READKEY --card --no-data -- $ENCRKEYID", err);
 
     p15Card->setCardInfo(info);
-    p15Card->setManufacturer(get_manufacturer(gpg_agent, err));
 
     setDisplaySerialNumber(p15Card, gpg_agent);
 

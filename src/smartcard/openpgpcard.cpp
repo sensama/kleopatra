@@ -104,27 +104,6 @@ std::string OpenPGPCard::keyFingerprint(const std::string &keyRef) const
     return cardInfo("KLEO-FPR-" + keyRef);
 }
 
-bool OpenPGPCard::operator == (const Card& rhs) const
-{
-    const auto other = dynamic_cast<const OpenPGPCard *>(&rhs);
-    if (!other) {
-        return false;
-    }
-
-    return Card::operator ==(rhs)
-        && mManufacturer == other->mManufacturer;
-}
-
-void OpenPGPCard::setManufacturer(const std::string &manufacturer)
-{
-    mManufacturer = manufacturer;
-}
-
-std::string OpenPGPCard::manufacturer() const
-{
-    return mManufacturer;
-}
-
 std::string OpenPGPCard::pubkeyUrl() const
 {
     return cardInfo("PUBKEY-URL");

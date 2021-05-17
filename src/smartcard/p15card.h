@@ -40,14 +40,6 @@ public:
      * e.g. An App Key Ref would be
      *      OpenPGPCard::pgpSigKeyRef */
     std::string appKeyFingerprint(const std::string &appKeyRef) const;
-
-    void setManufacturer(const std::string &manufacturer);
-    std::string manufacturer() const;
-
-    bool operator == (const Card& other) const override;
-
-private:
-    std::string mManufacturer;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

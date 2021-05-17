@@ -27,24 +27,3 @@ std::string P15Card::appKeyFingerprint(const std::string &appKeyRef) const
 {
     return cardInfo("KLEO-FPR-" + appKeyRef);
 }
-
-void P15Card::setManufacturer(const std::string &manufacturer)
-{
-    mManufacturer = manufacturer;
-}
-
-std::string P15Card::manufacturer() const
-{
-    return mManufacturer;
-}
-
-bool P15Card::operator == (const Card& rhs) const
-{
-    const P15Card *other = dynamic_cast<const P15Card *>(&rhs);
-    if (!other) {
-        return false;
-    }
-
-    return Card::operator ==(rhs)
-        && mManufacturer == other->mManufacturer;
-}

@@ -39,15 +39,7 @@ public:
 
     std::string keyFingerprint(const std::string &keyRef) const;
 
-    bool operator == (const Card& other) const override;
-
-    void setManufacturer(const std::string &manufacturer);
-    std::string manufacturer() const;
-
     std::string pubkeyUrl() const;
-
-private:
-    std::string mManufacturer;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

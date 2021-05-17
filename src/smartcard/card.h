@@ -71,6 +71,9 @@ public:
     int appVersion() const;
     QString displayAppVersion() const;
 
+    void setManufacturer(const std::string &manufacturer);
+    std::string manufacturer() const;
+
     std::string cardType() const;
 
     int cardVersion() const;

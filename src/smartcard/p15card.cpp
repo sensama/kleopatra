@@ -28,18 +28,6 @@ std::string P15Card::appKeyFingerprint(const std::string &appKeyRef) const
     return cardInfo("KLEO-FPR-" + appKeyRef);
 }
 
-void P15Card::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
-{
-    // XXX: This is a copy of OpenPGPCard::setCardInfo
-    qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
-    for (const auto &pair: infos) {
-        qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
-        if (parseCardInfo(pair.first, pair.second)) {
-            continue;
-        }
-    }
-}
-
 void P15Card::setManufacturer(const std::string &manufacturer)
 {
     mManufacturer = manufacturer;

@@ -65,13 +65,8 @@ std::string NetKeyCard::sigGPinKeyRef()
     return std::string("PW1.CH.SIG");
 }
 
-void NetKeyCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
+void NetKeyCard::processCardInfo()
 {
-    qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
-    for (const auto &pair: infos) {
-        qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
-        parseCardInfo(pair.first, pair.second);
-    }
     setKeyPairInfo(keyInfos());
 }
 

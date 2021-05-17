@@ -114,17 +114,6 @@ std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(cons
     };
 }
 
-void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
-{
-    qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
-    for (const auto &pair: infos) {
-        qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
-        if (parseCardInfo(pair.first, pair.second)) {
-            continue;
-        }
-    }
-}
-
 std::string PIVCard::keyAlgorithm(const std::string &keyRef) const
 {
     return cardInfo("KLEO-KEYALGO-" + keyRef);

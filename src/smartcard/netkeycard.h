@@ -28,14 +28,13 @@ public:
     static std::string nksPinKeyRef();
     static std::string sigGPinKeyRef();
 
-    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
-
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;
 
     std::vector <GpgME::Key> keys() const;
 
 private:
+    void processCardInfo() override;
     void setKeyPairInfo(const std::vector<KeyPairInfo> &infos);
 
 private:

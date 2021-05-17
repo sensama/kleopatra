@@ -37,8 +37,6 @@ public:
     static const std::vector<KeyPairInfo> & supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
 
-    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
-
     std::string keyFingerprint(const std::string &keyRef) const;
 
     bool operator == (const Card& other) const override;

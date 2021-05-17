@@ -229,6 +229,16 @@ const KeyPairInfo & Card::keyInfo(const std::string &keyRef) const
     return nullKey;
 }
 
+void Card::setCardInfo(const std::vector<std::pair<std::string, std::string>> &infos)
+{
+    qCDebug(KLEOPATRA_LOG) << "Card" << serialNumber().c_str() << "info:";
+    for (const auto &pair: infos) {
+        qCDebug(KLEOPATRA_LOG) << pair.first.c_str() << ":" << pair.second.c_str();
+        parseCardInfo(pair.first, pair.second);
+    }
+    processCardInfo();
+}
+
 namespace {
 static int parseHexEncodedVersionTuple(const std::string &s) {
     // s is a hex-encoded, unsigned int-packed version tuple,
@@ -239,23 +249,19 @@ static int parseHexEncodedVersionTuple(const std::string &s) {
 }
 }
 
-bool Card::parseCardInfo(const std::string &name, const std::string &value)
+void Card::parseCardInfo(const std::string &name, const std::string &value)
 {
     if (name == "APPVERSION") {
         mAppVersion = parseHexEncodedVersionTuple(value);
-        return true;
     } else if (name == "CARDTYPE") {
         mCardType = value;
-        return true;
     } else if (name == "CARDVERSION") {
         mCardVersion = parseHexEncodedVersionTuple(value);
-        return true;
     } else if (name == "DISP-NAME") {
         auto list = QString::fromUtf8(QByteArray::fromStdString(value)).
                     split(QStringLiteral("<<"), Qt::SkipEmptyParts);
         std::reverse(list.begin(), list.end());
         mCardHolder = list.join(QLatin1Char(' '));
-        return true;
     } else if (name == "KEYPAIRINFO") {
         const KeyPairInfo info = KeyPairInfo::fromStatusLine(value);
         if (info.grip.empty()) {
@@ -264,7 +270,6 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
         } else {
             updateKeyInfo(info);
         }
-        return true;
     } else if (name == "KEY-FPR") {
         // handle OpenPGP key fingerprints
         const auto values = QString::fromStdString(value).split(QLatin1Char(' '));
@@ -281,12 +286,13 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
             // Maybe more keyslots in the future?
             qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot" << keyNumber;
         }
-        return true;
     } else {
         mCardInfo.insert({name, value});
     }
+}
 
-    return false;
+void Card::processCardInfo()
+{
 }
 
 void Card::addCardInfo(const std::string &name, const std::string &value)

@@ -41,7 +41,6 @@ public:
      *      OpenPGPCard::pgpSigKeyRef */
     std::string appKeyFingerprint(const std::string &appKeyRef) const;
 
-    void setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos);
     void setManufacturer(const std::string &manufacturer);
     std::string manufacturer() const;
 

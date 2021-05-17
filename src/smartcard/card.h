@@ -60,6 +60,8 @@ public:
     void setSerialNumber(const std::string &sn);
     std::string serialNumber() const;
 
+    void setCardInfo(const std::vector<std::pair<std::string, std::string>> &infos);
+
     QString displaySerialNumber() const;
     void setDisplaySerialNumber(const QString &sn);
 
@@ -103,12 +105,14 @@ protected:
     void setAppName(const std::string &name);
     void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);
 
-    bool parseCardInfo(const std::string &name, const std::string &value);
+    virtual void processCardInfo();
 
     void addCardInfo(const std::string &name, const std::string &value);
     std::string cardInfo(const std::string &name) const;
 
 private:
+    void parseCardInfo(const std::string &name, const std::string &value);
+
     void updateKeyInfo(const KeyPairInfo &keyPairInfo);
 
 private:

@@ -189,7 +189,8 @@ bool Card::operator == (const Card &other) const
         && mAppVersion == other.appVersion()
         && mPinStates == other.pinStates()
         && mCanLearn == other.canLearnKeys()
-        && mHasNullPin == other.hasNullPin();
+        && mHasNullPin == other.hasNullPin()
+        && mCardInfo == other.mCardInfo;
 }
 
 bool Card::operator != (const Card &other) const
@@ -264,9 +265,22 @@ bool Card::parseCardInfo(const std::string &name, const std::string &value)
             updateKeyInfo(info);
         }
         return true;
+    } else {
+        mCardInfo.insert({name, value});
     }
 
     return false;
+}
+
+void Card::addCardInfo(const std::string &name, const std::string &value)
+{
+    mCardInfo.insert({name, value});
+}
+
+std::string Card::cardInfo(const std::string &name) const
+{
+    const auto range = mCardInfo.equal_range(name);
+    return range.first != range.second ? range.first->second : std::string();
 }
 
 void Card::updateKeyInfo(const KeyPairInfo& keyPairInfo)

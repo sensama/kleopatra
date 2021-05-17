@@ -122,37 +122,25 @@ void PIVCard::setCardInfo(const std::vector< std::pair<std::string, std::string>
         if (parseCardInfo(pair.first, pair.second)) {
             continue;
         }
-        mMetaInfo.insert(pair.first, pair.second);
     }
 }
 
 std::string PIVCard::keyAlgorithm(const std::string &keyRef) const
 {
-    return mMetaInfo.value("KLEO-KEYALGO-" + keyRef);
+    return cardInfo("KLEO-KEYALGO-" + keyRef);
 }
 
 void PIVCard::setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm)
 {
-    mMetaInfo.insert("KLEO-KEYALGO-" + keyRef, algorithm);
+    addCardInfo("KLEO-KEYALGO-" + keyRef, algorithm);
 }
 
 std::string PIVCard::certificateData(const std::string &keyRef) const
 {
-    return mMetaInfo.value("KLEO-CERTIFICATE-" + keyRef);
+    return cardInfo("KLEO-CERTIFICATE-" + keyRef);
 }
 
 void PIVCard::setCertificateData(const std::string &keyRef, const std::string &data)
 {
-    mMetaInfo.insert("KLEO-CERTIFICATE-" + keyRef, data);
-}
-
-bool PIVCard::operator == (const Card& rhs) const
-{
-    const auto other = dynamic_cast<const PIVCard *>(&rhs);
-    if (!other) {
-        return false;
-    }
-
-    return Card::operator ==(rhs)
-        && mMetaInfo == other->mMetaInfo;
+    addCardInfo("KLEO-CERTIFICATE-" + keyRef, data);
 }

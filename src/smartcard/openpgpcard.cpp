@@ -118,20 +118,18 @@ void OpenPGPCard::setCardInfo(const std::vector< std::pair<std::string, std::str
             const std::string keyRef = "OPENPGP." + keyNumber.toStdString();
             const auto fpr = values[1].toStdString();
             if (keyNumber == QLatin1Char('1') || keyNumber == QLatin1Char('2') || keyNumber == QLatin1Char('3')) {
-                mMetaInfo.insert("KLEO-FPR-" + keyRef, fpr);
+                addCardInfo("KLEO-FPR-" + keyRef, fpr);
             } else {
                 // Maybe more keyslots in the future?
                 qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
             }
-        } else {
-            mMetaInfo.insert(pair.first, pair.second);
         }
     }
 }
 
 std::string OpenPGPCard::keyFingerprint(const std::string &keyRef) const
 {
-    return mMetaInfo.value("KLEO-FPR-" + keyRef);
+    return cardInfo("KLEO-FPR-" + keyRef);
 }
 
 bool OpenPGPCard::operator == (const Card& rhs) const
@@ -142,7 +140,6 @@ bool OpenPGPCard::operator == (const Card& rhs) const
     }
 
     return Card::operator ==(rhs)
-        && mMetaInfo == other->mMetaInfo
         && mManufacturer == other->mManufacturer;
 }
 
@@ -158,5 +155,5 @@ std::string OpenPGPCard::manufacturer() const
 
 std::string OpenPGPCard::pubkeyUrl() const
 {
-    return mMetaInfo.value("PUBKEY-URL");
+    return cardInfo("PUBKEY-URL");
 }

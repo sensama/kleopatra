@@ -10,8 +10,6 @@
 
 #include "card.h"
 
-#include <QMap>
-
 namespace Kleo
 {
 namespace SmartCard
@@ -48,8 +46,8 @@ public:
     std::string manufacturer() const;
 
     bool operator == (const Card& other) const override;
+
 private:
-    QMap <std::string, std::string> mMetaInfo;
     std::string mManufacturer;
 };
 } // namespace Smartcard

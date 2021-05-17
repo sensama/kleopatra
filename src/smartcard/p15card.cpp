@@ -25,7 +25,7 @@ P15Card::P15Card(const Card &card)
 
 std::string P15Card::appKeyFingerprint(const std::string &appKeyRef) const
 {
-    return mMetaInfo.value("KLEO-FPR-" + appKeyRef);
+    return cardInfo("KLEO-FPR-" + appKeyRef);
 }
 
 void P15Card::setCardInfo(const std::vector< std::pair<std::string, std::string> > &infos)
@@ -48,13 +48,11 @@ void P15Card::setCardInfo(const std::vector< std::pair<std::string, std::string>
             const std::string keyRef = "OPENPGP." + keyNumber.toStdString();
             const auto fpr = values[1].toStdString();
             if (keyNumber == QLatin1Char('1') || keyNumber == QLatin1Char('2') || keyNumber == QLatin1Char('3')) {
-                mMetaInfo.insert("KLEO-FPR-" + keyRef, fpr);
+                addCardInfo("KLEO-FPR-" + keyRef, fpr);
             } else {
                 // Maybe more keyslots in the future?
                 qCDebug(KLEOPATRA_LOG) << "Unhandled keyslot";
             }
-        } else {
-            mMetaInfo.insert(pair.first, pair.second);
         }
     }
 }
@@ -77,6 +75,5 @@ bool P15Card::operator == (const Card& rhs) const
     }
 
     return Card::operator ==(rhs)
-        && mMetaInfo == other->mMetaInfo
         && mManufacturer == other->mManufacturer;
 }

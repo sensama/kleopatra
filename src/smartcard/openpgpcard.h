@@ -12,8 +12,6 @@
 
 #include "card.h"
 
-#include <QMap>
-
 namespace Kleo
 {
 namespace SmartCard
@@ -51,7 +49,6 @@ public:
     std::string pubkeyUrl() const;
 
 private:
-    QMap <std::string, std::string> mMetaInfo;
     std::string mManufacturer;
 };
 } // namespace Smartcard

@@ -10,8 +10,6 @@
 
 #include "card.h"
 
-#include <QMap>
-
 namespace Kleo
 {
 namespace SmartCard
@@ -45,11 +43,6 @@ public:
 
     std::string certificateData(const std::string &keyRef) const;
     void setCertificateData(const std::string &keyRef, const std::string &data);
-
-    bool operator == (const Card& other) const override;
-
-private:
-    QMap <std::string, std::string> mMetaInfo;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

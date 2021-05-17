@@ -10,6 +10,7 @@
 
 #include "keypairinfo.h"
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -104,6 +105,9 @@ protected:
 
     bool parseCardInfo(const std::string &name, const std::string &value);
 
+    void addCardInfo(const std::string &name, const std::string &value);
+    std::string cardInfo(const std::string &name) const;
+
 private:
     void updateKeyInfo(const KeyPairInfo &keyPairInfo);
 
@@ -123,6 +127,7 @@ private:
     std::vector<PinState> mPinStates;
     QString mErrMsg;
     std::vector<KeyPairInfo> mKeyInfos;
+    std::multimap<std::string, std::string> mCardInfo;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

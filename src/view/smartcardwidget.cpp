@@ -44,7 +44,7 @@ class PlaceHolderWidget: public QWidget
     Q_OBJECT
 public:
     explicit PlaceHolderWidget(QWidget *parent = nullptr)
-        : QWidget(parent)
+        : QWidget{parent}
     {
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
@@ -88,14 +88,14 @@ private:
 
 private:
     SmartCardWidget *const q;
-    QMap<std::pair<std::string, std::string>, QPointer<QWidget> > mCardWidgets;
+    QMap<std::pair<std::string, std::string>, QPointer<QWidget>> mCardWidgets;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
     QTabWidget *mTabWidget;
 };
 
 SmartCardWidget::Private::Private(SmartCardWidget *qq)
-    : q(qq)
+    : q{qq}
 {
     auto vLay = new QVBoxLayout(q);
 
@@ -185,11 +185,13 @@ void SmartCardWidget::Private::cardRemoved(const std::string &serialNumber, cons
     }
 }
 
-SmartCardWidget::SmartCardWidget(QWidget *parent):
-    QWidget(parent),
-    d(new Private(this))
+SmartCardWidget::SmartCardWidget(QWidget *parent)
+    : QWidget{parent}
+    , d{std::make_unique<Private>(this)}
 {
 }
+
+Kleo::SmartCardWidget::~SmartCardWidget() = default;
 
 void SmartCardWidget::reload()
 {

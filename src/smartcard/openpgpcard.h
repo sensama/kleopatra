@@ -37,8 +37,6 @@ public:
     static const std::vector<KeyPairInfo> & supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
 
-    std::string keyFingerprint(const std::string &keyRef) const;
-
     std::string pubkeyUrl() const;
 };
 } // namespace Smartcard

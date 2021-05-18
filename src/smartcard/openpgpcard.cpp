@@ -99,11 +99,6 @@ QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
     return displayNames.value(keyRef);
 }
 
-std::string OpenPGPCard::keyFingerprint(const std::string &keyRef) const
-{
-    return cardInfo("KLEO-FPR-" + keyRef);
-}
-
 std::string OpenPGPCard::pubkeyUrl() const
 {
     return cardInfo("PUBKEY-URL");

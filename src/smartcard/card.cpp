@@ -341,3 +341,8 @@ void Card::updateKeyInfo(const KeyPairInfo& keyPairInfo)
     }
     mKeyInfos.push_back(keyPairInfo);
 }
+
+std::string Card::keyFingerprint(const std::string &keyRef) const
+{
+    return cardInfo("KLEO-FPR-" + keyRef);
+}

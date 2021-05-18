@@ -104,6 +104,8 @@ public:
     const std::vector<KeyPairInfo> & keyInfos() const;
     const KeyPairInfo & keyInfo(const std::string &keyRef) const;
 
+    std::string keyFingerprint(const std::string &keyRef) const;
+
 protected:
     void setAppName(const std::string &name);
     void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);

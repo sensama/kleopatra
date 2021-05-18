@@ -31,15 +31,16 @@ namespace
 {
 struct KeyWidgets {
     std::string keyGrip;
-    QLabel *keyFingerprint = nullptr;
+    std::string keyFingerprint;
+    QLabel *keyInfoLabel = nullptr;
     QPushButton *createCSRButton = nullptr;
 };
 
 KeyWidgets createKeyWidgets(const KeyPairInfo &keyInfo, QWidget *parent)
 {
     KeyWidgets keyWidgets;
-    keyWidgets.keyFingerprint = new QLabel{parent};
-    keyWidgets.keyFingerprint->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    keyWidgets.keyInfoLabel = new QLabel{parent};
+    keyWidgets.keyInfoLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
     {
         keyWidgets.createCSRButton = new QPushButton{i18nc("@action:button", "Create CSR"), parent};
@@ -82,7 +83,7 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
 
         const int row = grid->rowCount();
         grid->addWidget(new QLabel{OpenPGPCard::keyDisplayName(keyInfo.keyRef)}, row, 0);
-        grid->addWidget(keyWidgets.keyFingerprint, row, 1);
+        grid->addWidget(keyWidgets.keyInfoLabel, row, 1);
         if (keyWidgets.createCSRButton) {
             grid->addWidget(keyWidgets.createCSRButton, row, 2);
         }
@@ -105,34 +106,31 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef, 
     const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip;
     widgets.keyGrip = grip;
     if (grip.empty()) {
-        widgets.keyFingerprint->setText(i18n("Slot empty"));
+        widgets.keyInfoLabel->setText(i18n("Slot empty"));
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(false);
         }
     } else {
-        if (card) {
-            // update information if called with card
-            const std::string fpr = card->keyFingerprint(keyRef);
-            widgets.keyFingerprint->setText(QString::fromStdString(fpr));
-
-            if (fpr.size() >= 16) {
-                const std::string keyid = fpr.substr(fpr.size() - 16);
-                const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
-                if (subkeys.empty() || subkeys[0].isNull()) {
-                    widgets.keyFingerprint->setToolTip(i18n("Public key not found."));
-                } else {
-                    QStringList toolTips;
-                    toolTips.reserve(subkeys.size());
-                    for (const auto &sub: subkeys) {
-                        // Yep you can have one subkey associated with multiple primary keys.
-                        toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                                                        Formatting::StorageLocation |
-                                                        Formatting::ExpiryDates |
-                                                        Formatting::UserIDs |
-                                                        Formatting::Fingerprint);
-                    }
-                    widgets.keyFingerprint->setToolTip(toolTips.join(QLatin1String("<br/>")));
+        const std::string fpr = card ? card->keyFingerprint(keyRef) : widgets.keyFingerprint;
+        widgets.keyFingerprint = fpr;
+        widgets.keyInfoLabel->setText(QString::fromStdString(fpr));
+        if (fpr.size() >= 16) {
+            const std::string keyid = fpr.substr(fpr.size() - 16);
+            const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
+            if (subkeys.empty() || subkeys[0].isNull()) {
+                widgets.keyInfoLabel->setToolTip(i18n("Public key not found."));
+            } else {
+                QStringList toolTips;
+                toolTips.reserve(subkeys.size());
+                for (const auto &sub: subkeys) {
+                    // Yep you can have one subkey associated with multiple primary keys.
+                    toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
+                                                    Formatting::StorageLocation |
+                                                    Formatting::ExpiryDates |
+                                                    Formatting::UserIDs |
+                                                    Formatting::Fingerprint);
                 }
+                widgets.keyInfoLabel->setToolTip(toolTips.join(QLatin1String("<br/>")));
             }
         }
         if (widgets.createCSRButton) {

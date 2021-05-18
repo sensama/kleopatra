@@ -11,6 +11,8 @@
 
 #include "pgpcardwidget.h"
 
+#include "openpgpkeycardwidget.h"
+
 #include "kleopatra_debug.h"
 
 #include "commands/createcsrforcardkeycommand.h"
@@ -20,6 +22,7 @@
 #include "smartcard/readerstatus.h"
 
 #include "dialogs/gencardkeydialog.h"
+
 #include <Libkleo/GnuPG>
 
 #include <QProgressDialog>
@@ -98,15 +101,6 @@ class GenKeyThread: public QThread
         std::string mBkpFile;
 };
 
-static void layoutKeyWidgets(QGridLayout *grid, const QString &keyName, const PGPCardWidget::KeyWidgets &keyWidgets)
-{
-    int row = grid->rowCount();
-    grid->addWidget(new QLabel(keyName), row, 0);
-    grid->addWidget(keyWidgets.keyFingerprint, row, 1);
-    if (keyWidgets.createCSRButton) {
-        grid->addWidget(keyWidgets.createCSRButton, row, 2);
-    }
-}
 } // Namespace
 
 PGPCardWidget::PGPCardWidget(QWidget *parent):
@@ -182,13 +176,9 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     // The keys
     areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
 
-    auto keysGrid = new QGridLayout;
-    for (const auto &keyInfo : OpenPGPCard::supportedKeys()) {
-        KeyWidgets keyWidgets = createKeyWidgets(keyInfo);
-        layoutKeyWidgets(keysGrid, OpenPGPCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
-    }
-    keysGrid->setColumnStretch(keysGrid->columnCount(), 1);
-    areaVLay->addLayout(keysGrid);
+    mKeysWidget = new OpenPGPKeyCardWidget{this};
+    areaVLay->addWidget(mKeysWidget);
+    connect(mKeysWidget, &OpenPGPKeyCardWidget::createCSRRequested, this, &PGPCardWidget::createCSR);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
@@ -242,24 +232,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     areaVLay->addStretch(1);
 }
 
-PGPCardWidget::KeyWidgets PGPCardWidget::createKeyWidgets(const KeyPairInfo &keyInfo)
-{
-    const std::string keyRef = keyInfo.keyRef;
-    KeyWidgets keyWidgets;
-    keyWidgets.keyFingerprint = new QLabel(this);
-    keyWidgets.keyFingerprint->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
-    {
-        keyWidgets.createCSRButton = new QPushButton(i18nc("@action:button", "Create CSR"), this);
-        keyWidgets.createCSRButton->setToolTip(i18nc("@info:tooltip", "Create a certificate signing request for this key"));
-        keyWidgets.createCSRButton->setEnabled(false);
-        connect(keyWidgets.createCSRButton, &QPushButton::clicked,
-                this, [this, keyRef] () { createCSR(keyRef); });
-    }
-    mKeyWidgets.insert(keyRef, keyWidgets);
-    return keyWidgets;
-}
-
 void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     const QString version = card->displayAppVersion();
@@ -282,9 +254,8 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
                        QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
 
-    updateKeyWidgets(OpenPGPCard::pgpSigKeyRef(), card);
-    updateKeyWidgets(OpenPGPCard::pgpEncKeyRef(), card);
-    updateKeyWidgets(OpenPGPCard::pgpAuthKeyRef(), card);
+    mKeysWidget->update(card);
+
     mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty()
         && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
         && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
@@ -533,48 +504,6 @@ void PGPCardWidget::createCSR(const std::string &keyref)
                 this->setEnabled(true);
             });
     cmd->start();
-}
-
-void PGPCardWidget::updateKeyWidgets(const std::string &keyRef, const OpenPGPCard *card)
-{
-    KeyWidgets widgets = mKeyWidgets.value(keyRef);
-    const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip;
-    widgets.keyGrip = grip;
-    if (grip.empty()) {
-        widgets.keyFingerprint->setText(i18n("Slot empty"));
-        if (widgets.createCSRButton) {
-            widgets.createCSRButton->setEnabled(false);
-        }
-    } else {
-        if (card) {
-            // update information if called with card
-            std::string fpr = card->keyFingerprint(keyRef);
-            widgets.keyFingerprint->setText(QString::fromStdString(fpr));
-
-            std::string keyid = fpr;
-            keyid.erase(0, keyid.size() - 16);
-            const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
-            if (subkeys.empty() || subkeys[0].isNull()) {
-                widgets.keyFingerprint->setToolTip(i18n("Public key not found."));
-            } else {
-                QStringList toolTips;
-                toolTips.reserve(subkeys.size());
-                for (const auto &sub: subkeys) {
-                    // Yep you can have one subkey associated with multiple
-                    // primary keys.
-                    toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                                                    Formatting::StorageLocation |
-                                                    Formatting::ExpiryDates |
-                                                    Formatting::UserIDs |
-                                                    Formatting::Fingerprint);
-                }
-                widgets.keyFingerprint->setToolTip(toolTips.join(QLatin1String("<br/>")));
-            }
-        }
-        if (widgets.createCSRButton) {
-            widgets.createCSRButton->setEnabled(true);
-        }
-    }
 }
 
 #include "pgpcardwidget.moc"

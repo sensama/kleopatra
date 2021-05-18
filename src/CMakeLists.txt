@@ -115,6 +115,7 @@ set(_kleopatra_SRCS
   view/keytreeview.cpp
   view/searchbar.cpp
   view/smartcardwidget.cpp
+  view/openpgpkeycardwidget.cpp
   view/padwidget.cpp
   view/pgpcardwidget.cpp
   view/pivcardwidget.cpp

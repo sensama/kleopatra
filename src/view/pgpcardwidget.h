@@ -25,6 +25,7 @@ class QPushButton;
 namespace Kleo
 {
 class GenCardKeyDialog;
+class OpenPGPKeyCardWidget;
 
 namespace SmartCard
 {
@@ -42,12 +43,6 @@ public:
     void doGenKey(GenCardKeyDialog *dlg);
     void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
-    struct KeyWidgets {
-        std::string keyGrip;
-        QLabel *keyFingerprint = nullptr;
-        QPushButton *createCSRButton = nullptr;
-    };
-
 public Q_SLOTS:
     void genkeyRequested();
     void changeNameRequested();
@@ -58,8 +53,6 @@ public Q_SLOTS:
     void createCSR(const std::string &keyref);
 
 private:
-    KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
-    void updateKeyWidgets(const std::string &keyRef, const SmartCard::OpenPGPCard *card);
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
@@ -68,7 +61,7 @@ private:
            *mVersionLabel = nullptr,
            *mUrlLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
-    QMap<std::string, KeyWidgets> mKeyWidgets;
+    OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
     bool mCardIsEmpty = false;
     bool mIs21 = false;

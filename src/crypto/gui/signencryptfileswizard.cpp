@@ -232,6 +232,7 @@ private:
         auto req = new FileNameRequester(forKind == SignEncryptFilesWizard::Directory ?
                                                        QDir::Dirs : QDir::Files, this);
         req->setFileName(mOutNames[forKind]);
+        req->setExistingOnly(false);
         auto hLay = new QHBoxLayout;
         auto iconLabel = new QLabel;
         auto ret = new QWidget;

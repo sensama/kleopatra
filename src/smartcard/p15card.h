@@ -14,6 +14,7 @@ namespace Kleo
 {
 namespace SmartCard
 {
+
 /** Class to work with PKCS#15 smartcards or compatible tokens.
  *
  * A PKCS#15 card is pretty generic and there is no real standard
@@ -30,13 +31,7 @@ public:
     explicit P15Card(const Card &card);
 
     static const std::string AppName;
-
-    /* Obtain an application specific fingerprint for a key
-     * stored on this card.
-     * e.g. An App Key Ref would be
-     *      OpenPGPCard::pgpSigKeyRef */
-    std::string appKeyFingerprint(const std::string &appKeyRef) const;
 };
-} // namespace Smartcard
-} // namespace Kleopatra
 
+}
+}

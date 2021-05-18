@@ -184,7 +184,7 @@ void P15CardWidget::setCard(const P15Card *card)
         const auto key = KeyCache::instance()->findSubkeyByKeyGrip(sigInfo.grip, GpgME::OpenPGP).parent();
         if (key.isNull()) {
             qCDebug(KLEOPATRA_LOG) << "Failed to find key for grip:" << sigInfo.grip.c_str();
-            const auto pgpSigFpr = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+            const auto pgpSigFpr = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef());
             if (!pgpSigFpr.empty()) {
                 qCDebug(KLEOPATRA_LOG) << "Should be pgp key:" << pgpSigFpr.c_str();
                 searchPGPFpr(pgpSigFpr);
@@ -194,9 +194,9 @@ void P15CardWidget::setCard(const P15Card *card)
         }
     }
 
-    std::string keyid = card->appKeyFingerprint(OpenPGPCard::pgpSigKeyRef());
+    std::string keyid = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef());
     updateSigKeyWidgets(keyid);
-    keyid = card->appKeyFingerprint(OpenPGPCard::pgpEncKeyRef());
+    keyid = card->keyFingerprint(OpenPGPCard::pgpEncKeyRef());
     if (!keyid.empty()) {
         mEncFprLabel->setText(i18n("Encryption key:") +
                 QStringLiteral(" %1 (%2)")

@@ -9,9 +9,6 @@
 
 #include "p15card.h"
 
-#include "kleopatra_debug.h"
-
-using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 // static
@@ -21,9 +18,4 @@ P15Card::P15Card(const Card &card)
     : Card(card)
 {
     setAppName(AppName);
-}
-
-std::string P15Card::appKeyFingerprint(const std::string &appKeyRef) const
-{
-    return cardInfo("KLEO-FPR-" + appKeyRef);
 }

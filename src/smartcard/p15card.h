@@ -31,10 +31,6 @@ public:
 
     static const std::string AppName;
 
-    void setAppKeyRef(const std::string &appKeyRef,
-                      const std::string &value);
-    std::string appKeyRef(const std::string &appKeyRef) const;
-
     /* Obtain an application specific fingerprint for a key
      * stored on this card.
      * e.g. An App Key Ref would be

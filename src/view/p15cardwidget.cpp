@@ -83,6 +83,8 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("OpenPGP keys:"))));
     areaVLay->addWidget(mSigFprLabel);
     areaVLay->addWidget(mEncFprLabel);
+    mSigFprLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
+    mEncFprLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
     areaVLay->addStretch(1);
@@ -143,7 +145,7 @@ void P15CardWidget::updateSigKeyWidgets(const std::string &fpr)
     std::string keyid = fpr;
     if (!keyid.empty()) {
         QString text = i18n("Signing key:") +
-            QStringLiteral("\t%1 (%2)")
+            QStringLiteral(" %1")
             .arg(Formatting::prettyID(keyid.c_str()));
         text += QStringLiteral("<br/><br/>");
 
@@ -199,9 +201,8 @@ void P15CardWidget::setCard(const P15Card *card)
     keyid = card->keyFingerprint(OpenPGPCard::pgpEncKeyRef());
     if (!keyid.empty()) {
         mEncFprLabel->setText(i18n("Encryption key:") +
-                QStringLiteral(" %1 (%2)")
-                .arg(Formatting::prettyID(keyid.c_str()))
-                .arg(QString::fromStdString(card->encryptionKeyRef())));
+                QStringLiteral(" %1")
+                .arg(Formatting::prettyID(keyid.c_str())));
         keyid.erase(0, keyid.size() - 16);
         const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
         if (subkeys.empty() || subkeys[0].isNull()) {

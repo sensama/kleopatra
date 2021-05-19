@@ -293,11 +293,7 @@ if(WIN32)
   set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc ${_kleopatra_SRCS})
 endif()
 
-if(HAVE_KCMUTILS)
-  set (_kleopatra_extra_libs KF5::KCMUtils)
-else()
-  set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
-endif()
+set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
 
 ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra
         DESCRIPTION "kleopatra (kleopatra)"
@@ -342,6 +338,10 @@ file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.png")
 ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_uiserver_SRCS})
+
+# For the ConfigureDialog & KCMs
+target_link_libraries(kleopatra_bin kcm_kleopatra_static)
+
 #if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
 #    set_target_properties(kleopatra_bin PROPERTIES UNITY_BUILD ON)
 #endif()

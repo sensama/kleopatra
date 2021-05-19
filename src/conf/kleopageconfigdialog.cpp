@@ -120,7 +120,7 @@ void KleoPageConfigDialog::apply()
 {
     QPushButton *applyButton = buttonBox()->button(QDialogButtonBox::Apply);
     applyButton->setFocus();
-    foreach (KCModule *module, mChangedModules) {
+    for (KCModule *module : mChangedModules) {
         module->save();
     }
     mChangedModules.clear();
@@ -193,58 +193,17 @@ void KleoPageConfigDialog::slotHelpClicked()
     }
 }
 
-static KCModule *loadModule(const QString &name)
+void KleoPageConfigDialog::addModule(const QString &name, const QString &comment, const QString &docPath, const QString &icon, KCModule *module)
 {
-    QLibrary lib(KPluginLoader::findPlugin(QStringLiteral(KCM_LIBRARY_NAME)));
-    if (lib.load()) {
-        KCModule *(*create)(QWidget *, const char *);
-        QByteArray factorymethod("create_");
-        factorymethod += name.toLatin1();
-        create = reinterpret_cast<KCModule *(*)(QWidget *, const char *)>(lib.resolve(factorymethod.constData()));
-        if (create) {
-            return create(nullptr, name.toLatin1().constData());
-        } else {
-            qCWarning(KLEOPATRA_LOG) << "Failed to load config module: " << name;
-            return nullptr;
-        }
-    }
-    qCWarning(KLEOPATRA_LOG) << "Failed to load library: " << KCM_LIBRARY_NAME;
-    return nullptr;
-}
+    mModules << module;
 
-void KleoPageConfigDialog::addModule(const QString &name)
-{
-    // We use a path relative to our installation location
-    const QString path = qApp->applicationDirPath() +
-                         QLatin1String("/../share/kservices5/") +
-                         name + QLatin1String(".desktop");
+    KPageWidgetItem *item = addPage(module, name);
+    item->setIcon(QIcon::fromTheme(icon));
+    item->setHeader(comment);
 
-    if (!QFile::exists(path)) {
-        qCDebug(KLEOPATRA_LOG) << "Ignoring module for:" << name
-            << "because the corresponding desktop file does not exist.";
-        return;
-    }
+    connect(module, SIGNAL(changed(bool)), this, SLOT(moduleChanged(bool)));
 
-    KDesktopFile desktopModule(path);
-
-    if (desktopModule.noDisplay()) {
-        qCDebug(KLEOPATRA_LOG) << "Ignoring module for:" << name
-            << "because it has no display set.";
-        return;
-    }
-
-    KCModule *mod = loadModule(name);
-    mModules << mod;
-
-    const QString dName = desktopModule.readName();
-
-    KPageWidgetItem *item = addPage(mod, dName);
-    item->setIcon(QIcon::fromTheme(desktopModule.readIcon()));
-    item->setHeader(desktopModule.readComment());
-
-    connect(mod, SIGNAL(changed(bool)), this, SLOT(moduleChanged(bool)));
-
-    mHelpUrls.insert(dName, desktopModule.readDocPath());
+    mHelpUrls.insert(name, docPath);
 }
 
 void KleoPageConfigDialog::moduleChanged(bool state)

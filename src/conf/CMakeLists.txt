@@ -55,13 +55,9 @@ kconfig_add_kcfg_files(kcm_kleopatra_PART_SRCS
   ${kleopatra_SOURCE_DIR}/src/kcfg/settings.kcfgc
 )
 
-add_library(kcm_kleopatra MODULE ${kcm_kleopatra_PART_SRCS})
+add_library(kcm_kleopatra_static STATIC ${kcm_kleopatra_PART_SRCS})
 
-if(HAVE_KCMUTILS)
-  set (_kcm_kleopatra_extra_libs KF5::KCMUtils)
-endif()
-
-target_link_libraries(kcm_kleopatra
+target_link_libraries(kcm_kleopatra_static
   KF5::Libkleo
   KF5::IconThemes
   KF5::I18n
@@ -70,18 +66,4 @@ target_link_libraries(kcm_kleopatra
   ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
-)
-if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
-    set_target_properties(kcm_kleopatra PROPERTIES UNITY_BUILD ON)
-endif()
-install(TARGETS kcm_kleopatra DESTINATION ${KDE_INSTALL_PLUGINDIR})
-
-########### install files ###############
-
-install(FILES
-  kleopatra_config_dirserv.desktop
-  kleopatra_config_appear.desktop
-  kleopatra_config_gnupgsystem.desktop
-  ${_kcm_kleopatra_libkleopatraclient_extra_install_FILES}
-  DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
 )

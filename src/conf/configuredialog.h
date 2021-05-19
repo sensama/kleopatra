@@ -22,13 +22,9 @@
  * and the KleoPageConfigDialog. Which is just a KPageView
  * with the necessary bits of the KCMultiDialog behavior.
  */
-#if HAVE_KCMUTILS
-# include <KCMultiDialog>
-class ConfigureDialog : public KCMultiDialog
-#else
 # include "kleopageconfigdialog.h"
+
 class ConfigureDialog : public KleoPageConfigDialog
-#endif
 {
     Q_OBJECT
 public:

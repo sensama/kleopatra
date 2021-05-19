@@ -9,7 +9,6 @@ if (NOT RELEASE_SERVICE_VERSION)
     set (RELEASE_SERVICE_VERSION "21.07.40")
 endif()
 
-option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
@@ -47,9 +46,6 @@ include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 
 # Find KF5 packages
-if (NOT FORCE_DISABLE_KCMUTILS)
-  find_package(KF5KCMUtils ${KF5_WANT_VERSION} CONFIG REQUIRED)
-endif()
 find_package(KF5WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
 find_package(KF5ConfigWidgets ${KF5_WANT_VERSION} CONFIG REQUIRED)
 find_package(KF5CoreAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
@@ -101,7 +97,6 @@ find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network Pri
 
 find_package(Assuan2 REQUIRED)
 
-set(HAVE_KCMUTILS ${KF5KCMUtils_FOUND})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

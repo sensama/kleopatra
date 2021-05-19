@@ -65,12 +65,3 @@ void GnuPGSystemConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
-
-extern "C" Q_DECL_EXPORT KCModule *create_kleopatra_config_gnupgsystem(QWidget *parent, const QVariantList &args)
-{
-    auto page =
-        new GnuPGSystemConfigurationPage(parent, args);
-    page->setObjectName(QStringLiteral("kleopatra_config_gnupgsystem"));
-    return page;
-}
-

@@ -379,17 +379,6 @@ void DirectoryServicesConfigurationPage::defaults()
     load();
 }
 
-extern "C"
-{
-    Q_DECL_EXPORT KCModule *create_kleopatra_config_dirserv(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
-    {
-        auto page =
-            new DirectoryServicesConfigurationPage(parent, args);
-        page->setObjectName(QStringLiteral("kleopatra_config_dirserv"));
-        return page;
-    }
-}
-
 // Find config entry for ldap servers. Implements runtime checks on the configuration option.
 CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *componentName,
         const char *entryName,

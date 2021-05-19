@@ -43,12 +43,3 @@ void SMimeValidationConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
-
-extern "C" Q_DECL_EXPORT KCModule *create_kleopatra_config_smimevalidation(QWidget *parent, const QVariantList &args)
-{
-    auto page =
-        new SMimeValidationConfigurationPage(parent, args);
-    page->setObjectName(QStringLiteral("kleopatra_config_smimevalidation"));
-    return page;
-}
-

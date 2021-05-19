@@ -44,15 +44,3 @@ void CryptoOperationsConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
-
-extern "C"
-{
-    Q_DECL_EXPORT KCModule *create_kleopatra_config_cryptooperations(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
-    {
-        auto page =
-            new CryptoOperationsConfigurationPage(parent, args);
-        page->setObjectName(QStringLiteral("kleopatra_config_cryptooperations"));
-        return page;
-    }
-}
-

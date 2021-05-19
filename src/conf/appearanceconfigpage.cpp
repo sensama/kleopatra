@@ -45,15 +45,3 @@ void AppearanceConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
-
-extern "C"
-{
-    Q_DECL_EXPORT KCModule *create_kleopatra_config_appear(QWidget *parent = nullptr, const QVariantList &args = QVariantList())
-    {
-        auto page =
-            new AppearanceConfigurationPage(parent, args);
-        page->setObjectName(QStringLiteral("kleopatra_config_appear"));
-        return page;
-    }
-}
-

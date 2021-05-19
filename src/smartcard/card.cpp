@@ -197,13 +197,20 @@ void Card::setCanLearnKeys(bool value)
 
 bool Card::operator == (const Card &other) const
 {
-    return mStatus == other.status()
-        && mSerialNumber == other.serialNumber()
-        && mAppName == other.appName()
-        && mAppVersion == other.appVersion()
-        && mPinStates == other.pinStates()
-        && mCanLearn == other.canLearnKeys()
-        && mHasNullPin == other.hasNullPin()
+    return mCanLearn == other.mCanLearn
+        && mHasNullPin == other.mHasNullPin
+        && mStatus == other.mStatus
+        && mSerialNumber == other.mSerialNumber
+        && mAppName == other.mAppName
+        && mAppVersion == other.mAppVersion
+        && mCardType == other.mCardType
+        && mCardVersion == other.mCardVersion
+        && mCardHolder == other.mCardHolder
+        && mSigningKeyRef == other.mSigningKeyRef
+        && mEncryptionKeyRef == other.mEncryptionKeyRef
+        && mPinStates == other.mPinStates
+        && mErrMsg == other.mErrMsg
+        && mKeyInfos == other.mKeyInfos
         && mCardInfo == other.mCardInfo;
 }
 

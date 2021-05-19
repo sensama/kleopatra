@@ -30,6 +30,7 @@ using namespace SmartCard;
 namespace
 {
 struct KeyWidgets {
+    std::string cardKeyRef;
     std::string keyGrip;
     std::string keyFingerprint;
     QLabel *keyTitleLabel = nullptr;
@@ -63,8 +64,8 @@ public:
     void update(const Card *card);
 
 private:
-    void updateCachedValues(const std::string &keyRef, const Card *card);
-    void updateKeyWidgets(const std::string &keyRef);
+    void updateCachedValues(const std::string &openPGPKeyRef, const std::string &cardKeyRef, const Card *card);
+    void updateKeyWidgets(const std::string &openPGPKeyRef);
 
 private:
     OpenPGPKeyCardWidget *const q;
@@ -99,25 +100,26 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
 void OpenPGPKeyCardWidget::Private::update(const Card *card)
 {
     if (card) {
-        updateCachedValues(OpenPGPCard::pgpSigKeyRef(), card);
-        updateCachedValues(OpenPGPCard::pgpEncKeyRef(), card);
-        updateCachedValues(OpenPGPCard::pgpAuthKeyRef(), card);
+        updateCachedValues(OpenPGPCard::pgpSigKeyRef(), card->signingKeyRef(), card);
+        updateCachedValues(OpenPGPCard::pgpEncKeyRef(), card->encryptionKeyRef(), card);
+        updateCachedValues(OpenPGPCard::pgpAuthKeyRef(), card->authenticationKeyRef(), card);
     }
     updateKeyWidgets(OpenPGPCard::pgpSigKeyRef());
     updateKeyWidgets(OpenPGPCard::pgpEncKeyRef());
     updateKeyWidgets(OpenPGPCard::pgpAuthKeyRef());
 }
 
-void OpenPGPKeyCardWidget::Private::updateCachedValues(const std::string &keyRef, const Card *card)
+void OpenPGPKeyCardWidget::Private::updateCachedValues(const std::string &openPGPKeyRef, const std::string &cardKeyRef, const Card *card)
 {
-    KeyWidgets &widgets = mKeyWidgets.at(keyRef);
-    widgets.keyGrip = card->keyInfo(keyRef).grip;
-    widgets.keyFingerprint = card->keyFingerprint(keyRef);
+    KeyWidgets &widgets = mKeyWidgets.at(openPGPKeyRef);
+    widgets.cardKeyRef = cardKeyRef;
+    widgets.keyGrip = card->keyInfo(cardKeyRef).grip;
+    widgets.keyFingerprint = card->keyFingerprint(openPGPKeyRef);
 }
 
-void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef)
+void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPKeyRef)
 {
-    const KeyWidgets &widgets = mKeyWidgets.at(keyRef);
+    const KeyWidgets &widgets = mKeyWidgets.at(openPGPKeyRef);
 
     if (widgets.keyFingerprint.empty()) {
         widgets.keyInfoLabel->setTextFormat(Qt::RichText);

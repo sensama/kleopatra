@@ -32,6 +32,7 @@ namespace
 struct KeyWidgets {
     std::string keyGrip;
     std::string keyFingerprint;
+    QLabel *keyTitleLabel = nullptr;
     QLabel *keyInfoLabel = nullptr;
     QPushButton *createCSRButton = nullptr;
 };
@@ -39,6 +40,7 @@ struct KeyWidgets {
 KeyWidgets createKeyWidgets(const KeyPairInfo &keyInfo, QWidget *parent)
 {
     KeyWidgets keyWidgets;
+    keyWidgets.keyTitleLabel = new QLabel{OpenPGPCard::keyDisplayName(keyInfo.keyRef), parent};
     keyWidgets.keyInfoLabel = new QLabel{parent};
     keyWidgets.keyInfoLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
@@ -82,7 +84,7 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
         }
 
         const int row = grid->rowCount();
-        grid->addWidget(new QLabel{OpenPGPCard::keyDisplayName(keyInfo.keyRef)}, row, 0, Qt::AlignTop);
+        grid->addWidget(keyWidgets.keyTitleLabel, row, 0, Qt::AlignTop);
         grid->addWidget(keyWidgets.keyInfoLabel, row, 1);
         if (keyWidgets.createCSRButton) {
             grid->addWidget(keyWidgets.createCSRButton, row, 2, Qt::AlignTop);

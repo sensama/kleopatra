@@ -61,7 +61,8 @@ public:
     explicit Private(OpenPGPKeyCardWidget *q);
     ~Private() = default;
 
-    void update(const Card *card);
+    void setAllowedActions(Actions actions);
+    void update(const Card *card = nullptr);
 
 private:
     void updateCachedValues(const std::string &openPGPKeyRef, const std::string &cardKeyRef, const Card *card);
@@ -69,6 +70,7 @@ private:
 
 private:
     OpenPGPKeyCardWidget *const q;
+    Actions mAllowedActions = AllActions;
     std::map<std::string, KeyWidgets> mKeyWidgets;
 };
 
@@ -95,6 +97,12 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
         mKeyWidgets.insert({keyInfo.keyRef, keyWidgets});
     }
     grid->setColumnStretch(grid->columnCount(), 1);
+}
+
+void OpenPGPKeyCardWidget::Private::setAllowedActions(Actions actions)
+{
+    mAllowedActions = actions;
+    update();
 }
 
 void OpenPGPKeyCardWidget::Private::update(const Card *card)
@@ -125,7 +133,7 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
     widgets.keyTitleLabel->setVisible(cardSupportsKey);
     widgets.keyInfoLabel->setVisible(cardSupportsKey);
     if (widgets.createCSRButton) {
-        widgets.createCSRButton->setVisible(cardSupportsKey);
+        widgets.createCSRButton->setVisible(cardSupportsKey && (mAllowedActions & Action::CreateCSR));
     }
     if (!cardSupportsKey) {
         return;
@@ -187,6 +195,11 @@ OpenPGPKeyCardWidget::OpenPGPKeyCardWidget(QWidget *parent)
 }
 
 OpenPGPKeyCardWidget::~OpenPGPKeyCardWidget() = default;
+
+void OpenPGPKeyCardWidget::setAllowedActions(Actions actions)
+{
+    d->setAllowedActions(actions);
+}
 
 void OpenPGPKeyCardWidget::update(const Card *card)
 {

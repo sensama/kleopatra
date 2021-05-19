@@ -8,6 +8,7 @@
 */
 #pragma once
 
+#include <QFlags>
 #include <QWidget>
 
 #include <memory>
@@ -24,8 +25,17 @@ class OpenPGPKeyCardWidget: public QWidget
 {
     Q_OBJECT
 public:
+    enum Action {
+        NoAction = 0x00,
+        CreateCSR = 0x01,
+        AllActions = CreateCSR,
+    };
+    Q_DECLARE_FLAGS(Actions, Action)
+
     explicit OpenPGPKeyCardWidget(QWidget *parent = nullptr);
     ~OpenPGPKeyCardWidget() override;
+
+    void setAllowedActions(Actions actions);
 
 public Q_SLOTS:
     void update(const SmartCard::Card *card);
@@ -37,5 +47,7 @@ private:
     class Private;
     std::unique_ptr<Private> d;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(OpenPGPKeyCardWidget::Actions)
 
 }

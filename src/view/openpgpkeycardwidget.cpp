@@ -63,7 +63,8 @@ public:
     void update(const Card *card);
 
 private:
-    void updateKeyWidgets(const std::string &keyRef, const Card *card);
+    void updateCachedValues(const std::string &keyRef, const Card *card);
+    void updateKeyWidgets(const std::string &keyRef);
 
 private:
     OpenPGPKeyCardWidget *const q;
@@ -97,27 +98,36 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
 
 void OpenPGPKeyCardWidget::Private::update(const Card *card)
 {
-    updateKeyWidgets(OpenPGPCard::pgpSigKeyRef(), card);
-    updateKeyWidgets(OpenPGPCard::pgpEncKeyRef(), card);
-    updateKeyWidgets(OpenPGPCard::pgpAuthKeyRef(), card);
+    if (card) {
+        updateCachedValues(OpenPGPCard::pgpSigKeyRef(), card);
+        updateCachedValues(OpenPGPCard::pgpEncKeyRef(), card);
+        updateCachedValues(OpenPGPCard::pgpAuthKeyRef(), card);
+    }
+    updateKeyWidgets(OpenPGPCard::pgpSigKeyRef());
+    updateKeyWidgets(OpenPGPCard::pgpEncKeyRef());
+    updateKeyWidgets(OpenPGPCard::pgpAuthKeyRef());
 }
 
-void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef, const Card *card)
+void OpenPGPKeyCardWidget::Private::updateCachedValues(const std::string &keyRef, const Card *card)
 {
-    KeyWidgets widgets = mKeyWidgets.at(keyRef);
-    const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip;
-    widgets.keyGrip = grip;
-    if (grip.empty()) {
+    KeyWidgets &widgets = mKeyWidgets.at(keyRef);
+    widgets.keyGrip = card->keyInfo(keyRef).grip;
+    widgets.keyFingerprint = card->keyFingerprint(keyRef);
+}
+
+void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef)
+{
+    const KeyWidgets &widgets = mKeyWidgets.at(keyRef);
+
+    if (widgets.keyGrip.empty()) {
         widgets.keyInfoLabel->setText(i18n("Slot empty"));
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(false);
         }
     } else {
-        const std::string fpr = card ? card->keyFingerprint(keyRef) : widgets.keyFingerprint;
-        widgets.keyFingerprint = fpr;
-        QStringList lines = {Formatting::prettyID(fpr.c_str())};
-        if (fpr.size() >= 16) {
-            const std::string keyid = fpr.substr(fpr.size() - 16);
+        QStringList lines = {Formatting::prettyID(widgets.keyFingerprint.c_str())};
+        if (widgets.keyFingerprint.size() >= 16) {
+            const std::string keyid = widgets.keyFingerprint.substr(widgets.keyFingerprint.size() - 16);
             const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
             if (subkeys.empty() || subkeys[0].isNull()) {
                 lines.push_back(i18n("Public key not found locally"));

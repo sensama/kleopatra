@@ -24,6 +24,9 @@ struct KeyPairInfo {
 
     void update(const KeyPairInfo &other);
 
+    bool operator==(const KeyPairInfo &other) const;
+    bool operator!=(const KeyPairInfo &other) const;
+
     std::string keyRef;
     std::string grip;
     std::string usage;

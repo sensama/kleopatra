@@ -86,7 +86,7 @@ OpenPGPKeyCardWidget::Private::Private(OpenPGPKeyCardWidget *q)
 
         const int row = grid->rowCount();
         grid->addWidget(keyWidgets.keyTitleLabel, row, 0, Qt::AlignTop);
-        grid->addWidget(keyWidgets.keyInfoLabel, row, 1);
+        grid->addWidget(keyWidgets.keyInfoLabel, row, 1, Qt::AlignTop);
         if (keyWidgets.createCSRButton) {
             grid->addWidget(keyWidgets.createCSRButton, row, 2, Qt::AlignTop);
         }
@@ -119,8 +119,9 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef)
 {
     const KeyWidgets &widgets = mKeyWidgets.at(keyRef);
 
-    if (widgets.keyGrip.empty()) {
-        widgets.keyInfoLabel->setText(i18n("Slot empty"));
+    if (widgets.keyFingerprint.empty()) {
+        widgets.keyInfoLabel->setTextFormat(Qt::RichText);
+        widgets.keyInfoLabel->setText(i18nc("@info", "<em>No key</em>"));
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(false);
         }
@@ -130,9 +131,12 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef)
             const std::string keyid = widgets.keyFingerprint.substr(widgets.keyFingerprint.size() - 16);
             const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
             if (subkeys.empty() || subkeys[0].isNull()) {
-                lines.push_back(i18n("Public key not found locally"));
+                widgets.keyInfoLabel->setTextFormat(Qt::RichText);
+                lines.push_back(i18nc("@info", "<em>Public key not found locally</em>"));
                 widgets.keyInfoLabel->setToolTip({});
             } else {
+                // force interpretation of text as plain text to avoid problems with HTML in user IDs
+                widgets.keyInfoLabel->setTextFormat(Qt::PlainText);
                 QStringList toolTips;
                 toolTips.reserve(subkeys.size());
                 for (const auto &sub: subkeys) {
@@ -150,9 +154,13 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &keyRef)
                 }
                 widgets.keyInfoLabel->setToolTip(toolTips.join(QLatin1String("<br/>")));
             }
+        } else {
+            widgets.keyInfoLabel->setTextFormat(Qt::RichText);
+            lines.push_back(i18nc("@info", "<em>Invalid fingerprint</em>"));
         }
 
-        widgets.keyInfoLabel->setText(lines.join(QLatin1Char('\n')));
+        const auto lineSeparator = widgets.keyInfoLabel->textFormat() == Qt::PlainText ? QLatin1String("\n") : QLatin1String("<br>");
+        widgets.keyInfoLabel->setText(lines.join(lineSeparator));
 
         if (widgets.createCSRButton) {
             widgets.createCSRButton->setEnabled(true);

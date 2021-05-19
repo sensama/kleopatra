@@ -165,6 +165,21 @@ bool Card::hasEncryptionKey() const
     return !keyInfo(mEncryptionKeyRef).grip.empty();
 }
 
+void Card::setAuthenticationKeyRef(const std::string &keyRef)
+{
+    mAuthenticationKeyRef = keyRef;
+}
+
+std::string Card::authenticationKeyRef() const
+{
+    return mAuthenticationKeyRef;
+}
+
+bool Card::hasAuthenticationKey() const
+{
+    return !keyInfo(mAuthenticationKeyRef).grip.empty();
+}
+
 std::vector<Card::PinState> Card::pinStates() const
 {
     return mPinStates;
@@ -208,6 +223,7 @@ bool Card::operator == (const Card &other) const
         && mCardHolder == other.mCardHolder
         && mSigningKeyRef == other.mSigningKeyRef
         && mEncryptionKeyRef == other.mEncryptionKeyRef
+        && mAuthenticationKeyRef == other.mAuthenticationKeyRef
         && mPinStates == other.mPinStates
         && mErrMsg == other.mErrMsg
         && mKeyInfos == other.mKeyInfos

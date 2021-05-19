@@ -627,6 +627,7 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
         return ci;
     } else if (appName == OpenPGPCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
+        ci->setAuthenticationKeyRef(OpenPGPCard::pgpAuthKeyRef());
         handle_openpgp_card(ci, gpg_agent);
         return ci;
     } else if (appName == PIVCard::AppName) {

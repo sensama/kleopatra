@@ -89,6 +89,10 @@ public:
     std::string encryptionKeyRef() const;
     bool hasEncryptionKey() const;
 
+    void setAuthenticationKeyRef(const std::string &keyRef);
+    std::string authenticationKeyRef() const;
+    bool hasAuthenticationKey() const;
+
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
 
@@ -133,6 +137,7 @@ private:
     QString mCardHolder;
     std::string mSigningKeyRef;
     std::string mEncryptionKeyRef;
+    std::string mAuthenticationKeyRef;
     std::vector<PinState> mPinStates;
     QString mErrMsg;
     std::vector<KeyPairInfo> mKeyInfos;

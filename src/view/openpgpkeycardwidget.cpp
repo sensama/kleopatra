@@ -121,6 +121,16 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
 {
     const KeyWidgets &widgets = mKeyWidgets.at(openPGPKeyRef);
 
+    const auto cardSupportsKey = !widgets.cardKeyRef.empty();
+    widgets.keyTitleLabel->setVisible(cardSupportsKey);
+    widgets.keyInfoLabel->setVisible(cardSupportsKey);
+    if (widgets.createCSRButton) {
+        widgets.createCSRButton->setVisible(cardSupportsKey);
+    }
+    if (!cardSupportsKey) {
+        return;
+    }
+
     if (widgets.keyFingerprint.empty()) {
         widgets.keyInfoLabel->setTextFormat(Qt::RichText);
         widgets.keyInfoLabel->setText(i18nc("@info", "<em>No key</em>"));

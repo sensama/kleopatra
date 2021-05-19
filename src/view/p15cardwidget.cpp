@@ -3,11 +3,14 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2021 g10 Code GmbH
     SPDX-FileContributor: Andre Heinecke <aheinecke@g10code.com>
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include "p15cardwidget.h"
+
+#include "openpgpkeycardwidget.h"
 
 #include "smartcard/p15card.h"
 #include "smartcard/openpgpcard.h"
@@ -15,6 +18,7 @@
 
 #include <QVBoxLayout>
 #include <QGridLayout>
+#include <QLabel>
 #include <QScrollArea>
 #include <QStringList>
 
@@ -23,6 +27,7 @@
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
@@ -31,20 +36,17 @@
 #include <gpgme++/keylistresult.h>
 #include <gpgme++/importresult.h>
 
-#include <Libkleo/GnuPG>
-
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
-    : QWidget(parent)
-    , mSerialNumber(new QLabel(this))
-    , mVersionLabel(new QLabel(this))
-    , mSigFprLabel(new QLabel(this))
-    , mEncFprLabel(new QLabel(this))
-    , mStatusLabel(new QLabel(this))
+    : QWidget{parent}
+    , mSerialNumber{new QLabel{this}}
+    , mVersionLabel{new QLabel{this}}
+    , mStatusLabel{new QLabel{this}}
+    , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -81,18 +83,14 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
     areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("OpenPGP keys:"))));
-    areaVLay->addWidget(mSigFprLabel);
-    areaVLay->addWidget(mEncFprLabel);
-    mSigFprLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
-    mEncFprLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
+    mOpenPGPKeysWidget->setAllowedActions(OpenPGPKeyCardWidget::NoAction);
+    areaVLay->addWidget(mOpenPGPKeysWidget);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
     areaVLay->addStretch(1);
 }
 
-P15CardWidget::~P15CardWidget()
-{
-}
+P15CardWidget::~P15CardWidget() = default;
 
 void P15CardWidget::searchPGPFpr(const std::string &fpr)
 {
@@ -111,7 +109,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, fpr] () {
             qCDebug(KLEOPATRA_LOG) << "Updating key info after changes";
             ReaderStatus::mutableInstance()->updateStatus();
-            updateSigKeyWidgets(fpr);
+            mOpenPGPKeysWidget->update(nullptr);
     });
     connect(job, &QGpgME::KeyListJob::result, job, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
         if (keys.size() == 1) {
@@ -131,40 +129,6 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
         }
     });
     job->start(QStringList() << QString::fromStdString(fpr));
-
-}
-
-void P15CardWidget::updateSigKeyWidgets(const std::string &fpr)
-{
-    std::string keyid = fpr;
-    if (!keyid.empty()) {
-        QString text = i18n("Signing key:") +
-            QStringLiteral(" %1")
-            .arg(Formatting::prettyID(keyid.c_str()));
-        text += QStringLiteral("<br/><br/>");
-
-        keyid.erase(0, keyid.size() - 16);
-        const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
-        if (subkeys.empty() || subkeys[0].isNull()) {
-            text += i18n("Public key not found.");
-        } else {
-
-            QStringList toolTips;
-            toolTips.reserve(subkeys.size());
-            for (const auto &sub: subkeys) {
-                // Yep you can have one subkey associated with multiple
-                // primary keys.
-                toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                        Formatting::ExpiryDates |
-                        Formatting::UserIDs |
-                        Formatting::Fingerprint);
-            }
-            text += toolTips.join(QLatin1String("<br/>"));
-        }
-        mSigFprLabel->setText(text);
-    } else {
-        mSigFprLabel->setVisible(false);
-    }
 }
 
 void P15CardWidget::setCard(const P15Card *card)
@@ -190,36 +154,5 @@ void P15CardWidget::setCard(const P15Card *card)
         }
     }
 
-    std::string keyid = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef());
-    updateSigKeyWidgets(keyid);
-    keyid = card->keyFingerprint(OpenPGPCard::pgpEncKeyRef());
-    if (!keyid.empty()) {
-        mEncFprLabel->setText(i18n("Encryption key:") +
-                QStringLiteral(" %1")
-                .arg(Formatting::prettyID(keyid.c_str())));
-        keyid.erase(0, keyid.size() - 16);
-        const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
-        if (subkeys.empty() || subkeys[0].isNull()) {
-            mEncFprLabel->setToolTip(i18n("Public key not found."));
-        } else {
-            QStringList toolTips;
-            toolTips.reserve(subkeys.size());
-            for (const auto &sub: subkeys) {
-                // Yep you can have one subkey associated with multiple
-                // primary keys.
-                toolTips << Formatting::toolTip(sub.parent(), Formatting::Validity |
-                        Formatting::StorageLocation |
-                        Formatting::ExpiryDates |
-                        Formatting::UserIDs |
-                        Formatting::Fingerprint);
-
-            }
-            mEncFprLabel->setToolTip(toolTips.join(QLatin1String("<br/>")));
-        }
-    } else {
-        mEncFprLabel->setVisible(false);
-    }
-
-//    updateKeyWidgets(OpenPGPCard::pgpSigKeyRef(), card);
-//    updateKeyWidgets(OpenPGPCard::pgpEncKeyRef(), card);
+    mOpenPGPKeysWidget->update(card);
 }

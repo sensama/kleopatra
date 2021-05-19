@@ -104,14 +104,8 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     if (!entry || !entry->stringValue().startsWith(QStringLiteral("ldap"))) {
         return;
     }
-    static std::vector<std::string> fprs;
-    if (fpr.empty() || std::find(fprs.begin(), fprs.end(), fpr) != fprs.end()) {
-        qCDebug(KLEOPATRA_LOG) << "Already looked for " << fpr.c_str() << "on ldap server";
-        return;
-    }
     mStatusLabel->setText(i18n("Searching in directory service..."));
     mStatusLabel->setVisible(true);
-    fprs.push_back (fpr);
     qCDebug(KLEOPATRA_LOG) << "Looking for:" << fpr.c_str() << "on ldap server";
     QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob(true);
     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, fpr] () {

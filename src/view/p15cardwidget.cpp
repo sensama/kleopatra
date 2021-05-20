@@ -46,6 +46,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     , mSerialNumber{new QLabel{this}}
     , mVersionLabel{new QLabel{this}}
     , mStatusLabel{new QLabel{this}}
+    , mOpenPGPKeysSection{new QWidget{this}}
     , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
 {
     // Set up the scroll area
@@ -82,11 +83,17 @@ P15CardWidget::P15CardWidget(QWidget *parent)
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
-    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("OpenPGP keys:"))));
-    mOpenPGPKeysWidget->setAllowedActions(OpenPGPKeyCardWidget::NoAction);
-    areaVLay->addWidget(mOpenPGPKeysWidget);
+    {
+        auto l = new QVBoxLayout{mOpenPGPKeysSection};
+        l->setContentsMargins(0, 0, 0, 0);
+        l->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("OpenPGP keys:"))));
+        mOpenPGPKeysWidget->setAllowedActions(OpenPGPKeyCardWidget::NoAction);
+        l->addWidget(mOpenPGPKeysWidget);
+        l->addWidget(new KSeparator(Qt::Horizontal));
+    }
+    mOpenPGPKeysSection->setVisible(false);
+    areaVLay->addWidget(mOpenPGPKeysSection);
 
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
     areaVLay->addStretch(1);
 }
 
@@ -154,5 +161,10 @@ void P15CardWidget::setCard(const P15Card *card)
         }
     }
 
-    mOpenPGPKeysWidget->update(card);
+    const bool cardHasOpenPGPKeys = !card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty()
+                                 || !card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty();
+    mOpenPGPKeysSection->setVisible(cardHasOpenPGPKeys);
+    if (cardHasOpenPGPKeys) {
+        mOpenPGPKeysWidget->update(card);
+    }
 }

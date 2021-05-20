@@ -166,7 +166,7 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
             widgets.createCSRButton->setEnabled(false);
         }
     } else {
-        QStringList lines = {Formatting::prettyID(widgets.keyFingerprint.c_str())};
+        QStringList lines;
         if (widgets.keyFingerprint.size() >= 16) {
             const std::string keyid = widgets.keyFingerprint.substr(widgets.keyFingerprint.size() - 16);
             const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
@@ -200,6 +200,10 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
             lines.push_back(i18nc("@info", "<em>Invalid fingerprint</em>"));
         }
 
+        const QString fingerprint = widgets.keyInfoLabel->textFormat() == Qt::RichText ?
+                                    Formatting::prettyID(widgets.keyFingerprint.c_str()).replace(QLatin1Char(' '), QLatin1String("&nbsp;")) :
+                                    Formatting::prettyID(widgets.keyFingerprint.c_str());
+        lines.insert(0, fingerprint);
         const auto lineSeparator = widgets.keyInfoLabel->textFormat() == Qt::PlainText ? QLatin1String("\n") : QLatin1String("<br>");
         widgets.keyInfoLabel->setText(lines.join(lineSeparator));
 

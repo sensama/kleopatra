@@ -25,6 +25,7 @@
 #include <KLocalizedString>
 #include <KSeparator>
 
+#include <Libkleo/Compat>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
@@ -104,8 +105,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     /* Only do auto import from LDAP */
     auto conf = QGpgME::cryptoConfig();
     Q_ASSERT (conf);
-    const QString cmp = engineIsVersion(2, 3, 0) ? QStringLiteral("dirmngr") : QStringLiteral("gpg");
-    const auto entry = conf->entry(cmp, QStringLiteral("Keyserver"), QStringLiteral("keyserver"));
+    const auto entry = getCryptoConfigEntry(conf, engineIsVersion(2, 3, 0)? "dirmngr" : "gpg", "keyserver");
     if (!entry || !entry->stringValue().startsWith(QStringLiteral("ldap"))) {
         return;
     }

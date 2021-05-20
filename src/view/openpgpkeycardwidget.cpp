@@ -43,7 +43,7 @@ KeyWidgets createKeyWidgets(const KeyPairInfo &keyInfo, QWidget *parent)
     KeyWidgets keyWidgets;
     keyWidgets.keyTitleLabel = new QLabel{OpenPGPCard::keyDisplayName(keyInfo.keyRef), parent};
     keyWidgets.keyInfoLabel = new QLabel{parent};
-    keyWidgets.keyInfoLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    keyWidgets.keyInfoLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
     if (keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate())
     {
         keyWidgets.createCSRButton = new QPushButton{i18nc("@action:button", "Create CSR"), parent};

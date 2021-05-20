@@ -37,8 +37,8 @@ private:
 
 private:
     std::string mCardSerialNumber;
-    QLabel *mSerialNumber = nullptr;
     QLabel *mVersionLabel = nullptr;
+    QLabel *mSerialNumber = nullptr;
     QLabel *mStatusLabel = nullptr;
     QWidget *mOpenPGPKeysSection = nullptr;
     OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;

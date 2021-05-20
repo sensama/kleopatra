@@ -44,8 +44,8 @@ using namespace Kleo::SmartCard;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
     : QWidget{parent}
-    , mSerialNumber{new QLabel{this}}
     , mVersionLabel{new QLabel{this}}
+    , mSerialNumber{new QLabel{this}}
     , mStatusLabel{new QLabel{this}}
     , mOpenPGPKeysSection{new QWidget{this}}
     , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
@@ -70,11 +70,11 @@ P15CardWidget::P15CardWidget(QWidget *parent)
 
         // Version and Serialnumber
         cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
-        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
 
         cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
         cardInfoGrid->addWidget(mSerialNumber, row++, 1);
-        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }

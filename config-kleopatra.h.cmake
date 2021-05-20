@@ -21,9 +21,6 @@
 /* Define to 1 if you build libkleopatraclient */
 #cmakedefine HAVE_KLEOPATRACLIENT_LIBRARY 1
 
-/* KCMUtils available */
-#cmakedefine01 HAVE_KCMUTILS
-
 /* DBus available */
 #cmakedefine01 HAVE_QDBUS
 

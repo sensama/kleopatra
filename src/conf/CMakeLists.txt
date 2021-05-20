@@ -19,16 +19,10 @@ if(BUILD_libkleopatraclient)
 
   set(_kcm_kleopatra_libkleopatraclient_extra_LIBS kleopatraclientgui)
 
-  set(_kcm_kleopatra_libkleopatraclient_extra_install_FILES
-    kleopatra_config_smimevalidation.desktop
-    kleopatra_config_cryptooperations.desktop
-  )
-
 else()
 
   set(_kcm_kleopatra_libkleopatraclient_extra_SRCS)
   set(_kcm_kleopatra_libkleopatraclient_extra_LIBS)
-  set(_kcm_kleopatra_libkleopatraclient_extra_install_FILES)
 
 endif()
 

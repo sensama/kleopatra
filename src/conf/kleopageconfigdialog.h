@@ -12,9 +12,9 @@
 
 #include <KPageDialog>
 #include <QList>
-#include <KCModule>
 
 class KPageWidgetItem;
+class KCModule;
 
 /**
  * KPageDialog based config dialog to be used when

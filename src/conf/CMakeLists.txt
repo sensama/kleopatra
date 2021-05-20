@@ -61,3 +61,10 @@ target_link_libraries(kcm_kleopatra_static
   ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
 )
+
+
+add_library(kleopatra_config_gnupgsystem MODULE kcm_gnupgsystemconfigurationpage.cpp)
+target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static)
+
+install(FILES kleopatra_config_gnupgsystem.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR})

@@ -13,7 +13,6 @@
 
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
-#include <Libkleo/CryptoConfigModule>
 
 #include <QGpgME/Protocol>
 
@@ -179,16 +178,6 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     load();
 }
 
-static QList<QUrl> string2urls(const QString &str)
-{
-    QList<QUrl> ret;
-    if (str.isEmpty()) {
-        return ret;
-    }
-    ret << QUrl::fromEncoded(str.toLocal8Bit());
-    return ret;
-}
-
 void DirectoryServicesConfigurationPage::load()
 {
     mWidget->clear();
@@ -222,7 +211,7 @@ void DirectoryServicesConfigurationPage::load()
             qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entry"
                 << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
-        mWidget->addOpenPGPServices(string2urls(parseKeyserver(stringValue).url));
+        mWidget->setOpenPGPService(stringValue);
         mWidget->setOpenPGPReadOnly(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isReadOnly());
     }
 
@@ -312,14 +301,7 @@ void DirectoryServicesConfigurationPage::save()
     }
 
     if (mOpenPGPServiceEntry) {
-        const QList<QUrl> serv = mWidget->openPGPServices();
-        if (serv.empty()) {
-            mOpenPGPServiceEntry->setStringValue(QString());
-        } else {
-            ParsedKeyserver pks = parseKeyserver(mOpenPGPServiceEntry->stringValue());
-            pks.url = serv.front().url();
-            mOpenPGPServiceEntry->setStringValue(assembleKeyserver(pks));
-        }
+        mOpenPGPServiceEntry->setStringValue(mWidget->openPGPService());
     }
 
     const QTime time{mTimeout->time()};

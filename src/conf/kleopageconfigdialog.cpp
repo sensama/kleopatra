@@ -24,23 +24,16 @@
 
 #include <QDialogButtonBox>
 #include <QPushButton>
-#include <QLibrary>
-#include <QCoreApplication>
 #include <QUrl>
 #include <QDesktopServices>
 #include <QProcess>
-#include <QFile>
 
 #include <KCModule>
-#include <KDesktopFile>
-#include <KPluginLoader>
 #include <KStandardGuiItem>
 #include <KMessageBox>
 #include <KLocalizedString>
 
 #include "kleopatra_debug.h"
-
-#define KCM_LIBRARY_NAME "kcm_kleopatra"
 
 KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     : KPageDialog(parent)

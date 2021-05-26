@@ -42,7 +42,6 @@ private:
     kdtools::pimpl_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void closeAndQuit())
     Q_PRIVATE_SLOT(d, void selfTest())
-    Q_PRIVATE_SLOT(d, void configureBackend())
     Q_PRIVATE_SLOT(d, void configureToolbars())
     Q_PRIVATE_SLOT(d, void configureGroups())
     Q_PRIVATE_SLOT(d, void editKeybindings())

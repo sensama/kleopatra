@@ -70,12 +70,9 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/CryptoConfigDialog>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
-#include <QGpgME/CryptoConfig>
-#include <QGpgME/Protocol>
 
 #include <vector>
 #include <KSharedConfig>
@@ -204,8 +201,6 @@ public:
         KConfigDialog *dialog = new GroupsConfigDialog(q);
         dialog->show();
     }
-
-    void configureBackend();
 
     void showHandbook();
 
@@ -434,12 +429,6 @@ void MainWindow::Private::setupActions()
             i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, SLOT(showPadView()), QString(), false, true
         },
         // most have been MOVED TO keylistcontroller.cpp
-#if 0
-        {
-            "configure_backend", i18n("Configure GnuPG Backend..."), QString(),
-            0, q, SLOT(configureBackend()), QString(), false, true
-        },
-#endif
         // Settings menu
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
@@ -496,32 +485,6 @@ void MainWindow::Private::setupActions()
     controller.createActions(coll);
 
     ui.tabWidget.createActions(coll);
-}
-
-void MainWindow::Private::configureBackend()
-{
-    QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
-    if (!config) {
-        KMessageBox::error(q, i18n("Could not configure the cryptography backend (gpgconf tool not found)"), i18n("Configuration Error"));
-        return;
-    }
-
-    Kleo::CryptoConfigDialog dlg(config);
-
-    const int result = dlg.exec();
-
-    // Forget all data parsed from gpgconf, so that we show updated information
-    // when reopening the configuration dialog.
-    config->clear();
-
-    if (result == QDialog::Accepted) {
-#if 0
-        // Tell other apps (e.g. kmail) that the gpgconf data might have changed
-        QDBusMessage message =
-            QDBusMessage::createSignal(QString(), "org.kde.kleo.CryptoConfig", "changed");
-        QDBusConnection::sessionBus().send(message);
-#endif
-    }
 }
 
 void MainWindow::Private::slotConfigCommitted()

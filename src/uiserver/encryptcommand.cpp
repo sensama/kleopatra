@@ -65,7 +65,7 @@ void EncryptCommand::Private::checkForErrors() const
 
     if (q->numFiles())
         throw Exception(makeError(GPG_ERR_CONFLICT),
-                        i18n("ENCRYPT is an email mode command, connection seems to be in filmanager mode"));
+                        i18n("ENCRYPT is an email mode command, connection seems to be in filemanager mode"));
 
     if (!q->senders().empty() && !q->informativeSenders())
         throw Exception(makeError(GPG_ERR_CONFLICT),

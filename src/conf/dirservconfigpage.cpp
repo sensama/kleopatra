@@ -193,26 +193,29 @@ void DirectoryServicesConfigurationPage::load()
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
 
     {
+        // gpg prefers the deprecated keyserver option in gpg.conf over the keyserver option in dirmngr.conf;
+        // therefore, we use the deprecated keyserver option if it is set or if the new option doesn't exist (gpg < 2.1.9)
         auto const newEntry = configEntry(s_pgpservice_componentName, s_pgpservice_entryName,
-                                           CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
+                                          CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
         auto const legacyEntry = configEntry(s_pgpservice_legacy_componentName, s_pgpservice_legacy_entryName,
-                                              CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
-        mOpenPGPServiceEntry = newEntry ? newEntry : legacyEntry;
+                                             CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
+        mOpenPGPServiceEntry = ((legacyEntry && legacyEntry->isSet()) || !newEntry) ? legacyEntry : newEntry;
 
-        QString stringValue;
-        if (newEntry && legacyEntry && !newEntry->isSet() && legacyEntry->isSet()) {
-            // use value of legacy entry if value of new entry is unset
-            qCDebug(KLEOPATRA_LOG) << "Using value of legacy entry for config entry"
-                << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
-            stringValue = legacyEntry->stringValue();
-        } else if (mOpenPGPServiceEntry) {
-            stringValue = mOpenPGPServiceEntry->stringValue();
+        if (!mOpenPGPServiceEntry) {
+            qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entries"
+                << s_pgpservice_componentName << "/" << s_pgpservice_entryName
+                << "and"
+                << s_pgpservice_legacy_componentName << "/" << s_pgpservice_legacy_entryName;
+        } else if (mOpenPGPServiceEntry == legacyEntry) {
+            qCDebug(KLEOPATRA_LOG) << "Using config entry"
+                << s_pgpservice_legacy_componentName << "/" << s_pgpservice_legacy_entryName;
         } else {
-            qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entry"
+            qCDebug(KLEOPATRA_LOG) << "Using config entry"
                 << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
-        mWidget->setOpenPGPService(stringValue);
-        mWidget->setOpenPGPReadOnly(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isReadOnly());
+
+        mWidget->setOpenPGPService(mOpenPGPServiceEntry ? mOpenPGPServiceEntry->stringValue() : QString());
+        mWidget->setOpenPGPReadOnly(!mOpenPGPServiceEntry || mOpenPGPServiceEntry->isReadOnly());
     }
 
     if (mX509ServicesEntry)

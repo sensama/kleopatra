@@ -6,17 +6,10 @@
  <kcfgfile name="kleopatrarc" />
  <group name="Groups">
    <entry name="GroupsEnabled" type="Bool">
-     <label>Enable Groups (Experimental)</label>
+     <label>Enable Groups</label>
      <tooltip>Enable usage of groups of keys.</tooltip>
-     <whatsthis>Enable usage of groups of keys. This is an experimental feature.</whatsthis>
-     <code>
-        #ifdef _WIN32
-            static const bool groups_enabled_default=false;
-        #else
-            static const bool groups_enabled_default=true;
-        #endif
-     </code>
-     <default code="true">groups_enabled_default</default>
+     <whatsthis>Enable usage of groups of keys to create lists of recipients.</whatsthis>
+     <default>true</default>
    </entry>
  </group>
 </kcfg>

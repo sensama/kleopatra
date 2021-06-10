@@ -14,7 +14,6 @@
 
 #include <KLocalizedString>
 
-#include <QStringList>
 #include <QApplication>
 #include <QFileDialog>
 

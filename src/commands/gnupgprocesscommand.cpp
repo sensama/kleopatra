@@ -20,7 +20,6 @@
 #include <KWindowSystem>
 
 #include <QString>
-#include <QStringList>
 #include <QByteArray>
 #include <QTextEdit>
 #include <QTimer>

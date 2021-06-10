@@ -19,7 +19,6 @@
 #include <KLocalizedString>
 
 #include <QString>
-#include <QStringList>
 #include <QStorageInfo>
 #include <QFileInfo>
 #include <QDir>

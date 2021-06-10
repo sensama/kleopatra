@@ -20,7 +20,6 @@
 #include <QListWidget>
 #include <QHBoxLayout>
 #include <QPushButton>
-#include <QStringList>
 #include <QVBoxLayout>
 
 

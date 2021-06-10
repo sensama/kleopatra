@@ -22,7 +22,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <QStringList>
 
 #include <exception>
 

@@ -23,6 +23,8 @@
 
 #include <cmath>
 
+#include <KLocalizedString>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 
@@ -153,7 +155,13 @@ void TaskCollection::Private::calculateAndEmitProgress()
         // Scale down to avoid range issues.
         int scaled = 1000 * (m_progress / static_cast<double>(m_totalProgress));
         qCDebug(KLEOPATRA_LOG) << "Collection Progress: " << scaled << " total: " << 1000;
-        Q_EMIT q->progress(m_lastProgressMessage, scaled, 1000);
+        if (total == processed) {
+            // This can happen when an output is finalizing, e.g. extracting an
+            // archive.
+            Q_EMIT q->progress(i18n("Finalizing output..."), 0, 0);
+        } else {
+            Q_EMIT q->progress(m_lastProgressMessage, scaled, 1000);
+        }
     } else {
         if (total < processed) {
             qCDebug(KLEOPATRA_LOG) << "Total progress is smaller then current progress.";

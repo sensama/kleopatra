@@ -53,18 +53,18 @@ private:
                                            EntryMultiplicity multiplicity,
                                            ShowError showError);
 
-    Kleo::DirectoryServicesWidget *mWidget;
-    QTimeEdit *mTimeout;
-    QSpinBox *mMaxItems;
-    QLabel *mMaxItemsLabel;
-    QCheckBox *mAddNewServersCB;
+    Kleo::DirectoryServicesWidget *mWidget = nullptr;
+    QTimeEdit *mTimeout = nullptr;
+    QSpinBox *mMaxItems = nullptr;
+    QLabel *mMaxItemsLabel = nullptr;
+    QCheckBox *mAddNewServersCB = nullptr;
 
-    QGpgME::CryptoConfigEntry *mX509ServicesEntry;
-    QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry;
-    QGpgME::CryptoConfigEntry *mTimeoutConfigEntry;
-    QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry;
-    QGpgME::CryptoConfigEntry *mAddNewServersConfigEntry;
+    QGpgME::CryptoConfigEntry *mX509ServicesEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mAddNewServersConfigEntry = nullptr;
 
-    QGpgME::CryptoConfig *mConfig;
+    QGpgME::CryptoConfig *mConfig = nullptr;
 };
 

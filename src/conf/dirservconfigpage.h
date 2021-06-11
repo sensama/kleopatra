@@ -15,6 +15,7 @@
 
 class QCheckBox;
 class QLabel;
+class QLineEdit;
 class QTimeEdit;
 class QSpinBox;
 namespace Kleo
@@ -53,6 +54,7 @@ private:
                                            EntryMultiplicity multiplicity,
                                            ShowError showError);
 
+    QLineEdit *mOpenPGPKeyserverEdit = nullptr;
     Kleo::DirectoryServicesWidget *mWidget = nullptr;
     QTimeEdit *mTimeout = nullptr;
     QSpinBox *mMaxItems = nullptr;

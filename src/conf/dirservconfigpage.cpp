@@ -25,7 +25,10 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QLayout>
+#include <QLineEdit>
 #include <QTimeEdit>
+
+#include <gpgme++/engineinfo.h>
 
 using namespace Kleo;
 using namespace QGpgME;
@@ -137,7 +140,28 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     auto glay = new QGridLayout(this);
     glay->setContentsMargins(0, 0, 0, 0);
 
+    // OpenPGP keyserver
     int row = 0;
+    {
+        auto l = new QHBoxLayout{};
+        l->setContentsMargins(0, 0, 0, 0);
+
+        l->addWidget(new QLabel{i18n("OpenPGP keyserver:"), this});
+        mOpenPGPKeyserverEdit = new QLineEdit{this};
+        if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
+            mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
+        } else {
+            mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
+        }
+
+        l->addWidget(mOpenPGPKeyserverEdit);
+
+        glay->addLayout(l, row, 0, 1, 3);
+        connect(mOpenPGPKeyserverEdit, &QLineEdit::textEdited, this, [this]() { Q_EMIT changed(true); });
+    }
+
+    // X.509 servers
+    ++row;
     mWidget = new Kleo::DirectoryServicesWidget(this);
     if (QLayout *l = mWidget->layout()) {
         l->setContentsMargins(0, 0, 0, 0);
@@ -183,14 +207,22 @@ void DirectoryServicesConfigurationPage::load()
     mWidget->clear();
 
     // gpgsm's keyserver option is not provided by very old gpgconf versions
-    if ((mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
-                                          CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError))) {
-        mWidget->addX509Services(mX509ServicesEntry->urlValueList());
-    } else if ((mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
-                                                 CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError))) {
+    mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
+                                     CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+    if (!mX509ServicesEntry) {
+        mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
+                                         CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError);
+    }
+    if (mX509ServicesEntry) {
         mWidget->addX509Services(mX509ServicesEntry->urlValueList());
     }
     mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
+
+    if (mX509ServicesEntry) {
+        mWidget->setAllowedProtocols(DirectoryServicesWidget::X509Protocol);
+    } else {
+        mWidget->setDisabled(true);
+    }
 
     {
         // gpg prefers the deprecated keyserver option in gpg.conf over the keyserver option in dirmngr.conf;
@@ -214,25 +246,8 @@ void DirectoryServicesConfigurationPage::load()
                 << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
 
-        mWidget->setOpenPGPService(mOpenPGPServiceEntry ? mOpenPGPServiceEntry->stringValue() : QString());
-        mWidget->setOpenPGPReadOnly(!mOpenPGPServiceEntry || mOpenPGPServiceEntry->isReadOnly());
-    }
-
-    if (mX509ServicesEntry)
-        if (mOpenPGPServiceEntry) {
-            mWidget->setAllowedProtocols(DirectoryServicesWidget::AllProtocols);
-        } else {
-            mWidget->setAllowedProtocols(DirectoryServicesWidget::X509Protocol);
-        }
-    else if (mOpenPGPServiceEntry) {
-        mWidget->setAllowedProtocols(DirectoryServicesWidget::OpenPGPProtocol);
-    } else {
-        mWidget->setDisabled(true);
-    }
-
-    DirectoryServicesWidget::Protocols readOnlyProtocols;
-    if (mX509ServicesEntry && mX509ServicesEntry->isReadOnly()) {
-        readOnlyProtocols = DirectoryServicesWidget::X509Protocol;
+        mOpenPGPKeyserverEdit->setText(mOpenPGPServiceEntry ? mOpenPGPServiceEntry->stringValue() : QString());
+        mOpenPGPKeyserverEdit->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
     }
 
     // read LDAP timeout
@@ -304,7 +319,9 @@ void DirectoryServicesConfigurationPage::save()
     }
 
     if (mOpenPGPServiceEntry) {
-        mOpenPGPServiceEntry->setStringValue(mWidget->openPGPService());
+        const auto keyserver = mOpenPGPKeyserverEdit->text();
+        const auto keyserverUrl = keyserver.contains(QLatin1String{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
+        mOpenPGPServiceEntry->setStringValue(keyserverUrl);
     }
 
     const QTime time{mTimeout->time()};

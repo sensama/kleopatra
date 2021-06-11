@@ -25,7 +25,7 @@ class KleoPageConfigDialog : public KPageDialog
 public:
     explicit KleoPageConfigDialog(QWidget *parent = nullptr);
 
-    void addModule(const QString &name, const QString &comment, const QString &docPath, const QString &icon, KCModule *module);
+    void addModule(const QString &name, const QString &docPath, const QString &icon, KCModule *module);
 
 Q_SIGNALS:
     void configCommitted();

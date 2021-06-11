@@ -186,13 +186,12 @@ void KleoPageConfigDialog::slotHelpClicked()
     }
 }
 
-void KleoPageConfigDialog::addModule(const QString &name, const QString &comment, const QString &docPath, const QString &icon, KCModule *module)
+void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath, const QString &icon, KCModule *module)
 {
     mModules << module;
 
     KPageWidgetItem *item = addPage(module, name);
     item->setIcon(QIcon::fromTheme(icon));
-    item->setHeader(comment);
 
     connect(module, SIGNAL(changed(bool)), this, SLOT(moduleChanged(bool)));
 

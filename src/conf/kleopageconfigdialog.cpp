@@ -205,8 +205,9 @@ void KleoPageConfigDialog::moduleChanged(bool state)
     if (mChangedModules.contains(module)) {
         if (!state) {
             mChangedModules.removeAll(module);
+        } else {
+            return;
         }
-        return;
     }
     if (state) {
         mChangedModules << module;

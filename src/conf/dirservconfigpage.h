@@ -54,6 +54,7 @@ private:
                                            EntryMultiplicity multiplicity,
                                            ShowError showError);
 
+private:
     QLineEdit *mOpenPGPKeyserverEdit = nullptr;
     Kleo::DirectoryServicesWidget *mWidget = nullptr;
     QTimeEdit *mTimeout = nullptr;
@@ -69,4 +70,3 @@ private:
 
     QGpgME::CryptoConfig *mConfig = nullptr;
 };
-

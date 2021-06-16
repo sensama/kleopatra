@@ -13,6 +13,7 @@
 
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
+#include <Libkleo/KeyserverConfig>
 
 #include <QGpgME/Protocol>
 
@@ -223,12 +224,12 @@ void DirectoryServicesConfigurationPage::load()
                                          CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError);
     }
     if (mX509ServicesEntry) {
-        mWidget->addX509Services(mX509ServicesEntry->urlValueList());
-    }
-    mWidget->setX509ReadOnly(mX509ServicesEntry && mX509ServicesEntry->isReadOnly());
-
-    if (mX509ServicesEntry) {
-        mWidget->setAllowedProtocols(DirectoryServicesWidget::X509Protocol);
+        std::vector<KeyserverConfig> servers;
+        const auto urls = mX509ServicesEntry->urlValueList();
+        servers.reserve(urls.size());
+        std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), [](const auto &url) { return KeyserverConfig::fromUrl(url); });
+        mWidget->setKeyservers(servers);
+        mWidget->setReadOnly(mX509ServicesEntry->isReadOnly());
     } else {
         mWidget->setDisabled(true);
     }
@@ -324,7 +325,11 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
 void DirectoryServicesConfigurationPage::save()
 {
     if (mX509ServicesEntry) {
-        mX509ServicesEntry->setURLValueList(mWidget->x509Services());
+        QList<QUrl> urls;
+        const auto servers = mWidget->keyservers();
+        urls.reserve(servers.size());
+        std::transform(std::begin(servers), std::end(servers), std::back_inserter(urls), [](const auto &server) { return server.toUrl(); });
+        mX509ServicesEntry->setURLValueList(urls);
     }
 
     if (mOpenPGPServiceEntry) {

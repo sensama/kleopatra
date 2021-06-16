@@ -24,9 +24,11 @@
 
 #include <QLabel>
 #include <QCheckBox>
+#include <QGroupBox>
 #include <QLayout>
 #include <QLineEdit>
 #include <QTimeEdit>
+#include <QVBoxLayout>
 
 #include <gpgme++/engineinfo.h>
 
@@ -162,12 +164,19 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
     // X.509 servers
     ++row;
-    mWidget = new Kleo::DirectoryServicesWidget(this);
-    if (QLayout *l = mWidget->layout()) {
-        l->setContentsMargins(0, 0, 0, 0);
+    {
+        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), this};
+        auto groupBoxLayout = new QVBoxLayout{groupBox};
+
+        mWidget = new Kleo::DirectoryServicesWidget(this);
+        if (QLayout *l = mWidget->layout()) {
+            l->setContentsMargins(0, 0, 0, 0);
+        }
+        groupBoxLayout->addWidget(mWidget);
+
+        glay->addWidget(groupBox, row, 0, 1, 3);
+        connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
     }
-    glay->addWidget(mWidget, row, 0, 1, 3);
-    connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
 
     // LDAP timeout
     ++row;

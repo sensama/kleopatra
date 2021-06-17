@@ -32,6 +32,7 @@
 #include <QVBoxLayout>
 
 #include <gpgme++/engineinfo.h>
+#include <gpgme.h>
 
 using namespace Kleo;
 using namespace QGpgME;
@@ -169,14 +170,21 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), this};
         auto groupBoxLayout = new QVBoxLayout{groupBox};
 
-        mWidget = new Kleo::DirectoryServicesWidget(this);
-        if (QLayout *l = mWidget->layout()) {
-            l->setContentsMargins(0, 0, 0, 0);
+        if (gpgme_check_version("1.15.2")) {
+            mWidget = new Kleo::DirectoryServicesWidget(this);
+            if (QLayout *l = mWidget->layout()) {
+                l->setContentsMargins(0, 0, 0, 0);
+            }
+            groupBoxLayout->addWidget(mWidget);
+            connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
+        } else {
+            // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
+            // disable the configuration to prevent the configuration from being corrupted
+            groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
+                                                      "because the used gpgme libraries are too old."), this});
         }
-        groupBoxLayout->addWidget(mWidget);
 
         glay->addWidget(groupBox, row, 0, 1, 3);
-        connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
     }
 
     // LDAP timeout
@@ -214,24 +222,26 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
 void DirectoryServicesConfigurationPage::load()
 {
-    mWidget->clear();
+    if (mWidget) {
+        mWidget->clear();
 
-    // gpgsm's keyserver option is not provided by very old gpgconf versions
-    mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
-                                     CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
-    if (!mX509ServicesEntry) {
-        mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
-                                         CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError);
-    }
-    if (mX509ServicesEntry) {
-        std::vector<KeyserverConfig> servers;
-        const auto urls = mX509ServicesEntry->urlValueList();
-        servers.reserve(urls.size());
-        std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), [](const auto &url) { return KeyserverConfig::fromUrl(url); });
-        mWidget->setKeyservers(servers);
-        mWidget->setReadOnly(mX509ServicesEntry->isReadOnly());
-    } else {
-        mWidget->setDisabled(true);
+        // gpgsm's keyserver option is not provided by very old gpgconf versions
+        mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
+                                        CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+        if (!mX509ServicesEntry) {
+            mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
+                                            CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError);
+        }
+        if (mX509ServicesEntry) {
+            std::vector<KeyserverConfig> servers;
+            const auto urls = mX509ServicesEntry->urlValueList();
+            servers.reserve(urls.size());
+            std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), [](const auto &url) { return KeyserverConfig::fromUrl(url); });
+            mWidget->setKeyservers(servers);
+            mWidget->setReadOnly(mX509ServicesEntry->isReadOnly());
+        } else {
+            mWidget->setDisabled(true);
+        }
     }
 
     {
@@ -324,7 +334,7 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
 
 void DirectoryServicesConfigurationPage::save()
 {
-    if (mX509ServicesEntry) {
+    if (mX509ServicesEntry && mWidget) {
         QList<QUrl> urls;
         const auto servers = mWidget->keyservers();
         urls.reserve(servers.size());

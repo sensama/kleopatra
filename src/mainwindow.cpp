@@ -53,6 +53,7 @@
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
 #include <KConfigDialog>
+#include <kxmlgui_version.h>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>
@@ -164,7 +165,11 @@ public:
     }
     void editKeybindings()
     {
-        KShortcutsDialog::configure(q->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed);
+#if KXMLGUI_VERSION < QT_VERSION_CHECK(5,84,0)
+        KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+#else
+        KShortcutsDialog::showDialog(actionCollection(),  KShortcutsEditor::LetterShortcutsAllowed, true /*isModal*/, this);
+#endif
         updateSearchBarClickMessage();
     }
 

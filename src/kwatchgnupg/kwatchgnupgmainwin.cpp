@@ -31,6 +31,7 @@
 #include <KShortcutsDialog>
 #include <QIcon>
 #include <KConfigGroup>
+#include <kxmlgui_version.h>
 
 #include <QEventLoop>
 #include <QTextStream>
@@ -99,7 +100,11 @@ void KWatchGnuPGMainWindow::createActions()
 
 void KWatchGnuPGMainWindow::configureShortcuts()
 {
+#if KXMLGUI_VERSION < QT_VERSION_CHECK(5,84,0)
     KShortcutsDialog::configure(actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, this);
+#else
+    KShortcutsDialog::showDialog(actionCollection(),  KShortcutsEditor::LetterShortcutsAllowed, true /*isModal*/, this);
+#endif
 }
 
 void KWatchGnuPGMainWindow::slotConfigureToolbars()

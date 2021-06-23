@@ -138,6 +138,11 @@ QString CertifyCertificateDialog::tags() const
     return mCertWidget->tags();
 }
 
+QDate CertifyCertificateDialog::expirationDate() const
+{
+    return mCertWidget->expirationDate();
+}
+
 void CertifyCertificateDialog::accept()
 {
     if (!mCertWidget->isValid()) {

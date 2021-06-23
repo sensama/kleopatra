@@ -29,3 +29,6 @@
 
 /* Defined if QGpgME supports trust signatures */
 #cmakedefine QGPGME_SUPPORTS_TRUST_SIGNATURES 1
+
+/* Defined if QGpgME supports setting an expiration data for signatures */
+#cmakedefine QGPGME_SUPPORTS_SIGNATURE_EXPIRATION 1

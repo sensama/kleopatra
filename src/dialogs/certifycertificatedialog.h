@@ -49,6 +49,8 @@ public:
 
     QString tags() const;
 
+    QDate expirationDate() const;
+
 public Q_SLOTS:
     void accept() override;
 

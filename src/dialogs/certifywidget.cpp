@@ -14,6 +14,7 @@
 
 #include <KLocalizedString>
 #include <KConfigGroup>
+#include <KDateComboBox>
 #include <KSeparator>
 #include <KSharedConfig>
 
@@ -246,6 +247,22 @@ auto createInfoButton(const QString &text, QWidget *parent)
     return infoBtn;
 }
 
+#ifdef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
+QString dateFormatWithFourDigitYear(QLocale::FormatType format)
+{
+    // Force the year to be formatted as four digit number, so that
+    // the user can distinguish between 2006 and 2106.
+    return QLocale{}.dateFormat(format).
+        replace(QLatin1String("yy"), QLatin1String("yyyy")).
+        replace(QLatin1String("yyyyyyyy"), QLatin1String("yyyy"));
+}
+
+QString formatDate(const QDate &date, QLocale::FormatType format)
+{
+    return QLocale{}.toString(date, dateFormatWithFourDigitYear(format));
+}
+#endif
+
 }
 
 class CertifyWidget::Private
@@ -260,6 +277,8 @@ public:
         , mTagsLE{new QLineEdit{q}}
         , mTrustSignatureCB{new QCheckBox{q}}
         , mTrustSignatureDomainLE{new QLineEdit{q}}
+        , mExpirationCheckBox{new QCheckBox{q}}
+        , mExpirationDateEdit{new KDateComboBox{q}}
     {
         auto mainLay = new QVBoxLayout{q};
         mainLay->addWidget(mFprLabel);
@@ -320,6 +339,45 @@ public:
         }
 #endif
 
+#ifndef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
+        mExpirationCheckBox->setVisible(false);
+        mExpirationDateEdit->setVisible(false);
+#else
+        {
+            auto layout = new QHBoxLayout{q};
+
+            mExpirationCheckBox->setText(i18n("Expiration:"));
+
+            mExpirationDateEdit->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
+                                            KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
+            static const QDate maxAllowedDate{2106, 2, 6};
+            const QDate today = QDate::currentDate();
+            mExpirationDateEdit->setDateRange(today.addDays(1), maxAllowedDate,
+                                              i18n("The certification must be valid at least until tomorrow."),
+                                              i18n("The latest allowed certification date is %1.",
+                                                   formatDate(maxAllowedDate, QLocale::ShortFormat)));
+            mExpirationDateEdit->setDateMap({
+                {today.addYears(2), i18nc("Date for expiration of certification", "Two years from now")},
+                {today.addYears(1), i18nc("Date for expiration of certification", "One year from now")}
+            });
+            mExpirationDateEdit->setDate(today.addYears(2));
+            mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
+
+            auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") +
+                                            QStringLiteral("<br/><br/>") +
+                                            i18n("By setting an expiration date, you can limit the validity of "
+                                                 "your certification to a certain amount of time. Once the expiration "
+                                                 "date has passed, your certification is no longer valid."),
+                                            q);
+
+            layout->addWidget(mExpirationCheckBox);
+            layout->addWidget(mExpirationDateEdit, 1);
+            layout->addWidget(infoBtn);
+
+            advLay->addLayout(layout);
+        }
+#endif
+
 #ifndef QGPGME_SUPPORTS_TRUST_SIGNATURES
         mTrustSignatureCB->setVisible(false);
         mTrustSignatureDomainLE->setVisible(false);
@@ -368,6 +426,12 @@ public:
 #endif
             Q_EMIT q->changed();
         });
+
+        connect(mExpirationCheckBox, &QCheckBox::toggled, q, [this] (bool checked) {
+            mExpirationDateEdit->setEnabled(checked);
+            Q_EMIT q->changed();
+        });
+        connect(mExpirationDateEdit, &KDateComboBox::dateChanged, q, &CertifyWidget::changed);
 
         connect(mTrustSignatureCB, &QCheckBox::toggled, q, [this] (bool on) {
             mTrustSignatureDomainLE->setEnabled(on);
@@ -517,6 +581,9 @@ public:
         if (_detail::ByFingerprint<std::equal_to>()(mTarget, mSecKeySelect->currentKey())) {
             return false;
         }
+        if (mExpirationCheckBox->isChecked() && !mExpirationDateEdit->isValid()) {
+            return false;
+        }
         if (mTrustSignatureCB->isChecked() && !domainNameRegExp.match(mTrustSignatureDomainLE->text()).hasMatch()) {
             return false;
         }
@@ -532,6 +599,8 @@ public:
     QLineEdit *mTagsLE = nullptr;
     QCheckBox *mTrustSignatureCB = nullptr;
     QLineEdit *mTrustSignatureDomainLE = nullptr;
+    QCheckBox *mExpirationCheckBox = nullptr;
+    KDateComboBox *mExpirationDateEdit = nullptr;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;
@@ -593,6 +662,11 @@ bool CertifyWidget::trustSignatureSelected() const
 QString CertifyWidget::trustSignatureDomain() const
 {
     return d->mTrustSignatureDomainLE->text().trimmed();
+}
+
+QDate CertifyWidget::expirationDate() const
+{
+    return d->mExpirationCheckBox->isChecked() ? d->mExpirationDateEdit->date() : QDate{};
 }
 
 bool CertifyWidget::isValid() const

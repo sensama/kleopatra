@@ -59,6 +59,9 @@ public:
     /* The domain to use to limit the scope of the trust signature */
     QString trustSignatureDomain() const;
 
+    /* The expiration date to use for the certification */
+    QDate expirationDate() const;
+
     bool isValid() const;
 
 Q_SIGNALS:

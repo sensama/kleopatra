@@ -118,18 +118,26 @@ endif()
 set(kleopatra_release FALSE)
 
 if(NOT kleopatra_release)
+    find_package(Git)
     if(GIT_FOUND)
-        execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --oneline --format=%h ${CMAKE_CURRENT_SOURCE_DIR}
-            WORKING_DIRECTORY ${kdepim_SOURCE_DIR}/kleopatra
-            OUTPUT_VARIABLE Kleopatra_WC_REVISION)
-        string(REGEX REPLACE "\n" "" Kleopatra_WC_REVISION "${Kleopatra_WC_REVISION}")
+        execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                        RESULT_VARIABLE rc
+                        ERROR_QUIET)
+        if(rc EQUAL 0)
+            execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --oneline --format=%h ${CMAKE_CURRENT_SOURCE_DIR}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                OUTPUT_VARIABLE Kleopatra_WC_REVISION)
+            string(REGEX REPLACE "\n" "" Kleopatra_WC_REVISION "${Kleopatra_WC_REVISION}")
 
-        execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --oneline --format=%ci ${CMAKE_CURRENT_SOURCE_DIR}
-            WORKING_DIRECTORY ${kdepim_SOURCE_DIR}/kleopatra
-            OUTPUT_VARIABLE Kleopatra_WC_LAST_CHANGED_DATE)
-        string(REGEX REPLACE " [-0-9:+ ]*\n" "" Kleopatra_WC_LAST_CHANGED_DATE "${Kleopatra_WC_LAST_CHANGED_DATE}")
+            execute_process(COMMAND ${GIT_EXECUTABLE} log -1 --oneline --format=%cI ${CMAKE_CURRENT_SOURCE_DIR}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                OUTPUT_VARIABLE Kleopatra_WC_LAST_CHANGED_DATE)
+            string(REGEX REPLACE "^([0-9]+)-([0-9]+)-([0-9]+)T([0-9]+):([0-9]+):([0-9]+).*$" "\\1\\2\\3T\\4\\5\\6"
+                   Kleopatra_WC_LAST_CHANGED_DATE "${Kleopatra_WC_LAST_CHANGED_DATE}")
 
-        set(kleopatra_version "${kleopatra_version}-git${Kleopatra_WC_REVISION} (${Kleopatra_WC_LAST_CHANGED_DATE})")
+            set(kleopatra_version "${kleopatra_version}+git${Kleopatra_WC_LAST_CHANGED_DATE}~${Kleopatra_WC_REVISION}")
+        endif()
     endif()
 endif()
 

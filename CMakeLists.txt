@@ -1,13 +1,20 @@
-set(kleopatra_version 3.1.15)
-# The following is for Windows. Keep in line with kleopatra_version.
-set(kleopatra_fileversion 3,1,15,0)
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-project(kleopatra VERSION ${kleopatra_version})
 
 # The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version
-if (NOT RELEASE_SERVICE_VERSION)
-    set (RELEASE_SERVICE_VERSION "21.04.3")
-endif()
+set(RELEASE_SERVICE_VERSION_MAJOR "21")
+set(RELEASE_SERVICE_VERSION_MINOR "04")
+set(RELEASE_SERVICE_VERSION_PATCH "3")
+set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_PATCH}")
+set(KDE_APPLICATIONS_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}${RELEASE_SERVICE_VERSION_PATCH}")
+
+set(KLEOPATRA_VERSION_MAJOR "3")
+set(KLEOPATRA_VERSION_MINOR "1")
+set(KLEOPATRA_VERSION_PATCH "15")
+
+set(kleopatra_version "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_PATCH}.${KDE_APPLICATIONS_COMPACT_VERSION}")
+# The following is for Windows. Keep in line with kleopatra_version.
+set(kleopatra_fileversion "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_PATCH},0")
+project(kleopatra VERSION ${kleopatra_version})
 
 option(FORCE_DISABLE_KCMUTILS "Force building Kleopatra without KCMUtils. Doing this will disable configuration KCM Plugins. [default=OFF]" OFF)
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)

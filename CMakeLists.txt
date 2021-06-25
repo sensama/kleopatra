@@ -16,8 +16,10 @@ set(KLEOPATRA_VERSION_MINOR "1")
 set(KLEOPATRA_VERSION_PATCH "16")
 
 set(kleopatra_version "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_PATCH}.${KDE_APPLICATIONS_COMPACT_VERSION}")
-# The following is for Windows. Keep in line with kleopatra_version.
-set(kleopatra_fileversion "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_PATCH},0")
+# The following is for Windows
+set(kleopatra_version_win "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_PATCH}")
+set(kleopatra_fileversion_win "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_PATCH},0")
+
 project(kleopatra VERSION ${kleopatra_version})
 
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)

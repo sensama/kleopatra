@@ -170,7 +170,7 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), this};
         auto groupBoxLayout = new QVBoxLayout{groupBox};
 
-        if (gpgme_check_version("1.15.2")) {
+        if (gpgme_check_version("1.16.0")) {
             mWidget = new Kleo::DirectoryServicesWidget(this);
             if (QLayout *l = mWidget->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);

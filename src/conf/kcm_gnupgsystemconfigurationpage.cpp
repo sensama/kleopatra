@@ -6,6 +6,7 @@
 #include "gnupgsystemconfigurationpage.h"
 #include <KPluginFactory>
 
-K_PLUGIN_FACTORY(GnuPGSystemConfigurationPageFactory, registerPlugin<Kleo::Config::GnuPGSystemConfigurationPage>();)
+using namespace Kleo::Config;
+K_PLUGIN_CLASS_WITH_JSON(GnuPGSystemConfigurationPage, "kleopatra_config_gnupgsystem.json")
 
 #include "kcm_gnupgsystemconfigurationpage.moc"

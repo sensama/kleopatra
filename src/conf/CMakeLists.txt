@@ -63,6 +63,7 @@ target_link_libraries(kcm_kleopatra_static
 )
 
 add_library(kleopatra_config_gnupgsystem MODULE kcm_gnupgsystemconfigurationpage.cpp)
+kcoreaddons_desktop_to_json(kleopatra_config_gnupgsystem kleopatra_config_gnupgsystem.desktop)
 target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static KF5::CoreAddons)
 
 install(FILES kleopatra_config_gnupgsystem.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})

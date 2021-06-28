@@ -10,24 +10,22 @@
 #include <config-kleopatra.h>
 
 #include "changeexpirycommand.h"
-
 #include "command_p.h"
 
-#include <dialogs/expirydialog.h>
+#include "dialogs/expirydialog.h"
 
 #include <Libkleo/Formatting>
+
+#include <KLocalizedString>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/ChangeExpiryJob>
 
-#include <gpgme++/key.h>
-
-#include <KLocalizedString>
-#include "kleopatra_debug.h"
-
 #include <QDateTime>
 
-#include <QDebug>
+#include <gpgme++/key.h>
+
+#include "kleopatra_debug.h"
 
 #include <gpgme++/gpgmepp_version.h>
 #if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
@@ -49,9 +47,7 @@ class ChangeExpiryCommand::Private : public Command::Private
     }
 public:
     explicit Private(ChangeExpiryCommand *qq, KeyListController *c);
-    ~Private();
-
-    void init();
+    ~Private() override;
 
 private:
     void slotDialogAccepted();
@@ -84,46 +80,125 @@ const ChangeExpiryCommand::Private *ChangeExpiryCommand::d_func() const
 #define q q_func()
 
 ChangeExpiryCommand::Private::Private(ChangeExpiryCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      key(),
-      dialog(),
-      job()
+    : Command::Private{qq, c}
 {
-
 }
 
-ChangeExpiryCommand::Private::~Private()
+ChangeExpiryCommand::Private::~Private() = default;
+
+void ChangeExpiryCommand::Private::slotDialogAccepted()
 {
-    qCDebug(KLEOPATRA_LOG);
+    Q_ASSERT(dialog);
+
+    static const QTime END_OF_DAY{23, 59, 59};
+
+    const QDateTime expiry{dialog->dateOfExpiry(), END_OF_DAY};
+
+    qCDebug(KLEOPATRA_LOG) << "expiry" << expiry;
+
+    createJob();
+    Q_ASSERT(job);
+
+#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
+    std::vector<Subkey> subkeys;
+    if (!subkey.isNull()) {
+        subkeys.push_back(subkey);
+    }
+
+    if (const Error err = job->start(key, expiry, subkeys)) {
+#else
+    if (const Error err = job->start(key, expiry)) {
+#endif
+        showErrorDialog(err);
+        finished();
+    }
+}
+
+void ChangeExpiryCommand::Private::slotDialogRejected()
+{
+    Q_EMIT q->canceled();
+    finished();
+}
+
+void ChangeExpiryCommand::Private::slotResult(const Error &err)
+{
+    if (err.isCanceled())
+        ;
+    else if (err) {
+        showErrorDialog(err);
+    } else {
+        showSuccessDialog();
+    }
+    finished();
+}
+
+void ChangeExpiryCommand::Private::ensureDialogCreated()
+{
+    if (dialog) {
+        return;
+    }
+
+    dialog = new ExpiryDialog;
+    applyWindowID(dialog);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+
+    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
+    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+}
+
+void ChangeExpiryCommand::Private::createJob()
+{
+    Q_ASSERT(!job);
+
+    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+    if (!backend) {
+        return;
+    }
+
+    ChangeExpiryJob *const j = backend->changeExpiryJob();
+    if (!j) {
+        return;
+    }
+
+    connect(j, &Job::progress,
+            q, &Command::progress);
+    connect(j, &ChangeExpiryJob::result,
+            q, [this] (const auto &err) { slotResult(err); });
+
+    job = j;
+}
+
+void ChangeExpiryCommand::Private::showErrorDialog(const Error &err)
+{
+    error(i18n("<p>An error occurred while trying to change "
+               "the expiry date for <b>%1</b>:</p><p>%2</p>",
+               Formatting::formatForComboBox(key),
+               QString::fromLocal8Bit(err.asString())),
+          i18n("Expiry Date Change Error"));
+}
+
+void ChangeExpiryCommand::Private::showSuccessDialog()
+{
+    information(i18n("Expiry date changed successfully."),
+                i18n("Expiry Date Change Succeeded"));
 }
 
 ChangeExpiryCommand::ChangeExpiryCommand(KeyListController *c)
-    : Command(new Private(this, c))
+    : Command{new Private{this, c}}
 {
-    d->init();
 }
 
 ChangeExpiryCommand::ChangeExpiryCommand(QAbstractItemView *v, KeyListController *c)
-    : Command(v, new Private(this, c))
+    : Command{v, new Private{this, c}}
 {
-    d->init();
 }
 
 ChangeExpiryCommand::ChangeExpiryCommand(const GpgME::Key &key)
-    : Command(key, new Private(this, nullptr))
+    : Command{key, new Private{this, nullptr}}
 {
-    d->init();
 }
 
-void ChangeExpiryCommand::Private::init()
-{
-
-}
-
-ChangeExpiryCommand::~ChangeExpiryCommand()
-{
-    qCDebug(KLEOPATRA_LOG);
-}
+ChangeExpiryCommand::~ChangeExpiryCommand() = default;
 
 void ChangeExpiryCommand::setSubkey(const GpgME::Subkey &subkey)
 {
@@ -161,109 +236,11 @@ void ChangeExpiryCommand::doStart()
 
 }
 
-void ChangeExpiryCommand::Private::slotDialogAccepted()
-{
-    Q_ASSERT(dialog);
-
-    static const QTime END_OF_DAY(23, 59, 59);
-
-    const QDateTime expiry(dialog->dateOfExpiry(), END_OF_DAY);
-
-    qCDebug(KLEOPATRA_LOG) << "expiry" << expiry;
-
-    createJob();
-    Q_ASSERT(job);
-
-    std::vector<Subkey> subkeys;
-    if (!subkey.isNull()) {
-        subkeys.push_back(subkey);
-    }
-
-#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
-    if (const Error err = job->start(key, expiry, subkeys)) {
-#else
-    if (const Error err = job->start(key, expiry)) {
-#endif
-        showErrorDialog(err);
-        finished();
-    }
-}
-
-void ChangeExpiryCommand::Private::slotDialogRejected()
-{
-    Q_EMIT q->canceled();
-    finished();
-}
-
-void ChangeExpiryCommand::Private::slotResult(const Error &err)
-{
-    if (err.isCanceled())
-        ;
-    else if (err) {
-        showErrorDialog(err);
-    } else {
-        showSuccessDialog();
-    }
-    finished();
-}
-
 void ChangeExpiryCommand::doCancel()
 {
-    qCDebug(KLEOPATRA_LOG);
     if (d->job) {
         d->job->slotCancel();
     }
-}
-
-void ChangeExpiryCommand::Private::ensureDialogCreated()
-{
-    if (dialog) {
-        return;
-    }
-
-    dialog = new ExpiryDialog;
-    applyWindowID(dialog);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
-}
-
-void ChangeExpiryCommand::Private::createJob()
-{
-    Q_ASSERT(!job);
-
-    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-    if (!backend) {
-        return;
-    }
-
-    ChangeExpiryJob *const j = backend->changeExpiryJob();
-    if (!j) {
-        return;
-    }
-
-    connect(j, &Job::progress,
-            q, &Command::progress);
-    connect(j, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
-
-    job = j;
-}
-
-void ChangeExpiryCommand::Private::showErrorDialog(const Error &err)
-{
-    error(i18n("<p>An error occurred while trying to change "
-               "the expiry date for <b>%1</b>:</p><p>%2</p>",
-               Formatting::formatForComboBox(key),
-               QString::fromLocal8Bit(err.asString())),
-          i18n("Expiry Date Change Error"));
-}
-
-void ChangeExpiryCommand::Private::showSuccessDialog()
-{
-    information(i18n("Expiry date changed successfully."),
-                i18n("Expiry Date Change Succeeded"));
 }
 
 #undef d

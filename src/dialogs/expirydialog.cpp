@@ -14,7 +14,6 @@
 #include "ui_expirydialog.h"
 
 #include <QDate>
-
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -66,19 +65,19 @@ class ExpiryDialog::Private
     ExpiryDialog *const q;
 public:
     explicit Private(ExpiryDialog *qq)
-        : q(qq),
-          inUnit(Days),
-          ui(q)
+        : q{qq}
+        , inUnit{Days}
+        , ui{q}
     {
-        connect(ui.inSB, SIGNAL(valueChanged(int)),
-                q, SLOT(slotInAmountChanged()));
-        connect(ui.inCB, SIGNAL(currentIndexChanged(int)),
-                q, SLOT(slotInUnitChanged()));
-        connect(ui.onCW, SIGNAL(selectionChanged()),
-                q, SLOT(slotOnDateChanged()));
+        connect(ui.inSB, &QSpinBox::valueChanged,
+                q, [this] () { slotInAmountChanged(); });
+        connect(ui.inCB, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                q, [this] () { slotInUnitChanged(); });
+        connect(ui.onCW, &QCalendarWidget::selectionChanged,
+                q, [this] () { slotOnDateChanged(); });
         connect(ui.onCW, &QCalendarWidget::currentPageChanged,
                 q, [this] (int year, int month) {
-                    // We select the ame day in the month when
+                    // We select the same day in the month when
                     // a page is switched.
                     auto date = ui.onCW->selectedDate();
                     if (!date.setDate(year, month, date.day())) {
@@ -104,7 +103,7 @@ private:
 
     struct UI : public Ui::ExpiryDialog {
         explicit UI(Dialogs::ExpiryDialog *qq)
-            : Ui::ExpiryDialog()
+            : Ui::ExpiryDialog{}
         {
             auto mainWidget = new QWidget(qq);
 
@@ -128,12 +127,13 @@ private:
 };
 
 ExpiryDialog::ExpiryDialog(QWidget *p)
-    : QDialog(p), d(new Private(this))
+    : QDialog{p}
+    , d{new Private{this}}
 {
     setWindowTitle(i18nc("@title:window", "Change Expiry"));
 }
 
-ExpiryDialog::~ExpiryDialog() {}
+ExpiryDialog::~ExpiryDialog() = default;
 
 void ExpiryDialog::setDateOfExpiry(const QDate &date)
 {
@@ -153,7 +153,7 @@ QDate ExpiryDialog::dateOfExpiry() const
     return
         d->ui.inRB->isChecked() ? d->inDate() :
         d->ui.onRB->isChecked() ? d->ui.onCW->selectedDate() :
-        QDate();
+        QDate{};
 }
 
 void ExpiryDialog::Private::slotInUnitChanged()

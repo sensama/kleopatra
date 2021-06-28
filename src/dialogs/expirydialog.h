@@ -11,7 +11,7 @@
 
 #include <QDialog>
 
-#include <utils/pimpl_ptr.h>
+#include <memory.h>
 
 class QDate;
 
@@ -26,17 +26,14 @@ class ExpiryDialog : public QDialog
     Q_PROPERTY(QDate dateOfExpiry READ dateOfExpiry WRITE setDateOfExpiry)
 public:
     explicit ExpiryDialog(QWidget *parent = nullptr);
-    ~ExpiryDialog();
+    ~ExpiryDialog() override;
 
     void setDateOfExpiry(const QDate &date);
     QDate dateOfExpiry() const;
 
 private:
     class Private;
-    kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void slotInAmountChanged())
-    Q_PRIVATE_SLOT(d, void slotInUnitChanged())
-    Q_PRIVATE_SLOT(d, void slotOnDateChanged())
+    std::unique_ptr<Private> d;
 };
 
 }

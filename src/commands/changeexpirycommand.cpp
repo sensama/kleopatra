@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -38,6 +40,32 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
+namespace
+{
+#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+bool allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(const Key &key)
+{
+    Q_ASSERT(!key.isNull() && key.numSubkeys() > 0);
+    const auto subkeys = key.subkeys();
+    const auto primaryKey = subkeys[0];
+    if (primaryKey.neverExpires()) {
+        return std::all_of(std::begin(subkeys), std::end(subkeys), [] (const auto &subkey) {
+            // revoked subkeys are ignored by gpg --quick-set-expire when updating the expiration of all subkeys
+            return subkey.isRevoked() || subkey.neverExpires();
+        });
+    }
+
+    const auto primaryExpiration = primaryKey.expirationTime();
+    return std::all_of(std::begin(subkeys), std::end(subkeys), [primaryExpiration] (const auto &subkey) {
+        // revoked subkeys are ignored by gpg --quick-set-expire when updating the expiration of all subkeys;
+        // check if expiration of subkey is (more or less) the same as the expiration of the primary key
+        return subkey.isRevoked() ||
+            (primaryExpiration - 10 <= subkey.expirationTime() && subkey.expirationTime() <= primaryExpiration + 10);
+    });
+}
+#endif
+}
+
 class ChangeExpiryCommand::Private : public Command::Private
 {
     friend class ::Kleo::Commands::ChangeExpiryCommand;
@@ -55,7 +83,7 @@ private:
     void slotResult(const Error &err);
 
 private:
-    void ensureDialogCreated();
+    void ensureDialogCreated(ExpiryDialog::Mode mode);
     void createJob();
     void showErrorDialog(const Error &error);
     void showSuccessDialog();
@@ -99,9 +127,15 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     createJob();
     Q_ASSERT(job);
 
+#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+    if (subkey.isNull() && dialog->updateExpirationOfAllSubkeys()) {
+        job->setOptions(ChangeExpiryJob::UpdateAllSubkeys);
+    }
+#endif
+
 #ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
     std::vector<Subkey> subkeys;
-    if (!subkey.isNull()) {
+    if (!subkey.isNull() && subkey.keyID() != key.keyID()) { // ignore the primary subkey
         subkeys.push_back(subkey);
     }
 
@@ -132,13 +166,13 @@ void ChangeExpiryCommand::Private::slotResult(const Error &err)
     finished();
 }
 
-void ChangeExpiryCommand::Private::ensureDialogCreated()
+void ChangeExpiryCommand::Private::ensureDialogCreated(ExpiryDialog::Mode mode)
 {
     if (dialog) {
         return;
     }
 
-    dialog = new ExpiryDialog;
+    dialog = new ExpiryDialog{mode};
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -226,12 +260,25 @@ void ChangeExpiryCommand::doStart()
         return;
     }
 
-    const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
-
-    d->ensureDialogCreated();
+    ExpiryDialog::Mode mode;
+    if (!d->subkey.isNull()) {
+        mode = ExpiryDialog::Mode::UpdateIndividualSubkey;
+    } else if (d->key.numSubkeys() == 1) {
+        mode = ExpiryDialog::Mode::UpdateCertificateWithoutSubkeys;
+    } else {
+        mode = ExpiryDialog::Mode::UpdateCertificateWithSubkeys;
+    }
+    d->ensureDialogCreated(mode);
     Q_ASSERT(d->dialog);
+    const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
     d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() :
                                QDateTime::fromSecsSinceEpoch(subkey.expirationTime()).date());
+#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+    if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
+        d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));
+    }
+#endif
+
     d->dialog->show();
 
 }

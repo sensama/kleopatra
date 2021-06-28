@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -15,6 +17,7 @@
 #include <KStandardGuiItem>
 
 #include <QCalendarWidget>
+#include <QCheckBox>
 #include <QComboBox>
 #include <QDate>
 #include <QDialogButtonBox>
@@ -82,10 +85,11 @@ class ExpiryDialog::Private
     friend class ::Kleo::Dialogs::ExpiryDialog;
     ExpiryDialog *const q;
 public:
-    explicit Private(ExpiryDialog *qq)
+    explicit Private(Mode mode, ExpiryDialog *qq)
         : q{qq}
+        , mode{mode}
         , inUnit{Days}
-        , ui{q}
+        , ui{mode, q}
     {
         connect(ui.inSB, &QSpinBox::valueChanged,
                 q, [this] () { slotInAmountChanged(); });
@@ -117,6 +121,7 @@ private:
     int inAmountByDate(const QDate &date) const;
 
 private:
+    ExpiryDialog::Mode mode;
     int inUnit;
 
     struct UI {
@@ -126,8 +131,9 @@ private:
         QComboBox *inCB;
         QRadioButton *onRB;
         QCalendarWidget *onCW;
+        QCheckBox *updateSubkeysCheckBox;
 
-        explicit UI(Dialogs::ExpiryDialog *qq)
+        explicit UI(Mode mode, Dialogs::ExpiryDialog *qq)
         {
             auto mainLayout = new QVBoxLayout{qq};
 
@@ -136,7 +142,13 @@ private:
             auto vboxLayout = new QVBoxLayout{mainWidget};
             vboxLayout->setContentsMargins(0, 0, 0, 0);
 
-            vboxLayout->addWidget(new QLabel{i18n("Please select when to expire this certificate:"), mainWidget});
+            {
+                auto label = new QLabel{qq};
+                label->setText(mode == Mode::UpdateIndividualSubkey ?
+                               i18n("Please select when to expire this subkey:") :
+                               i18n("Please select when to expire this certificate:"));
+                vboxLayout->addWidget(label);
+            }
 
             neverRB = new QRadioButton(i18n("Ne&ver"), mainWidget);
             neverRB->setChecked(false);
@@ -192,6 +204,16 @@ private:
                 hboxLayout->addStretch(1);
 
                 vboxLayout->addLayout(hboxLayout);
+            }
+
+            {
+                updateSubkeysCheckBox = new QCheckBox{i18n("Also update the expiry of the subkeys"), qq};
+#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+                updateSubkeysCheckBox->setVisible(mode == Mode::UpdateCertificateWithSubkeys);
+#else
+                updateSubkeysCheckBox->setVisible(false);
+#endif
+                vboxLayout->addWidget(updateSubkeysCheckBox);
             }
 
             vboxLayout->addStretch(1);
@@ -263,9 +285,9 @@ int ExpiryDialog::Private::inAmountByDate(const QDate &selected) const
     return -1;
 }
 
-ExpiryDialog::ExpiryDialog(QWidget *p)
+ExpiryDialog::ExpiryDialog(Mode mode, QWidget *p)
     : QDialog{p}
-    , d{new Private{this}}
+    , d{new Private{mode, this}}
 {
     setWindowTitle(i18nc("@title:window", "Change Expiry"));
 }
@@ -291,6 +313,16 @@ QDate ExpiryDialog::dateOfExpiry() const
         d->ui.inRB->isChecked() ? d->inDate() :
         d->ui.onRB->isChecked() ? d->ui.onCW->selectedDate() :
         QDate{};
+}
+
+void ExpiryDialog::setUpdateExpirationOfAllSubkeys(bool update)
+{
+    d->ui.updateSubkeysCheckBox->setChecked(update);
+}
+
+bool ExpiryDialog::updateExpirationOfAllSubkeys() const
+{
+    return d->ui.updateSubkeysCheckBox->isChecked();
 }
 
 #include "moc_expirydialog.cpp"

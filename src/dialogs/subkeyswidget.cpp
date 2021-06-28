@@ -77,10 +77,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         menu->addAction(i18n("Change Expiry Date..."), q,
                 [this, subkey]() {
                     auto cmd = new ChangeExpiryCommand(subkey.parent());
-                    if (subkey.keyID() != key.keyID()) {
-                        // do not set the primary key as subkey
-                        cmd->setSubkey(subkey);
-                    }
+                    cmd->setSubkey(subkey);
                     ui.subkeysTree->setEnabled(false);
                     connect(cmd, &ChangeExpiryCommand::finished,
                             q, [this]() {

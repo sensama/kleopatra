@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -23,13 +25,22 @@ namespace Dialogs
 class ExpiryDialog : public QDialog
 {
     Q_OBJECT
-    Q_PROPERTY(QDate dateOfExpiry READ dateOfExpiry WRITE setDateOfExpiry)
 public:
-    explicit ExpiryDialog(QWidget *parent = nullptr);
+    enum class Mode
+    {
+        UpdateCertificateWithSubkeys,
+        UpdateCertificateWithoutSubkeys,
+        UpdateIndividualSubkey,
+    };
+
+    explicit ExpiryDialog(Mode mode, QWidget *parent = nullptr);
     ~ExpiryDialog() override;
 
     void setDateOfExpiry(const QDate &date);
     QDate dateOfExpiry() const;
+
+    void setUpdateExpirationOfAllSubkeys(bool update);
+    bool updateExpirationOfAllSubkeys() const;
 
 private:
     class Private;

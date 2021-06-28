@@ -11,15 +11,25 @@
 
 #include "expirydialog.h"
 
-#include "ui_expirydialog.h"
+#include <KLocalizedString>
+#include <KStandardGuiItem>
 
+#include <QCalendarWidget>
+#include <QComboBox>
 #include <QDate>
 #include <QDialogButtonBox>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QPushButton>
+#include <QRadioButton>
+#include <QSpinBox>
 #include <QVBoxLayout>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
+
+namespace
+{
 
 enum Period {
     Days,
@@ -57,6 +67,14 @@ static int yearsBetween(const QDate &d1, const QDate &d2)
 {
     const int days = d1.daysTo(d2);
     return qRound(days / DAYS_IN_GREGORIAN_YEAR);
+}
+
+auto radioButtonSize(const QRadioButton *radioButton)
+{
+    QStyleOptionButton opt;
+    return radioButton->style()->sizeFromContents(QStyle::CT_RadioButton, &opt, QSize(), radioButton);
+}
+
 }
 
 class ExpiryDialog::Private
@@ -101,60 +119,102 @@ private:
 private:
     int inUnit;
 
-    struct UI : public Ui::ExpiryDialog {
-        explicit UI(Dialogs::ExpiryDialog *qq)
-            : Ui::ExpiryDialog{}
-        {
-            auto mainWidget = new QWidget(qq);
+    struct UI {
+        QRadioButton *neverRB;
+        QRadioButton *inRB;
+        QSpinBox *inSB;
+        QComboBox *inCB;
+        QRadioButton *onRB;
+        QCalendarWidget *onCW;
 
-            setupUi(mainWidget);
-            auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq);
-            auto mainLayout = new QVBoxLayout;
-            qq->setLayout(mainLayout);
+        explicit UI(Dialogs::ExpiryDialog *qq)
+        {
+            auto mainLayout = new QVBoxLayout{qq};
+
+            auto mainWidget = new QWidget{qq};
+
+            auto vboxLayout = new QVBoxLayout{mainWidget};
+            vboxLayout->setContentsMargins(0, 0, 0, 0);
+
+            vboxLayout->addWidget(new QLabel{i18n("Please select when to expire this certificate:"), mainWidget});
+
+            neverRB = new QRadioButton(i18n("Ne&ver"), mainWidget);
+            neverRB->setChecked(false);
+
+            vboxLayout->addWidget(neverRB);
+
+            {
+                auto hboxLayout = new QHBoxLayout;
+
+                inRB = new QRadioButton{i18n("In"), mainWidget};
+                inRB->setChecked(false);
+
+                hboxLayout->addWidget(inRB);
+
+                inSB = new QSpinBox{mainWidget};
+                inSB->setEnabled(false);
+                inSB->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+                inSB->setMinimum(1);
+
+                hboxLayout->addWidget(inSB);
+
+                inCB = new QComboBox{mainWidget};
+                inCB->addItem(i18n("Days"));
+                inCB->addItem(i18n("Weeks"));
+                inCB->addItem(i18n("Months"));
+                inCB->addItem(i18n("Years"));
+                Q_ASSERT(inCB->count() == NumPeriods);
+                inCB->setEnabled(false);
+
+                hboxLayout->addWidget(inCB);
+
+                hboxLayout->addStretch(1);
+
+                vboxLayout->addLayout(hboxLayout);
+            }
+
+            onRB = new QRadioButton{i18n("On this da&y:"), mainWidget};
+            onRB->setChecked(true);
+
+            vboxLayout->addWidget(onRB);
+
+            {
+                auto hboxLayout = new QHBoxLayout;
+
+                hboxLayout->addSpacing(radioButtonSize(onRB).width());
+
+                onCW = new QCalendarWidget{mainWidget};
+                onCW->setGridVisible(true);
+                onCW->setMinimumDate(QDate::currentDate().addDays(1));
+
+                hboxLayout->addWidget(onCW);
+
+                hboxLayout->addStretch(1);
+
+                vboxLayout->addLayout(hboxLayout);
+            }
+
+            vboxLayout->addStretch(1);
+
             mainLayout->addWidget(mainWidget);
-            QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+
+            auto buttonBox = new QDialogButtonBox{QDialogButtonBox::Ok | QDialogButtonBox::Cancel, qq};
+            auto okButton = buttonBox->button(QDialogButtonBox::Ok);
+            KGuiItem::assign(okButton, KStandardGuiItem::ok());
             okButton->setDefault(true);
             okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+            KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
             qq->connect(buttonBox, &QDialogButtonBox::accepted, qq, &QDialog::accept);
             qq->connect(buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
+
             mainLayout->addWidget(buttonBox);
 
-            Q_ASSERT(inCB->count() == NumPeriods);
-
-            onCW->setMinimumDate(QDate::currentDate().addDays(1));
+            connect(onRB, &QRadioButton::toggled, onCW, &QWidget::setEnabled);
+            connect(inRB, &QRadioButton::toggled, inCB, &QWidget::setEnabled);
+            connect(inRB, &QRadioButton::toggled, inSB, &QWidget::setEnabled);
         }
     } ui;
 };
-
-ExpiryDialog::ExpiryDialog(QWidget *p)
-    : QDialog{p}
-    , d{new Private{this}}
-{
-    setWindowTitle(i18nc("@title:window", "Change Expiry"));
-}
-
-ExpiryDialog::~ExpiryDialog() = default;
-
-void ExpiryDialog::setDateOfExpiry(const QDate &date)
-{
-    const QDate current = QDate::currentDate();
-    if (date.isValid()) {
-        d->ui.onRB->setChecked(true);
-        d->ui.onCW->setSelectedDate(qMax(date, current));
-    } else {
-        d->ui.neverRB->setChecked(true);
-        d->ui.onCW->setSelectedDate(current);
-        d->ui.inSB->setValue(0);
-    }
-}
-
-QDate ExpiryDialog::dateOfExpiry() const
-{
-    return
-        d->ui.inRB->isChecked() ? d->inDate() :
-        d->ui.onRB->isChecked() ? d->ui.onCW->selectedDate() :
-        QDate{};
-}
 
 void ExpiryDialog::Private::slotInUnitChanged()
 {
@@ -201,6 +261,36 @@ int ExpiryDialog::Private::inAmountByDate(const QDate &selected) const
     };
     Q_ASSERT(!"Should not reach here");
     return -1;
+}
+
+ExpiryDialog::ExpiryDialog(QWidget *p)
+    : QDialog{p}
+    , d{new Private{this}}
+{
+    setWindowTitle(i18nc("@title:window", "Change Expiry"));
+}
+
+ExpiryDialog::~ExpiryDialog() = default;
+
+void ExpiryDialog::setDateOfExpiry(const QDate &date)
+{
+    const QDate current = QDate::currentDate();
+    if (date.isValid()) {
+        d->ui.onRB->setChecked(true);
+        d->ui.onCW->setSelectedDate(qMax(date, current));
+    } else {
+        d->ui.neverRB->setChecked(true);
+        d->ui.onCW->setSelectedDate(current);
+        d->ui.inSB->setValue(0);
+    }
+}
+
+QDate ExpiryDialog::dateOfExpiry() const
+{
+    return
+        d->ui.inRB->isChecked() ? d->inDate() :
+        d->ui.onRB->isChecked() ? d->ui.onCW->selectedDate() :
+        QDate{};
 }
 
 #include "moc_expirydialog.cpp"

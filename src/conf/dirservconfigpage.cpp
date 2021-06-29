@@ -261,7 +261,7 @@ void DirectoryServicesConfigurationPage::load()
                 << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
 
-        mOpenPGPKeyserverEdit->setText(mOpenPGPServiceEntry ? mOpenPGPServiceEntry->stringValue() : QString());
+        mOpenPGPKeyserverEdit->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
         mOpenPGPKeyserverEdit->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
 #ifdef QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
         if (newEntry && !newEntry->defaultValue().isNull()) {

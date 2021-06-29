@@ -35,3 +35,6 @@
 
 /* Defined if QGpgME supports changing the expiration date of the primary key and the subkeys simultaneously */
 #cmakedefine QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY 1
+
+/* Defined if QGpgME supports retrieving the default value of a config entry */
+#cmakedefine QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE 1

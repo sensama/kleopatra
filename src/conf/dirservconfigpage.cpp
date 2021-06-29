@@ -152,11 +152,6 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
         l->addWidget(new QLabel{i18n("OpenPGP keyserver:"), this});
         mOpenPGPKeyserverEdit = new QLineEdit{this};
-        if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
-            mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
-        } else {
-            mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
-        }
 
         l->addWidget(mOpenPGPKeyserverEdit);
 
@@ -268,6 +263,18 @@ void DirectoryServicesConfigurationPage::load()
 
         mOpenPGPKeyserverEdit->setText(mOpenPGPServiceEntry ? mOpenPGPServiceEntry->stringValue() : QString());
         mOpenPGPKeyserverEdit->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
+#ifdef QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
+        if (newEntry && !newEntry->defaultValue().isNull()) {
+            mOpenPGPKeyserverEdit->setPlaceholderText(newEntry->defaultValue().toString());
+        } else
+#endif
+        {
+            if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
+                mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
+            } else {
+                mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
+            }
+        }
     }
 
     // read LDAP timeout

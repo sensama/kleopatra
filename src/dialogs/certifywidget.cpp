@@ -1,7 +1,8 @@
 /*  dialogs/certifywidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2019 g 10code GmbH
+    SPDX-FileCopyrightText: 2019, 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -15,6 +16,8 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KDateComboBox>
+#include <KMessageBox>
+#include <KMessageWidget>
 #include <KSeparator>
 #include <KSharedConfig>
 
@@ -24,8 +27,13 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
 
+#include <QGpgME/ChangeOwnerTrustJob>
+#include <QGpgME/Protocol>
+
+#include <QAction>
 #include <QCheckBox>
 #include <QHBoxLayout>
+#include <QIcon>
 #include <QLabel>
 #include <QLineEdit>
 #include <QListView>
@@ -272,6 +280,7 @@ public:
         : q{qq}
         , mFprLabel{new QLabel{q}}
         , mSecKeySelect{new KeySelectionCombo{/* secretOnly= */true, q}}
+        , mMissingOwnerTrustInfo{new KMessageWidget{q}}
         , mExportCB{new QCheckBox{q}}
         , mPublishCB{new QCheckBox{q}}
         , mTagsLE{new QLineEdit{q}}
@@ -279,6 +288,7 @@ public:
         , mTrustSignatureDomainLE{new QLineEdit{q}}
         , mExpirationCheckBox{new QCheckBox{q}}
         , mExpirationDateEdit{new KDateComboBox{q}}
+        , mSetOwnerTrustAction{new QAction{q}}
     {
         auto mainLay = new QVBoxLayout{q};
         mainLay->addWidget(mFprLabel);
@@ -290,6 +300,18 @@ public:
 
         secKeyLay->addWidget(mSecKeySelect, 1);
         mainLay->addLayout(secKeyLay);
+
+        mSetOwnerTrustAction->setText(i18nc("@action:button", "Set Owner Trust"));
+        mSetOwnerTrustAction->setToolTip(QLatin1String("<html>") +
+                                         i18nc("@info:tooltip",
+                                               "Click to set the trust level of the selected certification key to ultimate trust. "
+                                               "This is what you usually want to do for your own keys.") +
+                                         QLatin1String("</html>"));
+        connect(mSetOwnerTrustAction, &QAction::triggered, q, [this] () { setOwnerTrust(); });
+        mMissingOwnerTrustInfo->addAction(mSetOwnerTrustAction);
+        mMissingOwnerTrustInfo->setVisible(false);
+
+        mainLay->addWidget(mMissingOwnerTrustInfo);
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
@@ -424,6 +446,7 @@ public:
 #ifdef GPGME_HAS_REMARKS
             updateTags();
 #endif
+            checkOwnerTrust();
             Q_EMIT q->changed();
         });
 
@@ -590,10 +613,48 @@ public:
         return true;
     }
 
+    void checkOwnerTrust()
+    {
+        const auto secretKey = secKey();
+        if (secretKey.ownerTrust() != GpgME::Key::Ultimate) {
+            mMissingOwnerTrustInfo->setMessageType(KMessageWidget::Information);
+            mMissingOwnerTrustInfo->setIcon(QIcon::fromTheme(QStringLiteral("question")));
+            mMissingOwnerTrustInfo->setText(i18n("Is this your own key?"));
+            mSetOwnerTrustAction->setEnabled(true);
+            mMissingOwnerTrustInfo->animatedShow();
+        } else {
+            mMissingOwnerTrustInfo->animatedHide();
+        }
+    }
+
+    void setOwnerTrust()
+    {
+        mSetOwnerTrustAction->setEnabled(false);
+        QGpgME::ChangeOwnerTrustJob *const j = QGpgME::openpgp()->changeOwnerTrustJob();
+        connect(j, &QGpgME::ChangeOwnerTrustJob::result, q, [this] (const GpgME::Error &err) {
+            if (err) {
+                KMessageBox::sorry(q,
+                                   i18n("<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>",
+                                        Formatting::formatForComboBox(secKey()),
+                                        QString::fromLocal8Bit(err.asString())),
+                                   i18n("Certification Trust Change Failed"));
+            }
+            if (err || err.isCanceled()) {
+                mSetOwnerTrustAction->setEnabled(true);
+            } else {
+                mMissingOwnerTrustInfo->setMessageType(KMessageWidget::Positive);
+                mMissingOwnerTrustInfo->setIcon(QIcon::fromTheme(QStringLiteral("checkmark")));
+                mMissingOwnerTrustInfo->setText(i18n("Owner trust set successfully."));
+            }
+        });
+        j->start(secKey(), GpgME::Key::Ultimate);
+    }
+
 public:
     CertifyWidget *const q;
     QLabel *mFprLabel = nullptr;
     KeySelectionCombo *mSecKeySelect = nullptr;
+    KMessageWidget *mMissingOwnerTrustInfo = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;
@@ -601,6 +662,7 @@ public:
     QLineEdit *mTrustSignatureDomainLE = nullptr;
     QCheckBox *mExpirationCheckBox = nullptr;
     KDateComboBox *mExpirationDateEdit = nullptr;
+    QAction *mSetOwnerTrustAction = nullptr;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;

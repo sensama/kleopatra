@@ -781,7 +781,7 @@ private Q_SLOTS:
         std::list<Transaction> ft;
         KDAB_SYNCHRONIZED(m_mutex)
         ft.splice(ft.begin(), m_finishedTransactions);
-        for (const Transaction &t : qAsConst(ft))
+        for (const Transaction &t : std::as_const(ft))
             if (t.receiver && t.slot && *t.slot) {
                 QMetaObject::invokeMethod(t.receiver, t.slot, Qt::DirectConnection, Q_ARG(GpgME::Error, err));
             }

@@ -142,7 +142,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     mEncOtherChk->setChecked(true);
     connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
-            for (CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
+            for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
                 edit->setEnabled(toggled);
             }
             updateOp();
@@ -318,16 +318,16 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
 
 void SignEncryptWidget::clearAddedRecipients()
 {
-    for (auto w: qAsConst(mUnknownWidgets)) {
+    for (auto w: std::as_const(mUnknownWidgets)) {
         mRecpLayout->removeWidget(w);
         delete w;
     }
 
-    for (auto &key: qAsConst(mAddedKeys)) {
+    for (auto &key: std::as_const(mAddedKeys)) {
         removeRecipient(key);
     }
 
-    for (auto &group: qAsConst(mAddedGroups)) {
+    for (auto &group: std::as_const(mAddedGroups)) {
         removeRecipient(group);
     }
 }
@@ -373,7 +373,7 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 void SignEncryptWidget::recipientsChanged()
 {
     bool oneEmpty = false;
-    for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
+    for (const CertificateLineEdit *w : std::as_const(mRecpWidgets)) {
         if (w->key().isNull() && w->group().isNull()) {
             oneEmpty = true;
             break;
@@ -404,7 +404,7 @@ Key SignEncryptWidget::selfKey() const
 std::vector<Key> SignEncryptWidget::recipients() const
 {
     std::vector<Key> ret;
-    for (const CertificateLineEdit *w : qAsConst(mRecpWidgets)) {
+    for (const CertificateLineEdit *w : std::as_const(mRecpWidgets)) {
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
             break;
@@ -477,7 +477,7 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
         return;
     }
     int emptyEdits = 0;
-    for (const CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
+    for (const CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
         if (edit->isEmpty()) {
             emptyEdits++;
         }
@@ -506,7 +506,7 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
 
 void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 {
-    for (CertificateLineEdit *edit: qAsConst(mRecpWidgets)) {
+    for (CertificateLineEdit *edit: std::as_const(mRecpWidgets)) {
         const auto editKey = edit->key();
         if (key.isNull() && editKey.isNull()) {
             recpRemovalRequested(edit);
@@ -523,7 +523,7 @@ void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 
 void SignEncryptWidget::removeRecipient(const KeyGroup &group)
 {
-    for (CertificateLineEdit *edit: qAsConst(mRecpWidgets)) {
+    for (CertificateLineEdit *edit: std::as_const(mRecpWidgets)) {
         const auto editGroup = edit->group();
         if (group.isNull() && editGroup.isNull()) {
             recpRemovalRequested(edit);
@@ -582,7 +582,7 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(proto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(proto)));
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(proto));
-    for (CertificateLineEdit *edit : qAsConst(mRecpWidgets)) {
+    for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
         edit->setKeyFilter(encFilter);
     }
 
@@ -600,7 +600,7 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 
 bool SignEncryptWidget::validate()
 {
-    for (const auto edit: qAsConst(mRecpWidgets)) {
+    for (const auto edit: std::as_const(mRecpWidgets)) {
         if (!edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
             KMessageBox::error(this, i18nc("%1 is user input that could not be found",
                         "Could not find a key for '%1'", edit->text().toHtmlEscaped()),

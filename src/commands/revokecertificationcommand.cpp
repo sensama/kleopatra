@@ -220,7 +220,7 @@ void RevokeCertificationCommand::doStart()
         return;
     }
 
-    for (const UserID &uid : qAsConst(d->uids))
+    for (const UserID &uid : std::as_const(d->uids))
         if (qstricmp(uid.parent().primaryFingerprint(), d->certificationTarget.primaryFingerprint()) != 0) {
             qCWarning(KLEOPATRA_LOG) << "User-ID <-> Key mismatch!";
             d->finished();

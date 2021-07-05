@@ -107,7 +107,7 @@ protected:
                 });
             }
 
-            for (QAction *action : qAsConst(mColumnActions)) {
+            for (QAction *action : std::as_const(mColumnActions)) {
                 const int column = action->data().toInt();
                 action->setChecked(!isColumnHidden(column));
             }
@@ -362,7 +362,7 @@ void KeyTreeView::restoreExpandState()
         qCWarning(KLEOPATRA_LOG) << "Restore expand state before keycache available. Aborting.";
         return;
     }
-    for (const auto &fpr: qAsConst(m_expandedKeys)) {
+    for (const auto &fpr: std::as_const(m_expandedKeys)) {
         const KeyListModelInterface *const km = keyListModel(*m_view);
         if (!km) {
             qCWarning(KLEOPATRA_LOG) << "invalid model";

@@ -195,7 +195,7 @@ void CertifyCertificateCommand::doStart()
     }
     const Key &key = keys.front();
 
-    for (const UserID &uid : qAsConst(d->uids))
+    for (const UserID &uid : std::as_const(d->uids))
         if (qstricmp(uid.parent().primaryFingerprint(), key.primaryFingerprint()) != 0) {
             qCWarning(KLEOPATRA_LOG) << "User-ID <-> Key mismatch!";
             d->finished();

@@ -470,7 +470,7 @@ void NewSignEncryptEMailController::Private::startEncryption()
     // ### use a new result dialog
     dialog->setTaskCollection(coll);
 #endif
-    for (const std::shared_ptr<Task> &t : qAsConst(tmp)) {
+    for (const std::shared_ptr<Task> &t : std::as_const(tmp)) {
         q->connectTask(t);
     }
     schedule();
@@ -521,7 +521,7 @@ void NewSignEncryptEMailController::Private::startSigning()
     // ### use a new result dialog
     dialog->setTaskCollection(coll);
 #endif
-    for (const std::shared_ptr<Task> &t : qAsConst(tmp)) {
+    for (const std::shared_ptr<Task> &t : std::as_const(tmp)) {
         q->connectTask(t);
     }
     schedule();

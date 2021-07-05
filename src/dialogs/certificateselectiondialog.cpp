@@ -274,7 +274,7 @@ void selectRows(const QAbstractItemView *view, const QModelIndexList &indexes)
     QItemSelectionModel *const sm = view->selectionModel();
     Q_ASSERT(sm);
 
-    for (const QModelIndex &idx : qAsConst(indexes)) {
+    for (const QModelIndex &idx : std::as_const(indexes)) {
         if (idx.isValid()) {
             sm->select(idx, QItemSelectionModel::Select | QItemSelectionModel::Rows);
         }

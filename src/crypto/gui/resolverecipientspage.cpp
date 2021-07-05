@@ -124,7 +124,7 @@ void ResolveRecipientsPage::ListWidget::setProtocol(GpgME::Protocol prot)
         return;
     }
     m_protocol = prot;
-    for (ItemWidget *i : qAsConst(widgets)) {
+    for (ItemWidget *i : std::as_const(widgets)) {
         i->setProtocol(prot);
     }
 }
@@ -282,7 +282,7 @@ void ResolveRecipientsPage::ItemWidget::resetCertificates()
     }
 
     m_certCombo->clear();
-    for (const Key &i : qAsConst(certs)) {
+    for (const Key &i : std::as_const(certs)) {
         addCertificateToComboBox(i);
     }
     if (!m_selectedCertificates[m_protocol].isNull()) {

@@ -111,7 +111,7 @@ void AutoDecryptVerifyFilesController::Private::schedule()
     }
     if (!m_runningTask) {
         kleo_assert(m_runnableTasks.empty());
-        for (const std::shared_ptr<const DecryptVerifyResult> &i : qAsConst(m_results)) {
+        for (const std::shared_ptr<const DecryptVerifyResult> &i : std::as_const(m_results)) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
     }
@@ -142,7 +142,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     m_runnableTasks.swap(tasks);
 
     std::shared_ptr<TaskCollection> coll(new TaskCollection);
-    for (const std::shared_ptr<Task> &i : qAsConst(m_runnableTasks)) {
+    for (const std::shared_ptr<Task> &i : std::as_const(m_runnableTasks)) {
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);

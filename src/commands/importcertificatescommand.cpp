@@ -508,7 +508,7 @@ void ImportCertificatesCommand::Private::handleExternalCMSImports()
     // For external CMS Imports we have to manually do a keylist
     // with validation to get the intermediate and root ca imported
     // automatically if trusted-certs and extra-certs are used.
-    for (const ImportResult &result : qAsConst(results)) {
+    for (const ImportResult &result : std::as_const(results)) {
         const auto imports = result.imports();
         for (const Import &import : imports) {
             if (!import.fingerprint()) {

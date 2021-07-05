@@ -124,7 +124,7 @@ void ImportCertificateFromFileCommand::doStart()
 
     //TODO: use KIO here
     d->setWaitForMoreJobs(true);
-    for (const QString &fn : qAsConst(d->files)) {
+    for (const QString &fn : std::as_const(d->files)) {
         QFile in(fn);
         if (!in.open(QIODevice::ReadOnly)) {
             d->error(i18n("Could not open file %1 for reading: %2", in.fileName(), in.errorString()), i18n("Certificate Import Failed"));

@@ -1324,7 +1324,7 @@ void EnterDetailsPage::registerDialogPropertiesAsFields()
 
 void EnterDetailsPage::saveValues()
 {
-    for (const Line &line : qAsConst(lineList)) {
+    for (const Line &line : std::as_const(lineList)) {
         savedValues[ attributeFromKey(line.attr) ] = line.edit->text().trimmed();
     }
 }
@@ -1425,7 +1425,7 @@ void EnterDetailsPage::updateForm()
 
     QMap<int, Line> lines;
 
-    for (const QString &rawKey : qAsConst(attrOrder)) {
+    for (const QString &rawKey : std::as_const(attrOrder)) {
         const QString key = rawKey.trimmed().toUpper();
         const QString attr = attributeFromKey(key);
         if (attr.isEmpty()) {

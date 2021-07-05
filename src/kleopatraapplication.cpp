@@ -384,7 +384,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                 openOrRaiseMainWindow();
             }
         } else {
-            for (const QString& fileName : qAsConst(files)) {
+            for (const QString& fileName : std::as_const(files)) {
                 QFileInfo fi(fileName);
                 if (!fi.isReadable()) {
                     errors << i18n("Cannot read \"%1\"", fileName);

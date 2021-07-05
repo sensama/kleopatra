@@ -155,13 +155,13 @@ private:
 
         bool first;
         first = true;
-        for (const CertificateSelectionLine &line : qAsConst(ui.signers)) {
+        for (const CertificateSelectionLine &line : std::as_const(ui.signers)) {
             line.showHide(proto, first, showAll, sign);
         }
         ui.selectSigningCertificatesGB.setVisible(sign && (showAll || !first));
 
         first = true;
-        for (const CertificateSelectionLine &line : qAsConst(ui.recipients)) {
+        for (const CertificateSelectionLine &line : std::as_const(ui.recipients)) {
             line.showHide(proto, first, showAll, encrypt);
         }
         ui.selectEncryptionCertificatesGB.setVisible(encrypt && (showAll || !first));
@@ -197,15 +197,15 @@ private:
         ui.clearSendersAndRecipients();
 
         ui.addSelectSigningCertificatesGB();
-        for (const Sender &s : qAsConst(senders)) {
+        for (const Sender &s : std::as_const(senders)) {
             addSigner(s);
         }
 
         ui.addSelectEncryptionCertificatesGB();
-        for (const Sender &s : qAsConst(senders)) {
+        for (const Sender &s : std::as_const(senders)) {
             addRecipient(s);
         }
-        for (const Recipient &r : qAsConst(recipients)) {
+        for (const Recipient &r : std::as_const(recipients)) {
             addRecipient(r);
         }
     }

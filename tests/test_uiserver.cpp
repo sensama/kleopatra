@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    for (const char *opt : qAsConst(options)) {
+    for (const char *opt : std::as_const(options)) {
         std::string line = "OPTION ";
         line += opt;
         if (const gpg_error_t err = assuan_transact(ctx, line.c_str(), nullptr, nullptr, nullptr, nullptr, nullptr, nullptr)) {

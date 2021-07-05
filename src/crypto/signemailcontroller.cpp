@@ -214,7 +214,7 @@ void SignEMailController::start()
     coll->setTasks(tmp);
     d->ensureWizardCreated();
     d->wizard->setTaskCollection(coll);
-    for (const std::shared_ptr<Task> &t : qAsConst(tmp)) {
+    for (const std::shared_ptr<Task> &t : std::as_const(tmp)) {
         connectTask(t);
     }
 

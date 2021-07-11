@@ -25,9 +25,9 @@ project(kleopatra VERSION ${kleopatra_version})
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF5_MIN_VERSION "5.83.0")
-set(KMIME_VERSION "5.17.80")
-set(LIBKLEO_VERSION "5.17.80")
+set(KF5_MIN_VERSION "5.84.0")
+set(KMIME_VERSION "5.18.40")
+set(LIBKLEO_VERSION "5.18.40")
 set(QT_REQUIRED_VERSION "5.15.0")
 set(GPGME_REQUIRED_VERSION "1.13.1")
 set(BOOST_REQUIRED_VERSION "1.58")
@@ -165,7 +165,7 @@ include_directories(
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055400)
+add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055500)
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

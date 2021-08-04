@@ -59,6 +59,11 @@
 #include <memory>
 #include <KSharedConfig>
 
+
+#ifdef Q_OS_WIN
+#include <QtPlatformHeaders/QWindowsWindowFunctions>
+#endif
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 
@@ -191,6 +196,10 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
 
 void KleopatraApplication::init()
 {
+#ifdef Q_OS_WIN
+    QWindowsWindowFunctions::setWindowActivationBehavior(
+            QWindowsWindowFunctions::AlwaysActivateWindow);
+#endif
     d->init();
     add_resources();
     d->setupKeyCache();

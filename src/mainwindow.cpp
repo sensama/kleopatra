@@ -165,11 +165,7 @@ public:
     }
     void editKeybindings()
     {
-#if KXMLGUI_VERSION < QT_VERSION_CHECK(5,84,0)
-        KShortcutsDialog::configure(q->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed);
-#else
         KShortcutsDialog::showDialog(q->actionCollection(), KShortcutsEditor::LetterShortcutsAllowed, q);
-#endif
         updateSearchBarClickMessage();
     }
 

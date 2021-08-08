@@ -494,7 +494,7 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
 
         const QDir &dir = it->first;
 
-        Q_FOREACH (const QString &sumFileName, it->second) {
+        for (const QString &sumFileName : std::as_const(it->second)) {
 
             const std::vector<File> summedfiles = parse_sum_file(dir.absoluteFilePath(sumFileName));
             QStringList files;

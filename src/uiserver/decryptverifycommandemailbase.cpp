@@ -200,7 +200,7 @@ void DecryptVerifyCommandEMailBase::Private::verificationResult(const Verificati
 {
     try {
         const std::vector<Signature> sigs = vResult.signatures();
-        Q_FOREACH (const Signature &sig, sigs) {
+        for (const Signature &sig : sigs) {
             const QString s = signatureToString(sig, sig.key(true, true));
             const char *color = summaryToString(sig.summary());
             q->sendStatusEncoded("SIGSTATUS",

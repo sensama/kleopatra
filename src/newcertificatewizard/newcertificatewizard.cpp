@@ -1669,13 +1669,16 @@ QString KeyCreationPage::createGnupgKeyParms() const
     } else {
         keyParameters.setDN(dn());
         keyParameters.setEmail(email());
-        Q_FOREACH (const QString &email, additionalEMailAddresses()) {
+        const auto addesses{additionalEMailAddresses()};
+        for (const QString &email : addesses) {
             keyParameters.addEmail(email);
         }
-        Q_FOREACH (const QString &dns, dnsNames()) {
+        const auto dnsN{dnsNames()};
+        for (const QString &dns : dnsN) {
             keyParameters.addDomainName(dns);
         }
-        Q_FOREACH (const QString &uri, uris()) {
+        const auto urisList{uris()};
+        for (const QString &uri : urisList) {
             keyParameters.addURI(uri);
         }
     }

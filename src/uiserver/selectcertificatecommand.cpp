@@ -157,7 +157,8 @@ void SelectCertificateCommand::Private::slotDialogAccepted()
 {
     try {
         QByteArray data;
-        Q_FOREACH (const Key &key, dialog->selectedCertificates()) {
+        const auto selectedCertificates(dialog->selectedCertificates());
+        for (const Key &key : selectedCertificates) {
             data += key.primaryFingerprint();
             data += '\n';
         }

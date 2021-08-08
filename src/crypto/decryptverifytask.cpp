@@ -125,7 +125,8 @@ static Mailbox mailbox(const UserID &uid)
 static std::vector<Mailbox> extractMailboxes(const Key &key)
 {
     std::vector<Mailbox> res;
-    Q_FOREACH (const UserID &id, key.userIDs()) {
+    const auto userIDs{key.userIDs()};
+    for (const UserID &id : userIDs) {
         const Mailbox mbox = mailbox(id);
         if (!mbox.addrSpec().isEmpty()) {
             res.push_back(mbox);
@@ -318,7 +319,8 @@ static bool IsGoodOrValid(const Signature &sig)
 
 static UserID findUserIDByMailbox(const Key &key, const Mailbox &mbox)
 {
-    Q_FOREACH (const UserID &id, key.userIDs())
+    const auto userIDs{key.userIDs()};
+    for (const UserID &id : userIDs)
         if (mailbox_equal(mailbox(id), mbox, Qt::CaseInsensitive)) {
             return id;
         }

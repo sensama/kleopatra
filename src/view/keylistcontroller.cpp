@@ -665,7 +665,7 @@ void KeyListController::Private::slotCommandFinished()
 void KeyListController::enableDisableActions(const QItemSelectionModel *sm) const
 {
     const Command::Restrictions restrictionsMask = d->calculateRestrictionsMask(sm);
-    Q_FOREACH (const Private::action_item &ai, d->actions)
+    for (const Private::action_item &ai : std::as_const(d->actions))
         if (ai.action) {
             ai.action->setEnabled(ai.restrictions == (ai.restrictions & restrictionsMask));
         }

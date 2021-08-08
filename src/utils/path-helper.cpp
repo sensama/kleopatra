@@ -84,7 +84,8 @@ void Kleo::recursivelyRemovePath(const QString &path)
     const QFileInfo fi(path);
     if (fi.isDir()) {
         QDir dir(path);
-        Q_FOREACH (const QString &fname, dir.entryList(QDir::AllEntries | QDir::NoDotAndDotDot)) {
+        const auto dirs{dir.entryList(QDir::AllEntries | QDir::NoDotAndDotDot)};
+        for (const QString &fname : dirs) {
             recursivelyRemovePath(dir.filePath(fname));
         }
         const QString dirName = fi.fileName();

@@ -388,28 +388,24 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     setPage(SigEncPageId, mSigEncPage);
     setPage(ResultPageId, mResultPage);
     setOptions(QWizard::IndependentPages |
-               (de_vs ? QWizard::HaveCustomButton1 : (QWizard::WizardOption) 0) |
+               (de_vs ? QWizard::HaveCustomButton1 : QWizard::WizardOption(0)) |
                QWizard::NoBackButtonOnLastPage |
                QWizard::NoBackButtonOnStartPage);
 
     if (de_vs) {
         /* We use a custom button to display a label next to the
            buttons.  */
-        mLabel = button(QWizard::CustomButton1);
+        auto btn = button(QWizard::CustomButton1);
         /* We style the button so that it looks and acts like a
            label.  */
-        mLabel->setStyleSheet(QStringLiteral("border: none"));
-        mLabel->setFocusPolicy(Qt::NoFocus);
-    } else {
-        mLabel = nullptr;
+        btn->setStyleSheet(QStringLiteral("border: none"));
+        btn->setFocusPolicy(Qt::NoFocus);
     }
 }
 
 void SignEncryptFilesWizard::setLabelText(const QString &label)
 {
-    if (mLabel) {
-        setButtonText(QWizard::CustomButton1, label);
-    }
+    setButtonText(QWizard::CustomButton1, label);
 }
 
 void SignEncryptFilesWizard::slotCurrentIdChanged(int id)

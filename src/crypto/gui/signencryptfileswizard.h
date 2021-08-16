@@ -94,7 +94,6 @@ private Q_SLOTS:
 private:
     SigEncPage *mSigEncPage = nullptr;
     ResultPage *mResultPage = nullptr;
-    QAbstractButton *mLabel = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
 };

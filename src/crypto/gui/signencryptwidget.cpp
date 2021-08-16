@@ -567,10 +567,20 @@ void SignEncryptWidget::setSigningChecked(bool value)
     mSigChk->setChecked(value);
 }
 
-void SignEncryptWidget::setEncryptionChecked(bool value)
+void SignEncryptWidget::setEncryptionChecked(bool checked)
 {
-    mEncSelfChk->setChecked(value);
-    mEncOtherChk->setChecked(value);
+    if (checked) {
+        const bool haveOwnKeys = !KeyCache::instance()->secretKeys().empty();
+        const bool haveOtherKeys = !KeyCache::instance()->keys().empty();
+        const bool haveKeys = haveOwnKeys && haveOtherKeys;
+        mEncSelfChk->setChecked(haveKeys);
+        mEncOtherChk->setChecked(haveKeys);
+        mSymmetric->setChecked(!haveKeys);
+    } else {
+        mEncSelfChk->setChecked(false);
+        mEncOtherChk->setChecked(false);
+        mSymmetric->setChecked(false);
+    }
 }
 
 void SignEncryptWidget::setProtocol(GpgME::Protocol proto)

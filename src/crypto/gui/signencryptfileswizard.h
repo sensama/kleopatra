@@ -79,7 +79,7 @@ public:
     std::vector<GpgME::Key> resolvedSigners() const;
     bool encryptSymmetric() const;
 
-    void setLabelText(const QString &label) const;
+    void setLabelText(const QString &label);
 
 protected:
     void readConfig();

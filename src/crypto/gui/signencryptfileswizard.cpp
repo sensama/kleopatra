@@ -281,7 +281,7 @@ private Q_SLOTS:
     {
         auto btn = mParent->button(QWizard::CommitButton);
         if (!label.isEmpty()) {
-            btn->setText(label);
+            mParent->setButtonText(QWizard::CommitButton, label);
             if (Kleo::gpgComplianceP("de-vs")) {
                 bool de_vs = mWidget->isDeVsAndValid();
                 btn->setIcon(QIcon::fromTheme(de_vs
@@ -297,7 +297,7 @@ private Q_SLOTS:
                             "%1 communication not possible.", Formatting::deVsString()));
             }
         } else {
-            btn->setText(i18n("Next"));
+            mParent->setButtonText(QWizard::CommitButton, i18n("Next"));
             btn->setIcon(QIcon());
             btn->setStyleSheet(QString());
         }
@@ -405,10 +405,10 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     }
 }
 
-void SignEncryptFilesWizard::setLabelText(const QString &label) const
+void SignEncryptFilesWizard::setLabelText(const QString &label)
 {
     if (mLabel) {
-        mLabel->setText(label);
+        setButtonText(QWizard::CustomButton1, label);
     }
 }
 

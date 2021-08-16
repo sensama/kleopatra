@@ -210,7 +210,6 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setEncryptionUserMutable(false);
     } else {
         wizard->setEncryptionUserMutable(true);
-        wizard->setEncryptionPreset(false);
         wizard->setEncryptionPreset(encrOp == EncryptSelected);
     }
 

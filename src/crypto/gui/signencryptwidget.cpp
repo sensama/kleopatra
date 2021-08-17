@@ -221,6 +221,26 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     updateOp();
 }
 
+void SignEncryptWidget::setSignAsText(const QString &text)
+{
+    mSigChk->setText(text);
+}
+
+void SignEncryptWidget::setEncryptForMeText(const QString &text)
+{
+    mEncSelfChk->setText(text);
+}
+
+void SignEncryptWidget::setEncryptForOthersText(const QString &text)
+{
+    mEncOtherChk->setText(text);
+}
+
+void SignEncryptWidget::setEncryptWithPasswordText(const QString& text)
+{
+    mSymmetric->setText(text);
+}
+
 CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
     auto certSel = new CertificateLineEdit(mModel, this,

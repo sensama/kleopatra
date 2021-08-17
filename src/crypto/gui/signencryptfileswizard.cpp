@@ -68,6 +68,14 @@ public:
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
         vLay->setContentsMargins(0, 0, 0, 0);
+        mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage",
+                                     "&Sign as:"));
+        mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage",
+                                           "Encrypt for &me:"));
+        mWidget->setEncryptForOthersText(i18nc("@option:check on SignEncryptPage",
+                                               "Encrypt for &others:"));
+        mWidget->setEncryptWithPasswordText(i18nc("@option:check on SignEncryptPage",
+                                                  "Encrypt with &password. Anyone you share the password with can read the data."));
         vLay->addWidget(mWidget);
         connect(mWidget, &SignEncryptWidget::operationChanged, this,
                 &SigEncPage::updateCommitButton);
@@ -81,7 +89,8 @@ public:
         mPlaceholderWidget = new QLabel(i18n("Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
-        mUseOutputDirChk = new QCheckBox(i18n("Encrypt / Sign each file separately."));
+        mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage",
+                                               "Encrypt / Sign &each file separately."));
         mUseOutputDirChk->setToolTip(i18nc("@info",
                                             "Keep each file separate instead of creating an archive for all."));
 

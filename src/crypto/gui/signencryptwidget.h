@@ -31,6 +31,13 @@ public:
      * done only either as sign or as encrypt */
     explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
 
+    /** Overwrite default text with custom text, e.g. with a character marked
+     *  as shortcut key. */
+    void setSignAsText(const QString &text);
+    void setEncryptForMeText(const QString &text);
+    void setEncryptForOthersText(const QString &text);
+    void setEncryptWithPasswordText(const QString &text);
+
     /** Returns the list of recipients selected in the dialog
      * or an empty list if encryption is disabled */
     std::vector<GpgME::Key> recipients() const;

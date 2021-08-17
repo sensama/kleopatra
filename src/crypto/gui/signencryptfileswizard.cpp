@@ -62,6 +62,7 @@ public:
           mParent((SignEncryptFilesWizard *) parent),
           mWidget(new SignEncryptWidget),
           mOutLayout(new QVBoxLayout),
+          mOutputLabel{nullptr},
           mArchive(false),
           mUseOutputDir(false)
     {
@@ -93,13 +94,15 @@ public:
                                                "Encrypt / Sign &each file separately."));
         mUseOutputDirChk->setToolTip(i18nc("@info",
                                             "Keep each file separate instead of creating an archive for all."));
-
         mOutLayout->addWidget(mUseOutputDirChk);
         connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {
                     mUseOutputDir = state;
                     mArchive = !mUseOutputDir;
                     updateFileWidgets();
                 });
+
+        mOutputLabel = new QLabel(i18nc("@label on SignEncryptPage", "Output &files/folder:"));
+        mOutLayout->addWidget(mOutputLabel);
 
         vLay->addWidget(outputGrp);
         setMinimumHeight(300);
@@ -245,6 +248,8 @@ private:
         auto hLay = new QHBoxLayout;
         auto iconLabel = new QLabel;
         auto ret = new QWidget;
+        ret->setFocusPolicy(req->focusPolicy());
+        ret->setFocusProxy(req);
         iconLabel->setPixmap(QIcon::fromTheme(icons[forKind]).pixmap(32,32));
         hLay->addWidget(iconLabel);
         iconLabel->setToolTip(toolTips[forKind]);
@@ -334,13 +339,25 @@ private Q_SLOTS:
             }
         }
         mOutLayout->setEnabled(false);
-        mPlaceholderWidget->setVisible(!cms && !pgp && sigKey.isNull());
-        mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
-        mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
-        mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
-        mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && pgp && sigKey.protocol() != Protocol::OpenPGP);
-        mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
-        mRequester[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir && !mPlaceholderWidget->isVisible());
+        if (cms || pgp || !sigKey.isNull()) {
+            mPlaceholderWidget->setVisible(false);
+            mOutputLabel->setVisible(true);
+            mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
+            mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
+            mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
+            mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && pgp && sigKey.protocol() != Protocol::OpenPGP);
+            mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
+            mRequester[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
+            auto firstVisible = std::find_if(std::cbegin(mRequester), std::cend(mRequester),
+                                             [](auto w) { return w->isVisible(); });
+            mOutputLabel->setBuddy(*firstVisible);
+        } else {
+            mPlaceholderWidget->setVisible(true);
+            mOutputLabel->setVisible(false);
+            std::for_each(std::cbegin(mRequester), std::cend(mRequester),
+                          [](auto w) { w->setVisible(false); });
+            mOutputLabel->setBuddy(nullptr);
+        }
         mOutLayout->setEnabled(true);
     }
 
@@ -352,6 +369,7 @@ private:
     QVBoxLayout *mOutLayout;
     QWidget *mPlaceholderWidget;
     QCheckBox *mUseOutputDirChk;
+    QLabel *mOutputLabel;
     bool mArchive;
     bool mUseOutputDir;
 };

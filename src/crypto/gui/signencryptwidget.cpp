@@ -487,17 +487,20 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
     if (!w) {
         return;
     }
-    int emptyEdits = 0;
-    for (const CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
-        if (edit->isEmpty()) {
-            emptyEdits++;
+    const int emptyEdits =
+        std::count_if(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+                      [](auto w) { return w->isEmpty(); });
+    if (emptyEdits > 1) {
+        if (w->hasFocus()) {
+            const int index = mRecpLayout->indexOf(w);
+            const auto focusWidget = (index < mRecpLayout->count() - 1) ?
+                mRecpLayout->itemAt(index + 1)->widget() :
+                mRecpLayout->itemAt(mRecpLayout->count() - 2)->widget();
+            focusWidget->setFocus();
         }
-        if (emptyEdits > 1) {
-            mRecpLayout->removeWidget(w);
-            mRecpWidgets.removeAll(w);
-            w->deleteLater();
-            return;
-        }
+        mRecpLayout->removeWidget(w);
+        mRecpWidgets.removeAll(w);
+        w->deleteLater();
     }
 }
 

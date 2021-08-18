@@ -155,6 +155,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     recipientScroll->setWidgetResizable(true);
     recipientScroll->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     recipientScroll->setFrameStyle(QFrame::NoFrame);
+    recipientScroll->setFocusPolicy(Qt::NoFocus);
     mRecpLayout->setContentsMargins(0, 0, 0, 0);
     encBoxLay->addWidget(recipientScroll, 1);
 

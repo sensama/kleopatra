@@ -257,7 +257,7 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
     connect(certSel, &CertificateLineEdit::wantsRemoval,
             this, &SignEncryptWidget::recpRemovalRequested);
     connect(certSel, &CertificateLineEdit::editingStarted,
-            this, [this] () { addRecipientWidget(); });
+            this, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::dialogRequested,
             this, [this, certSel] () { dialogRequested(certSel); });
 
@@ -387,14 +387,10 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 
 void SignEncryptWidget::recipientsChanged()
 {
-    bool oneEmpty = false;
-    for (const CertificateLineEdit *w : std::as_const(mRecpWidgets)) {
-        if (w->key().isNull() && w->group().isNull()) {
-            oneEmpty = true;
-            break;
-        }
-    }
-    if (!oneEmpty) {
+    const bool hasEmptyRecpWidget =
+        std::any_of(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+                    [](auto w) { return w->isEmpty(); });
+    if (!hasEmptyRecpWidget) {
         addRecipientWidget();
     }
     updateOp();

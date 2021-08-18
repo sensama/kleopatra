@@ -127,7 +127,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     auto encBoxLay = new QVBoxLayout;
     auto encBox = new QGroupBox(i18nc("@action", "Encrypt"));
     encBox->setLayout(encBoxLay);
-    encBox->setAlignment(Qt::AlignLeft);
 
     // Own key
     mSelfSelect = new KeySelectionCombo();
@@ -174,8 +173,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     encBoxLay->addWidget(mSymmetric);
 
     // Connect it
-    connect(encBox, &QGroupBox::toggled, recipientWidget, &QWidget::setEnabled);
-    connect(encBox, &QGroupBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mEncSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
     connect(mEncSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
     connect(mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);

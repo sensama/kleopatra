@@ -214,7 +214,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     lay->addWidget(encBox);
 
     loadKeys();
-    setProtocol(GpgME::UnknownProtocol);
+    onProtocolChanged();
     addRecipientWidget();
     updateOp();
 }
@@ -607,19 +607,24 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
         return;
     }
     mCurrentProto = proto;
-    mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(proto)));
-    mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(proto)));
-    const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(proto));
+    onProtocolChanged();
+}
+
+void Kleo::SignEncryptWidget::onProtocolChanged()
+{
+    mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(mCurrentProto)));
+    mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(mCurrentProto)));
+    const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(mCurrentProto));
     for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
         edit->setKeyFilter(encFilter);
     }
 
     if (mIsExclusive) {
-        mSymmetric->setDisabled(proto == GpgME::CMS);
-        if (mSymmetric->isChecked() && proto == GpgME::CMS) {
+        mSymmetric->setDisabled(mCurrentProto == GpgME::CMS);
+        if (mSymmetric->isChecked() && mCurrentProto == GpgME::CMS) {
             mSymmetric->setChecked(false);
         }
-        if (mSigChk->isChecked() && proto == GpgME::CMS &&
+        if (mSigChk->isChecked() && mCurrentProto == GpgME::CMS &&
                 (mEncSelfChk->isChecked() || mEncOtherChk->isChecked())) {
             mSigChk->setChecked(false);
         }

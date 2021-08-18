@@ -116,6 +116,7 @@ Q_SIGNALS:
 
 private:
     CertificateLineEdit* addRecipientWidget();
+    void onProtocolChanged();
 
 private:
     KeySelectionCombo *mSigSelect = nullptr;
@@ -132,7 +133,7 @@ private:
     QCheckBox *mEncOtherChk = nullptr;
     QCheckBox *mEncSelfChk = nullptr;
     int mRecpRowCount = 2;
-    GpgME::Protocol mCurrentProto;
+    GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
 };
 } // namespace Kleo

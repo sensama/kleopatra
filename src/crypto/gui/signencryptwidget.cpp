@@ -104,7 +104,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     /* The signature selection */
     auto sigLay = new QHBoxLayout;
-    auto sigGrp = new QGroupBox(i18n("Prove authenticity (sign)"));
+    auto sigGrp = new QGroupBox(i18nc("@title:group", "Prove authenticity (sign)"));
     mSigChk = new QCheckBox(i18n("Sign as:"));
     mSigChk->setChecked(true);
 
@@ -123,7 +123,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     // Recipient selection
     auto recipientGrid = new QGridLayout;
     auto encBoxLay = new QVBoxLayout;
-    auto encBox = new QGroupBox(i18nc("@action", "Encrypt"));
+    auto encBox = new QGroupBox(i18nc("@title:group", "Encrypt"));
     encBox->setLayout(encBoxLay);
 
     // Own key
@@ -168,7 +168,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     // Checkbox for password
     mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
-    mSymmetric->setToolTip(i18nc("Tooltip information for symetric encryption",
+    mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                  "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));

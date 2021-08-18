@@ -84,7 +84,7 @@ public:
                 &SigEncPage::updateFileWidgets);
         updateCommitButton(mWidget->currentOp());
 
-        auto outputGrp = new QGroupBox(i18n("Output"));
+        auto outputGrp = new QGroupBox(i18nc("@title:group", "Output"));
         outputGrp->setLayout(mOutLayout);
 
         mPlaceholderWidget = new QLabel(i18n("Please select an action."));
@@ -92,8 +92,8 @@ public:
 
         mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage",
                                                "Encrypt / Sign &each file separately."));
-        mUseOutputDirChk->setToolTip(i18nc("@info",
-                                            "Keep each file separate instead of creating an archive for all."));
+        mUseOutputDirChk->setToolTip(i18nc("@info:tooltip",
+                                           "Keep each file separate instead of creating an archive for all."));
         mOutLayout->addWidget(mUseOutputDirChk);
         connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {
                     mUseOutputDir = state;

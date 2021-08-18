@@ -127,9 +127,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     encBox->setLayout(encBoxLay);
 
     // Own key
-    mSelfSelect = new KeySelectionCombo();
     mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
     mEncSelfChk->setChecked(true);
+    mSelfSelect = new KeySelectionCombo();
     recipientGrid->addWidget(mEncSelfChk, 0, 0);
     recipientGrid->addWidget(mSelfSelect, 0, 1);
 
@@ -164,6 +164,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             bar->setValue(max);
         });
 
+    addRecipientWidget();
 
     // Checkbox for password
     mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
@@ -215,7 +216,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     loadKeys();
     onProtocolChanged();
-    addRecipientWidget();
     updateOp();
 }
 
@@ -246,6 +246,10 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 
     mRecpWidgets << certSel;
 
+    if (mRecpLayout->count() > 0) {
+        auto lastWidget = mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
+        setTabOrder(lastWidget, certSel);
+    }
     mRecpLayout->addWidget(certSel);
 
     connect(certSel, &CertificateLineEdit::keyChanged,
@@ -350,6 +354,10 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
     auto unknownWidget = new UnknownRecipientWidget(keyID);
     mUnknownWidgets << unknownWidget;
 
+    if (mRecpLayout->count() > 0) {
+        auto lastWidget = mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
+        setTabOrder(lastWidget, unknownWidget);
+    }
     mRecpLayout->addWidget(unknownWidget);
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,

@@ -95,7 +95,6 @@ public:
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     : QWidget(parent),
       mModel(AbstractKeyListModel::createFlatKeyListModel(this)),
-      mRecpRowCount(2),
       mIsExclusive(sigEncExclusive)
 {
     auto lay = new QVBoxLayout(this);
@@ -122,8 +121,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             this, &SignEncryptWidget::updateOp);
 
     // Recipient selection
-    mRecpLayout = new QGridLayout;
-    mRecpLayout->setAlignment(Qt::AlignTop);
+    auto recipientGrid = new QGridLayout;
     auto encBoxLay = new QVBoxLayout;
     auto encBox = new QGroupBox(i18nc("@action", "Encrypt"));
     encBox->setLayout(encBoxLay);
@@ -132,12 +130,12 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     mSelfSelect = new KeySelectionCombo();
     mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
     mEncSelfChk->setChecked(true);
-    mRecpLayout->addWidget(mEncSelfChk, 0, 0);
-    mRecpLayout->addWidget(mSelfSelect, 0, 1);
+    recipientGrid->addWidget(mEncSelfChk, 0, 0);
+    recipientGrid->addWidget(mSelfSelect, 0, 1);
 
     // Checkbox for other keys
     mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
-    mRecpLayout->addWidget(mEncOtherChk, 1, 0);
+    recipientGrid->addWidget(mEncOtherChk, 1, 0, Qt::AlignTop);
     mEncOtherChk->setChecked(true);
     connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
@@ -146,17 +144,19 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             }
             updateOp();
         });
+    mRecpLayout = new QVBoxLayout;
+    recipientGrid->addLayout(mRecpLayout, 1, 1);
 
     // Scroll area for other keys
     auto recipientWidget = new QWidget;
     auto recipientScroll = new QScrollArea;
-    recipientWidget->setLayout(mRecpLayout);
+    recipientWidget->setLayout(recipientGrid);
     recipientScroll->setWidget(recipientWidget);
     recipientScroll->setWidgetResizable(true);
     recipientScroll->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
     recipientScroll->setFrameStyle(QFrame::NoFrame);
     recipientScroll->setFocusPolicy(Qt::NoFocus);
-    mRecpLayout->setContentsMargins(0, 0, 0, 0);
+    recipientGrid->setContentsMargins(0, 0, 0, 0);
     encBoxLay->addWidget(recipientScroll, 1);
 
     auto bar = recipientScroll->verticalScrollBar();
@@ -242,16 +242,11 @@ void SignEncryptWidget::setEncryptWithPasswordText(const QString& text)
 CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
     auto certSel = new CertificateLineEdit(mModel, this,
-                                                           new EncryptCertificateFilter(mCurrentProto));
+                                           new EncryptCertificateFilter(mCurrentProto));
+
     mRecpWidgets << certSel;
 
-    if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
-        // First widget. Should align with the row above that
-        // contains the encrypt for others checkbox.
-        mRecpLayout->addWidget(certSel, mRecpRowCount - 1, 1);
-    } else {
-        mRecpLayout->addWidget(certSel, mRecpRowCount++, 1);
-    }
+    mRecpLayout->addWidget(certSel);
 
     connect(certSel, &CertificateLineEdit::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
@@ -355,13 +350,7 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
     auto unknownWidget = new UnknownRecipientWidget(keyID);
     mUnknownWidgets << unknownWidget;
 
-    if (!mRecpLayout->itemAtPosition(mRecpRowCount - 1, 1)) {
-        // First widget. Should align with the row above that
-        // contains the encrypt for others checkbox.
-        mRecpLayout->addWidget(unknownWidget, mRecpRowCount - 1, 1);
-    } else {
-        mRecpLayout->addWidget(unknownWidget, mRecpRowCount++, 1);
-    }
+    mRecpLayout->addWidget(unknownWidget);
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this] () {
@@ -500,22 +489,8 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
             emptyEdits++;
         }
         if (emptyEdits > 1) {
-            int row, col, rspan, cspan;
-            mRecpLayout->getItemPosition(mRecpLayout->indexOf(w), &row, &col, &rspan, &cspan);
             mRecpLayout->removeWidget(w);
             mRecpWidgets.removeAll(w);
-            // The row count of the grid layout does not reflect the actual
-            // items so we keep our internal count.
-            mRecpRowCount--;
-            for (int i = row + 1; i <= mRecpRowCount; i++) {
-                // move widgets one up
-                auto item = mRecpLayout->itemAtPosition(i, 1);
-                if (!item) {
-                    break;
-                }
-                mRecpLayout->removeItem(item);
-                mRecpLayout->addItem(item, i - 1, 1);
-            }
             w->deleteLater();
             return;
         }

@@ -12,8 +12,8 @@
 #include <QVector>
 #include <gpgme++/key.h>
 
-class QGridLayout;
 class QCheckBox;
+class QVBoxLayout;
 
 namespace Kleo
 {
@@ -125,14 +125,13 @@ private:
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
     QVector<GpgME::Key> mAddedKeys;
     QVector<KeyGroup> mAddedGroups;
-    QGridLayout *mRecpLayout = nullptr;
+    QVBoxLayout *mRecpLayout = nullptr;
     QString mOp;
     AbstractKeyListModel *mModel = nullptr;
     QCheckBox *mSymmetric = nullptr;
     QCheckBox *mSigChk = nullptr;
     QCheckBox *mEncOtherChk = nullptr;
     QCheckBox *mEncSelfChk = nullptr;
-    int mRecpRowCount = 2;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
 };

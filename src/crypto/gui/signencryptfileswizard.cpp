@@ -392,9 +392,9 @@ private Q_SLOTS:
             mRequesters[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() != Protocol::OpenPGP && pgp);
             mRequesters[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
             mRequesters[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
-            auto firstVisible = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters),
-                                             [](auto w) { return w->isVisible(); });
-            mOutputLabel->setBuddy(*firstVisible);
+            auto firstNotHidden = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters),
+                                               [](auto w) { return !w->isHidden(); });
+            mOutputLabel->setBuddy(*firstNotHidden);
         } else {
             mPlaceholderWidget->setVisible(true);
             mOutputLabel->setVisible(false);

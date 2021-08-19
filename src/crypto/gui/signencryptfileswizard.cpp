@@ -90,6 +90,11 @@ public:
         mPlaceholderWidget = new QLabel(i18n("Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
+        mOutputLabel = new QLabel(i18nc("@label on SignEncryptPage", "Output &files/folder:"));
+        mOutLayout->addWidget(mOutputLabel);
+
+        createRequesters(mOutLayout);
+
         mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage",
                                                "Encrypt / Sign &each file separately."));
         mUseOutputDirChk->setToolTip(i18nc("@info:tooltip",
@@ -100,9 +105,6 @@ public:
                     mArchive = !mUseOutputDir;
                     updateFileWidgets();
                 });
-
-        mOutputLabel = new QLabel(i18nc("@label on SignEncryptPage", "Output &files/folder:"));
-        mOutLayout->addWidget(mOutputLabel);
 
         vLay->addWidget(outputGrp);
         setMinimumHeight(300);
@@ -223,7 +225,7 @@ public:
     }
 
 private:
-    QWidget *createRequester(int forKind, QBoxLayout *lay) {
+    void createRequesters(QBoxLayout *lay) {
         static const QMap <int, QString> icons = {
             { SignEncryptFilesWizard::SignatureCMS, QStringLiteral("document-sign") },
             { SignEncryptFilesWizard::SignaturePGP, QStringLiteral("document-sign") },
@@ -241,38 +243,46 @@ private:
             { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
         };
 
-        auto req = new FileNameRequester(forKind == SignEncryptFilesWizard::Directory ?
-                                                       QDir::Dirs : QDir::Files, this);
-        req->setFileName(mOutNames[forKind]);
-        req->setExistingOnly(false);
-        auto hLay = new QHBoxLayout;
-        auto iconLabel = new QLabel;
-        auto ret = new QWidget;
-        ret->setFocusPolicy(req->focusPolicy());
-        ret->setFocusProxy(req);
-        iconLabel->setPixmap(QIcon::fromTheme(icons[forKind]).pixmap(32,32));
-        hLay->addWidget(iconLabel);
-        iconLabel->setToolTip(toolTips[forKind]);
-        req->setToolTip(toolTips[forKind]);
-        hLay->addWidget(req);
-        ret->setLayout(hLay);
-        lay->addWidget(ret);
+        if (!mRequester.empty()) {
+            return;
+        }
+        for (auto kind : icons.keys()) {
+            auto req = new FileNameRequester{kind == SignEncryptFilesWizard::Directory ?
+                                             QDir::Dirs : QDir::Files, this};
+            req->setExistingOnly(false);
+            auto hLay = new QHBoxLayout;
+            auto iconLabel = new QLabel;
+            auto requesterWithIcon = new QWidget;
+            requesterWithIcon->setFocusPolicy(req->focusPolicy());
+            requesterWithIcon->setFocusProxy(req);
+            iconLabel->setPixmap(QIcon::fromTheme(icons[kind]).pixmap(32,32));
+            hLay->addWidget(iconLabel);
+            iconLabel->setToolTip(toolTips[kind]);
+            req->setToolTip(toolTips[kind]);
+            hLay->addWidget(req);
+            requesterWithIcon->setLayout(hLay);
+            lay->addWidget(requesterWithIcon);
 
-        connect (req, &FileNameRequester::fileNameChanged, this,
-                 [this, forKind](const QString &newName) {
-                    mOutNames[forKind] = newName;
-                 });
-        return ret;
+            connect(req, &FileNameRequester::fileNameChanged, this,
+                    [this, kind](const QString &newName) {
+                        mOutNames[kind] = newName;
+                    });
+
+            mRequester.insert(kind, requesterWithIcon);
+        }
     }
 
 public:
     void setOutputNames(const QMap<int, QString> &names) {
         Q_ASSERT(mOutNames.isEmpty());
-        mOutNames = names;
-        const auto keys = mOutNames.keys();
-        for (int i : keys) {
-            mRequester[i] = createRequester(i, mOutLayout);
+        for (auto it = std::begin(names); it != std::end(names); ++it) {
+            auto requesterWithIcon = mRequester.value(it.key());
+            Q_ASSERT(requesterWithIcon);
+            auto requester = requesterWithIcon->findChild<FileNameRequester *>();
+            Q_ASSERT(requester);
+            requester->setFileName(it.value());
         }
+        mOutNames = names;
         updateFileWidgets();
     }
 

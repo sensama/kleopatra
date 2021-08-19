@@ -335,19 +335,12 @@ private Q_SLOTS:
         }
         const std::vector<Key> recipients = mWidget->recipients();
         const Key sigKey = mWidget->signKey();
-        bool pgp = mWidget->encryptSymmetric();
-        bool cms = false;
+        const bool pgp = mWidget->encryptSymmetric() ||
+                         std::any_of(std::cbegin(recipients), std::cend(recipients),
+                                     [](const auto &k) { return k.protocol() == Protocol::OpenPGP; });
+        const bool cms = std::any_of(std::cbegin(recipients), std::cend(recipients),
+                                     [](const auto &k) { return k.protocol() == Protocol::CMS; });
 
-        for (const Key &k : recipients) {
-            if (pgp && cms) {
-                break;
-            }
-            if (k.protocol() == Protocol::OpenPGP) {
-                pgp = true;
-            } else {
-                cms = true;
-            }
-        }
         mOutLayout->setEnabled(false);
         if (cms || pgp || !sigKey.isNull()) {
             mPlaceholderWidget->setVisible(false);
@@ -355,7 +348,7 @@ private Q_SLOTS:
             mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
             mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
             mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
-            mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && pgp && sigKey.protocol() != Protocol::OpenPGP);
+            mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() != Protocol::OpenPGP && pgp);
             mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
             mRequester[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
             auto firstVisible = std::find_if(std::cbegin(mRequester), std::cend(mRequester),

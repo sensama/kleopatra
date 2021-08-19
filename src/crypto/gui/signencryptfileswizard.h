@@ -47,12 +47,12 @@ class SignEncryptFilesWizard : public QWizard
 {
     Q_OBJECT
 public:
-    enum KindNames{
+    enum KindNames {
         SignatureCMS,
+        SignaturePGP,
         CombinedPGP,
         EncryptedPGP,
         EncryptedCMS,
-        SignaturePGP,
         Directory
     };
 

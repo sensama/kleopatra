@@ -102,13 +102,18 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     mModel->useKeyCache(true, KeyList::IncludeGroups);
 
+    const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
+    const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+
     /* The signature selection */
     auto sigLay = new QHBoxLayout;
     auto sigGrp = new QGroupBox(i18nc("@title:group", "Prove authenticity (sign)"));
     mSigChk = new QCheckBox(i18n("Sign as:"));
-    mSigChk->setChecked(true);
+    mSigChk->setEnabled(haveSecretKeys);
+    mSigChk->setChecked(haveSecretKeys);
 
     mSigSelect = new KeySelectionCombo();
+    mSigSelect->setEnabled(mSigChk->isChecked());
 
     sigLay->addWidget(mSigChk);
     sigLay->addWidget(mSigSelect, 1);
@@ -121,22 +126,25 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             this, &SignEncryptWidget::updateOp);
 
     // Recipient selection
-    auto recipientGrid = new QGridLayout;
     auto encBoxLay = new QVBoxLayout;
     auto encBox = new QGroupBox(i18nc("@title:group", "Encrypt"));
     encBox->setLayout(encBoxLay);
+    auto recipientGrid = new QGridLayout;
 
     // Own key
     mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
-    mEncSelfChk->setChecked(true);
+    mEncSelfChk->setEnabled(haveSecretKeys);
+    mEncSelfChk->setChecked(haveSecretKeys);
     mSelfSelect = new KeySelectionCombo();
+    mSelfSelect->setEnabled(mEncSelfChk->isChecked());
     recipientGrid->addWidget(mEncSelfChk, 0, 0);
     recipientGrid->addWidget(mSelfSelect, 0, 1);
 
     // Checkbox for other keys
     mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
+    mEncOtherChk->setEnabled(havePublicKeys);
+    mEncOtherChk->setChecked(havePublicKeys);
     recipientGrid->addWidget(mEncOtherChk, 1, 0, Qt::AlignTop);
-    mEncOtherChk->setChecked(true);
     connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
             for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
@@ -172,6 +180,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                                  "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
+    mSymmetric->setChecked(!havePublicKeys);
     encBoxLay->addWidget(mSymmetric);
 
     // Connect it
@@ -214,6 +223,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     lay->addWidget(encBox);
 
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
+            this, [this]() {
+                const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
+                const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+                mSigChk->setEnabled(haveSecretKeys);
+                mEncSelfChk->setEnabled(haveSecretKeys);
+                mEncOtherChk->setEnabled(havePublicKeys);
+            });
+
     loadKeys();
     onProtocolChanged();
     updateOp();
@@ -243,7 +261,7 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
     auto certSel = new CertificateLineEdit(mModel, this,
                                            new EncryptCertificateFilter(mCurrentProto));
-
+    certSel->setEnabled(mEncOtherChk->isChecked());
     mRecpWidgets << certSel;
 
     if (mRecpLayout->count() > 0) {
@@ -564,18 +582,17 @@ void SignEncryptWidget::saveOwnKeys() const
 
 void SignEncryptWidget::setSigningChecked(bool value)
 {
-    mSigChk->setChecked(value);
+    mSigChk->setChecked(value && !KeyCache::instance()->secretKeys().empty());
 }
 
 void SignEncryptWidget::setEncryptionChecked(bool checked)
 {
     if (checked) {
-        const bool haveOwnKeys = !KeyCache::instance()->secretKeys().empty();
-        const bool haveOtherKeys = !KeyCache::instance()->keys().empty();
-        const bool haveKeys = haveOwnKeys && haveOtherKeys;
-        mEncSelfChk->setChecked(haveKeys);
-        mEncOtherChk->setChecked(haveKeys);
-        mSymmetric->setChecked(!haveKeys);
+        const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
+        const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+        mEncSelfChk->setChecked(haveSecretKeys);
+        mEncOtherChk->setChecked(havePublicKeys);
+        mSymmetric->setChecked(!havePublicKeys);
     } else {
         mEncSelfChk->setChecked(false);
         mEncOtherChk->setChecked(false);

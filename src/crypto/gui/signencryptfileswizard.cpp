@@ -52,6 +52,61 @@ enum Page {
     NumPages
 };
 
+class FileNameRequesterWithIcon : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit FileNameRequesterWithIcon(QDir::Filters filter, QWidget *parent = nullptr)
+        : QWidget(parent)
+    {
+        auto layout = new QHBoxLayout{this};
+        layout->setContentsMargins(0, 0, 0, 0);
+        mIconLabel = new QLabel{this};
+        mRequester = new FileNameRequester{filter, this};
+        mRequester->setExistingOnly(false);
+        layout->addWidget(mIconLabel);
+        layout->addWidget(mRequester);
+
+        setFocusPolicy(mRequester->focusPolicy());
+        setFocusProxy(mRequester);
+
+        connect(mRequester, &FileNameRequester::fileNameChanged,
+                this, &FileNameRequesterWithIcon::fileNameChanged);
+    }
+
+    void setIcon(const QIcon &icon)
+    {
+        mIconLabel->setPixmap(icon.pixmap(32, 32));
+    }
+
+    void setFileName(const QString &name)
+    {
+        mRequester->setFileName(name);
+    }
+
+    QString fileName() const
+    {
+        return mRequester->fileName();
+    }
+
+Q_SIGNALS:
+    void fileNameChanged(const QString &filename);
+
+protected:
+    bool event(QEvent *e) override
+    {
+        if (e->type() == QEvent::ToolTipChange) {
+            mRequester->setToolTip(toolTip());
+        }
+        return QWidget::event(e);
+    }
+
+private:
+    QLabel *mIconLabel;
+    FileNameRequester *mRequester;
+};
+
 class SigEncPage: public QWizardPage
 {
     Q_OBJECT
@@ -243,32 +298,22 @@ private:
             { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
         };
 
-        if (!mRequester.empty()) {
+        if (!mRequesters.empty()) {
             return;
         }
         for (auto kind : icons.keys()) {
-            auto req = new FileNameRequester{kind == SignEncryptFilesWizard::Directory ?
-                                             QDir::Dirs : QDir::Files, this};
-            req->setExistingOnly(false);
-            auto hLay = new QHBoxLayout;
-            auto iconLabel = new QLabel;
-            auto requesterWithIcon = new QWidget;
-            requesterWithIcon->setFocusPolicy(req->focusPolicy());
-            requesterWithIcon->setFocusProxy(req);
-            iconLabel->setPixmap(QIcon::fromTheme(icons[kind]).pixmap(32,32));
-            hLay->addWidget(iconLabel);
-            iconLabel->setToolTip(toolTips[kind]);
-            req->setToolTip(toolTips[kind]);
-            hLay->addWidget(req);
-            requesterWithIcon->setLayout(hLay);
+            auto requesterWithIcon = new FileNameRequesterWithIcon{
+                kind == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};
+            requesterWithIcon->setIcon(QIcon::fromTheme(icons[kind]));
+            requesterWithIcon->setToolTip(toolTips[kind]);
             lay->addWidget(requesterWithIcon);
 
-            connect(req, &FileNameRequester::fileNameChanged, this,
+            connect(requesterWithIcon, &FileNameRequesterWithIcon::fileNameChanged, this,
                     [this, kind](const QString &newName) {
                         mOutNames[kind] = newName;
                     });
 
-            mRequester.insert(kind, requesterWithIcon);
+            mRequesters.insert(kind, requesterWithIcon);
         }
     }
 
@@ -276,11 +321,7 @@ public:
     void setOutputNames(const QMap<int, QString> &names) {
         Q_ASSERT(mOutNames.isEmpty());
         for (auto it = std::begin(names); it != std::end(names); ++it) {
-            auto requesterWithIcon = mRequester.value(it.key());
-            Q_ASSERT(requesterWithIcon);
-            auto requester = requesterWithIcon->findChild<FileNameRequester *>();
-            Q_ASSERT(requester);
-            requester->setFileName(it.value());
+            mRequesters.value(it.key())->setFileName(it.value());
         }
         mOutNames = names;
         updateFileWidgets();
@@ -330,7 +371,7 @@ private Q_SLOTS:
 
     void updateFileWidgets()
     {
-        if (mRequester.isEmpty()) {
+        if (mRequesters.isEmpty()) {
             return;
         }
         const std::vector<Key> recipients = mWidget->recipients();
@@ -345,19 +386,19 @@ private Q_SLOTS:
         if (cms || pgp || !sigKey.isNull()) {
             mPlaceholderWidget->setVisible(false);
             mOutputLabel->setVisible(true);
-            mRequester[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
-            mRequester[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
-            mRequester[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
-            mRequester[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() != Protocol::OpenPGP && pgp);
-            mRequester[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
-            mRequester[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
-            auto firstVisible = std::find_if(std::cbegin(mRequester), std::cend(mRequester),
+            mRequesters[SignEncryptFilesWizard::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
+            mRequesters[SignEncryptFilesWizard::EncryptedCMS]->setVisible(!mUseOutputDir && cms);
+            mRequesters[SignEncryptFilesWizard::CombinedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && pgp);
+            mRequesters[SignEncryptFilesWizard::EncryptedPGP]->setVisible(!mUseOutputDir && sigKey.protocol() != Protocol::OpenPGP && pgp);
+            mRequesters[SignEncryptFilesWizard::SignaturePGP]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::OpenPGP && !pgp);
+            mRequesters[SignEncryptFilesWizard::Directory]->setVisible(mUseOutputDir);
+            auto firstVisible = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters),
                                              [](auto w) { return w->isVisible(); });
             mOutputLabel->setBuddy(*firstVisible);
         } else {
             mPlaceholderWidget->setVisible(true);
             mOutputLabel->setVisible(false);
-            std::for_each(std::cbegin(mRequester), std::cend(mRequester),
+            std::for_each(std::cbegin(mRequesters), std::cend(mRequesters),
                           [](auto w) { w->setVisible(false); });
             mOutputLabel->setBuddy(nullptr);
         }
@@ -368,7 +409,7 @@ private:
     SignEncryptFilesWizard *mParent;
     SignEncryptWidget *mWidget;
     QMap <int, QString> mOutNames;
-    QMap <int, QWidget *> mRequester;
+    QMap <int, FileNameRequesterWithIcon *> mRequesters;
     QVBoxLayout *mOutLayout;
     QWidget *mPlaceholderWidget;
     QCheckBox *mUseOutputDirChk;

@@ -478,6 +478,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
 
 void SignEncryptFilesWizard::setLabelText(const QString &label)
 {
+    button(QWizard::CommitButton)->setToolTip(label);
     setButtonText(QWizard::CustomButton1, label);
 }
 

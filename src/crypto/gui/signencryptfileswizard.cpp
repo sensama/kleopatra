@@ -237,17 +237,13 @@ public:
             return true;
         }
 
-        if (!mWidget->selfKey().isNull()) {
+        if (!mWidget->selfKey().isNull() || mWidget->encryptSymmetric()) {
             return true;
         }
-        bool hasSecret = false;
-        Q_FOREACH (const Key k, mWidget->recipients()) {
-            if (k.hasSecret()) {
-                hasSecret = true;
-                break;
-            }
-        }
-        if (!hasSecret && !mWidget->encryptSymmetric()) {
+        const auto recipientKeys = recipients();
+        const bool hasSecret = std::any_of(std::begin(recipientKeys), std::end(recipientKeys),
+                                           [](const auto &k) { return k.hasSecret(); });
+        if (!hasSecret) {
             if (KMessageBox::warningContinueCancel(this,
             xi18nc("@info",
             "<para>None of the recipients you are encrypting to seems to be your own.</para>"

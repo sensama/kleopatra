@@ -119,7 +119,8 @@ public:
           mOutLayout(new QVBoxLayout),
           mOutputLabel{nullptr},
           mArchive(false),
-          mUseOutputDir(false)
+          mUseOutputDir(false),
+          mSingleFile{true}
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
@@ -156,7 +157,7 @@ public:
         mOutLayout->addWidget(mUseOutputDirChk);
         connect (mUseOutputDirChk, &QCheckBox::toggled, this, [this] (bool state) {
                     mUseOutputDir = state;
-                    mArchive = !mUseOutputDir;
+                    mArchive = !mUseOutputDir && !mSingleFile;
                     updateFileWidgets();
                 });
 
@@ -206,6 +207,12 @@ public:
         } else {
             mUseOutputDirChk->setChecked(false);
         }
+    }
+
+    void setSingleFile(bool singleFile)
+    {
+        mSingleFile = singleFile;
+        mArchive = !mUseOutputDir && !mSingleFile;
     }
 
     bool validatePage() override
@@ -416,6 +423,7 @@ private:
     QLabel *mOutputLabel;
     bool mArchive;
     bool mUseOutputDir;
+    bool mSingleFile;
 };
 
 class ResultPage : public NewResultPage
@@ -527,6 +535,11 @@ void SignEncryptFilesWizard::setArchiveForced(bool archive)
 void SignEncryptFilesWizard::setArchiveMutable(bool archive)
 {
     mSigEncPage->setArchiveMutable(archive);
+}
+
+void SignEncryptFilesWizard::setSingleFile(bool singleFile)
+{
+    mSigEncPage->setSingleFile(singleFile);
 }
 
 std::vector<Key> SignEncryptFilesWizard::resolvedRecipients() const

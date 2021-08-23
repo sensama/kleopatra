@@ -69,6 +69,8 @@ public:
     void setArchiveForced(bool archive);
     void setArchiveMutable(bool archive);
 
+    void setSingleFile(bool singleFile);
+
     void setOutputNames(const QMap<int, QString> &nameMap) const;
     QMap<int, QString> outputNames() const;
 

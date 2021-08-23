@@ -328,6 +328,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
         }
     }
     d->ensureWizardCreated();
+    d->wizard->setSingleFile(!archive);
     d->wizard->setOutputNames(buildOutputNames(files, archive));
 }
 

@@ -162,8 +162,6 @@ public:
 
         vLay->addWidget(outputGrp);
 
-        updateCommitButton(mWidget->currentOp());
-
         setMinimumHeight(300);
     }
 
@@ -190,6 +188,7 @@ public:
     void initializePage() override
     {
         setCommitPage(true);
+        updateCommitButton(mWidget->currentOp());
     }
 
     void setArchiveForced(bool archive)
@@ -346,6 +345,9 @@ public:
 private Q_SLOTS:
     void updateCommitButton(const QString &label)
     {
+        if (mParent->currentPage() != this) {
+            return;
+        }
         auto btn = mParent->button(QWizard::CommitButton);
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);

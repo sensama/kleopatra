@@ -137,7 +137,6 @@ public:
                 &SigEncPage::updateCommitButton);
         connect(mWidget, &SignEncryptWidget::keysChanged, this,
                 &SigEncPage::updateFileWidgets);
-        updateCommitButton(mWidget->currentOp());
 
         auto outputGrp = new QGroupBox(i18nc("@title:group", "Output"));
         outputGrp->setLayout(mOutLayout);
@@ -162,6 +161,9 @@ public:
                 });
 
         vLay->addWidget(outputGrp);
+
+        updateCommitButton(mWidget->currentOp());
+
         setMinimumHeight(300);
     }
 

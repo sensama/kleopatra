@@ -73,6 +73,7 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
     q->connect(m_closeButton, &QPushButton::clicked, q, &ResultListWidget::close);
     m_layout->addWidget(m_closeButton);
     m_closeButton->setVisible(false);
+    m_closeButton->setEnabled(false);
 }
 
 ResultListWidget::ResultListWidget(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f), d(new Private(this))
@@ -206,6 +207,7 @@ void ResultListWidget::setStandaloneMode(bool standalone)
         return;
     }
     d->m_closeButton->setVisible(standalone);
+    d->m_closeButton->setEnabled(standalone);
     d->m_progressLabel->setVisible(standalone);
 }
 

@@ -77,6 +77,8 @@
 
 #include <vector>
 #include <KSharedConfig>
+#include <chrono>
+using namespace std::chrono_literals;
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -515,7 +517,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             // wait for them to be finished:
             setEnabled(false);
             QEventLoop ev;
-            QTimer::singleShot(100, &ev, &QEventLoop::quit);
+            QTimer::singleShot(100ms, &ev, &QEventLoop::quit);
             connect(&d->controller, &KeyListController::commandsExecuting, &ev, &QEventLoop::quit);
             ev.exec();
             if (d->controller.hasRunningCommands())

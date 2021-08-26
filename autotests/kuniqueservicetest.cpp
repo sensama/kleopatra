@@ -25,6 +25,8 @@
 #include "utils/kuniqueservice.h"
 
 #include <stdio.h>
+#include <chrono>
+using namespace std::chrono_literals;
 
 class TestObject : public QObject
 {
@@ -151,7 +153,7 @@ int main(int argc, char *argv[])
                               Qt::QueuedConnection,
                               Q_ARG(QStringList, args),
                               Q_ARG(QString, QDir::currentPath()));
-    QTimer::singleShot(400, &testObject, SLOT(firstCall()));
+    QTimer::singleShot(400ms, &testObject, SLOT(firstCall()));
 
     qDebug() << "Running.";
     a.exec();

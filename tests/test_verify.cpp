@@ -23,6 +23,9 @@
 #include <QObject>
 #include <QSignalSpy>
 
+#include <chrono>
+using namespace std::chrono_literals;
+
 // Replace this with a gpgme version check once GnuPG Bug #2092
 // ( https://bugs.gnupg.org/gnupg/issue2092 ) is fixed.
 #define GPGME_MULTITHREADED_KEYLIST_BROKEN
@@ -107,7 +110,7 @@ public Q_SLOTS:
         // Quit after 2500 jobs, that should be enough
         mJobsStarted++;
         if (mJobsStarted >= 2500) {
-            QTimer::singleShot(1000, &mEventLoop, &QEventLoop::quit);
+            QTimer::singleShot(1s, &mEventLoop, &QEventLoop::quit);
         } else {
             QTimer::singleShot(0, this, &VerifyTest::startAnotherJob);
         }

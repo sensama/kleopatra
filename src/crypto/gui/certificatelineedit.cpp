@@ -137,7 +137,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
             this, &CertificateLineEdit::editChanged);
     connect(mLineAction, &QAction::triggered,
             this, &CertificateLineEdit::dialogRequested);
-    connect(mCompleter, QOverload<const QModelIndex &>::of(&QCompleter::activated),
+    connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated),
             this, [this] (const QModelIndex &index) {
                 Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
                 auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();

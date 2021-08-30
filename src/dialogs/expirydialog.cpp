@@ -93,7 +93,7 @@ public:
     {
         connect(ui.inSB, &QSpinBox::valueChanged,
                 q, [this] () { slotInAmountChanged(); });
-        connect(ui.inCB, QOverload<int>::of(&QComboBox::currentIndexChanged),
+        connect(ui.inCB, qOverload<int>(&QComboBox::currentIndexChanged),
                 q, [this] () { slotInUnitChanged(); });
         connect(ui.onCW, &QCalendarWidget::selectionChanged,
                 q, [this] () { slotOnDateChanged(); });

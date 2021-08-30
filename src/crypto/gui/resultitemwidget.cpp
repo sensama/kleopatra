@@ -19,6 +19,7 @@
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
+#include "view/urllabel.h"
 
 #include <Libkleo/MessageBox>
 #include <Libkleo/Classify>
@@ -95,7 +96,7 @@ public:
 
     const std::shared_ptr<const Task::Result> m_result;
     QLabel *m_detailsLabel = nullptr;
-    QLabel *m_actionsLabel = nullptr;
+    UrlLabel *m_auditLogLabel = nullptr;
     QPushButton *m_closeButton = nullptr;
     bool m_importCanceled = false;
 };
@@ -222,18 +223,13 @@ static QUrl auditlog_url_template()
 
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
-    if (!m_actionsLabel || !m_detailsLabel) {
-        return;
-    }
-
-    const auto parentTask = m_result->parentTask();
-    QString auditLogLink;
-    if (m_result->hasError()) {
-        auditLogLink = m_result->auditLog().formatLink(auditlog_url_template(), i18n("Diagnostics"));
-    } else {
-        auditLogLink = m_result->auditLog().formatLink(auditlog_url_template());
-    }
-    m_actionsLabel->setText(auditLogLink);
+    const auto auditLogUrl = m_result->auditLog().asUrl(auditlog_url_template());
+    const auto auditLogLinkText =
+        m_result->hasError() ? i18n("Diagnostics")
+                             : i18nc("The Audit Log is a detailed error log from the gnupg backend",
+                                     "Show Audit Log");
+    m_auditLogLabel->setUrl(auditLogUrl, auditLogLinkText);
+    m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
 }
 
 ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags) : QWidget(parent, flags), d(new Private(result, this))
@@ -272,12 +268,11 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 
     d->addIgnoreMDCButton(actionLayout);
 
-    d->m_actionsLabel = new QLabel;
-    connect(d->m_actionsLabel, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
-    actionLayout->addWidget(d->m_actionsLabel);
-    d->m_actionsLabel->setFocusPolicy(Qt::StrongFocus);
-    d->m_actionsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    d->m_actionsLabel->setStyleSheet(styleSheet);
+    d->m_auditLogLabel = new UrlLabel;
+    connect(d->m_auditLogLabel, &UrlLabel::linkActivated,
+            this, [this](const auto &link) { d->slotLinkActivated(link); });
+    actionLayout->addWidget(d->m_auditLogLabel);
+    d->m_auditLogLabel->setStyleSheet(styleSheet);
 
     d->m_detailsLabel = new QLabel;
     d->m_detailsLabel->setWordWrap(true);

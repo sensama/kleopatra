@@ -29,7 +29,7 @@ AuditLog AuditLog::fromJob(const QGpgME::Job *job)
     }
 }
 
-QString AuditLog::formatLink(const QUrl &urlTemplate, const QString &caption) const
+QUrl AuditLog::asUrl(const QUrl &urlTemplate) const
 {
     // more or less the same as
     // kmail/objecttreeparser.cpp:makeShowAuditLogLink(), so any bug
@@ -42,19 +42,16 @@ QString AuditLog::formatLink(const QUrl &urlTemplate, const QString &caption) co
         } else {
             qCDebug(KLEOPATRA_LOG) << "Error Retrieving Audit Log:" << QString::fromLocal8Bit(m_error.asString());
         }
-        return QString();
+        return {};
     }
 
-
-    if (!m_text.isEmpty()) {
-        QUrl url = urlTemplate;
-        QUrlQuery urlQuery(url);
-        urlQuery.addQueryItem(QStringLiteral("log"), m_text);
-        url.setQuery(urlQuery);
-        return QLatin1String("<a href=\"") + url.url() + QLatin1String("\">") +
-            (caption.isNull() ? i18nc("The Audit Log is a detailed error log from the gnupg backend", "Show Audit Log") : caption) +
-            QLatin1String("</a>");
+    if (m_text.isEmpty()) {
+        return {};
     }
 
-    return QString();
+    QUrl url = urlTemplate;
+    QUrlQuery urlQuery{url};
+    urlQuery.addQueryItem(QStringLiteral("log"), m_text);
+    url.setQuery(urlQuery);
+    return url;
 }

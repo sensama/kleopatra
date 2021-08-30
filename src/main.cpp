@@ -16,6 +16,8 @@
 #include "kleopatraapplication.h"
 #include "mainwindow.h"
 
+#include "accessibility/accessiblewidgetfactory.h"
+
 #include <kcoreaddons_version.h>
 #if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
@@ -56,6 +58,7 @@
 #include <KMessageBox>
 #include <KCrash>
 
+#include <QAccessible>
 #include <QTextDocument> // for Qt::escape
 #include <QMessageBox>
 #include <QTimer>
@@ -100,7 +103,7 @@ int main(int argc, char **argv)
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     KleopatraApplication app(argc, argv);
     KCrash::initialize();
-
+    QAccessible::installFactory(Kleo::accessibleWidgetFactory);
 
     QElapsedTimer timer;
     timer.start();

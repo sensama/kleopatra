@@ -110,7 +110,8 @@ endif()
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
+find_package(Qt5Widgets ${QT_REQUIRED_VERSION} CONFIG REQUIRED Private)
+find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Test Network PrintSupport)
 
 find_package(Assuan2 REQUIRED)
 

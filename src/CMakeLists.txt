@@ -2,6 +2,7 @@ add_subdirectory(icons)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(SYSTEM ${Qt5Widgets_PRIVATE_INCLUDE_DIRS})
 
 if (NOT DISABLE_KWATCHGNUPG)
     add_subdirectory(kwatchgnupg)
@@ -124,6 +125,7 @@ set(_kleopatra_SRCS
   view/nullpinwidget.cpp
   view/tabwidget.cpp
   view/keycacheoverlay.cpp
+  view/urllabel.cpp
   view/waitwidget.cpp
   view/welcomewidget.cpp
 
@@ -279,6 +281,9 @@ set(_kleopatra_SRCS
   smartcard/utils.cpp
 
   ${_kleopatra_deviceinfowatcher_files}
+
+  accessibility/accessiblerichtextlabel.cpp
+  accessibility/accessiblewidgetfactory.cpp
 
   aboutdata.cpp
   systrayicon.cpp

@@ -632,13 +632,17 @@ void Kleo::SignEncryptWidget::onProtocolChanged()
 
 bool SignEncryptWidget::validate()
 {
+    QStringList unresolvedRecipients;
     for (const auto edit: std::as_const(mRecpWidgets)) {
-        if (!edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
-            KMessageBox::error(this, i18nc("%1 is user input that could not be found",
-                        "Could not find a key for '%1'", edit->text().toHtmlEscaped()),
-                    i18n("Failed to find recipient"), KMessageBox::Notify);
-            return false;
+        if (edit->isEnabled() && !edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
+            unresolvedRecipients.push_back(edit->text().toHtmlEscaped());
         }
     }
-    return true;
+    if (!unresolvedRecipients.isEmpty()) {
+        KMessageBox::errorList(this,
+                               i18n("Could not find a key for the following recipients:"),
+                               unresolvedRecipients,
+                               i18n("Failed to find some keys"));
+    }
+    return unresolvedRecipients.isEmpty();
 }

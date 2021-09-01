@@ -202,6 +202,7 @@ void CertificateLineEdit::updateKey()
     if (mailText.isEmpty()) {
         mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
         mLineAction->setToolTip(i18n("Open selection dialog."));
+        setToolTip({});
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {
@@ -229,10 +230,12 @@ void CertificateLineEdit::updateKey()
             if (newKey.isNull() && newGroup.isNull()) {
                 if (mEditFinished) {
                     mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
-                    mLineAction->setToolTip(i18n("Multiple certificates"));
+                    mLineAction->setToolTip(i18n("Multiple matching certificates found"));
+                    setToolTip(i18n("Multiple matching certificates found"));
                 } else {
                     mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
                     mLineAction->setToolTip(i18n("Open selection dialog."));
+                    setToolTip({});
                 }
             }
         } else if (mFilterModel->rowCount() == 1) {
@@ -242,11 +245,13 @@ void CertificateLineEdit::updateKey()
             Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
             if (newKey.isNull() && newGroup.isNull()) {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-                mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
+                mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
+                setToolTip(i18n("No matching certificates found"));
             }
         } else {
             mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-            mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click here to import a certificate."));
+            mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
+            setToolTip(i18n("No matching certificates found"));
         }
     }
     mKey = newKey;
@@ -263,8 +268,6 @@ void CertificateLineEdit::updateKey()
         mLineAction->setToolTip(Formatting::validity(mGroup) +
                                 QLatin1String("<br/>") + i18n("Click for details."));
         setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
-    } else {
-        setToolTip(QString());
     }
 
     Q_EMIT keyChanged();

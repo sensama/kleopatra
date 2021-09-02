@@ -530,11 +530,15 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
 static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients,
                                              const QString &errorString, bool isSigned, const QPointer<Task> &task)
 {
-    QString details;
-
     if ((res.error().code() == GPG_ERR_EIO || res.error().code() == GPG_ERR_NO_DATA) && !errorString.isEmpty()) {
         return i18n("Input error: %1", errorString);
     }
+
+    if (res.isNull() || res.error() || res.error().isCanceled()) {
+        return {};
+    }
+
+    QString details;
 
     if (Kleo::gpgComplianceP("de-vs")) {
         details += ((IS_DE_VS(res)
@@ -555,10 +559,6 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                 details += QStringLiteral("<br/>");
             }
         }
-    }
-
-    if (res.isNull() || res.error() || res.error().isCanceled()) {
-        return details;
     }
 
     if (!isSigned) {

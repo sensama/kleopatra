@@ -527,6 +527,39 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     return details;
 }
 
+static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, unsigned int numRecipients)
+{
+    if (numRecipients == 0) {
+        return {};
+    }
+
+    if (knownRecipients.empty()) {
+        return QLatin1String("<i>") +
+               i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) +
+               QLatin1String("</i>");
+    }
+
+    QString details = i18np("Recipient:", "Recipients:", numRecipients);
+
+    if (numRecipients == 1) {
+        details += QLatin1Char(' ') + renderKey(knownRecipients.front());
+    } else {
+        details += QLatin1String("<ul>");
+        for (const Key &key : knownRecipients) {
+            details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
+        }
+        if (knownRecipients.size() < numRecipients) {
+            details += QLatin1String("<li><i>") +
+                       i18np("One unknown recipient", "%1 unknown recipients",
+                             numRecipients - knownRecipients.size()) +
+                       QLatin1String("</i></li>");
+        }
+        details += QLatin1String("</ul>");
+    }
+
+    return details;
+}
+
 static QString formatDecryptionResultDetails(const DecryptionResult &res, const std::vector<Key> &recipients,
                                              const QString &errorString, bool isSigned, const QPointer<Task> &task)
 {
@@ -535,7 +568,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
     }
 
     if (res.isNull() || res.error() || res.error().isCanceled()) {
-        return {};
+        return formatRecipientsDetails(recipients, res.numRecipients());
     }
 
     QString details;
@@ -576,26 +609,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                    QStringLiteral("<br/><br/>");
     }
 
-    if (recipients.empty() && res.numRecipients() > 0) {
-        return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
-    }
-
-    if (!recipients.empty()) {
-        details += i18np("Recipient:", "Recipients:", res.numRecipients());
-        if (res.numRecipients() == 1) {
-            return details + QLatin1Char(' ') + renderKey(recipients.front());
-        }
-
-        details += QLatin1String("<ul>");
-        for (const Key &key : recipients) {
-            details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
-        }
-        if (recipients.size() < res.numRecipients())
-            details += QLatin1String("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients",
-                       res.numRecipients() - recipients.size()) + QLatin1String("</i></li>");
-
-        details += QLatin1String("</ul>");
-    }
+    details += formatRecipientsDetails(recipients, res.numRecipients());
 
     return details;
 }

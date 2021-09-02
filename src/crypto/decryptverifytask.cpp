@@ -566,10 +566,6 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                    + QLatin1String("<br/>");
     }
 
-    if (recipients.empty() && res.numRecipients() > 0) {
-        return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
-    }
-
     if (res.isLegacyCipherNoMDC()) {
         details += i18nc("Integrity protection was missing because an old cipher was used.",
                          "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
@@ -578,6 +574,10 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                    i18nc("The user is offered to force decrypt a non integrity protected message. With the strong advice to re-encrypt it.",
                          "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.") +
                    QStringLiteral("<br/><br/>");
+    }
+
+    if (recipients.empty() && res.numRecipients() > 0) {
+        return details + QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", res.numRecipients()) + QLatin1String("</i>");
     }
 
     if (!recipients.empty()) {

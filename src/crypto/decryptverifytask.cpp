@@ -557,11 +557,13 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
         }
     }
 
-    if (res.isNull() || !res.error() || res.error().isCanceled()) {
-        if (!isSigned) {
-            return details + i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.");
-        }
+    if (res.isNull() || res.error() || res.error().isCanceled()) {
         return details;
+    }
+
+    if (!isSigned) {
+        details += i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.")
+                   + QLatin1String("<br/>");
     }
 
     if (recipients.empty() && res.numRecipients() > 0) {

@@ -275,6 +275,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
             this, [this](const auto &link) { d->slotLinkActivated(link); });
     actionLayout->addWidget(d->m_auditLogLabel);
     d->m_auditLogLabel->setStyleSheet(styleSheet);
+    d->m_auditLogLabel->setLinkColor(txtColor);
 
     d->m_detailsLabel = new QLabel;
     d->m_detailsLabel->setWordWrap(true);

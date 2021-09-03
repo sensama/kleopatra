@@ -12,6 +12,8 @@
 
 #include <QLabel>
 
+#include <memory>
+
 namespace Kleo
 {
 
@@ -20,8 +22,11 @@ class UrlLabel : public QLabel
     Q_OBJECT
 public:
     explicit UrlLabel(QWidget *parent = nullptr);
+    ~UrlLabel() override;
 
     void setUrl(const QUrl &url, const QString &text = {});
+
+    void setLinkColor(const QColor &color);
 
 protected:
     void focusInEvent(QFocusEvent *event) override;
@@ -29,6 +34,10 @@ protected:
 
 private:
     using QLabel::setText;
+
+private:
+    class Private;
+    std::unique_ptr<Private> d;
 };
 
 }

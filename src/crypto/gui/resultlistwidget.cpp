@@ -43,8 +43,6 @@ public:
     void allTasksDone();
 
     void addResultWidget(ResultItemWidget *widget);
-    void setupSingle();
-    void setupMulti();
     void resizeIfStandalone();
 
     std::vector< std::shared_ptr<TaskCollection> > m_collections;
@@ -63,6 +61,16 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
     m_layout = new QVBoxLayout(q);
     m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
+
+    m_scrollArea = new ScrollArea;
+    m_scrollArea->setFocusPolicy(Qt::NoFocus);
+    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout());
+    Q_ASSERT(scrollAreaLayout);
+    scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+    scrollAreaLayout->setSpacing(2);
+    scrollAreaLayout->addStretch();
+    m_layout->addWidget(m_scrollArea);
+
     m_progressLabel = new QLabel;
     m_progressLabel->setWordWrap(true);
     m_layout->addWidget(m_progressLabel);
@@ -90,31 +98,11 @@ ResultListWidget::~ResultListWidget()
     prefs.save();
 }
 
-void ResultListWidget::Private::setupSingle()
-{
-    m_layout->addStretch();
-}
-
 void ResultListWidget::Private::resizeIfStandalone()
 {
     if (m_standaloneMode) {
         q->resize(q->size().expandedTo(q->sizeHint()));
     }
-}
-
-void ResultListWidget::Private::setupMulti()
-{
-    if (m_scrollArea) {
-        return;    // already been here...
-    }
-
-    m_scrollArea = new ScrollArea;
-    m_scrollArea->setFocusPolicy(Qt::NoFocus);
-    Q_ASSERT(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
-    static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setContentsMargins(0, 0, 0, 0);
-    static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->setSpacing(2);
-    static_cast<QBoxLayout *>(m_scrollArea->widget()->layout())->addStretch();
-    m_layout->insertWidget(0, m_scrollArea);
 }
 
 void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
@@ -188,7 +176,6 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
     connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
             this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
-    d->setupMulti();
     setStandaloneMode(d->m_standaloneMode);
 }
 

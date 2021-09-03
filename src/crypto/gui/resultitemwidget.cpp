@@ -252,6 +252,8 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     overview->setText(d->m_result->overview());
     overview->setFocusPolicy(Qt::StrongFocus);
     overview->setStyleSheet(styleSheet);
+    setFocusPolicy(overview->focusPolicy());
+    setFocusProxy(overview);
     connect(overview, SIGNAL(linkActivated(QString)), this, SLOT(slotLinkActivated(QString)));
 
     vlay->addWidget(overview);

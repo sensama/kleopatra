@@ -35,5 +35,17 @@ static inline bool xconnect(const QObject *a, const char *signal,
  * specific. */
 void aggressive_raise(QWidget *w, bool stayOnTop);
 
-}
+/**
+ * Puts the second widget after the first widget in the focus order.
+ *
+ * In contrast to QWidget::setTabOrder(), this function also changes the
+ * focus order if the first widget or the second widget has focus policy
+ * Qt::NoFocus.
+ *
+ * Note: After calling this function all widgets in the focus proxy chain
+ * of the first widget have focus policy Qt::NoFocus if the first widget
+ * has this focus policy. Correspondingly, for the second widget.
+ */
+void forceSetTabOrder(QWidget *first, QWidget *second);
 
+}

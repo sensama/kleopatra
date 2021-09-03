@@ -81,3 +81,27 @@ void Kleo::aggressive_raise(QWidget *w, bool stayOnTop)
 #endif
 }
 
+void Kleo::forceSetTabOrder(QWidget *first, QWidget *second)
+{
+    if (!first || !second || first == second) {
+        return;
+    }
+    // temporarily change the focus policy of the two widgets to something
+    // other than Qt::NoFocus because QWidget::setTabOrder() does nothing
+    // if either widget has focus policy Qt::NoFocus
+    const auto firstFocusPolicy = first->focusPolicy();
+    const auto secondFocusPolicy = second->focusPolicy();
+    if (firstFocusPolicy == Qt::NoFocus) {
+        first->setFocusPolicy(Qt::StrongFocus);
+    }
+    if (secondFocusPolicy == Qt::NoFocus) {
+        second->setFocusPolicy(Qt::StrongFocus);
+    }
+    QWidget::setTabOrder(first, second);
+    if (first->focusPolicy() != firstFocusPolicy) {
+        first->setFocusPolicy(firstFocusPolicy);
+    }
+    if (second->focusPolicy() != secondFocusPolicy) {
+        second->setFocusPolicy(secondFocusPolicy);
+    }
+}

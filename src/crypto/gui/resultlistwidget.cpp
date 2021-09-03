@@ -15,6 +15,7 @@
 
 #include <crypto/gui/resultitemwidget.h>
 
+#include <utils/gui-helper.h>
 #include <utils/scrollarea.h>
 
 #include <Libkleo/Stl_Util>
@@ -113,9 +114,17 @@ void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
 
     Q_ASSERT(m_scrollArea);
     Q_ASSERT(m_scrollArea->widget());
-    Q_ASSERT(qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()));
-    QBoxLayout &blay = *static_cast<QBoxLayout *>(m_scrollArea->widget()->layout());
-    blay.insertWidget(widget->hasErrorResult() ? m_lastErrorItemIndex++ : (blay.count() - 1), widget);
+    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout());
+    Q_ASSERT(scrollAreaLayout);
+    // insert new widget after last widget showing error or before the trailing stretch
+    const auto insertIndex = widget->hasErrorResult() ? m_lastErrorItemIndex++ : scrollAreaLayout->count() - 1;
+    scrollAreaLayout->insertWidget(insertIndex, widget);
+    if (insertIndex == 0) {
+        forceSetTabOrder(m_scrollArea->widget(), widget);
+    } else {
+        auto previousResultWidget = qobject_cast<ResultItemWidget *>(scrollAreaLayout->itemAt(insertIndex - 1)->widget());
+        QWidget::setTabOrder(previousResultWidget, widget);
+    }
 
     widget->show();
     resizeIfStandalone();

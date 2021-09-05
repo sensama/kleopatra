@@ -2,7 +2,6 @@ add_subdirectory(icons)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-include_directories(SYSTEM ${Qt5Widgets_PRIVATE_INCLUDE_DIRS})
 
 if (NOT DISABLE_KWATCHGNUPG)
     add_subdirectory(kwatchgnupg)

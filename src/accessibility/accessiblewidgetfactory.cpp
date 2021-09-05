@@ -13,8 +13,6 @@
 #include "accessiblerichtextlabel_p.h"
 #include "view/urllabel.h"
 
-#include "private/qwidget_p.h"
-
 QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QObject *object)
 {
     QAccessibleInterface *iface = nullptr;
@@ -22,14 +20,6 @@ QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QO
         return iface;
 
     QWidget *widget = static_cast<QWidget*>(object);
-    // QWidget emits destroyed() from its destructor instead of letting the QObject
-    // destructor do it, which means the QWidget is unregistered from the accessibility
-    // cache. But QWidget destruction also emits enter and leave events, which may end
-    // up here, so we have to ensure that we don't fill the cache with an entry of
-    // a widget that is going away.
-    if (QWidgetPrivate::get(widget)->data.in_destructor)
-        return iface;
-
     if (classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
         iface = new AccessibleRichTextLabel{widget};
     }

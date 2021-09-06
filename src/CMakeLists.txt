@@ -111,6 +111,7 @@ set(_kleopatra_SRCS
 
   ${_kleopatra_extra_SRCS}
 
+  view/htmllabel.cpp
   view/keylistcontroller.cpp
   view/keytreeview.cpp
   view/searchbar.cpp

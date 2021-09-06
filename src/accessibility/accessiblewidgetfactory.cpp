@@ -11,6 +11,7 @@
 #include "accessiblewidgetfactory.h"
 
 #include "accessiblerichtextlabel_p.h"
+#include "view/htmllabel.h"
 #include "view/urllabel.h"
 
 QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QObject *object)
@@ -20,7 +21,9 @@ QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QO
         return iface;
 
     QWidget *widget = static_cast<QWidget*>(object);
-    if (classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
+
+    if (classname == QString::fromLatin1(Kleo::HtmlLabel::staticMetaObject.className())
+            || classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
         iface = new AccessibleRichTextLabel{widget};
     }
 

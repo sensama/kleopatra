@@ -37,6 +37,7 @@ void UrlLabel::Private::ensureLinkColorIsValid()
         linkColor = q->palette().link().color();
     }
 }
+
 void UrlLabel::Private::updateLabel()
 {
     // we prepend a zero-width-space character to work around a bug in QLabel::focusNextPrevChild(false)
@@ -63,7 +64,7 @@ UrlLabel::UrlLabel(QWidget *parent)
     setTextInteractionFlags(Qt::TextBrowserInteraction);
 }
 
-Kleo::UrlLabel::~UrlLabel() = default;
+UrlLabel::~UrlLabel() = default;
 
 void UrlLabel::setUrl(const QUrl &url, const QString &text)
 {

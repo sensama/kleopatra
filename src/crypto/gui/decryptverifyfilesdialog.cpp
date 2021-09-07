@@ -38,14 +38,14 @@ using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
 DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCollection> &coll, QWidget *parent)
-    : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox(this))
+    : QDialog(parent), m_tasks(coll), m_buttonBox(new QDialogButtonBox)
 {
     readConfig();
     auto vLay = new QVBoxLayout(this);
     auto labels = new QWidget;
     auto outputLayout = new QHBoxLayout;
 
-    m_outputLocationFNR = new FileNameRequester(this);
+    m_outputLocationFNR = new FileNameRequester;
     auto outLabel = new QLabel(i18n("&Output folder:"));
     outLabel->setBuddy(m_outputLocationFNR);
     outputLayout->addWidget(outLabel);
@@ -56,9 +56,9 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
 
     m_progressLabelLayout = new QVBoxLayout(labels);
     vLay->addWidget(labels);
-    m_progressBar = new QProgressBar(this);
+    m_progressBar = new QProgressBar;
     vLay->addWidget(m_progressBar);
-    m_resultList = new ResultListWidget(this);
+    m_resultList = new ResultListWidget;
     vLay->addWidget(m_resultList);
 
     m_tasks = coll;

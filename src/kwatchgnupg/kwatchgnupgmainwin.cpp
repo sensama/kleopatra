@@ -31,7 +31,6 @@
 #include <KShortcutsDialog>
 #include <QIcon>
 #include <KConfigGroup>
-#include <kxmlgui_version.h>
 
 #include <QEventLoop>
 #include <QTextStream>

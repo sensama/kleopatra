@@ -53,7 +53,6 @@
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
 #include <KConfigDialog>
-#include <kxmlgui_version.h>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>

@@ -171,6 +171,16 @@ static std::unique_ptr<T> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, 
 {
     qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
     err = gpgAgent->assuanTransact(command, std::move(transaction));
+
+    static int cnt = 0;
+    while (err.code() == GPG_ERR_ASS_CONNECT_FAILED && cnt < 5) {
+        // Esp. on Windows the agent processes may take their time so we try
+        // in increasing waits for them to start up
+        qCDebug(KLEOPATRA_LOG) << "Waiting for the daemons to start up";
+        cnt++;
+        QThread::msleep(250 * cnt);
+        err = gpgAgent->assuanTransact(command, gpgAgent->takeLastAssuanTransaction());
+    }
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "): Error:" << err;
         if (err.code() >= GPG_ERR_ASS_GENERAL && err.code() <= GPG_ERR_ASS_UNKNOWN_INQUIRE) {

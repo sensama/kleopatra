@@ -154,6 +154,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         });
     mRecpLayout = new QVBoxLayout;
     recipientGrid->addLayout(mRecpLayout, 1, 1);
+    recipientGrid->setRowStretch(2, 1);
 
     // Scroll area for other keys
     auto recipientWidget = new QWidget;

@@ -11,8 +11,8 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <KMime/HeaderParsing>
 #include <gpgme++/key.h>
-#include <kmime/kmime_header_parsing.h>
 
 #include <KSharedConfig>
 

@@ -26,7 +26,7 @@
 
 #include <gpgme++/key.h>
 
-#include <kmime/kmime_header_parsing.h>
+#include <KMime/HeaderParsing>
 
 #include <KLocalizedString>
 #include <KColorScheme>

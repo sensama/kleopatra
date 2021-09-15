@@ -32,7 +32,7 @@
 #include <utils/auditlog.h>
 #include <Libkleo/GnuPG>
 
-#include <kmime/kmime_header_parsing.h>
+#include <KMime/HeaderParsing>
 
 #include <gpgme++/error.h>
 #include <gpgme++/key.h>

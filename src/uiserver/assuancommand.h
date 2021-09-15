@@ -19,7 +19,7 @@
 #include <gpg-error.h>
 
 #endif
-#include <kmime/kmime_header_parsing.h>
+#include <KMime/HeaderParsing>
 
 #include <qwindowdefs.h> // for WId
 

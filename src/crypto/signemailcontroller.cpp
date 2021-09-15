@@ -25,7 +25,7 @@
 
 #include <Libkleo/Stl_Util>
 
-#include <kmime/kmime_header_parsing.h>
+#include <KMime/HeaderParsing>
 
 #include <KLocalizedString>
 

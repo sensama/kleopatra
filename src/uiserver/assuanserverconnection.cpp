@@ -35,7 +35,7 @@
 #include <gpgme++/data.h>
 #include <gpgme++/key.h>
 
-#include <kmime/kmime_header_parsing.h>
+#include <KMime/HeaderParsing>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>

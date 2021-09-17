@@ -204,7 +204,7 @@ CreateOpenPGPKeyFromCardKeysCommand::~CreateOpenPGPKeyFromCardKeysCommand()
 // static
 bool CreateOpenPGPKeyFromCardKeysCommand::isSupported()
 {
-    return !(engineInfo(GpgEngine).engineVersion() < "2.2.18");
+    return !(engineInfo(GpgEngine).engineVersion() < "2.3.0");
 }
 
 void CreateOpenPGPKeyFromCardKeysCommand::doStart()

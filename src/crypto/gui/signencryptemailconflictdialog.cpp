@@ -308,7 +308,7 @@ private:
         const QObject *const s = q->sender();
         const Protocol proto = q->selectedProtocol();
         QPointer<CertificateSelectionDialog> dlg;
-        Q_FOREACH (const CertificateSelectionLine &l, ui.signers)
+        for (const CertificateSelectionLine &l : std::as_const(ui.signers))
             if (s == l.toolButton()) {
                 dlg = create_signing_certificate_selection_dialog(q, proto, l.mailboxText());
                 if (dlg->exec()) {
@@ -317,7 +317,7 @@ private:
                 // ### switch to key.protocol(), in case proto == UnknownProtocol
                 break;
             }
-        Q_FOREACH (const CertificateSelectionLine &l, ui.recipients)
+        for (const CertificateSelectionLine &l : std::as_const(ui.recipients))
             if (s == l.toolButton()) {
                 dlg = create_encryption_certificate_selection_dialog(q, proto, l.mailboxText());
                 if (dlg->exec()) {

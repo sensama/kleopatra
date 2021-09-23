@@ -965,7 +965,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
         throw Exception(err, "register \"FILE\" handler");
 
     // register user-defined commands:
-    Q_FOREACH (std::shared_ptr<AssuanCommandFactory> fac, factories)
+    for (std::shared_ptr<AssuanCommandFactory> fac : std::as_const(factories))
 #ifndef HAVE_ASSUAN2
         if (const gpg_error_t err = assuan_register_command(ctx.get(), fac->name(), fac->_handler()))
 #else

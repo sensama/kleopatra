@@ -89,7 +89,8 @@ void ResultPage::Private::allDone()
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
     m_tasks.reset();
-    Q_FOREACH (const QString &i, m_progressLabelByTag.keys()) {
+    const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
+    for (const QString &i : progressLabelByTagKeys) {
         if (!i.isEmpty()) {
             m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
         } else {

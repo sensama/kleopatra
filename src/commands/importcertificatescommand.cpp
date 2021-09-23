@@ -465,8 +465,9 @@ static void handleOwnerTrust(const std::vector<GpgME::ImportResult> &results)
             }
 
             QStringList uids;
-            uids.reserve(toTrustOwner.userIDs().size());
-            Q_FOREACH (const UserID &uid, toTrustOwner.userIDs()) {
+            const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
+            uids.reserve(toTrustOwnerUserIDs.size());
+            for (const UserID &uid : toTrustOwnerUserIDs) {
                 uids << Formatting::prettyNameAndEMail(uid);
             }
 

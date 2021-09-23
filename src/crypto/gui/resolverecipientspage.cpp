@@ -637,7 +637,8 @@ void ResolveRecipientsPage::Private::selectionChanged()
 
 void ResolveRecipientsPage::Private::removeSelectedEntries()
 {
-    Q_FOREACH (const QString &i, m_listWidget->selectedEntries()) {
+    const auto selectedEntries{m_listWidget->selectedEntries()};
+    for (const QString &i : selectedEntries) {
         m_listWidget->removeEntry(i);
     }
     Q_EMIT q->completeChanged();
@@ -670,7 +671,8 @@ void ResolveRecipientsPage::Private::writeSelectedCertificatesToPreferences()
         return;
     }
 
-    Q_FOREACH (const QString &i, m_listWidget->identifiers()) {
+    const auto identifiers{m_listWidget->identifiers()};
+    for (const QString &i : identifiers) {
         const Mailbox mbox = m_listWidget->mailbox(i);
         if (!mbox.hasAddress()) {
             continue;

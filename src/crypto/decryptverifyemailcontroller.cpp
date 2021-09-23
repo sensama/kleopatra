@@ -372,7 +372,7 @@ void DecryptVerifyEMailController::start()
 
     const std::shared_ptr<TaskCollection> coll(new TaskCollection);
     std::vector<std::shared_ptr<Task> > tsks;
-    Q_FOREACH (const std::shared_ptr<Task> &i, d->m_runnableTasks) {
+    for (std::shared_ptr<Task> i : std::as_const(d->m_runnableTasks)) {
         connectTask(i);
         tsks.push_back(i);
     }

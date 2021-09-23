@@ -919,7 +919,8 @@ void TabWidget::saveViews(KConfig *config) const
     if (!config) {
         return;
     }
-    Q_FOREACH (const QString &group, extractViewGroups(config)) {
+    const auto extraView{extractViewGroups(config)};
+    for (const QString &group : extraView) {
         config->deleteGroup(group);
     }
     unsigned int vg = 0;

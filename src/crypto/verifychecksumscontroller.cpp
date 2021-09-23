@@ -657,7 +657,7 @@ void VerifyChecksumsController::Private::run()
             const quint64 factor = total / std::numeric_limits<int>::max() + 1;
 
             quint64 done = 0;
-            Q_FOREACH (const SumFile &sumFile, sumfiles) {
+            for (const SumFile &sumFile : sumfiles) {
                 Q_EMIT progress(done / factor, total / factor,
                                 i18n("Verifying checksums (%2) in %1", sumFile.checksumDefinition->label(), sumFile.dir.path()));
                 bool fatal = false;

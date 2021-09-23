@@ -23,6 +23,8 @@
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
+#include <gpgme++/global.h>
+
 #include <QTcpSocket>
 #include <QDir>
 #include <QEventLoop>
@@ -234,10 +236,23 @@ QString UiServer::Private::makeFileName(const QString &socket) const
     if (!socket.isEmpty()) {
         return socket;
     }
+    const QString socketPath{QString::fromUtf8(GpgME::dirInfo("uiserver-socket"))};
+    if (!socketPath.isEmpty()) {
+        // Note: The socket directory exists after GpgME::dirInfo() has been called.
+        return socketPath;
+    }
+    // GPGME (or GnuPG) is too old to return the socket path.
+    // In this case we fallback to assume that the socket directory is
+    // the home directory as we did in the past.  This is not correct but
+    // probably the safest fallback we can do despite that it is a
+    // bug to assume the socket directory in the home directory.  See
+    // https://dev.gnupg.org/T5613
     const QString gnupgHome = gnupgHomeDirectory();
     if (gnupgHome.isEmpty()) {
         throw_<std::runtime_error>(i18n("Could not determine the GnuPG home directory. Consider setting the GNUPGHOME environment variable."));
     }
+    // We should not create the home directory, but this only happens for very
+    // old and long unsupported versions of gnupg.
     ensureDirectoryExists(gnupgHome);
     const QDir dir(gnupgHome);
     Q_ASSERT(dir.exists());

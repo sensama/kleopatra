@@ -433,6 +433,11 @@ static QString gnupg_home_directory()
 
 static QString get_default_socket_name()
 {
+    const QString socketPath{QString::fromUtf8(GpgME::dirInfo("uiserver-socket"))};
+    if (!socketPath.isEmpty()) {
+        // Note: The socket directory exists after GpgME::dirInfo() has been called.
+        return socketPath;
+    }
     const QString homeDir = gnupg_home_directory();
     if (homeDir.isEmpty()) {
         return QString();

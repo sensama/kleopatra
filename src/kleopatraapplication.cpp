@@ -115,14 +115,24 @@ public:
 private:
     void connectConfigureDialog()
     {
-        if (configureDialog && q->mainWindow()) {
-            connect(configureDialog, SIGNAL(configCommitted()), q->mainWindow(), SLOT(slotConfigCommitted()));
+        if (configureDialog) {
+            if (q->mainWindow()) {
+                connect(configureDialog, SIGNAL(configCommitted()),
+                        q->mainWindow(), SLOT(slotConfigCommitted()));
+            }
+            connect(configureDialog, &ConfigureDialog::configCommitted,
+                    q, &KleopatraApplication::configurationChanged);
         }
     }
     void disconnectConfigureDialog()
     {
-        if (configureDialog && q->mainWindow()) {
-            disconnect(configureDialog, SIGNAL(configCommitted()), q->mainWindow(), SLOT(slotConfigCommitted()));
+        if (configureDialog) {
+            if (q->mainWindow()) {
+                disconnect(configureDialog, SIGNAL(configCommitted()),
+                           q->mainWindow(), SLOT(slotConfigCommitted()));
+            }
+            disconnect(configureDialog, &ConfigureDialog::configCommitted,
+                       q, &KleopatraApplication::configurationChanged);
         }
     }
 

@@ -13,6 +13,7 @@
 
 #include "certificatelineedit.h"
 #include "fileoperationspreferences.h"
+#include "kleopatraapplication.h"
 #include "settings.h"
 #include "unknownrecipientwidget.h"
 
@@ -227,14 +228,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     lay->addWidget(encBox);
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            this, [this]() {
-                const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
-                const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-                const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
-                mSigChk->setEnabled(haveSecretKeys);
-                mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
-                mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
-            });
+            this, &SignEncryptWidget::updateCheckBoxes);
+    connect(KleopatraApplication::instance(), &KleopatraApplication::configurationChanged,
+            this, &SignEncryptWidget::updateCheckBoxes);
 
     loadKeys();
     onProtocolChanged();
@@ -650,4 +646,19 @@ bool SignEncryptWidget::validate()
                                i18n("Failed to find some keys"));
     }
     return unresolvedRecipients.isEmpty();
+}
+
+void SignEncryptWidget::updateCheckBoxes()
+{
+    const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
+    const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+    mSigChk->setEnabled(haveSecretKeys);
+    mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
+    mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
+    if (symmetricOnly) {
+        mEncSelfChk->setChecked(false);
+        mEncOtherChk->setChecked(false);
+        mSymmetric->setChecked(true);
+    }
 }

@@ -95,6 +95,8 @@ Q_SIGNALS:
      * correct exitValue */
     void setExitValue(int value);
 
+    void configurationChanged();
+
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;

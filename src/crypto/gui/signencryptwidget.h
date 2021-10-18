@@ -117,6 +117,7 @@ Q_SIGNALS:
 private:
     CertificateLineEdit* addRecipientWidget();
     void onProtocolChanged();
+    void updateCheckBoxes();
 
 private:
     KeySelectionCombo *mSigSelect = nullptr;

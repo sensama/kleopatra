@@ -240,11 +240,14 @@ void CryptoOperationsConfigWidget::setupGui()
     mAutoDecryptVerifyCB = new QCheckBox(i18n("Automatically start operation based on input detection for decrypt/verify."));
     mTmpDirCB = new QCheckBox(i18n("Create temporary decrypted files in the folder of the encrypted file."));
     mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
+    mSymmetricOnlyCB = new QCheckBox(i18n("Use symmetric encryption only."));
+    mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
 
     fileGrpLay->addWidget(mPGPFileExtCB);
     fileGrpLay->addWidget(mAutoDecryptVerifyCB);
     fileGrpLay->addWidget(mASCIIArmorCB);
     fileGrpLay->addWidget(mTmpDirCB);
+    fileGrpLay->addWidget(mSymmetricOnlyCB);
 
     auto comboLay = new QGridLayout;
     auto chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
@@ -283,6 +286,7 @@ void CryptoOperationsConfigWidget::setupGui()
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mASCIIArmorCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mTmpDirCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
@@ -322,6 +326,7 @@ void CryptoOperationsConfigWidget::load()
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
     mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
     mTmpDirCB->setChecked(filePrefs.dontUseTmpDir());
+    mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
 
     const std::vector< std::shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
     const std::shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
@@ -369,6 +374,7 @@ void CryptoOperationsConfigWidget::save()
     filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
     filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
     filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());
+    filePrefs.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
 
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {

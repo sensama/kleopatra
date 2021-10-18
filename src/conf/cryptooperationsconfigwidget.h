@@ -28,7 +28,7 @@ class CryptoOperationsConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit CryptoOperationsConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~CryptoOperationsConfigWidget();
+    ~CryptoOperationsConfigWidget() override;
 
 public Q_SLOTS:
     void load();
@@ -42,12 +42,15 @@ private:
     void setupGui();
     void setupProfileGui(QBoxLayout *layout);
     void applyProfile(const QString &profile);
+
+private:
     QCheckBox *mQuickEncryptCB,
               *mQuickSignCB,
               *mPGPFileExtCB,
               *mAutoDecryptVerifyCB,
               *mASCIIArmorCB,
-              *mTmpDirCB;
+              *mTmpDirCB,
+              *mSymmetricOnlyCB;
     QComboBox *mChecksumDefinitionCB,
               *mArchiveDefinitionCB;
     QPushButton *mApplyBtn;

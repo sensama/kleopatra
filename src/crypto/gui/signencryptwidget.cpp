@@ -12,6 +12,7 @@
 #include "kleopatra_debug.h"
 
 #include "certificatelineedit.h"
+#include "fileoperationspreferences.h"
 #include "settings.h"
 #include "unknownrecipientwidget.h"
 
@@ -104,6 +105,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
 
     /* The signature selection */
     auto sigLay = new QHBoxLayout;
@@ -133,8 +135,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     // Own key
     mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
-    mEncSelfChk->setEnabled(haveSecretKeys);
-    mEncSelfChk->setChecked(haveSecretKeys);
+    mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
+    mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
     mSelfSelect = new KeySelectionCombo();
     mSelfSelect->setEnabled(mEncSelfChk->isChecked());
     recipientGrid->addWidget(mEncSelfChk, 0, 0);
@@ -142,8 +144,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     // Checkbox for other keys
     mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
-    mEncOtherChk->setEnabled(havePublicKeys);
-    mEncOtherChk->setChecked(havePublicKeys);
+    mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
+    mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
     recipientGrid->addWidget(mEncOtherChk, 1, 0, Qt::AlignTop);
     connect(mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
@@ -181,7 +183,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                                  "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
-    mSymmetric->setChecked(!havePublicKeys);
+    mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
     encBoxLay->addWidget(mSymmetric);
 
     // Connect it
@@ -228,9 +230,10 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             this, [this]() {
                 const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
                 const bool havePublicKeys = !KeyCache::instance()->keys().empty();
+                const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
                 mSigChk->setEnabled(haveSecretKeys);
-                mEncSelfChk->setEnabled(haveSecretKeys);
-                mEncOtherChk->setEnabled(havePublicKeys);
+                mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
+                mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
             });
 
     loadKeys();
@@ -591,9 +594,10 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
     if (checked) {
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-        mEncSelfChk->setChecked(haveSecretKeys);
-        mEncOtherChk->setChecked(havePublicKeys);
-        mSymmetric->setChecked(!havePublicKeys);
+        const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+        mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
+        mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
     } else {
         mEncSelfChk->setChecked(false);
         mEncOtherChk->setChecked(false);

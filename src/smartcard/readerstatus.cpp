@@ -24,6 +24,8 @@
 #endif
 #include "keypairinfo.h"
 
+#include "utils/hex.h"
+
 #include <Libkleo/GnuPG>
 
 #include <Libkleo/FileSystemWatcher>
@@ -1133,6 +1135,49 @@ Error ReaderStatus::switchCardAndApp(const std::string &serialNumber, const std:
         }
     }
     return err;
+}
+
+namespace
+{
+static auto split(const std::string &s, char c)
+{
+    std::vector<std::string> result;
+
+    auto start = 0;
+    auto end = s.find(c, start);
+    while (end != s.npos) {
+        result.push_back(s.substr(start, end - start));
+        start = end + 1;
+        end = s.find(c, start);
+    }
+    result.push_back(s.substr(start));
+
+    return result;
+}
+}
+
+// static
+std::vector<std::string> ReaderStatus::getReaders(Error &err)
+{
+    std::vector<std::string> result;
+
+    auto c = Context::createForEngine(AssuanEngine, &err);
+    if (err) {
+        qCDebug(KLEOPATRA_LOG) << "Creating context for Assuan engine failed:" << err;
+        return result;
+    }
+
+    auto assuanContext = std::shared_ptr<Context>(c.release());
+    const std::string command = "SCD GETINFO reader_list";
+    const auto readersData = gpgagent_data(assuanContext, command.c_str(), err);
+    if (err) {
+        return result;
+    }
+
+    const auto readers = hexdecode(readersData);
+    result = split(readers, '\n');
+
+    return result;
 }
 
 #include "readerstatus.moc"

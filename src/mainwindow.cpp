@@ -25,6 +25,7 @@
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/decryptverifyfilescommand.h"
 #include "commands/signencryptfilescommand.h"
+#include "commands/listreaderscommand.h"
 
 #include "conf/groupsconfigdialog.h"
 
@@ -281,6 +282,12 @@ public:
         ui.stackWidget->resize(ui.padWidget->sizeHint());
     }
 
+    void listSmartcardReaders()
+    {
+        auto command = new ListReadersCommand(q);
+        command->start();
+    }
+
 private:
     void setupActions();
 
@@ -435,6 +442,10 @@ void MainWindow::Private::setupActions()
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
             nullptr, q, SLOT(selfTest()), QString(), false, true
+        },
+        {
+            "settings_list_readers", i18n("List Smartcard Readers"), QString(),
+            nullptr, q, SLOT(listSmartcardReaders()), QString(), false, true
         },
         {
             "configure_groups", i18n("Configure Groups..."), QString(),

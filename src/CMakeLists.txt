@@ -385,7 +385,7 @@ install(
 )
 install(FILES data/org.kde.kleopatra.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(
-  FILES data/kleopatra_signencryptfiles.desktop
+  PROGRAMS data/kleopatra_signencryptfiles.desktop
         data/kleopatra_signencryptfolders.desktop
         data/kleopatra_decryptverifyfiles.desktop
         data/kleopatra_decryptverifyfolders.desktop

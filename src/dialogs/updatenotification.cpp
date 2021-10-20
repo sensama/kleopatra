@@ -112,7 +112,7 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
         updatecfg.writeEntry("AllowVersionCheckSetOnce", true);
     }
 
-    const auto current = gpg4winVersion();
+    const auto current = gpg4winVersionNumber();
     GpgME::Error err;
     const auto lastshown = updatecfg.readEntry("LastShown", QDateTime());
 

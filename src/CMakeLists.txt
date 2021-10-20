@@ -389,5 +389,5 @@ install(
         data/kleopatra_signencryptfolders.desktop
         data/kleopatra_decryptverifyfiles.desktop
         data/kleopatra_decryptverifyfolders.desktop
-  DESTINATION ${KDE_INSTALL_KSERVICES5DIR}/ServiceMenus
+  DESTINATION ${KDE_INSTALL_DATADIR}/kio/servicemenus
 )

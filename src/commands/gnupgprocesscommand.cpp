@@ -111,7 +111,7 @@ class GnuPGProcessCommand::Private : Command::Private
     }
 public:
     explicit Private(GnuPGProcessCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
 private:
     void init();

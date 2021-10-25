@@ -34,7 +34,7 @@ class ResultListWidget : public QWidget
     Q_OBJECT
 public:
     explicit ResultListWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-    ~ResultListWidget();
+    ~ResultListWidget() override;
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);

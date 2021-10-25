@@ -49,7 +49,7 @@ class ExportCertificateCommand::Private : public Command::Private
     }
 public:
     explicit Private(ExportCertificateCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
     void startExportJob(GpgME::Protocol protocol, const std::vector<Key> &keys);
     void cancelJobs();
     void exportResult(const GpgME::Error &, const QByteArray &);

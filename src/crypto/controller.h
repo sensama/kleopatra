@@ -29,7 +29,7 @@ class Controller : public QObject, protected ExecutionContextUser
 public:
     explicit Controller(QObject *parent = nullptr);
     explicit Controller(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = nullptr);
-    ~Controller();
+    ~Controller() override;
 
     using ExecutionContextUser::setExecutionContext;
 

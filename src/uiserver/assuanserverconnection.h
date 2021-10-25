@@ -29,7 +29,7 @@ class AssuanServerConnection : public QObject
     Q_OBJECT
 public:
     AssuanServerConnection(assuan_fd_t fd, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories, QObject *parent = nullptr);
-    ~AssuanServerConnection();
+    ~AssuanServerConnection() override;
 
 public Q_SLOTS:
     void enableCryptoCommands(bool enable = true);

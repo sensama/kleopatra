@@ -20,7 +20,7 @@ class PrepSignCommand : public Kleo::AssuanCommandMixin<PrepSignCommand>
 {
 public:
     PrepSignCommand();
-    virtual ~PrepSignCommand();
+    ~PrepSignCommand() override;
 private:
     int doStart() override;
     void doCanceled() override;

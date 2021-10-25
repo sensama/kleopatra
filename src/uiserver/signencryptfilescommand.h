@@ -20,7 +20,7 @@ class SignEncryptFilesCommand : public Kleo::AssuanCommandMixin<SignEncryptFiles
 {
 public:
     SignEncryptFilesCommand();
-    virtual ~SignEncryptFilesCommand();
+    ~SignEncryptFilesCommand() override;
 
 protected:
     enum Operation {

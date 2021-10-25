@@ -40,7 +40,7 @@ class ChangePassphraseCommand::Private : public Command::Private
     }
 public:
     explicit Private(ChangePassphraseCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

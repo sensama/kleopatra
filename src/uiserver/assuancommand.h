@@ -187,7 +187,7 @@ class AssuanCommand : public ExecutionContext, public std::enable_shared_from_th
     // defined in assuanserverconnection.cpp!
 public:
     AssuanCommand();
-    virtual ~AssuanCommand();
+    ~AssuanCommand() override;
 
     int start();
     void canceled();

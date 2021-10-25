@@ -226,7 +226,7 @@ class AssuanServerConnection::Private : public QObject
     AssuanServerConnection *const q;
 public:
     Private(assuan_fd_t fd_, const std::vector< std::shared_ptr<AssuanCommandFactory> > &factories_, AssuanServerConnection *qq);
-    ~Private();
+    ~Private() override;
 
 Q_SIGNALS:
     void startKeyManager();

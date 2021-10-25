@@ -31,7 +31,7 @@ class SelfTestDialog : public QDialog
 public:
     explicit SelfTestDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     explicit SelfTestDialog(const std::vector<std::shared_ptr<SelfTest>> &tests, QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SelfTestDialog();
+    ~SelfTestDialog() override;
 
     void setAutomaticMode(bool automatic);
 

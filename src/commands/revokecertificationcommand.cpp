@@ -48,7 +48,7 @@ class RevokeCertificationCommand::Private : public Command::Private
     }
 public:
     explicit Private(RevokeCertificationCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

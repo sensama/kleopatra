@@ -25,7 +25,7 @@ class AddEmailDialog : public QDialog
     Q_OBJECT
 public:
     explicit AddEmailDialog(QWidget *parent = nullptr);
-    ~AddEmailDialog();
+    ~AddEmailDialog() override;
 
     void setEmail(const QString &email);
     QString email() const;

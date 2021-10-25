@@ -18,7 +18,7 @@ class TrustChainWidget : public QWidget
 
 public:
     explicit TrustChainWidget(QWidget *parent = nullptr);
-    ~TrustChainWidget();
+    ~TrustChainWidget() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
@@ -34,7 +34,7 @@ class TrustChainDialog : public QDialog
 
 public:
     explicit TrustChainDialog(QWidget *parent = nullptr);
-    ~TrustChainDialog();
+    ~TrustChainDialog() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;

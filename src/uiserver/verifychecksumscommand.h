@@ -23,7 +23,7 @@ class VerifyChecksumsCommand : public QObject, public AssuanCommandMixin<VerifyC
     Q_OBJECT
 public:
     VerifyChecksumsCommand();
-    ~VerifyChecksumsCommand();
+    ~VerifyChecksumsCommand() override;
 
     static const char *staticName()
     {

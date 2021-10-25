@@ -51,7 +51,7 @@ class AbstractDecryptVerifyTask : public Task
     Q_OBJECT
 public:
     explicit AbstractDecryptVerifyTask(QObject *parent = nullptr);
-    virtual ~AbstractDecryptVerifyTask();
+    ~AbstractDecryptVerifyTask() override;
     virtual void autodetectProtocolFromInput() = 0;
 
     KMime::Types::Mailbox informativeSender() const;

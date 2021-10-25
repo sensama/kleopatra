@@ -25,7 +25,7 @@ class KWatchGnuPGConfig : public QDialog
     Q_OBJECT
 public:
     explicit KWatchGnuPGConfig(QWidget *parent = nullptr);
-    ~KWatchGnuPGConfig();
+    ~KWatchGnuPGConfig() override;
 
     void loadConfig();
     void saveConfig();

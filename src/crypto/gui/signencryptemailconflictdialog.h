@@ -43,7 +43,7 @@ class SignEncryptEMailConflictDialog : public QDialog
     Q_OBJECT
 public:
     explicit SignEncryptEMailConflictDialog(QWidget *parent = nullptr);
-    ~SignEncryptEMailConflictDialog();
+    ~SignEncryptEMailConflictDialog() override;
 
     // Inputs
 

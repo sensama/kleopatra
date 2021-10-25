@@ -26,7 +26,7 @@ class DeviceInfoWatcher::Worker : public QObject, public GpgME::StatusConsumer
     Q_OBJECT
 
 public:
-    ~Worker();
+    ~Worker() override;
 
 public Q_SLOTS:
     void start();

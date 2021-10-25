@@ -975,7 +975,7 @@ public:
             connect(&watcher, &FileSystemWatcher::triggered, this, &::ReaderStatusThread::ping);
         }
     }
-    ~Private()
+    ~Private() override
     {
         stop();
         if (!wait(100)) {

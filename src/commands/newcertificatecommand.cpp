@@ -29,7 +29,7 @@ class NewCertificateCommand::Private : public Command::Private
     }
 public:
     explicit Private(NewCertificateCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

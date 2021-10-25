@@ -20,7 +20,7 @@ class WriteCertAssuanTransaction: public GpgME::DefaultAssuanTransaction
 {
 public:
     explicit WriteCertAssuanTransaction(const QByteArray &certificateData);
-    ~WriteCertAssuanTransaction();
+    ~WriteCertAssuanTransaction() override;
 
 private:
     GpgME::Data inquire(const char *name, const char *args, GpgME::Error &err) override;

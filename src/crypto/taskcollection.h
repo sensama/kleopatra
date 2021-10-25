@@ -29,7 +29,7 @@ class TaskCollection : public QObject
     Q_OBJECT
 public:
     explicit TaskCollection(QObject *parent = nullptr);
-    ~TaskCollection();
+    ~TaskCollection() override;
 
     std::vector<std::shared_ptr<Task> > tasks() const;
     std::shared_ptr<Task> taskById(int id) const;

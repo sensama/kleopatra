@@ -34,7 +34,7 @@ class Task : public QObject
     Q_OBJECT
 public:
     explicit Task(QObject *parent = nullptr);
-    ~Task();
+    ~Task() override;
 
     class Result;
 

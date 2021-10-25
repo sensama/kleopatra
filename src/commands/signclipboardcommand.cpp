@@ -44,7 +44,7 @@ class SignClipboardCommand::Private : public Command::Private
     }
 public:
     explicit Private(SignClipboardCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

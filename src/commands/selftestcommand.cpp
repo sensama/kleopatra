@@ -61,7 +61,7 @@ class SelfTestCommand::Private : Command::Private
     }
 public:
     explicit Private(SelfTestCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
 private:
     void init();

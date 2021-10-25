@@ -27,7 +27,7 @@ class CertifyCertificateDialog : public QDialog
     Q_OBJECT
 public:
     explicit CertifyCertificateDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~CertifyCertificateDialog();
+    ~CertifyCertificateDialog() override;
 
     bool exportableCertificationSelected() const;
 

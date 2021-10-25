@@ -368,7 +368,7 @@ class FileOutput : public OutputImplBase
 {
 public:
     explicit FileOutput(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy);
-    ~FileOutput()
+    ~FileOutput() override
     {
         qCDebug(KLEOPATRA_LOG) << this;
     }

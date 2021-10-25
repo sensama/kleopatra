@@ -38,7 +38,7 @@ class ImportCertificateFromClipboardCommand::Private : public ImportCertificates
     }
 public:
     explicit Private(ImportCertificateFromClipboardCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     bool ensureHaveClipboard();
 

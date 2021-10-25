@@ -18,7 +18,7 @@ class WaitWidget: public QWidget
 
 public:
     explicit WaitWidget(QWidget *parent = nullptr);
-    ~WaitWidget();
+    ~WaitWidget() override;
 
     void setText(const QString &text);
 

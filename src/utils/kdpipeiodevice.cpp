@@ -212,7 +212,7 @@ class KDPipeIODevice::Private : public QObject
 public:
 
     explicit Private(KDPipeIODevice *qq);
-    ~Private();
+    ~Private() override;
 
     bool doOpen(int, Qt::HANDLE, OpenMode);
     bool startReaderThread();

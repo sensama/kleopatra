@@ -40,7 +40,7 @@ class AddUserIDCommand::Private : public Command::Private
     }
 public:
     explicit Private(AddUserIDCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

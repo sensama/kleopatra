@@ -42,7 +42,7 @@ class AuthenticatePIVCardApplicationCommand::Private : public CardCommand::Priva
     }
 public:
     explicit Private(AuthenticatePIVCardApplicationCommand *qq, const std::string &serialNumber, QWidget *p);
-    ~Private();
+    ~Private() override;
 
     void init();
 

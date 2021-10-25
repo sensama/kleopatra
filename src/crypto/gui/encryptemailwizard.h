@@ -23,7 +23,7 @@ class EncryptEMailWizard : public SignEncryptWizard
     Q_OBJECT
 public:
     explicit EncryptEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-    ~EncryptEMailWizard();
+    ~EncryptEMailWizard() override;
 
     bool quickMode() const;
     void setQuickMode(bool quick);

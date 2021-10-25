@@ -61,7 +61,7 @@ class CreateCSRForCardKeyCommand::Private : public CardCommand::Private
 public:
     explicit Private(CreateCSRForCardKeyCommand *qq,
                      const std::string &keyRef, const std::string &serialNumber, const std::string &appName, QWidget *parent);
-    ~Private();
+    ~Private() override;
 
 private:
     void start();

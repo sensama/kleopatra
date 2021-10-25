@@ -102,7 +102,7 @@ public:
         connect(&buttonBox, &QDialogButtonBox::rejected, this, &ResultDialog::reject);
         readConfig();
     }
-    ~ResultDialog()
+    ~ResultDialog() override
     {
         writeConfig();
     }

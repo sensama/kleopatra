@@ -34,7 +34,7 @@ class ResultItemWidget : public QWidget
     Q_OBJECT
 public:
     explicit ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-    ~ResultItemWidget();
+    ~ResultItemWidget() override;
 
     bool hasErrorResult() const;
 

@@ -34,7 +34,7 @@ class ImportCertificateFromPIVCardCommand::Private : public CardCommand::Private
 public:
     explicit Private(ImportCertificateFromPIVCardCommand *qq,
                      const std::string &slot, const std::string &serialno);
-    ~Private();
+    ~Private() override;
 
 private:
     void start();

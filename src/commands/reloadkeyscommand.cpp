@@ -27,7 +27,7 @@ class ReloadKeysCommand::Private : public Command::Private
     friend class ::Kleo::ReloadKeysCommand;
 public:
     Private(ReloadKeysCommand *qq, KeyListController *controller);
-    ~Private();
+    ~Private() override;
 
     void keyListingDone(const KeyListResult &result);
 };

@@ -37,7 +37,7 @@ class ImportCrlCommand::Private : Command::Private
     }
 public:
     explicit Private(ImportCrlCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     Q_REQUIRED_RESULT QString errorString() const
     {

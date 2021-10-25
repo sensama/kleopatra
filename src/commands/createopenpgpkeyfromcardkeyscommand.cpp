@@ -52,7 +52,7 @@ class CreateOpenPGPKeyFromCardKeysCommand::Private : public CardCommand::Private
     }
 public:
     explicit Private(CreateOpenPGPKeyFromCardKeysCommand *qq, const std::string &serialNumber, const std::string &appName, QWidget *parent);
-    ~Private();
+    ~Private() override;
 
 private:
     void start();

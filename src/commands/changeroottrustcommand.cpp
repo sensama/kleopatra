@@ -236,7 +236,7 @@ class KFixedSaveFile : public QSaveFile
 public:
     explicit KFixedSaveFile(const QString &fileName)
         : QSaveFile(fileName) {}
-    ~KFixedSaveFile()
+    ~KFixedSaveFile() override
     {
         cancelWriting();
     }

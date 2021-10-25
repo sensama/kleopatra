@@ -27,7 +27,7 @@ class Kleo::Crypto::Gui::ResolveRecipientsPage::ListWidget : public QWidget
     Q_OBJECT
 public:
     explicit ListWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-    ~ListWidget();
+    ~ListWidget() override;
 
     void addEntry(const QString &id, const QString &name);
     void addEntry(const KMime::Types::Mailbox &mbox);
@@ -67,7 +67,7 @@ class Kleo::Crypto::Gui::ResolveRecipientsPage::ItemWidget : public QWidget
     Q_OBJECT
 public:
     explicit ItemWidget(const QString &id, const QString &name, const KMime::Types::Mailbox &mbox, QWidget *parent = nullptr, Qt::WindowFlags flags = {});
-    ~ItemWidget();
+    ~ItemWidget() override;
 
     QString id() const;
     KMime::Types::Mailbox mailbox() const;

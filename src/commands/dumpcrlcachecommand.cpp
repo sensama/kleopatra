@@ -44,7 +44,7 @@ public:
     {
         readConfig();
     }
-    ~DumpCrlCacheDialog()
+    ~DumpCrlCacheDialog() override
     {
         writeConfig();
     }
@@ -159,7 +159,7 @@ class DumpCrlCacheCommand::Private : Command::Private
     }
 public:
     explicit Private(DumpCrlCacheCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QString errorString() const
     {

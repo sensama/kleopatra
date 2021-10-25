@@ -87,7 +87,7 @@ public:
     {
 
     }
-    ~ArchiveDefinitionError() throw() {}
+    ~ArchiveDefinitionError() throw() override {}
 
     const QString &archiveDefinitionId() const
     {

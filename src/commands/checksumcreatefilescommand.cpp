@@ -38,7 +38,7 @@ class ChecksumCreateFilesCommand::Private : public Command::Private
     }
 public:
     explicit Private(ChecksumCreateFilesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QStringList selectFiles() const;
 

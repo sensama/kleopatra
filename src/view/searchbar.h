@@ -27,7 +27,7 @@ class SearchBar : public QWidget
     Q_OBJECT
 public:
     explicit SearchBar(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SearchBar();
+    ~SearchBar() override;
 
     const std::shared_ptr<KeyFilter> &keyFilter() const;
 

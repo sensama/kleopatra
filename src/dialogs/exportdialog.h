@@ -22,7 +22,7 @@ class ExportWidget : public QWidget
 
 public:
     explicit ExportWidget(QWidget *parent = nullptr);
-    ~ExportWidget();
+    ~ExportWidget() override;
 
     void setKey(const GpgME::Key &key, unsigned int flags = 0);
     void setKey(const GpgME::Subkey &key, unsigned int flags = 0);
@@ -43,7 +43,7 @@ class ExportDialog : public QDialog
 
 public:
     explicit ExportDialog(QWidget *parent = nullptr);
-    ~ExportDialog();
+    ~ExportDialog() override;
 
     void setKey(const GpgME::Key &key, unsigned int flags = 0);
     void setKey(const GpgME::Subkey &key, unsigned int flags = 0);

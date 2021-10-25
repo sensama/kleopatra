@@ -42,7 +42,7 @@ public:
      * Default constructor
      */
     KUniqueService();
-    ~KUniqueService();
+    ~KUniqueService() override;
 
 public Q_SLOTS:
     /**

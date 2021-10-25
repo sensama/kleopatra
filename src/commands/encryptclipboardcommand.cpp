@@ -44,7 +44,7 @@ class EncryptClipboardCommand::Private : public Command::Private
     }
 public:
     explicit Private(EncryptClipboardCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

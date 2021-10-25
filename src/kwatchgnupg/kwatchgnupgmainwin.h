@@ -22,7 +22,7 @@ class KWatchGnuPGMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit KWatchGnuPGMainWindow(QWidget *parent = nullptr);
-    ~KWatchGnuPGMainWindow();
+    ~KWatchGnuPGMainWindow() override;
 
 private Q_SLOTS:
     void slotWatcherExited(int, QProcess::ExitStatus);

@@ -29,7 +29,7 @@ class VerifyChecksumsDialog : public QDialog
     Q_ENUMS(Status)
 public:
     explicit VerifyChecksumsDialog(QWidget *parent = nullptr);
-    ~VerifyChecksumsDialog();
+    ~VerifyChecksumsDialog() override;
 
     enum Status {
         Unknown,

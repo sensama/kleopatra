@@ -43,7 +43,7 @@ class DecryptVerifyClipboardCommand::Private : public Command::Private
     }
 public:
     explicit Private(DecryptVerifyClipboardCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

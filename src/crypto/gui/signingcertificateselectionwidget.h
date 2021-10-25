@@ -35,7 +35,7 @@ class SigningCertificateSelectionWidget : public QWidget
     Q_OBJECT
 public:
     explicit SigningCertificateSelectionWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SigningCertificateSelectionWidget();
+    ~SigningCertificateSelectionWidget() override;
 
     void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setAllowedProtocols(bool pgp, bool cms);

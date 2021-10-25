@@ -19,7 +19,7 @@ class ClipboardMenu : public QObject
     Q_OBJECT
 public:
     explicit ClipboardMenu(QObject *parent = nullptr);
-    ~ClipboardMenu();
+    ~ClipboardMenu() override;
 
     void setMainWindow(MainWindow *window);
 

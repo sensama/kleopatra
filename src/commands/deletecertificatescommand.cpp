@@ -48,7 +48,7 @@ class DeleteCertificatesCommand::Private : public Command::Private
     }
 public:
     explicit Private(DeleteCertificatesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void startDeleteJob(GpgME::Protocol protocol);
 

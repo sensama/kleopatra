@@ -25,7 +25,7 @@ class SignEMailWizard : public SignEncryptWizard
     Q_OBJECT
 public:
     explicit SignEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SignEMailWizard();
+    ~SignEMailWizard() override;
 
     bool quickMode() const;
     void setQuickMode(bool quick);

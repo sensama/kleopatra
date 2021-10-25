@@ -32,7 +32,7 @@ class SigningCertificateSelectionDialog : public QDialog
     Q_OBJECT
 public:
     explicit SigningCertificateSelectionDialog(QWidget *parent = nullptr);
-    ~SigningCertificateSelectionDialog();
+    ~SigningCertificateSelectionDialog() override;
 
     void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);

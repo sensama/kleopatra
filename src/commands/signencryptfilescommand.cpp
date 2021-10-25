@@ -38,7 +38,7 @@ class SignEncryptFilesCommand::Private : public Command::Private
     }
 public:
     explicit Private(SignEncryptFilesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QStringList selectFiles() const;
 

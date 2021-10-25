@@ -36,7 +36,7 @@ class TabWidget : public QWidget
     Q_OBJECT
 public:
     explicit TabWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~TabWidget();
+    ~TabWidget() override;
 
     void setFlatModel(AbstractKeyListModel *model);
     AbstractKeyListModel *flatModel() const;

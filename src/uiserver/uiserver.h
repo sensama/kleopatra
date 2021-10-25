@@ -28,7 +28,7 @@ class UiServer : public QObject
     Q_OBJECT
 public:
     explicit UiServer(const QString &socket, QObject *parent = nullptr);
-    ~UiServer();
+    ~UiServer() override;
 
     static void setLogStream(FILE *file);
 

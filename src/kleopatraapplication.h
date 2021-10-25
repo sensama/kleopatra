@@ -32,7 +32,7 @@ public:
      * call is done and our init / call might be forwarded to
      * another instance. */
     KleopatraApplication(int &argc, char *argv[]);
-    ~KleopatraApplication();
+    ~KleopatraApplication() override;
 
     /** Initialize the application. Without calling init any
      * other call to KleopatraApplication will result in undefined behavior

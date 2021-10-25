@@ -57,7 +57,7 @@ public:
     };
 
     explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SignEncryptFilesWizard();
+    ~SignEncryptFilesWizard() override;
 
     // Inputs
     void setSigningPreset(bool preset);

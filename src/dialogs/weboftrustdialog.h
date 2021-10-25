@@ -21,7 +21,7 @@ class WebOfTrustDialog : public QDialog
 
 public:
     explicit WebOfTrustDialog(QWidget *parent = nullptr);
-    ~WebOfTrustDialog();
+    ~WebOfTrustDialog() override;
 
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;

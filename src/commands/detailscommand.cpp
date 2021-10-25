@@ -30,7 +30,7 @@ class DetailsCommand::Private : public Command::Private
     }
 public:
     explicit Private(DetailsCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
 private:
     void ensureDialogCreated()

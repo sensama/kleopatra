@@ -28,7 +28,7 @@ class AddUserIDDialog : public QDialog
     Q_PROPERTY(QString comment READ comment WRITE setComment)
 public:
     explicit AddUserIDDialog(QWidget *parent = nullptr);
-    ~AddUserIDDialog();
+    ~AddUserIDDialog() override;
 
     void setName(const QString &name);
     QString name() const;

@@ -19,7 +19,7 @@ class KWatchGnuPGTray : public KStatusNotifierItem
     Q_OBJECT
 public:
     explicit KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin);
-    virtual ~KWatchGnuPGTray();
+    ~KWatchGnuPGTray() override;
 
 public Q_SLOTS:
     void setAttention(bool att);

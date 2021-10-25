@@ -35,7 +35,7 @@ class SetInitialPinCommand::Private : public CardCommand::Private
     }
 public:
     explicit Private(SetInitialPinCommand *qq, const std::string &serialNumber);
-    ~Private();
+    ~Private() override;
 
 private:
     void init()

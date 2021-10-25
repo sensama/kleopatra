@@ -24,7 +24,7 @@ class AppearanceConfigWidget : public QWidget
     Q_OBJECT
 public:
     explicit AppearanceConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~AppearanceConfigWidget();
+    ~AppearanceConfigWidget() override;
 
 public Q_SLOTS:
     void load();

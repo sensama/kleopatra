@@ -41,7 +41,7 @@ class DecryptVerifyFilesCommand::Private : public Command::Private
 public:
     explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c,
                      bool forceManualMode=false);
-    ~Private();
+    ~Private() override;
 
     QStringList selectFiles() const;
 

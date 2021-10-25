@@ -120,7 +120,7 @@ class DumpCertificateCommand::Private : Command::Private
     }
 public:
     explicit Private(DumpCertificateCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QString errorString() const
     {

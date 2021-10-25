@@ -41,7 +41,7 @@ class ChangeOwnerTrustCommand::Private : public Command::Private
     }
 public:
     explicit Private(ChangeOwnerTrustCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

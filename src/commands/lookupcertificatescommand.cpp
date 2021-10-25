@@ -57,7 +57,7 @@ class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Pri
     }
 public:
     explicit Private(LookupCertificatesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QString query;
     void init();

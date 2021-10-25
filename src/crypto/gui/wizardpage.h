@@ -30,7 +30,7 @@ class WizardPage : public QWidget
     Q_OBJECT
 public:
     explicit WizardPage(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    virtual ~WizardPage();
+    ~WizardPage() override;
 
     virtual bool isComplete() const = 0;
 

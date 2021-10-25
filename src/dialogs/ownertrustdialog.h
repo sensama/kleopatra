@@ -25,7 +25,7 @@ class OwnerTrustDialog : public QDialog
     Q_OBJECT
 public:
     explicit OwnerTrustDialog(QWidget *parent = nullptr);
-    ~OwnerTrustDialog();
+    ~OwnerTrustDialog() override;
 
     void setFormattedCertificateName(const QString &formatted);
     QString formattedCertificateName() const;

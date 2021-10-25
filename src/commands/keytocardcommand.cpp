@@ -58,7 +58,7 @@ class KeyToCardCommand::Private : public CardCommand::Private
 public:
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey);
     explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
-    ~Private();
+    ~Private() override;
 
 private:
     void start();

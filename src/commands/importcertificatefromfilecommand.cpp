@@ -48,7 +48,7 @@ class ImportCertificateFromFileCommand::Private : public ImportCertificatesComma
     }
 public:
     explicit Private(ImportCertificateFromFileCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     bool ensureHaveFile();
 

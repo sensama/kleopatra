@@ -52,7 +52,7 @@ class CertifyCertificateCommand::Private : public Command::Private
     }
 public:
     explicit Private(CertifyCertificateCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void init();
 

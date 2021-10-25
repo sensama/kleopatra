@@ -31,7 +31,7 @@ class NetKeyWidget: public QWidget
     Q_OBJECT
 public:
     explicit NetKeyWidget(QWidget *parent = nullptr);
-    ~NetKeyWidget();
+    ~NetKeyWidget() override;
 
     void setCard(const SmartCard::NetKeyCard *card);
 

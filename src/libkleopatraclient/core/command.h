@@ -26,7 +26,7 @@ class KLEOPATRACLIENTCORE_EXPORT Command : public QObject
     Q_OBJECT
 public:
     explicit Command(QObject *parent = nullptr);
-    ~Command();
+    ~Command() override;
 
     void setParentWId(WId wid);
     WId parentWId() const;

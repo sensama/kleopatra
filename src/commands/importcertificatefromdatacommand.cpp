@@ -30,7 +30,7 @@ class ImportCertificateFromDataCommand::Private : public ImportCertificatesComma
 public:
     explicit Private(ImportCertificateFromDataCommand *qq,
                      const QByteArray &data, GpgME::Protocol proto, const QString &id);
-    ~Private();
+    ~Private() override;
 
 private:
     QByteArray mData;

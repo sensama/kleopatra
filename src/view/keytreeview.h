@@ -39,7 +39,7 @@ public:
     KeyTreeView(const QString &stringFilter, const std::shared_ptr<KeyFilter> &keyFilter,
                 AbstractKeyListSortFilterProxyModel *additionalProxy, QWidget *parent,
                 const KConfigGroup &group);
-    ~KeyTreeView();
+    ~KeyTreeView() override;
 
     QTreeView *view() const
     {

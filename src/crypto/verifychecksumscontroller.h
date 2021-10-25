@@ -32,7 +32,7 @@ class VerifyChecksumsController : public Controller
 public:
     explicit VerifyChecksumsController(QObject *parent = nullptr);
     explicit VerifyChecksumsController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
-    ~VerifyChecksumsController();
+    ~VerifyChecksumsController() override;
 
     void setFiles(const QStringList &files);
 

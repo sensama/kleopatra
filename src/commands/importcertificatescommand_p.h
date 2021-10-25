@@ -41,7 +41,7 @@ class Kleo::ImportCertificatesCommand::Private : public Command::Private
     }
 public:
     explicit Private(ImportCertificatesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     void setWaitForMoreJobs(bool waiting);
 

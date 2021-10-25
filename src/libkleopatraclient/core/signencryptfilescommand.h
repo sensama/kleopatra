@@ -19,7 +19,7 @@ class KLEOPATRACLIENTCORE_EXPORT SignEncryptFilesCommand : public Command
     Q_OBJECT
 public:
     explicit SignEncryptFilesCommand(QObject *parent = nullptr);
-    ~SignEncryptFilesCommand();
+    ~SignEncryptFilesCommand() override;
 
     // Inputs
 

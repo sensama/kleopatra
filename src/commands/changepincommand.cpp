@@ -36,7 +36,7 @@ class ChangePinCommand::Private : public CardCommand::Private
     }
 public:
     explicit Private(ChangePinCommand *qq, const std::string &serialNumber, const std::string &appName, QWidget *p);
-    ~Private();
+    ~Private() override;
 
     void init();
 

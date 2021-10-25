@@ -64,7 +64,7 @@ private:
 class ProcessStdOutInput : public InputImplBase
 {
 public:
-    ~ProcessStdOutInput()
+    ~ProcessStdOutInput() override
     {
         finalize();
     }

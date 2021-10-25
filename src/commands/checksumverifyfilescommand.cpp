@@ -38,7 +38,7 @@ class ChecksumVerifyFilesCommand::Private : public Command::Private
     }
 public:
     explicit Private(ChecksumVerifyFilesCommand *qq, KeyListController *c);
-    ~Private();
+    ~Private() override;
 
     QStringList selectFiles() const;
 

@@ -29,7 +29,7 @@ class Wizard : public QDialog
     Q_OBJECT
 public:
     explicit Wizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~Wizard();
+    ~Wizard() override;
 
     enum Page {
         InvalidPage = -1

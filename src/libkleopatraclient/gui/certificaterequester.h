@@ -30,7 +30,7 @@ class KLEOPATRACLIENTGUI_EXPORT CertificateRequester : public QWidget
     Q_PROPERTY(QStringList selectedCertificates READ selectedCertificates WRITE setSelectedCertificates)
 public:
     explicit CertificateRequester(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~CertificateRequester();
+    ~CertificateRequester() override;
 
     void setMultipleCertificatesAllowed(bool allow);
     bool multipleCertificatesAllowed() const;

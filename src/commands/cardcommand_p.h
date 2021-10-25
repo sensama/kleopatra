@@ -22,7 +22,7 @@ class Kleo::CardCommand::Private : public Command::Private
     }
 public:
     explicit Private(CardCommand *qq, const std::string &serialNumber, QWidget *parent);
-    ~Private();
+    ~Private() override;
 
     std::string serialNumber() const
     {

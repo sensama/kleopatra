@@ -23,7 +23,7 @@ class SMimeValidationConfigurationWidget : public QWidget
     Q_OBJECT
 public:
     explicit SMimeValidationConfigurationWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SMimeValidationConfigurationWidget();
+    ~SMimeValidationConfigurationWidget() override;
 
 public Q_SLOTS:
     void load();

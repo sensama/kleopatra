@@ -19,7 +19,7 @@ class KLEOPATRACLIENTCORE_EXPORT SelectCertificateCommand : public Command
     Q_OBJECT
 public:
     explicit SelectCertificateCommand(QObject *parent = nullptr);
-    ~SelectCertificateCommand();
+    ~SelectCertificateCommand() override;
 
     // Inputs
 

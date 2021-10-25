@@ -43,7 +43,7 @@ class PIVGenerateCardKeyCommand::Private : public CardCommand::Private
     }
 public:
     explicit Private(PIVGenerateCardKeyCommand *qq, const std::string &serialNumber, QWidget *p);
-    ~Private();
+    ~Private() override;
 
     void init();
 

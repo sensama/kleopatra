@@ -28,7 +28,7 @@ class SetInitialPinDialog : public QDialog
     Q_OBJECT
 public:
     explicit SetInitialPinDialog(QWidget *parent = nullptr);
-    ~SetInitialPinDialog();
+    ~SetInitialPinDialog() override;
 
     void setNksPinPresent(bool);
     void setSigGPinPresent(bool);

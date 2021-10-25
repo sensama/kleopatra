@@ -19,7 +19,7 @@ class KLEOPATRACLIENTCORE_EXPORT DecryptVerifyFilesCommand : public Command
     Q_OBJECT
 public:
     explicit DecryptVerifyFilesCommand(QObject *parent = nullptr);
-    ~DecryptVerifyFilesCommand();
+    ~DecryptVerifyFilesCommand() override;
 
     // Inputs
 

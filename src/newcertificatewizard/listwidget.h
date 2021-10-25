@@ -30,7 +30,7 @@ class ListWidget : public QWidget
     Q_PROPERTY(QString defaultValue READ defaultValue WRITE setDefaultValue)
 public:
     explicit ListWidget(QWidget *parent = nullptr);
-    ~ListWidget();
+    ~ListWidget() override;
 
     void setDefaultValue(const QString &defaultValue);
     QString defaultValue() const;

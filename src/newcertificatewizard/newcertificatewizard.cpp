@@ -1712,7 +1712,7 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
     QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << 2048 << -3072 << 4096);
-    if (Kleo::gpgComplianceP("de-vs")) {
+    if (Kleo::gnupgUsesDeVsCompliance()) {
         rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << -3072 << 4096);
     }
     const QList<int> dsaKeySizes = config.readEntry(DSA_KEYSIZES_ENTRY, QList<int>() << -2048);
@@ -1860,7 +1860,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         ui.ecdsaRB->setText(QStringLiteral("ECDSA/EdDSA"));
     }
 
-    bool deVsHack = Kleo::gpgComplianceP("de-vs");
+    const bool deVsHack = Kleo::gnupgUsesDeVsCompliance();
 
     if (deVsHack) {
         // GnuPG Provides no API to query which keys are compliant for

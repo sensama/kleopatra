@@ -28,6 +28,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
+#include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
 
@@ -410,7 +411,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.type->setText(Kleo::Formatting::type(key));
     ui.fingerprint->setText(Formatting::prettyID(key.primaryFingerprint()));
 
-    if (Kleo::Formatting::complianceMode().isEmpty()) {
+    if (!Kleo::gnupgIsDeVsCompliant()) {
         HIDE_ROW(compliance)
     } else {
         ui.complianceLbl->setText(Kleo::Formatting::complianceStringForKey(key));

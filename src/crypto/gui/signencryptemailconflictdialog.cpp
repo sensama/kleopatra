@@ -246,6 +246,9 @@ private:
 
     void updateComplianceStatus()
     {
+        if (!Kleo::gnupgIsDeVsCompliant()) {
+            return;
+        }
         if (q->selectedProtocol() == UnknownProtocol ||
             (q->resolvedSigningKeys().empty() && q->resolvedEncryptionKeys().empty())) {
             return;
@@ -286,9 +289,7 @@ private:
     void updateDialogStatus()
     {
         ui.setOkButtonEnabled(q->isComplete());
-        if (Kleo::gpgComplianceP("de-vs")) {
-            updateComplianceStatus();
-        }
+        updateComplianceStatus();
     }
     void slotCompleteChanged()
     {

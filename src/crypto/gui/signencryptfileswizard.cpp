@@ -354,8 +354,8 @@ private Q_SLOTS:
         auto btn = mParent->button(QWizard::CommitButton);
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);
-            if (Kleo::gpgComplianceP("de-vs")) {
-                bool de_vs = mWidget->isDeVsAndValid();
+            if (Kleo::gnupgUsesDeVsCompliance()) {
+                const bool de_vs = Kleo::gnupgIsDeVsCompliant() && mWidget->isDeVsAndValid();
                 btn->setIcon(QIcon::fromTheme(de_vs
                                              ? QStringLiteral("security-high")
                                              : QStringLiteral("security-medium")));
@@ -454,7 +454,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
 {
     readConfig();
 
-    bool de_vs = Kleo::gpgComplianceP("de-vs");
+    const bool de_vs = Kleo::gnupgUsesDeVsCompliance();
 #ifdef Q_OS_WIN
     // Enforce modern style to avoid vista style ugliness.
     setWizardStyle(QWizard::ModernStyle);

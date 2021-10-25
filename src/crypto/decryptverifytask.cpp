@@ -269,7 +269,7 @@ static QString formatSigningInformation(const Signature &sig)
     }
     text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 
-    if (Kleo::gpgComplianceP("de-vs")) {
+    if (Kleo::gnupgIsDeVsCompliant()) {
         text +=
             (QStringLiteral("<br/>")
              + (IS_DE_VS(sig)
@@ -573,7 +573,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
 
     QString details;
 
-    if (Kleo::gpgComplianceP("de-vs")) {
+    if (Kleo::gnupgIsDeVsCompliant()) {
         details += ((IS_DE_VS(res)
                      ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                              "The decryption is %1.", Formatting::deVsString())

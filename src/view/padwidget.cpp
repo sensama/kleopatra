@@ -464,8 +464,8 @@ public:
             mCryptBtn->setDisabled(true);
         }
 
-        if (Kleo::gpgComplianceP("de-vs")) {
-            bool de_vs = mSigEncWidget->isDeVsAndValid();
+        if (Kleo::gnupgUsesDeVsCompliance()) {
+            const bool de_vs = Kleo::gnupgIsDeVsCompliant() && mSigEncWidget->isDeVsAndValid();
             mCryptBtn->setIcon(QIcon::fromTheme(de_vs
                         ? QStringLiteral("security-high")
                         : QStringLiteral("security-medium")));

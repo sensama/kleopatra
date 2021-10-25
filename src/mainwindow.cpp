@@ -54,6 +54,7 @@
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
 #include <KConfigDialog>
+#include <KColorScheme>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>
@@ -179,13 +180,19 @@ public:
 
     void updateStatusBar()
     {
-        const auto complianceMode = Formatting::complianceMode();
-        if (complianceMode == QStringLiteral("de-vs")) {
-            auto statusBar = new QStatusBar;
-            q->setStatusBar(statusBar);
-            auto statusLbl = new QLabel(Formatting::deVsString());
-            statusBar->insertPermanentWidget(0, statusLbl);
-
+        if (Kleo::gnupgUsesDeVsCompliance()) {
+            auto statusBar = std::make_unique<QStatusBar>();
+            auto statusLbl = std::make_unique<QLabel>(Formatting::deVsString(Kleo::gnupgIsDeVsCompliant()));
+            const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
+                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveText : KColorScheme::NegativeText
+            ).color();
+            const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
+                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
+            ).color();
+            statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").
+                                     arg(color.name()).arg(background.name()));
+            statusBar->insertPermanentWidget(0, statusLbl.release());
+            q->setStatusBar(statusBar.release());  // QMainWindow takes ownership
         } else {
             q->setStatusBar(nullptr);
         }

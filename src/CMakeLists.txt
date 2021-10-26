@@ -108,6 +108,7 @@ set(_kleopatra_SRCS
   selftest/gpgconfcheck.cpp
   selftest/gpgagentcheck.cpp
   selftest/libkleopatrarccheck.cpp
+  selftest/compliancecheck.cpp
 
   ${_kleopatra_extra_SRCS}
 

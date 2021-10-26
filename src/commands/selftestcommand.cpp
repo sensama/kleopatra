@@ -27,6 +27,7 @@
 #endif
 #include <selftest/gpgagentcheck.h>
 #include <selftest/libkleopatrarccheck.h>
+#include <selftest/compliancecheck.h>
 
 #include <Libkleo/Stl_Util>
 
@@ -133,6 +134,7 @@ private:
 #ifndef Q_OS_WIN
         tests.push_back(makeGpgAgentConnectivitySelfTest());
 #endif
+        tests.push_back(makeDeVSComplianceCheckSelfTest());
         tests.push_back(makeLibKleopatraRcSelfTest());
 
         if (!dialog && std::none_of(tests.cbegin(), tests.cend(),

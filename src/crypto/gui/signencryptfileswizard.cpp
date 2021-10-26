@@ -217,6 +217,14 @@ public:
 
     bool validatePage() override
     {
+        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+            KMessageBox::sorry(topLevelWidget(),
+                               xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                      "<para>Sorry! You cannot use Kleopatra for signing or encrypting files "
+                                      "because the <application>GnuPG</application> system used by Kleopatra is not %1.</para>",
+                                      Formatting::deVsString()));
+            return false;
+        }
         bool sign = !mWidget->signKey().isNull();
         bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
         if (!mWidget->validate()) {

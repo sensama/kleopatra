@@ -367,6 +367,15 @@ public:
 
     void doEncryptSign()
     {
+        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+            KMessageBox::sorry(q->topLevelWidget(),
+                               xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                      "<para>Sorry! You cannot use Kleopatra for signing or encryption "
+                                      "because the <application>GnuPG</application> system used by Kleopatra is not %1.</para>",
+                                      Formatting::deVsString()));
+            return;
+        }
+
         doCryptoCommon();
         mProgressLabel->setText(mSigEncWidget->currentOp() + QStringLiteral("..."));
         auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));

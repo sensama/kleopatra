@@ -41,11 +41,12 @@
 #include <QTabWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include <QStyle>
 
 #include <KLocalizedString>
 #include <KColorScheme>
 #include <KMessageBox>
-
+#include <KMessageWidget>
 #include <KSharedConfig>
 #include <KConfigGroup>
 
@@ -76,6 +77,7 @@ public:
         mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad"))),
         mDecryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-decrypt-verify")), i18n("Decrypt / Verify Notepad"))),
         mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert"))),
+        mMessageWidget{new KMessageWidget},
         mAdditionalInfoLabel(new QLabel),
         mSigEncWidget(new SignEncryptWidget(nullptr, true)),
         mProgressBar(new QProgressBar),
@@ -98,6 +100,17 @@ public:
         btnLay->addWidget(mAdditionalInfoLabel);
 
         btnLay->addStretch(-1);
+
+        mMessageWidget->setMessageType(KMessageWidget::Warning);
+        mMessageWidget->setIcon(q->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, q));
+        mMessageWidget->setText(i18n("Signing and encryption is not possible."));
+        mMessageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                         "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
+                                         "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
+                                         Formatting::deVsString()));
+        mMessageWidget->setCloseButtonVisible(false);
+        mMessageWidget->setVisible(false);
+        vLay->addWidget(mMessageWidget);
 
         mProgressBar->setRange(0, 0);
         mProgressBar->setVisible(false);
@@ -370,8 +383,8 @@ public:
         if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
             KMessageBox::sorry(q->topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                      "<para>Sorry! You cannot use Kleopatra for signing or encryption "
-                                      "because the <application>GnuPG</application> system used by Kleopatra is not %1.</para>",
+                                      "<para>Sorry! You cannot use <application>Kleopatra</application> for signing or encryption "
+                                      "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
                                       Formatting::deVsString()));
             return;
         }
@@ -459,18 +472,18 @@ public:
             mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
                                      "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
                                      i18n("Import")));
-            mCryptBtn->setDisabled(false);
+            mCryptBtn->setEnabled(true);
             return;
         }
 
         if (!mSigEncWidget->currentOp().isEmpty()) {
-            mCryptBtn->setDisabled(false);
+            mCryptBtn->setEnabled(true);
             mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
                                      "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
                                      mSigEncWidget->currentOp()));
         } else {
             mCryptBtn->setText(i18n("Sign / Encrypt Notepad"));
-            mCryptBtn->setDisabled(true);
+            mCryptBtn->setEnabled(false);
         }
 
         if (Kleo::gnupgUsesDeVsCompliance()) {
@@ -487,6 +500,8 @@ public:
                     : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                         "%1 communication not possible.", Formatting::deVsString()));
             mAdditionalInfoLabel->setVisible(true);
+            mCryptBtn->setEnabled(false);
+            mMessageWidget->setVisible(!Kleo::gnupgIsDeVsCompliant());
         }
     }
 
@@ -496,6 +511,7 @@ private:
     QPushButton *mCryptBtn;
     QPushButton *mDecryptBtn;
     QPushButton *mRevertBtn;
+    KMessageWidget *mMessageWidget;
     QLabel *mAdditionalInfoLabel;
     QByteArray mInputData;
     QByteArray mOutputData;

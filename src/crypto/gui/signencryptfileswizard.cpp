@@ -21,8 +21,8 @@
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KWindowConfig>
-
 #include <KMessageBox>
+#include <KMessageWidget>
 
 #include "kleopatra_debug.h"
 #include <Libkleo/GnuPG>
@@ -36,7 +36,7 @@
 #include <QLabel>
 #include <QIcon>
 #include <QCheckBox>
-
+#include <QStyle>
 
 #include <gpgme++/key.h>
 
@@ -163,6 +163,18 @@ public:
 
         vLay->addWidget(outputGrp);
 
+        auto messageWidget = new KMessageWidget;
+        messageWidget->setMessageType(KMessageWidget::Error);
+        messageWidget->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical, nullptr, this));
+        messageWidget->setText(i18n("Signing and encrypting files is not possible."));
+        messageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                         "<para>You cannot use <application>Kleopatra</application> for signing or encrypting files "
+                                         "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
+                                         Formatting::deVsString()));
+        messageWidget->setCloseButtonVisible(false);
+        messageWidget->setVisible(Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant());
+        vLay->addWidget(messageWidget);
+
         setMinimumHeight(300);
     }
 
@@ -178,6 +190,9 @@ public:
 
     bool isComplete() const override
     {
+        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+            return false;
+        }
         return !mWidget->currentOp().isNull();
     }
 
@@ -220,8 +235,8 @@ public:
         if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
             KMessageBox::sorry(topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                      "<para>Sorry! You cannot use Kleopatra for signing or encrypting files "
-                                      "because the <application>GnuPG</application> system used by Kleopatra is not %1.</para>",
+                                      "<para>Sorry! You cannot use <application>Kleopatra</application> for signing or encrypting files "
+                                      "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
                                       Formatting::deVsString()));
             return false;
         }

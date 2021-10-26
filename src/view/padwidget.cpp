@@ -491,7 +491,7 @@ public:
             mCryptBtn->setIcon(QIcon::fromTheme(de_vs
                         ? QStringLiteral("security-high")
                         : QStringLiteral("security-medium")));
-            mCryptBtn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
+            mCryptBtn->setStyleSheet(QStringLiteral("QPushButton { background-color: %1; }").arg(de_vs
                         ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                         : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
             mAdditionalInfoLabel->setText(de_vs

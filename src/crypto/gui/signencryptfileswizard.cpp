@@ -382,7 +382,7 @@ private Q_SLOTS:
                 btn->setIcon(QIcon::fromTheme(de_vs
                                              ? QStringLiteral("security-high")
                                              : QStringLiteral("security-medium")));
-                btn->setStyleSheet(QStringLiteral("background-color: ") + (de_vs
+                btn->setStyleSheet(QStringLiteral("QPushButton { background-color: %1; }").arg(de_vs
                                    ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
                                    : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
                 mParent->setLabelText(de_vs

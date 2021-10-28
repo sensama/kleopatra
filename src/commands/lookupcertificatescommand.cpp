@@ -371,19 +371,6 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
                                  QStringLiteral("lookup-certificates-truncated-result"));
 }
 
-static bool haveX509DirectoryServerConfigured()
-{
-    const QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
-    if (!config) {
-        return false;
-    }
-    const QGpgME::CryptoConfigEntry *entry = getCryptoConfigEntry(config, "dirmngr", "LDAP Server");
-    bool entriesExist = entry && !entry->urlValueList().empty();
-    entry = getCryptoConfigEntry(config, "gpgsm", "keyserver");
-    entriesExist |= entry && !entry->urlValueList().empty();
-    return entriesExist;
-}
-
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
     const bool ok = haveKeyserverConfigured() || haveX509DirectoryServerConfigured();

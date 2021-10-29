@@ -22,12 +22,10 @@
 #ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
 # include "deviceinfowatcher.h"
 #endif
-#include "keypairinfo.h"
 
+#include <Libkleo/Assuan>
 #include <Libkleo/GnuPG>
-
 #include <Libkleo/FileSystemWatcher>
-#include <Libkleo/Stl_Util>
 
 #ifdef QGPGME_HAS_DEBUG
 # include <QGpgME/Debug>
@@ -35,7 +33,7 @@
 
 #include <gpgme++/context.h>
 #include <gpgme++/defaultassuantransaction.h>
-#include <gpgme++/key.h>
+#include <gpgme++/engineinfo.h>
 
 #include <gpg-error.h>
 
@@ -44,19 +42,11 @@
 #include "pivcard.h"
 #include "p15card.h"
 
-#include <QStringList>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QThread>
 #include <QPointer>
 #include <QRegularExpression>
-
-#include <algorithm>
-#include <cstdlib>
-#include <iterator>
-#include <list>
-#include <set>
-#include <utility>
 
 #include "utils/kdtoolsglobal.h"
 
@@ -113,16 +103,6 @@ static QDebug operator<<(QDebug s, const GpgME::Error &err)
 }
 #endif
 
-static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
-{
-    using pair = std::pair<std::string, std::string>;
-    s << '(';
-    for (const pair &p : v) {
-        s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << '\n';
-    }
-    return s << ')';
-}
-
 struct CardApp {
     std::string serialNumber;
     std::string appName;
@@ -166,83 +146,11 @@ static Card::PinState parse_pin_state(const QString &s)
     }
 }
 
-template<typename T>
-static std::unique_ptr<T> gpgagent_transact(std::shared_ptr<Context> &gpgAgent, const char *command, std::unique_ptr<T> transaction, Error &err)
-{
-    qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << ")";
-    err = gpgAgent->assuanTransact(command, std::move(transaction));
-
-    static int cnt = 0;
-    while (err.code() == GPG_ERR_ASS_CONNECT_FAILED && cnt < 5) {
-        // Esp. on Windows the agent processes may take their time so we try
-        // in increasing waits for them to start up
-        qCDebug(KLEOPATRA_LOG) << "Waiting for the daemons to start up";
-        cnt++;
-        QThread::msleep(250 * cnt);
-        err = gpgAgent->assuanTransact(command, gpgAgent->takeLastAssuanTransaction());
-    }
-    if (err.code()) {
-        qCDebug(KLEOPATRA_LOG) << "gpgagent_transact(" << command << "): Error:" << err;
-        if (err.code() >= GPG_ERR_ASS_GENERAL && err.code() <= GPG_ERR_ASS_UNKNOWN_INQUIRE) {
-            qCDebug(KLEOPATRA_LOG) << "Assuan problem, killing context";
-            gpgAgent.reset();
-        }
-        return std::unique_ptr<T>();
-    }
-    std::unique_ptr<AssuanTransaction> t = gpgAgent->takeLastAssuanTransaction();
-    return std::unique_ptr<T>(dynamic_cast<T*>(t.release()));
-}
-
-static std::unique_ptr<DefaultAssuanTransaction> gpgagent_default_transact(std::shared_ptr<Context> &gpgAgent, const char *command, Error &err)
-{
-    return gpgagent_transact(gpgAgent, command, std::make_unique<DefaultAssuanTransaction>(), err);
-}
-
-static const std::string gpgagent_data(std::shared_ptr<Context> gpgAgent, const char *command, Error &err)
-{
-    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, command, err);
-    if (t.get()) {
-        qCDebug(KLEOPATRA_LOG) << "gpgagent_data(" << command << "): got" << QString::fromStdString(t->data());
-        return t->data();
-    } else {
-        qCDebug(KLEOPATRA_LOG) << "gpgagent_data(" << command << "): t == NULL";
-        return std::string();
-    }
-}
-
-static const std::vector< std::pair<std::string, std::string> > gpgagent_statuslines(std::shared_ptr<Context> gpgAgent, const char *what, Error &err)
-{
-    const std::unique_ptr<DefaultAssuanTransaction> t = gpgagent_default_transact(gpgAgent, what, err);
-    if (t.get()) {
-        qCDebug(KLEOPATRA_LOG) << "agent_getattr_status(" << what << "): got" << t->statusLines();
-        return t->statusLines();
-    } else {
-        qCDebug(KLEOPATRA_LOG) << "agent_getattr_status(" << what << "): t == NULL";
-        return std::vector<std::pair<std::string, std::string> >();
-    }
-}
-
-static const std::string gpgagent_status(const std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
-{
-    const auto lines = gpgagent_statuslines (gpgAgent, what, err);
-    // The status is only the last attribute
-    // e.g. for SCD SERIALNO it would only be "SERIALNO" and for SCD GETATTR FOO
-    // it would only be FOO
-    const char *p = strrchr(what, ' ');
-    const char *needle = (p + 1) ? (p + 1) : what;
-    for (const auto &pair: lines) {
-        if (pair.first == needle) {
-            return pair.second;
-        }
-    }
-    return std::string();
-}
-
 static const std::string scd_getattr_status(std::shared_ptr<Context> &gpgAgent, const char *what, Error &err)
 {
     std::string cmd = "SCD GETATTR ";
     cmd += what;
-    return gpgagent_status(gpgAgent, cmd.c_str(), err);
+    return Assuan::sendStatusCommand(gpgAgent, cmd.c_str(), err);
 }
 
 static const std::string getAttribute(std::shared_ptr<Context> &gpgAgent, const char *attribute, const char *versionHint)
@@ -265,7 +173,7 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
     std::vector<CardApp> result;
     if (gpgHasMultiCardMultiAppSupport()) {
         const std::string command = "SCD GETINFO all_active_apps";
-        const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+        const auto statusLines = Assuan::sendStatusLinesCommand(gpgAgent, command.c_str(), err);
         if (err) {
             return result;
         }
@@ -290,7 +198,7 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
         }
     } else {
         // use SCD SERIALNO to get the currently active card
-        const auto serialNumber = gpgagent_status(gpgAgent, "SCD SERIALNO", err);
+        const auto serialNumber = Assuan::sendStatusCommand(gpgAgent, "SCD SERIALNO", err);
         if (err) {
             return result;
         }
@@ -309,7 +217,7 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
 static std::string switchCard(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber, Error &err)
 {
     const std::string command = "SCD SWITCHCARD " + serialNumber;
-    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+    const auto statusLines = Assuan::sendStatusLinesCommand(gpgAgent, command.c_str(), err);
     if (err) {
         return std::string();
     }
@@ -325,7 +233,7 @@ static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::stri
                              const std::string &appName, Error &err)
 {
     const std::string command = "SCD SWITCHAPP " + appName;
-    const auto statusLines = gpgagent_statuslines(gpgAgent, command.c_str(), err);
+    const auto statusLines = Assuan::sendStatusLinesCommand(gpgAgent, command.c_str(), err);
     if (err) {
         return std::string();
     }
@@ -413,7 +321,7 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     Error err;
     auto pgpCard = new OpenPGPCard(*ci);
 
-    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    const auto info = Assuan::sendStatusLinesCommand(gpg_agent, "SCD LEARN --force", err);
     if (err.code()) {
         ci->setStatus(Card::CardError);
         return;
@@ -434,7 +342,7 @@ static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCa
 {
     Error err;
     const std::string command = std::string("SCD READKEY --info-only -- ") + keyRef;
-    const auto keyPairInfoLines = gpgagent_statuslines(gpg_agent, command.c_str(), err);
+    const auto keyPairInfoLines = Assuan::sendStatusLinesCommand(gpg_agent, command.c_str(), err);
     if (err) {
         qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
         return;
@@ -458,7 +366,7 @@ static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCa
 {
     Error err;
     const std::string command = std::string("SCD READCERT ") + keyRef;
-    const std::string certificateData = gpgagent_data(gpg_agent, command.c_str(), err);
+    const std::string certificateData = Assuan::sendDataCommand(gpg_agent, command.c_str(), err);
     if (err && err.code() != GPG_ERR_NOT_FOUND) {
         qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
         return;
@@ -476,7 +384,7 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     Error err;
     auto pivCard = new PIVCard(*ci);
 
-    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    const auto info = Assuan::sendStatusLinesCommand(gpg_agent, "SCD LEARN --force", err);
     if (err) {
         ci->setStatus(Card::CardError);
         return;
@@ -500,19 +408,19 @@ static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
     Error err;
     auto p15Card = new P15Card(*ci);
 
-    auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    auto info = Assuan::sendStatusLinesCommand(gpg_agent, "SCD LEARN --force", err);
     if (err) {
         ci->setStatus(Card::CardError);
         return;
     }
-    const auto fprs = gpgagent_statuslines(gpg_agent, "SCD GETATTR KEY-FPR", err);
+    const auto fprs = Assuan::sendStatusLinesCommand(gpg_agent, "SCD GETATTR KEY-FPR", err);
     if (!err) {
         info.insert(info.end(), fprs.begin(), fprs.end());
     }
 
     /* Create the key stubs */
-    gpgagent_statuslines(gpg_agent, "READKEY --card --no-data -- $SIGNKEYID", err);
-    gpgagent_statuslines(gpg_agent, "READKEY --card --no-data -- $ENCRKEYID", err);
+    Assuan::sendStatusLinesCommand(gpg_agent, "READKEY --card --no-data -- $SIGNKEYID", err);
+    Assuan::sendStatusLinesCommand(gpg_agent, "READKEY --card --no-data -- $ENCRKEYID", err);
 
     p15Card->setCardInfo(info);
 
@@ -570,7 +478,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     }
     nkCard->setPinStates(states);
 
-    const auto info = gpgagent_statuslines(gpg_agent, "SCD LEARN --force", err);
+    const auto info = Assuan::sendStatusLinesCommand(gpg_agent, "SCD LEARN --force", err);
     if (err) {
         ci->setStatus(Card::CardError);
         return;
@@ -671,7 +579,7 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
     {
         Error err;
         const char *command = (gpgHasMultiCardMultiAppSupport()) ? "SCD SERIALNO --all" : "SCD SERIALNO";
-        const std::string serialno = gpgagent_status(gpgAgent, command, err);
+        const std::string serialno = Assuan::sendStatusCommand(gpgAgent, command, err);
         if (err) {
             if (isCardNotPresentError(err)) {
                 qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";
@@ -905,9 +813,9 @@ private:
                 }
                 if (!err) {
                     if (assuanTransaction) {
-                        (void)gpgagent_transact(gpgAgent, command.constData(), std::unique_ptr<AssuanTransaction>(assuanTransaction), err);
+                        (void)Assuan::sendCommand(gpgAgent, command.constData(), std::unique_ptr<AssuanTransaction>(assuanTransaction), err);
                     } else {
-                        (void)gpgagent_default_transact(gpgAgent, command.constData(), err);
+                        (void)Assuan::sendCommand(gpgAgent, command.constData(), err);
                     }
                 }
 

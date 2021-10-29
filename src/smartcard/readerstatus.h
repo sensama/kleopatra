@@ -62,10 +62,6 @@ public:
                                  const std::string &appName, GpgME::Error &err);
     static GpgME::Error switchCardAndApp(const std::string &serialNumber, const std::string &appName);
 
-    // Returns a list of reader IDs of the form "%04X:%04X:%s:0"
-    // with USB device vendor ID & 0xffff, USB device product ID & 0xffff, USB device serial number or "X"
-    static std::vector<std::string> getReaders(GpgME::Error &err);
-
 public Q_SLOTS:
     void updateStatus();
     void startMonitoring();

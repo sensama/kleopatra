@@ -11,7 +11,7 @@
 
 #include "command_p.h"
 
-#include "smartcard/readerstatus.h"
+#include <Libkleo/SCDaemon>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -56,7 +56,7 @@ ListReadersCommand::Private::~Private() = default;
 void ListReadersCommand::Private::start()
 {
     GpgME::Error err;
-    const auto readers = SmartCard::ReaderStatus::getReaders(err);
+    const auto readers = SCDaemon::getReaders(err);
     QString message;
     if (err) {
         message = i18nc("@info", "Reading the list of readers failed:") + QLatin1Char{'\n'} +

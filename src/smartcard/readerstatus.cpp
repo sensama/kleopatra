@@ -103,6 +103,16 @@ static QDebug operator<<(QDebug s, const GpgME::Error &err)
 }
 #endif
 
+static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
+{
+    using pair = std::pair<std::string, std::string>;
+    s << '(';
+    for (const pair &p : v) {
+        s << "status(" << QString::fromStdString(p.first) << ") =" << QString::fromStdString(p.second) << '\n';
+    }
+    return s << ')';
+}
+
 struct CardApp {
     std::string serialNumber;
     std::string appName;

@@ -691,6 +691,11 @@ void TabWidget::Private::setCornerAction(QAction *action, Qt::Corner corner)
     tabWidget.setCornerWidget(b, corner);
 }
 
+QString TabWidget::stringFilter() const
+{
+    return d->currentPage() ? d->currentPage()->stringFilter() : QString{};
+}
+
 void TabWidget::setStringFilter(const QString &filter)
 {
     if (Page *const page = d->currentPage()) {

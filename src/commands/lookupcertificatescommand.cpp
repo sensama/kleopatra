@@ -15,6 +15,8 @@
 
 #include "detailscommand.h"
 
+#include "view/tabwidget.h"
+
 #include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 
@@ -59,7 +61,6 @@ public:
     explicit Private(LookupCertificatesCommand *qq, KeyListController *c);
     ~Private() override;
 
-    QString query;
     void init();
 
 private:
@@ -105,6 +106,8 @@ private:
     }
 
 private:
+    QString query;
+    bool autoStartLookup = false;
     QPointer<LookupCertificatesDialog> dialog;
     struct KeyListingVariables {
         QPointer<KeyListJob> cms, openpgp;
@@ -154,12 +157,18 @@ LookupCertificatesCommand::LookupCertificatesCommand(const QString &query, KeyLi
 {
     d->init();
     d->query = query;
+    d->autoStartLookup = true;
 }
 
 LookupCertificatesCommand::LookupCertificatesCommand(QAbstractItemView *v, KeyListController *c)
     : ImportCertificatesCommand(v, new Private(this, c))
 {
     d->init();
+    if (c->tabWidget()) {
+        d->query = c->tabWidget()->stringFilter();
+        // do not start the lookup automatically to prevent unwanted leaking
+        // of information
+    }
 }
 
 void LookupCertificatesCommand::Private::init()
@@ -184,10 +193,12 @@ void LookupCertificatesCommand::doStart()
     Q_ASSERT(d->dialog);
 
     // if we have a prespecified query, load it into find field
-    // and start the search
+    // and start the search, if auto-start is enabled
     if (!d->query.isEmpty()) {
         d->dialog->setSearchText(d->query);
-        d->slotSearchTextChanged(d->query);
+        if (d->autoStartLookup) {
+            d->slotSearchTextChanged(d->query);
+        }
     } else {
         d->dialog->setPassive(false);
     }

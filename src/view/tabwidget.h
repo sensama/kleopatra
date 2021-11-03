@@ -61,6 +61,8 @@ public:
 
     void setMultiSelection(bool on);
 
+    QString stringFilter() const;
+
 public Q_SLOTS:
     void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
     void setStringFilter(const QString &filter);

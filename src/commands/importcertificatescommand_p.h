@@ -68,7 +68,7 @@ private:
     void tryToFinish();
 
 private:
-    bool waitForMoreJobs;
+    bool waitForMoreJobs = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::map<QObject *, QString> idsByJob;
     std::vector<QGpgME::AbstractImportJob *> jobs;

@@ -155,18 +155,11 @@ private:
 }
 
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      waitForMoreJobs(false),
-      nonWorkingProtocols(),
-      idsByJob(),
-      jobs(),
-      results(),
-      ids()
+    : Command::Private(qq, c)
 {
-
 }
 
-ImportCertificatesCommand::Private::~Private() {}
+ImportCertificatesCommand::Private::~Private() = default;
 
 #define d d_func()
 #define q q_func()
@@ -174,16 +167,14 @@ ImportCertificatesCommand::Private::~Private() {}
 ImportCertificatesCommand::ImportCertificatesCommand(KeyListController *p)
     : Command(new Private(this, p))
 {
-
 }
 
 ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
-
 }
 
-ImportCertificatesCommand::~ImportCertificatesCommand() {}
+ImportCertificatesCommand::~ImportCertificatesCommand() = default;
 
 static QString format_ids(const QStringList &ids)
 {

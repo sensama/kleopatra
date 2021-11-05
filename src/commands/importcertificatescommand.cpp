@@ -157,7 +157,6 @@ private:
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
       waitForMoreJobs(false),
-      containedExternalCMSCerts(false),
       nonWorkingProtocols(),
       idsByJob(),
       jobs(),
@@ -503,7 +502,7 @@ static void handleOwnerTrust(const std::vector<GpgME::ImportResult> &results)
     }
 }
 
-void ImportCertificatesCommand::Private::handleExternalCMSImports()
+void ImportCertificatesCommand::Private::processResults()
 {
     QStringList fingerprints;
     // For external CMS Imports we have to manually do a keylist
@@ -532,6 +531,7 @@ void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult 
                                                      const QString &, const GpgME::Error&)
 {
     KeyCache::mutableInstance()->refresh(keys);
+    handleOwnerTrust(results);
     showDetails(results, ids);
 
     auto tv = dynamic_cast<QTreeView *> (view());
@@ -543,6 +543,17 @@ void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult 
     finished();
 }
 
+namespace
+{
+bool importFailed(const GpgME::ImportResult &result)
+{
+    // ignore GPG_ERR_EOF error to handle the "failed" import of files
+    // without X.509 certificates by gpgsm gracefully
+    return result.error().code() != GPG_ERR_NO_ERROR
+        && result.error().code() != GPG_ERR_EOF;
+}
+}
+
 void ImportCertificatesCommand::Private::tryToFinish()
 {
 
@@ -550,10 +561,7 @@ void ImportCertificatesCommand::Private::tryToFinish()
         return;
     }
 
-    if (std::any_of(results.cbegin(), results.cend(),
-                    [](const GpgME::ImportResult &result) {
-                        return result.error().code();
-                    })) {
+    if (std::any_of(results.cbegin(), results.cend(), &importFailed)) {
         setImportResultProxyModel(results, ids);
         if (std::all_of(results.cbegin(), results.cend(),
                         [](const GpgME::ImportResult &result) {
@@ -561,23 +569,17 @@ void ImportCertificatesCommand::Private::tryToFinish()
                         })) {
             Q_EMIT q->canceled();
         } else {
-            for (unsigned int i = 0, end = results.size(); i != end; ++i)
-                if (const Error err = results[i].error()) {
-                    showError(err, ids[i]);
+            for (unsigned int i = 0, end = results.size(); i != end; ++i) {
+                if (importFailed(results[i])) {
+                    showError(results[i].error(), ids[i]);
                 }
+            }
         }
-    } else {
-        if (containedExternalCMSCerts) {
-            handleExternalCMSImports();
-            // We emit finished and do show details
-            // after the keylisting.
-            return;
-        } else {
-            handleOwnerTrust(results);
-        }
-        showDetails(results, ids);
+        finished();
+        return;
     }
-    finished();
+
+    processResults();
 }
 
 static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
@@ -647,10 +649,6 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
               i18n("Certificate Import Failed"));
         importResult(ImportResult(), id);
         return;
-    }
-
-    if (protocol == GpgME::CMS) {
-        containedExternalCMSCerts = true;
     }
 
     connect(job.get(), SIGNAL(result(GpgME::ImportResult)),

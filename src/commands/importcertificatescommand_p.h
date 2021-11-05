@@ -64,12 +64,11 @@ public:
                      const std::vector<GpgME::Key> &keys,
                      const QString &, const GpgME::Error&);
 private:
-    void handleExternalCMSImports();
+    void processResults();
     void tryToFinish();
 
 private:
     bool waitForMoreJobs;
-    bool containedExternalCMSCerts;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::map<QObject *, QString> idsByJob;
     std::vector<QGpgME::AbstractImportJob *> jobs;

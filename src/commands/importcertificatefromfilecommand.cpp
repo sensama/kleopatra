@@ -131,13 +131,9 @@ void ImportCertificateFromFileCommand::doStart()
             d->importResult(ImportResult(), fn);
             continue;
         }
-        const GpgME::Protocol protocol = findProtocol(fn);
-        if (protocol == GpgME::UnknownProtocol) {   //TODO: might use exceptions here
-            d->error(i18n("Could not determine certificate type of %1.", in.fileName()), i18n("Certificate Import Failed"));
-            d->importResult(ImportResult(), fn);
-            continue;
-        }
-        d->startImport(protocol, in.readAll(), fn);
+        const auto data = in.readAll();
+        d->startImport(GpgME::OpenPGP, data, fn);
+        d->startImport(GpgME::CMS, data, fn);
     }
     d->setWaitForMoreJobs(false);
 }

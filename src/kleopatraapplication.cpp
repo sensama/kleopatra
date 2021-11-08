@@ -30,6 +30,7 @@
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyGroupConfig>
 #include <Libkleo/Classify>
 
 #ifdef HAVE_USABLE_ASSUAN
@@ -86,10 +87,11 @@ class KleopatraApplication::Private
     KleopatraApplication *const q;
 public:
     explicit Private(KleopatraApplication *qq)
-        : q(qq),
-          ignoreNewInstance(true),
-          firstNewInstance(true),
-          sysTray(nullptr)
+        : q(qq)
+        , ignoreNewInstance(true)
+        , firstNewInstance(true)
+        , sysTray(nullptr)
+        , groupConfig{std::make_shared<KeyGroupConfig>(QStringLiteral("kleopatragroupsrc"))}
     {
     }
     ~Private() {
@@ -145,6 +147,7 @@ public:
 #ifndef QT_NO_SYSTEMTRAYICON
     SysTrayIcon *sysTray;
 #endif
+    std::shared_ptr<KeyGroupConfig> groupConfig;
     std::shared_ptr<KeyCache> keyCache;
     std::shared_ptr<Log> log;
     std::shared_ptr<FileSystemWatcher> watcher;
@@ -159,7 +162,7 @@ public:
         watcher->addPath(gnupgHomeDirectory());
         watcher->setDelay(1000);
         keyCache->addFileSystemWatcher(watcher);
-        keyCache->setGroupsConfig(QStringLiteral("kleopatragroupsrc"));
+        keyCache->setGroupConfig(groupConfig);
         keyCache->setGroupsEnabled(Settings().groupsEnabled());
     }
 

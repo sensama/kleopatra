@@ -417,10 +417,12 @@ void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
 
 void ImportCertificatesCommand::Private::importResult(const ImportResult &result)
 {
+    const auto job = q->sender();
+    jobs.erase(std::remove(jobs.begin(), jobs.end(), job), jobs.end());
 
-    jobs.erase(std::remove(jobs.begin(), jobs.end(), q->sender()), jobs.end());
-
-    importResult(result, idsByJob[q->sender()]);
+    const auto nodeHandler = idsByJob.extract(job);
+    const auto id = nodeHandler.mapped();
+    importResult(result, id);
 }
 
 void ImportCertificatesCommand::Private::importResult(const ImportResult &result, const QString &id)

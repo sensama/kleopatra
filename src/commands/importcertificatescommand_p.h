@@ -13,13 +13,13 @@
 #include "importcertificatescommand.h"
 
 #include <gpgme++/global.h>
+#include <gpgme++/importresult.h>
 
 #include <vector>
 #include <map>
 
 namespace GpgME
 {
-class ImportResult;
 class Import;
 class KeyListResult;
 class Error;
@@ -31,6 +31,20 @@ class AbstractImportJob;
 }
 
 class QByteArray;
+
+struct ImportJobData
+{
+    QString id;
+    QGpgME::AbstractImportJob *job;
+};
+
+bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
+
+struct ImportResultData
+{
+    QString id;
+    GpgME::ImportResult result;
+};
 
 class Kleo::ImportCertificatesCommand::Private : public Command::Private
 {
@@ -48,15 +62,15 @@ public:
     void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString());
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
     void importResult(const GpgME::ImportResult &);
-    void importResult(const GpgME::ImportResult &, const QString &);
+    void importResult(const ImportResultData &result);
 
     void showError(QWidget *parent, const GpgME::Error &error, const QString &id = QString());
     void showError(const GpgME::Error &error, const QString &id = QString());
 
-    void showDetails(QWidget *parent, const std::vector<GpgME::ImportResult> &results, const QStringList &ids);
-    void showDetails(const std::vector<GpgME::ImportResult> &results, const QStringList &ids);
+    void showDetails(QWidget *parent, const std::vector<ImportResultData> &results);
+    void showDetails(const std::vector<ImportResultData> &results);
 
-    void setImportResultProxyModel(const std::vector<GpgME::ImportResult> &results, const QStringList &ids);
+    void setImportResultProxyModel(const std::vector<ImportResultData> &results);
 
     bool showPleaseCertify(const GpgME::Import &imp);
 
@@ -70,10 +84,8 @@ private:
 private:
     bool waitForMoreJobs = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
-    std::map<QObject *, QString> idsByJob;
-    std::vector<QGpgME::AbstractImportJob *> jobs;
-    std::vector<GpgME::ImportResult> results;
-    QStringList ids;
+    std::vector<ImportJobData> jobs;
+    std::vector<ImportResultData> results;
 };
 
 inline Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesCommand::d_func()

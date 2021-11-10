@@ -55,6 +55,11 @@ using namespace GpgME;
 using namespace Kleo;
 using namespace QGpgME;
 
+bool operator==(const ImportJobData &lhs, const ImportJobData &rhs)
+{
+    return lhs.job == rhs.job;
+}
+
 namespace
 {
 
@@ -64,10 +69,10 @@ class ImportResultProxyModel : public AbstractKeyListSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    ImportResultProxyModel(const std::vector<ImportResult> &results, const QStringList &ids, QObject *parent = nullptr)
+    ImportResultProxyModel(const std::vector<ImportResultData> &results, QObject *parent = nullptr)
         : AbstractKeyListSortFilterProxyModel(parent)
     {
-        updateFindCache(results, ids);
+        updateFindCache(results);
     }
 
     ~ImportResultProxyModel() override {}
@@ -78,9 +83,9 @@ public:
         return new ImportResultProxyModel(*this);
     }
 
-    void setImportResults(const std::vector<ImportResult> &results, const QStringList &ids)
+    void setImportResults(const std::vector<ImportResultData> &results)
     {
-        updateFindCache(results, ids);
+        updateFindCache(results);
         invalidateFilter();
     }
 
@@ -128,18 +133,16 @@ protected:
     }
 
 private:
-    void updateFindCache(const std::vector<ImportResult> &results, const QStringList &ids)
+    void updateFindCache(const std::vector<ImportResultData> &results)
     {
-        Q_ASSERT(results.size() == static_cast<unsigned>(ids.size()));
         m_importsByFingerprint.clear();
         m_idsByFingerprint.clear();
         m_results = results;
-        for (unsigned int i = 0, end = results.size(); i != end; ++i) {
-            const std::vector<Import> imports = results[i].imports();
+        for (const auto &r : results) {
+            const std::vector<Import> imports = r.result.imports();
             m_importsByFingerprint.insert(m_importsByFingerprint.end(), imports.begin(), imports.end());
-            const QString &id = ids[i];
             for (std::vector<Import>::const_iterator it = imports.begin(), end = imports.end(); it != end; ++it) {
-                m_idsByFingerprint[it->fingerprint()].insert(id);
+                m_idsByFingerprint[it->fingerprint()].insert(r.id);
             }
         }
         std::sort(m_importsByFingerprint.begin(), m_importsByFingerprint.end(),
@@ -149,7 +152,7 @@ private:
 private:
     mutable std::vector<Import> m_importsByFingerprint;
     mutable std::map< const char *, std::set<QString>, ByImportFingerprint<std::less> > m_idsByFingerprint;
-    std::vector<ImportResult> m_results;
+    std::vector<ImportResultData> m_results;
 };
 
 }
@@ -176,7 +179,7 @@ ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, KeyLi
 
 ImportCertificatesCommand::~ImportCertificatesCommand() = default;
 
-static QString format_ids(const QStringList &ids)
+static QString format_ids(const std::vector<QString> &ids)
 {
     QStringList escapedIds;
     for (const QString &id : ids) {
@@ -187,14 +190,23 @@ static QString format_ids(const QStringList &ids)
     return escapedIds.join(QLatin1String("<br>"));
 }
 
-static QString make_tooltip(const QStringList &ids)
+static QString make_tooltip(const std::vector<ImportResultData> &results)
 {
-    if (ids.empty()) {
-        return QString();
+    if (results.empty()) {
+        return {};
     }
+
+    std::vector<QString> ids;
+    ids.reserve(results.size());
+    std::transform(std::begin(results), std::end(results),
+                   std::back_inserter(ids),
+                   [](const auto &r) { return r.id; });
+    std::sort(std::begin(ids), std::end(ids));
+    ids.erase(std::unique(std::begin(ids), std::end(ids)), std::end(ids));
+
     if (ids.size() == 1)
         if (ids.front().isEmpty()) {
-            return QString();
+            return {};
         } else
             return i18nc("@info:tooltip",
                          "Imported Certificates from %1",
@@ -205,14 +217,15 @@ static QString make_tooltip(const QStringList &ids)
                      format_ids(ids));
 }
 
-void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResult> &results, const QStringList &ids)
+void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResultData> &results)
 {
-    if (std::none_of(results.cbegin(), results.cend(), std::mem_fn(&ImportResult::numConsidered))) {
+    if (std::none_of(std::begin(results), std::end(results),
+                     [](const auto &r) { return r.result.numConsidered() > 0; })) {
         return;
     }
     q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"),
-                        new ImportResultProxyModel(results, ids),
-                        make_tooltip(ids));
+                        new ImportResultProxyModel(results),
+                        make_tooltip(results));
     if (QTreeView *const tv = qobject_cast<QTreeView *>(parentWidgetOrView())) {
         tv->expandAll();
     }
@@ -223,12 +236,17 @@ int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
     return kdtools::accumulate_transform(res.begin(), res.end(), std::mem_fn(fun), 0);
 }
 
-static QString make_report(const std::vector<ImportResult> &res, const QString &id = QString())
+static QString make_report(const std::vector<ImportResultData> &results, const QString &id = QString())
 {
-
     const KLocalizedString normalLine = ki18n("<tr><td align=\"right\">%1</td><td>%2</td></tr>");
     const KLocalizedString boldLine = ki18n("<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>");
     const KLocalizedString headerLine = ki18n("<tr><th colspan=\"2\" align=\"center\">%1</th></tr>");
+
+    std::vector<ImportResult> res;
+    res.reserve(results.size());
+    std::transform(std::begin(results), std::end(results),
+                   std::back_inserter(res),
+                   [](const auto &r) { return r.result; });
 
 #define SUM( x ) sum( res, &ImportResult::x )
 
@@ -283,21 +301,18 @@ static QString make_report(const std::vector<ImportResult> &res, const QString &
     return lines.join(QString());
 }
 
-static QString make_message_report(const std::vector<ImportResult> &res, const QStringList &ids)
+static QString make_message_report(const std::vector<ImportResultData> &res)
 {
-
-    Q_ASSERT(res.size() == static_cast<unsigned>(ids.size()));
-
     if (res.empty()) {
         return i18n("No imports (should not happen, please report a bug).");
     }
 
     if (res.size() == 1)
-        return ids.front().isEmpty()
+        return res.front().id.isEmpty()
                ? i18n("<qt><p>Detailed results of certificate import:</p>"
                       "<table width=\"100%\">%1</table></qt>", make_report(res))
                : i18n("<qt><p>Detailed results of importing %1:</p>"
-                      "<table width=\"100%\">%2</table></qt>", ids.front(), make_report(res));
+                      "<table width=\"100%\">%2</table></qt>", res.front().id, make_report(res));
 
     return i18n("<qt><p>Detailed results of certificate import:</p>"
                 "<table width=\"100%\">%1</table></qt>", make_report(res, i18n("Totals")));
@@ -361,20 +376,20 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     return true;
 }
 
-void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std::vector<ImportResult> &res, const QStringList &ids)
+void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std::vector<ImportResultData> &res)
 {
-    if (res.size() == 1 && res[0].numImported() == 1 && res[0].imports().size() == 1) {
-        if (showPleaseCertify(res[0].imports()[0])) {
+    if (res.size() == 1 && res[0].result.numImported() == 1 && res[0].result.imports().size() == 1) {
+        if (showPleaseCertify(res[0].result.imports()[0])) {
             return;
         }
     }
-    setImportResultProxyModel(res, ids);
-    KMessageBox::information(parent, make_message_report(res, ids), i18n("Certificate Import Result"));
+    setImportResultProxyModel(res);
+    KMessageBox::information(parent, make_message_report(res), i18n("Certificate Import Result"));
 }
 
-void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResult> &res, const QStringList &ids)
+void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res)
 {
-    showDetails(parentWidgetOrView(), res, ids);
+    showDetails(parentWidgetOrView(), res);
 }
 
 static QString make_error_message(const Error &err, const QString &id)
@@ -417,30 +432,34 @@ void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
 
 void ImportCertificatesCommand::Private::importResult(const ImportResult &result)
 {
-    const auto job = q->sender();
-    jobs.erase(std::remove(jobs.begin(), jobs.end(), job), jobs.end());
+    const auto finishedJob = q->sender();
+    auto it = std::find_if(std::cbegin(jobs), std::cend(jobs),
+                           [finishedJob](const auto &job) { return job.job == finishedJob; });
+    Q_ASSERT(it != std::cend(jobs));
+    if (it == std::cend(jobs)) {
+        qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Finished job not found";
+    }
+    const auto job = *it;
+    jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
 
-    const auto nodeHandler = idsByJob.extract(job);
-    const auto id = nodeHandler.mapped();
-    importResult(result, id);
+    importResult({job.id, result});
 }
 
-void ImportCertificatesCommand::Private::importResult(const ImportResult &result, const QString &id)
+void ImportCertificatesCommand::Private::importResult(const ImportResultData &result)
 {
-
+    qCDebug(KLEOPATRA_LOG) << __func__ << result.id;
     results.push_back(result);
-    ids.push_back(id);
 
     tryToFinish();
 }
 
-static void handleOwnerTrust(const std::vector<GpgME::ImportResult> &results)
+static void handleOwnerTrust(const std::vector<ImportResultData> &results)
 {
     //iterate over all imported certificates
-    for (const ImportResult &result : results) {
+    for (const auto &r: results) {
         //when a new certificate got a secret key
-        if (result.numSecretKeysImported() >= 1) {
-            const char *fingerPr = result.imports()[0].fingerprint();
+        if (r.result.numSecretKeysImported() >= 1) {
+            const char *fingerPr = r.result.imports()[0].fingerprint();
             GpgME::Error err;
             QScopedPointer<Context>
                 ctx(Context::createForProtocol(GpgME::Protocol::OpenPGP));
@@ -501,8 +520,8 @@ void ImportCertificatesCommand::Private::processResults()
     // For external CMS Imports we have to manually do a keylist
     // with validation to get the intermediate and root ca imported
     // automatically if trusted-certs and extra-certs are used.
-    for (const ImportResult &result : std::as_const(results)) {
-        const auto imports = result.imports();
+    for (const auto &r : results) {
+        const auto imports = r.result.imports();
         for (const Import &import : imports) {
             if (!import.fingerprint()) {
                 continue;
@@ -525,7 +544,7 @@ void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult 
 {
     KeyCache::mutableInstance()->refresh(keys);
     handleOwnerTrust(results);
-    showDetails(results, ids);
+    showDetails(results);
 
     auto tv = dynamic_cast<QTreeView *> (view());
     if (!tv) {
@@ -538,12 +557,12 @@ void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult 
 
 namespace
 {
-bool importFailed(const GpgME::ImportResult &result)
+bool importFailed(const ImportResultData &r)
 {
     // ignore GPG_ERR_EOF error to handle the "failed" import of files
     // without X.509 certificates by gpgsm gracefully
-    return result.error().code() != GPG_ERR_NO_ERROR
-        && result.error().code() != GPG_ERR_EOF;
+    return r.result.error().code() != GPG_ERR_NO_ERROR
+        && r.result.error().code() != GPG_ERR_EOF;
 }
 }
 
@@ -554,17 +573,17 @@ void ImportCertificatesCommand::Private::tryToFinish()
         return;
     }
 
-    if (std::any_of(results.cbegin(), results.cend(), &importFailed)) {
-        setImportResultProxyModel(results, ids);
-        if (std::all_of(results.cbegin(), results.cend(),
-                        [](const GpgME::ImportResult &result) {
-                            return result.error().isCanceled();
+    if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {
+        setImportResultProxyModel(results);
+        if (std::all_of(std::cbegin(results), std::cend(results),
+                        [](const auto &r) {
+                            return r.result.error().isCanceled();
                         })) {
             Q_EMIT q->canceled();
         } else {
-            for (unsigned int i = 0, end = results.size(); i != end; ++i) {
-                if (importFailed(results[i])) {
-                    showError(results[i].error(), ids[i]);
+            for (const auto &r : results) {
+                if (importFailed(r)) {
+                    showError(r.result.error(), r.id);
                 }
             }
         }
@@ -599,7 +618,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult(ImportResult(), id);
+        importResult({id, ImportResult{}});
         return;
     }
 
@@ -609,10 +628,9 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
             q, &Command::progress);
     const GpgME::Error err = job->start(data);
     if (err.code()) {
-        importResult(ImportResult(err), id);
+        importResult({id, ImportResult{err}});
     } else {
-        jobs.push_back(job.release());
-        idsByJob[jobs.back()] = id;
+        jobs.push_back({id, job.release()});
     }
 }
 
@@ -640,7 +658,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult(ImportResult(), id);
+        importResult({id, ImportResult{}});
         return;
     }
 
@@ -650,16 +668,17 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
             q, &Command::progress);
     const GpgME::Error err = job->start(keys);
     if (err.code()) {
-        importResult(ImportResult(err), id);
+        importResult({id, ImportResult{err}});
     } else {
-        jobs.push_back(job.release());
-        idsByJob[jobs.back()] = id;
+        jobs.push_back({id, job.release()});
     }
 }
 
 void ImportCertificatesCommand::doCancel()
 {
-    std::for_each(d->jobs.begin(), d->jobs.end(), [](Job *job) { job->slotCancel(); });
+    std::for_each(std::cbegin(d->jobs), std::cend(d->jobs),
+                  [](const auto &job) { job.job->slotCancel(); });
+    d->jobs.clear();
 }
 
 #undef d

@@ -5,6 +5,8 @@
     SPDX-FileCopyrightText: 2007, 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -13,6 +15,7 @@
 
 #include "importcertificatescommand.h"
 #include "importcertificatescommand_p.h"
+
 #include "certifycertificatecommand.h"
 #include "kleopatra_debug.h"
 
@@ -20,6 +23,7 @@
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyGroupConfig>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
@@ -553,6 +557,9 @@ void ImportCertificatesCommand::Private::processResults()
     handleExternalCMSImports(results);
 
     handleOwnerTrust(results);
+
+    importGroups();
+
     showDetails(results);
 
     auto tv = dynamic_cast<QTreeView *> (view());
@@ -600,6 +607,40 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
     }
 
     processResults();
+}
+
+static ImportedGroup storeGroup(const KeyGroup &group, const QString &id)
+{
+    const auto status = KeyCache::instance()->group(group.id()).isNull() ?
+                        ImportedGroup::Status::New :
+                        ImportedGroup::Status::Updated;
+    if (status == ImportedGroup::Status::New) {
+        KeyCache::mutableInstance()->insert(group);
+    } else {
+        KeyCache::mutableInstance()->update(group);
+    }
+    return {id, group, status};
+}
+
+void ImportCertificatesCommand::Private::importGroups()
+{
+    for (const auto &path : filesToImportGroupsFrom) {
+        const bool certificateImportSucceeded =
+            std::any_of(std::cbegin(results), std::cend(results),
+                        [path](const auto &r) {
+                            return r.id == path && !importFailed(r);
+                        });
+        if (certificateImportSucceeded) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Importing groups from file" << path;
+            const KeyGroupConfig config{path};
+            const auto groups = config.readGroups();
+            std::transform(std::begin(groups), std::end(groups),
+                           std::back_inserter(importedGroups),
+                           [path](const auto &group) {
+                               return storeGroup(group, path);
+                           });
+        }
+    }
 }
 
 static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
@@ -684,6 +725,11 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     } else {
         jobs.push_back({id, protocol, ImportType::External, job.release()});
     }
+}
+
+void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &filename)
+{
+    filesToImportGroupsFrom.push_back(filename);
 }
 
 void ImportCertificatesCommand::doCancel()

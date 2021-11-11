@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007, 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -11,6 +13,8 @@
 
 #include "command_p.h"
 #include "importcertificatescommand.h"
+
+#include <Libkleo/KeyGroup>
 
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
@@ -61,6 +65,18 @@ struct ImportResultData
     GpgME::ImportResult result;
 };
 
+struct ImportedGroup
+{
+    enum class Status
+    {
+        New,
+        Updated,
+    };
+    QString id;
+    Kleo::KeyGroup group;
+    Status status;
+};
+
 class Kleo::ImportCertificatesCommand::Private : public Command::Private
 {
     friend class ::Kleo::ImportCertificatesCommand;
@@ -80,6 +96,8 @@ public:
     void importResult(const GpgME::ImportResult &);
     void importResult(const ImportResultData &result);
 
+    void importGroupsFromFile(const QString &filename);
+
     void showError(QWidget *parent, const GpgME::Error &error, const QString &id = QString());
     void showError(const GpgME::Error &error, const QString &id = QString());
 
@@ -97,12 +115,15 @@ private:
     void processResults();
     void tryToFinish();
     void keyCacheUpdated();
+    void importGroups();
 
 private:
     bool waitForMoreJobs = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::vector<ImportJobData> jobs;
+    std::vector<QString> filesToImportGroupsFrom;
     std::vector<ImportResultData> results;
+    std::vector<ImportedGroup> importedGroups;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
 };
 

@@ -134,6 +134,7 @@ void ImportCertificateFromFileCommand::doStart()
         const auto data = in.readAll();
         d->startImport(GpgME::OpenPGP, data, fn);
         d->startImport(GpgME::CMS, data, fn);
+        d->importGroupsFromFile(fn);
     }
     d->setWaitForMoreJobs(false);
 }

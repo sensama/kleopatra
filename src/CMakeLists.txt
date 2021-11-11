@@ -214,6 +214,7 @@ set(_kleopatra_SRCS
   commands/gnupgprocesscommand.cpp
   commands/detailscommand.cpp
   commands/exportcertificatecommand.cpp
+  commands/exportgroupscommand.cpp
   commands/importcertificatescommand.cpp
   commands/importcertificatefromfilecommand.cpp
   commands/importcertificatefromclipboardcommand.cpp

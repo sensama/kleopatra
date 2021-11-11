@@ -141,7 +141,7 @@ void ImportCertificateFromFileCommand::doStart()
 
 static QStringList get_file_name(QWidget *parent)
 {
-    const QString certificateFilter = i18n("Certificates") + QLatin1String(" (*.asc *.cer *.cert *.crt *.der *.pem *.gpg *.p7c *.p12 *.pfx *.pgp)");
+    const QString certificateFilter = i18n("Certificates") + QLatin1String(" (*.asc *.cer *.cert *.crt *.der *.pem *.gpg *.p7c *.p12 *.pfx *.pgp *.kgrp)");
     const QString anyFilesFilter = i18n("Any files") + QLatin1String(" (*)");
     QString previousDir;
     if (const KSharedConfig::Ptr config = KSharedConfig::openConfig()) {

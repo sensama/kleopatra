@@ -10,6 +10,7 @@
 
 #include "groupsconfigwidget.h"
 
+#include "commands/exportgroupscommand.h"
 #include "dialogs/editgroupdialog.h"
 
 #include <Libkleo/KeyCache>
@@ -68,6 +69,7 @@ class GroupsConfigWidget::Private
         QPushButton *newButton = nullptr;
         QPushButton *editButton = nullptr;
         QPushButton *deleteButton = nullptr;
+        QPushButton *exportButton = nullptr;
     } ui;
     AbstractKeyListModel *groupsModel = nullptr;
     ProxyModel *groupsFilterModel = nullptr;
@@ -115,6 +117,10 @@ public:
         ui.deleteButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.deleteButton);
 
+        ui.exportButton = new QPushButton{i18nc("@action::button", "Export")};
+        ui.exportButton->setEnabled(false);
+        groupsButtonLayout->addWidget(ui.exportButton);
+
         groupsButtonLayout->addStretch(1);
 
         groupsLayout->addLayout(groupsButtonLayout, 1, 1);
@@ -129,6 +135,7 @@ public:
         connect(ui.newButton, &QPushButton::clicked, q, [this] () { addGroup(); });
         connect(ui.editButton, &QPushButton::clicked, q, [this] () { editGroup(); });
         connect(ui.deleteButton, &QPushButton::clicked, q, [this] () { deleteGroup(); });
+        connect(ui.exportButton, &QPushButton::clicked, q, [this] () { exportGroup(); });
     }
 
     ~Private()
@@ -153,6 +160,7 @@ private:
         const bool selectedGroupIsEditable = !selectedGroup.isNull() && !selectedGroup.isImmutable();
         ui.editButton->setEnabled(selectedGroupIsEditable);
         ui.deleteButton->setEnabled(selectedGroupIsEditable);
+        ui.exportButton->setEnabled(!selectedGroup.isNull());
     }
 
     KeyGroup showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)
@@ -248,6 +256,24 @@ private:
         }
 
         Q_EMIT q->changed();
+    }
+
+    void exportGroup()
+    {
+        const QModelIndex groupIndex = selectedIndex();
+        if (!groupIndex.isValid()) {
+            qCDebug(KLEOPATRA_LOG) << "selection is empty";
+            return;
+        }
+        const KeyGroup group = getGroup(groupIndex);
+        if (group.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << "selected group is null";
+            return;
+        }
+
+        // execute export group command
+        auto cmd = new ExportGroupsCommand({group});
+        cmd->start();
     }
 };
 

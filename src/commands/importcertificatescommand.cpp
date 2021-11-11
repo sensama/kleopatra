@@ -442,7 +442,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
     const auto job = *it;
     jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
 
-    importResult({job.id, result});
+    importResult({job.id, job.protocol, job.type, result});
 }
 
 void ImportCertificatesCommand::Private::importResult(const ImportResultData &result)
@@ -628,7 +628,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, ImportResult{}});
+        importResult({id, protocol, ImportType::Local, ImportResult{}});
         return;
     }
 
@@ -640,9 +640,9 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
             q, &Command::progress);
     const GpgME::Error err = job->start(data);
     if (err.code()) {
-        importResult({id, ImportResult{err}});
+        importResult({id, protocol, ImportType::Local, ImportResult{err}});
     } else {
-        jobs.push_back({id, job.release()});
+        jobs.push_back({id, protocol, ImportType::Local, job.release()});
     }
 }
 
@@ -670,7 +670,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, ImportResult{}});
+        importResult({id, protocol, ImportType::External, ImportResult{}});
         return;
     }
 
@@ -682,9 +682,9 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
             q, &Command::progress);
     const GpgME::Error err = job->start(keys);
     if (err.code()) {
-        importResult({id, ImportResult{err}});
+        importResult({id, protocol, ImportType::External, ImportResult{err}});
     } else {
-        jobs.push_back({id, job.release()});
+        jobs.push_back({id, protocol, ImportType::External, job.release()});
     }
 }
 

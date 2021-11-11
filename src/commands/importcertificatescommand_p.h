@@ -37,9 +37,17 @@ class KeyCacheAutoRefreshSuspension;
 
 class QByteArray;
 
+enum class ImportType
+{
+    Local,
+    External,
+};
+
 struct ImportJobData
 {
     QString id;
+    GpgME::Protocol protocol;
+    ImportType type;
     QGpgME::AbstractImportJob *job;
 };
 
@@ -48,6 +56,8 @@ bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
 struct ImportResultData
 {
     QString id;
+    GpgME::Protocol protocol;
+    ImportType type;
     GpgME::ImportResult result;
 };
 

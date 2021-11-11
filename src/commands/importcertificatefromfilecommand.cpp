@@ -128,7 +128,7 @@ void ImportCertificateFromFileCommand::doStart()
         QFile in(fn);
         if (!in.open(QIODevice::ReadOnly)) {
             d->error(i18n("Could not open file %1 for reading: %2", in.fileName(), in.errorString()), i18n("Certificate Import Failed"));
-            d->importResult({fn, ImportResult{}});
+            d->importResult({fn, GpgME::UnknownProtocol, ImportType::Local, ImportResult{}});
             continue;
         }
         const auto data = in.readAll();

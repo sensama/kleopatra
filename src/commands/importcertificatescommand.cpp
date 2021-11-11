@@ -155,6 +155,14 @@ private:
     std::vector<ImportResultData> m_results;
 };
 
+bool importFailed(const ImportResultData &r)
+{
+    // ignore GPG_ERR_EOF error to handle the "failed" import of files
+    // without X.509 certificates by gpgsm gracefully
+    return r.result.error().code() != GPG_ERR_NO_ERROR
+        && r.result.error().code() != GPG_ERR_EOF;
+}
+
 }
 
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
@@ -514,35 +522,36 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
     }
 }
 
-void ImportCertificatesCommand::Private::processResults()
+static void validateImportedCertificate(const GpgME::Import &import)
 {
-    QStringList fingerprints;
+    if (const auto fpr = import.fingerprint()) {
+        auto key = KeyCache::instance()->findByFingerprint(fpr);
+        if (!key.isNull()) {
+            // this triggers a keylisting with validation for this certificate
+            key.update();
+        } else {
+            qCWarning(KLEOPATRA_LOG) << __func__ << "Certificate with fingerprint" << fpr << "not found";
+        }
+    }
+}
+
+static void handleExternalCMSImports(const std::vector<ImportResultData> &results)
+{
     // For external CMS Imports we have to manually do a keylist
     // with validation to get the intermediate and root ca imported
     // automatically if trusted-certs and extra-certs are used.
     for (const auto &r : results) {
-        const auto imports = r.result.imports();
-        for (const Import &import : imports) {
-            if (!import.fingerprint()) {
-                continue;
-            }
-            fingerprints << QString::fromLatin1(import.fingerprint());
+        if (r.protocol == GpgME::CMS && r.type == ImportType::External && !importFailed(r)) {
+            const auto imports = r.result.imports();
+            std::for_each(std::begin(imports), std::end(imports), &validateImportedCertificate);
         }
     }
-
-    auto job = QGpgME::smime()->keyListJob(false, true, true);
-
-    // Old connect here because of Windows.
-    connect(job, SIGNAL(result(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)),
-            q, SLOT(keyListDone(GpgME::KeyListResult,std::vector<GpgME::Key>,QString,GpgME::Error)));
-    job->start(fingerprints, false);
 }
 
-void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult &,
-                                                     const std::vector<GpgME::Key> &keys,
-                                                     const QString &, const GpgME::Error&)
+void ImportCertificatesCommand::Private::processResults()
 {
-    KeyCache::mutableInstance()->refresh(keys);
+    handleExternalCMSImports(results);
+
     handleOwnerTrust(results);
     showDetails(results);
 
@@ -553,17 +562,6 @@ void ImportCertificatesCommand::Private::keyListDone(const GpgME::KeyListResult 
         tv->expandAll();
     }
     finished();
-}
-
-namespace
-{
-bool importFailed(const ImportResultData &r)
-{
-    // ignore GPG_ERR_EOF error to handle the "failed" import of files
-    // without X.509 certificates by gpgsm gracefully
-    return r.result.error().code() != GPG_ERR_NO_ERROR
-        && r.result.error().code() != GPG_ERR_EOF;
-}
 }
 
 void ImportCertificatesCommand::Private::tryToFinish()

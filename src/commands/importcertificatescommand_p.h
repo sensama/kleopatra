@@ -30,6 +30,11 @@ namespace QGpgME
 class AbstractImportJob;
 }
 
+namespace Kleo
+{
+class KeyCacheAutoRefreshSuspension;
+}
+
 class QByteArray;
 
 struct ImportJobData
@@ -53,6 +58,7 @@ class Kleo::ImportCertificatesCommand::Private : public Command::Private
     {
         return static_cast<ImportCertificatesCommand *>(q);
     }
+
 public:
     explicit Private(ImportCertificatesCommand *qq, KeyListController *c);
     ~Private() override;
@@ -80,12 +86,14 @@ public:
 private:
     void processResults();
     void tryToFinish();
+    void keyCacheUpdated();
 
 private:
     bool waitForMoreJobs = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::vector<ImportJobData> jobs;
     std::vector<ImportResultData> results;
+    std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
 };
 
 inline Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesCommand::d_func()

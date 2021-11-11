@@ -573,6 +573,16 @@ void ImportCertificatesCommand::Private::tryToFinish()
         return;
     }
 
+    auto keyCache = KeyCache::mutableInstance();
+    connect(keyCache.get(), &KeyCache::keyListingDone,
+            q, [this]() { keyCacheUpdated(); });
+    keyCache->startKeyListing();
+}
+
+void ImportCertificatesCommand::Private::keyCacheUpdated()
+{
+    keyCacheAutoRefreshSuspension.reset();
+
     if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {
         setImportResultProxyModel(results);
         if (std::all_of(std::cbegin(results), std::cend(results),
@@ -622,6 +632,8 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         return;
     }
 
+    keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+
     connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
             q, SLOT(importResult(GpgME::ImportResult)));
     connect(job.get(), &Job::progress,
@@ -661,6 +673,8 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         importResult({id, ImportResult{}});
         return;
     }
+
+    keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
             q, SLOT(importResult(GpgME::ImportResult)));

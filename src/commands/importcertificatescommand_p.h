@@ -101,9 +101,6 @@ public:
     void showError(QWidget *parent, const GpgME::Error &error, const QString &id = QString());
     void showError(const GpgME::Error &error, const QString &id = QString());
 
-    void showDetails(QWidget *parent, const std::vector<ImportResultData> &results);
-    void showDetails(const std::vector<ImportResultData> &results);
-
     void setImportResultProxyModel(const std::vector<ImportResultData> &results);
 
     bool showPleaseCertify(const GpgME::Import &imp);
@@ -111,7 +108,10 @@ public:
     void keyListDone(const GpgME::KeyListResult &result,
                      const std::vector<GpgME::Key> &keys,
                      const QString &, const GpgME::Error&);
+
 private:
+    void showDetails(const std::vector<ImportResultData> &results,
+                     const std::vector<ImportedGroup> &groups);
     void processResults();
     void tryToFinish();
     void keyCacheUpdated();

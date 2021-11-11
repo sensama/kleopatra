@@ -248,7 +248,8 @@ int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
     return kdtools::accumulate_transform(res.begin(), res.end(), std::mem_fn(fun), 0);
 }
 
-static QString make_report(const std::vector<ImportResultData> &results, const QString &id = QString())
+static QString make_report(const std::vector<ImportResultData> &results,
+                           const std::vector<ImportedGroup> &groups)
 {
     const KLocalizedString normalLine = ki18n("<tr><td align=\"right\">%1</td><td>%2</td></tr>");
     const KLocalizedString boldLine = ki18n("<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>");
@@ -260,74 +261,95 @@ static QString make_report(const std::vector<ImportResultData> &results, const Q
                    std::back_inserter(res),
                    [](const auto &r) { return r.result; });
 
-#define SUM( x ) sum( res, &ImportResult::x )
+    const auto numProcessedCertificates = sum(res, &ImportResult::numConsidered);
 
     QStringList lines;
-    if (!id.isEmpty()) {
-        lines.push_back(headerLine.subs(id).toString());
-    }
-    lines.push_back(normalLine.subs(i18n("Total number processed:"))
-                    .subs(SUM(numConsidered)).toString());
-    lines.push_back(normalLine.subs(i18n("Imported:"))
-                    .subs(SUM(numImported)).toString());
-    if (const int n = SUM(newSignatures))
-        lines.push_back(normalLine.subs(i18n("New signatures:"))
-                        .subs(n).toString());
-    if (const int n = SUM(newUserIDs))
-        lines.push_back(normalLine.subs(i18n("New user IDs:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numKeysWithoutUserID))
-        lines.push_back(normalLine.subs(i18n("Certificates without user IDs:"))
-                        .subs(n).toString());
-    if (const int n = SUM(newSubkeys))
-        lines.push_back(normalLine.subs(i18n("New subkeys:"))
-                        .subs(n).toString());
-    if (const int n = SUM(newRevocations))
-        lines.push_back(boldLine.subs(i18n("Newly revoked:"))
-                        .subs(n).toString());
-    if (const int n = SUM(notImported))
-        lines.push_back(boldLine.subs(i18n("Not imported:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numUnchanged))
-        lines.push_back(normalLine.subs(i18n("Unchanged:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numSecretKeysConsidered))
-        lines.push_back(normalLine.subs(i18n("Secret keys processed:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numSecretKeysImported))
-        lines.push_back(normalLine.subs(i18n("Secret keys imported:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numSecretKeysConsidered) - SUM(numSecretKeysImported) - SUM(numSecretKeysUnchanged))
-        if (n > 0)
-            lines.push_back(boldLine.subs(i18n("Secret keys <em>not</em> imported:"))
+
+    if (numProcessedCertificates > 0 || groups.size() == 0) {
+        lines.push_back(headerLine.subs(i18n("Certificates")).toString());
+        lines.push_back(normalLine.subs(i18n("Total number processed:"))
+                        .subs(numProcessedCertificates).toString());
+        lines.push_back(normalLine.subs(i18n("Imported:"))
+                        .subs(sum(res, &ImportResult::numImported)).toString());
+        if (const int n = sum(res, &ImportResult::newSignatures))
+            lines.push_back(normalLine.subs(i18n("New signatures:"))
                             .subs(n).toString());
-    if (const int n = SUM(numSecretKeysUnchanged))
-        lines.push_back(normalLine.subs(i18n("Secret keys unchanged:"))
-                        .subs(n).toString());
-    if (const int n = SUM(numV3KeysSkipped))
-        lines.push_back(normalLine.subs(i18n("Deprecated PGP-2 keys skipped:"))
-                        .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::newUserIDs))
+            lines.push_back(normalLine.subs(i18n("New user IDs:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numKeysWithoutUserID))
+            lines.push_back(normalLine.subs(i18n("Certificates without user IDs:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::newSubkeys))
+            lines.push_back(normalLine.subs(i18n("New subkeys:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::newRevocations))
+            lines.push_back(boldLine.subs(i18n("Newly revoked:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::notImported))
+            lines.push_back(boldLine.subs(i18n("Not imported:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numUnchanged))
+            lines.push_back(normalLine.subs(i18n("Unchanged:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numSecretKeysConsidered))
+            lines.push_back(normalLine.subs(i18n("Secret keys processed:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numSecretKeysImported))
+            lines.push_back(normalLine.subs(i18n("Secret keys imported:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numSecretKeysConsidered) - sum(res, &ImportResult::numSecretKeysImported) - sum(res, &ImportResult::numSecretKeysUnchanged))
+            if (n > 0)
+                lines.push_back(boldLine.subs(i18n("Secret keys <em>not</em> imported:"))
+                                .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numSecretKeysUnchanged))
+            lines.push_back(normalLine.subs(i18n("Secret keys unchanged:"))
+                            .subs(n).toString());
+        if (const int n = sum(res, &ImportResult::numV3KeysSkipped))
+            lines.push_back(normalLine.subs(i18n("Deprecated PGP-2 keys skipped:"))
+                            .subs(n).toString());
+    }
 
-#undef sum
+    if (!lines.empty()) {
+        lines.push_back(headerLine.subs(QLatin1String{"&nbsp;"}).toString());
+    }
 
-    return lines.join(QString());
+    if (groups.size() > 0) {
+        const auto newGroups = std::count_if(std::begin(groups), std::end(groups),
+                                             [](const auto &g) {
+                                                 return g.status == ImportedGroup::Status::New;
+                                             });
+        const auto updatedGroups = groups.size() - newGroups;
+        lines.push_back(headerLine.subs(i18n("Certificate Groups")).toString());
+        lines.push_back(normalLine.subs(i18n("Total number processed:"))
+                        .subs(groups.size()).toString());
+        lines.push_back(normalLine.subs(i18n("New groups:"))
+                        .subs(newGroups).toString());
+        lines.push_back(normalLine.subs(i18n("Updated groups:"))
+                        .subs(updatedGroups).toString());
+    }
+
+    return lines.join(QLatin1String{});
 }
 
-static QString make_message_report(const std::vector<ImportResultData> &res)
+static QString make_message_report(const std::vector<ImportResultData> &res,
+                                   const std::vector<ImportedGroup> &groups)
 {
+    QString report{QLatin1String{"<html>"}};
     if (res.empty()) {
-        return i18n("No imports (should not happen, please report a bug).");
+        report += i18n("No imports (should not happen, please report a bug).");
+    } else {
+        const bool singleSource = (res.size() == 1) || (res.size() == 2 && res[0].id == res[1].id);
+        const QString title = singleSource && !res.front().id.isEmpty() ?
+                              i18n("Detailed results of importing %1:", res.front().id) :
+                              i18n("Detailed results of import:");
+        report += QLatin1String{"<p>"} + title + QLatin1String{"</p>"};
+        report += QLatin1String{"<p><table width=\"100%\">"};
+        report += make_report(res, groups);
+        report += QLatin1String{"</table></p>"};
     }
-
-    if (res.size() == 1)
-        return res.front().id.isEmpty()
-               ? i18n("<qt><p>Detailed results of certificate import:</p>"
-                      "<table width=\"100%\">%1</table></qt>", make_report(res))
-               : i18n("<qt><p>Detailed results of importing %1:</p>"
-                      "<table width=\"100%\">%2</table></qt>", res.front().id, make_report(res));
-
-    return i18n("<qt><p>Detailed results of certificate import:</p>"
-                "<table width=\"100%\">%1</table></qt>", make_report(res, i18n("Totals")));
+    report += QLatin1String{"</html>"};
+    return report;
 }
 
 // Returns false on error, true if please certify was shown.
@@ -388,7 +410,8 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     return true;
 }
 
-void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std::vector<ImportResultData> &res)
+void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res,
+                                                     const std::vector<ImportedGroup> &groups)
 {
     if (res.size() == 1 && res[0].result.numImported() == 1 && res[0].result.imports().size() == 1) {
         if (showPleaseCertify(res[0].result.imports()[0])) {
@@ -396,12 +419,8 @@ void ImportCertificatesCommand::Private::showDetails(QWidget *parent, const std:
         }
     }
     setImportResultProxyModel(res);
-    KMessageBox::information(parent, make_message_report(res), i18n("Certificate Import Result"));
-}
-
-void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res)
-{
-    showDetails(parentWidgetOrView(), res);
+    information(make_message_report(res, groups),
+                i18n("Certificate Import Result"));
 }
 
 static QString make_error_message(const Error &err, const QString &id)
@@ -560,7 +579,7 @@ void ImportCertificatesCommand::Private::processResults()
 
     importGroups();
 
-    showDetails(results);
+    showDetails(results, importedGroups);
 
     auto tv = dynamic_cast<QTreeView *> (view());
     if (!tv) {

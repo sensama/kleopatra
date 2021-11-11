@@ -458,7 +458,9 @@ void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
         return;
     }
     waitForMoreJobs = wait;
-    tryToFinish();
+    if (!waitForMoreJobs) {
+        tryToFinish();
+    }
 }
 
 void ImportCertificatesCommand::Private::importResult(const ImportResult &result)

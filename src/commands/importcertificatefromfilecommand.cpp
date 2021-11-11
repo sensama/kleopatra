@@ -12,8 +12,6 @@
 #include "importcertificatefromfilecommand.h"
 #include "importcertificatescommand_p.h"
 
-#include "utils/filedialog.h"
-
 #include <QGpgME/Protocol>
 #include <QGpgME/ImportJob>
 
@@ -26,6 +24,7 @@
 #include <KConfigGroup>
 
 #include <QFile>
+#include <QFileDialog>
 #include <QString>
 #include <QWidget>
 #include <QFileInfo>
@@ -148,7 +147,7 @@ static QStringList get_file_name(QWidget *parent)
         const KConfigGroup group(config, "Import Certificate");
         previousDir = group.readPathEntry("last-open-file-directory", QDir::homePath());
     }
-    const QStringList files = Kleo::FileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1String(";;") + anyFilesFilter);
+    const QStringList files = QFileDialog::getOpenFileNames(parent, i18n("Select Certificate File"), previousDir, certificateFilter + QLatin1String(";;") + anyFilesFilter);
     if (!files.empty())
         if (const KSharedConfig::Ptr config = KSharedConfig::openConfig()) {
             KConfigGroup group(config, "Import Certificate");

@@ -86,7 +86,7 @@ public:
 
         ui.groupsFilter = new QLineEdit();
         ui.groupsFilter->setClearButtonEnabled(true);
-        ui.groupsFilter->setPlaceholderText(i18nc("Placeholder text", "Search..."));
+        ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Search..."));
         groupsLayout->addWidget(ui.groupsFilter, 0, 0);
 
         groupsModel = AbstractKeyListModel::createFlatKeyListModel(q);
@@ -106,14 +106,14 @@ public:
 
         auto groupsButtonLayout = new QVBoxLayout();
 
-        ui.newButton = new QPushButton(i18n("New"));
+        ui.newButton = new QPushButton(i18nc("@action::button", "New"));
         groupsButtonLayout->addWidget(ui.newButton);
 
-        ui.editButton = new QPushButton(i18n("Edit"));
+        ui.editButton = new QPushButton(i18nc("@action::button", "Edit"));
         ui.editButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.editButton);
 
-        ui.deleteButton = new QPushButton(i18n("Delete"));
+        ui.deleteButton = new QPushButton(i18nc("@action::button", "Delete"));
         ui.deleteButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.deleteButton);
 

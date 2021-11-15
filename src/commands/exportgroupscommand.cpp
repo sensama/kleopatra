@@ -112,7 +112,7 @@ public:
     void cancelJobs();
     void showError(const GpgME::Error &err);
 
-    void finishedIfLastJob();
+    void finishedIfLastJob(const QGpgME::Job *job);
 
 private:
     std::vector<KeyGroup> groups;
@@ -185,7 +185,7 @@ void ExportGroupsCommand::Private::start()
     }
     if (!cmsKeys.empty()) {
         if (!startExportJob(GpgME::CMS, cmsKeys)) {
-            finishedIfLastJob();
+            finishedIfLastJob(nullptr);
         }
     }
 }
@@ -225,11 +225,10 @@ bool ExportGroupsCommand::Private::startExportJob(GpgME::Protocol protocol, cons
 void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, const GpgME::Error &err, const QByteArray &keyData)
 {
     Q_ASSERT(Kleo::contains(exportJobs, job));
-    exportJobs.erase(std::remove(exportJobs.begin(), exportJobs.end(), job), exportJobs.end());
 
     if (err) {
         showError(err);
-        finishedIfLastJob();
+        finishedIfLastJob(job);
         return;
     }
 
@@ -237,7 +236,7 @@ void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, con
     if (!f.open(QIODevice::WriteOnly | QIODevice::Append)) {
         error(xi18n("Cannot open file <filename>%1</filename> for writing.", filename),
               i18nc("@title:window", "Export Failed"));
-        finishedIfLastJob();
+        finishedIfLastJob(job);
         return;
     }
 
@@ -247,7 +246,7 @@ void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, con
               i18nc("@title:window", "Export Failed"));
     }
 
-    finishedIfLastJob();
+    finishedIfLastJob(job);
 }
 
 void ExportGroupsCommand::Private::showError(const GpgME::Error &err)
@@ -258,8 +257,11 @@ void ExportGroupsCommand::Private::showError(const GpgME::Error &err)
           i18nc("@title:window", "Export Failed"));
 }
 
-void ExportGroupsCommand::Private::finishedIfLastJob()
+void ExportGroupsCommand::Private::finishedIfLastJob(const QGpgME::Job *job)
 {
+    if (job) {
+        exportJobs.erase(std::remove(exportJobs.begin(), exportJobs.end(), job), exportJobs.end());
+    }
     if (exportJobs.size() == 0) {
         finished();
     }

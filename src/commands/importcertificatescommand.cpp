@@ -23,7 +23,7 @@
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyCache>
-#include <Libkleo/KeyGroupConfig>
+#include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
@@ -653,8 +653,7 @@ void ImportCertificatesCommand::Private::importGroups()
                         });
         if (certificateImportSucceeded) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Importing groups from file" << path;
-            const KeyGroupConfig config{path};
-            const auto groups = config.readGroups();
+            const auto groups = readKeyGroups(path);
             std::transform(std::begin(groups), std::end(groups),
                            std::back_inserter(importedGroups),
                            [path](const auto &group) {

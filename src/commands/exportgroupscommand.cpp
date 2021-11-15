@@ -17,7 +17,7 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/KeyGroup>
-#include <Libkleo/KeyGroupConfig>
+#include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/KeyHelpers>
 
 #include <KConfigGroup>
@@ -104,7 +104,7 @@ public:
 
     void start();
 
-    void exportGroups();
+    bool exportGroups();
     bool startExportJob(GpgME::Protocol protocol, const std::vector<Key> &keys);
 
     void onExportJobResult(const QGpgME::Job *job, const GpgME::Error &err, const QByteArray &keyData);
@@ -176,7 +176,10 @@ void ExportGroupsCommand::Private::start()
         finished();
         return;
     }
-    exportGroups();
+    if (!exportGroups()) {
+        finished();
+        return;
+    }
     if (!openpgpKeys.empty()) {
         if (!startExportJob(GpgME::OpenPGP, openpgpKeys)) {
             finished();
@@ -190,10 +193,14 @@ void ExportGroupsCommand::Private::start()
     }
 }
 
-void ExportGroupsCommand::Private::exportGroups()
+bool ExportGroupsCommand::Private::exportGroups()
 {
-    KeyGroupConfig config{filename};
-    config.writeGroups(groups);
+    const auto result = writeKeyGroups(filename, groups);
+    if (result != WriteKeyGroups::Success) {
+        error(xi18n("Writing groups to file <filename>%1</filename> failed.", filename),
+              i18nc("@title:window", "Export Failed"));
+    }
+    return result == WriteKeyGroups::Success;
 }
 
 bool ExportGroupsCommand::Private::startExportJob(GpgME::Protocol protocol, const std::vector<Key> &keys)

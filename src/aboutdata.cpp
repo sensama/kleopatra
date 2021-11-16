@@ -17,7 +17,6 @@
 #include <KLocalizedString>
 
 static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
-static const char description[] = I18N_NOOP("Certificate Manager and Unified Crypto GUI");
 
 struct about_data {
     const char *name;
@@ -73,7 +72,7 @@ AboutData::AboutData()
                  Kleo::gpg4winDescription(),
 #else
                  QLatin1String(kleopatra_version),
-                 i18n(description),
+                 i18n("Certificate Manager and Unified Crypto GUI"),
 #endif
                  KAboutLicense::GPL,
                  i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0" "Dalheimer, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB\n"

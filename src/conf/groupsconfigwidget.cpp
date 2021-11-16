@@ -144,6 +144,15 @@ public:
     }
 
 private:
+    auto getGroupIndex(const KeyGroup &group)
+    {
+        QModelIndex index;
+        if (const KeyListModelInterface *const klmi = dynamic_cast<KeyListModelInterface *>(ui.groupsList->model())) {
+            index = klmi->index(group);
+        }
+        return index;
+    }
+
     auto selectedRows()
     {
         return ui.groupsList->selectionModel()->selectedRows();
@@ -244,7 +253,13 @@ private:
             return;
         }
 
-        const bool success = ui.groupsList->model()->setData(groupIndex, QVariant::fromValue(updatedGroup));
+        // look up index of updated group; the groupIndex used above may have become invalid
+        const auto updatedGroupIndex = getGroupIndex(updatedGroup);
+        if (!updatedGroupIndex.isValid()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Failed to find index of group" << updatedGroup;
+            return;
+        }
+        const bool success = ui.groupsList->model()->setData(updatedGroupIndex, QVariant::fromValue(updatedGroup));
         if (!success) {
             qCDebug(KLEOPATRA_LOG) << "Updating group in model failed";
             return;

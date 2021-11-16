@@ -13,6 +13,7 @@
 #include "commands/exportgroupscommand.h"
 #include "dialogs/editgroupdialog.h"
 
+#include <Libkleo/Debug>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>

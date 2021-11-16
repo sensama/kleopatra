@@ -29,7 +29,6 @@ class GroupsConfigDialog::Private
     GroupsConfigDialog *const q;
 
     GroupsConfigPage *configPage = nullptr;
-    bool changed = false;
 
 public:
     Private(GroupsConfigDialog *qq)
@@ -82,10 +81,9 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
             this, &GroupsConfigDialog::updateWidgets);
 
     connect(d->configPage, &GroupsConfigPage::changed, this, [this] (bool state) {
-        d->changed = state;
         updateButtons();
         if (QPushButton *button = buttonBox()->button(QDialogButtonBox::Reset)) {
-            button->setEnabled(d->changed);
+            button->setEnabled(d->configPage->hasChanged());
         }
     });
 }
@@ -109,5 +107,5 @@ void GroupsConfigDialog::updateWidgets()
 
 bool GroupsConfigDialog::hasChanged()
 {
-    return d->changed;
+    return d->configPage->hasChanged();
 }

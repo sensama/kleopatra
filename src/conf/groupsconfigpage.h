@@ -21,6 +21,8 @@ public:
     explicit GroupsConfigPage(QWidget *parent = nullptr);
     ~GroupsConfigPage() override;
 
+    bool hasChanged() const;
+
 public Q_SLOTS:
     void load();
     void save();

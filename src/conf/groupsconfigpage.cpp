@@ -33,13 +33,22 @@ class GroupsConfigPage::Private
 public:
     ~Private() = default;
 
+    void setChanged(bool changed);
+
 private:
     GroupsConfigWidget *widget = nullptr;
+    bool changed = false;
 };
 
 GroupsConfigPage::Private::Private(GroupsConfigPage *qq)
     : q(qq)
 {
+}
+
+void GroupsConfigPage::Private::setChanged(bool state)
+{
+    changed = state;
+    Q_EMIT q->changed(changed);
 }
 
 GroupsConfigPage::GroupsConfigPage(QWidget *parent)
@@ -56,15 +65,20 @@ GroupsConfigPage::GroupsConfigPage(QWidget *parent)
 
     layout->addWidget(d->widget);
 
-    connect(d->widget, &GroupsConfigWidget::changed, this, [this] () { Q_EMIT changed(true); });
+    connect(d->widget, &GroupsConfigWidget::changed, this, [this] () { d->setChanged(true); });
 }
 
 GroupsConfigPage::~GroupsConfigPage() = default;
 
+bool GroupsConfigPage::hasChanged() const
+{
+    return d->changed;
+}
+
 void GroupsConfigPage::load()
 {
     d->widget->setGroups(KeyCache::instance()->configurableGroups());
-    Q_EMIT changed(false);
+    d->setChanged(false);
 }
 
 void GroupsConfigPage::save()

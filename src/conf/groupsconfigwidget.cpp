@@ -100,7 +100,7 @@ public:
         ui.groupsList->setModel(groupsFilterModel);
         ui.groupsList->setModelColumn(KeyList::Summary);
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui.groupsList->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui.groupsList->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
         groupsLayout->addWidget(ui.groupsList, 1, 0);
 
@@ -143,24 +143,34 @@ public:
     }
 
 private:
-    QModelIndex selectedIndex()
+    auto selectedRows()
     {
-        const QModelIndexList selected = ui.groupsList->selectionModel()->selectedRows();
-        return selected.empty() ? QModelIndex() : selected[0];
+        return ui.groupsList->selectionModel()->selectedRows();
     }
 
-    KeyGroup getGroup(const QModelIndex &index)
+    auto getGroup(const QModelIndex &index)
     {
-        return index.isValid() ? ui.groupsList->model()->data(index, KeyList::GroupRole).value<KeyGroup>() : KeyGroup();
+        return index.isValid() ? ui.groupsList->model()->data(index, KeyList::GroupRole).value<KeyGroup>() : KeyGroup{};
+    }
+
+    auto getGroups(const QModelIndexList &indexes)
+    {
+        std::vector<KeyGroup> groups;
+        std::transform(std::begin(indexes), std::end(indexes),
+                       std::back_inserter(groups),
+                       [this](const auto &index) { return getGroup(index); });
+        return groups;
     }
 
     void selectionChanged()
     {
-        const KeyGroup selectedGroup = getGroup(selectedIndex());
-        const bool selectedGroupIsEditable = !selectedGroup.isNull() && !selectedGroup.isImmutable();
-        ui.editButton->setEnabled(selectedGroupIsEditable);
-        ui.deleteButton->setEnabled(selectedGroupIsEditable);
-        ui.exportButton->setEnabled(!selectedGroup.isNull());
+        const auto selectedGroups = getGroups(selectedRows());
+        const bool allSelectedGroupsAreEditable =
+            std::all_of(std::begin(selectedGroups), std::end(selectedGroups),
+                        [](const auto &g) { return !g.isNull() && !g.isImmutable(); });
+        ui.editButton->setEnabled(selectedGroups.size() == 1 && allSelectedGroupsAreEditable);
+        ui.deleteButton->setEnabled(!selectedGroups.empty() && allSelectedGroupsAreEditable);
+        ui.exportButton->setEnabled(!selectedGroups.empty());
     }
 
     KeyGroup showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)
@@ -204,12 +214,18 @@ private:
         Q_EMIT q->changed();
     }
 
-    void editGroup(const QModelIndex &index = QModelIndex())
+    void editGroup(const QModelIndex &index = {})
     {
-        const QModelIndex groupIndex = index.isValid() ? index : selectedIndex();
-        if (!groupIndex.isValid()) {
-            qCDebug(KLEOPATRA_LOG) << "selection is empty";
-            return;
+        QModelIndex groupIndex;
+        if (index.isValid()) {
+            groupIndex = index;
+        } else {
+            const auto selection = selectedRows();
+            if (selection.size() != 1) {
+                qCDebug(KLEOPATRA_LOG) << (selection.empty() ? "selection is empty" : "more than one group is selected");
+                return;
+            }
+            groupIndex = selection.front();
         }
         const KeyGroup group = getGroup(groupIndex);
         if (group.isNull()) {
@@ -238,21 +254,17 @@ private:
 
     void deleteGroup()
     {
-        const QModelIndex groupIndex = selectedIndex();
-        if (!groupIndex.isValid()) {
+        const auto selectedGroups = getGroups(selectedRows());
+        if (selectedGroups.empty()) {
             qCDebug(KLEOPATRA_LOG) << "selection is empty";
             return;
         }
-        const KeyGroup group = getGroup(groupIndex);
-        if (group.isNull()) {
-            qCDebug(KLEOPATRA_LOG) << "selected group is null";
-            return;
-        }
 
-        const bool success = groupsModel->removeGroup(group);
-        if (!success) {
-            qCDebug(KLEOPATRA_LOG) << "Removing group from model failed";
-            return;
+        for (const auto &group : selectedGroups) {
+            const bool success = groupsModel->removeGroup(group);
+            if (!success) {
+                qCDebug(KLEOPATRA_LOG) << "Removing group from model failed:" << group;
+            }
         }
 
         Q_EMIT q->changed();
@@ -260,19 +272,14 @@ private:
 
     void exportGroup()
     {
-        const QModelIndex groupIndex = selectedIndex();
-        if (!groupIndex.isValid()) {
+        const auto selectedGroups = getGroups(selectedRows());
+        if (selectedGroups.empty()) {
             qCDebug(KLEOPATRA_LOG) << "selection is empty";
-            return;
-        }
-        const KeyGroup group = getGroup(groupIndex);
-        if (group.isNull()) {
-            qCDebug(KLEOPATRA_LOG) << "selected group is null";
             return;
         }
 
         // execute export group command
-        auto cmd = new ExportGroupsCommand({group});
+        auto cmd = new ExportGroupsCommand(selectedGroups);
         cmd->start();
     }
 };

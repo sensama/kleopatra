@@ -80,7 +80,7 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
     connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked,
             this, &GroupsConfigDialog::updateWidgets);
 
-    connect(d->configPage, &GroupsConfigPage::changed, this, [this] (bool state) {
+    connect(d->configPage, &GroupsConfigPage::changed, this, [this]() {
         updateButtons();
         if (QPushButton *button = buttonBox()->button(QDialogButtonBox::Reset)) {
             button->setEnabled(d->configPage->hasChanged());

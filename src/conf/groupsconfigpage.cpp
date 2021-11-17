@@ -18,7 +18,12 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 
+#include <KLocalizedString>
+#include <KMessageBox>
+
 #include <QVBoxLayout>
+
+#include <mutex>
 
 #include "kleopatra_debug.h"
 
@@ -35,9 +40,12 @@ public:
 
     void setChanged(bool changed);
 
+    void onKeysMayHaveChanged();
+
 private:
     GroupsConfigWidget *widget = nullptr;
     bool changed = false;
+    bool savingChanges = false;
 };
 
 GroupsConfigPage::Private::Private(GroupsConfigPage *qq)
@@ -49,6 +57,41 @@ void GroupsConfigPage::Private::setChanged(bool state)
 {
     changed = state;
     Q_EMIT q->changed(changed);
+}
+
+void GroupsConfigPage::Private::onKeysMayHaveChanged()
+{
+    static std::mutex mutex;
+
+    std::unique_lock<std::mutex> lock(mutex, std::try_to_lock);
+    if (!lock) {
+        // prevent reentrace
+        return;
+    }
+
+    if (savingChanges) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring changes caused by ourselves";
+        return;
+    }
+    if (!changed) {
+        q->load();
+    } else {
+        auto buttonYes = KStandardGuiItem::yes();
+        buttonYes.setText(i18n("Save changes"));
+        auto buttonNo = KStandardGuiItem::no();
+        buttonNo.setText(i18n("Discard changes"));
+        const auto answer = KMessageBox::questionYesNo(
+            q->topLevelWidget(),
+            xi18nc("@info", "<para>The certificates or the certificate groups have been updated in the background.</para>"
+                            "<para>Do you want to save your changes?</para>"),
+            i18nc("@title::window", "Save changes?"),
+            buttonYes, buttonNo);
+        if (answer == KMessageBox::Yes) {
+            q->save();
+        } else {
+            q->load();
+        }
+    }
 }
 
 GroupsConfigPage::GroupsConfigPage(QWidget *parent)
@@ -66,6 +109,9 @@ GroupsConfigPage::GroupsConfigPage(QWidget *parent)
     layout->addWidget(d->widget);
 
     connect(d->widget, &GroupsConfigWidget::changed, this, [this] () { d->setChanged(true); });
+
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
+            this, [this]() { d->onKeysMayHaveChanged(); });
 }
 
 GroupsConfigPage::~GroupsConfigPage() = default;
@@ -83,7 +129,9 @@ void GroupsConfigPage::load()
 
 void GroupsConfigPage::save()
 {
+    d->savingChanges = true;
     KeyCache::mutableInstance()->saveConfigurableGroups(d->widget->groups());
+    d->savingChanges = false;
 
     // reload after saving to ensure that the groups reflect the saved groups (e.g. in case of immutable entries)
     load();

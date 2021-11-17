@@ -12,10 +12,21 @@
 
 #include <KLocalizedString>
 
+#include "ki18n_version.h"
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+#include <klazylocalizedstring.h>
+#undef I18N_NOOP
+#define I18N_NOOP kli18n
+#endif
 
 struct about_data {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
     const char *name;
     const char *desc;
+#else
+    const KLazyLocalizedString name;
+    const KLazyLocalizedString desc;
+#endif
     const char *email;
     const char *web;
 };
@@ -31,7 +42,13 @@ AboutData::AboutData()
 {
     using ::authors;
     //using ::credits;
-    for (unsigned int i = 0; i < sizeof authors / sizeof * authors; ++i)
+    for (unsigned int i = 0; i < sizeof authors / sizeof * authors; ++i) {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
         addAuthor(i18n(authors[i].name), i18n(authors[i].desc),
                   QLatin1String(authors[i].email), QLatin1String(authors[i].web));
+#else
+        addAuthor(KLocalizedString(authors[i].name).toString(), KLocalizedString(authors[i].desc).toString(),
+                  QLatin1String(authors[i].email), QLatin1String(authors[i].web));
+#endif
+    }
 }

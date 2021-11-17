@@ -33,7 +33,15 @@
 
 #include <algorithm>
 #include <vector>
-
+#include "ki18n_version.h"
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+#include <klazylocalizedstring.h>
+#undef I18N_NOOP
+#define I18N_NOOP kli18n
+#define I18N_NOOP_EMPTY KLazyLocalizedString()
+#else
+#define I18N_NOOP_EMPTY ""
+#endif
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -143,7 +151,11 @@ enum Action { Nothing = 0, Failure = 1, ClearCMS = 2, ClearPGP = 4 };
 //        cms.empty() << 1U |     d->canDelete( CMS ) << 0U ;
 
 static const struct {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
     const char *text;
+#else
+    const KLazyLocalizedString text;
+#endif
     Action actions;
 } deletionErrorCases[16] = {
     // if havePGP
@@ -187,16 +199,16 @@ static const struct {
         ClearCMS
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
     //      if !haveCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
     // if !havePGP
@@ -209,16 +221,16 @@ static const struct {
         Failure
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
     //     if !haveCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
     //  if canPGP
@@ -230,16 +242,16 @@ static const struct {
         Failure
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
     //     if !haveCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // cantCMS
     {
-        nullptr,
+        I18N_NOOP_EMPTY,
         Nothing
     }, // canCMS
 };
@@ -299,10 +311,19 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
         cms.empty() << 1U |     canDelete(CMS) << 0U;
 
     if (const unsigned int actions = deletionErrorCases[errorCase].actions) {
+#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
         information(i18n(deletionErrorCases[errorCase].text),
                     (actions & Failure)
-                    ? i18n("Certificate Deletion Failed")
-                    : i18n("Certificate Deletion Problem"));
+                        ? i18n("Certificate Deletion Failed")
+                        : i18n("Certificate Deletion Problem"));
+#else
+        information(KLocalizedString(deletionErrorCases[errorCase].text).toString(),
+                    (actions & Failure)
+                        ? i18n("Certificate Deletion Failed")
+                        : i18n("Certificate Deletion Problem"));
+#endif
+
+
         if (actions & ClearCMS) {
             cms.clear();
         }

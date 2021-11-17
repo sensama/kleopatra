@@ -1,0 +1,14 @@
+# always install the media types
+install(FILES application-vnd-kde-kleopatra.xml DESTINATION ${XDG_MIME_INSTALL_DIR})
+
+# require at least version 1.3 (same as for KF5)
+find_package(SharedMimeInfo 1.3)
+set_package_properties(SharedMimeInfo PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Enables import of exported certificate groups with Kleopatra"
+                      )
+
+# update XDG mime-types if shared mime info is around
+if(SharedMimeInfo_FOUND)
+    update_xdg_mimetypes(${XDG_MIME_INSTALL_DIR})
+endif()

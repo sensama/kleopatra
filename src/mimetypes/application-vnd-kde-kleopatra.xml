@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SPDX-License-Identifier: CC0-1.0
+  SPDX-FileCopyrightText: 2021 g10 Code GmbH
+  SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.kde.kleopatra.keygroup">
+    <comment>Kleopatra certificate group</comment>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-generic"/>
+    <magic priority="80">
+      <match type="string" value="[KeyGroup-" offset="0"/>
+    </magic>
+    <glob pattern="*.kgrp"/>
+  </mime-type>
+</mime-info>

@@ -15,9 +15,9 @@
 #include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
-#include "ki18n_version.h"
+#include <ki18n_version.h>
 #if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
-#include <klazylocalizedstring.h>
+#include <KLazyLocalizedString>
 #undef I18N_NOOP
 #define I18N_NOOP kli18n
 #endif

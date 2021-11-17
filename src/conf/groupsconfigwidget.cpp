@@ -57,6 +57,12 @@ public:
     }
 };
 
+struct Selection
+{
+    KeyGroup current;
+    std::vector<KeyGroup> selected;
+};
+
 }
 
 class GroupsConfigWidget::Private
@@ -170,6 +176,25 @@ private:
                        std::back_inserter(groups),
                        [this](const auto &index) { return getGroup(index); });
         return groups;
+    }
+
+    Selection saveSelection()
+    {
+        return {getGroup(ui.groupsList->selectionModel()->currentIndex()), getGroups(selectedRows())};
+    }
+
+    void restoreSelection(const Selection &selection)
+    {
+        auto selectionModel = ui.groupsList->selectionModel();
+        selectionModel->clearSelection();
+        for (const auto &group : selection.selected) {
+            selectionModel->select(getGroupIndex(group), QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        }
+        auto currentIndex = getGroupIndex(selection.current);
+        if (currentIndex.isValid()) {
+            // keep current item if old current group is gone
+            selectionModel->setCurrentIndex(currentIndex, QItemSelectionModel::NoUpdate);
+        }
     }
 
     void selectionChanged()
@@ -310,7 +335,9 @@ GroupsConfigWidget::~GroupsConfigWidget() = default;
 
 void GroupsConfigWidget::setGroups(const std::vector<KeyGroup> &groups)
 {
+    const auto selection = d->saveSelection();
     d->groupsModel->setGroups(groups);
+    d->restoreSelection(selection);
 }
 
 std::vector<KeyGroup> GroupsConfigWidget::groups() const

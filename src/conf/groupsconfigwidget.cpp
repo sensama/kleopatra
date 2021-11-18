@@ -205,7 +205,7 @@ private:
                         [](const auto &g) { return !g.isNull() && !g.isImmutable(); });
         ui.editButton->setEnabled(selectedGroups.size() == 1 && allSelectedGroupsAreEditable);
         ui.deleteButton->setEnabled(!selectedGroups.empty() && allSelectedGroupsAreEditable);
-        ui.exportButton->setEnabled(!selectedGroups.empty());
+        ui.exportButton->setEnabled(selectedGroups.size() == 1);
     }
 
     KeyGroup showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)

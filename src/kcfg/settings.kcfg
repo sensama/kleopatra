@@ -4,6 +4,28 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <kcfgfile name="kleopatrarc" />
+ <group name="ConfigurationDialog">
+   <entry name="ShowAppearanceConfiguration" type="Bool">
+     <label>Show appearance configuration</label>
+     <default>true</default>
+   </entry>
+   <entry name="ShowCryptoOperationsConfiguration" type="Bool">
+     <label>Show crypto operations configuration</label>
+     <default>true</default>
+   </entry>
+   <entry name="ShowDirectoryServicesConfiguration" type="Bool">
+     <label>Show directory services configuration</label>
+     <default>true</default>
+   </entry>
+   <entry name="ShowGnuPGSystemConfiguration" type="Bool">
+     <label>Show GnuPG system configuration</label>
+     <default>true</default>
+   </entry>
+   <entry name="ShowSMimeValidationConfiguration" type="Bool">
+     <label>Show S/MIME validation configuration</label>
+     <default>true</default>
+   </entry>
+ </group>
  <group name="Groups">
    <entry name="GroupsEnabled" type="Bool">
      <label>Enable Groups</label>

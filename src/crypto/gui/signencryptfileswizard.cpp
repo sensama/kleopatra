@@ -16,6 +16,8 @@
 
 #include "newresultpage.h"
 
+#include <settings.h>
+
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KColorScheme>
@@ -125,6 +127,9 @@ public:
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
         auto vLay = new QVBoxLayout(this);
         vLay->setContentsMargins(0, 0, 0, 0);
+        if (!Settings{}.cmsEnabled()) {
+            mWidget->setProtocol(GpgME::OpenPGP);
+        }
         mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage",
                                      "&Sign as:"));
         mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage",

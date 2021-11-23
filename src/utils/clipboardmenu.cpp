@@ -27,8 +27,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 
 ClipboardMenu::ClipboardMenu(QObject *parent)
-    : QObject(parent),
-      mWindow(nullptr)
+    : QObject{parent}
 {
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
     mImportClipboardAction = new QAction(i18n("Certificate Import"), this);
@@ -58,10 +57,7 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     slotEnableDisableActions();
 }
 
-ClipboardMenu::~ClipboardMenu()
-{
-
-}
+ClipboardMenu::~ClipboardMenu() = default;
 
 void ClipboardMenu::setMainWindow(MainWindow *window)
 {

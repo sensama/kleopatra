@@ -10,6 +10,8 @@
 
 #include "kleopatra_debug.h"
 
+#include <settings.h>
+
 #include <Libkleo/KleoException>
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
@@ -158,7 +160,7 @@ public:
         mEdit->setAcceptRichText(false);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
-        if (KeyCache::instance()->pgpOnly()) {
+        if (KeyCache::instance()->pgpOnly() || !Settings{}.cmsEnabled()) {
             mSigEncWidget->setProtocol(GpgME::OpenPGP);
         } else {
             auto grp = new QButtonGroup(q);

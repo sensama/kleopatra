@@ -10,6 +10,7 @@
 #pragma once
 
 #include <qglobal.h>
+#include <QPointer>
 
 #define KDAB_DISABLE_COPY( x ) private: x( const x & ); x & operator=( const x & )
 
@@ -51,9 +52,27 @@ inline T &__kdtools__dereference_for_methodcall(T *o)
     return *o;
 }
 
-#define KDAB_SET_OBJECT_NAME( x ) __kdtools__dereference_for_methodcall( x ).setObjectName( QStringLiteral( #x ) )
+template <typename T>
+inline void __kleotools__set_object_name(T &o, const QString &s)
+{
+    o.setObjectName(s);
+}
+
+template <typename T>
+inline void __kleotools__set_object_name(T *o, const QString &s)
+{
+    if (o) {
+        o->setObjectName(s);
+    }
+}
+
+template <typename T>
+inline void __kleotools__set_object_name(QPointer<T> &o, const QString &s)
+{
+    __kleotools__set_object_name(o.data(), s);
+}
+
+#define KDAB_SET_OBJECT_NAME( x ) __kleotools__set_object_name( x, QStringLiteral( #x ) )
 
 #define KDAB_SYNCHRONIZED( mutex ) if ( bool __counter_##__LINE__ = false ) {} else \
         for ( QMutexLocker __locker_##__LINE__( &__kdtools__dereference_for_methodcall( mutex ) ) ; !__counter_##__LINE__ ; __counter_##__LINE__ = true )
-
-

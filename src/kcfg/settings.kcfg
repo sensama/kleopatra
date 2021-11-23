@@ -10,15 +10,33 @@
      <whatsthis>This text will be used as placeholder text for the common name (CN) field of S/MIME certificates.</whatsthis>
      <default></default>
    </entry>
+   <entry key="CN_prefill" name="prefillCN" type="Bool">
+     <label>Prefill CN automatically</label>
+     <whatsthis>If true, then the common name (CN) field of S/MIME certificates will be prefilled with information gathered from the system,
+         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
+     <default>true</default>
+   </entry>
    <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
      <label>Placeholder for EMAIL</label>
      <whatsthis>This text will be used as placeholder text for the email address field of OpenPGP and S/MIME certificates.</whatsthis>
      <default></default>
    </entry>
+   <entry key="EMAIL_prefill" name="prefillEmail" type="Bool">
+     <label>Prefill EMAIL automatically</label>
+     <whatsthis>If true, then the email address field of OpenPGP and S/MIME certificates will be prefilled with information gathered from the system,
+         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
+     <default>true</default>
+   </entry>
    <entry key="NAME_placeholder" name="namePlaceholder" type="String">
      <label>Placeholder for NAME</label>
      <whatsthis>This text will be used as placeholder text for the name field of OpenPGP certificates.</whatsthis>
      <default></default>
+   </entry>
+   <entry key="NAME_prefill" name="prefillName" type="Bool">
+     <label>Prefill NAME automatically</label>
+     <whatsthis>If true, then the name field of OpenPGP certificates will be prefilled with information gathered from the system,
+         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
+     <default>true</default>
    </entry>
  </group>
  <group name="ConfigurationDialog">

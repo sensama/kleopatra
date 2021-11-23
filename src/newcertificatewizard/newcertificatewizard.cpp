@@ -14,6 +14,8 @@
 
 #include "newcertificatewizard.h"
 
+#include <settings.h>
+
 #include "ui_chooseprotocolpage.h"
 #include "ui_enterdetailspage.h"
 #include "ui_keycreationpage.h"
@@ -1408,6 +1410,7 @@ void EnterDetailsPage::updateForm()
 
     clearForm();
 
+    const auto settings = Kleo::Settings{};
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
     QStringList attrOrder = config.readEntry(pgp() ? "OpenPGPAttributeOrder" : "DNAttributeOrder", QStringList());
@@ -1484,10 +1487,11 @@ void EnterDetailsPage::updateForm()
     widgets.push_back(ui.resultLE);
     widgets.push_back(ui.advancedPB);
 
-    if (ui.nameLE->text().isEmpty()) {
+    const bool prefillName = (pgp() && settings.prefillName()) || (!pgp() && settings.prefillCN());
+    if (ui.nameLE->text().isEmpty() && prefillName) {
         ui.nameLE->setText(userFullName());
     }
-    if (ui.emailLE->text().isEmpty()) {
+    if (ui.emailLE->text().isEmpty() && settings.prefillEmail()) {
         ui.emailLE->setText(userEmailAddress());
     }
 

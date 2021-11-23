@@ -344,7 +344,7 @@ TabWidget *KeyListController::tabWidget() const
 void KeyListController::createActions(KActionCollection *coll)
 {
 
-    const action_data action_data[] = {
+    const std::vector<action_data> action_data = {
         // File menu
         {
             "file_new_certificate", i18n("New Key Pair..."), QString(),

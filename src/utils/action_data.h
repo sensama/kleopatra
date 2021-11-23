@@ -30,13 +30,7 @@ struct action_data {
     bool enabled;
 };
 
-void make_actions_from_data(const action_data *data, unsigned int numData, KActionCollection *collection);
-
-template <unsigned int N>
-inline void make_actions_from_data(const action_data(&data)[N], KActionCollection *collection)
-{
-    make_actions_from_data(data, N, collection);
-}
+void make_actions_from_data(const std::vector<action_data> &data, KActionCollection *collection);
 
 QAction *make_action_from_data(const action_data &ad, KActionCollection *coll);
 QAction *createAction(const action_data &ad, KActionCollection *coll);

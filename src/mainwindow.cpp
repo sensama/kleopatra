@@ -417,7 +417,7 @@ void MainWindow::Private::setupActions()
 
     KActionCollection *const coll = q->actionCollection();
 
-    const action_data action_data[] = {
+    const std::vector<action_data> action_data = {
         // most have been MOVED TO keylistcontroller.cpp
         // Tools menu
 #ifndef Q_OS_WIN
@@ -466,7 +466,7 @@ void MainWindow::Private::setupActions()
         // most have been MOVED TO keylistcontroller.cpp
     };
 
-    make_actions_from_data(action_data, /*sizeof action_data / sizeof *action_data,*/ coll);
+    make_actions_from_data(action_data, coll);
 
     if (!Settings().groupsEnabled()) {
         if (auto action = coll->action(QStringLiteral("configure_groups"))) {

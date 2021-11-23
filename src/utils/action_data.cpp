@@ -51,9 +51,9 @@ QAction *Kleo::make_action_from_data(const action_data &ad, KActionCollection *c
     return a;
 }
 
-void Kleo::make_actions_from_data(const action_data *ads, unsigned int size, KActionCollection *coll)
+void Kleo::make_actions_from_data(const std::vector<action_data> &data, KActionCollection *coll)
 {
-    for (unsigned int i = 0; i < size; ++i) {
-        coll->addAction(QLatin1String(ads[i].name), make_action_from_data(ads[i], coll));
+    for (const auto &actionData : data) {
+        coll->addAction(QLatin1String(actionData.name), make_action_from_data(actionData, coll));
     }
 }

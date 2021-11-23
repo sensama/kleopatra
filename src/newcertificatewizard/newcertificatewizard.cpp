@@ -1437,6 +1437,7 @@ void EnterDetailsPage::updateForm()
         const QString label = config.readEntry(attr + QLatin1String("_label"),
                                                attributeLabel(attr, pgp()));
         const QString regex = config.readEntry(attr + QLatin1String("_regex"));
+        const QString placeholder = config.readEntry(attr + QLatin1String{"_placeholder"});
 
         int row;
         bool known = true;
@@ -1461,6 +1462,7 @@ void EnterDetailsPage::updateForm()
         }
 
         QLineEdit *le = adjust_row(ui.gridLayout, row, label, preset, validator, readonly, required);
+        le->setPlaceholderText(placeholder);
 
         const Line line = { key, label, regex, le };
         lines[row] = line;

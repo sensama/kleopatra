@@ -4,6 +4,23 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <kcfgfile name="kleopatrarc" />
+ <group name="CertificateCreationWizard">
+   <entry key="CN_placeholder" name="cnPlaceholder" type="String">
+     <label>Placeholder for CN</label>
+     <whatsthis>This text will be used as placeholder text for the common name (CN) field of S/MIME certificates.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
+     <label>Placeholder for EMAIL</label>
+     <whatsthis>This text will be used as placeholder text for the email address field of OpenPGP and S/MIME certificates.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="NAME_placeholder" name="namePlaceholder" type="String">
+     <label>Placeholder for NAME</label>
+     <whatsthis>This text will be used as placeholder text for the name field of OpenPGP certificates.</whatsthis>
+     <default></default>
+   </entry>
+ </group>
  <group name="ConfigurationDialog">
    <entry name="ShowAppearanceConfiguration" type="Bool">
      <label>Show appearance configuration</label>

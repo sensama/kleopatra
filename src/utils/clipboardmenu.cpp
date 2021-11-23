@@ -9,6 +9,8 @@
 #include "kdtoolsglobal.h"
 #include "mainwindow.h"
 
+#include <settings.h>
+
 #include <commands/importcertificatefromclipboardcommand.h>
 #include <commands/encryptclipboardcommand.h>
 #include <commands/signclipboardcommand.h>
@@ -32,7 +34,9 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
     mImportClipboardAction = new QAction(i18n("Certificate Import"), this);
     mEncryptClipboardAction = new QAction(i18n("Encrypt..."), this);
-    mSmimeSignClipboardAction = new QAction(i18n("S/MIME-Sign..."), this);
+    if (Settings{}.cmsEnabled()) {
+        mSmimeSignClipboardAction = new QAction(i18n("S/MIME-Sign..."), this);
+    }
     mOpenPGPSignClipboardAction = new QAction(i18n("OpenPGP-Sign..."), this);
     mDecryptVerifyClipboardAction = new QAction(i18n("Decrypt/Verify..."), this);
 
@@ -45,12 +49,16 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
 
     connect(mImportClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotImportClipboard);
     connect(mEncryptClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotEncryptClipboard);
-    connect(mSmimeSignClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotSMIMESignClipboard);
+    if (mSmimeSignClipboardAction) {
+        connect(mSmimeSignClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotSMIMESignClipboard);
+    }
     connect(mOpenPGPSignClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotOpenPGPSignClipboard);
     connect(mDecryptVerifyClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotDecryptVerifyClipboard);
     mClipboardMenu->addAction(mImportClipboardAction);
     mClipboardMenu->addAction(mEncryptClipboardAction);
-    mClipboardMenu->addAction(mSmimeSignClipboardAction);
+    if (mSmimeSignClipboardAction) {
+        mClipboardMenu->addAction(mSmimeSignClipboardAction);
+    }
     mClipboardMenu->addAction(mOpenPGPSignClipboardAction);
     mClipboardMenu->addAction(mDecryptVerifyClipboardAction);
     connect(QApplication::clipboard(), &QClipboard::changed, this, &ClipboardMenu::slotEnableDisableActions);
@@ -107,6 +115,8 @@ void ClipboardMenu::slotEnableDisableActions()
     mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
     mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
     mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());
-    mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());
+    if (mSmimeSignClipboardAction) {
+        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());
+    }
     mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }

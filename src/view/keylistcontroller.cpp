@@ -16,6 +16,7 @@
 
 #include <utils/action_data.h>
 
+#include <settings.h>
 #include "tooltippreferences.h"
 #include "kleopatra_debug.h"
 #include "commands/exportcertificatecommand.h"
@@ -343,8 +344,7 @@ TabWidget *KeyListController::tabWidget() const
 
 void KeyListController::createActions(KActionCollection *coll)
 {
-
-    const std::vector<action_data> action_data = {
+    static const std::vector<action_data> common_and_openpgp_action_data = {
         // File menu
         {
             "file_new_certificate", i18n("New Key Pair..."), QString(),
@@ -429,19 +429,32 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
-            "certificates_trust_root", i18n("Trust Root Certificate"), QString(),
-            nullptr, nullptr, nullptr, QString(), false, true
-        },
-        {
-            "certificates_distrust_root", i18n("Distrust Root Certificate"), QString(),
-            nullptr, nullptr, nullptr, QString(), false, true
-        },
-        {
             "certificates_change_passphrase", i18n("Change Passphrase..."), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
             "certificates_add_userid", i18n("Add User-ID..."), QString(),
+            nullptr, nullptr, nullptr, QString(), false, true
+        },
+        // Tools menu
+        {
+            "tools_refresh_openpgp_certificates", i18n("Refresh OpenPGP Certificates"), QString(),
+            "view-refresh", nullptr, nullptr, QString(), false, true
+        },
+        // Window menu
+        // (come from TabWidget)
+        // Help menu
+        // (come from MainWindow)
+    };
+
+    static const std::vector<action_data> cms_action_data = {
+        // Certificate menu
+        {
+            "certificates_trust_root", i18n("Trust Root Certificate"), QString(),
+            nullptr, nullptr, nullptr, QString(), false, true
+        },
+        {
+            "certificates_distrust_root", i18n("Distrust Root Certificate"), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
@@ -451,10 +464,6 @@ void KeyListController::createActions(KActionCollection *coll)
         // Tools menu
         {
             "tools_refresh_x509_certificates", i18n("Refresh S/MIME Certificates"), QString(),
-            "view-refresh", nullptr, nullptr, QString(), false, true
-        },
-        {
-            "tools_refresh_openpgp_certificates", i18n("Refresh OpenPGP Certificates"), QString(),
             "view-refresh", nullptr, nullptr, QString(), false, true
         },
         {
@@ -469,11 +478,15 @@ void KeyListController::createActions(KActionCollection *coll)
             "crl_import_crl", i18n("Import CRL From File..."), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
-        // Window menu
-        // (come from TabWidget)
-        // Help menu
-        // (come from MainWindow)
     };
+
+    std::vector<action_data> action_data = common_and_openpgp_action_data;
+
+    if (Settings{}.cmsEnabled()) {
+        action_data.reserve(action_data.size() + cms_action_data.size());
+        std::copy(std::begin(cms_action_data), std::end(cms_action_data),
+                  std::back_inserter(action_data));
+    }
 
     make_actions_from_data(action_data, coll);
 

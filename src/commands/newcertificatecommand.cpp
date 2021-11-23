@@ -13,6 +13,8 @@
 
 #include "command_p.h"
 
+#include <settings.h>
+
 #include <newcertificatewizard/newcertificatewizard.h>
 
 
@@ -111,10 +113,12 @@ Protocol NewCertificateCommand::protocol() const
 
 void NewCertificateCommand::doStart()
 {
-
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
 
+    if (d->protocol == UnknownProtocol && !Settings{}.cmsEnabled()) {
+        d->protocol = GpgME::OpenPGP;
+    }
     if (d->protocol != UnknownProtocol) {
         d->dialog->setProtocol(d->protocol);
     }

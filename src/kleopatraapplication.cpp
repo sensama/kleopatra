@@ -30,6 +30,7 @@
 
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyGroupConfig>
 #include <Libkleo/Classify>
 
@@ -166,6 +167,13 @@ public:
         keyCache->setGroupsEnabled(Settings().groupsEnabled());
     }
 
+    void setUpFilterManager()
+    {
+        if (!Settings{}.cmsEnabled()) {
+            KeyFilterManager::instance()->alwaysFilterByProtocol(GpgME::OpenPGP);
+        }
+    }
+
     void setupLogging()
     {
         log = Log::mutableInstance();
@@ -216,6 +224,7 @@ void KleopatraApplication::init()
     d->init();
     add_resources();
     d->setupKeyCache();
+    d->setUpFilterManager();
     d->setupLogging();
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();

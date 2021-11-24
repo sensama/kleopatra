@@ -15,6 +15,8 @@
 
 #include "command_p.h"
 
+#include <settings.h>
+
 #include <crypto/encryptemailcontroller.h>
 
 #include <utils/input.h>
@@ -83,7 +85,9 @@ EncryptClipboardCommand::Private::Private(EncryptClipboardCommand *qq, KeyListCo
       input(),
       controller(EncryptEMailController::ClipboardMode)
 {
-
+    if (!Settings{}.cmsEnabled()) {
+        controller.setProtocol(GpgME::OpenPGP);
+    }
 }
 
 EncryptClipboardCommand::Private::~Private()

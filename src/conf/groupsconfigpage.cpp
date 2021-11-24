@@ -22,8 +22,7 @@
 #include <KMessageBox>
 
 #include <QVBoxLayout>
-
-#include <mutex>
+#include <QMutex>
 
 #include "kleopatra_debug.h"
 
@@ -61,16 +60,16 @@ void GroupsConfigPage::Private::setChanged(bool state)
 
 void GroupsConfigPage::Private::onKeysMayHaveChanged()
 {
-    static std::mutex mutex;
+    static QMutex mutex;
 
-    std::unique_lock<std::mutex> lock(mutex, std::try_to_lock);
-    if (!lock) {
+    if (!mutex.tryLock()) {
         // prevent reentrace
         return;
     }
 
     if (savingChanges) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring changes caused by ourselves";
+        mutex.unlock();
         return;
     }
     if (!changed) {
@@ -92,6 +91,7 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
             q->load();
         }
     }
+    mutex.unlock();
 }
 
 GroupsConfigPage::GroupsConfigPage(QWidget *parent)

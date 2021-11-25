@@ -9,6 +9,6 @@ set_package_properties(SharedMimeInfo PROPERTIES
                       )
 
 # update XDG mime-types if shared mime info is around
-if(SharedMimeInfo_FOUND)
+if(SharedMimeInfo_FOUND AND NOT CMAKE_CROSSCOMPILING)
     update_xdg_mimetypes(${XDG_MIME_INSTALL_DIR})
 endif()

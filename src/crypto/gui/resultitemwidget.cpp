@@ -65,7 +65,6 @@ static QColor txtColorForVisualCode(Task::Result::VisualCode code)
 {
     switch (code) {
     case Task::Result::AllGood:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::PositiveText).color();
     case Task::Result::NeutralError:
     case Task::Result::Warning:
         return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();

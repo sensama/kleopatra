@@ -184,7 +184,7 @@ public:
             auto statusBar = std::make_unique<QStatusBar>();
             auto statusLbl = std::make_unique<QLabel>(Formatting::deVsString(Kleo::gnupgIsDeVsCompliant()));
             const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
-                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveText : KColorScheme::NegativeText
+                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
             ).color();
             const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
                 Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground

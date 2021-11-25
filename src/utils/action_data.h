@@ -10,6 +10,7 @@
 #pragma once
 
 #include <QString>
+#include <vector>
 
 class QObject;
 class QAction;

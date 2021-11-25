@@ -12,7 +12,9 @@
 
 #include "commands/detailscommand.h"
 #include "view/keytreeview.h"
+#include <settings.h>
 
+#include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
@@ -39,6 +41,16 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key)
+
+namespace
+{
+auto createOpenPGPOnlyKeyFilter()
+{
+    auto filter = std::make_shared<DefaultKeyFilter>();
+    filter->setIsOpenPGP(DefaultKeyFilter::Set);
+    return filter;
+}
+}
 
 class EditGroupDialog::Private
 {
@@ -86,6 +98,9 @@ public:
         ui.availableKeysList->view()->setRootIsDecorated(false);
         ui.availableKeysList->setFlatModel(availableKeysModel);
         ui.availableKeysList->setHierarchicalView(false);
+        if (!Settings{}.cmsEnabled()) {
+            ui.availableKeysList->setKeyFilter(createOpenPGPOnlyKeyFilter());
+        }
         availableKeysLayout->addWidget(ui.availableKeysList, /*stretch=*/ 1);
 
         centerLayout->addLayout(availableKeysLayout, /*stretch=*/ 1);

@@ -186,6 +186,16 @@ LookupCertificatesCommand::~LookupCertificatesCommand()
     qCDebug(KLEOPATRA_LOG);
 }
 
+void LookupCertificatesCommand::setProtocol(GpgME::Protocol protocol)
+{
+    d->protocol = protocol;
+}
+
+GpgME::Protocol LookupCertificatesCommand::protocol() const
+{
+    return d->protocol;
+}
+
 void LookupCertificatesCommand::doStart()
 {
 

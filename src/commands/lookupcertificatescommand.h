@@ -11,6 +11,8 @@
 
 #include <commands/importcertificatescommand.h>
 
+#include <gpgme++/global.h>
+
 namespace Kleo
 {
 namespace Commands
@@ -24,6 +26,9 @@ public:
     explicit LookupCertificatesCommand(KeyListController *parent);
     explicit LookupCertificatesCommand(const QString &fingerPrint, KeyListController *parent);
     ~LookupCertificatesCommand() override;
+
+    void setProtocol(GpgME::Protocol protocol);
+    GpgME::Protocol protocol() const;
 
 private:
     void doStart() override;

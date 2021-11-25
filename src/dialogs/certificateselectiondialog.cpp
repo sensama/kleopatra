@@ -67,6 +67,21 @@ CertificateSelectionDialog::Option CertificateSelectionDialog::optionsFromProtoc
     }
 }
 
+namespace
+{
+auto protocolFromOptions(CertificateSelectionDialog::Options options)
+{
+    switch (options & CertificateSelectionDialog::AnyFormat) {
+    case CertificateSelectionDialog::OpenPGPFormat:
+        return GpgME::OpenPGP;
+    case CertificateSelectionDialog::CMSFormat:
+        return GpgME::CMS;
+    default:
+        return GpgME::UnknownProtocol;
+    }
+}
+}
+
 class CertificateSelectionDialog::Private
 {
     friend class ::Kleo::Dialogs::CertificateSelectionDialog;
@@ -85,15 +100,14 @@ private:
     {
         auto cmd = new NewCertificateCommand(nullptr);
         cmd->setParentWidget(q);
-        if ((options & AnyFormat) != AnyFormat) {
-            cmd->setProtocol((options & OpenPGPFormat) ? OpenPGP : CMS);
-        }
+        cmd->setProtocol(protocolFromOptions(options));
         cmd->start();
     }
     void lookup()
     {
-        Command *const cmd = new LookupCertificatesCommand(nullptr);
+        const auto cmd = new LookupCertificatesCommand(nullptr);
         cmd->setParentWidget(q);
+        cmd->setProtocol(protocolFromOptions(options));
         cmd->start();
     }
     void manageGroups()

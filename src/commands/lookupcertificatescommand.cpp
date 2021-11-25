@@ -15,6 +15,8 @@
 
 #include "detailscommand.h"
 
+#include <settings.h>
+
 #include "view/tabwidget.h"
 
 #include <Libkleo/Compat>
@@ -106,6 +108,7 @@ private:
     }
 
 private:
+    GpgME::Protocol protocol = GpgME::UnknownProtocol;
     QString query;
     bool autoStartLookup = false;
     QPointer<LookupCertificatesDialog> dialog;
@@ -137,7 +140,9 @@ LookupCertificatesCommand::Private::Private(LookupCertificatesCommand *qq, KeyLi
     : ImportCertificatesCommand::Private(qq, c),
       dialog()
 {
-
+    if (!Settings{}.cmsEnabled()) {
+        protocol = GpgME::OpenPGP;
+    }
 }
 
 LookupCertificatesCommand::Private::~Private()
@@ -238,14 +243,18 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
 
     query = str;
 
-    startKeyListJob(CMS,     str);
+    if (protocol != GpgME::OpenPGP) {
+        startKeyListJob(CMS, str);
+    }
 
-    const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
-    if (rx.exactMatch(query) && !str.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)) {
-        qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
-        startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
-    } else {
-        startKeyListJob(OpenPGP, str);
+    if (protocol != GpgME::CMS) {
+        const QRegExp rx(QLatin1String("(?:0x|0X)?[0-9a-fA-F]{6,}"));
+        if (rx.exactMatch(query) && !str.startsWith(QLatin1String("0x"), Qt::CaseInsensitive)) {
+            qCDebug(KLEOPATRA_LOG) << "Adding 0x prefix to query";
+            startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
+        } else {
+            startKeyListJob(OpenPGP, str);
+        }
     }
 }
 
@@ -384,7 +393,9 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
 
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
-    const bool ok = haveKeyserverConfigured() || haveX509DirectoryServerConfigured();
+    const bool haveOrDontNeedOpenPGPServer = haveKeyserverConfigured() || (protocol == GpgME::CMS);
+    const bool haveOrDontNeedCMSServer = haveX509DirectoryServerConfigured() || (protocol == GpgME::OpenPGP);
+    const bool ok = haveOrDontNeedOpenPGPServer || haveOrDontNeedCMSServer;
     if (!ok)
         information(xi18nc("@info",
                            "<para>You do not have any directory servers configured.</para>"

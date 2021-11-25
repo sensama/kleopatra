@@ -17,6 +17,7 @@
 #include <Libkleo/Debug>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
+#include <Libkleo/UniqueLock>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -62,14 +63,14 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
 {
     static QMutex mutex;
 
-    if (!mutex.tryLock()) {
+    const UniqueLock lock{mutex, Kleo::tryToLock};
+    if (!lock) {
         // prevent reentrace
         return;
     }
 
     if (savingChanges) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring changes caused by ourselves";
-        mutex.unlock();
         return;
     }
     if (!changed) {
@@ -91,7 +92,6 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
             q->load();
         }
     }
-    mutex.unlock();
 }
 
 GroupsConfigPage::GroupsConfigPage(QWidget *parent)

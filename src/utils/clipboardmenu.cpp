@@ -115,9 +115,9 @@ void ClipboardMenu::slotEnableDisableActions()
     const QSignalBlocker blocker(QApplication::clipboard());
     mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
     mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
-    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());
+    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard(GpgME::OpenPGP));
     if (mSmimeSignClipboardAction) {
-        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard());
+        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard(GpgME::CMS));
     }
     mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }

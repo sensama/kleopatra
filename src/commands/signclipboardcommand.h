@@ -30,7 +30,7 @@ public:
     explicit SignClipboardCommand(GpgME::Protocol protocol, KeyListController *parent);
     ~SignClipboardCommand() override;
 
-    static bool canSignCurrentClipboard();
+    static bool canSignCurrentClipboard(GpgME::Protocol protocol);
 
 private:
     void doStart() override;

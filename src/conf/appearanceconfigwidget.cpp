@@ -449,8 +449,13 @@ void AppearanceConfigWidget::load()
     }
     const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
     for (const QString &group : groups) {
-        //QListWidgetItem * item = new QListWidgetItem( d->categoriesLV );
-        apply_config(KConfigGroup(config, group), new QListWidgetItem(d->categoriesLV));
+        const KConfigGroup configGroup{config, group};
+        const bool isCmsSpecificKeyFilter = !configGroup.readEntry("is-openpgp-key", true);
+        auto item = new QListWidgetItem{d->categoriesLV};
+        // hide CMS-specific filters if CMS is disabled; we hide those filters
+        // instead of skipping them, so that they are not removed on save
+        item->setHidden(isCmsSpecificKeyFilter && !Kleo::Settings{}.cmsEnabled());
+        apply_config(configGroup, item);
     }
 
     const TooltipPreferences prefs;

@@ -116,7 +116,9 @@ void NewCertificateCommand::doStart()
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
 
-    if (d->protocol == UnknownProtocol && !Settings{}.cmsEnabled()) {
+    const Kleo::Settings settings{};
+    const auto cmsAllowed = settings.cmsEnabled() && settings.cmsCertificateCreationAllowed();
+    if (d->protocol == UnknownProtocol && !cmsAllowed) {
         d->protocol = GpgME::OpenPGP;
     }
     if (d->protocol != UnknownProtocol) {

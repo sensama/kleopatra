@@ -46,6 +46,12 @@
      <whatsthis>If false, then Kleopatra's main UI will not offer any functionality related to S/MIME (CMS).</whatsthis>
      <default>true</default>
    </entry>
+   <entry key="AllowCertificateCreation" name="cmsCertificateCreationAllowed" type="Bool">
+     <label>Allow S/MIME certificate creation</label>
+     <tooltip>Allows the creation of S/MIME certificate signing requests.</tooltip>
+     <whatsthis>If false, then Kleopatra will not offer the creation of S/MIME certificate signing requests.</whatsthis>
+     <default>true</default>
+   </entry>
  </group>
  <group name="ConfigurationDialog">
    <entry name="ShowAppearanceConfiguration" type="Bool">

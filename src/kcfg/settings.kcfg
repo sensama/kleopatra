@@ -39,6 +39,14 @@
      <default>true</default>
    </entry>
  </group>
+ <group name="CMS">
+   <entry key="Enabled" name="cmsEnabled" type="Bool">
+     <label>Enable S/MIME</label>
+     <tooltip>Enables support for S/MIME (CMS).</tooltip>
+     <whatsthis>If false, then Kleopatra's main UI will not offer any functionality related to S/MIME (CMS).</whatsthis>
+     <default>true</default>
+   </entry>
+ </group>
  <group name="ConfigurationDialog">
    <entry name="ShowAppearanceConfiguration" type="Bool">
      <label>Show appearance configuration</label>
@@ -66,14 +74,6 @@
      <label>Enable Groups</label>
      <tooltip>Enable usage of groups of keys.</tooltip>
      <whatsthis>Enable usage of groups of keys to create lists of recipients.</whatsthis>
-     <default>true</default>
-   </entry>
- </group>
- <group name="Protocols">
-   <entry key="CMSEnabled" name="cmsEnabled" type="Bool">
-     <label>Enable S/MIME</label>
-     <tooltip>Enables support for S/MIME (CMS).</tooltip>
-     <whatsthis>If false, then Kleopatra's main UI will not offer any functionality related to S/MIME (CMS).</whatsthis>
      <default>true</default>
    </entry>
  </group>

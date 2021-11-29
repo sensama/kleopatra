@@ -34,7 +34,8 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
     mImportClipboardAction = new QAction(i18n("Certificate Import"), this);
     mEncryptClipboardAction = new QAction(i18n("Encrypt..."), this);
-    if (Settings{}.cmsEnabled()) {
+    const Kleo::Settings settings{};
+    if (settings.cmsEnabled() && settings.cmsSigningAllowed()) {
         mSmimeSignClipboardAction = new QAction(i18n("S/MIME-Sign..."), this);
     }
     mOpenPGPSignClipboardAction = new QAction(i18n("OpenPGP-Sign..."), this);

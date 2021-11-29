@@ -287,6 +287,59 @@ void Page::setTemporary(bool on)
     }
 }
 
+namespace
+{
+class Actions
+{
+public:
+    constexpr static const char *Rename = "window_rename_tab";
+    constexpr static const char *Duplicate = "window_duplicate_tab";
+    constexpr static const char *Close = "window_close_tab";
+    constexpr static const char *MoveLeft = "window_move_tab_left";
+    constexpr static const char *MoveRight = "window_move_tab_right";
+    constexpr static const char *Hierarchical = "window_view_hierarchical";
+    constexpr static const char *ExpandAll = "window_expand_all";
+    constexpr static const char *CollapseAll = "window_collapse_all";
+
+    explicit Actions() {}
+
+    void insert(const std::string &name, QAction *action)
+    {
+        actions.insert({name, action});
+    }
+
+    auto get(const std::string &name) const
+    {
+        const auto it = actions.find(name);
+        return (it != actions.end()) ? it->second : nullptr;
+    }
+
+    void setChecked(const std::string &name, bool checked) const
+    {
+        if (auto action = get(name)) {
+            action->setChecked(checked);
+        }
+    }
+
+    void setEnabled(const std::string &name, bool enabled) const
+    {
+        if (auto action = get(name)) {
+            action->setEnabled(enabled);
+        }
+    }
+
+    void setVisible(const std::string &name, bool visible) const
+    {
+        if (auto action = get(name)) {
+            action->setVisible(visible);
+        }
+    }
+
+private:
+    std::map<std::string, QAction *> actions;
+};
+}
+
 //
 //
 // TabWidget
@@ -357,7 +410,7 @@ private:
     void collapseAll(Page *page);
 
     void enableDisableCurrentPageActions();
-    void enableDisablePageActions(const std::vector<QAction *> &actions, const Page *page);
+    void enableDisablePageActions(const Actions &actions, const Page *page);
 
     Page *currentPage() const
     {
@@ -391,21 +444,9 @@ private:
     AbstractKeyListModel *hierarchicalModel;
     QTabWidget tabWidget;
     QVBoxLayout layout;
-    enum {
-        Rename,
-        Duplicate,
-        Close,
-        MoveLeft,
-        MoveRight,
-        Hierarchical,
-        ExpandAll,
-        CollapseAll,
-
-        NumPageActions
-    };
     QAction *newAction = nullptr;
-    std::vector<QAction *> currentPageActions;
-    std::vector<QAction *> otherPageActions;
+    Actions currentPageActions;
+    Actions otherPageActions;
     bool actionsCreated;
 };
 
@@ -441,42 +482,54 @@ void TabWidget::Private::slotContextMenu(const QPoint &p)
     Page *const contextMenuPage = static_cast<Page *>(tabWidget.widget(tabUnderPos));
     const Page *const current = currentPage();
 
-    const std::vector<QAction *> actions = contextMenuPage == current ? currentPageActions : otherPageActions;
+    const auto actions = contextMenuPage == current ? currentPageActions : otherPageActions;
 
     enableDisablePageActions(actions, contextMenuPage);
 
     QMenu menu;
-    menu.addAction(actions[Rename]);
+    if (auto action = actions.get(Actions::Rename)) {
+        menu.addAction(action);
+    }
     menu.addSeparator();
     menu.addAction(newAction);
-    menu.addAction(actions[Duplicate]);
+    if (auto action = actions.get(Actions::Duplicate)) {
+        menu.addAction(action);
+    }
     menu.addSeparator();
-    menu.addAction(actions[MoveLeft]);
-    menu.addAction(actions[MoveRight]);
+    if (auto action = actions.get(Actions::MoveLeft)) {
+        menu.addAction(action);
+    }
+    if (auto action = actions.get(Actions::MoveRight)) {
+        menu.addAction(action);
+    }
     menu.addSeparator();
-    menu.addAction(actions[Close]);
+    if (auto action = actions.get(Actions::Close)) {
+        menu.addAction(action);
+    }
 
     const QAction *const action = menu.exec(tabWidget.tabBar()->mapToGlobal(p));
+    if (!action) {
+        return;
+    }
 
     if (contextMenuPage == current || action == newAction) {
         return;    // performed through signal/slot connections...
     }
 
 #ifndef QT_NO_INPUTDIALOG
-    if (action == otherPageActions[Rename]) {
+    if (action == otherPageActions.get(Actions::Rename)) {
         renamePage(contextMenuPage);
     }
 #endif // QT_NO_INPUTDIALOG
-    else if (action == otherPageActions[Duplicate]) {
+    else if (action == otherPageActions.get(Actions::Duplicate)) {
         duplicatePage(contextMenuPage);
-    } else if (action == otherPageActions[Close]) {
+    } else if (action == otherPageActions.get(Actions::Close)) {
         closePage(contextMenuPage);
-    } else if (action == otherPageActions[MoveLeft]) {
+    } else if (action == otherPageActions.get(Actions::MoveLeft)) {
         movePageLeft(contextMenuPage);
-    } else if (action == otherPageActions[MoveRight]) {
+    } else if (action == otherPageActions.get(Actions::MoveRight)) {
         movePageRight(contextMenuPage);
     }
-
 }
 
 void TabWidget::Private::currentIndexChanged(int index)
@@ -498,17 +551,17 @@ void TabWidget::Private::enableDisableCurrentPageActions()
     enableDisablePageActions(currentPageActions, page);
 }
 
-void TabWidget::Private::enableDisablePageActions(const std::vector<QAction *> &actions, const Page *p)
+void TabWidget::Private::enableDisablePageActions(const Actions &actions, const Page *p)
 {
-    actions[Rename]      ->setEnabled(p && p->canBeRenamed());
-    actions[Duplicate]   ->setEnabled(p);
-    actions[Close]       ->setEnabled(p && p->canBeClosed() && tabWidget.count() > 1);
-    actions[MoveLeft]    ->setEnabled(p && tabWidget.indexOf(const_cast<Page *>(p)) != 0);
-    actions[MoveRight]   ->setEnabled(p && tabWidget.indexOf(const_cast<Page *>(p)) != tabWidget.count() - 1);
-    actions[Hierarchical]->setEnabled(p && p->canChangeHierarchical());
-    actions[Hierarchical]->setChecked(p && p->isHierarchicalView());
-    actions[ExpandAll]   ->setEnabled(p && p->isHierarchicalView());
-    actions[CollapseAll] ->setEnabled(p && p->isHierarchicalView());
+    actions.setEnabled(Actions::Rename, p && p->canBeRenamed());
+    actions.setEnabled(Actions::Duplicate, p);
+    actions.setEnabled(Actions::Close, p && p->canBeClosed() && tabWidget.count() > 1);
+    actions.setEnabled(Actions::MoveLeft, p && tabWidget.indexOf(const_cast<Page *>(p)) != 0);
+    actions.setEnabled(Actions::MoveRight, p && tabWidget.indexOf(const_cast<Page *>(p)) != tabWidget.count() - 1);
+    actions.setEnabled(Actions::Hierarchical, p && p->canChangeHierarchical());
+    actions.setChecked(Actions::Hierarchical, p && p->isHierarchicalView());
+    actions.setEnabled(Actions::ExpandAll, p && p->isHierarchicalView());
+    actions.setEnabled(Actions::CollapseAll, p && p->isHierarchicalView());
 
     if (tabWidget.count() < 2) {
         tabWidget.tabBar()->hide();
@@ -775,61 +828,60 @@ void TabWidget::createActions(KActionCollection *coll)
 
     d->newAction = make_action_from_data(actionDataNew, coll);
 
-    struct action_data actionData[] = {
+    static const std::vector<action_data> actionData = {
         {
-            "window_rename_tab", i18n("Rename Tab..."), i18n("Rename this tab"),
+            Actions::Rename, i18n("Rename Tab..."), i18n("Rename this tab"),
             "edit-rename", this, SLOT(slotRenameCurrentTab()), QStringLiteral("CTRL+SHIFT+R"), false, false
         },
         {
-            "window_duplicate_tab", i18n("Duplicate Tab"), i18n("Duplicate this tab"),
+            Actions::Duplicate, i18n("Duplicate Tab"), i18n("Duplicate this tab"),
             "tab-duplicate", this, SLOT(slotDuplicateCurrentTab()), QStringLiteral("CTRL+SHIFT+D"), false, true
         },
         {
-            "window_close_tab", i18n("Close Tab"), i18n("Close this tab"),
+            Actions::Close, i18n("Close Tab"), i18n("Close this tab"),
             "tab-close", this, SLOT(slotCloseCurrentTab()), QStringLiteral("CTRL+SHIFT+W"), false, false
         }, // ### CTRL-W when available
         {
-            "window_move_tab_left", i18n("Move Tab Left"), i18n("Move this tab left"),
+            Actions::MoveLeft, i18n("Move Tab Left"), i18n("Move this tab left"),
             nullptr, this, SLOT(slotMoveCurrentTabLeft()), QStringLiteral("CTRL+SHIFT+LEFT"), false, false
         },
         {
-            "window_move_tab_right", i18n("Move Tab Right"), i18n("Move this tab right"),
+            Actions::MoveRight, i18n("Move Tab Right"), i18n("Move this tab right"),
             nullptr, this, SLOT(slotMoveCurrentTabRight()), QStringLiteral("CTRL+SHIFT+RIGHT"), false, false
         },
         {
-            "window_view_hierarchical", i18n("Hierarchical Certificate List"), QString(),
+            Actions::Hierarchical, i18n("Hierarchical Certificate List"), QString(),
             nullptr, this, SLOT(slotToggleHierarchicalView(bool)), QString(), true, false
         },
         {
-            "window_expand_all", i18n("Expand All"), QString(),
+            Actions::ExpandAll, i18n("Expand All"), QString(),
             nullptr, this, SLOT(slotExpandAll()), QStringLiteral("CTRL+."), false, false
         },
         {
-            "window_collapse_all", i18n("Collapse All"), QString(),
+            Actions::CollapseAll, i18n("Collapse All"), QString(),
             nullptr, this, SLOT(slotCollapseAll()), QStringLiteral("CTRL+,"), false, false
         },
     };
 
-    d->currentPageActions.reserve(d->NumPageActions);
-    for (int i = 0; i < d->NumPageActions; ++i) {
-        d->currentPageActions.push_back(make_action_from_data(actionData[i], coll));
+    for (const auto &ad : actionData) {
+        d->currentPageActions.insert(ad.name, make_action_from_data(ad, coll));
     }
 
-    d->otherPageActions.reserve(d->NumPageActions);
-    for (int i = 0; i < d->NumPageActions; ++i) {
+    for (const auto &ad : actionData) {
         // create actions for the context menu of the currently not active tabs,
         // but do not add those actions to the action collection
-        const action_data ad = actionData[i];
         auto action = new QAction(ad.text, coll);
         if (ad.icon) {
             action->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
         }
         action->setEnabled(ad.enabled);
-        d->otherPageActions.push_back(action);
+        d->otherPageActions.insert(ad.name, action);
     }
 
     d->setCornerAction(d->newAction,                 Qt::TopLeftCorner);
-    d->setCornerAction(d->currentPageActions[d->Close], Qt::TopRightCorner);
+    if (auto action = d->currentPageActions.get(Actions::Close)) {
+        d->setCornerAction(action, Qt::TopRightCorner);
+    }
     d->actionsCreated = true;
 }
 

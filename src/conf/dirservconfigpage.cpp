@@ -11,6 +11,8 @@
 
 #include "dirservconfigpage.h"
 
+#include <settings.h>
+
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
 #include <Libkleo/KeyserverConfig>
@@ -160,18 +162,18 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     }
 
     // X.509 servers
-    ++row;
-    {
+    if (Settings{}.cmsEnabled()) {
+        ++row;
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), this};
         auto groupBoxLayout = new QVBoxLayout{groupBox};
 
         if (gpgme_check_version("1.16.0")) {
-            mWidget = new Kleo::DirectoryServicesWidget(this);
-            if (QLayout *l = mWidget->layout()) {
+            mDirectoryServices = new Kleo::DirectoryServicesWidget(this);
+            if (QLayout *l = mDirectoryServices->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
             }
-            groupBoxLayout->addWidget(mWidget);
-            connect(mWidget, SIGNAL(changed()), this, SLOT(changed()));
+            groupBoxLayout->addWidget(mDirectoryServices);
+            connect(mDirectoryServices, SIGNAL(changed()), this, SLOT(changed()));
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
@@ -217,8 +219,8 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
 void DirectoryServicesConfigurationPage::load()
 {
-    if (mWidget) {
-        mWidget->clear();
+    if (mDirectoryServices) {
+        mDirectoryServices->clear();
 
         // gpgsm's keyserver option is not provided by very old gpgconf versions
         mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
@@ -232,10 +234,10 @@ void DirectoryServicesConfigurationPage::load()
             const auto urls = mX509ServicesEntry->urlValueList();
             servers.reserve(urls.size());
             std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), [](const auto &url) { return KeyserverConfig::fromUrl(url); });
-            mWidget->setKeyservers(servers);
-            mWidget->setReadOnly(mX509ServicesEntry->isReadOnly());
+            mDirectoryServices->setKeyservers(servers);
+            mDirectoryServices->setReadOnly(mX509ServicesEntry->isReadOnly());
         } else {
-            mWidget->setDisabled(true);
+            mDirectoryServices->setDisabled(true);
         }
     }
 
@@ -341,9 +343,9 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
 
 void DirectoryServicesConfigurationPage::save()
 {
-    if (mX509ServicesEntry && mWidget) {
+    if (mX509ServicesEntry && mDirectoryServices) {
         QList<QUrl> urls;
-        const auto servers = mWidget->keyservers();
+        const auto servers = mDirectoryServices->keyservers();
         urls.reserve(servers.size());
         std::transform(std::begin(servers), std::end(servers), std::back_inserter(urls), [](const auto &server) { return server.toUrl(); });
         mX509ServicesEntry->setURLValueList(urls);
@@ -371,7 +373,7 @@ void DirectoryServicesConfigurationPage::save()
 #if 0
     // Also write the LDAP URLs to kabldaprc so that they are used by kaddressbook
     KABSynchronizer sync;
-    const KUrl::List toAdd = mWidget->urlList();
+    const KUrl::List toAdd = mDirectoryServices->urlList();
     KUrl::List currentList = sync.readCurrentList();
 
     KUrl::List::const_iterator it = toAdd.begin();

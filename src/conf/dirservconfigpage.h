@@ -56,7 +56,7 @@ private:
 
 private:
     QLineEdit *mOpenPGPKeyserverEdit = nullptr;
-    Kleo::DirectoryServicesWidget *mWidget = nullptr;
+    Kleo::DirectoryServicesWidget *mDirectoryServices = nullptr;
     QTimeEdit *mTimeout = nullptr;
     QSpinBox *mMaxItems = nullptr;
     QLabel *mMaxItemsLabel = nullptr;

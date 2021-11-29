@@ -52,7 +52,7 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
                   QStringLiteral("document-encrypt"),
                   new Kleo::Config::CryptoOperationsConfigurationPage(this));
     }
-    if (settings.showSMimeValidationConfiguration()) {
+    if (settings.showSMimeValidationConfiguration() && settings.cmsEnabled()) {
         addModule(i18n("S/MIME Validation"),
                   QStringLiteral("kleopatra/configuration.html#configuration-smime-validation"),
                   QStringLiteral("preferences-system-network"),

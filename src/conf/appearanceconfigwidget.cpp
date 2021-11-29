@@ -16,6 +16,8 @@
 #include "tagspreferences.h"
 #include "tooltippreferences.h"
 
+#include <settings.h>
+
 #include <QGpgME/Protocol>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/Dn>
@@ -291,9 +293,8 @@ class AppearanceConfigWidget::Private : public Ui_AppearanceConfigWidget
     AppearanceConfigWidget *const q;
 public:
     explicit Private(AppearanceConfigWidget *qq)
-        : Ui_AppearanceConfigWidget(),
-          q(qq),
-          dnOrderWidget(nullptr)
+        : Ui_AppearanceConfigWidget()
+        , q(qq)
     {
         setupUi(q);
 
@@ -301,14 +302,17 @@ public:
             l->setContentsMargins(0, 0, 0, 0);
         }
 
-        auto w = new QWidget;
-        dnOrderWidget = Kleo::DNAttributeMapper::instance()->configWidget(w);
-        dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));
-        (new QVBoxLayout(w))->addWidget(dnOrderWidget);
+        const auto settings = Kleo::Settings{};
+        if (settings.cmsEnabled()) {
+            auto w = new QWidget;
+            dnOrderWidget = Kleo::DNAttributeMapper::instance()->configWidget(w);
+            dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));
+            (new QVBoxLayout(w))->addWidget(dnOrderWidget);
 
-        tabWidget->addTab(w, i18n("DN-Attribute Order"));
+            tabWidget->addTab(w, i18n("DN-Attribute Order"));
 
-        connect(dnOrderWidget, &DNAttributeOrderConfigWidget::changed, q, &AppearanceConfigWidget::changed);
+            connect(dnOrderWidget, &DNAttributeOrderConfigWidget::changed, q, &AppearanceConfigWidget::changed);
+        }
 
         connect(iconButton, SIGNAL(clicked()), q, SLOT(slotIconClicked()));
 #ifndef QT_NO_COLORDIALOG
@@ -358,7 +362,7 @@ private:
     void slotUseTagsChanged(bool);
 
 private:
-    Kleo::DNAttributeOrderConfigWidget *dnOrderWidget;
+    Kleo::DNAttributeOrderConfigWidget *dnOrderWidget = nullptr;
 };
 
 AppearanceConfigWidget::AppearanceConfigWidget(QWidget *p, Qt::WindowFlags f)
@@ -426,15 +430,18 @@ void AppearanceConfigWidget::defaults()
     d->tooltipOwnerCheckBox->setChecked(false);
     d->tooltipDetailsCheckBox->setChecked(false);
 
-    d->dnOrderWidget->defaults();
+    if (d->dnOrderWidget) {
+        d->dnOrderWidget->defaults();
+    }
 
     Q_EMIT changed();
 }
 
 void AppearanceConfigWidget::load()
 {
-
-    d->dnOrderWidget->load();
+    if (d->dnOrderWidget) {
+        d->dnOrderWidget->load();
+    }
 
     d->categoriesLV->clear();
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
@@ -458,8 +465,9 @@ void AppearanceConfigWidget::load()
 
 void AppearanceConfigWidget::save()
 {
-
-    d->dnOrderWidget->save();
+    if (d->dnOrderWidget) {
+        d->dnOrderWidget->save();
+    }
 
     TooltipPreferences prefs;
     prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());

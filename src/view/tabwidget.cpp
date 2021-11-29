@@ -13,6 +13,8 @@
 #include "keytreeview.h"
 #include "kleopatra_debug.h"
 
+#include <settings.h>
+
 #include <utils/action_data.h>
 
 #include <Libkleo/Stl_Util>
@@ -560,6 +562,7 @@ void TabWidget::Private::enableDisablePageActions(const Actions &actions, const 
     actions.setEnabled(Actions::MoveRight, p && tabWidget.indexOf(const_cast<Page *>(p)) != tabWidget.count() - 1);
     actions.setEnabled(Actions::Hierarchical, p && p->canChangeHierarchical());
     actions.setChecked(Actions::Hierarchical, p && p->isHierarchicalView());
+    actions.setVisible(Actions::Hierarchical, Kleo::Settings{}.cmsEnabled());
     actions.setEnabled(Actions::ExpandAll, p && p->isHierarchicalView());
     actions.setEnabled(Actions::CollapseAll, p && p->isHierarchicalView());
 

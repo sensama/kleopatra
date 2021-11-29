@@ -302,8 +302,7 @@ public:
             l->setContentsMargins(0, 0, 0, 0);
         }
 
-        const auto settings = Kleo::Settings{};
-        if (settings.cmsEnabled()) {
+        if (Kleo::Settings{}.cmsEnabled()) {
             auto w = new QWidget;
             dnOrderWidget = Kleo::DNAttributeMapper::instance()->configWidget(w);
             dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));

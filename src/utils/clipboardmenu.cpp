@@ -16,6 +16,9 @@
 #include <commands/signclipboardcommand.h>
 #include <commands/decryptverifyclipboardcommand.h>
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/KeyCache>
+
 #include <KLocalizedString>
 #include <KActionMenu>
 
@@ -23,6 +26,8 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QSignalBlocker>
+
+#include <gpgme++/key.h>
 
 using namespace Kleo;
 
@@ -63,6 +68,7 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
     mClipboardMenu->addAction(mOpenPGPSignClipboardAction);
     mClipboardMenu->addAction(mDecryptVerifyClipboardAction);
     connect(QApplication::clipboard(), &QClipboard::changed, this, &ClipboardMenu::slotEnableDisableActions);
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, &ClipboardMenu::slotEnableDisableActions);
     slotEnableDisableActions();
 }
 
@@ -110,14 +116,29 @@ void ClipboardMenu::slotDecryptVerifyClipboard()
     startCommand(new DecryptVerifyClipboardCommand(nullptr));
 }
 
+namespace
+{
+
+bool hasSigningKeys(GpgME::Protocol protocol) {
+    if (!KeyCache::instance()->initialized()) {
+        return false;
+    }
+    return Kleo::any_of(KeyCache::instance()->keys(),
+                        [protocol](const auto &k) {
+                            return k.hasSecret() && k.canReallySign() && (k.protocol() == protocol);
+                        });
+}
+
+}
+
 void ClipboardMenu::slotEnableDisableActions()
 {
     const QSignalBlocker blocker(QApplication::clipboard());
     mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
     mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
-    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard(GpgME::OpenPGP));
+    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::OpenPGP));
     if (mSmimeSignClipboardAction) {
-        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard(GpgME::CMS));
+        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::CMS));
     }
     mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }

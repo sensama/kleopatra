@@ -20,8 +20,6 @@
 #include <utils/input.h>
 #include <utils/output.h>
 
-#include <Libkleo/Algorithm>
-#include <Libkleo/KeyCache>
 #include <Libkleo/Stl_Util>
 
 #include <KLocalizedString>
@@ -30,8 +28,6 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QMimeData>
-
-#include <gpgme++/key.h>
 
 #include <exception>
 
@@ -123,17 +119,13 @@ SignClipboardCommand::~SignClipboardCommand()
 }
 
 // static
-bool SignClipboardCommand::canSignCurrentClipboard(GpgME::Protocol protocol)
+bool SignClipboardCommand::canSignCurrentClipboard()
 {
     bool canSign = false;
     if (const QClipboard *const clip = QApplication::clipboard()) {
         if (const QMimeData *const mime = clip->mimeData()) {
             canSign = mime->hasText();
         }
-    }
-    if (canSign) {
-        canSign &= Kleo::any_of(KeyCache::instance()->secretKeys(),
-                                [](const auto &k) { return k.hasSecret(); });
     }
     return canSign;
 }

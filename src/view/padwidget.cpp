@@ -502,7 +502,7 @@ public:
                     : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                         "%1 communication not possible.", Formatting::deVsString()));
             mAdditionalInfoLabel->setVisible(true);
-            mCryptBtn->setEnabled(false);
+            mCryptBtn->setEnabled(Kleo::gnupgIsDeVsCompliant());
             mMessageWidget->setVisible(!Kleo::gnupgIsDeVsCompliant());
         }
     }

@@ -100,7 +100,7 @@ public:
         delete sysTray;
 #endif
     }
-    void init()
+    void setUpSysTrayIcon()
     {
         KDAB_SET_OBJECT_NAME(readerStatus);
 #ifndef QT_NO_SYSTEMTRAYICON
@@ -221,9 +221,9 @@ void KleopatraApplication::init()
     QWindowsWindowFunctions::setWindowActivationBehavior(
             QWindowsWindowFunctions::AlwaysActivateWindow);
 #endif
-    d->init();
     add_resources();
     d->setupKeyCache();
+    d->setUpSysTrayIcon();
     d->setUpFilterManager();
     d->setupLogging();
 #ifndef QT_NO_SYSTEMTRAYICON

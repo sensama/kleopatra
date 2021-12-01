@@ -402,6 +402,10 @@ MainWindow::Private::Private(MainWindow *qq)
 
     updateSearchBarClickMessage();
     updateStatusBar();
+
+    if (KeyCache::instance()->initialized()) {
+        keyListingDone();
+    }
 }
 
 MainWindow::Private::~Private() {}

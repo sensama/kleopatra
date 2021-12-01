@@ -397,10 +397,7 @@ public:
     {
         qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
         ui.setupUi(this);
-        const QDate today = QDate::currentDate();
-        ui.expiryDE->setMinimumDate(today);
-        ui.expiryDE->setDate(today.addYears(2));
-        ui.expiryCB->setChecked(true);
+        ui.expiryDE->setMinimumDate(QDate::currentDate());
         ui.emailLW->setDefaultValue(i18n("new email"));
         ui.dnsLW->setDefaultValue(i18n("new dns name"));
         ui.uriLW->setDefaultValue(i18n("new uri"));
@@ -414,7 +411,7 @@ public:
             return;
         }
         protocol = proto;
-        loadDefaultKeyType();
+        loadDefaults();
     }
 
     void setAdditionalUserIDs(const QStringList &items)
@@ -578,11 +575,8 @@ public:
 
     void setExpiryDate(QDate date)
     {
-        if (date.isValid()) {
-            ui.expiryDE->setDate(date);
-        } else {
-            ui.expiryCB->setChecked(false);
-        }
+        ui.expiryDE->setDate(date);
+        ui.expiryCB->setChecked(ui.expiryDE->isValid());
     }
     QDate expiryDate() const
     {
@@ -656,7 +650,9 @@ private Q_SLOTS:
 private:
     void fillKeySizeComboBoxen();
     void loadDefaultKeyType();
+    void loadDefaultExpiration();
     void loadDefaultGnuPGKeyType();
+    void loadDefaults();
     void updateWidgetVisibility();
 
 private:
@@ -1833,6 +1829,30 @@ void AdvancedSettingsDialog::loadDefaultKeyType()
     }
 
     keyTypeImmutable = config.isEntryImmutable(entry);
+}
+
+void AdvancedSettingsDialog::loadDefaultExpiration()
+{
+    if (protocol != OpenPGP) {
+        return;
+    }
+
+    const auto settings = Kleo::Settings{};
+    const auto defaultExpirationInDays = settings.validityPeriodInDays();
+    if (defaultExpirationInDays > 0) {
+        setExpiryDate(QDate::currentDate().addDays(defaultExpirationInDays));
+    } else if (defaultExpirationInDays == 0) {
+        setExpiryDate({}); // no expiration
+    } else {
+        setExpiryDate(QDate::currentDate().addYears(2));
+    }
+}
+
+void AdvancedSettingsDialog::loadDefaults()
+{
+    loadDefaultKeyType();
+    loadDefaultExpiration();
+
     updateWidgetVisibility();
 }
 
@@ -1911,8 +1931,15 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         ui.rsaSubCB->setChecked(false);
         ui.rsaKeyStrengthSubCB->setEnabled(false);
     }
+
     ui.expiryDE->setVisible(protocol == OpenPGP);
     ui.expiryCB->setVisible(protocol == OpenPGP);
+    const auto settings = Kleo::Settings{};
+    if (settings.isValidityPeriodInDaysImmutable()) {
+        ui.expiryDE->setEnabled(false);
+        ui.expiryCB->setEnabled(false);
+    }
+
     slotKeyMaterialSelectionChanged();
 }
 

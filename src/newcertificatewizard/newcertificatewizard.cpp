@@ -102,6 +102,9 @@ static const QStringList curveNames {
     { QStringLiteral("NIST P-521") },
 };
 
+namespace
+{
+
 class EmptyPassphraseProvider: public PassphraseProvider
 {
 public:
@@ -282,6 +285,27 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     qCWarning(KLEOPATRA_LOG) << "Failed to parse default_pubkey_algo:" << algoString;
 }
 
+enum class OnUnlimitedValidity {
+    ReturnInvalidDate,
+    ReturnInternalDefault
+};
+QDate defaultExpirationDate(OnUnlimitedValidity onUnlimitedValidity)
+{
+    QDate expirationDate{};
+
+    const auto settings = Kleo::Settings{};
+    const auto defaultExpirationInDays = settings.validityPeriodInDays();
+    if (defaultExpirationInDays > 0) {
+        expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
+    } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == OnUnlimitedValidity::ReturnInternalDefault) {
+        expirationDate = QDate::currentDate().addYears(2);
+    }
+
+    return expirationDate;
+}
+
+}
+
 Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
 namespace Kleo
 {
@@ -403,6 +427,14 @@ public:
         ui.uriLW->setDefaultValue(i18n("new uri"));
 
         fillKeySizeComboBoxen();
+
+        connect(ui.expiryCB, &QAbstractButton::toggled,
+                this, [this](bool checked) {
+                    ui.expiryDE->setEnabled(checked);
+                    if (checked && !ui.expiryDE->isValid()) {
+                        ui.expiryDE->setDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
+                    }
+                });
     }
 
     void setProtocol(GpgME::Protocol proto)
@@ -1837,15 +1869,7 @@ void AdvancedSettingsDialog::loadDefaultExpiration()
         return;
     }
 
-    const auto settings = Kleo::Settings{};
-    const auto defaultExpirationInDays = settings.validityPeriodInDays();
-    if (defaultExpirationInDays > 0) {
-        setExpiryDate(QDate::currentDate().addDays(defaultExpirationInDays));
-    } else if (defaultExpirationInDays == 0) {
-        setExpiryDate({}); // no expiration
-    } else {
-        setExpiryDate(QDate::currentDate().addYears(2));
-    }
+    setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInvalidDate));
 }
 
 void AdvancedSettingsDialog::loadDefaults()

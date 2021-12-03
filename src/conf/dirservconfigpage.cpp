@@ -352,9 +352,13 @@ void DirectoryServicesConfigurationPage::save()
     }
 
     if (mOpenPGPServiceEntry) {
-        const auto keyserver = mOpenPGPKeyserverEdit->text();
-        const auto keyserverUrl = keyserver.contains(QLatin1String{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
-        mOpenPGPServiceEntry->setStringValue(keyserverUrl);
+        const auto keyserver = mOpenPGPKeyserverEdit->text().trimmed();
+        if (keyserver.isEmpty()) {
+            mOpenPGPServiceEntry->resetToDefault();
+        } else {
+            const auto keyserverUrl = keyserver.contains(QLatin1String{"://"}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
+            mOpenPGPServiceEntry->setStringValue(keyserverUrl);
+        }
     }
 
     const QTime time{mTimeout->time()};

@@ -600,13 +600,15 @@ void ImportCertificatesCommand::Private::tryToFinish()
     }
 
     auto keyCache = KeyCache::mutableInstance();
-    connect(keyCache.get(), &KeyCache::keyListingDone,
-            q, [this]() { keyCacheUpdated(); });
+    keyListConnection = connect(keyCache.get(), &KeyCache::keyListingDone,
+                                q, [this]() { keyCacheUpdated(); });
     keyCache->startKeyListing();
 }
 
 void ImportCertificatesCommand::Private::keyCacheUpdated()
 {
+    disconnect(keyListConnection);
+
     keyCacheAutoRefreshSuspension.reset();
 
     if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {

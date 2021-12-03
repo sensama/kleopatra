@@ -125,6 +125,7 @@ private:
     std::vector<ImportResultData> results;
     std::vector<ImportedGroup> importedGroups;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
+    QMetaObject::Connection keyListConnection;
 };
 
 inline Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesCommand::d_func()

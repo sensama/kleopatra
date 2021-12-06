@@ -1807,8 +1807,8 @@ void AdvancedSettingsDialog::loadDefaultGnuPGKeyType()
         setKeyCurve(curve);
     }
 
-    if (split.size() == 2) {
-        auto algoString = split[1];
+    {
+        auto algoString = (split.size() == 2) ? split[1] : split[0];
         // If it has no usage we assume encrypt subkey
         if (!algoString.contains(QLatin1Char('/'))) {
             algoString += QStringLiteral("/enc");

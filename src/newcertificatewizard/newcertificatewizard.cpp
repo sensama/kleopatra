@@ -211,7 +211,7 @@ static void set_curve(QComboBox *cb, const QString &curve)
     if (!cb) {
         return;
     }
-    const int idx = cb->findText(curve);
+    const int idx = cb->findText(curve, Qt::MatchFixedString);
     if (idx < 0) {
         // Can't happen as we don't have them configurable.
         qCWarning(KLEOPATRA_LOG) << "curve " << curve << " not allowed";

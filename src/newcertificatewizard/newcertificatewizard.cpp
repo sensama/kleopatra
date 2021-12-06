@@ -268,8 +268,13 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     if (lowered.startsWith(QLatin1String("ed25519"))) {
         // Special handling for this as technically
         // this is a cv25519 curve used for EDDSA
-        curve = split[0];
-        *algo = Subkey::AlgoEDDSA;
+        if (isEncrypt) {
+            curve = QLatin1String("cv25519");
+            *algo = Subkey::AlgoECDH;
+        } else {
+            curve = split[0];
+            *algo = Subkey::AlgoEDDSA;
+        }
         return;
     }
 

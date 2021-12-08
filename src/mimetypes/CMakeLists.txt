@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: BSD-3-Clause
 # always install the media types
 install(FILES application-vnd-kde-kleopatra.xml DESTINATION ${XDG_MIME_INSTALL_DIR})
 

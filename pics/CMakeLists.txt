@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: BSD-3-Clause
 if (WIN32)
   set(EXTRAWINFILES gpg4win-compact.png gpg4win.png)
 endif()

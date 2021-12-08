@@ -44,6 +44,11 @@
      <whatsthis>This setting specifies how many days a new OpenPGP key is valid by default, or, in other words, after how many days the key will expire. Set this to 0 for unlimited validity. If this setting is not set or if it is set to a negative value, then new OpenPGP keys will be valid for two years by default.</whatsthis>
      <default>-1</default>
    </entry>
+   <entry key="HideAdvanced" type="Bool">
+     <label>Hide advanced settigns</label>
+     <whatsthis>If true, hides the advanced settings button in the new certificate wizard.</whatsthis>
+     <default>false</default>
+   </entry>
  </group>
  <group name="CMS">
    <entry key="Enabled" name="cmsEnabled" type="Bool">

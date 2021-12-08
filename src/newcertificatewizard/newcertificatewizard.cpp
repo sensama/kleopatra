@@ -1527,6 +1527,7 @@ void EnterDetailsPage::updateForm()
     if (ui.emailLE->text().isEmpty() && settings.prefillEmail()) {
         ui.emailLE->setText(userEmailAddress());
     }
+    ui.advancedPB->setVisible(!settings.hideAdvanced());
 
     set_tab_order(widgets);
 }

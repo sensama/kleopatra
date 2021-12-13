@@ -24,6 +24,7 @@
 
 #include <dialogs/lookupcertificatesdialog.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
@@ -31,7 +32,10 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/WKDLookupJob>
+#include <QGpgME/WKDLookupResult>
 
+#include <gpgme++/data.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
 #include <gpgme++/importresult.h>
@@ -44,6 +48,7 @@
 
 #include <vector>
 #include <map>
+#include <set>
 #include <algorithm>
 
 using namespace Kleo;
@@ -72,6 +77,8 @@ private:
         keyListing.keys.push_back(key);
     }
     void slotKeyListResult(const KeyListResult &result);
+    void slotWKDLookupResult(const WKDLookupResult &result);
+    void tryToFinishKeyLookup();
     void slotImportRequested(const std::vector<Key> &keys);
     void slotDetailsRequested(const Key &key);
     void slotSaveAsRequested(const std::vector<Key> &keys);
@@ -90,12 +97,18 @@ private:
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->keyListJob(true) : nullptr;
     }
+    WKDLookupJob *createWKDLookupJob() const
+    {
+        const auto cbp = QGpgME::openpgp();
+        return cbp ? cbp->wkdLookupJob() : nullptr;
+    }
     ImportFromKeyserverJob *createImportJob(GpgME::Protocol proto) const
     {
         const auto cbp = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
         return cbp ? cbp->importFromKeyserverJob() : nullptr;
     }
     void startKeyListJob(GpgME::Protocol proto, const QString &str);
+    void startWKDLookupJob(const QString &str);
     bool checkConfig() const;
 
     QWidget *dialogOrParentWidgetOrView() const
@@ -114,8 +127,12 @@ private:
     QPointer<LookupCertificatesDialog> dialog;
     struct KeyListingVariables {
         QPointer<KeyListJob> cms, openpgp;
+        QPointer<WKDLookupJob> wkdJob;
         KeyListResult result;
         std::vector<Key> keys;
+        std::set<std::string> wkdKeyFingerprints;
+        QByteArray wkdKeyData;
+        QString wkdSource;
 
         void reset()
         {
@@ -253,6 +270,8 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
 
     query = str;
 
+    keyListing.reset();
+
     if (protocol != GpgME::OpenPGP) {
         startKeyListJob(CMS, str);
     }
@@ -264,6 +283,9 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
             startKeyListJob(OpenPGP, QStringLiteral("0x") + str);
         } else {
             startKeyListJob(OpenPGP, str);
+            if (str.contains(QLatin1Char{'@'})) {
+                startWKDLookupJob(str);
+            }
         }
     }
 }
@@ -287,6 +309,22 @@ void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, 
     }
 }
 
+void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
+{
+    const auto job = createWKDLookupJob();
+    if (!job) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to create WKDLookupJob";
+        return;
+    }
+    connect(job, &WKDLookupJob::result,
+            q, [this](const WKDLookupResult &result) { slotWKDLookupResult(result); });
+    if (const Error err = job->start(str)) {
+        keyListing.result.mergeWith(KeyListResult{err});
+    } else {
+        keyListing.wkdJob = job;
+    }
+}
+
 void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &r)
 {
 
@@ -299,7 +337,37 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
     }
 
     keyListing.result.mergeWith(r);
-    if (keyListing.cms || keyListing.openpgp) { // still waiting for jobs to complete
+
+    tryToFinishKeyLookup();
+}
+
+void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResult &result)
+{
+    if (q->sender() == keyListing.wkdJob) {
+        keyListing.wkdJob = nullptr;
+    } else {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "unknown sender()" << q->sender();
+    }
+
+    keyListing.wkdKeyData = QByteArray::fromStdString(result.keyData().toString());
+    keyListing.wkdSource = QString::fromStdString(result.source());
+    const auto keys = result.keyData().toKeys(GpgME::OpenPGP);
+
+    keyListing.result.mergeWith(KeyListResult{result.error()});
+    std::copy(std::begin(keys), std::end(keys),
+              std::back_inserter(keyListing.keys));
+    // remember the keys retrieved via WKD for import
+    std::transform(std::begin(keys), std::end(keys),
+                   std::inserter(keyListing.wkdKeyFingerprints, std::begin(keyListing.wkdKeyFingerprints)),
+                   [](const auto &k) { return k.primaryFingerprint(); });
+
+    tryToFinishKeyLookup();
+}
+
+void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
+{
+    if (keyListing.cms || keyListing.openpgp || keyListing.wkdJob) {
+        // still waiting for jobs to complete
         return;
     }
 
@@ -317,8 +385,6 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
     } else {
         finished();
     }
-
-    keyListing.reset();
 }
 
 void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<Key> &keys)
@@ -328,10 +394,19 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     Q_ASSERT(!keys.empty());
     Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.isNull(); }));
 
+    std::vector<Key> wkdKeys, otherKeys;
+    otherKeys.reserve(keys.size());
+    kdtools::separate_if(std::begin(keys), std::end(keys),
+                         std::back_inserter(wkdKeys),
+                         std::back_inserter(otherKeys),
+                         [this](const auto &key) {
+                             return keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
+                         });
+
     std::vector<Key> pgp, cms;
-    pgp.reserve(keys.size());
-    cms.reserve(keys.size());
-    kdtools::separate_if(keys.begin(), keys.end(),
+    pgp.reserve(otherKeys.size());
+    cms.reserve(otherKeys.size());
+    kdtools::separate_if(otherKeys.begin(), otherKeys.end(),
                          std::back_inserter(pgp),
                          std::back_inserter(cms),
                          [](const Key &key) {
@@ -339,16 +414,21 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
                          });
 
     setWaitForMoreJobs(true);
-    if (!pgp.empty())
+    if (!wkdKeys.empty()) {
+        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource);
+    }
+    if (!pgp.empty()) {
         startImport(OpenPGP, pgp,
                     i18nc(R"(@title %1:"OpenPGP" or "CMS")",
                           "%1 Certificate Server",
                           Formatting::displayName(OpenPGP)));
-    if (!cms.empty())
+    }
+    if (!cms.empty()) {
         startImport(CMS, cms,
                     i18nc(R"(@title %1:"OpenPGP" or "CMS")",
                           "%1 Certificate Server",
                           Formatting::displayName(CMS)));
+    }
     setWaitForMoreJobs(false);
 }
 

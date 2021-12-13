@@ -33,15 +33,7 @@
 
 #include <algorithm>
 #include <vector>
-#include <ki18n_version.h>
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 #include <KLazyLocalizedString>
-#undef I18N_NOOP
-#define I18N_NOOP kli18n
-#define I18N_NOOP_EMPTY KLazyLocalizedString()
-#else
-#define I18N_NOOP_EMPTY ""
-#endif
 using namespace GpgME;
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -151,109 +143,64 @@ enum Action { Nothing = 0, Failure = 1, ClearCMS = 2, ClearPGP = 4 };
 //        cms.empty() << 1U |     d->canDelete( CMS ) << 0U ;
 
 static const struct {
-#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
-    const char *text;
-#else
     const KLazyLocalizedString text;
-#endif
     Action actions;
 } deletionErrorCases[16] = {
     // if havePGP
     //   if cantPGP
     //     if haveCMS
-    {
-        I18N_NOOP("Neither the OpenPGP nor the CMS "
-        "backends support certificate deletion.\n"
-        "Check your installation."),
-        Failure
-    }, // cantCMS
-    {
-        I18N_NOOP("The OpenPGP backend does not support "
-        "certificate deletion.\n"
-        "Check your installation.\n"
-        "Only the selected CMS certificates "
-        "will be deleted."),
-        ClearPGP
-    }, // canCMS
+    {kli18n("Neither the OpenPGP nor the CMS "
+            "backends support certificate deletion.\n"
+            "Check your installation."),
+     Failure}, // cantCMS
+    {kli18n("The OpenPGP backend does not support "
+            "certificate deletion.\n"
+            "Check your installation.\n"
+            "Only the selected CMS certificates "
+            "will be deleted."),
+     ClearPGP}, // canCMS
     //     if !haveCMS
-    {
-        I18N_NOOP("The OpenPGP backend does not support "
-        "certificate deletion.\n"
-        "Check your installation."),
-        Failure
-    },
-    {
-        I18N_NOOP("The OpenPGP backend does not support "
-        "certificate deletion.\n"
-        "Check your installation."),
-        Failure
-    },
+    {kli18n("The OpenPGP backend does not support "
+            "certificate deletion.\n"
+            "Check your installation."),
+     Failure},
+    {kli18n("The OpenPGP backend does not support "
+            "certificate deletion.\n"
+            "Check your installation."),
+     Failure},
     //   if canPGP
     //      if haveCMS
-    {
-        I18N_NOOP("The CMS backend does not support "
-        "certificate deletion.\n"
-        "Check your installation.\n"
-        "Only the selected OpenPGP certificates "
-        "will be deleted."),
-        ClearCMS
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {kli18n("The CMS backend does not support "
+            "certificate deletion.\n"
+            "Check your installation.\n"
+            "Only the selected OpenPGP certificates "
+            "will be deleted."),
+     ClearCMS},                        // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
     //      if !haveCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {KLazyLocalizedString(), Nothing}, // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
     // if !havePGP
     //   if cantPGP
     //     if haveCMS
-    {
-        I18N_NOOP("The CMS backend does not support "
-        "certificate deletion.\n"
-        "Check your installation."),
-        Failure
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {kli18n("The CMS backend does not support "
+            "certificate deletion.\n"
+            "Check your installation."),
+     Failure},                         // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
     //     if !haveCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {KLazyLocalizedString(), Nothing}, // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
     //  if canPGP
     //     if haveCMS
-    {
-        I18N_NOOP("The CMS backend does not support "
-        "certificate deletion.\n"
-        "Check your installation."),
-        Failure
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {kli18n("The CMS backend does not support "
+            "certificate deletion.\n"
+            "Check your installation."),
+     Failure},                         // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
     //     if !haveCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // cantCMS
-    {
-        I18N_NOOP_EMPTY,
-        Nothing
-    }, // canCMS
+    {KLazyLocalizedString(), Nothing}, // cantCMS
+    {KLazyLocalizedString(), Nothing}, // canCMS
 };
 } // anon namespace
 
@@ -311,18 +258,10 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
         cms.empty() << 1U |     canDelete(CMS) << 0U;
 
     if (const unsigned int actions = deletionErrorCases[errorCase].actions) {
-#if KI18N_VERSION < QT_VERSION_CHECK(5, 89, 0)
-        information(i18n(deletionErrorCases[errorCase].text),
-                    (actions & Failure)
-                        ? i18n("Certificate Deletion Failed")
-                        : i18n("Certificate Deletion Problem"));
-#else
         information(KLocalizedString(deletionErrorCases[errorCase].text).toString(),
                     (actions & Failure)
                         ? i18n("Certificate Deletion Failed")
                         : i18n("Certificate Deletion Problem"));
-#endif
-
 
         if (actions & ClearCMS) {
             cms.clear();

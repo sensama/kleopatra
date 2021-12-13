@@ -38,3 +38,6 @@
 
 /* Defined if QGpgME supports retrieving the default value of a config entry */
 #cmakedefine QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE 1
+
+/* Defined if QGpgME supports WKD lookup */
+#cmakedefine QGPGME_SUPPORTS_WKDLOOKUP 1

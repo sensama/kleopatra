@@ -138,6 +138,7 @@ private:
 #ifdef QGPGME_SUPPORTS_WKDLOOKUP
         QPointer<WKDLookupJob> wkdJob;
 #endif
+        QString pattern;
         KeyListResult result;
         std::vector<Key> keys;
         std::set<std::string> wkdKeyFingerprints;
@@ -281,6 +282,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     query = str;
 
     keyListing.reset();
+    keyListing.pattern = str;
 
     if (protocol != GpgME::OpenPGP) {
         startKeyListJob(CMS, str);
@@ -356,6 +358,24 @@ void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &
 }
 
 #ifdef QGPGME_SUPPORTS_WKDLOOKUP
+static auto removeKeysNotMatchingEmail(const std::vector<Key> &keys, const std::string &email)
+{
+    std::vector<Key> filteredKeys;
+
+    const auto addrSpec = UserID::addrSpecFromString(email.c_str());
+    std::copy_if(std::begin(keys), std::end(keys),
+                 std::back_inserter(filteredKeys),
+                 [addrSpec](const auto &key) {
+                     const auto uids = key.userIDs();
+                     return std::any_of(std::begin(uids), std::end(uids),
+                                        [addrSpec](const auto &uid) {
+                                            return uid.addrSpec() == addrSpec;
+                                        });
+                 });
+
+    return filteredKeys;
+}
+
 void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResult &result)
 {
     if (q->sender() == keyListing.wkdJob) {
@@ -364,17 +384,19 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
         qCDebug(KLEOPATRA_LOG) << __func__ << "unknown sender()" << q->sender();
     }
 
-    keyListing.wkdKeyData = QByteArray::fromStdString(result.keyData().toString());
-    keyListing.wkdSource = QString::fromStdString(result.source());
-    const auto keys = result.keyData().toKeys(GpgME::OpenPGP);
-
     keyListing.result.mergeWith(KeyListResult{result.error()});
-    std::copy(std::begin(keys), std::end(keys),
-              std::back_inserter(keyListing.keys));
-    // remember the keys retrieved via WKD for import
-    std::transform(std::begin(keys), std::end(keys),
-                   std::inserter(keyListing.wkdKeyFingerprints, std::begin(keyListing.wkdKeyFingerprints)),
-                   [](const auto &k) { return k.primaryFingerprint(); });
+
+    const auto keys = removeKeysNotMatchingEmail(result.keyData().toKeys(GpgME::OpenPGP), result.pattern());
+    if (!keys.empty()) {
+        keyListing.wkdKeyData = QByteArray::fromStdString(result.keyData().toString());
+        keyListing.wkdSource = QString::fromStdString(result.source());
+        std::copy(std::begin(keys), std::end(keys),
+                  std::back_inserter(keyListing.keys));
+        // remember the keys retrieved via WKD for import
+        std::transform(std::begin(keys), std::end(keys),
+                       std::inserter(keyListing.wkdKeyFingerprints, std::begin(keyListing.wkdKeyFingerprints)),
+                       [](const auto &k) { return k.primaryFingerprint(); });
+    }
 
     tryToFinishKeyLookup();
 }

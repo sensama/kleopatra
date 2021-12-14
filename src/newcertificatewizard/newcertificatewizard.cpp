@@ -1972,7 +1972,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui.expiryDE->setVisible(protocol == OpenPGP);
     ui.expiryCB->setVisible(protocol == OpenPGP);
     const auto settings = Kleo::Settings{};
-    if (settings.isValidityPeriodInDaysImmutable()) {
+    if (settings.isImmutable(QStringLiteral("ValidityPeriodInDays"))) {
         ui.expiryDE->setEnabled(false);
         ui.expiryCB->setEnabled(false);
     }

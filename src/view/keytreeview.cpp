@@ -42,11 +42,6 @@
 #include <KSharedConfig>
 #include <KLocalizedString>
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_REMARKS
-#endif
-
 #define TAGS_COLUMN 13
 
 using namespace Kleo;
@@ -292,10 +287,8 @@ void KeyTreeView::init()
                                                      << KeyList::LastUpdate
                                                      << KeyList::Issuer
                                                      << KeyList::SerialNumber
-#ifdef GPGME_HAS_REMARKS
     // If a column is added before this TAGS_COLUMN define has to be updated accordingly
                                                      << KeyList::Remarks
-#endif
     );
     m_view->setModel(rearangingModel);
 
@@ -386,7 +379,6 @@ void KeyTreeView::restoreExpandState()
 
 void KeyTreeView::setUpTagKeys()
 {
-#ifdef GPGME_HAS_REMARKS
     const auto tagKeys = Tags::tagKeys();
     if (m_hierarchicalModel) {
         m_hierarchicalModel->setRemarkKeys(tagKeys);
@@ -394,7 +386,6 @@ void KeyTreeView::setUpTagKeys()
     if (m_flatModel) {
         m_flatModel->setRemarkKeys(tagKeys);
     }
-#endif
 }
 
 void KeyTreeView::saveLayout(KConfigGroup &group)

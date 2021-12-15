@@ -33,11 +33,6 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_REMARKS
-#endif
-
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
@@ -206,11 +201,9 @@ void CertifyCertificateCommand::doStart()
     Q_ASSERT(d->dialog);
 
     Key target = d->key();
-#ifdef GPGME_HAS_REMARKS
     if (!(target.keyListMode() & GpgME::SignatureNotations)) {
         target.update();
     }
-#endif
     d->dialog->setCertificateToCertify(target);
     if (d->uids.size()) {
         d->dialog->setSelectedUserIDs(d->uids);
@@ -257,14 +250,11 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     job->setUserIDsToSign(dialog->selectedUserIDs());
     job->setSigningKey(dialog->selectedSecretKey());
     job->setCheckLevel(dialog->selectedCheckLevel());
-#ifdef GPGME_HAS_REMARKS
     if (!dialog->tags().isEmpty()) {
         // do not set an empty remark to avoid an empty signature notation (GnuPG bug T5142)
         job->setRemark(dialog->tags());
     }
-    // This also came with 1.14.0
     job->setDupeOk(true);
-#endif
 #ifdef QGPGME_SUPPORTS_TRUST_SIGNATURES
     if (dialog->trustSignatureSelected() && !dialog->trustSignatureDomain().isEmpty()) {
         // always create level 1 trust signatures with complete trust

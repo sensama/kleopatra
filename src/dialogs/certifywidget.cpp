@@ -48,11 +48,6 @@
 
 #include <gpgme++/key.h>
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_REMARKS
-#endif
-
 using namespace Kleo;
 
 namespace {
@@ -340,9 +335,6 @@ public:
             advLay->addLayout(layout);
         }
 
-#ifndef GPGME_HAS_REMARKS
-        mTagsLE->setVisible(false);
-#else
         {
             auto tagsLay = new QHBoxLayout{q};
 
@@ -359,7 +351,6 @@ public:
 
             advLay->addLayout(tagsLay);
         }
-#endif
 
 #ifndef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
         mExpirationCheckBox->setVisible(false);
@@ -443,9 +434,7 @@ public:
         });
 
         connect(mSecKeySelect, &KeySelectionCombo::currentKeyChanged, [this] (const GpgME::Key &) {
-#ifdef GPGME_HAS_REMARKS
             updateTags();
-#endif
             checkOwnerTrust();
             Q_EMIT q->changed();
         });
@@ -480,7 +469,6 @@ public:
         if (mTagsLE->isModified()) {
             return;
         }
-#ifdef GPGME_HAS_REMARKS
         GpgME::Key remarkKey = mSecKeySelect->currentKey();
 
         if (!remarkKey.isNull()) {
@@ -505,7 +493,6 @@ public:
             }
             mTagsLE->setText(remark);
         }
-#endif
     }
 
     void updateTrustSignatureDomain()

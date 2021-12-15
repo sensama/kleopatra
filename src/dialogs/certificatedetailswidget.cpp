@@ -55,9 +55,6 @@
 #include <set>
 
 #include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_REMARKS
-#endif
 #if GPGMEPP_VERSION >= 0x10F00 // 1.15.0
 # define GPGME_HAS_WITH_SECRET
 # include <QGpgME/Debug>
@@ -492,7 +489,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
         GpgME::Error err;
         QStringList tagList;
-#ifdef GPGME_HAS_REMARKS
         for (const auto &tag: uid.remarks(Tags::tagKeys(), err)) {
             if (err) {
                 qCWarning(KLEOPATRA_LOG) << "Getting remarks for user id" << uid.id() << "failed:" << err;
@@ -500,7 +496,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
             tagList << QString::fromStdString(tag);
         }
         qCDebug(KLEOPATRA_LOG) << "tagList:" << tagList;
-#endif
         const auto tags = tagList.join(QStringLiteral("; "));
         item->setData(3, Qt::DisplayRole, tags);
         item->setData(3, Qt::ToolTipRole, toolTip);

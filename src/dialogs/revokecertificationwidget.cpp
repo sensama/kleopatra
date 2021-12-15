@@ -30,11 +30,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_UIDHASH
-#endif
-
 using namespace Kleo;
 
 namespace {
@@ -75,11 +70,9 @@ bool CertificationKeyFilter::matches(const GpgME::Key &key, Kleo::KeyFilter::Mat
 static bool uidsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
 {
     // use uidhash if available
-#ifdef GPGME_HAS_UIDHASH
     if (lhs.uidhash() && rhs.uidhash()) {
         return strcmp(lhs.uidhash(), rhs.uidhash()) == 0;
     }
-#endif
     // compare actual user ID string and primary key; this is not unique, but it's all we can do if uidhash is missing
     return qstrcmp(lhs.id(), rhs.id()) == 0
         && qstrcmp(lhs.parent().primaryFingerprint(), rhs.parent().primaryFingerprint()) == 0;

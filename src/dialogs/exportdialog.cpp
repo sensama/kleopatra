@@ -25,11 +25,6 @@
 
 #include <Libkleo/Formatting>
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E00 // 1.14.0
-# define GPGME_HAS_EXPORT_FLAGS
-#endif
-
 using namespace Kleo;
 
 class ExportWidget::Private
@@ -151,9 +146,7 @@ void ExportWidget::setKey(const GpgME::Subkey &key, unsigned int flags)
     connect(job, &QGpgME::ExportJob::result,
             this, &ExportWidget::exportResult);
 
-#ifdef GPGME_HAS_EXPORT_FLAGS
     job->setExportFlags(flags);
-#endif
     job->start(QStringList() << QLatin1String(key.fingerprint()) + QLatin1Char('!'));
 }
 
@@ -172,9 +165,7 @@ void ExportWidget::setKey(const GpgME::Key &key, unsigned int flags)
     connect(job, &QGpgME::ExportJob::result,
             this, &ExportWidget::exportResult);
 
-#ifdef GPGME_HAS_EXPORT_FLAGS
     job->setExportFlags(flags);
-#endif
     job->start(QStringList() << QLatin1String(key.primaryFingerprint()));
 }
 

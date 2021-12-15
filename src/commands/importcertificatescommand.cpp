@@ -703,6 +703,9 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 #ifdef QGPGME_SUPPORTS_IMPORT_WITH_FILTER
     job->setImportFilter(options.importFilter);
 #endif
+#ifdef QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN
+    job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
+#endif
     const GpgME::Error err = job->start(data);
     if (err.code()) {
         importResult({id, protocol, ImportType::Local, ImportResult{err}});

@@ -80,6 +80,8 @@ struct ImportedGroup
 struct ImportOptions
 {
     QString importFilter;
+    GpgME::Key::Origin keyOrigin = GpgME::Key::OriginUnknown;
+    QString keyOriginUrl;
 };
 
 class Kleo::ImportCertificatesCommand::Private : public Command::Private

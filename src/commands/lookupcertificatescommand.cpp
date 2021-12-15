@@ -464,7 +464,8 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     if (!wkdKeys.empty()) {
         // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
         const QString importFilter = QLatin1String{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
-        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter});
+        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource,
+                    {importFilter, Key::OriginWKD, keyListing.wkdSource});
     }
     if (!pgp.empty()) {
         startImport(OpenPGP, pgp,

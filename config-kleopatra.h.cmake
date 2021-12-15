@@ -44,3 +44,6 @@
 
 /* Defined if QGpgME supports specifying an import filter when importing keys */
 #cmakedefine QGPGME_SUPPORTS_IMPORT_WITH_FILTER 1
+
+/* Defined if QGpgME supports setting key origin when importing keys */
+#cmakedefine QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN 1

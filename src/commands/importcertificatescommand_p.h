@@ -77,6 +77,11 @@ struct ImportedGroup
     Status status;
 };
 
+struct ImportOptions
+{
+    QString importFilter;
+};
+
 class Kleo::ImportCertificatesCommand::Private : public Command::Private
 {
     friend class ::Kleo::ImportCertificatesCommand;
@@ -91,7 +96,7 @@ public:
 
     void setWaitForMoreJobs(bool waiting);
 
-    void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString());
+    void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
     void importResult(const GpgME::ImportResult &);
     void importResult(const ImportResultData &result);

@@ -675,7 +675,7 @@ static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
     }
 }
 
-void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id)
+void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id, const ImportOptions &options)
 {
     Q_ASSERT(protocol != UnknownProtocol);
 
@@ -699,6 +699,10 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
             q, SLOT(importResult(GpgME::ImportResult)));
     connect(job.get(), &Job::progress,
             q, &Command::progress);
+
+#ifdef QGPGME_SUPPORTS_IMPORT_WITH_FILTER
+    job->setImportFilter(options.importFilter);
+#endif
     const GpgME::Error err = job->start(data);
     if (err.code()) {
         importResult({id, protocol, ImportType::Local, ImportResult{err}});

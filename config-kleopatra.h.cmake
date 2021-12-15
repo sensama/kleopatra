@@ -41,3 +41,6 @@
 
 /* Defined if QGpgME supports WKD lookup */
 #cmakedefine QGPGME_SUPPORTS_WKDLOOKUP 1
+
+/* Defined if QGpgME supports specifying an import filter when importing keys */
+#cmakedefine QGPGME_SUPPORTS_IMPORT_WITH_FILTER 1

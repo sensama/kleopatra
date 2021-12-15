@@ -270,6 +270,11 @@ void LookupCertificatesCommand::Private::createDialog()
             q, SLOT(slotDialogRejected()));
 }
 
+static auto searchTextToEmailAddress(const QString &s)
+{
+    return QString::fromStdString(UserID::addrSpecFromString(s.toStdString().c_str()));
+}
+
 void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &str)
 {
     // pressing return might trigger both search and dialog destruction (search focused and default key set)
@@ -296,7 +301,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
         } else {
             startKeyListJob(OpenPGP, str);
 #ifdef QGPGME_SUPPORTS_WKDLOOKUP
-            if (str.contains(QLatin1Char{'@'})) {
+            if (str.contains(QLatin1Char{'@'}) && !searchTextToEmailAddress(str).isEmpty()) {
                 startWKDLookupJob(str);
             }
 #endif
@@ -457,7 +462,9 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
 
     setWaitForMoreJobs(true);
     if (!wkdKeys.empty()) {
-        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource);
+        // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
+        const QString importFilter = QLatin1String{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
+        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter});
     }
     if (!pgp.empty()) {
         startImport(OpenPGP, pgp,

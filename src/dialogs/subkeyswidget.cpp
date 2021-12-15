@@ -24,11 +24,6 @@
 #include <QTreeWidgetItem>
 #include <QMenu>
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
-# define CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
-#endif
-
 #include <Libkleo/Formatting>
 
 Q_DECLARE_METATYPE(GpgME::Subkey)
@@ -68,7 +63,6 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 
     bool hasActions = false;
 
-#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
     if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.parent().hasSecret()) {
         hasActions = true;
         menu->addAction(i18n("Change Expiry Date..."), q,
@@ -87,7 +81,6 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
                 }
         );
     }
-#endif // CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
 
     if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.canAuthenticate()) {
         hasActions = true;

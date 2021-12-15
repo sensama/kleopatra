@@ -29,11 +29,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
-# define CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
-#endif
-
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
@@ -133,16 +128,12 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     }
 #endif
 
-#ifdef CHANGEEXPIRYJOB_SUPPORTS_SUBKEYS
     std::vector<Subkey> subkeys;
     if (!subkey.isNull() && subkey.keyID() != key.keyID()) { // ignore the primary subkey
         subkeys.push_back(subkey);
     }
 
     if (const Error err = job->start(key, expiry, subkeys)) {
-#else
-    if (const Error err = job->start(key, expiry)) {
-#endif
         showErrorDialog(err);
         finished();
     }

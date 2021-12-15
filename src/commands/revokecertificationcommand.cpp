@@ -29,11 +29,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
-# define GPGME_HAS_REVSIG
-#endif
-
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
@@ -108,9 +103,7 @@ void RevokeCertificationCommand::Private::slotDialogAccepted()
 {
     createJob();
 
-#ifdef GPGME_HAS_REVSIG
     job->startRevokeSignature(certificationTarget, dialog->selectedCertificationKey(), dialog->selectedUserIDs());
-#endif
 }
 
 void RevokeCertificationCommand::Private::slotDialogRejected()
@@ -206,11 +199,7 @@ RevokeCertificationCommand::~RevokeCertificationCommand()
 // static
 bool RevokeCertificationCommand::isSupported()
 {
-#ifdef GPGME_HAS_REVSIG
     return engineInfo(GpgEngine).engineVersion() >= "2.2.24";
-#else
-    return false;
-#endif
 }
 
 void RevokeCertificationCommand::doStart()

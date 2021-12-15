@@ -11,25 +11,15 @@
 
 #include <config-kleopatra.h>
 
-#include <gpgme++/gpgmepp_version.h>
-#if GPGMEPP_VERSION >= 0x10E01 // 1.14.1
-# define QGPGME_HAS_DEBUG
-# define GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
-#endif
-
 #include "readerstatus.h"
 
-#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
-# include "deviceinfowatcher.h"
-#endif
+#include "deviceinfowatcher.h"
 
 #include <Libkleo/Assuan>
 #include <Libkleo/GnuPG>
 #include <Libkleo/FileSystemWatcher>
 
-#ifdef QGPGME_HAS_DEBUG
-# include <QGpgME/Debug>
-#endif
+#include <QGpgME/Debug>
 
 #include <gpgme++/context.h>
 #include <gpgme++/defaultassuantransaction.h>
@@ -92,16 +82,6 @@ static QDebug operator<<(QDebug s, const std::string &string)
 {
     return s << QString::fromStdString(string);
 }
-
-#ifndef QGPGME_HAS_DEBUG
-static QDebug operator<<(QDebug s, const GpgME::Error &err)
-{
-    const bool oldSetting = s.autoInsertSpaces();
-    s.nospace() << err.asString() << " (code: " << err.code() << ", source: " << err.source() << ")";
-    s.setAutoInsertSpaces(oldSetting);
-    return s.maybeSpace();
-}
-#endif
 
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
 {
@@ -875,13 +855,10 @@ public:
         connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,
                 q, &ReaderStatus::anyCardCanLearnKeysChanged);
 
-#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
             connect(&devInfoWatcher, &DeviceInfoWatcher::statusChanged, this, &::ReaderStatusThread::deviceStatusChanged);
-        } else
-#endif
-        {
+        } else {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using deprecated FileSystemWatcher";
 
             watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
@@ -918,9 +895,7 @@ private:
 
 private:
     FileSystemWatcher watcher;
-#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
     DeviceInfoWatcher devInfoWatcher;
-#endif
 };
 
 ReaderStatus::ReaderStatus(QObject *parent)
@@ -940,11 +915,9 @@ ReaderStatus::~ReaderStatus()
 void ReaderStatus::startMonitoring()
 {
     d->start();
-#ifdef GPGME_SUPPORTS_API_FOR_DEVICEINFOWATCHER
     if (DeviceInfoWatcher::isSupported()) {
         d->devInfoWatcher.start();
     }
-#endif
 }
 
 // static

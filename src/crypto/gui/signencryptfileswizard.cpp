@@ -16,6 +16,7 @@
 
 #include "newresultpage.h"
 
+#include <fileoperationspreferences.h>
 #include <settings.h>
 
 #include <KLocalizedString>
@@ -90,6 +91,16 @@ public:
     QString fileName() const
     {
         return mRequester->fileName();
+    }
+
+    void setNameFilter(const QString &nameFilter)
+    {
+        mRequester->setNameFilter(nameFilter);
+    }
+
+    QString nameFilter() const
+    {
+        return mRequester->nameFilter();
     }
 
 Q_SIGNALS:
@@ -313,7 +324,7 @@ public:
 
 private:
     void createRequesters(QBoxLayout *lay) {
-        static const QMap <int, QString> icons = {
+        static const QMap<int, QString> icons = {
             { SignEncryptFilesWizard::SignatureCMS, QStringLiteral("document-sign") },
             { SignEncryptFilesWizard::SignaturePGP, QStringLiteral("document-sign") },
             { SignEncryptFilesWizard::CombinedPGP,  QStringLiteral("document-edit-sign-encrypt") },
@@ -321,7 +332,7 @@ private:
             { SignEncryptFilesWizard::EncryptedCMS, QStringLiteral("document-encrypt") },
             { SignEncryptFilesWizard::Directory,    QStringLiteral("folder") }
         };
-        static const QMap <int, QString> toolTips = {
+        static const QMap<int, QString> toolTips = {
             { SignEncryptFilesWizard::SignatureCMS, i18n("The S/MIME signature.") },
             { SignEncryptFilesWizard::SignaturePGP, i18n("The signature.") },
             { SignEncryptFilesWizard::CombinedPGP,  i18n("The signed and encrypted file.") },
@@ -329,15 +340,33 @@ private:
             { SignEncryptFilesWizard::EncryptedCMS, i18n("The S/MIME encrypted file.") },
             { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
         };
+        static const QMap<int, QString> nameFiltersBinary = {
+            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME Signatures (*.p7s)") },
+            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP Signatures (*.sig *.pgp)") },
+            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP Files (*.gpg *.pgp)") },
+            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP Files (*.gpg *.pgp)") },
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME Files (*.p7m)") },
+            { SignEncryptFilesWizard::Directory,    {} }
+        };
+        static const QMap<int, QString> nameFiltersAscii = {
+            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME Signatures (*.p7s *.pem)") },
+            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP Signatures (*.asc *.sig)") },
+            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP Files (*.asc)") },
+            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP Files (*.asc)") },
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME Files (*.p7m *.pem)") },
+            { SignEncryptFilesWizard::Directory,    {} }
+        };
 
         if (!mRequesters.empty()) {
             return;
         }
+        const auto &nameFilters = FileOperationsPreferences().addASCIIArmor() ? nameFiltersAscii : nameFiltersBinary;
         for (auto kind : icons.keys()) {
             auto requesterWithIcon = new FileNameRequesterWithIcon{
                 kind == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};
             requesterWithIcon->setIcon(QIcon::fromTheme(icons[kind]));
             requesterWithIcon->setToolTip(toolTips[kind]);
+            requesterWithIcon->setNameFilter(nameFilters[kind]);
             lay->addWidget(requesterWithIcon);
 
             connect(requesterWithIcon, &FileNameRequesterWithIcon::fileNameChanged, this,

@@ -447,7 +447,8 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
                          std::back_inserter(wkdKeys),
                          std::back_inserter(otherKeys),
                          [this](const auto &key) {
-                             return keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
+                             return key.primaryFingerprint() &&
+                                    keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
                          });
 
     std::vector<Key> pgp, cms;

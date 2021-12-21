@@ -298,7 +298,7 @@ void Card::parseCardInfo(const std::string &name, const std::string &value)
         auto list = QString::fromUtf8(QByteArray::fromStdString(value)).
                     split(QStringLiteral("<<"), Qt::SkipEmptyParts);
         std::reverse(list.begin(), list.end());
-        mCardHolder = list.join(QLatin1Char(' '));
+        mCardHolder = list.join(QLatin1Char(' ')).replace(QLatin1Char('<'), QLatin1Char(' '));
     } else if (name == "KEYPAIRINFO") {
         const KeyPairInfo info = KeyPairInfo::fromStatusLine(value);
         if (info.grip.empty()) {

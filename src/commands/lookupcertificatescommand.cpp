@@ -59,6 +59,14 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
+static QDebug operator<<(QDebug s, const GpgME::Key &key)
+{
+    if (key.primaryFingerprint()) {
+        return s << Formatting::summaryLine(key) << "fpr:" << key.primaryFingerprint();
+    } else {
+        return s << Formatting::summaryLine(key) << "id:" << key.keyID();
+    }
+}
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
 {
     friend class ::Kleo::Commands::LookupCertificatesCommand;
@@ -74,10 +82,7 @@ public:
 
 private:
     void slotSearchTextChanged(const QString &str);
-    void slotNextKey(const Key &key)
-    {
-        keyListing.keys.push_back(key);
-    }
+    void slotNextKey(const Key &key);
     void slotKeyListResult(const KeyListResult &result);
 #ifdef QGPGME_SUPPORTS_WKDLOOKUP
     void slotWKDLookupResult(const WKDLookupResult &result);
@@ -144,6 +149,8 @@ private:
         std::set<std::string> wkdKeyFingerprints;
         QByteArray wkdKeyData;
         QString wkdSource;
+        bool cmsKeysHaveNoFingerprints = false;
+        bool openPgpKeysHaveNoFingerprints = false;
 
         void reset()
         {
@@ -346,9 +353,23 @@ void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
 }
 #endif
 
+void LookupCertificatesCommand::Private::slotNextKey(const Key &key)
+{
+    if (key.primaryFingerprint()) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "got key" << key;
+        keyListing.keys.push_back(key);
+    } else {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring key without fingerprint" << key;
+        if (q->sender() == keyListing.cms) {
+            keyListing.cmsKeysHaveNoFingerprints = true;
+        } else if (q->sender() == keyListing.openpgp) {
+            keyListing.openPgpKeysHaveNoFingerprints = true;
+        }
+    }
+}
+
 void LookupCertificatesCommand::Private::slotKeyListResult(const KeyListResult &r)
 {
-
     if (q->sender() == keyListing.cms) {
         keyListing.cms = nullptr;
     } else if (q->sender() == keyListing.openpgp) {
@@ -407,6 +428,35 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
 }
 #endif
 
+namespace
+{
+void showKeysWithoutFingerprintsNotification(QWidget *parent, GpgME::Protocol protocol)
+{
+    if (protocol != GpgME::CMS && protocol != GpgME::OpenPGP) {
+        return;
+    }
+
+    QString message;
+    if (protocol == GpgME::CMS) {
+        message = xi18nc("@info",
+                         "<para>One of the X.509 directory services returned certificates without "
+                         "fingerprints. Those certificates are ignored because fingerprints "
+                         "are required as unique identifiers for certificates.</para>"
+                         "<para>You may want to configure a different X.509 directory service "
+                         "in the configuration dialog.</para>");
+    } else {
+        message = xi18nc("@info",
+                         "<para>The OpenPGP keyserver returned certificates without "
+                         "fingerprints. Those certificates are ignored because fingerprints "
+                         "are required as unique identifiers for certificates.</para>"
+                         "<para>You may want to configure a different OpenPGP keyserver "
+                         "in the configuration dialog.</para>");
+    }
+    KMessageBox::information(parent, message, i18nc("@title", "Invalid Server Reply"),
+                             QStringLiteral("certificates-lookup-missing-fingerprints"));
+}
+}
+
 void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
 {
     if (keyListing.cms || keyListing.openpgp
@@ -424,6 +474,13 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
 
     if (keyListing.result.isTruncated()) {
         showResult(dialog, keyListing.result);
+    }
+
+    if (keyListing.cmsKeysHaveNoFingerprints) {
+        showKeysWithoutFingerprintsNotification(dialog, GpgME::CMS);
+    }
+    if (keyListing.openPgpKeysHaveNoFingerprints) {
+        showKeysWithoutFingerprintsNotification(dialog, GpgME::OpenPGP);
     }
 
     if (dialog) {
@@ -470,13 +527,13 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
     }
     if (!pgp.empty()) {
         startImport(OpenPGP, pgp,
-                    i18nc(R"(@title %1:"OpenPGP" or "CMS")",
+                    i18nc(R"(@title %1:"OpenPGP" or "S/MIME")",
                           "%1 Certificate Server",
                           Formatting::displayName(OpenPGP)));
     }
     if (!cms.empty()) {
         startImport(CMS, cms,
-                    i18nc(R"(@title %1:"OpenPGP" or "CMS")",
+                    i18nc(R"(@title %1:"OpenPGP" or "S/MIME")",
                           "%1 Certificate Server",
                           Formatting::displayName(CMS)));
     }

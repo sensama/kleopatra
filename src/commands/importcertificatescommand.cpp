@@ -163,8 +163,12 @@ bool importFailed(const ImportResultData &r)
 {
     // ignore GPG_ERR_EOF error to handle the "failed" import of files
     // without X.509 certificates by gpgsm gracefully
-    return r.result.error().code() != GPG_ERR_NO_ERROR
-        && r.result.error().code() != GPG_ERR_EOF;
+    return r.result.error() && r.result.error().code() != GPG_ERR_EOF;
+}
+
+bool importWasCanceled(const ImportResultData &r)
+{
+    return r.result.error().isCanceled();
 }
 
 }
@@ -566,7 +570,8 @@ static void handleExternalCMSImports(const std::vector<ImportResultData> &result
     // with validation to get the intermediate and root ca imported
     // automatically if trusted-certs and extra-certs are used.
     for (const auto &r : results) {
-        if (r.protocol == GpgME::CMS && r.type == ImportType::External && !importFailed(r)) {
+        if (r.protocol == GpgME::CMS && r.type == ImportType::External
+                && !importFailed(r) && !importWasCanceled(r)) {
             const auto imports = r.result.imports();
             std::for_each(std::begin(imports), std::end(imports), &validateImportedCertificate);
         }
@@ -611,18 +616,37 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 
     keyCacheAutoRefreshSuspension.reset();
 
+    const auto allIds = std::accumulate(std::cbegin(results), std::cend(results),
+                                        std::set<QString>{},
+                                        [](auto &allIds, const auto &r) {
+                                            allIds.insert(r.id);
+                                            return allIds;
+                                        });
+    const auto canceledIds = std::accumulate(std::cbegin(results), std::cend(results),
+                                             std::set<QString>{},
+                                             [](auto &canceledIds, const auto &r) {
+                                                 if (importWasCanceled(r)) {
+                                                     canceledIds.insert(r.id);
+                                                 }
+                                                 return canceledIds;
+                                             });
+    const auto totalConsidered = std::accumulate(std::cbegin(results), std::cend(results),
+                                                 0,
+                                                 [](auto totalConsidered, const auto &r) {
+                                                     return totalConsidered + r.result.numConsidered();
+                                                 });
+    if (totalConsidered == 0 && canceledIds.size() == allIds.size()) {
+        // nothing was considered for import and at least one import per id was
+        // canceled => treat the command as canceled
+        canceled();
+        return;
+    }
+
     if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {
         setImportResultProxyModel(results);
-        if (std::all_of(std::cbegin(results), std::cend(results),
-                        [](const auto &r) {
-                            return r.result.error().isCanceled();
-                        })) {
-            Q_EMIT q->canceled();
-        } else {
-            for (const auto &r : results) {
-                if (importFailed(r)) {
-                    showError(r.result.error(), r.id);
-                }
+        for (const auto &r : results) {
+            if (importFailed(r)) {
+                showError(r.result.error(), r.id);
             }
         }
         finished();
@@ -651,7 +675,7 @@ void ImportCertificatesCommand::Private::importGroups()
         const bool certificateImportSucceeded =
             std::any_of(std::cbegin(results), std::cend(results),
                         [path](const auto &r) {
-                            return r.id == path && !importFailed(r);
+                            return r.id == path && !importFailed(r) && !importWasCanceled(r);
                         });
         if (certificateImportSucceeded) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Importing groups from file" << path;

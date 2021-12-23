@@ -310,7 +310,6 @@ if(KLEO_MODEL_TEST)
 endif()
 
 ki18n_wrap_ui(_kleopatra_SRCS
-  dialogs/lookupcertificatesdialog.ui
   dialogs/ownertrustdialog.ui
   dialogs/selectchecklevelwidget.ui
   dialogs/selftestdialog.ui

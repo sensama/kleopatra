@@ -11,18 +11,27 @@
 
 #include "lookupcertificatesdialog.h"
 
-#include "ui_lookupcertificatesdialog.h"
+#include "view/keytreeview.h"
 
 #include <Libkleo/KeyListModel>
+
 #include <KConfigGroup>
-#include <gpgme++/key.h>
-
 #include <KLocalizedString>
-
-#include <QPushButton>
-#include <QTreeView>
-
+#include <KSeparator>
 #include <KSharedConfig>
+
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QFrame>
+#include <QGridLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QTreeView>
+#include <QVBoxLayout>
+
+#include <gpgme++/key.h>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -90,11 +99,89 @@ private:
 private:
     bool passive;
 
-    struct Ui : Ui_LookupCertificatesDialog {
+    struct Ui {
+        QLabel *findLB;
+        QLineEdit *findED;
+        QPushButton *findPB;
+        Kleo::KeyTreeView *resultTV;
+        QPushButton *selectAllPB;
+        QPushButton *deselectAllPB;
+        QPushButton *detailsPB;
+        QPushButton *saveAsPB;
+        QDialogButtonBox *buttonBox;
+
+        void setupUi(QDialog *dialog)
+        {
+            auto verticalLayout = new QVBoxLayout{dialog};
+            auto gridLayout = new QGridLayout{};
+
+            int row = 0;
+            findLB = new QLabel{i18n("Find:"), dialog};
+            gridLayout->addWidget(findLB, row, 0, 1, 1);
+
+            findED = new QLineEdit{dialog};
+            findLB->setBuddy(findED);
+            gridLayout->addWidget(findED, row, 1, 1, 1);
+
+            findPB = new QPushButton{i18n("Search"), dialog};
+            findPB->setAutoDefault(false);
+            gridLayout->addWidget(findPB, row, 2, 1, 1);
+
+            row++;
+            gridLayout->addWidget(new KSeparator{Qt::Horizontal, dialog}, row, 0, 1, 3);
+
+            row++;
+            resultTV = new Kleo::KeyTreeView(dialog);
+            resultTV->setEnabled(true);
+            resultTV->setMinimumSize(QSize(400, 0));
+            gridLayout->addWidget(resultTV, row, 0, 1, 2);
+
+            auto buttonLayout = new QVBoxLayout{};
+
+            selectAllPB = new QPushButton{i18n("Select All"), dialog};
+            selectAllPB->setEnabled(false);
+            selectAllPB->setAutoDefault(false);
+            buttonLayout->addWidget(selectAllPB);
+
+            deselectAllPB = new QPushButton{i18n("Deselect All"), dialog};
+            deselectAllPB->setEnabled(false);
+            deselectAllPB->setAutoDefault(false);
+            buttonLayout->addWidget(deselectAllPB);
+
+            buttonLayout->addStretch();
+
+            detailsPB = new QPushButton{i18n("Details..."), dialog};
+            detailsPB->setEnabled(false);
+            detailsPB->setAutoDefault(false);
+            buttonLayout->addWidget(detailsPB);
+
+            saveAsPB = new QPushButton{i18n("Save As..."), dialog};
+            saveAsPB->setEnabled(false);
+            saveAsPB->setAutoDefault(false);
+            buttonLayout->addWidget(saveAsPB);
+
+            gridLayout->addLayout(buttonLayout, row, 2, 1, 1);
+
+            verticalLayout->addLayout(gridLayout);
+
+            buttonBox = new QDialogButtonBox{dialog};
+            buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Save);
+            verticalLayout->addWidget(buttonBox);
+
+            QObject::connect(findED, SIGNAL(returnPressed()), findPB, SLOT(animateClick()));
+            QObject::connect(buttonBox, SIGNAL(accepted()), dialog, SLOT(accept()));
+            QObject::connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(reject()));
+            QObject::connect(findPB, SIGNAL(clicked()), dialog, SLOT(slotSearchClicked()));
+            QObject::connect(detailsPB, SIGNAL(clicked()), dialog, SLOT(slotDetailsClicked()));
+            QObject::connect(saveAsPB, SIGNAL(clicked()), dialog, SLOT(slotSaveAsClicked()));
+            QObject::connect(findED, SIGNAL(textChanged(QString)), dialog, SLOT(slotSearchTextChanged()));
+
+            QMetaObject::connectSlotsByName(dialog);
+        }
 
         explicit Ui(LookupCertificatesDialog *q)
-            : Ui_LookupCertificatesDialog()
         {
+            q->setWindowTitle(i18n("Lookup on Server"));
             setupUi(q);
 
             saveAsPB->hide(); // ### not yet implemented in LookupCertificatesCommand

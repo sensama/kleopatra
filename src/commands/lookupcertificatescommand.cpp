@@ -146,6 +146,7 @@ private:
         QString pattern;
         KeyListResult result;
         std::vector<Key> keys;
+        int numKeysWithoutUserId = 0;
         std::set<std::string> wkdKeyFingerprints;
         QByteArray wkdKeyData;
         QString wkdSource;
@@ -289,6 +290,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     if (dialog) {   //thus test
         dialog->setPassive(true);
         dialog->setCertificates(std::vector<Key>());
+        dialog->showInformation({});
     }
 
     query = str;
@@ -355,16 +357,19 @@ void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
 
 void LookupCertificatesCommand::Private::slotNextKey(const Key &key)
 {
-    if (key.primaryFingerprint()) {
-        qCDebug(KLEOPATRA_LOG) << __func__ << "got key" << key;
-        keyListing.keys.push_back(key);
-    } else {
+    if (!key.primaryFingerprint()) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring key without fingerprint" << key;
         if (q->sender() == keyListing.cms) {
             keyListing.cmsKeysHaveNoFingerprints = true;
         } else if (q->sender() == keyListing.openpgp) {
             keyListing.openPgpKeysHaveNoFingerprints = true;
         }
+    } else if (key.numUserIDs() == 0) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "ignoring key without user IDs" << key;
+        keyListing.numKeysWithoutUserId++;
+    } else {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "got key" << key;
+        keyListing.keys.push_back(key);
     }
 }
 
@@ -486,6 +491,12 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
     if (dialog) {
         dialog->setPassive(false);
         dialog->setCertificates(keyListing.keys);
+        if (keyListing.numKeysWithoutUserId > 0) {
+            dialog->showInformation(i18ncp("@info",
+                                           "One certificate without name and email address was ignored.",
+                                           "%1 certificates without name and email address were ignored.",
+                                           keyListing.numKeysWithoutUserId));
+        }
     } else {
         finished();
     }

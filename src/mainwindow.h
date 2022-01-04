@@ -53,7 +53,6 @@ private:
     Q_PRIVATE_SLOT(d, void showPadView())
     Q_PRIVATE_SLOT(d, void showSmartcardView())
     Q_PRIVATE_SLOT(d, void forceUpdateCheck())
-    Q_PRIVATE_SLOT(d, void openCompendium())
     Q_PRIVATE_SLOT(d, void listSmartcardReaders())
 };
 

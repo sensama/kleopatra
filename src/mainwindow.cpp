@@ -75,6 +75,7 @@
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
+#include <Libkleo/DocAction>
 
 #include <vector>
 #include <KSharedConfig>
@@ -225,19 +226,6 @@ public:
     void forceUpdateCheck()
     {
         UpdateNotification::forceUpdateCheck(q);
-    }
-
-    void openCompendium()
-    {
-        QDir datadir(QCoreApplication::applicationDirPath() + QStringLiteral("/../share/gpg4win"));
-        const auto path = datadir.filePath(i18nc("The Gpg4win compendium is only available"
-                                                 "at this point (24.7.2017) in german and english."
-                                                 "Please check with Gpg4win before translating this filename.",
-                                                 "gpg4win-compendium-en.pdf"));
-        qCDebug(KLEOPATRA_LOG) << "Opening Compendium at:" << path;
-        // The compendium is always installed. So this should work. Otherwise
-        // we have debug output.
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
     }
 
     void slotConfigCommitted();
@@ -435,10 +423,6 @@ void MainWindow::Private::setupActions()
             "help_check_updates", i18n("Check for updates"), QString(),
             "gpg4win-compact", q, SLOT(forceUpdateCheck()), QString(), false, true
         },
-        {
-            "help_show_compendium", i18n("Gpg4win Compendium"), QString(),
-            "gpg4win-compact", q, SLOT(openCompendium()), QString(), false, true
-        },
 #endif
         {
             "view_certificate_overview", i18nc("@action show certificate overview", "Certificates"),
@@ -503,6 +487,34 @@ void MainWindow::Private::setupActions()
     clipboadMenu->clipboardMenu()->setIcon(QIcon::fromTheme(QStringLiteral("edit-paste")));
     clipboadMenu->clipboardMenu()->setPopupMode(QToolButton::InstantPopup);
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
+
+    /* Add additional help actions for documentation */
+    const auto compendium = new DocAction(QIcon::fromTheme(QStringLiteral("gpg4win-compact")), i18n("Gpg4win Compendium"),
+            i18nc("The Gpg4win compendium is only available"
+                  "at this point (24.7.2017) in german and english."
+                  "Please check with Gpg4win before translating this filename.",
+                  "gpg4win-compendium-en.pdf"),
+            QStringLiteral("../share/gpg4win"));
+    coll->addAction(QStringLiteral("help_doc_compendium"), compendium);
+
+    /* Documentation centered around the german approved VS-NfD mode for official
+     * RESTRICTED communication. This is only available in some distributions with
+     * the focus on official communications. */
+    const auto symguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("Password-based encryption"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "handout_symmetric_encryption_gnupg_en.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
+
+    const auto quickguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("Quickguide"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "handout_sign_encrypt_gnupg_en.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
+
+    const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("GnuPG Manual"),
+            QStringLiteral("gnupg.pdf"), QStringLiteral("../share/doc/gnupg"));
+    coll->addAction(QStringLiteral("help_doc_gnupg"), man_gpg);
 
     q->setStandardToolBarMenuEnabled(true);
 

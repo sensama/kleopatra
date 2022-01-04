@@ -20,6 +20,8 @@
 #include <KSharedConfig>
 #include <KStandardGuiItem>
 
+#include <Libkleo/DocAction>
+
 #include <QDialogButtonBox>
 #include <QPushButton>
 
@@ -76,6 +78,22 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
     QPushButton *resetButton = buttonBox()->addButton(QDialogButtonBox::Reset);
     KGuiItem::assign(resetButton, KStandardGuiItem::reset());
     resetButton->setEnabled(false);
+
+    const auto helpAction = new Kleo::DocAction(QIcon::fromTheme(QStringLiteral("help")),
+            i18n("Help"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                  "handout_group-feature_gnupg_en.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    if (helpAction->isEnabled()) {
+        auto helpButton = buttonBox()->button(QDialogButtonBox::Help);
+        if (helpButton) {
+            disconnect(helpButton, &QAbstractButton::clicked, nullptr, nullptr);
+            connect(helpButton, &QAbstractButton::clicked, helpAction, &QAction::trigger);
+            connect(helpButton, &QObject::destroyed, helpAction, &QObject::deleteLater);
+        }
+    } else {
+        delete helpAction;
+    }
 
     connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked,
             this, &GroupsConfigDialog::updateWidgets);

@@ -50,6 +50,7 @@
 #include <QMenu>
 #include <QPushButton>
 #include <QSpacerItem>
+#include <QStringBuilder>
 #include <QToolButton>
 #include <QTreeWidget>
 
@@ -165,10 +166,10 @@ private:
             hboxLayout_1->addWidget(trustChainDetailsBtn);
 
             genRevokeBtn = new QPushButton(i18n("Generate revocation certificate"), parent);
-            genRevokeBtn->setToolTip(u"<html>" +
+            genRevokeBtn->setToolTip(u"<html>" %
                                      i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
                                           "declare that a key shall not anymore be used.  It is not possible "
-                                          "to retract such a revocation certificate once it has been published.") +
+                                          "to retract such a revocation certificate once it has been published.") %
                                      u"</html>");
 
             hboxLayout_1->addWidget(genRevokeBtn);

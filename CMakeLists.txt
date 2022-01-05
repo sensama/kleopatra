@@ -177,6 +177,18 @@ endif()
 add_definitions(-DQT_NO_EMIT)
 remove_definitions(-DQT_NO_FOREACH)
 
+# Disable the use of QStringBuilder for operator+ to prevent crashes when
+# returning the result of concatenating string temporaries in lambdas. We do
+# this for example in some std::transform expressions.
+# This is a known issue: https://bugreports.qt.io/browse/QTBUG-47066
+# Alternatively, one would always have to remember to force the lambdas to
+# return a QString instead of QStringBuilder, but that's just too easy to
+# forget and, unfortunately, the compiler doesn't issue a warning if one forgets
+# this. So, it's just too dangerous.
+# One can still use QStringBuilder explicitly with the operator% if necessary.
+remove_definitions(-DQT_USE_FAST_OPERATOR_PLUS)
+remove_definitions(-DQT_USE_QSTRINGBUILDER)
+
 kde_enable_exceptions()
 option(USE_UNITY_CMAKE_SUPPORT "Use UNITY cmake support (speedup compile time)" OFF)
 

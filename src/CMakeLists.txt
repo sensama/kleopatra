@@ -237,6 +237,7 @@ set(_kleopatra_SRCS
   commands/revokecertificationcommand.cpp
   commands/selftestcommand.cpp
   commands/exportsecretkeycommand.cpp
+  commands/exportsecretsubkeycommand.cpp
   commands/exportopenpgpcertstoservercommand.cpp
   commands/adduseridcommand.cpp
   commands/newcertificatecommand.cpp

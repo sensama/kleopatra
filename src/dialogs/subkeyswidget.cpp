@@ -1,15 +1,25 @@
-/*  SPDX-FileCopyrightText: 2016 Klarälvdalens Datakonsult AB
+/*
+    dialogs/subkeyswidget.cpp
 
+    This file is part of Kleopatra, the KDE keymanager
+    SPDX-FileCopyrightText: 2016 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+
+#include <config-kleopatra.h>
 
 #include "subkeyswidget.h"
 #include "ui_subkeyswidget.h"
 
 #include "commands/changeexpirycommand.h"
+#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+#include "commands/exportsecretsubkeycommand.h"
+#endif
 #include "commands/keytocardcommand.h"
 #include "commands/importpaperkeycommand.h"
 #include "exportdialog.h"
@@ -57,13 +67,14 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         return;
     }
     const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
+    const bool isOpenPGPKey = subkey.parent().protocol() == GpgME::OpenPGP;
 
     auto menu = new QMenu(q);
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     bool hasActions = false;
 
-    if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.parent().hasSecret()) {
+    if (isOpenPGPKey && subkey.parent().hasSecret()) {
         hasActions = true;
         menu->addAction(i18n("Change Expiry Date..."), q,
                 [this, subkey]() {
@@ -82,7 +93,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         );
     }
 
-    if (subkey.parent().protocol() == GpgME::OpenPGP && subkey.canAuthenticate()) {
+    if (isOpenPGPKey && subkey.canAuthenticate()) {
         hasActions = true;
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                 i18n("Export OpenSSH key"),
@@ -121,6 +132,23 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         });
         action->setEnabled(!KeyToCardCommand::getSuitableCards(subkey).empty());
     }
+
+#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+    const bool isPrimarySubkey = subkey.keyID() == key.keyID();
+    if (isOpenPGPKey && subkey.isSecret() && !isPrimarySubkey) {
+        hasActions = true;
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
+                        i18n("Export secret subkey"),
+                        q, [this, subkey]() {
+            auto cmd = new ExportSecretSubkeyCommand{{subkey}};
+            ui.subkeysTree->setEnabled(false);
+            connect(cmd, &ExportSecretSubkeyCommand::finished,
+                    q, [this]() { ui.subkeysTree->setEnabled(true); });
+            cmd->setParentWidget(q);
+            cmd->start();
+        });
+    }
+#endif
 
     if (hasActions) {
         menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));

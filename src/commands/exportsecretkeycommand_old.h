@@ -25,15 +25,8 @@ class ExportSecretKeyCommand : public GnuPGProcessCommand
     Q_OBJECT
 public:
     explicit ExportSecretKeyCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit ExportSecretKeyCommand(KeyListController *parent);
     explicit ExportSecretKeyCommand(const GpgME::Key &key);
     ~ExportSecretKeyCommand() override;
-
-    void setFileName(const QString &fileName);
-    QString fileName() const
-    {
-        return m_filename;
-    }
 
     /* reimp */ static Restrictions restrictions()
     {

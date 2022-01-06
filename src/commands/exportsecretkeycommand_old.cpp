@@ -33,11 +33,6 @@ using namespace GpgME;
 
 namespace Kleo::Commands::Compat {
 
-ExportSecretKeyCommand::ExportSecretKeyCommand(KeyListController *c)
-    : GnuPGProcessCommand(c)
-{
-}
-
 ExportSecretKeyCommand::ExportSecretKeyCommand(QAbstractItemView *v, KeyListController *c)
     : GnuPGProcessCommand(v, c)
 {
@@ -49,11 +44,6 @@ ExportSecretKeyCommand::ExportSecretKeyCommand(const Key &key)
 }
 
 ExportSecretKeyCommand::~ExportSecretKeyCommand() {}
-
-void ExportSecretKeyCommand::setFileName(const QString &fileName)
-{
-    m_filename = fileName;
-}
 
 bool ExportSecretKeyCommand::preStartHook(QWidget *parent) const
 {

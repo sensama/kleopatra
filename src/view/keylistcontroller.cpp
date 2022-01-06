@@ -21,7 +21,7 @@
 #include "kleopatra_debug.h"
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
-#include "commands/exportsecretkeycommand.h"
+#include "commands/exportsecretkeycommand_old.h"
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/changepassphrasecommand.h"
 #include "commands/lookupcertificatescommand.h"
@@ -68,6 +68,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
+using Kleo::Commands::Compat::ExportSecretKeyCommand;
 
 class KeyListController::Private
 {

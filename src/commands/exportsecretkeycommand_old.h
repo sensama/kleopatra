@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/exportsecretkeycommand.h
+    commands/exportsecretkeycommand_old.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
@@ -16,6 +16,8 @@
 namespace Kleo
 {
 namespace Commands
+{
+namespace Compat
 {
 
 class ExportSecretKeyCommand : public GnuPGProcessCommand
@@ -57,6 +59,7 @@ private:
     bool mHasError = false;
 };
 
+}
 }
 }
 

@@ -23,7 +23,7 @@
 
 #include "ui_advancedsettingsdialog.h"
 
-#include "commands/exportsecretkeycommand.h"
+#include "commands/exportsecretkeycommand_old.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "commands/exportcertificatecommand.h"
 
@@ -76,6 +76,7 @@ using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace Kleo::Commands;
 using namespace GpgME;
+using Kleo::Commands::Compat::ExportSecretKeyCommand;
 
 static const char RSA_KEYSIZES_ENTRY[] = "RSAKeySizes";
 static const char DSA_KEYSIZES_ENTRY[] = "DSAKeySizes";

@@ -23,7 +23,11 @@
 
 #include "ui_advancedsettingsdialog.h"
 
-#include "commands/exportsecretkeycommand_old.h"
+#ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
+# include "commands/exportsecretkeycommand.h"
+#else
+# include "commands/exportsecretkeycommand_old.h"
+#endif
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "commands/exportcertificatecommand.h"
 
@@ -76,7 +80,9 @@ using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace Kleo::Commands;
 using namespace GpgME;
+#ifndef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 using Kleo::Commands::Compat::ExportSecretKeyCommand;
+#endif
 
 static const char RSA_KEYSIZES_ENTRY[] = "RSAKeySizes";
 static const char DSA_KEYSIZES_ENTRY[] = "DSAKeySizes";

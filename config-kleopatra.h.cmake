@@ -48,5 +48,8 @@
 /* Defined if QGpgME supports setting key origin when importing keys */
 #cmakedefine QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN 1
 
+/* Defined if QGpgME supports the export of secret keys */
+#cmakedefine QGPGME_SUPPORTS_SECRET_KEY_EXPORT 1
+
 /* Defined if QGpgME supports the export of secret subkeys */
 #cmakedefine QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT 1

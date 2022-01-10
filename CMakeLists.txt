@@ -95,7 +95,7 @@ else()
   set(_kleopatra_dbusaddons_libs KF5::DBusAddons)
 endif()
 
-set(HAVE_QDBUS ${Qt5DBus_FOUND})
+set(HAVE_QDBUS ${Qt${QT_MAJOR_VERSION}DBus_FOUND})
 
 find_package(Gpgmepp ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 if (Gpgmepp_VERSION VERSION_GREATER_EQUAL "1.16.0")
@@ -119,7 +119,7 @@ endif()
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
 
-find_package(Qt5 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
 find_package(Assuan2 REQUIRED)
 

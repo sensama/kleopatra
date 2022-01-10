@@ -365,8 +365,8 @@ target_link_libraries(kleopatra_bin
   KF5::CoreAddons
   KF5::ItemModels
   KF5::Crash
-  Qt::Network
-  Qt::PrintSupport # Printing secret keys
+  Qt${QT_MAJOR_VERSION}::Network
+  Qt${QT_MAJOR_VERSION}::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}
   ${_kleopatra_dbusaddons_libs}
   kleopatraclientcore

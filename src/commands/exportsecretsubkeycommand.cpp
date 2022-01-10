@@ -73,10 +73,10 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
         const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
         const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
         /* Not translated so it's better to use in tutorials etc. */
-        filename += QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(
+        filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(
             name, shortKeyID, shortSubkeyID, usage);
     } else {
-        filename += i18nc("Generic filename for exported subkeys", "subkeys");
+        filename = i18nc("Generic filename for exported subkeys", "subkeys");
     }
     filename.replace(u'/', u'_');
 
@@ -254,12 +254,19 @@ void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, con
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
         error(xi18ncp("@info",
-                      "Writing subkey to file <filename>%1</filename> failed.",
-                      "Writing subkeys to file <filename>%1</filename> failed.",
+                      "Writing subkey to file <filename>%2</filename> failed.",
+                      "Writing subkeys to file <filename>%2</filename> failed.",
                       subkeys.size(), filename),
               i18nc("@title:window", "Export Failed"));
+        finished();
+        return;
     }
 
+    information(i18ncp("@info",
+                       "The subkey was exported successfully.",
+                       "%1 subkeys were exported successfully.",
+                       subkeys.size()),
+                i18nc("@title:window", "Secret Key Backup"));
     finished();
 }
 

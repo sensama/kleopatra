@@ -18,8 +18,7 @@
 
 #include "accessibility/accessiblewidgetfactory.h"
 
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
 #endif
 
@@ -159,7 +158,7 @@ int main(int argc, char **argv)
 
     parser.process(QApplication::arguments());
     aboutData.processCommandLine(&parser);
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kleopatra"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kleopatrarc")
                                          << QStringLiteral("libkleopatrarc"));

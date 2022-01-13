@@ -11,8 +11,7 @@
 
 #include "aboutdata.h"
 #include "kwatchgnupgmainwin.h"
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <Kdelibs4ConfigMigrator>
 #endif
 #include "utils/kuniqueservice.h"
@@ -31,7 +30,7 @@ int main(int argc, char **argv)
 #endif
     QApplication app(argc, argv);
     KCrash::initialize();
-#if KCOREADDONS_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kwatchgnupg"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kwatchgnupgrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kwatchgnupgui.rc"));

@@ -294,6 +294,7 @@ void DirectoryServicesConfigurationPage::load()
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
         mTimeout->setTime(time);
     }
+    mTimeout->setEnabled(mTimeoutConfigEntry && !mTimeoutConfigEntry->isReadOnly());
 
     // read max-replies config entry
     // first try to read the config entry as int (GnuPG 2.3)

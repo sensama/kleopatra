@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <labelledwidget.h>
+
 #include <KCModule>
 
 #include <QGpgME/CryptoConfig>
@@ -18,6 +20,7 @@ class QLabel;
 class QLineEdit;
 class QTimeEdit;
 class QSpinBox;
+
 namespace Kleo
 {
 class DirectoryServicesWidget;
@@ -55,11 +58,10 @@ private:
                                            ShowError showError);
 
 private:
-    QLineEdit *mOpenPGPKeyserverEdit = nullptr;
+    Kleo::LabelledWidget<QLineEdit> mOpenPGPKeyserverEdit;
     Kleo::DirectoryServicesWidget *mDirectoryServices = nullptr;
-    QTimeEdit *mTimeout = nullptr;
-    QSpinBox *mMaxItems = nullptr;
-    QLabel *mMaxItemsLabel = nullptr;
+    Kleo::LabelledWidget<QTimeEdit> mTimeout;
+    Kleo::LabelledWidget<QSpinBox> mMaxItems;
     QCheckBox *mAddNewServersCB = nullptr;
 
     QGpgME::CryptoConfigEntry *mX509ServicesEntry = nullptr;

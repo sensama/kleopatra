@@ -11,6 +11,8 @@
 
 #include "dirservconfigpage.h"
 
+#include "labelledwidget.h"
+
 #include <settings.h>
 
 #include <Libkleo/Compat>
@@ -152,13 +154,13 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-        l->addWidget(new QLabel{i18n("OpenPGP keyserver:"), this});
-        mOpenPGPKeyserverEdit = new QLineEdit{this};
-
-        l->addWidget(mOpenPGPKeyserverEdit);
+        mOpenPGPKeyserverEdit.createWidgets(this);
+        mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
+        l->addWidget(mOpenPGPKeyserverEdit.label());
+        l->addWidget(mOpenPGPKeyserverEdit.widget());
 
         glay->addLayout(l, row, 0, 1, 3);
-        connect(mOpenPGPKeyserverEdit, &QLineEdit::textEdited, this, [this]() { Q_EMIT changed(true); });
+        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, this, [this]() { Q_EMIT changed(true); });
     }
 
     // X.509 servers
@@ -186,23 +188,21 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
     // LDAP timeout
     ++row;
-    auto label = new QLabel(i18n("LDAP &timeout (minutes:seconds):"), this);
-    mTimeout = new QTimeEdit(this);
-    mTimeout->setDisplayFormat(QStringLiteral("mm:ss"));
-    connect(mTimeout, SIGNAL(timeChanged(QTime)), this, SLOT(changed()));
-    label->setBuddy(mTimeout);
-    glay->addWidget(label, row, 0);
-    glay->addWidget(mTimeout, row, 1);
+    mTimeout.createWidgets(this);
+    mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
+    mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
+    connect(mTimeout.widget(), SIGNAL(timeChanged(QTime)), this, SLOT(changed()));
+    glay->addWidget(mTimeout.label(), row, 0);
+    glay->addWidget(mTimeout.widget(), row, 1);
 
     // Max number of items returned by queries
     ++row;
-    mMaxItemsLabel = new QLabel(i18n("&Maximum number of items returned by query:"), this);
-    mMaxItems = new QSpinBox(this);
-    mMaxItems->setMinimum(0);
-    mMaxItemsLabel->setBuddy(mMaxItems);
-    connect(mMaxItems, SIGNAL(valueChanged(int)), this, SLOT(changed()));
-    glay->addWidget(mMaxItemsLabel, row, 0);
-    glay->addWidget(mMaxItems, row, 1);
+    mMaxItems.createWidgets(this);
+    mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
+    mMaxItems.widget()->setMinimum(0);
+    connect(mMaxItems.widget(), SIGNAL(valueChanged(int)), this, SLOT(changed()));
+    glay->addWidget(mMaxItems.label(), row, 0);
+    glay->addWidget(mMaxItems.widget(), row, 1);
 
 #ifdef NOT_USEFUL_CURRENTLY
     ++row
@@ -263,18 +263,18 @@ void DirectoryServicesConfigurationPage::load()
                 << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
 
-        mOpenPGPKeyserverEdit->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
-        mOpenPGPKeyserverEdit->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
+        mOpenPGPKeyserverEdit.widget()->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
+        mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
 #ifdef QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
         if (newEntry && !newEntry->defaultValue().isNull()) {
-            mOpenPGPKeyserverEdit->setPlaceholderText(newEntry->defaultValue().toString());
+            mOpenPGPKeyserverEdit.widget()->setPlaceholderText(newEntry->defaultValue().toString());
         } else
 #endif
         {
             if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
-                mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
+                mOpenPGPKeyserverEdit.widget()->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
             } else {
-                mOpenPGPKeyserverEdit->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
+                mOpenPGPKeyserverEdit.widget()->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
             }
         }
     }
@@ -292,9 +292,9 @@ void DirectoryServicesConfigurationPage::load()
                                 static_cast<int>(mTimeoutConfigEntry->uintValue());
         const QTime time = QTime(0, 0, 0, 0).addSecs(ldapTimeout);
         //qCDebug(KLEOPATRA_LOG) <<"timeout:" << mTimeoutConfigEntry->uintValue() <<"  ->" << time;
-        mTimeout->setTime(time);
+        mTimeout.widget()->setTime(time);
     }
-    mTimeout->setEnabled(mTimeoutConfigEntry && !mTimeoutConfigEntry->isReadOnly());
+    mTimeout.setEnabled(mTimeoutConfigEntry && !mTimeoutConfigEntry->isReadOnly());
 
     // read max-replies config entry
     // first try to read the config entry as int (GnuPG 2.3)
@@ -307,13 +307,11 @@ void DirectoryServicesConfigurationPage::load()
         const int value = mMaxItemsConfigEntry->argType() == CryptoConfigEntry::ArgType_Int ?
                           mMaxItemsConfigEntry->intValue() :
                           static_cast<int>(mMaxItemsConfigEntry->uintValue());
-        mMaxItems->blockSignals(true);   // KNumInput emits valueChanged from setValue!
-        mMaxItems->setValue(value);
-        mMaxItems->blockSignals(false);
+        mMaxItems.widget()->blockSignals(true);   // KNumInput emits valueChanged from setValue!
+        mMaxItems.widget()->setValue(value);
+        mMaxItems.widget()->blockSignals(false);
     }
-    const bool maxItemsEnabled = mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly();
-    mMaxItems->setEnabled(maxItemsEnabled);
-    mMaxItemsLabel->setEnabled(maxItemsEnabled);
+    mMaxItems.setEnabled(mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly());
 
 #ifdef NOT_USEFUL_CURRENTLY
     mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, CryptoConfigEntry::ArgType_None, SingleValue, DoShowError);
@@ -353,7 +351,7 @@ void DirectoryServicesConfigurationPage::save()
     }
 
     if (mOpenPGPServiceEntry) {
-        const auto keyserver = mOpenPGPKeyserverEdit->text().trimmed();
+        const auto keyserver = mOpenPGPKeyserverEdit.widget()->text().trimmed();
         if (keyserver.isEmpty()) {
             mOpenPGPServiceEntry->resetToDefault();
         } else {
@@ -362,10 +360,10 @@ void DirectoryServicesConfigurationPage::save()
         }
     }
 
-    const QTime time{mTimeout->time()};
+    const QTime time{mTimeout.widget()->time()};
     updateIntegerConfigEntry(mTimeoutConfigEntry, time.minute() * 60 + time.second());
 
-    updateIntegerConfigEntry(mMaxItemsConfigEntry, mMaxItems->value());
+    updateIntegerConfigEntry(mMaxItemsConfigEntry, mMaxItems.widget()->value());
 
 #ifdef NOT_USEFUL_CURRENTLY
     if (mAddNewServersConfigEntry && mAddNewServersConfigEntry->boolValue() != mAddNewServersCB->isChecked()) {

@@ -39,6 +39,8 @@ set(kcm_kleopatra_PART_SRCS
   appearanceconfigpage.h
   appearanceconfigwidget.h
   gnupgsystemconfigurationpage.h
+  labelledwidget.cpp
+  labelledwidget.cpp
   ${kleopatra_BINARY_DIR}/src/kleopatra_debug.cpp
   ${_kcm_kleopatra_libkleopatraclient_extra_SRCS}
 )

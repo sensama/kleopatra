@@ -13,6 +13,8 @@
 
 #include "ui_smimevalidationconfigurationwidget.h"
 
+#include "labelledwidget.h"
+
 #include "smimevalidationpreferences.h"
 
 #include <Libkleo/Compat>
@@ -58,10 +60,16 @@ private:
 
 private:
     struct UI : Ui_SMimeValidationConfigurationWidget {
+        LabelledWidget<KleopatraClientCopy::Gui::CertificateRequester> labelledOCSPResponderSignature;
+        LabelledWidget<QLineEdit> labelledOCSPResponderURL;
+
         explicit UI(SMimeValidationConfigurationWidget *q)
             : Ui_SMimeValidationConfigurationWidget()
         {
             setupUi(q);
+
+            labelledOCSPResponderURL.setWidgets(OCSPResponderURL, OCSPResponderURLLabel);
+            labelledOCSPResponderSignature.setWidgets(OCSPResponderSignature, OCSPResponderSignatureLabel);
 
             if (QLayout *l = q->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
@@ -256,13 +264,11 @@ void SMimeValidationConfigurationWidget::load()
     if (e.mOCSPResponderURLConfigEntry) {
         d->ui.OCSPResponderURL->setText(e.mOCSPResponderURLConfigEntry->stringValue());
     }
-    d->ui.OCSPResponderURL->setEnabled(e.mOCSPResponderURLConfigEntry && !e.mOCSPResponderURLConfigEntry->isReadOnly());
-    d->ui.OCSPResponderURLLabel->setEnabled(e.mOCSPResponderURLConfigEntry && !e.mOCSPResponderURLConfigEntry->isReadOnly());
+    d->ui.labelledOCSPResponderURL.setEnabled(e.mOCSPResponderURLConfigEntry && !e.mOCSPResponderURLConfigEntry->isReadOnly());
     if (e.mOCSPResponderSignature) {
         d->ui.OCSPResponderSignature->setSelectedCertificate(e.mOCSPResponderSignature->stringValue());
     }
-    d->ui.OCSPResponderSignature->setEnabled(e.mOCSPResponderSignature && !e.mOCSPResponderSignature->isReadOnly());
-    d->ui.OCSPResponderSignatureLabel->setEnabled(e.mOCSPResponderSignature && !e.mOCSPResponderSignature->isReadOnly());
+    d->ui.labelledOCSPResponderSignature.setEnabled(e.mOCSPResponderSignature && !e.mOCSPResponderSignature->isReadOnly());
 
     // dirmngr-0.9.0 options
     initializeDirmngrCheckbox(d->ui.ignoreServiceURLCB, e.mIgnoreServiceURLEntry);

@@ -41,82 +41,6 @@
 using namespace Kleo;
 using namespace QGpgME;
 
-#if 0 // disabled, since it is apparently confusing
-// For sync'ing kabldaprc
-class KABSynchronizer
-{
-public:
-    KABSynchronizer()
-        : mConfig("kabldaprc")
-    {
-        mConfig.setGroup("LDAP");
-    }
-
-    KUrl::List readCurrentList() const
-    {
-
-        KUrl::List lst;
-        // stolen from kabc/ldapclient.cpp
-        const uint numHosts = mConfig.readEntry("NumSelectedHosts");
-        for (uint j = 0; j < numHosts; j++) {
-            const QString num = QString::number(j);
-
-            KUrl url;
-            url.setProtocol("ldap");
-            url.setPath("/");   // workaround KUrl parsing bug
-            const QString host = mConfig.readEntry(QString("SelectedHost") + num).trimmed();
-            url.setHost(host);
-
-            const int port = mConfig.readEntry(QString("SelectedPort") + num);
-            if (port != 0) {
-                url.setPort(port);
-            }
-
-            const QString base = mConfig.readEntry(QString("SelectedBase") + num).trimmed();
-            url.setQuery(base);
-
-            const QString bindDN = mConfig.readEntry(QString("SelectedBind") + num).trimmed();
-            url.setUser(bindDN);
-
-            const QString pwdBindDN = mConfig.readEntry(QString("SelectedPwdBind") + num).trimmed();
-            url.setPass(pwdBindDN);
-            lst.append(url);
-        }
-        return lst;
-    }
-
-    void writeList(const KUrl::List &lst)
-    {
-
-        mConfig.writeEntry("NumSelectedHosts", lst.count());
-
-        KUrl::List::const_iterator it = lst.begin();
-        KUrl::List::const_iterator end = lst.end();
-        unsigned j = 0;
-        for (; it != end; ++it, ++j) {
-            const QString num = QString::number(j);
-            KUrl url = *it;
-
-            Q_ASSERT(url.scheme() == "ldap");
-            mConfig.writeEntry(QString("SelectedHost") + num, url.host());
-            mConfig.writeEntry(QString("SelectedPort") + num, url.port());
-
-            // KUrl automatically encoded the query (e.g. for spaces inside it),
-            // so decode it before writing it out
-            const QString base = KUrl::decode_string(url.query().mid(1));
-            mConfig.writeEntry(QString("SelectedBase") + num, base);
-            mConfig.writeEntry(QString("SelectedBind") + num, url.user());
-            mConfig.writeEntry(QString("SelectedPwdBind") + num, url.pass());
-        }
-        mConfig.sync();
-    }
-
-private:
-    KConfig mConfig;
-};
-
-#endif
-
 static const char s_x509services_componentName[] = "gpgsm";
 static const char s_x509services_entryName[] = "keyserver";
 
@@ -203,13 +127,6 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     connect(mMaxItems.widget(), SIGNAL(valueChanged(int)), this, SLOT(changed()));
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
-
-#ifdef NOT_USEFUL_CURRENTLY
-    ++row
-    mAddNewServersCB = new QCheckBox(i18n("Automatically add &new servers discovered in CRL distribution points"), this);
-    connect(mAddNewServersCB, SIGNAL(clicked()), this, SLOT(changed()));
-    glay->addWidget(mAddNewServersCB, row, 0, 1, 3);
-#endif
 
     glay->setRowStretch(++row, 1);
     glay->setColumnStretch(2, 1);
@@ -312,13 +229,6 @@ void DirectoryServicesConfigurationPage::load()
         mMaxItems.widget()->blockSignals(false);
     }
     mMaxItems.setEnabled(mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly());
-
-#ifdef NOT_USEFUL_CURRENTLY
-    mAddNewServersConfigEntry = configEntry(s_addnewservers_componentName, s_addnewservers_groupName, s_addnewservers_entryName, CryptoConfigEntry::ArgType_None, SingleValue, DoShowError);
-    if (mAddNewServersConfigEntry) {
-        mAddNewServersCB->setChecked(mAddNewServersConfigEntry->boolValue());
-    }
-#endif
 }
 
 namespace
@@ -365,32 +275,7 @@ void DirectoryServicesConfigurationPage::save()
 
     updateIntegerConfigEntry(mMaxItemsConfigEntry, mMaxItems.widget()->value());
 
-#ifdef NOT_USEFUL_CURRENTLY
-    if (mAddNewServersConfigEntry && mAddNewServersConfigEntry->boolValue() != mAddNewServersCB->isChecked()) {
-        mAddNewServersConfigEntry->setBoolValue(mAddNewServersCB->isChecked());
-    }
-#endif
-
     mConfig->sync(true);
-
-#if 0
-    // Also write the LDAP URLs to kabldaprc so that they are used by kaddressbook
-    KABSynchronizer sync;
-    const KUrl::List toAdd = mDirectoryServices->urlList();
-    KUrl::List currentList = sync.readCurrentList();
-
-    KUrl::List::const_iterator it = toAdd.begin();
-    KUrl::List::const_iterator end = toAdd.end();
-    for (; it != end; ++it) {
-        // check if the URL is already in currentList
-        if (currentList.find(*it) == currentList.end())
-            // if not, add it
-        {
-            currentList.append(*it);
-        }
-    }
-    sync.writeList(currentList);
-#endif
 }
 
 void DirectoryServicesConfigurationPage::defaults()
@@ -409,11 +294,7 @@ void DirectoryServicesConfigurationPage::defaults()
     if (mMaxItemsConfigEntry) {
         mMaxItemsConfigEntry->resetToDefault();
     }
-#ifdef NOT_USEFUL_CURRENTLY
-    if (mAddNewServersConfigEntry) {
-        mAddNewServersConfigEntry->resetToDefault();
-    }
-#endif
+
     load();
 }
 

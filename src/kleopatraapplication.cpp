@@ -18,6 +18,7 @@
 #include "kleopatra_options.h"
 #include "systrayicon.h"
 #include "settings.h"
+#include "smimevalidationpreferences.h"
 
 #include <smartcard/readerstatus.h>
 #include <conf/configuredialog.h>
@@ -157,6 +158,7 @@ public:
     void setupKeyCache()
     {
         keyCache = KeyCache::mutableInstance();
+        keyCache->setRefreshInterval(SMimeValidationPreferences{}.refreshInterval());
         watcher.reset(new FileSystemWatcher);
 
         watcher->whitelistFiles(gnupgFileWhitelist());

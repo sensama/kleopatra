@@ -211,6 +211,9 @@ void SMimeValidationConfigurationWidget::load()
     const unsigned int refreshInterval = preferences.refreshInterval();
     d->ui.intervalRefreshCB->setChecked(refreshInterval > 0);
     d->ui.intervalRefreshSB->setValue(refreshInterval);
+    const bool isRefreshIntervalImmutable = preferences.isImmutable(QStringLiteral("RefreshInterval"));
+    d->ui.intervalRefreshCB->setEnabled(!isRefreshIntervalImmutable);
+    d->ui.intervalRefreshSB->setEnabled(!isRefreshIntervalImmutable);
 
     CryptoConfig *const config = QGpgME::cryptoConfig();
     if (!config) {

@@ -252,17 +252,18 @@ void CryptoOperationsConfigWidget::setupGui()
     fileGrpLay->addWidget(mSymmetricOnlyCB);
 
     auto comboLay = new QGridLayout;
-    auto chkLabel = new QLabel(i18n("Checksum program to use when creating checksum files:"));
-    comboLay->addWidget(chkLabel, 0, 0);
-    mChecksumDefinitionCB = new QComboBox;
-    comboLay->addWidget(mChecksumDefinitionCB, 0, 1);
 
-    auto archLabel = new QLabel(i18n("Archive command to use when archiving files:"));
-    comboLay->addWidget(archLabel, 1, 0);
-    mArchiveDefinitionCB = new QComboBox;
-    comboLay->addWidget(mArchiveDefinitionCB, 1, 1);
+    mChecksumDefinitionCB.createWidgets(this);
+    mChecksumDefinitionCB.label()->setText(i18n("Checksum program to use when creating checksum files:"));
+    comboLay->addWidget(mChecksumDefinitionCB.label(), 0, 0);
+    comboLay->addWidget(mChecksumDefinitionCB.widget(), 0, 1);
+
+    mArchiveDefinitionCB.createWidgets(this);
+    mArchiveDefinitionCB.label()->setText(i18n("Archive command to use when archiving files:"));
+    comboLay->addWidget(mArchiveDefinitionCB.label(), 1, 0);
+    comboLay->addWidget(mArchiveDefinitionCB.widget(), 1, 1);
+
     fileGrpLay->addLayout(comboLay);
-
 
     fileGrp->setLayout(fileGrpLay);
     baseLay->addWidget(fileGrp);
@@ -280,9 +281,9 @@ void CryptoOperationsConfigWidget::setupGui()
 
     connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mChecksumDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mChecksumDefinitionCB.widget(), static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
-    connect(mArchiveDefinitionCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mArchiveDefinitionCB.widget(), static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
@@ -305,61 +306,67 @@ void CryptoOperationsConfigWidget::defaults()
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
 
-    if (mChecksumDefinitionCB->count()) {
-        mChecksumDefinitionCB->setCurrentIndex(0);
+    if (mChecksumDefinitionCB.widget()->count()) {
+        mChecksumDefinitionCB.widget()->setCurrentIndex(0);
     }
 
-    if (mArchiveDefinitionCB->count()) {
-        mArchiveDefinitionCB->setCurrentIndex(0);
+    if (mArchiveDefinitionCB.widget()->count()) {
+        mArchiveDefinitionCB.widget()->setCurrentIndex(0);
     }
 }
 
 void CryptoOperationsConfigWidget::load()
 {
-
     const EMailOperationsPreferences emailPrefs;
-    mQuickSignCB   ->setChecked(emailPrefs.quickSignEMail());
+    mQuickSignCB->setChecked(emailPrefs.quickSignEMail());
+    mQuickSignCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickSignEMail")));
     mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
+    mQuickEncryptCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickEncryptEMail")));
 
     const FileOperationsPreferences filePrefs;
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
+    mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
+    mAutoDecryptVerifyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AutoDecryptVerify")));
     mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
+    mASCIIArmorCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AddASCIIArmor")));
     mTmpDirCB->setChecked(filePrefs.dontUseTmpDir());
+    mTmpDirCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("DontUseTmpDir")));
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
+    mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
 
     const Settings settings;
     const auto cds = ChecksumDefinition::getChecksumDefinitions();
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
 
-    mChecksumDefinitionCB->clear();
-    mArchiveDefinitionCB->clear();
-
+    mChecksumDefinitionCB.widget()->clear();
     for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
-        mChecksumDefinitionCB->addItem(cd->label(), QVariant{cd->id()});
+        mChecksumDefinitionCB.widget()->addItem(cd->label(), QVariant{cd->id()});
         if (cd->id() == defaultChecksumDefinitionId) {
-            mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
+            mChecksumDefinitionCB.widget()->setCurrentIndex(mChecksumDefinitionCB.widget()->count() - 1);
         }
     }
+    mChecksumDefinitionCB.setEnabled(!settings.isImmutable(QStringLiteral("ChecksumDefinitionId")));
 
     const QString ad_default_id = filePrefs.archiveCommand();
 
     // This is a weird hack but because we are a KCM we can't link
     // against ArchiveDefinition which pulls in loads of other classes.
     // So we do the parsing which archive definitions exist here ourself.
+    mArchiveDefinitionCB.widget()->clear();
     if (KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"))) {
         const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Archive Definition #")));
         for (const QString &group : groups) {
             const KConfigGroup cGroup(config, group);
             const QString id = cGroup.readEntryUntranslated(QStringLiteral("id"));
             const QString name = cGroup.readEntry("Name");
-            mArchiveDefinitionCB->addItem(name, QVariant(id));
+            mArchiveDefinitionCB.widget()->addItem(name, QVariant(id));
             if (id == ad_default_id) {
-                mArchiveDefinitionCB->setCurrentIndex(mArchiveDefinitionCB->count() - 1);
+                mArchiveDefinitionCB.widget()->setCurrentIndex(mArchiveDefinitionCB.widget()->count() - 1);
             }
         }
-
     }
+    mArchiveDefinitionCB.setEnabled(!filePrefs.isImmutable(QStringLiteral("ArchiveCommand")));
 }
 
 void CryptoOperationsConfigWidget::save()
@@ -378,16 +385,16 @@ void CryptoOperationsConfigWidget::save()
     filePrefs.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
 
     Settings settings;
-    const int idx = mChecksumDefinitionCB->currentIndex();
+    const int idx = mChecksumDefinitionCB.widget()->currentIndex();
     if (idx >= 0) {
-        const auto id = mChecksumDefinitionCB->itemData(idx).toString();
+        const auto id = mChecksumDefinitionCB.widget()->itemData(idx).toString();
         settings.setChecksumDefinitionId(id);
     }
     settings.save();
 
-    const int aidx = mArchiveDefinitionCB->currentIndex();
+    const int aidx = mArchiveDefinitionCB.widget()->currentIndex();
     if (aidx >= 0) {
-        const QString id = mArchiveDefinitionCB->itemData(aidx).toString();
+        const QString id = mArchiveDefinitionCB.widget()->itemData(aidx).toString();
         filePrefs.setArchiveCommand(id);
     }
     filePrefs.save();

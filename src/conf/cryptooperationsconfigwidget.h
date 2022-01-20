@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include "labelledwidget.h"
+
 #include <QWidget>
 
 #include <utils/pimpl_ptr.h>
@@ -51,8 +53,8 @@ private:
               *mASCIIArmorCB,
               *mTmpDirCB,
               *mSymmetricOnlyCB;
-    QComboBox *mChecksumDefinitionCB,
-              *mArchiveDefinitionCB;
+    Kleo::LabelledWidget<QComboBox> mChecksumDefinitionCB;
+    Kleo::LabelledWidget<QComboBox> mArchiveDefinitionCB;
     QPushButton *mApplyBtn;
 };
 

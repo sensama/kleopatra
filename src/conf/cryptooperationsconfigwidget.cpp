@@ -17,6 +17,7 @@
 
 #include "emailoperationspreferences.h"
 #include "fileoperationspreferences.h"
+#include "settings.h"
 
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/KeyFilterManager>
@@ -313,8 +314,6 @@ void CryptoOperationsConfigWidget::defaults()
     }
 }
 
-Q_DECLARE_METATYPE(std::shared_ptr<Kleo::ChecksumDefinition>)
-
 void CryptoOperationsConfigWidget::load()
 {
 
@@ -329,15 +328,16 @@ void CryptoOperationsConfigWidget::load()
     mTmpDirCB->setChecked(filePrefs.dontUseTmpDir());
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
 
-    const std::vector< std::shared_ptr<ChecksumDefinition> > cds = ChecksumDefinition::getChecksumDefinitions();
-    const std::shared_ptr<ChecksumDefinition> default_cd = ChecksumDefinition::getDefaultChecksumDefinition(cds);
+    const Settings settings;
+    const auto cds = ChecksumDefinition::getChecksumDefinitions();
+    const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
 
     mChecksumDefinitionCB->clear();
     mArchiveDefinitionCB->clear();
 
     for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
-        mChecksumDefinitionCB->addItem(cd->label(), QVariant::fromValue(cd));
-        if (cd == default_cd) {
+        mChecksumDefinitionCB->addItem(cd->label(), QVariant{cd->id()});
+        if (cd->id() == defaultChecksumDefinitionId) {
             mChecksumDefinitionCB->setCurrentIndex(mChecksumDefinitionCB->count() - 1);
         }
     }
@@ -377,11 +377,13 @@ void CryptoOperationsConfigWidget::save()
     filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());
     filePrefs.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
 
+    Settings settings;
     const int idx = mChecksumDefinitionCB->currentIndex();
     if (idx >= 0) {
-        const auto cd = qvariant_cast< std::shared_ptr<ChecksumDefinition> >(mChecksumDefinitionCB->itemData(idx));
-        ChecksumDefinition::setDefaultChecksumDefinition(cd);
+        const auto id = mChecksumDefinitionCB->itemData(idx).toString();
+        settings.setChecksumDefinitionId(id);
     }
+    settings.save();
 
     const int aidx = mArchiveDefinitionCB->currentIndex();
     if (aidx >= 0) {

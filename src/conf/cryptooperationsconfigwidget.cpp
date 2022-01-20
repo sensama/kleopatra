@@ -7,6 +7,9 @@
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
 
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
+
     SPDX-License-Identifier: GPL-2.0-or-later
  */
 
@@ -297,33 +300,32 @@ CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
 void CryptoOperationsConfigWidget::defaults()
 {
     EMailOperationsPreferences emailPrefs;
-    emailPrefs.setDefaults();
-    mQuickSignCB->setChecked(emailPrefs.quickSignEMail());
-    mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
+    emailPrefs.setQuickSignEMail(emailPrefs.findItem(QStringLiteral("QuickSignEMail"))->getDefault().toBool());
+    emailPrefs.setQuickEncryptEMail(emailPrefs.findItem(QStringLiteral("QuickEncryptEMail"))->getDefault().toBool());
 
     FileOperationsPreferences filePrefs;
-    filePrefs.setDefaults();
-    mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
-    mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
+    filePrefs.setUsePGPFileExt(filePrefs.findItem(QStringLiteral("UsePGPFileExt"))->getDefault().toBool());
+    filePrefs.setAutoDecryptVerify(filePrefs.findItem(QStringLiteral("AutoDecryptVerify"))->getDefault().toBool());
+    filePrefs.setAddASCIIArmor(filePrefs.findItem(QStringLiteral("AddASCIIArmor"))->getDefault().toBool());
+    filePrefs.setDontUseTmpDir(filePrefs.findItem(QStringLiteral("DontUseTmpDir"))->getDefault().toBool());
+    filePrefs.setSymmetricEncryptionOnly(filePrefs.findItem(QStringLiteral("SymmetricEncryptionOnly"))->getDefault().toBool());
+    filePrefs.setArchiveCommand(filePrefs.findItem(QStringLiteral("ArchiveCommand"))->getDefault().toString());
 
-    if (mChecksumDefinitionCB.widget()->count()) {
-        mChecksumDefinitionCB.widget()->setCurrentIndex(0);
-    }
+    Settings settings;
+    settings.setChecksumDefinitionId(settings.findItem(QStringLiteral("ChecksumDefinitionId"))->getDefault().toString());
 
-    if (mArchiveDefinitionCB.widget()->count()) {
-        mArchiveDefinitionCB.widget()->setCurrentIndex(0);
-    }
+    load(emailPrefs, filePrefs, settings);
 }
 
-void CryptoOperationsConfigWidget::load()
+void CryptoOperationsConfigWidget::load(const Kleo::EMailOperationsPreferences &emailPrefs,
+                                        const Kleo::FileOperationsPreferences &filePrefs,
+                                        const Kleo::Settings &settings)
 {
-    const EMailOperationsPreferences emailPrefs;
     mQuickSignCB->setChecked(emailPrefs.quickSignEMail());
     mQuickSignCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickSignEMail")));
     mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
     mQuickEncryptCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickEncryptEMail")));
 
-    const FileOperationsPreferences filePrefs;
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
@@ -335,20 +337,37 @@ void CryptoOperationsConfigWidget::load()
     mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
     mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
 
-    const Settings settings;
-    const auto cds = ChecksumDefinition::getChecksumDefinitions();
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
-
-    mChecksumDefinitionCB.widget()->clear();
-    for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
-        mChecksumDefinitionCB.widget()->addItem(cd->label(), QVariant{cd->id()});
-        if (cd->id() == defaultChecksumDefinitionId) {
-            mChecksumDefinitionCB.widget()->setCurrentIndex(mChecksumDefinitionCB.widget()->count() - 1);
+    {
+        const auto index = mChecksumDefinitionCB.widget()->findData(defaultChecksumDefinitionId);
+        if (index >= 0) {
+            mChecksumDefinitionCB.widget()->setCurrentIndex(index);
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "No checksum definition found with id" << defaultChecksumDefinitionId;
         }
     }
     mChecksumDefinitionCB.setEnabled(!settings.isImmutable(QStringLiteral("ChecksumDefinitionId")));
 
-    const QString ad_default_id = filePrefs.archiveCommand();
+    const auto ad_default_id = filePrefs.archiveCommand();
+    {
+        const auto index = mArchiveDefinitionCB.widget()->findData(ad_default_id);
+        if (index >= 0) {
+            mArchiveDefinitionCB.widget()->setCurrentIndex(index);
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "No archive definition found with id" << ad_default_id;
+        }
+    }
+    mArchiveDefinitionCB.setEnabled(!filePrefs.isImmutable(QStringLiteral("ArchiveCommand")));
+}
+
+
+void CryptoOperationsConfigWidget::load()
+{
+    mChecksumDefinitionCB.widget()->clear();
+    const auto cds = ChecksumDefinition::getChecksumDefinitions();
+    for (const std::shared_ptr<ChecksumDefinition> &cd : cds) {
+        mChecksumDefinitionCB.widget()->addItem(cd->label(), QVariant{cd->id()});
+    }
 
     // This is a weird hack but because we are a KCM we can't link
     // against ArchiveDefinition which pulls in loads of other classes.
@@ -361,12 +380,10 @@ void CryptoOperationsConfigWidget::load()
             const QString id = cGroup.readEntryUntranslated(QStringLiteral("id"));
             const QString name = cGroup.readEntry("Name");
             mArchiveDefinitionCB.widget()->addItem(name, QVariant(id));
-            if (id == ad_default_id) {
-                mArchiveDefinitionCB.widget()->setCurrentIndex(mArchiveDefinitionCB.widget()->count() - 1);
-            }
         }
     }
-    mArchiveDefinitionCB.setEnabled(!filePrefs.isImmutable(QStringLiteral("ArchiveCommand")));
+
+    load(EMailOperationsPreferences{}, FileOperationsPreferences{}, Settings{});
 }
 
 void CryptoOperationsConfigWidget::save()

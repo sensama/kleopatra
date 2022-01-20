@@ -22,6 +22,10 @@ class QPushButton;
 
 namespace Kleo
 {
+class EMailOperationsPreferences;
+class FileOperationsPreferences;
+class Settings;
+
 namespace Config
 {
 
@@ -44,6 +48,10 @@ private:
     void setupGui();
     void setupProfileGui(QBoxLayout *layout);
     void applyProfile(const QString &profile);
+
+    void load(const Kleo::EMailOperationsPreferences &emailPrefs,
+              const Kleo::FileOperationsPreferences &filePrefs,
+              const Kleo::Settings &settings);
 
 private:
     QCheckBox *mQuickEncryptCB,

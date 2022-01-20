@@ -3,7 +3,8 @@
 
     This file is part of kleopatra, the KDE key manager
     SPDX-FileCopyrightText: 2010 Klarälvdalens Datakonsult AB
-    2016 by Bundesamt für Sicherheit in der Informationstechnik
+
+    SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
 
     SPDX-License-Identifier: GPL-2.0-or-later

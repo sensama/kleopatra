@@ -4,6 +4,9 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2004, 2008 Klarälvdalens Datakonsult AB
 
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
+
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
@@ -281,17 +284,17 @@ void DirectoryServicesConfigurationPage::save()
 void DirectoryServicesConfigurationPage::defaults()
 {
     // these guys don't have a default, to clear them:
-    if (mX509ServicesEntry) {
+    if (mX509ServicesEntry && !mX509ServicesEntry->isReadOnly()) {
         mX509ServicesEntry->setURLValueList(QList<QUrl>());
     }
-    if (mOpenPGPServiceEntry) {
+    if (mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly()) {
         mOpenPGPServiceEntry->setStringValue(QString());
     }
     // these presumably have a default, use that one:
-    if (mTimeoutConfigEntry) {
+    if (mTimeoutConfigEntry && !mTimeoutConfigEntry->isReadOnly()) {
         mTimeoutConfigEntry->resetToDefault();
     }
-    if (mMaxItemsConfigEntry) {
+    if (mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly()) {
         mMaxItemsConfigEntry->resetToDefault();
     }
 

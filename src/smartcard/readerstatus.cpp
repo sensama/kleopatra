@@ -306,6 +306,20 @@ static void setDisplaySerialNumber(Card *card, std::shared_ptr<Context> &gpgAgen
     return;
 }
 
+static void learnCardKeyStubs(const Card *card, std::shared_ptr<Context> &gpg_agent)
+{
+    for (const KeyPairInfo &keyInfo : card->keyInfos()) {
+        if (!keyInfo.grip.empty()) {
+            Error err;
+            const auto command = std::string("READKEY --card --no-data -- ") + keyInfo.keyRef;
+            (void)Assuan::sendStatusLinesCommand(gpg_agent, command.c_str(), err);
+            if (err) {
+                qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
+            }
+        }
+    }
+}
+
 static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
@@ -324,6 +338,8 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     }
 
     setDisplaySerialNumber(pgpCard, gpg_agent);
+
+    learnCardKeyStubs(pgpCard, gpg_agent);
 
     ci.reset(pgpCard);
 }
@@ -390,6 +406,8 @@ static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
         }
     }
 
+    learnCardKeyStubs(pivCard, gpg_agent);
+
     ci.reset(pivCard);
 }
 
@@ -408,11 +426,9 @@ static void handle_p15_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> 
         info.insert(info.end(), fprs.begin(), fprs.end());
     }
 
-    /* Create the key stubs */
-    Assuan::sendStatusLinesCommand(gpg_agent, "READKEY --card --no-data -- $SIGNKEYID", err);
-    Assuan::sendStatusLinesCommand(gpg_agent, "READKEY --card --no-data -- $ENCRKEYID", err);
-
     p15Card->setCardInfo(info);
+
+    learnCardKeyStubs(p15Card, gpg_agent);
 
     setDisplaySerialNumber(p15Card, gpg_agent);
 
@@ -474,6 +490,8 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
         return;
     }
     nkCard->setCardInfo(info);
+
+    learnCardKeyStubs(nkCard, gpg_agent);
 }
 
 static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, const std::string &appName, std::shared_ptr<Context> &gpg_agent)

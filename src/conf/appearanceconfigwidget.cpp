@@ -420,14 +420,21 @@ void AppearanceConfigWidget::Private::slotDefaultClicked()
 
 void AppearanceConfigWidget::defaults()
 {
-
     // This simply means "default look for every category"
     for (int i = 0, end = d->categoriesLV->count(); i != end; ++i) {
         set_default_appearance(d->categoriesLV->item(i));
     }
-    d->tooltipValidityCheckBox->setChecked(true);
-    d->tooltipOwnerCheckBox->setChecked(false);
-    d->tooltipDetailsCheckBox->setChecked(false);
+
+    // use a temporary TooltipPreferences instance for resetting the values to the defaults;
+    // the setters respect the immutability of the individual settings, so that we don't have
+    // to check this explicitly
+    TooltipPreferences tooltipPrefs;
+    tooltipPrefs.setShowValidity(tooltipPrefs.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
+    d->tooltipValidityCheckBox->setChecked(tooltipPrefs.showValidity());
+    tooltipPrefs.setShowOwnerInformation(tooltipPrefs.findItem(QStringLiteral("ShowOwnerInformation"))->getDefault().toBool());
+    d->tooltipOwnerCheckBox->setChecked(tooltipPrefs.showOwnerInformation());
+    tooltipPrefs.setShowCertificateDetails(tooltipPrefs.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
+    d->tooltipDetailsCheckBox->setChecked(tooltipPrefs.showCertificateDetails());
 
     if (d->dnOrderWidget) {
         const Settings settings;

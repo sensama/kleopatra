@@ -29,6 +29,7 @@
 
 #include <gpgme++/key.h>
 
+#include <Libkleo/Dn>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilterManager>
@@ -224,6 +225,7 @@ void KleopatraApplication::init()
             QWindowsWindowFunctions::AlwaysActivateWindow);
 #endif
     add_resources();
+    DN::setAttributeOrder(Settings{}.attributeOrder());
     d->setupKeyCache();
     d->setUpSysTrayIcon();
     d->setUpFilterManager();

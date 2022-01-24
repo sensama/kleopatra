@@ -304,7 +304,7 @@ public:
 
         if (Kleo::Settings{}.cmsEnabled()) {
             auto w = new QWidget;
-            dnOrderWidget = Kleo::DNAttributeMapper::instance()->configWidget(w);
+            dnOrderWidget = new DNAttributeOrderConfigWidget{w};
             dnOrderWidget->setObjectName(QStringLiteral("dnOrderWidget"));
             (new QVBoxLayout(w))->addWidget(dnOrderWidget);
 
@@ -430,7 +430,10 @@ void AppearanceConfigWidget::defaults()
     d->tooltipDetailsCheckBox->setChecked(false);
 
     if (d->dnOrderWidget) {
-        d->dnOrderWidget->defaults();
+        const Settings settings;
+        if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
+            d->dnOrderWidget->setAttributeOrder(DN::defaultAttributeOrder());
+        }
     }
 
     Q_EMIT changed();
@@ -439,7 +442,9 @@ void AppearanceConfigWidget::defaults()
 void AppearanceConfigWidget::load()
 {
     if (d->dnOrderWidget) {
-        d->dnOrderWidget->load();
+        const Settings settings;
+        d->dnOrderWidget->setAttributeOrder(settings.attributeOrder());
+        d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
 
     d->categoriesLV->clear();
@@ -474,7 +479,11 @@ void AppearanceConfigWidget::load()
 void AppearanceConfigWidget::save()
 {
     if (d->dnOrderWidget) {
-        d->dnOrderWidget->save();
+        Settings settings;
+        settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
+        settings.save();
+
+        DN::setAttributeOrder(settings.attributeOrder());
     }
 
     TooltipPreferences prefs;

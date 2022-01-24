@@ -460,11 +460,15 @@ void AppearanceConfigWidget::load()
 
     const TooltipPreferences prefs;
     d->tooltipValidityCheckBox->setChecked(prefs.showValidity());
+    d->tooltipValidityCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowValidity")));
     d->tooltipOwnerCheckBox->setChecked(prefs.showOwnerInformation());
+    d->tooltipOwnerCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowOwnerInformation")));
     d->tooltipDetailsCheckBox->setChecked(prefs.showCertificateDetails());
+    d->tooltipDetailsCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowCertificateDetails")));
 
     const TagsPreferences tagsPrefs;
     d->useTagsCheckBox->setChecked(tagsPrefs.useTags());
+    d->useTagsCheckBox->setEnabled(!tagsPrefs.isImmutable(QStringLiteral("UseTags")));
 }
 
 void AppearanceConfigWidget::save()

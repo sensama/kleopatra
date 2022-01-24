@@ -508,6 +508,7 @@ void AppearanceConfigWidget::save()
 
     TagsPreferences tagsPrefs;
     tagsPrefs.setUseTags(d->useTagsCheckBox->isChecked());
+    tagsPrefs.save();
 
     config->sync();
     KeyFilterManager::instance()->reload();

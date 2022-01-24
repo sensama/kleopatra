@@ -53,7 +53,7 @@ namespace
         if (attr.isEmpty()) {
             return QString();
         }
-        const QString label = DNAttributeMapper::instance()->name2label(attr);
+        const QString label = DN::attributeNameToLabel(attr);
         if (!label.isEmpty()) {
             return i18nc("Format string for the labels in the \"Your Personal Data\" page",
                         "%1 (%2)", label, attr);

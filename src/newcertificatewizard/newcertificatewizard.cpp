@@ -1316,7 +1316,7 @@ static QString attributeLabel(const QString &attr, bool pgp)
     if (attr.isEmpty()) {
         return QString();
     }
-    const QString label = pgp ? pgpLabel(attr) : Kleo::DNAttributeMapper::instance()->name2label(attr);
+    const QString label = pgp ? pgpLabel(attr) : Kleo::DN::attributeNameToLabel(attr);
     if (!label.isEmpty())
         if (pgp) {
             return label;

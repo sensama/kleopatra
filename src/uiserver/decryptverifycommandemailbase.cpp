@@ -14,11 +14,11 @@
 #include <crypto/decryptverifytask.h>
 #include <crypto/decryptverifyemailcontroller.h>
 
-#include <utils/hex.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Hex>
 #include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>

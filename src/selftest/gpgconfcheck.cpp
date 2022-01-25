@@ -14,7 +14,7 @@
 #include "implementation_p.h"
 
 #include <Libkleo/GnuPG>
-#include <utils/hex.h>
+#include <Libkleo/Hex>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>

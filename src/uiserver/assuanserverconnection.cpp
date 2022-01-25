@@ -24,10 +24,10 @@
 #include <utils/output.h>
 #include <Libkleo/GnuPG>
 #include <utils/detail_p.h>
-#include <utils/hex.h>
 #include <utils/log.h>
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Hex>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>

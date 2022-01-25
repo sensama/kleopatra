@@ -79,7 +79,6 @@ set(_kleopatra_SRCS
   utils/multivalidator.cpp
   utils/systemtrayicon.cpp
 
-  utils/hex.cpp
   utils/path-helper.cpp
   utils/input.cpp
   utils/output.cpp

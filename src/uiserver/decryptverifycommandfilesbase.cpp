@@ -17,11 +17,11 @@
 #include "crypto/decryptverifyfilescontroller.h"
 #include "crypto/autodecryptverifyfilescontroller.h"
 
-#include <utils/hex.h>
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Hex>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
 #include <Libkleo/KeyCache>

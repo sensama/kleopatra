@@ -16,10 +16,10 @@
 #include <kleo-assuan.h>
 #include <gpg-error.h>
 
+#include <Libkleo/Hex>
 #include <Libkleo/KleoException>
 
 #include "utils/wsastarter.h"
-#include "utils/hex.h"
 
 #ifndef Q_OS_WIN32
 # include <unistd.h>

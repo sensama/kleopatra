@@ -26,6 +26,7 @@ class AppearanceConfigurationPage : public KCModule
 public:
     explicit AppearanceConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
+public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

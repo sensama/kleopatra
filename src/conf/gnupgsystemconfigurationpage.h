@@ -26,6 +26,7 @@ public:
     explicit GnuPGSystemConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
     ~GnuPGSystemConfigurationPage() override;
 
+public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

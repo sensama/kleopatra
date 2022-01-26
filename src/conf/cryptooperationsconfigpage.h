@@ -26,6 +26,7 @@ class CryptoOperationsConfigurationPage : public KCModule
 public:
     explicit CryptoOperationsConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
+public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

@@ -22,6 +22,7 @@ class SMimeValidationConfigurationPage : public KCModule
 public:
     explicit SMimeValidationConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
 
+public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

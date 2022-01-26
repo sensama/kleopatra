@@ -22,6 +22,7 @@
 #include <Libkleo/DirectoryServicesWidget>
 #include <Libkleo/KeyserverConfig>
 
+#include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
 #include <KMessageBox>
@@ -68,11 +69,52 @@ static const char s_addnewservers_componentName[] = "dirmngr";
 static const char s_addnewservers_entryName[] = "add-servers";
 #endif
 
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args)
+class DirectoryServicesConfigurationPage::Private
+{
+    DirectoryServicesConfigurationPage *q = nullptr;
+
+public:
+    Private(DirectoryServicesConfigurationPage *q);
+
+    void load();
+    void save();
+    void defaults();
+
+private:
+    enum EntryMultiplicity {
+        SingleValue,
+        ListValue
+    };
+    enum ShowError {
+        DoNotShowError,
+        DoShowError
+    };
+
+    QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
+                                           const char *entryName,
+                                           QGpgME::CryptoConfigEntry::ArgType argType,
+                                           EntryMultiplicity multiplicity,
+                                           ShowError showError);
+
+    Kleo::LabelledWidget<QLineEdit> mOpenPGPKeyserverEdit;
+    Kleo::DirectoryServicesWidget *mDirectoryServices = nullptr;
+    Kleo::LabelledWidget<QTimeEdit> mTimeout;
+    Kleo::LabelledWidget<QSpinBox> mMaxItems;
+    QCheckBox *mAddNewServersCB = nullptr;
+
+    QGpgME::CryptoConfigEntry *mX509ServicesEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
+    QGpgME::CryptoConfigEntry *mAddNewServersConfigEntry = nullptr;
+
+    QGpgME::CryptoConfig *mConfig = nullptr;
+};
+
+DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *q)
 {
     mConfig = QGpgME::cryptoConfig();
-    auto glay = new QGridLayout(this);
+    auto glay = new QGridLayout(q);
     glay->setContentsMargins(0, 0, 0, 0);
 
     // OpenPGP keyserver
@@ -81,33 +123,34 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-        mOpenPGPKeyserverEdit.createWidgets(this);
+        mOpenPGPKeyserverEdit.createWidgets(q);
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
         l->addWidget(mOpenPGPKeyserverEdit.label());
         l->addWidget(mOpenPGPKeyserverEdit.widget());
 
         glay->addLayout(l, row, 0, 1, 3);
-        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited, this, [this]() { Q_EMIT changed(true); });
+        connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited,
+                q, [q]() { Q_EMIT q->changed(true); });
     }
 
     // X.509 servers
     if (Settings{}.cmsEnabled()) {
         ++row;
-        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), this};
+        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q};
         auto groupBoxLayout = new QVBoxLayout{groupBox};
 
         if (gpgme_check_version("1.16.0")) {
-            mDirectoryServices = new Kleo::DirectoryServicesWidget(this);
+            mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
             if (QLayout *l = mDirectoryServices->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
             }
             groupBoxLayout->addWidget(mDirectoryServices);
-            connect(mDirectoryServices, SIGNAL(changed()), this, SLOT(changed()));
+            connect(mDirectoryServices, SIGNAL(changed()), q, SLOT(changed()));
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
             groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
-                                                      "because the used gpgme libraries are too old."), this});
+                                                      "because the used gpgme libraries are too old."), q});
         }
 
         glay->addWidget(groupBox, row, 0, 1, 3);
@@ -115,29 +158,27 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
 
     // LDAP timeout
     ++row;
-    mTimeout.createWidgets(this);
+    mTimeout.createWidgets(q);
     mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
     mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
-    connect(mTimeout.widget(), SIGNAL(timeChanged(QTime)), this, SLOT(changed()));
+    connect(mTimeout.widget(), SIGNAL(timeChanged(QTime)), q, SLOT(changed()));
     glay->addWidget(mTimeout.label(), row, 0);
     glay->addWidget(mTimeout.widget(), row, 1);
 
     // Max number of items returned by queries
     ++row;
-    mMaxItems.createWidgets(this);
+    mMaxItems.createWidgets(q);
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
-    connect(mMaxItems.widget(), SIGNAL(valueChanged(int)), this, SLOT(changed()));
+    connect(mMaxItems.widget(), SIGNAL(valueChanged(int)), q, SLOT(changed()));
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
     glay->setRowStretch(++row, 1);
     glay->setColumnStretch(2, 1);
-
-    load();
 }
 
-void DirectoryServicesConfigurationPage::load()
+void DirectoryServicesConfigurationPage::Private::load()
 {
     if (mDirectoryServices) {
         mDirectoryServices->clear();
@@ -253,7 +294,7 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
 }
 }
 
-void DirectoryServicesConfigurationPage::save()
+void DirectoryServicesConfigurationPage::Private::save()
 {
     if (mX509ServicesEntry && mDirectoryServices) {
         QList<QUrl> urls;
@@ -281,7 +322,7 @@ void DirectoryServicesConfigurationPage::save()
     mConfig->sync(true);
 }
 
-void DirectoryServicesConfigurationPage::defaults()
+void DirectoryServicesConfigurationPage::Private::defaults()
 {
     // these guys don't have a default, to clear them:
     if (mX509ServicesEntry && !mX509ServicesEntry->isReadOnly()) {
@@ -302,7 +343,7 @@ void DirectoryServicesConfigurationPage::defaults()
 }
 
 // Find config entry for ldap servers. Implements runtime checks on the configuration option.
-CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *componentName,
+CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(const char *componentName,
         const char *entryName,
         CryptoConfigEntry::ArgType argType,
         EntryMultiplicity multiplicity,
@@ -311,15 +352,39 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::configEntry(const char *c
     CryptoConfigEntry *const entry = Kleo::getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
         if (showError == DoShowError) {
-            KMessageBox::error(this, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
+            KMessageBox::error(q, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
         if (showError == DoShowError) {
-            KMessageBox::error(this, i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4", QLatin1String(componentName), QLatin1String(entryName), entry->argType(), entry->isList()));
+            KMessageBox::error(q, i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4", QLatin1String(componentName), QLatin1String(entryName), entry->argType(), entry->isList()));
         }
         return nullptr;
     }
     return entry;
+}
+
+DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent, const QVariantList &args)
+    : KCModule{parent, args}
+    , d{new Private{this}}
+{
+    load();
+}
+
+DirectoryServicesConfigurationPage::~DirectoryServicesConfigurationPage() = default;
+
+void DirectoryServicesConfigurationPage::load()
+{
+    d->load();
+}
+
+void DirectoryServicesConfigurationPage::save()
+{
+    d->save();
+}
+
+void DirectoryServicesConfigurationPage::defaults()
+{
+    d->defaults();
 }

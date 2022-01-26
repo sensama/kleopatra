@@ -33,4 +33,5 @@ public Q_SLOTS:
 private:
     class Private;
     const std::unique_ptr<Private> d;
+    friend class DirectoryServicesConfigurationPage::Private;
 };

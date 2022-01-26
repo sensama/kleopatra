@@ -126,7 +126,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
         glay->addLayout(l, row, 0, 1, 3);
         connect(mOpenPGPKeyserverEdit.widget(), &QLineEdit::textEdited,
-                q, [q]() { Q_EMIT q->changed(true); });
+                q, &DirectoryServicesConfigurationPage::markAsChanged);
     }
 
     // X.509 servers
@@ -141,7 +141,8 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
                 l->setContentsMargins(0, 0, 0, 0);
             }
             groupBoxLayout->addWidget(mDirectoryServices);
-            connect(mDirectoryServices, SIGNAL(changed()), q, SLOT(changed()));
+            connect(mDirectoryServices, &DirectoryServicesWidget::changed,
+                    q, &DirectoryServicesConfigurationPage::markAsChanged);
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
@@ -157,7 +158,8 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     mTimeout.createWidgets(q);
     mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
     mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
-    connect(mTimeout.widget(), SIGNAL(timeChanged(QTime)), q, SLOT(changed()));
+    connect(mTimeout.widget(), &QTimeEdit::timeChanged,
+            q, &DirectoryServicesConfigurationPage::markAsChanged);
     glay->addWidget(mTimeout.label(), row, 0);
     glay->addWidget(mTimeout.widget(), row, 1);
 
@@ -166,7 +168,8 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     mMaxItems.createWidgets(q);
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
-    connect(mMaxItems.widget(), SIGNAL(valueChanged(int)), q, SLOT(changed()));
+    connect(mMaxItems.widget(), &QSpinBox::valueChanged,
+            q, &DirectoryServicesConfigurationPage::markAsChanged);
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 

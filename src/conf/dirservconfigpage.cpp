@@ -64,11 +64,6 @@ static const char s_timeout_entryName[] = "ldaptimeout";
 static const char s_maxitems_componentName[] = "dirmngr";
 static const char s_maxitems_entryName[] = "max-replies";
 
-#ifdef NOT_USEFUL_CURRENTLY
-static const char s_addnewservers_componentName[] = "dirmngr";
-static const char s_addnewservers_entryName[] = "add-servers";
-#endif
-
 class DirectoryServicesConfigurationPage::Private
 {
     DirectoryServicesConfigurationPage *q = nullptr;
@@ -100,13 +95,11 @@ private:
     Kleo::DirectoryServicesWidget *mDirectoryServices = nullptr;
     Kleo::LabelledWidget<QTimeEdit> mTimeout;
     Kleo::LabelledWidget<QSpinBox> mMaxItems;
-    QCheckBox *mAddNewServersCB = nullptr;
 
     QGpgME::CryptoConfigEntry *mX509ServicesEntry = nullptr;
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
     QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
-    QGpgME::CryptoConfigEntry *mAddNewServersConfigEntry = nullptr;
 
     QGpgME::CryptoConfig *mConfig = nullptr;
 };

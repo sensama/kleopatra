@@ -25,7 +25,6 @@ SMimeValidationConfigurationPage::SMimeValidationConfigurationPage(QWidget *pare
     lay->addWidget(mWidget);
 
     connect(mWidget, &SMimeValidationConfigurationWidget::changed, this, &Kleo::Config::SMimeValidationConfigurationPage::markAsChanged);
-    load();
 }
 
 void SMimeValidationConfigurationPage::load()

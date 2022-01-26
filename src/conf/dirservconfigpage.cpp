@@ -413,7 +413,6 @@ DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *
     : KCModule{parent, args}
     , d{new Private{this}}
 {
-    load();
 }
 
 DirectoryServicesConfigurationPage::~DirectoryServicesConfigurationPage() = default;

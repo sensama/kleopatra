@@ -26,8 +26,6 @@ AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent, const 
     lay->addWidget(mWidget);
 
     connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::markAsChanged);
-
-    load();
 }
 
 void AppearanceConfigurationPage::load()

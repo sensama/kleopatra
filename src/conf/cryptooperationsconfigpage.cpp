@@ -26,7 +26,6 @@ CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *pa
     mWidget = new CryptoOperationsConfigWidget(this);
     lay->addWidget(mWidget);
     connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::markAsChanged);
-    load();
 }
 
 void CryptoOperationsConfigurationPage::load()

@@ -33,8 +33,6 @@ GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, cons
 
 
     connect(mWidget, &CryptoConfigModule::changed, this, &Kleo::Config::GnuPGSystemConfigurationPage::markAsChanged);
-
-    load();
 }
 
 GnuPGSystemConfigurationPage::~GnuPGSystemConfigurationPage()

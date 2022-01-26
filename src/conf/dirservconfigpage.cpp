@@ -45,11 +45,13 @@
 using namespace Kleo;
 using namespace QGpgME;
 
-static const char s_x509services_componentName[] = "gpgsm";
-static const char s_x509services_entryName[] = "keyserver";
+// Option for configuring X.509 servers (available via gpgconf since GnuPG 2.3.5 and 2.2.34?)
+static const char s_x509services_componentName[] = "dirmngr";
+static const char s_x509services_entryName[] = "ldapserver";
 
-static const char s_x509services_legacy_componentName[] = "dirmngr";
-static const char s_x509services_legacy_entryName[] = "LDAP Server";
+// Legacy option for configuring X.509 servers (deprecated with GnuPG 2.2.28 and 2.3.2)
+static const char s_x509services_legacy_componentName[] = "gpgsm";
+static const char s_x509services_legacy_entryName[] = "keyserver";
 
 static const char s_pgpservice_componentName[] = "dirmngr";
 static const char s_pgpservice_entryName[] = "keyserver";
@@ -85,6 +87,8 @@ private:
         DoShowError
     };
 
+    void setX509ServerEntry(const std::vector<KeyserverConfig> &servers);
+
     QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
                                            const char *entryName,
                                            QGpgME::CryptoConfigEntry::ArgType argType,
@@ -96,7 +100,6 @@ private:
     Kleo::LabelledWidget<QTimeEdit> mTimeout;
     Kleo::LabelledWidget<QSpinBox> mMaxItems;
 
-    QGpgME::CryptoConfigEntry *mX509ServicesEntry = nullptr;
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
     QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
@@ -171,26 +174,44 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     glay->setColumnStretch(2, 1);
 }
 
+static auto readKeyserverConfigs(const CryptoConfigEntry *configEntry)
+{
+    std::vector<KeyserverConfig> servers;
+    if (configEntry) {
+        const auto urls = configEntry->urlValueList();
+        servers.reserve(urls.size());
+        std::transform(std::begin(urls), std::end(urls),
+                       std::back_inserter(servers),
+                       &KeyserverConfig::fromUrl);
+    }
+    return servers;
+}
+
 void DirectoryServicesConfigurationPage::Private::load()
 {
     if (mDirectoryServices) {
         mDirectoryServices->clear();
 
-        // gpgsm's keyserver option is not provided by very old gpgconf versions
-        mX509ServicesEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
-                                        CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
-        if (!mX509ServicesEntry) {
-            mX509ServicesEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
-                                            CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoShowError);
-        }
-        if (mX509ServicesEntry) {
-            std::vector<KeyserverConfig> servers;
-            const auto urls = mX509ServicesEntry->urlValueList();
-            servers.reserve(urls.size());
-            std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), [](const auto &url) { return KeyserverConfig::fromUrl(url); });
+        // gpgsm uses the deprecated keyserver option in gpgsm.conf additionally to the ldapserver option in dirmngr.conf;
+        // we (try to) read servers from both entries, but always write to the newest existing entry
+        const auto *const newEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
+                                                 CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+        const auto *const legacyEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
+                                                    CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+        auto entry = newEntry ? newEntry : legacyEntry;
+        if (entry) {
+            const auto additionalServers = readKeyserverConfigs(legacyEntry);
+            auto servers = readKeyserverConfigs(newEntry);
+            std::copy(std::begin(additionalServers), std::end(additionalServers),
+                      std::back_inserter(servers));
             mDirectoryServices->setKeyservers(servers);
-            mDirectoryServices->setReadOnly(mX509ServicesEntry->isReadOnly());
+            mDirectoryServices->setReadOnly(entry->isReadOnly());
         } else {
+            qCWarning(KLEOPATRA_LOG) << "Unknown or wrong typed config entries"
+                << s_x509services_componentName << "/" << s_x509services_entryName
+                << "and"
+                << s_x509services_legacy_componentName << "/" << s_x509services_legacy_entryName;
+
             mDirectoryServices->setDisabled(true);
         }
     }
@@ -287,14 +308,44 @@ void updateIntegerConfigEntry(QGpgME::CryptoConfigEntry *configEntry, int value)
 }
 }
 
+void DirectoryServicesConfigurationPage::Private::setX509ServerEntry(const std::vector<KeyserverConfig> &servers)
+{
+    const auto newEntry = configEntry(s_x509services_componentName, s_x509services_entryName,
+                                      CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+    const auto legacyEntry = configEntry(s_x509services_legacy_componentName, s_x509services_legacy_entryName,
+                                         CryptoConfigEntry::ArgType_LDAPURL, ListValue, DoNotShowError);
+
+    if ((newEntry && newEntry->isReadOnly()) || (legacyEntry && legacyEntry->isReadOnly())) {
+        // do not change the config entries if either config entry is read-only
+        return;
+    }
+    QList<QUrl> urls;
+    urls.reserve(servers.size());
+    std::transform(std::begin(servers), std::end(servers),
+                   std::back_inserter(urls),
+                   std::mem_fn(&KeyserverConfig::toUrl));
+    if (newEntry) {
+        // write all servers to the new config entry
+        newEntry->setURLValueList(urls);
+        // and clear the legacy config entry
+        if (legacyEntry) {
+            legacyEntry->setURLValueList({});
+        }
+    } else if (legacyEntry) {
+        // write all servers to the legacy config entry if the new entry is not available
+        legacyEntry->setURLValueList(urls);
+    } else {
+        qCWarning(KLEOPATRA_LOG) << "Could not store the X.509 servers. Unknown or wrong typed config entries"
+            << s_x509services_componentName << "/" << s_x509services_entryName
+            << "and"
+            << s_x509services_legacy_componentName << "/" << s_x509services_legacy_entryName;
+    }
+}
+
 void DirectoryServicesConfigurationPage::Private::save()
 {
-    if (mX509ServicesEntry && mDirectoryServices) {
-        QList<QUrl> urls;
-        const auto servers = mDirectoryServices->keyservers();
-        urls.reserve(servers.size());
-        std::transform(std::begin(servers), std::end(servers), std::back_inserter(urls), [](const auto &server) { return server.toUrl(); });
-        mX509ServicesEntry->setURLValueList(urls);
+    if (mDirectoryServices && mDirectoryServices->isEnabled()) {
+        setX509ServerEntry(mDirectoryServices->keyservers());
     }
 
     if (mOpenPGPServiceEntry) {
@@ -318,8 +369,8 @@ void DirectoryServicesConfigurationPage::Private::save()
 void DirectoryServicesConfigurationPage::Private::defaults()
 {
     // these guys don't have a default, to clear them:
-    if (mX509ServicesEntry && !mX509ServicesEntry->isReadOnly()) {
-        mX509ServicesEntry->setURLValueList(QList<QUrl>());
+    if (mDirectoryServices && mDirectoryServices->isEnabled()) {
+        setX509ServerEntry({});
     }
     if (mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly()) {
         mOpenPGPServiceEntry->setStringValue(QString());

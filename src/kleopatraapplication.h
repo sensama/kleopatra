@@ -97,6 +97,10 @@ Q_SIGNALS:
 
     void configurationChanged();
 
+private Q_SLOTS:
+    // used as URL handler for URLs with schemes that shall be blocked
+    void blockUrl(const QUrl &url);
+
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;

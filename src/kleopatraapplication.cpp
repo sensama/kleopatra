@@ -56,6 +56,7 @@
 #include <KMessageBox>
 #include <KWindowSystem>
 
+#include <QDesktopServices>
 #include <QFile>
 #include <QDir>
 #include <QPointer>
@@ -224,6 +225,10 @@ void KleopatraApplication::init()
     QWindowsWindowFunctions::setWindowActivationBehavior(
             QWindowsWindowFunctions::AlwaysActivateWindow);
 #endif
+    const auto blockedUrlSchemes = Settings{}.blockedUrlSchemes();
+    for (const auto &scheme : blockedUrlSchemes) {
+        QDesktopServices::setUrlHandler(scheme, this, "blockUrl");
+    }
     add_resources();
     DN::setAttributeOrder(Settings{}.attributeOrder());
     d->setupKeyCache();
@@ -683,4 +688,9 @@ void KleopatraApplication::setIgnoreNewInstance(bool ignore)
 bool KleopatraApplication::ignoreNewInstance() const
 {
     return d->ignoreNewInstance;
+}
+
+void KleopatraApplication::blockUrl(const QUrl &url)
+{
+    qCDebug(KLEOPATRA_LOG) << "Blocking URL" << url;
 }

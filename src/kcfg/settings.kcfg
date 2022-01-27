@@ -113,6 +113,14 @@
      <default>true</default>
    </entry>
  </group>
+ <group name="Privacy">
+   <entry name="BlockedUrlSchemes" type="StringList">
+     <label>URL schemes to block</label>
+     <whatsthis>This is a list of URL schemes that shall be blocked by the application.
+         This can be used to prevent the application from opening external applications for certain URLs.</whatsthis>
+     <default></default>
+   </entry>
+ </group>
  <group name="Smartcard">
    <entry name="AlwaysSearchCardOnKeyserver" type="Bool">
      <label>Always search smartcard certificates on keyserver</label>

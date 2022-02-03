@@ -5,7 +5,7 @@
     SPDX-FileCopyrightText: 2007, 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -33,6 +33,9 @@
 #include <QGpgME/ImportJob>
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/ChangeOwnerTrustJob>
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#include <QGpgME/ReceiveKeysJob>
+#endif
 
 #include <gpgme++/global.h>
 #include <gpgme++/importresult.h>
@@ -778,6 +781,48 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     } else {
         jobs.push_back({id, protocol, ImportType::External, job.release()});
     }
+}
+
+static auto get_receive_keys_job(GpgME::Protocol protocol)
+{
+    Q_ASSERT(protocol != UnknownProtocol);
+
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+    std::unique_ptr<ReceiveKeysJob> job{};
+    if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
+        job.reset(backend->receiveKeysJob());
+    }
+    return job;
+#else
+    return std::unique_ptr<Job>{};
+#endif
+}
+
+void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QStringList &keyIds, const QString &id)
+{
+    Q_ASSERT(protocol != UnknownProtocol);
+
+    auto job = get_receive_keys_job(protocol);
+    if (!job.get()) {
+        qCWarning(KLEOPATRA_LOG) << "Failed to get ReceiveKeysJob for protocol" << Formatting::displayName(protocol);
+        importResult({id, protocol, ImportType::External, ImportResult{}});
+        return;
+    }
+
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+    keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+
+    connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
+            q, SLOT(importResult(GpgME::ImportResult)));
+    connect(job.get(), &Job::progress,
+            q, &Command::progress);
+    const GpgME::Error err = job->start(keyIds);
+    if (err.code()) {
+        importResult({id, protocol, ImportType::External, ImportResult{err}});
+    } else {
+        jobs.push_back({id, protocol, ImportType::External, job.release()});
+    }
+#endif
 }
 
 void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &filename)

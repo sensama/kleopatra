@@ -3,7 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007, 2008 Klarälvdalens Datakonsult AB
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -100,6 +100,7 @@ public:
 
     void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
+    void startImport(GpgME::Protocol proto, const QStringList &keyIds, const QString &id = {});
     void importResult(const GpgME::ImportResult &);
     void importResult(const ImportResultData &result);
 

@@ -53,3 +53,6 @@
 
 /* Defined if QGpgME supports the export of secret subkeys */
 #cmakedefine QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT 1
+
+/* Defined if QGpgME supports receiving keys by their key ids */
+#cmakedefine QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID 1

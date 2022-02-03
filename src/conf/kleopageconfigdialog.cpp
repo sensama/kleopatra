@@ -180,7 +180,14 @@ void KleoPageConfigDialog::slotHelpClicked()
     docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
 #endif
     if (docUrl.scheme() == QLatin1String("help") || docUrl.scheme() == QLatin1String("man") || docUrl.scheme() == QLatin1String("info")) {
-        QProcess::startDetached(QStringLiteral("khelpcenter"), QStringList() << docUrl.toString());
+      const QString exec =
+          QStandardPaths::findExecutable(QStringLiteral("khelpcenter"));
+      if (exec.isEmpty()) {
+        qCWarning(KLEOPATRA_LOG) << "Could not find khelpcenter in PATH.";
+      } else {
+        QProcess::startDetached(QStringLiteral("khelpcenter"),
+                                QStringList() << docUrl.toString());
+      }
     } else {
         QDesktopServices::openUrl(docUrl);
     }

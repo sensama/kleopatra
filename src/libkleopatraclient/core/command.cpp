@@ -34,10 +34,11 @@
 #include <gpg-error.h>
 #include <gpgme++/global.h>
 
+#include <QStandardPaths>
 #include <algorithm>
-#include <string>
-#include <sstream>
 #include <memory>
+#include <sstream>
+#include <string>
 #include <type_traits>
 
 using namespace KleopatraClientCopy;
@@ -458,11 +459,17 @@ static QString uiserver_executable()
 
 static QString start_uiserver()
 {
-    if (!QProcess::startDetached(uiserver_executable(), QStringList() << QStringLiteral("--daemon"))) {
-        return i18n("Failed to start uiserver %1", uiserver_executable());
-    } else {
-        return QString();
-    }
+  const QString executable = uiserver_executable();
+  const QString exec = QStandardPaths::findExecutable(executable);
+  if (exec.isEmpty()) {
+    qCWarning(LIBKLEOPATRACLIENTCORE_LOG)
+        << "Could not find " << executable << " in PATH.";
+    return i18n("Failed to start uiserver %1", executable);
+  } else {
+    QProcess::startDetached(executable, QStringList()
+                                            << QStringLiteral("--daemon"));
+  }
+  return QString();
 }
 
 static assuan_error_t getinfo_pid_cb(void *opaque, const void *buffer, size_t length)

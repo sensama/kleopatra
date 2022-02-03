@@ -1,4 +1,10 @@
-/*  SPDX-FileCopyrightText: 2017 Intevation GmbH
+/* -*- mode: c++; c-basic-offset:4 -*-
+    dialogs/weboftrustdialog.h
+
+    This file is part of Kleopatra, the KDE keymanager
+    SPDX-FileCopyrightText: 2017 Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -27,7 +33,11 @@ public:
     GpgME::Key key() const;
 
 private:
-    WebOfTrustWidget *mWidget;
+    void fetchMissingKeys();
+
+private:
+    QPushButton *mFetchKeysBtn = nullptr;
+    WebOfTrustWidget *mWidget = nullptr;
 };
 
 } // namespace Kleo

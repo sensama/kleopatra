@@ -18,6 +18,7 @@
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
 
+#include <QStandardPaths>
 #include <QString>
 #include <QStorageInfo>
 #include <QFileInfo>
@@ -52,6 +53,17 @@ QString Kleo::heuristicBaseDirectory(const QStringList &fileNames)
     }
     qCDebug(KLEOPATRA_LOG) << "dirs" << dirs;
     const QString candidate = longestCommonPrefix(dirs);
+    /* Special case handling for Outlook attachment temporary path.
+     * This is otherwise something like:
+     * c:\users\username\AppData\Local\Microsoft\Windows\INetCache\
+     *      Content.Outlook\ADSDFG9\foo.txt
+     *
+     * This is very common when encrypted attachments are opened
+     * within outlook.
+     */
+    if (candidate.contains(QStringLiteral("Content.Outlook"))) {
+        return QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+    }
     const int idx = candidate.lastIndexOf(QLatin1Char('/'));
     return candidate.left(idx);
 }

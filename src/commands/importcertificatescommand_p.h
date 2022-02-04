@@ -31,7 +31,7 @@ class Error;
 
 namespace QGpgME
 {
-class AbstractImportJob;
+class Job;
 }
 
 namespace Kleo
@@ -52,7 +52,8 @@ struct ImportJobData
     QString id;
     GpgME::Protocol protocol;
     ImportType type;
-    QGpgME::AbstractImportJob *job;
+    QGpgME::Job *job;
+    std::vector<QMetaObject::Connection> connections;
 };
 
 bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
@@ -101,7 +102,7 @@ public:
     void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
     void startImport(GpgME::Protocol proto, const QStringList &keyIds, const QString &id = {});
-    void importResult(const GpgME::ImportResult &);
+    void importResult(const GpgME::ImportResult &, QGpgME::Job *job = nullptr);
     void importResult(const ImportResultData &result);
 
     void importGroupsFromFile(const QString &filename);

@@ -470,15 +470,21 @@ void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
     }
 }
 
-void ImportCertificatesCommand::Private::importResult(const ImportResult &result)
+void ImportCertificatesCommand::Private::importResult(const ImportResult &result, QGpgME::Job *finishedJob)
 {
-    const auto finishedJob = q->sender();
+    if (!finishedJob) {
+        finishedJob = qobject_cast<QGpgME::Job *>(q->sender());
+    }
+    Q_ASSERT(finishedJob);
+
     auto it = std::find_if(std::cbegin(jobs), std::cend(jobs),
                            [finishedJob](const auto &job) { return job.job == finishedJob; });
     Q_ASSERT(it != std::cend(jobs));
     if (it == std::cend(jobs)) {
         qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Finished job not found";
+        return;
     }
+
     const auto job = *it;
     jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
 
@@ -722,10 +728,12 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
-    connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
-            q, SLOT(importResult(GpgME::ImportResult)));
-    connect(job.get(), &Job::progress,
-            q, &Command::progress);
+    std::vector<QMetaObject::Connection> connections = {
+        connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
+                q, SLOT(importResult(GpgME::ImportResult))),
+        connect(job.get(), &Job::progress,
+                q, &Command::progress)
+    };
 
 #ifdef QGPGME_SUPPORTS_IMPORT_WITH_FILTER
     job->setImportFilter(options.importFilter);
@@ -737,7 +745,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     if (err.code()) {
         importResult({id, protocol, ImportType::Local, ImportResult{err}});
     } else {
-        jobs.push_back({id, protocol, ImportType::Local, job.release()});
+        jobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
     }
 }
 
@@ -771,15 +779,18 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
-    connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
-            q, SLOT(importResult(GpgME::ImportResult)));
-    connect(job.get(), &Job::progress,
-            q, &Command::progress);
+    std::vector<QMetaObject::Connection> connections = {
+        connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
+                q, SLOT(importResult(GpgME::ImportResult))),
+        connect(job.get(), &Job::progress,
+                q, &Command::progress)
+    };
+
     const GpgME::Error err = job->start(keys);
     if (err.code()) {
         importResult({id, protocol, ImportType::External, ImportResult{err}});
     } else {
-        jobs.push_back({id, protocol, ImportType::External, job.release()});
+        jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 }
 
@@ -812,15 +823,18 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 #ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
-    connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
-            q, SLOT(importResult(GpgME::ImportResult)));
-    connect(job.get(), &Job::progress,
-            q, &Command::progress);
+    std::vector<QMetaObject::Connection> connections = {
+        connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
+                q, SLOT(importResult(GpgME::ImportResult))),
+        connect(job.get(), &Job::progress,
+                q, &Command::progress)
+    };
+
     const GpgME::Error err = job->start(keyIds);
     if (err.code()) {
         importResult({id, protocol, ImportType::External, ImportResult{err}});
     } else {
-        jobs.push_back({id, protocol, ImportType::External, job.release()});
+        jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 #endif
 }
@@ -833,8 +847,12 @@ void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &fil
 void ImportCertificatesCommand::doCancel()
 {
     std::for_each(std::cbegin(d->jobs), std::cend(d->jobs),
-                  [](const auto &job) { job.job->slotCancel(); });
-    d->jobs.clear();
+                  [this](const auto &job) {
+                      std::for_each(std::cbegin(job.connections), std::cend(job.connections),
+                                    [](const auto &connection) { QObject::disconnect(connection); });
+                      job.job->slotCancel();
+                      d->importResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
+                });
 }
 
 #undef d

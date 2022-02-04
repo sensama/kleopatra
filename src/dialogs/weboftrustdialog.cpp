@@ -84,13 +84,21 @@ WebOfTrustDialog::~WebOfTrustDialog()
 
 namespace
 {
+bool havePublicKeyForSignature(const GpgME::UserID::Signature &signature)
+{
+    // GnuPG returns status "NoPublicKey" for missing signing keys, but also
+    // for expired or revoked signing keys.
+    return (signature.status() != GpgME::UserID::Signature::NoPublicKey)
+        || !KeyCache::instance()->findByKeyIDOrFingerprint (signature.signerKeyID()).isNull();
+}
+
 auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID::Signature> &signatures)
 {
     return std::accumulate(
         std::begin(signatures), std::end(signatures),
         std::set<QString>{},
         [] (auto &keyIds, const auto &signature) {
-            if (signature.status() == GpgME::UserID::Signature::NoPublicKey) {
+            if (!havePublicKeyForSignature(signature)) {
                 keyIds.insert(QLatin1String{signature.signerKeyID()});
             }
             return keyIds;

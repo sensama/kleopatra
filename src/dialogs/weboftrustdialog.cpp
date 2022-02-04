@@ -132,12 +132,12 @@ void WebOfTrustDialog::fetchMissingKeys()
 
     auto cmd = new Kleo::ImportCertificateFromKeyserverCommand{QStringList{std::begin(missingSignerKeys), std::end(missingSignerKeys)}};
     cmd->setParentWidget(this);
-    setEnabled(false);
+    mFetchKeysBtn->setEnabled(false);
     connect(cmd, &Kleo::ImportCertificateFromKeyserverCommand::finished,
             this, [this]() {
         // Trigger an update when done
         setKey(key());
-        setEnabled(true);
+        mFetchKeysBtn->setEnabled(true);
     });
     cmd->start();
 }

@@ -14,6 +14,8 @@
 
 #include <KLocalizedString>
 
+#include <QProgressDialog>
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -62,7 +64,24 @@ ImportCertificateFromKeyserverCommand::Private::~Private() = default;
 
 void ImportCertificateFromKeyserverCommand::Private::start()
 {
-    startImport(GpgME::OpenPGP, mKeyIds, mId);
+    const auto progressDialog = new QProgressDialog{parentWidgetOrView()};
+    progressDialog->setAttribute(Qt::WA_DeleteOnClose);
+    progressDialog->setModal(true);
+    progressDialog->setRange(0, 0);
+    progressDialog->setWindowTitle(i18nc("@title:window", "Fetching Keys"));
+    progressDialog->setLabelText(i18np("Fetching 1 key... (this can take a while)", "Fetching %1 keys... (this can take a while)", mKeyIds.size()));
+    connect(progressDialog, &QProgressDialog::canceled, q, &Command::cancel);
+    connect(q, &Command::finished, progressDialog, [progressDialog]() { progressDialog->accept(); });
+
+    setWaitForMoreJobs(true);
+    // start one import per key id to allow canceling the key retrieval without
+    // losing already retrieved keys
+    for (const auto &keyId : mKeyIds) {
+        startImport(GpgME::OpenPGP, {keyId}, mId);
+    }
+    setWaitForMoreJobs(false);
+
+    progressDialog->show();
 }
 
 ImportCertificateFromKeyserverCommand::ImportCertificateFromKeyserverCommand(const QStringList &keyIds, const QString &id)

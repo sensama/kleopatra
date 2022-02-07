@@ -85,6 +85,14 @@ AboutData::AboutData()
                   QLatin1String(credits[i].email), QLatin1String(credits[i].web));
     }
 
+    /* For Linux it is possible that kleo is shipped as part
+     * of a Gpg4win based Appimage with according about data. */
+    if (Kleo::gpg4winSignedversion()) {
+        setVersion(Kleo::gpg4winVersion().toUtf8());
+        setShortDescription(Kleo::gpg4winDescription());
+        setOtherText(Kleo::gpg4winLongDescription());
+        setBugAddress("https://dev.gnupg.org/u/rgpg4win");
+    }
 
     const auto backendVersions = Kleo::backendVersionInfo();
     if (!backendVersions.empty()) {

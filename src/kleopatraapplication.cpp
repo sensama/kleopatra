@@ -693,4 +693,6 @@ bool KleopatraApplication::ignoreNewInstance() const
 void KleopatraApplication::blockUrl(const QUrl &url)
 {
     qCDebug(KLEOPATRA_LOG) << "Blocking URL" << url;
+    KMessageBox::sorry(mainWindow(),i18n ("Opening an external link is administratively prohibited."),
+                i18n ("Prohibited"));
 }

@@ -846,13 +846,14 @@ void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &fil
 
 void ImportCertificatesCommand::doCancel()
 {
-    std::for_each(std::cbegin(d->jobs), std::cend(d->jobs),
+    const auto jobsToCancel = d->jobs;
+    std::for_each(std::begin(jobsToCancel), std::end(jobsToCancel),
                   [this](const auto &job) {
                       std::for_each(std::cbegin(job.connections), std::cend(job.connections),
                                     [this](const auto &connection) { QObject::disconnect(connection); });
                       job.job->slotCancel();
                       d->importResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
-                });
+                  });
 }
 
 #undef d

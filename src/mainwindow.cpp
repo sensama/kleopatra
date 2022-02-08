@@ -519,6 +519,18 @@ void MainWindow::Private::setupActions()
             QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
+    const auto vsa10573 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("SecOps VSA-10573"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "BSI-VSA-10573-ENG_secops-20220207.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_vsa10573"), vsa10573);
+
+    const auto vsa10584 = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("SecOps VSA-10584"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "BSI-VSA-10584-ENG_secops-20220207.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
+
     const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("GnuPG Manual"),
             QStringLiteral("gnupg.pdf"), QStringLiteral("../share/doc/gnupg"));
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gpg);

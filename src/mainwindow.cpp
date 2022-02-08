@@ -507,19 +507,19 @@ void MainWindow::Private::setupActions()
     /* Documentation centered around the german approved VS-NfD mode for official
      * RESTRICTED communication. This is only available in some distributions with
      * the focus on official communications. */
-    const auto symguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("Password-based encryption"),
+    const auto symguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("Password-based encryption"),
             i18nc("Only available in German and English. Leave to English for other languages.",
                 "handout_symmetric_encryption_gnupg_en.pdf"),
             QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
 
-    const auto quickguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("Quickguide"),
+    const auto quickguide = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("Quickguide"),
             i18nc("Only available in German and English. Leave to English for other languages.",
                 "handout_sign_encrypt_gnupg_en.pdf"),
             QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
-    const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-hint")), i18n("GnuPG Manual"),
+    const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("GnuPG Manual"),
             QStringLiteral("gnupg.pdf"), QStringLiteral("../share/doc/gnupg"));
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gpg);
 

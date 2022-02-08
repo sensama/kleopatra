@@ -17,6 +17,7 @@
 #include "importcertificatescommand_p.h"
 
 #include "certifycertificatecommand.h"
+#include <settings.h>
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Algorithm>
@@ -600,6 +601,15 @@ void ImportCertificatesCommand::Private::processResults()
 {
     importGroups();
 
+    if (Settings{}.retrieveSignerKeysAfterImport() && !importingSignerKeys) {
+        importingSignerKeys = true;
+        const auto missingSignerKeys = getMissingSignerKeyIds(results);
+        if (!missingSignerKeys.empty()) {
+            importSignerKeys(missingSignerKeys);
+            return;
+        }
+    }
+
     handleExternalCMSImports(results);
 
     // ensure that the progress dialog is closed before we show any other dialogs
@@ -711,6 +721,114 @@ void ImportCertificatesCommand::Private::importGroups()
         }
         increaseProgressValue();
     }
+    filesToImportGroupsFrom.clear();
+}
+
+namespace
+{
+bool havePublicKeyForSignature(const GpgME::UserID::Signature &signature)
+{
+    // GnuPG returns status "NoPublicKey" for missing signing keys, but also
+    // for expired or revoked signing keys.
+    return (signature.status() != GpgME::UserID::Signature::NoPublicKey)
+        || !KeyCache::instance()->findByKeyIDOrFingerprint (signature.signerKeyID()).isNull();
+}
+
+auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID::Signature> &signatures)
+{
+    return std::accumulate(
+        std::begin(signatures), std::end(signatures),
+        std::set<QString>{},
+        [] (auto &keyIds, const auto &signature) {
+            if (!havePublicKeyForSignature(signature)) {
+                keyIds.insert(QLatin1String{signature.signerKeyID()});
+            }
+            return keyIds;
+        }
+    );
+}
+
+auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID> &userIds)
+{
+    return std::accumulate(
+        std::begin(userIds), std::end(userIds),
+        std::set<QString>(),
+        [] (auto &keyIds, const auto &userID) {
+            if (!userID.isBad()) {
+                const auto newKeyIds = accumulateMissingSignerKeys(userID.signatures());
+                std::copy(std::begin(newKeyIds), std::end(newKeyIds),
+                          std::inserter(keyIds, std::end(keyIds)));
+            }
+            return keyIds;
+        }
+    );
+}
+
+auto accumulateMissingSignerKeys(const std::vector<GpgME::Key> &keys)
+{
+    return std::accumulate(
+        std::begin(keys), std::end(keys),
+        std::set<QString>(),
+        [] (auto &keyIds, const auto &key) {
+            if (!key.isBad()) {
+                const auto newKeyIds = accumulateMissingSignerKeys(key.userIDs());
+                std::copy(std::begin(newKeyIds), std::end(newKeyIds),
+                          std::inserter(keyIds, std::end(keyIds)));
+            }
+            return keyIds;
+        }
+    );
+}
+}
+
+static auto accumulateNewKeys(std::vector<std::string> &fingerprints, const std::vector<GpgME::Import> &imports)
+{
+    return std::accumulate(std::begin(imports), std::end(imports),
+                           fingerprints,
+                           [](auto &fingerprints, const auto &import) {
+                               if (import.status() == Import::NewKey) {
+                                   fingerprints.push_back(import.fingerprint());
+                               }
+                               return fingerprints;
+                           });
+}
+
+static auto accumulateNewOpenPGPKeys(const std::vector<ImportResultData> &results)
+{
+    return std::accumulate(std::begin(results), std::end(results),
+                           std::vector<std::string>{},
+                           [](auto &fingerprints, const auto &r) {
+                               if (r.protocol == GpgME::OpenPGP) {
+                                   fingerprints = accumulateNewKeys(fingerprints, r.result.imports());
+                               }
+                               return fingerprints;
+                           });
+}
+
+std::set<QString> ImportCertificatesCommand::Private::getMissingSignerKeyIds(const std::vector<ImportResultData> &results)
+{
+    auto newOpenPGPKeys = KeyCache::instance()->findByFingerprint(accumulateNewOpenPGPKeys(results));
+    // update all new OpenPGP keys to get information about certifications
+    std::for_each(std::begin(newOpenPGPKeys), std::end(newOpenPGPKeys), std::mem_fn(&Key::update));
+    auto missingSignerKeys = accumulateMissingSignerKeys(newOpenPGPKeys);
+    return missingSignerKeys;
+}
+
+void ImportCertificatesCommand::Private::importSignerKeys(const std::set<QString> &keyIds)
+{
+    Q_ASSERT(!keyIds.empty());
+
+    setProgressLabelText(i18np("Fetching 1 signer key... (this can take a while)",
+                               "Fetching %1 signer keys... (this can take a while)",
+                               keyIds.size()));
+
+    setWaitForMoreJobs(true);
+    // start one import per key id to allow canceling the key retrieval without
+    // losing already retrieved keys
+    for (const auto &keyId : keyIds) {
+        startImport(GpgME::OpenPGP, {keyId}, QStringLiteral("Retrieve Signer Keys"));
+    }
+    setWaitForMoreJobs(false);
 }
 
 static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)

@@ -113,6 +113,15 @@
      <default>true</default>
    </entry>
  </group>
+ <group name="Import">
+   <entry name="RetrieveSignerKeysAfterImport" type="Bool">
+     <label>Retrieve signer keys after import</label>
+     <whatsthis>If enabled, then Kleopatra will automatically try to retrieve the keys
+         that were used to certify the user ids of the imported OpenPGP keys. This is
+         useful in combination with trusted introducers.</whatsthis>
+     <default>false</default>
+   </entry>
+ </group>
  <group name="Privacy">
    <entry name="BlockedUrlSchemes" type="StringList">
      <label>URL schemes to block</label>

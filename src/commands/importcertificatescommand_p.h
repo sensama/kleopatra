@@ -128,6 +128,8 @@ private:
     void tryToFinish();
     void keyCacheUpdated();
     void importGroups();
+    std::set<QString> getMissingSignerKeyIds(const std::vector<ImportResultData> &results);
+    void importSignerKeys(const std::set<QString> &keyIds);
 
     void setUpProgressDialog();
     void increaseProgressMaximum();
@@ -136,6 +138,7 @@ private:
 
 private:
     bool waitForMoreJobs = false;
+    bool importingSignerKeys = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::vector<ImportJobData> jobs;
     std::vector<QString> filesToImportGroupsFrom;

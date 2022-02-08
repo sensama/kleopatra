@@ -121,7 +121,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 
     mApplyBtn->setEnabled(false);
 
-    QDir datadir(QString::fromLocal8Bit(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
+    QDir datadir(QString::fromUtf8(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
     const auto path = datadir.filePath(profile + QStringLiteral(".prf"));
 
     auto gpgconf = new QProcess;
@@ -139,7 +139,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
             this, [this, gpgconf, profile] () {
         mApplyBtn->setEnabled(true);
         if (gpgconf->exitStatus() != QProcess::NormalExit) {
-            KMessageBox::error(this, QStringLiteral("<pre>%1</pre>").arg(QString::fromLocal8Bit(gpgconf->readAll())));
+            KMessageBox::error(this, QStringLiteral("<pre>%1</pre>").arg(QString::fromUtf8(gpgconf->readAll())));
             delete gpgconf;
             return;
         }
@@ -167,7 +167,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
         qCDebug(KLEOPATRA_LOG) << "Engine version false";
         return;
     }
-    QDir datadir(QString::fromLocal8Bit(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
+    QDir datadir(QString::fromUtf8(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
 
     if (!datadir.exists()) {
         qCDebug(KLEOPATRA_LOG) << "Failed to find gnupg's example profile directory" << datadir.path();

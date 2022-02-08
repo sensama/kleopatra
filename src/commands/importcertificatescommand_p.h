@@ -40,6 +40,7 @@ class KeyCacheAutoRefreshSuspension;
 }
 
 class QByteArray;
+class QProgressDialog;
 
 enum class ImportType
 {
@@ -98,6 +99,8 @@ public:
     ~Private() override;
 
     void setWaitForMoreJobs(bool waiting);
+    void setProgressWindowTitle(const QString &title);
+    void setProgressLabelText(const QString &text);
 
     void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
@@ -126,6 +129,11 @@ private:
     void keyCacheUpdated();
     void importGroups();
 
+    void setUpProgressDialog();
+    void increaseProgressMaximum();
+    void increaseProgressValue();
+    void setProgressToMaximum();
+
 private:
     bool waitForMoreJobs = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
@@ -135,6 +143,10 @@ private:
     std::vector<ImportedGroup> importedGroups;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
     QMetaObject::Connection keyListConnection;
+
+    QString progressWindowTitle;
+    QString progressLabelText;
+    QPointer<QProgressDialog> progressDialog;
 };
 
 inline Kleo::ImportCertificatesCommand::Private *Kleo::ImportCertificatesCommand::d_func()

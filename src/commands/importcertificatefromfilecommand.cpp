@@ -121,6 +121,11 @@ void ImportCertificateFromFileCommand::doStart()
         return;
     }
 
+    d->setProgressWindowTitle(i18nc("@title:window", "Importing Certificates"));
+    d->setProgressLabelText(i18np("Importing certificates from 1 file...",
+                                  "Importing certificates from %1 files...",
+                                  d->files.size()));
+
     //TODO: use KIO here
     d->setWaitForMoreJobs(true);
     for (const QString &fn : std::as_const(d->files)) {

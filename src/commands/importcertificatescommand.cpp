@@ -48,6 +48,7 @@
 
 #include <QByteArray>
 #include <QEventLoop>
+#include <QProgressDialog>
 #include <QString>
 #include <QWidget>
 #include <QTreeView>
@@ -178,10 +179,17 @@ bool importWasCanceled(const ImportResultData &r)
 
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
+    , progressWindowTitle{i18nc("@title:window", "Importing Certificates")}
+    , progressLabelText{i18n("Importing certificates... (this can take a while)")}
 {
 }
 
-ImportCertificatesCommand::Private::~Private() = default;
+ImportCertificatesCommand::Private::~Private()
+{
+    if (progressDialog) {
+        delete progressDialog;
+    }
+}
 
 #define d d_func()
 #define q q_func()
@@ -487,6 +495,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
 
     const auto job = *it;
     jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
+    increaseProgressValue();
 
     importResult({job.id, job.protocol, job.type, result});
 }
@@ -589,11 +598,14 @@ static void handleExternalCMSImports(const std::vector<ImportResultData> &result
 
 void ImportCertificatesCommand::Private::processResults()
 {
+    importGroups();
+
     handleExternalCMSImports(results);
 
-    handleOwnerTrust(results);
+    // ensure that the progress dialog is closed before we show any other dialogs
+    setProgressToMaximum();
 
-    importGroups();
+    handleOwnerTrust(results);
 
     showDetails(results, importedGroups);
 
@@ -652,6 +664,8 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
     }
 
     if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {
+        // ensure that the progress dialog is closed before we show any other dialogs
+        setProgressToMaximum();
         setImportResultProxyModel(results);
         for (const auto &r : results) {
             if (importFailed(r)) {
@@ -695,6 +709,7 @@ void ImportCertificatesCommand::Private::importGroups()
                                return storeGroup(group, path);
                            });
         }
+        increaseProgressValue();
     }
 }
 
@@ -745,6 +760,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     if (err.code()) {
         importResult({id, protocol, ImportType::Local, ImportResult{err}});
     } else {
+        increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
     }
 }
@@ -790,6 +806,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     if (err.code()) {
         importResult({id, protocol, ImportType::External, ImportResult{err}});
     } else {
+        increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 }
@@ -834,6 +851,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     if (err.code()) {
         importResult({id, protocol, ImportType::External, ImportResult{err}});
     } else {
+        increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 #endif
@@ -841,7 +859,61 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
 void ImportCertificatesCommand::Private::importGroupsFromFile(const QString &filename)
 {
+    increaseProgressMaximum();
     filesToImportGroupsFrom.push_back(filename);
+}
+
+void ImportCertificatesCommand::Private::setUpProgressDialog()
+{
+    if (progressDialog) {
+        return;
+    }
+    progressDialog = new QProgressDialog{parentWidgetOrView()};
+    progressDialog->setModal(true);
+    progressDialog->setWindowTitle(progressWindowTitle);
+    progressDialog->setLabelText(progressLabelText);
+    progressDialog->setMinimumDuration(1000);
+    progressDialog->setMaximum(1);
+    progressDialog->setValue(0);
+    connect(progressDialog, &QProgressDialog::canceled, q, &Command::cancel);
+    connect(q, &Command::finished, progressDialog, [this]() { progressDialog->accept(); });
+}
+
+void ImportCertificatesCommand::Private::setProgressWindowTitle(const QString &title)
+{
+    if (progressDialog) {
+        progressDialog->setWindowTitle(title);
+    } else {
+        progressWindowTitle = title;
+    }
+}
+
+void ImportCertificatesCommand::Private::setProgressLabelText(const QString &text)
+{
+    if (progressDialog) {
+        progressDialog->setLabelText(text);
+    } else {
+        progressLabelText = text;
+    }
+}
+
+void ImportCertificatesCommand::Private::increaseProgressMaximum()
+{
+    setUpProgressDialog();
+    progressDialog->setMaximum(progressDialog->maximum() + 1);
+    qCDebug(KLEOPATRA_LOG) << __func__ << "progress:" << progressDialog->value() << "/" << progressDialog->maximum();
+}
+
+void ImportCertificatesCommand::Private::increaseProgressValue()
+{
+    progressDialog->setValue(progressDialog->value() + 1);
+    qCDebug(KLEOPATRA_LOG) << __func__ << "progress:" << progressDialog->value() << "/" << progressDialog->maximum();
+}
+
+void ImportCertificatesCommand::Private::setProgressToMaximum()
+{
+    qCDebug(KLEOPATRA_LOG) << __func__;
+    progressDialog->setValue(progressDialog->maximum());
 }
 
 void ImportCertificatesCommand::doCancel()

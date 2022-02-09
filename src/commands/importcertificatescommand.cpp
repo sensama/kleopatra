@@ -849,7 +849,7 @@ void ImportCertificatesCommand::doCancel()
     std::for_each(std::cbegin(d->jobs), std::cend(d->jobs),
                   [this](const auto &job) {
                       std::for_each(std::cbegin(job.connections), std::cend(job.connections),
-                                    [](const auto &connection) { QObject::disconnect(connection); });
+                                    [this](const auto &connection) { QObject::disconnect(connection); });
                       job.job->slotCancel();
                       d->importResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
                 });

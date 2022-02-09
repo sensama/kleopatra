@@ -602,6 +602,7 @@ void ImportCertificatesCommand::Private::processResults()
 {
     importGroups();
 
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     if (Settings{}.retrieveSignerKeysAfterImport() && !importingSignerKeys) {
         importingSignerKeys = true;
         const auto missingSignerKeys = getMissingSignerKeyIds(results);
@@ -610,6 +611,7 @@ void ImportCertificatesCommand::Private::processResults()
             return;
         }
     }
+#endif
 
     handleExternalCMSImports(results);
 

@@ -45,7 +45,7 @@
 using namespace Kleo;
 using namespace QGpgME;
 
-// Option for configuring X.509 servers (available via gpgconf since GnuPG 2.3.5 and 2.2.34?)
+// Option for configuring X.509 servers (available via gpgconf since GnuPG 2.3.5 and 2.2.34)
 static const char s_x509services_componentName[] = "dirmngr";
 static const char s_x509services_entryName[] = "ldapserver";
 

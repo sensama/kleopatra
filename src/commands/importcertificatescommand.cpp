@@ -25,6 +25,7 @@
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroupImportExport>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
@@ -724,63 +725,6 @@ void ImportCertificatesCommand::Private::importGroups()
     filesToImportGroupsFrom.clear();
 }
 
-namespace
-{
-bool havePublicKeyForSignature(const GpgME::UserID::Signature &signature)
-{
-    // GnuPG returns status "NoPublicKey" for missing signing keys, but also
-    // for expired or revoked signing keys.
-    return (signature.status() != GpgME::UserID::Signature::NoPublicKey)
-        || !KeyCache::instance()->findByKeyIDOrFingerprint (signature.signerKeyID()).isNull();
-}
-
-auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID::Signature> &signatures)
-{
-    return std::accumulate(
-        std::begin(signatures), std::end(signatures),
-        std::set<QString>{},
-        [] (auto &keyIds, const auto &signature) {
-            if (!havePublicKeyForSignature(signature)) {
-                keyIds.insert(QLatin1String{signature.signerKeyID()});
-            }
-            return keyIds;
-        }
-    );
-}
-
-auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID> &userIds)
-{
-    return std::accumulate(
-        std::begin(userIds), std::end(userIds),
-        std::set<QString>(),
-        [] (auto &keyIds, const auto &userID) {
-            if (!userID.isBad()) {
-                const auto newKeyIds = accumulateMissingSignerKeys(userID.signatures());
-                std::copy(std::begin(newKeyIds), std::end(newKeyIds),
-                          std::inserter(keyIds, std::end(keyIds)));
-            }
-            return keyIds;
-        }
-    );
-}
-
-auto accumulateMissingSignerKeys(const std::vector<GpgME::Key> &keys)
-{
-    return std::accumulate(
-        std::begin(keys), std::end(keys),
-        std::set<QString>(),
-        [] (auto &keyIds, const auto &key) {
-            if (!key.isBad()) {
-                const auto newKeyIds = accumulateMissingSignerKeys(key.userIDs());
-                std::copy(std::begin(newKeyIds), std::end(newKeyIds),
-                          std::inserter(keyIds, std::end(keyIds)));
-            }
-            return keyIds;
-        }
-    );
-}
-}
-
 static auto accumulateNewKeys(std::vector<std::string> &fingerprints, const std::vector<GpgME::Import> &imports)
 {
     return std::accumulate(std::begin(imports), std::end(imports),
@@ -810,8 +754,8 @@ std::set<QString> ImportCertificatesCommand::Private::getMissingSignerKeyIds(con
     auto newOpenPGPKeys = KeyCache::instance()->findByFingerprint(accumulateNewOpenPGPKeys(results));
     // update all new OpenPGP keys to get information about certifications
     std::for_each(std::begin(newOpenPGPKeys), std::end(newOpenPGPKeys), std::mem_fn(&Key::update));
-    auto missingSignerKeys = accumulateMissingSignerKeys(newOpenPGPKeys);
-    return missingSignerKeys;
+    auto missingSignerKeyIds = Kleo::getMissingSignerKeyIds(newOpenPGPKeys);
+    return missingSignerKeyIds;
 }
 
 void ImportCertificatesCommand::Private::importSignerKeys(const std::set<QString> &keyIds)

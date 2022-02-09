@@ -17,7 +17,7 @@
 
 #include "commands/importcertificatefromkeyservercommand.h"
 
-#include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 
 #include <QDialogButtonBox>
 #include <QPushButton>
@@ -82,55 +82,14 @@ WebOfTrustDialog::~WebOfTrustDialog()
     dialog.sync();
 }
 
-namespace
-{
-bool havePublicKeyForSignature(const GpgME::UserID::Signature &signature)
-{
-    // GnuPG returns status "NoPublicKey" for missing signing keys, but also
-    // for expired or revoked signing keys.
-    return (signature.status() != GpgME::UserID::Signature::NoPublicKey)
-        || !KeyCache::instance()->findByKeyIDOrFingerprint (signature.signerKeyID()).isNull();
-}
-
-auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID::Signature> &signatures)
-{
-    return std::accumulate(
-        std::begin(signatures), std::end(signatures),
-        std::set<QString>{},
-        [] (auto &keyIds, const auto &signature) {
-            if (!havePublicKeyForSignature(signature)) {
-                keyIds.insert(QLatin1String{signature.signerKeyID()});
-            }
-            return keyIds;
-        }
-    );
-}
-
-auto accumulateMissingSignerKeys(const std::vector<GpgME::UserID> &userIds)
-{
-    return std::accumulate(
-        std::begin(userIds), std::end(userIds),
-        std::set<QString>(),
-        [] (auto &keyIds, const auto &userID) {
-            if (!userID.isBad()) {
-                const auto newKeyIds = accumulateMissingSignerKeys(userID.signatures());
-                std::copy(std::begin(newKeyIds), std::end(newKeyIds),
-                          std::inserter(keyIds, std::end(keyIds)));
-            }
-            return keyIds;
-        }
-    );
-}
-}
-
 void WebOfTrustDialog::fetchMissingKeys()
 {
     if (key().isNull()) {
         return;
     }
-    const auto missingSignerKeys = accumulateMissingSignerKeys(key().userIDs());
+    const auto missingSignerKeyIds = Kleo::getMissingSignerKeyIds(key().userIDs());
 
-    auto cmd = new Kleo::ImportCertificateFromKeyserverCommand{QStringList{std::begin(missingSignerKeys), std::end(missingSignerKeys)}};
+    auto cmd = new Kleo::ImportCertificateFromKeyserverCommand{QStringList{std::begin(missingSignerKeyIds), std::end(missingSignerKeyIds)}};
     cmd->setParentWidget(this);
     mFetchKeysBtn->setEnabled(false);
     connect(cmd, &Kleo::ImportCertificateFromKeyserverCommand::finished,

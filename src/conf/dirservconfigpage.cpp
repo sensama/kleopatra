@@ -88,6 +88,7 @@ private:
     };
 
     void setX509ServerEntry(const std::vector<KeyserverConfig> &servers);
+    void load(const Kleo::Settings &settings);
 
     QGpgME::CryptoConfigEntry *configEntry(const char *componentName,
                                            const char *entryName,
@@ -99,6 +100,7 @@ private:
     Kleo::DirectoryServicesWidget *mDirectoryServices = nullptr;
     Kleo::LabelledWidget<QTimeEdit> mTimeout;
     Kleo::LabelledWidget<QSpinBox> mMaxItems;
+    QCheckBox *mFetchMissingSignerKeysCB = nullptr;
 
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
@@ -173,6 +175,20 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+    ++row;
+    mFetchMissingSignerKeysCB = new QCheckBox{q};
+    mFetchMissingSignerKeysCB->setText(i18nc("@option:check",
+                                             "Retrieve missing certification keys when importing new keys"));
+    mFetchMissingSignerKeysCB->setToolTip(
+        xi18nc("@info:tooltip",
+               "If enabled, then Kleopatra will automatically try to retrieve the keys "
+               "that were used to certify the user ids of newly imported OpenPGP keys."));
+    connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled,
+            q, &DirectoryServicesConfigurationPage::markAsChanged);
+    glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);
+#endif
+
     glay->setRowStretch(++row, 1);
     glay->setColumnStretch(2, 1);
 }
@@ -190,7 +206,7 @@ static auto readKeyserverConfigs(const CryptoConfigEntry *configEntry)
     return servers;
 }
 
-void DirectoryServicesConfigurationPage::Private::load()
+void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &settings)
 {
     if (mDirectoryServices) {
         mDirectoryServices->clear();
@@ -290,6 +306,18 @@ void DirectoryServicesConfigurationPage::Private::load()
         mMaxItems.widget()->blockSignals(false);
     }
     mMaxItems.setEnabled(mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly());
+
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+    mFetchMissingSignerKeysCB->setChecked(settings.retrieveSignerKeysAfterImport());
+    mFetchMissingSignerKeysCB->setEnabled(!settings.isImmutable(QStringLiteral("RetrieveSignerKeysAfterImport")));
+#else
+    Q_UNUSED(settings)
+#endif
+}
+
+void DirectoryServicesConfigurationPage::Private::load()
+{
+    load(Settings{});
 }
 
 namespace
@@ -367,6 +395,12 @@ void DirectoryServicesConfigurationPage::Private::save()
     updateIntegerConfigEntry(mMaxItemsConfigEntry, mMaxItems.widget()->value());
 
     mConfig->sync(true);
+
+#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+    Settings settings;
+    settings.setRetrieveSignerKeysAfterImport(mFetchMissingSignerKeysCB->isChecked());
+    settings.save();
+#endif
 }
 
 void DirectoryServicesConfigurationPage::Private::defaults()
@@ -386,7 +420,10 @@ void DirectoryServicesConfigurationPage::Private::defaults()
         mMaxItemsConfigEntry->resetToDefault();
     }
 
-    load();
+    Settings settings;
+    settings.setRetrieveSignerKeysAfterImport(settings.findItem(QStringLiteral("RetrieveSignerKeysAfterImport"))->getDefault().toBool());
+
+    load(settings);
 }
 
 // Find config entry for ldap servers. Implements runtime checks on the configuration option.

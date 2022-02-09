@@ -1034,13 +1034,22 @@ void ImportCertificatesCommand::Private::setProgressToMaximum()
     progressDialog->setValue(progressDialog->maximum());
 }
 
+static void disconnectConnection(const QMetaObject::Connection &connection)
+{
+    // trivial function for disconnecting a signal-slot connection because
+    // using a lambda seems to confuse older GCC / MinGW and unnecessarily
+    // capturing 'this' generates warnings
+    QObject::disconnect(connection);
+}
+
 void ImportCertificatesCommand::doCancel()
 {
     const auto jobsToCancel = d->jobs;
     std::for_each(std::begin(jobsToCancel), std::end(jobsToCancel),
                   [this](const auto &job) {
+                      qCDebug(KLEOPATRA_LOG) << "Canceling job" << job.job;
                       std::for_each(std::cbegin(job.connections), std::cend(job.connections),
-                                    [this](const auto &connection) { QObject::disconnect(connection); });
+                                    &disconnectConnection);
                       job.job->slotCancel();
                       d->importResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
                   });

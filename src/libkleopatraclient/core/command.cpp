@@ -585,7 +585,7 @@ void Command::Private::run()
     }
 
 #ifndef HAVE_ASSUAN2
-    err = assuan_socket_connect(&naked_ctx, QFile::encodeName(socketName).constData(), -1);
+    err = assuan_socket_connect(&naked_ctx, socketName.toUtf8().constData(), -1);
 #else
     {
         assuan_context_t naked_ctx = nullptr;
@@ -599,7 +599,7 @@ void Command::Private::run()
         ctx.reset(naked_ctx);
     }
 
-    err = assuan_socket_connect(ctx.get(), QFile::encodeName(socketName).constData(), -1, 0);
+    err = assuan_socket_connect(ctx.get(), socketName.toUtf8().constData(), -1, 0);
 #endif
     if (err) {
         qDebug("UI server not running, starting it");

@@ -161,10 +161,10 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 // group if there are any.
 void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
 {
-    qCDebug(KLEOPATRA_LOG) << "Engine version ";
-    if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.20" || !layout) {
+    const Settings settings;
+    if (settings.profilesDisabled() || GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.20" || !layout) {
         //  Profile support is new in 2.1.20
-        qCDebug(KLEOPATRA_LOG) << "Engine version false";
+        qCDebug(KLEOPATRA_LOG) << "Profile settings disabled";
         return;
     }
     QDir datadir(QString::fromUtf8(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));

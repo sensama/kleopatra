@@ -16,6 +16,7 @@
 
 #include <QThread>
 
+#include <chrono>
 #include <memory>
 
 namespace Kleo
@@ -26,6 +27,7 @@ class DeviceInfoWatcher::Worker : public QObject, public GpgME::StatusConsumer
     Q_OBJECT
 
 public:
+    Worker();
     ~Worker() override;
 
 public Q_SLOTS:
@@ -40,7 +42,8 @@ private:
     void status(const char *status, const char *details) override;
 
 private:
-    int mRetryDelay = 100;
+    std::chrono::milliseconds mRetryDelay;
+    int mFailedConnectionAttempts = 0;
     std::unique_ptr<GpgME::Context> mContext;
 };
 

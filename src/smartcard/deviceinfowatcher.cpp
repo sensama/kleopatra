@@ -68,6 +68,10 @@ void DeviceInfoWatcher::Worker::start()
             return;
         }
         qCWarning(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Connecting to the agent failed too often. Giving up.";
+    } else if (err.code() == GPG_ERR_EPIPE) {
+        qCDebug(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Assuan transaction failed with broken pipe. The agent seems to have died. Resetting context.";
+        mContext.reset();
+        QMetaObject::invokeMethod(this, "start", Qt::QueuedConnection);
     } else {
         qCWarning(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Starting Assuan transaction for" << command << "failed:" << err;
     }

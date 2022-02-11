@@ -78,6 +78,7 @@ void DeviceInfoWatcher::Worker::poll()
     const bool finished = mContext->poll();
     if (finished) {
         qCDebug(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::poll: context finished with" << mContext->lastError();
+        QThread::msleep(1000);
         QMetaObject::invokeMethod(this, "start", Qt::QueuedConnection);
     } else {
         QMetaObject::invokeMethod(this, "poll", Qt::QueuedConnection);

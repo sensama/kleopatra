@@ -423,7 +423,7 @@ void MainWindow::Private::setupActions()
     KActionCollection *const coll = q->actionCollection();
 
     const std::vector<action_data> action_data = {
-        // most have been MOVED TO keylistcontroller.cpp
+        // see keylistcontroller.cpp for more actions
         // Tools menu
 #ifndef Q_OS_WIN
         {
@@ -436,12 +436,14 @@ void MainWindow::Private::setupActions()
             i18nc("@info:tooltip", "Restart the background processes, e.g. after making changes to the configuration."),
             "view-refresh", q, SLOT(restartDaemons()), {}, false, true
         },
+        // Help menu
 #ifdef Q_OS_WIN
         {
             "help_check_updates", i18n("Check for updates"), QString(),
             "gpg4win-compact", q, SLOT(forceUpdateCheck()), QString(), false, true
         },
 #endif
+        // View menu
         {
             "view_certificate_overview", i18nc("@action show certificate overview", "Certificates"),
             i18n("Show certificate overview"), "view-certificate", q, SLOT(showCertificateView()), QString(), false, true
@@ -450,7 +452,10 @@ void MainWindow::Private::setupActions()
             "pad_view", i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
             i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, SLOT(showPadView()), QString(), false, true
         },
-        // most have been MOVED TO keylistcontroller.cpp
+        {
+            "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
+            i18n("Show smartcard management"), "auth-sim-locked", q, SLOT(showSmartcardView()), QString(), false, true
+        },
         // Settings menu
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
@@ -463,13 +468,7 @@ void MainWindow::Private::setupActions()
         {
             "configure_groups", i18n("Configure Groups..."), QString(),
             "group", q, SLOT(configureGroups()), QString(), false, true
-        },
-        {
-            "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
-            i18n("Show smartcard management"), "auth-sim-locked", q, SLOT(showSmartcardView()), QString(), false, true
         }
-
-        // most have been MOVED TO keylistcontroller.cpp
     };
 
     make_actions_from_data(action_data, coll);

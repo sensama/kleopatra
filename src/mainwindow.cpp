@@ -475,10 +475,6 @@ void MainWindow::Private::setupActions()
         }
     }
 
-    if (QAction *action = coll->action(QStringLiteral("configure_backend"))) {
-        action->setMenuRole(QAction::NoRole);    //prevent Qt OS X heuristics for config* actions
-    }
-
     KStandardAction::close(q, SLOT(close()), coll);
     KStandardAction::quit(q, SLOT(closeAndQuit()), coll);
     KStandardAction::configureToolbars(q, SLOT(configureToolbars()), coll);

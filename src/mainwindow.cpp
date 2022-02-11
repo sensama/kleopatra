@@ -70,6 +70,7 @@
 #include <QLabel>
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/Stl_Util>
@@ -290,6 +291,11 @@ public:
         command->start();
     }
 
+    void restartDaemons()
+    {
+        Kleo::killDaemons();
+    }
+
 private:
     void setupActions();
 
@@ -425,6 +431,11 @@ void MainWindow::Private::setupActions()
             "kwatchgnupg", q, SLOT(gnupgLogViewer()), QString(), false, true
         },
 #endif
+        {
+            "tools_restart_backend", i18nc("@action:inmenu", "Restart Background Processes"),
+            i18nc("@info:tooltip", "Restart the background processes, e.g. after making changes to the configuration."),
+            "view-refresh", q, SLOT(restartDaemons()), {}, false, true
+        },
 #ifdef Q_OS_WIN
         {
             "help_check_updates", i18n("Check for updates"), QString(),

@@ -437,6 +437,8 @@ public:
         ui.emailLW->setDefaultValue(i18n("new email"));
         ui.dnsLW->setDefaultValue(i18n("new dns name"));
         ui.uriLW->setDefaultValue(i18n("new uri"));
+        ui.elgCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
+        ui.ecdhCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
 
         fillKeySizeComboBoxen();
 

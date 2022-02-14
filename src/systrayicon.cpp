@@ -128,7 +128,7 @@ private:
 SysTrayIcon::Private::Private(SysTrayIcon *qq)
     : q(qq),
       menu(),
-      openCertificateManagerAction(i18n("&Open Certificate Manager..."), q),
+      openCertificateManagerAction(i18nc("@action:inmenu", "&Open Certificate Manager..."), q),
       configureAction(QIcon::fromTheme(QStringLiteral("configure")),
                       xi18nc("@action:inmenu", "&Configure <application>%1</application>...", KAboutData::applicationData().displayName()), q),
       aboutAction(QIcon::fromTheme(QStringLiteral("kleopatra")),
@@ -136,10 +136,10 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
       quitAction(QIcon::fromTheme(QStringLiteral("application-exit")),
                  xi18nc("@action:inmenu", "&Shutdown <application>%1</application>", KAboutData::applicationData().displayName()), q),
       clipboardMenu(q),
-      cardMenu(i18n("SmartCard")),
-      updateCardStatusAction(i18n("Update Card Status"), q),
-      setInitialPinAction(i18n("Set NetKey v3 Initial PIN..."), q),
-      learnCertificatesAction(i18n("Learn NetKey v3 Card Certificates"), q),
+      cardMenu(i18nc("@title:menu", "SmartCard")),
+      updateCardStatusAction(i18nc("@action:inmenu", "Update Card Status"), q),
+      setInitialPinAction(i18nc("@action:inmenu", "Set NetKey v3 Initial PIN..."), q),
+      learnCertificatesAction(i18nc("@action:inmenu", "Learn NetKey v3 Card Certificates"), q),
       aboutDialog()
 {
     q->setNormalIcon(QIcon::fromTheme(QStringLiteral("kleopatra")));

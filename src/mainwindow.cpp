@@ -89,16 +89,16 @@ using namespace GpgME;
 
 static KGuiItem KStandardGuiItem_quit()
 {
-    static const QString app = KAboutData::applicationData().componentName();
+    static const QString app = KAboutData::applicationData().displayName();
     KGuiItem item = KStandardGuiItem::quit();
-    item.setText(i18nc("Quit [ApplicationName]", "&Quit %1", app));
+    item.setText(xi18nc("@action:button", "&Quit <application>%1</application>", app));
     return item;
 }
 
 static KGuiItem KStandardGuiItem_close()
 {
     KGuiItem item = KStandardGuiItem::close();
-    item.setText(i18n("Only &Close Window"));
+    item.setText(i18nc("@action:button", "Only &Close Window"));
     return item;
 }
 
@@ -145,11 +145,14 @@ public:
 
     void closeAndQuit()
     {
-        const QString app = KAboutData::applicationData().componentName();
+        const QString app = KAboutData::applicationData().displayName();
         const int rc = KMessageBox::questionYesNoCancel(q,
-                       i18n("%1 may be used by other applications as a service.\n"
-                            "You may instead want to close this window without exiting %1.", app),
-                       i18n("Really Quit?"), KStandardGuiItem_close(), KStandardGuiItem_quit(), KStandardGuiItem::cancel(),
+                       xi18n("<application>%1</application> may be used by other applications as a service.<nl/>"
+                             "You may instead want to close this window without exiting <application>%1</application>.", app),
+                       i18nc("@title:window", "Really Quit?"),
+                       KStandardGuiItem_close(),
+                       KStandardGuiItem_quit(),
+                       KStandardGuiItem::cancel(),
                        QLatin1String("really-quit-") + app.toLower());
         if (rc == KMessageBox::Cancel) {
             return;

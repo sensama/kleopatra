@@ -14,7 +14,6 @@
 #include "implementation_p.h"
 
 #include <gpgme++/context.h>
-#include <gpgme++/gpgagentgetinfoassuantransaction.h>
 
 #include <QTextDocument> // for Qt::escape
 

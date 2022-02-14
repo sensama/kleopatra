@@ -41,9 +41,11 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 
+#include <QClipboard>
 #include <QDateTime>
 #include <QGridLayout>
 #include <QGroupBox>
+#include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLocale>
@@ -99,6 +101,7 @@ public:
     void keyListDone(const GpgME::KeyListResult &,
                      const std::vector<GpgME::Key> &, const QString &,
                      const GpgME::Error &);
+    void copyFingerprintToClipboard();
 
 private:
     CertificateDetailsWidget *const q;
@@ -129,6 +132,7 @@ private:
         QLabel *type;
         QLabel *fingerprintLbl;
         QLabel *fingerprint;
+        QPushButton *copyFingerprintBtn;
         QLabel *publishingLbl;
         QPushButton *publishing;
         QLabel *smimeIssuerLbl;
@@ -233,10 +237,21 @@ private:
 
             gridLayout->addWidget(fingerprintLbl, row, 0, 1, 1);
 
-            fingerprint = new QLabel(groupBox);
-            fingerprint->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+            {
+                auto hbox = new QHBoxLayout;
+                fingerprint = new QLabel{groupBox};
+                fingerprint->setTextInteractionFlags(Qt::TextSelectableByMouse);
+                hbox->addWidget(fingerprint);
+                copyFingerprintBtn = new QPushButton{groupBox};
+                copyFingerprintBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                copyFingerprintBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+                copyFingerprintBtn->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
+                copyFingerprintBtn->setVisible(QGuiApplication::clipboard());
+                hbox->addWidget(copyFingerprintBtn);
+                hbox->addStretch();
 
-            gridLayout->addWidget(fingerprint, row, 1, 1, 2);
+                gridLayout->addLayout(hbox, row, 1, 1, 2);
+            }
             row++;
 
             publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
@@ -374,6 +389,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { webOfTrustClicked(); });
     connect(ui.exportBtn, &QPushButton::clicked,
             q, [this]() { exportClicked(); });
+    connect(ui.copyFingerprintBtn, &QPushButton::clicked,
+            q, [this]() { copyFingerprintToClipboard(); });
 
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             q, [this]() { keysMayHaveChanged(); });
@@ -849,6 +866,13 @@ void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)
         return;
     }
     qCWarning(KLEOPATRA_LOG) << "Unknown link activated:" << link;
+}
+
+void CertificateDetailsWidget::Private::copyFingerprintToClipboard()
+{
+    if (auto clipboard = QGuiApplication::clipboard()) {
+        clipboard->setText(QString::fromLatin1(key.primaryFingerprint()));
+    }
 }
 
 CertificateDetailsWidget::CertificateDetailsWidget(QWidget *parent)

@@ -192,7 +192,7 @@ private:
             gridLayout->addWidget(validFromLbl, row, 0, 1, 1);
 
             validFrom = new QLabel(groupBox);
-            validFrom->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+            validFrom->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
             gridLayout->addWidget(validFrom, row, 1, 1, 1);
 
@@ -207,7 +207,7 @@ private:
 
             horizontalLayout_3 = new QHBoxLayout();
             expires = new QLabel(groupBox);
-            expires->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+            expires->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
             horizontalLayout_3->addWidget(expires);
 
@@ -226,7 +226,7 @@ private:
             gridLayout->addWidget(typeLbl, row, 0, 1, 1);
 
             type = new QLabel(groupBox);
-            type->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse);
+            type->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
             gridLayout->addWidget(type, row, 1, 1, 1);
             row++;

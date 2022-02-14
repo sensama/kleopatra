@@ -53,7 +53,6 @@
 #include <QPushButton>
 #include <QSpacerItem>
 #include <QStringBuilder>
-#include <QToolButton>
 #include <QTreeWidget>
 
 #include <set>
@@ -127,7 +126,7 @@ private:
         QLabel *expiresLbl;
         QHBoxLayout *horizontalLayout_3;
         QLabel *expires;
-        QToolButton *changeExpirationBtn;
+        QPushButton *changeExpirationBtn;
         QLabel *typeLbl;
         QLabel *type;
         QLabel *fingerprintLbl;
@@ -212,11 +211,10 @@ private:
 
             horizontalLayout_3->addWidget(expires);
 
-            changeExpirationBtn = new QToolButton(groupBox);
-            changeExpirationBtn->setToolTip(i18n("Change"));
+            changeExpirationBtn = new QPushButton(groupBox);
+            changeExpirationBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
             changeExpirationBtn->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
-            changeExpirationBtn->setIconSize(QSize(16, 16));
-            changeExpirationBtn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+            changeExpirationBtn->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
 
             horizontalLayout_3->addWidget(changeExpirationBtn);
 

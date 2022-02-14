@@ -26,6 +26,7 @@ public:
 
 Q_SIGNALS:
     void statusChanged(const QByteArray &details);
+    void startOfGpgAgentRequested();
 
 private:
     class Worker;

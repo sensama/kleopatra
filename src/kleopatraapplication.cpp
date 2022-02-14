@@ -231,6 +231,8 @@ void KleopatraApplication::init()
     }
     add_resources();
     DN::setAttributeOrder(Settings{}.attributeOrder());
+    connect(&d->readerStatus, &SmartCard::ReaderStatus::startOfGpgAgentRequested,
+            this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
@@ -695,4 +697,9 @@ void KleopatraApplication::blockUrl(const QUrl &url)
     qCDebug(KLEOPATRA_LOG) << "Blocking URL" << url;
     KMessageBox::sorry(mainWindow(),i18n ("Opening an external link is administratively prohibited."),
                 i18n ("Prohibited"));
+}
+
+void KleopatraApplication::startGpgAgent()
+{
+    Kleo::launchGpgAgent();
 }

@@ -934,6 +934,8 @@ void ReaderStatus::startMonitoring()
 {
     d->start();
     if (DeviceInfoWatcher::isSupported()) {
+        connect(&d->devInfoWatcher, &DeviceInfoWatcher::startOfGpgAgentRequested,
+                this, &ReaderStatus::startOfGpgAgentRequested);
         d->devInfoWatcher.start();
     }
 }

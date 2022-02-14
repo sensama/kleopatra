@@ -60,6 +60,9 @@ void DeviceInfoWatcher::Worker::start()
         return;
     } else if (err.code() == GPG_ERR_ASS_CONNECT_FAILED) {
         mFailedConnectionAttempts++;
+        if (mFailedConnectionAttempts == 1) {
+            Q_EMIT startOfGpgAgentRequested();
+        }
         if (mFailedConnectionAttempts < maxConnectionAttempts) {
             qCInfo(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Connecting to the agent failed. Retrying in" << mRetryDelay.count() << "ms";
             QThread::msleep(mRetryDelay.count());
@@ -116,6 +119,8 @@ void DeviceInfoWatcher::Private::start()
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
     connect(worker, &DeviceInfoWatcher::Worker::statusChanged,
             q, &DeviceInfoWatcher::statusChanged);
+    connect(worker, &DeviceInfoWatcher::Worker::startOfGpgAgentRequested,
+            q, &DeviceInfoWatcher::startOfGpgAgentRequested);
     workerThread.start();
 }
 

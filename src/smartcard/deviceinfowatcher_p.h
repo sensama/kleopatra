@@ -35,6 +35,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void statusChanged(const QByteArray &details);
+    void startOfGpgAgentRequested();
 
 private:
     Q_INVOKABLE void poll();

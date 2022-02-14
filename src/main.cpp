@@ -111,6 +111,9 @@ int main(int argc, char **argv)
 
     KLocalizedString::setApplicationDomain("kleopatra");
 
+    AboutData aboutData;
+    KAboutData::setApplicationData(aboutData);
+
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because
          * of permission problems on windows.  Some users still have the Windows
@@ -147,10 +150,6 @@ int main(int argc, char **argv)
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Service created";
     app.init();
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application initialized";
-
-    AboutData aboutData;
-
-    KAboutData::setApplicationData(aboutData);
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);

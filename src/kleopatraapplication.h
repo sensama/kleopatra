@@ -100,6 +100,7 @@ Q_SIGNALS:
 private Q_SLOTS:
     // used as URL handler for URLs with schemes that shall be blocked
     void blockUrl(const QUrl &url);
+    void startGpgAgent();
 
 private:
     class Private;

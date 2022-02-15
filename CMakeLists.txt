@@ -61,6 +61,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 
 # Find KF5 packages
 find_package(KF5WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
@@ -172,8 +173,8 @@ include_directories(
     )
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050e00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055B00)
+ecm_set_disabled_deprecation_versions(QT 5.14.0 KF 5.91.0)
+
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()

@@ -1526,6 +1526,7 @@ void EnterDetailsPage::updateForm()
     lineList.reserve(lines.count());
     std::copy(lines.cbegin(), lines.cend(), std::back_inserter(lineList));
 
+    widgets.push_back(ui.withPassCB);
     widgets.push_back(ui.resultLE);
     widgets.push_back(ui.advancedPB);
 

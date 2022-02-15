@@ -38,7 +38,11 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="rsaKeyStrengthCB"/>
+           <widget class="QComboBox" name="rsaKeyStrengthCB">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="3">
            <spacer name="horizontalSpacer">
@@ -64,7 +68,11 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="rsaKeyStrengthSubCB"/>
+           <widget class="QComboBox" name="rsaKeyStrengthSubCB">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0" colspan="2">
            <widget class="QRadioButton" name="dsaRB">

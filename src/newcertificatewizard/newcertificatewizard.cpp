@@ -817,6 +817,7 @@ public:
     bool isComplete() const override;
     void initializePage() override {
         updateForm();
+        ui.withPassCB->setVisible(pgp());
         dialog.setProtocol(pgp() ? OpenPGP : CMS);
     }
     void cleanupPage() override {
@@ -838,7 +839,6 @@ private Q_SLOTS:
     void slotUpdateResultLabel()
     {
         ui.resultLE->setText(pgp() ? pgpUserID() : cmsDN());
-        ui.withPassCB->setVisible(pgp());
     }
 
 private:

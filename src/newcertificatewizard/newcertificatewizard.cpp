@@ -700,6 +700,7 @@ private:
     void loadDefaultGnuPGKeyType();
     void loadDefaults();
     void updateWidgetVisibility();
+    void setInitialFocus();
 
 private:
     GpgME::Protocol protocol;
@@ -1894,6 +1895,7 @@ void AdvancedSettingsDialog::loadDefaults()
     loadDefaultExpiration();
 
     updateWidgetVisibility();
+    setInitialFocus();
 }
 
 void AdvancedSettingsDialog::updateWidgetVisibility()
@@ -1981,6 +1983,47 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     }
 
     slotKeyMaterialSelectionChanged();
+}
+
+template<typename UnaryPredicate>
+bool focusFirstButtonIf(const std::vector<QAbstractButton *> &buttons, UnaryPredicate p)
+{
+    auto it = std::find_if(std::begin(buttons), std::end(buttons), p);
+    if (it != std::end(buttons)) {
+        (*it)->setFocus();
+        return true;
+    }
+    return false;
+}
+
+bool focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons)
+{
+    return focusFirstButtonIf(buttons,
+                              [](auto btn) {
+                                  return btn && btn->isEnabled() && btn->isChecked();
+                              });
+}
+
+bool focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons)
+{
+    return focusFirstButtonIf(buttons,
+                              [](auto btn) {
+                                  return btn && btn->isEnabled();
+                              });
+}
+
+void AdvancedSettingsDialog::setInitialFocus()
+{
+    // first try the key type radio buttons
+    if (focusFirstCheckedButton({ui.rsaRB, ui.dsaRB, ui.ecdsaRB})) {
+        return;
+    }
+    // then try the usage check boxes and the expiration check box
+    if (focusFirstEnabledButton({ui.signingCB, ui.certificationCB, ui.encryptionCB, ui.authenticationCB, ui.expiryCB})) {
+        return;
+    }
+    // finally, focus the OK button
+    ui.buttonBox->button(QDialogButtonBox::Ok)->setFocus();
 }
 
 #include "newcertificatewizard.moc"

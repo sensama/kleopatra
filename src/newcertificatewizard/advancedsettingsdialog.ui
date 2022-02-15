@@ -169,30 +169,6 @@
           <string>Certificate Usage</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QCheckBox" name="expiryCB">
-              <property name="text">
-               <string>Valid until:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="KDateComboBox" name="expiryDE">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
           <item row="0" column="1">
            <widget class="QCheckBox" name="certificationCB">
             <property name="text">
@@ -226,6 +202,30 @@
              <string>Authentication</string>
             </property>
            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QCheckBox" name="expiryCB">
+              <property name="text">
+               <string>Valid until:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="KDateComboBox" name="expiryDE">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

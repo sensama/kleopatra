@@ -336,34 +336,12 @@ protected:
         return static_cast<NewCertificateWizard *>(QWizardPage::wizard());
     }
 
-    QAbstractButton *button(QWizard::WizardButton button) const
-    {
-        return QWizardPage::wizard() ? QWizardPage::wizard()->button(button) : nullptr;
-    }
-
-    bool isButtonVisible(QWizard::WizardButton button) const
-    {
-        if (const QAbstractButton *const b = this->button(button)) {
-            return b->isVisible();
-        } else {
-            return false;
-        }
-    }
-
     void resetProtocol()
     {
         wizard()->resetProtocol();
     }
 
     QDir tmpDir() const;
-
-protected Q_SLOTS:
-    void setButtonVisible(QWizard::WizardButton button, bool visible)
-    {
-        if (QAbstractButton *const b = this->button(button)) {
-            b->setVisible(visible);
-        }
-    }
 
 protected:
 #define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }
@@ -1046,16 +1024,16 @@ public:
         ui.createSigningCertificatePB->setVisible(successfullyCreatedEncryptionCertificate &&!successfullyCreatedSigningCertificate);
         ui.createEncryptionCertificatePB->setVisible(successfullyCreatedSigningCertificate &&!successfullyCreatedEncryptionCertificate);
 
-        setButtonVisible(QWizard::CancelButton, error);
+        if (error) {
+            wizard()->setOptions(wizard()->options() & ~QWizard::NoCancelButtonOnLastPage);
+        } else {
+            wizard()->setOptions(wizard()->options() | QWizard::NoCancelButtonOnLastPage);
+        }
 
         if (!initialized)
             connect(ui.restartWizardPB, &QAbstractButton::clicked,
                     wizard(), &QWizard::restart);
         initialized = true;
-    }
-
-    void cleanupPage() override {
-        setButtonVisible(QWizard::CancelButton, true);
     }
 
     bool isError() const

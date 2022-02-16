@@ -778,6 +778,7 @@ public:
         : WizardPage(p), dialog(this), ui()
     {
         ui.setupUi(this);
+        ui.resultLE->setFocusPolicy(Qt::NoFocus);
 
         // set errorLB to have a fixed height of two lines:
         ui.errorLB->setText(QStringLiteral("2<br>1"));
@@ -1528,7 +1529,6 @@ void EnterDetailsPage::updateForm()
     std::copy(lines.cbegin(), lines.cend(), std::back_inserter(lineList));
 
     widgets.push_back(ui.withPassCB);
-    widgets.push_back(ui.resultLE);
     widgets.push_back(ui.advancedPB);
 
     const bool prefillName = (pgp() && settings.prefillName()) || (!pgp() && settings.prefillCN());

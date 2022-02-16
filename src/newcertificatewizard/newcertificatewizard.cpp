@@ -1603,7 +1603,7 @@ static bool requirementsAreMet(const QVector<Line> &list, QString &error)
             continue;
         }
         const QString key = line.attr;
-        qCDebug(KLEOPATRA_LOG) << "requirementsAreMet(): checking \"" << key << "\" against \"" << le->text() << "\":";
+        qCDebug(KLEOPATRA_LOG) << "requirementsAreMet(): checking" << key << "against" << le->text() << ":";
         if (le->text().trimmed().isEmpty()) {
             if (key.endsWith(QLatin1Char('!'))) {
                 if (line.regex.isEmpty()) {

@@ -1223,11 +1223,7 @@ private:
         const bool encr = encryptionAllowed();
         setField(QStringLiteral("signingAllowed"),    !sign);
         setField(QStringLiteral("encryptionAllowed"), !encr);
-        // restart and skip to enter details Page:
-        wizard()->restart();
-        for (int i = wizard()->currentId(); i < NewCertificateWizard::EnterDetailsPageId; ++i) {
-            wizard()->next();
-        }
+        restartAtEnterDetailsPage();
     }
 
 private:

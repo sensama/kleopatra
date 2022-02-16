@@ -914,7 +914,7 @@ private Q_SLOTS:
             setField(QStringLiteral("error"), QString());
             setField(QStringLiteral("url"), QString());
             setField(QStringLiteral("result"), i18n("Key pair created successfully.\n"
-                                                    "Fingerprint: %1", QLatin1String(result.fingerprint())));
+                                                    "Fingerprint: %1", Formatting::prettyID(result.fingerprint())));
         } else {
             QFile file(tmpDir().absoluteFilePath(QStringLiteral("request.p10")));
 

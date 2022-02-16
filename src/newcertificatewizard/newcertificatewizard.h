@@ -45,6 +45,7 @@ public:
 
 private:
     void resetProtocol();
+    void restartAtEnterDetailsPage();
 
 private:
     class Private;

@@ -341,6 +341,11 @@ protected:
         wizard()->resetProtocol();
     }
 
+    void restartAtEnterDetailsPage()
+    {
+        wizard()->restartAtEnterDetailsPage();
+    }
+
     QDir tmpDir() const;
 
 protected:
@@ -1030,9 +1035,12 @@ public:
             wizard()->setOptions(wizard()->options() | QWizard::NoCancelButtonOnLastPage);
         }
 
-        if (!initialized)
+        if (!initialized) {
             connect(ui.restartWizardPB, &QAbstractButton::clicked,
-                    wizard(), &QWizard::restart);
+                    this, [this]() {
+                        restartAtEnterDetailsPage();
+                    });
+        }
         initialized = true;
     }
 
@@ -1302,6 +1310,16 @@ Protocol NewCertificateWizard::protocol() const
 void NewCertificateWizard::resetProtocol()
 {
     d->ui.chooseProtocolPage.setProtocol(d->initialProtocol);
+}
+
+void NewCertificateWizard::restartAtEnterDetailsPage()
+{
+    const auto protocol = d->ui.chooseProtocolPage.protocol();
+    restart();  // resets the protocol to the initial protocol
+    d->ui.chooseProtocolPage.setProtocol(protocol);
+    while (currentId() != NewCertificateWizard::EnterDetailsPageId) {
+        next();
+    }
 }
 
 static QString pgpLabel(const QString &attr)

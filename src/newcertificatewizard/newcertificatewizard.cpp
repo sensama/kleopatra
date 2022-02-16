@@ -783,6 +783,14 @@ public:
         : WizardPage(p), dialog(this), ui()
     {
         ui.setupUi(this);
+
+        Settings settings;
+        if (settings.hideAdvanced()) {
+            setSubTitle(i18n("Please enter your personal details below."));
+        } else {
+            setSubTitle(i18n("Please enter your personal details below. If you want more control over the parameters, click on the Advanced Settings button."));
+        }
+        ui.advancedPB->setVisible(!settings.hideAdvanced());
         ui.resultLE->setFocusPolicy(Qt::NoFocus);
 
         // set errorLB to have a fixed height of two lines:
@@ -1552,7 +1560,6 @@ void EnterDetailsPage::updateForm()
     if (ui.emailLE->text().isEmpty() && settings.prefillEmail()) {
         ui.emailLE->setText(userEmailAddress());
     }
-    ui.advancedPB->setVisible(!settings.hideAdvanced());
 
     set_tab_order(widgets);
 }

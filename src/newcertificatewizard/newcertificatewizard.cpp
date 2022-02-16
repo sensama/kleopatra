@@ -1287,7 +1287,7 @@ private:
             KDAB_SET_OBJECT_NAME(keyCreationPage);
             KDAB_SET_OBJECT_NAME(resultPage);
 
-            q->setOptions(DisabledBackButtonOnLastPage);
+            q->setOptions(NoBackButtonOnStartPage|DisabledBackButtonOnLastPage);
 
             q->setPage(ChooseProtocolPageId, &chooseProtocolPage);
             q->setPage(EnterDetailsPageId,   &enterDetailsPage);

@@ -350,6 +350,11 @@ protected:
         }
     }
 
+    void resetProtocol()
+    {
+        wizard()->resetProtocol();
+    }
+
     QDir tmpDir() const;
 
 protected Q_SLOTS:
@@ -824,6 +829,8 @@ public:
     }
     void cleanupPage() override {
         saveValues();
+        // reset protocol when navigating back to "Choose Protocol" page
+        resetProtocol();
     }
 
 private:
@@ -1253,6 +1260,7 @@ public:
     }
 
 private:
+    GpgME::Protocol initialProtocol = GpgME::UnknownProtocol;
     QTemporaryDir tmp;
     struct Ui {
         ChooseProtocolPage chooseProtocolPage;
@@ -1295,6 +1303,7 @@ NewCertificateWizard::~NewCertificateWizard() {}
 
 void NewCertificateWizard::setProtocol(Protocol proto)
 {
+    d->initialProtocol = proto;
     d->ui.chooseProtocolPage.setProtocol(proto);
     setStartId(proto == UnknownProtocol ? ChooseProtocolPageId : EnterDetailsPageId);
 }
@@ -1302,6 +1311,11 @@ void NewCertificateWizard::setProtocol(Protocol proto)
 Protocol NewCertificateWizard::protocol() const
 {
     return d->ui.chooseProtocolPage.protocol();
+}
+
+void NewCertificateWizard::resetProtocol()
+{
+    d->ui.chooseProtocolPage.setProtocol(d->initialProtocol);
 }
 
 static QString pgpLabel(const QString &attr)

@@ -44,6 +44,9 @@ public:
     };
 
 private:
+    void resetProtocol();
+
+private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
     friend class ::Kleo::NewCertificateUi::WizardPage;

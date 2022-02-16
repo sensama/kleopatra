@@ -1553,6 +1553,8 @@ void EnterDetailsPage::updateForm()
         ui.emailLE->setText(userEmailAddress());
     }
 
+    slotUpdateResultLabel();
+
     set_tab_order(widgets);
 }
 

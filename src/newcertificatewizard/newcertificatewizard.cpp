@@ -710,6 +710,8 @@ public:
           ui()
     {
         ui.setupUi(this);
+        ui.pgpCLB->setAccessibleDescription(ui.pgpCLB->description());
+        ui.x509CLB->setAccessibleDescription(ui.x509CLB->description());
         registerField(QStringLiteral("pgp"), ui.pgpCLB);
     }
 

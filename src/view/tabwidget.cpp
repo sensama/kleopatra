@@ -445,7 +445,6 @@ private:
     AbstractKeyListModel *flatModel = nullptr;
     AbstractKeyListModel *hierarchicalModel = nullptr;
     QTabWidget tabWidget;
-    QVBoxLayout layout;
     QAction *newAction = nullptr;
     Actions currentPageActions;
     Actions otherPageActions;
@@ -454,14 +453,14 @@ private:
 
 TabWidget::Private::Private(TabWidget *qq)
     : q(qq),
-      tabWidget(q),
-      layout(q)
+      tabWidget(q)
 {
-    KDAB_SET_OBJECT_NAME(tabWidget);
-    KDAB_SET_OBJECT_NAME(layout);
+    auto layout = new QVBoxLayout{q};
+    layout->setContentsMargins(0, 0, 0, 0);
 
-    layout.setContentsMargins(0, 0, 0, 0);
-    layout.addWidget(&tabWidget);
+    KDAB_SET_OBJECT_NAME(tabWidget);
+
+    layout->addWidget(&tabWidget);
 
     tabWidget.tabBar()->hide();
     tabWidget.setMovable(true);

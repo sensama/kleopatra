@@ -439,11 +439,11 @@ private:
     }
 
     QTreeView *addView(Page *page, Page *columnReference);
-    void setCornerAction(QAction *action, Qt::Corner corner);
 
 private:
     AbstractKeyListModel *flatModel = nullptr;
     AbstractKeyListModel *hierarchicalModel = nullptr;
+    QToolButton *newTabButton = nullptr;
     QTabWidget *tabWidget = nullptr;
     QAction *newAction = nullptr;
     Actions currentPageActions;
@@ -456,6 +456,8 @@ TabWidget::Private::Private(TabWidget *qq)
 {
     auto layout = new QVBoxLayout{q};
     layout->setContentsMargins(0, 0, 0, 0);
+
+    newTabButton = new QToolButton{q};
 
     tabWidget = new QTabWidget{q};
     KDAB_SET_OBJECT_NAME(tabWidget);
@@ -725,16 +727,6 @@ AbstractKeyListModel *TabWidget::hierarchicalModel() const
     return d->hierarchicalModel;
 }
 
-void TabWidget::Private::setCornerAction(QAction *action, Qt::Corner corner)
-{
-    if (!action) {
-        return;
-    }
-    auto b = new QToolButton;
-    b->setDefaultAction(action);
-    tabWidget->setCornerWidget(b, corner);
-}
-
 QString TabWidget::stringFilter() const
 {
     return d->currentPage() ? d->currentPage()->stringFilter() : QString{};
@@ -869,9 +861,12 @@ void TabWidget::createActions(KActionCollection *coll)
         d->otherPageActions.insert(ad.name, action);
     }
 
-    d->setCornerAction(d->newAction,                 Qt::TopLeftCorner);
+    d->newTabButton->setDefaultAction(d->newAction);
+    d->tabWidget->setCornerWidget(d->newTabButton, Qt::TopLeftCorner);
     if (auto action = d->currentPageActions.get(Actions::Close)) {
-        d->setCornerAction(action, Qt::TopRightCorner);
+        auto b = new QToolButton{this};
+        b->setDefaultAction(action);
+        d->tabWidget->setCornerWidget(b, Qt::TopRightCorner);
     }
     d->actionsCreated = true;
 }

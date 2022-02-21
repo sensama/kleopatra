@@ -442,23 +442,20 @@ private:
     void setCornerAction(QAction *action, Qt::Corner corner);
 
 private:
-    AbstractKeyListModel *flatModel;
-    AbstractKeyListModel *hierarchicalModel;
+    AbstractKeyListModel *flatModel = nullptr;
+    AbstractKeyListModel *hierarchicalModel = nullptr;
     QTabWidget tabWidget;
     QVBoxLayout layout;
     QAction *newAction = nullptr;
     Actions currentPageActions;
     Actions otherPageActions;
-    bool actionsCreated;
+    bool actionsCreated = false;
 };
 
 TabWidget::Private::Private(TabWidget *qq)
     : q(qq),
-      flatModel(nullptr),
-      hierarchicalModel(nullptr),
       tabWidget(q),
-      layout(q),
-      actionsCreated(false)
+      layout(q)
 {
     KDAB_SET_OBJECT_NAME(tabWidget);
     KDAB_SET_OBJECT_NAME(layout);

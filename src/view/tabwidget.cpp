@@ -416,13 +416,13 @@ private:
 
     Page *currentPage() const
     {
-        Q_ASSERT(!tabWidget.currentWidget() || qobject_cast<Page *>(tabWidget.currentWidget()));
-        return static_cast<Page *>(tabWidget.currentWidget());
+        Q_ASSERT(!tabWidget->currentWidget() || qobject_cast<Page *>(tabWidget->currentWidget()));
+        return static_cast<Page *>(tabWidget->currentWidget());
     }
     Page *page(unsigned int idx) const
     {
-        Q_ASSERT(!tabWidget.widget(idx) || qobject_cast<Page *>(tabWidget.widget(idx)));
-        return static_cast<Page *>(tabWidget.widget(idx));
+        Q_ASSERT(!tabWidget->widget(idx) || qobject_cast<Page *>(tabWidget->widget(idx)));
+        return static_cast<Page *>(tabWidget->widget(idx));
     }
 
     Page *senderPage() const
@@ -444,7 +444,7 @@ private:
 private:
     AbstractKeyListModel *flatModel = nullptr;
     AbstractKeyListModel *hierarchicalModel = nullptr;
-    QTabWidget tabWidget;
+    QTabWidget *tabWidget = nullptr;
     QAction *newAction = nullptr;
     Actions currentPageActions;
     Actions otherPageActions;
@@ -452,31 +452,30 @@ private:
 };
 
 TabWidget::Private::Private(TabWidget *qq)
-    : q(qq),
-      tabWidget(q)
+    : q{qq}
 {
     auto layout = new QVBoxLayout{q};
     layout->setContentsMargins(0, 0, 0, 0);
 
+    tabWidget = new QTabWidget{q};
     KDAB_SET_OBJECT_NAME(tabWidget);
 
-    layout->addWidget(&tabWidget);
+    layout->addWidget(tabWidget);
 
-    tabWidget.setMovable(true);
+    tabWidget->setMovable(true);
 
-    tabWidget.tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
+    tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(&tabWidget, SIGNAL(currentChanged(int)), q, SLOT(currentIndexChanged(int)));
-    connect(tabWidget.tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint & p) {
+    connect(tabWidget, SIGNAL(currentChanged(int)), q, SLOT(currentIndexChanged(int)));
+    connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint & p) {
         slotContextMenu(p);
     });
-
 }
 
 void TabWidget::Private::slotContextMenu(const QPoint &p)
 {
-    const int tabUnderPos = tabWidget.tabBar()->tabAt(p);
-    Page *const contextMenuPage = static_cast<Page *>(tabWidget.widget(tabUnderPos));
+    const int tabUnderPos = tabWidget->tabBar()->tabAt(p);
+    Page *const contextMenuPage = static_cast<Page *>(tabWidget->widget(tabUnderPos));
     const Page *const current = currentPage();
 
     const auto actions = contextMenuPage == current ? currentPageActions : otherPageActions;
@@ -504,7 +503,7 @@ void TabWidget::Private::slotContextMenu(const QPoint &p)
         menu.addAction(action);
     }
 
-    const QAction *const action = menu.exec(tabWidget.tabBar()->mapToGlobal(p));
+    const QAction *const action = menu.exec(tabWidget->tabBar()->mapToGlobal(p));
     if (!action) {
         return;
     }
@@ -552,9 +551,9 @@ void TabWidget::Private::enableDisablePageActions(const Actions &actions, const 
 {
     actions.setEnabled(Actions::Rename, p && p->canBeRenamed());
     actions.setEnabled(Actions::Duplicate, p);
-    actions.setEnabled(Actions::Close, p && p->canBeClosed() && tabWidget.count() > 1);
-    actions.setEnabled(Actions::MoveLeft, p && tabWidget.indexOf(const_cast<Page *>(p)) != 0);
-    actions.setEnabled(Actions::MoveRight, p && tabWidget.indexOf(const_cast<Page *>(p)) != tabWidget.count() - 1);
+    actions.setEnabled(Actions::Close, p && p->canBeClosed() && tabWidget->count() > 1);
+    actions.setEnabled(Actions::MoveLeft, p && tabWidget->indexOf(const_cast<Page *>(p)) != 0);
+    actions.setEnabled(Actions::MoveRight, p && tabWidget->indexOf(const_cast<Page *>(p)) != tabWidget->count() - 1);
     actions.setEnabled(Actions::Hierarchical, p && p->canChangeHierarchical());
     actions.setChecked(Actions::Hierarchical, p && p->isHierarchicalView());
     actions.setVisible(Actions::Hierarchical, Kleo::Settings{}.cmsEnabled());
@@ -565,9 +564,9 @@ void TabWidget::Private::enableDisablePageActions(const Actions &actions, const 
 void TabWidget::Private::slotPageTitleChanged(const QString &)
 {
     if (Page *const page = senderPage()) {
-        const int idx = tabWidget.indexOf(page);
-        tabWidget.setTabText(idx, page->title());
-        tabWidget.setTabToolTip(idx, page->toolTip());
+        const int idx = tabWidget->indexOf(page);
+        tabWidget->setTabText(idx, page->title());
+        tabWidget->setTabToolTip(idx, page->toolTip());
     }
 }
 
@@ -592,10 +591,10 @@ void TabWidget::Private::slotPageHierarchyChanged(bool)
 
 void TabWidget::Private::slotNewTab()
 {
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", tabWidget.count()));
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", tabWidget->count()));
     Page *page = new Page(QString(), QStringLiteral("all-certificates"), QString(), nullptr, QString(), nullptr, group);
     addView(page, currentPage());
-    tabWidget.setCurrentIndex(tabWidget.count() - 1);
+    tabWidget->setCurrentIndex(tabWidget->count() - 1);
 }
 
 void TabWidget::Private::renamePage(Page *page)
@@ -624,11 +623,11 @@ void TabWidget::Private::duplicatePage(Page *page)
 
 void TabWidget::Private::closePage(Page *page)
 {
-    if (!page || !page->canBeClosed() || tabWidget.count() <= 1) {
+    if (!page || !page->canBeClosed() || tabWidget->count() <= 1) {
         return;
     }
     Q_EMIT q->viewAboutToBeRemoved(page->view());
-    tabWidget.removeTab(tabWidget.indexOf(page));
+    tabWidget->removeTab(tabWidget->indexOf(page));
     enableDisableCurrentPageActions();
 }
 
@@ -637,11 +636,11 @@ void TabWidget::Private::movePageLeft(Page *page)
     if (!page) {
         return;
     }
-    const int idx = tabWidget.indexOf(page);
+    const int idx = tabWidget->indexOf(page);
     if (idx <= 0) {
         return;
     }
-    tabWidget.tabBar()->moveTab(idx, idx - 1);
+    tabWidget->tabBar()->moveTab(idx, idx - 1);
     enableDisableCurrentPageActions();
 }
 
@@ -650,11 +649,11 @@ void TabWidget::Private::movePageRight(Page *page)
     if (!page) {
         return;
     }
-    const int idx = tabWidget.indexOf(page);
-    if (idx < 0 || idx >= tabWidget.count() - 1) {
+    const int idx = tabWidget->indexOf(page);
+    if (idx < 0 || idx >= tabWidget->count() - 1) {
         return;
     }
-    tabWidget.tabBar()->moveTab(idx, idx + 1);
+    tabWidget->tabBar()->moveTab(idx, idx + 1);
     enableDisableCurrentPageActions();
 }
 
@@ -733,7 +732,7 @@ void TabWidget::Private::setCornerAction(QAction *action, Qt::Corner corner)
     }
     auto b = new QToolButton;
     b->setDefaultAction(action);
-    tabWidget.setCornerWidget(b, corner);
+    tabWidget->setCornerWidget(b, corner);
 }
 
 QString TabWidget::stringFilter() const
@@ -796,7 +795,7 @@ KeyListModelInterface *TabWidget::currentModel() const
 
 unsigned int TabWidget::count() const
 {
-    return d->tabWidget.count();
+    return d->tabWidget->count();
 }
 
 void TabWidget::setMultiSelection(bool on)
@@ -879,7 +878,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
 QAbstractItemView *TabWidget::addView(const QString &title, const QString &id, const QString &text)
 {
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", d->tabWidget.count()));
+    const KConfigGroup group = KSharedConfig::openConfig()->group(QString::asprintf("View #%u", d->tabWidget->count()));
     Page *page = new Page(title, id, text, nullptr, QString(), nullptr, group);
     return d->addView(page, d->currentPage());
 }
@@ -895,7 +894,7 @@ QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKey
     Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip, nullptr, group);
     page->setTemporary(true);
     QAbstractItemView *v = d->addView(page, d->currentPage());
-    d->tabWidget.setCurrentIndex(d->tabWidget.count() - 1);
+    d->tabWidget->setCurrentIndex(d->tabWidget->count() - 1);
     return v;
 }
 
@@ -924,12 +923,12 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     }
 
     QAbstractItemView *const previous = q->currentView();
-    const int tabIndex = tabWidget.addTab(page, page->title());
-    tabWidget.setTabToolTip(tabIndex, page->toolTip());
+    const int tabIndex = tabWidget->addTab(page, page->title());
+    tabWidget->setTabToolTip(tabIndex, page->toolTip());
     // work around a bug in QTabWidget (tested with 4.3.2) not emitting currentChanged() when the first widget is inserted
     QAbstractItemView *const current = q->currentView();
     if (previous != current) {
-        currentIndexChanged(tabWidget.currentIndex());
+        currentIndexChanged(tabWidget->currentIndex());
     }
     enableDisableCurrentPageActions();
     QTreeView *view = page->view();

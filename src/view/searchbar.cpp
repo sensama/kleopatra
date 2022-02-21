@@ -128,8 +128,12 @@ SearchBar::Private::Private(SearchBar *qq)
     lineEdit = new QLineEdit(q);
     lineEdit->setClearButtonEnabled(true);
     lineEdit->setPlaceholderText(i18n("Search..."));
+    lineEdit->setAccessibleName(i18n("Filter certificates by text"));
+    lineEdit->setToolTip(i18n("Show only certificates that match the entered search term."));
     layout->addWidget(lineEdit, /*stretch=*/1);
     combo = new QComboBox(q);
+    combo->setAccessibleName(i18n("Filter certificates by category"));
+    combo->setToolTip(i18n("Show only certificates that belong to the selected category."));
     layout->addWidget(combo);
     certifyButton = new QPushButton(q);
     certifyButton->setIcon(QIcon::fromTheme(QStringLiteral("security-medium")));

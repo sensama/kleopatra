@@ -462,7 +462,6 @@ TabWidget::Private::Private(TabWidget *qq)
 
     layout->addWidget(&tabWidget);
 
-    tabWidget.tabBar()->hide();
     tabWidget.setMovable(true);
 
     tabWidget.tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -561,12 +560,6 @@ void TabWidget::Private::enableDisablePageActions(const Actions &actions, const 
     actions.setVisible(Actions::Hierarchical, Kleo::Settings{}.cmsEnabled());
     actions.setEnabled(Actions::ExpandAll, p && p->isHierarchicalView());
     actions.setEnabled(Actions::CollapseAll, p && p->isHierarchicalView());
-
-    if (tabWidget.count() < 2) {
-        tabWidget.tabBar()->hide();
-    } else {
-        tabWidget.tabBar()->show();
-    }
 }
 
 void TabWidget::Private::slotPageTitleChanged(const QString &)

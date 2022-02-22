@@ -253,6 +253,8 @@ void KeyTreeView::init()
     //m_view->setAlternatingRowColors( true );
     m_view->setAllColumnsShowFocus(true);
     m_view->setSortingEnabled(true);
+    m_view->setAccessibleName(i18n("Certificates"));
+    m_view->setAccessibleDescription(m_isHierarchical ? i18n("Hierarchical list of certificates") : i18n("List of certificates"));
 
     if (model()) {
         if (m_additionalProxy) {
@@ -589,6 +591,7 @@ void KeyTreeView::setHierarchicalView(bool on)
             m_view->scrollTo(currentIndex);
         }
     }
+    m_view->setAccessibleDescription(m_isHierarchical ? i18n("Hierarchical list of certificates") : i18n("List of certificates"));
     Q_EMIT hierarchicalChanged(on);
 }
 

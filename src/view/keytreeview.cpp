@@ -38,6 +38,7 @@
 #include <QAction>
 #include <QEvent>
 #include <QContextMenuEvent>
+#include <QScrollBar>
 
 #include <KSharedConfig>
 #include <KLocalizedString>
@@ -114,11 +115,95 @@ protected:
         return false;
     }
 
+    void keyPressEvent(QKeyEvent *event) override;
+    QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override;
+
 private:
+    bool mMoveCursorUpdatedView = false;
     QMenu *mHeaderPopup = nullptr;
 
     QList<QAction *> mColumnActions;
 };
+
+void TreeView::keyPressEvent(QKeyEvent *event)
+{
+    mMoveCursorUpdatedView = false;
+    QTreeView::keyPressEvent(event);
+    if (mMoveCursorUpdatedView) {
+        event->accept();
+    }
+}
+
+QModelIndex TreeView::moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers)
+{
+    // this code is based heavily on QTreeView::moveCursor()
+
+    QModelIndex current = currentIndex();
+    if (!current.isValid()) {
+        // let QTreeView handle invalid current index
+        return QTreeView::moveCursor(cursorAction, modifiers);
+    }
+
+    if (isRightToLeft()) {
+        if (cursorAction == MoveRight) {
+            cursorAction = MoveLeft;
+        } else if (cursorAction == MoveLeft) {
+            cursorAction = MoveRight;
+        }
+    }
+    switch (cursorAction) {
+    case MoveLeft: {
+        int visualColumn = header()->visualIndex(current.column()) - 1;
+        while (visualColumn >= 0 && isColumnHidden(header()->logicalIndex(visualColumn))) {
+            visualColumn--;
+        }
+        int newColumn = header()->logicalIndex(visualColumn);
+        QModelIndex next = current.sibling(current.row(), newColumn);
+        if (next.isValid()) {
+            return next;
+        }
+
+        //last restort: we change the scrollbar value
+        QScrollBar *sb = horizontalScrollBar();
+        int oldValue = sb->value();
+        sb->setValue(sb->value() - sb->singleStep());
+        if (oldValue != sb->value()) {
+            mMoveCursorUpdatedView = true;
+        }
+
+        updateGeometries();
+        viewport()->update();
+        break;
+    }
+    case MoveRight: {
+        int visualColumn = header()->visualIndex(current.column()) + 1;
+        while (visualColumn < model()->columnCount(current.parent()) && isColumnHidden(header()->logicalIndex(visualColumn))) {
+            visualColumn++;
+        }
+        const int newColumn = header()->logicalIndex(visualColumn);
+        const QModelIndex next = current.sibling(current.row(), newColumn);
+        if (next.isValid()) {
+            return next;
+        }
+
+        //last restort: we change the scrollbar value
+        QScrollBar *sb = horizontalScrollBar();
+        int oldValue = sb->value();
+        sb->setValue(sb->value() + sb->singleStep());
+        if (oldValue != sb->value()) {
+            mMoveCursorUpdatedView = true;
+        }
+
+        updateGeometries();
+        viewport()->update();
+        break;
+    }
+    default:
+        return QTreeView::moveCursor(cursorAction, modifiers);
+    }
+
+    return current;
+}
 
 const KeyListModelInterface * keyListModel(const QTreeView &view)
 {
@@ -250,8 +335,7 @@ void KeyTreeView::init()
 
     m_view->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    //m_view->setAlternatingRowColors( true );
-    m_view->setAllColumnsShowFocus(true);
+    m_view->setAllColumnsShowFocus(false);
     m_view->setSortingEnabled(true);
     m_view->setAccessibleName(i18n("Certificates"));
     m_view->setAccessibleDescription(m_isHierarchical ? i18n("Hierarchical list of certificates") : i18n("List of certificates"));

@@ -103,6 +103,11 @@ public:
         return mRequester->nameFilter();
     }
 
+    FileNameRequester *requester()
+    {
+        return mRequester;
+    }
+
 Q_SIGNALS:
     void fileNameChanged(const QString &filename);
 
@@ -333,12 +338,20 @@ private:
             { SignEncryptFilesWizard::Directory,    QStringLiteral("folder") }
         };
         static const QMap<int, QString> toolTips = {
-            { SignEncryptFilesWizard::SignatureCMS, i18n("The S/MIME signature.") },
-            { SignEncryptFilesWizard::SignaturePGP, i18n("The signature.") },
-            { SignEncryptFilesWizard::CombinedPGP,  i18n("The signed and encrypted file.") },
-            { SignEncryptFilesWizard::EncryptedPGP, i18n("The encrypted file.") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("The S/MIME encrypted file.") },
-            { SignEncryptFilesWizard::Directory,    i18n("Output directory.") }
+            { SignEncryptFilesWizard::SignatureCMS, i18n("This is the filename of the S/MIME signature.") },
+            { SignEncryptFilesWizard::SignaturePGP, i18n("This is the filename of the detached OpenPGP signature.") },
+            { SignEncryptFilesWizard::CombinedPGP,  i18n("This is the filename of the OpenPGP-signed and encrypted file.") },
+            { SignEncryptFilesWizard::EncryptedPGP, i18n("This is the filename of the OpenPGP encrypted file.") },
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("This is the filename of the S/MIME encrypted file.") },
+            { SignEncryptFilesWizard::Directory,    i18n("The resulting files are written to this directory.") }
+        };
+        static const QMap<int, QString> accessibleNames = {
+            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME signature file") },
+            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP signature file") },
+            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP signed and encrypted file") },
+            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP encrypted file") },
+            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME encrypted file") },
+            { SignEncryptFilesWizard::Directory,    i18n("Output directory") }
         };
         static const QMap<int, QString> nameFiltersBinary = {
             { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME Signatures (*.p7s)") },
@@ -366,6 +379,7 @@ private:
                 kind == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};
             requesterWithIcon->setIcon(QIcon::fromTheme(icons[kind]));
             requesterWithIcon->setToolTip(toolTips[kind]);
+            requesterWithIcon->requester()->setAccessibleNameOfLineEdit(accessibleNames[kind]);
             requesterWithIcon->setNameFilter(nameFilters[kind]);
             lay->addWidget(requesterWithIcon);
 

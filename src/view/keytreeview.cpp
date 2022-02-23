@@ -153,6 +153,9 @@ QModelIndex TreeView::moveCursor(CursorAction cursorAction, Qt::KeyboardModifier
     }
     switch (cursorAction) {
     case MoveLeft: {
+        // HACK: call QTreeView::moveCursor with invalid cursor action to make it call the private executePostedLayout()
+        (void) QTreeView::moveCursor(static_cast<CursorAction>(-1), modifiers);
+
         int visualColumn = header()->visualIndex(current.column()) - 1;
         while (visualColumn >= 0 && isColumnHidden(header()->logicalIndex(visualColumn))) {
             visualColumn--;
@@ -176,6 +179,9 @@ QModelIndex TreeView::moveCursor(CursorAction cursorAction, Qt::KeyboardModifier
         break;
     }
     case MoveRight: {
+        // HACK: call QTreeView::moveCursor with invalid cursor action to make it call the private executePostedLayout()
+        (void) QTreeView::moveCursor(static_cast<CursorAction>(-1), modifiers);
+
         int visualColumn = header()->visualIndex(current.column()) + 1;
         while (visualColumn < model()->columnCount(current.parent()) && isColumnHidden(header()->logicalIndex(visualColumn))) {
             visualColumn++;

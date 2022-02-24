@@ -25,6 +25,7 @@
 #include "conf/cryptooperationsconfigpage.h"
 #include "conf/dirservconfigpage.h"
 #include "conf/gnupgsystemconfigurationpage.h"
+#include "conf/smartcardconfigpage.h"
 #include "conf/smimevalidationconfigurationpage.h"
 
 ConfigureDialog::ConfigureDialog(QWidget *parent)
@@ -57,6 +58,12 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
                   QStringLiteral("kleopatra/configuration.html#configuration-smime-validation"),
                   QStringLiteral("preferences-system-network"),
                   new Kleo::Config::SMimeValidationConfigurationPage(this));
+    }
+    if (settings.showSmartCardsConfiguration()) {
+        addModule(i18n("Smart Cards"),
+                  QStringLiteral("kleopatra/configuration.html"),
+                  QStringLiteral("auth-sim-locked"),
+                  new Kleo::Config::SmartCardConfigurationPage{this});
     }
     if (settings.showGnuPGSystemConfiguration()) {
         addModule(i18n("GnuPG System"),

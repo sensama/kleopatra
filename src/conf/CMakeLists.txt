@@ -11,6 +11,8 @@ if(BUILD_libkleopatraclient)
     smimevalidationconfigurationpage.h
     cryptooperationsconfigwidget.h
     cryptooperationsconfigpage.h
+    smartcardconfigpage.cpp
+    smartcardconfigpage.h
   )
 
   ki18n_wrap_ui(_kcm_kleopatra_libkleopatraclient_extra_SRCS

@@ -39,7 +39,8 @@ class RevokeCertificationDialog::Private
     RevokeCertificationDialog *const q;
 public:
     explicit Private(RevokeCertificationDialog *qq);
-    ~Private();
+
+    void updateOkButton();
 
 private:
     void saveGeometry();
@@ -47,6 +48,7 @@ private:
 
 private:
     RevokeCertificationWidget *mainWidget = nullptr;
+    QPushButton *okButton = nullptr;
 };
 
 
@@ -55,8 +57,10 @@ RevokeCertificationDialog::Private::Private(RevokeCertificationDialog *qq)
 {
 }
 
-RevokeCertificationDialog::Private::~Private()
+void RevokeCertificationDialog::Private::updateOkButton()
 {
+    okButton->setEnabled(!mainWidget->certificationKey().isNull()
+                         && !mainWidget->selectedUserIDs().empty());
 }
 
 void RevokeCertificationDialog::Private::saveGeometry()
@@ -87,19 +91,28 @@ RevokeCertificationDialog::RevokeCertificationDialog(QWidget *p, Qt::WindowFlags
     d->mainWidget = new RevokeCertificationWidget(this);
     mainLay->addWidget(d->mainWidget);
 
-    auto buttonBox = new QDialogButtonBox();
+    auto buttonBox = new QDialogButtonBox(this);
     mainLay->addWidget(buttonBox);
     buttonBox->setStandardButtons(QDialogButtonBox::Cancel |
                                   QDialogButtonBox::Ok);
-    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
-    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
-    buttonBox->button(QDialogButtonBox::Ok)->setText(i18n("Revoke Certification"));
-    connect(buttonBox->button(QDialogButtonBox::Ok), &QAbstractButton::clicked,
+    d->okButton = buttonBox->button(QDialogButtonBox::Ok);
+    auto cancelButton = buttonBox->button(QDialogButtonBox::Cancel);
+    KGuiItem::assign(d->okButton, KStandardGuiItem::ok());
+    KGuiItem::assign(cancelButton, KStandardGuiItem::cancel());
+    d->okButton->setText(i18n("Revoke Certification"));
+
+    connect(d->mainWidget, &RevokeCertificationWidget::certificationKeyChanged,
+            this, [this]() { d->updateOkButton(); });
+    connect(d->mainWidget, &RevokeCertificationWidget::selectedUserIDsChanged,
+            this, [this]() { d->updateOkButton(); });
+    d->updateOkButton();
+
+    connect(d->okButton, &QAbstractButton::clicked,
             this, [this] () {
                 d->mainWidget->saveConfig();
                 accept();
             });
-    connect(buttonBox->button(QDialogButtonBox::Cancel), &QAbstractButton::clicked,
+    connect(cancelButton, &QAbstractButton::clicked,
             this, [this] () { close(); });
 
     d->restoreGeometry(QSize(640, 480));

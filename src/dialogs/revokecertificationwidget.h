@@ -54,6 +54,10 @@ public:
 
     void saveConfig() const;
 
+Q_SIGNALS:
+    void certificationKeyChanged(const GpgME::Key &key);
+    void selectedUserIDsChanged(const std::vector<GpgME::UserID> &uids);
+
 private:
     class Private;
     const std::unique_ptr<Private> d;

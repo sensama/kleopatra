@@ -180,6 +180,13 @@ public:
         mainLayout->addWidget(mPublishCB);
 
         loadConfig();
+
+        connect(mCertificationKeySelect, &KeySelectionCombo::currentKeyChanged,
+                q, &RevokeCertificationWidget::certificationKeyChanged);
+        connect(&mUserIDModel, &UserIDModel::itemChanged,
+                q, [this]() {
+                    Q_EMIT q->selectedUserIDsChanged(q->selectedUserIDs());
+                });
     }
 
     ~Private()

@@ -54,7 +54,7 @@ private:
 
 private:
     void ensureDialogCreated();
-    void createJob();
+    QGpgME::QuickJob *createJob();
 
 private:
     Key certificationKey;
@@ -101,8 +101,20 @@ void RevokeCertificationCommand::Private::init()
 
 void RevokeCertificationCommand::Private::slotDialogAccepted()
 {
-    createJob();
+    const auto certificationKey = dialog->selectedCertificationKey();
+    const auto selectedUserIDs = dialog->selectedUserIDs();
+    if (certificationKey.isNull() || selectedUserIDs.empty()) {
+        qCDebug(KLEOPATRA_LOG) << "No certification key or no user IDs selected -> skipping revocation";
+        finished();
+        return;
+    }
 
+    job = createJob();
+    if (!job) {
+        qCDebug(KLEOPATRA_LOG) << "Failed to create QuickJob";
+        finished();
+        return;
+    }
     job->startRevokeSignature(certificationTarget, dialog->selectedCertificationKey(), dialog->selectedUserIDs());
 }
 
@@ -147,27 +159,25 @@ void RevokeCertificationCommand::Private::ensureDialogCreated()
     connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
 }
 
-void RevokeCertificationCommand::Private::createJob()
+QGpgME::QuickJob *RevokeCertificationCommand::Private::createJob()
 {
     Q_ASSERT(!job);
 
     Q_ASSERT(certificationTarget.protocol() == OpenPGP);
     const auto backend = QGpgME::openpgp();
     if (!backend) {
-        return;
+        return nullptr;
     }
 
     QuickJob *const j = backend->quickJob();
-    if (!j) {
-        return;
+    if (j) {
+        connect(j, &Job::progress,
+                q, &Command::progress);
+        connect(j, SIGNAL(result(GpgME::Error)),
+                q, SLOT(slotResult(GpgME::Error)));
     }
 
-    connect(j, &Job::progress,
-            q, &Command::progress);
-    connect(j, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
-
-    job = j;
+    return j;
 }
 
 RevokeCertificationCommand::RevokeCertificationCommand(QAbstractItemView *v, KeyListController *c)

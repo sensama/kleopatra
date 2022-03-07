@@ -1288,10 +1288,18 @@ private:
 NewCertificateWizard::NewCertificateWizard(QWidget *p)
     : QWizard(p), d(new Private(this))
 {
-
 }
 
 NewCertificateWizard::~NewCertificateWizard() {}
+
+void NewCertificateWizard::showEvent(QShowEvent *event)
+{
+    // set WA_KeyboardFocusChange attribute to force visual focus of the
+    // focussed button when the wizard is shown (required for Breeze style
+    // and some other styles)
+    window()->setAttribute(Qt::WA_KeyboardFocusChange);
+    QWizard::showEvent(event);
+}
 
 void NewCertificateWizard::setProtocol(Protocol proto)
 {

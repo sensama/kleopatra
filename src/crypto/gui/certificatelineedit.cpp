@@ -42,30 +42,39 @@ static QStringList s_lookedUpKeys;
 
 namespace
 {
-class ProxyModel : public KeyListSortFilterProxyModel
+class CompletionProxyModel : public KeyListSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    ProxyModel(QObject *parent = nullptr)
+    CompletionProxyModel(QObject *parent = nullptr)
         : KeyListSortFilterProxyModel(parent)
     {
     }
 
-    QVariant data(const QModelIndex &index, int role) const override
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override
     {
-        if (!index.isValid()) {
+        Q_UNUSED(parent)
+        // pretend that there is only one column to workaround a bug in
+        // QAccessibleTable which provides the accessibility interface for the
+        // completion pop-up
+        return 1;
+    }
+
+    QVariant data(const QModelIndex &idx, int role) const override
+    {
+        if (!idx.isValid()) {
             return QVariant();
         }
 
         switch (role) {
         case Qt::DecorationRole: {
-            const auto key = KeyListSortFilterProxyModel::data(index, KeyList::KeyRole).value<GpgME::Key>();
+            const auto key = KeyListSortFilterProxyModel::data(idx, KeyList::KeyRole).value<GpgME::Key>();
             if (!key.isNull()) {
                 return Kleo::Formatting::iconForUid(key.userID(0));
             }
 
-            const auto group = KeyListSortFilterProxyModel::data(index, KeyList::GroupRole).value<KeyGroup>();
+            const auto group = KeyListSortFilterProxyModel::data(idx, KeyList::GroupRole).value<KeyGroup>();
             if (!group.isNull()) {
                 return QIcon::fromTheme(QStringLiteral("group"));
             }
@@ -74,7 +83,7 @@ public:
             return QVariant();
         }
         default:
-            return KeyListSortFilterProxyModel::data(index, role);
+            return KeyListSortFilterProxyModel::data(index(idx.row(), KeyList::Summary), role);
         }
     }
 };
@@ -85,7 +94,7 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
                                          KeyFilter *filter)
     : QLineEdit(parent),
       mFilterModel(new KeyListSortFilterProxyModel(this)),
-      mCompleterFilterModel(new ProxyModel(this)),
+      mCompleterFilterModel(new CompletionProxyModel(this)),
       mCompleter(new QCompleter(this)),
       mFilter(std::shared_ptr<KeyFilter>(filter)),
       mLineAction(new QAction(this))
@@ -97,7 +106,6 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
     mCompleter->setModel(mCompleterFilterModel);
-    mCompleter->setCompletionColumn(KeyList::Summary);
     mCompleter->setFilterMode(Qt::MatchContains);
     mCompleter->setCaseSensitivity(Qt::CaseInsensitive);
     setCompleter(mCompleter);

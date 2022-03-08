@@ -179,7 +179,15 @@ void CertificateLineEdit::editFinished()
     mEditStarted = false;
     mEditFinished = true;
     updateKey();
-    checkLocate();
+    if (!key().isNull()) {
+        QSignalBlocker blocky{this};
+        setText(Formatting::summaryLine(key()));
+    } else if (!group().isNull()) {
+        QSignalBlocker blocky{this};
+        setText(Formatting::summaryLine(group()));
+    } else {
+        checkLocate();
+    }
 }
 
 void CertificateLineEdit::checkLocate()

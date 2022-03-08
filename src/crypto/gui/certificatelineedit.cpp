@@ -166,12 +166,12 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
 
 void CertificateLineEdit::editChanged()
 {
+    mEditFinished = false;
     updateKey();
     if (!mEditStarted) {
         Q_EMIT editingStarted();
         mEditStarted = true;
     }
-    mEditFinished = false;
 }
 
 void CertificateLineEdit::editFinished()

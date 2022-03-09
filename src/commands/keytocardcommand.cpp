@@ -17,8 +17,6 @@
 
 #include "commands/authenticatepivcardapplicationcommand.h"
 
-#include "dialogs/certificateselectiondialog.h"
-
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -44,7 +42,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 

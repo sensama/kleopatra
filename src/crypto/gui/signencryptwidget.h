@@ -103,6 +103,7 @@ protected Q_SLOTS:
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
     void dialogRequested(CertificateLineEdit *w);
+    void certificateSelectionRequested(CertificateLineEdit *w);
 
 protected:
     void loadKeys();

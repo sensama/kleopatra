@@ -10,7 +10,7 @@
 */
 #pragma once
 
-#include <QLineEdit>
+#include <QWidget>
 
 #include <memory>
 
@@ -32,7 +32,7 @@ class KeyGroup;
  * The widget will use a single line HBox Layout. For larger dialog
  * see certificateslectiondialog.
  */
-class CertificateLineEdit: public QLineEdit
+class CertificateLineEdit: public QWidget
 {
     Q_OBJECT
 public:
@@ -46,8 +46,8 @@ public:
      * @param filter: The filters to use. See certificateselectiondialog.
      */
     explicit CertificateLineEdit(AbstractKeyListModel *model,
-                                 QWidget *parent = nullptr,
-                                 KeyFilter *filter = nullptr);
+                                 KeyFilter *filter = nullptr,
+                                 QWidget *parent = nullptr);
 
     ~CertificateLineEdit() override;
 
@@ -55,6 +55,9 @@ public:
     GpgME::Key key() const;
 
     KeyGroup group() const;
+
+    /** The current text */
+    QString text() const;
 
     /** Check if the text is empty */
     bool isEmpty() const;
@@ -80,6 +83,9 @@ Q_SIGNALS:
 
     /** Emitted when the details dialog or the selection dialog is requested. */
     void dialogRequested();
+
+    /** Emitted when the certificate selection dialog is requested. */
+    void certificateSelectionRequested();
 
 private:
     class Private;

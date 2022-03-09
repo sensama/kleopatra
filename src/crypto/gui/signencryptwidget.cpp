@@ -259,8 +259,9 @@ void SignEncryptWidget::setEncryptWithPasswordText(const QString& text)
 
 CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
-    auto certSel = new CertificateLineEdit(mModel, this,
-                                           new EncryptCertificateFilter(mCurrentProto));
+    auto certSel = new CertificateLineEdit(mModel,
+                                           new EncryptCertificateFilter(mCurrentProto),
+                                           this);
     certSel->setAccessibleName(i18nc("text for screen readers", "recipient key"));
     certSel->setEnabled(mEncOtherChk->isChecked());
     mRecpWidgets << certSel;
@@ -279,6 +280,8 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
             this, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::dialogRequested,
             this, [this, certSel] () { dialogRequested(certSel); });
+    connect(certSel, &CertificateLineEdit::certificateSelectionRequested,
+            this, [this, certSel]() { certificateSelectionRequested(certSel); });
 
     return certSel;
 }
@@ -316,17 +319,22 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
         return;
     }
 
-    auto const dlg = new CertificateSelectionDialog(this);
+    certificateSelectionRequested(certificateLineEdit);
+}
 
-    dlg->setOptions(CertificateSelectionDialog::Options(
+void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certificateLineEdit)
+{
+    CertificateSelectionDialog dlg{this};
+
+    dlg.setOptions(CertificateSelectionDialog::Options(
         CertificateSelectionDialog::MultiSelection |
         CertificateSelectionDialog::EncryptOnly |
         CertificateSelectionDialog::optionsFromProtocol(mCurrentProto) |
         CertificateSelectionDialog::IncludeGroups));
 
-    if (dlg->exec()) {
-        const std::vector<Key> keys = dlg->selectedCertificates();
-        const std::vector<KeyGroup> groups = dlg->selectedGroups();
+    if (dlg.exec()) {
+        const std::vector<Key> keys = dlg.selectedCertificates();
+        const std::vector<KeyGroup> groups = dlg.selectedGroups();
         if (keys.size() == 0 && groups.size() == 0) {
             return;
         }
@@ -348,7 +356,7 @@ void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit
             }
         }
     }
-    delete dlg;
+
     recipientsChanged();
 }
 

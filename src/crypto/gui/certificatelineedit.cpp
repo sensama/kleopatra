@@ -11,6 +11,9 @@
 
 #include "certificatelineedit.h"
 
+#include "commands/detailscommand.h"
+#include "dialogs/groupdetailsdialog.h"
+
 #include <QCompleter>
 #include <QPushButton>
 #include <QAction>
@@ -36,6 +39,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMenu>
 #include <QToolButton>
 
 using namespace Kleo;
@@ -93,6 +97,13 @@ public:
         }
     }
 };
+
+auto createSeparatorAction(QObject *parent)
+{
+    auto action = new QAction{parent};
+    action->setSeparator(true);
+    return action;
+}
 } // namespace
 
 class CertificateLineEdit::Private
@@ -116,7 +127,9 @@ public:
     void checkLocate();
 
 private:
+    void openDetailsDialog();
     void setTextWithBlockedSignals(const QString &s);
+    void showContextMenu(const QPoint &pos);
 
 public:
     GpgME::Key mKey;
@@ -140,6 +153,7 @@ private:
     bool mEditStarted = false;
     bool mEditFinished = false;
     QAction *const mLineAction;
+    QAction *const mShowDetailsAction;
 };
 
 CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter)
@@ -150,9 +164,11 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     , mCompleter{new QCompleter{qq}}
     , mFilter{std::shared_ptr<KeyFilter>{filter}}
     , mLineAction{new QAction{qq}}
+    , mShowDetailsAction{new QAction{qq}}
 {
     ui.lineEdit.setPlaceholderText(i18n("Please enter a name or email address..."));
     ui.lineEdit.setClearButtonEnabled(true);
+    ui.lineEdit.setContextMenuPolicy(Qt::CustomContextMenu);
     ui.lineEdit.addAction(mLineAction, QLineEdit::LeadingPosition);
 
     mCompleterFilterModel->setKeyFilter(mFilter);
@@ -173,6 +189,10 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
 
     q->setFocusPolicy(ui.lineEdit.focusPolicy());
     q->setFocusProxy(&ui.lineEdit);
+
+    mShowDetailsAction->setIcon(QIcon::fromTheme(QStringLiteral("help-about")));
+    mShowDetailsAction->setText(i18nc("@action:inmenu", "Show Details"));
+    mShowDetailsAction->setEnabled(false);
 
     mFilterModel->setSourceModel(model);
     mFilterModel->setFilterKeyColumn(KeyList::Summary);
@@ -207,8 +227,12 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
             });
     connect(&ui.lineEdit, &QLineEdit::textChanged,
             q, [this]() { editChanged(); });
+    connect(&ui.lineEdit, &QLineEdit::customContextMenuRequested,
+            q, [this](const QPoint &pos) { showContextMenu(pos); });
     connect(mLineAction, &QAction::triggered,
             q, &CertificateLineEdit::dialogRequested);
+    connect(mShowDetailsAction, &QAction::triggered,
+            q, [this]() { openDetailsDialog(); });
     connect(&ui.button, &QToolButton::clicked,
             q, &CertificateLineEdit::certificateSelectionRequested);
     connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated),
@@ -226,10 +250,35 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     updateKey();
 }
 
+void CertificateLineEdit::Private::openDetailsDialog()
+{
+    if (!q->key().isNull()) {
+        auto cmd = new Commands::DetailsCommand{q->key(), nullptr};
+        cmd->setParentWidget(q);
+        cmd->start();
+    } else if (!q->group().isNull()) {
+        auto dlg = new Dialogs::GroupDetailsDialog{q};
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        dlg->setGroup(q->group());
+        dlg->show();
+    }
+}
+
 void CertificateLineEdit::Private::setTextWithBlockedSignals(const QString &s)
 {
     QSignalBlocker blocky{&ui.lineEdit};
     ui.lineEdit.setText(s);
+}
+
+void CertificateLineEdit::Private::showContextMenu(const QPoint &pos)
+{
+    if (QMenu *menu = ui.lineEdit.createStandardContextMenu()) {
+        auto *const firstStandardAction = menu->actions().value(0);
+        menu->insertActions(firstStandardAction,
+                            {mShowDetailsAction, createSeparatorAction(menu)});
+        menu->setAttribute(Qt::WA_DeleteOnClose);
+        menu->popup(ui.lineEdit.mapToGlobal(pos));
+    }
 }
 
 CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
@@ -364,6 +413,8 @@ void CertificateLineEdit::Private::updateKey()
                                 QLatin1String("<br/>") + i18n("Click for details."));
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     }
+
+    mShowDetailsAction->setEnabled(!mKey.isNull() || !mGroup.isNull());
 
     Q_EMIT q->keyChanged();
 

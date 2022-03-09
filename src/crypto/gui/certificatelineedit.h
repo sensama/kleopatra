@@ -3,30 +3,27 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
 
-#include <Libkleo/KeyGroup>
-
 #include <QLineEdit>
-
-#include <gpgme++/key.h>
 
 #include <memory>
 
-class QCompleter;
-class QLabel;
-class QAction;
+namespace GpgME
+{
+class Key;
+}
 
 namespace Kleo
 {
 class AbstractKeyListModel;
 class KeyFilter;
-class KeyListSortFilterProxyModel;
+class KeyGroup;
 
 /** Line edit and completion based Certificate Selection Widget.
  *
@@ -48,9 +45,11 @@ public:
      * @param parent: The usual widget parent.
      * @param filter: The filters to use. See certificateselectiondialog.
      */
-    CertificateLineEdit(AbstractKeyListModel *model,
-                        QWidget *parent = nullptr,
-                        KeyFilter *filter = nullptr);
+    explicit CertificateLineEdit(AbstractKeyListModel *model,
+                                 QWidget *parent = nullptr,
+                                 KeyFilter *filter = nullptr);
+
+    ~CertificateLineEdit() override;
 
     /** Get the selected key */
     GpgME::Key key() const;
@@ -82,24 +81,9 @@ Q_SIGNALS:
     /** Emitted when the details dialog or the selection dialog is requested. */
     void dialogRequested();
 
-private Q_SLOTS:
-    void updateKey();
-    void editChanged();
-    void editFinished();
-    void checkLocate();
-
 private:
-    KeyListSortFilterProxyModel *const mFilterModel;
-    KeyListSortFilterProxyModel *const mCompleterFilterModel;
-    QCompleter *mCompleter = nullptr;
-    QLabel *mStatusLabel,
-           *mStatusIcon;
-    GpgME::Key mKey;
-    KeyGroup mGroup;
-    GpgME::Protocol mCurrentProto;
-    std::shared_ptr<KeyFilter> mFilter;
-    bool mEditStarted = false;
-    bool mEditFinished = false;
-    QAction *const mLineAction;
+    class Private;
+    std::unique_ptr<Private> const d;
 };
+
 }

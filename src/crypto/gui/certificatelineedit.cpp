@@ -3,7 +3,7 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -20,6 +20,7 @@
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
+#include <Libkleo/KeyGroup>
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -31,6 +32,8 @@
 
 #include <QGpgME/KeyForMailboxJob>
 #include <QGpgME/Protocol>
+
+#include <QLabel>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -89,26 +92,52 @@ public:
 };
 } // namespace
 
-CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
-                                         QWidget *parent,
-                                         KeyFilter *filter)
-    : QLineEdit(parent),
-      mFilterModel(new KeyListSortFilterProxyModel(this)),
-      mCompleterFilterModel(new CompletionProxyModel(this)),
-      mCompleter(new QCompleter(this)),
-      mFilter(std::shared_ptr<KeyFilter>(filter)),
-      mLineAction(new QAction(this))
+class CertificateLineEdit::Private
 {
-    setPlaceholderText(i18n("Please enter a name or email address..."));
-    setClearButtonEnabled(true);
-    addAction(mLineAction, QLineEdit::LeadingPosition);
+    CertificateLineEdit *q;
+
+public:
+    explicit Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter);
+
+    void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
+
+    void updateKey();
+    void editChanged();
+    void editFinished();
+    void checkLocate();
+
+public:
+    GpgME::Key mKey;
+    KeyGroup mGroup;
+
+private:
+    KeyListSortFilterProxyModel *const mFilterModel;
+    KeyListSortFilterProxyModel *const mCompleterFilterModel;
+    QCompleter *mCompleter = nullptr;
+    std::shared_ptr<KeyFilter> mFilter;
+    bool mEditStarted = false;
+    bool mEditFinished = false;
+    QAction *const mLineAction;
+};
+
+CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter)
+    : q{qq}
+    , mFilterModel{new KeyListSortFilterProxyModel{qq}}
+    , mCompleterFilterModel{new CompletionProxyModel{qq}}
+    , mCompleter{new QCompleter{qq}}
+    , mFilter{std::shared_ptr<KeyFilter>{filter}}
+    , mLineAction{new QAction{qq}}
+{
+    q->setPlaceholderText(i18n("Please enter a name or email address..."));
+    q->setClearButtonEnabled(true);
+    q->addAction(mLineAction, QLineEdit::LeadingPosition);
 
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
     mCompleter->setModel(mCompleterFilterModel);
     mCompleter->setFilterMode(Qt::MatchContains);
     mCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-    setCompleter(mCompleter);
+    q->setCompleter(mCompleter);
     mFilterModel->setSourceModel(model);
     mFilterModel->setFilterKeyColumn(KeyList::Summary);
     if (filter) {
@@ -116,89 +145,98 @@ CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
     }
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keyListingDone,
-            this, &CertificateLineEdit::updateKey);
+            q, [this]() { updateKey(); });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
-            this, [this] (const KeyGroup &group) {
+            q, [this](const KeyGroup &group) {
                 if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
-                    QSignalBlocker blocky(this);
-                    setText(Formatting::summaryLine(group));
+                    QSignalBlocker blocky{q};
+                    q->setText(Formatting::summaryLine(group));
                     // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(this, &CertificateLineEdit::updateKey, Qt::QueuedConnection);
+                    QMetaObject::invokeMethod(q, [this]() { updateKey(); }, Qt::QueuedConnection);
                 }
             });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved,
-            this, [this] (const KeyGroup &group) {
+            q, [this](const KeyGroup &group) {
                 if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
                     mGroup = KeyGroup();
-                    QSignalBlocker blocky(this);
-                    clear();
+                    QSignalBlocker blocky{q};
+                    q->clear();
                     // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(this, &CertificateLineEdit::updateKey, Qt::QueuedConnection);
+                    QMetaObject::invokeMethod(q, [this]() { updateKey(); }, Qt::QueuedConnection);
                 }
             });
-    connect(this, &QLineEdit::editingFinished,
-            this, [this] () {
+    connect(q, &QLineEdit::editingFinished,
+            q, [this]() {
                 // queue the call of editFinished() to ensure that QCompleter::activated is handled first
-                QMetaObject::invokeMethod(this, &CertificateLineEdit::editFinished, Qt::QueuedConnection);
+                QMetaObject::invokeMethod(q, [this]() { editFinished(); }, Qt::QueuedConnection);
             });
-    connect(this, &QLineEdit::textChanged,
-            this, &CertificateLineEdit::editChanged);
+    connect(q, &QLineEdit::textChanged,
+            q, [this]() { editChanged(); });
     connect(mLineAction, &QAction::triggered,
-            this, &CertificateLineEdit::dialogRequested);
+            q, &CertificateLineEdit::dialogRequested);
     connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated),
-            this, [this] (const QModelIndex &index) {
+            q, [this] (const QModelIndex &index) {
                 Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
                 auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
                 if (!key.isNull()) {
-                    setKey(key);
+                    q->setKey(key);
                 } else if (!group.isNull()) {
-                    setGroup(group);
+                    q->setGroup(group);
                 } else {
                     qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
                 }
             });
     updateKey();
+}
 
+CertificateLineEdit::CertificateLineEdit(AbstractKeyListModel *model,
+                                         QWidget *parent,
+                                         KeyFilter *filter)
+    : QLineEdit(parent)
+    , d{new Private{this, model, filter}}
+{
     /* Take ownership of the model to prevent double deletion when the
      * filter models are deleted */
     model->setParent(parent ? parent : this);
 }
 
-void CertificateLineEdit::editChanged()
+CertificateLineEdit::~CertificateLineEdit() = default;
+
+void CertificateLineEdit::Private::editChanged()
 {
     mEditFinished = false;
     updateKey();
     if (!mEditStarted) {
-        Q_EMIT editingStarted();
+        Q_EMIT q->editingStarted();
         mEditStarted = true;
     }
 }
 
-void CertificateLineEdit::editFinished()
+void CertificateLineEdit::Private::editFinished()
 {
     mEditStarted = false;
     mEditFinished = true;
     updateKey();
-    if (!key().isNull()) {
-        QSignalBlocker blocky{this};
-        setText(Formatting::summaryLine(key()));
-    } else if (!group().isNull()) {
-        QSignalBlocker blocky{this};
-        setText(Formatting::summaryLine(group()));
+    if (!q->key().isNull()) {
+        QSignalBlocker blocky{q};
+        q->setText(Formatting::summaryLine(q->key()));
+    } else if (!q->group().isNull()) {
+        QSignalBlocker blocky{q};
+        q->setText(Formatting::summaryLine(q->group()));
     } else {
         checkLocate();
     }
 }
 
-void CertificateLineEdit::checkLocate()
+void CertificateLineEdit::Private::checkLocate()
 {
-    if (!key().isNull() || !group().isNull()) {
+    if (!q->key().isNull() || !q->group().isNull()) {
         // Already have a key or group
         return;
     }
 
     // Only check once per mailbox
-    const auto mailText = text();
+    const auto mailText = q->text();
     if (s_lookedUpKeys.contains(mailText)) {
         return;
     }
@@ -208,17 +246,17 @@ void CertificateLineEdit::checkLocate()
     job->start(mailText);
 }
 
-void CertificateLineEdit::updateKey()
+void CertificateLineEdit::Private::updateKey()
 {
     static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
 
-    const auto mailText = text();
+    const auto mailText = q->text();
     auto newKey = Key();
     auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
         mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
         mLineAction->setToolTip(i18n("Open selection dialog."));
-        setToolTip({});
+        q->setToolTip({});
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {
@@ -247,11 +285,11 @@ void CertificateLineEdit::updateKey()
                 if (mEditFinished) {
                     mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
                     mLineAction->setToolTip(i18n("Multiple matching certificates found"));
-                    setToolTip(i18n("Multiple matching certificates found"));
+                    q->setToolTip(i18n("Multiple matching certificates found"));
                 } else {
                     mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
                     mLineAction->setToolTip(i18n("Open selection dialog."));
-                    setToolTip({});
+                    q->setToolTip({});
                 }
             }
         } else if (mFilterModel->rowCount() == 1) {
@@ -262,12 +300,12 @@ void CertificateLineEdit::updateKey()
             if (newKey.isNull() && newGroup.isNull()) {
                 mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
-                setToolTip(i18n("No matching certificates found"));
+                q->setToolTip(i18n("No matching certificates found"));
             }
         } else {
             mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
             mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
-            setToolTip(i18n("No matching certificates found"));
+            q->setToolTip(i18n("No matching certificates found"));
         }
     }
     mKey = newKey;
@@ -278,25 +316,25 @@ void CertificateLineEdit::updateKey()
         mLineAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
         mLineAction->setToolTip(Formatting::validity(mKey.userID(0)) +
                                 QLatin1String("<br/>") + i18n("Click for details."));
-        setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
+        q->setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
         mLineAction->setIcon(Formatting::validityIcon(mGroup));
         mLineAction->setToolTip(Formatting::validity(mGroup) +
                                 QLatin1String("<br/>") + i18n("Click for details."));
-        setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
+        q->setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     }
 
-    Q_EMIT keyChanged();
+    Q_EMIT q->keyChanged();
 
     if (mailText.isEmpty()) {
-        Q_EMIT wantsRemoval(this);
+        Q_EMIT q->wantsRemoval(q);
     }
 }
 
 Key CertificateLineEdit::key() const
 {
     if (isEnabled()) {
-        return mKey;
+        return d->mKey;
     } else {
         return Key();
     }
@@ -305,7 +343,7 @@ Key CertificateLineEdit::key() const
 KeyGroup CertificateLineEdit::group() const
 {
     if (isEnabled()) {
-        return mGroup;
+        return d->mGroup;
     } else {
         return KeyGroup();
     }
@@ -313,23 +351,23 @@ KeyGroup CertificateLineEdit::group() const
 
 void CertificateLineEdit::setKey(const Key &key)
 {
-    mKey = key;
-    mGroup = KeyGroup();
-    QSignalBlocker blocky(this);
+    d->mKey = key;
+    d->mGroup = KeyGroup();
+    QSignalBlocker blocky{this};
     qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(key);
     setText(Formatting::summaryLine(key));
-    updateKey();
+    d->updateKey();
 }
 
 void CertificateLineEdit::setGroup(const KeyGroup &group)
 {
-    mGroup = group;
-    mKey = Key();
-    QSignalBlocker blocky(this);
+    d->mGroup = group;
+    d->mKey = Key();
+    QSignalBlocker blocky{this};
     const QString summary = Formatting::summaryLine(group);
     qCDebug(KLEOPATRA_LOG) << "Setting KeyGroup. " << summary;
     setText(summary);
-    updateKey();
+    d->updateKey();
 }
 
 bool CertificateLineEdit::isEmpty() const
@@ -337,12 +375,17 @@ bool CertificateLineEdit::isEmpty() const
     return text().isEmpty();
 }
 
-void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
+void CertificateLineEdit::Private::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     mFilter = filter;
     mFilterModel->setKeyFilter(filter);
     mCompleterFilterModel->setKeyFilter(mFilter);
     updateKey();
+}
+
+void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
+{
+    d->setKeyFilter(filter);
 }
 
 #include "certificatelineedit.moc"

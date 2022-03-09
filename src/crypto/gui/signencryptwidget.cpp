@@ -261,6 +261,7 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
     auto certSel = new CertificateLineEdit(mModel, this,
                                            new EncryptCertificateFilter(mCurrentProto));
+    certSel->setAccessibleName(i18nc("text for screen readers", "recipient key"));
     certSel->setEnabled(mEncOtherChk->isChecked());
     mRecpWidgets << certSel;
 

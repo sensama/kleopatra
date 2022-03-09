@@ -331,6 +331,7 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
         CertificateSelectionDialog::EncryptOnly |
         CertificateSelectionDialog::optionsFromProtocol(mCurrentProto) |
         CertificateSelectionDialog::IncludeGroups));
+    dlg.setStringFilter(certificateLineEdit->text());
 
     if (dlg.exec()) {
         const std::vector<Key> keys = dlg.selectedCertificates();

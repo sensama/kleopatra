@@ -10,6 +10,9 @@
 
 #include <QWidget>
 #include <QVector>
+
+#include <Libkleo/KeyGroup>
+
 #include <gpgme++/key.h>
 
 class QCheckBox;
@@ -18,7 +21,6 @@ class QVBoxLayout;
 namespace Kleo
 {
 class CertificateLineEdit;
-class KeyGroup;
 class KeySelectionCombo;
 class AbstractKeyListModel;
 class UnknownRecipientWidget;

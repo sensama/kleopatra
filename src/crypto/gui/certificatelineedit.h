@@ -81,9 +81,6 @@ Q_SIGNALS:
     /** Emitted when the entry is no longer empty. */
     void editingStarted();
 
-    /** Emitted when the details dialog or the selection dialog is requested. */
-    void dialogRequested();
-
     /** Emitted when the certificate selection dialog is requested. */
     void certificateSelectionRequested();
 

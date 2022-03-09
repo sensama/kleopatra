@@ -17,10 +17,7 @@
 #include "settings.h"
 #include "unknownrecipientwidget.h"
 
-#include "commands/detailscommand.h"
-
 #include "dialogs/certificateselectiondialog.h"
-#include "dialogs/groupdetailsdialog.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -278,8 +275,6 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
             this, &SignEncryptWidget::recpRemovalRequested);
     connect(certSel, &CertificateLineEdit::editingStarted,
             this, &SignEncryptWidget::recipientsChanged);
-    connect(certSel, &CertificateLineEdit::dialogRequested,
-            this, [this, certSel] () { dialogRequested(certSel); });
     connect(certSel, &CertificateLineEdit::certificateSelectionRequested,
             this, [this, certSel]() { certificateSelectionRequested(certSel); });
 
@@ -302,24 +297,6 @@ void SignEncryptWidget::addRecipient(const KeyGroup &group)
         certSel->setGroup(group);
         mAddedGroups << group;
     }
-}
-
-void SignEncryptWidget::dialogRequested(CertificateLineEdit *certificateLineEdit)
-{
-    if (!certificateLineEdit->key().isNull()) {
-        auto cmd = new Commands::DetailsCommand(certificateLineEdit->key(), nullptr);
-        cmd->start();
-        return;
-    }
-    if (!certificateLineEdit->group().isNull()) {
-        auto dlg = new GroupDetailsDialog;
-        dlg->setAttribute(Qt::WA_DeleteOnClose);
-        dlg->setGroup(certificateLineEdit->group());
-        dlg->show();
-        return;
-    }
-
-    certificateSelectionRequested(certificateLineEdit);
 }
 
 void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certificateLineEdit)

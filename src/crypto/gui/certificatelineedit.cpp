@@ -152,7 +152,7 @@ private:
     std::shared_ptr<KeyFilter> mFilter;
     bool mEditStarted = false;
     bool mEditFinished = false;
-    QAction *const mLineAction;
+    QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
 };
 
@@ -163,13 +163,13 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     , mCompleterFilterModel{new CompletionProxyModel{qq}}
     , mCompleter{new QCompleter{qq}}
     , mFilter{std::shared_ptr<KeyFilter>{filter}}
-    , mLineAction{new QAction{qq}}
+    , mStatusAction{new QAction{qq}}
     , mShowDetailsAction{new QAction{qq}}
 {
     ui.lineEdit.setPlaceholderText(i18n("Please enter a name or email address..."));
     ui.lineEdit.setClearButtonEnabled(true);
     ui.lineEdit.setContextMenuPolicy(Qt::CustomContextMenu);
-    ui.lineEdit.addAction(mLineAction, QLineEdit::LeadingPosition);
+    ui.lineEdit.addAction(mStatusAction, QLineEdit::LeadingPosition);
 
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
@@ -229,8 +229,8 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
             q, [this]() { editChanged(); });
     connect(&ui.lineEdit, &QLineEdit::customContextMenuRequested,
             q, [this](const QPoint &pos) { showContextMenu(pos); });
-    connect(mLineAction, &QAction::triggered,
-            q, &CertificateLineEdit::dialogRequested);
+    connect(mStatusAction, &QAction::triggered,
+            q, [this]() { openDetailsDialog(); });
     connect(mShowDetailsAction, &QAction::triggered,
             q, [this]() { openDetailsDialog(); });
     connect(&ui.button, &QToolButton::clicked,
@@ -344,8 +344,8 @@ void CertificateLineEdit::Private::updateKey()
     auto newKey = Key();
     auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
-        mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
-        mLineAction->setToolTip(i18n("Open selection dialog."));
+        mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-unavailable")));
+        mStatusAction->setToolTip({});
         ui.lineEdit.setToolTip({});
     } else {
         mFilterModel->setFilterFixedString(mailText);
@@ -372,15 +372,9 @@ void CertificateLineEdit::Private::updateKey()
                 }
             }
             if (newKey.isNull() && newGroup.isNull()) {
-                if (mEditFinished) {
-                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("question")));
-                    mLineAction->setToolTip(i18n("Multiple matching certificates found"));
-                    ui.lineEdit.setToolTip(i18n("Multiple matching certificates found"));
-                } else {
-                    mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("resource-group-new")));
-                    mLineAction->setToolTip(i18n("Open selection dialog."));
-                    ui.lineEdit.setToolTip({});
-                }
+                mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-question")));
+                mStatusAction->setToolTip(i18n("Multiple matching certificates or groups found"));
+                ui.lineEdit.setToolTip(i18n("Multiple matching certificates or groups found"));
             }
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
@@ -388,14 +382,14 @@ void CertificateLineEdit::Private::updateKey()
             newGroup = mFilterModel->data(index, KeyList::GroupRole).value<KeyGroup>();
             Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
             if (newKey.isNull() && newGroup.isNull()) {
-                mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-                mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
-                ui.lineEdit.setToolTip(i18n("No matching certificates found"));
+                mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
+                mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
+                ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
             }
         } else {
-            mLineAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-            mLineAction->setToolTip(i18n("No matching certificates found.<br/>Click to import a certificate."));
-            ui.lineEdit.setToolTip(i18n("No matching certificates found"));
+            mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
+            mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
+            ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
         }
     }
     mKey = newKey;
@@ -403,14 +397,12 @@ void CertificateLineEdit::Private::updateKey()
 
     if (!mKey.isNull()) {
         /* FIXME: This needs to be solved by a multiple UID supporting model */
-        mLineAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
-        mLineAction->setToolTip(Formatting::validity(mKey.userID(0)) +
-                                QLatin1String("<br/>") + i18n("Click for details."));
+        mStatusAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
+        mStatusAction->setToolTip(Formatting::validity(mKey.userID(0)));
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
-        mLineAction->setIcon(Formatting::validityIcon(mGroup));
-        mLineAction->setToolTip(Formatting::validity(mGroup) +
-                                QLatin1String("<br/>") + i18n("Click for details."));
+        mStatusAction->setIcon(Formatting::validityIcon(mGroup));
+        mStatusAction->setToolTip(Formatting::validity(mGroup));
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     }
 

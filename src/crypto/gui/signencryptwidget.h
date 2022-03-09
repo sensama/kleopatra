@@ -102,7 +102,6 @@ protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
     void recpRemovalRequested(CertificateLineEdit *w);
-    void dialogRequested(CertificateLineEdit *w);
     void certificateSelectionRequested(CertificateLineEdit *w);
 
 protected:

@@ -163,17 +163,20 @@ private:
         okButton->setEnabled(false);
         ui.buttonBox.addButton(QDialogButtonBox::Close);
         QPushButton *const reloadButton = ui.buttonBox.addButton(i18n("Reload"), QDialogButtonBox::ActionRole);
-        QPushButton *const importButton = ui.buttonBox.addButton(i18n("Import..."), QDialogButtonBox::ActionRole);
-        QPushButton *const lookupButton = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
-        QPushButton *const createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
-        QPushButton *const groupsButton = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
-        groupsButton->setVisible(Settings().groupsEnabled());
-
-        importButton->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
-        lookupButton->setToolTip(i18nc("@info:tooltip", "Lookup certificates on server"));
         reloadButton->setToolTip(i18nc("@info:tooltip", "Refresh certificate list"));
+        QPushButton *const importButton = ui.buttonBox.addButton(i18n("Import..."), QDialogButtonBox::ActionRole);
+        importButton->setToolTip(i18nc("@info:tooltip", "Import certificate from file"));
+        importButton->setAccessibleName(i18n("Import certificate"));
+        QPushButton *const lookupButton = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
+        lookupButton->setToolTip(i18nc("@info:tooltip", "Look up certificate on server"));
+        lookupButton->setAccessibleName(i18n("Look up certificate"));
+        QPushButton *const createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
         createButton->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
+        createButton->setAccessibleName(i18n("Create certificate"));
+        QPushButton *const groupsButton = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
         groupsButton->setToolTip(i18nc("@info:tooltip", "Manage certificate groups"));
+        groupsButton->setAccessibleName(i18n("Manage groups"));
+        groupsButton->setVisible(Settings().groupsEnabled());
 
         connect(&ui.buttonBox, &QDialogButtonBox::accepted, q, &CertificateSelectionDialog::accept);
         connect(&ui.buttonBox, &QDialogButtonBox::rejected, q, &CertificateSelectionDialog::reject);

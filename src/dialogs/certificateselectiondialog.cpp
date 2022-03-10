@@ -253,6 +253,7 @@ void CertificateSelectionDialog::setOptions(Options options)
     d->ui.tabWidget.setMultiSelection(options & MultiSelection);
 
     d->slotKeysMayHaveChanged();
+    d->updateLabelText();
 }
 
 CertificateSelectionDialog::Options CertificateSelectionDialog::options() const

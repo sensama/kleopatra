@@ -135,7 +135,6 @@ public:
     GpgME::Key mKey;
     KeyGroup mGroup;
 
-private:
     struct Ui {
         Ui(QWidget *parent)
             : lineEdit{parent}
@@ -146,6 +145,7 @@ private:
         QToolButton button;
     } ui;
 
+private:
     KeyListSortFilterProxyModel *const mFilterModel;
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
@@ -488,6 +488,11 @@ void CertificateLineEdit::Private::setKeyFilter(const std::shared_ptr<KeyFilter>
 void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     d->setKeyFilter(filter);
+}
+
+void CertificateLineEdit::setAccessibleNameOfLineEdit(const QString &name)
+{
+    d->ui.lineEdit.setAccessibleName(name);
 }
 
 #include "certificatelineedit.moc"

@@ -71,6 +71,8 @@ public:
     /** Set the used keyfilter. */
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
 
+    void setAccessibleNameOfLineEdit(const QString &name);
+
 Q_SIGNALS:
     /** Emitted when the selected key changed. */
     void keyChanged();

@@ -811,7 +811,7 @@ void TabWidget::createActions(KActionCollection *coll)
 
     d->newAction = make_action_from_data(actionDataNew, coll);
 
-    static const std::vector<action_data> actionData = {
+    const std::vector<action_data> actionData = {
         {
             Actions::Rename, i18n("Rename Tab..."), i18n("Rename this tab"),
             "edit-rename", this, SLOT(slotRenameCurrentTab()), QStringLiteral("CTRL+SHIFT+R"), false, false

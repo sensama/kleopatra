@@ -308,7 +308,17 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
         CertificateSelectionDialog::EncryptOnly |
         CertificateSelectionDialog::optionsFromProtocol(mCurrentProto) |
         CertificateSelectionDialog::IncludeGroups));
-    dlg.setStringFilter(certificateLineEdit->text());
+
+    if (!certificateLineEdit->key().isNull()) {
+        const auto key = certificateLineEdit->key();
+        const auto name = QString::fromUtf8(key.userID(0).name());
+        const auto email = QString::fromUtf8(key.userID(0).email());
+        dlg.setStringFilter(!name.isEmpty() ? name : email);
+    } else if (!certificateLineEdit->group().isNull()) {
+        dlg.setStringFilter(certificateLineEdit->group().name());
+    } else {
+        dlg.setStringFilter(certificateLineEdit->text());
+    }
 
     if (dlg.exec()) {
         const std::vector<Key> keys = dlg.selectedCertificates();

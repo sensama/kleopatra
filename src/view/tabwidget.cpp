@@ -953,7 +953,7 @@ void TabWidget::loadViews(const KConfig *config)
     }
     if (!count()) {
         // add default view:
-        addView(QString(), QStringLiteral("all-certificates"));
+        addView(i18n("All Certificates"), QStringLiteral("all-certificates"));
     }
 }
 

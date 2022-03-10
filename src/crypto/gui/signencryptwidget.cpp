@@ -630,9 +630,13 @@ void Kleo::SignEncryptWidget::onProtocolChanged()
 
 bool SignEncryptWidget::validate()
 {
+    CertificateLineEdit *firstUnresolvedRecipient = nullptr;
     QStringList unresolvedRecipients;
     for (const auto edit: std::as_const(mRecpWidgets)) {
         if (edit->isEnabled() && !edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
+            if (!firstUnresolvedRecipient) {
+                firstUnresolvedRecipient = edit;
+            }
             unresolvedRecipients.push_back(edit->text().toHtmlEscaped());
         }
     }
@@ -641,6 +645,9 @@ bool SignEncryptWidget::validate()
                                i18n("Could not find a key for the following recipients:"),
                                unresolvedRecipients,
                                i18n("Failed to find some keys"));
+    }
+    if (firstUnresolvedRecipient) {
+        firstUnresolvedRecipient->setFocus();
     }
     return unresolvedRecipients.isEmpty();
 }

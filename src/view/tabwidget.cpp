@@ -444,6 +444,7 @@ private:
     AbstractKeyListModel *flatModel = nullptr;
     AbstractKeyListModel *hierarchicalModel = nullptr;
     QToolButton *newTabButton = nullptr;
+    QToolButton *closeTabButton = nullptr;
     QTabWidget *tabWidget = nullptr;
     QAction *newAction = nullptr;
     Actions currentPageActions;
@@ -457,6 +458,7 @@ TabWidget::Private::Private(TabWidget *qq)
     auto layout = new QVBoxLayout{q};
     layout->setContentsMargins(0, 0, 0, 0);
 
+    // create "New Tab" button before tab widget to ensure correct tab order
     newTabButton = new QToolButton{q};
 
     tabWidget = new QTabWidget{q};
@@ -467,6 +469,9 @@ TabWidget::Private::Private(TabWidget *qq)
     tabWidget->setMovable(true);
 
     tabWidget->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    // create "Close Tab" button after tab widget to ensure correct tab order
+    closeTabButton = new QToolButton{q};
 
     connect(tabWidget, SIGNAL(currentChanged(int)), q, SLOT(currentIndexChanged(int)));
     connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint & p) {
@@ -864,9 +869,10 @@ void TabWidget::createActions(KActionCollection *coll)
     d->newTabButton->setDefaultAction(d->newAction);
     d->tabWidget->setCornerWidget(d->newTabButton, Qt::TopLeftCorner);
     if (auto action = d->currentPageActions.get(Actions::Close)) {
-        auto b = new QToolButton{this};
-        b->setDefaultAction(action);
-        d->tabWidget->setCornerWidget(b, Qt::TopRightCorner);
+        d->closeTabButton->setDefaultAction(action);
+        d->tabWidget->setCornerWidget(d->closeTabButton, Qt::TopRightCorner);
+    } else {
+        d->closeTabButton->setVisible(false);
     }
     d->actionsCreated = true;
 }
@@ -919,6 +925,7 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
 
     QAbstractItemView *const previous = q->currentView();
     const int tabIndex = tabWidget->addTab(page, page->title());
+    setTabOrder(closeTabButton, page->view());
     tabWidget->setTabToolTip(tabIndex, page->toolTip());
     // work around a bug in QTabWidget (tested with 4.3.2) not emitting currentChanged() when the first widget is inserted
     QAbstractItemView *const current = q->currentView();

@@ -111,6 +111,14 @@ class CertificateLineEdit::Private
     CertificateLineEdit *q;
 
 public:
+    enum class Status
+    {
+        Empty,      //< text is empty
+        Success,    //< a certificate or group is set
+        None,       //< entered text does not match any certificates or groups
+        Ambiguous,  //< entered text matches multiple certificates or groups
+    };
+
     explicit Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter);
 
     QString text() const;
@@ -132,6 +140,7 @@ private:
     void showContextMenu(const QPoint &pos);
 
 public:
+    Status mStatus = Status::Empty;
     GpgME::Key mKey;
     KeyGroup mGroup;
 
@@ -313,15 +322,15 @@ void CertificateLineEdit::Private::editFinished()
         setTextWithBlockedSignals(Formatting::summaryLine(q->key()));
     } else if (!q->group().isNull()) {
         setTextWithBlockedSignals(Formatting::summaryLine(q->group()));
-    } else {
+    } else if (mStatus == Status::None) {
         checkLocate();
     }
 }
 
 void CertificateLineEdit::Private::checkLocate()
 {
-    if (!q->key().isNull() || !q->group().isNull()) {
-        // Already have a key or group
+    if (mStatus != Status::None) {
+        // try to locate key only if text matches no local certificates or groups
         return;
     }
 
@@ -344,6 +353,7 @@ void CertificateLineEdit::Private::updateKey()
     auto newKey = Key();
     auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
+        mStatus = Status::Empty;
         mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-unavailable")));
         mStatusAction->setToolTip({});
         ui.lineEdit.setToolTip({});
@@ -372,6 +382,7 @@ void CertificateLineEdit::Private::updateKey()
                 }
             }
             if (newKey.isNull() && newGroup.isNull()) {
+                mStatus = Status::Ambiguous;
                 mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-question")));
                 mStatusAction->setToolTip(i18n("Multiple matching certificates or groups found"));
                 ui.lineEdit.setToolTip(i18n("Multiple matching certificates or groups found"));
@@ -382,11 +393,13 @@ void CertificateLineEdit::Private::updateKey()
             newGroup = mFilterModel->data(index, KeyList::GroupRole).value<KeyGroup>();
             Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
             if (newKey.isNull() && newGroup.isNull()) {
+                mStatus = Status::None;
                 mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
                 ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
             }
         } else {
+            mStatus = Status::None;
             mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
             mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
             ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
@@ -397,16 +410,18 @@ void CertificateLineEdit::Private::updateKey()
 
     if (!mKey.isNull()) {
         /* FIXME: This needs to be solved by a multiple UID supporting model */
+        mStatus = Status::Success;
         mStatusAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
         mStatusAction->setToolTip(Formatting::validity(mKey.userID(0)));
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
+        mStatus = Status::Success;
         mStatusAction->setIcon(Formatting::validityIcon(mGroup));
         mStatusAction->setToolTip(Formatting::validity(mGroup));
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     }
 
-    mShowDetailsAction->setEnabled(!mKey.isNull() || !mGroup.isNull());
+    mShowDetailsAction->setEnabled(mStatus == Status::Success);
 
     Q_EMIT q->keyChanged();
 
@@ -474,7 +489,7 @@ void CertificateLineEdit::setGroup(const KeyGroup &group)
 
 bool CertificateLineEdit::isEmpty() const
 {
-    return text().isEmpty();
+    return d->mStatus == Private::Status::Empty;
 }
 
 void CertificateLineEdit::Private::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)

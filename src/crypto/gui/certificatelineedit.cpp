@@ -33,7 +33,7 @@
 
 #include <gpgme++/key.h>
 
-#include <QGpgME/KeyForMailboxJob>
+#include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 
 #include <QHBoxLayout>
@@ -326,14 +326,14 @@ void CertificateLineEdit::Private::checkLocate()
     }
 
     // Only check once per mailbox
-    const auto mailText = ui.lineEdit.text();
-    if (s_lookedUpKeys.contains(mailText)) {
+    const auto mailText = ui.lineEdit.text().trimmed();
+    if (mailText.isEmpty() || s_lookedUpKeys.contains(mailText)) {
         return;
     }
     s_lookedUpKeys << mailText;
     qCDebug(KLEOPATRA_LOG) << "Lookup job for" << mailText;
-    QGpgME::KeyForMailboxJob *job = QGpgME::openpgp()->keyForMailboxJob();
-    job->start(mailText);
+    auto job = QGpgME::openpgp()->locateKeysJob();
+    job->start({mailText}, /*secretOnly=*/false);
 }
 
 void CertificateLineEdit::Private::updateKey()

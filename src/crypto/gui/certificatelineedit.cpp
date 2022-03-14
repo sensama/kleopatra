@@ -349,7 +349,7 @@ void CertificateLineEdit::Private::updateKey()
 {
     static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
 
-    const auto mailText = ui.lineEdit.text();
+    const auto mailText = ui.lineEdit.text().trimmed();
     auto newKey = Key();
     auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
@@ -450,7 +450,7 @@ KeyGroup CertificateLineEdit::group() const
 
 QString CertificateLineEdit::Private::text() const
 {
-    return ui.lineEdit.text();
+    return ui.lineEdit.text().trimmed();
 }
 
 QString CertificateLineEdit::text() const

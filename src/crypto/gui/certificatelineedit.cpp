@@ -540,6 +540,12 @@ bool CertificateLineEdit::isEmpty() const
     return d->mStatus == Private::Status::Empty;
 }
 
+bool CertificateLineEdit::hasAcceptableInput() const
+{
+    return d->mStatus == Private::Status::Empty
+        || d->mStatus == Private::Status::Success;
+}
+
 void CertificateLineEdit::Private::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 {
     mFilter = filter;

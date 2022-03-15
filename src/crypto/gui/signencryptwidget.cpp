@@ -628,12 +628,19 @@ void Kleo::SignEncryptWidget::onProtocolChanged()
     }
 }
 
+bool SignEncryptWidget::isComplete() const
+{
+    return !currentOp().isEmpty()
+        && std::all_of(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+                        [](auto w) { return !w->isEnabled() || w->hasAcceptableInput(); });
+}
+
 bool SignEncryptWidget::validate()
 {
     CertificateLineEdit *firstUnresolvedRecipient = nullptr;
     QStringList unresolvedRecipients;
     for (const auto edit: std::as_const(mRecpWidgets)) {
-        if (edit->isEnabled() && !edit->isEmpty() && edit->key().isNull() && edit->group().isNull()) {
+        if (edit->isEnabled() && !edit->hasAcceptableInput()) {
             if (!firstUnresolvedRecipient) {
                 firstUnresolvedRecipient = edit;
             }

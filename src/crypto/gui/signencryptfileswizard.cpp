@@ -214,7 +214,7 @@ public:
         if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
             return false;
         }
-        return !mWidget->currentOp().isNull();
+        return mWidget->isComplete();
     }
 
     int nextId() const override

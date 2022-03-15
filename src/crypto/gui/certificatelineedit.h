@@ -62,6 +62,9 @@ public:
     /** Check if the text is empty */
     bool isEmpty() const;
 
+    /** Returns true if the field is empty or if a key or group is selected. */
+    bool hasAcceptableInput() const;
+
     /** Set the preselected Key for this widget. */
     void setKey(const GpgME::Key &key);
 

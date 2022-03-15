@@ -95,7 +95,11 @@ public:
     /** Remove a recipient group */
     void removeRecipient(const Kleo::KeyGroup &group);
 
-    /** Validate that each line edit with content has a key. */
+    /** Returns true if all required information has been entered. */
+    bool isComplete() const;
+
+    /** Returns true if all recipients have been resolved. Otherwise, shows
+        an error message and returns false. */
     bool validate();
 
 protected Q_SLOTS:

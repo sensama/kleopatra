@@ -13,6 +13,7 @@
 
 #include "commands/detailscommand.h"
 #include "dialogs/groupdetailsdialog.h"
+#include "view/errorlabel.h"
 
 #include <QCompleter>
 #include <QPushButton>
@@ -138,6 +139,8 @@ private:
     void openDetailsDialog();
     void setTextWithBlockedSignals(const QString &s);
     void showContextMenu(const QPoint &pos);
+    QString errorMessage() const;
+    void updateErrorLabel();
 
 public:
     Status mStatus = Status::Empty;
@@ -148,10 +151,12 @@ public:
         Ui(QWidget *parent)
             : lineEdit{parent}
             , button{parent}
+            , errorLabel{parent}
         {}
 
         QLineEdit lineEdit;
         QToolButton button;
+        ErrorLabel errorLabel;
     } ui;
 
 private:
@@ -191,10 +196,18 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     ui.button.setToolTip(i18n("Show certificate list"));
     ui.button.setAccessibleName(i18n("Show certificate list"));
 
-    auto l = new QHBoxLayout{q};
+    ui.errorLabel.setVisible(false);
+
+    auto vbox = new QVBoxLayout{q};
+    vbox->setContentsMargins(0, 0, 0, 0);
+
+    auto l = new QHBoxLayout;
     l->setContentsMargins(0, 0, 0, 0);
     l->addWidget(&ui.lineEdit);
     l->addWidget(&ui.button);
+
+    vbox->addLayout(l);
+    vbox->addWidget(&ui.errorLabel);
 
     q->setFocusPolicy(ui.lineEdit.focusPolicy());
     q->setFocusProxy(&ui.lineEdit);
@@ -356,7 +369,6 @@ void CertificateLineEdit::Private::updateKey()
         mStatus = Status::Empty;
         mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-unavailable")));
         mStatusAction->setToolTip({});
-        ui.lineEdit.setToolTip({});
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {
@@ -385,7 +397,6 @@ void CertificateLineEdit::Private::updateKey()
                 mStatus = Status::Ambiguous;
                 mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-question")));
                 mStatusAction->setToolTip(i18n("Multiple matching certificates or groups found"));
-                ui.lineEdit.setToolTip(i18n("Multiple matching certificates or groups found"));
             }
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
@@ -396,13 +407,11 @@ void CertificateLineEdit::Private::updateKey()
                 mStatus = Status::None;
                 mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
                 mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
-                ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
             }
         } else {
             mStatus = Status::None;
             mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
             mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
-            ui.lineEdit.setToolTip(i18n("No matching certificates or groups found"));
         }
     }
     mKey = newKey;
@@ -419,15 +428,54 @@ void CertificateLineEdit::Private::updateKey()
         mStatusAction->setIcon(Formatting::validityIcon(mGroup));
         mStatusAction->setToolTip(Formatting::validity(mGroup));
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
+    } else {
+        ui.lineEdit.setToolTip({});
     }
 
     mShowDetailsAction->setEnabled(mStatus == Status::Success);
+    updateErrorLabel();
 
     Q_EMIT q->keyChanged();
 
     if (mailText.isEmpty()) {
         Q_EMIT q->wantsRemoval(q);
     }
+}
+
+QString CertificateLineEdit::Private::errorMessage() const
+{
+    switch (mStatus) {
+    case Status::Empty:
+    case Status::Success:
+        return {};
+    case Status::None:
+        return i18n("No matching certificates or groups found");
+    case Status::Ambiguous:
+        return i18n("Multiple matching certificates or groups found");
+    default:
+        qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
+        Q_ASSERT(!"Invalid status");
+    };
+}
+
+void CertificateLineEdit::Private::updateErrorLabel()
+{
+    const auto currentErrorMessage = ui.errorLabel.text();
+    const auto newErrorMessage = errorMessage();
+    if (newErrorMessage == currentErrorMessage) {
+        return;
+    }
+    if (currentErrorMessage.isEmpty() && !mEditFinished) {
+        // delay showing the error message until editing is finished, so that we
+        // do not annoy the user with an error message while they are still
+        // entering the recipient;
+        // on the other hand, we clear the error message immediately if it does
+        // not apply anymore and we update the error message immediately if it
+        // changed
+        return;
+    }
+    ui.errorLabel.setVisible(!newErrorMessage.isEmpty());
+    ui.errorLabel.setText(newErrorMessage);
 }
 
 Key CertificateLineEdit::key() const

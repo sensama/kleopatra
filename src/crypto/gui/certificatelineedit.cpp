@@ -454,9 +454,9 @@ QString CertificateLineEdit::Private::errorMessage() const
     case Status::Success:
         return {};
     case Status::None:
-        return i18n("No matching certificates or groups found");
+        return i18n("Error: No matching certificates or groups found");
     case Status::Ambiguous:
-        return i18n("Multiple matching certificates or groups found");
+        return i18n("Error: Multiple matching certificates or groups found");
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");

@@ -15,6 +15,7 @@
 #include "dialogs/groupdetailsdialog.h"
 #include "view/errorlabel.h"
 
+#include <QAccessible>
 #include <QCompleter>
 #include <QPushButton>
 #include <QAction>
@@ -130,6 +131,8 @@ public:
 
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter);
 
+    void setAccessibleName(const QString &s);
+
     void updateKey();
     void editChanged();
     void editFinished();
@@ -141,6 +144,7 @@ private:
     void showContextMenu(const QPoint &pos);
     QString errorMessage() const;
     void updateErrorLabel();
+    void updateAccessibleNameAndDescription();
 
 public:
     Status mStatus = Status::Empty;
@@ -160,6 +164,7 @@ public:
     } ui;
 
 private:
+    QString mAccessibleName;
     KeyListSortFilterProxyModel *const mFilterModel;
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
@@ -476,6 +481,57 @@ void CertificateLineEdit::Private::updateErrorLabel()
     }
     ui.errorLabel.setVisible(!newErrorMessage.isEmpty());
     ui.errorLabel.setText(newErrorMessage);
+    updateAccessibleNameAndDescription();
+}
+
+void CertificateLineEdit::Private::setAccessibleName(const QString &s)
+{
+    mAccessibleName = s;
+    updateAccessibleNameAndDescription();
+}
+
+namespace
+{
+QString getAccessibleName(QObject *object)
+{
+    QString name;
+    if (const auto *const iface = QAccessible::queryAccessibleInterface(object)) {
+        name = iface->text(QAccessible::Name);
+    }
+    return name;
+}
+
+QString invalidEntryText()
+{
+    return i18nc("text for screen readers to indicate that the associated object, "
+                 "such as a form field, has an error",
+                 "invalid entry");
+}
+}
+
+void CertificateLineEdit::Private::updateAccessibleNameAndDescription()
+{
+    // fall back to default accessible name if accessible name wasn't set explicitly
+    if (mAccessibleName.isEmpty()) {
+        mAccessibleName = getAccessibleName(&ui.lineEdit);
+    }
+    const bool errorShown = ui.errorLabel.isVisible();
+
+    // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
+    // emulate this by setting the error message as accessible description of the input field
+    const auto description = errorShown ? ui.errorLabel.text() : QString{};
+    if (ui.lineEdit.accessibleDescription() != description) {
+        ui.lineEdit.setAccessibleDescription(description);
+    }
+
+    // Qt does not support IA2's "invalid entry" state (like WCAG's "aria-invalid" state attribute);
+    // screen readers say something like "invalid data" if this state is set;
+    // emulate this by adding "invalid data" to the accessible name of the input field
+    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText()
+                                 : mAccessibleName;
+    if (ui.lineEdit.accessibleName() != name) {
+        ui.lineEdit.setAccessibleName(name);
+    }
 }
 
 Key CertificateLineEdit::key() const
@@ -561,7 +617,7 @@ void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 
 void CertificateLineEdit::setAccessibleNameOfLineEdit(const QString &name)
 {
-    d->ui.lineEdit.setAccessibleName(name);
+    d->setAccessibleName(name);
 }
 
 #include "certificatelineedit.moc"

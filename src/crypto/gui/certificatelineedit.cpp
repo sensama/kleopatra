@@ -168,8 +168,7 @@ private:
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
     std::shared_ptr<KeyFilter> mFilter;
-    bool mEditStarted = false;
-    bool mEditFinished = false;
+    bool mEditingInProgress = false;
     QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
 };
@@ -322,18 +321,17 @@ CertificateLineEdit::~CertificateLineEdit() = default;
 
 void CertificateLineEdit::Private::editChanged()
 {
-    mEditFinished = false;
+    const bool editingStarted = !mEditingInProgress;
+    mEditingInProgress = true;
     updateKey();
-    if (!mEditStarted) {
+    if (editingStarted) {
         Q_EMIT q->editingStarted();
-        mEditStarted = true;
     }
 }
 
 void CertificateLineEdit::Private::editFinished()
 {
-    mEditStarted = false;
-    mEditFinished = true;
+    mEditingInProgress = false;
     updateKey();
     if (!q->key().isNull()) {
         setTextWithBlockedSignals(Formatting::summaryLine(q->key()));
@@ -469,7 +467,7 @@ void CertificateLineEdit::Private::updateErrorLabel()
     if (newErrorMessage == currentErrorMessage) {
         return;
     }
-    if (currentErrorMessage.isEmpty() && !mEditFinished) {
+    if (currentErrorMessage.isEmpty() && mEditingInProgress) {
         // delay showing the error message until editing is finished, so that we
         // do not annoy the user with an error message while they are still
         // entering the recipient;

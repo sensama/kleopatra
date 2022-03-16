@@ -497,6 +497,15 @@ QString SignEncryptWidget::currentOp() const
     return mOp;
 }
 
+namespace
+{
+bool recipientWidgetHasFocus(CertificateLineEdit *w)
+{
+    // check if w (or its focus proxy) or a child widget of w has focus
+    return w->hasFocus() || w->isAncestorOf(qApp->focusWidget());
+}
+}
+
 void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
 {
     if (!w) {
@@ -506,7 +515,7 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
         std::count_if(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
                       [](auto w) { return w->isEmpty(); });
     if (emptyEdits > 1) {
-        if (w->hasFocus()) {
+        if (recipientWidgetHasFocus(w)) {
             const int index = mRecpLayout->indexOf(w);
             const auto focusWidget = (index < mRecpLayout->count() - 1) ?
                 mRecpLayout->itemAt(index + 1)->widget() :

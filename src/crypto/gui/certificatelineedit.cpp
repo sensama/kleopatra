@@ -133,12 +133,11 @@ public:
 
     void setAccessibleName(const QString &s);
 
+private:
     void updateKey();
     void editChanged();
     void editFinished();
     void checkLocate();
-
-private:
     void openDetailsDialog();
     void setTextWithBlockedSignals(const QString &s);
     void showContextMenu(const QPoint &pos);
@@ -152,7 +151,7 @@ public:
     KeyGroup mGroup;
 
     struct Ui {
-        Ui(QWidget *parent)
+        explicit Ui(QWidget *parent)
             : lineEdit{parent}
             , button{parent}
             , errorLabel{parent}

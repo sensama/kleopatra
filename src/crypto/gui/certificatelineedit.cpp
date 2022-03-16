@@ -438,10 +438,6 @@ void CertificateLineEdit::Private::updateKey()
     updateErrorLabel();
 
     Q_EMIT q->keyChanged();
-
-    if (mailText.isEmpty()) {
-        Q_EMIT q->wantsRemoval(q);
-    }
 }
 
 QString CertificateLineEdit::Private::errorMessage() const

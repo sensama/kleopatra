@@ -271,8 +271,6 @@ CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 
     connect(certSel, &CertificateLineEdit::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
-    connect(certSel, &CertificateLineEdit::wantsRemoval,
-            this, &SignEncryptWidget::recpRemovalRequested);
     connect(certSel, &CertificateLineEdit::editingStarted,
             this, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::certificateSelectionRequested,

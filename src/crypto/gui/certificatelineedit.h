@@ -80,9 +80,6 @@ Q_SIGNALS:
     /** Emitted when the selected key changed. */
     void keyChanged();
 
-    /** Emitted when the entry is empty and editing is finished. */
-    void wantsRemoval(CertificateLineEdit *w);
-
     /** Emitted when the entry is no longer empty. */
     void editingStarted();
 

@@ -87,7 +87,7 @@ private:
     void listNotCertifiedKeys() const
     {
         lineEdit->clear();
-        combo->setCurrentIndex(combo->findData(QStringLiteral("not-validated-certificates")));
+        combo->setCurrentIndex(combo->findData(QStringLiteral("not-certified-certificates")));
         Q_EMIT q->keyFilterChanged(keyFilter(combo->currentIndex()));
     }
 

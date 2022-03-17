@@ -19,14 +19,16 @@
 #include <Libkleo/KeyFilterManager>
 
 #include <KLocalizedString>
-#include <QLineEdit>
 
+#include <QLineEdit>
 #include <QComboBox>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QSortFilterProxyModel>
 
-#include <Libkleo/GnuPG>
+#include <gpgme++/key.h>
+
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 
@@ -85,28 +87,35 @@ private:
         }
     }
 
+    static auto notCertifiedKeysFilterId()
+    {
+        static const QString filterId = QStringLiteral("not-certified-certificates");
+        return filterId;
+    }
+
     void listNotCertifiedKeys() const
     {
         lineEdit->clear();
-        combo->setCurrentIndex(combo->findData(QStringLiteral("not-certified-certificates")));
+        combo->setCurrentIndex(combo->findData(notCertifiedKeysFilterId()));
         Q_EMIT q->keyFilterChanged(keyFilter(combo->currentIndex()));
     }
 
-    /* List all OpenPGP keys and see if we find one with a UID that is
-     * not at least fully valid.  If we find one, show the certify
-     * button.  */
     void showOrHideCertifyButton() const
     {
         if (!KeyCache::instance()->initialized()) {
             return;
         }
-        if (Kleo::any_of(KeyCache::instance()->keys(),
-                         [](const auto &key) {
-                             return (key.protocol() == GpgME::OpenPGP)
-                                 && (Kleo::keyValidity(key) < GpgME::UserID::Validity::Full);
-                         })) {
-            certifyButton->show();
-            return;
+        const auto filter = KeyFilterManager::instance()->keyFilterByID(notCertifiedKeysFilterId());
+        if (filter) {
+            if (Kleo::any_of(KeyCache::instance()->keys(),
+                             [filter](const auto &key) {
+                                 return filter->matches(key, KeyFilter::Filtering);
+                             })) {
+                certifyButton->show();
+                return;
+            }
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Key filter with id" << notCertifiedKeysFilterId() << "not found";
         }
         certifyButton->hide();
     }

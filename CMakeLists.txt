@@ -35,7 +35,6 @@ set(KMIME_VERSION "5.19.80")
 set(LIBKLEO_VERSION "5.19.81")
 set(QT_REQUIRED_VERSION "5.15.2")
 set(GPGME_REQUIRED_VERSION "1.15.0")
-set(BOOST_REQUIRED_VERSION "1.58")
 
 if (WIN32)
   set(KF5_WANT_VERSION "5.70.0")
@@ -127,13 +126,6 @@ find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widget
 find_package(Assuan2 REQUIRED)
 
 
-find_package(Boost ${BOOST_REQUIRED_VERSION} MODULE REQUIRED)
-
-find_path(Boost_TOPOLOGICAL_SORT_DIR NAMES boost/graph/topological_sort.hpp PATHS ${Boost_INCLUDE_DIRS})
-if(NOT Boost_TOPOLOGICAL_SORT_DIR)
-    message(FATAL_ERROR "The Boost Topological_sort header was NOT found. Should be part of Boost graph module.")
-endif()
-
 set(kleopatra_release FALSE)
 
 if(NOT kleopatra_release)
@@ -168,7 +160,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURR
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${Boost_INCLUDE_DIRS}
     ${ASSUAN2_INCLUDES}
     )
 

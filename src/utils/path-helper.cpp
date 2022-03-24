@@ -91,6 +91,12 @@ QStringList Kleo::makeRelativeTo(const QDir &baseDir, const QStringList &fileNam
     return rv;
 }
 
+QString Kleo::stripSuffix(const QString &fileName)
+{
+    const QFileInfo fi(fileName);
+    return fi.dir().filePath(fi.completeBaseName());
+}
+
 void Kleo::recursivelyRemovePath(const QString &path)
 {
     const QFileInfo fi(path);

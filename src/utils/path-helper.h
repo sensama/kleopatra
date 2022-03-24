@@ -19,6 +19,7 @@ namespace Kleo
 QString heuristicBaseDirectory(const QStringList &files);
 QStringList makeRelativeTo(const QDir &dir, const QStringList &files);
 QStringList makeRelativeTo(const QString &dir, const QStringList &files);
+QString stripSuffix(const QString &fileName);
 
 void recursivelyRemovePath(const QString &path);
 bool recursivelyCopy(const QString &src, const QString &dest);

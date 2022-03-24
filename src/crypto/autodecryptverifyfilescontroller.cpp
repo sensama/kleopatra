@@ -238,7 +238,7 @@ QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerify
     for (const auto &file : files) {
         CryptoFile cFile;
         cFile.fileName = file;
-        cFile.baseName = file.left(file.length() - 4);
+        cFile.baseName = stripSuffix(file);
         cFile.classification = classify(file);
         cFile.protocol = findProtocol(cFile.classification);
 

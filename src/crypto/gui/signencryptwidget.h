@@ -122,6 +122,9 @@ Q_SIGNALS:
 
 private:
     CertificateLineEdit* addRecipientWidget();
+    /** Inserts a new recipient widget after widget @p after or at the end
+     *  if @p after is null. */
+    CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
     void onProtocolChanged();
     void updateCheckBoxes();
 

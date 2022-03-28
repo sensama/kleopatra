@@ -256,18 +256,27 @@ void SignEncryptWidget::setEncryptWithPasswordText(const QString& text)
 
 CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
 {
+    return insertRecipientWidget(nullptr);
+}
+
+CertificateLineEdit *SignEncryptWidget::insertRecipientWidget(CertificateLineEdit *after)
+{
+    Q_ASSERT(!after || mRecpLayout->indexOf(after) != -1);
+
+    const auto index = after ? mRecpLayout->indexOf(after) + 1 : mRecpLayout->count();
+
     auto certSel = new CertificateLineEdit(mModel,
                                            new EncryptCertificateFilter(mCurrentProto),
                                            this);
     certSel->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     certSel->setEnabled(mEncOtherChk->isChecked());
-    mRecpWidgets << certSel;
+    mRecpWidgets.insert(index, certSel);
 
     if (mRecpLayout->count() > 0) {
-        auto lastWidget = mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
-        setTabOrder(lastWidget, certSel);
+        auto prevWidget = after ? after : mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
+        setTabOrder(prevWidget, certSel);
     }
-    mRecpLayout->addWidget(certSel);
+    mRecpLayout->insertWidget(index, certSel);
 
     connect(certSel, &CertificateLineEdit::keyChanged,
             this, &SignEncryptWidget::recipientsChanged);
@@ -324,22 +333,22 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
         if (keys.size() == 0 && groups.size() == 0) {
             return;
         }
-        bool isFirstItem = true;
+        CertificateLineEdit *certWidget = nullptr;
         for (const Key &key : keys) {
-            if (isFirstItem) {
-                certificateLineEdit->setKey(key);
-                isFirstItem = false;
+            if (!certWidget) {
+                certWidget = certificateLineEdit;
             } else {
-                addRecipient(key);
+                certWidget = insertRecipientWidget(certWidget);
             }
+            certWidget->setKey(key);
         }
         for (const KeyGroup &group : groups) {
-            if (isFirstItem) {
-                certificateLineEdit->setGroup(group);
-                isFirstItem = false;
+            if (!certWidget) {
+                certWidget = certificateLineEdit;
             } else {
-                addRecipient(group);
+                certWidget = insertRecipientWidget(certWidget);
             }
+            certWidget->setGroup(group);
         }
     }
 

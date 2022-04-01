@@ -51,6 +51,7 @@
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/exportpaperkeycommand.h"
+#include "commands/revokekeycommand.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
@@ -415,6 +416,12 @@ void KeyListController::createActions(KActionCollection *coll)
             "dialog-information", nullptr, nullptr, QString(), false, true
         },
         // Certificate menu
+#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+        {
+            "certificates_revoke", i18n("Revoke Certificate..."), i18n("Revoke the selected OpenPGP certificate"),
+            "view-certificate-revoke", nullptr, nullptr, {}, false, true
+        },
+#endif
         {
             "certificates_delete", i18n("Delete"), i18n("Delete selected certificates"),
             "edit-delete", nullptr, nullptr, QStringLiteral("Delete"), false, true
@@ -536,6 +543,9 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ChangePassphraseCommand>(coll->action(QStringLiteral("certificates_change_passphrase")));
     registerActionForCommand<AddUserIDCommand>(coll->action(QStringLiteral("certificates_add_userid")));
     //---
+#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+    registerActionForCommand<RevokeKeyCommand>(coll->action(QStringLiteral("certificates_revoke")));
+#endif
     registerActionForCommand<DeleteCertificatesCommand>(coll->action(QStringLiteral("certificates_delete")));
     //---
     registerActionForCommand<DumpCertificateCommand>(coll->action(QStringLiteral("certificates_dump_certificate")));

@@ -56,3 +56,6 @@
 
 /* Defined if QGpgME supports receiving keys by their key ids */
 #cmakedefine QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID 1
+
+/* Defined if QGpgME supports revoking own OpenPGP keys */
+#cmakedefine QGPGME_SUPPORTS_KEY_REVOCATION 1

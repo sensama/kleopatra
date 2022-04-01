@@ -152,6 +152,7 @@ set(_kleopatra_SRCS
   dialogs/createcsrforcardkeydialog.cpp
   dialogs/groupdetailsdialog.cpp
   dialogs/editgroupdialog.cpp
+  dialogs/revokekeydialog.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp
@@ -260,6 +261,7 @@ set(_kleopatra_SRCS
   commands/importcertificatefrompivcardcommand.cpp
   commands/createopenpgpkeyfromcardkeyscommand.cpp
   commands/createcsrforcardkeycommand.cpp
+  commands/revokekeycommand.cpp
 
   ${_kleopatra_uiserver_files}
 

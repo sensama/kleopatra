@@ -31,6 +31,8 @@ option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
 set(KF5_MIN_VERSION "5.94.0")
+set(KIDENTITYMANAGEMENT_VERSION "5.20.40")
+set(KMAILTRANSPORT_VERSION "5.20.40")
 set(KMIME_VERSION "5.20.40")
 set(LIBKLEO_VERSION "5.20.42")
 set(QT_REQUIRED_VERSION "5.15.2")
@@ -118,6 +120,9 @@ endif()
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF5IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG REQUIRED)
+find_package(KF5MailTransport ${KMAILTRANSPORT_VERSION} CONFIG REQUIRED)
+find_package(KF5MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG REQUIRED)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 

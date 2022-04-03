@@ -6,6 +6,7 @@
     SPDX-FileCopyrightText: 2017 Intevation GmbH
     SPDX-FileCopyrightText: 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
+    SPDX-FileCopyrightText: 2022 Felix Tiede
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -23,6 +24,7 @@
 #include "commands/changepassphrasecommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
+#include "commands/exportopenpgpcerttoprovidercommand.h"
 #include "commands/refreshcertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokeuseridcommand.h"
@@ -95,6 +97,7 @@ public:
     void webOfTrustClicked();
     void exportClicked();
     void addUserID();
+    void exportUserIDToProvider();
     void changePassphrase();
     void changeExpiration();
     void keysMayHaveChanged();
@@ -644,6 +647,16 @@ void CertificateDetailsWidget::Private::addUserID()
     cmd->start();
 }
 
+void CertificateDetailsWidget::Private::exportUserIDToProvider()
+{
+    auto userID = key.userID(0);
+
+    auto item = ui.userIDTable->currentItem();
+    if (item) {
+        userID = item->data(0, Qt::UserRole).value<GpgME::UserID>();
+    }
+}
+
 namespace
 {
 void ensureThatKeyDetailsAreLoaded(GpgME::Key &key)
@@ -742,6 +755,17 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                 ui.userIDTable->setEnabled(true);
                 updateKey();
             });
+            cmd->start();
+        });
+    }
+    if (key.hasSecret() && key.protocol() == GpgME::OpenPGP) {
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export-provider")),
+                        i18n("Publish at mail provider ..."),
+                        q, [this, userID]() {
+            auto cmd = new Kleo::Commands::ExportOpenPGPCertToProviderCommand(userID);
+            ui.userIDTable->setEnabled(false);
+            connect(cmd, &Kleo::Commands::ExportOpenPGPCertToProviderCommand::finished,
+                    q, [this]() { ui.userIDTable->setEnabled(true); });
             cmd->start();
         });
     }

@@ -245,6 +245,7 @@ set(_kleopatra_SRCS
   commands/exportsecretkeycommand_old.cpp
   commands/exportsecretsubkeycommand.cpp
   commands/exportopenpgpcertstoservercommand.cpp
+  commands/exportopenpgpcerttoprovidercommand.cpp
   commands/adduseridcommand.cpp
   commands/newcertificatecommand.cpp
   commands/setinitialpincommand.cpp
@@ -375,6 +376,9 @@ target_link_libraries(kleopatra_bin
   KF5::CoreAddons
   KF5::ItemModels
   KF5::Crash
+  KF5::IdentityManagement # Export OpenPGP keys using WKS
+  KF5::MailTransport
+  KF5::MailTransportAkonadi
   Qt${QT_MAJOR_VERSION}::Network
   Qt${QT_MAJOR_VERSION}::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}

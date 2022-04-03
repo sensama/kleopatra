@@ -42,7 +42,7 @@ ExportOpenPGPCertsToServerCommand::ExportOpenPGPCertsToServerCommand(const Key &
 
 }
 
-ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() {}
+ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() = default;
 
 bool ExportOpenPGPCertsToServerCommand::preStartHook(QWidget *parent) const
 {

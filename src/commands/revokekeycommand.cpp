@@ -214,8 +214,10 @@ void RevokeKeyCommand::Private::onJobResult(const Error &err)
         return;
     }
 
-    information(i18nc("@info", "The key was revoked successfully."),
-                i18nc("@title:window", "Key Revoked"));
+    if (!err.isCanceled()) {
+        information(i18nc("@info", "The key was revoked successfully."),
+                    i18nc("@title:window", "Key Revoked"));
+    }
     finished();
 }
 

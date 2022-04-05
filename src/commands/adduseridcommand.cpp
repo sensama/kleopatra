@@ -27,7 +27,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 class AddUserIDCommand::Private : public Command::Private
@@ -137,7 +136,6 @@ void AddUserIDCommand::doStart()
 
     d->dialog->setName(QString::fromUtf8(uid.name()));
     d->dialog->setEmail(Formatting::prettyEMail(uid.email(), uid.id()));
-    d->dialog->setComment(QString::fromUtf8(uid.comment()));
 
     d->dialog->show();
 }
@@ -150,7 +148,7 @@ void AddUserIDCommand::Private::slotDialogAccepted()
     if (!job) {
         finished();
     }
-    else if (const Error err = job->start(key, dialog->name(), dialog->email(), dialog->comment())) {
+    else if (const Error err = job->start(key, dialog->name(), dialog->email())) {
         showErrorDialog(err);
         finished();
     }

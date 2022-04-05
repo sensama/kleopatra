@@ -38,7 +38,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 using namespace QGpgME;
@@ -152,7 +151,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogAccepted()
     connect(job, SIGNAL(result(GpgME::Error)),
             q, SLOT(slotResult(GpgME::Error)));
 
-    const QString userID = Formatting::prettyNameAndEMail(OpenPGP, QString(), dialog->name(), dialog->email(), dialog->comment());
+    const QString userID = Formatting::prettyNameAndEMail(OpenPGP, QString(), dialog->name(), dialog->email());
     const QDateTime expires = QDateTime();
     const unsigned int flags = GPGME_CREATE_FORCE;
     job->startCreate(userID, "card", expires, Key(), flags);

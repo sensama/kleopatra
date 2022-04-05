@@ -50,7 +50,6 @@ private:
     Q_PRIVATE_SLOT(d_func(), void slotResult(GpgME::Error))
     Q_PRIVATE_SLOT(d_func(), void slotDialogAccepted())
     Q_PRIVATE_SLOT(d_func(), void slotDialogRejected())
-    Q_PRIVATE_SLOT(d_func(), void slotSimpleDialogAccepted())
 };
 
 }

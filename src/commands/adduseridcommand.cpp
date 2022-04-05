@@ -14,7 +14,6 @@
 #include "command_p.h"
 
 #include "dialogs/adduseriddialog.h"
-#include "dialogs/addemaildialog.h"
 
 #include <Libkleo/Formatting>
 #include <QGpgME/Protocol>
@@ -46,7 +45,6 @@ public:
 
 private:
     void slotDialogAccepted();
-    void slotSimpleDialogAccepted();
     void slotDialogRejected();
     void slotResult(const Error &err);
 
@@ -59,7 +57,6 @@ private:
 private:
     GpgME::Key key;
     QPointer<AddUserIDDialog> dialog;
-    QPointer<AddEmailDialog> simpleDialog;
     QPointer<QGpgME::AddUserIDJob> job;
 };
 
@@ -89,9 +86,6 @@ AddUserIDCommand::Private::~Private()
     qCDebug(KLEOPATRA_LOG);
     if (dialog) {
         delete dialog;
-    }
-    if (simpleDialog) {
-        delete simpleDialog;
     }
 }
 
@@ -141,32 +135,11 @@ void AddUserIDCommand::doStart()
 
     const UserID uid = d->key.userID(0);
 
-    // d->simpleDialog->setEmail(Formatting::prettyEMail(uid.email(), uid.id()));
-
     d->dialog->setName(QString::fromUtf8(uid.name()));
     d->dialog->setEmail(Formatting::prettyEMail(uid.email(), uid.id()));
     d->dialog->setComment(QString::fromUtf8(uid.comment()));
 
-    d->simpleDialog->show();
-}
-
-void AddUserIDCommand::Private::slotSimpleDialogAccepted()
-{
-    if (simpleDialog->advancedSelected()) {
-        qDebug() << "thinking advanced selected";
-        dialog->show();
-        return;
-    }
-
-    createJob();
-    if (!job) {
-        finished();
-        return;
-    }
-    if (const Error err = job->start(key, QString(), simpleDialog->email(), QString())) {
-        showErrorDialog(err);
-        finished();
-    }
+    d->dialog->show();
 }
 
 void AddUserIDCommand::Private::slotDialogAccepted()
@@ -177,7 +150,6 @@ void AddUserIDCommand::Private::slotDialogAccepted()
     if (!job) {
         finished();
     }
-
     else if (const Error err = job->start(key, dialog->name(), dialog->email(), dialog->comment())) {
         showErrorDialog(err);
         finished();
@@ -221,12 +193,6 @@ void AddUserIDCommand::Private::ensureDialogCreated()
 
     connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
     connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
-
-    simpleDialog = new AddEmailDialog;
-    applyWindowID(simpleDialog);
-
-    connect(simpleDialog, SIGNAL(accepted()), q, SLOT(slotSimpleDialogAccepted()));
-    connect(simpleDialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
 }
 
 void AddUserIDCommand::Private::createJob()

@@ -454,6 +454,7 @@ QString CertificateLineEdit::Private::errorMessage() const
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
     };
+    return {};
 }
 
 void CertificateLineEdit::Private::updateErrorLabel()

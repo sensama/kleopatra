@@ -250,7 +250,6 @@ auto createInfoButton(const QString &text, QWidget *parent)
     return infoBtn;
 }
 
-#ifdef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
 QString dateFormatWithFourDigitYear(QLocale::FormatType format)
 {
     // Force the year to be formatted as four digit number, so that
@@ -264,7 +263,6 @@ QString formatDate(const QDate &date, QLocale::FormatType format)
 {
     return QLocale{}.toString(date, dateFormatWithFourDigitYear(format));
 }
-#endif
 
 }
 
@@ -352,10 +350,6 @@ public:
             advLay->addLayout(tagsLay);
         }
 
-#ifndef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
-        mExpirationCheckBox->setVisible(false);
-        mExpirationDateEdit->setVisible(false);
-#else
         {
             auto layout = new QHBoxLayout{q};
 
@@ -389,12 +383,7 @@ public:
 
             advLay->addLayout(layout);
         }
-#endif
 
-#ifndef QGPGME_SUPPORTS_TRUST_SIGNATURES
-        mTrustSignatureCB->setVisible(false);
-        mTrustSignatureDomainLE->setVisible(false);
-#else
         {
             auto layout = new QHBoxLayout{q};
 
@@ -423,7 +412,6 @@ public:
 
             advLay->addLayout(layout);
         }
-#endif
 
         expander->setContentLayout(advLay);
 

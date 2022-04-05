@@ -24,15 +24,6 @@
 /* DBus available */
 #cmakedefine01 HAVE_QDBUS
 
-/* Defined if GpgME++ supports trust signatures */
-#cmakedefine GPGMEPP_SUPPORTS_TRUST_SIGNATURES 1
-
-/* Defined if QGpgME supports trust signatures */
-#cmakedefine QGPGME_SUPPORTS_TRUST_SIGNATURES 1
-
-/* Defined if QGpgME supports setting an expiration date for signatures */
-#cmakedefine QGPGME_SUPPORTS_SIGNATURE_EXPIRATION 1
-
 /* Defined if QGpgME supports changing the expiration date of the primary key and the subkeys simultaneously */
 #cmakedefine QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY 1
 

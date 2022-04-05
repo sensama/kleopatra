@@ -255,17 +255,13 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
         job->setRemark(dialog->tags());
     }
     job->setDupeOk(true);
-#ifdef QGPGME_SUPPORTS_TRUST_SIGNATURES
     if (dialog->trustSignatureSelected() && !dialog->trustSignatureDomain().isEmpty()) {
         // always create level 1 trust signatures with complete trust
         job->setTrustSignature(TrustSignatureTrust::Complete, 1, dialog->trustSignatureDomain());
     }
-#endif
-#ifdef QGPGME_SUPPORTS_SIGNATURE_EXPIRATION
     if (!dialog->expirationDate().isNull()) {
         job->setExpirationDate(dialog->expirationDate());
     }
-#endif
 
     if (const Error err = job->start(key())) {
         slotResult(err);

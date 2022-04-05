@@ -729,7 +729,6 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
     return html;
 }
 
-#ifdef GPGMEPP_SUPPORTS_TRUST_SIGNATURES
 namespace
 {
 auto isGood(const GpgME::UserID::Signature &signature)
@@ -766,7 +765,6 @@ auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
     );
 }
 }
-#endif
 
 void CertificateDetailsWidget::Private::setupPGPProperties()
 {
@@ -779,7 +777,6 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
             q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
 
-#ifdef GPGMEPP_SUPPORTS_TRUST_SIGNATURES
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
     if (trustDomains.empty()) {
         HIDE_ROW(trustedIntroducer)
@@ -787,9 +784,6 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
         SHOW_ROW(trustedIntroducer)
         ui.trustedIntroducer->setText(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
     }
-#else
-    HIDE_ROW(trustedIntroducer)
-#endif
 }
 
 static QString formatDNToolTip(const Kleo::DN &dn)

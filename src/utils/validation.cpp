@@ -83,7 +83,7 @@ QValidator *Validation::email(const QString &addRX, Flags flags, QObject *parent
 QValidator *Validation::pgpName(Flags flags, QObject *parent)
 {
     // this regular expression is modeled after gnupg/g10/keygen.c:ask_user_id:
-    static const auto name_rx = QRegularExpression{QStringLiteral("[^0-9<>][^<>@]{3,}")};
+    static const auto name_rx = QRegularExpression{QStringLiteral("[^0-9<>][^<>@]{4,}")};
     if (flags & Required) {
         return new QRegularExpressionValidator{name_rx, parent};
     } else {

@@ -18,14 +18,18 @@ namespace Kleo
 namespace Validation
 {
 
-QValidator *email(QObject *parent = nullptr);
-QValidator *pgpName(QObject *parent = nullptr);
-QValidator *pgpComment(QObject *parent = nullptr);
+enum Flags {
+    Optional,
+    Required
+};
 
-QValidator *email(const QString &additionalRegExp, QObject *parent = nullptr);
-QValidator *pgpName(const QString &additionalRegExp, QObject *parent = nullptr);
-QValidator *pgpComment(const QString &additionalRegExp, QObject *parent = nullptr);
+QValidator *email(Flags flags = Required, QObject *parent = nullptr);
+QValidator *pgpName(Flags flags = Required, QObject *parent = nullptr);
+QValidator *pgpComment(Flags flags = Required, QObject *parent = nullptr);
+
+QValidator *email(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
+QValidator *pgpName(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
+QValidator *pgpComment(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
 
 }
 }
-

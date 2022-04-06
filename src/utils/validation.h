@@ -9,9 +9,9 @@
 
 #pragma once
 
-#include <QObject>
+class QObject;
+class QString;
 class QValidator;
-class QRegExp;
 
 namespace Kleo
 {
@@ -22,9 +22,9 @@ QValidator *email(QObject *parent = nullptr);
 QValidator *pgpName(QObject *parent = nullptr);
 QValidator *pgpComment(QObject *parent = nullptr);
 
-QValidator *email(const QRegExp &additionalRegExp, QObject *parent = nullptr);
-QValidator *pgpName(const QRegExp &additionalRegExp, QObject *parent = nullptr);
-QValidator *pgpComment(const QRegExp &additionalRegExp, QObject *parent = nullptr);
+QValidator *email(const QString &additionalRegExp, QObject *parent = nullptr);
+QValidator *pgpName(const QString &additionalRegExp, QObject *parent = nullptr);
+QValidator *pgpComment(const QString &additionalRegExp, QObject *parent = nullptr);
 
 }
 }

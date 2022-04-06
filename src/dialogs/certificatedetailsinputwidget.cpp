@@ -246,9 +246,9 @@ public:
 
             QValidator *validator = nullptr;
             if (attr == QLatin1String("EMAIL")) {
-                validator = regex.isEmpty() ? Validation::email() : Validation::email(QRegExp(regex));
+                validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
             } else if (!regex.isEmpty()) {
-                validator = new QRegExpValidator(QRegExp(regex), nullptr);
+                validator = new QRegularExpressionValidator{QRegularExpression{regex}, nullptr};
             }
 
             QLineEdit *le = addRow(ui.gridLayout, label, preset, validator, readonly, required);

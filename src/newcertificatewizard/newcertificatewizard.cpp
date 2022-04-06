@@ -62,7 +62,7 @@
 #include <KMessageBox>
 #include <QIcon>
 
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QLineEdit>
 #include <QMetaProperty>
 #include <QDir>
@@ -1515,13 +1515,13 @@ void EnterDetailsPage::updateForm()
         QValidator *validator = nullptr;
         if (attr == QLatin1String("EMAIL")) {
             row = row_index_of(ui.emailLE, ui.gridLayout);
-            validator = regex.isEmpty() ? Validation::email() : Validation::email(QRegExp(regex));
+            validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
         } else if (attr == QLatin1String("NAME") || attr == QLatin1String("CN")) {
             if ((pgp() && attr == QLatin1String("CN")) || (!pgp() && attr == QLatin1String("NAME"))) {
                 continue;
             }
             if (pgp()) {
-                validator = regex.isEmpty() ? Validation::pgpName() : Validation::pgpName(QRegExp(regex));
+                validator = regex.isEmpty() ? Validation::pgpName() : Validation::pgpName(regex);
             }
             row = row_index_of(ui.nameLE, ui.gridLayout);
         } else {
@@ -1529,7 +1529,7 @@ void EnterDetailsPage::updateForm()
             row = add_row(ui.gridLayout, &dynamicWidgets);
         }
         if (!validator && !regex.isEmpty()) {
-            validator = new QRegExpValidator(QRegExp(regex), nullptr);
+            validator = new QRegularExpressionValidator{QRegularExpression{regex}, nullptr};
         }
 
         QLineEdit *le = adjust_row(ui.gridLayout, row, label, preset, validator, readonly, required);

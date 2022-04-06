@@ -51,11 +51,7 @@ ExportOpenPGPCertToProviderCommand::~ExportOpenPGPCertToProviderCommand() {}
 
 bool ExportOpenPGPCertToProviderCommand::preStartHook(QWidget *parent) const
 {
-    QString sender;
-    if (uid.isNull())
-      sender = QString::fromLatin1(d->keys().at(0).userID(0).addrSpec().data());
-    else
-      sender = QString::fromLatin1(uid.addrSpec().data());
+    QString sender = senderAddress();
 
     KIdentityManagement::Identity identity = ExportOpenPGPCertToProviderCommand::mailIdManager->identityForAddress(sender);
     if (identity.isNull())
@@ -88,11 +84,7 @@ bool ExportOpenPGPCertToProviderCommand::preStartHook(QWidget *parent) const
 
 void ExportOpenPGPCertToProviderCommand::postSuccessHook(QWidget *parent)
 {
-    QString sender;
-    if (uid.isNull())
-      sender = QString::fromLatin1(d->keys().at(0).userID(0).addrSpec().data());
-    else
-      sender = QString::fromLatin1(uid.addrSpec().data());
+    QString sender = senderAddress();
 
     KIdentityManagement::Identity identity = ExportOpenPGPCertToProviderCommand::mailIdManager->identityForAddress(sender);
     if (identity.isNull())
@@ -125,15 +117,8 @@ QStringList ExportOpenPGPCertToProviderCommand::arguments() const
     result << gpgWksClientPath();
     result << QStringLiteral("--output") << wksMail.fileName();
     result << QStringLiteral("--create");
-    Q_FOREACH (const Key &key, d->keys()) {
-        result << QLatin1String(key.primaryFingerprint());
-        if (!uid.isNull()) {
-            result << QLatin1String(uid.addrSpec().data());
-        }
-        else {
-            result << QLatin1String(key.userID(0).email());
-        }
-    }
+    result << QString::fromUtf8(d->keys().at(0).primaryFingerprint());
+    result << senderAddress();
     return result;
 }
 
@@ -168,3 +153,10 @@ QString ExportOpenPGPCertToProviderCommand::successMessage(const QStringList&) c
     return i18nc("@info", "OpenPGP certificates exported successfully.");
 }
 
+QString ExportOpenPGPCertToProviderCommand::senderAddress() const
+{
+    if (uid.isNull())
+      return QString::fromUtf8(d->keys().at(0).userID(0).addrSpec().data());
+    else
+      return QString::fromUtf8(uid.addrSpec().data());
+}

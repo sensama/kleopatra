@@ -50,6 +50,8 @@ private:
     QString errorExitMessage(const QStringList &) const override;
     QString successMessage(const QStringList &) const override;
 
+    QString senderAddress() const;
+
     GpgME::UserID uid;
 
     QTemporaryFile wksMail;

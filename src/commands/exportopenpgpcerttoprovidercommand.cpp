@@ -108,6 +108,15 @@ void ExportOpenPGPCertToProviderCommand::postSuccessHook(QWidget *parent)
     job->addressAttribute().setFrom(msg->from()->asUnicodeString());
     job->addressAttribute().setTo(msg->to()->displayNames());
     job->setMessage(KMime::Message::Ptr(msg));
+    connect(job, &MailTransport::MessageQueueJob::result, this, [this](const KJob *mailJob) {
+            if (mailJob->error()) {
+                KMessageBox::error((QWidget *) mailJob->parent(),
+                 xi18nc("@error",
+                        "<para>An error occurred when creating the mail to publish key:</para>"
+                        "<para>%1</para>", mailJob->errorString()),
+                 i18nc("@title:window", "OpenPGP Certificate Export"));
+            }
+    });
 
     job->start();
 }

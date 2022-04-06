@@ -31,14 +31,14 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-static const KIdentityManagement::Identity identityForAddress(const QString &senderAddress) {
+static const QString identityTransportForAddress(const QString &senderAddress) {
     static const KIdentityManagement::IdentityManager *idManager = new KIdentityManagement::IdentityManager(true);
 
     const KIdentityManagement::Identity identity = idManager->identityForAddress(senderAddress);
     if (identity.isNull())
-        return idManager->defaultIdentity();
+        return idManager->defaultIdentity().transport();
     else
-        return identity;
+        return identity.transport();
 }
 
 ExportOpenPGPCertToProviderCommand::ExportOpenPGPCertToProviderCommand(QAbstractItemView *v, KeyListController *c)
@@ -60,11 +60,10 @@ ExportOpenPGPCertToProviderCommand::~ExportOpenPGPCertToProviderCommand() {}
 
 bool ExportOpenPGPCertToProviderCommand::preStartHook(QWidget *parent) const
 {
-    QString sender = senderAddress();
+    const QString sender = senderAddress();
+    const QString transportName = identityTransportForAddress(sender);
 
-    KIdentityManagement::Identity identity = identityForAddress(sender);
-
-    if (identity.transport().isEmpty()) {
+    if (transportName.isEmpty()) {
         KMessageBox::error(parent,
          xi18nc("@warning",
                 "<para><email>%1</email> has no usable transport for mailing a key available, "
@@ -91,11 +90,8 @@ bool ExportOpenPGPCertToProviderCommand::preStartHook(QWidget *parent) const
 
 void ExportOpenPGPCertToProviderCommand::postSuccessHook(QWidget *parent)
 {
-    QString sender = senderAddress();
-
-    KIdentityManagement::Identity identity = identityForAddress(sender);
     MailTransport::Transport *transport = MailTransport::TransportManager::self()->transportByName(
-        identity.transport());
+        identityTransportForAddress(senderAddress()));
 
     if (!transport)
         return;

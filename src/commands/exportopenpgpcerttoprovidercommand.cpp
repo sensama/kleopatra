@@ -18,6 +18,7 @@
 #include <gpgme++/key.h>
 
 #include <kidentitymanagement/identity.h>
+#include <kidentitymanagement/identitymanager.h>
 #include <MailTransport/TransportManager>
 #include <MailTransportAkonadi/MessageQueueJob>
 
@@ -30,7 +31,15 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-const KIdentityManagement::IdentityManager *ExportOpenPGPCertToProviderCommand::mailIdManager = new KIdentityManagement::IdentityManager(true);
+static const KIdentityManagement::Identity identityForAddress(const QString &senderAddress) {
+    static const KIdentityManagement::IdentityManager *idManager = new KIdentityManagement::IdentityManager(true);
+
+    const KIdentityManagement::Identity identity = idManager->identityForAddress(senderAddress);
+    if (identity.isNull())
+        return idManager->defaultIdentity();
+    else
+        return identity;
+}
 
 ExportOpenPGPCertToProviderCommand::ExportOpenPGPCertToProviderCommand(QAbstractItemView *v, KeyListController *c)
     : GnuPGProcessCommand(v, c)
@@ -53,9 +62,7 @@ bool ExportOpenPGPCertToProviderCommand::preStartHook(QWidget *parent) const
 {
     QString sender = senderAddress();
 
-    KIdentityManagement::Identity identity = ExportOpenPGPCertToProviderCommand::mailIdManager->identityForAddress(sender);
-    if (identity.isNull())
-      identity = ExportOpenPGPCertToProviderCommand::mailIdManager->defaultIdentity();
+    KIdentityManagement::Identity identity = identityForAddress(sender);
 
     if (identity.transport().isEmpty()) {
         KMessageBox::error(parent,
@@ -86,9 +93,7 @@ void ExportOpenPGPCertToProviderCommand::postSuccessHook(QWidget *parent)
 {
     QString sender = senderAddress();
 
-    KIdentityManagement::Identity identity = ExportOpenPGPCertToProviderCommand::mailIdManager->identityForAddress(sender);
-    if (identity.isNull())
-      identity = ExportOpenPGPCertToProviderCommand::mailIdManager->defaultIdentity();
+    KIdentityManagement::Identity identity = identityForAddress(sender);
     MailTransport::Transport *transport = MailTransport::TransportManager::self()->transportByName(
         identity.transport());
 

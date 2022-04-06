@@ -12,8 +12,6 @@
 
 #include <commands/gnupgprocesscommand.h>
 
-#include <kidentitymanagement/identitymanager.h>
-
 #include <QtCore/QTemporaryFile>
 
 #include <gpgme++/key.h>
@@ -55,7 +53,6 @@ private:
     GpgME::UserID uid;
 
     QTemporaryFile wksMail;
-    static const KIdentityManagement::IdentityManager *mailIdManager;
 };
 
 }

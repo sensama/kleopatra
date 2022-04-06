@@ -97,7 +97,6 @@ public:
     void webOfTrustClicked();
     void exportClicked();
     void addUserID();
-    void exportUserIDToProvider();
     void changePassphrase();
     void changeExpiration();
     void keysMayHaveChanged();
@@ -645,16 +644,6 @@ void CertificateDetailsWidget::Private::addUserID()
                      });
     ui.addUserIDBtn->setEnabled(false);
     cmd->start();
-}
-
-void CertificateDetailsWidget::Private::exportUserIDToProvider()
-{
-    auto userID = key.userID(0);
-
-    auto item = ui.userIDTable->currentItem();
-    if (item) {
-        userID = item->data(0, Qt::UserRole).value<GpgME::UserID>();
-    }
 }
 
 namespace

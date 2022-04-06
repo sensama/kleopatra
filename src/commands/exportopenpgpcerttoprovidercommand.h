@@ -1,18 +1,16 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/exportopenpgpcertstoservercommand.h
+    commands/exportopenpgpcerttoprovidercommand.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
-    SPDX-FileCopyrightText: 2019 Felix Tiede
+    SPDX-FileCopyrightText: 2022 Felix Tiede
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #pragma once
 
-#include <commands/gnupgprocesscommand.h>
-
-#include <QtCore/QTemporaryFile>
+#include <commands/command.h>
 
 #include <gpgme++/key.h>
 
@@ -21,7 +19,7 @@ namespace Kleo
 namespace Commands
 {
 
-class ExportOpenPGPCertToProviderCommand : public GnuPGProcessCommand
+class ExportOpenPGPCertToProviderCommand : public Command
 {
     Q_OBJECT
 public:
@@ -35,24 +33,16 @@ public:
         return OnlyOneKey | NeedSecretKey | MustBeOpenPGP;
     }
 
+private Q_SLOTS:
+    void wksJobResult(const GpgME::Error &, const QByteArray &, const QByteArray &);
+
 private:
-    bool preStartHook(QWidget *) const override;
-    void postSuccessHook(QWidget *) override;
-
-    QStringList arguments() const override;
-
-    QString errorCaption() const override;
-    QString successCaption() const override;
-
-    QString crashExitMessage(const QStringList &) const override;
-    QString errorExitMessage(const QStringList &) const override;
-    QString successMessage(const QStringList &) const override;
+    void doStart() override;
+    void doCancel() override;
 
     QString senderAddress() const;
 
     GpgME::UserID uid;
-
-    QTemporaryFile wksMail;
 };
 
 }

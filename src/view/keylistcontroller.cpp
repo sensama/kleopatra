@@ -3,7 +3,7 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007 Klarälvdalens Datakonsult AB
-    SPDX-FileCopyrightText: 2019-2022 Felix Tiede
+    SPDX-FileCopyrightText: 2022 Felix Tiede
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */

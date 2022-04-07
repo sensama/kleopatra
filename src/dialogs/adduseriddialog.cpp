@@ -12,14 +12,22 @@
 #include <config-kleopatra.h>
 
 #include "adduseriddialog.h"
+#include "view/errorlabel.h"
+#include "view/formtextinput.h"
 
+#include <utils/validation.h>
+
+#include <KConfigGroup>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KSeparator>
+#include <KSharedConfig>
 
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QValidator>
 #include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
@@ -46,8 +54,8 @@ class AddUserIDDialog::Private
     AddUserIDDialog *const q;
 
     struct {
-        QLineEdit *nameEdit;
-        QLineEdit *emailEdit;
+        std::unique_ptr<FormTextInput<QLineEdit>> nameInput;
+        std::unique_ptr<FormTextInput<QLineEdit>> emailInput;
         QLabel *resultLabel;
         QDialogButtonBox *buttonBox;
     } ui;
@@ -60,34 +68,62 @@ public:
 
         auto mainLayout = new QVBoxLayout{q};
 
-        mainLayout->addWidget(new QLabel{i18n("Enter the name and/or the email address to use for the user ID."), q});
+        mainLayout->addWidget(new QLabel{i18n("Enter a name and/or an email address to use for the user ID."), q});
 
         auto gridLayout = new QGridLayout;
         int row = -1;
 
+        const KConfigGroup config{KSharedConfig::openConfig(), "CertificateCreationWizard"};
         {
-            auto label = new QLabel{i18nc("@label", "Name:"), q};
-            ui.nameEdit = new QLineEdit{q};
-            label->setBuddy(ui.nameEdit);
+            ui.nameInput = FormTextInput<QLineEdit>::create(q);
+            ui.nameInput->label()->setText(i18nc("@label", "Name:"));
+            const auto regexp = config.readEntry(QLatin1String("NAME_regex"));
+            ui.nameInput->setValidator(regexp.isEmpty() ? Validation::pgpName(Validation::Optional, q)
+                                                       : Validation::pgpName(regexp, Validation::Optional, q));
+            const auto additionalRule = regexp.isEmpty() ? QString{} : i18n("Additionally, the name must adhere to rules set by your organization.");
+            ui.nameInput->setToolTip(xi18n(
+                "<para>If a name is given, then it has to satisfy the following rules:"
+                "<list>"
+                "<item>The name must be at least 5 characters long.</item>"
+                "<item>The first character must not be a digit.</item>"
+                "<item>The name must not contain any of the following characters: &lt;, &gt;, @.</item>"
+                "</list>"
+                "%1"
+                "</para>",
+                additionalRule));
+            ui.nameInput->setErrorMessage(i18n("Error: The entered name is not valid."));
 
             row++;
-            gridLayout->addWidget(label, row, 0, 1, 1);
-            gridLayout->addWidget(ui.nameEdit, row, 1, 1, 1);
+            gridLayout->addWidget(ui.nameInput->label(), row, 0, 1, 1);
+            gridLayout->addWidget(ui.nameInput->widget(), row, 1, 1, 1);
+            row++;
+            gridLayout->addWidget(ui.nameInput->errorLabel(), row, 0, 1, 2);
         }
-        connect(ui.nameEdit, &QLineEdit::textChanged,
-                q, [this]() { onNameChanged(); });
+        connect(ui.nameInput->widget(), &QLineEdit::textChanged,
+                q, [this]() { updateResultLabel(); });
 
         {
-            auto label = new QLabel{i18nc("@label", "Email:"), q};
-            ui.emailEdit = new QLineEdit{q};
-            label->setBuddy(ui.emailEdit);
+            ui.emailInput = FormTextInput<QLineEdit>::create(q);
+            ui.emailInput->label()->setText(i18nc("@label", "Email:"));
+            const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
+            ui.emailInput->setValidator(regexp.isEmpty() ? Validation::email(Validation::Optional, q)
+                                                        : Validation::email(regexp, Validation::Optional, q));
+            if (regexp.isEmpty()) {
+                ui.emailInput->setToolTip(xi18n("<para>If an email address is given, then it has to be a valid address.</para>"));
+            } else {
+                ui.emailInput->setToolTip(xi18n("<para>If an email address is given, then it has to be a valid address "
+                                               "and it must satisfy to rules set by your organization.</para>"));
+            }
+            ui.emailInput->setErrorMessage(i18n("Error: The entered email address is not valid."));
 
             row++;
-            gridLayout->addWidget(label, row, 0, 1, 1);
-            gridLayout->addWidget(ui.emailEdit, row, 1, 1, 1);
+            gridLayout->addWidget(ui.emailInput->label(), row, 0, 1, 1);
+            gridLayout->addWidget(ui.emailInput->widget(), row, 1, 1, 1);
+            row++;
+            gridLayout->addWidget(ui.emailInput->errorLabel(), row, 0, 1, 2);
         }
-        connect(ui.emailEdit, &QLineEdit::textChanged,
-                q, [this]() { onEmailChanged(); });
+        connect(ui.emailInput->widget(), &QLineEdit::textChanged,
+                q, [this]() { updateResultLabel(); });
 
         mainLayout->addLayout(gridLayout);
 
@@ -118,7 +154,7 @@ public:
 
         mainLayout->addWidget(ui.buttonBox);
 
-        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &QDialog::accept);
+        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() { checkAccept(); });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
 
         updateResultLabel();
@@ -126,23 +162,34 @@ public:
 
     QString name() const
     {
-        return ui.nameEdit->text().trimmed();
+        return ui.nameInput->widget()->text().trimmed();
     }
 
     QString email() const
     {
-        return ui.emailEdit->text().trimmed();
+        return ui.emailInput->widget()->text().trimmed();
     }
 
 private:
-    void onNameChanged()
+    void checkAccept()
     {
-        updateResultLabel();
-    }
-
-    void onEmailChanged()
-    {
-        updateResultLabel();
+        QStringList errors;
+        if (ui.resultLabel->text().isEmpty()) {
+            errors.push_back(i18n("Name and email address cannot both be empty."));
+        }
+        if (!ui.nameInput->hasAcceptableInput()) {
+            errors.push_back(i18n("The entered name is not valid."));
+        }
+        if (!ui.emailInput->hasAcceptableInput()) {
+            errors.push_back(i18n("The entered email address is not valid."));
+        }
+        if (errors.size() > 1) {
+            KMessageBox::errorList(q, i18n("Sorry, the entered data is not acceptable."), errors);
+        } else if (!errors.empty()) {
+            KMessageBox::sorry(q, errors.first());
+        } else {
+            q->accept();
+        }
     }
 
     void updateResultLabel()
@@ -161,7 +208,7 @@ AddUserIDDialog::~AddUserIDDialog() = default;
 
 void AddUserIDDialog::setName(const QString &name)
 {
-    d->ui.nameEdit->setText(name);
+    d->ui.nameInput->widget()->setText(name);
 }
 
 QString AddUserIDDialog::name() const
@@ -171,7 +218,7 @@ QString AddUserIDDialog::name() const
 
 void AddUserIDDialog::setEmail(const QString &email)
 {
-    d->ui.emailEdit->setText(email);
+    d->ui.emailInput->widget()->setText(email);
 }
 
 QString AddUserIDDialog::email() const

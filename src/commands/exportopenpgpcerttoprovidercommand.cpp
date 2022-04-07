@@ -94,7 +94,7 @@ void ExportOpenPGPCertToProviderCommand::doStart()
                 KStandardGuiItem::cont(), KStandardGuiItem::cancel(),
                 QStringLiteral("warn-export-openpgp-wks-unsupported"))
             == KMessageBox::Continue) {
-        auto wksJob = QGpgME::openpgp()->wksPublishJob();
+        wksJob = QGpgME::openpgp()->wksPublishJob();
         connect(wksJob, &QGpgME::WKSPublishJob::result, this, &ExportOpenPGPCertToProviderCommand::wksJobResult);
         wksJob->startCreate(d->key().primaryFingerprint(), senderAddress());
     } else {
@@ -104,6 +104,9 @@ void ExportOpenPGPCertToProviderCommand::doStart()
 
 void ExportOpenPGPCertToProviderCommand::doCancel()
 {
+    if (wksJob) {
+        delete wksJob;
+    }
     d->canceled();
 }
 

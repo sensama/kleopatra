@@ -12,7 +12,14 @@
 
 #include <commands/command.h>
 
+#include <QPointer>
+
 #include <gpgme++/key.h>
+
+namespace QGpgME
+{
+class WKSPublishJob;
+}
 
 namespace Kleo
 {
@@ -43,6 +50,8 @@ private:
     QString senderAddress() const;
 
     GpgME::UserID uid;
+
+    QPointer<QGpgME::WKSPublishJob> wksJob;
 };
 
 }

@@ -67,6 +67,15 @@ else()
   add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
 endif()
 
+if(KF5IdentityManagement_FOUND AND KF5MailTransport_FOUND AND KF5MailTransportAkonadi_FOUND)
+  set(_kleopatra_mail_libs
+      KF5::IdentityManagement # Export OpenPGP keys using WKS
+      KF5::MailTransport
+      KF5::MailTransportAkonadi
+  )
+  add_definitions(-DMAILAKONADI_ENABLED)
+endif()
+
 ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwidget.ui)
 
 set(_kleopatra_SRCS
@@ -376,9 +385,7 @@ target_link_libraries(kleopatra_bin
   KF5::CoreAddons
   KF5::ItemModels
   KF5::Crash
-  KF5::IdentityManagement # Export OpenPGP keys using WKS
-  KF5::MailTransport
-  KF5::MailTransportAkonadi
+  ${_kleopatra_mail_libs}
   Qt${QT_MAJOR_VERSION}::Network
   Qt${QT_MAJOR_VERSION}::PrintSupport # Printing secret keys
   ${_kleopatra_uiserver_extra_libs}

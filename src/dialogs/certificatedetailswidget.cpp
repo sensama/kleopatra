@@ -24,7 +24,9 @@
 #include "commands/changepassphrasecommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
+#ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
+#endif // MAILAKONADI_ENABLED
 #include "commands/refreshcertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokeuseridcommand.h"
@@ -747,6 +749,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
             cmd->start();
         });
     }
+#ifdef MAILAKONADI_ENABLED
     if (key.hasSecret() && key.protocol() == GpgME::OpenPGP) {
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export-provider")),
                         i18n("Publish at mail provider ..."),
@@ -758,6 +761,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
             cmd->start();
         });
     }
+#endif // MAILAKONADI_ENABLED
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
     menu->popup(ui.userIDTable->viewport()->mapToGlobal(p));
 }

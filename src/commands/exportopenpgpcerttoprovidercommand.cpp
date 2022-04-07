@@ -13,25 +13,29 @@
 #include "exportopenpgpcerttoprovidercommand.h"
 #include "command_p.h"
 
-#include <gpgme++/key.h>
-#include <QGpgME/Protocol>
-#include <QGpgME/WKSPublishJob>
-
-#include <kidentitymanagement/identity.h>
-#include <kidentitymanagement/identitymanager.h>
+#ifdef MAILAKONADI_ENABLED
+#include <KIdentityManagement/Identity>
+#include <KIdentityManagement/IdentityManager>
 #include <MailTransport/TransportManager>
 #include <MailTransportAkonadi/MessageQueueJob>
+#endif // MAILAKONADI_ENABLED
 
 #include <KLocalizedString>
 #include <KMessageBox>
 
+#include <QGpgME/Protocol>
+#include <QGpgME/WKSPublishJob>
+
 #include <QString>
+
+#include <gpgme++/key.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 using namespace QGpgME;
 
+#ifdef MAILAKONADI_ENABLED
 static const QString identityTransportForAddress(const QString &senderAddress) {
     static const KIdentityManagement::IdentityManager *idManager = new KIdentityManagement::IdentityManager{true};
 
@@ -42,6 +46,7 @@ static const QString identityTransportForAddress(const QString &senderAddress) {
         return identity.transport();
     }
 }
+#endif // MAILAKONADI_ENABLED
 
 ExportOpenPGPCertToProviderCommand::ExportOpenPGPCertToProviderCommand(QAbstractItemView *v, KeyListController *c)
     : Command{v, c}
@@ -59,6 +64,8 @@ ExportOpenPGPCertToProviderCommand::~ExportOpenPGPCertToProviderCommand() = defa
 void ExportOpenPGPCertToProviderCommand::doStart()
 {
     const QString sender = senderAddress();
+
+#ifdef MAILAKONADI_ENABLED
     const QString transportName = identityTransportForAddress(sender);
 
     if (transportName.isEmpty()) {
@@ -70,6 +77,8 @@ void ExportOpenPGPCertToProviderCommand::doStart()
         d->canceled();
         return;
     }
+#endif // MAILAKONADI_ENABLED
+
     if (KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
          xi18nc("@info",
                 "<para>Not every mail provider supports WKS, so any key being "
@@ -111,6 +120,7 @@ void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error,
         return;
     }
 
+#ifdef MAILAKONADI_ENABLED
     MailTransport::Transport *transport = MailTransport::TransportManager::self()->transportByName(
         identityTransportForAddress(senderAddress()));
 
@@ -143,6 +153,9 @@ void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error,
     });
 
     job->start();
+#else  // MAILAKONADI_ENABLED
+    Q_UNUSED(returnedData);
+#endif // MAILAKONADI_ENABLED
 }
 
 QString ExportOpenPGPCertToProviderCommand::senderAddress() const

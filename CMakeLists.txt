@@ -120,9 +120,9 @@ endif()
 # Kdepimlibs packages
 find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG REQUIRED)
-find_package(KF5MailTransport ${KMAILTRANSPORT_VERSION} CONFIG REQUIRED)
-find_package(KF5MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG REQUIRED)
+find_package(KF5IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
+find_package(KF5MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
+find_package(KF5MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 

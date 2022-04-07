@@ -22,7 +22,9 @@
 #include "kleopatra_debug.h"
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
+#ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
+#endif // MAILAKONADI_ENABLED
 #ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 # include "commands/exportsecretkeycommand.h"
 #else
@@ -370,10 +372,12 @@ void KeyListController::createActions(KActionCollection *coll)
             "file_export_certificates_to_server", i18n("Publish on Server..."), i18n("Publish the selected certificate (public key) on a public keyserver"),
             "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E"), false, true
         },
+#ifdef MAILAKONADI_ENABLED
         {
             "file_export_certificate_to_provider", i18n("Publish at Mailprovider..."), i18n("Publish the selected certificate (public key) at mail provider's Web Key Directory if offered"),
             "view-certificate-export-provider", nullptr, nullptr, QString(), false, true
         },
+#endif // MAILAKONADI_ENABLED
         {
             "file_export_secret_keys", i18n("Backup Secret Keys..."), QString(),
             "view-certificate-export-secret", nullptr, nullptr, QString(), false, true
@@ -526,7 +530,9 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ExportSecretKeyCommand>(coll->action(QStringLiteral("file_export_secret_keys")));
     registerActionForCommand<ExportPaperKeyCommand>(coll->action(QStringLiteral("file_export_paper_key")));
     registerActionForCommand<ExportOpenPGPCertsToServerCommand>(coll->action(QStringLiteral("file_export_certificates_to_server")));
+#ifdef MAILAKONADI_ENABLED
     registerActionForCommand<ExportOpenPGPCertToProviderCommand>(coll->action(QStringLiteral("file_export_certificate_to_provider")));
+#endif // MAILAKONADI_ENABLED
     //---
     registerActionForCommand<DecryptVerifyFilesCommand>(coll->action(QStringLiteral("file_decrypt_verify_files")));
     registerActionForCommand<SignEncryptFilesCommand>(coll->action(QStringLiteral("file_sign_encrypt_files")));

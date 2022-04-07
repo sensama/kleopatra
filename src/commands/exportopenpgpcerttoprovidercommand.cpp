@@ -95,6 +95,7 @@ void ExportOpenPGPCertToProviderCommand::doStart()
 
 void ExportOpenPGPCertToProviderCommand::doCancel()
 {
+    d->canceled();
 }
 
 void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error, const QByteArray &returnedData, const QByteArray &returnedError)

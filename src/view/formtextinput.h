@@ -1,0 +1,177 @@
+/*  view/formtextinput.h
+
+    This file is part of Kleopatra, the KDE keymanager
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+#pragma once
+
+#include <memory>
+
+class QLabel;
+class QLineEdit;
+class QString;
+class QValidator;
+class QWidget;
+
+namespace Kleo
+{
+class ErrorLabel;
+
+namespace _detail
+{
+class FormTextInputBase
+{
+protected:
+    FormTextInputBase();
+
+public:
+    virtual ~FormTextInputBase();
+    FormTextInputBase(const FormTextInputBase&) = delete;
+    FormTextInputBase& operator=(const FormTextInputBase&) = delete;
+    FormTextInputBase(FormTextInputBase&&) = delete;
+    FormTextInputBase& operator=(FormTextInputBase&&) = delete;
+
+    /**
+     * Returns the label associated to the controlled widget.
+     */
+    QLabel *label() const;
+
+    /**
+     * Returns the error label associated to the controlled widget.
+     */
+    ErrorLabel *errorLabel() const;
+
+    /**
+     * Sets the validator to use for validating the input.
+     *
+     * Note: If you wrap a QLineEdit, then do not set a validator (or an input mask)
+     *       on it because this will break the correct displaying of the error message.
+     */
+    void setValidator(const QValidator *validator);
+
+    /**
+     * Sets the error message to display. If \p text is empty, then the default
+     * error message will be used.
+     */
+    void setErrorMessage(const QString &text);
+
+    /**
+     * Sets the tool tip of the controlled widget and its associated label.
+     */
+    void setToolTip(const QString &toolTip);
+
+    /**
+     * Enables or disables the controlled widget and its associated label.
+     * If the widget is disables, then the error label is hidden. Otherwise,
+     * the error label is shown if there is an error.
+     */
+    void setEnabled(bool enabled);
+
+    /**
+     * Returns \c true, if the input satisfies the validator.
+     * Needs to be implemented for concrete widget classes.
+     * \sa validate
+     */
+    virtual bool hasAcceptableInput() const = 0;
+
+protected:
+    /**
+     * Connects the slots \ref onTextChanged and \ref onEditingFinished to the
+     * corresponding signal of the controlled widget.
+     * Needs to be implemented for concrete widget classes.
+     */
+    virtual void connectWidget() = 0;
+
+    /**
+     * Sets the controlled widget and creates the associated labels.
+     */
+    void setWidget(QWidget *widget);
+
+    /**
+     * Returns the controlled widget.
+     */
+    QWidget *widget() const;
+
+    /**
+     * Validates \p text with the validator. Should be used when implementing
+     * \ref hasAcceptableInput.
+     */
+    bool validate(const QString &text, int pos) const;
+
+    /**
+     * This slot needs to be connected to a signal of the controlled widget
+     * that is emitted when the text changes like \ref QLineEdit::textChanged.
+     * \sa connectWidget
+     */
+    void onTextChanged();
+
+    /**
+     * This slot needs to be connected to a signal of the controlled widget
+     * that is emitted when the widget loses focus (or some user interaction
+     * signals that they want to commit the entered text) like
+     * \ref QLineEdit::editingFinished.
+     * \sa connectWidget
+     */
+    void onEditingFinished();
+
+private:
+    class Private;
+    const std::unique_ptr<Private> d;
+};
+}
+
+/**
+ * FormTextInput is a class for simplifying the management of text input widgets
+ * like QLineEdit or QTextEdit with associated label and error message for usage
+ * in form-like dialogs.
+ *
+ * Usage hints:
+ * * If you wrap a QLineEdit, then do not set a validator (or an input mask)
+ *   on it. Instead set the validator on this class.
+ *   If you set a validator on the QLineEdit, then showing the error message
+ *   when editing is finished does not work because QLineEdit doesn't emit the
+ *   editingFinished() signal if the input is not acceptable.
+ */
+template<class Widget>
+class FormTextInput : public _detail::FormTextInputBase
+{
+    /**
+     * Use \ref create to create a new instance.
+     */
+    FormTextInput() = default;
+
+public:
+    /**
+     * Creates a new instance of this class with a new instance of \p Widget.
+     */
+    static auto create(QWidget *parent)
+    {
+        std::unique_ptr<FormTextInput> self{new FormTextInput};
+        self->setWidget(new Widget{parent});
+        return self;
+    }
+
+    /**
+     * Returns the controlled widget.
+     */
+    Widget *widget() const
+    {
+        return static_cast<Widget *>(FormTextInputBase::widget());
+    }
+
+    bool hasAcceptableInput() const override;
+
+private:
+    void connectWidget() override;
+};
+
+template<>
+bool FormTextInput<QLineEdit>::hasAcceptableInput() const;
+
+template<>
+void FormTextInput<QLineEdit>::connectWidget();
+
+}

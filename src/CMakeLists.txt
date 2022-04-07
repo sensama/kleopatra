@@ -108,6 +108,7 @@ set(_kleopatra_SRCS
   ${_kleopatra_extra_SRCS}
 
   view/errorlabel.cpp
+  view/formtextinput.cpp
   view/htmllabel.cpp
   view/keylistcontroller.cpp
   view/keytreeview.cpp

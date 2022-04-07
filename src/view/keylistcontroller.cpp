@@ -374,8 +374,8 @@ void KeyListController::createActions(KActionCollection *coll)
         },
 #ifdef MAILAKONADI_ENABLED
         {
-            "file_export_certificate_to_provider", i18n("Publish at Mailprovider..."), i18n("Publish the selected certificate (public key) at mail provider's Web Key Directory if offered"),
-            "view-certificate-export-provider", nullptr, nullptr, QString(), false, true
+            "file_export_certificate_to_provider", i18n("Publish at Mail Provider..."), i18n("Publish the selected certificate (public key) at mail provider's Web Key Directory if offered"),
+            "view-certificate-export", nullptr, nullptr, QString(), false, true
         },
 #endif // MAILAKONADI_ENABLED
         {

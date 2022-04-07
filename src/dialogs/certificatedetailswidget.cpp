@@ -751,8 +751,8 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     }
 #ifdef MAILAKONADI_ENABLED
     if (key.hasSecret() && key.protocol() == GpgME::OpenPGP) {
-        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export-provider")),
-                        i18n("Publish at mail provider ..."),
+        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
+                        i18nc("@action:inmenu", "Publish at Mail Provider ..."),
                         q, [this, userID]() {
             auto cmd = new Kleo::Commands::ExportOpenPGPCertToProviderCommand(userID);
             ui.userIDTable->setEnabled(false);

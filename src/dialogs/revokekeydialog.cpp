@@ -11,6 +11,7 @@
 #include <config-kleopatra.h>
 
 #include "revokekeydialog.h"
+#include "utils/accessibility.h"
 #include "view/errorlabel.h"
 
 #include <Libkleo/Formatting>
@@ -48,22 +49,6 @@ using namespace GpgME;
 
 namespace
 {
-QString getAccessibleName(QObject *object)
-{
-    QString name;
-    if (const auto *const iface = QAccessible::queryAccessibleInterface(object)) {
-        name = iface->text(QAccessible::Name);
-    }
-    return name;
-}
-
-QString invalidEntryText()
-{
-    return i18nc("text for screen readers to indicate that the associated object, "
-                 "such as a form field, has an error",
-                 "invalid entry");
-}
-
 class TextEdit : public QTextEdit
 {
     Q_OBJECT

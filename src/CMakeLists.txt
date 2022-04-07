@@ -70,6 +70,7 @@ endif()
 ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwidget.ui)
 
 set(_kleopatra_SRCS
+  utils/accessibility.cpp
   utils/gui-helper.cpp
   utils/filedialog.cpp
   utils/kdpipeiodevice.cpp

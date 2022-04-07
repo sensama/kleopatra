@@ -13,6 +13,7 @@
 
 #include "commands/detailscommand.h"
 #include "dialogs/groupdetailsdialog.h"
+#include "utils/accessibility.h"
 #include "view/errorlabel.h"
 
 #include <QAccessible>
@@ -482,25 +483,6 @@ void CertificateLineEdit::Private::setAccessibleName(const QString &s)
 {
     mAccessibleName = s;
     updateAccessibleNameAndDescription();
-}
-
-namespace
-{
-QString getAccessibleName(QObject *object)
-{
-    QString name;
-    if (const auto *const iface = QAccessible::queryAccessibleInterface(object)) {
-        name = iface->text(QAccessible::Name);
-    }
-    return name;
-}
-
-QString invalidEntryText()
-{
-    return i18nc("text for screen readers to indicate that the associated object, "
-                 "such as a form field, has an error",
-                 "invalid entry");
-}
 }
 
 void CertificateLineEdit::Private::updateAccessibleNameAndDescription()

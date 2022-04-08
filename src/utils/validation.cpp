@@ -106,6 +106,17 @@ QValidator *Validation::pgpName(const QString &addRX, Flags flags, QObject *pare
     return new MultiValidator{pgpName(flags), regularExpressionValidator(flags, addRX, nullptr), parent};
 }
 
+QValidator *Validation::simpleName(Flags flags, QObject *parent)
+{
+    static const QString name_rx{QLatin1String{"[^<>@]*"}};
+    return regularExpressionValidator(flags, name_rx, parent);
+}
+
+QValidator *Validation::simpleName(const QString &additionalRegExp, Flags flags, QObject *parent)
+{
+    return new MultiValidator{simpleName(flags), regularExpressionValidator(flags, additionalRegExp, nullptr), parent};
+}
+
 QValidator *Validation::pgpComment(Flags flags, QObject *parent)
 {
     // this regular expression is modeled after gnupg/g10/keygen.c:ask_user_id:

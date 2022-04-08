@@ -78,18 +78,11 @@ public:
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
             ui.nameInput->label()->setText(i18nc("@label", "Name:"));
             const auto regexp = config.readEntry(QLatin1String("NAME_regex"));
-            ui.nameInput->setValidator(regexp.isEmpty() ? Validation::pgpName(Validation::Optional, q)
-                                                       : Validation::pgpName(regexp, Validation::Optional, q));
+            ui.nameInput->setValidator(regexp.isEmpty() ? Validation::simpleName(Validation::Optional, q)
+                                                       : Validation::simpleName(regexp, Validation::Optional, q));
             const auto additionalRule = regexp.isEmpty() ? QString{} : i18n("Additionally, the name must adhere to rules set by your organization.");
             ui.nameInput->setToolTip(xi18n(
-                "<para>If a name is given, then it has to satisfy the following rules:"
-                "<list>"
-                "<item>The name must be at least 5 characters long.</item>"
-                "<item>The first character must not be a digit.</item>"
-                "<item>The name must not contain any of the following characters: &lt;, &gt;, @.</item>"
-                "</list>"
-                "%1"
-                "</para>",
+                "<para>The name must not contain any of the following characters: &lt;, &gt;, @. %1</para>",
                 additionalRule));
             ui.nameInput->setErrorMessage(i18n("Error: The entered name is not valid."));
 

@@ -1937,7 +1937,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     }
     ui.uidGB->setVisible(protocol == OpenPGP);
     ui.uidGB->setEnabled(false);
-    ui.uidGB->setToolTip(i18nc("@info:tooltip", "Adding more than one User ID is not yet implemented."));
+    ui.uidGB->setToolTip(i18nc("@info:tooltip", "Adding more than one user ID is not yet implemented."));
     ui.emailGB->setVisible(protocol == CMS);
     ui.dnsGB->setVisible(protocol == CMS);
     ui.uriGB->setVisible(protocol == CMS);

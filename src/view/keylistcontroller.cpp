@@ -447,7 +447,7 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr, nullptr, nullptr, QString(), false, true
         },
         {
-            "certificates_add_userid", i18n("Add User-ID..."), QString(),
+            "certificates_add_userid", i18n("Add User ID..."), QString(),
             nullptr, nullptr, nullptr, QString(), false, true
         },
         // Tools menu

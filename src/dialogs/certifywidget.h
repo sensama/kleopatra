@@ -35,10 +35,10 @@ public:
     /* Get the key to certify */
     GpgME::Key target() const;
 
-    /* Select specific user ids. Default: all */
+    /* Select specific user IDs. Default: all */
     void selectUserIDs(const std::vector<GpgME::UserID> &uids);
 
-    /* The user ids that should be signed */
+    /* The user IDs that should be signed */
     std::vector<unsigned int> selectedUserIDs() const;
 
     /* The secret key selected */

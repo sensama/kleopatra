@@ -183,7 +183,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     mFetchMissingSignerKeysCB->setToolTip(
         xi18nc("@info:tooltip",
                "If enabled, then Kleopatra will automatically try to retrieve the keys "
-               "that were used to certify the user ids of newly imported OpenPGP keys."));
+               "that were used to certify the user IDs of newly imported OpenPGP keys."));
     connect(mFetchMissingSignerKeysCB, &QCheckBox::toggled,
             q, &DirectoryServicesConfigurationPage::markAsChanged);
     glay->addWidget(mFetchMissingSignerKeysCB, row, 0, 1, 3);

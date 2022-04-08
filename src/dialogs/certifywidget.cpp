@@ -183,7 +183,7 @@ public:
         int i = 0;
         for (const auto &uid: key.userIDs()) {
             if (uid.isRevoked() || uid.isInvalid()) {
-                // Skip user ID's that cannot really be certified.
+                // Skip user IDs that cannot really be certified.
                 i++;
                 continue;
             }
@@ -480,14 +480,14 @@ public:
                 if (c_remark) {
                     const QString candidate = QString::fromUtf8(c_remark);
                     if (candidate != remark) {
-                        qCDebug(KLEOPATRA_LOG) << "Different remarks on user ids. Taking last.";
+                        qCDebug(KLEOPATRA_LOG) << "Different remarks on user IDs. Taking last.";
                         remark = candidate;
                         uidsWithRemark.clear();
                     }
                     uidsWithRemark.push_back(uid);
                 }
             }
-            // Only select the user ids with the correct remark
+            // Only select the user IDs with the correct remark
             if (!remark.isEmpty()) {
                 selectUserIDs(uidsWithRemark);
             }
@@ -582,7 +582,7 @@ public:
         if (mTarget.isNull() || mSecKeySelect->currentKey().isNull()) {
             return false;
         }
-        // do not accept empty list of user ids
+        // do not accept empty list of user IDs
         if (selectedUserIDs().empty()) {
             return false;
         }

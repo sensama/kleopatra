@@ -502,7 +502,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         QStringList tagList;
         for (const auto &tag: uid.remarks(Tags::tagKeys(), err)) {
             if (err) {
-                qCWarning(KLEOPATRA_LOG) << "Getting remarks for user id" << uid.id() << "failed:" << err;
+                qCWarning(KLEOPATRA_LOG) << "Getting remarks for user ID" << uid.id() << "failed:" << err;
             }
             tagList << QString::fromStdString(tag);
         }
@@ -516,7 +516,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         if (canRevokeUID) {
             auto button = new QPushButton;
             button->setIcon(QIcon::fromTheme(QStringLiteral("entry-delete")));
-            button->setToolTip(i18n("Revoke this User ID"));
+            button->setToolTip(i18n("Revoke this user ID"));
             button->setMaximumWidth(32);
             QObject::connect(button, &QPushButton::clicked,
                             q, [this, uid]() { revokeUID(uid); });

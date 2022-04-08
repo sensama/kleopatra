@@ -196,16 +196,16 @@ void AddUserIDCommand::Private::createJob()
 void AddUserIDCommand::Private::showErrorDialog(const Error &err)
 {
     error(xi18nc("@info",
-                 "<para>An error occurred while trying to add the user-id: "
+                 "<para>An error occurred while trying to add the user ID: "
                  "<message>%1</message></para>",
                  QString::fromLocal8Bit(err.asString())),
-          i18nc("@title:window", "Add User-ID Error"));
+          i18nc("@title:window", "Add User ID Error"));
 }
 
 void AddUserIDCommand::Private::showSuccessDialog()
 {
-    information(i18nc("@info", "User-ID successfully added."),
-                i18nc("@title:window", "Add User-ID Succeeded"));
+    information(i18nc("@info", "User ID successfully added."),
+                i18nc("@title:window", "Add User ID Succeeded"));
 }
 
 #undef d

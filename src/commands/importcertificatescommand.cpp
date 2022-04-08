@@ -544,7 +544,7 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
                 "<para>The key has the fingerprint:<nl/>"
                 "<numid>%1</numid>"
                 "</para>"
-                "<para>And claims the User IDs:"
+                "<para>And claims the user IDs:"
                 "<list><item>%2</item></list>"
                 "</para>"
                 "Is this your own key? (Set trust level to ultimate)",

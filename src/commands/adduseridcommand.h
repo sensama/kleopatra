@@ -3,13 +3,15 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #pragma once
 
-#include <commands/command.h>
+#include "command.h"
 
 namespace Kleo
 {
@@ -21,7 +23,6 @@ class AddUserIDCommand : public Command
     Q_OBJECT
 public:
     explicit AddUserIDCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit AddUserIDCommand(KeyListController *parent);
     explicit AddUserIDCommand(const GpgME::Key &key);
     ~AddUserIDCommand() override;
 
@@ -47,11 +48,7 @@ private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotResult(GpgME::Error))
-    Q_PRIVATE_SLOT(d_func(), void slotDialogAccepted())
-    Q_PRIVATE_SLOT(d_func(), void slotDialogRejected())
 };
 
 }
 }
-

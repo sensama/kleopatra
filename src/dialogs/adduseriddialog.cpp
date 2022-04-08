@@ -225,3 +225,8 @@ QString AddUserIDDialog::email() const
 {
     return d->email();
 }
+
+QString AddUserIDDialog::userID() const
+{
+    return d->ui.resultLabel->text();
+}

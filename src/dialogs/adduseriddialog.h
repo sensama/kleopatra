@@ -31,6 +31,11 @@ public:
     void setEmail(const QString &email);
     QString email() const;
 
+    /**
+     * Returns the user ID built from the entered name and/or email address.
+     */
+    QString userID() const;
+
 private:
     class Private;
     const std::unique_ptr<Private> d;

@@ -17,7 +17,7 @@
 
 #include <Libkleo/Formatting>
 #include <QGpgME/Protocol>
-#include <QGpgME/AddUserIDJob>
+#include <QGpgME/QuickJob>
 
 #include <gpgme++/key.h>
 
@@ -56,7 +56,7 @@ private:
 private:
     GpgME::Key key;
     QPointer<AddUserIDDialog> dialog;
-    QPointer<QGpgME::AddUserIDJob> job;
+    QPointer<QGpgME::QuickJob> job;
 };
 
 AddUserIDCommand::Private *AddUserIDCommand::d_func()
@@ -118,7 +118,6 @@ AddUserIDCommand::~AddUserIDCommand()
 
 void AddUserIDCommand::doStart()
 {
-
     const std::vector<Key> keys = d->keys();
     if (keys.size() != 1 ||
             keys.front().protocol() != GpgME::OpenPGP ||
@@ -147,11 +146,9 @@ void AddUserIDCommand::Private::slotDialogAccepted()
     createJob();
     if (!job) {
         finished();
+        return;
     }
-    else if (const Error err = job->start(key, dialog->name(), dialog->email())) {
-        showErrorDialog(err);
-        finished();
-    }
+    job->startAddUid(key, dialog->userID());
 }
 
 void AddUserIDCommand::Private::slotDialogRejected()
@@ -197,12 +194,12 @@ void AddUserIDCommand::Private::createJob()
 {
     Q_ASSERT(!job);
 
-    const auto backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+    const auto backend = QGpgME::openpgp();
     if (!backend) {
         return;
     }
 
-    QGpgME::AddUserIDJob *const j = backend->addUserIDJob();
+    const auto j = backend->quickJob();
     if (!j) {
         return;
     }

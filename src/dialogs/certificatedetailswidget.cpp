@@ -156,7 +156,7 @@ private:
             gridLayout_2 = new QGridLayout(parent);
             gridLayout_2->setContentsMargins(0, 0, 0, 0);
             hboxLayout_1 = new QHBoxLayout();
-            addUserIDBtn = new QPushButton(i18n("Add email address"), parent);
+            addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
 
             hboxLayout_1->addWidget(addUserIDBtn);
 

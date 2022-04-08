@@ -160,15 +160,15 @@ private:
 
             hboxLayout_1->addWidget(addUserIDBtn);
 
-            changePassphraseBtn = new QPushButton(i18n("Change passphrase"), parent);
+            changePassphraseBtn = new QPushButton(i18nc("@action:button", "Change Passphrase"), parent);
 
             hboxLayout_1->addWidget(changePassphraseBtn);
 
-            trustChainDetailsBtn = new QPushButton(i18n("Trust chain details..."), parent);
+            trustChainDetailsBtn = new QPushButton(i18nc("@action:button", "Trust Chain Details..."), parent);
 
             hboxLayout_1->addWidget(trustChainDetailsBtn);
 
-            genRevokeBtn = new QPushButton(i18n("Generate revocation certificate"), parent);
+            genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
             genRevokeBtn->setToolTip(u"<html>" %
                                      i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
                                           "declare that a key shall not anymore be used.  It is not possible "
@@ -177,7 +177,7 @@ private:
 
             hboxLayout_1->addWidget(genRevokeBtn);
 
-            certifyBtn = new QPushButton(i18n("Certify"), parent);
+            certifyBtn = new QPushButton(i18nc("@action:button", "Certify"), parent);
 
             hboxLayout_1->addWidget(certifyBtn);
 
@@ -256,7 +256,7 @@ private:
 
             gridLayout->addWidget(publishingLbl, row, 0, 1, 1);
 
-            publishing = new QPushButton(i18n("Publish Certificate"), groupBox);
+            publishing = new QPushButton(i18nc("@action:button", "Publish Certificate"), groupBox);
 
             gridLayout->addWidget(publishing, row, 1, 1, 1);
             row++;
@@ -300,15 +300,15 @@ private:
             row++;
 
             horizontalLayout = new QHBoxLayout();
-            moreDetailsBtn = new QPushButton(i18n("More details..."), groupBox);
+            moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
 
             horizontalLayout->addWidget(moreDetailsBtn);
 
-            exportBtn = new QPushButton(i18n("Export..."), groupBox);
+            exportBtn = new QPushButton(i18nc("@action:button", "Export..."), groupBox);
 
             horizontalLayout->addWidget(exportBtn);
 
-            webOfTrustBtn = new QPushButton(i18n("Certifications..."), groupBox);
+            webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), groupBox);
 
             horizontalLayout->addWidget(webOfTrustBtn);
 

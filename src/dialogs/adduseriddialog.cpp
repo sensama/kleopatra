@@ -82,12 +82,17 @@ public:
                 ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
                 ui.nameInput->setToolTip(xi18n(
                     "<para>The name must not contain any of the following characters: &lt;, &gt;, @.</para>"));
+                ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
+                    "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign."));
                 ui.nameInput->setErrorMessage(i18n("Error: The entered name contains invalid characters."));
             } else {
                 ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
                 ui.nameInput->setToolTip(xi18n(
                     "<para>The name must not contain any of the following characters: &lt;, &gt;, @. "
                     "Additionally, the name must follow the rules set by your organization.</para>"));
+                ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
+                    "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign. "
+                    "Additionally, the name must follow the rules set by your organization."));
                 ui.nameInput->setErrorMessage(i18n(
                     "Error: The entered name contains invalid characters "
                     "or it does not follow your organization's rules."));

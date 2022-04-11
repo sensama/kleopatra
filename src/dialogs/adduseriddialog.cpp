@@ -78,13 +78,20 @@ public:
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
             ui.nameInput->label()->setText(i18nc("@label", "Name:"));
             const auto regexp = config.readEntry(QLatin1String("NAME_regex"));
-            ui.nameInput->setValidator(regexp.isEmpty() ? Validation::simpleName(Validation::Optional, q)
-                                                       : Validation::simpleName(regexp, Validation::Optional, q));
-            const auto additionalRule = regexp.isEmpty() ? QString{} : i18n("Additionally, the name must adhere to rules set by your organization.");
-            ui.nameInput->setToolTip(xi18n(
-                "<para>The name must not contain any of the following characters: &lt;, &gt;, @. %1</para>",
-                additionalRule));
-            ui.nameInput->setErrorMessage(i18n("Error: The entered name is not valid."));
+            if (regexp.isEmpty()) {
+                ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
+                ui.nameInput->setToolTip(xi18n(
+                    "<para>The name must not contain any of the following characters: &lt;, &gt;, @.</para>"));
+                ui.nameInput->setErrorMessage(i18n("Error: The entered name contains invalid characters."));
+            } else {
+                ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
+                ui.nameInput->setToolTip(xi18n(
+                    "<para>The name must not contain any of the following characters: &lt;, &gt;, @. "
+                    "Additionally, the name must follow the rules set by your organization.</para>"));
+                ui.nameInput->setErrorMessage(i18n(
+                    "Error: The entered name contains invalid characters "
+                    "or it does not follow your organization's rules."));
+            }
 
             row++;
             gridLayout->addWidget(ui.nameInput->label(), row, 0, 1, 1);
@@ -99,15 +106,17 @@ public:
             ui.emailInput = FormTextInput<QLineEdit>::create(q);
             ui.emailInput->label()->setText(i18nc("@label", "Email:"));
             const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
-            ui.emailInput->setValidator(regexp.isEmpty() ? Validation::email(Validation::Optional, q)
-                                                        : Validation::email(regexp, Validation::Optional, q));
             if (regexp.isEmpty()) {
-                ui.emailInput->setToolTip(xi18n("<para>If an email address is given, then it has to be a valid address.</para>"));
+                ui.emailInput->setValidator(Validation::email(Validation::Optional, q));
+                ui.emailInput->setErrorMessage(i18n("Error: The entered email address is not valid."));
             } else {
-                ui.emailInput->setToolTip(xi18n("<para>If an email address is given, then it has to be a valid address "
-                                               "and it must satisfy to rules set by your organization.</para>"));
+                ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional, q));
+                ui.emailInput->setToolTip(xi18n(
+                    "<para>If an email address is given, then it has to satisfy the rules set by your organization.</para>"));
+                ui.emailInput->setErrorMessage(i18n(
+                    "Error: The entered email address is not valid "
+                    "or it does not follow your organization's rules."));
             }
-            ui.emailInput->setErrorMessage(i18n("Error: The entered email address is not valid."));
 
             row++;
             gridLayout->addWidget(ui.emailInput->label(), row, 0, 1, 1);

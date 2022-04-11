@@ -64,6 +64,19 @@ public:
     void setToolTip(const QString &toolTip);
 
     /**
+     * Sets the accessible name of the controlled widget. Use this function
+     * instead of setting the accessible name directly on the controlled widget.
+     */
+    void setAccessibleName(const QString &name);
+
+    /**
+     * Sets the accessible description of the controlled widget. Use this
+     * function instead of setting the accessible description directly on
+     * the controlled widget.
+     */
+    void setAccessibleDescription(const QString &description);
+
+    /**
      * Enables or disables the controlled widget and its associated label.
      * If the widget is disables, then the error label is hidden. Otherwise,
      * the error label is shown if there is an error.

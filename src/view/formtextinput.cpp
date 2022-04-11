@@ -42,6 +42,7 @@ public:
     QPointer<ErrorLabel> mErrorLabel;
     QPointer<const QValidator> mValidator;
     QString mAccessibleName;
+    QString mAccessibleDescription;
     QString mErrorMessage;
     bool mEditingInProgress = false;
 };
@@ -77,15 +78,19 @@ void FormTextInputBase::Private::updateError()
 
 void FormTextInputBase::Private::updateAccessibleNameAndDescription()
 {
-    // fall back to default accessible name if accessible name wasn't set explicitly
+    // fall back to default accessible name/description if accessible name/description wasn't set explicitly
     if (mAccessibleName.isEmpty()) {
         mAccessibleName = getAccessibleName(mWidget);
+    }
+    if (mAccessibleDescription.isEmpty()) {
+        mAccessibleDescription = getAccessibleDescription(mWidget);
     }
     const bool errorShown = mErrorLabel && mErrorLabel->isVisible();
 
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
-    // emulate this by setting the error message as accessible description of the input field
-    const auto description = errorShown ? mErrorLabel->text() : QString{};
+    // emulate this by adding the error message to the accessible description of the input field
+    const auto description = errorShown ? mAccessibleDescription + QLatin1String{" "} + mErrorLabel->text()
+                                        : mAccessibleDescription;
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);
     }
@@ -148,6 +153,18 @@ void FormTextInputBase::setToolTip(const QString &toolTip)
     if (d->mWidget) {
         d->mWidget->setToolTip(toolTip);
     }
+}
+
+void FormTextInputBase::setAccessibleName(const QString &name)
+{
+    d->mAccessibleName = name;
+    d->updateAccessibleNameAndDescription();
+}
+
+void FormTextInputBase::setAccessibleDescription(const QString &description)
+{
+    d->mAccessibleDescription = description;
+    d->updateAccessibleNameAndDescription();
 }
 
 void FormTextInputBase::setWidget(QWidget *widget)

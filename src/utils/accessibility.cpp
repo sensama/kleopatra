@@ -16,13 +16,26 @@
 #include <QAccessible>
 #include <QObject>
 
-QString Kleo::getAccessibleName(QObject *object)
+namespace
+{
+QString getAccessibleText(QObject *object, QAccessible::Text t)
 {
     QString name;
     if (const auto *const iface = QAccessible::queryAccessibleInterface(object)) {
-        name = iface->text(QAccessible::Name);
+        name = iface->text(t);
     }
     return name;
+}
+}
+
+QString Kleo::getAccessibleName(QObject *object)
+{
+    return getAccessibleText(object, QAccessible::Name);
+}
+
+QString Kleo::getAccessibleDescription(QObject *object)
+{
+    return getAccessibleText(object, QAccessible::Description);
 }
 
 QString Kleo::invalidEntryText()

@@ -30,6 +30,7 @@ public:
     void setLinkColor(const QColor &color);
 
 protected:
+    void focusInEvent(QFocusEvent *ev) override;
     bool focusNextPrevChild(bool next) override;
 
 private:

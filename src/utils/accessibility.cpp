@@ -15,8 +15,11 @@
 
 #include <QLabel>
 #include <QObject>
+#include <QTextDocument>
 
 #include <algorithm>
+
+#include "kleopatra_debug.h"
 
 using namespace Kleo;
 
@@ -54,6 +57,25 @@ QString Kleo::requiredText()
     return i18nc("text for screen readers to indicate that the associated object, "
                  "such as a form field must be filled out",
                  "required");
+}
+
+void Kleo::selectLabelText(QLabel *label)
+{
+    if (!label || label->text().isEmpty()) {
+        return;
+    }
+    if (label->textFormat() == Qt::PlainText) {
+        label->setSelection(0, label->text().size());
+    } else if (label->textFormat() == Qt::RichText) {
+        // unfortunately, there is no selectAll(); therefore, we need
+        // to determine the "visual" length of the text by stripping
+        // the label's text of all formatting information
+        QTextDocument temp;
+        temp.setHtml(label->text());
+        label->setSelection(0, temp.toRawText().size());
+    } else {
+        qCDebug(KLEOPATRA_LOG) << "Label with unsupported text format" << label->textFormat() << "got focus";
+    }
 }
 
 LabelHelper::LabelHelper()

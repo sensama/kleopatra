@@ -11,6 +11,7 @@
 #include <config-kleopatra.h>
 
 #include "htmllabel.h"
+#include "utils/accessibility.h"
 
 #include <QAccessible>
 
@@ -72,6 +73,21 @@ void HtmlLabel::setLinkColor(const QColor &color)
 {
     d->linkColor = color;
     d->updateText();
+}
+
+void HtmlLabel::focusInEvent(QFocusEvent *ev)
+{
+    QLabel::focusInEvent(ev);
+
+    // if the text label gets focus, then select its text; this is a workaround
+    // for missing focus indicators for labels in many Qt styles
+    const Qt::FocusReason reason = ev->reason();
+    const auto isKeyboardFocusEvent = reason == Qt::TabFocusReason
+                                   || reason == Qt::BacktabFocusReason
+                                   || reason == Qt::ShortcutFocusReason;
+    if (!text().isEmpty() && isKeyboardFocusEvent) {
+        Kleo::selectLabelText(this);
+    }
 }
 
 bool HtmlLabel::focusNextPrevChild(bool next)

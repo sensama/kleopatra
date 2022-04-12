@@ -23,6 +23,12 @@ namespace Kleo
     QString requiredText();
 
     /**
+     * Selects the text displayed by the label. Only \ref QLabel with text format
+     * \c Qt::PlainText or \c Qt::RichText are supported.
+     */
+    void selectLabelText(QLabel *label);
+
+    /**
      * Simple helper that sets the focus policy of the associated labels
      * to \c Qt::StrongFocus if an assistive tool is active.
      */

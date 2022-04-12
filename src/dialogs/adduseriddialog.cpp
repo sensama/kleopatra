@@ -66,25 +66,34 @@ public:
     {
         q->setWindowTitle(i18nc("title:window", "Add User ID"));
 
+        const KConfigGroup config{KSharedConfig::openConfig(), "CertificateCreationWizard"};
+        const auto attrOrder = config.readEntry("OpenPGPAttributeOrder", QStringList{});
+        const auto nameIsRequired = attrOrder.contains(QLatin1String{"NAME!"}, Qt::CaseInsensitive);
+        const auto emailIsRequired = attrOrder.contains(QLatin1String{"EMAIL!"}, Qt::CaseInsensitive);
+
         auto mainLayout = new QVBoxLayout{q};
 
-        mainLayout->addWidget(new QLabel{i18n("Enter a name and/or an email address to use for the user ID."), q});
+        const auto infoText = nameIsRequired || emailIsRequired
+            ? i18n("Enter a name and an email address to use for the user ID.")
+            : i18n("Enter a name and/or an email address to use for the user ID.");
+        mainLayout->addWidget(new QLabel{infoText, q});
 
         auto gridLayout = new QGridLayout;
         int row = -1;
 
-        const KConfigGroup config{KSharedConfig::openConfig(), "CertificateCreationWizard"};
         {
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
             ui.nameInput->label()->setText(i18nc("@label", "Name:"));
-            const auto regexp = config.readEntry(QLatin1String("NAME_regex"));
+            ui.nameInput->setIsRequired(nameIsRequired);
+            ui.nameInput->setValueRequiredErrorMessage(i18n("Error: The name is required."));
+            const auto regexp = config.readEntry("NAME_regex");
             if (regexp.isEmpty()) {
                 ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
                 ui.nameInput->setToolTip(xi18n(
                     "<para>The name must not contain any of the following characters: &lt;, &gt;, @.</para>"));
                 ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
                     "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign."));
-                ui.nameInput->setErrorMessage(i18n("Error: The entered name contains invalid characters."));
+                ui.nameInput->setInvalidEntryErrorMessage(i18n("Error: The entered name contains invalid characters."));
             } else {
                 ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
                 ui.nameInput->setToolTip(xi18n(
@@ -93,7 +102,7 @@ public:
                 ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
                     "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign. "
                     "Additionally, the name must follow the rules set by your organization."));
-                ui.nameInput->setErrorMessage(i18n(
+                ui.nameInput->setInvalidEntryErrorMessage(i18n(
                     "Error: The entered name contains invalid characters "
                     "or it does not follow your organization's rules."));
             }
@@ -110,15 +119,17 @@ public:
         {
             ui.emailInput = FormTextInput<QLineEdit>::create(q);
             ui.emailInput->label()->setText(i18nc("@label", "Email:"));
+            ui.emailInput->setIsRequired(emailIsRequired);
+            ui.emailInput->setValueRequiredErrorMessage(i18n("Error: The email address is required."));
             const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
             if (regexp.isEmpty()) {
                 ui.emailInput->setValidator(Validation::email(Validation::Optional, q));
-                ui.emailInput->setErrorMessage(i18n("Error: The entered email address is not valid."));
+                ui.emailInput->setInvalidEntryErrorMessage(i18n("Error: The entered email address is not valid."));
             } else {
                 ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional, q));
                 ui.emailInput->setToolTip(xi18n(
                     "<para>If an email address is given, then it has to satisfy the rules set by your organization.</para>"));
-                ui.emailInput->setErrorMessage(i18n(
+                ui.emailInput->setInvalidEntryErrorMessage(i18n(
                     "Error: The entered email address is not valid "
                     "or it does not follow your organization's rules."));
             }
@@ -181,13 +192,18 @@ private:
     void checkAccept()
     {
         QStringList errors;
-        if (ui.resultLabel->text().isEmpty()) {
+        if (ui.resultLabel->text().isEmpty()
+                && !ui.nameInput->isRequired() && !ui.emailInput->isRequired()) {
             errors.push_back(i18n("Name and email address cannot both be empty."));
         }
-        if (!ui.nameInput->hasAcceptableInput()) {
+        if (ui.nameInput->isRequired() && !ui.nameInput->hasValue()) {
+            errors.push_back(i18n("A name is required."));
+        } else if (!ui.nameInput->hasAcceptableInput()) {
             errors.push_back(i18n("The entered name is not valid."));
         }
-        if (!ui.emailInput->hasAcceptableInput()) {
+        if (ui.emailInput->isRequired() && !ui.emailInput->hasValue()) {
+            errors.push_back(i18n("An email address is required."));
+        } else if (!ui.emailInput->hasAcceptableInput()) {
             errors.push_back(i18n("The entered email address is not valid."));
         }
         if (errors.size() > 1) {

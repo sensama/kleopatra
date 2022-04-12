@@ -13,8 +13,12 @@
 
 #include <KLocalizedString>
 
-#include <QAccessible>
+#include <QLabel>
 #include <QObject>
+
+#include <algorithm>
+
+using namespace Kleo;
 
 namespace
 {
@@ -50,4 +54,32 @@ QString Kleo::requiredText()
     return i18nc("text for screen readers to indicate that the associated object, "
                  "such as a form field must be filled out",
                  "required");
+}
+
+LabelHelper::LabelHelper()
+{
+    QAccessible::installActivationObserver(this);
+}
+
+LabelHelper::~LabelHelper()
+{
+    QAccessible::removeActivationObserver(this);
+}
+
+void LabelHelper::addLabel(QLabel *label)
+{
+    mLabels.push_back(label);
+    accessibilityActiveChanged(QAccessible::isActive());
+}
+
+void LabelHelper::accessibilityActiveChanged(bool active)
+{
+    // Allow text labels to get focus if accessibility is active
+    const auto focusPolicy = active ? Qt::StrongFocus : Qt::ClickFocus;
+    std::for_each(std::cbegin(mLabels), std::cend(mLabels),
+                  [focusPolicy](const auto &label) {
+                      if (label) {
+                          label->setFocusPolicy(focusPolicy);
+                      }
+                  });
 }

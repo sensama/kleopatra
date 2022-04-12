@@ -8,6 +8,10 @@
 */
 #pragma once
 
+#include <QAccessible>
+#include <QPointer>
+
+class QLabel;
 class QObject;
 class QString;
 
@@ -17,4 +21,23 @@ namespace Kleo
     QString getAccessibleDescription(QObject *object);
     QString invalidEntryText();
     QString requiredText();
+
+    /**
+     * Simple helper that sets the focus policy of the associated labels
+     * to \c Qt::StrongFocus if an assistive tool is active.
+     */
+    class LabelHelper: public QAccessible::ActivationObserver
+    {
+    public:
+        LabelHelper();
+        ~LabelHelper() override;
+        Q_DISABLE_COPY_MOVE(LabelHelper)
+
+        void addLabel(QLabel *label);
+
+    private:
+        void accessibilityActiveChanged(bool active) override;
+
+        std::vector<QPointer<QLabel>> mLabels;
+    };
 }

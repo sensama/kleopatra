@@ -12,8 +12,11 @@
 #include <config-kleopatra.h>
 
 #include "adduseriddialog.h"
+
+#include "utils/accessibility.h"
 #include "view/errorlabel.h"
 #include "view/formtextinput.h"
+#include "view/htmllabel.h"
 
 #include <utils/validation.h>
 
@@ -56,9 +59,11 @@ class AddUserIDDialog::Private
     struct {
         std::unique_ptr<FormTextInput<QLineEdit>> nameInput;
         std::unique_ptr<FormTextInput<QLineEdit>> emailInput;
-        QLabel *resultLabel;
+        HtmlLabel *resultLabel;
         QDialogButtonBox *buttonBox;
     } ui;
+
+    LabelHelper labelHelper;
 
 public:
     explicit Private(AddUserIDDialog *qq)
@@ -150,19 +155,9 @@ public:
         mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
         {
-            auto label = new QLabel{i18n("This is how the new user ID will be stored in the certificate:"), q};
-            mainLayout->addWidget(label);
-        }
-        {
-            ui.resultLabel = new QLabel{q};
-            ui.resultLabel->setMinimumSize(300, 0);
-            ui.resultLabel->setAlignment(Qt::AlignCenter);
-            ui.resultLabel->setTextFormat(Qt::PlainText);
-            QFont font;
-            font.setBold(true);
-            font.setWeight(75);
-            ui.resultLabel->setFont(font);
-
+            ui.resultLabel = new HtmlLabel{q};
+            ui.resultLabel->setFocusPolicy(Qt::ClickFocus);
+            labelHelper.addLabel(ui.resultLabel);
             mainLayout->addWidget(ui.resultLabel);
         }
 
@@ -219,7 +214,10 @@ private:
 
     void updateResultLabel()
     {
-        ui.resultLabel->setText(buildUserId(name(), email()));
+        ui.resultLabel->setHtml(i18nc("@info",
+            "<div>This is how the new user ID will be stored in the certificate:</div>"
+            "<center><strong>%1</strong></center>",
+            buildUserId(name(), email()).toHtmlEscaped()));
     }
 };
 

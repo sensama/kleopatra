@@ -44,3 +44,10 @@ QString Kleo::invalidEntryText()
                  "such as a form field, has an error",
                  "invalid entry");
 }
+
+QString Kleo::requiredText()
+{
+    return i18nc("text for screen readers to indicate that the associated object, "
+                 "such as a form field must be filled out",
+                 "required");
+}

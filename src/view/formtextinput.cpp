@@ -21,6 +21,19 @@
 
 #include "kleopatra_debug.h"
 
+namespace
+{
+auto defaultValueRequiredErrorMessage()
+{
+    return i18n("Error: A value is required.");
+}
+
+auto defaultInvalidEntryErrorMessage()
+{
+    return i18n("Error: The entered text is not valid.");
+}
+}
+
 namespace Kleo::_detail
 {
 
@@ -28,12 +41,20 @@ class FormTextInputBase::Private
 {
     FormTextInputBase *q;
 public:
+    enum Error
+    {
+        EntryOK,
+        EntryMissing, // a required entry is missing
+        InvalidEntry  // the validator doesn't accept the entry
+    };
+
     Private(FormTextInputBase *q)
         : q{q}
-        , mErrorMessage{i18n("Error: The entered text is not valid.")}
+        , mValueRequiredErrorMessage{defaultValueRequiredErrorMessage()}
+        , mInvalidEntryErrorMessage{defaultInvalidEntryErrorMessage()}
     {}
 
-    QString errorMessage() const;
+    QString errorMessage(Error error) const;
     void updateError();
     void updateAccessibleNameAndDescription();
 
@@ -43,13 +64,24 @@ public:
     QPointer<const QValidator> mValidator;
     QString mAccessibleName;
     QString mAccessibleDescription;
-    QString mErrorMessage;
+    QString mValueRequiredErrorMessage;
+    QString mInvalidEntryErrorMessage;
+    Error mError = EntryOK;
+    bool mRequired = false;
     bool mEditingInProgress = false;
 };
 
-QString FormTextInputBase::Private::errorMessage() const
+QString FormTextInputBase::Private::errorMessage(Error error) const
 {
-    return q->hasAcceptableInput() ? QString{} : mErrorMessage;
+    switch (error) {
+    case EntryOK:
+        return {};
+    case EntryMissing:
+        return mValueRequiredErrorMessage;
+    case InvalidEntry:
+        return mInvalidEntryErrorMessage;
+    }
+    return {};
 }
 
 void FormTextInputBase::Private::updateError()
@@ -57,8 +89,17 @@ void FormTextInputBase::Private::updateError()
     if (!mErrorLabel) {
         return;
     }
+
+    if (mRequired && !q->hasValue()) {
+        mError = EntryMissing;
+    } else if (!q->hasAcceptableInput()) {
+        mError = InvalidEntry;
+    } else {
+        mError = EntryOK;
+    }
+
     const auto currentErrorMessage = mErrorLabel->text();
-    const auto newErrorMessage = errorMessage();
+    const auto newErrorMessage = errorMessage(mError);
     if (newErrorMessage == currentErrorMessage) {
         return;
     }
@@ -99,8 +140,13 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // screen readers say something like "invalid entry" if this state is set;
     // emulate this by adding "invalid entry" to the accessible name of the input field
     // and its label
-    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText()
-                                 : mAccessibleName;
+    QString name = mAccessibleName;
+    if (mRequired) {
+        name += QLatin1String{", "} + requiredText();
+    }
+    if (errorShown) {
+        name += QLatin1String{", "} + invalidEntryText();
+    };
     if (mLabel && mLabel->accessibleName() != name) {
         mLabel->setAccessibleName(name);
     }
@@ -131,17 +177,36 @@ ErrorLabel *FormTextInputBase::errorLabel() const
     return d->mErrorLabel;
 }
 
+void FormTextInputBase::setIsRequired(bool required)
+{
+    d->mRequired = required;
+}
+
+bool FormTextInputBase::isRequired() const
+{
+    return d->mRequired;
+}
+
 void FormTextInputBase::setValidator(const QValidator *validator)
 {
     d->mValidator = validator;
 }
 
-void FormTextInputBase::setErrorMessage(const QString &text)
+void FormTextInputBase::setValueRequiredErrorMessage(const QString &text)
 {
     if (text.isEmpty()) {
-        d->mErrorMessage = i18n("Error: The entered text is not valid.");
+        d->mValueRequiredErrorMessage = defaultValueRequiredErrorMessage();
     } else {
-        d->mErrorMessage = text;
+        d->mValueRequiredErrorMessage = text;
+    }
+}
+
+void FormTextInputBase::setInvalidEntryErrorMessage(const QString &text)
+{
+    if (text.isEmpty()) {
+        d->mInvalidEntryErrorMessage = defaultInvalidEntryErrorMessage();
+    } else {
+        d->mInvalidEntryErrorMessage = text;
     }
 }
 
@@ -217,6 +282,13 @@ void FormTextInputBase::onEditingFinished()
     d->updateError();
 }
 
+}
+
+template<>
+bool Kleo::FormTextInput<QLineEdit>::hasValue() const
+{
+    const auto w = widget();
+    return w && !w->text().trimmed().isEmpty();
 }
 
 template<>

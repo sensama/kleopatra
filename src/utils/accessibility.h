@@ -16,4 +16,5 @@ namespace Kleo
     QString getAccessibleName(QObject *object);
     QString getAccessibleDescription(QObject *object);
     QString invalidEntryText();
+    QString requiredText();
 }

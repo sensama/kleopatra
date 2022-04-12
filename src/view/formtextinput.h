@@ -45,6 +45,16 @@ public:
     ErrorLabel *errorLabel() const;
 
     /**
+     * Marks this input field as required.
+     */
+    void setIsRequired(bool required);
+
+    /**
+     * Returns \c true, if this field needs to be filled out.
+     */
+    bool isRequired() const;
+
+    /**
      * Sets the validator to use for validating the input.
      *
      * Note: If you wrap a QLineEdit, then do not set a validator (or an input mask)
@@ -53,10 +63,17 @@ public:
     void setValidator(const QValidator *validator);
 
     /**
-     * Sets the error message to display. If \p text is empty, then the default
-     * error message will be used.
+     * Sets the error message to display if a value is required for this input field,
+     * but if no value has been entered. If \p text is empty, then a default
+     * message will be used.
      */
-    void setErrorMessage(const QString &text);
+    void setValueRequiredErrorMessage(const QString &text);
+
+    /**
+     * Sets the error message to display if the entered value is not accepted
+     * by the validator. If \p text is empty, then a default message will be used.
+     */
+    void setInvalidEntryErrorMessage(const QString &text);
 
     /**
      * Sets the tool tip of the controlled widget and its associated label.
@@ -82,6 +99,14 @@ public:
      * the error label is shown if there is an error.
      */
     void setEnabled(bool enabled);
+
+    /**
+     * Returns \c true, if the input has a value. This function is used to
+     * check required input fields for non-empty user input.
+     * Needs to be implemented for concrete widget classes.
+     * \sa validate
+     */
+    virtual bool hasValue() const = 0;
 
     /**
      * Returns \c true, if the input satisfies the validator.
@@ -175,11 +200,16 @@ public:
         return static_cast<Widget *>(FormTextInputBase::widget());
     }
 
+    bool hasValue() const override;
+
     bool hasAcceptableInput() const override;
 
 private:
     void connectWidget() override;
 };
+
+template<>
+bool FormTextInput<QLineEdit>::hasValue() const;
 
 template<>
 bool FormTextInput<QLineEdit>::hasAcceptableInput() const;

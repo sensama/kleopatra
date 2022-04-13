@@ -54,6 +54,7 @@ public:
         , mInvalidEntryErrorMessage{defaultInvalidEntryErrorMessage()}
     {}
 
+    void updateLabel();
     QString errorMessage(Error error) const;
     void updateError();
     void updateAccessibleNameAndDescription();
@@ -62,6 +63,7 @@ public:
     QPointer<QWidget> mWidget;
     QPointer<ErrorLabel> mErrorLabel;
     QPointer<const QValidator> mValidator;
+    QString mLabelText;
     QString mAccessibleName;
     QString mAccessibleDescription;
     QString mValueRequiredErrorMessage;
@@ -70,6 +72,17 @@ public:
     bool mRequired = false;
     bool mEditingInProgress = false;
 };
+
+void FormTextInputBase::Private::updateLabel()
+{
+    if (!mLabel) {
+        return;
+    }
+    const auto text = mRequired
+        ? i18nc("@label label text (required)", "%1 (required)", mLabelText)
+        : mLabelText;
+    mLabel->setText(text);
+}
 
 QString FormTextInputBase::Private::errorMessage(Error error) const
 {
@@ -141,9 +154,6 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // emulate this by adding "invalid entry" to the accessible name of the input field
     // and its label
     QString name = mAccessibleName;
-    if (mRequired) {
-        name += QLatin1String{", "} + requiredText();
-    }
     if (errorShown) {
         name += QLatin1String{", "} + invalidEntryText();
     };
@@ -177,9 +187,16 @@ ErrorLabel *FormTextInputBase::errorLabel() const
     return d->mErrorLabel;
 }
 
+void FormTextInputBase::setLabelText(const QString &text)
+{
+    d->mLabelText = text;
+    d->updateLabel();
+}
+
 void FormTextInputBase::setIsRequired(bool required)
 {
     d->mRequired = required;
+    d->updateLabel();
 }
 
 bool FormTextInputBase::isRequired() const

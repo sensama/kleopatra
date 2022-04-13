@@ -88,8 +88,7 @@ public:
 
         {
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
-            ui.nameInput->label()->setText(i18nc("@label", "Name:"));
-            ui.nameInput->setAccessibleName(i18nc("@label without colon for assistive tools", "Name"));
+            ui.nameInput->setLabelText(i18nc("@label", "Name"));
             ui.nameInput->setIsRequired(nameIsRequired);
             ui.nameInput->setValueRequiredErrorMessage(i18n("Error: The name is required."));
             const auto regexp = config.readEntry("NAME_regex");
@@ -124,8 +123,7 @@ public:
 
         {
             ui.emailInput = FormTextInput<QLineEdit>::create(q);
-            ui.emailInput->label()->setText(i18nc("@label", "Email:"));
-            ui.emailInput->setAccessibleName(i18nc("@label without colon for assistive tools", "Email"));
+            ui.emailInput->setLabelText(i18nc("@label", "Email address"));
             ui.emailInput->setIsRequired(emailIsRequired);
             ui.emailInput->setValueRequiredErrorMessage(i18n("Error: The email address is required."));
             const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));

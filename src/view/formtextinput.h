@@ -35,7 +35,9 @@ public:
     FormTextInputBase& operator=(FormTextInputBase&&) = delete;
 
     /**
-     * Returns the label associated to the controlled widget.
+     * Returns the label associated to the controlled widget. Use it to add
+     * the label to a layout, but do not use it to set properties of the label
+     * for which this class provides setters.
      */
     QLabel *label() const;
 
@@ -43,6 +45,12 @@ public:
      * Returns the error label associated to the controlled widget.
      */
     ErrorLabel *errorLabel() const;
+
+    /**
+     * Sets the text of the label. Do not add a colon at the end of the text.
+     * If input is required, then the label is marked appropriately.
+     */
+    void setLabelText(const QString &text);
 
     /**
      * Marks this input field as required.

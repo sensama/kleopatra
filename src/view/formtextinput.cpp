@@ -61,6 +61,7 @@ public:
     QString errorMessage(Error error) const;
     QString accessibleErrorMessage(Error error) const;
     void updateError();
+    QString accessibleDescription() const;
     void updateAccessibleNameAndDescription();
 
     QPointer<QLabel> mLabel;
@@ -70,7 +71,6 @@ public:
     QPointer<const QValidator> mValidator;
     QString mLabelText;
     QString mAccessibleName;
-    QString mAccessibleDescription;
     QString mValueRequiredErrorMessage;
     QString mAccessibleValueRequiredErrorMessage;
     QString mInvalidEntryErrorMessage;
@@ -109,7 +109,7 @@ void FormTextInputBase::Private::setHint(const QString &text, const QString &acc
     }
     mHintLabel->setVisible(!text.isEmpty());
     mHintLabel->setText(text);
-    mAccessibleDescription = accessibleDescription.isEmpty() ? text : accessibleDescription;
+    mHintLabel->setAccessibleName(accessibleDescription.isEmpty() ? text : accessibleDescription);
     updateAccessibleNameAndDescription();
 }
 
@@ -173,21 +173,33 @@ void FormTextInputBase::Private::updateError()
     updateAccessibleNameAndDescription();
 }
 
+QString FormTextInputBase::Private::accessibleDescription() const
+{
+    QString description;
+    if (mHintLabel) {
+        // get the explicitly set accessible hint text
+        description = mHintLabel->accessibleName();
+    }
+    if (description.isEmpty()) {
+        // fall back to the default accessible description of the input widget
+        description = getAccessibleDescription(mWidget);
+    }
+    return description;
+}
+
 void FormTextInputBase::Private::updateAccessibleNameAndDescription()
 {
-    // fall back to default accessible name/description if accessible name/description wasn't set explicitly
+    // fall back to default accessible name if accessible name wasn't set explicitly
     if (mAccessibleName.isEmpty()) {
         mAccessibleName = getAccessibleName(mWidget);
-    }
-    if (mAccessibleDescription.isEmpty()) {
-        mAccessibleDescription = getAccessibleDescription(mWidget);
     }
     const bool errorShown = mErrorLabel && mErrorLabel->isVisible();
 
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
-    // emulate this by adding the error message to the accessible description of the input field
-    const auto description = errorShown ? mAccessibleDescription + QLatin1String{" "} + mErrorLabel->accessibleName()
-                                        : mAccessibleDescription;
+    // emulate this by setting the hint text and, if the error is shown, the error message as accessible
+    // description of the input field
+    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName()
+                                        : accessibleDescription();
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);
     }

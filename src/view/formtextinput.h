@@ -87,17 +87,21 @@ public:
     void setValidator(const QValidator *validator);
 
     /**
-     * Sets the error message to display if a value is required for this input field,
-     * but if no value has been entered. If \p text is empty, then a default
-     * message will be used.
+     * Sets \p text as error message to display if a value is required for the
+     * input field, but if no value has been entered. If \p text is empty, then
+     * a default message will be used.
+     * The optional \p accessibleText is used as alternative text for assistive
+     * tools.
      */
-    void setValueRequiredErrorMessage(const QString &text);
+    void setValueRequiredErrorMessage(const QString &text, const QString &accessibleText = {});
 
     /**
-     * Sets the error message to display if the entered value is not accepted
+     * Sets \p text as error message to display if the entered value is not accepted
      * by the validator. If \p text is empty, then a default message will be used.
+     * The optional \p accessibleText is used as alternative text for assistive
+     * tools.
      */
-    void setInvalidEntryErrorMessage(const QString &text);
+    void setInvalidEntryErrorMessage(const QString &text, const QString &accessibleText = {});
 
     /**
      * Sets the tool tip of the controlled widget and its associated label.

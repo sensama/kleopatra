@@ -25,12 +25,12 @@ namespace
 {
 auto defaultValueRequiredErrorMessage()
 {
-    return i18n("Error: A value is required.");
+    return i18n("Error: Enter a value.");
 }
 
 auto defaultInvalidEntryErrorMessage()
 {
-    return i18n("Error: The entered text is not valid.");
+    return i18n("Error: Enter a value in the correct format.");
 }
 }
 
@@ -59,6 +59,7 @@ public:
     void setLabelText(const QString &text, const QString &accessibleName);
     void setHint(const QString &text, const QString &accessibleDescription);
     QString errorMessage(Error error) const;
+    QString accessibleErrorMessage(Error error) const;
     void updateError();
     void updateAccessibleNameAndDescription();
 
@@ -71,7 +72,9 @@ public:
     QString mAccessibleName;
     QString mAccessibleDescription;
     QString mValueRequiredErrorMessage;
+    QString mAccessibleValueRequiredErrorMessage;
     QString mInvalidEntryErrorMessage;
+    QString mAccessibleInvalidEntryErrorMessage;
     Error mError = EntryOK;
     bool mRequired = false;
     bool mEditingInProgress = false;
@@ -123,6 +126,19 @@ QString FormTextInputBase::Private::errorMessage(Error error) const
     return {};
 }
 
+QString FormTextInputBase::Private::accessibleErrorMessage(Error error) const
+{
+    switch (error) {
+    case EntryOK:
+        return {};
+    case EntryMissing:
+        return mAccessibleValueRequiredErrorMessage;
+    case InvalidEntry:
+        return mAccessibleInvalidEntryErrorMessage;
+    }
+    return {};
+}
+
 void FormTextInputBase::Private::updateError()
 {
     if (!mErrorLabel) {
@@ -153,6 +169,7 @@ void FormTextInputBase::Private::updateError()
     }
     mErrorLabel->setVisible(!newErrorMessage.isEmpty());
     mErrorLabel->setText(newErrorMessage);
+    mErrorLabel->setAccessibleName(accessibleErrorMessage(mError));
     updateAccessibleNameAndDescription();
 }
 
@@ -169,7 +186,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
 
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
     // emulate this by adding the error message to the accessible description of the input field
-    const auto description = errorShown ? mAccessibleDescription + QLatin1String{" "} + mErrorLabel->text()
+    const auto description = errorShown ? mAccessibleDescription + QLatin1String{" "} + mErrorLabel->accessibleName()
                                         : mAccessibleDescription;
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);
@@ -245,21 +262,31 @@ void FormTextInputBase::setValidator(const QValidator *validator)
     d->mValidator = validator;
 }
 
-void FormTextInputBase::setValueRequiredErrorMessage(const QString &text)
+void FormTextInputBase::setValueRequiredErrorMessage(const QString &text, const QString &accessibleText)
 {
     if (text.isEmpty()) {
         d->mValueRequiredErrorMessage = defaultValueRequiredErrorMessage();
     } else {
         d->mValueRequiredErrorMessage = text;
     }
+    if (accessibleText.isEmpty()) {
+        d->mAccessibleValueRequiredErrorMessage = d->mValueRequiredErrorMessage;
+    } else {
+        d->mAccessibleValueRequiredErrorMessage = accessibleText;
+    }
 }
 
-void FormTextInputBase::setInvalidEntryErrorMessage(const QString &text)
+void FormTextInputBase::setInvalidEntryErrorMessage(const QString &text, const QString &accessibleText)
 {
     if (text.isEmpty()) {
         d->mInvalidEntryErrorMessage = defaultInvalidEntryErrorMessage();
     } else {
         d->mInvalidEntryErrorMessage = text;
+    }
+    if (accessibleText.isEmpty()) {
+        d->mAccessibleInvalidEntryErrorMessage = d->mInvalidEntryErrorMessage;
+    } else {
+        d->mAccessibleInvalidEntryErrorMessage = accessibleText;
     }
 }
 

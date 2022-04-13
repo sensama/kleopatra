@@ -89,14 +89,17 @@ public:
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
             ui.nameInput->setLabelText(i18nc("@label", "Name"));
             ui.nameInput->setIsRequired(nameIsRequired);
-            ui.nameInput->setValueRequiredErrorMessage(i18n("Error: The name is required."));
+            ui.nameInput->setValueRequiredErrorMessage(i18n("Error: Enter a name."));
             const auto regexp = config.readEntry("NAME_regex");
             if (regexp.isEmpty()) {
                 ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
                 ui.nameInput->setHint(i18n("Must not include &lt;, &gt;, and @."),
                                       i18nc("text for screen readers",
                                             "Must not include less-than sign, greater-than sign, and at sign."));
-                ui.nameInput->setInvalidEntryErrorMessage(i18n("Error: The entered name contains invalid characters."));
+                ui.nameInput->setInvalidEntryErrorMessage(
+                    i18n("Error: The name must not include &lt;, &gt;, and @."),
+                    i18nc("text for screen readers",
+                          "Error: The name must not include less-than sign, greater-than sign, and at sign."));
             } else {
                 ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
                 ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
@@ -104,9 +107,12 @@ public:
                                       i18nc("text for screen readers",
                                             "Must be in the format required by your organization and "
                                             "must not include less-than sign, greater-than sign, and at sign."));
-                ui.nameInput->setInvalidEntryErrorMessage(i18n(
-                    "Error: The entered name contains invalid characters "
-                    "or it does not follow your organization's rules."));
+                ui.nameInput->setInvalidEntryErrorMessage(
+                    i18n("Error: The name must be in the format required by your organization and "
+                         "it must not include &lt;, &gt;, and @."),
+                    i18nc("text for screen readers",
+                          "Error: The name must be in the format required by your organization and "
+                          "it must not include less-than sign, greater-than sign, and at sign."));
             }
 
             mainLayout->addWidget(ui.nameInput->label());
@@ -121,18 +127,18 @@ public:
             ui.emailInput = FormTextInput<QLineEdit>::create(q);
             ui.emailInput->setLabelText(i18nc("@label", "Email address"));
             ui.emailInput->setIsRequired(emailIsRequired);
-            ui.emailInput->setValueRequiredErrorMessage(i18n("Error: The email address is required."));
+            ui.emailInput->setValueRequiredErrorMessage(i18n("Error: Enter an email address."));
             const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
             if (regexp.isEmpty()) {
                 ui.emailInput->setValidator(Validation::email(Validation::Optional, q));
-                ui.emailInput->setInvalidEntryErrorMessage(i18n("Error: The entered email address is not valid."));
+                ui.emailInput->setInvalidEntryErrorMessage(i18n(
+                    "Error: Enter an email address in the correct format, like name@example.com."));
             } else {
                 ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional, q));
                 ui.emailInput->setHint(i18n(
                     "Must be in the format required by your organization"));
                 ui.emailInput->setInvalidEntryErrorMessage(i18n(
-                    "Error: The entered email address is not valid "
-                    "or it does not follow your organization's rules."));
+                    "Error: Enter an email address in the correct format required by your organization."));
             }
 
             mainLayout->addWidget(ui.emailInput->label());

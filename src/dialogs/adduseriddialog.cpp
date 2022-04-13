@@ -83,8 +83,7 @@ public:
             : i18n("Enter a name and/or an email address to use for the user ID.");
         mainLayout->addWidget(new QLabel{infoText, q});
 
-        auto gridLayout = new QGridLayout;
-        int row = -1;
+        mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
         {
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
@@ -112,11 +111,9 @@ public:
                     "or it does not follow your organization's rules."));
             }
 
-            row++;
-            gridLayout->addWidget(ui.nameInput->label(), row, 0, 1, 1);
-            gridLayout->addWidget(ui.nameInput->widget(), row, 1, 1, 1);
-            row++;
-            gridLayout->addWidget(ui.nameInput->errorLabel(), row, 0, 1, 2);
+            mainLayout->addWidget(ui.nameInput->label());
+            mainLayout->addWidget(ui.nameInput->errorLabel());
+            mainLayout->addWidget(ui.nameInput->widget());
         }
         connect(ui.nameInput->widget(), &QLineEdit::textChanged,
                 q, [this]() { updateResultLabel(); });
@@ -139,16 +136,12 @@ public:
                     "or it does not follow your organization's rules."));
             }
 
-            row++;
-            gridLayout->addWidget(ui.emailInput->label(), row, 0, 1, 1);
-            gridLayout->addWidget(ui.emailInput->widget(), row, 1, 1, 1);
-            row++;
-            gridLayout->addWidget(ui.emailInput->errorLabel(), row, 0, 1, 2);
+            mainLayout->addWidget(ui.emailInput->label());
+            mainLayout->addWidget(ui.emailInput->errorLabel());
+            mainLayout->addWidget(ui.emailInput->widget());
         }
         connect(ui.emailInput->widget(), &QLineEdit::textChanged,
                 q, [this]() { updateResultLabel(); });
-
-        mainLayout->addLayout(gridLayout);
 
         mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 

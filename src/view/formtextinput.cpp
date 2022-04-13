@@ -54,7 +54,9 @@ public:
         , mInvalidEntryErrorMessage{defaultInvalidEntryErrorMessage()}
     {}
 
+    QString annotatedIfRequired(const QString &text) const;
     void updateLabel();
+    void setLabelText(const QString &text, const QString &accessibleName);
     void setHint(const QString &text, const QString &accessibleDescription);
     QString errorMessage(Error error) const;
     void updateError();
@@ -75,15 +77,26 @@ public:
     bool mEditingInProgress = false;
 };
 
+QString FormTextInputBase::Private::annotatedIfRequired(const QString &text) const
+{
+    return mRequired
+        ? i18nc("@label label text (required)", "%1 (required)", text)
+        : text;
+}
+
 void FormTextInputBase::Private::updateLabel()
 {
-    if (!mLabel) {
-        return;
+    if (mLabel) {
+        mLabel->setText(annotatedIfRequired(mLabelText));
     }
-    const auto text = mRequired
-        ? i18nc("@label label text (required)", "%1 (required)", mLabelText)
-        : mLabelText;
-    mLabel->setText(text);
+}
+
+void FormTextInputBase::Private::setLabelText(const QString &text, const QString &accessibleName)
+{
+    mLabelText = text;
+    mAccessibleName = accessibleName.isEmpty() ? text : accessibleName;
+    updateLabel();
+    updateAccessibleNameAndDescription();
 }
 
 void FormTextInputBase::Private::setHint(const QString &text, const QString &accessibleDescription)
@@ -166,7 +179,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // screen readers say something like "invalid entry" if this state is set;
     // emulate this by adding "invalid entry" to the accessible name of the input field
     // and its label
-    QString name = mAccessibleName;
+    QString name = annotatedIfRequired(mAccessibleName);
     if (errorShown) {
         name += QLatin1String{", "} + invalidEntryText();
     };
@@ -205,10 +218,9 @@ ErrorLabel *FormTextInputBase::errorLabel() const
     return d->mErrorLabel;
 }
 
-void FormTextInputBase::setLabelText(const QString &text)
+void FormTextInputBase::setLabelText(const QString &text, const QString &accessibleName)
 {
-    d->mLabelText = text;
-    d->updateLabel();
+    d->setLabelText(text, accessibleName);
 }
 
 void FormTextInputBase::setHint(const QString &text, const QString &accessibleDescription)
@@ -220,6 +232,7 @@ void FormTextInputBase::setIsRequired(bool required)
 {
     d->mRequired = required;
     d->updateLabel();
+    d->updateAccessibleNameAndDescription();
 }
 
 bool FormTextInputBase::isRequired() const
@@ -258,12 +271,6 @@ void FormTextInputBase::setToolTip(const QString &toolTip)
     if (d->mWidget) {
         d->mWidget->setToolTip(toolTip);
     }
-}
-
-void FormTextInputBase::setAccessibleName(const QString &name)
-{
-    d->mAccessibleName = name;
-    d->updateAccessibleNameAndDescription();
 }
 
 void FormTextInputBase::setWidget(QWidget *widget)

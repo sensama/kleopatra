@@ -53,10 +53,13 @@ public:
     ErrorLabel *errorLabel() const;
 
     /**
-     * Sets the text of the label. Do not add a colon at the end of the text.
-     * If input is required, then the label is marked appropriately.
+     * Sets \p text as text of the label and \p accessibleName as alternative
+     * text for assistive tools. If \p accessibleName is empty, then \p text is
+     * used instead.
+     *
+     * Note: If input is required, then the label is annotated appropriately.
      */
-    void setLabelText(const QString &text);
+    void setLabelText(const QString &text, const QString &accessibleName = {});
 
     /**
      * Sets \p text as hint text for this input field and \p accessibleDescription
@@ -100,12 +103,6 @@ public:
      * Sets the tool tip of the controlled widget and its associated label.
      */
     void setToolTip(const QString &toolTip);
-
-    /**
-     * Sets the accessible name of the controlled widget. Use this function
-     * instead of setting the accessible name directly on the controlled widget.
-     */
-    void setAccessibleName(const QString &name);
 
     /**
      * Enables or disables the controlled widget and its associated label.

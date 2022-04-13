@@ -254,6 +254,9 @@ void FormTextInputBase::setWidget(QWidget *widget)
     auto parent = widget ? widget->parentWidget() : nullptr;
     d->mWidget = widget;
     d->mLabel = new QLabel{parent};
+    QFont font = d->mLabel->font();
+    font.setBold(true);
+    d->mLabel->setFont(font);
     d->mErrorLabel = new ErrorLabel{parent};
     if (d->mLabel) {
         d->mLabel->setBuddy(d->mWidget);

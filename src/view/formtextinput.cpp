@@ -257,13 +257,9 @@ void FormTextInputBase::setWidget(QWidget *widget)
     QFont font = d->mLabel->font();
     font.setBold(true);
     d->mLabel->setFont(font);
+    d->mLabel->setBuddy(d->mWidget);
     d->mErrorLabel = new ErrorLabel{parent};
-    if (d->mLabel) {
-        d->mLabel->setBuddy(d->mWidget);
-    }
-    if (d->mErrorLabel) {
-        d->mErrorLabel->setVisible(false);
-    }
+    d->mErrorLabel->setVisible(false);
     connectWidget();
 }
 

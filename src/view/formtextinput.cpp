@@ -55,11 +55,13 @@ public:
     {}
 
     void updateLabel();
+    void setHint(const QString &text, const QString &accessibleDescription);
     QString errorMessage(Error error) const;
     void updateError();
     void updateAccessibleNameAndDescription();
 
     QPointer<QLabel> mLabel;
+    QPointer<QLabel> mHintLabel;
     QPointer<QWidget> mWidget;
     QPointer<ErrorLabel> mErrorLabel;
     QPointer<const QValidator> mValidator;
@@ -82,6 +84,17 @@ void FormTextInputBase::Private::updateLabel()
         ? i18nc("@label label text (required)", "%1 (required)", mLabelText)
         : mLabelText;
     mLabel->setText(text);
+}
+
+void FormTextInputBase::Private::setHint(const QString &text, const QString &accessibleDescription)
+{
+    if (!mHintLabel) {
+        return;
+    }
+    mHintLabel->setVisible(!text.isEmpty());
+    mHintLabel->setText(text);
+    mAccessibleDescription = accessibleDescription.isEmpty() ? text : accessibleDescription;
+    updateAccessibleNameAndDescription();
 }
 
 QString FormTextInputBase::Private::errorMessage(Error error) const
@@ -182,6 +195,11 @@ QLabel *FormTextInputBase::label() const
     return d->mLabel;
 }
 
+QLabel *FormTextInputBase::hintLabel() const
+{
+    return d->mHintLabel;
+}
+
 ErrorLabel *FormTextInputBase::errorLabel() const
 {
     return d->mErrorLabel;
@@ -191,6 +209,11 @@ void FormTextInputBase::setLabelText(const QString &text)
 {
     d->mLabelText = text;
     d->updateLabel();
+}
+
+void FormTextInputBase::setHint(const QString &text, const QString &accessibleDescription)
+{
+    d->setHint(text, accessibleDescription);
 }
 
 void FormTextInputBase::setIsRequired(bool required)
@@ -243,12 +266,6 @@ void FormTextInputBase::setAccessibleName(const QString &name)
     d->updateAccessibleNameAndDescription();
 }
 
-void FormTextInputBase::setAccessibleDescription(const QString &description)
-{
-    d->mAccessibleDescription = description;
-    d->updateAccessibleNameAndDescription();
-}
-
 void FormTextInputBase::setWidget(QWidget *widget)
 {
     auto parent = widget ? widget->parentWidget() : nullptr;
@@ -258,6 +275,8 @@ void FormTextInputBase::setWidget(QWidget *widget)
     font.setBold(true);
     d->mLabel->setFont(font);
     d->mLabel->setBuddy(d->mWidget);
+    d->mHintLabel = new QLabel{parent};
+    d->mHintLabel->setVisible(false);
     d->mErrorLabel = new ErrorLabel{parent};
     d->mErrorLabel->setVisible(false);
     connectWidget();

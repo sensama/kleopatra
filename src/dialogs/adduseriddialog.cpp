@@ -93,25 +93,24 @@ public:
             const auto regexp = config.readEntry("NAME_regex");
             if (regexp.isEmpty()) {
                 ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
-                ui.nameInput->setToolTip(xi18n(
-                    "<para>The name must not contain any of the following characters: &lt;, &gt;, @.</para>"));
-                ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
-                    "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign."));
+                ui.nameInput->setHint(i18n("Must not include &lt;, &gt;, and @."),
+                                      i18nc("text for screen readers",
+                                            "Must not include less-than sign, greater-than sign, and at sign."));
                 ui.nameInput->setInvalidEntryErrorMessage(i18n("Error: The entered name contains invalid characters."));
             } else {
                 ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
-                ui.nameInput->setToolTip(xi18n(
-                    "<para>The name must not contain any of the following characters: &lt;, &gt;, @. "
-                    "Additionally, the name must follow the rules set by your organization.</para>"));
-                ui.nameInput->setAccessibleDescription(i18nc("text for screen readers",
-                    "The name must not contain any of the following characters: less-than sign, greater-than sign, at sign. "
-                    "Additionally, the name must follow the rules set by your organization."));
+                ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
+                                           "must not include &lt;, &gt;, and @."),
+                                      i18nc("text for screen readers",
+                                            "Must be in the format required by your organization and "
+                                            "must not include less-than sign, greater-than sign, and at sign."));
                 ui.nameInput->setInvalidEntryErrorMessage(i18n(
                     "Error: The entered name contains invalid characters "
                     "or it does not follow your organization's rules."));
             }
 
             mainLayout->addWidget(ui.nameInput->label());
+            mainLayout->addWidget(ui.nameInput->hintLabel());
             mainLayout->addWidget(ui.nameInput->errorLabel());
             mainLayout->addWidget(ui.nameInput->widget());
         }
@@ -129,14 +128,15 @@ public:
                 ui.emailInput->setInvalidEntryErrorMessage(i18n("Error: The entered email address is not valid."));
             } else {
                 ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional, q));
-                ui.emailInput->setToolTip(xi18n(
-                    "<para>If an email address is given, then it has to satisfy the rules set by your organization.</para>"));
+                ui.emailInput->setHint(i18n(
+                    "Must be in the format required by your organization"));
                 ui.emailInput->setInvalidEntryErrorMessage(i18n(
                     "Error: The entered email address is not valid "
                     "or it does not follow your organization's rules."));
             }
 
             mainLayout->addWidget(ui.emailInput->label());
+            mainLayout->addWidget(ui.emailInput->hintLabel());
             mainLayout->addWidget(ui.emailInput->errorLabel());
             mainLayout->addWidget(ui.emailInput->widget());
         }

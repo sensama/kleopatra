@@ -8,11 +8,12 @@
 */
 #pragma once
 
+#include <QString>
+
 #include <memory>
 
 class QLabel;
 class QLineEdit;
-class QString;
 class QValidator;
 class QWidget;
 
@@ -42,6 +43,11 @@ public:
     QLabel *label() const;
 
     /**
+     * Returns the hint label associated to the controlled widget.
+     */
+    QLabel *hintLabel() const;
+
+    /**
      * Returns the error label associated to the controlled widget.
      */
     ErrorLabel *errorLabel() const;
@@ -51,6 +57,13 @@ public:
      * If input is required, then the label is marked appropriately.
      */
     void setLabelText(const QString &text);
+
+    /**
+     * Sets \p text as hint text for this input field and \p accessibleDescription
+     * as alternative text for assistive tools. If \p accessibleDescription is
+     * empty, then \p text is used instead.
+     */
+    void setHint(const QString &text, const QString &accessibleDescription = {});
 
     /**
      * Marks this input field as required.
@@ -93,13 +106,6 @@ public:
      * instead of setting the accessible name directly on the controlled widget.
      */
     void setAccessibleName(const QString &name);
-
-    /**
-     * Sets the accessible description of the controlled widget. Use this
-     * function instead of setting the accessible description directly on
-     * the controlled widget.
-     */
-    void setAccessibleDescription(const QString &description);
 
     /**
      * Enables or disables the controlled widget and its associated label.

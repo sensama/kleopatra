@@ -199,9 +199,9 @@ private:
             errors.push_back(emailError);
         }
         if (errors.size() > 1) {
-            KMessageBox::errorList(q, i18n("Sorry, the entered data is not acceptable."), errors);
+            KMessageBox::errorList(q, i18n("There is a problem."), errors);
         } else if (!errors.empty()) {
-            KMessageBox::sorry(q, errors.first());
+            KMessageBox::error(q, errors.first());
         } else {
             q->accept();
         }

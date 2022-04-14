@@ -356,6 +356,14 @@ void FormTextInputBase::setEnabled(bool enabled)
     }
 }
 
+QString FormTextInputBase::currentError() const
+{
+    if (d->mError) {
+        return d->errorMessage(d->mError);
+    }
+    return {};
+}
+
 bool FormTextInputBase::validate(const QString &text, int pos) const
 {
     QString textCopy = text;

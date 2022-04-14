@@ -116,6 +116,11 @@ public:
     void setEnabled(bool enabled);
 
     /**
+     * Returns the currently shown error message for this input field.
+     */
+    QString currentError() const;
+
+    /**
      * Returns \c true, if the input has a value. This function is used to
      * check required input fields for non-empty user input.
      * Needs to be implemented for concrete widget classes.

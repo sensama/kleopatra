@@ -190,15 +190,13 @@ private:
                 && !ui.nameInput->isRequired() && !ui.emailInput->isRequired()) {
             errors.push_back(i18n("Name and email address cannot both be empty."));
         }
-        if (ui.nameInput->isRequired() && !ui.nameInput->hasValue()) {
-            errors.push_back(i18n("A name is required."));
-        } else if (!ui.nameInput->hasAcceptableInput()) {
-            errors.push_back(i18n("The entered name is not valid."));
+        const auto nameError = ui.nameInput->currentError();
+        if (!nameError.isEmpty()) {
+            errors.push_back(nameError);
         }
-        if (ui.emailInput->isRequired() && !ui.emailInput->hasValue()) {
-            errors.push_back(i18n("An email address is required."));
-        } else if (!ui.emailInput->hasAcceptableInput()) {
-            errors.push_back(i18n("The entered email address is not valid."));
+        const auto emailError = ui.emailInput->currentError();
+        if (!emailError.isEmpty()) {
+            errors.push_back(emailError);
         }
         if (errors.size() > 1) {
             KMessageBox::errorList(q, i18n("Sorry, the entered data is not acceptable."), errors);

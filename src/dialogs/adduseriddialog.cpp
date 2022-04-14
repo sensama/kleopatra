@@ -188,7 +188,7 @@ private:
         QStringList errors;
         if (ui.resultLabel->text().isEmpty()
                 && !ui.nameInput->isRequired() && !ui.emailInput->isRequired()) {
-            errors.push_back(i18n("Name and email address cannot both be empty."));
+            errors.push_back(i18n("Enter a name or an email address."));
         }
         const auto nameError = ui.nameInput->currentError();
         if (!nameError.isEmpty()) {

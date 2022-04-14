@@ -55,7 +55,7 @@ public:
     /**
      * Sets \p text as text of the label and \p accessibleName as alternative
      * text for assistive tools. If \p accessibleName is empty, then \p text is
-     * used instead.
+     * used instead. Both texts must be plain text.
      *
      * Note: If input is required, then the label is annotated appropriately.
      */
@@ -64,7 +64,7 @@ public:
     /**
      * Sets \p text as hint text for this input field and \p accessibleDescription
      * as alternative text for assistive tools. If \p accessibleDescription is
-     * empty, then \p text is used instead.
+     * empty, then \p text is used instead.  Both texts must be plain text.
      */
     void setHint(const QString &text, const QString &accessibleDescription = {});
 
@@ -89,7 +89,7 @@ public:
     /**
      * Sets \p text as error message to display if a value is required for the
      * input field, but if no value has been entered. If \p text is empty, then
-     * a default message will be used.
+     * a default message will be used. Both texts must be plain text.
      * The optional \p accessibleText is used as alternative text for assistive
      * tools.
      */
@@ -99,7 +99,7 @@ public:
      * Sets \p text as error message to display if the entered value is not accepted
      * by the validator. If \p text is empty, then a default message will be used.
      * The optional \p accessibleText is used as alternative text for assistive
-     * tools.
+     * tools. Both texts must be plain text.
      */
     void setInvalidEntryErrorMessage(const QString &text, const QString &accessibleText = {});
 

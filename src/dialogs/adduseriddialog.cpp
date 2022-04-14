@@ -93,23 +93,23 @@ public:
             const auto regexp = config.readEntry("NAME_regex");
             if (regexp.isEmpty()) {
                 ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
-                ui.nameInput->setHint(i18n("Must not include &lt;, &gt;, and @."),
+                ui.nameInput->setHint(i18n("Must not include <, >, and @."),
                                       i18nc("text for screen readers",
                                             "Must not include less-than sign, greater-than sign, and at sign."));
                 ui.nameInput->setInvalidEntryErrorMessage(
-                    i18n("Error: The name must not include &lt;, &gt;, and @."),
+                    i18n("Error: The name must not include <, >, and @."),
                     i18nc("text for screen readers",
                           "Error: The name must not include less-than sign, greater-than sign, and at sign."));
             } else {
                 ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
                 ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
-                                           "must not include &lt;, &gt;, and @."),
+                                           "must not include <, >, and @."),
                                       i18nc("text for screen readers",
                                             "Must be in the format required by your organization and "
                                             "must not include less-than sign, greater-than sign, and at sign."));
                 ui.nameInput->setInvalidEntryErrorMessage(
                     i18n("Error: The name must be in the format required by your organization and "
-                         "it must not include &lt;, &gt;, and @."),
+                         "it must not include <, >, and @."),
                     i18nc("text for screen readers",
                           "Error: The name must be in the format required by your organization and "
                           "it must not include less-than sign, greater-than sign, and at sign."));

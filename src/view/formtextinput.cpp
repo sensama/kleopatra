@@ -113,6 +113,14 @@ void FormTextInputBase::Private::setHint(const QString &text, const QString &acc
     updateAccessibleNameAndDescription();
 }
 
+namespace
+{
+QString decoratedError(const QString &text)
+{
+    return text.isEmpty() ? QString() : i18nc("@info", "Error: %1", text);
+}
+}
+
 QString FormTextInputBase::Private::errorMessage(Error error) const
 {
     switch (error) {
@@ -154,7 +162,7 @@ void FormTextInputBase::Private::updateError()
     }
 
     const auto currentErrorMessage = mErrorLabel->text();
-    const auto newErrorMessage = errorMessage(mError);
+    const auto newErrorMessage = decoratedError(errorMessage(mError));
     if (newErrorMessage == currentErrorMessage) {
         return;
     }
@@ -169,7 +177,7 @@ void FormTextInputBase::Private::updateError()
     }
     mErrorLabel->setVisible(!newErrorMessage.isEmpty());
     mErrorLabel->setText(newErrorMessage);
-    mErrorLabel->setAccessibleName(accessibleErrorMessage(mError));
+    mErrorLabel->setAccessibleName(decoratedError(accessibleErrorMessage(mError)));
     updateAccessibleNameAndDescription();
 }
 

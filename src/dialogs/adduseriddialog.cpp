@@ -246,5 +246,5 @@ QString AddUserIDDialog::email() const
 
 QString AddUserIDDialog::userID() const
 {
-    return d->ui.resultLabel->text();
+    return buildUserId(name(), email());
 }

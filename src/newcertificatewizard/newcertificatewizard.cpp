@@ -421,7 +421,29 @@ public:
     {
         qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
         ui.setupUi(this);
-        ui.expiryDE->setMinimumDate(QDate::currentDate());
+
+        const auto settings = Kleo::Settings{};
+        {
+            const auto minimumExpiry = std::max(0, settings.validityPeriodInDaysMin());
+            ui.expiryDE->setMinimumDate(QDate::currentDate().addDays(minimumExpiry));
+        }
+        {
+            const auto maximumExpiry = settings.validityPeriodInDaysMax();
+            if (maximumExpiry >= 0) {
+                ui.expiryDE->setMaximumDate(std::max(ui.expiryDE->minimumDate(), QDate::currentDate().addDays(maximumExpiry)));
+            }
+        }
+        if (unlimitedValidityIsAllowed()) {
+            ui.expiryDE->setEnabled(ui.expiryCB->isChecked());
+        } else {
+            ui.expiryCB->setEnabled(false);
+            ui.expiryCB->setChecked(true);
+            if (ui.expiryDE->maximumDate() == ui.expiryDE->minimumDate()) {
+                // validity period is a fixed number of days
+                ui.expiryDE->setEnabled(false);
+            }
+        }
+        ui.expiryDE->setToolTip(validityPeriodHint(ui.expiryDE->minimumDate(), ui.expiryDE->maximumDate()));
         ui.emailLW->setDefaultValue(i18n("new email"));
         ui.dnsLW->setDefaultValue(i18n("new dns name"));
         ui.uriLW->setDefaultValue(i18n("new uri"));
@@ -434,9 +456,47 @@ public:
                 this, [this](bool checked) {
                     ui.expiryDE->setEnabled(checked);
                     if (checked && !ui.expiryDE->isValid()) {
-                        ui.expiryDE->setDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
+                        setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
                     }
                 });
+    }
+
+    QString dateToString(const QDate &date) const
+    {
+        // workaround for QLocale using "yy" way too often for years
+        // stolen from KDateComboBox
+        const auto dateFormat = (locale().dateFormat(QLocale::ShortFormat) //
+                                     .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
+                                     .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
+        return locale().toString(date, dateFormat);
+    }
+
+    QString validityPeriodHint(const QDate &minDate, const QDate &maxDate) const
+    {
+        // Note: minDate is always valid
+        const auto today = QDate::currentDate();
+        if (maxDate.isValid()) {
+            if (maxDate == minDate) {
+                return i18n("The validity period cannot be changed.");
+            } else if (minDate == today) {
+                return i18nc("... between today and <another date>.", "The validity period must end between today and %1.",
+                             dateToString(maxDate));
+            } else {
+                return i18nc("... between <a date> and <another date>.", "The validity period must end between %1 and %2.",
+                             dateToString(minDate), dateToString(maxDate));
+            }
+        } else {
+            if (minDate == today) {
+                return i18n("The validity period must end after today.");
+            } else {
+                return i18nc("... after <a date>.", "The validity period must end after %1.", dateToString(minDate));
+            }
+        }
+    }
+
+    bool unlimitedValidityIsAllowed() const
+    {
+        return !ui.expiryDE->maximumDate().isValid();
     }
 
     void setProtocol(GpgME::Protocol proto)
@@ -609,8 +669,26 @@ public:
 
     void setExpiryDate(QDate date)
     {
-        ui.expiryDE->setDate(date);
-        ui.expiryCB->setChecked(ui.expiryDE->isValid());
+        if (date.isValid()) {
+            // force the date into the allowed range
+            const auto minDate = ui.expiryDE->minimumDate();
+            if (minDate.isValid() && date < minDate) {
+                date = minDate;
+            }
+            const auto maxDate = ui.expiryDE->maximumDate();
+            if (maxDate.isValid() && date > maxDate) {
+                date = maxDate;
+            }
+            ui.expiryDE->setDate(date);
+        } else {
+            // check if unlimited validity is allowed
+            if (unlimitedValidityIsAllowed()) {
+                ui.expiryDE->setDate(date);
+            }
+        }
+        if (ui.expiryCB->isEnabled()) {
+            ui.expiryCB->setChecked(ui.expiryDE->isValid());
+        }
     }
     QDate expiryDate() const
     {
@@ -1919,7 +1997,11 @@ void AdvancedSettingsDialog::loadDefaultExpiration()
         return;
     }
 
-    setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInvalidDate));
+    if (unlimitedValidityIsAllowed()) {
+        setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInvalidDate));
+    } else {
+        setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
+    }
 }
 
 void AdvancedSettingsDialog::loadDefaults()
@@ -2023,11 +2105,6 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
 
     ui.expiryDE->setVisible(protocol == OpenPGP);
     ui.expiryCB->setVisible(protocol == OpenPGP);
-    const auto settings = Kleo::Settings{};
-    if (settings.isImmutable(QStringLiteral("ValidityPeriodInDays"))) {
-        ui.expiryDE->setEnabled(false);
-        ui.expiryCB->setEnabled(false);
-    }
 
     slotKeyMaterialSelectionChanged();
 }

@@ -41,7 +41,19 @@
    <entry key="ValidityPeriodInDays" type="Int">
      <label>Default validity period</label>
      <tooltip>Specifies the default validity period of new OpenPGP keys in days.</tooltip>
-     <whatsthis>This setting specifies how many days a new OpenPGP key is valid by default, or, in other words, after how many days the key will expire. Set this to 0 for unlimited validity. If this setting is not set or if it is set to a negative value, then new OpenPGP keys will be valid for two years by default.</whatsthis>
+     <whatsthis>This setting specifies how many days a new OpenPGP key is valid by default, or, in other words, after how many days the key will expire. Set this to 0 for unlimited validity. If this setting is not set or if it is set to a negative value, then new OpenPGP keys will be valid for two years (possibly clamped to the allowed minimum or maximum validity period) by default.</whatsthis>
+     <default>-1</default>
+   </entry>
+   <entry key="ValidityPeriodInDaysMin" type="Int">
+     <label>Minimum validity period</label>
+     <tooltip>Specifies the minimum validity period of new OpenPGP keys in days.</tooltip>
+     <whatsthis>This setting specifies how many days a new OpenPGP key is valid at least, or, in other words, after how many days the new key will expire at the earliest.</whatsthis>
+     <default>0</default>
+   </entry>
+   <entry key="ValidityPeriodInDaysMax" type="Int">
+     <label>Maximum validity period</label>
+     <tooltip>Specifies the maximum validity period of new OpenPGP keys in days.</tooltip>
+     <whatsthis>This setting specifies how many days a new OpenPGP key is valid at most, or, in other words, after how many days the new key will expire at the latest. If this setting is not set or if it is set to a negative value, then unlimited validity is allowed.</whatsthis>
      <default>-1</default>
    </entry>
    <entry key="HideAdvanced" type="Bool">

@@ -627,41 +627,49 @@ private Q_SLOTS:
         const unsigned int sk_algo = subkeyType();
 
         if (protocol == OpenPGP) {
+            // first update the enabled state, but only if key type is not forced
             if (!keyTypeImmutable) {
                 ui.elgCB->setEnabled(is_dsa(algo));
                 ui.rsaSubCB->setEnabled(is_rsa(algo));
                 ui.ecdhCB->setEnabled(is_ecdsa(algo) || is_eddsa(algo));
-                if (sender() == ui.dsaRB || sender() == ui.rsaRB || sender() == ui.ecdsaRB) {
-                    ui.elgCB->setChecked(is_dsa(algo));
-                    ui.ecdhCB->setChecked(is_ecdsa(algo) || is_eddsa(algo));
-                    ui.rsaSubCB->setChecked(is_rsa(algo));
-                }
                 if (is_rsa(algo)) {
                     ui.encryptionCB->setEnabled(true);
-                    ui.encryptionCB->setChecked(true);
                     ui.signingCB->setEnabled(true);
-                    ui.signingCB->setChecked(true);
                     ui.authenticationCB->setEnabled(true);
                     if (is_rsa(sk_algo)) {
                         ui.encryptionCB->setEnabled(false);
-                        ui.encryptionCB->setChecked(true);
                     } else {
                         ui.encryptionCB->setEnabled(true);
                     }
                 } else if (is_dsa(algo)) {
                     ui.encryptionCB->setEnabled(false);
-                    if (is_elg(sk_algo)) {
-                        ui.encryptionCB->setChecked(true);
-                    } else {
-                        ui.encryptionCB->setChecked(false);
-                    }
                 } else if (is_ecdsa(algo) || is_eddsa(algo)) {
                     ui.signingCB->setEnabled(true);
-                    ui.signingCB->setChecked(true);
                     ui.authenticationCB->setEnabled(true);
                     ui.encryptionCB->setEnabled(false);
-                    ui.encryptionCB->setChecked(is_ecdh(sk_algo));
                 }
+            }
+            // then update the checked state
+            if (sender() == ui.dsaRB || sender() == ui.rsaRB || sender() == ui.ecdsaRB) {
+                ui.elgCB->setChecked(is_dsa(algo));
+                ui.ecdhCB->setChecked(is_ecdsa(algo) || is_eddsa(algo));
+                ui.rsaSubCB->setChecked(is_rsa(algo));
+            }
+            if (is_rsa(algo)) {
+                ui.encryptionCB->setChecked(true);
+                ui.signingCB->setChecked(true);
+                if (is_rsa(sk_algo)) {
+                    ui.encryptionCB->setChecked(true);
+                }
+            } else if (is_dsa(algo)) {
+                if (is_elg(sk_algo)) {
+                    ui.encryptionCB->setChecked(true);
+                } else {
+                    ui.encryptionCB->setChecked(false);
+                }
+            } else if (is_ecdsa(algo) || is_eddsa(algo)) {
+                ui.signingCB->setChecked(true);
+                ui.encryptionCB->setChecked(is_ecdh(sk_algo));
             }
         } else {
             //assert( is_rsa( keyType() ) ); // it can happen through misconfiguration by the admin that no key type is selectable at all

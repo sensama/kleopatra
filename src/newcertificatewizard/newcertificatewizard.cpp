@@ -1942,6 +1942,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui.dnsGB->setVisible(protocol == CMS);
     ui.uriGB->setVisible(protocol == CMS);
 
+    // Technical Details Page
     ui.ecdhCB->setVisible(mECCSupported);
     ui.ecdhKeyCurvesCB->setVisible(mECCSupported);
     ui.ecdsaKeyCurvesCB->setVisible(mECCSupported);
@@ -1971,7 +1972,9 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
             ui.ecdhKeyCurvesCB->removeItem(i);
         }
     }
-    // Technical Details Page
+    ui.certificationCB->setVisible(protocol == OpenPGP);   // gpgsm limitation?
+    ui.authenticationCB->setVisible(protocol == OpenPGP);
+
     if (keyTypeImmutable) {
         ui.rsaRB->setEnabled(false);
         ui.rsaSubCB->setEnabled(false);
@@ -1979,6 +1982,12 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         ui.elgCB->setEnabled(false);
         ui.ecdsaRB->setEnabled(false);
         ui.ecdhCB->setEnabled(false);
+
+        // force usage if key type is forced
+        ui.certificationCB->setEnabled(false);
+        ui.signingCB->setEnabled(false);
+        ui.encryptionCB->setEnabled(false);
+        ui.authenticationCB->setEnabled(false);
     } else {
         ui.rsaRB->setEnabled(true);
         ui.rsaSubCB->setEnabled(protocol == OpenPGP);
@@ -1986,17 +1995,22 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         ui.elgCB->setEnabled(protocol == OpenPGP && !deVsHack);
         ui.ecdsaRB->setEnabled(protocol == OpenPGP);
         ui.ecdhCB->setEnabled(protocol == OpenPGP);
+
+        if (protocol == OpenPGP) {
+            // OpenPGP keys must have certify capability
+            ui.certificationCB->setEnabled(false);
+        }
+        if (protocol == CMS) {
+            ui.encryptionCB->setEnabled(true);
+            ui.rsaKeyStrengthSubCB->setEnabled(false);
+        }
     }
-    ui.certificationCB->setVisible(protocol == OpenPGP);   // gpgsm limitation?
-    ui.authenticationCB->setVisible(protocol == OpenPGP);
-    if (protocol == OpenPGP) {   // pgp keys must have certify capability
+    if (protocol == OpenPGP) {
+        // OpenPGP keys must have certify capability
         ui.certificationCB->setChecked(true);
-        ui.certificationCB->setEnabled(false);
     }
     if (protocol == CMS) {
-        ui.encryptionCB->setEnabled(true);
         ui.rsaSubCB->setChecked(false);
-        ui.rsaKeyStrengthSubCB->setEnabled(false);
     }
 
     ui.expiryDE->setVisible(protocol == OpenPGP);

@@ -263,6 +263,7 @@ set(_kleopatra_SRCS
   commands/createopenpgpkeyfromcardkeyscommand.cpp
   commands/createcsrforcardkeycommand.cpp
   commands/revokekeycommand.cpp
+  commands/revokeuseridcommand.cpp
 
   ${_kleopatra_uiserver_files}
 

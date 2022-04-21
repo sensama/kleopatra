@@ -1,5 +1,11 @@
-/*  SPDX-FileCopyrightText: 2016 Klarälvdalens Datakonsult AB
+/*
+    dialogs/certificatedetailswidget.cpp
+
+    This file is part of Kleopatra, the KDE keymanager
+    SPDX-FileCopyrightText: 2016 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2017 Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -18,6 +24,7 @@
 #include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
+#include "commands/revokeuseridcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
@@ -78,7 +85,7 @@ public:
     void setupPGPProperties();
     void setupSMIMEProperties();
 
-    void revokeUID(const GpgME::UserID &uid);
+    void revokeUserID(const GpgME::UserID &uid);
     void genRevokeCert();
     void certifyClicked();
     void webOfTrustClicked();
@@ -96,6 +103,7 @@ public:
 
     void smimeLinkActivated(const QString &link);
 
+    void updateKey();
     void setUpdatedKey(const GpgME::Key &key);
     void keyListDone(const GpgME::KeyListResult &,
                      const std::vector<GpgME::Key> &, const QString &,
@@ -403,8 +411,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     const bool hasSecret = key.hasSecret();
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
-    // TODO: Enable once implemented
-    const bool canRevokeUID = false; // isOpenPGP && hasSecret
 
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
@@ -430,9 +436,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDTable->clear();
 
     QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags") };
-    if (canRevokeUID) {
-        headers << QString();
-    }
     ui.userIDTable->setColumnCount(headers.count());
     ui.userIDTable->setColumnWidth(0, 200);
     ui.userIDTable->setColumnWidth(1, 200);
@@ -514,26 +517,23 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(3, Qt::ToolTipRole, toolTip);
 
         ui.userIDTable->addTopLevelItem(item);
-
-        if (canRevokeUID) {
-            auto button = new QPushButton;
-            button->setIcon(QIcon::fromTheme(QStringLiteral("entry-delete")));
-            button->setToolTip(i18n("Revoke this user ID"));
-            button->setMaximumWidth(32);
-            QObject::connect(button, &QPushButton::clicked,
-                            q, [this, uid]() { revokeUID(uid); });
-            ui.userIDTable->setItemWidget(item, 4, button);
-        }
     }
     if (!Tags::tagsEnabled()) {
         ui.userIDTable->hideColumn(3);
     }
 }
 
-void CertificateDetailsWidget::Private::revokeUID(const GpgME::UserID &uid)
+void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId)
 {
-    Q_UNUSED(uid)
-    qCWarning(KLEOPATRA_LOG) << "Revoking UserID is not implemented. How did you even get here?!?!";
+    auto cmd = new Commands::RevokeUserIDCommand(userId);
+    cmd->setParentWidget(q);
+    ui.userIDTable->setEnabled(false);
+    connect(cmd, &Command::finished,
+            q, [this]() {
+        ui.userIDTable->setEnabled(true);
+        updateKey();
+    });
+    cmd->start();
 }
 
 void CertificateDetailsWidget::Private::changeExpiration()
@@ -628,6 +628,25 @@ void CertificateDetailsWidget::Private::publishCertificate()
     //TODO
 }
 
+namespace
+{
+bool canCreateCertifications(const GpgME::Key &key)
+{
+    // Note: Key::hasSecret() is also true for offline keys (i.e. keys with a secret key stub that are not stored on a card),
+    // but those keys cannot be used for certifications; therefore, we check whether the primary subkey has a proper secret key
+    // or whether its secret key is stored on a card, so that gpg can ask for the card.
+    return key.canCertify() && (key.subkey(0).isSecret() || key.subkey(0).isCardKey());
+}
+
+bool canRevokeUserID(const GpgME::UserID &userId)
+{
+    const auto key = userId.parent();
+    return (!userId.isNull() //
+            && key.protocol() == GpgME::OpenPGP
+            && canCreateCertifications(key));
+}
+}
+
 void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QPoint &p)
 {
     auto item = ui.userIDTable->itemAt(p);
@@ -651,6 +670,14 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         });
         cmd->start();
     });
+    {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                                      i18nc("@action:inmenu", "Revoke User ID"),
+                                      q, [this, userID]() {
+                                          revokeUserID(userID);
+                                      });
+        action->setEnabled(canRevokeUserID(userID));
+    }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
                         i18n("Revoke Certification..."),
@@ -888,6 +915,11 @@ void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &
     // As we listen for keysmayhavechanged we get the update
     // after updating the keycache.
     KeyCache::mutableInstance()->insert(keys);
+}
+
+void CertificateDetailsWidget::Private::updateKey()
+{
+    q->setKey(key);
 }
 
 void CertificateDetailsWidget::Private::setUpdatedKey(const GpgME::Key &k)

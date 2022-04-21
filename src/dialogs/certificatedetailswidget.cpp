@@ -630,6 +630,35 @@ void CertificateDetailsWidget::Private::publishCertificate()
 
 namespace
 {
+bool isSelfSignature(const GpgME::UserID::Signature &signature)
+{
+    return !qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID());
+}
+
+bool isRevokedOrExpired(const GpgME::UserID &userId)
+{
+    const auto sigs = userId.signatures();
+    std::vector<GpgME::UserID::Signature> selfSigs;
+    std::copy_if(std::begin(sigs), std::end(sigs), std::back_inserter(selfSigs), &isSelfSignature);
+    std::sort(std::begin(selfSigs), std::end(selfSigs));
+    // check the most recent signature
+    const auto sig = !selfSigs.empty() ? selfSigs.back() : GpgME::UserID::Signature{};
+    return !sig.isNull() && (sig.isRevokation() || sig.isExpired());
+}
+
+bool isLastValidUserID(const GpgME::UserID &userId)
+{
+    if (isRevokedOrExpired(userId)) {
+        return false;
+    }
+    const auto userIds = userId.parent().userIDs();
+    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds),
+                                                   [](const auto &u) {
+                                                       return !isRevokedOrExpired(u);
+                                                   });
+    return numberOfValidUserIds == 1;
+}
+
 bool canCreateCertifications(const GpgME::Key &key)
 {
     // Note: Key::hasSecret() is also true for offline keys (i.e. keys with a secret key stub that are not stored on a card),
@@ -643,7 +672,8 @@ bool canRevokeUserID(const GpgME::UserID &userId)
     const auto key = userId.parent();
     return (!userId.isNull() //
             && key.protocol() == GpgME::OpenPGP
-            && canCreateCertifications(key));
+            && canCreateCertifications(key)
+            && !isLastValidUserID(userId));
 }
 }
 

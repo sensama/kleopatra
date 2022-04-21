@@ -363,6 +363,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
 {
     ui.setupUi(q);
 
+    connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
+            q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
     connect(ui.addUserIDBtn, &QPushButton::clicked,
             q, [this]() { addUserID(); });
     connect(ui.changePassphraseBtn, &QPushButton::clicked,
@@ -774,8 +776,6 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.trustChainDetailsBtn->setVisible(false);
 
     ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
-            q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
 
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
     if (trustDomains.empty()) {

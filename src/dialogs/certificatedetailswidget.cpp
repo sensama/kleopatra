@@ -615,8 +615,7 @@ void CertificateDetailsWidget::Private::addUserID()
     QObject::connect(cmd, &Kleo::Commands::AddUserIDCommand::finished,
                      q, [this]() {
                          ui.addUserIDBtn->setEnabled(true);
-                         key.update();
-                         q->setKey(key);
+                         updateKey();
                      });
     ui.addUserIDBtn->setEnabled(false);
     cmd->start();
@@ -710,8 +709,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
                 q, [this]() {
             ui.userIDTable->setEnabled(true);
-            // Trigger an update when done
-            q->setKey(key);
+            updateKey();
         });
         cmd->start();
     });
@@ -732,8 +730,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
             connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
                     q, [this]() {
                 ui.userIDTable->setEnabled(true);
-                // Trigger an update when done
-                q->setKey(key);
+                updateKey();
             });
             cmd->start();
         });
@@ -964,7 +961,8 @@ void CertificateDetailsWidget::Private::keyListDone(const GpgME::KeyListResult &
 
 void CertificateDetailsWidget::Private::updateKey()
 {
-    q->setKey(key);
+    key.update();
+    setUpdatedKey(key);
 }
 
 void CertificateDetailsWidget::Private::setUpdatedKey(const GpgME::Key &k)

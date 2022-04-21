@@ -621,10 +621,21 @@ void CertificateDetailsWidget::Private::addUserID()
     cmd->start();
 }
 
+namespace
+{
+void ensureThatKeyDetailsAreLoaded(GpgME::Key &key)
+{
+    if (key.userID(0).numSignatures() == 0) {
+        key.update();
+    }
+}
+}
+
 void CertificateDetailsWidget::Private::keysMayHaveChanged()
 {
     auto newKey = Kleo::KeyCache::instance()->findByFingerprint(key.primaryFingerprint());
     if (!newKey.isNull()) {
+        ensureThatKeyDetailsAreLoaded(newKey);
         setUpdatedKey(newKey);
     }
 }

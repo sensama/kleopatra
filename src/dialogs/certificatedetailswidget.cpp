@@ -38,6 +38,7 @@
 #include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
+#include <KMessageBox>
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
@@ -525,6 +526,20 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
 void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId)
 {
+    const QString message = xi18nc(
+        "@info",
+        "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?</para>",
+        QString::fromUtf8(userId.id()));
+    auto confirmButton = KStandardGuiItem::yes();
+    confirmButton.setText(i18nc("@action:button", "Revoke User ID"));
+    confirmButton.setToolTip({});
+    const auto choice = KMessageBox::questionYesNo(
+        q->window(), message, i18nc("@title:window", "Confirm Revocation"),
+        confirmButton, KStandardGuiItem::cancel(), {}, KMessageBox::Notify | KMessageBox::WindowModal);
+    if (choice != KMessageBox::Yes) {
+        return;
+    }
+
     auto cmd = new Commands::RevokeUserIDCommand(userId);
     cmd->setParentWidget(q);
     ui.userIDTable->setEnabled(false);

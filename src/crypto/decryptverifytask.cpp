@@ -578,7 +578,7 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
                      ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                              "The decryption is %1.", Formatting::deVsString())
                      : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                             "The decryption <b>is not</b> %1."), Formatting::deVsString())
+                             "The decryption <b>is not</b> %1.", Formatting::deVsString()))
                     + QStringLiteral("<br/>"));
     }
 

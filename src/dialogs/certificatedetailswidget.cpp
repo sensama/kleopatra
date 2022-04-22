@@ -30,6 +30,7 @@
 #include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
 
+#include "utils/keys.h"
 #include "utils/tags.h"
 
 #include <Libkleo/Formatting>
@@ -655,22 +656,6 @@ void CertificateDetailsWidget::Private::publishCertificate()
 
 namespace
 {
-bool isSelfSignature(const GpgME::UserID::Signature &signature)
-{
-    return !qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID());
-}
-
-bool isRevokedOrExpired(const GpgME::UserID &userId)
-{
-    const auto sigs = userId.signatures();
-    std::vector<GpgME::UserID::Signature> selfSigs;
-    std::copy_if(std::begin(sigs), std::end(sigs), std::back_inserter(selfSigs), &isSelfSignature);
-    std::sort(std::begin(selfSigs), std::end(selfSigs));
-    // check the most recent signature
-    const auto sig = !selfSigs.empty() ? selfSigs.back() : GpgME::UserID::Signature{};
-    return !sig.isNull() && (sig.isRevokation() || sig.isExpired());
-}
-
 bool isLastValidUserID(const GpgME::UserID &userId)
 {
     if (isRevokedOrExpired(userId)) {
@@ -682,14 +667,6 @@ bool isLastValidUserID(const GpgME::UserID &userId)
                                                        return !isRevokedOrExpired(u);
                                                    });
     return numberOfValidUserIds == 1;
-}
-
-bool canCreateCertifications(const GpgME::Key &key)
-{
-    // Note: Key::hasSecret() is also true for offline keys (i.e. keys with a secret key stub that are not stored on a card),
-    // but those keys cannot be used for certifications; therefore, we check whether the primary subkey has a proper secret key
-    // or whether its secret key is stored on a card, so that gpg can ask for the card.
-    return key.canCertify() && (key.subkey(0).isSecret() || key.subkey(0).isCardKey());
 }
 
 bool canRevokeUserID(const GpgME::UserID &userId)

@@ -143,6 +143,9 @@ private:
     void setTextWithBlockedSignals(const QString &s);
     void showContextMenu(const QPoint &pos);
     QString errorMessage() const;
+    QIcon statusIcon() const;
+    QString statusToolTip() const;
+    void updateStatusAction();
     void updateErrorLabel();
     void updateAccessibleNameAndDescription();
 
@@ -370,8 +373,6 @@ void CertificateLineEdit::Private::updateKey()
     auto newGroup = KeyGroup();
     if (mailText.isEmpty()) {
         mStatus = Status::Empty;
-        mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-unavailable")));
-        mStatusAction->setToolTip({});
     } else {
         mFilterModel->setFilterFixedString(mailText);
         if (mFilterModel->rowCount() > 1) {
@@ -398,8 +399,6 @@ void CertificateLineEdit::Private::updateKey()
             }
             if (newKey.isNull() && newGroup.isNull()) {
                 mStatus = Status::Ambiguous;
-                mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-question")));
-                mStatusAction->setToolTip(i18n("Multiple matching certificates or groups found"));
             }
         } else if (mFilterModel->rowCount() == 1) {
             const auto index = mFilterModel->index(0, 0);
@@ -408,13 +407,9 @@ void CertificateLineEdit::Private::updateKey()
             Q_ASSERT(!newKey.isNull() || !newGroup.isNull());
             if (newKey.isNull() && newGroup.isNull()) {
                 mStatus = Status::None;
-                mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-                mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
             }
         } else {
             mStatus = Status::None;
-            mStatusAction->setIcon(QIcon::fromTheme(QStringLiteral("emblem-error")));
-            mStatusAction->setToolTip(i18n("No matching certificates or groups found"));
         }
     }
     mKey = newKey;
@@ -423,19 +418,16 @@ void CertificateLineEdit::Private::updateKey()
     if (!mKey.isNull()) {
         /* FIXME: This needs to be solved by a multiple UID supporting model */
         mStatus = Status::Success;
-        mStatusAction->setIcon(Formatting::iconForUid(mKey.userID(0)));
-        mStatusAction->setToolTip(Formatting::validity(mKey.userID(0)));
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
     } else if (!mGroup.isNull()) {
         mStatus = Status::Success;
-        mStatusAction->setIcon(Formatting::validityIcon(mGroup));
-        mStatusAction->setToolTip(Formatting::validity(mGroup));
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
     } else {
         ui.lineEdit.setToolTip({});
     }
 
     mShowDetailsAction->setEnabled(mStatus == Status::Success);
+    updateStatusAction();
     updateErrorLabel();
 
     Q_EMIT q->keyChanged();
@@ -448,9 +440,9 @@ QString CertificateLineEdit::Private::errorMessage() const
     case Status::Success:
         return {};
     case Status::None:
-        return i18n("Error: No matching certificates or groups found");
+        return i18n("No matching certificates or groups found");
     case Status::Ambiguous:
-        return i18n("Error: Multiple matching certificates or groups found");
+        return i18n("Multiple matching certificates or groups found");
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
@@ -458,10 +450,76 @@ QString CertificateLineEdit::Private::errorMessage() const
     return {};
 }
 
+QIcon CertificateLineEdit::Private::statusIcon() const
+{
+    switch (mStatus) {
+    case Status::Empty:
+        return QIcon::fromTheme(QStringLiteral("emblem-unavailable"));
+    case Status::Success:
+        if (!mKey.isNull()) {
+            return Formatting::iconForUid(mKey.userID(0));
+        } else if (!mGroup.isNull()) {
+            return Formatting::validityIcon(mGroup);
+        } else {
+            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key nor group.";
+            return {};
+        }
+    case Status::None:
+    case Status::Ambiguous:
+        if (mEditingInProgress) {
+            return QIcon::fromTheme(QStringLiteral("emblem-question"));
+        } else {
+            return QIcon::fromTheme(QStringLiteral("emblem-error"));
+        }
+    default:
+        qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
+        Q_ASSERT(!"Invalid status");
+    };
+    return {};
+}
+
+QString CertificateLineEdit::Private::statusToolTip() const
+{
+    switch (mStatus) {
+    case Status::Empty:
+        return {};
+    case Status::Success:
+        if (!mKey.isNull()) {
+            return Formatting::validity(mKey.userID(0));
+        } else if (!mGroup.isNull()) {
+            return Formatting::validity(mGroup);
+        } else {
+            qDebug(KLEOPATRA_LOG) << __func__ << "Success, but neither key nor group.";
+            return {};
+        }
+    case Status::None:
+    case Status::Ambiguous:
+        return errorMessage();
+    default:
+        qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
+        Q_ASSERT(!"Invalid status");
+    };
+    return {};
+}
+
+void CertificateLineEdit::Private::updateStatusAction()
+{
+    mStatusAction->setIcon(statusIcon());
+    mStatusAction->setToolTip(statusToolTip());
+}
+
+namespace
+{
+QString decoratedError(const QString &text)
+{
+    return text.isEmpty() ? QString() : i18nc("@info", "Error: %1", text);
+}
+}
+
 void CertificateLineEdit::Private::updateErrorLabel()
 {
     const auto currentErrorMessage = ui.errorLabel.text();
-    const auto newErrorMessage = errorMessage();
+    const auto newErrorMessage = decoratedError(errorMessage());
     if (newErrorMessage == currentErrorMessage) {
         return;
     }

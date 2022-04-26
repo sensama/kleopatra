@@ -35,6 +35,7 @@
 #include <KLocalizedString>
 
 #include <gpgme++/key.h>
+#include <gpgme++/keylistresult.h>
 
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
@@ -52,6 +53,14 @@ Q_DECLARE_METATYPE(GpgME::Key)
 Q_DECLARE_METATYPE(KeyGroup)
 
 static QStringList s_lookedUpKeys;
+
+static QDebug operator<<(QDebug debug, const GpgME::Key &key)
+{
+    const bool oldSetting = debug.autoInsertSpaces();
+    debug.nospace() << "Key(" << Formatting::summaryLine(key) << ", id: " << key.keyID() << ")";
+    debug.setAutoInsertSpaces(oldSetting);
+    return debug.maybeSpace();
+}
 
 namespace
 {
@@ -139,6 +148,7 @@ private:
     void editChanged();
     void editFinished();
     void checkLocate();
+    void onLocateJobResult(QGpgME::Job *job, const QString &email, const KeyListResult &result, const std::vector<GpgME::Key> &keys);
     void openDetailsDialog();
     void setTextWithBlockedSignals(const QString &s);
     void showContextMenu(const QPoint &pos);
@@ -175,6 +185,7 @@ private:
     bool mEditingInProgress = false;
     QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
+    QPointer<QGpgME::Job> mLocateJob;
 };
 
 CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter)
@@ -229,7 +240,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
         mFilterModel->setKeyFilter(mFilter);
     }
 
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::keyListingDone,
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             q, [this]() { updateKey(); });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
             q, [this](const KeyGroup &group) {
@@ -359,9 +370,34 @@ void CertificateLineEdit::Private::checkLocate()
         return;
     }
     s_lookedUpKeys << mailText;
-    qCDebug(KLEOPATRA_LOG) << "Lookup job for" << mailText;
+    if (mLocateJob) {
+        mLocateJob->slotCancel();
+        mLocateJob.clear();
+    }
     auto job = QGpgME::openpgp()->locateKeysJob();
-    job->start({mailText}, /*secretOnly=*/false);
+    connect(job, &QGpgME::KeyListJob::result, q, [this, job, mailText](const KeyListResult &result, const std::vector<GpgME::Key> &keys) {
+        onLocateJobResult(job, mailText, result, keys);
+    });
+    if (auto err = job->start({mailText}, /*secretOnly=*/false)) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Error: Starting" << job << "for" << mailText << "failed with" << err.asString();
+    } else {
+        mLocateJob = job;
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Started" << job << "for" << mailText;
+
+    }
+}
+
+void CertificateLineEdit::Private::onLocateJobResult(QGpgME::Job *job, const QString &email, const KeyListResult &result, const std::vector<GpgME::Key> &keys)
+{
+    if (mLocateJob != job) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Ignoring outdated finished" << job << "for" << email;
+        return;
+    }
+    qCDebug(KLEOPATRA_LOG) << __func__ << job << "for" << email << "finished with" << result.error().asString() << "and keys" << keys;
+    mLocateJob.clear();
+    if (!keys.empty() && !keys.front().isNull()) {
+        KeyCache::mutableInstance()->insert(keys.front());
+    }
 }
 
 void CertificateLineEdit::Private::updateKey()

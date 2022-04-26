@@ -348,11 +348,7 @@ void CertificateLineEdit::Private::editFinished()
 {
     mEditingInProgress = false;
     updateKey();
-    if (!q->key().isNull()) {
-        setTextWithBlockedSignals(Formatting::summaryLine(q->key()));
-    } else if (!q->group().isNull()) {
-        setTextWithBlockedSignals(Formatting::summaryLine(q->group()));
-    } else if (mStatus == Status::None) {
+    if (mStatus == Status::None) {
         checkLocate();
     }
 }
@@ -455,9 +451,15 @@ void CertificateLineEdit::Private::updateKey()
         /* FIXME: This needs to be solved by a multiple UID supporting model */
         mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
+        if (!mEditingInProgress) {
+            setTextWithBlockedSignals(Formatting::summaryLine(mKey));
+        }
     } else if (!mGroup.isNull()) {
         mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
+        if (!mEditingInProgress) {
+            setTextWithBlockedSignals(Formatting::summaryLine(mGroup));
+        }
     } else {
         ui.lineEdit.setToolTip({});
     }

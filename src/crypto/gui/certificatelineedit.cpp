@@ -346,11 +346,14 @@ void CertificateLineEdit::Private::editChanged()
 
 void CertificateLineEdit::Private::editFinished()
 {
-    mEditingInProgress = false;
+    // perform a first update with the "editing in progress" flag still set
     updateKey();
-    if (mStatus == Status::None) {
-        checkLocate();
-    }
+    mEditingInProgress = false;
+    checkLocate();
+    // perform another update with the "editing in progress" flag cleared
+    // after a key locate may have been started; this makes sure that displaying
+    // an error is delayed until the key locate job has finished
+    updateKey();
 }
 
 void CertificateLineEdit::Private::checkLocate()
@@ -393,6 +396,10 @@ void CertificateLineEdit::Private::onLocateJobResult(QGpgME::Job *job, const QSt
     mLocateJob.clear();
     if (!keys.empty() && !keys.front().isNull()) {
         KeyCache::mutableInstance()->insert(keys.front());
+        // inserting the key implicitly triggers an update
+    } else {
+        // explicitly trigger an update to display "no key" error
+        updateKey();
     }
 }
 
@@ -504,7 +511,7 @@ QIcon CertificateLineEdit::Private::statusIcon() const
         }
     case Status::None:
     case Status::Ambiguous:
-        if (mEditingInProgress) {
+        if (mEditingInProgress || mLocateJob) {
             return QIcon::fromTheme(QStringLiteral("emblem-question"));
         } else {
             return QIcon::fromTheme(QStringLiteral("emblem-error"));
@@ -561,7 +568,7 @@ void CertificateLineEdit::Private::updateErrorLabel()
     if (newErrorMessage == currentErrorMessage) {
         return;
     }
-    if (currentErrorMessage.isEmpty() && mEditingInProgress) {
+    if (currentErrorMessage.isEmpty() && (mEditingInProgress || mLocateJob)) {
         // delay showing the error message until editing is finished, so that we
         // do not annoy the user with an error message while they are still
         // entering the recipient;

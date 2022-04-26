@@ -80,7 +80,7 @@ void Commands::RevokeUserIDCommand::Private::startJob()
         finished();
         return;
     }
-    const QString uidToRevoke = QString::fromUtf8(userId.id());
+    const QString uidToRevoke = QString::fromUtf8(engineIsVersion(2, 3, 7) ? userId.uidhash() : userId.id());
     job->startRevUid(userId.parent(), uidToRevoke);
 }
 

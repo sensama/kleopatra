@@ -164,7 +164,7 @@ public:
         watcher.reset(new FileSystemWatcher);
 
         watcher->whitelistFiles(gnupgFileWhitelist());
-        watcher->addPath(gnupgHomeDirectory());
+        watcher->addPaths(gnupgFolderWhitelist());
         watcher->setDelay(1000);
         keyCache->addFileSystemWatcher(watcher);
         keyCache->setGroupConfig(groupConfig);

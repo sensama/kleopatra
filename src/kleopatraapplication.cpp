@@ -231,6 +231,13 @@ void KleopatraApplication::init()
     }
     add_resources();
     DN::setAttributeOrder(Settings{}.attributeOrder());
+    /* Start the gpg-agent early, this is done explicitly
+     * because on an empty keyring our keylistings wont start
+     * the agent. In that case any assuan-connect calls to
+     * the agent will fail. The requested start via the
+     * connection is additionally done in case the gpg-agent
+     * is killed while Kleopatra is running. */
+    startGpgAgent();
     connect(&d->readerStatus, &SmartCard::ReaderStatus::startOfGpgAgentRequested,
             this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();

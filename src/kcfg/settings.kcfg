@@ -87,12 +87,6 @@
      <whatsthis>If false, then Kleopatra will not offer functionality for creating signatures with S/MIME certificates.</whatsthis>
      <default>true</default>
    </entry>
-   <entry key="AutoLoadP15Certs" name="autoLoadP15Certs" type="Bool">
-     <label>Try to load S/MIME certificates from PKCS#15 smartcards</label>
-     <tooltip>Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards</tooltip>
-     <whatsthis>If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is inserted with unkown certificates. This can take a while and blocks the smartcard while the command is running.</whatsthis>
-     <default>true</default>
-   </entry>
  </group>
  <group name="ConfigurationDialog">
    <entry name="ShowAppearanceConfiguration" type="Bool">
@@ -159,6 +153,12 @@
      <whatsthis>Searches on keyservers regardless of the protocol for the smartcards key, regardless
         of the keyserver protocol. Default behavior is to only do this for LDAP keyservers.</whatsthis>
      <default>false</default>
+   </entry>
+   <entry key="AutoLoadP15Certs" name="autoLoadP15Certs" type="Bool">
+     <label>Try to load S/MIME certificates from PKCS#15 smartcards</label>
+     <tooltip>Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards</tooltip>
+     <whatsthis>If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is inserted with unkown certificates. This can take a while and blocks the smartcard while the command is running.</whatsthis>
+     <default>true</default>
    </entry>
  </group>
  <group name="General">

@@ -91,6 +91,10 @@ void LearnCardKeysCommand::doStart()
         detailsDlg->hide();
     }
 
+    if (!showsOutputWindow()) {
+        return;
+    }
+
     const auto dlg = new QProgressDialog(i18n("Loading certificates... (this can take a while)"),
             i18n("Show Details"), 0, 0, d->parentWidgetOrView());
     dlg->setAttribute(Qt::WA_DeleteOnClose);

@@ -31,6 +31,7 @@ protected:
 
 public:
     QDialog *dialog() const;
+    void setShowsOutputWindow(bool show);
 
 private:
     virtual bool preStartHook(QWidget *parentWidget) const;
@@ -50,7 +51,6 @@ protected:
     QString errorString() const;
     void setIgnoresSuccessOrFailure(bool ignore);
     bool ignoresSuccessOrFailure() const;
-    void setShowsOutputWindow(bool show);
     bool showsOutputWindow() const;
 
     QProcess *process();

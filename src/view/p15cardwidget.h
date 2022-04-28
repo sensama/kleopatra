@@ -41,7 +41,6 @@ private:
     QLabel *mSerialNumber = nullptr;
     QLabel *mStatusLabel = nullptr;
     QWidget *mOpenPGPKeysSection = nullptr;
-    QWidget *mCMSKeysSection = nullptr;
     OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;
 };
 

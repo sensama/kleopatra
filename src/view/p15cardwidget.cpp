@@ -54,7 +54,6 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     , mSerialNumber{new QLabel{this}}
     , mStatusLabel{new QLabel{this}}
     , mOpenPGPKeysSection{new QWidget{this}}
-    , mCMSKeysSection{new QWidget{this}}
     , mOpenPGPKeysWidget{new OpenPGPKeyCardWidget{this}}
 {
     // Set up the scroll area
@@ -99,41 +98,8 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         l->addWidget(mOpenPGPKeysWidget);
         l->addWidget(new KSeparator(Qt::Horizontal));
     }
-    {
-        auto l = new QVBoxLayout{mCMSKeysSection};
-        /* For an improvement we need to make a hybrid of
-         * the NetKeyWidget with the treeview and all the
-         * CMS Related actions here, too. For now it
-         * is just a button that is shown when we can
-         * learn additional CMS keys from the smartcard. */
-        auto hl = new QHBoxLayout;
-        auto learnBtn = new QPushButton(i18n("Load additional certificates"));
-        learnBtn->setToolTip(i18n("Search for additional certificates on the card and add them to the list. "
-                                  "The certificates might be usable for S/MIME."));
-        auto learnLbl = new QLabel();
-        learnLbl->setVisible(false);
-        hl->addWidget(learnBtn);
-        hl->addStretch(1);
-        l->addLayout(hl);
-        l->addWidget(learnLbl);
-        connect(learnBtn, &QPushButton::clicked, this, [this, learnBtn, learnLbl] () {
-            learnBtn->setEnabled(false);
-            auto cmd = new LearnCardKeysCommand(GpgME::CMS);
-            cmd->setParentWidget(this);
-            cmd->start();
-            learnLbl->setVisible(true);
-            learnLbl->setText(i18n("Loading certificates..."));
-
-            connect(cmd, &Command::finished, this, [learnBtn, learnLbl] () {
-                learnLbl->setText(i18n("Certificates added to the certificate list."));
-            });
-        });
-        l->addWidget(new KSeparator(Qt::Horizontal));
-    }
     mOpenPGPKeysSection->setVisible(false);
-    mCMSKeysSection->setVisible(false);
     areaVLay->addWidget(mOpenPGPKeysSection);
-    areaVLay->addWidget(mCMSKeysSection);
 
     areaVLay->addStretch(1);
 }
@@ -208,12 +174,22 @@ void P15CardWidget::setCard(const P15Card *card)
     }
 
     /* Check if additional keys could be available */
+    if (!Settings().autoLoadP15Certs()) {
+        return;
+    }
     for (const auto &info: card->keyInfos()) {
         const auto key = KeyCache::instance()->findSubkeyByKeyGrip(info.grip);
         if (key.isNull()) {
-            mCMSKeysSection->setVisible(true);
-            break;
+            auto cmd = new LearnCardKeysCommand(GpgME::CMS);
+            cmd->setParentWidget(this);
+            cmd->setShowsOutputWindow(false);
+            qCDebug(KLEOPATRA_LOG) << "Did not find:" << info.grip.c_str() << "Starting gpgsm --learn.";
+            cmd->start();
+            connect(cmd, &Command::finished, this, [] () {
+                qCDebug(KLEOPATRA_LOG) << "Learn command finished.";
+            });
+            return;
         }
     }
-
+    qCDebug(KLEOPATRA_LOG) << "All certificates from card cached - Not learning.";
 }

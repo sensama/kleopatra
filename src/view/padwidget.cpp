@@ -273,7 +273,6 @@ public:
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
     {
         updateCommitButton();
-        mDecryptBtn->setEnabled(true);
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);
 
@@ -311,6 +310,7 @@ public:
         mEdit->setPlainText(QString::fromUtf8(mOutputData));
         mOutputData.clear();
         mRevertBtn->setVisible(true);
+        mDecryptBtn->setEnabled(true);
 
         const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
         if (decryptVerifyResult) {
@@ -346,8 +346,7 @@ public:
             KMessageBox::error(q,
                     e.message(),
                     i18nc("@title", "Error in crypto action"));
-            mCryptBtn->setEnabled(true);
-            mDecryptBtn->setEnabled(true);
+            updateCommitButton();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
             return;

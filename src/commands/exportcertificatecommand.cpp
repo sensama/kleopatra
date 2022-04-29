@@ -167,7 +167,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
             return true;
         }
 
-        /* Unkown protocol ask for first PGP Export file name */
+        /* Unknown protocol ask for first PGP Export file name */
         if (fileNames[GpgME::OpenPGP].isEmpty() && !requestFileNames(GpgME::OpenPGP)) {
             return false;
         }

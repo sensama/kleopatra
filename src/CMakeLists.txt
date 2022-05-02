@@ -220,6 +220,7 @@ set(_kleopatra_SRCS
   commands/importcertificatefromkeyservercommand.cpp
   commands/lookupcertificatescommand.cpp
   commands/reloadkeyscommand.cpp
+  commands/refreshcertificatecommand.cpp
   commands/refreshx509certscommand.cpp
   commands/refreshopenpgpcertscommand.cpp
   commands/deletecertificatescommand.cpp

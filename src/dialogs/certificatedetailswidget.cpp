@@ -23,6 +23,7 @@
 #include "commands/changepassphrasecommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/certifycertificatecommand.h"
+#include "commands/refreshcertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokeuseridcommand.h"
 #include "commands/adduseridcommand.h"
@@ -89,6 +90,7 @@ public:
 
     void revokeUserID(const GpgME::UserID &uid);
     void genRevokeCert();
+    void refreshCertificate();
     void certifyClicked();
     void webOfTrustClicked();
     void exportClicked();
@@ -127,6 +129,7 @@ private:
         QPushButton *changePassphraseBtn;
         QPushButton *trustChainDetailsBtn;
         QPushButton *genRevokeBtn;
+        QPushButton *refreshBtn;
         QPushButton *certifyBtn;
         QGroupBox *groupBox;
         QGridLayout *gridLayout;
@@ -186,6 +189,12 @@ private:
                                      u"</html>");
 
             hboxLayout_1->addWidget(genRevokeBtn);
+
+            refreshBtn = new QPushButton{i18nc("@action:button", "Refresh"), parent};
+#ifndef QGPGME_SUPPORTS_KEY_REFRESH
+            refreshBtn->setVisible(false);
+#endif
+            hboxLayout_1->addWidget(refreshBtn);
 
             certifyBtn = new QPushButton(i18nc("@action:button", "Certify"), parent);
 
@@ -393,6 +402,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { showMoreDetails(); });
     connect(ui.publishing, &QPushButton::pressed,
             q, [this]() { publishCertificate(); });
+    connect(ui.refreshBtn, &QPushButton::clicked,
+            q, [this]() { refreshCertificate(); });
     connect(ui.certifyBtn, &QPushButton::clicked,
             q, [this]() { certifyClicked(); });
     connect(ui.webOfTrustBtn, &QPushButton::clicked,
@@ -582,6 +593,17 @@ void CertificateDetailsWidget::Private::genRevokeCert()
                          ui.genRevokeBtn->setEnabled(true);
                      });
     ui.genRevokeBtn->setEnabled(false);
+    cmd->start();
+}
+
+void CertificateDetailsWidget::Private::refreshCertificate()
+{
+    auto cmd = new Kleo::RefreshCertificateCommand{key};
+    QObject::connect(cmd, &Kleo::RefreshCertificateCommand::finished,
+                     q, [this]() {
+                         ui.refreshBtn->setEnabled(true);
+                     });
+    ui.refreshBtn->setEnabled(false);
     cmd->start();
 }
 

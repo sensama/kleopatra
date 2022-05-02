@@ -50,3 +50,6 @@
 
 /* Defined if QGpgME supports revoking own OpenPGP keys */
 #cmakedefine QGPGME_SUPPORTS_KEY_REVOCATION 1
+
+/* Defined if QGpgME supports refreshing keys */
+#cmakedefine QGPGME_SUPPORTS_KEY_REFRESH 1

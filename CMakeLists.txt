@@ -161,7 +161,7 @@ include_directories(
     )
 
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
-ecm_set_disabled_deprecation_versions(QT 5.14.0 KF 5.93.0)
+ecm_set_disabled_deprecation_versions(QT 5.14.0 KF 5.94.0)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")

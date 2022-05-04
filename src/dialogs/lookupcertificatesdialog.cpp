@@ -21,7 +21,6 @@
 #include <KSeparator>
 #include <KSharedConfig>
 
-#include <QDialog>
 #include <QDialogButtonBox>
 #include <QFrame>
 #include <QGridLayout>

@@ -8,7 +8,6 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-kleopatra.h>
 
 #include "revokekeydialog.h"
 #include "utils/accessibility.h"

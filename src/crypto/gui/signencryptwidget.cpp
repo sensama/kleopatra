@@ -28,7 +28,6 @@
 
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
-#include <Libkleo/KeyGroup>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/KeyListSortFilterProxyModel>

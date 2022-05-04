@@ -190,7 +190,7 @@ private:
 
             hboxLayout_1->addWidget(genRevokeBtn);
 
-            refreshBtn = new QPushButton{i18nc("@action:button", "Refresh"), parent};
+            refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
 #ifndef QGPGME_SUPPORTS_KEY_REFRESH
             refreshBtn->setVisible(false);
 #endif
@@ -863,6 +863,8 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
         SHOW_ROW(trustedIntroducer)
         ui.trustedIntroducer->setText(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
     }
+
+    ui.refreshBtn->setToolTip(i18nc("@ingo:tooltip", "Update the key from external sources."));
 }
 
 static QString formatDNToolTip(const Kleo::DN &dn)
@@ -921,6 +923,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
     ui.smimeOwner->setToolTip(formatDNToolTip(dn));
 
+    ui.refreshBtn->setToolTip(i18nc("@ingo:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }
 
 void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)

@@ -120,7 +120,7 @@ void RefreshCertificateCommand::Private::start()
     }
     job = refreshJob.release();
 #else
-    KMessageBox::error(parentWidgetOrView(), i18n("The backend does not support refreshing individual certificates."));
+    KMessageBox::error(parentWidgetOrView(), i18n("The backend does not support updating individual certificates."));
     finished();
 #endif
 }
@@ -153,7 +153,7 @@ std::unique_ptr<QGpgME::RefreshOpenPGPKeysJob> RefreshCertificateCommand::Privat
         showError(err);
         return {};
     }
-    Q_EMIT q->info(i18nc("@info:status", "Refreshing key..."));
+    Q_EMIT q->info(i18nc("@info:status", "Updating key..."));
 
     return refreshJob;
 }
@@ -175,7 +175,7 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
         showError(err);
         return {};
     }
-    Q_EMIT q->info(i18nc("@info:status", "Refreshing key..."));
+    Q_EMIT q->info(i18nc("@info:status", "Updating certificate..."));
 
     return refreshJob;
 }
@@ -241,7 +241,7 @@ void RefreshCertificateCommand::Private::onOpenPGPJobResult(const ImportResult &
 
     if (!result.error().isCanceled()) {
         information(informationOnChanges(result),
-                    i18nc("@title:window", "Key Refreshed"));
+                    i18nc("@title:window", "Key Updated"));
     }
     finished();
 }
@@ -255,8 +255,8 @@ void RefreshCertificateCommand::Private::onSMIMEJobResult(const Error &err)
     }
 
     if (!err.isCanceled()) {
-        information(i18nc("@info", "The key was refreshed successfully."),
-                    i18nc("@title:window", "Key Refreshed"));
+        information(i18nc("@info", "The certificate has been updated."),
+                    i18nc("@title:window", "Certificate Updated"));
     }
     finished();
 }
@@ -264,10 +264,10 @@ void RefreshCertificateCommand::Private::onSMIMEJobResult(const Error &err)
 void RefreshCertificateCommand::Private::showError(const Error &err)
 {
     error(xi18nc("@info",
-                 "<para>An error occurred while refreshing the key:</para>"
+                 "<para>An error occurred while updating the certificate:</para>"
                  "<para><message>%1</message></para>",
                  QString::fromLocal8Bit(err.asString())),
-          i18nc("@title:window", "Refreshing Failed"));
+          i18nc("@title:window", "Update Failed"));
 }
 
 RefreshCertificateCommand::RefreshCertificateCommand(const GpgME::Key &key)

@@ -44,23 +44,23 @@ public:
     ~Command() override;
 
     enum Restriction {
-        NoRestriction      = 0,
-        NeedSelection      = 1,
-        OnlyOneKey         = 2,
-        NeedSecretKey      = 4,
-        MustNotBeSecretKey = 8,
-        MustBeOpenPGP      = 16,
-        MustBeCMS          = 32,
+        NoRestriction      = 0x0000,
+        NeedSelection      = 0x0001,
+        OnlyOneKey         = 0x0002,
+        NeedSecretKey      = 0x0004,
+        MustNotBeSecretKey = 0x0008,
+        MustBeOpenPGP      = 0x0010,
+        MustBeCMS          = 0x0020,
 
         // esoteric:
-        MayOnlyBeSecretKeyIfOwnerTrustIsNotYetUltimate = 64, // for set-owner-trust
+        MayOnlyBeSecretKeyIfOwnerTrustIsNotYetUltimate = 0x0040, // for set-owner-trust
 
-        AnyCardHasNullPin   = 128,
-        AnyCardCanLearnKeys = 256,
+        AnyCardHasNullPin   = 0x0080,
+        AnyCardCanLearnKeys = 0x0100,
 
-        MustBeRoot          = 512,
-        MustBeTrustedRoot   = 1024 | MustBeRoot,
-        MustBeUntrustedRoot = 2048 | MustBeRoot,
+        MustBeRoot          = 0x0200,
+        MustBeTrustedRoot   = 0x0400 | MustBeRoot,
+        MustBeUntrustedRoot = 0x0800 | MustBeRoot,
 
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1

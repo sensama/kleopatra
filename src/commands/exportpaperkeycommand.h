@@ -32,7 +32,7 @@ public:
 
     static Restrictions restrictions()
     {
-        return OnlyOneKey | NeedSecretKey | MustBeOpenPGP;
+        return OnlyOneKey | NeedSecretKeyData | MustBeOpenPGP;
     }
 
 protected Q_SLOTS:

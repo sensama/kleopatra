@@ -68,6 +68,7 @@
 #include <QAction>
 
 #include <algorithm>
+#include <iterator>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -762,6 +763,10 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::NeedSecretKey;
     } else if (!std::any_of(keys.cbegin(), keys.cend(), std::mem_fn(&Key::hasSecret))) {
         result |= Command::MustNotBeSecretKey;
+    }
+
+    if (std::all_of(std::begin(keys), std::end(keys), [](const auto &k) { return k.subkey(0).isSecret() && !k.subkey(0).isCardKey(); })) {
+        result |= Command::NeedSecretKeyData;
     }
 
     if (std::all_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.protocol() == OpenPGP; })) {

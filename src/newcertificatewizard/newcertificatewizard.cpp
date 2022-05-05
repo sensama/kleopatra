@@ -667,19 +667,23 @@ public:
         return ui.authenticationCB->isChecked();
     }
 
+    QDate forceDateIntoAllowedRange(QDate date) const
+    {
+        const auto minDate = ui.expiryDE->minimumDate();
+        if (minDate.isValid() && date < minDate) {
+            date = minDate;
+        }
+        const auto maxDate = ui.expiryDE->maximumDate();
+        if (maxDate.isValid() && date > maxDate) {
+            date = maxDate;
+        }
+        return date;
+    }
+
     void setExpiryDate(QDate date)
     {
         if (date.isValid()) {
-            // force the date into the allowed range
-            const auto minDate = ui.expiryDE->minimumDate();
-            if (minDate.isValid() && date < minDate) {
-                date = minDate;
-            }
-            const auto maxDate = ui.expiryDE->maximumDate();
-            if (maxDate.isValid() && date > maxDate) {
-                date = maxDate;
-            }
-            ui.expiryDE->setDate(date);
+            ui.expiryDE->setDate(forceDateIntoAllowedRange(date));
         } else {
             // check if unlimited validity is allowed
             if (unlimitedValidityIsAllowed()) {
@@ -692,7 +696,7 @@ public:
     }
     QDate expiryDate() const
     {
-        return ui.expiryCB->isChecked() ? ui.expiryDE->date() : QDate();
+        return ui.expiryCB->isChecked() ? forceDateIntoAllowedRange(ui.expiryDE->date()) : QDate();
     }
 
 Q_SIGNALS:

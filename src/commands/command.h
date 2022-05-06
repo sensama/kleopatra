@@ -48,7 +48,7 @@ public:
         NeedSelection      = 0x0001,
         OnlyOneKey         = 0x0002,
         NeedSecretKey      = 0x0004, //< command performs secret key operations
-        MustNotBeSecretKey = 0x0008,
+        NeedSecretKeyData  = 0x0008, //< command needs access to the secret key data
         MustBeOpenPGP      = 0x0010,
         MustBeCMS          = 0x0020,
 
@@ -61,8 +61,6 @@ public:
         MustBeRoot          = 0x0200,
         MustBeTrustedRoot   = 0x0400 | MustBeRoot,
         MustBeUntrustedRoot = 0x0800 | MustBeRoot,
-
-        NeedSecretKeyData   = 0x1000,
 
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1

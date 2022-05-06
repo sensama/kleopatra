@@ -759,7 +759,14 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::OnlyOneKey;
     }
 
-    if (std::all_of(keys.cbegin(), keys.cend(), std::mem_fn(&Key::hasSecret))) {
+#if GPGME_VERSION_NUMBER >= 0x011102 // 1.17.2
+    // we need to check the primary subkey because Key::hasSecret() is also true if just the secret key stub of an offline key is available
+    const auto primaryKeyCanBeUsedForSecretKeyOperations = [](const auto &k) { return k.subkey(0).isSecret(); };
+#else
+    // older versions of GpgME did not always set the secret flag for card keys
+    const auto primaryKeyCanBeUsedForSecretKeyOperations = [](const auto &k) { return k.subkey(0).isSecret() || k.subkey(0).isCardKey(); };
+#endif
+    if (std::all_of(keys.cbegin(), keys.cend(), primaryKeyCanBeUsedForSecretKeyOperations)) {
         result |= Command::NeedSecretKey;
     } else if (!std::any_of(keys.cbegin(), keys.cend(), std::mem_fn(&Key::hasSecret))) {
         result |= Command::MustNotBeSecretKey;

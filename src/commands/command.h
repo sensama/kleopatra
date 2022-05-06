@@ -47,7 +47,7 @@ public:
         NoRestriction      = 0x0000,
         NeedSelection      = 0x0001,
         OnlyOneKey         = 0x0002,
-        NeedSecretKey      = 0x0004,
+        NeedSecretKey      = 0x0004, //< command performs secret key operations
         MustNotBeSecretKey = 0x0008,
         MustBeOpenPGP      = 0x0010,
         MustBeCMS          = 0x0020,

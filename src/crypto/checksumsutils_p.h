@@ -9,53 +9,52 @@
 
 #pragma once
 
-#include <QFile>
-
 #include <Libkleo/ChecksumDefinition>
+
 #include "kleopatra_debug.h"
 
+#include <QFile>
+#include <QRegularExpression>
+#include <QTextStream>
+
 #ifdef Q_OS_UNIX
-// can we use QAbstractFileEngine::caseSensitive()?
+// Can we use QAbstractFileEngine::caseSensitive()?
 static const Qt::CaseSensitivity fs_cs = Qt::CaseSensitive;
+
+static const QRegularExpression::PatternOption s_regex_cs = QRegularExpression::NoPatternOption;
 #else
 static const Qt::CaseSensitivity fs_cs = Qt::CaseInsensitive;
+static const QRegularExpression::PatternOption s_regex_cs = QRegularExpression::CaseInsensitiveOption;
 #endif
 
-static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<Kleo::ChecksumDefinition> > &checksumDefinitions)
+static QList<QRegularExpression> get_patterns(const std::vector< std::shared_ptr<Kleo::ChecksumDefinition> > &checksumDefinitions)
 {
-    QList<QRegExp> result;
+    QList<QRegularExpression> result;
     for (const std::shared_ptr<Kleo::ChecksumDefinition> &cd : checksumDefinitions)
         if (cd) {
             const auto patterns = cd->patterns();
             for (const QString &pattern : patterns) {
-                result.push_back(QRegExp(pattern, fs_cs));
+                result.push_back(QRegularExpression(QRegularExpression::anchoredPattern(pattern), s_regex_cs));
             }
         }
     return result;
 }
 
-namespace
-{
-
 struct matches_any : std::unary_function<QString, bool> {
-    const QList<QRegExp> m_regexps;
-    explicit matches_any(const QList<QRegExp> &regexps) : m_regexps(regexps) {}
+    const QList<QRegularExpression> m_regexps;
+    explicit matches_any(const QList<QRegularExpression> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const
     {
         return std::any_of(m_regexps.cbegin(), m_regexps.cend(),
-                           [s](const QRegExp &rx) { return rx.exactMatch(s); });
+                           [s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
     }
 };
-}
 
-namespace
-{
 struct File {
     QString name;
     QByteArray checksum;
     bool binary;
 };
-}
 
 static QString decode(const QString &encoded)
 {
@@ -89,15 +88,16 @@ static std::vector<File> parse_sum_file(const QString &fileName)
     QFile f(fileName);
     if (f.open(QIODevice::ReadOnly)) {
         QTextStream s(&f);
-        QRegExp rx(QLatin1String("(\\?)([a-f0-9A-F]+) ([ *])([^\n]+)\n*"));
+        static const QRegularExpression rx(QRegularExpression::anchoredPattern(uR"((\\?)([a-f0-9A-F]+) ([ *])([^\\n]+)\\n*)"));
         while (!s.atEnd()) {
             const QString line = s.readLine();
-            if (rx.exactMatch(line)) {
-                Q_ASSERT(!rx.cap(4).endsWith(QLatin1Char('\n')));
+            QRegularExpressionMatch match = rx.match(line);
+            if (match.hasMatch()) {
+                Q_ASSERT(!match.capturedView(4).endsWith(QLatin1Char('\n')));
                 const File file = {
-                    rx.cap(1) == QLatin1String("\\") ? decode(rx.cap(4)) : rx.cap(4),
-                    rx.cap(2).toLatin1(),
-                    rx.cap(3) == QLatin1String("*"),
+                    match.capturedView(1) == QLatin1String("\\") ? decode(match.captured(4)) : match.captured(4),
+                    match.capturedView(2).toLatin1(),
+                    match.capturedView(3) == QLatin1String("*"),
                 };
                 files.push_back(file);
             }
@@ -106,7 +106,6 @@ static std::vector<File> parse_sum_file(const QString &fileName)
     return files;
 }
 
-
 static std::shared_ptr<Kleo::ChecksumDefinition> filename2definition(const QString &fileName,
         const std::vector< std::shared_ptr<Kleo::ChecksumDefinition> > &checksumDefinitions)
 {
@@ -114,7 +113,8 @@ static std::shared_ptr<Kleo::ChecksumDefinition> filename2definition(const QStri
         if (cd) {
             const auto patterns = cd->patterns();
             for (const QString &pattern : patterns) {
-                if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
+                const QRegularExpression re(QRegularExpression::anchoredPattern(pattern), s_regex_cs);
+                if (re.match(fileName).hasMatch()) {
                     return cd;
                 }
             }

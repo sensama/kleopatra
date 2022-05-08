@@ -72,16 +72,14 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 }
 #endif
 
-
-namespace
-{
+namespace {
 struct matches_none_of : std::unary_function<QString, bool> {
-    const QList<QRegExp> m_regexps;
-    explicit matches_none_of(const QList<QRegExp> &regexps) : m_regexps(regexps) {}
+    const QList<QRegularExpression> m_regexps;
+    explicit matches_none_of(const QList<QRegularExpression> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const
     {
         return std::none_of(m_regexps.cbegin(), m_regexps.cend(),
-                            [&s](const QRegExp &rx) { return rx.exactMatch(s); });
+                            [&s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
     }
 };
 }
@@ -219,7 +217,7 @@ struct SumFile {
 
 }
 
-static QStringList filter_checksum_files(QStringList l, const QList<QRegExp> &rxs)
+static QStringList filter_checksum_files(QStringList l, const QList<QRegularExpression> &rxs)
 {
     l.erase(std::remove_if(l.begin(), l.end(),
                            matches_none_of(rxs)),
@@ -325,7 +323,7 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
         const std::function<void(int)> &progress,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    const QList<QRegExp> patterns = get_patterns(checksumDefinitions);
+    const QList<QRegularExpression> patterns = get_patterns(checksumDefinitions);
 
     const matches_any is_sum_file(patterns);
 
@@ -419,10 +417,11 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
 
 static QStringList c_lang_environment()
 {
+    static const QRegularExpression re(QRegularExpression::anchoredPattern(u"LANG=.*"), s_regex_cs);
     QStringList env = QProcess::systemEnvironment();
     env.erase(std::remove_if(env.begin(), env.end(),
                              [](const QString &str) {
-                                 return QRegExp(QLatin1String("^LANG=.*"), fs_cs).exactMatch(str);
+                                 return re.match(str).hasMatch();
                              }),
               env.end());
     env.push_back(QStringLiteral("LANG=C"));

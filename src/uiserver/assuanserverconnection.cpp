@@ -47,7 +47,7 @@
 #include <QPointer>
 #include <QFileInfo>
 #include <QStringList>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QWidget>
 #include <QCoreApplication>
 
@@ -356,13 +356,14 @@ private:
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         const QString str = QString::fromUtf8(line);
-        QRegExp rx(QLatin1String("(\\d+)(?:\\s+(.*))?"));
-        if (!rx.exactMatch(str)) {
+        static const QRegularExpression rx(QRegularExpression::anchoredPattern(uR"((\d+)(?:\s+(.*))?)"));
+        const QRegularExpressionMatch match = rx.match(str);
+        if (!match.hasMatch()) {
             static const QString errorString = i18n("Parse error");
             return assuan_process_done_msg(ctx_, gpg_error(GPG_ERR_ASS_SYNTAX), errorString);
         }
         bool ok = false;
-        if (const qulonglong id = rx.cap(1).toULongLong(&ok)) {
+        if (const qulonglong id = match.captured(1).toULongLong(&ok)) {
             if (ok && id <= std::numeric_limits<unsigned int>::max()) {
                 SessionDataHandler::instance()->enterSession(id);
                 conn.sessionId = id;
@@ -371,8 +372,10 @@ private:
                 return assuan_process_done_msg(ctx_, gpg_error(GPG_ERR_ASS_SYNTAX), errorString);
             }
         }
-        if (!rx.cap(2).isEmpty()) {
-            conn.sessionTitle = rx.cap(2);
+
+        const QString cap2 = match.captured(2);
+        if (!cap2.isEmpty()) {
+            conn.sessionTitle = cap2;
         }
         qCDebug(KLEOPATRA_LOG) << "session_handler: "
                                << "id=" << static_cast<unsigned long>(conn.sessionId)

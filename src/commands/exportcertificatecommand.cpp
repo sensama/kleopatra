@@ -30,7 +30,6 @@
 
 #include <QMap>
 #include <QPointer>
-#include <QRegExp>
 #include <QFileInfo>
 
 #include <algorithm>
@@ -202,9 +201,13 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
             /* If the user has already selected a PGP file name then use that as basis
              * for a proposal for the S/MIME file. */
             proposedFileName = fileNames[GpgME::OpenPGP];
-            proposedFileName.replace(QRegExp(QStringLiteral(".asc$")), QStringLiteral(".pem"));
-            proposedFileName.replace(QRegExp(QStringLiteral(".gpg$")), QStringLiteral(".der"));
-            proposedFileName.replace(QRegExp(QStringLiteral(".pgp$")), QStringLiteral(".der"));
+            const int idx = proposedFileName.size() - 4;
+            if (proposedFileName.endsWith(QLatin1String(".asc"))) {
+                proposedFileName.replace(idx, 4, QLatin1String(".pem"));
+            }
+            if (proposedFileName.endsWith(QLatin1String(".gpg")) || proposedFileName.endsWith(QLatin1String(".pgp"))) {
+                proposedFileName.replace(idx, 4, QLatin1String(".der"));
+            }
         }
     }
 

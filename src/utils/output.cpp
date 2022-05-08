@@ -574,8 +574,8 @@ void FileOutput::doFinalize()
          * rename and remove. So if we can't find our temporary file we try
          * to workaround that bug. */
         qCDebug(KLEOPATRA_LOG) << "failure to find " << tmpFileName;
-        if (tmpFileName.startsWith(QStringLiteral("UNC"))) {
-            tmpFileName.replace(QRegExp(QStringLiteral("^UNC")), QStringLiteral("/"));
+        if (tmpFileName.startsWith(QLatin1String("UNC"))) {
+            tmpFileName.replace(0, strlen("UNC"), QLatin1Char('/'));
             qtbug83365_workaround = true;
         }
         const QFileInfo fi2(tmpFileName);

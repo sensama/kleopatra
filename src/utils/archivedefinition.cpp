@@ -140,7 +140,7 @@ static void parse_command(QString cmdline, const QString &id, const QString &whi
     l = KShell::splitArgs(cmdline, KShell::AbortOnMeta | KShell::TildeExpand, &errors);
     l = l.replaceInStrings(QStringLiteral("__files_go_here__"), FILE_PLACEHOLDER);
     l = l.replaceInStrings(QStringLiteral("__file7Bit_go_here__"), FILE_PLACEHOLDER_7BIT);
-    if (l.indexOf(QRegExp(QLatin1String(".*__path_goes_here__.*"))) >= 0) {
+    if (l.indexOf(QRegularExpression(QLatin1String(".*__path_goes_here__.*"))) >= 0) {
         l = l.replaceInStrings(QStringLiteral("__path_goes_here__"), ArchiveDefinition::installPath());
     }
     if (errors == KShell::BadQuoting) {
@@ -299,7 +299,7 @@ private:
              * the chars and replace them by _ to avoid completely broken
              * folder names when unpacking. This is only relevant for the
              * unpacked folder and does not effect files in the archive. */
-            const QRegExp non7Bit(QStringLiteral("[^\\x{0000}-\\x{007F}]"));
+            const QRegularExpression non7Bit(QLatin1String(R"([^\x{0000}-\x{007F}])"));
             QString underscore_filename = file;
             underscore_filename.replace(non7Bit, QStringLiteral("_"));
             copy.replaceInStrings(FILE_PLACEHOLDER_7BIT, underscore_filename);

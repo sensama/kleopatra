@@ -20,7 +20,6 @@
 #include <KLocalizedString>
 #include <QSaveFile>
 
-#include <QRegExp>
 #include <QThread>
 #include <QMutex>
 #include <QMutexLocker>
@@ -276,19 +275,21 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
 
     qCDebug(KLEOPATRA_LOG) << qPrintable(key) << " -> " << qPrintable(keyColon);
 
-    //               ( 1)    (                         2                           )    (  3  )( 4)
-    QRegExp rx(QLatin1String("\\s*(!?)\\s*([a-fA-F0-9]{40}|(?:[a-fA-F0-9]{2}:){19}[a-fA-F0-9]{2})\\s*([SsPp*])(.*)"));
+    //                                       ( 1)   (                         2                           )   (  3    )( 4)
+    static const char16_t pattern[] = uR"(\s*(!?)\s*([a-fA-F0-9]{40}|(?:[a-fA-F0-9]{2}:){19}[a-fA-F0-9]{2})\s*([SsPp*])(.*))";
+    static const QRegularExpression rx(QRegularExpression::anchoredPattern(pattern));
     bool found = false;
 
     for (const QByteArray &rawLine : std::as_const(trustListFileContents)) {
 
         const QString line = QString::fromLatin1(rawLine.data(), rawLine.size());
-        if (!rx.exactMatch(line)) {
+        const QRegularExpressionMatch match = rx.match(line);
+        if (!match.hasMatch()) {
             qCDebug(KLEOPATRA_LOG) << "line \"" << rawLine.data() << "\" does not match";
             out.write(rawLine + '\n');
             continue;
         }
-        const QString cap2 = rx.cap(2);
+        const QString cap2 = match.captured(2);
         if (cap2 != key && cap2 != keyColon) {
             qCDebug(KLEOPATRA_LOG) << qPrintable(key) << " != "
                                    << qPrintable(cap2) << " != "
@@ -297,9 +298,9 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
             continue;
         }
         found = true;
-        const bool disabled = rx.cap(1) == QLatin1Char('!');
-        const QByteArray flags = rx.cap(3).toLatin1();
-        const QByteArray rests = rx.cap(4).toLatin1();
+        const bool disabled = match.capturedView(1) == QLatin1Char('!');
+        const QByteArray flags = match.captured(3).toLatin1();
+        const QByteArray rests = match.captured(4).toLatin1();
         if (trust == Key::Ultimate)
             if (!disabled) { // unchanged
                 out.write(rawLine + '\n');

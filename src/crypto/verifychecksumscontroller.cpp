@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "verifychecksumscontroller.h"
+#include "checksumsutils_p.h"
 
 #ifndef QT_NO_DIRMODEL
 
@@ -20,12 +21,10 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
-#include <Libkleo/ChecksumDefinition>
 #include <Libkleo/Classify>
 
 #include <KLocalizedString>
 
-#include "kleopatra_debug.h"
 #include <QPointer>
 #include <QFileInfo>
 #include <QThread>
@@ -44,15 +43,7 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
-#ifdef Q_OS_UNIX
-static const bool HAVE_UNIX = true;
-#else
-static const bool HAVE_UNIX = false;
-#endif
-
 static const QLatin1String CHECKSUM_DEFINITION_ID_ENTRY("checksum-definition-id");
-
-static const Qt::CaseSensitivity fs_cs = HAVE_UNIX ? Qt::CaseSensitive : Qt::CaseInsensitive; // can we use QAbstractFileEngine::caseSensitive()?
 
 #if 0
 static QStringList fs_sort(QStringList l)
@@ -81,30 +72,9 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 }
 #endif
 
-static QList<QRegExp> get_patterns(const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
-{
-    QList<QRegExp> result;
-    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
-        if (cd) {
-            const auto patterns = cd->patterns();
-            for (const QString &pattern : patterns) {
-                result.push_back(QRegExp(pattern, fs_cs));
-            }
-        }
-    return result;
-}
 
 namespace
 {
-struct matches_any : std::unary_function<QString, bool> {
-    const QList<QRegExp> m_regexps;
-    explicit matches_any(const QList<QRegExp> &regexps) : m_regexps(regexps) {}
-    bool operator()(const QString &s) const
-    {
-        return std::any_of(m_regexps.cbegin(), m_regexps.cend(),
-                           [&s](const QRegExp &rx) { return rx.exactMatch(s); });
-    }
-};
 struct matches_none_of : std::unary_function<QString, bool> {
     const QList<QRegExp> m_regexps;
     explicit matches_none_of(const QList<QRegExp> &regexps) : m_regexps(regexps) {}
@@ -257,64 +227,6 @@ static QStringList filter_checksum_files(QStringList l, const QList<QRegExp> &rx
     return l;
 }
 
-namespace
-{
-struct File {
-    QString name;
-    QByteArray checksum;
-    bool binary;
-};
-}
-
-static QString decode(const QString &encoded)
-{
-    QString decoded;
-    decoded.reserve(encoded.size());
-    bool shift = false;
-    for (const QChar &ch : encoded)
-        if (shift) {
-            switch (ch.toLatin1()) {
-            case '\\': decoded += QLatin1Char('\\'); break;
-            case 'n':  decoded += QLatin1Char('\n'); break;
-            default:
-                qCDebug(KLEOPATRA_LOG) << "invalid escape sequence" << '\\' << ch << "(interpreted as '" << ch << "')";
-                decoded += ch;
-                break;
-            }
-            shift = false;
-        } else {
-            if (ch == QLatin1Char('\\')) {
-                shift = true;
-            } else {
-                decoded += ch;
-            }
-        }
-    return decoded;
-}
-
-static std::vector<File> parse_sum_file(const QString &fileName)
-{
-    std::vector<File> files;
-    QFile f(fileName);
-    if (f.open(QIODevice::ReadOnly)) {
-        QTextStream s(&f);
-        QRegExp rx(QLatin1String("(\\?)([a-f0-9A-F]+) ([ *])([^\n]+)\n*"));
-        while (!s.atEnd()) {
-            const QString line = s.readLine();
-            if (rx.exactMatch(line)) {
-                Q_ASSERT(!rx.cap(4).endsWith(QLatin1Char('\n')));
-                const File file = {
-                    rx.cap(1) == QLatin1String("\\") ? decode(rx.cap(4)) : rx.cap(4),
-                    rx.cap(2).toLatin1(),
-                    rx.cap(3) == QLatin1String("*"),
-                };
-                files.push_back(file);
-            }
-        }
-    }
-    return files;
-}
-
 static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 {
     quint64 n = 0;
@@ -322,20 +234,6 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
         n += QFileInfo(dir.absoluteFilePath(file)).size();
     }
     return n;
-}
-
-static std::shared_ptr<ChecksumDefinition> filename2definition(const QString &fileName,
-        const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
-{
-    for (const std::shared_ptr<ChecksumDefinition> &cd : checksumDefinitions)
-        if (cd) {
-            const auto patterns = cd->patterns();
-            for (const QString &pattern : patterns)
-                if (QRegExp(pattern, fs_cs).exactMatch(fileName)) {
-                    return cd;
-                }
-        }
-    return std::shared_ptr<ChecksumDefinition>();
 }
 
 namespace

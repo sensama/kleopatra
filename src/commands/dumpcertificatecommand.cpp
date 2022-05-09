@@ -83,6 +83,7 @@ private:
 
             logTextWidget.setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
             logTextWidget.setReadOnly(true);
+            logTextWidget.setWordWrapMode(QTextOption::NoWrap);
 
             vlay.addWidget(&logTextWidget, 1);
             vlay.addLayout(&hlay);

@@ -27,26 +27,30 @@ static const Qt::CaseSensitivity fs_cs = Qt::CaseInsensitive;
 static const QRegularExpression::PatternOption s_regex_cs = QRegularExpression::CaseInsensitiveOption;
 #endif
 
-static QList<QRegularExpression> get_patterns(const std::vector< std::shared_ptr<Kleo::ChecksumDefinition> > &checksumDefinitions)
+static std::vector<QRegularExpression> get_patterns(const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions)
 {
-    QList<QRegularExpression> result;
-    for (const std::shared_ptr<Kleo::ChecksumDefinition> &cd : checksumDefinitions)
-        if (cd) {
-            const auto patterns = cd->patterns();
-            for (const QString &pattern : patterns) {
-                result.push_back(QRegularExpression(QRegularExpression::anchoredPattern(pattern), s_regex_cs));
-            }
+    std::vector<QRegularExpression> result;
+    for (const auto &cd : checksumDefinitions) {
+        if (!cd) {
+            continue;
         }
+        const QStringList &patterns = cd->patterns();
+        result.reserve(result.size() + patterns.size());
+        std::transform(patterns.cbegin(), patterns.cend(), std::back_inserter(result), [](const QString &pattern) {
+            return QRegularExpression(QRegularExpression::anchoredPattern(pattern), s_regex_cs);
+        });
+    }
+
     return result;
 }
 
 struct matches_any : std::unary_function<QString, bool> {
-    const QList<QRegularExpression> m_regexps;
-    explicit matches_any(const QList<QRegularExpression> &regexps) : m_regexps(regexps) {}
+    const std::vector<QRegularExpression> m_regexps;
+    explicit matches_any(const std::vector<QRegularExpression> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const
     {
         return std::any_of(m_regexps.cbegin(), m_regexps.cend(),
-                           [s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
+                           [&s](const QRegularExpression &rx) { return rx.match(s).hasMatch(); });
     }
 };
 
@@ -61,7 +65,7 @@ static QString decode(const QString &encoded)
     QString decoded;
     decoded.reserve(encoded.size());
     bool shift = false;
-    for (QChar ch : encoded)
+    for (const QChar ch : encoded)
         if (shift) {
             switch (ch.toLatin1()) {
             case '\\': decoded += QLatin1Char('\\'); break;
@@ -86,39 +90,47 @@ static std::vector<File> parse_sum_file(const QString &fileName)
 {
     std::vector<File> files;
     QFile f(fileName);
-    if (f.open(QIODevice::ReadOnly)) {
-        QTextStream s(&f);
-        static const QRegularExpression rx(QRegularExpression::anchoredPattern(uR"((\\?)([a-f0-9A-F]+) ([ *])([^\\n]+)\\n*)"));
-        while (!s.atEnd()) {
-            const QString line = s.readLine();
-            QRegularExpressionMatch match = rx.match(line);
-            if (match.hasMatch()) {
-                Q_ASSERT(!match.capturedView(4).endsWith(QLatin1Char('\n')));
-                const File file = {
-                    match.capturedView(1) == QLatin1String("\\") ? decode(match.captured(4)) : match.captured(4),
-                    match.capturedView(2).toLatin1(),
-                    match.capturedView(3) == QLatin1String("*"),
-                };
-                files.push_back(file);
-            }
-        }
+    if (!f.open(QIODevice::ReadOnly)) {
+        return {};
     }
+
+    QTextStream s(&f);
+    static const QRegularExpression rx(QRegularExpression::anchoredPattern(uR"((\\?)([a-f0-9A-F]+) ([ *])([^\\n]+)\\n*)"));
+    while (!s.atEnd()) {
+        const QString line = s.readLine();
+        QRegularExpressionMatch match = rx.match(line);
+        if (!match.hasMatch()) {
+            continue;
+        }
+
+        Q_ASSERT(!match.capturedView(4).endsWith(QLatin1Char('\n')));
+        const File file = {
+            match.capturedView(1) == QLatin1Char('\\') ? decode(match.captured(4)) : match.captured(4),
+            match.capturedView(2).toLatin1(),
+            match.capturedView(3) == QLatin1Char('*'),
+        };
+        files.push_back(file);
+    }
+
     return files;
 }
 
 static std::shared_ptr<Kleo::ChecksumDefinition> filename2definition(const QString &fileName,
-        const std::vector< std::shared_ptr<Kleo::ChecksumDefinition> > &checksumDefinitions)
+        const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions)
 {
-    for (const std::shared_ptr<Kleo::ChecksumDefinition> &cd : checksumDefinitions) {
-        if (cd) {
-            const auto patterns = cd->patterns();
-            for (const QString &pattern : patterns) {
-                const QRegularExpression re(QRegularExpression::anchoredPattern(pattern), s_regex_cs);
-                if (re.match(fileName).hasMatch()) {
-                    return cd;
-                }
-            }
+    auto matchFileName = [&fileName](const std::shared_ptr<Kleo::ChecksumDefinition> &cd) {
+        if (!cd) {
+            return false;
         }
-    }
-    return std::shared_ptr<Kleo::ChecksumDefinition>();
+
+        const QStringList &patterns = cd->patterns();
+        return std::any_of(patterns.cbegin(), patterns.cend(), [&fileName](const QString &pattern) {
+            const QRegularExpression re(QRegularExpression::anchoredPattern(pattern), s_regex_cs);
+            return re.match(fileName).hasMatch();
+        });
+    };
+
+    auto it = std::find_if(checksumDefinitions.cbegin(), checksumDefinitions.cend(), matchFileName);
+
+    return it != checksumDefinitions.cend() ? *it : std::shared_ptr<Kleo::ChecksumDefinition>{};
 }

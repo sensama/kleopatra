@@ -260,7 +260,7 @@ void CreateChecksumsController::setFiles(const QStringList &files)
 {
     kleo_assert(!d->isRunning());
     kleo_assert(!files.empty());
-    const QList<QRegularExpression> patterns = get_patterns(d->checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = get_patterns(d->checksumDefinitions);
     if (!std::all_of(files.cbegin(), files.cend(), matches_any(patterns)) &&
             !std::none_of(files.cbegin(), files.cend(), matches_any(patterns))) {
         throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Create Checksums: input files must be either all checksum files or all files to be checksummed, not a mixture of both."));
@@ -326,12 +326,12 @@ struct Dir {
 
 }
 
-static QStringList remove_checksum_files(QStringList l, const QList<QRegularExpression> &rxs)
+static QStringList remove_checksum_files(QStringList l, const std::vector<QRegularExpression> &rxs)
 {
     QStringList::iterator end = l.end();
-    for (const QRegularExpression &rx : rxs) {
+    for (const auto &rx : rxs) {
         end = std::remove_if(l.begin(), end,
-                             [rx](const QString &str) { 
+                             [rx](const QString &str) {
                                 return rx.match(str).hasMatch();
                              });
     }
@@ -353,7 +353,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
 
-    const QList<QRegularExpression> patterns = get_patterns(checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = get_patterns(checksumDefinitions);
 
     std::vector<Dir> dirs;
     dirs.reserve(files.size());
@@ -415,7 +415,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         return std::vector<Dir>();
     }
 
-    const QList<QRegularExpression> patterns = get_patterns(checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = get_patterns(checksumDefinitions);
 
     std::map<QDir, QStringList, less_dir> dirs2files;
 

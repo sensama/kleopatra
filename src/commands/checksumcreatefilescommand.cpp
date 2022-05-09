@@ -115,8 +115,8 @@ ChecksumCreateFilesCommand::ChecksumCreateFilesCommand(const QStringList &files,
 void ChecksumCreateFilesCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(&controller, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    connect(&controller, &Crypto::Controller::done, q, [this]() { slotControllerDone(); });
+    connect(&controller, &Crypto::Controller::error, q, [this](int err, const QString &details) { slotControllerError(err,details); });
 }
 
 ChecksumCreateFilesCommand::~ChecksumCreateFilesCommand()

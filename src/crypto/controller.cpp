@@ -69,11 +69,11 @@ void Controller::setLastError(int err, const QString &msg)
 void Controller::emitDoneOrError()
 {
     if (d->lastError) {
-        Q_EMIT error(d->lastError, d->lastErrorString);
+        Q_EMIT error(d->lastError, d->lastErrorString, QPrivateSignal{});
         d->lastError = 0;
         d->lastErrorString = QString();
     } else {
-        done();
+        Q_EMIT done(QPrivateSignal{});
     }
 }
 

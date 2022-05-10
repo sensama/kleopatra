@@ -17,8 +17,7 @@
 
 #include <QItemSelectionModel>
 #include <QStringListModel>
-#include <QRegExp>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QItemDelegate>
 #include <QLineEdit>
 
@@ -33,14 +32,14 @@ class ItemDelegate : public QItemDelegate
 public:
     explicit ItemDelegate(QObject *p = nullptr)
         : QItemDelegate(p), m_rx() {}
-    explicit ItemDelegate(const QRegExp &rx, QObject *p = nullptr)
+    explicit ItemDelegate(const QRegularExpression &rx, QObject *p = nullptr)
         : QItemDelegate(p), m_rx(rx) {}
 
-    void setRegExpFilter(const QRegExp &rx)
+    void setRegExpFilter(const QRegularExpression &rx)
     {
         m_rx = rx;
     }
-    const QRegExp &regExpFilter() const
+    const QRegularExpression &regExpFilter() const
     {
         return m_rx;
     }
@@ -48,14 +47,14 @@ public:
     QWidget *createEditor(QWidget *p, const QStyleOptionViewItem &o, const QModelIndex &i) const override
     {
         QWidget *w = QItemDelegate::createEditor(p, o, i);
-        if (!m_rx.isEmpty())
+        if (m_rx.isValid())
             if (auto const le = qobject_cast<QLineEdit *>(w)) {
-                le->setValidator(new QRegExpValidator(m_rx, le));
+                le->setValidator(new QRegularExpressionValidator(m_rx, le));
             }
         return w;
     }
 private:
-    QRegExp m_rx;
+    QRegularExpression m_rx;
 };
 }
 
@@ -201,12 +200,12 @@ void ListWidget::setItems(const QStringList &items)
     d->stringListModel.setStringList(items);
 }
 
-QRegExp ListWidget::regExpFilter() const
+QRegularExpression ListWidget::regExpFilter() const
 {
     return d->delegate.regExpFilter();
 }
 
-void ListWidget::setRegExpFilter(const QRegExp &rx)
+void ListWidget::setRegExpFilter(const QRegularExpression &rx)
 {
     d->delegate.setRegExpFilter(rx);
 }

@@ -13,7 +13,6 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QRegExp;
 class QString;
 #include <QStringList>
 
@@ -26,7 +25,7 @@ class ListWidget : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QStringList items READ items WRITE setItems USER true NOTIFY itemsChanged)
-    Q_PROPERTY(QRegExp regExpFilter READ regExpFilter WRITE setRegExpFilter)
+    Q_PROPERTY(QRegularExpression regExpFilter READ regExpFilter WRITE setRegExpFilter)
     Q_PROPERTY(QString defaultValue READ defaultValue WRITE setDefaultValue)
 public:
     explicit ListWidget(QWidget *parent = nullptr);
@@ -35,8 +34,8 @@ public:
     void setDefaultValue(const QString &defaultValue);
     QString defaultValue() const;
 
-    void setRegExpFilter(const QRegExp &rx);
-    QRegExp regExpFilter() const;
+    void setRegExpFilter(const QRegularExpression &rx);
+    QRegularExpression regExpFilter() const;
 
     QStringList items() const;
 

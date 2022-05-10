@@ -49,8 +49,6 @@ Q_SIGNALS:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void slotKeyFilterChanged(int))
-    Q_PRIVATE_SLOT(d, void listNotCertifiedKeys())
     Q_PRIVATE_SLOT(d, void showOrHideCertifyButton())
 };
 

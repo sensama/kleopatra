@@ -30,6 +30,7 @@ class AbstractKeyListModel;
 class AbstractKeyListSortFilterProxyModel;
 class KeyFilter;
 class KeyListModelInterface;
+class SearchBar;
 
 class TabWidget : public QWidget
 {
@@ -57,7 +58,7 @@ public:
     unsigned int count() const;
 
     void createActions(KActionCollection *collection);
-    void connectSearchBar(QObject *sb);
+    void connectSearchBar(SearchBar *sb);
 
     void setMultiSelection(bool on);
 
@@ -82,11 +83,6 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
 
-    Q_PRIVATE_SLOT(d, void currentIndexChanged(int))
-    Q_PRIVATE_SLOT(d, void slotPageTitleChanged(const QString &))
-    Q_PRIVATE_SLOT(d, void slotPageKeyFilterChanged(const std::shared_ptr<Kleo::KeyFilter> &))
-    Q_PRIVATE_SLOT(d, void slotPageStringFilterChanged(const QString &))
-    Q_PRIVATE_SLOT(d, void slotPageHierarchyChanged(bool))
     Q_PRIVATE_SLOT(d, void slotRenameCurrentTab())
     Q_PRIVATE_SLOT(d, void slotNewTab())
     Q_PRIVATE_SLOT(d, void slotDuplicateCurrentTab())

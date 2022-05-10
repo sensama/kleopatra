@@ -66,8 +66,8 @@ public:
           mousePressed(false),
           sizes()
     {
-        connect(q, SIGNAL(sectionCountChanged(int,int)), q, SLOT(_klhv_slotSectionCountChanged(int,int)));
-        connect(q, SIGNAL(sectionResized(int,int,int)), q, SLOT(_klhv_slotSectionResized(int,int,int)));
+        connect(q, &QHeaderView::sectionCountChanged, q, [this](int oldCount, int newCount) { _klhv_slotSectionCountChanged(oldCount, newCount); });
+        connect(q, &QHeaderView::sectionResized, q, [this](int idx, int oldSize, int newSize) { _klhv_slotSectionResized(idx, oldSize, newSize); });
     }
 
     void _klhv_slotSectionCountChanged(int oldCount, int newCount)

@@ -164,8 +164,8 @@ SearchBar::Private::Private(SearchBar *qq)
     KDAB_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
-    connect(combo, SIGNAL(currentIndexChanged(int)), q, SLOT(slotKeyFilterChanged(int)));
-    connect(certifyButton, SIGNAL(clicked()), q, SLOT(listNotCertifiedKeys()));
+    connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), q, [this](int index) { slotKeyFilterChanged(index); });
+    connect(certifyButton, &QPushButton::clicked, q, [this]() { listNotCertifiedKeys(); });
 
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone,
             q, [this]() { showOrHideCertifyButton(); });

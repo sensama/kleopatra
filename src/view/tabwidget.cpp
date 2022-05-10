@@ -9,6 +9,7 @@
 
 #include <config-kleopatra.h>
 
+#include "searchbar.h"
 #include "tabwidget.h"
 #include "keytreeview.h"
 #include "kleopatra_debug.h"
@@ -473,7 +474,7 @@ TabWidget::Private::Private(TabWidget *qq)
     // create "Close Tab" button after tab widget to ensure correct tab order
     closeTabButton = new QToolButton{q};
 
-    connect(tabWidget, SIGNAL(currentChanged(int)), q, SLOT(currentIndexChanged(int)));
+    connect(tabWidget, &QTabWidget::currentChanged, q, [this](int index) { currentIndexChanged(index); });
     connect(tabWidget->tabBar(), &QWidget::customContextMenuRequested, q, [this](const QPoint & p) {
         slotContextMenu(p);
     });
@@ -691,7 +692,6 @@ void TabWidget::Private::collapseAll(Page *page)
 TabWidget::TabWidget(QWidget *p, Qt::WindowFlags f)
     : QWidget(p, f), d(new Private(this))
 {
-
 }
 
 TabWidget::~TabWidget() {
@@ -913,10 +913,10 @@ QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
     page->setFlatModel(flatModel);
     page->setHierarchicalModel(hierarchicalModel);
 
-    connect(page, SIGNAL(titleChanged(QString)), q, SLOT(slotPageTitleChanged(QString)));
-    connect(page, SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)), q, SLOT(slotPageKeyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)));
-    connect(page, SIGNAL(stringFilterChanged(QString)), q, SLOT(slotPageStringFilterChanged(QString)));
-    connect(page, SIGNAL(hierarchicalChanged(bool)), q, SLOT(slotPageHierarchyChanged(bool)));
+    connect(page, &Page::titleChanged, q, [this](const QString &text) { slotPageTitleChanged(text); });
+    connect(page, &Page::keyFilterChanged, q, [this](const std::shared_ptr<Kleo::KeyFilter> &filter) { slotPageKeyFilterChanged(filter); });
+    connect(page, &Page::stringFilterChanged, q, [this](const QString &text) { slotPageStringFilterChanged(text); });
+    connect(page, &Page::hierarchicalChanged, q, [this](bool on) { slotPageHierarchyChanged(on); });
 
     if (columnReference) {
         page->setColumnSizes(columnReference->columnSizes());
@@ -988,22 +988,16 @@ void TabWidget::saveViews(KConfig *config) const
     }
 }
 
-static void xconnect(const QObject *o1, const char *signal, const QObject *o2, const char *slot)
+void TabWidget::connectSearchBar(SearchBar *sb)
 {
-    QObject::connect(o1, signal, o2, slot);
-    QObject::connect(o2, signal, o1, slot);
-}
+    connect(sb, &SearchBar::stringFilterChanged, this, &TabWidget::setStringFilter);
+    connect(this, &TabWidget::stringFilterChanged, sb, &SearchBar::setStringFilter);
 
-void TabWidget::connectSearchBar(QObject *sb)
-{
-    xconnect(sb, SIGNAL(stringFilterChanged(QString)),
-             this, SLOT(setStringFilter(QString)));
-    xconnect(sb, SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)),
-             this, SLOT(setKeyFilter(std::shared_ptr<Kleo::KeyFilter>)));
-    connect(this, SIGNAL(enableChangeStringFilter(bool)),
-            sb, SLOT(setChangeStringFilterEnabled(bool)));
-    connect(this, SIGNAL(enableChangeKeyFilter(bool)),
-            sb, SLOT(setChangeKeyFilterEnabled(bool)));
+    connect(sb, &SearchBar::keyFilterChanged, this, &TabWidget::setKeyFilter);
+    connect(this, &TabWidget::keyFilterChanged, sb, &SearchBar::setKeyFilter);
+
+    connect(this, &TabWidget::enableChangeStringFilter, sb, &SearchBar::setChangeStringFilterEnabled);
+    connect(this, &TabWidget::enableChangeKeyFilter, sb, &SearchBar::setChangeKeyFilterEnabled);
 }
 
 #include "moc_tabwidget.cpp"

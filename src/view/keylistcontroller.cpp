@@ -172,10 +172,8 @@ KeyListController::Private::Private(KeyListController *qq)
       flatModel(),
       hierarchicalModel()
 {
-    connect(KeyCache::mutableInstance().get(), SIGNAL(added(GpgME::Key)),
-            q, SLOT(slotAddKey(GpgME::Key)));
-    connect(KeyCache::mutableInstance().get(), SIGNAL(aboutToRemove(GpgME::Key)),
-            q, SLOT(slotAboutToRemoveKey(GpgME::Key)));
+    connect(KeyCache::mutableInstance().get(), &KeyCache::added, q, [this](const GpgME::Key &key) { slotAddKey(key); });
+    connect(KeyCache::mutableInstance().get(), &KeyCache::aboutToRemove, q, [this](const GpgME::Key &key) { slotAboutToRemoveKey(key); });
 }
 
 KeyListController::Private::~Private() {}
@@ -607,18 +605,16 @@ void KeyListController::cancelCommands()
 void KeyListController::Private::connectView(QAbstractItemView *view)
 {
 
-    connect(view, SIGNAL(destroyed(QObject*)),
-            q, SLOT(slotDestroyed(QObject*)));
-    connect(view, SIGNAL(doubleClicked(QModelIndex)),
-            q, SLOT(slotDoubleClicked(QModelIndex)));
-    connect(view, SIGNAL(activated(QModelIndex)),
-            q, SLOT(slotActivated(QModelIndex)));
-    connect(view->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-            q, SLOT(slotSelectionChanged(QItemSelection,QItemSelection)));
+    connect(view, &QObject::destroyed, q, [this](QObject *obj) { slotDestroyed(obj); });
+    connect(view, &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) { slotDoubleClicked(index); });
+    connect(view, &QAbstractItemView::activated, q, [this](const QModelIndex &index) { slotActivated(index); });
+    connect(view->selectionModel(), &QItemSelectionModel::selectionChanged,
+            q, [this](const QItemSelection &oldSel, const QItemSelection &newSel) {
+        slotSelectionChanged(oldSel, newSel);
+    });
 
     view->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(view, SIGNAL(customContextMenuRequested(QPoint)),
-            q, SLOT(slotContextMenu(QPoint)));
+    connect(view, &QWidget::customContextMenuRequested, q, [this](const QPoint &pos) { slotContextMenu(pos); });
 }
 
 void KeyListController::Private::connectCommand(Command *cmd)
@@ -626,11 +622,11 @@ void KeyListController::Private::connectCommand(Command *cmd)
     if (!cmd) {
         return;
     }
-    connect(cmd, SIGNAL(destroyed(QObject*)), q, SLOT(slotDestroyed(QObject*)));
-    connect(cmd, SIGNAL(finished()), q, SLOT(slotCommandFinished()));
+    connect(cmd, &QObject::destroyed, q, [this](QObject *obj) { slotDestroyed(obj); });
+    connect(cmd, &Command::finished, q, [this] { slotCommandFinished(); });
     //connect( cmd, SIGNAL(canceled()), q, SLOT(slotCommandCanceled()) );
     connect(cmd, &Command::info, q, &KeyListController::message);
-    connect(cmd, SIGNAL(progress(QString,int,int)), q, SLOT(slotProgress(QString,int,int)));
+    connect(cmd, &Command::progress, q, [this](const QString &message, int current, int total) { slotProgress(message, current, total); });
 }
 
 void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)

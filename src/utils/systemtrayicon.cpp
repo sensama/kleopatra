@@ -89,8 +89,8 @@ SystemTrayIcon::Private::Private(SystemTrayIcon *qq)
     attentionAnimationTimer.setSingleShot(false);
     attentionAnimationTimer.setInterval(1000 * ATTENTION_ANIMATION_FRAMES_PER_SEC / 2);
 
-    connect(q, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), q, SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
-    connect(&attentionAnimationTimer, SIGNAL(timeout()), q, SLOT(slotAttentionAnimationTimerTimout()));
+    connect(q, &QSystemTrayIcon::activated, q, [this](QSystemTrayIcon::ActivationReason reason) { slotActivated(reason); });
+    connect(&attentionAnimationTimer, &QTimer::timeout, q, [this]() { slotAttentionAnimationTimerTimout(); });
 }
 
 SystemTrayIcon::Private::~Private() {}

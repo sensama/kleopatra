@@ -70,6 +70,9 @@
 #include <algorithm>
 #include <iterator>
 
+// needed for GPGME_VERSION_NUMBER
+#include <gpgme.h>
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;

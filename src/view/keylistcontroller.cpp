@@ -172,8 +172,8 @@ KeyListController::Private::Private(KeyListController *qq)
       flatModel(),
       hierarchicalModel()
 {
-    connect(KeyCache::mutableInstance().get(), &KeyCache::added, q, [this](const GpgME::Key &key) { slotAddKey(key); });
-    connect(KeyCache::mutableInstance().get(), &KeyCache::aboutToRemove, q, [this](const GpgME::Key &key) { slotAboutToRemoveKey(key); });
+    connect(KeyCache::instance().get(), &KeyCache::added, q, [this](const GpgME::Key &key) { slotAddKey(key); });
+    connect(KeyCache::instance().get(), &KeyCache::aboutToRemove, q, [this](const GpgME::Key &key) { slotAboutToRemoveKey(key); });
 }
 
 KeyListController::Private::~Private() {}

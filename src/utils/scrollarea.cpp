@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -11,6 +13,8 @@
 
 #include "scrollarea.h"
 
+#include <QResizeEvent>
+#include <QScreen>
 #include <QScrollBar>
 #include <QVBoxLayout>
 
@@ -24,9 +28,28 @@ ScrollArea::ScrollArea(QWidget *parent)
     new QVBoxLayout{w};
     setWidget(w);
     setWidgetResizable(true);
+    w->installEventFilter(this);
 }
 
-ScrollArea::~ScrollArea() = default;
+ScrollArea::~ScrollArea()
+{
+    widget()->removeEventFilter(this);
+}
+
+void ScrollArea::setMaximumAutoAdjustHeight(int maxHeight)
+{
+    mMaximumAutoAdjustHeight = maxHeight;
+}
+
+int ScrollArea::maximumAutoAdjustHeight() const
+{
+    if (mMaximumAutoAdjustHeight < 0) {
+        // if no height is set then use 2/3 of the desktop's height, i.e.
+        // the same as Qt uses for top-level widgets
+        return screen()->availableGeometry().height() * 2 / 3;
+    }
+    return mMaximumAutoAdjustHeight;
+}
 
 QSize ScrollArea::minimumSizeHint() const
 {
@@ -57,3 +80,17 @@ QSize ScrollArea::sizeHint() const
     return sz;
 }
 
+bool ScrollArea::eventFilter(QObject *obj, QEvent *ev)
+{
+    if (ev->type() == QEvent::Resize && obj == widget() && sizeAdjustPolicy() == AdjustToContents) {
+        const auto *const event = static_cast<QResizeEvent*>(ev);
+        if (event->size().height() > event->oldSize().height()) {
+            const auto currentViewportHeight = viewport()->height();
+            const auto wantedViewportHeight = std::min(event->size().height(), maximumAutoAdjustHeight());
+            if (currentViewportHeight < wantedViewportHeight) {
+                setMinimumHeight(height() - currentViewportHeight + wantedViewportHeight);
+            }
+        }
+    }
+    return QScrollArea::eventFilter(obj, ev);
+}

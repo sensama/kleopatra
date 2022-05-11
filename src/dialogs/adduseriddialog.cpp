@@ -14,6 +14,7 @@
 #include "adduseriddialog.h"
 
 #include "utils/accessibility.h"
+#include "utils/scrollarea.h"
 #include "view/errorlabel.h"
 #include "view/formtextinput.h"
 #include "view/htmllabel.h"
@@ -57,6 +58,7 @@ class AddUserIDDialog::Private
     AddUserIDDialog *const q;
 
     struct {
+        ScrollArea *scrollArea;
         std::unique_ptr<FormTextInput<QLineEdit>> nameInput;
         std::unique_ptr<FormTextInput<QLineEdit>> emailInput;
         HtmlLabel *resultLabel;
@@ -78,12 +80,24 @@ public:
 
         auto mainLayout = new QVBoxLayout{q};
 
-        const auto infoText = nameIsRequired || emailIsRequired
-            ? i18n("Enter a name and an email address to use for the user ID.")
-            : i18n("Enter a name and/or an email address to use for the user ID.");
-        mainLayout->addWidget(new QLabel{infoText, q});
+        {
+            const auto infoText = nameIsRequired || emailIsRequired
+                ? i18n("Enter a name and an email address to use for the user ID.")
+                : i18n("Enter a name and/or an email address to use for the user ID.");
+            auto label = new QLabel{infoText, q};
+            mainLayout->addWidget(label);
+        }
 
         mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
+
+        ui.scrollArea = new ScrollArea{q};
+        ui.scrollArea->setFocusPolicy(Qt::NoFocus);
+        ui.scrollArea->setFrameStyle(QFrame::NoFrame);
+        ui.scrollArea->setBackgroundRole(q->backgroundRole());
+        ui.scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        ui.scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(ui.scrollArea->widget()->layout());
+        scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
         {
             ui.nameInput = FormTextInput<QLineEdit>::create(q);
@@ -115,10 +129,10 @@ public:
                           "it must not include less-than sign, greater-than sign, and at sign."));
             }
 
-            mainLayout->addWidget(ui.nameInput->label());
-            mainLayout->addWidget(ui.nameInput->hintLabel());
-            mainLayout->addWidget(ui.nameInput->errorLabel());
-            mainLayout->addWidget(ui.nameInput->widget());
+            scrollAreaLayout->addWidget(ui.nameInput->label());
+            scrollAreaLayout->addWidget(ui.nameInput->hintLabel());
+            scrollAreaLayout->addWidget(ui.nameInput->errorLabel());
+            scrollAreaLayout->addWidget(ui.nameInput->widget());
         }
         connect(ui.nameInput->widget(), &QLineEdit::textChanged,
                 q, [this]() { updateResultLabel(); });
@@ -141,26 +155,28 @@ public:
                     "Enter an email address in the correct format required by your organization."));
             }
 
-            mainLayout->addWidget(ui.emailInput->label());
-            mainLayout->addWidget(ui.emailInput->hintLabel());
-            mainLayout->addWidget(ui.emailInput->errorLabel());
-            mainLayout->addWidget(ui.emailInput->widget());
+            scrollAreaLayout->addWidget(ui.emailInput->label());
+            scrollAreaLayout->addWidget(ui.emailInput->hintLabel());
+            scrollAreaLayout->addWidget(ui.emailInput->errorLabel());
+            scrollAreaLayout->addWidget(ui.emailInput->widget());
         }
         connect(ui.emailInput->widget(), &QLineEdit::textChanged,
                 q, [this]() { updateResultLabel(); });
 
-        mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
+        scrollAreaLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
         {
             ui.resultLabel = new HtmlLabel{q};
             ui.resultLabel->setFocusPolicy(Qt::ClickFocus);
             labelHelper.addLabel(ui.resultLabel);
-            mainLayout->addWidget(ui.resultLabel);
+            scrollAreaLayout->addWidget(ui.resultLabel);
         }
 
-        mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
+        scrollAreaLayout->addStretch(1);
 
-        mainLayout->addStretch(1);
+        mainLayout->addWidget(ui.scrollArea);
+
+        mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
         ui.buttonBox = new QDialogButtonBox{QDialogButtonBox::Ok | QDialogButtonBox::Cancel, q};
 

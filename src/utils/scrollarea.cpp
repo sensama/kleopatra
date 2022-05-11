@@ -13,6 +13,7 @@
 
 #include "scrollarea.h"
 
+#include <QApplication>
 #include <QResizeEvent>
 #include <QScreen>
 #include <QScrollBar>
@@ -29,6 +30,11 @@ ScrollArea::ScrollArea(QWidget *parent)
     setWidget(w);
     setWidgetResizable(true);
     w->installEventFilter(this);
+
+    connect(qApp, &QApplication::focusChanged, this, [this](QWidget *old, QWidget *now) {
+        Q_UNUSED(old);
+        ensureWidgetVisible(now);
+    });
 }
 
 ScrollArea::~ScrollArea()

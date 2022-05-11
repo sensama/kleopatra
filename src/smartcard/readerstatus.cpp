@@ -18,6 +18,7 @@
 #include <Libkleo/Assuan>
 #include <Libkleo/GnuPG>
 #include <Libkleo/FileSystemWatcher>
+#include <Libkleo/KeyCache>
 
 #include <QGpgME/Debug>
 
@@ -724,6 +725,11 @@ private:
             AssuanTransaction* assuanTransaction = nullptr;
             std::list<Transaction> item;
             std::vector<std::shared_ptr<Card> > oldCards;
+
+            while (!KeyCache::instance()->initialized()) {
+                qCDebug(KLEOPATRA_LOG) << "Waiting for Keycache to be initialized.";
+                sleep(1);
+            }
 
             Error err;
             std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);

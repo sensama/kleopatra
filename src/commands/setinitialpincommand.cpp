@@ -53,10 +53,10 @@ private:
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setWindowTitle(i18nc("@title:window", "Set Initial Pin"));
 
-        connect(dlg, SIGNAL(nksPinRequested()), q_func(), SLOT(slotNksPinRequested()));
-        connect(dlg, SIGNAL(sigGPinRequested()), q_func(), SLOT(slotSigGPinRequested()));
-        connect(dlg, SIGNAL(rejected()), q_func(), SLOT(slotDialogRejected()));
-        connect(dlg, SIGNAL(accepted()), q_func(), SLOT(slotDialogAccepted()));
+        connect(dlg, &SetInitialPinDialog::nksPinRequested, q_func(), [this]() { slotNksPinRequested(); });
+        connect(dlg, &SetInitialPinDialog::sigGPinRequested, q_func(), [this]() { slotSigGPinRequested(); });
+        connect(dlg, &QDialog::rejected, q_func(), [this]() { slotDialogRejected(); });
+        connect(dlg, &QDialog::accepted, q_func(), [this]() { slotDialogAccepted(); });
 
         dialog = dlg;
     }

@@ -42,7 +42,7 @@ private:
     {
     }
 
-    void ensureDialogCreated() const
+    void ensureDialogCreated()
     {
         if (dialog) {
             return;
@@ -140,7 +140,7 @@ SetInitialPinCommand::SetInitialPinCommand(const std::string &serialNumber)
 
 SetInitialPinCommand::~SetInitialPinCommand() {}
 
-QDialog *SetInitialPinCommand::dialog() const
+QDialog *SetInitialPinCommand::dialog()
 {
     d->ensureDialogCreated();
     return d->dialog;

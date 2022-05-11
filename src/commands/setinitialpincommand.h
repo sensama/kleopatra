@@ -28,7 +28,7 @@ public:
         return AnyCardHasNullPin;
     }
 
-    QDialog *dialog() const;
+    QDialog *dialog();
 
 private:
     void doStart() override;

@@ -16,41 +16,44 @@
 
 using namespace Kleo;
 
-namespace
+ScrollArea::ScrollArea(QWidget *parent)
+    : QScrollArea{parent}
 {
-
-static QSize getMinimumSizeHint(const QWidget *w)
-{
-    return w ? w->minimumSizeHint() : QSize(0, 0);
-}
-
-static QSize getSizeHint(const QWidget *w)
-{
-    return w ? w->sizeHint() : QSize(0, 0);
-}
-}
-
-ScrollArea::ScrollArea(QWidget *parent) : QScrollArea(parent)
-{
-    setWidget(new QWidget);
-    new QVBoxLayout(widget());
+    auto w = new QWidget;
+    w->setObjectName(QLatin1String("scrollarea_widget"));
+    new QVBoxLayout{w};
+    setWidget(w);
     setWidgetResizable(true);
 }
 
-ScrollArea::~ScrollArea()
-{
-}
+ScrollArea::~ScrollArea() = default;
 
 QSize ScrollArea::minimumSizeHint() const
 {
-    return QSize(getMinimumSizeHint(widget()).width() + getSizeHint(verticalScrollBar()).width() + 2 * frameWidth(), 0)
-           .expandedTo(QScrollArea::minimumSizeHint());
+    const int fw = frameWidth();
+    QSize sz{2 * fw, 2 * fw};
+    sz += widget()->minimumSizeHint();
+    if (verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff) {
+        sz.setWidth(sz.width() + verticalScrollBar()->sizeHint().width());
+    }
+    if (horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff) {
+        sz.setHeight(sz.height() + horizontalScrollBar()->sizeHint().height());
+    }
+    return QScrollArea::minimumSizeHint().expandedTo(sz);
 }
 
 QSize ScrollArea::sizeHint() const
 {
-    const QSize widgetSizeHint = getSizeHint(widget());
     const int fw = frameWidth();
-    return QScrollArea::sizeHint().expandedTo(widgetSizeHint + QSize(2 * fw, 2 * fw) + QSize(getSizeHint(verticalScrollBar()).width(), 0));
+    QSize sz{2 * fw, 2 * fw};
+    sz += viewportSizeHint();
+    if (verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff) {
+        sz.setWidth(sz.width() + verticalScrollBar()->sizeHint().width());
+    }
+    if (horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff) {
+        sz.setHeight(sz.height() + horizontalScrollBar()->sizeHint().height());
+    }
+    sz = QScrollArea::sizeHint().expandedTo(sz);
+    return sz;
 }
 

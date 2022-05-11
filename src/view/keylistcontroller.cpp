@@ -354,7 +354,7 @@ TabWidget *KeyListController::tabWidget() const
 
 void KeyListController::createActions(KActionCollection *coll)
 {
-    static const std::vector<action_data> common_and_openpgp_action_data = {
+    const std::vector<action_data> common_and_openpgp_action_data = {
         // File menu
         {
             "file_new_certificate", i18n("New Key Pair..."), QString(),

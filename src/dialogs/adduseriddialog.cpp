@@ -85,6 +85,7 @@ public:
                 ? i18n("Enter a name and an email address to use for the user ID.")
                 : i18n("Enter a name and/or an email address to use for the user ID.");
             auto label = new QLabel{infoText, q};
+            label->setWordWrap(true);
             mainLayout->addWidget(label);
         }
 
@@ -167,6 +168,7 @@ public:
 
         {
             ui.resultLabel = new HtmlLabel{q};
+            ui.resultLabel->setWordWrap(true);
             ui.resultLabel->setFocusPolicy(Qt::ClickFocus);
             labelHelper.addLabel(ui.resultLabel);
             scrollAreaLayout->addWidget(ui.resultLabel);

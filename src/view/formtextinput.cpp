@@ -326,16 +326,19 @@ void FormTextInputBase::setWidget(QWidget *widget)
     d->mWidget = widget;
     d->mLabel = new QLabel{parent};
     d->mLabel->setTextFormat(Qt::PlainText);
+    d->mLabel->setWordWrap(true);
     QFont font = d->mLabel->font();
     font.setBold(true);
     d->mLabel->setFont(font);
     d->mLabel->setBuddy(d->mWidget);
     d->mHintLabel = new QLabel{parent};
+    d->mHintLabel->setWordWrap(true);
     d->mHintLabel->setTextFormat(Qt::PlainText);
     // set widget as buddy of hint label, so that the label isn't considered unrelated
     d->mHintLabel->setBuddy(d->mWidget);
     d->mHintLabel->setVisible(false);
     d->mErrorLabel = new ErrorLabel{parent};
+    d->mErrorLabel->setWordWrap(true);
     d->mErrorLabel->setTextFormat(Qt::PlainText);
     // set widget as buddy of error label, so that the label isn't considered unrelated
     d->mErrorLabel->setBuddy(d->mWidget);

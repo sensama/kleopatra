@@ -787,7 +787,8 @@ static std::unique_ptr<ImportJob> get_import_job(GpgME::Protocol protocol)
     }
 }
 
-void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id, const ImportOptions &options)
+void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QByteArray &data, const QString &id,
+                                                     [[maybe_unused]] const ImportOptions &options)
 {
     Q_ASSERT(protocol != UnknownProtocol);
 
@@ -888,7 +889,7 @@ static auto get_receive_keys_job(GpgME::Protocol protocol)
 #endif
 }
 
-void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, const QStringList &keyIds, const QString &id)
+void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [[maybe_unused]] const QStringList &keyIds, const QString &id)
 {
     Q_ASSERT(protocol != UnknownProtocol);
 

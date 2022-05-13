@@ -39,8 +39,12 @@ public:
     static const ReaderStatus *instance();
     static ReaderStatus *mutableInstance();
 
-    void startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const char *slot);
-    void startTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const char *slot,
+    using TransactionFunc = std::function<void(const GpgME::Error &)>;
+    void startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const TransactionFunc &slot);
+    void startTransaction(const std::shared_ptr<Card> &card,
+                          const QByteArray &cmd,
+                          QObject *receiver,
+                          const TransactionFunc &slot,
                           std::unique_ptr<GpgME::AssuanTransaction> transaction);
 
     Card::Status cardStatus(unsigned int slot) const;

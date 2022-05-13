@@ -131,7 +131,9 @@ void ChangePinCommand::Private::changePin()
         command << "--nullpin";
     }
     command << QByteArray::fromStdString(keyRef);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(card, command.join(' '), q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(card, command.join(' '), q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 }
 
 namespace {

@@ -413,7 +413,9 @@ void PGPCardWidget::changeNameRequested()
     }
 
     const QByteArray command = QByteArrayLiteral("SCD SETATTR DISP-NAME ") + formatted.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, "changeNameResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, [this](const GpgME::Error &err) {
+        changeNameResult(err);
+    });
 }
 
 void PGPCardWidget::changeNameResult(const GpgME::Error &err)
@@ -458,7 +460,9 @@ void PGPCardWidget::changeUrlRequested()
     }
 
     const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, "changeUrlResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, [this](const GpgME::Error &err) {
+        changeUrlResult(err);
+    });
 }
 
 void PGPCardWidget::changeUrlResult(const GpgME::Error &err)

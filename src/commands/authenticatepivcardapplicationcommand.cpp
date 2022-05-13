@@ -129,7 +129,9 @@ void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArr
 
     const QByteArray plusPercentEncodedAdminKey = adminKey.toPercentEncoding().replace(' ', '+');
     const QByteArray command = QByteArray("SCD SETATTR AUTH-ADM-KEY ") + plusPercentEncodedAdminKey;
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command, q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command, q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 }
 
 void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err)

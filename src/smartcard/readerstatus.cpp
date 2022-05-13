@@ -629,7 +629,7 @@ struct Transaction {
     CardApp cardApp;
     QByteArray command;
     QPointer<QObject> receiver;
-    const char *slot;
+    ReaderStatus::TransactionFunc slot;
     AssuanTransaction* assuanTransaction;
 };
 
@@ -709,8 +709,8 @@ private Q_SLOTS:
         KDAB_SYNCHRONIZED(m_mutex)
         ft.splice(ft.begin(), m_finishedTransactions);
         for (const Transaction &t : std::as_const(ft))
-            if (t.receiver && t.slot && *t.slot) {
-                QMetaObject::invokeMethod(t.receiver, t.slot, Qt::DirectConnection, Q_ARG(GpgME::Error, err));
+            if (t.receiver && t.slot) {
+                QMetaObject::invokeMethod(t.receiver, [&t, &err]() { t.slot(err); }, Qt::DirectConnection);
             }
     }
 
@@ -973,14 +973,17 @@ bool ReaderStatus::anyCardCanLearnKeys() const
     return d->anyCardCanLearnKeysImpl();
 }
 
-void ReaderStatus::startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const char *slot)
+void ReaderStatus::startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const TransactionFunc &slot)
 {
     const CardApp cardApp = { card->serialNumber(), card->appName() };
     const Transaction t = { cardApp, command, receiver, slot, nullptr };
     d->addTransaction(t);
 }
 
-void ReaderStatus::startTransaction(const std::shared_ptr<Card> &card, const QByteArray &command, QObject *receiver, const char *slot,
+void ReaderStatus::startTransaction(const std::shared_ptr<Card> &card,
+                                    const QByteArray &command,
+                                    QObject *receiver,
+                                    const TransactionFunc &slot,
                                     std::unique_ptr<AssuanTransaction> transaction)
 {
     const CardApp cardApp = { card->serialNumber(), card->appName() };

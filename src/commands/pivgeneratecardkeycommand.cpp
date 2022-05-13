@@ -197,7 +197,9 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
         command << "--algo=" + QByteArray::fromStdString(algorithm);
     }
     command << "--" << QByteArray::fromStdString(keyRef);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command.join(' '), q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command.join(' '), q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 }
 
 void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)

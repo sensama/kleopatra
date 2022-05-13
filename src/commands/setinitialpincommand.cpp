@@ -72,7 +72,7 @@ private:
     }
 
 private:
-    void setInitialPin(const char *pinRef, const char *resultSlot)
+    void setInitialPin(const char *pinRef, const ReaderStatus::TransactionFunc &resultSlot)
     {
         const auto nksCard = ReaderStatus::instance()->getCard<NetKeyCard>(serialNumber());
         if (!nksCard) {
@@ -86,12 +86,16 @@ private:
 
     void slotNksPinRequested()
     {
-        setInitialPin("PW1.CH", "setNksPinSettingResult");
+        setInitialPin("PW1.CH", [this](const GpgME::Error &error) {
+            dialog->setNksPinSettingResult(error);
+        });
     }
 
     void slotSigGPinRequested()
     {
-        setInitialPin("PW1.CH.SIG", "setSigGPinSettingResult");
+        setInitialPin("PW1.CH.SIG", [this](const GpgME::Error &error) {
+            dialog->setSigGPinSettingResult(error);
+        });
     }
 
     void slotDialogRejected()

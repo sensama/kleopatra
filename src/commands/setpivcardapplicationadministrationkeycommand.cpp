@@ -191,7 +191,9 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogAccepted(
 
     const QByteArray plusPercentEncodedAdminKey = newAdminKey.toPercentEncoding().replace(' ', '+');
     const QByteArray command = QByteArray("SCD SETATTR SET-ADM-KEY ") + plusPercentEncodedAdminKey;
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command, q, "slotResult");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, command, q, [this](const GpgME::Error &err) {
+        slotResult(err);
+    });
 }
 
 void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogRejected()

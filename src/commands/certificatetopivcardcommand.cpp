@@ -176,7 +176,14 @@ void CertificateToPIVCardCommand::Private::startCertificateToPIVCard()
 
     const QByteArray command = QByteArrayLiteral("SCD WRITECERT ") + QByteArray::fromStdString(cardSlot);
     auto transaction = std::unique_ptr<AssuanTransaction>(new WriteCertAssuanTransaction(certificateData));
-    ReaderStatus::mutableInstance()->startTransaction(pivCard, command, q_func(), "certificateToPIVCardDone", std::move(transaction));
+    ReaderStatus::mutableInstance()->startTransaction(
+        pivCard,
+        command,
+        q_func(),
+        [this](const GpgME::Error &err) {
+            q->certificateToPIVCardDone(err);
+        },
+        std::move(transaction));
 }
 
 void CertificateToPIVCardCommand::Private::authenticate()

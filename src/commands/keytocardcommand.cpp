@@ -264,7 +264,9 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
         .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(slot)
         .arg(timestamp);
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), "keyToOpenPGPCardDone");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
+        q->keyToOpenPGPCardDone(err);
+    });
 }
 
 namespace {
@@ -386,7 +388,9 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
     const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3")
         .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(QString::fromStdString(cardSlot));
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, cmd.toUtf8(), q_func(), "keyToPIVCardDone");
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
+        q->keyToPIVCardDone(err);
+    });
 }
 
 void KeyToCardCommand::Private::authenticate()

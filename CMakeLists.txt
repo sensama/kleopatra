@@ -61,6 +61,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddAppIcon)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
+include(KDEClangFormat)
 
 # Find KF5 packages
 find_package(KF5WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
@@ -211,3 +212,6 @@ if(KF5DocTools_FOUND)
 endif()
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
+# add clang-format target for all our real source files
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.c)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})

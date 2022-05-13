@@ -37,19 +37,6 @@ public:
     ~ScrollArea() override;
 
     /**
-     * Sets the maximum height that the scroll area should automatically resize
-     * to to \p maxHeight. By default, or if \p maxHeight is negative, the
-     * scroll area will resize to at most 2/3 of the desktop's height.
-     */
-    void setMaximumAutoAdjustHeight(int maxHeight);
-
-    /**
-     * Returns the maximum height that the scroll area will automatically resize
-     * to.
-     */
-    int maximumAutoAdjustHeight() const;
-
-    /**
      * Reimplemented to add the minimum size hint of the widget.
      */
     QSize minimumSizeHint() const override;
@@ -62,10 +49,8 @@ public:
     QSize sizeHint() const override;
 
 private:
+    void adjustSizeOfWindowBy(const QSize &extent);
     bool eventFilter(QObject *obj, QEvent *ev) override;
-
-private:
-    int mMaximumAutoAdjustHeight = -1;
 };
 
 }

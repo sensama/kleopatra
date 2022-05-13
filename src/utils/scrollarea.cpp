@@ -42,21 +42,6 @@ ScrollArea::~ScrollArea()
     widget()->removeEventFilter(this);
 }
 
-void ScrollArea::setMaximumAutoAdjustHeight(int maxHeight)
-{
-    mMaximumAutoAdjustHeight = maxHeight;
-}
-
-int ScrollArea::maximumAutoAdjustHeight() const
-{
-    if (mMaximumAutoAdjustHeight < 0) {
-        // if no height is set then use 2/3 of the desktop's height, i.e.
-        // the same as Qt uses for top-level widgets
-        return screen()->availableGeometry().height() * 2 / 3;
-    }
-    return mMaximumAutoAdjustHeight;
-}
-
 QSize ScrollArea::minimumSizeHint() const
 {
     const int fw = frameWidth();
@@ -86,15 +71,26 @@ QSize ScrollArea::sizeHint() const
     return sz;
 }
 
+void ScrollArea::adjustSizeOfWindowBy(const QSize &extent)
+{
+    if (auto w = window()) {
+        // we limit the automatic size adjustment to 2/3 of the screen's size
+        const auto maxWindowSize = screen()->geometry().size() * 2 / 3;
+        const auto newWindowSize = (w->size() + extent).boundedTo(maxWindowSize);
+        w->resize(newWindowSize);
+    }
+}
+
 bool ScrollArea::eventFilter(QObject *obj, QEvent *ev)
 {
     if (ev->type() == QEvent::Resize && obj == widget() && sizeAdjustPolicy() == AdjustToContents) {
         const auto *const event = static_cast<QResizeEvent*>(ev);
         if (event->size().height() > event->oldSize().height()) {
             const auto currentViewportHeight = viewport()->height();
-            const auto wantedViewportHeight = std::min(event->size().height(), maximumAutoAdjustHeight());
-            if (currentViewportHeight < wantedViewportHeight) {
-                setMinimumHeight(height() - currentViewportHeight + wantedViewportHeight);
+            const auto wantedViewportHeight = event->size().height();
+            const auto wantedAdditionalHeight = wantedViewportHeight - currentViewportHeight;
+            if (wantedAdditionalHeight > 0) {
+                adjustSizeOfWindowBy(QSize{0, wantedAdditionalHeight});
             }
         }
     }

@@ -61,7 +61,7 @@ public:
         auto mainLayout = new QVBoxLayout{q};
 
         {
-            const auto infoText = nameIsRequired || emailIsRequired
+            const auto infoText = nameIsRequired || emailIsRequired //
                 ? i18n("Enter a name and an email address to use for the user ID.")
                 : i18n("Enter a name and/or an email address to use for the user ID.");
             auto label = new QLabel{infoText, q};

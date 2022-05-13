@@ -140,31 +140,32 @@ static void initializeDirmngrCheckbox(QCheckBox *cb, CryptoConfigEntry *entry)
 struct SMIMECryptoConfigEntries {
     enum ShowError {
         DoNotShowError,
-        DoShowError
+        DoShowError,
     };
 
     SMIMECryptoConfigEntries(CryptoConfig *config)
-        : mConfig(config),
-          // Checkboxes
-          mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None)),
-          mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None)),
-          mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None)),
-          mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None)),
-          mAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)), // legacy entry -> ignore error
-          mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None)),
-          mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None)),
-          // dirmngr-0.9.0 options
-          mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None)),
-          mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None)),
-          mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None)),
-          mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None)),
-          mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None)),
-          mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None)),
-          // Other widgets
-          mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String)),
-          mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String)),
-          mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String)),
-          mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String))
+        : mConfig(config)
+        // Checkboxes
+        , mCheckUsingOCSPConfigEntry(configEntry("gpgsm", "enable-ocsp", CryptoConfigEntry::ArgType_None))
+        , mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None))
+        , mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None))
+        , mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None))
+        , mAllowMarkTrustedConfigEntry(
+              configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)) // legacy entry -> ignore error
+        , mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None))
+        , mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None))
+        // dirmngr-0.9.0 options
+        , mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None))
+        , mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None))
+        , mDisableHTTPEntry(configEntry("dirmngr", "disable-http", CryptoConfigEntry::ArgType_None))
+        , mHonorHTTPProxy(configEntry("dirmngr", "honor-http-proxy", CryptoConfigEntry::ArgType_None))
+        , mIgnoreLDAPDPEntry(configEntry("dirmngr", "ignore-ldap-dp", CryptoConfigEntry::ArgType_None))
+        , mDisableLDAPEntry(configEntry("dirmngr", "disable-ldap", CryptoConfigEntry::ArgType_None))
+        // Other widgets
+        , mOCSPResponderURLConfigEntry(configEntry("dirmngr", "ocsp-responder", CryptoConfigEntry::ArgType_String))
+        , mOCSPResponderSignature(configEntry("dirmngr", "ocsp-signer", CryptoConfigEntry::ArgType_String))
+        , mCustomHTTPProxy(configEntry("dirmngr", "http-proxy", CryptoConfigEntry::ArgType_String))
+        , mCustomLDAPProxy(configEntry("dirmngr", "ldap-proxy", CryptoConfigEntry::ArgType_String))
     {
     }
 

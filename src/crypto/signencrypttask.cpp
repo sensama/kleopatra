@@ -896,9 +896,8 @@ QString SignEncryptFilesResult::errorString() const
             QString();
     }
 
-    return
-        sign   ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) :
-        /*else*/ makeResultDetails(m_eresult, m_input.errorString, m_output.errorString);
+    return sign ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) //
+                : makeResultDetails(m_eresult, m_input.errorString, m_output.errorString);
 }
 
 Task::Result::VisualCode SignEncryptFilesResult::code() const

@@ -93,15 +93,12 @@ void Recipient::detach()
 bool Recipient::deepEquals(const Recipient &other) const
 {
     static const _detail::ByFingerprint<std::equal_to> compare = {};
-    return mailbox() == other.mailbox()
-           && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey)
-           && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent())
-           && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id())
-           && std::equal(d->pgpEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
-                         other.d->pgpEncryptionKeys.cbegin(), compare)
-           && std::equal(d->cmsEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(),
-                         other.d->cmsEncryptionKeys.cbegin(), compare)
-           ;
+    return mailbox() == other.mailbox() //
+        && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey) //
+        && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent()) //
+        && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id()) //
+        && std::equal(d->pgpEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(), other.d->pgpEncryptionKeys.cbegin(), compare)
+        && std::equal(d->cmsEncryptionKeys.cbegin(), d->pgpEncryptionKeys.cend(), other.d->cmsEncryptionKeys.cbegin(), compare);
 }
 
 bool Recipient::isEncryptionAmbiguous(GpgME::Protocol proto) const

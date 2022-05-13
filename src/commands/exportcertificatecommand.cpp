@@ -189,12 +189,11 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
         if (name.isEmpty()) {
             name = Formatting::prettyEMail(key);
         }
+        const auto asciiArmoredCertificateClass = (protocol == OpenPGP ? Class::OpenPGP : Class::CMS) | Class::Ascii | Class::Certificate;
         /* Not translated so it's better to use in tutorials etc. */
         proposedFileName += QStringLiteral("%1_%2_public.%3").arg(name).arg(
                 Formatting::prettyKeyID(key.shortKeyID())).arg(
-                QString::fromLatin1(outputFileExtension(protocol == OpenPGP
-                        ? Class::OpenPGP | Class::Ascii | Class::Certificate
-                        : Class::CMS | Class::Ascii | Class::Certificate, usePGPFileExt)));
+                QString::fromLatin1(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt)));
     }
     if (protocol == GpgME::CMS) {
         if (!fileNames[GpgME::OpenPGP].isEmpty()) {

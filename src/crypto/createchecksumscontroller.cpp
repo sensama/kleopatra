@@ -63,7 +63,7 @@ public:
                     : i18nc("@info", "These checksum files have been successfully created:"), this),
           createdLW(this),
           errorsLB(errors.empty()
-                   ? i18nc("@info", "There were no errors.")
+                   ? i18nc("@info", "There were no errors.") //
                    : i18nc("@info", "The following errors were encountered:"), this),
           errorsLW(this),
           buttonBox(QDialogButtonBox::Ok, Qt::Horizontal, this),
@@ -384,7 +384,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
             fi.fileName(),
             inputFiles,
             aggregate_size(dir, inputFiles),
-            ChecksumsUtils::filename2definition(fi.fileName(), checksumDefinitions)
+            ChecksumsUtils::filename2definition(fi.fileName(), checksumDefinitions),
         };
 
         dirs.push_back(item);
@@ -463,7 +463,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
             checksumDefinition->outputFileName(),
             inputFiles,
             aggregate_size(it->first, inputFiles),
-            checksumDefinition
+            checksumDefinition,
         };
         dirs.push_back(dir);
 

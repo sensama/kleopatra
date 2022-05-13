@@ -201,8 +201,8 @@ std::vector<KeyPairInfo> getKeysSuitableForCSRCreation(const NetKeyCard *netKeyC
             // it's not possible to request a certificate for them
             return false;
         }
-        return keyInfo.canSign()
-            && (keyInfo.keyRef.substr(0, 9) == "NKS-NKS3.")
+        return keyInfo.canSign() //
+            && (keyInfo.keyRef.substr(0, 9) == "NKS-NKS3.") //
             && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm);
     });
 
@@ -277,7 +277,7 @@ void NetKeyWidget::doChangePin(const std::string &keyRef)
                 this->setEnabled(true);
             });
     cmd->setKeyRef(keyRef);
-    if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin())
+    if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin()) //
         || (keyRef == NetKeyCard::sigGPinKeyRef() && netKeyCard->hasSigGNullPin())) {
         cmd->setMode(ChangePinCommand::NullPinMode);
     }

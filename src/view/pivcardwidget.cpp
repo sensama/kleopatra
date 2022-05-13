@@ -233,8 +233,8 @@ void PIVCardWidget::setCard(const PIVCard *card)
     updateKeyWidgets(PIVCard::keyManagementKeyRef());
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(card->hasSigningKey()
-                                          && card->hasEncryptionKey()
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() //
+                                          && card->hasEncryptionKey() //
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }

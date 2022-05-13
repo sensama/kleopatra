@@ -108,16 +108,15 @@ std::shared_ptr<AbstractDecryptVerifyTask> DecryptVerifyFilesController::Private
 
         const std::shared_ptr<ArchiveDefinition> ad = w->selectedArchiveDefinition();
 
-        const Protocol proto =
-            isOpenPGP(classification) ? OpenPGP :
-            isCMS(classification)     ? CMS :
-            ad /* _needs_ the info */   ? throw Exception(gpg_error(GPG_ERR_CONFLICT), i18n("Cannot determine whether input data is OpenPGP or CMS")) :
-            /* else we don't care */      UnknownProtocol;
+        const Protocol proto = isOpenPGP(classification) ? OpenPGP
+            : isCMS(classification)                      ? CMS
+            : ad ? throw Exception(gpg_error(GPG_ERR_CONFLICT), i18n("Cannot determine whether input data is OpenPGP or CMS"))
+                 : UnknownProtocol;
 
         const std::shared_ptr<Input> input = Input::createFromFile(fileName);
-        const std::shared_ptr<Output> output =
-            ad       ? ad->createOutputFromUnpackCommand(proto, fileName, outDir) :
-            /*else*/   Output::createFromFile(outDir.absoluteFilePath(outputFileName(QFileInfo(fileName).fileName())), overwritePolicy);
+        const std::shared_ptr<Output> output = ad
+            ? ad->createOutputFromUnpackCommand(proto, fileName, outDir)
+            : Output::createFromFile(outDir.absoluteFilePath(outputFileName(QFileInfo(fileName).fileName())), overwritePolicy);
 
         if (mayBeCipherText(classification)) {
             qCDebug(KLEOPATRA_LOG) << "creating a DecryptVerifyTask";

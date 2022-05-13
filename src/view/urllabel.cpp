@@ -34,8 +34,8 @@ void UrlLabel::setUrl(const QUrl &url, const QString &text)
         return;
     }
 
-    setHtml(templateString.arg(
-        url.url(QUrl::FullyEncoded),
+    setHtml(templateString.arg( //
+        url.url(QUrl::FullyEncoded), //
         text.isEmpty() ? url.toDisplayString().toHtmlEscaped() : text.toHtmlEscaped()));
 }
 

@@ -91,10 +91,9 @@ public:
                 case TestName:
                     return m_tests[row]->name();
                 case TestResult:
-                    return
-                        m_tests[row]->skipped() ? i18n("Skipped") :
-                        m_tests[row]->passed()  ? i18n("Passed") :
-                        /* else */                m_tests[row]->shortError();
+                    return m_tests[row]->skipped() ? i18n("Skipped") //
+                        : m_tests[row]->passed()   ? i18n("Passed")
+                                                   : m_tests[row]->shortError();
                 }
                 break;
             case Qt::BackgroundRole:

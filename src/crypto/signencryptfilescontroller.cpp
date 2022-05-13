@@ -172,14 +172,14 @@ Protocol SignEncryptFilesController::protocol() const
 // static
 void SignEncryptFilesController::Private::assertValidOperation(unsigned int op)
 {
-    kleo_assert((op & SignMask)    == SignDisallowed    ||
-                (op & SignMask)    == SignAllowed       ||
+    kleo_assert((op & SignMask)    == SignDisallowed    || //
+                (op & SignMask)    == SignAllowed       || //
                 (op & SignMask)    == SignSelected);
-    kleo_assert((op & EncryptMask) == EncryptDisallowed ||
-                (op & EncryptMask) == EncryptAllowed    ||
+    kleo_assert((op & EncryptMask) == EncryptDisallowed || //
+                (op & EncryptMask) == EncryptAllowed    || //
                 (op & EncryptMask) == EncryptSelected);
-    kleo_assert((op & ArchiveMask) == ArchiveDisallowed ||
-                (op & ArchiveMask) == ArchiveAllowed    ||
+    kleo_assert((op & ArchiveMask) == ArchiveDisallowed || //
+                (op & ArchiveMask) == ArchiveAllowed    || //
                 (op & ArchiveMask) == ArchiveForced);
     kleo_assert((op & ~(SignMask | EncryptMask | ArchiveMask)) == 0);
 }
@@ -268,10 +268,8 @@ static QMap <int, QString> buildOutputNames(const QStringList &files, const bool
     QString baseNamePgp;
     const QFileInfo firstFile(files.first());
     if (archive) {
-        QString baseName;
-        baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(files.size() > 1 ?
-                i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive") :
-                firstFile.baseName());
+        QString baseName = files.size() > 1 ? i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive") : firstFile.baseName();
+        baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(baseName);
 
         const auto ad = getDefaultAd();
         baseNamePgp = baseName + QLatin1Char('.') + ad->extensions(GpgME::OpenPGP).first() + QLatin1Char('.');
@@ -576,8 +574,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = (wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) ||
-                             ((operation & ArchiveMask) == ArchiveForced);
+        const bool archive = ((wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) //
+                              || ((operation & ArchiveMask) == ArchiveForced));
 
         const std::vector<Key> recipients = wizard->resolvedRecipients();
         const std::vector<Key> signers = wizard->resolvedSigners();

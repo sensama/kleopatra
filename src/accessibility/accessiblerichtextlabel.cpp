@@ -167,7 +167,7 @@ QString AccessibleRichTextLabel::text(int startOffset, int endOffset) const
 
     // most likely the client is asking for the selected text, so return it
     // instead of a slice of displayText() if the offsets match the selection
-    if (startOffset == label()->selectionStart()
+    if (startOffset == label()->selectionStart() //
             && endOffset == startOffset + label()->selectedText().size()) {
         return label()->selectedText();
     }
@@ -218,7 +218,7 @@ QString AccessibleRichTextLabel::displayText() const
     // calculate an approximation of the displayed text without using private
     // information of QLabel
     QString str = label()->text();
-    if (label()->textFormat() == Qt::RichText
+    if (label()->textFormat() == Qt::RichText //
             || (label()->textFormat() == Qt::AutoText && Qt::mightBeRichText(str))) {
         QTextDocument doc;
         doc.setHtml(str);

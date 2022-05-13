@@ -103,7 +103,7 @@ public:
         Warning,
         Danger,
         NeutralSuccess,
-        NeutralError
+        NeutralError,
     };
 
     virtual QString icon() const;

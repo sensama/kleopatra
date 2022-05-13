@@ -17,7 +17,7 @@ class KDPipeIODevice : public QIODevice
 public:
     enum DebugLevel {
         NoDebug,
-        Debug
+        Debug,
     };
 
     static DebugLevel debugLevel();

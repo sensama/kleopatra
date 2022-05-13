@@ -166,8 +166,8 @@ void P15CardWidget::setCard(const P15Card *card)
         }
     }
 
-    const bool cardHasOpenPGPKeys = !card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty()
-                                 || !card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty();
+    const bool cardHasOpenPGPKeys = (!card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty() //
+                                     || !card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty());
     mOpenPGPKeysSection->setVisible(cardHasOpenPGPKeys);
     if (cardHasOpenPGPKeys) {
         mOpenPGPKeysWidget->update(card);

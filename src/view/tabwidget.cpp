@@ -812,7 +812,7 @@ void TabWidget::createActions(KActionCollection *coll)
     }
     const action_data actionDataNew = {
         "window_new_tab", i18n("New Tab"), i18n("Open a new tab"),
-        "tab-new-background", this, [this](bool) { d->slotNewTab(); }, QStringLiteral("CTRL+SHIFT+N")
+        "tab-new-background", this, [this](bool) { d->slotNewTab(); }, QStringLiteral("CTRL+SHIFT+N"),
     };
 
     d->newAction = make_action_from_data(actionDataNew, coll);
@@ -820,35 +820,35 @@ void TabWidget::createActions(KActionCollection *coll)
     const std::vector<action_data> actionData = {
         {
             Actions::Rename, i18n("Rename Tab..."), i18n("Rename this tab"),
-            "edit-rename", this, [this](bool) { d->slotRenameCurrentTab(); }, QStringLiteral("CTRL+SHIFT+R"), RegularQAction, Disabled
+            "edit-rename", this, [this](bool) { d->slotRenameCurrentTab(); }, QStringLiteral("CTRL+SHIFT+R"), RegularQAction, Disabled,
         },
         {
             Actions::Duplicate, i18n("Duplicate Tab"), i18n("Duplicate this tab"),
-            "tab-duplicate", this, [this](bool) { d->slotDuplicateCurrentTab(); }, QStringLiteral("CTRL+SHIFT+D")
+            "tab-duplicate", this, [this](bool) { d->slotDuplicateCurrentTab(); }, QStringLiteral("CTRL+SHIFT+D"),
         },
         {
             Actions::Close, i18n("Close Tab"), i18n("Close this tab"),
-            "tab-close", this, [this](bool) { d->slotCloseCurrentTab(); }, QStringLiteral("CTRL+SHIFT+W"), RegularQAction, Disabled
+            "tab-close", this, [this](bool) { d->slotCloseCurrentTab(); }, QStringLiteral("CTRL+SHIFT+W"), RegularQAction, Disabled,
         }, // ### CTRL-W when available
         {
             Actions::MoveLeft, i18n("Move Tab Left"), i18n("Move this tab left"),
-            nullptr, this, [this](bool) { d->slotMoveCurrentTabLeft(); }, QStringLiteral("CTRL+SHIFT+LEFT"), RegularQAction, Disabled
+            nullptr, this, [this](bool) { d->slotMoveCurrentTabLeft(); }, QStringLiteral("CTRL+SHIFT+LEFT"), RegularQAction, Disabled,
         },
         {
             Actions::MoveRight, i18n("Move Tab Right"), i18n("Move this tab right"),
-            nullptr, this, [this](bool) { d->slotMoveCurrentTabRight(); }, QStringLiteral("CTRL+SHIFT+RIGHT"), RegularQAction, Disabled
+            nullptr, this, [this](bool) { d->slotMoveCurrentTabRight(); }, QStringLiteral("CTRL+SHIFT+RIGHT"), RegularQAction, Disabled,
         },
         {
             Actions::Hierarchical, i18n("Hierarchical Certificate List"), QString(),
-            nullptr, this, [this](bool on) { d->slotToggleHierarchicalView(on); }, QString(), KFToggleAction, Disabled
+            nullptr, this, [this](bool on) { d->slotToggleHierarchicalView(on); }, QString(), KFToggleAction, Disabled,
         },
         {
             Actions::ExpandAll, i18n("Expand All"), QString(),
-            nullptr, this, [this](bool) { d->slotExpandAll(); }, QStringLiteral("CTRL+."), RegularQAction, Disabled
+            nullptr, this, [this](bool) { d->slotExpandAll(); }, QStringLiteral("CTRL+."), RegularQAction, Disabled,
         },
         {
             Actions::CollapseAll, i18n("Collapse All"), QString(),
-            nullptr, this, [this](bool) { d->slotCollapseAll(); }, QStringLiteral("CTRL+,"), RegularQAction, Disabled
+            nullptr, this, [this](bool) { d->slotCollapseAll(); }, QStringLiteral("CTRL+,"), RegularQAction, Disabled,
         },
     };
 

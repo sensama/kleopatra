@@ -38,6 +38,7 @@ class CertificateSelectionDialog : public QDialog
     Q_FLAGS(Options)
 public:
     enum Option {
+        // clang-format off
         SingleSelection = 0x00,
         MultiSelection  = 0x01,
 
@@ -55,6 +56,7 @@ public:
         IncludeGroups   = 0x40,
 
         OptionMask
+        // clang-format on
     };
     Q_DECLARE_FLAGS(Options, Option)
 

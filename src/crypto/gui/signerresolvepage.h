@@ -80,7 +80,7 @@ public:
     enum Operation {
         SignAndEncrypt = 0,
         SignOnly,
-        EncryptOnly
+        EncryptOnly,
     };
 
     Operation operation() const;

@@ -317,9 +317,9 @@ static QString qt_create_commandline(const QString &program, const QStringList &
 
 bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
 {
-    if (mode != QIODevice::ReadOnly &&
-        mode != QIODevice::WriteOnly &&
-        mode != QIODevice::ReadWrite) {
+    if (mode != QIODevice::ReadOnly //
+        && mode != QIODevice::WriteOnly //
+        && mode != QIODevice::ReadWrite) {
         qCDebug(KLEOPATRA_LOG) << "Unsupported open mode " << mode;
         return false;
     }
@@ -331,19 +331,18 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
     saAttr.lpSecurityDescriptor = NULL;
 
     // Create the pipes
-    if (!CreatePipe(&mStdOutRd, &mStdOutWr, &saAttr, PIPEBUF_SIZE) ||
-        !CreatePipe(&mStdErrRd, &mStdErrWr, &saAttr, 0) ||
-        !CreatePipe(&mStdInRd, &mStdInWr, &saAttr, PIPEBUF_SIZE)) {
+    if (!CreatePipe(&mStdOutRd, &mStdOutWr, &saAttr, PIPEBUF_SIZE) //
+        || !CreatePipe(&mStdErrRd, &mStdErrWr, &saAttr, 0) //
+        || !CreatePipe(&mStdInRd, &mStdInWr, &saAttr, PIPEBUF_SIZE)) {
         qCDebug(KLEOPATRA_LOG) << "Failed to create pipes";
         mError = getLastErrorString();
         return false;
     }
 
     // Ensure only the proper handles are inherited
-    if (!SetHandleInformation(mStdOutRd, HANDLE_FLAG_INHERIT, 0) ||
-        !SetHandleInformation(mStdErrRd, HANDLE_FLAG_INHERIT, 0) ||
-        !SetHandleInformation(mStdInWr,  HANDLE_FLAG_INHERIT, 0)) {
-
+    if (!SetHandleInformation(mStdOutRd, HANDLE_FLAG_INHERIT, 0) //
+        || !SetHandleInformation(mStdErrRd, HANDLE_FLAG_INHERIT, 0) //
+        || !SetHandleInformation(mStdInWr, HANDLE_FLAG_INHERIT, 0)) {
         qCDebug(KLEOPATRA_LOG) << "Failed to set inherit flag";
         mError = getLastErrorString();
         return false;

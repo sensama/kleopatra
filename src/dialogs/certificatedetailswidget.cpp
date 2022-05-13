@@ -962,9 +962,9 @@ namespace
 {
 auto isGood(const GpgME::UserID::Signature &signature)
 {
-    return signature.status() == GpgME::UserID::Signature::NoError &&
-           !signature.isInvalid() &&
-           0x10 <= signature.certClass() && signature.certClass() <= 0x13;
+    return signature.status() == GpgME::UserID::Signature::NoError //
+        && !signature.isInvalid() //
+        && 0x10 <= signature.certClass() && signature.certClass() <= 0x13;
 }
 
 auto accumulateTrustDomains(const std::vector<GpgME::UserID::Signature> &signatures)

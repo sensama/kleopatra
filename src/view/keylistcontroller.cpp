@@ -352,111 +352,111 @@ void KeyListController::createActions(KActionCollection *coll)
         // File menu
         {
             "file_new_certificate", i18n("New OpenPGP Key Pair..."), i18n("Create a new OpenPGP certificate"),
-            "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N")
+            "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N"),
         },
         {
             "file_export_certificates", i18n("Export..."), i18n("Export the selected certificate (public key) to a file"),
-            "view-certificate-export", nullptr, nullptr, QStringLiteral("Ctrl+E")
+            "view-certificate-export", nullptr, nullptr, QStringLiteral("Ctrl+E"),
         },
         {
             "file_export_certificates_to_server", i18n("Publish on Server..."), i18n("Publish the selected certificate (public key) on a public keyserver"),
-            "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E")
+            "view-certificate-export-server", nullptr, nullptr, QStringLiteral("Ctrl+Shift+E"),
         },
 #ifdef MAILAKONADI_ENABLED
         {
             "file_export_certificate_to_provider", i18n("Publish at Mail Provider..."), i18n("Publish the selected certificate (public key) at mail provider's Web Key Directory if offered"),
-            "view-certificate-export", nullptr, nullptr, QString()
+            "view-certificate-export", nullptr, nullptr, QString(),
         },
 #endif // MAILAKONADI_ENABLED
         {
             "file_export_secret_keys", i18n("Backup Secret Keys..."), QString(),
-            "view-certificate-export-secret", nullptr, nullptr, QString()
+            "view-certificate-export-secret", nullptr, nullptr, QString(),
         },
         {
             "file_export_paper_key", i18n("Print Secret Key..."), QString(),
-            "document-print", nullptr, nullptr, QString()
+            "document-print", nullptr, nullptr, QString(),
         },
         {
             "file_lookup_certificates", i18n("Lookup on Server..."), i18n("Search for certificates online using a public keyserver"),
-            "edit-find", nullptr, nullptr, QStringLiteral("Shift+Ctrl+I")
+            "edit-find", nullptr, nullptr, QStringLiteral("Shift+Ctrl+I"),
         },
         {
             "file_import_certificates", i18n("Import..."), i18n("Import a certificate from a file"),
-            "view-certificate-import", nullptr, nullptr, QStringLiteral("Ctrl+I")
+            "view-certificate-import", nullptr, nullptr, QStringLiteral("Ctrl+I"),
         },
         {
             "file_decrypt_verify_files", i18n("Decrypt/Verify..."), i18n("Decrypt and/or verify files"),
-            "document-edit-decrypt-verify", nullptr, nullptr, QString()
+            "document-edit-decrypt-verify", nullptr, nullptr, QString(),
         },
         {
             "file_sign_encrypt_files", i18n("Sign/Encrypt..."), i18n("Encrypt and/or sign files"),
-            "document-edit-sign-encrypt", nullptr, nullptr, QString()
+            "document-edit-sign-encrypt", nullptr, nullptr, QString(),
         },
         {
             "file_sign_encrypt_folder", i18n("Sign/Encrypt Folder..."), i18n("Encrypt and/or sign folders"),
-            nullptr/*"folder-edit-sign-encrypt"*/, nullptr, nullptr, QString()
+            nullptr/*"folder-edit-sign-encrypt"*/, nullptr, nullptr, QString(),
         },
         {
             "file_checksum_create_files", i18n("Create Checksum Files..."), QString(),
-            nullptr/*"document-checksum-create"*/, nullptr, nullptr, QString()
+            nullptr/*"document-checksum-create"*/, nullptr, nullptr, QString(),
         },
         {
             "file_checksum_verify_files", i18n("Verify Checksum Files..."), QString(),
-            nullptr/*"document-checksum-verify"*/, nullptr, nullptr, QString()
+            nullptr/*"document-checksum-verify"*/, nullptr, nullptr, QString(),
         },
         // View menu
         {
             "view_redisplay", i18n("Redisplay"), QString(),
-            "view-refresh", nullptr, nullptr, QStringLiteral("F5")
+            "view-refresh", nullptr, nullptr, QStringLiteral("F5"),
         },
         {
             "view_stop_operations", i18n("Stop Operation"), QString(),
-            "process-stop", this, [this](bool) { cancelCommands(); }, QStringLiteral("Escape"), RegularQAction, Disabled
+            "process-stop", this, [this](bool) { cancelCommands(); }, QStringLiteral("Escape"), RegularQAction, Disabled,
         },
         {
             "view_certificate_details", i18n("Details"), QString(),
-            "dialog-information", nullptr, nullptr, QString()
+            "dialog-information", nullptr, nullptr, QString(),
         },
         // Certificate menu
 #if QGPGME_SUPPORTS_KEY_REVOCATION
         {
             "certificates_revoke", i18n("Revoke Certificate..."), i18n("Revoke the selected OpenPGP certificate"),
-            "view-certificate-revoke", nullptr, nullptr, {}
+            "view-certificate-revoke", nullptr, nullptr, {},
         },
 #endif
         {
             "certificates_delete", i18n("Delete"), i18n("Delete selected certificates"),
-            "edit-delete", nullptr, nullptr, QStringLiteral("Delete")
+            "edit-delete", nullptr, nullptr, QStringLiteral("Delete"),
         },
         {
             "certificates_certify_certificate", i18n("Certify..."), i18n("Certify the validity of the selected certificate"),
-            "view-certificate-sign", nullptr, nullptr, QString()
+            "view-certificate-sign", nullptr, nullptr, QString(),
         },
         {
             "certificates_revoke_certification", i18n("Revoke Certification..."), i18n("Revoke the certification of the selected certificate"),
-            "view-certificate-revoke", nullptr, nullptr, QString()
+            "view-certificate-revoke", nullptr, nullptr, QString(),
         },
         {
             "certificates_change_expiry", i18n("Change End of Validity Period..."), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "certificates_change_owner_trust", i18nc("@action:inmenu", "Change Certification Power..."),
             i18nc("@info:tooltip", "Grant or revoke the certification power of the selected certificate"),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "certificates_change_passphrase", i18n("Change Passphrase..."), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "certificates_add_userid", i18n("Add User ID..."), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         // Tools menu
         {
             "tools_refresh_openpgp_certificates", i18n("Refresh OpenPGP Certificates"), QString(),
-            "view-refresh", nullptr, nullptr, QString()
+            "view-refresh", nullptr, nullptr, QString(),
         },
         // Window menu
         // (come from TabWidget)
@@ -473,32 +473,32 @@ void KeyListController::createActions(KActionCollection *coll)
         // Certificate menu
         {
             "certificates_trust_root", i18n("Trust Root Certificate"), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "certificates_distrust_root", i18n("Distrust Root Certificate"), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "certificates_dump_certificate", i18n("Technical Details"), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         // Tools menu
         {
             "tools_refresh_x509_certificates", i18n("Refresh S/MIME Certificates"), QString(),
-            "view-refresh", nullptr, nullptr, QString()
+            "view-refresh", nullptr, nullptr, QString(),
         },
         {
             "crl_clear_crl_cache", i18n("Clear CRL Cache"), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "crl_dump_crl_cache", i18n("Dump CRL Cache"), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
         {
             "crl_import_crl", i18n("Import CRL From File..."), QString(),
-            nullptr, nullptr, nullptr, QString()
+            nullptr, nullptr, nullptr, QString(),
         },
     };
 

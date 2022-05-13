@@ -35,7 +35,7 @@ enum State {
     Ongoing,
     Ok,
     Failed,
-    NumStates
+    NumStates,
 };
 
 const char *icons[] = {
@@ -177,20 +177,18 @@ void SetInitialPinDialog::setSigGPinPresent(bool on)
 void SetInitialPinDialog::setNksPinSettingResult(const Error &err)
 {
     d->ui.nksStatusLB->setText(format_error(err));
-    d->nksState =
-        err.isCanceled() ? NotSet :
-        err              ? Failed :
-        Ok;
+    d->nksState = (err.isCanceled() ? NotSet //
+                       : err        ? Failed
+                                    : Ok);
     d->updateWidgets();
 }
 
 void SetInitialPinDialog::setSigGPinSettingResult(const Error &err)
 {
     d->ui.sigGStatusLB->setText(format_error(err));
-    d->sigGState =
-        err.isCanceled() ? NotSet :
-        err              ? Failed :
-        Ok;
+    d->sigGState = (err.isCanceled() ? NotSet //
+                        : err        ? Failed
+                                     : Ok);
     d->updateWidgets();
 }
 

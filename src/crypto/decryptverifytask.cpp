@@ -507,9 +507,9 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
     }
 
     // Yellow
-    if ((sig.validity() & Signature::Validity::Undefined) ||
-        (sig.validity() & Signature::Validity::Unknown) ||
-        (sig.summary() == Signature::Summary::None)) {
+    if ((sig.validity() & Signature::Validity::Undefined) //
+        || (sig.validity() & Signature::Validity::Unknown) //
+        || (sig.summary() == Signature::Summary::None)) {
         return text + (key.protocol() == OpenPGP ? i18n("The used key is not certified by you or any trusted person.") :
                i18n("The used certificate is not certified by a trustworthy Certificate Authority or the Certificate Authority is unknown."));
     }
@@ -736,7 +736,7 @@ DecryptVerifyResult::SenderInfo DecryptVerifyResult::Private::makeSenderInfo() c
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Decrypt,
+            Decrypt, //
             VerificationResult(),
             dr,
             plaintext,
@@ -753,7 +753,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Decrypt,
+            Decrypt, //
             VerificationResult(),
             DecryptionResult(err),
             QByteArray(),
@@ -771,7 +771,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
 {
     const auto err = dr.error().code() ? dr.error() : vr.error();
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            DecryptVerify,
+            DecryptVerify, //
             vr,
             dr,
             plaintext,
@@ -788,7 +788,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            DecryptVerify,
+            DecryptVerify, //
             VerificationResult(),
             DecryptionResult(err),
             QByteArray(),
@@ -805,7 +805,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify,
+            Verify, //
             vr,
             DecryptionResult(),
             plaintext,
@@ -821,7 +821,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify,
+            Verify, //
             VerificationResult(err),
             DecryptionResult(),
             QByteArray(),
@@ -838,7 +838,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify,
+            Verify, //
             vr,
             DecryptionResult(),
             QByteArray(),
@@ -854,7 +854,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
-            Verify,
+            Verify, //
             VerificationResult(err),
             DecryptionResult(),
             QByteArray(),

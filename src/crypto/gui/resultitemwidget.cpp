@@ -225,7 +225,7 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
 {
     const auto auditLogUrl = m_result->auditLog().asUrl(auditlog_url_template());
     const auto auditLogLinkText =
-        m_result->hasError() ? i18n("Diagnostics")
+        m_result->hasError() ? i18n("Diagnostics") //
                              : i18nc("The Audit Log is a detailed error log from the gnupg backend",
                                      "Show Audit Log");
     m_auditLogLabel->setUrl(auditLogUrl, auditLogLinkText);

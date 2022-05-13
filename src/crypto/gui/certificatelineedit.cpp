@@ -695,7 +695,7 @@ void CertificateLineEdit::Private::updateAccessibleNameAndDescription()
     // Qt does not support IA2's "invalid entry" state (like WCAG's "aria-invalid" state attribute);
     // screen readers say something like "invalid data" if this state is set;
     // emulate this by adding "invalid data" to the accessible name of the input field
-    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText()
+    const auto name = errorShown ? mAccessibleName + QLatin1String{", "} + invalidEntryText() //
                                  : mAccessibleName;
     if (ui.lineEdit.accessibleName() != name) {
         ui.lineEdit.setAccessibleName(name);
@@ -773,7 +773,7 @@ bool CertificateLineEdit::isEditingInProgress() const
 
 bool CertificateLineEdit::hasAcceptableInput() const
 {
-    return d->mStatus == Private::Status::Empty
+    return d->mStatus == Private::Status::Empty //
         || d->mStatus == Private::Status::Success;
 }
 

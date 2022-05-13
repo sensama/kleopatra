@@ -38,7 +38,7 @@ public:
     void remove();
     void listSelectionChanged();
     enum Role {
-        AbsoluteFilePathRole = Qt::UserRole
+        AbsoluteFilePathRole = Qt::UserRole,
     };
 
 private:

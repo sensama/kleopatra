@@ -92,7 +92,7 @@ const std::vector<KeyPairInfo> & OpenPGPCard::supportedKeys()
     static const std::vector<KeyPairInfo> keyInfos = {
         {OpenPGPCard::pgpSigKeyRef(), "", "sc", "", ""},
         {OpenPGPCard::pgpEncKeyRef(), "", "e", "", ""},
-        {OpenPGPCard::pgpAuthKeyRef(), "", "a", "", ""}
+        {OpenPGPCard::pgpAuthKeyRef(), "", "a", "", ""},
     };
 
     return keyInfos;
@@ -104,7 +104,7 @@ QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
     static const QMap<std::string, QString> displayNames = {
         { OpenPGPCard::pgpSigKeyRef(), i18n("Signature") },
         { OpenPGPCard::pgpEncKeyRef(), i18n("Encryption") },
-        { OpenPGPCard::pgpAuthKeyRef(), i18n("Authentication") }
+        { OpenPGPCard::pgpAuthKeyRef(), i18n("Authentication") },
     };
 
     return displayNames.value(keyRef);

@@ -20,21 +20,21 @@ namespace Kleo
 enum DecryptVerifyOperation {
     Decrypt,
     Verify,
-    DecryptVerify/*,
-        VerifyOpaque,
-        VerifyDetached*/
+    DecryptVerify,
+    // VerifyOpaque,
+    // VerifyDetached,
 };
 
 enum VerificationMode {
     Opaque,
-    Detached
+    Detached,
 };
 
 enum Policy {
     NoPolicy,
     Allow,
     Force,
-    Deny
+    Deny,
 };
 
 class ExecutionContext

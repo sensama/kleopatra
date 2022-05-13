@@ -240,7 +240,7 @@ private:
         // screen readers say something like "invalid entry" if this state is set;
         // emulate this by adding "invalid entry" to the accessible name of the input field
         // and its label
-        const auto name = errorShown ? descriptionAccessibleName + QLatin1String{", "} + invalidEntryText()
+        const auto name = errorShown ? descriptionAccessibleName + QLatin1String{", "} + invalidEntryText() //
                                      : descriptionAccessibleName;
         if (ui.descriptionLabel->accessibleName() != name) {
             ui.descriptionLabel->setAccessibleName(name);

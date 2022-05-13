@@ -222,10 +222,10 @@ bool ResolveRecipientsPage::ItemWidget::isSelected() const
 static CertificateSelectionDialog *createCertificateSelectionDialog(QWidget *parent, GpgME::Protocol prot)
 {
     auto const dlg = new CertificateSelectionDialog(parent);
-    const CertificateSelectionDialog::Options options =
-        CertificateSelectionDialog::SingleSelection |
-        CertificateSelectionDialog::EncryptOnly |
-        CertificateSelectionDialog::MultiSelection |
+    const CertificateSelectionDialog::Options options = //
+        CertificateSelectionDialog::SingleSelection | //
+        CertificateSelectionDialog::EncryptOnly | //
+        CertificateSelectionDialog::MultiSelection | //
         CertificateSelectionDialog::optionsFromProtocol(prot);
     dlg->setOptions(options);
     return dlg;

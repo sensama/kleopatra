@@ -297,22 +297,21 @@ void KeyTreeView::init()
 
     auto rearangingModel = new KeyRearrangeColumnsProxyModel(this);
     rearangingModel->setSourceModel(m_proxy);
-    rearangingModel->setSourceColumns(QVector<int>() << KeyList::PrettyName
-                                                     << KeyList::PrettyEMail
-                                                     << KeyList::Validity
-                                                     << KeyList::ValidFrom
-                                                     << KeyList::ValidUntil
-                                                     << KeyList::TechnicalDetails
-                                                     << KeyList::KeyID
-                                                     << KeyList::Fingerprint
-                                                     << KeyList::OwnerTrust
-                                                     << KeyList::Origin
-                                                     << KeyList::LastUpdate
-                                                     << KeyList::Issuer
-                                                     << KeyList::SerialNumber
-    // If a column is added before this TAGS_COLUMN define has to be updated accordingly
-                                                     << KeyList::Remarks
-    );
+    rearangingModel->setSourceColumns(QVector<int>() << KeyList::PrettyName //
+                                                     << KeyList::PrettyEMail //
+                                                     << KeyList::Validity //
+                                                     << KeyList::ValidFrom //
+                                                     << KeyList::ValidUntil //
+                                                     << KeyList::TechnicalDetails //
+                                                     << KeyList::KeyID //
+                                                     << KeyList::Fingerprint //
+                                                     << KeyList::OwnerTrust //
+                                                     << KeyList::Origin //
+                                                     << KeyList::LastUpdate //
+                                                     << KeyList::Issuer //
+                                                     << KeyList::SerialNumber //
+                                                     // If a column is added before this TAGS_COLUMN define has to be updated accordingly
+                                                     << KeyList::Remarks);
     m_view->setModel(rearangingModel);
 
     /* Handle expansion state */

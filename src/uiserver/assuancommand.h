@@ -228,7 +228,7 @@ public:
     Mode checkMode() const;
 
     enum CheckProtocolOption {
-        AllowProtocolMissing = 0x01
+        AllowProtocolMissing = 0x01,
     };
 
     GpgME::Protocol checkProtocol(Mode mode, int options = 0) const;

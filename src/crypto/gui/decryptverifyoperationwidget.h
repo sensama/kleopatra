@@ -42,7 +42,7 @@ public:
     enum Mode {
         VerifyDetachedWithSignature,
         VerifyDetachedWithSignedData,
-        DecryptVerifyOpaque
+        DecryptVerifyOpaque,
     };
     void setMode(Mode mode, const std::shared_ptr<ArchiveDefinition> &ad);
     void setMode(Mode mode);

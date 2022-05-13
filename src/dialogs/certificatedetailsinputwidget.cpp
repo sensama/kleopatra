@@ -231,9 +231,10 @@ public:
             if (attr.isEmpty()) {
                 continue;
             }
-            const QString defaultPreset = (attr == QLatin1String("CN")) ? userFullName() :
-                                          (attr == QLatin1String("EMAIL")) ? userEmailAddress() :
-                                          QString();
+            const QString defaultPreset = //
+                (attr == QLatin1String("CN"))      ? userFullName()
+                : (attr == QLatin1String("EMAIL")) ? userEmailAddress()
+                                                   : QString();
             const QString preset = config.readEntry(attr, defaultPreset);
             const bool required = key.endsWith(QLatin1Char('!'));
             const bool readonly = config.isEntryImmutable(attr);

@@ -44,11 +44,11 @@ KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     setModal(false);
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
-    buttonBox->setStandardButtons(QDialogButtonBox::Help
-                                  | QDialogButtonBox::RestoreDefaults
-                                  | QDialogButtonBox::Cancel
-                                  | QDialogButtonBox::Apply
-                                  | QDialogButtonBox::Ok
+    buttonBox->setStandardButtons(QDialogButtonBox::Help //
+                                  | QDialogButtonBox::RestoreDefaults //
+                                  | QDialogButtonBox::Cancel //
+                                  | QDialogButtonBox::Apply //
+                                  | QDialogButtonBox::Ok //
                                   | QDialogButtonBox::Reset);
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Ok), KStandardGuiItem::ok());
     KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());

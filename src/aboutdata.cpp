@@ -67,17 +67,17 @@ AboutData::AboutData()
                  i18n("Certificate Manager and Unified Crypto GUI"),
 #endif
                  KAboutLicense::GPL,
-                 i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0" "Dalheimer, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB\n"
-                      "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0" "Datakonsult\u00A0" "AB") +
-                 QLatin1Char('\n') +
-                 i18n("(c) 2016-2018 Intevation GmbH") +
-                 QLatin1Char('\n') +
-                 i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023"))
-#ifdef Q_OS_WIN
-                 , Kleo::gpg4winLongDescription()
-#endif
+                 i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0Dalheimer, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB\n"
+                      "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB") //
+                 + QLatin1Char('\n') //
+                 + i18n("(c) 2016-2018 Intevation GmbH") //
+                 + QLatin1Char('\n') //
+                 + i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023"))
                  )
 {
+#ifdef Q_OS_WIN
+    setOtherText(Kleo::gpg4winLongDescription());
+#endif
     using ::authors;
     using ::credits;
     for (unsigned int i = 0; i < sizeof authors / sizeof * authors; ++i) {
@@ -110,11 +110,10 @@ AboutData::AboutData()
 
     const auto backendVersions = Kleo::backendVersionInfo();
     if (!backendVersions.empty()) {
-        setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra",
-                           "Uses:") +
-                     QLatin1String{"<ul><li>"} +
-                     backendVersions.join(QLatin1String{"</li><li>"}) +
-                     QLatin1String{"</li></ul>"} +
-                     otherText());
+        setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
+                     + QLatin1String{"<ul><li>"} //
+                     + backendVersions.join(QLatin1String{"</li><li>"}) //
+                     + QLatin1String{"</li></ul>"} //
+                     + otherText());
     }
 }

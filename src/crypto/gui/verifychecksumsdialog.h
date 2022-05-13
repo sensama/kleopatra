@@ -36,7 +36,7 @@ public:
         OK,
         Failed,
         Error,
-        NumStatii
+        NumStatii,
     };
 
 public Q_SLOTS:

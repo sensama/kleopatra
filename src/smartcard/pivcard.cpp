@@ -72,7 +72,7 @@ const std::vector<KeyPairInfo> & PIVCard::supportedKeys()
         {PIVCard::pivAuthenticationKeyRef(), "", "a", "", ""},
         {PIVCard::cardAuthenticationKeyRef(), "", "a", "", ""},
         {PIVCard::digitalSignatureKeyRef(), "", "sc", "", ""},
-        {PIVCard::keyManagementKeyRef(), "", "e", "", ""}
+        {PIVCard::keyManagementKeyRef(), "", "e", "", ""},
     };
 
     return keyInfos;
@@ -98,13 +98,13 @@ std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRe
         return {
             { "rsa2048", i18n("RSA key transport (2048 bits)") },
             { "nistp256", i18n("ECDH (Curve P-256)") },
-            { "nistp384", i18n("ECDH (Curve P-384)") }
+            { "nistp384", i18n("ECDH (Curve P-384)") },
         };
     } else if (keyRef == PIVCard::digitalSignatureKeyRef()) {
         return {
             { "rsa2048", i18n("RSA (2048 bits)") },
             { "nistp256", i18n("ECDSA (Curve P-256)") },
-            { "nistp384", i18n("ECDSA (Curve P-384)") }
+            { "nistp384", i18n("ECDSA (Curve P-384)") },
         };
     }
 

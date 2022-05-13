@@ -27,7 +27,7 @@ public:
 
     enum OpenMode {
         Read = 0x1,
-        Write = 0x2
+        Write = 0x2,
     };
 
     static void messageHandler(QtMsgType type, const QMessageLogContext &ctx,

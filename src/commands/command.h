@@ -44,6 +44,7 @@ public:
     ~Command() override;
 
     enum Restriction {
+        // clang-format off
         NoRestriction      = 0x0000,
         NeedSelection      = 0x0001,
         OnlyOneKey         = 0x0002,
@@ -65,7 +66,8 @@ public:
         MustBeValid         = 0x1000, //< key is neither revoked nor expired nor otherwise "bad"
 
         _AllRestrictions_Helper,
-        AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1
+        AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1,
+        // clang-format on
     };
 
     Q_DECLARE_FLAGS(Restrictions, Restriction)

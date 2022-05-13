@@ -82,9 +82,8 @@ public:
 
 QString FormTextInputBase::Private::annotatedIfRequired(const QString &text) const
 {
-    return mRequired
-        ? i18nc("@label label text (required)", "%1 (required)", text)
-        : text;
+    return mRequired ? i18nc("@label label text (required)", "%1 (required)", text) //
+                     : text;
 }
 
 void FormTextInputBase::Private::updateLabel()
@@ -206,7 +205,7 @@ void FormTextInputBase::Private::updateAccessibleNameAndDescription()
     // Qt does not support "described-by" relations (like WCAG's "aria-describedby" relationship attribute);
     // emulate this by setting the hint text and, if the error is shown, the error message as accessible
     // description of the input field
-    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName()
+    const auto description = errorShown ? accessibleDescription() + QLatin1String{" "} + mErrorLabel->accessibleName() //
                                         : accessibleDescription();
     if (mWidget && mWidget->accessibleDescription() != description) {
         mWidget->setAccessibleDescription(description);

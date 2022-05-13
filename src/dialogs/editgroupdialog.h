@@ -31,7 +31,7 @@ class EditGroupDialog : public QDialog
 public:
     enum FocusWidget {
         GroupName,
-        KeysFilter
+        KeysFilter,
     };
 
     explicit EditGroupDialog(QWidget *parent = nullptr);

@@ -99,21 +99,15 @@ void Sender::detach()
 bool Sender::deepEquals(const Sender &other) const
 {
     static const _detail::ByFingerprint<std::equal_to> compare = {};
-    return mailbox() == other.mailbox()
-           && compare(d->signingKey[CMS],     other.d->signingKey[CMS])
-           && compare(d->signingKey[OpenPGP], other.d->signingKey[OpenPGP])
-           && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey)
-           && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent())
-           && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id()) == 0
-           && std::equal(d->pgpSigners.cbegin(), d->pgpSigners.cend(),
-                         other.d->pgpSigners.cbegin(), compare)
-           && std::equal(d->cmsSigners.cbegin(), d->cmsSigners.cend(),
-                         other.d->cmsSigners.cbegin(), compare)
-           && std::equal(d->pgpEncryptToSelfKeys.cbegin(), d->pgpEncryptToSelfKeys.cend(),
-                         other.d->pgpEncryptToSelfKeys.cbegin(), compare)
-           && std::equal(d->cmsEncryptToSelfKeys.cbegin(), d->cmsEncryptToSelfKeys.cend(),
-                         other.d->cmsEncryptToSelfKeys.cbegin(), compare)
-           ;
+    return mailbox() == other.mailbox() //
+        && compare(d->signingKey[CMS], other.d->signingKey[CMS]) //
+        && compare(d->signingKey[OpenPGP], other.d->signingKey[OpenPGP]) //
+        && compare(d->cmsEncryptionKey, other.d->cmsEncryptionKey) //
+        && compare(d->pgpEncryptionUid.parent(), other.d->pgpEncryptionUid.parent()) && strcmp(d->pgpEncryptionUid.id(), other.d->pgpEncryptionUid.id()) == 0
+        && std::equal(d->pgpSigners.cbegin(), d->pgpSigners.cend(), other.d->pgpSigners.cbegin(), compare)
+        && std::equal(d->cmsSigners.cbegin(), d->cmsSigners.cend(), other.d->cmsSigners.cbegin(), compare)
+        && std::equal(d->pgpEncryptToSelfKeys.cbegin(), d->pgpEncryptToSelfKeys.cend(), other.d->pgpEncryptToSelfKeys.cbegin(), compare)
+        && std::equal(d->cmsEncryptToSelfKeys.cbegin(), d->cmsEncryptToSelfKeys.cend(), other.d->cmsEncryptToSelfKeys.cbegin(), compare);
 }
 
 bool Sender::isSigningAmbiguous(GpgME::Protocol proto) const

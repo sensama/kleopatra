@@ -22,7 +22,7 @@ public:
     enum ChangePinMode {
         NormalMode = 0,
         ResetMode = 1,
-        NullPinMode = 2
+        NullPinMode = 2,
     };
 
     explicit ChangePinCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent);

@@ -285,9 +285,9 @@ void AutoDecryptVerifyFilesController::Private::exec()
 QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
 {
     const auto isSignature = [](int classification) -> bool {
-        return mayBeDetachedSignature(classification)
-                || mayBeOpaqueSignature(classification)
-                || (classification & Class::TypeMask) == Class::ClearsignedMessage;
+        return mayBeDetachedSignature(classification) //
+            || mayBeOpaqueSignature(classification) //
+            || (classification & Class::TypeMask) == Class::ClearsignedMessage;
     };
 
     QVector<CryptoFile> out;

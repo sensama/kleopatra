@@ -175,10 +175,10 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
         return;
     }
 
-    if (lowered.startsWith(QLatin1String("cv25519")) ||
-        lowered.startsWith(QLatin1String("nist")) ||
-        lowered.startsWith(QLatin1String("brainpool")) ||
-        lowered.startsWith(QLatin1String("secp"))) {
+    if (lowered.startsWith(QLatin1String("cv25519")) //
+        || lowered.startsWith(QLatin1String("nist")) //
+        || lowered.startsWith(QLatin1String("brainpool")) //
+        || lowered.startsWith(QLatin1String("secp"))) {
         curve = split[0];
         *algo = isEncrypt ? Subkey::AlgoECDH : Subkey::AlgoECDSA;
         return;

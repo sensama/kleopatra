@@ -69,9 +69,9 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
 
     QTextStream s(&f);
 
-    s << i18n("This is a revocation certificate for the OpenPGP key:")
-      << "\n\n             " << Formatting::prettyNameAndEMail(d->key())
-      <<   "\n Fingerprint: " << d->key().primaryFingerprint() << "\n\n"
+    s << i18n("This is a revocation certificate for the OpenPGP key:") << "\n\n" //
+      << "             " << Formatting::prettyNameAndEMail(d->key()) << "\n" //
+      << "Fingerprint: " << d->key().primaryFingerprint() << "\n\n"
       << i18n("A revocation certificate is a kind of \"kill switch\" to publicly\n"
               "declare that a key shall not anymore be used.  It is not possible\n"
               "to retract such a revocation certificate once it has been published.")

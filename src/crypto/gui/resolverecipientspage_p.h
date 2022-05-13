@@ -44,7 +44,7 @@ public:
     void showSelectionDialog(const QString &id);
 
     enum Role {
-        IdRole = Qt::UserRole
+        IdRole = Qt::UserRole,
     };
 
 Q_SIGNALS:

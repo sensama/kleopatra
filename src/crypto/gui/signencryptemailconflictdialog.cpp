@@ -70,8 +70,8 @@ create_encryption_certificate_selection_dialog(QWidget *parent, Protocol proto, 
 {
     CertificateSelectionDialog *const dlg = create_certificate_selection_dialog(parent, proto);
     dlg->setCustomLabelText(i18n("Please select an encryption certificate for recipient \"%1\"", mailbox));
-    dlg->setOptions(CertificateSelectionDialog::SingleSelection |
-                    CertificateSelectionDialog::EncryptOnly |
+    dlg->setOptions(CertificateSelectionDialog::SingleSelection | //
+                    CertificateSelectionDialog::EncryptOnly | //
                     dlg->options());
     return dlg;
 }
@@ -81,9 +81,9 @@ create_signing_certificate_selection_dialog(QWidget *parent, Protocol proto, con
 {
     CertificateSelectionDialog *const dlg = create_certificate_selection_dialog(parent, proto);
     dlg->setCustomLabelText(i18n("Please select a signing certificate for sender \"%1\"", mailbox));
-    dlg->setOptions(CertificateSelectionDialog::SingleSelection |
-                    CertificateSelectionDialog::SignOnly |
-                    CertificateSelectionDialog::SecretKeys |
+    dlg->setOptions(CertificateSelectionDialog::SingleSelection | //
+                    CertificateSelectionDialog::SignOnly | //
+                    CertificateSelectionDialog::SecretKeys | //
                     dlg->options());
     return dlg;
 }
@@ -100,7 +100,7 @@ static QString make_top_label_conflict_text(bool sign, bool enc)
         enc         ? i18n("Kleopatra cannot unambiguously determine matching certificates "
                            "for all recipients of the message.\n"
                            "Please select the correct certificates for each recipient:") :
-        /* else */ (kleo_assert_fail(sign || enc), QString());
+                   (kleo_assert_fail(sign || enc), QString());
 }
 
 static QString make_top_label_quickmode_text(bool sign, bool enc)
@@ -108,7 +108,7 @@ static QString make_top_label_quickmode_text(bool sign, bool enc)
     return
         enc    ? i18n("Please verify that correct certificates have been selected for each recipient:") :
         sign   ? i18n("Please verify that the correct certificate has been selected for the sender:") :
-        /*else*/ (kleo_assert_fail(sign || enc), QString());
+                 (kleo_assert_fail(sign || enc), QString());
 }
 
 class SignEncryptEMailConflictDialog::Private
@@ -145,7 +145,7 @@ private:
         const bool needShowAllRecipientsCB =
             quickMode             ? false :
             needProtocolSelection ? needShowAllRecipients(OpenPGP) || needShowAllRecipients(CMS) :
-            /* else */              needShowAllRecipients(proto)
+                                    needShowAllRecipients(proto)
             ;
 
         ui.showAllRecipientsCB.setVisible(needShowAllRecipientsCB);
@@ -583,11 +583,13 @@ bool SignEncryptEMailConflictDialog::isComplete() const
 
 bool SignEncryptEMailConflictDialog::Private::isComplete(Protocol proto) const
 {
-    return (!sign || std::none_of(ui.signers.cbegin(), ui.signers.cend(),
+    return (!sign || std::none_of(ui.signers.cbegin(), //
+                                  ui.signers.cend(),
                                   [proto](const CertificateSelectionLine &l) {
                                       return l.isStillAmbiguous(proto);
                                   }))
-           && (!encrypt || std::none_of(ui.recipients.cbegin(), ui.recipients.cend(),
+           && (!encrypt || std::none_of(ui.recipients.cbegin(), //
+                                        ui.recipients.cend(),
                                         [proto](const CertificateSelectionLine &l) {
                                             return l.isStillAmbiguous(proto);
                                         }));

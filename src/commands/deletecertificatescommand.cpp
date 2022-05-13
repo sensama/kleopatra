@@ -176,7 +176,7 @@ static const struct {
             "Check your installation.\n"
             "Only the selected OpenPGP certificates "
             "will be deleted."),
-     ClearCMS},                        // cantCMS
+     ClearCMS}, //                        cantCMS
     {KLazyLocalizedString(), Nothing}, // canCMS
     //      if !haveCMS
     {KLazyLocalizedString(), Nothing}, // cantCMS
@@ -187,7 +187,7 @@ static const struct {
     {kli18n("The CMS backend does not support "
             "certificate deletion.\n"
             "Check your installation."),
-     Failure},                         // cantCMS
+     Failure}, //                         cantCMS
     {KLazyLocalizedString(), Nothing}, // canCMS
     //     if !haveCMS
     {KLazyLocalizedString(), Nothing}, // cantCMS
@@ -197,7 +197,7 @@ static const struct {
     {kli18n("The CMS backend does not support "
             "certificate deletion.\n"
             "Check your installation."),
-     Failure},                         // cantCMS
+     Failure}, //                         cantCMS
     {KLazyLocalizedString(), Nothing}, // canCMS
     //     if !haveCMS
     {KLazyLocalizedString(), Nothing}, // cantCMS
@@ -254,9 +254,11 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
     std::vector<Key> openpgp(pgpBegin, pgpEnd);
     std::vector<Key>     cms(cmsBegin, cmsEnd);
 
-    const unsigned int errorCase =
-        openpgp.empty() << 3U | canDelete(OpenPGP) << 2U |
-        cms.empty() << 1U |     canDelete(CMS) << 0U;
+    const unsigned int errorCase = //
+        openpgp.empty() << 3U //
+        | canDelete(OpenPGP) << 2U //
+        | cms.empty() << 1U //
+        | canDelete(CMS) << 0U;
 
     if (const unsigned int actions = deletionErrorCases[errorCase].actions) {
         information(KLocalizedString(deletionErrorCases[errorCase].text).toString(),

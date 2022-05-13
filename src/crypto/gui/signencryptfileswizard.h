@@ -52,7 +52,7 @@ public:
         CombinedPGP,
         EncryptedPGP,
         EncryptedCMS,
-        Directory
+        Directory,
     };
 
     explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});

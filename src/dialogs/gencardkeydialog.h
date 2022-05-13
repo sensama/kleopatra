@@ -37,6 +37,7 @@ public:
     };
 
     enum KeyAttribute {
+        // clang-format off
         NoKeyAttributes = 0,
         KeyOwnerName    = 1,
         KeyOwnerEmail   = 2,
@@ -46,6 +47,7 @@ public:
 
         _AllKeyAttributes_Helper,
         AllKeyAttributes = 2 * (_AllKeyAttributes_Helper - 1) - 1
+        // clang-format on
     };
 
     Q_DECLARE_FLAGS(KeyAttributes, KeyAttribute)

@@ -80,11 +80,11 @@ public:
 private:
     enum EntryMultiplicity {
         SingleValue,
-        ListValue
+        ListValue,
     };
     enum ShowError {
         DoNotShowError,
-        DoShowError
+        DoShowError,
     };
 
     void setX509ServerEntry(const std::vector<KeyserverConfig> &servers);

@@ -128,9 +128,9 @@ bool hasSigningKeys(GpgME::Protocol protocol) {
     return Kleo::any_of(KeyCache::instance()->keys(),
                         [protocol](const auto &k) {
 #if GPGMEPP_KEY_CANSIGN_IS_FIXED
-                            return k.hasSecret() && k.canSign() && (k.protocol() == protocol);
+        return k.hasSecret() && k.canSign() && (k.protocol() == protocol);
 #else
-                            return k.hasSecret() && k.canReallySign() && (k.protocol() == protocol);
+        return k.hasSecret() && k.canReallySign() && (k.protocol() == protocol);
 #endif
                         });
 }

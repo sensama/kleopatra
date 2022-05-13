@@ -104,7 +104,7 @@ void AddUserIDCommand::doStart()
     }
 
     d->key = keys.front();
-    if (d->key.protocol() != GpgME::OpenPGP
+    if (d->key.protocol() != GpgME::OpenPGP //
         || !d->key.hasSecret()) {
         d->finished();
         return;
@@ -209,7 +209,7 @@ void AddUserIDCommand::Private::showErrorDialog(const Error &err)
 
 void AddUserIDCommand::Private::showSuccessDialog()
 {
-    information(i18nc("@info", "User ID successfully added."),
+    information(i18nc("@info", "User ID successfully added."), //
                 i18nc("@title:window", "Add User ID Succeeded"));
 }
 

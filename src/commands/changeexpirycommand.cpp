@@ -263,10 +263,10 @@ void ChangeExpiryCommand::setSubkey(const GpgME::Subkey &subkey)
 void ChangeExpiryCommand::doStart()
 {
     const std::vector<Key> keys = d->keys();
-    if (keys.size() != 1 ||
-            keys.front().protocol() != GpgME::OpenPGP ||
-            !keys.front().hasSecret() ||
-            keys.front().subkey(0).isNull()) {
+    if (keys.size() != 1 //
+        || keys.front().protocol() != GpgME::OpenPGP //
+        || !keys.front().hasSecret() //
+        || keys.front().subkey(0).isNull()) {
         d->finished();
         return;
     }

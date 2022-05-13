@@ -205,9 +205,9 @@ static QPoint calculate_hot_spot(const QPoint &mouse, const QSize &pix, const QL
 void DragQueen::mouseMoveEvent(QMouseEvent *e)
 {
 #ifndef QT_NO_DRAGANDDROP
-    if (m_data &&
-            (e->buttons() & Qt::LeftButton) &&
-            (m_dragStartPosition - e->pos()).manhattanLength() > QApplication::startDragDistance()) {
+    if (m_data //
+        && (e->buttons() & Qt::LeftButton) //
+        && (m_dragStartPosition - e->pos()).manhattanLength() > QApplication::startDragDistance()) {
         auto drag = new QDrag(this);
         const QPixmap pix = pixmap(Qt::ReturnByValue);
         if (!pix.isNull()) {

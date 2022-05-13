@@ -70,8 +70,8 @@ QString Kleo::heuristicBaseDirectory(const QStringList &fileNames)
      * This is very common when encrypted attachments are opened
      * within Outlook or KMail.
      */
-    if (candidate.contains(QStringLiteral("Content.Outlook")) ||
-        candidate.contains(QStringLiteral("messageviewer"))) {
+    if (candidate.contains(QStringLiteral("Content.Outlook")) //
+        || candidate.contains(QStringLiteral("messageviewer"))) {
         return QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     }
     const int idx = candidate.lastIndexOf(QLatin1Char('/'));
@@ -202,8 +202,9 @@ bool Kleo::moveDir(const QString &src, const QString &dest)
     // Need an existing path to query the device
     const QString parentDest = QFileInfo(dest).dir().absolutePath();
     const auto srcDevice = QStorageInfo(src).device();
-    if (!srcDevice.isEmpty() && srcDevice == QStorageInfo(parentDest).device() &&
-        QFile::rename(src, dest)) {
+    if (!srcDevice.isEmpty() //
+        && srcDevice == QStorageInfo(parentDest).device() //
+        && QFile::rename(src, dest)) {
         qCDebug(KLEOPATRA_LOG) << "Renamed" << src << "to" << dest;
         return true;
     }

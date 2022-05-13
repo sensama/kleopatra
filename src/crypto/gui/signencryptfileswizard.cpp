@@ -563,9 +563,9 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
             &SignEncryptFilesWizard::slotCurrentIdChanged);
     setPage(SigEncPageId, mSigEncPage);
     setPage(ResultPageId, mResultPage);
-    setOptions(QWizard::IndependentPages |
-               (de_vs ? QWizard::HaveCustomButton1 : QWizard::WizardOption(0)) |
-               QWizard::NoBackButtonOnLastPage |
+    setOptions(QWizard::IndependentPages | //
+               (de_vs ? QWizard::HaveCustomButton1 : QWizard::WizardOption(0)) | //
+               QWizard::NoBackButtonOnLastPage | //
                QWizard::NoBackButtonOnStartPage);
 
     if (de_vs) {

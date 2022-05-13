@@ -407,10 +407,10 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
 {
     CertificateSelectionDialog dlg{this};
 
-    dlg.setOptions(CertificateSelectionDialog::Options(
-        CertificateSelectionDialog::MultiSelection |
-        CertificateSelectionDialog::EncryptOnly |
-        CertificateSelectionDialog::optionsFromProtocol(d->mCurrentProto) |
+    dlg.setOptions(CertificateSelectionDialog::Options( //
+        CertificateSelectionDialog::MultiSelection | //
+        CertificateSelectionDialog::EncryptOnly | //
+        CertificateSelectionDialog::optionsFromProtocol(d->mCurrentProto) | //
         CertificateSelectionDialog::IncludeGroups));
 
     if (!certificateLineEdit->key().isNull()) {
@@ -652,7 +652,7 @@ void SignEncryptWidget::Private::recpRemovalRequested(const RecipientWidgets &re
     if (emptyEdits > 1) {
         if (recipientWidgetHasFocus(recipient.edit) || recipientWidgetHasFocus(recipient.expiryMessage)) {
             const int index = mRecpLayout->indexOf(recipient.edit);
-            const auto focusWidget = (index < mRecpLayout->count() - 2) ?
+            const auto focusWidget = (index < mRecpLayout->count() - 2) ? //
                 mRecpLayout->itemAt(index + 2)->widget() :
                 mRecpLayout->itemAt(mRecpLayout->count() - 3)->widget();
             focusWidget->setFocus();
@@ -779,7 +779,7 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
 
 bool SignEncryptWidget::isComplete() const
 {
-    return currentOp() != NoOperation
+    return currentOp() != NoOperation //
         && std::all_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
                         [](const auto &r) { return !r.edit->isEnabled() || r.edit->hasAcceptableInput(); });
 }

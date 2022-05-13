@@ -24,7 +24,7 @@ namespace
 {
 enum UserInfoDetail {
     UserInfoName,
-    UserInfoEmailAddress
+    UserInfoEmailAddress,
 };
 
 static QString env_get_user_name(UserInfoDetail detail)

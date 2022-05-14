@@ -124,8 +124,7 @@ void GenRevokeCommand::doStart()
 
     auto proc = process();
     // We do custom io
-    disconnect(proc, SIGNAL(readyReadStandardError()),
-               this, SLOT(slotProcessReadyReadStandardError()));
+    disconnect(m_procReadyReadStdErrConnection);
     proc->setReadChannel(QProcess::StandardOutput);
 
     GnuPGProcessCommand::doStart();

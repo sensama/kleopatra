@@ -424,42 +424,42 @@ void MainWindow::Private::setupActions()
 #ifndef Q_OS_WIN
         {
             "tools_start_kwatchgnupg", i18n("GnuPG Log Viewer"), QString(),
-            "kwatchgnupg", q, SLOT(gnupgLogViewer()), QString(), false, true
+            "kwatchgnupg", q, [this](bool) { gnupgLogViewer(); }, QString(), false, true
         },
 #endif
         {
             "tools_restart_backend", i18nc("@action:inmenu", "Restart Background Processes"),
             i18nc("@info:tooltip", "Restart the background processes, e.g. after making changes to the configuration."),
-            "view-refresh", q, SLOT(restartDaemons()), {}, false, true
+            "view-refresh", q, [this](bool) { restartDaemons(); }, {}, false, true
         },
         // Help menu
 #ifdef Q_OS_WIN
         {
             "help_check_updates", i18n("Check for updates"), QString(),
-            "gpg4win-compact", q, SLOT(forceUpdateCheck()), QString(), false, true
+            "gpg4win-compact", q, [this](bool) { forceUpdateCheck(); }, QString(), false, true
         },
 #endif
         // View menu
         {
             "view_certificate_overview", i18nc("@action show certificate overview", "Certificates"),
-            i18n("Show certificate overview"), "view-certificate", q, SLOT(showCertificateView()), QString(), false, true
+            i18n("Show certificate overview"), "view-certificate", q, [this](bool) { showCertificateView(); }, QString(), false, true
         },
         {
             "pad_view", i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
-            i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, SLOT(showPadView()), QString(), false, true
+            i18n("Show pad for encrypting/decrypting and signing/verifying text"), "note", q, [this](bool) { showPadView(); }, QString(), false, true
         },
         {
             "manage_smartcard", i18nc("@action show smartcard management view", "Smartcards"),
-            i18n("Show smartcard management"), "auth-sim-locked", q, SLOT(showSmartcardView()), QString(), false, true
+            i18n("Show smartcard management"), "auth-sim-locked", q, [this](bool) { showSmartcardView(); }, QString(), false, true
         },
         // Settings menu
         {
             "settings_self_test", i18n("Perform Self-Test"), QString(),
-            nullptr, q, SLOT(selfTest()), QString(), false, true
+            nullptr, q, [this](bool) { selfTest(); }, QString(), false, true
         },
         {
             "configure_groups", i18n("Configure Groups..."), QString(),
-            "group", q, SLOT(configureGroups()), QString(), false, true
+            "group", q, [this](bool) { configureGroups(); }, QString(), false, true
         }
     };
 

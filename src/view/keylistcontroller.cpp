@@ -421,7 +421,7 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         {
             "view_stop_operations", i18n("Stop Operation"), QString(),
-            "process-stop", this, SLOT(cancelCommands()), QStringLiteral("Escape"), false, false
+            "process-stop", this, [this](bool) { cancelCommands(); }, QStringLiteral("Escape"), false, false
         },
         {
             "view_certificate_details", i18n("Details"), QString(),

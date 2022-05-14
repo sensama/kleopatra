@@ -41,17 +41,10 @@ private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
     Q_PRIVATE_SLOT(d, void closeAndQuit())
-    Q_PRIVATE_SLOT(d, void selfTest())
     Q_PRIVATE_SLOT(d, void configureToolbars())
-    Q_PRIVATE_SLOT(d, void configureGroups())
     Q_PRIVATE_SLOT(d, void editKeybindings())
-    Q_PRIVATE_SLOT(d, void gnupgLogViewer())
     Q_PRIVATE_SLOT(d, void slotConfigCommitted())
     Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
     Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
-    Q_PRIVATE_SLOT(d, void showCertificateView())
     Q_PRIVATE_SLOT(d, void showPadView())
-    Q_PRIVATE_SLOT(d, void showSmartcardView())
-    Q_PRIVATE_SLOT(d, void forceUpdateCheck())
-    Q_PRIVATE_SLOT(d, void restartDaemons())
 };

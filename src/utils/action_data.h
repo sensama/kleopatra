@@ -10,6 +10,8 @@
 #pragma once
 
 #include <QString>
+
+#include <functional>
 #include <vector>
 
 class QObject;
@@ -25,7 +27,7 @@ struct action_data {
     QString tooltip;
     const char *icon;
     const QObject *receiver;
-    const char *slot;
+    std::function<void(bool)> func;
     QString shortcut;
     bool toggle;
     bool enabled;

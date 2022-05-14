@@ -82,16 +82,6 @@ Q_SIGNALS:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-
-    Q_PRIVATE_SLOT(d, void slotRenameCurrentTab())
-    Q_PRIVATE_SLOT(d, void slotNewTab())
-    Q_PRIVATE_SLOT(d, void slotDuplicateCurrentTab())
-    Q_PRIVATE_SLOT(d, void slotCloseCurrentTab())
-    Q_PRIVATE_SLOT(d, void slotMoveCurrentTabLeft())
-    Q_PRIVATE_SLOT(d, void slotMoveCurrentTabRight())
-    Q_PRIVATE_SLOT(d, void slotToggleHierarchicalView(bool))
-    Q_PRIVATE_SLOT(d, void slotExpandAll())
-    Q_PRIVATE_SLOT(d, void slotCollapseAll())
 };
 
 }

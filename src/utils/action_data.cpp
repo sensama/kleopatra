@@ -29,11 +29,11 @@ QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
     if (ad.icon) {
         a->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
     }
-    if (ad.receiver && ad.slot) {
+    if (ad.receiver && ad.func) {
         if (ad.toggle) {
-            QObject::connect(a, SIGNAL(toggled(bool)), ad.receiver, ad.slot);
+            QObject::connect(a, &KToggleAction::toggled, ad.receiver, ad.func);
         } else {
-            QObject::connect(a, SIGNAL(triggered()), ad.receiver, ad.slot);
+            QObject::connect(a, &QAction::triggered, ad.receiver, ad.func);
         }
     }
     a->setEnabled(ad.enabled);

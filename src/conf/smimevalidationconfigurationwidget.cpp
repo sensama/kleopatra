@@ -75,36 +75,34 @@ private:
                 l->setContentsMargins(0, 0, 0, 0);
             }
 
-            const struct {
-                QObject *object;
-                const char *signal;
-            } sources[] = {
-                { intervalRefreshCB, SIGNAL(toggled(bool)) },
-                { intervalRefreshSB, SIGNAL(valueChanged(int)) },
-                { OCSPCB, SIGNAL(toggled(bool)) },
-                { OCSPResponderURL, SIGNAL(textChanged(QString)) },
-                { OCSPResponderSignature, SIGNAL(selectedCertificatesChanged(QStringList)) },
-                { doNotCheckCertPolicyCB, SIGNAL(toggled(bool)) },
-                { neverConsultCB, SIGNAL(toggled(bool)) },
-                { allowMarkTrustedCB, SIGNAL(toggled(bool)) },
-                { fetchMissingCB, SIGNAL(toggled(bool)) },
-                { ignoreServiceURLCB, SIGNAL(toggled(bool)) },
-                { ignoreHTTPDPCB, SIGNAL(toggled(bool)) },
-                { disableHTTPCB, SIGNAL(toggled(bool)) },
-                { honorHTTPProxyRB, SIGNAL(toggled(bool)) },
-                { useCustomHTTPProxyRB, SIGNAL(toggled(bool)) },
-                { customHTTPProxy, SIGNAL(textChanged(QString)) },
-                { ignoreLDAPDPCB, SIGNAL(toggled(bool)) },
-                { disableLDAPCB, SIGNAL(toggled(bool)) },
-                { customLDAPProxy, SIGNAL(textChanged(QString)) },
-            };
-            for (unsigned int i = 0; i < sizeof sources / sizeof * sources; ++i) {
-                connect(sources[i].object, sources[i].signal, q, SIGNAL(changed()));
-            }
-            connect(useCustomHTTPProxyRB, SIGNAL(toggled(bool)),
-                    q, SLOT(enableDisableActions()));
-            connect(disableHTTPCB, SIGNAL(toggled(bool)),
-                    q, SLOT(enableDisableActions()));
+            auto changedSignal = &SMimeValidationConfigurationWidget::changed;
+            connect(intervalRefreshCB, &QCheckBox::toggled, q, changedSignal);
+            connect(intervalRefreshSB, &QSpinBox::valueChanged, q, changedSignal);
+            connect(OCSPCB, &QCheckBox::toggled, q, changedSignal);
+            connect(OCSPResponderURL, &QLineEdit::textChanged, q, changedSignal);
+
+            auto certRequesterSignal = &KleopatraClientCopy::Gui::CertificateRequester::selectedCertificatesChanged;
+            connect(OCSPResponderSignature, certRequesterSignal, q, changedSignal);
+
+            connect(doNotCheckCertPolicyCB, &QCheckBox::toggled, q, changedSignal);
+            connect(neverConsultCB, &QCheckBox::toggled, q, changedSignal);
+            connect(allowMarkTrustedCB, &QCheckBox::toggled, q, changedSignal);
+            connect(fetchMissingCB, &QCheckBox::toggled, q, changedSignal);
+            connect(ignoreServiceURLCB, &QCheckBox::toggled, q, changedSignal);
+            connect(ignoreHTTPDPCB, &QCheckBox::toggled, q, changedSignal);
+            connect(disableHTTPCB, &QCheckBox::toggled, q, changedSignal);
+            connect(honorHTTPProxyRB, &QRadioButton::toggled, q, changedSignal);
+            connect(useCustomHTTPProxyRB, &QRadioButton::toggled, q, changedSignal);
+            connect(customHTTPProxy, &QLineEdit::textChanged, q, changedSignal);
+            connect(ignoreLDAPDPCB, &QCheckBox::toggled, q, changedSignal);
+            connect(disableLDAPCB, &QCheckBox::toggled, q, changedSignal);
+            connect(customLDAPProxy, &QLineEdit::textChanged, q, changedSignal);
+            connect(useCustomHTTPProxyRB, &QRadioButton::toggled, q, [q]() {
+                q->d->enableDisableActions();
+            });
+            connect(disableHTTPCB, &QCheckBox::toggled, q, [q]() {
+                q->d->enableDisableActions();
+            });
 
             OCSPResponderSignature->setOnlyX509CertificatesAllowed(true);
             OCSPResponderSignature->setOnlySigningCertificatesAllowed(true);

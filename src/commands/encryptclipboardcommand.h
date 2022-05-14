@@ -38,9 +38,6 @@ private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotRecipientsResolved())
-    Q_PRIVATE_SLOT(d_func(), void slotControllerDone())
-    Q_PRIVATE_SLOT(d_func(), void slotControllerError(int, QString))
 };
 
 }

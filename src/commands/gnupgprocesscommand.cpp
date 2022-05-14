@@ -212,10 +212,8 @@ GnuPGProcessCommand::GnuPGProcessCommand(const GpgME::Key &key)
 
 void GnuPGProcessCommand::Private::init()
 {
-    connect(&process, SIGNAL(finished(int,QProcess::ExitStatus)),
-            q, SLOT(slotProcessFinished(int,QProcess::ExitStatus)));
-    connect(&process, SIGNAL(readyReadStandardError()),
-            q, SLOT(slotProcessReadyReadStandardError()));
+    connect(&process, &QProcess::finished, q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
+    q->m_procReadyReadStdErrConnection = connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
 }
 
 GnuPGProcessCommand::~GnuPGProcessCommand() {}

@@ -254,8 +254,9 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     std::unique_ptr<ExportJob> job(backend->publicKeyExportJob(!binary));
     Q_ASSERT(job.get());
 
-    connect(job.get(), SIGNAL(result(GpgME::Error,QByteArray)),
-            q, SLOT(exportResult(GpgME::Error,QByteArray)));
+    connect(job.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &result, const QByteArray &keyData) {
+        exportResult(result, keyData);
+    });
 
     connect(job.get(), &Job::progress,
             q, &Command::progress);

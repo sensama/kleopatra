@@ -76,12 +76,9 @@ private:
         applyWindowID(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        connect(dialog, SIGNAL(updateRequested()),
-                q_func(), SLOT(slotUpdateRequested()));
-        connect(dialog, SIGNAL(accepted()),
-                q_func(), SLOT(slotDialogAccepted()));
-        connect(dialog, SIGNAL(rejected()),
-                q_func(), SLOT(slotDialogRejected()));
+        connect(dialog, &SelfTestDialog::updateRequested, q_func(), [this]() { slotUpdateRequested(); });
+        connect(dialog, &QDialog::accepted, q_func(), [this]() { slotDialogAccepted(); });
+        connect(dialog, &QDialog::rejected, q_func(), [this]() { slotDialogRejected(); });
 
         dialog->setRunAtStartUp(runAtStartUp());
         dialog->setAutomaticMode(automatic);

@@ -110,8 +110,8 @@ EncryptClipboardCommand::EncryptClipboardCommand(QAbstractItemView *v, KeyListCo
 void EncryptClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(&controller, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
 }
 
 EncryptClipboardCommand::~EncryptClipboardCommand()
@@ -137,8 +137,7 @@ void EncryptClipboardCommand::doStart()
         // snapshot clipboard content here, in case it's being changed...
         d->input = Input::createFromClipboard();
 
-        connect(&d->controller, SIGNAL(recipientsResolved()),
-                this, SLOT(slotRecipientsResolved()));
+        connect(&d->controller, &EncryptEMailController::recipientsResolved, this, [this]() { d->slotRecipientsResolved(); });
 
         d->controller.startResolveRecipients();
 

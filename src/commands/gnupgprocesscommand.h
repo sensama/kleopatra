@@ -58,12 +58,12 @@ protected:
     void doStart() override;
     void doCancel() override;
 
+    QMetaObject::Connection m_procReadyReadStdErrConnection;
+
 private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotProcessFinished(int, QProcess::ExitStatus))
-    Q_PRIVATE_SLOT(d_func(), void slotProcessReadyReadStandardError())
 };
 
 }

@@ -167,8 +167,8 @@ void ChangeExpiryCommand::Private::ensureDialogCreated(ExpiryDialog::Mode mode)
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 void ChangeExpiryCommand::Private::createJob()

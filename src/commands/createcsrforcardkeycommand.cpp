@@ -174,8 +174,9 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
 
     Job::context(job)->setArmor(true);
 
-    connect(job, SIGNAL(result(const GpgME::KeyGenerationResult &, const QByteArray &)),
-            q, SLOT(slotResult(const GpgME::KeyGenerationResult &, const QByteArray &)));
+    connect(job, &KeyGenerationJob::result, q, [this](const GpgME::KeyGenerationResult &result, const QByteArray &pubKeyData) {
+        slotResult(result, pubKeyData);
+    });
 
     KeyParameters keyParameters(KeyParameters::CMS);
     keyParameters.setKeyType(QString::fromStdString(keyRef));
@@ -266,8 +267,8 @@ void CreateCSRForCardKeyCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 CreateCSRForCardKeyCommand::CreateCSRForCardKeyCommand(const std::string &keyRef, const std::string &serialNumber, const std::string &appName, QWidget *parent)

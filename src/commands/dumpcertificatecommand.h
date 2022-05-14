@@ -43,11 +43,6 @@ private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotProcessFinished(int, QProcess::ExitStatus))
-    Q_PRIVATE_SLOT(d_func(), void slotProcessReadyReadStandardOutput())
-    Q_PRIVATE_SLOT(d_func(), void slotProcessReadyReadStandardError())
-    Q_PRIVATE_SLOT(d_func(), void slotUpdateRequested())
-    Q_PRIVATE_SLOT(d_func(), void slotDialogDestroyed())
 };
 
 }

@@ -34,10 +34,6 @@ private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotDialogAccepted())
-    Q_PRIVATE_SLOT(d_func(), void slotDialogRejected())
-    Q_PRIVATE_SLOT(d_func(), void pgpDeleteResult(GpgME::Error))
-    Q_PRIVATE_SLOT(d_func(), void cmsDeleteResult(GpgME::Error))
 };
 }
 

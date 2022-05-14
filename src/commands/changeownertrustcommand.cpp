@@ -192,8 +192,8 @@ void ChangeOwnerTrustCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 void ChangeOwnerTrustCommand::Private::createJob()
@@ -212,8 +212,7 @@ void ChangeOwnerTrustCommand::Private::createJob()
 
     connect(j, &Job::progress,
             q, &Command::progress);
-    connect(j, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
+    connect(j, &ChangeOwnerTrustJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
 
     job = j;
 }

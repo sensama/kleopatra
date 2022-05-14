@@ -148,8 +148,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogAccepted()
         return;
     }
 
-    connect(job, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
+    connect(job, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &error) { slotResult(error); });
 
     const QString userID = Formatting::prettyNameAndEMail(OpenPGP, QString(), dialog->name(), dialog->email());
     const QDateTime expires = QDateTime();
@@ -185,8 +184,8 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 CreateOpenPGPKeyFromCardKeysCommand::CreateOpenPGPKeyFromCardKeysCommand(const std::string &serialNumber, const std::string &appName, QWidget *parent)

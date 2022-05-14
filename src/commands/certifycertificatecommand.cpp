@@ -166,7 +166,7 @@ void CertifyCertificateCommand::doStart()
             auto cmd = new Commands::NewCertificateCommand();
             cmd->setParentWidget(d->parentWidgetOrView());
             cmd->setProtocol(GpgME::OpenPGP);
-            loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+            connect(cmd, &Command::finished, &loop, &QEventLoop::quit);
             QMetaObject::invokeMethod(cmd, &Commands::NewCertificateCommand::start, Qt::QueuedConnection);
             loop.exec();
         } else {
@@ -285,8 +285,8 @@ void CertifyCertificateCommand::Private::ensureDialogCreated()
     dialog = new CertifyCertificateDialog;
     applyWindowID(dialog);
 
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotCertificationPrepared()));
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() { slotCertificationPrepared(); });
 }
 
 void CertifyCertificateCommand::Private::createJob()
@@ -306,8 +306,7 @@ void CertifyCertificateCommand::Private::createJob()
 
     connect(j, &Job::progress,
             q, &Command::progress);
-    connect(j, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
+    connect(j, &SignKeyJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
 
     job = j;
 }

@@ -104,8 +104,8 @@ DecryptVerifyClipboardCommand::DecryptVerifyClipboardCommand(QAbstractItemView *
 void DecryptVerifyClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(&controller, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
 }
 
 DecryptVerifyClipboardCommand::~DecryptVerifyClipboardCommand()

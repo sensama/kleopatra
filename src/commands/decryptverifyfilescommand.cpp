@@ -127,8 +127,8 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, Q
 void DecryptVerifyFilesCommand::Private::init()
 {
     mController->setExecutionContext(shared_qq);
-    connect(mController, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(mController, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    connect(mController, &Controller::done, q, [this]() { slotControllerDone(); });
+    connect(mController, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
 }
 
 DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand()

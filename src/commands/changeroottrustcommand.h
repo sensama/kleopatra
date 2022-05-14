@@ -47,7 +47,6 @@ private:
     class Private;
     inline Private *d_func();
     inline const Private *d_func() const;
-    Q_PRIVATE_SLOT(d_func(), void slotOperationFinished())
 };
 
 class TrustRootCommand : public ChangeRootTrustCommand

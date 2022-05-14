@@ -243,8 +243,8 @@ void PIVGenerateCardKeyCommand::Private::ensureDialogCreated()
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setSupportedAlgorithms(PIVCard::supportedAlgorithms(keyRef), "rsa2048");
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 #undef d

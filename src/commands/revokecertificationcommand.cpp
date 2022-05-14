@@ -155,8 +155,8 @@ void RevokeCertificationCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 QGpgME::QuickJob *RevokeCertificationCommand::Private::createJob()
@@ -173,8 +173,7 @@ QGpgME::QuickJob *RevokeCertificationCommand::Private::createJob()
     if (j) {
         connect(j, &Job::progress,
                 q, &Command::progress);
-        connect(j, SIGNAL(result(GpgME::Error)),
-                q, SLOT(slotResult(GpgME::Error)));
+        connect(j, &QGpgME::QuickJob::result, q, [this](const GpgME::Error &error) { slotResult(error); });
     }
 
     return j;

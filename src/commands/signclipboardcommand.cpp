@@ -109,8 +109,8 @@ void SignClipboardCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
     controller.setDetachedSignature(false);
-    connect(&controller, SIGNAL(done()), q, SLOT(slotControllerDone()));
-    connect(&controller, SIGNAL(error(int,QString)), q, SLOT(slotControllerError(int,QString)));
+    connect(&controller, &Controller::done, q, [this]() { slotControllerDone(); });
+    connect(&controller, &Controller::error, q, [this](int err, const QString &details) { slotControllerError(err, details); });
 }
 
 SignClipboardCommand::~SignClipboardCommand()
@@ -138,8 +138,7 @@ void SignClipboardCommand::doStart()
         // snapshot clipboard content here, in case it's being changed...
         d->input = Input::createFromClipboard();
 
-        connect(&d->controller, SIGNAL(signersResolved()),
-                this, SLOT(slotSignersResolved()));
+        connect(&d->controller, &SignEMailController::signersResolved, this, [this]() { d->slotSignersResolved(); });
 
         d->controller.startResolveSigners();
 

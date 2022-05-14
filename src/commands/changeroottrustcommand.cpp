@@ -61,7 +61,7 @@ private:
     void init()
     {
         q->setWarnWhenRunningAtShutdown(false);
-        connect(this, SIGNAL(finished()), q_func(), SLOT(slotOperationFinished()));
+        connect(this, &QThread::finished, this, &ChangeRootTrustCommand::Private::slotOperationFinished);
     }
 
     void run() override;

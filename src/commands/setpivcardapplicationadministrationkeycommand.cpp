@@ -160,8 +160,8 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::ensureDialogCreated
                               "The key needs to consist of 24 bytes, i.e. 48 hex-characters.") :
                          i18n("Please enter the new PIV Card Application Administration Key again."));
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogAccepted()

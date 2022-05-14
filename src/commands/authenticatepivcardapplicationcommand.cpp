@@ -171,8 +171,8 @@ void AuthenticatePIVCardApplicationCommand::Private::ensureDialogCreated()
                          i18n("Please enter the PIV Card Application Administration Key in hex-encoded form.") :
                          prompt);
 
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 void AuthenticatePIVCardApplicationCommand::Private::slotDialogAccepted()

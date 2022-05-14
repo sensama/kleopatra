@@ -266,16 +266,12 @@ void LookupCertificatesCommand::Private::createDialog()
     dialog = new LookupCertificatesDialog;
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dialog, SIGNAL(searchTextChanged(QString)),
-            q, SLOT(slotSearchTextChanged(QString)));
-    connect(dialog, SIGNAL(saveAsRequested(std::vector<GpgME::Key>)),
-            q, SLOT(slotSaveAsRequested(std::vector<GpgME::Key>)));
-    connect(dialog, SIGNAL(importRequested(std::vector<GpgME::Key>)),
-            q, SLOT(slotImportRequested(std::vector<GpgME::Key>)));
-    connect(dialog, SIGNAL(detailsRequested(GpgME::Key)),
-            q, SLOT(slotDetailsRequested(GpgME::Key)));
-    connect(dialog, SIGNAL(rejected()),
-            q, SLOT(slotDialogRejected()));
+    connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) { slotSearchTextChanged(text); });
+    using CertsVec = std::vector<GpgME::Key>;
+    connect(dialog, &LookupCertificatesDialog::saveAsRequested, q, [this](const CertsVec &certs) { slotSaveAsRequested(certs); });
+    connect(dialog, &LookupCertificatesDialog::importRequested, q, [this](const CertsVec &certs) { slotImportRequested(certs); });
+    connect(dialog, &LookupCertificatesDialog::detailsRequested, q, [this](const GpgME::Key &gpgKey) { slotDetailsRequested(gpgKey); });
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
 }
 
 static auto searchTextToEmailAddress(const QString &s)
@@ -324,10 +320,8 @@ void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, 
     if (!klj) {
         return;
     }
-    connect(klj, SIGNAL(result(GpgME::KeyListResult)),
-            q, SLOT(slotKeyListResult(GpgME::KeyListResult)));
-    connect(klj, SIGNAL(nextKey(GpgME::Key)),
-            q, SLOT(slotNextKey(GpgME::Key)));
+    connect(klj, &QGpgME::KeyListJob::result, q, [this](const GpgME::KeyListResult &result) { slotKeyListResult(result); });
+    connect(klj, &QGpgME::KeyListJob::nextKey, q, [this](const GpgME::Key &key) { slotNextKey(key); });
     if (const Error err = klj->start(QStringList(str))) {
         keyListing.result.mergeWith(KeyListResult(err));
     } else if (proto == CMS) {

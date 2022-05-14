@@ -156,8 +156,8 @@ void NewCertificateCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, SIGNAL(rejected()), q, SLOT(slotDialogRejected()));
-    connect(dialog, SIGNAL(accepted()), q, SLOT(slotDialogAccepted()));
+    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
+    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
 }
 
 #undef d

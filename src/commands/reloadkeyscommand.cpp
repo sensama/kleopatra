@@ -82,8 +82,10 @@ void ReloadKeysCommand::doStart()
         d->finished();
         return;
     }
-    connect(KeyCache::mutableInstance().get(), SIGNAL(keyListingDone(GpgME::KeyListResult)),
-            this, SLOT(keyListingDone(GpgME::KeyListResult)));
+    connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, [this](const GpgME::KeyListResult &result) {
+        d->keyListingDone(result);
+    });
+
     KeyCache::mutableInstance()->startKeyListing();
 }
 

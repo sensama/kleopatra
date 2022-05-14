@@ -175,8 +175,7 @@ void ChangePassphraseCommand::Private::createJob()
 
     connect(j, &Job::progress,
             q, &Command::progress);
-    connect(j, SIGNAL(result(GpgME::Error)),
-            q, SLOT(slotResult(GpgME::Error)));
+    connect(j, &ChangePasswdJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
 
     job = j;
 }

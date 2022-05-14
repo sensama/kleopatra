@@ -420,7 +420,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         QEventLoop loop;
         auto cmd = new Commands::CertifyCertificateCommand(key);
         cmd->setParentWidget(parentWidgetOrView());
-        loop.connect(cmd, SIGNAL(finished()), SLOT(quit()));
+        connect(cmd, &Command::finished, &loop, &QEventLoop::quit);
         QMetaObject::invokeMethod(cmd, &Commands::CertifyCertificateCommand::start, Qt::QueuedConnection);
         loop.exec();
     }
@@ -808,8 +808,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
-                q, SLOT(importResult(GpgME::ImportResult))),
+        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { importResult(result); }),
         connect(job.get(), &Job::progress,
                 q, &Command::progress)
     };
@@ -860,8 +859,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), SIGNAL(result(GpgME::ImportResult)),
-                q, SLOT(importResult(GpgME::ImportResult))),
+        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { importResult(result); }),
         connect(job.get(), &Job::progress,
                 q, &Command::progress)
     };

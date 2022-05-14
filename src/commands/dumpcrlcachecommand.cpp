@@ -271,12 +271,9 @@ DumpCrlCacheCommand::DumpCrlCacheCommand(QAbstractItemView *v, KeyListController
 
 void DumpCrlCacheCommand::Private::init()
 {
-    connect(&process, SIGNAL(finished(int,QProcess::ExitStatus)),
-            q, SLOT(slotProcessFinished(int,QProcess::ExitStatus)));
-    connect(&process, SIGNAL(readyReadStandardError()),
-            q, SLOT(slotProcessReadyReadStandardError()));
-    connect(&process, SIGNAL(readyReadStandardOutput()),
-            q, SLOT(slotProcessReadyReadStandardOutput()));
+    connect(&process, &QProcess::finished, q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
+    connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
+    connect(&process, &QProcess::readyReadStandardOutput, q, [this] { slotProcessReadyReadStandardOutput(); });
 }
 
 DumpCrlCacheCommand::~DumpCrlCacheCommand() {}
@@ -288,10 +285,8 @@ void DumpCrlCacheCommand::doStart()
     d->dialog->setAttribute(Qt::WA_DeleteOnClose);
     d->dialog->setWindowTitle(i18nc("@title:window", "CRL Cache Dump"));
 
-    connect(d->dialog, SIGNAL(updateRequested()),
-            this, SLOT(slotUpdateRequested()));
-    connect(d->dialog, SIGNAL(destroyed()),
-            this, SLOT(slotDialogDestroyed()));
+    connect(d->dialog, &DumpCrlCacheDialog::updateRequested, this, [this]() { d->slotUpdateRequested(); });
+    connect(d->dialog, &QObject::destroyed, this, [this]() { d->slotDialogDestroyed(); });
 
     d->refreshView();
 }

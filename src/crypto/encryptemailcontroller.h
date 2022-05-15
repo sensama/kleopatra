@@ -58,8 +58,8 @@ public:
     }
 
     void setProtocol(GpgME::Protocol proto);
-    const char *protocolAsString() const;
-    GpgME::Protocol protocol() const;
+    const char *protocolAsString();
+    GpgME::Protocol protocol();
 
     void startResolveRecipients();
     void startResolveRecipients(const std::vector<KMime::Types::Mailbox> &recipients, const std::vector<KMime::Types::Mailbox> &senders);
@@ -83,9 +83,6 @@ private:
 
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void slotWizardRecipientsResolved())
-    Q_PRIVATE_SLOT(d, void slotWizardCanceled())
-    Q_PRIVATE_SLOT(d, void schedule())
 };
 
 } // Crypto

@@ -48,11 +48,10 @@ public:
     explicit Private(Mode mode, EncryptEMailController *qq);
 
 private:
-    void slotWizardRecipientsResolved();
     void slotWizardCanceled();
 
 private:
-    void ensureWizardCreated() const;
+    void ensureWizardCreated();
     void ensureWizardVisible();
     void cancelAllTasks();
 
@@ -63,7 +62,7 @@ private:
     const Mode mode;
     std::vector< std::shared_ptr<EncryptEMailTask> > runnable, completed;
     std::shared_ptr<EncryptEMailTask> cms, openpgp;
-    mutable QPointer<EncryptEMailWizard> wizard;
+    QPointer<EncryptEMailWizard> wizard;
 };
 
 EncryptEMailController::Private::Private(Mode m, EncryptEMailController *qq)
@@ -112,13 +111,13 @@ void EncryptEMailController::setProtocol(Protocol proto)
     d->wizard->setPresetProtocol(proto);
 }
 
-Protocol EncryptEMailController::protocol() const
+Protocol EncryptEMailController::protocol()
 {
     d->ensureWizardCreated();
     return d->wizard->selectedProtocol();
 }
 
-const char *EncryptEMailController::protocolAsString() const
+const char *EncryptEMailController::protocolAsString()
 {
     switch (protocol()) {
     case OpenPGP: return "OpenPGP";
@@ -139,11 +138,6 @@ void EncryptEMailController::startResolveRecipients(const std::vector<Mailbox> &
     d->ensureWizardCreated();
     d->wizard->setRecipients(recipients, senders);
     d->ensureWizardVisible();
-}
-
-void EncryptEMailController::Private::slotWizardRecipientsResolved()
-{
-    Q_EMIT q->recipientsResolved();
 }
 
 void EncryptEMailController::Private::slotWizardCanceled()
@@ -256,7 +250,7 @@ void EncryptEMailController::doTaskDone(const Task *task, const std::shared_ptr<
         d->openpgp.reset();
     }
 
-    QTimer::singleShot(0, this, SLOT(schedule()));
+    QMetaObject::invokeMethod(this, [this]() { d->schedule(); }, Qt::QueuedConnection);
 }
 
 void EncryptEMailController::cancel()
@@ -287,7 +281,7 @@ void EncryptEMailController::Private::cancelAllTasks()
     }
 }
 
-void EncryptEMailController::Private::ensureWizardCreated() const
+void EncryptEMailController::Private::ensureWizardCreated()
 {
     if (wizard) {
         return;
@@ -297,8 +291,8 @@ void EncryptEMailController::Private::ensureWizardCreated() const
     w->setAttribute(Qt::WA_DeleteOnClose);
     Kleo::EMailOperationsPreferences prefs;
     w->setQuickMode(prefs.quickEncryptEMail());
-    connect(w.get(), SIGNAL(recipientsResolved()), q, SLOT(slotWizardRecipientsResolved()), Qt::QueuedConnection);
-    connect(w.get(), SIGNAL(canceled()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
+    connect(w.get(), &EncryptEMailWizard::recipientsResolved, q, &EncryptEMailController::recipientsResolved, Qt::QueuedConnection);
+    connect(w.get(), &EncryptEMailWizard::canceled, q, [this]() { slotWizardCanceled(); }, Qt::QueuedConnection);
 
     wizard = w.release();
 }

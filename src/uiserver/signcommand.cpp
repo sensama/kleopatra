@@ -41,6 +41,8 @@ public:
 
 private:
     void checkForErrors() const;
+    void connectController();
+
 
 private Q_SLOTS:
     void slotSignersResolved();
@@ -108,12 +110,13 @@ void SignCommand::Private::checkForErrors() const
 
 }
 
-static void connectController(const QObject *controller, const QObject *d)
+void SignCommand::Private::connectController()
 {
-    QObject::connect(controller, SIGNAL(certificatesResolved()), d, SLOT(slotSignersResolved()));
-    QObject::connect(controller, SIGNAL(reportMicAlg(QString)), d, SLOT(slotMicAlgDetermined(QString)));
-    QObject::connect(controller, SIGNAL(done()), d, SLOT(slotDone()));
-    QObject::connect(controller, SIGNAL(error(int,QString)), d, SLOT(slotError(int,QString)));
+    NewSignEncryptEMailController *ptr = controller.get();
+    QObject::connect(ptr, &NewSignEncryptEMailController::certificatesResolved, this, &SignCommand::Private::slotSignersResolved);
+    QObject::connect(ptr, &NewSignEncryptEMailController::reportMicAlg, this, &SignCommand::Private::slotMicAlgDetermined);
+    QObject::connect(ptr, &Controller::done, this, &SignCommand::Private::slotDone);
+    QObject::connect(ptr, &Controller::error, this, &SignCommand::Private::slotError);
 }
 
 int SignCommand::doStart()
@@ -126,7 +129,7 @@ int SignCommand::doStart()
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
         d->controller = seec;
-        connectController(seec.get(), d.get());
+        d->connectController();
         if (!seec->isEncrypting()) {
             removeMemento(NewSignEncryptEMailController::mementoName());
         }
@@ -148,7 +151,7 @@ int SignCommand::doStart()
         d->controller->setSigning(true);
         d->controller->setEncrypting(false);
         d->controller->setProtocol(checkProtocol(EMail, AssuanCommand::AllowProtocolMissing));
-        connectController(d->controller.get(), d.get());
+        d->connectController();
         d->controller->startResolveCertificates(recipients(), senders());
     }
 

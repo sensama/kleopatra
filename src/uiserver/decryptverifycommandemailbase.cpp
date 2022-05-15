@@ -109,10 +109,8 @@ int DecryptVerifyCommandEMailBase::doStart()
     if (informativeSenders()) {
         d->controller->setInformativeSenders(senders());
     }
-    QObject::connect(d->controller.get(), SIGNAL(done()),
-                     d.get(), SLOT(slotDone()), Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), SIGNAL(error(int,QString)),
-                     d.get(), SLOT(slotError(int,QString)), Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &Controller::done, d.get(), &Private::slotDone, Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &Controller::error, d.get(), &Private::slotError, Qt::QueuedConnection);
     QObject::connect(d->controller.get(), &DecryptVerifyEMailController::verificationResult,
                      d.get(), &Private::verificationResult, Qt::QueuedConnection);
 

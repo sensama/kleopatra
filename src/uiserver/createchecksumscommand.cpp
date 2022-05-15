@@ -68,10 +68,8 @@ int CreateChecksumsCommand::doStart()
 
     d->controller->setFiles(fileNames());
 
-    connect(d->controller.get(), SIGNAL(done()),
-            this, SLOT(done()), Qt::QueuedConnection);
-    connect(d->controller.get(), SIGNAL(error(int,QString)),
-            this, SLOT(done(int,QString)), Qt::QueuedConnection);
+    connect(d->controller.get(), &Controller::done, this, [this]() { done(); }, Qt::QueuedConnection);
+    connect(d->controller.get(), &Controller::error, this, [this](int err, const QString &details) { done(err, details); }, Qt::QueuedConnection);
 
     d->controller->start();
 

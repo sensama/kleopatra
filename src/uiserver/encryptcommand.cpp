@@ -42,6 +42,7 @@ public:
 
 private:
     void checkForErrors() const;
+    void connectController();
 
 private Q_SLOTS:
     void slotDone();
@@ -113,13 +114,12 @@ void EncryptCommand::Private::checkForErrors() const
 
 }
 
-static void connectController(const QObject *controller, const QObject *d)
+void EncryptCommand::Private::connectController()
 {
-
-    QObject::connect(controller, SIGNAL(certificatesResolved()), d, SLOT(slotRecipientsResolved()));
-    QObject::connect(controller, SIGNAL(done()), d, SLOT(slotDone()));
-    QObject::connect(controller, SIGNAL(error(int,QString)), d, SLOT(slotError(int,QString)));
-
+    auto ptr = controller.get();
+    connect(ptr, &NewSignEncryptEMailController::certificatesResolved, this, &EncryptCommand::Private::slotRecipientsResolved);
+    connect(ptr, &Controller::done, this, &EncryptCommand::Private::slotDone);
+    connect(ptr, &Controller::error, this, &EncryptCommand::Private::slotError);
 }
 
 int EncryptCommand::doStart()
@@ -132,7 +132,7 @@ int EncryptCommand::doStart()
     if (seec && seec->isEncrypting()) {
         // reuse the controller from a previous PREP_ENCRYPT, if available:
         d->controller = seec;
-        connectController(seec.get(), d.get());
+        d->connectController();
         removeMemento(NewSignEncryptEMailController::mementoName());
         d->controller->setExecutionContext(shared_from_this());
         if (seec->areCertificatesResolved()) {
@@ -152,7 +152,7 @@ int EncryptCommand::doStart()
         d->controller->setEncrypting(true);
         d->controller->setSigning(false);
         d->controller->setProtocol(checkProtocol(EMail));
-        connectController(d->controller.get(), d.get());
+        d->connectController();
         d->controller->startResolveCertificates(recipients(), senders());
     }
 

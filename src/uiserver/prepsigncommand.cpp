@@ -37,6 +37,7 @@ public:
 
 private:
     void checkForErrors() const;
+    void connectController();
 
 public Q_SLOTS:
     void slotSignersResolved();
@@ -86,10 +87,11 @@ void PrepSignCommand::Private::checkForErrors() const
 
 }
 
-static void connectController(const QObject *controller, const QObject *d)
+void PrepSignCommand::Private::connectController()
 {
-    QObject::connect(controller, SIGNAL(certificatesResolved()), d, SLOT(slotSignersResolved()));
-    QObject::connect(controller, SIGNAL(error(int,QString)), d, SLOT(slotError(int,QString)));
+    auto ptr = controller.get();
+    connect(ptr, &NewSignEncryptEMailController::certificatesResolved, this, &PrepSignCommand::Private::slotSignersResolved);
+    connect(ptr, &Controller::error, this, &PrepSignCommand::Private::slotError);
 }
 
 int PrepSignCommand::doStart()
@@ -102,7 +104,7 @@ int PrepSignCommand::doStart()
     if (seec && seec->isSigning()) {
         // reuse the controller from a previous PREP_ENCRYPT --expect-sign, if available:
         d->controller = seec;
-        connectController(seec.get(), d.get());
+        d->connectController();
         seec->setExecutionContext(shared_from_this());
         if (seec->areCertificatesResolved()) {
             QTimer::singleShot(0, d.get(), &Private::slotSignersResolved);
@@ -126,7 +128,7 @@ int PrepSignCommand::doStart()
 
         d->controller->setEncrypting(false);
         d->controller->setSigning(true);
-        connectController(d->controller.get(), d.get());
+        d->connectController();
         d->controller->startResolveCertificates(recipients(), senders());
     }
 

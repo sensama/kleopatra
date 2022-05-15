@@ -43,8 +43,6 @@ private Q_SLOTS:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    //Q_PRIVATE_SLOT( this, void done() )
-    //Q_PRIVATE_SLOT( this, void done(int,QString) )
 };
 
 }

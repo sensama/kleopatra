@@ -106,8 +106,8 @@ int SignEncryptFilesCommand::doStart()
     d->controller->setOperationMode(op);
     d->controller->setFiles(fileNames());
 
-    QObject::connect(d->controller.get(), SIGNAL(done()), d.get(), SLOT(slotDone()), Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), SIGNAL(error(int,QString)), d.get(), SLOT(slotError(int,QString)), Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &Controller::done, d.get(), &Private::slotDone, Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &Controller::error, d.get(), &Private::slotError, Qt::QueuedConnection);
 
     d->controller->start();
 

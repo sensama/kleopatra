@@ -20,7 +20,7 @@
 QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
 {
 
-    QAction *const a = ad.toggle ? new KToggleAction(coll) : new QAction(coll);
+    QAction *const a = ad.actionType == KFToggleAction ? new KToggleAction(coll) : new QAction(coll);
     a->setObjectName(QLatin1String(ad.name));
     a->setText(ad.text);
     if (!ad.tooltip.isEmpty()) {
@@ -30,13 +30,13 @@ QAction *Kleo::createAction(const action_data &ad, KActionCollection *coll)
         a->setIcon(QIcon::fromTheme(QLatin1String(ad.icon)));
     }
     if (ad.receiver && ad.func) {
-        if (ad.toggle) {
+        if (ad.actionType == KFToggleAction) {
             QObject::connect(a, &KToggleAction::toggled, ad.receiver, ad.func);
         } else {
             QObject::connect(a, &QAction::triggered, ad.receiver, ad.func);
         }
     }
-    a->setEnabled(ad.enabled);
+    a->setEnabled(ad.actionState == Enabled);
     coll->addAction(QLatin1String(ad.name), a);
     return a;
 }

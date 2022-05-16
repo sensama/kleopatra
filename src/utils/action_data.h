@@ -21,6 +21,16 @@ class KActionCollection;
 namespace Kleo
 {
 
+enum ActionType {
+    RegularQAction,
+    KFToggleAction,
+};
+
+enum ActionDefaultState {
+    Enabled,
+    Disabled,
+};
+
 struct action_data {
     const char *name;
     QString text;
@@ -29,8 +39,8 @@ struct action_data {
     const QObject *receiver;
     std::function<void(bool)> func;
     QString shortcut;
-    bool toggle;
-    bool enabled;
+    ActionType actionType = RegularQAction;
+    ActionDefaultState actionState = Enabled;
 };
 
 void make_actions_from_data(const std::vector<action_data> &data, KActionCollection *collection);

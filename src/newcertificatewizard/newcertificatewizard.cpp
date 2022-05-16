@@ -35,6 +35,7 @@
 #include "utils/validation.h"
 #include "utils/filedialog.h"
 #include "utils/keyparameters.h"
+#include "utils/scrollarea.h"
 #include "utils/userinfo.h"
 
 #include <Libkleo/Compat>
@@ -804,6 +805,15 @@ class ChooseProtocolPage : public WizardPage
             parent->setSubTitle(i18n("Please choose which type of key pair you want to create."));
 
             auto mainLayout = new QVBoxLayout{parent};
+            mainLayout->setContentsMargins(0, 0, 0, 0);
+
+            auto scrollArea = new ScrollArea{parent};
+            scrollArea->setFocusPolicy(Qt::NoFocus);
+            scrollArea->setFrameStyle(QFrame::NoFrame);
+            scrollArea->setBackgroundRole(parent->backgroundRole());
+            scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+            scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
             pgpCLB = new QCommandLinkButton{parent};
             pgpCLB->setText(i18n("Create a personal OpenPGP key pair"));
@@ -812,7 +822,7 @@ class ChooseProtocolPage : public WizardPage
             pgpCLB->setCheckable(true);
             pgpCLB->setAutoExclusive(true);
 
-            mainLayout->addWidget(pgpCLB);
+            scrollAreaLayout->addWidget(pgpCLB);
 
             x509CLB = new QCommandLinkButton{parent};
             x509CLB->setText(i18n("Create a personal X.509 key pair and certification request"));
@@ -821,7 +831,11 @@ class ChooseProtocolPage : public WizardPage
             x509CLB->setCheckable(true);
             x509CLB->setAutoExclusive(true);
 
-            mainLayout->addWidget(x509CLB);
+            scrollAreaLayout->addWidget(x509CLB);
+
+            scrollAreaLayout->addStretch(1);
+
+            mainLayout->addWidget(scrollArea);
         }
     } ui;
 

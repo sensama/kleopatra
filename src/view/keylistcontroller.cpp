@@ -137,7 +137,7 @@ public:
             Q_EMIT q->message(what);
         }
     }
-    void slotActionTriggered();
+    void slotActionTriggered(QAction *action);
     void slotCurrentViewChanged(QAbstractItemView *view)
     {
         if (view && !std::binary_search(views.cbegin(), views.cend(), view)) {
@@ -167,6 +167,7 @@ private:
     QPointer<TabWidget> tabWidget;
     QPointer<QAbstractItemView> currentView;
     QPointer<AbstractKeyListModel> flatModel, hierarchicalModel;
+    std::vector<QMetaObject::Connection> m_connections;
 };
 
 KeyListController::Private::Private(KeyListController *qq)
@@ -300,16 +301,6 @@ QWidget *KeyListController::parentWidget() const
     return d->parentWidget;
 }
 
-static const struct {
-    const char *signal;
-    const char *slot;
-} tabs2controller[] = {
-    { SIGNAL(viewAdded(QAbstractItemView*)),            SLOT(addView(QAbstractItemView*))                },
-    { SIGNAL(viewAboutToBeRemoved(QAbstractItemView*)), SLOT(removeView(QAbstractItemView*))             },
-    { SIGNAL(currentViewChanged(QAbstractItemView*)),   SLOT(slotCurrentViewChanged(QAbstractItemView*)) },
-};
-static const unsigned int numTabs2Controller = sizeof tabs2controller / sizeof * tabs2controller;
-
 void KeyListController::Private::connectTabWidget()
 {
     if (!tabWidget) {
@@ -318,9 +309,11 @@ void KeyListController::Private::connectTabWidget()
     const auto views = tabWidget->views();
     std::for_each(views.cbegin(), views.cend(),
                   [this](QAbstractItemView *view) { addView(view); });
-    for (unsigned int i = 0; i < numTabs2Controller; ++i) {
-        connect(tabWidget, tabs2controller[i].signal, q, tabs2controller[i].slot);
-    }
+
+    m_connections.reserve(3);
+    m_connections.push_back(connect(tabWidget, &TabWidget::viewAdded, q, [this](QAbstractItemView *view) { addView(view);}));
+    m_connections.push_back(connect(tabWidget, &TabWidget::viewAboutToBeRemoved, q, [this](QAbstractItemView *view) { removeView(view); }));
+    m_connections.push_back(connect(tabWidget, &TabWidget::currentViewChanged, q, [this](QAbstractItemView *view) { slotCurrentViewChanged(view); }));
 }
 
 void KeyListController::Private::disconnectTabWidget()
@@ -328,9 +321,11 @@ void KeyListController::Private::disconnectTabWidget()
     if (!tabWidget) {
         return;
     }
-    for (unsigned int i = 0; i < numTabs2Controller; ++i) {
-        disconnect(tabWidget, tabs2controller[i].signal, q, tabs2controller[i].slot);
+    for (const auto &connection : m_connections) {
+        disconnect(connection);
     }
+    m_connections.clear();
+
     const auto views = tabWidget->views();
     std::for_each(views.cbegin(), views.cend(),
                   [this](QAbstractItemView *view) { removeView(view); });
@@ -586,7 +581,7 @@ void KeyListController::registerAction(QAction *action, Command::Restrictions re
     const Private::action_item ai = {
         action, restrictions, create
     };
-    connect(action, SIGNAL(triggered()), this, SLOT(slotActionTriggered()));
+    connect(action, &QAction::triggered, this, [this, action]() { d->slotActionTriggered(action); });
     d->actions.push_back(ai);
 }
 
@@ -810,25 +805,21 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
     return result;
 }
 
-void KeyListController::Private::slotActionTriggered()
+void KeyListController::Private::slotActionTriggered(QAction *sender)
 {
-    if (const QObject *const s = q->sender()) {
-        const auto it = std::find_if(actions.cbegin(), actions.cend(),
-                                     [this](const action_item &item) { return item.action == q->sender(); });
-        if (it != actions.end())
-            if (Command *const c = it->createCommand(this->currentView, q)) {
-                if (parentWidget) {
-                    c->setParentWidget(parentWidget);
-                }
-                c->start();
-            } else
-                qCDebug(KLEOPATRA_LOG) << "createCommand() == NULL for action(?) \""
-                                       << qPrintable(s->objectName()) << "\"";
-        else {
-            qCDebug(KLEOPATRA_LOG) << "I don't know anything about action(?) \"%s\"", qPrintable(s->objectName());
-        }
-    } else {
-        qCDebug(KLEOPATRA_LOG) << "not called through a signal/slot connection (sender() == NULL)";
+    const auto it = std::find_if(actions.cbegin(), actions.cend(),
+                                 [sender](const action_item &item) { return item.action == sender; });
+    if (it != actions.end())
+        if (Command *const c = it->createCommand(this->currentView, q)) {
+            if (parentWidget) {
+                c->setParentWidget(parentWidget);
+            }
+            c->start();
+        } else
+            qCDebug(KLEOPATRA_LOG) << "createCommand() == NULL for action(?) \""
+                                    << qPrintable(sender->objectName()) << "\"";
+    else {
+        qCDebug(KLEOPATRA_LOG) << "I don't know anything about action(?) \"%s\"", qPrintable(sender->objectName());
     }
 }
 

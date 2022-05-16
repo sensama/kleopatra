@@ -30,6 +30,7 @@ class KeyFilter;
 class AbstractKeyListModel;
 class AbstractKeyListSortFilterProxyModel;
 class KeyListSortFilterProxyModel;
+class SearchBar;
 
 class KeyTreeView : public QWidget
 {
@@ -106,8 +107,8 @@ public:
         return new KeyTreeView(*this);
     }
 
-    void disconnectSearchBar(const QObject *bar);
-    bool connectSearchBar(const QObject *bar);
+    void disconnectSearchBar();
+    bool connectSearchBar(const SearchBar *bar);
     void resizeColumns();
 
     void saveLayout(KConfigGroup &group);
@@ -147,6 +148,8 @@ private:
     std::shared_ptr<KeyFilter> m_keyFilter;
 
     QStringList m_expandedKeys;
+
+    std::vector<QMetaObject::Connection> m_connections;
 
     KConfigGroup m_group;
 

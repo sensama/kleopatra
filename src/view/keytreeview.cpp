@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "keytreeview.h"
+#include "searchbar.h"
 
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
@@ -765,37 +766,25 @@ void KeyTreeView::removeKeys(const std::vector<Key> &keys)
 
 }
 
-static const struct {
-    const char *signal;
-    const char *slot;
-} connections[] = {
-    {
-        SIGNAL(stringFilterChanged(QString)),
-        SLOT(setStringFilter(QString))
-    },
-    {
-        SIGNAL(keyFilterChanged(std::shared_ptr<Kleo::KeyFilter>)),
-        SLOT(setKeyFilter(std::shared_ptr<Kleo::KeyFilter>))
-    },
-};
-static const unsigned int numConnections = sizeof connections / sizeof * connections;
-
-void KeyTreeView::disconnectSearchBar(const QObject *bar)
+void KeyTreeView::disconnectSearchBar()
 {
-    for (unsigned int i = 0; i < numConnections; ++i) {
-        disconnect(this, connections[i].signal, bar,  connections[i].slot);
-        disconnect(bar,  connections[i].signal, this, connections[i].slot);
+    for (const auto &connection : m_connections) {
+        disconnect(connection);
     }
+    m_connections.clear();
 }
 
-bool KeyTreeView::connectSearchBar(const QObject *bar)
+bool KeyTreeView::connectSearchBar(const SearchBar *bar)
 {
-    for (unsigned int i = 0; i < numConnections; ++i)
-        if (!connect(this, connections[i].signal, bar,  connections[i].slot) ||
-                !connect(bar,  connections[i].signal, this, connections[i].slot)) {
-            return false;
-        }
-    return true;
+    m_connections.reserve(4);
+    m_connections.push_back(connect(this, &KeyTreeView::stringFilterChanged, bar, &SearchBar::setStringFilter));
+    m_connections.push_back(connect(bar, &SearchBar::stringFilterChanged, this, &KeyTreeView::setStringFilter));
+    m_connections.push_back(connect(this, &KeyTreeView::keyFilterChanged, bar, &SearchBar::setKeyFilter));
+    m_connections.push_back(connect(bar, &SearchBar::keyFilterChanged, this, &KeyTreeView::setKeyFilter));
+
+    return std::all_of(m_connections.cbegin(), m_connections.cend(), [](const QMetaObject::Connection &conn) {
+        return conn;
+    });
 }
 
 void KeyTreeView::resizeColumns()

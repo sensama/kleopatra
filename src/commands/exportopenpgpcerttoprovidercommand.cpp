@@ -2,7 +2,6 @@
     commands/exportopenpgpcerttoprovidercommand.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2022 Felix Tiede
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -36,7 +35,8 @@ using namespace GpgME;
 using namespace QGpgME;
 
 #ifdef MAILAKONADI_ENABLED
-static const QString identityTransportForAddress(const QString &senderAddress) {
+static const QString identityTransportForAddress(const QString &senderAddress)
+{
     static const KIdentityManagement::IdentityManager *idManager = new KIdentityManagement::IdentityManager{true};
 
     const KIdentityManagement::Identity identity = idManager->identityForAddress(senderAddress);

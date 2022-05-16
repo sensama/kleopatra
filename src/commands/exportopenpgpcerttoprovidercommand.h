@@ -2,7 +2,6 @@
     commands/exportopenpgpcerttoprovidercommand.h
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2022 Felix Tiede
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -10,7 +9,7 @@
 
 #pragma once
 
-#include <commands/command.h>
+#include "command.h"
 
 #include <QPointer>
 
@@ -49,8 +48,8 @@ private:
 
     QString senderAddress() const;
 
+private:
     GpgME::UserID uid;
-
     QPointer<QGpgME::WKSPublishJob> wksJob;
 };
 

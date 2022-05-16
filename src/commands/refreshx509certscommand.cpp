@@ -53,7 +53,13 @@ bool RefreshX509CertsCommand::preStartHook(QWidget *parent) const
 
 QStringList RefreshX509CertsCommand::arguments() const
 {
-    return QStringList() << gpgSmPath() << QStringLiteral("-k") << QStringLiteral("--with-validation") << QStringLiteral("--force-crl-refresh") << QStringLiteral("--enable-crl-checks");
+    return {
+        gpgSmPath(),
+        QStringLiteral("-k"),
+        QStringLiteral("--with-validation"),
+        QStringLiteral("--force-crl-refresh"),
+        QStringLiteral("--enable-crl-checks"),
+    };
 }
 
 QString RefreshX509CertsCommand::errorCaption() const

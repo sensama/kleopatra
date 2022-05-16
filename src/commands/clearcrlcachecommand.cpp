@@ -33,9 +33,7 @@ ClearCrlCacheCommand::~ClearCrlCacheCommand() {}
 
 QStringList ClearCrlCacheCommand::arguments() const
 {
-    return QStringList() << gpgSmPath()
-                         << QStringLiteral("--call-dirmngr")
-                         << QStringLiteral("flushcrls");
+    return {gpgSmPath(), QStringLiteral("--call-dirmngr"), QStringLiteral("flushcrls")};
 }
 
 QString ClearCrlCacheCommand::errorCaption() const

@@ -429,9 +429,11 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         }
     }
 
-    const QStringList suggestions = QStringList() << i18n("A phone call to the person.")
-        << i18n("Using a business card.")
-        << i18n("Confirming it on a trusted website.");
+    const QStringList suggestions = {
+        i18n("A phone call to the person."),
+        i18n("Using a business card."),
+        i18n("Confirming it on a trusted website."),
+    };
 
     auto sel = KMessageBox::questionTwoActions(parentWidgetOrView(),
                                                i18n("In order to mark the certificate as valid it needs to be certified.") + QStringLiteral("<br>")

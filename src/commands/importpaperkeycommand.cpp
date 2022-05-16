@@ -43,16 +43,15 @@ ImportPaperKeyCommand::ImportPaperKeyCommand(const GpgME::Key &k) :
 QStringList ImportPaperKeyCommand::arguments() const
 {
     const Key key = d->key();
-    QStringList result;
-
-    result << paperKeyInstallPath() << QStringLiteral("--pubring")
-           << mTmpDir.path() + QStringLiteral("/pubkey.gpg")
-           << QStringLiteral("--secrets")
-           << mTmpDir.path() + QStringLiteral("/secrets.txt")
-           << QStringLiteral("--output")
-           << mTmpDir.path() + QStringLiteral("/seckey.gpg");
-
-    return result;
+    return {
+        paperKeyInstallPath(),
+        QStringLiteral("--pubring"),
+        mTmpDir.path() + QStringLiteral("/pubkey.gpg"),
+        QStringLiteral("--secrets"),
+        mTmpDir.path() + QStringLiteral("/secrets.txt"),
+        QStringLiteral("--output"),
+        mTmpDir.path() + QStringLiteral("/seckey.gpg"),
+    };
 }
 
 void ImportPaperKeyCommand::exportResult(const GpgME::Error &err, const QByteArray &data)

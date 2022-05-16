@@ -166,14 +166,18 @@ void GenRevokeCommand::doStart()
 QStringList GenRevokeCommand::arguments() const
 {
     const Key key = d->key();
-    QStringList result;
 
-    result << gpgPath() << QStringLiteral("--command-fd") << QStringLiteral("0") << QStringLiteral("--status-fd") << QStringLiteral("1")
-           << QStringLiteral("-o") << mOutputFileName
-           << QStringLiteral("--gen-revoke")
-           << QLatin1String(key.primaryFingerprint());
-
-    return result;
+    return {
+        gpgPath(),
+        QStringLiteral("--command-fd"),
+        QStringLiteral("0"),
+        QStringLiteral("--status-fd"),
+        QStringLiteral("1"),
+        QStringLiteral("-o"),
+        mOutputFileName,
+        QStringLiteral("--gen-revoke"),
+        QLatin1String(key.primaryFingerprint()),
+    };
 }
 
 

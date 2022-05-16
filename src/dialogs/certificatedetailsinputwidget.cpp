@@ -213,17 +213,17 @@ public:
 
     void createForm()
     {
+        static const QStringList defaultAttributeOrder = {
+            QStringLiteral("CN!"),
+            QStringLiteral("EMAIL!"),
+            QStringLiteral("L"),
+            QStringLiteral("OU"),
+            QStringLiteral("O"),
+            QStringLiteral("C"),
+        };
         const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
-        QStringList attrOrder = config.readEntry("DNAttributeOrder", QStringList());
-        if (attrOrder.empty()) {
-            attrOrder << QStringLiteral("CN!")
-                      << QStringLiteral("EMAIL!")
-                      << QStringLiteral("L")
-                      << QStringLiteral("OU")
-                      << QStringLiteral("O")
-                      << QStringLiteral("C");
-        }
+        const QStringList attrOrder = config.readEntry("DNAttributeOrder", defaultAttributeOrder);
 
         for (const QString &rawKey : attrOrder) {
             const QString key = rawKey.trimmed().toUpper();

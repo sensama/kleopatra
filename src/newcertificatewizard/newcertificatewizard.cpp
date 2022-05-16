@@ -16,7 +16,6 @@
 
 #include <settings.h>
 
-#include "ui_chooseprotocolpage.h"
 #include "ui_enterdetailspage.h"
 #include "ui_keycreationpage.h"
 #include "ui_resultpage.h"
@@ -62,6 +61,7 @@
 #include <KMessageBox>
 #include <QIcon>
 
+#include <QCommandLinkButton>
 #include <QRegularExpressionValidator>
 #include <QLineEdit>
 #include <QMetaProperty>
@@ -793,15 +793,45 @@ private:
 class ChooseProtocolPage : public WizardPage
 {
     Q_OBJECT
+
+    struct {
+        QCommandLinkButton *pgpCLB;
+        QCommandLinkButton *x509CLB;
+
+        void setupUi(QWizardPage *parent)
+        {
+            parent->setTitle(i18nc("@title", "Choose Type of Key Pair"));
+            parent->setSubTitle(i18n("Please choose which type of key pair you want to create."));
+
+            auto mainLayout = new QVBoxLayout{parent};
+
+            pgpCLB = new QCommandLinkButton{parent};
+            pgpCLB->setText(i18n("Create a personal OpenPGP key pair"));
+            pgpCLB->setDescription(i18n("OpenPGP key pairs are certified by confirming the fingerprint of the public key."));
+            pgpCLB->setAccessibleDescription(pgpCLB->description());
+            pgpCLB->setCheckable(true);
+            pgpCLB->setAutoExclusive(true);
+
+            mainLayout->addWidget(pgpCLB);
+
+            x509CLB = new QCommandLinkButton{parent};
+            x509CLB->setText(i18n("Create a personal X.509 key pair and certification request"));
+            x509CLB->setDescription(i18n("X.509 key pairs are certified by a certification authority (CA). The generated request needs to be sent to a CA to finalize creation."));
+            x509CLB->setAccessibleDescription(x509CLB->description());
+            x509CLB->setCheckable(true);
+            x509CLB->setAutoExclusive(true);
+
+            mainLayout->addWidget(x509CLB);
+        }
+    } ui;
+
 public:
     explicit ChooseProtocolPage(QWidget *p = nullptr)
-        : WizardPage(p),
-          initialized(false),
-          ui()
+        : WizardPage{p}
+        , ui{}
     {
+        setObjectName(QStringLiteral("Kleo__NewCertificateUi__ChooseProtocolPage"));
         ui.setupUi(this);
-        ui.pgpCLB->setAccessibleDescription(ui.pgpCLB->description());
-        ui.x509CLB->setAccessibleDescription(ui.x509CLB->description());
         registerField(QStringLiteral("pgp"), ui.pgpCLB);
     }
 
@@ -839,8 +869,7 @@ public:
     }
 
 private:
-    bool initialized : 1;
-    Ui_ChooseProtocolPage ui;
+    bool initialized = false;
 };
 
 struct Line {

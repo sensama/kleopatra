@@ -184,8 +184,7 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
     keyParameters.setEmail(dialog->email());
 
     if (const Error err = job->start(keyParameters.toString())) {
-        error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", QString::fromUtf8(err.asString())),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", QString::fromUtf8(err.asString())));
         finished();
     }
 }
@@ -200,8 +199,7 @@ void CreateCSRForCardKeyCommand::Private::slotResult(const KeyGenerationResult &
     if (result.error().isCanceled()) {
         // do nothing
     } else if (result.error()) {
-        error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", QString::fromUtf8(result.error().asString())),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", QString::fromUtf8(result.error().asString())));
     } else {
         const QUrl url = saveRequest(request);
         if (!url.isEmpty()) {

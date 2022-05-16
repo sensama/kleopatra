@@ -311,8 +311,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Failed to generate new key: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
+                           "Failed to generate new key: %1", QString::fromLatin1(err.asString())));
         return;
     }
     if (err.isCanceled()) {
@@ -326,8 +325,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
                                                          QStringLiteral("%1 (*.gpg)").arg(i18n("Backup Key")));
         if (!target.isEmpty() && !QFile::copy(bkpFile, target)) {
             KMessageBox::error(this, i18nc("@info",
-                               "Failed to move backup. The backup key is still stored under: %1", bkpFile),
-                               i18nc("@title", "Error"));
+                               "Failed to move backup. The backup key is still stored under: %1", bkpFile));
         } else if (!target.isEmpty()) {
             QFile::remove(bkpFile);
         }
@@ -390,20 +388,17 @@ void PGPCardWidget::changeNameRequested()
         // Some additional restrictions imposed by gnupg
         if (text.contains(QLatin1Char('<'))) {
             KMessageBox::error(this, i18nc("@info",
-                               "The \"<\" character may not be used."),
-                               i18nc("@title", "Error"));
+                               "The \"<\" character may not be used."));
             continue;
         }
         if (text.contains(QLatin1String("  "))) {
             KMessageBox::error(this, i18nc("@info",
-                               "Double spaces are not allowed"),
-                               i18nc("@title", "Error"));
+                               "Double spaces are not allowed"));
             continue;
         }
         if (text.size() > 38) {
             KMessageBox::error(this, i18nc("@info",
-                               "The size of the name may not exceed 38 characters."),
-                               i18nc("@title", "Error"));
+                               "The size of the name may not exceed 38 characters."));
         }
         break;
     }
@@ -425,8 +420,7 @@ void PGPCardWidget::changeNameResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Name change failed: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
+                           "Name change failed: %1", QString::fromLatin1(err.asString())));
         return;
     }
     if (!err.isCanceled()) {
@@ -452,8 +446,7 @@ void PGPCardWidget::changeUrlRequested()
         // Some additional restrictions imposed by gnupg
         if (text.size() > 254) {
             KMessageBox::error(this, i18nc("@info",
-                               "The size of the URL may not exceed 254 characters."),
-                               i18nc("@title", "Error"));
+                               "The size of the URL may not exceed 254 characters."));
         }
         break;
     }
@@ -472,8 +465,7 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "URL change failed: %1", QString::fromLatin1(err.asString())),
-                           i18nc("@title", "Error"));
+                           "URL change failed: %1", QString::fromLatin1(err.asString())));
         return;
     }
     if (!err.isCanceled()) {

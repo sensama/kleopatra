@@ -175,8 +175,7 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotDialogAccepted(
 
     const QByteArray newAdminKey2 = dialog->adminKey();
     if (newAdminKey != newAdminKey2) {
-        error(i18nc("@info", "The two keys you have entered do not match. Please retry."),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "The two keys you have entered do not match. Please retry."));
         newAdminKey.clear();
         dialog = nullptr;
         setAdminKey();
@@ -205,8 +204,7 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotResult(const Gp
     qCDebug(KLEOPATRA_LOG) << "SetPIVCardApplicationAdministrationKeyCommand::slotResult():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
-        error(i18nc("@info", "Setting the PIV Card Application Administration Key failed: %1", QString::fromLatin1(err.asString())),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "Setting the PIV Card Application Administration Key failed: %1", QString::fromLatin1(err.asString())));
     } else if (!err.isCanceled()) {
         information(i18nc("@info", "PIV Card Application Administration Key set successfully."), i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();

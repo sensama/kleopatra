@@ -147,8 +147,7 @@ void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err
             return;
         }
 #endif
-        error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())));
     }
     finished();
 }

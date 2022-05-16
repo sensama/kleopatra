@@ -205,8 +205,7 @@ void ChangePinCommand::Private::slotResult(const GpgME::Error& err)
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::slotResult():"
                            << err.asString() << "(" << err.code() << ")";
     if (err) {
-        error(errorMessage(keyRef, mode, QString::fromLatin1(err.asString())),
-              i18nc("@title", "Error"));
+        error(errorMessage(keyRef, mode, QString::fromLatin1(err.asString())));
     } else if (!err.isCanceled()) {
         information(successMessage(keyRef, mode), i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();

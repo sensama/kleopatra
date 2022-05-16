@@ -161,8 +161,7 @@ void CertificateToPIVCardCommand::Private::startCertificateToPIVCard()
     Data data(&dp);
     const Error err = ctx->exportPublicKeys(certificate.primaryFingerprint(), data);
     if (err) {
-        error(i18nc("@info", "Exporting the certificate failed: %1", QString::fromUtf8(err.asString())),
-              i18nc("@title", "Error"));
+        error(i18nc("@info", "Exporting the certificate failed: %1", QString::fromUtf8(err.asString())));
         finished();
         return;
     }
@@ -230,8 +229,7 @@ void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
         }
 #endif
 
-        d->error(i18nc("@info", "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())),
-                 i18nc("@title", "Error"));
+        d->error(i18nc("@info", "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())));
     } else if (!err.isCanceled()) {
         KMessageBox::information(d->parentWidgetOrView(),
                                  i18nc("@info", "Writing the certificate to the card succeeded."),

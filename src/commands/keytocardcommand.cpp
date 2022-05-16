@@ -450,8 +450,7 @@ void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
 {
     if (err) {
         d->error(i18nc("@info",
-                       "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())),
-                        i18nc("@title", "Error"));
+                       "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())));
     } else if (!err.isCanceled()) {
         /* TODO DELETE_KEY is too strong, because it also deletes the stub
          * of the secret key. I could not find out how GnuPG does this. Question
@@ -486,8 +485,7 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
 #endif
 
         d->error(i18nc("@info",
-                       "Copying the key pair to the card failed: %1", QString::fromUtf8(err.asString())),
-                        i18nc("@title", "Error"));
+                       "Copying the key pair to the card failed: %1", QString::fromUtf8(err.asString())));
     } else if (!err.isCanceled()) {
         d->information(i18nc("@info", "Successfully copied the key pair to the card."),
                        i18nc("@title", "Success"));
@@ -500,8 +498,7 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
 void KeyToCardCommand::deleteDone(const GpgME::Error &err)
 {
     if (err) {
-        d->error(i18nc("@info", "Failed to delete the key: %1", QString::fromUtf8(err.asString())),
-                        i18nc("@title", "Error"));
+        d->error(i18nc("@info", "Failed to delete the key: %1", QString::fromUtf8(err.asString())));
     }
     d->finished();
 }

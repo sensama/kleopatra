@@ -21,6 +21,7 @@
 #include "ui_resultpage.h"
 
 #include "ui_advancedsettingsdialog.h"
+#include "wizardpage_p.h"
 
 #ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 # include "commands/exportsecretkeycommand.h"
@@ -318,75 +319,6 @@ QDate defaultExpirationDate(OnUnlimitedValidity onUnlimitedValidity)
 }
 
 }
-
-Q_DECLARE_METATYPE(GpgME::Subkey::PubkeyAlgo)
-namespace Kleo
-{
-namespace NewCertificateUi
-{
-class WizardPage : public QWizardPage
-{
-    Q_OBJECT
-protected:
-    explicit WizardPage(QWidget *parent = nullptr)
-        : QWizardPage(parent) {}
-
-    NewCertificateWizard *wizard() const
-    {
-        Q_ASSERT(static_cast<NewCertificateWizard *>(QWizardPage::wizard()) == qobject_cast<NewCertificateWizard *>(QWizardPage::wizard()));
-        return static_cast<NewCertificateWizard *>(QWizardPage::wizard());
-    }
-
-    void resetProtocol()
-    {
-        wizard()->resetProtocol();
-    }
-
-    void restartAtEnterDetailsPage()
-    {
-        wizard()->restartAtEnterDetailsPage();
-    }
-
-    QDir tmpDir() const;
-
-protected:
-#define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }
-    FIELD(bool, pgp)
-    FIELD(bool, signingAllowed)
-    FIELD(bool, encryptionAllowed)
-    FIELD(bool, certificationAllowed)
-    FIELD(bool, authenticationAllowed)
-
-    FIELD(QString, name)
-    FIELD(QString, email)
-    FIELD(QString, dn)
-    FIELD(bool, protectedKey)
-
-    FIELD(Subkey::PubkeyAlgo, keyType)
-    FIELD(int, keyStrength)
-    FIELD(QString, keyCurve)
-
-    FIELD(Subkey::PubkeyAlgo, subkeyType)
-    FIELD(int, subkeyStrength)
-    FIELD(QString, subkeyCurve)
-
-    FIELD(QDate, expiryDate)
-
-    FIELD(QStringList, additionalUserIDs)
-    FIELD(QStringList, additionalEMailAddresses)
-    FIELD(QStringList, dnsNames)
-    FIELD(QStringList, uris)
-
-    FIELD(QString, url)
-    FIELD(QString, error)
-    FIELD(QString, result)
-    FIELD(QString, fingerprint)
-#undef FIELD
-};
-} // namespace NewCertificateUi
-} // namespace Kleo
-
-using namespace Kleo::NewCertificateUi;
 
 namespace
 {

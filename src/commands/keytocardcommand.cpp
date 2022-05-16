@@ -464,8 +464,7 @@ void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
             ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
         }
         */
-        d->information(i18nc("@info", "Successfully copied the key to the card."),
-                       i18nc("@title", "Success"));
+        d->success(i18nc("@info", "Successfully copied the key to the card."));
         ReaderStatus::mutableInstance()->updateStatus();
     }
     d->finished();
@@ -487,8 +486,7 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
         d->error(i18nc("@info",
                        "Copying the key pair to the card failed: %1", QString::fromUtf8(err.asString())));
     } else if (!err.isCanceled()) {
-        d->information(i18nc("@info", "Successfully copied the key pair to the card."),
-                       i18nc("@title", "Success"));
+        d->success(i18nc("@info", "Successfully copied the key pair to the card."));
         ReaderStatus::mutableInstance()->updateStatus();
     }
 

@@ -206,7 +206,7 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::slotResult(const Gp
     if (err) {
         error(i18nc("@info", "Setting the PIV Card Application Administration Key failed: %1", QString::fromLatin1(err.asString())));
     } else if (!err.isCanceled()) {
-        information(i18nc("@info", "PIV Card Application Administration Key set successfully."), i18nc("@title", "Success"));
+        success(i18nc("@info", "PIV Card Application Administration Key set successfully."));
         ReaderStatus::mutableInstance()->updateStatus();
     }
     finished();

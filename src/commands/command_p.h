@@ -14,6 +14,7 @@
 
 #include <Libkleo/KeyListModel>
 
+#include <KLocalizedString>
 #include <KMessageBox>
 
 #include <QAbstractItemView>
@@ -92,6 +93,16 @@ public:
             KMessageBox::errorWId(parentWId, text, caption, options);
         } else {
             KMessageBox::error(parentWidgetOrView(), text, caption, options);
+        }
+    }
+    void success(const QString &text, const QString &caption = {}, KMessageBox::Options options = KMessageBox::Notify) const
+    {
+        static const QString noDontShowAgainName{};
+        const QString title = caption.isEmpty() ? i18nc("@title:window", "Success") : caption;
+        if (parentWId) {
+            KMessageBox::informationWId(parentWId, text, title, noDontShowAgainName, options);
+        } else {
+            KMessageBox::information(parentWidgetOrView(), text, title, noDontShowAgainName, options);
         }
     }
     void information(const QString &text, const QString &caption = QString(), const QString &dontShowAgainName = QString(), KMessageBox::Options options = KMessageBox::Notify) const

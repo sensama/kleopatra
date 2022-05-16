@@ -207,7 +207,7 @@ void ChangePinCommand::Private::slotResult(const GpgME::Error& err)
     if (err) {
         error(errorMessage(keyRef, mode, QString::fromLatin1(err.asString())));
     } else if (!err.isCanceled()) {
-        information(successMessage(keyRef, mode), i18nc("@title", "Success"));
+        success(successMessage(keyRef, mode));
         ReaderStatus::mutableInstance()->updateStatus();
     }
     finished();

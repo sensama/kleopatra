@@ -619,11 +619,9 @@ void KleopatraApplication::setMainWindow(MainWindow *mainWindow)
 
 static void open_or_raise(QWidget *w)
 {
-    if (w->isMinimized()) {
-        KWindowSystem::unminimizeWindow(w->winId());
-        w->raise();
-    } else if (w->isVisible()) {
-        w->raise();
+    if (w->isVisible()) {
+        KWindowSystem::updateStartupId(w->windowHandle());
+        KWindowSystem::activateWindow(w->windowHandle());
     } else {
         w->show();
     }

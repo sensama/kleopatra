@@ -274,7 +274,10 @@ set(_kleopatra_SRCS
   conf/groupsconfigpage.cpp
   conf/groupsconfigwidget.cpp
 
+  newcertificatewizard/advancedsettingsdialog.cpp
   newcertificatewizard/chooseprotocolpage.cpp
+  newcertificatewizard/enterdetailspage.cpp
+  newcertificatewizard/keyalgo.cpp
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp
   newcertificatewizard/wizardpage.cpp

@@ -288,6 +288,7 @@ set(_kleopatra_SRCS
   newcertificatewizard/chooseprotocolpage.cpp
   newcertificatewizard/enterdetailspage.cpp
   newcertificatewizard/keyalgo.cpp
+  newcertificatewizard/keycreationpage.cpp
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp
   newcertificatewizard/wizardpage.cpp

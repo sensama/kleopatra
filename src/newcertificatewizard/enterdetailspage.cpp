@@ -15,6 +15,7 @@
 
 #include "advancedsettingsdialog_p.h"
 
+#include "utils/scrollarea.h"
 #include "utils/userinfo.h"
 #include "utils/validation.h"
 
@@ -105,6 +106,15 @@ struct EnterDetailsPage::UI
 
         auto mainLayout = new QVBoxLayout{parent};
 
+        auto scrollArea = new ScrollArea{parent};
+        scrollArea->setFocusPolicy(Qt::NoFocus);
+        scrollArea->setFrameStyle(QFrame::NoFrame);
+        scrollArea->setBackgroundRole(parent->backgroundRole());
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+        scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+
         gridLayout = new QGridLayout;
         int row = 0;
 
@@ -129,18 +139,18 @@ struct EnterDetailsPage::UI
         withPassCB->setToolTip(i18n("Encrypts the secret key with an unrecoverable passphrase. You will be asked for the passphrase during key generation."));
         gridLayout->addWidget(withPassCB, row, 1, 1, 2);
 
-        mainLayout->addLayout(gridLayout);
+        scrollAreaLayout->addLayout(gridLayout);
 
         auto verticalSpacer = new QSpacerItem{20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding};
 
-        mainLayout->addItem(verticalSpacer);
+        scrollAreaLayout->addItem(verticalSpacer);
 
         resultLE = new QLineEdit{parent};
         resultLE->setFrame(false);
         resultLE->setAlignment(Qt::AlignCenter);
         resultLE->setReadOnly(true);
 
-        mainLayout->addWidget(resultLE);
+        scrollAreaLayout->addWidget(resultLE);
 
         auto horizontalLayout = new QHBoxLayout;
         errorLB = new QLabel{parent};
@@ -167,7 +177,9 @@ struct EnterDetailsPage::UI
 
         horizontalLayout->addWidget(advancedPB);
 
-        mainLayout->addLayout(horizontalLayout);
+        scrollAreaLayout->addLayout(horizontalLayout);
+
+        mainLayout->addWidget(scrollArea);
     }
 };
 

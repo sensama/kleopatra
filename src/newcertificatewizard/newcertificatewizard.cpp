@@ -14,76 +14,19 @@
 
 #include "newcertificatewizard.h"
 
-#include <settings.h>
-
 #include "chooseprotocolpage_p.h"
 #include "enterdetailspage_p.h"
-#include "keyalgo_p.h"
 #include "keycreationpage_p.h"
 #include "resultpage_p.h"
 
-#include "wizardpage_p.h"
-
-#ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
-# include "commands/exportsecretkeycommand.h"
-#else
-# include "commands/exportsecretkeycommand_old.h"
-#endif
-#include "commands/exportopenpgpcertstoservercommand.h"
-#include "commands/exportcertificatecommand.h"
-
-#include "kleopatraapplication.h"
-
-#include "utils/validation.h"
-#include "utils/filedialog.h"
-#include "utils/keyparameters.h"
-#include "utils/userinfo.h"
-
-#include <Libkleo/Compat>
-#include <Libkleo/GnuPG>
-#include <Libkleo/Stl_Util>
-#include <Libkleo/Dn>
-#include <Libkleo/OidMap>
-#include <Libkleo/KeyCache>
-#include <Libkleo/Formatting>
-
-#include <QGpgME/KeyGenerationJob>
-#include <QGpgME/Protocol>
-#include <QGpgME/CryptoConfig>
-
-#include <gpgme++/global.h>
-#include <gpgme++/keygenerationresult.h>
-#include <gpgme++/context.h>
-#include <gpgme++/interfaces/passphraseprovider.h>
-
-#include <KConfigGroup>
 #include <KLocalizedString>
-#include "kleopatra_debug.h"
-#include <QTemporaryDir>
-#include <KMessageBox>
-#include <QIcon>
 
-#include <QRegularExpressionValidator>
-#include <QLineEdit>
-#include <QMetaProperty>
 #include <QDir>
-#include <QFile>
-#include <QUrl>
-#include <QDesktopServices>
-#include <QUrlQuery>
-
-#include <algorithm>
-
-#include <KSharedConfig>
-#include <QLocale>
+#include <QTemporaryDir>
 
 using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
-using namespace Kleo::Commands;
 using namespace GpgME;
-#ifndef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
-using Kleo::Commands::Compat::ExportSecretKeyCommand;
-#endif
 
 class NewCertificateWizard::Private
 {

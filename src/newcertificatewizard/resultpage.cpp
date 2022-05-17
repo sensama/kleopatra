@@ -13,8 +13,6 @@
 
 #include "resultpage_p.h"
 
-#include <ui_resultpage.h>
-
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
 #ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
@@ -22,17 +20,24 @@
 #else
 # include "commands/exportsecretkeycommand_old.h"
 #endif
+#include "utils/dragqueen.h"
 #include "utils/filedialog.h"
 
 #include <Libkleo/KeyCache>
 
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
 
 #include <QDesktopServices>
+#include <QGroupBox>
+#include <QHBoxLayout>
 #include <QLineEdit>
+#include <QPushButton>
+#include <QTextBrowser>
 #include <QUrlQuery>
+#include <QVBoxLayout>
 
 #include <gpgme++/key.h>
 
@@ -46,14 +51,95 @@ using namespace GpgME;
 using Kleo::Commands::Compat::ExportSecretKeyCommand;
 #endif
 
+struct ResultPage::UI
+{
+    QTextBrowser *resultTB = nullptr;
+    QTextBrowser *errorTB = nullptr;
+    DragQueen *dragQueen = nullptr;
+    QPushButton *restartWizardPB = nullptr;
+    QGroupBox *nextStepsGB = nullptr;
+    QPushButton *saveRequestToFilePB = nullptr;
+    QPushButton *sendRequestByEMailPB = nullptr;
+    QPushButton *makeBackupPB = nullptr;
+    QPushButton *sendCertificateByEMailPB = nullptr;
+    QPushButton *uploadToKeyserverPB = nullptr;
+    QPushButton *createRevocationRequestPB = nullptr;
+    QPushButton *createSigningCertificatePB = nullptr;
+    QPushButton *createEncryptionCertificatePB = nullptr;
+
+    UI(QWizardPage *parent)
+    {
+        auto mainLayout = new QVBoxLayout{parent};
+
+        auto resultGB = new QGroupBox{i18nc("@title:group", "Result"), parent};
+        auto resultGBLayout = new QHBoxLayout{resultGB};
+
+        resultTB = new QTextBrowser{resultGB};
+        resultGBLayout->addWidget(resultTB);
+
+        errorTB = new QTextBrowser{resultGB};
+        resultGBLayout->addWidget(errorTB);
+
+        dragQueen = new Kleo::DragQueen{resultGB};
+        dragQueen->setToolTip(i18n("Drag this icon to your mail application's composer to attach the request to a mail."));
+        dragQueen->setAlignment(Qt::AlignCenter);
+        resultGBLayout->addWidget(dragQueen);
+
+        mainLayout->addWidget(resultGB);
+
+        restartWizardPB = new QPushButton{i18n("Restart This Wizard (Keeps Your Parameters)"), parent};
+
+        mainLayout->addWidget(restartWizardPB);
+
+        nextStepsGB = new QGroupBox{i18nc("@title:group", "Next Steps"), parent};
+        auto nextStepsGBLayout = new QVBoxLayout{nextStepsGB};
+
+        saveRequestToFilePB = new QPushButton{i18n("Save Certificate Request To File..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(saveRequestToFilePB);
+
+        sendRequestByEMailPB = new QPushButton{i18n("Send Certificate Request By EMail..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(sendRequestByEMailPB);
+
+        makeBackupPB = new QPushButton{i18n("Make a Backup Of Your Key Pair..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(makeBackupPB);
+
+        sendCertificateByEMailPB = new QPushButton{i18n("Send Public Key By EMail..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(sendCertificateByEMailPB);
+
+        uploadToKeyserverPB = new QPushButton{i18n("Upload Public Key To Directory Service..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(uploadToKeyserverPB);
+
+        createRevocationRequestPB = new QPushButton{i18n("Create Revocation Request..."), nextStepsGB};
+        nextStepsGBLayout->addWidget(createRevocationRequestPB);
+
+        createSigningCertificatePB = new QPushButton{i18n("Create Signing Certificate With Same Parameters"), nextStepsGB};
+        nextStepsGBLayout->addWidget(createSigningCertificatePB);
+
+        createEncryptionCertificatePB = new QPushButton{i18n("Create Encryption Certificate With Same Parameters"), nextStepsGB};
+        nextStepsGBLayout->addWidget(createEncryptionCertificatePB);
+
+        mainLayout->addWidget(nextStepsGB);
+    }
+};
+
 ResultPage::ResultPage(QWidget *p)
     : WizardPage{p}
-    , ui{new Ui_ResultPage}
+    , ui{new UI{this}}
     , initialized{false}
     , successfullyCreatedSigningCertificate{false}
     , successfullyCreatedEncryptionCertificate{false}
 {
-    ui->setupUi(this);
+    setObjectName(QString::fromUtf8("Kleo__NewCertificateUi__ResultPage"));
+
+    connect(ui->saveRequestToFilePB, &QPushButton::clicked, this, &ResultPage::slotSaveRequestToFile);
+    connect(ui->sendRequestByEMailPB, &QPushButton::clicked, this, &ResultPage::slotSendRequestByEMail);
+    connect(ui->sendCertificateByEMailPB, &QPushButton::clicked, this, &ResultPage::slotSendCertificateByEMail);
+    connect(ui->uploadToKeyserverPB, &QPushButton::clicked, this, &ResultPage::slotUploadCertificateToDirectoryServer);
+    connect(ui->makeBackupPB, &QPushButton::clicked, this, &ResultPage::slotBackupCertificate);
+    connect(ui->createRevocationRequestPB, &QPushButton::clicked, this, &ResultPage::slotCreateRevocationRequest);
+    connect(ui->createSigningCertificatePB, &QPushButton::clicked, this, &ResultPage::slotCreateSigningCertificate);
+    connect(ui->createEncryptionCertificatePB, &QPushButton::clicked, this, &ResultPage::slotCreateEncryptionCertificate);
+
     ui->dragQueen->setPixmap(QIcon::fromTheme(QStringLiteral("kleopatra")).pixmap(64, 64));
     registerField(QStringLiteral("error"),  ui->errorTB,   "plainText");
     registerField(QStringLiteral("result"), ui->resultTB,  "plainText");

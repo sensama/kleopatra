@@ -343,7 +343,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/subkeyswidget.ui
   newcertificatewizard/listwidget.ui
   newcertificatewizard/keycreationpage.ui
-  newcertificatewizard/resultpage.ui
   newcertificatewizard/advancedsettingsdialog.ui
 )
 

@@ -23,7 +23,6 @@ class ExportCertificateCommand;
 }
 namespace Kleo::NewCertificateUi
 {
-class Ui_ResultPage;
 
 class ResultPage : public WizardPage
 {
@@ -55,7 +54,9 @@ private:
     void toggleSignEncryptAndRestart();
 
 private:
-    std::unique_ptr<Kleo::NewCertificateUi::Ui_ResultPage> ui;
+    struct UI;
+    std::unique_ptr<UI> ui;
+
     bool initialized : 1;
     bool successfullyCreatedSigningCertificate : 1;
     bool successfullyCreatedEncryptionCertificate : 1;

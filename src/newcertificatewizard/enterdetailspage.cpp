@@ -19,7 +19,6 @@
 #include "utils/validation.h"
 
 #include <settings.h>
-#include <ui_enterdetailspage.h>
 
 #include <Libkleo/Compat>
 #include <Libkleo/Dn>
@@ -27,11 +26,20 @@
 #include <Libkleo/OidMap>
 #include <Libkleo/Stl_Util>
 
+#include <KLocalizedString>
+
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
+#include <QCheckBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLineEdit>
 #include <QMetaProperty>
+#include <QPushButton>
+#include <QSpacerItem>
 #include <QValidator>
+#include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
 
@@ -77,13 +85,98 @@ static QString attributeFromKey(QString key)
     return key.remove(QLatin1Char('!'));
 }
 
+struct EnterDetailsPage::UI
+{
+    QGridLayout *gridLayout = nullptr;
+    QLabel *nameLB = nullptr;
+    QLineEdit *nameLE = nullptr;
+    QLabel *nameRequiredLB = nullptr;
+    QLabel *emailLB = nullptr;
+    QLineEdit *emailLE = nullptr;
+    QLabel *emailRequiredLB = nullptr;
+    QCheckBox *withPassCB = nullptr;
+    QLineEdit *resultLE = nullptr;
+    QLabel *errorLB = nullptr;
+    QPushButton *advancedPB = nullptr;
+
+    UI(QWizardPage *parent)
+    {
+        parent->setTitle(i18nc("@title", "Enter Details"));
+
+        auto mainLayout = new QVBoxLayout{parent};
+
+        gridLayout = new QGridLayout;
+        int row = 0;
+
+        nameLB = new QLabel{i18n("Real name:"), parent};
+        nameLE = new QLineEdit{parent};
+        nameRequiredLB = new QLabel{i18n("(required)"), parent};
+        gridLayout->addWidget(nameLB, row, 0, 1, 1);
+        gridLayout->addWidget(nameLE, row, 1, 1, 1);
+        gridLayout->addWidget(nameRequiredLB, row, 2, 1, 1);
+
+        row++;
+        emailLB = new QLabel{i18n("EMail address:"), parent};
+        emailLE = new QLineEdit{parent};
+        emailRequiredLB = new QLabel{i18n("(required)"), parent};
+
+        gridLayout->addWidget(emailLB, row, 0, 1, 1);
+        gridLayout->addWidget(emailLE, row, 1, 1, 1);
+        gridLayout->addWidget(emailRequiredLB, row, 2, 1, 1);
+
+        row++;
+        withPassCB = new QCheckBox{i18n("Protect the generated key with a passphrase."), parent};
+        withPassCB->setToolTip(i18n("Encrypts the secret key with an unrecoverable passphrase. You will be asked for the passphrase during key generation."));
+        gridLayout->addWidget(withPassCB, row, 1, 1, 2);
+
+        mainLayout->addLayout(gridLayout);
+
+        auto verticalSpacer = new QSpacerItem{20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding};
+
+        mainLayout->addItem(verticalSpacer);
+
+        resultLE = new QLineEdit{parent};
+        resultLE->setFrame(false);
+        resultLE->setAlignment(Qt::AlignCenter);
+        resultLE->setReadOnly(true);
+
+        mainLayout->addWidget(resultLE);
+
+        auto horizontalLayout = new QHBoxLayout;
+        errorLB = new QLabel{parent};
+        QSizePolicy sizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(errorLB->sizePolicy().hasHeightForWidth());
+        errorLB->setSizePolicy(sizePolicy);
+        QPalette palette;
+        QBrush brush(QColor(255, 0, 0, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        QBrush brush1(QColor(114, 114, 114, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
+        errorLB->setPalette(palette);
+        errorLB->setTextFormat(Qt::RichText);
+
+        horizontalLayout->addWidget(errorLB);
+
+        advancedPB = new QPushButton{i18n("Advanced Settings..."), parent};
+        advancedPB->setAutoDefault(false);
+
+        horizontalLayout->addWidget(advancedPB);
+
+        mainLayout->addLayout(horizontalLayout);
+    }
+};
 
 EnterDetailsPage::EnterDetailsPage(QWidget *p)
     : WizardPage{p}
-    , ui{new Ui_EnterDetailsPage}
+    , ui{new UI{this}}
     , dialog{new AdvancedSettingsDialog{this}}
 {
-    ui->setupUi(this);
+    setObjectName(QStringLiteral("Kleo__NewCertificateUi__EnterDetailsPage"));
 
     Settings settings;
     if (settings.hideAdvanced()) {
@@ -99,6 +192,7 @@ EnterDetailsPage::EnterDetailsPage(QWidget *p)
     ui->errorLB->setFixedHeight(ui->errorLB->minimumSizeHint().height());
     ui->errorLB->clear();
 
+    connect(ui->advancedPB, &QPushButton::clicked, this, &EnterDetailsPage::slotAdvancedSettingsClicked);
     connect(ui->resultLE, &QLineEdit::textChanged,
             this, &QWizardPage::completeChanged);
     // The email doesn't necessarily show up in ui->resultLE:

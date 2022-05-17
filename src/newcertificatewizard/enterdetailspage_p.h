@@ -16,11 +16,6 @@
 class AdvancedSettingsDialog;
 class QLineEdit;
 
-namespace Kleo::NewCertificateUi
-{
-class Ui_EnterDetailsPage;
-}
-
 class EnterDetailsPage : public Kleo::NewCertificateUi::WizardPage
 {
     Q_OBJECT
@@ -55,7 +50,9 @@ private Q_SLOTS:
     void slotUpdateResultLabel();
 
 private:
-    std::unique_ptr<Kleo::NewCertificateUi::Ui_EnterDetailsPage> ui;
+    struct UI;
+    std::unique_ptr<UI> ui;
+
     QVector<Line> lineList;
     QList<QWidget *> dynamicWidgets;
     QMap<QString, QString> savedValues;

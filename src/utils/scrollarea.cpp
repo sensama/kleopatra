@@ -46,7 +46,7 @@ QSize ScrollArea::minimumSizeHint() const
 {
     const int fw = frameWidth();
     QSize sz{2 * fw, 2 * fw};
-    sz += widget()->minimumSizeHint();
+    sz += {widget()->minimumSizeHint().width(), 0};
     if (verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff) {
         sz.setWidth(sz.width() + verticalScrollBar()->sizeHint().width());
     }

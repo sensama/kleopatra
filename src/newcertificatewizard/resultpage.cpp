@@ -22,6 +22,7 @@
 #endif
 #include "utils/dragqueen.h"
 #include "utils/filedialog.h"
+#include "utils/scrollarea.h"
 
 #include <Libkleo/KeyCache>
 
@@ -71,6 +72,15 @@ struct ResultPage::UI
     {
         auto mainLayout = new QVBoxLayout{parent};
 
+        auto scrollArea = new ScrollArea{parent};
+        scrollArea->setFocusPolicy(Qt::NoFocus);
+        scrollArea->setFrameStyle(QFrame::NoFrame);
+        scrollArea->setBackgroundRole(parent->backgroundRole());
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+        scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+
         auto resultGB = new QGroupBox{i18nc("@title:group", "Result"), parent};
         auto resultGBLayout = new QHBoxLayout{resultGB};
 
@@ -85,11 +95,11 @@ struct ResultPage::UI
         dragQueen->setAlignment(Qt::AlignCenter);
         resultGBLayout->addWidget(dragQueen);
 
-        mainLayout->addWidget(resultGB);
+        scrollAreaLayout->addWidget(resultGB);
 
         restartWizardPB = new QPushButton{i18n("Restart This Wizard (Keeps Your Parameters)"), parent};
 
-        mainLayout->addWidget(restartWizardPB);
+        scrollAreaLayout->addWidget(restartWizardPB);
 
         nextStepsGB = new QGroupBox{i18nc("@title:group", "Next Steps"), parent};
         auto nextStepsGBLayout = new QVBoxLayout{nextStepsGB};
@@ -118,7 +128,9 @@ struct ResultPage::UI
         createEncryptionCertificatePB = new QPushButton{i18n("Create Encryption Certificate With Same Parameters"), nextStepsGB};
         nextStepsGBLayout->addWidget(createEncryptionCertificatePB);
 
-        mainLayout->addWidget(nextStepsGB);
+        scrollAreaLayout->addWidget(nextStepsGB);
+
+        mainLayout->addWidget(scrollArea);
     }
 };
 

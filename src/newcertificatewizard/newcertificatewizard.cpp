@@ -450,24 +450,4 @@ QDir NewCertificateWizard::tmpDir() const
     return QDir(d->tmp.path());
 }
 
-namespace
-{
-template <typename T = QString>
-struct Row {
-    QString key;
-    T value;
-
-    Row(const QString &k, const T &v) : key(k), value(v) {}
-};
-template <typename T>
-QTextStream &operator<<(QTextStream &s, const Row<T> &row)
-{
-    if (row.key.isEmpty()) {
-        return s;
-    } else {
-        return s << "<tr><td>" << row.key << "</td><td>" << row.value << "</td></tr>";
-    }
-}
-}
-
 #include "newcertificatewizard.moc"

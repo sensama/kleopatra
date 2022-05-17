@@ -15,6 +15,8 @@
 
 #include <gpgme++/global.h>
 
+class QDir;
+
 namespace Kleo
 {
 
@@ -49,6 +51,7 @@ protected:
 private:
     void resetProtocol();
     void restartAtEnterDetailsPage();
+    QDir tmpDir() const;
 
 private:
     class Private;

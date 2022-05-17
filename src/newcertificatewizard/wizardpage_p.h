@@ -51,7 +51,10 @@ protected:
         wizard()->restartAtEnterDetailsPage();
     }
 
-    QDir tmpDir() const;
+    QDir tmpDir() const
+    {
+        return wizard()->tmpDir();
+    }
 
 protected:
 #define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }

@@ -492,7 +492,6 @@ private:
 class NewCertificateWizard::Private
 {
     friend class ::Kleo::NewCertificateWizard;
-    friend class ::Kleo::NewCertificateUi::WizardPage;
     NewCertificateWizard *const q;
 public:
     explicit Private(NewCertificateWizard *qq)
@@ -580,9 +579,9 @@ void NewCertificateWizard::restartAtEnterDetailsPage()
     }
 }
 
-QDir WizardPage::tmpDir() const
+QDir NewCertificateWizard::tmpDir() const
 {
-    return wizard() ? QDir(wizard()->d->tmp.path()) : QDir::home();
+    return QDir(d->tmp.path());
 }
 
 QStringList KeyCreationPage::keyUsages() const

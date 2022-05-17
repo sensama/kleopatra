@@ -71,6 +71,8 @@ struct ResultPage::UI
     UI(QWizardPage *parent)
     {
         auto mainLayout = new QVBoxLayout{parent};
+        const auto margins = mainLayout->contentsMargins();
+        mainLayout->setContentsMargins(margins.left(), 0, margins.right(), 0);
 
         auto scrollArea = new ScrollArea{parent};
         scrollArea->setFocusPolicy(Qt::NoFocus);
@@ -79,7 +81,7 @@ struct ResultPage::UI
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
         auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
-        scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+        scrollAreaLayout->setContentsMargins(0, margins.top(), 0, margins.bottom());
 
         auto resultGB = new QGroupBox{i18nc("@title:group", "Result"), parent};
         auto resultGBLayout = new QHBoxLayout{resultGB};

@@ -47,7 +47,8 @@ struct ChooseProtocolPage::UI {
         parent->setSubTitle(i18n("Please choose which type of key pair you want to create."));
 
         auto mainLayout = new QVBoxLayout{parent};
-        mainLayout->setContentsMargins(0, 0, 0, 0);
+        const auto margins = mainLayout->contentsMargins();
+        mainLayout->setContentsMargins(margins.left(), 0, margins.right(), 0);
 
         auto scrollArea = new ScrollArea{parent};
         scrollArea->setFocusPolicy(Qt::NoFocus);
@@ -55,7 +56,7 @@ struct ChooseProtocolPage::UI {
         scrollArea->setBackgroundRole(parent->backgroundRole());
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
-        scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+        scrollAreaLayout->setContentsMargins(0, margins.top(), 0, margins.bottom());
 
         pgpCLB = new QCommandLinkButton{parent};
         pgpCLB->setText(i18n("Create a personal OpenPGP key pair"));

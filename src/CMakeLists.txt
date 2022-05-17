@@ -291,6 +291,7 @@ set(_kleopatra_SRCS
   newcertificatewizard/keycreationpage.cpp
   newcertificatewizard/listwidget.cpp
   newcertificatewizard/newcertificatewizard.cpp
+  newcertificatewizard/resultpage.cpp
   newcertificatewizard/wizardpage.cpp
 
   smartcard/readerstatus.cpp

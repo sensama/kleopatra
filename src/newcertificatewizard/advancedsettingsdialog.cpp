@@ -5,6 +5,8 @@
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016, 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -13,18 +15,28 @@
 
 #include "advancedsettingsdialog_p.h"
 #include "keyalgo_p.h"
+#include "listwidget.h"
 
 #include <settings.h>
-#include <ui_advancedsettingsdialog.h>
 
 #include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 
+#include <KDateComboBox>
+#include <KLocalizedString>
+
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
 
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QTabWidget>
+#include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
 
@@ -187,14 +199,211 @@ QDate defaultExpirationDate(OnUnlimitedValidity onUnlimitedValidity)
 
 }
 
+struct AdvancedSettingsDialog::UI
+{
+    QTabWidget *tabWidget = nullptr;
+    QRadioButton *rsaRB = nullptr;
+    QComboBox *rsaKeyStrengthCB = nullptr;
+    QCheckBox *rsaSubCB = nullptr;
+    QComboBox *rsaKeyStrengthSubCB = nullptr;
+    QRadioButton *dsaRB = nullptr;
+    QComboBox *dsaKeyStrengthCB = nullptr;
+    QCheckBox *elgCB = nullptr;
+    QComboBox *elgKeyStrengthCB = nullptr;
+    QRadioButton *ecdsaRB = nullptr;
+    QComboBox *ecdsaKeyCurvesCB = nullptr;
+    QCheckBox *ecdhCB = nullptr;
+    QComboBox *ecdhKeyCurvesCB = nullptr;
+    QCheckBox *certificationCB = nullptr;
+    QCheckBox *signingCB = nullptr;
+    QCheckBox *encryptionCB = nullptr;
+    QCheckBox *authenticationCB = nullptr;
+    QCheckBox *expiryCB = nullptr;
+    KDateComboBox *expiryDE = nullptr;
+    QWidget *personalTab = nullptr;
+    QGroupBox *uidGB = nullptr;
+    Kleo::NewCertificateUi::ListWidget *uidLW = nullptr;
+    QGroupBox *emailGB = nullptr;
+    Kleo::NewCertificateUi::ListWidget *emailLW = nullptr;
+    QGroupBox *dnsGB = nullptr;
+    Kleo::NewCertificateUi::ListWidget *dnsLW = nullptr;
+    QGroupBox *uriGB = nullptr;
+    Kleo::NewCertificateUi::ListWidget *uriLW = nullptr;
+    QDialogButtonBox *buttonBox = nullptr;
+
+    UI(QDialog *parent)
+    {
+        parent->setWindowTitle(i18nc("@title:window", "Advanced Settings"));
+
+        auto mainLayout = new QVBoxLayout{parent};
+
+        tabWidget = new QTabWidget{parent};
+
+        {
+            auto technicalTab = new QWidget;
+            auto tabLayout = new QVBoxLayout{technicalTab};
+
+            {
+                auto groupBox = new QGroupBox{i18nc("@title:group", "Key Material"), technicalTab};
+                auto groupBoxGrid = new QGridLayout{groupBox};
+
+                int row = 0;
+                rsaRB = new QRadioButton{i18nc("@option:radio", "RSA"), groupBox};
+                rsaRB->setChecked(false);
+                groupBoxGrid->addWidget(rsaRB, row, 0, 1, 2);
+
+                rsaKeyStrengthCB = new QComboBox{groupBox};
+                rsaKeyStrengthCB->setEnabled(false);
+                groupBoxGrid->addWidget(rsaKeyStrengthCB, row, 2, 1, 1);
+
+                row++;
+                auto subKeyIndentation = new QSpacerItem(13, 13, QSizePolicy::Fixed, QSizePolicy::Minimum);
+                groupBoxGrid->addItem(subKeyIndentation, row, 0, 1, 1);
+
+                rsaSubCB = new QCheckBox{i18nc("@option:check", "+ RSA"), groupBox};
+                rsaSubCB->setEnabled(true);
+                groupBoxGrid->addWidget(rsaSubCB, row, 1, 1, 1);
+
+                rsaKeyStrengthSubCB = new QComboBox{groupBox};
+                rsaKeyStrengthSubCB->setEnabled(false);
+                groupBoxGrid->addWidget(rsaKeyStrengthSubCB, row, 2, 1, 1);
+
+                row++;
+                dsaRB = new QRadioButton{i18nc("@option:radio", "DSA"), groupBox};
+                groupBoxGrid->addWidget(dsaRB, row, 0, 1, 2);
+
+                dsaKeyStrengthCB = new QComboBox{groupBox};
+                dsaKeyStrengthCB->setEnabled(false);
+                groupBoxGrid->addWidget(dsaKeyStrengthCB, row, 2, 1, 1);
+
+                row++;
+                elgCB = new QCheckBox{i18nc("@option:check", "+ Elgamal"), groupBox};
+                elgCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
+                elgCB->setEnabled(true);
+                groupBoxGrid->addWidget(elgCB, row, 1, 1, 1);
+
+                elgKeyStrengthCB = new QComboBox{groupBox};
+                elgKeyStrengthCB->setEnabled(false);
+                groupBoxGrid->addWidget(elgKeyStrengthCB, row, 2, 1, 1);
+
+                row++;
+                ecdsaRB = new QRadioButton{i18nc("@option:radio", "ECDSA"), groupBox};
+                groupBoxGrid->addWidget(ecdsaRB, row, 0, 1, 2);
+
+                ecdsaKeyCurvesCB = new QComboBox{groupBox};
+                ecdsaKeyCurvesCB->setEnabled(false);
+                groupBoxGrid->addWidget(ecdsaKeyCurvesCB, row, 2, 1, 1);
+
+                row++;
+                ecdhCB = new QCheckBox{i18nc("@option:check", "+ ECDH"), groupBox};
+                ecdhCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
+                ecdhCB->setEnabled(true);
+                groupBoxGrid->addWidget(ecdhCB, row, 1, 1, 1);
+
+                ecdhKeyCurvesCB = new QComboBox{groupBox};
+                ecdhKeyCurvesCB->setEnabled(false);
+                groupBoxGrid->addWidget(ecdhKeyCurvesCB, row, 2, 1, 1);
+
+                groupBoxGrid->setColumnStretch(3, 1);
+
+                tabLayout->addWidget(groupBox);
+            }
+            {
+                auto groupBox = new QGroupBox{i18nc("@title:group", "Certificate Usage"), technicalTab};
+                auto groupBoxGrid = new QGridLayout{groupBox};
+
+                int row = 0;
+                signingCB = new QCheckBox{i18nc("@option:check", "Signing"), groupBox};
+                signingCB->setChecked(true);
+                groupBoxGrid->addWidget(signingCB, row, 0, 1, 1);
+
+                certificationCB = new QCheckBox{i18nc("@option:check", "Certification"), groupBox};
+                groupBoxGrid->addWidget(certificationCB, row, 1, 1, 1);
+
+                row++;
+                encryptionCB = new QCheckBox{i18nc("@option:check", "Encryption"), groupBox};
+                encryptionCB->setChecked(true);
+                groupBoxGrid->addWidget(encryptionCB, row, 0, 1, 1);
+
+                authenticationCB = new QCheckBox{i18nc("@option:check", "Authentication"), groupBox};
+                groupBoxGrid->addWidget(authenticationCB, row, 1, 1, 1);
+
+                row++;
+                {
+                    auto hbox = new QHBoxLayout;
+
+                    expiryCB = new QCheckBox{i18nc("@option:check", "Valid until:"), groupBox};
+                    hbox->addWidget(expiryCB);
+
+                    expiryDE = new KDateComboBox(groupBox);
+                    hbox->addWidget(expiryDE, 1);
+
+                    groupBoxGrid->addLayout(hbox, row, 0, 1, 2);
+                }
+
+                tabLayout->addWidget(groupBox);
+            }
+
+            tabLayout->addStretch(1);
+
+            tabWidget->addTab(technicalTab, i18nc("@title:tab", "Technical Details"));
+        }
+
+        {
+            personalTab = new QWidget;
+            auto tabGrid = new QGridLayout{personalTab};
+
+            uidGB = new QGroupBox{i18nc("@title:group", "Additional User IDs"), personalTab};
+            {
+                auto layout = new QVBoxLayout{uidGB};
+                uidLW = new Kleo::NewCertificateUi::ListWidget{uidGB};
+                layout->addWidget(uidLW);
+            }
+            tabGrid->addWidget(uidGB, 0, 0, 1, 2);
+
+            emailGB = new QGroupBox{i18nc("@title:group", "EMail Addresses"), personalTab};
+            {
+                auto layout = new QVBoxLayout{emailGB};
+                emailLW = new Kleo::NewCertificateUi::ListWidget{emailGB};
+                layout->addWidget(emailLW);
+            }
+            tabGrid->addWidget(emailGB, 2, 0, 2, 1);
+
+            dnsGB = new QGroupBox{i18nc("@title:group", "DNS Names"), personalTab};
+            {
+                auto layout = new QVBoxLayout{dnsGB};
+                dnsLW = new Kleo::NewCertificateUi::ListWidget{dnsGB};
+                layout->addWidget(dnsLW);
+            }
+            tabGrid->addWidget(dnsGB, 2, 1, 1, 1);
+
+            uriGB = new QGroupBox{i18nc("@title:group", "URIs"), personalTab};
+            {
+                auto layout = new QVBoxLayout{uriGB};
+                uriLW = new Kleo::NewCertificateUi::ListWidget{uriGB};
+                layout->addWidget(uriLW);
+            }
+            tabGrid->addWidget(uriGB, 3, 1, 1, 1);
+
+            tabWidget->addTab(personalTab, i18nc("@title:tab", "Personal Details"));
+        }
+
+        mainLayout->addWidget(tabWidget);
+
+        buttonBox = new QDialogButtonBox{parent};
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        mainLayout->addWidget(buttonBox);
+    }
+};
+
 AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
     : QDialog{parent}
-    , ui{new Ui_AdvancedSettingsDialog}
+    , ui{new UI{this}}
     , mECCSupported{engineIsVersion(2, 1, 0)}
     , mEdDSASupported{engineIsVersion(2, 1, 15)}
 {
     qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
-    ui->setupUi(this);
 
     const auto settings = Kleo::Settings{};
     {
@@ -221,10 +430,26 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
     ui->emailLW->setDefaultValue(i18n("new email"));
     ui->dnsLW->setDefaultValue(i18n("new dns name"));
     ui->uriLW->setDefaultValue(i18n("new uri"));
-    ui->elgCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
-    ui->ecdhCB->setToolTip(i18nc("@info:tooltip", "This subkey is required for encryption."));
 
     fillKeySizeComboBoxen();
+
+    connect(ui->rsaRB, &QAbstractButton::toggled, ui->rsaKeyStrengthCB, &QWidget::setEnabled);
+    connect(ui->rsaRB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+    connect(ui->rsaSubCB, &QAbstractButton::toggled, ui->rsaKeyStrengthSubCB, &QWidget::setEnabled);
+    connect(ui->rsaSubCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+
+    connect(ui->dsaRB, &QAbstractButton::toggled, ui->dsaKeyStrengthCB, &QWidget::setEnabled);
+    connect(ui->dsaRB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+    connect(ui->elgCB, &QAbstractButton::toggled, ui->elgKeyStrengthCB, &QWidget::setEnabled);
+    connect(ui->elgCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+
+    connect(ui->ecdsaRB, &QAbstractButton::toggled, ui->ecdsaKeyCurvesCB, &QWidget::setEnabled);
+    connect(ui->ecdsaRB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+    connect(ui->ecdhCB, &QAbstractButton::toggled, ui->ecdhKeyCurvesCB, &QWidget::setEnabled);
+    connect(ui->ecdhCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotKeyMaterialSelectionChanged);
+
+    connect(ui->signingCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotSigningAllowedToggled);
+    connect(ui->encryptionCB, &QAbstractButton::toggled, this, &AdvancedSettingsDialog::slotEncryptionAllowedToggled);
 
     connect(ui->expiryCB, &QAbstractButton::toggled,
             this, [this](bool checked) {
@@ -233,6 +458,9 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
                     setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
                 }
             });
+
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
 AdvancedSettingsDialog::~AdvancedSettingsDialog() = default;
@@ -728,7 +956,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         }
     } else {
         if (ui->tabWidget->indexOf(ui->personalTab) == -1) {
-            ui->tabWidget->addTab(ui->personalTab, tr2i18n("Personal Details", nullptr));
+            ui->tabWidget->addTab(ui->personalTab, i18nc("@title:tab", "Personal Details"));
         }
     }
     ui->uidGB->setVisible(protocol == OpenPGP);

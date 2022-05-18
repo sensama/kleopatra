@@ -5,6 +5,8 @@
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016, 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -18,11 +20,6 @@
 #include <gpgme++/key.h>
 
 #include <memory>
-
-namespace Kleo::NewCertificateUi
-{
-class Ui_AdvancedSettingsDialog;
-}
 
 class AdvancedSettingsDialog : public QDialog
 {
@@ -119,7 +116,9 @@ private:
     void setInitialFocus();
 
 private:
-    std::unique_ptr<Kleo::NewCertificateUi::Ui_AdvancedSettingsDialog> ui;
+    struct UI;
+    std::unique_ptr<UI> ui;
+
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
     unsigned int pgpDefaultAlgorithm = GpgME::Subkey::AlgoELG_E;
     unsigned int cmsDefaultAlgorithm = GpgME::Subkey::AlgoRSA;

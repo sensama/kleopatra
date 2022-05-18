@@ -364,7 +364,6 @@ struct AdvancedSettingsDialog::UI
             personalTab->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             personalTab->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
             auto scrollAreaLayout = qobject_cast<QVBoxLayout *>(personalTab->widget()->layout());
-            scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
             auto tabGrid = new QGridLayout;
 

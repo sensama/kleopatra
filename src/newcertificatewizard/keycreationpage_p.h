@@ -5,6 +5,8 @@
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016, 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -20,10 +22,6 @@ class KeyGenerationResult;
 namespace QGpgME
 {
 class KeyGenerationJob;
-}
-namespace Kleo::NewCertificateUi
-{
-class Ui_KeyCreationPage;
 }
 
 class KeyCreationPage : public Kleo::NewCertificateUi::WizardPage
@@ -47,8 +45,10 @@ private Q_SLOTS:
     void slotResult(const GpgME::KeyGenerationResult &result, const QByteArray &request, const QString &auditLog);
 
 private:
+    struct UI;
+    std::unique_ptr<UI> ui;
+
     class EmptyPassphraseProvider;
     std::unique_ptr<EmptyPassphraseProvider> mEmptyPWProvider;
-    std::unique_ptr<Kleo::NewCertificateUi::Ui_KeyCreationPage> ui;
     QPointer<QGpgME::KeyGenerationJob> job;
 };

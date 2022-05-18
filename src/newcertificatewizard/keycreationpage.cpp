@@ -5,6 +5,8 @@
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016, 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -19,18 +21,19 @@
 
 #include "utils/keyparameters.h"
 
-#include <ui_keycreationpage.h>
-
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
 
+#include <QLabel>
 #include <QUrl>
+#include <QVBoxLayout>
 
 #include <gpgme++/context.h>
 #include <gpgme++/interfaces/passphraseprovider.h>
@@ -46,18 +49,32 @@ class KeyCreationPage::EmptyPassphraseProvider: public PassphraseProvider
 {
 public:
     char *getPassphrase(const char * /*useridHint*/, const char * /*description*/,
-                        bool /*previousWasBad*/, bool &/*canceled*/) Q_DECL_OVERRIDE
+                        bool /*previousWasBad*/, bool &/*canceled*/) override
     {
         return gpgrt_strdup ("");
     }
 };
 
+struct KeyCreationPage::UI
+{
+    UI(QWizardPage *parent)
+    {
+        parent->setTitle(i18nc("@title", "Creating Key Pair..."));
+
+        auto mainLayout = new QVBoxLayout{parent};
+
+        auto label = new QLabel{i18n("The process of creating a key requires large amounts of random numbers. This may require several minutes..."), parent};
+        label->setWordWrap(true);
+        mainLayout->addWidget(label);
+    }
+};
+
 KeyCreationPage::KeyCreationPage(QWidget *p)
     : WizardPage{p}
+    , ui{new UI{this}}
     , mEmptyPWProvider{new EmptyPassphraseProvider}
-    , ui{new Ui_KeyCreationPage}
 {
-    ui->setupUi(this);
+    setObjectName(QString::fromUtf8("Kleo__NewCertificateUi__KeyCreationPage"));
 }
 
 KeyCreationPage::~KeyCreationPage() = default;

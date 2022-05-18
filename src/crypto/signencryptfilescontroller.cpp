@@ -241,15 +241,16 @@ static const char *extension(bool pgp, bool sign, bool encrypt, bool ascii, bool
 
 static std::shared_ptr<ArchiveDefinition> getDefaultAd()
 {
-    std::vector<std::shared_ptr<ArchiveDefinition> > ads = ArchiveDefinition::getArchiveDefinitions();
+    const std::vector<std::shared_ptr<ArchiveDefinition>> ads = ArchiveDefinition::getArchiveDefinitions();
     Q_ASSERT(!ads.empty());
     std::shared_ptr<ArchiveDefinition> ad = ads.front();
     const FileOperationsPreferences prefs;
-    Q_FOREACH (const std::shared_ptr<ArchiveDefinition> toCheck, ads) {
-        if (toCheck->id() == prefs.archiveCommand()) {
-            ad = toCheck;
-            break;
-        }
+    const QString archiveCmd = prefs.archiveCommand();
+    auto it = std::find_if(ads.cbegin(), ads.cend(), [&archiveCmd](const std::shared_ptr<ArchiveDefinition> &toCheck) {
+        return toCheck->id() == archiveCmd;
+    });
+    if (it != ads.cend()) {
+        ad = *it;
     }
     return ad;
 }

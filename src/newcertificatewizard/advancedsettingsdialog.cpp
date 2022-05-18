@@ -17,6 +17,8 @@
 #include "keyalgo_p.h"
 #include "listwidget.h"
 
+#include "utils/scrollarea.h"
+
 #include <settings.h>
 
 #include <Libkleo/Compat>
@@ -220,7 +222,7 @@ struct AdvancedSettingsDialog::UI
     QCheckBox *authenticationCB = nullptr;
     QCheckBox *expiryCB = nullptr;
     KDateComboBox *expiryDE = nullptr;
-    QWidget *personalTab = nullptr;
+    ScrollArea *personalTab = nullptr;
     QGroupBox *uidGB = nullptr;
     Kleo::NewCertificateUi::ListWidget *uidLW = nullptr;
     QGroupBox *emailGB = nullptr;
@@ -240,8 +242,13 @@ struct AdvancedSettingsDialog::UI
         tabWidget = new QTabWidget{parent};
 
         {
-            auto technicalTab = new QWidget;
-            auto tabLayout = new QVBoxLayout{technicalTab};
+            auto technicalTab = new ScrollArea{tabWidget};
+            technicalTab->setFocusPolicy(Qt::NoFocus);
+            technicalTab->setFrameStyle(QFrame::NoFrame);
+            technicalTab->setBackgroundRole(parent->backgroundRole());
+            technicalTab->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            technicalTab->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+            auto tabLayout = qobject_cast<QVBoxLayout *>(technicalTab->widget()->layout());
 
             {
                 auto groupBox = new QGroupBox{i18nc("@title:group", "Key Material"), technicalTab};
@@ -350,8 +357,16 @@ struct AdvancedSettingsDialog::UI
         }
 
         {
-            personalTab = new QWidget;
-            auto tabGrid = new QGridLayout{personalTab};
+            personalTab = new ScrollArea{tabWidget};
+            personalTab->setFocusPolicy(Qt::NoFocus);
+            personalTab->setFrameStyle(QFrame::NoFrame);
+            personalTab->setBackgroundRole(parent->backgroundRole());
+            personalTab->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            personalTab->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
+            auto scrollAreaLayout = qobject_cast<QVBoxLayout *>(personalTab->widget()->layout());
+            scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+
+            auto tabGrid = new QGridLayout;
 
             uidGB = new QGroupBox{i18nc("@title:group", "Additional User IDs"), personalTab};
             {
@@ -384,6 +399,8 @@ struct AdvancedSettingsDialog::UI
                 layout->addWidget(uriLW);
             }
             tabGrid->addWidget(uriGB, 3, 1, 1, 1);
+
+            scrollAreaLayout->addLayout(tabGrid);
 
             tabWidget->addTab(personalTab, i18nc("@title:tab", "Personal Details"));
         }

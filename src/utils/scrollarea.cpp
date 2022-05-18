@@ -74,10 +74,13 @@ QSize ScrollArea::sizeHint() const
 void ScrollArea::adjustSizeOfWindowBy(const QSize &extent)
 {
     if (auto w = window()) {
+        const auto currentSize = w->size();
         // we limit the automatic size adjustment to 2/3 of the screen's size
         const auto maxWindowSize = screen()->geometry().size() * 2 / 3;
-        const auto newWindowSize = (w->size() + extent).boundedTo(maxWindowSize);
-        w->resize(newWindowSize);
+        const auto newWindowSize = currentSize.expandedTo((currentSize + extent).boundedTo(maxWindowSize));
+        if (newWindowSize != currentSize) {
+            w->resize(newWindowSize);
+        }
     }
 }
 

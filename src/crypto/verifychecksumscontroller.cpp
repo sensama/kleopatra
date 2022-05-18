@@ -21,6 +21,7 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
+#include <Libkleo/ChecksumDefinition>
 #include <Libkleo/Classify>
 
 #include <KLocalizedString>
@@ -51,7 +52,7 @@ static QStringList fs_sort(QStringList l)
     int (*QString_compare)(const QString &, const QString &, Qt::CaseSensitivity) = &QString::compare;
     std::sort(l.begin(), l.end(),
               [](const QString &lhs, const QString &rhs) {
-                return QString::compare(lhs, rhs, fs_cs) < 0;
+                return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
               });
     return l;
 }
@@ -66,7 +67,7 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
                           l2.begin(), l2.end(),
                           std::back_inserter(result),
                           [](const QString &lhs, const QString &rhs) {
-                            return QString::compare(lhs, rhs, fs_cs) < 0;
+                            return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
                           });
     return result;
 }
@@ -239,13 +240,13 @@ namespace
 struct less_dir : std::binary_function<QDir, QDir, bool> {
     bool operator()(const QDir &lhs, const QDir &rhs) const
     {
-        return QString::compare(lhs.absolutePath(), rhs.absolutePath(), fs_cs) < 0;
+        return QString::compare(lhs.absolutePath(), rhs.absolutePath(), ChecksumsUtils::fs_cs) < 0;
     }
 };
 struct less_file : std::binary_function<QString, QString, bool> {
     bool operator()(const QString &lhs, const QString &rhs) const
     {
-        return QString::compare(lhs, rhs, fs_cs) < 0;
+        return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
     }
 };
 struct sumfile_contains_file : std::unary_function<QString, bool> {
@@ -255,11 +256,11 @@ struct sumfile_contains_file : std::unary_function<QString, bool> {
         : dir(dir_), fileName(fileName_) {}
     bool operator()(const QString &sumFile) const
     {
-        const std::vector<File> files = parse_sum_file(dir.absoluteFilePath(sumFile));
+        const std::vector<ChecksumsUtils::File> files = ChecksumsUtils::parse_sum_file(dir.absoluteFilePath(sumFile));
         qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:      found " << files.size()
                                << " files listed in " << qPrintable(dir.absoluteFilePath(sumFile));
-        for (const File &file : files) {
-            const bool isSameFileName = (QString::compare(file.name, fileName, fs_cs) == 0);
+        for (const ChecksumsUtils::File &file : files) {
+            const bool isSameFileName = (QString::compare(file.name, fileName, ChecksumsUtils::fs_cs) == 0);
             qCDebug(KLEOPATRA_LOG) << "find_sums_by_input_files:        "
                                    << qPrintable(file.name) << " == "
                                    << qPrintable(fileName)  << " ? "
@@ -323,9 +324,9 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
         const std::function<void(int)> &progress,
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
-    const std::vector<QRegularExpression> patterns = get_patterns(checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(checksumDefinitions);
 
-    const matches_any is_sum_file(patterns);
+    const ChecksumsUtils::matches_any is_sum_file(patterns);
 
     std::map<QDir, std::set<QString, less_file>, less_dir> dirs2sums;
 
@@ -392,16 +393,16 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
 
         for (const QString &sumFileName : std::as_const(it->second)) {
 
-            const std::vector<File> summedfiles = parse_sum_file(dir.absoluteFilePath(sumFileName));
+            const std::vector<ChecksumsUtils::File> summedfiles = ChecksumsUtils::parse_sum_file(dir.absoluteFilePath(sumFileName));
             QStringList files;
             files.reserve(summedfiles.size());
             std::transform(summedfiles.cbegin(), summedfiles.cend(),
-                           std::back_inserter(files), std::mem_fn(&File::name));
+                           std::back_inserter(files), std::mem_fn(&ChecksumsUtils::File::name));
             const SumFile sumFile = {
                 it->first,
                 sumFileName,
                 aggregate_size(it->first, files),
-                filename2definition(sumFileName, checksumDefinitions),
+                ChecksumsUtils::filename2definition(sumFileName, checksumDefinitions),
             };
             sumfiles.push_back(sumFile);
 
@@ -417,7 +418,7 @@ static std::vector<SumFile> find_sums_by_input_files(const QStringList &files, Q
 
 static QStringList c_lang_environment()
 {
-    static const QRegularExpression re(QRegularExpression::anchoredPattern(u"LANG=.*"), s_regex_cs);
+    static const QRegularExpression re(QRegularExpression::anchoredPattern(u"LANG=.*"), ChecksumsUtils::s_regex_cs);
     QStringList env = QProcess::systemEnvironment();
     env.erase(std::remove_if(env.begin(), env.end(),
                              [](const QString &str) {

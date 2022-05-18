@@ -17,6 +17,7 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/Stl_Util>
+#include <Libkleo/ChecksumDefinition>
 #include <Libkleo/Classify>
 
 #include <KLocalizedString>
@@ -135,7 +136,7 @@ private:
 static QStringList fs_sort(QStringList l)
 {
     std::sort(l.begin(), l.end(), [](const QString &lhs, const QString &rhs) {
-                                    return QString::compare(lhs, rhs, fs_cs) < 0;
+                                    return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
                                   });
     return l;
 }
@@ -149,7 +150,7 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
                           l2.begin(), l2.end(),
                           std::back_inserter(result),
                           [](const QString &lhs, const QString &rhs) {
-                              return QString::compare(lhs, rhs, fs_cs) < 0;
+                              return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
                           });
     return result;
 }
@@ -260,9 +261,9 @@ void CreateChecksumsController::setFiles(const QStringList &files)
 {
     kleo_assert(!d->isRunning());
     kleo_assert(!files.empty());
-    const std::vector<QRegularExpression> patterns = get_patterns(d->checksumDefinitions);
-    if (!std::all_of(files.cbegin(), files.cend(), matches_any(patterns)) &&
-            !std::none_of(files.cbegin(), files.cend(), matches_any(patterns))) {
+    const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(d->checksumDefinitions);
+    if (!std::all_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns)) &&
+            !std::none_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(patterns))) {
         throw Exception(gpg_error(GPG_ERR_INV_ARG), i18n("Create Checksums: input files must be either all checksum files or all files to be checksummed, not a mixture of both."));
     }
     const QMutexLocker locker(&d->mutex);
@@ -353,7 +354,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
         const std::vector< std::shared_ptr<ChecksumDefinition> > &checksumDefinitions)
 {
 
-    const std::vector<QRegularExpression> patterns = get_patterns(checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(checksumDefinitions);
 
     std::vector<Dir> dirs;
     dirs.reserve(files.size());
@@ -370,11 +371,11 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
         if (allowAddition) {
             inputFiles = entries;
         } else {
-            const std::vector<File> parsed = parse_sum_file(fi.absoluteFilePath());
+            const std::vector<ChecksumsUtils::File> parsed = ChecksumsUtils::parse_sum_file(fi.absoluteFilePath());
             QStringList oldInputFiles;
             oldInputFiles.reserve(parsed.size());
             std::transform(parsed.cbegin(), parsed.cend(), std::back_inserter(oldInputFiles),
-                           std::mem_fn(&File::name));
+                           std::mem_fn(&ChecksumsUtils::File::name));
             inputFiles = fs_intersect(oldInputFiles, entries);
         }
 
@@ -383,7 +384,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
             fi.fileName(),
             inputFiles,
             aggregate_size(dir, inputFiles),
-            filename2definition(fi.fileName(), checksumDefinitions)
+            ChecksumsUtils::filename2definition(fi.fileName(), checksumDefinitions)
         };
 
         dirs.push_back(item);
@@ -401,7 +402,7 @@ namespace
 struct less_dir : std::binary_function<QDir, QDir, bool> {
     bool operator()(const QDir &lhs, const QDir &rhs) const
     {
-        return QString::compare(lhs.absolutePath(), rhs.absolutePath(), fs_cs) < 0;
+        return QString::compare(lhs.absolutePath(), rhs.absolutePath(), ChecksumsUtils::fs_cs) < 0;
     }
 };
 }
@@ -415,7 +416,7 @@ static std::vector<Dir> find_dirs_by_input_files(const QStringList &files, const
         return std::vector<Dir>();
     }
 
-    const std::vector<QRegularExpression> patterns = get_patterns(checksumDefinitions);
+    const std::vector<QRegularExpression> patterns = ChecksumsUtils::get_patterns(checksumDefinitions);
 
     std::map<QDir, QStringList, less_dir> dirs2files;
 
@@ -548,7 +549,7 @@ void CreateChecksumsController::Private::run()
     const QString scanning = i18n("Scanning directories...");
     Q_EMIT progress(0, 0, scanning);
 
-    const bool haveSumFiles = std::all_of(files.cbegin(), files.cend(), matches_any(get_patterns(checksumDefinitions)));
+    const bool haveSumFiles = std::all_of(files.cbegin(), files.cend(), ChecksumsUtils::matches_any(ChecksumsUtils::get_patterns(checksumDefinitions)));
     const auto progressCb = [this, &scanning](int c) { Q_EMIT progress(c, 0, scanning); };
     const std::vector<Dir> dirs = haveSumFiles
                                   ? find_dirs_by_sum_files(files, allowAddition, progressCb, checksumDefinitions)

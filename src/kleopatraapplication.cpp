@@ -398,7 +398,11 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         return QString();
     }
 
-    static const QMap<QString, Func> funcMap {
+    struct FuncInfo {
+        QString optionName;
+        Func func;
+    };
+    static const std::vector<FuncInfo> funcMap {
         { QStringLiteral("import-certificate"), &KleopatraApplication::importCertificatesFromFile },
         { QStringLiteral("encrypt"), &KleopatraApplication::encryptFiles },
         { QStringLiteral("sign"), &KleopatraApplication::signFiles },
@@ -411,9 +415,11 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
     };
 
     QString found;
-    Q_FOREACH (const QString &opt, funcMap.keys()) {
+    Func foundFunc = nullptr;
+    for (const auto &[opt, fn] : funcMap) {
         if (parser.isSet(opt) && found.isEmpty()) {
             found = opt;
+            foundFunc = fn;
         } else if (parser.isSet(opt)) {
             return i18n(R"(Ambiguous commands "%1" and "%2")", found, opt);
         }
@@ -425,7 +431,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
             return i18n("No files specified for \"%1\" command", found);
         }
         qCDebug(KLEOPATRA_LOG) << "found" << found;
-        (this->*funcMap.value(found))(files, protocol);
+        (this->*foundFunc)(files, protocol);
     } else {
         if (files.empty()) {
             if (!(d->firstNewInstance && isSessionRestored())) {

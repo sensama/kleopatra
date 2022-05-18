@@ -668,23 +668,26 @@ void Command::Private::run()
             }
         }
 
-    Q_FOREACH (const QString &filePath, in.filePaths)
+    for (const QString &filePath : std::as_const(in.filePaths)) {
         if ((err = send_file(ctx, filePath))) {
             out.errorString = i18n("Failed to send file path %1: %2", filePath, to_error_string(err));
             goto leave;
         }
+    }
 
-    Q_FOREACH (const QString &sender, in.senders)
+    for (const QString &sender : std::as_const(in.senders)) {
         if ((err = send_sender(ctx, sender, in.areSendersInformative))) {
             out.errorString = i18n("Failed to send sender %1: %2", sender, to_error_string(err));
             goto leave;
         }
+    }
 
-    Q_FOREACH (const QString &recipient, in.recipients)
+    for (const QString &recipient : std::as_const(in.recipients)) {
         if ((err = send_recipient(ctx, recipient, in.areRecipientsInformative))) {
             out.errorString = i18n("Failed to send recipient %1: %2", recipient, to_error_string(err));
             goto leave;
         }
+    }
 
 #if 0
     setup I / O;

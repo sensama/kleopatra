@@ -166,10 +166,12 @@ void EncryptCommand::Private::slotRecipientsResolved()
 
     try {
         const QString sessionTitle = q->sessionTitle();
-        if (!sessionTitle.isEmpty())
-            Q_FOREACH (const std::shared_ptr<Input> &i, q->inputs()) {
+        if (!sessionTitle.isEmpty()) {
+            const std::vector<std::shared_ptr<Input>> allInputs = q->inputs();
+            for (const std::shared_ptr<Input> &i : allInputs) {
                 i->setLabel(sessionTitle);
             }
+        }
 
         cont->startEncryption(q->inputs(), q->outputs());
 

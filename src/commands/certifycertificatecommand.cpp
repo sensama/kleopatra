@@ -146,16 +146,15 @@ void CertifyCertificateCommand::doStart()
         return;
     }
 
-    std::vector<Key> secKeys;
-    Q_FOREACH (const Key &secKey, KeyCache::instance()->secretKeys()) {
-        // Only include usable keys.
-        if (secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() &&
-            !secKey.isExpired() && !secKey.isInvalid()) {
-            secKeys.push_back(secKey);
-        }
-    }
+    auto findAnyGoodKey = []() {
+        const std::vector<Key> secKeys = KeyCache::instance()->secretKeys();
+        return std::any_of(secKeys.cbegin(), secKeys.cend(), [](const Key &secKey) {
+            return secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked()
+                   && !secKey.isExpired() && !secKey.isInvalid();
+        });
+    };
 
-    if (secKeys.empty()) {
+    if (!findAnyGoodKey()) {
         auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(),
                     xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.") +
                     QStringLiteral("<br><br>") +
@@ -174,28 +173,25 @@ void CertifyCertificateCommand::doStart()
             d->finished();
             return;
         }
-        Q_FOREACH (const Key &secKey, KeyCache::instance()->secretKeys()) {
-            // Check again for secret keys
-            if (secKey.canCertify() && secKey.protocol() == OpenPGP && !secKey.isRevoked() &&
-                !secKey.isExpired() && !secKey.isInvalid()) {
-                secKeys.push_back(secKey);
-            }
-        }
-        if (secKeys.empty()) {
+
+        // Check again for secret keys
+        if (!findAnyGoodKey()) {
             qCDebug(KLEOPATRA_LOG) << "Sec Keys still empty after keygen.";
             Q_EMIT(canceled());
             d->finished();
             return;
         }
     }
-    const Key &key = keys.front();
 
-    for (const UserID &uid : std::as_const(d->uids))
-        if (qstricmp(uid.parent().primaryFingerprint(), key.primaryFingerprint()) != 0) {
-            qCWarning(KLEOPATRA_LOG) << "User ID <-> Key mismatch!";
-            d->finished();
-            return;
-        }
+    const char *primary = keys.front().primaryFingerprint();
+    const bool anyMismatch = std::any_of(d->uids.cbegin(), d->uids.cend(), [primary](const UserID &uid) {
+        return qstricmp(uid.parent().primaryFingerprint(), primary) != 0;
+    });
+    if (anyMismatch) {
+        qCWarning(KLEOPATRA_LOG) << "User ID <-> Key mismatch!";
+        d->finished();
+        return;
+    }
 
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);

@@ -105,12 +105,12 @@ bool ReadOnlyProtocolSelectionWidget::isProtocolChecked(Protocol protocol) const
 std::set<Protocol> ReadOnlyProtocolSelectionWidget::checkedProtocols() const
 {
     std::set<Protocol> res;
-    Q_FOREACH (const Protocol i, supportedProtocols())  //krazy:exclude=foreach
+    for (const Protocol i : supportedProtocols()) {
         if (isProtocolChecked(i)) {
             res.insert(i);
         }
+    }
     return res;
-
 }
 
 SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, Qt::WindowFlags f)
@@ -122,7 +122,7 @@ SigningProtocolSelectionWidget::SigningProtocolSelectionWidget(QWidget *parent, 
 
     auto const layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-    Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
+    for (const Protocol i : supportedProtocols()) {
         auto const b = new QCheckBox;
         b->setText(formatLabel(i, Key()));
         m_buttons[i] = b;
@@ -360,10 +360,11 @@ bool SignerResolvePage::Private::protocolSelected(Protocol p) const
 void SignerResolvePage::Private::setCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certs)
 {
     certificates = certs;
-    Q_FOREACH (const Protocol i, certs.keys()) {   //krazy:exclude=foreach
-        const Key key = certs.value(i);
-        readOnlyProtocolSelectionWidget->setCertificate(i, key);
-        signingProtocolSelectionWidget->setCertificate(i, key);
+    for (auto it = certs.cbegin(), endIt = certs.cend(); it != endIt; ++it) {
+        const Protocol proto = it.key();
+        const Key &key = it.value();
+        readOnlyProtocolSelectionWidget->setCertificate(proto, key);
+        signingProtocolSelectionWidget->setCertificate(proto, key);
     }
     updateUi();
 }
@@ -538,7 +539,7 @@ void SignerResolvePage::setPresetProtocol(Protocol protocol)
 void SignerResolvePage::setPresetProtocols(const std::vector<Protocol> &protocols)
 {
     d->presetProtocols = protocols;
-    Q_FOREACH (const Protocol i, supportedProtocols()) {   //krazy:exclude=foreach
+    for (const Protocol i : supportedProtocols()) {
         const bool checked = std::find(protocols.begin(), protocols.end(), i) != protocols.end();
         d->signingProtocolSelectionWidget->setProtocolChecked(i, checked);
         d->readOnlyProtocolSelectionWidget->setProtocolChecked(i, checked);
@@ -626,10 +627,11 @@ void SignerResolvePage::setSigningUserMutable(bool ismutable)
 std::set<Protocol> SignerResolvePage::selectedProtocolsWithoutSigningCertificate() const
 {
     std::set<Protocol> res;
-    Q_FOREACH (const Protocol i, selectedProtocols())   //krazy:exclude=foreach
+    for (const Protocol i : selectedProtocols()) {
         if (signingCertificates(i).empty()) {
             res.insert(i);
         }
+    }
     return res;
 }
 

@@ -325,10 +325,12 @@ void LookupCertificatesDialog::accept()
 void LookupCertificatesDialog::Private::enableDisableWidgets()
 {
     // enable/disable everything except 'close', based on passive:
-    Q_FOREACH (QObject *const o, q->children())
+    const QList<QObject *> list = q->children();
+    for (QObject *const o : list) {
         if (QWidget *const w = qobject_cast<QWidget *>(o)) {
             w->setDisabled(passive && w != ui.closePB() && w != ui.buttonBox);
         }
+    }
 
     if (passive) {
         return;

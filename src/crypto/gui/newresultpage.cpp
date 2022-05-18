@@ -157,7 +157,7 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
     connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)),
             this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
 
-    Q_FOREACH (const std::shared_ptr<Task> &i, coll->tasks()) {    // create labels for all tags in collection
+    for (const std::shared_ptr<Task> &i : coll->tasks()) {    // create labels for all tags in collection
         Q_ASSERT(i);
         QLabel *l = d->labelForTag(i->tag());
         Q_ASSERT(l); (void)l;

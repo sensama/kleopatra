@@ -621,7 +621,8 @@ void ResolveRecipientsPage::setRecipients(const std::vector<Mailbox> &recipients
 std::vector<Key> ResolveRecipientsPage::resolvedCertificates() const
 {
     std::vector<Key> certs;
-    Q_FOREACH (const QString &i, d->m_listWidget->identifiers()) {
+    const QStringList identifiers = d->m_listWidget->identifiers();
+    for (const QString &i : identifiers) {
         const GpgME::Key cert = d->m_listWidget->selectedCertificate(i);
         if (!cert.isNull()) {
             certs.push_back(cert);

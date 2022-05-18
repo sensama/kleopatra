@@ -514,7 +514,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         const bool ascii = prefs.addASCIIArmor();
 
         std::vector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
-        Q_FOREACH (const Key &k, recipients) {
+        for (const Key &k : recipients) {
             if (k.protocol() == GpgME::OpenPGP) {
                 pgpRecipients.push_back(k);
             } else {
@@ -522,7 +522,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        Q_FOREACH (const Key &k, signers) {
+        for (const Key &k : signers) {
             if (k.protocol() == GpgME::OpenPGP) {
                 pgpSigners.push_back(k);
             } else {
@@ -547,7 +547,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
                     wizard->encryptSymmetric());
 
         } else {
-            Q_FOREACH (const QString &file, files) {
+            for (const QString &file : std::as_const(files)) {
                 const std::vector< std::shared_ptr<SignEncryptTask> > created =
                     createSignEncryptTasksForFileInfo(QFileInfo(file), ascii,
                             pgpRecipients,
@@ -561,7 +561,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         }
 
         const std::shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
-        Q_FOREACH (const std::shared_ptr<SignEncryptTask> &i, tasks) {
+        for (const std::shared_ptr<SignEncryptTask> &i : tasks) {
             i->setOverwritePolicy(overwritePolicy);
         }
 

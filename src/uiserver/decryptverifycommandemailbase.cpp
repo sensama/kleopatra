@@ -91,10 +91,12 @@ int DecryptVerifyCommandEMailBase::doStart()
     d->controller.reset(new DecryptVerifyEMailController(shared_from_this()));
 
     const QString st = sessionTitle();
-    if (!st.isEmpty())
-        Q_FOREACH (const std::shared_ptr<Input> &i, inputs()) {
+    if (!st.isEmpty()) {
+        const std::vector<std::shared_ptr<Input>> allInputs = inputs();
+        for (const std::shared_ptr<Input> &i : allInputs) {
             i->setLabel(st);
         }
+    }
 
     d->controller->setSessionId(sessionId());
     d->controller->setOperation(operation());

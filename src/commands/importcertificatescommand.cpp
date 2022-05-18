@@ -529,15 +529,18 @@ static QString make_error_message(const Error &err, const QString &id)
 {
     Q_ASSERT(err);
     Q_ASSERT(!err.isCanceled());
-    return id.isEmpty()
-           ? i18n("<qt><p>An error occurred while trying "
-                  "to import the certificate:</p>"
-                  "<p><b>%1</b></p></qt>",
-                  Formatting::errorAsString(err))
-           : i18n("<qt><p>An error occurred while trying "
-                  "to import the certificate %1:</p>"
-                  "<p><b>%2</b></p></qt>",
-                  id, Formatting::errorAsString(err));
+    if (id.isEmpty()) {
+        return i18n(
+            "<qt><p>An error occurred while trying to import the certificate:</p>"
+            "<p><b>%1</b></p></qt>",
+            Formatting::errorAsString(err));
+    } else {
+        return i18n(
+            "<qt><p>An error occurred while trying to import the certificate %1:</p>"
+            "<p><b>%2</b></p></qt>",
+            id,
+            Formatting::errorAsString(err));
+    }
 }
 
 void ImportCertificatesCommand::Private::showError(const ImportResultData &result)

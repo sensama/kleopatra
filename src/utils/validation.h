@@ -34,7 +34,6 @@ QValidator *pgpName(Flags flags = Required, QObject *parent = nullptr);
  * less restrictions than \ref pgpName.
  */
 QValidator *simpleName(Flags flags = Required, QObject *parent = nullptr);
-QValidator *pgpComment(Flags flags = Required, QObject *parent = nullptr);
 
 QValidator *email(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
 /**
@@ -49,7 +48,6 @@ QValidator *pgpName(const QString &additionalRegExp, Flags flags = Required, QOb
  * by \p additionalRegExp.
  */
 QValidator *simpleName(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
-QValidator *pgpComment(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
 
 }
 }

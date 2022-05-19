@@ -116,15 +116,3 @@ QValidator *Validation::simpleName(const QString &additionalRegExp, Flags flags,
 {
     return new MultiValidator{simpleName(flags), regularExpressionValidator(flags, additionalRegExp, nullptr), parent};
 }
-
-QValidator *Validation::pgpComment(Flags flags, QObject *parent)
-{
-    // this regular expression is modeled after gnupg/g10/keygen.c:ask_user_id:
-    static const QString comment_rx{QLatin1String{"[^()]*"}};
-    return regularExpressionValidator(flags, comment_rx, parent);
-}
-
-QValidator *Validation::pgpComment(const QString &addRX, Flags flags, QObject *parent)
-{
-    return new MultiValidator{pgpComment(flags), regularExpressionValidator(flags, addRX, nullptr), parent};
-}

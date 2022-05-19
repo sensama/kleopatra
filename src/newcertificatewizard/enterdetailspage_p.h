@@ -17,6 +17,7 @@
 
 class AdvancedSettingsDialog;
 class QLineEdit;
+class QValidator;
 
 class EnterDetailsPage : public Kleo::NewCertificateUi::WizardPage
 {
@@ -28,6 +29,7 @@ public:
         QString label;
         QString regex;
         QLineEdit *edit;
+        std::shared_ptr<QValidator> validator;
     };
 
     explicit EnterDetailsPage(QWidget *parent = nullptr);

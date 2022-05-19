@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -10,7 +12,9 @@
 #pragma once
 
 #include <QValidator>
-#include <QList>
+
+#include <memory>
+#include <vector>
 
 namespace Kleo
 {
@@ -18,37 +22,24 @@ namespace Kleo
 class MultiValidator : public QValidator
 {
     Q_OBJECT
+
+    explicit MultiValidator(const std::vector<std::shared_ptr<QValidator>> &validators);
+
 public:
-    explicit MultiValidator(QObject *parent = nullptr)
-        : QValidator(parent) {}
-    explicit MultiValidator(QValidator *validator1, QValidator *validator2 = nullptr, QObject *parent = nullptr)
-        : QValidator(parent)
-    {
-        addValidator(validator1);
-        addValidator(validator2);
-    }
-    explicit MultiValidator(const QList<QValidator *> &validators, QObject *parent = nullptr)
-        : QValidator(parent)
-    {
-        addValidators(validators);
-    }
+    /**
+     * Creates a combined validator from the \p validators.
+     *
+     * The validators must not be null and they must not have a parent.
+     */
+    static std::shared_ptr<QValidator> create(const std::vector<std::shared_ptr<QValidator>> &validators);
+
     ~MultiValidator() override;
-
-    void addValidator(QValidator *validator);
-    void addValidators(const QList<QValidator *> &validators);
-
-    void removeValidator(QValidator *validator);
-    void removeValidators(const QList<QValidator *> &validators);
 
     void fixup(QString &str) const override;
     State validate(QString &str, int &pos) const override;
 
-private Q_SLOTS:
-    void _kdmv_slotDestroyed(QObject *);
-
 private:
-    QList<QValidator *> m_validators;
+    std::vector<std::shared_ptr<QValidator>> m_validators;
 };
 
 }
-

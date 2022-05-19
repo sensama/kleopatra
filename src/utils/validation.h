@@ -3,13 +3,16 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #pragma once
 
-class QObject;
+#include <memory>
+
 class QString;
 class QValidator;
 
@@ -23,31 +26,31 @@ enum Flags {
     Required
 };
 
-QValidator *email(Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> email(Flags flags = Required);
 /**
  * Creates a validator for the name part of the user ID of an OpenPGP key with
  * restrictions that are necessary for usage with the edit-key interface.
  */
-QValidator *pgpName(Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> pgpName(Flags flags = Required);
 /**
  * Creates a validator for the name part of the user ID of an OpenPGP key with
  * less restrictions than \ref pgpName.
  */
-QValidator *simpleName(Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> simpleName(Flags flags = Required);
 
-QValidator *email(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> email(const QString &additionalRegExp, Flags flags = Required);
 /**
  * Creates a validator for the name part of the user ID of an OpenPGP key with
  * restrictions that are necessary for usage with the edit-key interface, and
  * with additional restrictions imposed by \p additionalRegExp.
  */
-QValidator *pgpName(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> pgpName(const QString &additionalRegExp, Flags flags = Required);
 /**
  * Creates a validator for the name part of the user ID of an OpenPGP key with
  * less restrictions than \ref pgpName, but with additional restrictions imposed
  * by \p additionalRegExp.
  */
-QValidator *simpleName(const QString &additionalRegExp, Flags flags = Required, QObject *parent = nullptr);
+std::shared_ptr<QValidator> simpleName(const QString &additionalRegExp, Flags flags = Required);
 
 }
 }

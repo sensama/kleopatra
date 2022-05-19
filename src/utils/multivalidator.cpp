@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -11,81 +13,55 @@
 
 #include "multivalidator.h"
 
-#include <Libkleo/Stl_Util>
-
-#include <vector>
+#include <algorithm>
 #include <iterator>
 
 using namespace Kleo;
 
-MultiValidator::~MultiValidator() {}
-
-void MultiValidator::addValidator(QValidator *vali)
+MultiValidator::MultiValidator(const std::vector<std::shared_ptr<QValidator>> &validators)
+    : QValidator{}
+    , m_validators{validators}
 {
-    if (!vali) {
-        return;
-    }
-    if (!vali->parent()) {
-        vali->setParent(this);
-    }
-    connect(vali, &QObject::destroyed, this, &MultiValidator::_kdmv_slotDestroyed);
-    m_validators.push_back(vali);
 }
 
-void MultiValidator::addValidators(const QList<QValidator *> &valis)
+// static
+std::shared_ptr<QValidator> Kleo::MultiValidator::create(const std::vector<std::shared_ptr<QValidator>> &validators)
 {
-    std::for_each(valis.cbegin(), valis.cend(),
-                  [this](QValidator *val) { addValidator(val); });
+    Q_ASSERT(std::all_of(std::begin(validators), std::end(validators), [](const auto &v) {
+        return v && !v->parent();
+    }));
+
+    return std::shared_ptr<MultiValidator>{new MultiValidator{validators}};
 }
 
-void MultiValidator::removeValidator(QValidator *vali)
-{
-    if (!vali) {
-        return;
-    }
-    _kdmv_slotDestroyed(vali);
-    if (vali->parent() == this) {
-        delete vali;
-    } else {
-        disconnect(vali, &QObject::destroyed, this, &MultiValidator::_kdmv_slotDestroyed);
-    }
-}
-
-void MultiValidator::removeValidators(const QList<QValidator *> &valis)
-{
-    std::for_each(valis.cbegin(), valis.cend(),
-                  [this](QValidator *val) { removeValidator(val); });
-}
+MultiValidator::~MultiValidator() = default;
 
 void MultiValidator::fixup(QString &str) const
 {
-    std::for_each(m_validators.begin(), m_validators.end(),
-                  [&str](QValidator *val) { val->fixup(str); });
+    std::for_each(std::cbegin(m_validators), std::cend(m_validators), [&str](const auto &val) {
+        val->fixup(str);
+    });
 }
 
 QValidator::State MultiValidator::validate(QString &str, int &pos) const
 {
     std::vector<State> states;
     states.reserve(m_validators.size());
-    std::transform(m_validators.begin(), m_validators.end(),
+    std::transform(std::cbegin(m_validators), std::cend(m_validators),
                    std::back_inserter(states),
-                   [&str, &pos](QValidator *val) {
+                   [&str, &pos](const auto &val) {
                        return val->validate(str, pos);
                    });
-    if (std::any_of(states.cbegin(), states.cend(),
+
+    if (std::any_of(std::cbegin(states), std::cend(states),
                     [](State state) { return state == Invalid; })) {
         return Invalid;
     }
-    if (std::all_of(states.cbegin(), states.cend(),
+
+    if (std::all_of(std::cbegin(states), std::cend(states),
                     [](State state) { return state == Acceptable; })) {
         return Acceptable;
     }
+
     return Intermediate;
 }
-
-void MultiValidator::_kdmv_slotDestroyed(QObject *o)
-{
-    m_validators.erase(std::remove(m_validators.begin(), m_validators.end(), o),
-                       m_validators.end());
-}
-

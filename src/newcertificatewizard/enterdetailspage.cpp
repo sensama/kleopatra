@@ -301,7 +301,7 @@ static int row_index_of(QWidget *w, QGridLayout *l)
     return r;
 }
 
-static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, QValidator *validator, bool readonly, bool required)
+static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
 {
     Q_ASSERT(l);
     Q_ASSERT(row >= 0);
@@ -318,12 +318,8 @@ static QLineEdit *adjust_row(QGridLayout *l, int row, const QString &label, cons
     lb->setText(i18nc("interpunctation for labels", "%1:", label));
     le->setText(preset);
     reqLB->setText(required ? i18n("(required)") : i18n("(optional)"));
-    delete le->validator();
     if (validator) {
-        if (!validator->parent()) {
-            validator->setParent(le);
-        }
-        le->setValidator(validator);
+        le->setValidator(validator.get());
     }
 
     le->setReadOnly(readonly && le->hasAcceptableInput());
@@ -389,7 +385,7 @@ void EnterDetailsPage::updateForm()
 
         int row;
         bool known = true;
-        QValidator *validator = nullptr;
+        std::shared_ptr<QValidator> validator;
         if (attr == QLatin1String("EMAIL")) {
             row = row_index_of(ui->emailLE, ui->gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
@@ -406,13 +402,13 @@ void EnterDetailsPage::updateForm()
             row = add_row(ui->gridLayout, &dynamicWidgets);
         }
         if (!validator && !regex.isEmpty()) {
-            validator = new QRegularExpressionValidator{QRegularExpression{regex}, nullptr};
+            validator = std::make_shared<QRegularExpressionValidator>(QRegularExpression{regex});
         }
 
         QLineEdit *le = adjust_row(ui->gridLayout, row, label, preset, validator, readonly, required);
         le->setPlaceholderText(placeholder);
 
-        const Line line = { key, label, regex, le };
+        const Line line = { key, label, regex, le, validator };
         lines[row] = line;
 
         if (!known) {

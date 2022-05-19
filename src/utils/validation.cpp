@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -57,7 +59,7 @@ public:
 class EMailValidator : public QValidator
 {
 public:
-    explicit EMailValidator(QObject *parent = nullptr) : QValidator(parent) {}
+    EMailValidator() : QValidator{} {}
 
     State validate(QString &str, int &pos) const override
     {
@@ -69,50 +71,50 @@ public:
     }
 };
 
-QValidator *regularExpressionValidator(Validation::Flags flags, const QString &regexp, QObject *parent)
+std::shared_ptr<QValidator> regularExpressionValidator(Validation::Flags flags, const QString &regexp)
 {
     if (flags & Validation::Required) {
-        return new TrimmingValidator<QRegularExpressionValidator>{QRegularExpression{regexp}, parent};
+        return std::make_shared<TrimmingValidator<QRegularExpressionValidator>>(QRegularExpression{regexp});
     } else {
-        return new TrimmingValidator<EmptyIsAcceptableValidator<QRegularExpressionValidator>>{QRegularExpression{regexp}, parent};
+        return std::make_shared<TrimmingValidator<EmptyIsAcceptableValidator<QRegularExpressionValidator>>>(QRegularExpression{regexp});
     }
 }
 
 }
 
-QValidator *Validation::email(Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::email(Flags flags)
 {
     if (flags & Required) {
-        return new TrimmingValidator<EMailValidator>{parent};
+        return std::make_shared<TrimmingValidator<EMailValidator>>();
     } else {
-        return new TrimmingValidator<EmptyIsAcceptableValidator<EMailValidator>>{parent};
+        return std::make_shared<TrimmingValidator<EmptyIsAcceptableValidator<EMailValidator>>>();
     }
 }
 
-QValidator *Validation::email(const QString &addRX, Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::email(const QString &addRX, Flags flags)
 {
-    return new MultiValidator{email(flags), regularExpressionValidator(flags, addRX, nullptr), parent};
+    return MultiValidator::create({email(flags), regularExpressionValidator(flags, addRX)});
 }
 
-QValidator *Validation::pgpName(Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::pgpName(Flags flags)
 {
     // this regular expression is modeled after gnupg/g10/keygen.c:ask_user_id:
     static const QString name_rx{QLatin1String{"[^0-9<>][^<>@]{4,}"}};
-    return regularExpressionValidator(flags, name_rx, parent);
+    return regularExpressionValidator(flags, name_rx);
 }
 
-QValidator *Validation::pgpName(const QString &addRX, Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::pgpName(const QString &addRX, Flags flags)
 {
-    return new MultiValidator{pgpName(flags), regularExpressionValidator(flags, addRX, nullptr), parent};
+    return MultiValidator::create({pgpName(flags), regularExpressionValidator(flags, addRX)});
 }
 
-QValidator *Validation::simpleName(Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::simpleName(Flags flags)
 {
     static const QString name_rx{QLatin1String{"[^<>@]*"}};
-    return regularExpressionValidator(flags, name_rx, parent);
+    return std::shared_ptr<QValidator>{regularExpressionValidator(flags, name_rx)};
 }
 
-QValidator *Validation::simpleName(const QString &additionalRegExp, Flags flags, QObject *parent)
+std::shared_ptr<QValidator> Validation::simpleName(const QString &additionalRegExp, Flags flags)
 {
-    return new MultiValidator{simpleName(flags), regularExpressionValidator(flags, additionalRegExp, nullptr), parent};
+    return MultiValidator::create({simpleName(flags), regularExpressionValidator(flags, additionalRegExp)});
 }

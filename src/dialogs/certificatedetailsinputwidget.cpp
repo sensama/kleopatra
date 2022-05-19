@@ -40,6 +40,7 @@ namespace
         QString label;
         QString regex;
         QLineEdit *edit;
+        std::shared_ptr<QValidator> validator;
         bool required;
     };
 
@@ -62,7 +63,7 @@ namespace
         }
     }
 
-    QLineEdit * addRow(QGridLayout *l, const QString &label, const QString &preset, QValidator *validator, bool readonly, bool required)
+    QLineEdit * addRow(QGridLayout *l, const QString &label, const QString &preset, const std::shared_ptr<QValidator> &validator, bool readonly, bool required)
     {
         Q_ASSERT(l);
 
@@ -71,12 +72,8 @@ namespace
 
         auto le = new QLineEdit(l->parentWidget());
         le->setText(preset);
-        delete le->validator();
         if (validator) {
-            if (!validator->parent()) {
-                validator->setParent(le);
-            }
-            le->setValidator(validator);
+            le->setValidator(validator.get());
         }
         le->setReadOnly(readonly && le->hasAcceptableInput());
 
@@ -244,16 +241,16 @@ public:
                                                    attributeLabel(attr));
             const QString regex = config.readEntry(attr + QLatin1String("_regex"));
 
-            QValidator *validator = nullptr;
+            std::shared_ptr<QValidator> validator;
             if (attr == QLatin1String("EMAIL")) {
                 validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
             } else if (!regex.isEmpty()) {
-                validator = new QRegularExpressionValidator{QRegularExpression{regex}, nullptr};
+                validator = std::make_shared<QRegularExpressionValidator>(QRegularExpression{regex});
             }
 
             QLineEdit *le = addRow(ui.gridLayout, label, preset, validator, readonly, required);
 
-            const Line line = { attr, label, regex, le, required };
+            const Line line = { attr, label, regex, le, validator, required };
             ui.lines.push_back(line);
 
             if (attr != QLatin1String("EMAIL")) {

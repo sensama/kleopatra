@@ -120,13 +120,12 @@ int DecryptVerifyCommandFilesBase::doStart()
 namespace
 {
 
-struct is_file : std::unary_function<QString, bool> {
+struct is_file {
     bool operator()(const QString &file) const
     {
         return QFileInfo(file).isFile();
     }
 };
-
 }
 
 void DecryptVerifyCommandFilesBase::Private::checkForErrors() const

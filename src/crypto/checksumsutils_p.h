@@ -31,7 +31,7 @@ static const QRegularExpression::PatternOption s_regex_cs = QRegularExpression::
 
 std::vector<QRegularExpression> get_patterns(const std::vector<std::shared_ptr<Kleo::ChecksumDefinition>> &checksumDefinitions);
 
-struct matches_any : std::unary_function<QString, bool> {
+struct matches_any {
     const std::vector<QRegularExpression> m_regexps;
     explicit matches_any(const std::vector<QRegularExpression> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const

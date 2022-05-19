@@ -227,7 +227,7 @@ void DecryptVerifyFilesController::Private::ensureWizardCreated()
 
 namespace
 {
-struct FindExtension : std::unary_function<std::shared_ptr<ArchiveDefinition>, bool> {
+struct FindExtension {
     const QString ext;
     const Protocol proto;
     FindExtension(const QString &ext, Protocol proto) : ext(ext), proto(proto) {}

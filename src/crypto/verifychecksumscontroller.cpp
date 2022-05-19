@@ -74,7 +74,7 @@ static QStringList fs_intersect(QStringList l1, QStringList l2)
 #endif
 
 namespace {
-struct matches_none_of : std::unary_function<QString, bool> {
+struct matches_none_of {
     const std::vector<QRegularExpression> m_regexps;
     explicit matches_none_of(const std::vector<QRegularExpression> &regexps) : m_regexps(regexps) {}
     bool operator()(const QString &s) const
@@ -237,19 +237,19 @@ static quint64 aggregate_size(const QDir &dir, const QStringList &files)
 
 namespace
 {
-struct less_dir : std::binary_function<QDir, QDir, bool> {
+struct less_dir {
     bool operator()(const QDir &lhs, const QDir &rhs) const
     {
         return QString::compare(lhs.absolutePath(), rhs.absolutePath(), ChecksumsUtils::fs_cs) < 0;
     }
 };
-struct less_file : std::binary_function<QString, QString, bool> {
+struct less_file {
     bool operator()(const QString &lhs, const QString &rhs) const
     {
         return QString::compare(lhs, rhs, ChecksumsUtils::fs_cs) < 0;
     }
 };
-struct sumfile_contains_file : std::unary_function<QString, bool> {
+struct sumfile_contains_file {
     const QDir dir;
     const QString fileName;
     sumfile_contains_file(const QDir &dir_, const QString &fileName_)
@@ -272,7 +272,6 @@ struct sumfile_contains_file : std::unary_function<QString, bool> {
         return false;
     }
 };
-
 }
 
 // IF is_dir(file)

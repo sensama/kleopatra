@@ -399,7 +399,7 @@ static std::vector<Dir> find_dirs_by_sum_files(const QStringList &files, bool al
 
 namespace
 {
-struct less_dir : std::binary_function<QDir, QDir, bool> {
+struct less_dir {
     bool operator()(const QDir &lhs, const QDir &rhs) const
     {
         return QString::compare(lhs.absolutePath(), rhs.absolutePath(), ChecksumsUtils::fs_cs) < 0;

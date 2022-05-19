@@ -84,7 +84,7 @@ public:
      * Note: If you wrap a QLineEdit, then do not set a validator (or an input mask)
      *       on it because this will break the correct displaying of the error message.
      */
-    void setValidator(const QValidator *validator);
+    void setValidator(const std::shared_ptr<QValidator> &validator);
 
     /**
      * Sets \p text as error message to display if a value is required for the

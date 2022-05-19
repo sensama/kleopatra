@@ -68,7 +68,7 @@ public:
     QPointer<QLabel> mHintLabel;
     QPointer<QWidget> mWidget;
     QPointer<ErrorLabel> mErrorLabel;
-    QPointer<const QValidator> mValidator;
+    std::shared_ptr<QValidator> mValidator;
     QString mLabelText;
     QString mAccessibleName;
     QString mValueRequiredErrorMessage;
@@ -277,8 +277,10 @@ bool FormTextInputBase::isRequired() const
     return d->mRequired;
 }
 
-void FormTextInputBase::setValidator(const QValidator *validator)
+void FormTextInputBase::setValidator(const std::shared_ptr<QValidator> &validator)
 {
+    Q_ASSERT(!validator || !validator->parent());
+
     d->mValidator = validator;
 }
 

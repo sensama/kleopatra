@@ -107,7 +107,7 @@ public:
             ui.nameInput->setValueRequiredErrorMessage(i18n("Enter a name."));
             const auto regexp = config.readEntry("NAME_regex");
             if (regexp.isEmpty()) {
-                ui.nameInput->setValidator(Validation::simpleName(Validation::Optional, q));
+                ui.nameInput->setValidator(std::shared_ptr<QValidator>{Validation::simpleName(Validation::Optional)});
                 ui.nameInput->setHint(i18n("Must not include <, >, and @."),
                                       i18nc("text for screen readers",
                                             "Must not include less-than sign, greater-than sign, and at sign."));
@@ -116,7 +116,7 @@ public:
                     i18nc("text for screen readers",
                           "The name must not include less-than sign, greater-than sign, and at sign."));
             } else {
-                ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional, q));
+                ui.nameInput->setValidator(std::shared_ptr<QValidator>{Validation::simpleName(regexp, Validation::Optional)});
                 ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
                                            "must not include <, >, and @."),
                                       i18nc("text for screen readers",
@@ -145,11 +145,11 @@ public:
             ui.emailInput->setValueRequiredErrorMessage(i18n("Enter an email address."));
             const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
             if (regexp.isEmpty()) {
-                ui.emailInput->setValidator(Validation::email(Validation::Optional, q));
+                ui.emailInput->setValidator(std::shared_ptr<QValidator>{Validation::email(Validation::Optional)});
                 ui.emailInput->setInvalidEntryErrorMessage(i18n(
                     "Enter an email address in the correct format, like name@example.com."));
             } else {
-                ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional, q));
+                ui.emailInput->setValidator(std::shared_ptr<QValidator>{Validation::email(regexp, Validation::Optional)});
                 ui.emailInput->setHint(i18n(
                     "Must be in the format required by your organization"));
                 ui.emailInput->setInvalidEntryErrorMessage(i18n(

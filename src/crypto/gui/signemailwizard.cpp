@@ -111,10 +111,10 @@ SignEMailWizard::Private::Private(SignEMailWizard *qq)
 
     std::vector<int> pageOrder;
     q->setSignerResolvePageValidator(std::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(q->signerResolvePage())));
-    pageOrder.push_back(SignEncryptWizard::ResolveSignerPage);
-    pageOrder.push_back(SignEncryptWizard::ResultPage);
+    pageOrder.push_back(Page::ResolveSigner);
+    pageOrder.push_back(Page::Result);
     q->setPageOrder(pageOrder);
-    q->setCommitPage(SignEncryptWizard::ResolveSignerPage);
+    q->setCommitPage(Page::ResolveSigner);
     q->setEncryptionSelected(false);
     q->setEncryptionUserMutable(false);
     q->setSigningSelected(true);

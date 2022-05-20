@@ -47,25 +47,25 @@ public:
     explicit Private(SignEncryptWizard *qq);
     ~Private();
 
-    void setCommitPage(Page page);
+    void setCommitPage(Page::Id page);
 
-    Gui::ResolveRecipientsPage *const recipientResolvePage;  // clashes with enum of same name
+    ResolveRecipientsPage *const recipientResolvePage;
     SignerResolvePage *const signerResolvePage;
-    Gui::ObjectsPage *const objectsPage;  // clashes with enum of same name
-    Gui::ResultPage *const resultPage;   // clashes with enum of same name
+    ObjectsPage *const objectsPage;
+    ResultPage *const resultPage;
 };
 
 SignEncryptWizard::Private::Private(SignEncryptWizard *qq)
     : q(qq),
-      recipientResolvePage(new Gui::ResolveRecipientsPage),
+      recipientResolvePage(new ResolveRecipientsPage),
       signerResolvePage(new SignerResolvePage),
-      objectsPage(new Gui::ObjectsPage),
-      resultPage(new Gui::ResultPage)
+      objectsPage(new ObjectsPage),
+      resultPage(new ResultPage)
 {
-    q->setPage(SignEncryptWizard::ResolveSignerPage, signerResolvePage);
-    q->setPage(SignEncryptWizard::ObjectsPage, objectsPage);
-    q->setPage(SignEncryptWizard::ResolveRecipientsPage, recipientResolvePage);
-    q->setPage(SignEncryptWizard::ResultPage, resultPage);
+    q->setPage(Page::ResolveSigner, signerResolvePage);
+    q->setPage(Page::Objects, objectsPage);
+    q->setPage(Page::ResolveRecipients, recipientResolvePage);
+    q->setPage(Page::Result, resultPage);
     //TODO: move the RecipientPreferences creation out of here, don't create a new instance for each wizard
     recipientResolvePage->setRecipientPreferences(std::shared_ptr<RecipientPreferences>(new KConfigBasedRecipientPreferences(KSharedConfig::openConfig())));
     signerResolvePage->setSigningPreferences(std::shared_ptr<SigningPreferences>(new KConfigBasedSigningPreferences(KSharedConfig::openConfig())));
@@ -74,17 +74,17 @@ SignEncryptWizard::Private::Private(SignEncryptWizard *qq)
 
 void SignEncryptWizard::onNext(int currentId)
 {
-    if (currentId == ResolveRecipientsPage) {
+    if (currentId == Page::ResolveRecipients) {
         QTimer::singleShot(0, this, &SignEncryptWizard::recipientsResolved);
     }
-    if (currentId == ResolveSignerPage) {
+    if (currentId == Page::ResolveSigner) {
         //FIXME: Sign&Encrypt is only supported by OpenPGP. Remove this when we support this for CMS, too
         if (encryptionSelected() && signingSelected()) {
             setPresetProtocol(OpenPGP);
         }
         QTimer::singleShot(0, this, &SignEncryptWizard::signersResolved);
     }
-    if (currentId == ObjectsPage) {
+    if (currentId == Page::Objects) {
         QTimer::singleShot(0, this, &SignEncryptWizard::objectsResolved);
     }
 }
@@ -98,17 +98,17 @@ SignEncryptWizard::SignEncryptWizard(QWidget *p, Qt::WindowFlags f)
 
 SignEncryptWizard::~SignEncryptWizard() {}
 
-void SignEncryptWizard::setCommitPage(Page page)
+void SignEncryptWizard::setCommitPage(Page::Id page)
 {
     d->setCommitPage(page);
 }
 
-void SignEncryptWizard::Private::setCommitPage(Page page)
+void SignEncryptWizard::Private::setCommitPage(Page::Id page)
 {
-    q->page(ResolveSignerPage)->setCommitPage(false);
-    q->page(ResolveRecipientsPage)->setCommitPage(false);
-    q->page(ObjectsPage)->setCommitPage(false);
-    q->page(ResultPage)->setCommitPage(false);
+    q->page(Page::ResolveSigner)->setCommitPage(false);
+    q->page(Page::ResolveRecipients)->setCommitPage(false);
+    q->page(Page::Objects)->setCommitPage(false);
+    q->page(Page::Result)->setCommitPage(false);
     q->page(page)->setCommitPage(true);
 }
 

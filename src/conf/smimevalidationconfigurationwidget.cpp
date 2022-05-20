@@ -40,8 +40,7 @@ class SMimeValidationConfigurationWidget::Private
 public:
     explicit Private(SMimeValidationConfigurationWidget *qq)
         : q(qq),
-          customHTTPProxyWritable(false),
-          ui(q)
+          ui(qq)
     {
 #if HAVE_QDBUS
         QDBusConnection::sessionBus().connect(QString(), QString(), QStringLiteral("org.kde.kleo.CryptoConfig"), QStringLiteral("changed"), q, SLOT(load()));
@@ -76,7 +75,7 @@ public:
         connect(ui.disableHTTPCB, &QCheckBox::toggled, q, enableDisableSlot);
     }
 
-    bool customHTTPProxyWritable;
+    bool customHTTPProxyWritable = false;
 
 private:
     void enableDisableActions()

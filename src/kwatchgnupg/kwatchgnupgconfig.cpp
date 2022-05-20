@@ -129,7 +129,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     auto button = new QPushButton(i18n("Set &Unlimited"), group);
     glay->addWidget(button, row, 2);
 
-    connect(mLoglenSB, static_cast<void (KPluralHandlingSpinBox::*)(int)>(&KPluralHandlingSpinBox::valueChanged), this, &KWatchGnuPGConfig::slotChanged);
+    connect(mLoglenSB, &QSpinBox::valueChanged, this, &KWatchGnuPGConfig::slotChanged);
     connect(button, &QPushButton::clicked, this, &KWatchGnuPGConfig::slotSetHistorySizeUnlimited);
 
     ++row;

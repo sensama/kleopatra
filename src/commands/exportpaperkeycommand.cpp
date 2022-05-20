@@ -35,7 +35,7 @@ ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListContro
     GnuPGProcessCommand(v, c),
     mParent(v)
 {
-    connect(&mPkProc, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+    connect(&mPkProc, &QProcess::finished,
             this, &ExportPaperKeyCommand::pkProcFinished);
     mPkProc.setProgram(paperKeyInstallPath());
     mPkProc.setArguments(QStringList() << QStringLiteral("--output-type=base16"));

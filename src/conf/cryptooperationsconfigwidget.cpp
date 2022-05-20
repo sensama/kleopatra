@@ -135,7 +135,7 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 
     qDebug() << "Starting" << ei.fileName() << "with args" << gpgconf->arguments();
 
-    connect(gpgconf, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+    connect(gpgconf, &QProcess::finished,
             this, [this, gpgconf, profile] () {
         mApplyBtn->setEnabled(true);
         if (gpgconf->exitStatus() != QProcess::NormalExit) {
@@ -216,7 +216,7 @@ void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
         applyProfile(combo->currentText());
     });
 
-    connect(combo, qOverload<const QString &>(&QComboBox::currentTextChanged), this, [this] (const QString &text) {
+    connect(combo, &QComboBox::currentTextChanged, this, [this] (const QString &text) {
         mApplyBtn->setEnabled(!text.isEmpty());
     });
 }

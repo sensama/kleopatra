@@ -79,7 +79,7 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
                                    << QString::fromLocal8Bit(proc->readAllStandardError());
     });
 
-    connect(proc, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
+    connect(proc, &QProcess::finished,
             [parent, progress, proc](int exitCode, QProcess::ExitStatus exitStatus) {
             qCDebug(KLEOPATRA_LOG) << "Update force exited with status:" << exitStatus
                                    << "code:" << exitCode;

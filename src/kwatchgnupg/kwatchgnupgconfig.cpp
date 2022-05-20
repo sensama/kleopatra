@@ -105,7 +105,7 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     glay->addWidget(label, row, 0);
     glay->addWidget(mLogLevelCB, row, 1);
 
-    connect(mLogLevelCB, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated), this, &KWatchGnuPGConfig::slotChanged);
+    connect(mLogLevelCB, qOverload<int>(&QComboBox::activated), this, &KWatchGnuPGConfig::slotChanged);
 
     /******************* Log Window group *******************/
     group = new QGroupBox(i18n("Log Window"), top);

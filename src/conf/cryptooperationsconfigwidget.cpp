@@ -284,9 +284,9 @@ void CryptoOperationsConfigWidget::setupGui()
 
     connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mChecksumDefinitionCB.widget(), static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mChecksumDefinitionCB.widget(), qOverload<int>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
-    connect(mArchiveDefinitionCB.widget(), static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+    connect(mArchiveDefinitionCB.widget(), qOverload<int>(&QComboBox::currentIndexChanged),
             this, &CryptoOperationsConfigWidget::changed);
     connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);

@@ -42,16 +42,16 @@ private:
 
 private:
     std::string mSerialNumber;
-    QLabel *mSerialNumberLabel = nullptr,
-           *mVersionLabel = nullptr,
-           *mLearnKeysLabel = nullptr,
-           *mErrorLabel = nullptr;
+    QLabel *mSerialNumberLabel = nullptr;
+    QLabel *mVersionLabel = nullptr;
+    QLabel *mLearnKeysLabel = nullptr;
+    QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
-    QPushButton *mLearnKeysBtn = nullptr,
-                *mKeyForCardKeysButton = nullptr,
-                *mCreateCSRButton = nullptr,
-                *mChangeNKSPINBtn = nullptr,
-                *mChangeSigGPINBtn = nullptr;
+    QPushButton *mLearnKeysBtn = nullptr;
+    QPushButton *mKeyForCardKeysButton = nullptr;
+    QPushButton *mCreateCSRButton = nullptr;
+    QPushButton *mChangeNKSPINBtn = nullptr;
+    QPushButton *mChangeSigGPINBtn = nullptr;
     KeyTreeView *mTreeView = nullptr;
     QScrollArea *mArea = nullptr;
 };

@@ -79,9 +79,9 @@ private:
     QLabel *mToFromLB;
     QLabel *mMailboxLB;
     QStackedWidget *mSbox;
-    KeysComboBox *mPgpCB,
-                 *mCmsCB,
-                 *noProtocolCB;
+    KeysComboBox *mPgpCB;
+    KeysComboBox *mCmsCB;
+    KeysComboBox *noProtocolCB;
     QToolButton *mToolTB;
 };
 

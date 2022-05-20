@@ -56,10 +56,10 @@ private:
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
-    QLabel *mSerialNumber = nullptr,
-           *mCardHolderLabel = nullptr,
-           *mVersionLabel = nullptr,
-           *mUrlLabel = nullptr;
+    QLabel *mSerialNumber = nullptr;
+    QLabel *mCardHolderLabel = nullptr;
+    QLabel *mVersionLabel = nullptr;
+    QLabel *mUrlLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
     OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;

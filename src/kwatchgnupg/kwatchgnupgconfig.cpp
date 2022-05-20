@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "kwatchgnupgconfig.h"
+
 #include "kwatchgnupg.h"
 
 #include "utils/qt-cxx20-compat.h"

@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "output.h"
+
 #include "input_p.h"
 #include "detail_p.h"
 #include "kleo_assert.h"

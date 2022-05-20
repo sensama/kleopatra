@@ -8,9 +8,10 @@
 */
 
 #include <config-kleopatra.h>
-#include "signemailcontroller.h"
-#include "kleopatra_debug.h"
 
+#include "signemailcontroller.h"
+
+#include "kleopatra_debug.h"
 #include "signemailtask.h"
 #include "certificateresolver.h"
 #include "taskcollection.h"

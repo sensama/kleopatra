@@ -6,6 +6,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #include "netkeywidget.h"
+
 #include "nullpinwidget.h"
 #include "keytreeview.h"
 #include "kleopatraapplication.h"

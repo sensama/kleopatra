@@ -8,6 +8,7 @@
 */
 
 #include <config-kleopatra.h>
+
 #include "appearanceconfigpage.h"
 
 #include "appearanceconfigwidget.h"

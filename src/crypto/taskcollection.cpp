@@ -13,6 +13,7 @@
 #include <config-kleopatra.h>
 
 #include "taskcollection.h"
+
 #include "task.h"
 #include "kleopatra_debug.h"
 

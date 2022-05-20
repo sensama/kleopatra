@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "log.h"
+
 #include "iodevicelogger.h"
 
 #include <Libkleo/KleoException>

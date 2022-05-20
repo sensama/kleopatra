@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "tray.h"
+
 #include "kwatchgnupgmainwin.h"
 
 #include "kwatchgnupg_debug.h"

@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "verifychecksumscontroller.h"
+
 #include "checksumsutils_p.h"
 
 #ifndef QT_NO_DIRMODEL

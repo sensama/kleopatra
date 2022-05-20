@@ -10,6 +10,7 @@
 
 
 #include "revokekeydialog.h"
+
 #include "utils/accessibility.h"
 #include "view/errorlabel.h"
 

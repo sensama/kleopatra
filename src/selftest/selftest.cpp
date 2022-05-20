@@ -10,6 +10,7 @@
 #include <config-kleopatra.h>
 
 #include "selftest.h"
+
 #include "implementation_p.h"
 
 using namespace Kleo;

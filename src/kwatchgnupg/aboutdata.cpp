@@ -7,8 +7,9 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <version-kwatchgnupg.h>
 #include "aboutdata.h"
+
+#include <version-kwatchgnupg.h>
 
 #include <KLocalizedString>
 

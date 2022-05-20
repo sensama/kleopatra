@@ -9,8 +9,9 @@
 
 #include <config-kleopatra.h>
 
-#include "searchbar.h"
 #include "tabwidget.h"
+
+#include "searchbar.h"
 #include "keytreeview.h"
 #include "kleopatra_debug.h"
 

@@ -8,6 +8,7 @@
 */
 
 #include <config-kleopatra.h>
+
 #include "mainwindow.h"
 #include "aboutdata.h"
 #include "settings.h"

@@ -236,7 +236,7 @@ LookupCertificatesDialog::Private::~Private() {}
 
 void LookupCertificatesDialog::Private::readConfig()
 {
-    KConfigGroup configGroup(KSharedConfig::openConfig(), "LookupCertificatesDialog");
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
 
     KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");
     ui.resultTV->restoreLayout(resultKeysConfig);
@@ -249,7 +249,7 @@ void LookupCertificatesDialog::Private::readConfig()
 
 void LookupCertificatesDialog::Private::writeConfig()
 {
-    KConfigGroup configGroup(KSharedConfig::openConfig(), "LookupCertificatesDialog");
+    KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
     configGroup.writeEntry("Size", q->size());
 
     KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");

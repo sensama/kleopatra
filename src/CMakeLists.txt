@@ -164,6 +164,7 @@ set(_kleopatra_SRCS
   dialogs/groupdetailsdialog.cpp
   dialogs/editgroupdialog.cpp
   dialogs/revokekeydialog.cpp
+  dialogs/nameandemailwidget.cpp
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp

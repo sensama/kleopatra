@@ -13,13 +13,11 @@
 
 #include "adduseriddialog.h"
 
+#include "nameandemailwidget.h"
+
 #include "utils/accessibility.h"
 #include "utils/scrollarea.h"
-#include "view/errorlabel.h"
-#include "view/formtextinput.h"
 #include "view/htmllabel.h"
-
-#include <utils/validation.h>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -28,29 +26,12 @@
 #include <KSharedConfig>
 
 #include <QDialogButtonBox>
-#include <QGridLayout>
 #include <QLabel>
-#include <QLineEdit>
-#include <QValidator>
 #include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
-
-namespace
-{
-QString buildUserId(const QString &name, const QString &email)
-{
-   if (name.isEmpty()) {
-       return email;
-   } else if (email.isEmpty()) {
-       return name;
-   } else {
-       return QStringLiteral("%1 <%2>").arg(name, email);
-   }
-}
-}
 
 class AddUserIDDialog::Private
 {
@@ -59,8 +40,7 @@ class AddUserIDDialog::Private
 
     struct {
         ScrollArea *scrollArea;
-        std::unique_ptr<FormTextInput<QLineEdit>> nameInput;
-        std::unique_ptr<FormTextInput<QLineEdit>> emailInput;
+        NameAndEmailWidget *nameAndEmail;
         HtmlLabel *resultLabel;
         QDialogButtonBox *buttonBox;
     } ui;
@@ -100,69 +80,12 @@ public:
         auto scrollAreaLayout = qobject_cast<QBoxLayout *>(ui.scrollArea->widget()->layout());
         scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
-        {
-            ui.nameInput = FormTextInput<QLineEdit>::create(q);
-            ui.nameInput->setLabelText(i18nc("@label", "Name"));
-            ui.nameInput->setIsRequired(nameIsRequired);
-            ui.nameInput->setValueRequiredErrorMessage(i18n("Enter a name."));
-            const auto regexp = config.readEntry("NAME_regex");
-            if (regexp.isEmpty()) {
-                ui.nameInput->setValidator(Validation::simpleName(Validation::Optional));
-                ui.nameInput->setHint(i18n("Must not include <, >, and @."),
-                                      i18nc("text for screen readers",
-                                            "Must not include less-than sign, greater-than sign, and at sign."));
-                ui.nameInput->setInvalidEntryErrorMessage(
-                    i18n("The name must not include <, >, and @."),
-                    i18nc("text for screen readers",
-                          "The name must not include less-than sign, greater-than sign, and at sign."));
-            } else {
-                ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional));
-                ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
-                                           "must not include <, >, and @."),
-                                      i18nc("text for screen readers",
-                                            "Must be in the format required by your organization and "
-                                            "must not include less-than sign, greater-than sign, and at sign."));
-                ui.nameInput->setInvalidEntryErrorMessage(
-                    i18n("The name must be in the format required by your organization and "
-                         "it must not include <, >, and @."),
-                    i18nc("text for screen readers",
-                          "The name must be in the format required by your organization and "
-                          "it must not include less-than sign, greater-than sign, and at sign."));
-            }
-
-            scrollAreaLayout->addWidget(ui.nameInput->label());
-            scrollAreaLayout->addWidget(ui.nameInput->hintLabel());
-            scrollAreaLayout->addWidget(ui.nameInput->errorLabel());
-            scrollAreaLayout->addWidget(ui.nameInput->widget());
-        }
-        connect(ui.nameInput->widget(), &QLineEdit::textChanged,
-                q, [this]() { updateResultLabel(); });
-
-        {
-            ui.emailInput = FormTextInput<QLineEdit>::create(q);
-            ui.emailInput->setLabelText(i18nc("@label", "Email address"));
-            ui.emailInput->setIsRequired(emailIsRequired);
-            ui.emailInput->setValueRequiredErrorMessage(i18n("Enter an email address."));
-            const auto regexp = config.readEntry(QLatin1String("EMAIL_regex"));
-            if (regexp.isEmpty()) {
-                ui.emailInput->setValidator(Validation::email(Validation::Optional));
-                ui.emailInput->setInvalidEntryErrorMessage(i18n(
-                    "Enter an email address in the correct format, like name@example.com."));
-            } else {
-                ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional));
-                ui.emailInput->setHint(i18n(
-                    "Must be in the format required by your organization"));
-                ui.emailInput->setInvalidEntryErrorMessage(i18n(
-                    "Enter an email address in the correct format required by your organization."));
-            }
-
-            scrollAreaLayout->addWidget(ui.emailInput->label());
-            scrollAreaLayout->addWidget(ui.emailInput->hintLabel());
-            scrollAreaLayout->addWidget(ui.emailInput->errorLabel());
-            scrollAreaLayout->addWidget(ui.emailInput->widget());
-        }
-        connect(ui.emailInput->widget(), &QLineEdit::textChanged,
-                q, [this]() { updateResultLabel(); });
+        ui.nameAndEmail = new NameAndEmailWidget{q};
+        ui.nameAndEmail->setNameIsRequired(nameIsRequired);
+        ui.nameAndEmail->setNamePattern(config.readEntry("NAME_regex"));
+        ui.nameAndEmail->setEmailIsRequired(emailIsRequired);
+        ui.nameAndEmail->setEmailPattern(config.readEntry("EMAIL_regex"));
+        scrollAreaLayout->addWidget(ui.nameAndEmail);
 
         scrollAreaLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
@@ -184,35 +107,28 @@ public:
 
         mainLayout->addWidget(ui.buttonBox);
 
+        connect(ui.nameAndEmail, &NameAndEmailWidget::userIDChanged, q, [this]() {
+            updateResultLabel();
+        });
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, [this]() { checkAccept(); });
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
 
         updateResultLabel();
     }
 
-    QString name() const
-    {
-        return ui.nameInput->widget()->text().trimmed();
-    }
-
-    QString email() const
-    {
-        return ui.emailInput->widget()->text().trimmed();
-    }
-
 private:
     void checkAccept()
     {
         QStringList errors;
-        if (q->userID().isEmpty()
-                && !ui.nameInput->isRequired() && !ui.emailInput->isRequired()) {
+        if (ui.nameAndEmail->userID().isEmpty()
+                && !ui.nameAndEmail->nameIsRequired() && !ui.nameAndEmail->emailIsRequired()) {
             errors.push_back(i18n("Enter a name or an email address."));
         }
-        const auto nameError = ui.nameInput->currentError();
+        const auto nameError = ui.nameAndEmail->nameError();
         if (!nameError.isEmpty()) {
             errors.push_back(nameError);
         }
-        const auto emailError = ui.emailInput->currentError();
+        const auto emailError = ui.nameAndEmail->emailError();
         if (!emailError.isEmpty()) {
             errors.push_back(emailError);
         }
@@ -230,7 +146,7 @@ private:
         ui.resultLabel->setHtml(i18nc("@info",
             "<div>This is how the new user ID will be stored in the certificate:</div>"
             "<center><strong>%1</strong></center>",
-            buildUserId(name(), email()).toHtmlEscaped()));
+            ui.nameAndEmail->userID().toHtmlEscaped()));
     }
 };
 
@@ -244,25 +160,25 @@ AddUserIDDialog::~AddUserIDDialog() = default;
 
 void AddUserIDDialog::setName(const QString &name)
 {
-    d->ui.nameInput->widget()->setText(name);
+    d->ui.nameAndEmail->setName(name);
 }
 
 QString AddUserIDDialog::name() const
 {
-    return d->name();
+    return d->ui.nameAndEmail->name();
 }
 
 void AddUserIDDialog::setEmail(const QString &email)
 {
-    d->ui.emailInput->widget()->setText(email);
+    d->ui.nameAndEmail->setEmail(email);
 }
 
 QString AddUserIDDialog::email() const
 {
-    return d->email();
+    return d->ui.nameAndEmail->email();
 }
 
 QString AddUserIDDialog::userID() const
 {
-    return buildUserId(name(), email());
+    return d->ui.nameAndEmail->userID();
 }

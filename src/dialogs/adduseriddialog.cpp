@@ -204,7 +204,7 @@ private:
     void checkAccept()
     {
         QStringList errors;
-        if (ui.resultLabel->text().isEmpty()
+        if (q->userID().isEmpty()
                 && !ui.nameInput->isRequired() && !ui.emailInput->isRequired()) {
             errors.push_back(i18n("Enter a name or an email address."));
         }

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-add_library(kleopatraclientgui certificaterequester.cpp)
+add_library(kleopatraclientgui certificaterequester.cpp certificaterequester.h)
 generate_export_header(kleopatraclientgui BASE_NAME kleopatraclientgui)
 
 target_link_libraries(kleopatraclientgui

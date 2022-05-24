@@ -88,6 +88,15 @@ set(_kleopatra_SRCS
   utils/dragqueen.cpp
   utils/multivalidator.cpp
   utils/systemtrayicon.cpp
+  utils/accessibility.h
+  utils/gui-helper.h
+  utils/filedialog.h
+  utils/kdpipeiodevice.h
+  utils/headerview.h
+  utils/scrollarea.h
+  utils/dragqueen.h
+  utils/multivalidator.h
+  utils/systemtrayicon.h
 
   utils/path-helper.cpp
   utils/input.cpp
@@ -107,6 +116,24 @@ set(_kleopatra_SRCS
   utils/keyparameters.cpp
   utils/userinfo.cpp
   utils/keys.cpp
+  utils/path-helper.h
+  utils/input.h
+  utils/output.h
+  utils/validation.h
+  utils/wsastarter.h
+  utils/iodevicelogger.h
+  utils/log.h
+  utils/action_data.h
+  utils/types.h
+  utils/archivedefinition.h
+  utils/auditlog.h
+  utils/clipboardmenu.h
+  utils/kuniqueservice.h
+  utils/tags.h
+  utils/writecertassuantransaction.h
+  utils/keyparameters.h
+  utils/userinfo.h
+  utils/keys.h
 
   selftest/selftest.cpp
   selftest/enginecheck.cpp
@@ -114,6 +141,12 @@ set(_kleopatra_SRCS
   selftest/gpgagentcheck.cpp
   selftest/libkleopatrarccheck.cpp
   selftest/compliancecheck.cpp
+  selftest/selftest.h
+  selftest/enginecheck.h
+  selftest/gpgconfcheck.h
+  selftest/gpgagentcheck.h
+  selftest/libkleopatrarccheck.h
+  selftest/compliancecheck.h
 
   ${_kleopatra_extra_SRCS}
 
@@ -136,6 +169,25 @@ set(_kleopatra_SRCS
   view/urllabel.cpp
   view/waitwidget.cpp
   view/welcomewidget.cpp
+  view/errorlabel.h
+  view/formtextinput.h
+  view/htmllabel.h
+  view/keylistcontroller.h
+  view/keytreeview.h
+  view/searchbar.h
+  view/smartcardwidget.h
+  view/openpgpkeycardwidget.h
+  view/padwidget.h
+  view/pgpcardwidget.h
+  view/pivcardwidget.h
+  view/p15cardwidget.h
+  view/netkeywidget.h
+  view/nullpinwidget.h
+  view/tabwidget.h
+  view/keycacheoverlay.h
+  view/urllabel.h
+  view/waitwidget.h
+  view/welcomewidget.h
 
   dialogs/certificateselectiondialog.cpp
   dialogs/certifywidget.cpp
@@ -165,6 +217,34 @@ set(_kleopatra_SRCS
   dialogs/editgroupdialog.cpp
   dialogs/revokekeydialog.cpp
   dialogs/nameandemailwidget.cpp
+  dialogs/certificateselectiondialog.h
+  dialogs/certifywidget.h
+  dialogs/expirydialog.h
+  dialogs/lookupcertificatesdialog.h
+  dialogs/ownertrustdialog.h
+  dialogs/selftestdialog.h
+  dialogs/certifycertificatedialog.h
+  dialogs/revokecertificationwidget.h
+  dialogs/revokecertificationdialog.h
+  dialogs/adduseriddialog.h
+  dialogs/deletecertificatesdialog.h
+  dialogs/setinitialpindialog.h
+  dialogs/certificatedetailsdialog.h
+  dialogs/certificatedetailswidget.h
+  dialogs/trustchainwidget.h
+  dialogs/weboftrustwidget.h
+  dialogs/weboftrustdialog.h
+  dialogs/exportdialog.h
+  dialogs/subkeyswidget.h
+  dialogs/gencardkeydialog.h
+  dialogs/updatenotification.h
+  dialogs/pivcardapplicationadministrationkeyinputdialog.h
+  dialogs/certificatedetailsinputwidget.h
+  dialogs/createcsrforcardkeydialog.h
+  dialogs/groupdetailsdialog.h
+  dialogs/editgroupdialog.h
+  dialogs/revokekeydialog.h
+  dialogs/nameandemailwidget.h
 
   crypto/controller.cpp
   crypto/certificateresolver.cpp
@@ -186,27 +266,62 @@ set(_kleopatra_SRCS
   crypto/createchecksumscontroller.cpp
   crypto/verifychecksumscontroller.cpp
   crypto/checksumsutils_p.cpp
+  crypto/controller.h
+  crypto/certificateresolver.h
+  crypto/sender.h
+  crypto/recipient.h
+  crypto/task.h
+  crypto/taskcollection.h
+  crypto/decryptverifytask.h
+  crypto/decryptverifyemailcontroller.h
+  crypto/decryptverifyfilescontroller.h
+  crypto/autodecryptverifyfilescontroller.h
+  crypto/encryptemailtask.h
+  crypto/encryptemailcontroller.h
+  crypto/newsignencryptemailcontroller.h
+  crypto/signencrypttask.h
+  crypto/signencryptfilescontroller.h
+  crypto/signemailtask.h
+  crypto/signemailcontroller.h
+  crypto/createchecksumscontroller.h
+  crypto/verifychecksumscontroller.h
+  crypto/checksumsutils_p.h
 
   crypto/gui/wizard.cpp
   crypto/gui/wizardpage.cpp
+  crypto/gui/wizard.h
+  crypto/gui/wizardpage.h
 
   crypto/gui/certificateselectionline.cpp
   crypto/gui/certificatelineedit.cpp
   crypto/gui/signingcertificateselectionwidget.cpp
   crypto/gui/signingcertificateselectiondialog.cpp
+  crypto/gui/certificateselectionline.h
+  crypto/gui/certificatelineedit.h
+  crypto/gui/signingcertificateselectionwidget.h
+  crypto/gui/signingcertificateselectiondialog.h
 
   crypto/gui/resultitemwidget.cpp
   crypto/gui/resultlistwidget.cpp
   crypto/gui/resultpage.cpp
+  crypto/gui/resultitemwidget.h
+  crypto/gui/resultlistwidget.h
+  crypto/gui/resultpage.h
 
   crypto/gui/newresultpage.cpp
   crypto/gui/signencryptfileswizard.cpp
+  crypto/gui/newresultpage.h
+  crypto/gui/signencryptfileswizard.h
 
   crypto/gui/signencryptemailconflictdialog.cpp
+  crypto/gui/signencryptemailconflictdialog.h
 
   crypto/gui/decryptverifyoperationwidget.cpp
   crypto/gui/decryptverifyfileswizard.cpp
   crypto/gui/decryptverifyfilesdialog.cpp
+  crypto/gui/decryptverifyoperationwidget.h
+  crypto/gui/decryptverifyfileswizard.h
+  crypto/gui/decryptverifyfilesdialog.h
 
   crypto/gui/objectspage.cpp
   crypto/gui/resolverecipientspage.cpp
@@ -216,8 +331,17 @@ set(_kleopatra_SRCS
   crypto/gui/signencryptwidget.cpp
   crypto/gui/signencryptwizard.cpp
   crypto/gui/unknownrecipientwidget.cpp
+  crypto/gui/objectspage.h
+  crypto/gui/resolverecipientspage.h
+  crypto/gui/signerresolvepage.h
+  crypto/gui/encryptemailwizard.h
+  crypto/gui/signemailwizard.h
+  crypto/gui/signencryptwidget.h
+  crypto/gui/signencryptwizard.h
+  crypto/gui/unknownrecipientwidget.h
 
   crypto/gui/verifychecksumsdialog.cpp
+  crypto/gui/verifychecksumsdialog.h
 
   commands/command.cpp
   commands/gnupgprocesscommand.cpp
@@ -278,6 +402,65 @@ set(_kleopatra_SRCS
   commands/createcsrforcardkeycommand.cpp
   commands/revokekeycommand.cpp
   commands/revokeuseridcommand.cpp
+  commands/command.h
+  commands/gnupgprocesscommand.h
+  commands/detailscommand.h
+  commands/exportcertificatecommand.h
+  commands/exportgroupscommand.h
+  commands/importcertificatescommand.h
+  commands/importcertificatefromfilecommand.h
+  commands/importcertificatefromclipboardcommand.h
+  commands/importcertificatefromdatacommand.h
+  commands/importcertificatefromkeyservercommand.h
+  commands/lookupcertificatescommand.h
+  commands/reloadkeyscommand.h
+  commands/refreshcertificatecommand.h
+  commands/refreshx509certscommand.h
+  commands/refreshopenpgpcertscommand.h
+  commands/deletecertificatescommand.h
+  commands/decryptverifyfilescommand.h
+  commands/signencryptfilescommand.h
+  commands/signencryptfoldercommand.h
+  commands/encryptclipboardcommand.h
+  commands/signclipboardcommand.h
+  commands/decryptverifyclipboardcommand.h
+  commands/clearcrlcachecommand.h
+  commands/dumpcrlcachecommand.h
+  commands/dumpcertificatecommand.h
+  commands/importcrlcommand.h
+  commands/changeexpirycommand.h
+  commands/changeownertrustcommand.h
+  commands/changeroottrustcommand.h
+  commands/changepassphrasecommand.h
+  commands/certifycertificatecommand.h
+  commands/revokecertificationcommand.h
+  commands/selftestcommand.h
+  commands/exportsecretkeycommand.h
+  commands/exportsecretkeycommand_old.h
+  commands/exportsecretsubkeycommand.h
+  commands/exportopenpgpcertstoservercommand.h
+  commands/exportopenpgpcerttoprovidercommand.h
+  commands/adduseridcommand.h
+  commands/newcertificatecommand.h
+  commands/setinitialpincommand.h
+  commands/learncardkeyscommand.h
+  commands/checksumcreatefilescommand.h
+  commands/checksumverifyfilescommand.h
+  commands/exportpaperkeycommand.h
+  commands/importpaperkeycommand.h
+  commands/genrevokecommand.h
+  commands/keytocardcommand.h
+  commands/cardcommand.h
+  commands/pivgeneratecardkeycommand.h
+  commands/changepincommand.h
+  commands/authenticatepivcardapplicationcommand.h
+  commands/setpivcardapplicationadministrationkeycommand.h
+  commands/certificatetopivcardcommand.h
+  commands/importcertificatefrompivcardcommand.h
+  commands/createopenpgpkeyfromcardkeyscommand.h
+  commands/createcsrforcardkeycommand.h
+  commands/revokekeycommand.h
+  commands/revokeuseridcommand.h
 
   ${_kleopatra_uiserver_files}
 
@@ -285,6 +468,10 @@ set(_kleopatra_SRCS
   conf/groupsconfigdialog.cpp
   conf/groupsconfigpage.cpp
   conf/groupsconfigwidget.cpp
+  conf/configuredialog.h
+  conf/groupsconfigdialog.h
+  conf/groupsconfigpage.h
+  conf/groupsconfigwidget.h
 
   newcertificatewizard/advancedsettingsdialog.cpp
   newcertificatewizard/chooseprotocolpage.cpp
@@ -295,6 +482,15 @@ set(_kleopatra_SRCS
   newcertificatewizard/newcertificatewizard.cpp
   newcertificatewizard/resultpage.cpp
   newcertificatewizard/wizardpage.cpp
+  newcertificatewizard/advancedsettingsdialog_p.h
+  newcertificatewizard/chooseprotocolpage_p.h
+  newcertificatewizard/enterdetailspage_p.h
+  newcertificatewizard/keyalgo_p.h
+  newcertificatewizard/keycreationpage_p.h
+  newcertificatewizard/listwidget.h
+  newcertificatewizard/newcertificatewizard.h
+  newcertificatewizard/resultpage_p.h
+  newcertificatewizard/wizardpage_p.h
 
   smartcard/readerstatus.cpp
   smartcard/card.cpp
@@ -305,14 +501,29 @@ set(_kleopatra_SRCS
   smartcard/keypairinfo.cpp
   smartcard/utils.cpp
   smartcard/deviceinfowatcher.cpp
+  smartcard/readerstatus.h
+  smartcard/card.h
+  smartcard/openpgpcard.h
+  smartcard/netkeycard.h
+  smartcard/pivcard.h
+  smartcard/p15card.h
+  smartcard/keypairinfo.h
+  smartcard/utils.h
+  smartcard/deviceinfowatcher.h
 
   accessibility/accessiblerichtextlabel.cpp
   accessibility/accessiblewidgetfactory.cpp
+  accessibility/accessiblerichtextlabel_p.h
+  accessibility/accessiblewidgetfactory.h
 
   aboutdata.cpp
   systrayicon.cpp
   kleopatraapplication.cpp
   mainwindow.cpp
+  aboutdata.h
+  systrayicon.h
+  kleopatraapplication.h
+  mainwindow.h
   main.cpp
   kleopatra.qrc
 )

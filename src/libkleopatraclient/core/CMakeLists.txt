@@ -25,6 +25,12 @@ add_library(kleopatraclientcore
   signencryptfilescommand.cpp
   decryptverifyfilescommand.cpp
   libkleopatraclientcore_debug.cpp
+  initialization.h
+  command.h
+  selectcertificatecommand.h
+  signencryptfilescommand.h
+  decryptverifyfilescommand.h
+  libkleopatraclientcore_debug.h
   ${_kleopatraclientcore_common_SRCS}
 )
 generate_export_header(kleopatraclientcore BASE_NAME kleopatraclientcore)

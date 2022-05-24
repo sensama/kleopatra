@@ -14,6 +14,12 @@ set(kwatchgnupg_SRCS
   kwatchgnupgconfig.cpp
   aboutdata.cpp
   tray.cpp
+  ../utils/kuniqueservice.h
+  ../kleopatra_debug.h
+  kwatchgnupgmainwin.h
+  kwatchgnupgconfig.h
+  aboutdata.h
+  tray.h
   main.cpp
   kwatchgnupg.qrc
 )

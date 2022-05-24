@@ -462,8 +462,6 @@ set(_kleopatra_SRCS
   commands/revokekeycommand.h
   commands/revokeuseridcommand.h
 
-  ${_kleopatra_uiserver_files}
-
   conf/configuredialog.cpp
   conf/groupsconfigdialog.cpp
   conf/groupsconfigpage.cpp

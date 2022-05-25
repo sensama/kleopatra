@@ -515,7 +515,7 @@ void AppearanceConfigWidget::save()
         }
     }
 #endif
-    for (int i = 0, end = std::min(groups.size(), d->categoriesLV->count()); i != end; ++i) {
+    for (int i = 0, end = std::min<int>(groups.size(), d->categoriesLV->count()); i != end; ++i) {
         const QListWidgetItem *const item = d->categoriesLV->item(i);
         Q_ASSERT(item);
         KConfigGroup group(config, groups[i]);

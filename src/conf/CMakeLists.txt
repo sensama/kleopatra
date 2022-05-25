@@ -62,6 +62,7 @@ kconfig_add_kcfg_files(kcm_kleopatra_PART_SRCS
 )
 
 add_library(kcm_kleopatra_static STATIC ${kcm_kleopatra_PART_SRCS})
+set_property(TARGET kcm_kleopatra_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(kcm_kleopatra_static
   KF5::Libkleo

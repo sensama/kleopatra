@@ -22,11 +22,12 @@
 
 #include "kleopageconfigdialog.h"
 
-#include <QDialogButtonBox>
-#include <QPushButton>
-#include <QUrl>
 #include <QDesktopServices>
+#include <QDialogButtonBox>
 #include <QProcess>
+#include <QPushButton>
+#include <QStandardPaths>
+#include <QUrl>
 
 #include <KCModule>
 #include <KStandardGuiItem>

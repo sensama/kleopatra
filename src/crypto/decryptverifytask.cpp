@@ -48,6 +48,7 @@
 
 #include <QByteArray>
 #include <QDateTime>
+#include <QIODevice>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
 

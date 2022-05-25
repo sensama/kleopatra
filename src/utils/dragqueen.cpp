@@ -50,15 +50,22 @@ public:
     }
 
 protected:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QVariant retrieveData(const QString &format, QVariant::Type type) const override
+#else
+    QVariant retrieveData(const QString &format, QMetaType type) const override
+#endif
     {
         if (!m_source) {
             return QVariant();
         }
         // Doesn't work, is protected:
         // return m_source->retrieveData( format, type );
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         switch (type) {
+#else
+        switch (type.id()) {
+#endif
         case QVariant::String:
             if (format == QLatin1String("text/plain")) {
                 return m_source->text();

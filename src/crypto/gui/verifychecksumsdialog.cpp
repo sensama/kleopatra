@@ -16,19 +16,19 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QStringList>
-#include <QVBoxLayout>
-#include <QHash>
-#include <QTreeView>
-#include <QSortFilterProxyModel>
-#include <QDirModel>
-#include <QProgressBar>
-#include <QDialogButtonBox>
-#include <QPushButton>
-#include <QHeaderView>
 #include "kleopatra_debug.h"
+#include <QDialogButtonBox>
+#include <QFileSystemModel>
+#include <QHBoxLayout>
+#include <QHash>
+#include <QHeaderView>
+#include <QLabel>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QSortFilterProxyModel>
+#include <QStringList>
+#include <QTreeView>
+#include <QVBoxLayout>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -45,13 +45,13 @@ static Qt::GlobalColor statusColor[] = {
 };
 static_assert((sizeof(statusColor) / sizeof(*statusColor)) == VerifyChecksumsDialog::NumStatii, "");
 
-class ColorizedFileSystemModel : public QDirModel
+class ColorizedFileSystemModel : public QFileSystemModel
 {
     Q_OBJECT
 public:
     explicit ColorizedFileSystemModel(QObject *parent = nullptr)
-        : QDirModel(parent),
-          statusMap()
+        : QFileSystemModel(parent)
+        , statusMap()
     {
 
     }
@@ -66,7 +66,7 @@ public:
                     return QColor(c);
                 }
         }
-        return QDirModel::data(mi, role);
+        return QFileSystemModel::data(mi, role);
     }
 
 public Q_SLOTS:
@@ -143,10 +143,10 @@ struct BaseWidget {
     QLabel label;
     QTreeView view;
 
-    BaseWidget(QDirModel *model, QWidget *parent, QVBoxLayout *vlay)
-        : proxy(),
-          label(parent),
-          view(parent)
+    BaseWidget(QFileSystemModel *model, QWidget *parent, QVBoxLayout *vlay)
+        : proxy()
+        , label(parent)
+        , view(parent)
     {
         KDAB_SET_OBJECT_NAME(proxy);
         KDAB_SET_OBJECT_NAME(label);
@@ -181,10 +181,10 @@ struct BaseWidget {
     void setBase(const QString &base)
     {
         label.setText(base);
-        if (auto fsm = qobject_cast<QDirModel *>(proxy.sourceModel())) {
+        if (auto fsm = qobject_cast<QFileSystemModel *>(proxy.sourceModel())) {
             view.setRootIndex(proxy.mapFromSource(fsm->index(base)));
         } else {
-            qCWarning(KLEOPATRA_LOG) << "expect a QDirModel-derived class as proxy.sourceModel(), got ";
+            qCWarning(KLEOPATRA_LOG) << "expect a QFileSystemModel-derived class as proxy.sourceModel(), got ";
             if (!proxy.sourceModel()) {
                 qCWarning(KLEOPATRA_LOG) << "a null pointer";
             } else {
@@ -299,7 +299,7 @@ private:
             return buttonBox.button(QDialogButtonBox::Close);
         }
 
-        void setBases(const QStringList &bases, QDirModel *model)
+        void setBases(const QStringList &bases, QFileSystemModel *model)
         {
 
             // create new BaseWidgets:

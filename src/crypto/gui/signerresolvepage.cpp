@@ -14,7 +14,8 @@
 
 #include "signingcertificateselectiondialog.h"
 
-#include <crypto/certificateresolver.h>
+#include "crypto/certificateresolver.h"
+#include "utils/keys.h"
 
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
@@ -231,7 +232,7 @@ public:
     void setOperation(Operation operation);
     void operationButtonClicked(int operation);
     void selectCertificates();
-    void setCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certs);
+    void setCertificates(const CertificatePair &certs);
     void updateModeSelectionWidgets();
     void updateUi();
     bool protocolSelected(Protocol p) const;
@@ -257,7 +258,7 @@ private:
     bool encryptionSelected;
     bool multipleProtocolsAllowed;
     bool protocolSelectionUserMutable;
-    QMap<GpgME::Protocol, GpgME::Key> certificates;
+    CertificatePair certificates;
     std::shared_ptr<SignerResolvePage::Validator> validator;
     std::shared_ptr<SigningPreferences> signingPreferences;
 };
@@ -357,15 +358,13 @@ bool SignerResolvePage::Private::protocolSelected(Protocol p) const
     return signingProtocolSelectionWidget->isProtocolChecked(p);
 }
 
-void SignerResolvePage::Private::setCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certs)
+void SignerResolvePage::Private::setCertificates(const CertificatePair &certs)
 {
     certificates = certs;
-    for (auto it = certs.cbegin(), endIt = certs.cend(); it != endIt; ++it) {
-        const Protocol proto = it.key();
-        const Key &key = it.value();
-        readOnlyProtocolSelectionWidget->setCertificate(proto, key);
-        signingProtocolSelectionWidget->setCertificate(proto, key);
-    }
+    readOnlyProtocolSelectionWidget->setCertificate(GpgME::OpenPGP, certs.openpgp);
+    signingProtocolSelectionWidget->setCertificate(GpgME::OpenPGP, certs.openpgp);
+    readOnlyProtocolSelectionWidget->setCertificate(GpgME::CMS, certs.cms);
+    signingProtocolSelectionWidget->setCertificate(GpgME::CMS, certs.cms);
     updateUi();
 }
 
@@ -443,11 +442,11 @@ void SignerResolvePage::Private::selectCertificates()
     QPointer<SigningCertificateSelectionDialog> dlg = new SigningCertificateSelectionDialog(q);
     dlg->setAllowedProtocols(signingProtocolSelectionWidget->checkedProtocols());
     if (dlg->exec() == QDialog::Accepted && dlg) {
-        const QMap<Protocol, Key> certs = dlg->selectedCertificates();
+        const auto certs = dlg->selectedCertificates();
         setCertificates(certs);
         if (signingPreferences && dlg->rememberAsDefault()) {
-            signingPreferences->setPreferredCertificate(OpenPGP, certs.value(OpenPGP));
-            signingPreferences->setPreferredCertificate(CMS, certs.value(CMS));
+            signingPreferences->setPreferredCertificate(OpenPGP, certs.openpgp);
+            signingPreferences->setPreferredCertificate(CMS, certs.cms);
         }
     }
 
@@ -495,7 +494,7 @@ SignerResolvePage::SignerResolvePage(QWidget *parent, Qt::WindowFlags f)
     setTitle(i18n("<b>Choose Operation to be Performed</b>"));
 //    setSubTitle( i18n( "TODO" ) );
     setPresetProtocol(UnknownProtocol);
-    d->setCertificates(QMap<GpgME::Protocol, GpgME::Key>());
+    d->setCertificates({});
     d->updateModeSelectionWidgets();
     d->operationButtonClicked(EncryptOnly);
 }
@@ -555,11 +554,11 @@ std::set<Protocol> SignerResolvePage::selectedProtocols() const
 std::vector<Key> SignerResolvePage::signingCertificates(Protocol protocol) const
 {
     std::vector<Key> result;
-    if (protocol != CMS && d->signingProtocolSelectionWidget->isProtocolChecked(OpenPGP) && !d->certificates[OpenPGP].isNull()) {
-        result.push_back(d->certificates[OpenPGP]);
+    if (protocol != CMS && d->signingProtocolSelectionWidget->isProtocolChecked(OpenPGP) && !d->certificates.openpgp.isNull()) {
+        result.push_back(d->certificates.openpgp);
     }
-    if (protocol != OpenPGP && d->signingProtocolSelectionWidget->isProtocolChecked(CMS) && !d->certificates[CMS].isNull()) {
-        result.push_back(d->certificates[CMS]);
+    if (protocol != OpenPGP && d->signingProtocolSelectionWidget->isProtocolChecked(CMS) && !d->certificates.cms.isNull()) {
+        result.push_back(d->certificates.cms);
     }
     return result;
 }
@@ -648,10 +647,11 @@ void SignerResolvePage::setAsciiArmorEnabled(bool enabled)
 void SignerResolvePage::setSigningPreferences(const std::shared_ptr<SigningPreferences> &prefs)
 {
     d->signingPreferences = prefs;
-    QMap<Protocol, Key> map;
-    map[OpenPGP] = prefs ? prefs->preferredCertificate(OpenPGP) : Key();
-    map[CMS] = prefs ? prefs->preferredCertificate(CMS) : Key();
-    d->setCertificates(map);
+    const CertificatePair certs = {
+        prefs ? prefs->preferredCertificate(OpenPGP) : Key(),
+        prefs ? prefs->preferredCertificate(CMS) : Key()
+    };
+    d->setCertificates(certs);
 }
 
 std::shared_ptr<SigningPreferences> SignerResolvePage::signingPreferences() const

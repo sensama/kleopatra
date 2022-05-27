@@ -25,6 +25,8 @@ class Key;
 
 namespace Kleo
 {
+class CertificatePair;
+
 namespace Crypto
 {
 namespace Gui
@@ -39,9 +41,9 @@ public:
 
     void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
     void setAllowedProtocols(bool pgp, bool cms);
-    void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);
+    void setSelectedCertificates(const CertificatePair &certificates);
     void setSelectedCertificates(const GpgME::Key &pgp, const GpgME::Key &cms);
-    QMap<GpgME::Protocol, GpgME::Key> selectedCertificates() const;
+    CertificatePair selectedCertificates() const;
 
     bool rememberAsDefault() const;
 

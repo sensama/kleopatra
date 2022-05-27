@@ -10,7 +10,10 @@
 #include <config-kleopatra.h>
 
 #include "signingcertificateselectiondialog.h"
+
 #include "signingcertificateselectionwidget.h"
+
+#include "utils/keys.h"
 
 #include <KLocalizedString>
 
@@ -40,12 +43,12 @@ SigningCertificateSelectionDialog::SigningCertificateSelectionDialog(QWidget *pa
 
 SigningCertificateSelectionDialog::~SigningCertificateSelectionDialog() {}
 
-void SigningCertificateSelectionDialog::setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates)
+void SigningCertificateSelectionDialog::setSelectedCertificates(const CertificatePair &certificates)
 {
     widget->setSelectedCertificates(certificates);
 }
 
-QMap<GpgME::Protocol, GpgME::Key> SigningCertificateSelectionDialog::selectedCertificates() const
+CertificatePair SigningCertificateSelectionDialog::selectedCertificates() const
 {
     return widget->selectedCertificates();
 }

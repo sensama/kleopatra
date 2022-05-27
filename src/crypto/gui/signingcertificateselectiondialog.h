@@ -20,6 +20,8 @@ template <typename K, typename U> class QMap;
 
 namespace Kleo
 {
+class CertificatePair;
+
 namespace Crypto
 {
 namespace Gui
@@ -35,8 +37,8 @@ public:
     ~SigningCertificateSelectionDialog() override;
 
     void setAllowedProtocols(const std::set<GpgME::Protocol> &allowedProtocols);
-    void setSelectedCertificates(const QMap<GpgME::Protocol, GpgME::Key> &certificates);
-    Q_REQUIRED_RESULT QMap<GpgME::Protocol, GpgME::Key> selectedCertificates() const;
+    void setSelectedCertificates(const CertificatePair &certificates);
+    Q_REQUIRED_RESULT CertificatePair selectedCertificates() const;
 
     Q_REQUIRED_RESULT bool rememberAsDefault() const;
 

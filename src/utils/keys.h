@@ -14,6 +14,12 @@
 
 namespace Kleo
 {
+
+struct CertificatePair {
+    GpgME::Key openpgp;
+    GpgME::Key cms;
+};
+
 /** Returns true if \p signature is a self-signature. */
 bool isSelfSignature(const GpgME::UserID::Signature &signature);
 
@@ -32,4 +38,5 @@ bool isRevokedOrExpired(const GpgME::UserID &userId);
  * offline key, is available in the keyring.
  */
 bool canCreateCertifications(const GpgME::Key &key);
+
 }

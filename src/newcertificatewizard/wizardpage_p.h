@@ -41,9 +41,9 @@ protected:
         return static_cast<NewCertificateWizard *>(QWizardPage::wizard());
     }
 
-    void resetProtocol()
+    bool pgp() const
     {
-        wizard()->resetProtocol();
+        return wizard()->protocol() == GpgME::OpenPGP;
     }
 
     void restartAtEnterDetailsPage()
@@ -58,7 +58,6 @@ protected:
 
 protected:
 #define FIELD(type, name) type name() const { return field( QStringLiteral(#name) ).value<type>(); }
-    FIELD(bool, pgp)
     FIELD(bool, signingAllowed)
     FIELD(bool, encryptionAllowed)
     FIELD(bool, certificationAllowed)

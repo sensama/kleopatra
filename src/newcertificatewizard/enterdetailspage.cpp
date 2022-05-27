@@ -219,7 +219,6 @@ EnterDetailsPage::EnterDetailsPage(QWidget *p)
     registerField(QStringLiteral("name"), ui->nameLE);
     registerField(QStringLiteral("email"), ui->emailLE);
     registerField(QStringLiteral("protectedKey"), ui->withPassCB);
-    updateForm();
     setCommitPage(true);
     setButtonText(QWizard::CommitButton, i18nc("@action", "Create"));
 
@@ -252,8 +251,6 @@ void EnterDetailsPage::initializePage()
 void EnterDetailsPage::cleanupPage()
 {
     saveValues();
-    // reset protocol when navigating back to "Choose Protocol" page
-    resetProtocol();
 }
 
 void EnterDetailsPage::registerDialogPropertiesAsFields()

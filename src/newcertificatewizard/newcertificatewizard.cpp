@@ -14,7 +14,6 @@
 
 #include "newcertificatewizard.h"
 
-#include "chooseprotocolpage_p.h"
 #include "enterdetailspage_p.h"
 #include "keycreationpage_p.h"
 #include "resultpage_p.h"
@@ -42,33 +41,27 @@ public:
     }
 
 private:
-    GpgME::Protocol initialProtocol = GpgME::UnknownProtocol;
+    GpgME::Protocol protocol = GpgME::UnknownProtocol;
     QTemporaryDir tmp;
     struct Ui {
-        ChooseProtocolPage chooseProtocolPage;
         EnterDetailsPage enterDetailsPage;
         KeyCreationPage keyCreationPage;
         ResultPage resultPage;
 
         explicit Ui(NewCertificateWizard *q)
-            : chooseProtocolPage(q),
-              enterDetailsPage(q),
+            : enterDetailsPage(q),
               keyCreationPage(q),
               resultPage(q)
         {
-            KDAB_SET_OBJECT_NAME(chooseProtocolPage);
             KDAB_SET_OBJECT_NAME(enterDetailsPage);
             KDAB_SET_OBJECT_NAME(keyCreationPage);
             KDAB_SET_OBJECT_NAME(resultPage);
 
             q->setOptions(NoBackButtonOnStartPage|DisabledBackButtonOnLastPage);
 
-            q->setPage(ChooseProtocolPageId, &chooseProtocolPage);
             q->setPage(EnterDetailsPageId,   &enterDetailsPage);
             q->setPage(KeyCreationPageId,    &keyCreationPage);
             q->setPage(ResultPageId,         &resultPage);
-
-            q->setStartId(ChooseProtocolPageId);
         }
 
     } ui;
@@ -93,26 +86,17 @@ void NewCertificateWizard::showEvent(QShowEvent *event)
 
 void NewCertificateWizard::setProtocol(Protocol proto)
 {
-    d->initialProtocol = proto;
-    d->ui.chooseProtocolPage.setProtocol(proto);
-    setStartId(proto == UnknownProtocol ? ChooseProtocolPageId : EnterDetailsPageId);
+    d->protocol = proto;
 }
 
 Protocol NewCertificateWizard::protocol() const
 {
-    return d->ui.chooseProtocolPage.protocol();
-}
-
-void NewCertificateWizard::resetProtocol()
-{
-    d->ui.chooseProtocolPage.setProtocol(d->initialProtocol);
+    return d->protocol;
 }
 
 void NewCertificateWizard::restartAtEnterDetailsPage()
 {
-    const auto protocol = d->ui.chooseProtocolPage.protocol();
-    restart();  // resets the protocol to the initial protocol
-    d->ui.chooseProtocolPage.setProtocol(protocol);
+    restart();
     while (currentId() != NewCertificateWizard::EnterDetailsPageId) {
         next();
     }

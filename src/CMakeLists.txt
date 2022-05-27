@@ -359,8 +359,6 @@ set(_kleopatra_SRCS
   dialogs/weboftrustwidget.h
   newcertificatewizard/advancedsettingsdialog.cpp
   newcertificatewizard/advancedsettingsdialog_p.h
-  newcertificatewizard/chooseprotocolpage.cpp
-  newcertificatewizard/chooseprotocolpage_p.h
   newcertificatewizard/enterdetailspage.cpp
   newcertificatewizard/enterdetailspage_p.h
   newcertificatewizard/keyalgo.cpp

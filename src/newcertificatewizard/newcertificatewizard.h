@@ -36,7 +36,6 @@ public:
     GpgME::Protocol protocol() const;
 
     enum Pages {
-        ChooseProtocolPageId,
         EnterDetailsPageId,
         OverviewPageId,
         KeyCreationPageId,

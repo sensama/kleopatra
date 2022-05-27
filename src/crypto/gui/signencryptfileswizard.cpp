@@ -328,67 +328,84 @@ public:
     }
 
 private:
+    struct RequesterInfo {
+        SignEncryptFilesWizard::KindNames id;
+        QString icon;
+        QString toolTip;
+        QString accessibleName;
+        QString nameFilterBinary;
+        QString nameFilterAscii;
+    };
     void createRequesters(QBoxLayout *lay) {
-        static const QMap<int, QString> icons = {
-            { SignEncryptFilesWizard::SignatureCMS, QStringLiteral("document-sign") },
-            { SignEncryptFilesWizard::SignaturePGP, QStringLiteral("document-sign") },
-            { SignEncryptFilesWizard::CombinedPGP,  QStringLiteral("document-edit-sign-encrypt") },
-            { SignEncryptFilesWizard::EncryptedPGP, QStringLiteral("document-encrypt") },
-            { SignEncryptFilesWizard::EncryptedCMS, QStringLiteral("document-encrypt") },
-            { SignEncryptFilesWizard::Directory,    QStringLiteral("folder") }
-        };
-        static const QMap<int, QString> toolTips = {
-            { SignEncryptFilesWizard::SignatureCMS, i18n("This is the filename of the S/MIME signature.") },
-            { SignEncryptFilesWizard::SignaturePGP, i18n("This is the filename of the detached OpenPGP signature.") },
-            { SignEncryptFilesWizard::CombinedPGP,  i18n("This is the filename of the OpenPGP-signed and encrypted file.") },
-            { SignEncryptFilesWizard::EncryptedPGP, i18n("This is the filename of the OpenPGP encrypted file.") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("This is the filename of the S/MIME encrypted file.") },
-            { SignEncryptFilesWizard::Directory,    i18n("The resulting files are written to this directory.") }
-        };
-        static const QMap<int, QString> accessibleNames = {
-            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME signature file") },
-            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP signature file") },
-            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP signed and encrypted file") },
-            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP encrypted file") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME encrypted file") },
-            { SignEncryptFilesWizard::Directory,    i18n("Output directory") }
-        };
-        static const QMap<int, QString> nameFiltersBinary = {
-            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME Signatures (*.p7s)") },
-            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP Signatures (*.sig *.pgp)") },
-            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP Files (*.gpg *.pgp)") },
-            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP Files (*.gpg *.pgp)") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME Files (*.p7m)") },
-            { SignEncryptFilesWizard::Directory,    {} }
-        };
-        static const QMap<int, QString> nameFiltersAscii = {
-            { SignEncryptFilesWizard::SignatureCMS, i18n("S/MIME Signatures (*.p7s *.pem)") },
-            { SignEncryptFilesWizard::SignaturePGP, i18n("OpenPGP Signatures (*.asc *.sig)") },
-            { SignEncryptFilesWizard::CombinedPGP,  i18n("OpenPGP Files (*.asc)") },
-            { SignEncryptFilesWizard::EncryptedPGP, i18n("OpenPGP Files (*.asc)") },
-            { SignEncryptFilesWizard::EncryptedCMS, i18n("S/MIME Files (*.p7m *.pem)") },
-            { SignEncryptFilesWizard::Directory,    {} }
-        };
+        static const std::array<RequesterInfo, 6> requestersInfo = {{
+            {
+                SignEncryptFilesWizard::SignatureCMS,
+                QStringLiteral("document-sign"),
+                i18nc("@info:tooltip", "This is the filename of the S/MIME signature."),
+                i18nc("Lineedit accessible name", "S/MIME signature file"),
+                i18nc("Name filter binary", "S/MIME Signatures (*.p7s)"),
+                i18nc("Name filter ASCII", "S/MIME Signatures (*.p7s *.pem)"),
+            },
+            {
+                SignEncryptFilesWizard::SignaturePGP,
+                QStringLiteral("document-sign"),
+                i18nc("@info:tooltip", "This is the filename of the detached OpenPGP signature."),
+                i18nc("Lineedit accessible name", "OpenPGP signature file"),
+                i18nc("Name filter binary", "OpenPGP Signatures (*.sig *.pgp)"),
+                i18nc("Name filter ASCII", "OpenPGP Signatures (*.asc *.sig)"),
+            },
+            {
+                SignEncryptFilesWizard::CombinedPGP,
+                QStringLiteral("document-edit-sign-encrypt"),
+                i18nc("@info:tooltip", "This is the filename of the OpenPGP-signed and encrypted file."),
+                i18nc("Lineedit accessible name", "OpenPGP signed and encrypted file"),
+                i18nc("Name filter binary", "OpenPGP Files (*.gpg *.pgp)"),
+                i18nc("Name filter ASCII", "OpenPGP Files (*.asc)"),
+            },
+            {
+                SignEncryptFilesWizard::EncryptedPGP,
+                QStringLiteral("document-encrypt"),
+                i18nc("@info:tooltip", "This is the filename of the OpenPGP encrypted file."),
+                i18nc("Lineedit accessible name", "OpenPGP encrypted file"),
+                i18nc("Name filter binary", "OpenPGP Files (*.gpg *.pgp)"),
+                i18nc("Name filter ASCII", "OpenPGP Files (*.asc)"),
+            },
+            {
+                SignEncryptFilesWizard::EncryptedCMS,
+                QStringLiteral("document-encrypt"),
+                i18nc("@info:tooltip", "This is the filename of the S/MIME encrypted file."),
+                i18nc("Lineedit accessible name", "S/MIME encrypted file"),
+                i18nc("Name filter binary", "S/MIME Files (*.p7m)"),
+                i18nc("Name filter ASCII", "S/MIME Files (*.p7m *.pem)"),
+            },
+            {
+                SignEncryptFilesWizard::Directory,
+                QStringLiteral("folder"),
+                i18nc("@info:tooltip", "The resulting files are written to this directory."),
+                i18nc("Lineedit accessible name", "Output directory"),
+                {},
+                {},
+            },
+        }};
 
         if (!mRequesters.empty()) {
             return;
         }
-        const auto &nameFilters = FileOperationsPreferences().addASCIIArmor() ? nameFiltersAscii : nameFiltersBinary;
-        for (auto kind : icons.keys()) {
-            auto requesterWithIcon = new FileNameRequesterWithIcon{
-                kind == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};
-            requesterWithIcon->setIcon(QIcon::fromTheme(icons[kind]));
-            requesterWithIcon->setToolTip(toolTips[kind]);
-            requesterWithIcon->requester()->setAccessibleNameOfLineEdit(accessibleNames[kind]);
-            requesterWithIcon->setNameFilter(nameFilters[kind]);
+        const bool isAscii = FileOperationsPreferences().addASCIIArmor();
+        for (const auto &requester : requestersInfo) {
+            const auto id = requester.id;
+            auto requesterWithIcon = new FileNameRequesterWithIcon{id == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};
+            requesterWithIcon->setIcon(QIcon::fromTheme(requester.icon));
+            requesterWithIcon->setToolTip(requester.toolTip);
+            requesterWithIcon->requester()->setAccessibleNameOfLineEdit(requester.accessibleName);
+            requesterWithIcon->setNameFilter(isAscii ? requester.nameFilterAscii : requester.nameFilterBinary);
             lay->addWidget(requesterWithIcon);
 
-            connect(requesterWithIcon, &FileNameRequesterWithIcon::fileNameChanged, this,
-                    [this, kind](const QString &newName) {
-                        mOutNames[kind] = newName;
-                    });
+            connect(requesterWithIcon, &FileNameRequesterWithIcon::fileNameChanged, this, [this, id](const QString &newName) {
+                mOutNames[id] = newName;
+            });
 
-            mRequesters.insert(kind, requesterWithIcon);
+            mRequesters.insert(id, requesterWithIcon);
         }
     }
 

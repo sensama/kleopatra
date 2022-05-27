@@ -13,9 +13,9 @@
 
 #include "command_p.h"
 
-#include <settings.h>
+#include "newcertificatewizard/newcertificatewizard.h"
 
-#include <newcertificatewizard/newcertificatewizard.h>
+#include <settings.h>
 
 
 using namespace Kleo;
@@ -30,20 +30,19 @@ class NewCertificateCommand::Private : public Command::Private
         return static_cast<NewCertificateCommand *>(q);
     }
 public:
-    explicit Private(NewCertificateCommand *qq, KeyListController *c);
-    ~Private() override;
-
-    void init();
+    explicit Private(NewCertificateCommand *qq, KeyListController *c)
+        : Command::Private{qq, c}
+    {
+    }
 
 private:
-    void slotDialogRejected();
     void slotDialogAccepted();
 
 private:
     void ensureDialogCreated();
 
 private:
-    Protocol protocol;
+    Protocol protocol = GpgME::UnknownProtocol;
     QPointer<NewCertificateWizard> dialog;
 };
 
@@ -59,40 +58,27 @@ const NewCertificateCommand::Private *NewCertificateCommand::d_func() const
 #define d d_func()
 #define q q_func()
 
-NewCertificateCommand::Private::Private(NewCertificateCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      protocol(UnknownProtocol),
-      dialog()
+void NewCertificateCommand::Private::slotDialogAccepted()
 {
-
+    finished();
 }
-
-NewCertificateCommand::Private::~Private() {}
 
 NewCertificateCommand::NewCertificateCommand()
     : Command(new Private(this, nullptr))
 {
-    d->init();
 }
 
 NewCertificateCommand::NewCertificateCommand(KeyListController *c)
     : Command(new Private(this, c))
 {
-    d->init();
 }
 
 NewCertificateCommand::NewCertificateCommand(QAbstractItemView *v, KeyListController *c)
     : Command(v, new Private(this, c))
 {
-    d->init();
 }
 
-void NewCertificateCommand::Private::init()
-{
-
-}
-
-NewCertificateCommand::~NewCertificateCommand() {}
+NewCertificateCommand::~NewCertificateCommand() = default;
 
 void NewCertificateCommand::setProtocol(Protocol proto)
 {
@@ -128,17 +114,6 @@ void NewCertificateCommand::doStart()
     d->dialog->show();
 }
 
-void NewCertificateCommand::Private::slotDialogRejected()
-{
-    Q_EMIT q->canceled();
-    finished();
-}
-
-void NewCertificateCommand::Private::slotDialogAccepted()
-{
-    finished();
-}
-
 void NewCertificateCommand::doCancel()
 {
     if (d->dialog) {
@@ -156,8 +131,8 @@ void NewCertificateCommand::Private::ensureDialogCreated()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
     connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
+    connect(dialog, &QDialog::rejected, q, [this]() { canceled(); });
 }
 
 #undef d

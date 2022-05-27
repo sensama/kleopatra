@@ -20,9 +20,10 @@
 #include <KLocalizedString>
 #include <KSeparator>
 
-#include <QCommandLinkButton>
 #include <QDialogButtonBox>
+#include <QGroupBox>
 #include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -33,8 +34,9 @@ class ChooseCertificateProtocolDialog::Private
     ChooseCertificateProtocolDialog *const q;
 
     struct UI {
-        QCommandLinkButton *pgpCLB = nullptr;
-        QCommandLinkButton *x509CLB = nullptr;
+        QPushButton *openpgpButton = nullptr;
+        QPushButton *x509Button = nullptr;
+        QDialogButtonBox *buttonBox = nullptr;
 
         UI(QDialog *parent)
         {
@@ -56,23 +58,39 @@ class ChooseCertificateProtocolDialog::Private
             auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
             scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
-            pgpCLB = new QCommandLinkButton{parent};
-            pgpCLB->setText(i18n("Create a Personal OpenPGP Key Pair"));
-            pgpCLB->setDescription(i18n("OpenPGP key pairs are certified by confirming the fingerprint of the public key."));
-            pgpCLB->setAccessibleDescription(pgpCLB->description());
-            pgpCLB->setCheckable(true);
-            pgpCLB->setAutoExclusive(true);
+            {
+                auto group = new QGroupBox{i18n("OpenPGP"), parent};
+                group->setFlat(true);
+                auto groupLayout = new QVBoxLayout{group};
+                const auto infoText = i18n("OpenPGP key pairs are certified by confirming the fingerprint of the public key.");
+                auto label = new QLabel{infoText, parent};
+                label->setWordWrap(true);
+                groupLayout->addWidget(label);
+                openpgpButton = new QPushButton{parent};
+                openpgpButton->setText(i18n("Create a Personal OpenPGP Key Pair"));
+                openpgpButton->setAccessibleDescription(infoText);
 
-            scrollAreaLayout->addWidget(pgpCLB);
+                groupLayout->addWidget(openpgpButton);
+                scrollAreaLayout->addWidget(group);
+            }
 
-            x509CLB = new QCommandLinkButton{parent};
-            x509CLB->setText(i18n("Create a Personal X.509 Key Pair and Certification Request"));
-            x509CLB->setDescription(i18n("X.509 key pairs are certified by a certification authority (CA). The generated request needs to be sent to a CA to finalize creation."));
-            x509CLB->setAccessibleDescription(x509CLB->description());
-            x509CLB->setCheckable(true);
-            x509CLB->setAutoExclusive(true);
+            scrollAreaLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
 
-            scrollAreaLayout->addWidget(x509CLB);
+            {
+                auto group = new QGroupBox{i18n("X.509"), parent};
+                group->setFlat(true);
+                auto groupLayout = new QVBoxLayout{group};
+                const auto infoText = i18n("X.509 key pairs are certified by a certification authority (CA). The generated request needs to be sent to a CA to finalize creation.");
+                auto label = new QLabel{infoText, parent};
+                label->setWordWrap(true);
+                groupLayout->addWidget(label);
+                x509Button = new QPushButton{parent};
+                x509Button->setText(i18n("Create a Personal X.509 Key Pair and Certification Request"));
+                x509Button->setAccessibleDescription(infoText);
+
+                groupLayout->addWidget(x509Button);
+                scrollAreaLayout->addWidget(group);
+            }
 
             mainLayout->addWidget(scrollArea);
 
@@ -80,13 +98,10 @@ class ChooseCertificateProtocolDialog::Private
 
             mainLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
 
-            auto buttonBox = new QDialogButtonBox{QDialogButtonBox::Cancel, parent};
+            buttonBox = new QDialogButtonBox{QDialogButtonBox::Cancel, parent};
+            buttonBox->button(QDialogButtonBox::Cancel)->setAutoDefault(false);
 
             mainLayout->addWidget(buttonBox);
-
-            connect(pgpCLB,  &QAbstractButton::clicked, parent, &QDialog::accept);
-            connect(x509CLB,  &QAbstractButton::clicked, parent, &QDialog::accept);
-            connect(buttonBox, &QDialogButtonBox::rejected, parent, &QDialog::reject);
         }
     } ui;
 
@@ -96,7 +111,20 @@ public:
         , ui{qq}
     {
         q->setWindowTitle(i18nc("@title:window", "Choose Type of Key Pair"));
+
+        connect(ui.openpgpButton,  &QAbstractButton::clicked, q, [this]() {
+            protocol = GpgME::OpenPGP;
+            q->accept();
+        });
+        connect(ui.x509Button,  &QAbstractButton::clicked, q, [this]() {
+            protocol = GpgME::CMS;
+            q->accept();
+        });
+        connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
     }
+
+private:
+    GpgME::Protocol protocol = GpgME::UnknownProtocol;
 };
 
 ChooseCertificateProtocolDialog::ChooseCertificateProtocolDialog(QWidget *parent, Qt::WindowFlags f)
@@ -109,9 +137,7 @@ ChooseCertificateProtocolDialog::~ChooseCertificateProtocolDialog() = default;
 
 GpgME::Protocol ChooseCertificateProtocolDialog::protocol() const
 {
-    return
-        d->ui.pgpCLB->isChecked()  ? GpgME::OpenPGP :
-        d->ui.x509CLB->isChecked() ? GpgME::CMS : GpgME::UnknownProtocol;
+    return d->protocol;
 }
 
 void ChooseCertificateProtocolDialog::showEvent(QShowEvent *event)

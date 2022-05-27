@@ -13,6 +13,7 @@
 
 #include "command_p.h"
 
+#include "dialogs/choosecertificateprotocoldialog.h"
 #include "newcertificatewizard/newcertificatewizard.h"
 
 #include <settings.h>
@@ -35,7 +36,12 @@ public:
     {
     }
 
+    void chooseProtocol();
+    void createCertificate();
+
 private:
+    void onProtocolChosen();
+
     void slotDialogAccepted();
 
 private:
@@ -43,6 +49,7 @@ private:
 
 private:
     Protocol protocol = GpgME::UnknownProtocol;
+    QPointer<ChooseCertificateProtocolDialog> protocolDialog;
     QPointer<NewCertificateWizard> dialog;
 };
 
@@ -57,6 +64,53 @@ const NewCertificateCommand::Private *NewCertificateCommand::d_func() const
 
 #define d d_func()
 #define q q_func()
+
+void NewCertificateCommand::Private::chooseProtocol()
+{
+    Q_ASSERT(protocol == GpgME::UnknownProtocol);
+    Q_ASSERT(!protocolDialog);
+
+    protocolDialog = new ChooseCertificateProtocolDialog;
+    applyWindowID(protocolDialog);
+
+    connect(protocolDialog, &QDialog::accepted, q, [this]() {
+        onProtocolChosen();
+    });
+    connect(protocolDialog, &QDialog::rejected, q, [this]() {
+        canceled();
+        protocolDialog->deleteLater();
+    });
+
+    protocolDialog->show();
+}
+
+void NewCertificateCommand::Private::onProtocolChosen()
+{
+    protocol = protocolDialog->protocol();
+    protocolDialog->deleteLater();
+
+    createCertificate();
+}
+
+void Kleo::Commands::NewCertificateCommand::Private::createCertificate()
+{
+    Q_ASSERT(protocol != GpgME::UnknownProtocol);
+    Q_ASSERT(!dialog);
+
+    dialog = new NewCertificateWizard;
+    applyWindowID(dialog);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+
+    connect(dialog, &QDialog::accepted, q, [this]() {
+        slotDialogAccepted();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        canceled();
+    });
+
+    dialog->setProtocol(protocol);
+    dialog->show();
+}
 
 void NewCertificateCommand::Private::slotDialogAccepted()
 {
@@ -83,35 +137,26 @@ NewCertificateCommand::~NewCertificateCommand() = default;
 void NewCertificateCommand::setProtocol(Protocol proto)
 {
     d->protocol = proto;
-    if (d->dialog) {
-        d->dialog->setProtocol(proto);
-    }
 }
 
 Protocol NewCertificateCommand::protocol() const
 {
-    if (d->dialog) {
-        return d->dialog->protocol();
-    } else {
-        return d->protocol;
-    }
+    return d->protocol;
 }
 
 void NewCertificateCommand::doStart()
 {
-    d->ensureDialogCreated();
-    Q_ASSERT(d->dialog);
-
     const Kleo::Settings settings{};
     const auto cmsAllowed = settings.cmsEnabled() && settings.cmsCertificateCreationAllowed();
     if (d->protocol == UnknownProtocol && !cmsAllowed) {
         d->protocol = GpgME::OpenPGP;
     }
-    if (d->protocol != UnknownProtocol) {
-        d->dialog->setProtocol(d->protocol);
-    }
 
-    d->dialog->show();
+    if (d->protocol == UnknownProtocol) {
+        d->chooseProtocol();
+    } else {
+        d->createCertificate();
+    }
 }
 
 void NewCertificateCommand::doCancel()
@@ -119,20 +164,6 @@ void NewCertificateCommand::doCancel()
     if (d->dialog) {
         d->dialog->close();
     }
-}
-
-void NewCertificateCommand::Private::ensureDialogCreated()
-{
-    if (dialog) {
-        return;
-    }
-
-    dialog = new NewCertificateWizard;
-    applyWindowID(dialog);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { canceled(); });
 }
 
 #undef d

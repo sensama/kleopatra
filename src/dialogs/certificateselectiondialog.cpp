@@ -15,6 +15,7 @@
 
 #include "conf/groupsconfigdialog.h"
 
+#include <Libkleo/Algorithm>
 #include <view/keytreeview.h>
 #include <view/searchbar.h>
 #include <view/tabwidget.h>
@@ -135,7 +136,7 @@ private:
     }
 
 private:
-    QSet<QAbstractItemView *> connectedViews;
+    std::vector<QAbstractItemView *> connectedViews;
     QString customLabelText;
     Options options = AnyCertificate | AnyFormat;
 
@@ -443,8 +444,8 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
 void CertificateSelectionDialog::Private::slotCurrentViewChanged(QAbstractItemView *newView)
 {
-    if (!connectedViews.contains(newView)) {
-        connectedViews.insert(newView);
+    if (!Kleo::contains(connectedViews, newView)) {
+        connectedViews.push_back(newView);
         connect(newView, &QAbstractItemView::doubleClicked,
                 q, [this] (const QModelIndex &index) { slotDoubleClicked(index); });
         Q_ASSERT(newView->selectionModel());

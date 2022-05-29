@@ -311,8 +311,8 @@ void KeyListController::Private::connectTabWidget()
                   [this](QAbstractItemView *view) { addView(view); });
 
     m_connections.reserve(3);
-    m_connections.push_back(connect(tabWidget, &TabWidget::viewAdded, q, [this](QAbstractItemView *view) { addView(view);}));
-    m_connections.push_back(connect(tabWidget, &TabWidget::viewAboutToBeRemoved, q, [this](QAbstractItemView *view) { removeView(view); }));
+    m_connections.push_back(connect(tabWidget, &TabWidget::viewAdded, q, &KeyListController::addView));
+    m_connections.push_back(connect(tabWidget, &TabWidget::viewAboutToBeRemoved, q, &KeyListController::removeView));
     m_connections.push_back(connect(tabWidget, &TabWidget::currentViewChanged, q, [this](QAbstractItemView *view) { slotCurrentViewChanged(view); }));
 }
 

@@ -37,7 +37,6 @@ public:
 
     enum Pages {
         EnterDetailsPageId,
-        OverviewPageId,
         KeyCreationPageId,
         ResultPageId,
 

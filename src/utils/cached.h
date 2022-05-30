@@ -20,7 +20,7 @@ class cached
     T m_value;
     bool m_dirty;
 
-    using CallType = const typename std::conditional<std::is_pod<T>::value, T, T&>::type;
+    using CallType = const typename std::conditional<std::is_standard_layout<T>::value && std::is_trivial<T>::value, T, T&>::type;
 
 public:
     cached() : m_value(), m_dirty(true) {}

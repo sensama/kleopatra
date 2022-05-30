@@ -633,7 +633,7 @@ QItemSelection itemSelectionFromKeys(const std::vector<Key> &keys, const QTreeVi
     return std::accumulate(
         indexes.cbegin(), indexes.cend(),
         QItemSelection(),
-        [] (QItemSelection &selection, const QModelIndex &index) {
+        [] (QItemSelection selection, const QModelIndex &index) {
             if (index.isValid()) {
                 selection.merge(QItemSelection(index, index), QItemSelectionModel::Select);
             }

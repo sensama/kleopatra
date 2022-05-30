@@ -652,13 +652,13 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
 
     const auto allIds = std::accumulate(std::cbegin(results), std::cend(results),
                                         std::set<QString>{},
-                                        [](auto &allIds, const auto &r) {
+                                        [](auto allIds, const auto &r) {
                                             allIds.insert(r.id);
                                             return allIds;
                                         });
     const auto canceledIds = std::accumulate(std::cbegin(results), std::cend(results),
                                              std::set<QString>{},
-                                             [](auto &canceledIds, const auto &r) {
+                                             [](auto canceledIds, const auto &r) {
                                                  if (importWasCanceled(r)) {
                                                      canceledIds.insert(r.id);
                                                  }
@@ -731,7 +731,7 @@ static auto accumulateNewKeys(std::vector<std::string> &fingerprints, const std:
 {
     return std::accumulate(std::begin(imports), std::end(imports),
                            fingerprints,
-                           [](auto &fingerprints, const auto &import) {
+                           [](auto fingerprints, const auto &import) {
                                if (import.status() == Import::NewKey) {
                                    fingerprints.push_back(import.fingerprint());
                                }
@@ -743,7 +743,7 @@ static auto accumulateNewOpenPGPKeys(const std::vector<ImportResultData> &result
 {
     return std::accumulate(std::begin(results), std::end(results),
                            std::vector<std::string>{},
-                           [](auto &fingerprints, const auto &r) {
+                           [](auto fingerprints, const auto &r) {
                                if (r.protocol == GpgME::OpenPGP) {
                                    fingerprints = accumulateNewKeys(fingerprints, r.result.imports());
                                }

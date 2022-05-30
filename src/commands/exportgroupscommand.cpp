@@ -154,7 +154,7 @@ void ExportGroupsCommand::Private::start()
 
     const auto groupKeys = std::accumulate(std::begin(groups), std::end(groups),
                                            KeyGroup::Keys{},
-                                           [](auto &allKeys, const auto &group) {
+                                           [](auto allKeys, const auto &group) {
                                                 const auto keys = group.keys();
                                                 allKeys.insert(std::begin(keys), std::end(keys));
                                                 return allKeys;

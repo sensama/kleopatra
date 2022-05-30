@@ -32,6 +32,12 @@ public:
     explicit KeyParameters(Protocol protocol);
     ~KeyParameters();
 
+    KeyParameters(const KeyParameters &other);
+    KeyParameters &operator=(const KeyParameters &other);
+
+    KeyParameters(KeyParameters &&other);
+    KeyParameters &operator=(KeyParameters &&other);
+
     void setKeyType(GpgME::Subkey::PubkeyAlgo type);
     void setKeyType(const QString &cardKeyRef);
     void setKeyLength(unsigned int length);
@@ -56,7 +62,7 @@ public:
 
 private:
     class Private;
-    const std::unique_ptr<Private> d;
+    std::unique_ptr<Private> d;
 };
 
 }

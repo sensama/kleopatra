@@ -42,16 +42,14 @@ namespace
 class KeyParameters::Private
 {
     friend class ::Kleo::KeyParameters;
-    KeyParameters *const q;
 
     Protocol protocol;
     QString keyType;
     QMap<QString, QStringList> parameters;
 
 public:
-    explicit Private(KeyParameters *qq, Protocol proto)
-        : q(qq)
-        , protocol(proto)
+    explicit Private(Protocol proto)
+        : protocol(proto)
     {
     }
 
@@ -67,13 +65,26 @@ public:
 };
 
 KeyParameters::KeyParameters(Protocol protocol)
-    : d(new Private(this, protocol))
+    : d{new Private{protocol}}
 {
 }
 
-KeyParameters::~KeyParameters()
+KeyParameters::~KeyParameters() = default;
+
+KeyParameters::KeyParameters(const KeyParameters &other)
+    : d{new Private{*other.d}}
 {
 }
+
+KeyParameters &KeyParameters::operator=(const KeyParameters &other)
+{
+    *d = *other.d;
+    return *this;
+}
+
+KeyParameters::KeyParameters(KeyParameters &&other) = default;
+
+KeyParameters &KeyParameters::operator=(KeyParameters &&other) = default;
 
 void KeyParameters::setKeyType(Subkey::PubkeyAlgo type)
 {

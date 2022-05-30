@@ -14,6 +14,8 @@
 #include "kwatchgnupg.h"
 #include "tray.h"
 
+#include "utils/qt-cxx20-compat.h"
+
 #include <QGpgME/Protocol>
 #include <QGpgME/CryptoConfig>
 

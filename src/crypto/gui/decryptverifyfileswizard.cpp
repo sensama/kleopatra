@@ -50,7 +50,7 @@ public:
     explicit HLine(QWidget *p = nullptr, Qt::WindowFlags f = {})
         : QFrame(p, f)
     {
-        setFrameStyle(QFrame::HLine | QFrame::Sunken);
+        setFrameStyle(static_cast<int>(QFrame::HLine) | static_cast<int>(QFrame::Sunken));
     }
 };
 

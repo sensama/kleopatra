@@ -9,6 +9,8 @@
 
 #include "pivcardapplicationadministrationkeyinputdialog.h"
 
+#include "utils/qt-cxx20-compat.h"
+
 #include <QDialogButtonBox>
 #include <QFontDatabase>
 #include <QLabel>

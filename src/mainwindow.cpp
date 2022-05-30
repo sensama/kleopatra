@@ -36,6 +36,7 @@
 #include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"
 #include "utils/gui-helper.h"
+#include "utils/qt-cxx20-compat.h"
 
 #include "dialogs/updatenotification.h"
 

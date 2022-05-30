@@ -13,6 +13,8 @@
 
 #include "expirydialog.h"
 
+#include "utils/qt-cxx20-compat.h"
+
 #include <KLocalizedString>
 #include <KStandardGuiItem>
 

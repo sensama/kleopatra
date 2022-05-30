@@ -12,6 +12,8 @@
 #include "ownertrustdialog.h"
 #include "ui_ownertrustdialog.h"
 
+#include "utils/qt-cxx20-compat.h"
+
 #include <Libkleo/Formatting>
 
 #include <KLocalizedString>

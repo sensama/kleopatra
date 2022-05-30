@@ -14,6 +14,7 @@
 #include "signingcertificateselectionwidget.h"
 
 #include "utils/keys.h"
+#include "utils/qt-cxx20-compat.h"
 
 #include <KLocalizedString>
 

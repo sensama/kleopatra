@@ -179,7 +179,7 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
     });
 
     KeyParameters keyParameters(KeyParameters::CMS);
-    keyParameters.setKeyType(QString::fromStdString(keyRef));
+    keyParameters.setCardKeyRef(QString::fromStdString(keyRef));
     keyParameters.setKeyUsages(keyUsages);
     keyParameters.setDN(dialog->dn());
     keyParameters.setEmail(dialog->email());

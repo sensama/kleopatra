@@ -44,7 +44,12 @@ class KeyParameters::Private
     friend class ::Kleo::KeyParameters;
 
     Protocol protocol;
-    QString keyType;
+
+    Subkey::PubkeyAlgo keyType = Subkey::AlgoUnknown;
+    QString cardKeyRef;
+
+    Subkey::PubkeyAlgo subkeyType = Subkey::AlgoUnknown;
+
     QMap<QString, QStringList> parameters;
 
 public:
@@ -88,12 +93,22 @@ KeyParameters &KeyParameters::operator=(KeyParameters &&other) = default;
 
 void KeyParameters::setKeyType(Subkey::PubkeyAlgo type)
 {
-    d->keyType = QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(type));
+    d->keyType = type;
 }
 
-void KeyParameters::setKeyType(const QString &cardKeyRef)
+GpgME::Subkey::PubkeyAlgo KeyParameters::keyType() const
 {
-    d->keyType = QLatin1String("card:") + cardKeyRef;
+    return d->keyType;
+}
+
+void KeyParameters::setCardKeyRef(const QString &cardKeyRef)
+{
+    d->cardKeyRef = cardKeyRef;
+}
+
+QString KeyParameters::cardKeyRef() const
+{
+    return d->cardKeyRef;
 }
 
 void KeyParameters::setKeyLength(unsigned int length)
@@ -113,7 +128,12 @@ void KeyParameters::setKeyUsages(const QStringList &usages)
 
 void KeyParameters::setSubkeyType(Subkey::PubkeyAlgo type)
 {
-    d->setValue(QStringLiteral("Subkey-Type"), QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(type)));
+    d->subkeyType = type;
+}
+
+Subkey::PubkeyAlgo KeyParameters::subkeyType() const
+{
+    return d->subkeyType;
 }
 
 void KeyParameters::setSubkeyLength(unsigned int length)
@@ -180,10 +200,16 @@ QString KeyParameters::toString() const
     }
 
     // add Key-Type as first parameter
-    if (!d->keyType.isEmpty()) {
-        keyParameters.push_back(QLatin1String("Key-Type:") + d->keyType);
+    if (!d->cardKeyRef.isEmpty()) {
+        keyParameters.push_back(QLatin1String{"Key-Type:card:"} + d->cardKeyRef);
+    } else if (d->keyType != Subkey::AlgoUnknown) {
+        keyParameters.push_back(QLatin1String{"Key-Type:"} + QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(d->keyType)));
     } else {
         qCWarning(KLEOPATRA_LOG) << "KeyParameters::toString(): Key type is unset/empty";
+    }
+
+    if (d->subkeyType != Subkey::AlgoUnknown) {
+        keyParameters.push_back(QLatin1String{"Subkey-Type:"} + QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(d->subkeyType)));
     }
 
     for (auto it = d->parameters.constBegin(); it != d->parameters.constEnd(); ++it) {

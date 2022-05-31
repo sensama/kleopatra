@@ -39,12 +39,15 @@ public:
     KeyParameters &operator=(KeyParameters &&other);
 
     void setKeyType(GpgME::Subkey::PubkeyAlgo type);
-    void setKeyType(const QString &cardKeyRef);
+    GpgME::Subkey::PubkeyAlgo keyType() const;
+    void setCardKeyRef(const QString &cardKeyRef);
+    QString cardKeyRef() const;
     void setKeyLength(unsigned int length);
     void setKeyCurve(const QString &curve);
     void setKeyUsages(const QStringList &usages);
 
     void setSubkeyType(GpgME::Subkey::PubkeyAlgo type);
+    GpgME::Subkey::PubkeyAlgo subkeyType() const;
     void setSubkeyLength(unsigned int length);
     void setSubkeyCurve(const QString &curve);
     void setSubkeyUsages(const QStringList &usages);

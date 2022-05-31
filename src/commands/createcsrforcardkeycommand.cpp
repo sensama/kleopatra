@@ -23,6 +23,7 @@
 
 #include "utils/filedialog.h"
 #include "utils/keyparameters.h"
+#include "utils/keyusage.h"
 
 #include <Libkleo/Formatting>
 
@@ -77,7 +78,7 @@ private:
 private:
     std::string appName;
     std::string keyRef;
-    QStringList keyUsages;
+    KeyUsage keyUsage;
     QPointer<CreateCSRForCardKeyDialog> dialog;
 };
 
@@ -107,20 +108,20 @@ CreateCSRForCardKeyCommand::Private::~Private()
 
 namespace
 {
-QStringList getKeyUsages(const KeyPairInfo &keyInfo)
+KeyUsage getKeyUsage(const KeyPairInfo &keyInfo)
 {
     // note: gpgsm does not support creating CSRs for authentication certificates
-    QStringList usages;
+    KeyUsage usage;
     if (keyInfo.canCertify()) {
-        usages.push_back(QStringLiteral("cert"));
+        usage.setCanCertify(true);
     }
     if (keyInfo.canSign()) {
-        usages.push_back(QStringLiteral("sign"));
+        usage.setCanSign(true);
     }
     if (keyInfo.canEncrypt()) {
-        usages.push_back(QStringLiteral("encrypt"));
+        usage.setCanEncrypt(true);
     }
-    return usages;
+    return usage;
 }
 }
 
@@ -140,7 +141,7 @@ void CreateCSRForCardKeyCommand::Private::start()
     }
 
     const KeyPairInfo &keyInfo = card->keyInfo(keyRef);
-    keyUsages = getKeyUsages(keyInfo);
+    keyUsage = getKeyUsage(keyInfo);
 
     ensureDialogCreated();
 
@@ -180,7 +181,7 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
 
     KeyParameters keyParameters(KeyParameters::CMS);
     keyParameters.setCardKeyRef(QString::fromStdString(keyRef));
-    keyParameters.setKeyUsages(keyUsages);
+    keyParameters.setKeyUsage(keyUsage);
     keyParameters.setDN(dialog->dn());
     keyParameters.setEmail(dialog->email());
 

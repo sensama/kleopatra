@@ -23,6 +23,10 @@ namespace QGpgME
 {
 class KeyGenerationJob;
 }
+namespace Kleo
+{
+class KeyUsage;
+}
 
 class KeyCreationPage : public Kleo::NewCertificateUi::WizardPage
 {
@@ -37,8 +41,8 @@ public:
 
 private:
     void startJob();
-    QStringList keyUsages() const;
-    QStringList subkeyUsages() const;
+    Kleo::KeyUsage keyUsage() const;
+    Kleo::KeyUsage subkeyUsage() const;
     QString createGnupgKeyParms() const;
 
 private Q_SLOTS:

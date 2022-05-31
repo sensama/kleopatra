@@ -20,6 +20,7 @@
 #include "kleopatraapplication.h"
 
 #include "utils/keyparameters.h"
+#include "utils/keyusage.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -114,36 +115,36 @@ void KeyCreationPage::startJob()
     }
 }
 
-QStringList KeyCreationPage::keyUsages() const
+KeyUsage KeyCreationPage::keyUsage() const
 {
-    QStringList usages;
+    KeyUsage usage;
     if (signingAllowed()) {
-        usages << QStringLiteral("sign");
+        usage.setCanSign(true);
     }
     if (encryptionAllowed() && !is_ecdh(subkeyType()) &&
         !is_dsa(keyType()) && !is_rsa(subkeyType())) {
-        usages << QStringLiteral("encrypt");
+        usage.setCanEncrypt(true);
     }
     if (authenticationAllowed()) {
-        usages << QStringLiteral("auth");
+        usage.setCanAuthenticate(true);
     }
-    if (usages.empty() && certificationAllowed()) {
+    if (!usage.value() && certificationAllowed()) {
         /* Empty usages cause an error so we need to
          * add at least certify if nothing else is selected */
-        usages << QStringLiteral("cert");
+        usage.setCanCertify(true);
     }
-    return usages;
+    return usage;
 }
 
-QStringList KeyCreationPage::subkeyUsages() const
+KeyUsage KeyCreationPage::subkeyUsage() const
 {
-    QStringList usages;
+    KeyUsage usage;
     if (encryptionAllowed() && (is_dsa(keyType()) || is_rsa(subkeyType()) ||
                                 is_ecdh(subkeyType()))) {
         Q_ASSERT(subkeyType());
-        usages << QStringLiteral("encrypt");
+        usage.setCanEncrypt(true);
     }
-    return usages;
+    return usage;
 }
 
 QString KeyCreationPage::createGnupgKeyParms() const
@@ -156,7 +157,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
     } else if (const unsigned int strength = keyStrength()) {
         keyParameters.setKeyLength(strength);
     }
-    keyParameters.setKeyUsages(keyUsages());
+    keyParameters.setKeyUsage(keyUsage());
 
     if (subkeyType()) {
         keyParameters.setSubkeyType(subkeyType());
@@ -165,7 +166,7 @@ QString KeyCreationPage::createGnupgKeyParms() const
         } else if (const unsigned int strength = subkeyStrength()) {
             keyParameters.setSubkeyLength(strength);
         }
-        keyParameters.setSubkeyUsages(subkeyUsages());
+        keyParameters.setSubkeyUsage(subkeyUsage());
     }
 
     if (pgp()) {

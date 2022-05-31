@@ -12,6 +12,8 @@
 
 #include "keyparameters.h"
 
+#include "keyusage.h"
+
 #include <QDate>
 #include <QMap>
 #include <QUrl>
@@ -47,8 +49,10 @@ class KeyParameters::Private
 
     Subkey::PubkeyAlgo keyType = Subkey::AlgoUnknown;
     QString cardKeyRef;
+    KeyUsage keyUsage;
 
     Subkey::PubkeyAlgo subkeyType = Subkey::AlgoUnknown;
+    KeyUsage subkeyUsage;
 
     QMap<QString, QStringList> parameters;
 
@@ -121,9 +125,14 @@ void KeyParameters::setKeyCurve(const QString &curve)
     d->setValue(QStringLiteral("Key-Curve"), curve);
 }
 
-void KeyParameters::setKeyUsages(const QStringList &usages)
+void KeyParameters::setKeyUsage(const KeyUsage &usage)
 {
-    d->setValue(QStringLiteral("Key-Usage"), usages.join(QLatin1Char(' ')));
+    d->keyUsage = usage;
+}
+
+KeyUsage KeyParameters::keyUsage() const
+{
+    return d->keyUsage;
 }
 
 void KeyParameters::setSubkeyType(Subkey::PubkeyAlgo type)
@@ -146,9 +155,14 @@ void KeyParameters::setSubkeyCurve(const QString &curve)
     d->setValue(QStringLiteral("Subkey-Curve"), curve);
 }
 
-void KeyParameters::setSubkeyUsages(const QStringList &usages)
+void KeyParameters::setSubkeyUsage(const KeyUsage &usage)
 {
-    d->setValue(QStringLiteral("Subkey-Usage"), usages.join(QLatin1Char(' ')));
+    d->subkeyUsage = usage;
+}
+
+KeyUsage KeyParameters::subkeyUsage() const
+{
+    return d->subkeyUsage;
 }
 
 void KeyParameters::setExpirationDate(const QDate &date)
@@ -188,6 +202,27 @@ void KeyParameters::addURI(const QString& uri)
     d->addValue(QStringLiteral("Name-URI"), uri);
 }
 
+namespace
+{
+QString serialize(KeyUsage keyUsage)
+{
+    QStringList usages;
+    if (keyUsage.canSign()) {
+        usages << QStringLiteral("sign");
+    }
+    if (keyUsage.canEncrypt()) {
+        usages << QStringLiteral("encrypt");
+    }
+    if (keyUsage.canAuthenticate()) {
+        usages << QStringLiteral("auth");
+    }
+    if (keyUsage.canCertify()) {
+        usages << QStringLiteral("cert");
+    }
+    return usages.join(QLatin1Char{' '});
+}
+}
+
 QString KeyParameters::toString() const
 {
     QStringList keyParameters;
@@ -207,9 +242,13 @@ QString KeyParameters::toString() const
     } else {
         qCWarning(KLEOPATRA_LOG) << "KeyParameters::toString(): Key type is unset/empty";
     }
+    keyParameters.push_back(QLatin1String{"Key-Usage:"} + serialize(d->keyUsage));
 
     if (d->subkeyType != Subkey::AlgoUnknown) {
         keyParameters.push_back(QLatin1String{"Subkey-Type:"} + QString::fromLatin1(Subkey::publicKeyAlgorithmAsString(d->subkeyType)));
+        if (d->subkeyUsage.value()) {
+            keyParameters.push_back(QLatin1String{"Subkey-Usage:"} + serialize(d->subkeyUsage));
+        }
     }
 
     for (auto it = d->parameters.constBegin(); it != d->parameters.constEnd(); ++it) {

@@ -16,10 +16,10 @@
 
 class QDate;
 class QString;
-#include <QStringList>
 
 namespace Kleo
 {
+class KeyUsage;
 
 class KeyParameters
 {
@@ -44,13 +44,15 @@ public:
     QString cardKeyRef() const;
     void setKeyLength(unsigned int length);
     void setKeyCurve(const QString &curve);
-    void setKeyUsages(const QStringList &usages);
+    void setKeyUsage(const KeyUsage &usage);
+    KeyUsage keyUsage() const;
 
     void setSubkeyType(GpgME::Subkey::PubkeyAlgo type);
     GpgME::Subkey::PubkeyAlgo subkeyType() const;
     void setSubkeyLength(unsigned int length);
     void setSubkeyCurve(const QString &curve);
-    void setSubkeyUsages(const QStringList &usages);
+    void setSubkeyUsage(const KeyUsage &usage);
+    KeyUsage subkeyUsage() const;
 
     void setExpirationDate(const QDate &date);
 
@@ -69,4 +71,3 @@ private:
 };
 
 }
-

@@ -1,19 +1,31 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR})
+
+include(ECMAddTests)
+
+find_package(Qt${QT_MAJOR_VERSION}Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+
+if(NOT TARGET Qt${QT_MAJOR_VERSION}::Test)
+    message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, autotests will not be built.")
+    return()
+endif()
+
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-set(kuniqueservicetest_src kuniqueservicetest.cpp ${CMAKE_SOURCE_DIR}/src/utils/kuniqueservice.cpp)
+ecm_qt_declare_logging_category(logging_category_srcs HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
 
-ecm_qt_declare_logging_category(kuniqueservicetest_src HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
-add_executable(kuniqueservicetest ${kuniqueservicetest_src})
-add_test(NAME kuniqueservicetest COMMAND kuniqueservicetest)
-ecm_mark_as_test(kuniqueservicetest)
-target_link_libraries(kuniqueservicetest Qt${QT_MAJOR_VERSION}::Test ${_kleopatra_dbusaddons_libs})
+ecm_add_test(
+    kuniqueservicetest.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/kuniqueservice.cpp
+    ${logging_category_srcs}
+    TEST_NAME kuniqueservicetest
+    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt${QT_MAJOR_VERSION}::Test
+)
 
-set(stripsuffixtest_src stripsuffixtest.cpp ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp)
-ecm_qt_declare_logging_category(stripsuffixtest_src HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
-add_executable(stripsuffixtest ${stripsuffixtest_src})
-add_test(NAME stripsuffixtest COMMAND stripsuffixtest)
-ecm_mark_as_test(stripsuffixtest)
-target_link_libraries(stripsuffixtest Qt${QT_MAJOR_VERSION}::Test KF5::Libkleo KF5::I18n)
+ecm_add_test(
+    stripsuffixtest.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
+    ${logging_category_srcs}
+    TEST_NAME stripsuffixtest
+    LINK_LIBRARIES KF5::I18n KF5::Libkleo Qt${QT_MAJOR_VERSION}::Test
+)

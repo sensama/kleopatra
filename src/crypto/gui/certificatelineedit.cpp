@@ -24,6 +24,7 @@
 
 #include "kleopatra_debug.h"
 
+#include <Libkleo/Debug>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyGroup>
@@ -53,14 +54,6 @@ Q_DECLARE_METATYPE(GpgME::Key)
 Q_DECLARE_METATYPE(KeyGroup)
 
 static QStringList s_lookedUpKeys;
-
-static QDebug operator<<(QDebug debug, const GpgME::Key &key)
-{
-    const bool oldSetting = debug.autoInsertSpaces();
-    debug.nospace() << "Key(" << Formatting::summaryLine(key) << ", id: " << key.keyID() << ")";
-    debug.setAutoInsertSpaces(oldSetting);
-    return debug.maybeSpace();
-}
 
 namespace
 {

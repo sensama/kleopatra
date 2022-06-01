@@ -20,6 +20,7 @@
 #include "view/tabwidget.h"
 
 #include <Libkleo/Compat>
+#include <Libkleo/Debug>
 #include <Libkleo/GnuPG>
 
 #include <dialogs/lookupcertificatesdialog.h>
@@ -59,14 +60,6 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
-static QDebug operator<<(QDebug s, const GpgME::Key &key)
-{
-    if (key.primaryFingerprint()) {
-        return s << Formatting::summaryLine(key) << "fpr:" << key.primaryFingerprint();
-    } else {
-        return s << Formatting::summaryLine(key) << "id:" << key.keyID();
-    }
-}
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
 {
     friend class ::Kleo::Commands::LookupCertificatesCommand;

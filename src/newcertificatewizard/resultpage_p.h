@@ -45,7 +45,6 @@ private Q_SLOTS:
     void slotSendRequestByEMail();
     void slotSendCertificateByEMail();
     void slotSendCertificateByEMailContinuation();
-    void invokeMailer(const QString &to, const QString &subject, const QString &body, const QString &attachment);
     void slotUploadCertificateToDirectoryServer();
     void slotBackupCertificate();
     void slotCreateRevocationRequest();

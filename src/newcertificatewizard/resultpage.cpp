@@ -23,6 +23,7 @@
 # include "commands/exportsecretkeycommand_old.h"
 #endif
 #include "utils/dragqueen.h"
+#include "utils/email.h"
 #include "utils/filedialog.h"
 #include "utils/scrollarea.h"
 
@@ -274,7 +275,15 @@ void ResultPage::slotSendRequestByEMail()
     invokeMailer(config.readEntry("CAEmailAddress"),    // to
                     i18n("Please process this certificate."), // subject
                     i18n("Please process this certificate and inform the sender about the location to fetch the resulting certificate.\n\nThanks,\n"), // body
-                    QUrl(url()).toLocalFile());    // attachment
+                    QFileInfo{QUrl(url()).toLocalFile()});    // attachment
+    KMessageBox::information(this,
+                                xi18nc("@info",
+                                    "<para><application>Kleopatra</application> tried to send a mail via your default mail client.</para>"
+                                    "<para>Some mail clients are known not to support attachments when invoked this way.</para>"
+                                    "<para>If your mail client does not have an attachment, then drag the <application>Kleopatra</application> icon and drop it on the message compose window of your mail client.</para>"
+                                    "<para>If that does not work, either, save the request to a file, and then attach that.</para>"),
+                                i18nc("@title", "Sending Mail"),
+                                QStringLiteral("newcertificatewizard-mailto-troubles"));
 }
 
 void ResultPage::slotSendCertificateByEMail()
@@ -301,41 +310,16 @@ void ResultPage::slotSendCertificateByEMailContinuation()
     if (fileName.isEmpty()) {
         return;
     }
-    invokeMailer(QString(),  // to
-                    i18n("My new public OpenPGP key"), // subject
+    invokeMailer(i18n("My new public OpenPGP key"), // subject
                     i18n("Please find attached my new public OpenPGP key."), // body
-                    fileName);
-}
-
-void ResultPage::invokeMailer(const QString &to, const QString &subject, const QString &body, const QString &attachment)
-{
-    qCDebug(KLEOPATRA_LOG) << "to:" << to << "subject:" << subject
-                            << "body:" << body << "attachment:" << attachment;
-
-    // RFC 2368 says body's linebreaks need to be encoded as
-    // "%0D%0A", so normalize body to CRLF:
-    //body.replace(QLatin1Char('\n'), QStringLiteral("\r\n")).remove(QStringLiteral("\r\r"));
-
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("subject"), subject);
-    query.addQueryItem(QStringLiteral("body"), body);
-    if (!attachment.isEmpty()) {
-        query.addQueryItem(QStringLiteral("attach"), attachment);
-    }
-    QUrl url;
-    url.setScheme(QStringLiteral("mailto"));
-    url.setPath(to);
-    url.setQuery(query);
-    qCDebug(KLEOPATRA_LOG) << "openUrl" << url;
-    QDesktopServices::openUrl(url);
+                    QFileInfo{fileName});
     KMessageBox::information(this,
                                 xi18nc("@info",
                                     "<para><application>Kleopatra</application> tried to send a mail via your default mail client.</para>"
                                     "<para>Some mail clients are known not to support attachments when invoked this way.</para>"
-                                    "<para>If your mail client does not have an attachment, then drag the <application>Kleopatra</application> icon and drop it on the message compose window of your mail client.</para>"
-                                    "<para>If that does not work, either, save the request to a file, and then attach that.</para>"),
+                                    "<para>If your mail client does not have an attachment, then attach the file <filename>%1</filename> manually.</para>", fileName),
                                 i18nc("@title", "Sending Mail"),
-                                QStringLiteral("newcertificatewizard-mailto-troubles"));
+                                QStringLiteral("newcertificatewizard-openpgp-mailto-troubles"));
 }
 
 void ResultPage::slotUploadCertificateToDirectoryServer()

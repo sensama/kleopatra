@@ -415,6 +415,8 @@ set(_kleopatra_SRCS
   utils/clipboardmenu.h
   utils/dragqueen.cpp
   utils/dragqueen.h
+  utils/email.cpp
+  utils/email.h
   utils/filedialog.cpp
   utils/filedialog.h
   utils/gui-helper.cpp

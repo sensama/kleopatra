@@ -324,6 +324,7 @@ void ResultPage::invokeMailer(const QString &to, const QString &subject, const Q
     }
     QUrl url;
     url.setScheme(QStringLiteral("mailto"));
+    url.setPath(to);
     url.setQuery(query);
     qCDebug(KLEOPATRA_LOG) << "openUrl" << url;
     QDesktopServices::openUrl(url);

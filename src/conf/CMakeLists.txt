@@ -77,9 +77,7 @@ target_link_libraries(kcm_kleopatra_static
 
 if (NOT WIN32)
   add_library(kleopatra_config_gnupgsystem MODULE kcm_gnupgsystemconfigurationpage.cpp)
-  kcoreaddons_desktop_to_json(kleopatra_config_gnupgsystem kleopatra_config_gnupgsystem.desktop)
   target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static KF5::CoreAddons)
 
-  install(FILES kleopatra_config_gnupgsystem.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR})
-  install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim/kcms/kleopatra)
+  install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/kleopatra)
 endif()

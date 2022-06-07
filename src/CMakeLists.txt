@@ -175,6 +175,8 @@ set(_kleopatra_SRCS
   commands/lookupcertificatescommand.h
   commands/newcertificatecommand.cpp
   commands/newcertificatecommand.h
+  commands/newopenpgpcertificatecommand.cpp
+  commands/newopenpgpcertificatecommand.h
   commands/pivgeneratecardkeycommand.cpp
   commands/pivgeneratecardkeycommand.h
   commands/refreshcertificatecommand.cpp
@@ -333,6 +335,10 @@ set(_kleopatra_SRCS
   dialogs/lookupcertificatesdialog.h
   dialogs/nameandemailwidget.cpp
   dialogs/nameandemailwidget.h
+  dialogs/newopenpgpcertificatedetailsdialog.cpp
+  dialogs/newopenpgpcertificatedetailsdialog.h
+  dialogs/newopenpgpcertificateresultdialog.cpp
+  dialogs/newopenpgpcertificateresultdialog.h
   dialogs/ownertrustdialog.cpp
   dialogs/ownertrustdialog.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp

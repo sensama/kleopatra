@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -12,12 +14,14 @@
 #include "newcertificatecommand.h"
 
 #include "command_p.h"
+#include "newopenpgpcertificatecommand.h"
 
 #include "dialogs/choosecertificateprotocoldialog.h"
 #include "newcertificatewizard/newcertificatewizard.h"
 
 #include <settings.h>
 
+#include <kleopatra_debug.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -89,7 +93,20 @@ void NewCertificateCommand::Private::onProtocolChosen()
     protocol = protocolDialog->protocol();
     protocolDialog->deleteLater();
 
-    createCertificate();
+    if (protocol == GpgME::OpenPGP) {
+        auto cmd = new NewOpenPGPCertificateCommand{view(), controller()};
+        if (parentWidgetOrView() != view()) {
+            cmd->setParentWidget(parentWidgetOrView());
+        }
+        cmd->setParentWId(parentWId());
+        connect(cmd, &NewOpenPGPCertificateCommand::finished,
+                q, [this]() { finished(); });
+        connect(cmd, &NewOpenPGPCertificateCommand::canceled,
+                q, [this]() { canceled(); });
+        cmd->start();
+    } else {
+        createCertificate();
+    }
 }
 
 void Kleo::Commands::NewCertificateCommand::Private::createCertificate()

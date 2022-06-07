@@ -15,6 +15,8 @@
 
 #include "wizardpage_p.h"
 
+#include "utils/emptypassphraseprovider.h"
+
 namespace GpgME
 {
 class KeyGenerationResult;
@@ -52,7 +54,6 @@ private:
     struct UI;
     std::unique_ptr<UI> ui;
 
-    class EmptyPassphraseProvider;
-    std::unique_ptr<EmptyPassphraseProvider> mEmptyPWProvider;
+    EmptyPassphraseProvider mEmptyPassphraseProvider;
     QPointer<QGpgME::KeyGenerationJob> job;
 };

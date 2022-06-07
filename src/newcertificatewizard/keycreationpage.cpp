@@ -37,7 +37,6 @@
 #include <QVBoxLayout>
 
 #include <gpgme++/context.h>
-#include <gpgme++/interfaces/passphraseprovider.h>
 #include <gpgme++/keygenerationresult.h>
 
 #include "kleopatra_debug.h"
@@ -45,16 +44,6 @@
 using namespace Kleo;
 using namespace Kleo::NewCertificateUi;
 using namespace GpgME;
-
-class KeyCreationPage::EmptyPassphraseProvider: public PassphraseProvider
-{
-public:
-    char *getPassphrase(const char * /*useridHint*/, const char * /*description*/,
-                        bool /*previousWasBad*/, bool &/*canceled*/) override
-    {
-        return gpgrt_strdup ("");
-    }
-};
 
 struct KeyCreationPage::UI
 {
@@ -73,7 +62,6 @@ struct KeyCreationPage::UI
 KeyCreationPage::KeyCreationPage(QWidget *p)
     : WizardPage{p}
     , ui{new UI{this}}
-    , mEmptyPWProvider{new EmptyPassphraseProvider}
 {
     setObjectName(QString::fromUtf8("Kleo__NewCertificateUi__KeyCreationPage"));
 }
@@ -102,7 +90,7 @@ void KeyCreationPage::startJob()
     }
     if (!protectedKey() && pgp()) {
         auto ctx = QGpgME::Job::context(j);
-        ctx->setPassphraseProvider(mEmptyPWProvider.get());
+        ctx->setPassphraseProvider(&mEmptyPassphraseProvider);
         ctx->setPinentryMode(Context::PinentryLoopback);
     }
     connect(j, &QGpgME::KeyGenerationJob::result,

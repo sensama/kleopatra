@@ -417,6 +417,8 @@ set(_kleopatra_SRCS
   utils/dragqueen.h
   utils/email.cpp
   utils/email.h
+  utils/emptypassphraseprovider.cpp
+  utils/emptypassphraseprovider.h
   utils/filedialog.cpp
   utils/filedialog.h
   utils/gui-helper.cpp

@@ -964,7 +964,6 @@ void AdvancedSettingsDialog::loadDefaults()
     loadDefaultExpiration();
 
     updateWidgetVisibility();
-    setInitialFocus();
 }
 
 void AdvancedSettingsDialog::updateWidgetVisibility()
@@ -1102,4 +1101,13 @@ void AdvancedSettingsDialog::setInitialFocus()
     }
     // finally, focus the OK button
     ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
+}
+
+void AdvancedSettingsDialog::showEvent(QShowEvent *event)
+{
+    if (isFirstShowEvent) {
+        setInitialFocus();
+        isFirstShowEvent = false;
+    }
+    QDialog::showEvent(event);
 }

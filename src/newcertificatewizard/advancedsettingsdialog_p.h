@@ -115,6 +115,9 @@ private:
     void updateWidgetVisibility();
     void setInitialFocus();
 
+protected:
+    void showEvent(QShowEvent *event) override;
+
 private:
     struct UI;
     std::unique_ptr<UI> ui;
@@ -125,4 +128,5 @@ private:
     bool keyTypeImmutable = false;
     bool mECCSupported;
     bool mEdDSASupported;
+    bool isFirstShowEvent = true;
 };

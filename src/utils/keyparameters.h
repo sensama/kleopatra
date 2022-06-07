@@ -25,10 +25,12 @@ class KeyParameters
 {
 public:
     enum Protocol {
+        NoProtocol,
         OpenPGP,
         CMS,
     };
 
+    KeyParameters();
     explicit KeyParameters(Protocol protocol);
     ~KeyParameters();
 

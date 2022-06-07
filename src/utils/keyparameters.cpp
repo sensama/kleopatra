@@ -73,6 +73,11 @@ public:
     }
 };
 
+KeyParameters::KeyParameters()
+    : KeyParameters{NoProtocol}
+{
+}
+
 KeyParameters::KeyParameters(Protocol protocol)
     : d{new Private{protocol}}
 {

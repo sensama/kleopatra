@@ -80,7 +80,9 @@ static void set_keysize(QComboBox *cb, unsigned int strength)
         return;
     }
     const int idx = cb->findData(static_cast<int>(strength));
-    cb->setCurrentIndex(idx);
+    if (idx >= 0) {
+        cb->setCurrentIndex(idx);
+    }
 }
 
 static unsigned int get_keysize(const QComboBox *cb)
@@ -101,11 +103,9 @@ static void set_curve(QComboBox *cb, const QString &curve)
         return;
     }
     const int idx = cb->findText(curve, Qt::MatchFixedString);
-    if (idx < 0) {
-        // Can't happen as we don't have them configurable.
-        qCWarning(KLEOPATRA_LOG) << "curve " << curve << " not allowed";
+    if (idx >= 0) {
+        cb->setCurrentIndex(idx);
     }
-    cb->setCurrentIndex(idx);
 }
 
 static QString get_curve(const QComboBox *cb)

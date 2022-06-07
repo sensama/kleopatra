@@ -157,7 +157,7 @@ void Command::setParentWidget(QWidget *widget)
 
 void Command::setParentWId(WId wid)
 {
-    d->parentWId = wid;
+    d->parentWId_ = wid;
 }
 
 void Command::setView(QAbstractItemView *view)
@@ -229,8 +229,8 @@ void Command::addTemporaryView(const QString &title, AbstractKeyListSortFilterPr
 void Command::applyWindowID(QWidget *w) const
 {
     if (w) {
-        if (d->parentWId) {
-            if (QWidget *pw = QWidget::find(d->parentWId)) {
+        if (d->parentWId()) {
+            if (QWidget *pw = QWidget::find(d->parentWId())) {
                 // remember the current focus widget; re-parenting resets it
                 QWidget *focusWidget = w->focusWidget();
                 w->setParent(pw, w->windowFlags());
@@ -239,7 +239,7 @@ void Command::applyWindowID(QWidget *w) const
                 }
             } else {
                 w->setAttribute(Qt::WA_NativeWindow, true);
-                KWindowSystem::setMainWindow(w->windowHandle(), d->parentWId);
+                KWindowSystem::setMainWindow(w->windowHandle(), d->parentWId());
             }
         } else {
             // remember the current focus widget; re-parenting resets it

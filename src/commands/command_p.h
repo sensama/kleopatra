@@ -50,6 +50,10 @@ public:
             return view_;
         }
     }
+    WId parentWId() const
+    {
+        return parentWId_;
+    }
     KeyListModelInterface *model() const
     {
         return view_ ? dynamic_cast<KeyListModelInterface *>(view_->model()) : nullptr;
@@ -89,8 +93,8 @@ public:
 
     void error(const QString &text, const QString &caption = QString(), KMessageBox::Options options = KMessageBox::Notify) const
     {
-        if (parentWId) {
-            KMessageBox::errorWId(parentWId, text, caption, options);
+        if (parentWId_) {
+            KMessageBox::errorWId(parentWId_, text, caption, options);
         } else {
             KMessageBox::error(parentWidgetOrView(), text, caption, options);
         }
@@ -99,16 +103,16 @@ public:
     {
         static const QString noDontShowAgainName{};
         const QString title = caption.isEmpty() ? i18nc("@title:window", "Success") : caption;
-        if (parentWId) {
-            KMessageBox::informationWId(parentWId, text, title, noDontShowAgainName, options);
+        if (parentWId_) {
+            KMessageBox::informationWId(parentWId_, text, title, noDontShowAgainName, options);
         } else {
             KMessageBox::information(parentWidgetOrView(), text, title, noDontShowAgainName, options);
         }
     }
     void information(const QString &text, const QString &caption = QString(), const QString &dontShowAgainName = QString(), KMessageBox::Options options = KMessageBox::Notify) const
     {
-        if (parentWId) {
-            KMessageBox::informationWId(parentWId, text, caption, dontShowAgainName, options);
+        if (parentWId_) {
+            KMessageBox::informationWId(parentWId_, text, caption, dontShowAgainName, options);
         } else {
             KMessageBox::information(parentWidgetOrView(), text, caption, dontShowAgainName, options);
         }
@@ -126,7 +130,7 @@ private:
     QList<QPersistentModelIndex> indexes_;
     QPointer<QAbstractItemView> view_;
     QPointer<QWidget> parentWidget_;
-    WId parentWId = 0;
+    WId parentWId_ = 0;
     QPointer<KeyListController> controller_;
 };
 

@@ -78,6 +78,7 @@ class NewOpenPGPCertificateDetailsDialog::Private
             scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
             nameAndEmail = new NameAndEmailWidget{dialog};
+            nameAndEmail->layout()->setContentsMargins(0, 0, 0, 0);
             scrollAreaLayout->addWidget(nameAndEmail);
 
             withPassCheckBox = new QCheckBox{i18n("Protect the generated key with a passphrase."), dialog};

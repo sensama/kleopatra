@@ -81,6 +81,7 @@ public:
         scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
         ui.nameAndEmail = new NameAndEmailWidget{q};
+        ui.nameAndEmail->layout()->setContentsMargins(0, 0, 0, 0);
         ui.nameAndEmail->setNameIsRequired(nameIsRequired);
         ui.nameAndEmail->setNameLabel(config.readEntry("NAME_label"));
         ui.nameAndEmail->setNameHint(config.readEntry("NAME_hint", config.readEntry("NAME_placeholder")));

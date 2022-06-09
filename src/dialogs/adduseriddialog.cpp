@@ -82,8 +82,12 @@ public:
 
         ui.nameAndEmail = new NameAndEmailWidget{q};
         ui.nameAndEmail->setNameIsRequired(nameIsRequired);
+        ui.nameAndEmail->setNameLabel(config.readEntry("NAME_label"));
+        ui.nameAndEmail->setNameHint(config.readEntry("NAME_hint", config.readEntry("NAME_placeholder")));
         ui.nameAndEmail->setNamePattern(config.readEntry("NAME_regex"));
         ui.nameAndEmail->setEmailIsRequired(emailIsRequired);
+        ui.nameAndEmail->setEmailLabel(config.readEntry("EMAIL_label"));
+        ui.nameAndEmail->setEmailHint(config.readEntry("EMAIL_hint", config.readEntry("EMAIL_placeholder")));
         ui.nameAndEmail->setEmailPattern(config.readEntry("EMAIL_regex"));
         scrollAreaLayout->addWidget(ui.nameAndEmail);
 

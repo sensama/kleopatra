@@ -158,6 +158,20 @@ bool NameAndEmailWidget::nameIsRequired() const
     return d->ui.nameInput->isRequired();
 }
 
+void NameAndEmailWidget::setNameLabel(const QString &label)
+{
+    if (label.isEmpty()) {
+        d->ui.nameInput->setLabelText(i18nc("@label", "Name"));
+    } else {
+        d->ui.nameInput->setLabelText(label);
+    }
+}
+
+QString NameAndEmailWidget::nameLabel() const
+{
+    return d->ui.nameInput->label()->text();
+}
+
 void NameAndEmailWidget::setNameHint(const QString &hint)
 {
     d->ui.nameInput->setHint(hint);
@@ -196,6 +210,20 @@ void NameAndEmailWidget::setEmailIsRequired(bool required)
 bool NameAndEmailWidget::emailIsRequired() const
 {
     return d->ui.emailInput->isRequired();
+}
+
+void NameAndEmailWidget::setEmailLabel(const QString &label)
+{
+    if (label.isEmpty()) {
+        d->ui.emailInput->setLabelText(i18nc("@label", "Email address"));
+    } else {
+        d->ui.emailInput->setLabelText(label);
+    }
+}
+
+QString NameAndEmailWidget::emailLabel() const
+{
+    return d->ui.emailInput->label()->text();
 }
 
 void NameAndEmailWidget::setEmailHint(const QString &hint)

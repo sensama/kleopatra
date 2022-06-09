@@ -29,6 +29,8 @@ public:
     QString name() const;
     void setNameIsRequired(bool required);
     bool nameIsRequired() const;
+    void setNameLabel(const QString &label);
+    QString nameLabel() const;
     void setNameHint(const QString &hint);
     QString nameHint() const;
     void setNamePattern(const QString &pattern);
@@ -38,6 +40,8 @@ public:
     QString email() const;
     void setEmailIsRequired(bool required);
     bool emailIsRequired() const;
+    void setEmailLabel(const QString &label);
+    QString emailLabel() const;
     void setEmailHint(const QString &hint);
     QString emailHint() const;
     void setEmailPattern(const QString &pattern);

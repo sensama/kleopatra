@@ -91,20 +91,12 @@ public:
     {
         if (regexp.isEmpty()) {
             ui.nameInput->setValidator(Validation::simpleName(Validation::Optional));
-            ui.nameInput->setHint(i18n("Must not include <, >, and @."),
-                                    i18nc("text for screen readers",
-                                        "Must not include less-than sign, greater-than sign, and at sign."));
             ui.nameInput->setInvalidEntryErrorMessage(
                 i18n("The name must not include <, >, and @."),
                 i18nc("text for screen readers",
                         "The name must not include less-than sign, greater-than sign, and at sign."));
         } else {
             ui.nameInput->setValidator(Validation::simpleName(regexp, Validation::Optional));
-            ui.nameInput->setHint(i18n("Must be in the format required by your organization and "
-                                        "must not include <, >, and @."),
-                                    i18nc("text for screen readers",
-                                        "Must be in the format required by your organization and "
-                                        "must not include less-than sign, greater-than sign, and at sign."));
             ui.nameInput->setInvalidEntryErrorMessage(
                 i18n("The name must be in the format required by your organization and "
                         "it must not include <, >, and @."),
@@ -122,8 +114,6 @@ public:
                 "Enter an email address in the correct format, like name@example.com."));
         } else {
             ui.emailInput->setValidator(Validation::email(regexp, Validation::Optional));
-            ui.emailInput->setHint(i18n(
-                "Must be in the format required by your organization"));
             ui.emailInput->setInvalidEntryErrorMessage(i18n(
                 "Enter an email address in the correct format required by your organization."));
         }
@@ -168,6 +158,16 @@ bool NameAndEmailWidget::nameIsRequired() const
     return d->ui.nameInput->isRequired();
 }
 
+void NameAndEmailWidget::setNameHint(const QString &hint)
+{
+    d->ui.nameInput->setHint(hint);
+}
+
+QString NameAndEmailWidget::nameHint() const
+{
+    return d->ui.nameInput->hintLabel()->text();
+}
+
 void NameAndEmailWidget::setNamePattern(const QString &pattern)
 {
     d->setNamePattern(pattern);
@@ -196,6 +196,16 @@ void NameAndEmailWidget::setEmailIsRequired(bool required)
 bool NameAndEmailWidget::emailIsRequired() const
 {
     return d->ui.emailInput->isRequired();
+}
+
+void NameAndEmailWidget::setEmailHint(const QString &hint)
+{
+    d->ui.emailInput->setHint(hint);
+}
+
+QString NameAndEmailWidget::emailHint() const
+{
+    return d->ui.emailInput->hintLabel()->text();
 }
 
 void NameAndEmailWidget::setEmailPattern(const QString &pattern)

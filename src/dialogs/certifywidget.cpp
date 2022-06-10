@@ -357,7 +357,7 @@ public:
 
             mExpirationDateEdit->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
                                             KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
-            static const QDate maxAllowedDate{2106, 2, 6};
+            static const QDate maxAllowedDate{2106, 2, 5};
             const QDate today = QDate::currentDate();
             mExpirationDateEdit->setDateRange(today.addDays(1), maxAllowedDate,
                                               i18n("The certification must be valid at least until tomorrow."),

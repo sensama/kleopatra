@@ -33,6 +33,7 @@
 #include "utils/action_data.h"
 #include "utils/filedialog.h"
 #include "utils/clipboardmenu.h"
+#include "utils/gui-helper.h"
 
 #include "dialogs/updatenotification.h"
 
@@ -49,6 +50,7 @@
 #include <KMessageBox>
 #include <KStandardGuiItem>
 #include <KShortcutsDialog>
+#include <KToolBar>
 #include <KEditToolBar>
 #include "kleopatra_debug.h"
 #include <KConfigGroup>
@@ -390,6 +392,21 @@ MainWindow::Private::Private(MainWindow *qq)
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this] () {keyListingDone();});
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
+
+    // make toolbar buttons accessible by keyboard
+    if (auto toolbar = q->findChild<KToolBar*>()) {
+        auto toolbarButtons = toolbar->findChildren<QToolButton*>();
+        for (auto b : toolbarButtons) {
+            b->setFocusPolicy(Qt::TabFocus);
+        }
+        // move toolbar and its child widgets before the central widget in the tab order;
+        // this is necessary to make Shift+Tab work as expected
+        forceSetTabOrder(q, toolbar);
+        auto toolbarChildren = toolbar->findChildren<QWidget*>();
+        std::for_each(std::rbegin(toolbarChildren), std::rend(toolbarChildren), [toolbar](auto w) {
+            forceSetTabOrder(toolbar, w);
+        });
+    }
 
     q->setAcceptDrops(true);
 

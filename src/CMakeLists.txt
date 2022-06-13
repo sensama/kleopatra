@@ -363,6 +363,7 @@ set(_kleopatra_SRCS
   dialogs/weboftrustdialog.h
   dialogs/weboftrustwidget.cpp
   dialogs/weboftrustwidget.h
+  interfaces/focusfirstchild.h
   newcertificatewizard/advancedsettingsdialog.cpp
   newcertificatewizard/advancedsettingsdialog_p.h
   newcertificatewizard/enterdetailspage.cpp

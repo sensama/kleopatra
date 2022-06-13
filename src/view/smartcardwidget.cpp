@@ -76,6 +76,8 @@ public:
 
 class SmartCardWidget::Private
 {
+    friend class ::Kleo::SmartCardWidget;
+
 public:
     Private(SmartCardWidget *qq);
 
@@ -192,6 +194,29 @@ SmartCardWidget::SmartCardWidget(QWidget *parent)
 }
 
 Kleo::SmartCardWidget::~SmartCardWidget() = default;
+
+QWidget *getFirstEnabledFocusWidget(QWidget *parent)
+{
+    for (auto w = parent->nextInFocusChain(); w != parent; w = w->nextInFocusChain()) {
+        if (w->isEnabled() && (w->focusPolicy() != Qt::NoFocus)) {
+            return w;
+        }
+    }
+    return nullptr;
+}
+
+void SmartCardWidget::focusFirstChild(Qt::FocusReason reason)
+{
+    if (d->mStack->currentWidget() == d->mPlaceHolderWidget) {
+        if (auto w = getFirstEnabledFocusWidget(d->mPlaceHolderWidget)) {
+            w->setFocus(reason);
+        }
+    } else if (auto cardWidget = d->mTabWidget->currentWidget()) {
+        if (auto w = getFirstEnabledFocusWidget(cardWidget)) {
+            w->setFocus(reason);
+        }
+    }
+}
 
 void SmartCardWidget::reload()
 {

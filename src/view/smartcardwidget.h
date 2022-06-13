@@ -8,6 +8,8 @@
 */
 #pragma once
 
+#include <interfaces/focusfirstchild.h>
+
 #include <QWidget>
 
 #include <memory>
@@ -16,12 +18,14 @@ namespace Kleo
 {
 
 /* SmartCardWidget a generic widget to interact with smartcards */
-class SmartCardWidget: public QWidget
+class SmartCardWidget: public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
     explicit SmartCardWidget(QWidget *parent = nullptr);
     ~SmartCardWidget() override;
+
+    void focusFirstChild(Qt::FocusReason reason = Qt::OtherFocusReason) override;
 
 public Q_SLOTS:
     void reload();

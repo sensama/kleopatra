@@ -72,6 +72,8 @@ static GpgME::Protocol getProtocol(const std::shared_ptr<const Kleo::Crypto::Tas
 
 class PadWidget::Private
 {
+    friend class ::Kleo::PadWidget;
+
 public:
     Private(PadWidget *qq):
         q(qq),
@@ -533,4 +535,9 @@ PadWidget::PadWidget(QWidget *parent):
     QWidget(parent),
     d(new Private(this))
 {
+}
+
+void PadWidget::focusFirstChild(Qt::FocusReason reason)
+{
+    d->mEdit->setFocus(reason);
 }

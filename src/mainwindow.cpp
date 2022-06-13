@@ -12,6 +12,8 @@
 #include "aboutdata.h"
 #include "settings.h"
 
+#include <interfaces/focusfirstchild.h>
+
 #include "view/padwidget.h"
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
@@ -113,7 +115,7 @@ static const std::vector<QString> mainViewActionNames = {
     QStringLiteral("pad_view")
 };
 
-class CertificateView : public QWidget
+class CertificateView : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
@@ -131,6 +133,11 @@ public:
     TabWidget *tabWidget() const
     {
         return ui.tabWidget;
+    }
+
+    void focusFirstChild(Qt::FocusReason reason) override
+    {
+        ui.searchBar->lineEdit()->setFocus(reason);
     }
 
 private:
@@ -306,6 +313,9 @@ public:
             }
         }
         ui.stackWidget->setCurrentWidget(widget);
+        if (auto ffci = dynamic_cast<Kleo::FocusFirstChild *>(widget)) {
+            ffci->focusFirstChild(Qt::TabFocusReason);
+        }
     }
 
     void showCertificateView()

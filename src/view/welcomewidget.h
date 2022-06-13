@@ -1,4 +1,3 @@
-#pragma once
 /*  view/welcomewidget.h
 
     This file is part of Kleopatra, the KDE keymanager
@@ -7,18 +6,24 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+#pragma once
+
+#include <interfaces/focusfirstchild.h>
 
 #include <QWidget>
+
 #include <memory>
 
 namespace Kleo
 {
 /* Helper Widget that can be shown if a user has no keys */
-class WelcomeWidget: public QWidget
+class WelcomeWidget: public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
     explicit WelcomeWidget(QWidget *parent = nullptr);
+
+    void focusFirstChild(Qt::FocusReason reason = Qt::OtherFocusReason) override;
 
 private:
     class Private;

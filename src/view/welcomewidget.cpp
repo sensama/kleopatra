@@ -1,4 +1,4 @@
-/*  view/smartcardwidget.h
+/*  view/welcomewidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
@@ -6,6 +6,8 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+
+#include <config-kleopatra.h>
 
 #include "welcomewidget.h"
 
@@ -146,4 +148,9 @@ public:
 WelcomeWidget::WelcomeWidget (QWidget *parent): QWidget(parent),
     d(new Private(this))
 {
+}
+
+void WelcomeWidget::focusFirstChild(Qt::FocusReason reason)
+{
+    d->mLabel->setFocus(reason);
 }

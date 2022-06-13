@@ -9,18 +9,23 @@
 
 #pragma once
 
+#include <interfaces/focusfirstchild.h>
+
 #include <QWidget>
+
 #include <memory>
 
 namespace Kleo
 {
 /** The padwidget provides a general I/O area inside of kleopatra
  * and can be used as an alternative view to the tabwidget. */
-class PadWidget: public QWidget
+class PadWidget: public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
     explicit PadWidget(QWidget *parent = Q_NULLPTR);
+
+    void focusFirstChild(Qt::FocusReason reason = Qt::OtherFocusReason) override;
 
 private:
     class Private;

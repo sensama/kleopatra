@@ -359,35 +359,35 @@ private:
     bool firstShow : 1;
     struct UI {
         CertificateView *searchTab = nullptr;
-        PadWidget *padWidget;
-        SmartCardWidget *scWidget;
-        WelcomeWidget *welcomeWidget;
-        QStackedWidget *stackWidget;
+        PadWidget *padWidget = nullptr;
+        SmartCardWidget *scWidget = nullptr;
+        WelcomeWidget *welcomeWidget = nullptr;
+        QStackedWidget *stackWidget = nullptr;
         explicit UI(MainWindow *q);
     } ui;
-    QAction *focusToClickSearchAction;
-    ClipboardMenu *clipboadMenu;
+    QAction *focusToClickSearchAction = nullptr;
+    ClipboardMenu *clipboadMenu = nullptr;
 };
 
 MainWindow::Private::UI::UI(MainWindow *q)
     : padWidget(nullptr)
 {
-    auto mainWidget = new QWidget;
+    auto mainWidget = new QWidget{q};
     auto mainLayout = new QVBoxLayout(mainWidget);
-    stackWidget = new QStackedWidget;
-
-    mainLayout->addWidget(stackWidget);
+    stackWidget = new QStackedWidget{q};
 
     searchTab = new CertificateView{q};
     stackWidget->addWidget(searchTab);
 
     new KeyCacheOverlay(mainWidget, q);
 
-    scWidget = new SmartCardWidget();
+    scWidget = new SmartCardWidget{q};
     stackWidget->addWidget(scWidget);
 
-    welcomeWidget = new WelcomeWidget();
+    welcomeWidget = new WelcomeWidget{q};
     stackWidget->addWidget(welcomeWidget);
+
+    mainLayout->addWidget(stackWidget);
 
     q->setCentralWidget(mainWidget);
 }

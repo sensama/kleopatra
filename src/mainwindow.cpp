@@ -112,6 +112,46 @@ static const std::vector<QString> mainViewActionNames = {
     QStringLiteral("manage_smartcard"),
     QStringLiteral("pad_view")
 };
+
+class CertificateView : public QWidget
+{
+    Q_OBJECT
+public:
+    CertificateView(QWidget* parent = nullptr)
+        : QWidget{parent}
+        , ui{this}
+    {
+    }
+
+    SearchBar *searchBar() const
+    {
+        return ui.searchBar;
+    }
+
+    TabWidget *tabWidget() const
+    {
+        return ui.tabWidget;
+    }
+
+private:
+    struct UI {
+        TabWidget *tabWidget = nullptr;
+        SearchBar *searchBar = nullptr;
+        explicit UI(CertificateView *q)
+        {
+            auto vbox = new QVBoxLayout{q};
+            vbox->setSpacing(0);
+
+            searchBar = new SearchBar{q};
+            vbox->addWidget(searchBar);
+            tabWidget = new TabWidget{q};
+            vbox->addWidget(tabWidget);
+
+            tabWidget->connectSearchBar(searchBar);
+        }
+    } ui;
+};
+
 }
 
 class MainWindow::Private
@@ -181,7 +221,7 @@ public:
     void updateSearchBarClickMessage()
     {
         const QString shortcutStr = focusToClickSearchAction->shortcut().toString();
-        ui.searchBar->updateClickMessage(shortcutStr);
+        ui.searchTab->searchBar()->updateClickMessage(shortcutStr);
     }
 
     void updateStatusBar()
@@ -252,7 +292,7 @@ public:
 
     void slotFocusQuickSearch()
     {
-        ui.searchBar->lineEdit()->setFocus();
+        ui.searchTab->searchBar()->lineEdit()->setFocus();
     }
 
     void showView(const QString &actionName, QWidget *widget)
@@ -270,8 +310,11 @@ public:
 
     void showCertificateView()
     {
-        showView(QStringLiteral("view_certificate_overview"),
-                 KeyCache::instance()->keys().empty() ? ui.welcomeWidget : ui.searchTab);
+        if (KeyCache::instance()->keys().empty()) {
+            showView(QStringLiteral("view_certificate_overview"), ui.welcomeWidget);
+        } else {
+            showView(QStringLiteral("view_certificate_overview"), ui.searchTab);
+        }
     }
 
     void showSmartcardView()
@@ -299,7 +342,7 @@ private:
 
     QAbstractItemView *currentView() const
     {
-        return ui.tabWidget.currentView();
+        return ui.searchTab->tabWidget()->currentView();
     }
 
     void keyListingDone()
@@ -315,9 +358,7 @@ private:
     Kleo::KeyListController controller;
     bool firstShow : 1;
     struct UI {
-        QWidget *searchTab;
-        TabWidget tabWidget;
-        SearchBar *searchBar;
+        CertificateView *searchTab = nullptr;
         PadWidget *padWidget;
         SmartCardWidget *scWidget;
         WelcomeWidget *welcomeWidget;
@@ -329,24 +370,15 @@ private:
 };
 
 MainWindow::Private::UI::UI(MainWindow *q)
-    : tabWidget(q), padWidget(nullptr)
+    : padWidget(nullptr)
 {
-    KDAB_SET_OBJECT_NAME(tabWidget);
-
-    searchTab = new QWidget;
-    auto vbox = new QVBoxLayout(searchTab);
-    vbox->setSpacing(0);
-    searchBar = new SearchBar;
-    vbox->addWidget(searchBar);
-    tabWidget.connectSearchBar(searchBar);
-    vbox->addWidget(&tabWidget);
-
     auto mainWidget = new QWidget;
     auto mainLayout = new QVBoxLayout(mainWidget);
     stackWidget = new QStackedWidget;
 
     mainLayout->addWidget(stackWidget);
 
+    searchTab = new CertificateView{q};
     stackWidget->addWidget(searchTab);
 
     new KeyCacheOverlay(mainWidget, q);
@@ -376,10 +408,10 @@ MainWindow::Private::Private(MainWindow *qq)
 
     controller.setFlatModel(flatModel);
     controller.setHierarchicalModel(hierarchicalModel);
-    controller.setTabWidget(&ui.tabWidget);
+    controller.setTabWidget(ui.searchTab->tabWidget());
 
-    ui.tabWidget.setFlatModel(flatModel);
-    ui.tabWidget.setHierarchicalModel(hierarchicalModel);
+    ui.searchTab->tabWidget()->setFlatModel(flatModel);
+    ui.searchTab->tabWidget()->setHierarchicalModel(hierarchicalModel);
 
     setupActions();
 
@@ -554,7 +586,7 @@ void MainWindow::Private::setupActions()
 
     controller.createActions(coll);
 
-    ui.tabWidget.createActions(coll);
+    ui.searchTab->tabWidget()->createActions(coll);
 }
 
 void MainWindow::Private::slotConfigCommitted()
@@ -594,7 +626,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
     if (isQuitting || qApp->isSavingSession()) {
-        d->ui.tabWidget.saveViews(KSharedConfig::openConfig().data());
+        d->ui.searchTab->tabWidget()->saveViews(KSharedConfig::openConfig().data());
         KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
         saveMainWindowSettings(grp);
         e->accept();
@@ -608,14 +640,13 @@ void MainWindow::showEvent(QShowEvent *e)
 {
     KXmlGuiWindow::showEvent(e);
     if (d->firstShow) {
-        d->ui.tabWidget.loadViews(KSharedConfig::openConfig().data());
+        d->ui.searchTab->tabWidget()->loadViews(KSharedConfig::openConfig().data());
         d->firstShow = false;
     }
 
     if (!savedGeometry.isEmpty()) {
         restoreGeometry(savedGeometry);
     }
-
 }
 
 void MainWindow::hideEvent(QHideEvent *e)
@@ -733,4 +764,5 @@ void MainWindow::saveProperties(KConfigGroup &cg)
     cg.writeEntry("hidden", isHidden());
 }
 
+#include "mainwindow.moc"
 #include "moc_mainwindow.cpp"

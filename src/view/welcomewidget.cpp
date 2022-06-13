@@ -59,9 +59,10 @@ public:
                                       "https://en.wikipedia.org/wiki/Public-key_cryptography");
         const QString learnMore = i18nc("%1 is link a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
 
-        auto label = new QLabel(templ.arg(welcome).arg(introduction).arg(keyExplanation).arg(privateKeyExplanation).arg(publicKeyExplanation).arg(learnMore));
-        label->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        label->setOpenExternalLinks(true);
+        const auto labelText = templ.arg(welcome).arg(introduction).arg(keyExplanation).arg(privateKeyExplanation).arg(publicKeyExplanation).arg(learnMore);
+        mLabel = new QLabel{labelText, q};
+        mLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        mLabel->setOpenExternalLinks(true);
 
         auto genKeyAction = new QAction(q);
         genKeyAction->setText(i18n("New Key Pair..."));
@@ -74,7 +75,7 @@ public:
         connect(importAction, &QAction::triggered, q, [this] () { import(); });
         connect(genKeyAction, &QAction::triggered, q, [this] () { generate(); });
 
-        mGenerateBtn = new QToolButton();
+        mGenerateBtn = new QToolButton{q};
         mGenerateBtn->setDefaultAction(genKeyAction);
         mGenerateBtn->setIconSize(QSize(64, 64));
         mGenerateBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -84,7 +85,7 @@ public:
         KConfigGroup restrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
         mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
 
-        mImportBtn = new QToolButton();
+        mImportBtn = new QToolButton{q};
         mImportBtn->setDefaultAction(importAction);
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -104,7 +105,7 @@ public:
         vLay->addStretch(-1);
 
         hLay->addStretch(-1);
-        hLay->addWidget(label);
+        hLay->addWidget(mLabel);
         hLay->addStretch(-1);
     }
 
@@ -136,8 +137,9 @@ public:
     }
 
     WelcomeWidget *const q;
-    QToolButton *mGenerateBtn;
-    QToolButton *mImportBtn;
+    QLabel *mLabel = nullptr;
+    QToolButton *mGenerateBtn = nullptr;
+    QToolButton *mImportBtn = nullptr;
 };
 
 

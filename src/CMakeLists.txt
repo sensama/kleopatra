@@ -419,6 +419,8 @@ set(_kleopatra_SRCS
   utils/auditlog.h
   utils/clipboardmenu.cpp
   utils/clipboardmenu.h
+  utils/debug-helpers.cpp
+  utils/debug-helpers.h
   utils/dragqueen.cpp
   utils/dragqueen.h
   utils/email.cpp

@@ -10,7 +10,6 @@
 #include "checksumsutils_p.h"
 #include <Libkleo/ChecksumDefinition>
 
-#include "kleopatra_debug.h"
 
 #include <QFile>
 #include <QTextStream>

@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include <interfaces/anchorprovider.h>
+
 #include <QLabel>
 
 #include <memory>
@@ -17,7 +19,7 @@
 namespace Kleo
 {
 
-class HtmlLabel : public QLabel
+class HtmlLabel : public QLabel, public AnchorProvider
 {
     Q_OBJECT
 public:
@@ -28,6 +30,12 @@ public:
     void setHtml(const QString &html);
 
     void setLinkColor(const QColor &color);
+
+    // AnchorProvider
+    int numberOfAnchors() const override;
+    QString anchorText(int index) const override;
+    QString anchorHref(int index) const override;
+    int selectedAnchor() const override;
 
 protected:
     void focusInEvent(QFocusEvent *ev) override;

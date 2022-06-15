@@ -16,15 +16,25 @@ class QLabel;
 
 namespace Kleo
 {
+class AnchorProvider;
 
 class AccessibleRichTextLabel : public QAccessibleWidget, public QAccessibleTextInterface
 {
 public:
     explicit AccessibleRichTextLabel(QWidget *o);
+    ~AccessibleRichTextLabel() override;
 
     void *interface_cast(QAccessible::InterfaceType t) override;
     QAccessible::State state() const override;
     QString text(QAccessible::Text t) const override;
+
+    // relations
+    QAccessibleInterface *focusChild() const override;
+
+    // navigation, hierarchy
+    QAccessibleInterface *child(int index) const override;
+    int childCount() const override;
+    int indexOfChild(const QAccessibleInterface *child) const override;
 
     // QAccessibleTextInterface
     // selection
@@ -50,8 +60,16 @@ public:
     QString attributes(int offset, int *startOffset, int *endOffset) const override;
 
 private:
+    struct ChildData;
+
     QLabel *label() const;
+    AnchorProvider *anchorProvider() const;
     QString displayText() const;
+
+    std::vector<ChildData> &childCache() const;
+    void clearChildCache() const;
+
+    mutable std::vector<ChildData> mChildCache;
 };
 
 }

@@ -81,6 +81,8 @@ ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwid
 set(_kleopatra_SRCS
   ${_kleopatra_extra_SRCS}
 
+  accessibility/accessiblelink.cpp
+  accessibility/accessiblelink_p.h
   accessibility/accessiblerichtextlabel.cpp
   accessibility/accessiblerichtextlabel_p.h
   accessibility/accessiblewidgetfactory.cpp
@@ -363,6 +365,7 @@ set(_kleopatra_SRCS
   dialogs/weboftrustdialog.h
   dialogs/weboftrustwidget.cpp
   dialogs/weboftrustwidget.h
+  interfaces/anchorprovider.h
   interfaces/focusfirstchild.h
   newcertificatewizard/advancedsettingsdialog.cpp
   newcertificatewizard/advancedsettingsdialog_p.h

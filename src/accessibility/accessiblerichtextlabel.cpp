@@ -12,10 +12,18 @@
 
 #include "accessiblerichtextlabel_p.h"
 
+#include "accessiblelink_p.h"
+
+#include <interfaces/anchorprovider.h>
+
 #include <QLabel>
 #include <QTextDocument>
 
 using namespace Kleo;
+
+struct AccessibleRichTextLabel::ChildData {
+    QAccessible::Id id = 0;
+};
 
 AccessibleRichTextLabel::AccessibleRichTextLabel(QWidget *w)
     : QAccessibleWidget{w, QAccessible::StaticText}
@@ -23,10 +31,16 @@ AccessibleRichTextLabel::AccessibleRichTextLabel(QWidget *w)
     Q_ASSERT(qobject_cast<QLabel *>(w));
 }
 
+AccessibleRichTextLabel::~AccessibleRichTextLabel()
+{
+    clearChildCache();
+}
+
 void *AccessibleRichTextLabel::interface_cast(QAccessible::InterfaceType t)
 {
-    if (t == QAccessible::TextInterface)
+    if (t == QAccessible::TextInterface) {
         return static_cast<QAccessibleTextInterface *>(this);
+    }
     return QAccessibleWidget::interface_cast(t);
 }
 
@@ -51,9 +65,53 @@ QString AccessibleRichTextLabel::text(QAccessible::Text t) const
     default:
         break;
     }
-    if (str.isEmpty())
+    if (str.isEmpty()) {
         str = QAccessibleWidget::text(t);
+    }
     return str;
+}
+
+QAccessibleInterface *AccessibleRichTextLabel::focusChild() const
+{
+    if (const auto *const ap = anchorProvider()) {
+        const int childIndex = ap->selectedAnchor();
+        if (childIndex >= 0) {
+            return child(childIndex);
+        }
+    }
+    return QAccessibleWidget::focusChild();
+}
+
+QAccessibleInterface *AccessibleRichTextLabel::child(int index) const
+{
+    const auto *const ap = anchorProvider();
+    if (ap && index >= 0 && index < ap->numberOfAnchors()) {
+        auto &childData = childCache()[index];
+        if (childData.id != 0) {
+            return QAccessible::accessibleInterface(childData.id);
+        }
+
+        QAccessibleInterface *iface = new AccessibleLink{widget(), index};
+        childData.id = QAccessible::registerAccessibleInterface(iface);
+        return iface;
+    }
+    return nullptr;
+}
+
+int AccessibleRichTextLabel::childCount() const
+{
+    if (const auto *const ap = anchorProvider()) {
+        return ap->numberOfAnchors();
+    }
+    return 0;
+}
+
+int AccessibleRichTextLabel::indexOfChild(const QAccessibleInterface *child) const
+{
+    if ((child->role() == QAccessible::Link) && (child->parent() == this)) {
+        return static_cast<const AccessibleLink *>(child)->index();
+    }
+    return -1;
 }
 
 void AccessibleRichTextLabel::selection(int selectionIndex, int *startOffset, int *endOffset) const
@@ -150,6 +208,11 @@ QLabel *AccessibleRichTextLabel::label() const
     return qobject_cast<QLabel*>(object());
 }
 
+AnchorProvider *AccessibleRichTextLabel::anchorProvider() const
+{
+    return dynamic_cast<AnchorProvider *>(object());
+}
+
 QString AccessibleRichTextLabel::displayText() const
 {
     // calculate an approximation of the displayed text without using private
@@ -162,4 +225,28 @@ QString AccessibleRichTextLabel::displayText() const
         str = doc.toPlainText();
     }
     return str;
+}
+
+std::vector<AccessibleRichTextLabel::ChildData> &AccessibleRichTextLabel::childCache() const
+{
+    const auto *const ap = anchorProvider();
+    if (!ap || static_cast<int>(mChildCache.size()) == ap->numberOfAnchors()) {
+        return mChildCache;
+    }
+
+    clearChildCache();
+    // fill the cache with default-initialized child data
+    mChildCache.resize(ap->numberOfAnchors());
+
+    return mChildCache;
+}
+
+void AccessibleRichTextLabel::clearChildCache() const
+{
+    std::for_each(std::cbegin(mChildCache), std::cend(mChildCache), [](const auto &child) {
+        if (child.id != 0) {
+            QAccessible::deleteAccessibleInterface(child.id);
+        }
+    });
+    mChildCache.clear();
 }

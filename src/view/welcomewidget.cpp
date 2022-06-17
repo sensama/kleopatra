@@ -11,6 +11,8 @@
 
 #include "welcomewidget.h"
 
+#include "htmllabel.h"
+
 #include <version-kleopatra.h>
 #include <Libkleo/GnuPG>
 
@@ -62,7 +64,7 @@ public:
         const QString learnMore = i18nc("%1 is link a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
 
         const auto labelText = templ.arg(welcome).arg(introduction).arg(keyExplanation).arg(privateKeyExplanation).arg(publicKeyExplanation).arg(learnMore);
-        mLabel = new QLabel{labelText, q};
+        mLabel = new HtmlLabel{labelText, q};
         mLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
         mLabel->setOpenExternalLinks(true);
 
@@ -139,7 +141,7 @@ public:
     }
 
     WelcomeWidget *const q;
-    QLabel *mLabel = nullptr;
+    HtmlLabel *mLabel = nullptr;
     QToolButton *mGenerateBtn = nullptr;
     QToolButton *mImportBtn = nullptr;
 };

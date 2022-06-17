@@ -27,6 +27,8 @@ public:
     explicit HtmlLabel(const QString &html, QWidget *parent = nullptr);
     ~HtmlLabel() override;
 
+    void setSelectTextOnFocus(bool select);
+
     void setHtml(const QString &html);
 
     void setLinkColor(const QColor &color);

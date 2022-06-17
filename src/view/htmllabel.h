@@ -35,6 +35,7 @@ public:
     int numberOfAnchors() const override;
     QString anchorText(int index) const override;
     QString anchorHref(int index) const override;
+    void activateAnchor(int index) override;
     int selectedAnchor() const override;
 
 protected:

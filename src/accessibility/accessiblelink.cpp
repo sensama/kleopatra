@@ -113,6 +113,33 @@ QAccessible::State AccessibleLink::state() const
     return s;
 }
 
+void *AccessibleLink::interface_cast(QAccessible::InterfaceType t)
+{
+    if (t == QAccessible::ActionInterface) {
+        return static_cast<QAccessibleActionInterface*>(this);
+    }
+    return nullptr;
+}
+
+QStringList AccessibleLink::actionNames() const
+{
+    return {pressAction()};
+}
+
+void AccessibleLink::doAction(const QString &actionName)
+{
+    if (actionName == pressAction()) {
+        if (auto ap = anchorProvider()) {
+            ap->activateAnchor(mIndex);
+        }
+    }
+}
+
+QStringList AccessibleLink::keyBindingsForAction(const QString &) const
+{
+    return {};
+}
+
 int AccessibleLink::index() const
 {
     return mIndex;

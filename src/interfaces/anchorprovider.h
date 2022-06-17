@@ -23,6 +23,7 @@ public:
     virtual int numberOfAnchors() const = 0;
     virtual QString anchorText(int index) const = 0;
     virtual QString anchorHref(int index) const = 0;
+    virtual void activateAnchor(int index) = 0;
     virtual int selectedAnchor() const = 0;
 };
 

@@ -14,6 +14,7 @@
 #include "utils/accessibility.h"
 
 #include <QAccessible>
+#include <QDesktopServices>
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextDocument>
@@ -186,6 +187,32 @@ QString HtmlLabel::anchorHref(int index) const
         return d->anchors()[index].href;
     }
     return {};
+}
+
+void HtmlLabel::activateAnchor(int index)
+{
+    // based on QWidgetTextControlPrivate::activateLinkUnderCursor
+    if (index < 0 || index >= numberOfAnchors()) {
+        return;
+    }
+    const auto &anchor = d->anchors()[index];
+    if (anchor.href.isEmpty()) {
+        return;
+    }
+    if (hasFocus()) {
+        // move cursor just before the anchor and clear the selection
+        setSelection(anchor.start, 0);
+        // focus the anchor
+        focusNextPrevChild(true);
+    } else {
+        // clear the selection moving the cursor just after the anchor
+        setSelection(anchor.end, 0);
+    }
+    if (openExternalLinks()) {
+        QDesktopServices::openUrl(QUrl{anchor.href});
+    } else {
+        Q_EMIT linkActivated(anchor.href);
+    }
 }
 
 int HtmlLabel::selectedAnchor() const

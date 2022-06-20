@@ -43,7 +43,6 @@ public:
     int anchorIndex(int start);
     void invalidateAnchorCache();
 
-    bool mSelectTextOnFocus = false;
     bool mAnchorsValid = false;
     std::vector<AnchorData> mAnchors;
     QColor linkColor;
@@ -153,11 +152,6 @@ HtmlLabel::HtmlLabel(const QString &html, QWidget *parent)
 
 HtmlLabel::~HtmlLabel() = default;
 
-void HtmlLabel::setSelectTextOnFocus(bool select)
-{
-    d->mSelectTextOnFocus = select;
-}
-
 void HtmlLabel::setHtml(const QString &html)
 {
     if (html.isEmpty()) {
@@ -224,23 +218,6 @@ void HtmlLabel::activateAnchor(int index)
 int HtmlLabel::selectedAnchor() const
 {
     return d->anchorIndex(selectionStart());
-}
-
-void HtmlLabel::focusInEvent(QFocusEvent *ev)
-{
-    QLabel::focusInEvent(ev);
-
-    if (d->mSelectTextOnFocus) {
-        // if the text label gets focus, then select its text; this is a workaround
-        // for missing focus indicators for labels in many Qt styles
-        const Qt::FocusReason reason = ev->reason();
-        const auto isKeyboardFocusEvent = reason == Qt::TabFocusReason
-                                    || reason == Qt::BacktabFocusReason
-                                    || reason == Qt::ShortcutFocusReason;
-        if (!text().isEmpty() && isKeyboardFocusEvent) {
-            Kleo::selectLabelText(this);
-        }
-    }
 }
 
 bool HtmlLabel::focusNextPrevChild(bool next)

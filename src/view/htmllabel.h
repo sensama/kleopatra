@@ -27,8 +27,6 @@ public:
     explicit HtmlLabel(const QString &html, QWidget *parent = nullptr);
     ~HtmlLabel() override;
 
-    void setSelectTextOnFocus(bool select);
-
     void setHtml(const QString &html);
 
     void setLinkColor(const QColor &color);
@@ -41,7 +39,6 @@ public:
     int selectedAnchor() const override;
 
 protected:
-    void focusInEvent(QFocusEvent *ev) override;
     bool focusNextPrevChild(bool next) override;
 
 private:

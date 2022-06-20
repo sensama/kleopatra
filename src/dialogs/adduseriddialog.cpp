@@ -98,7 +98,6 @@ public:
             ui.resultLabel = new HtmlLabel{q};
             ui.resultLabel->setWordWrap(true);
             ui.resultLabel->setFocusPolicy(Qt::ClickFocus);
-            ui.resultLabel->setSelectTextOnFocus(true);
             labelHelper.addLabel(ui.resultLabel);
             scrollAreaLayout->addWidget(ui.resultLabel);
         }

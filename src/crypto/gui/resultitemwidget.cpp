@@ -251,7 +251,6 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     overview->setHtml(d->m_result->overview());
     overview->setStyleSheet(styleSheet);
     overview->setLinkColor(linkColor);
-    overview->setSelectTextOnFocus(true);
     setFocusPolicy(overview->focusPolicy());
     setFocusProxy(overview);
     connect(overview, &QLabel::linkActivated,
@@ -281,7 +280,6 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     detailsLabel->setHtml(d->m_result->details());
     detailsLabel->setStyleSheet(styleSheet);
     detailsLabel->setLinkColor(linkColor);
-    detailsLabel->setSelectTextOnFocus(true);
     connect(detailsLabel, &QLabel::linkActivated,
             this, [this](const auto &link) { d->slotLinkActivated(link); });
     vlay->addWidget(detailsLabel);

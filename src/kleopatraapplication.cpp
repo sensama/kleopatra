@@ -59,6 +59,7 @@
 #include <QDesktopServices>
 #include <QFile>
 #include <QDir>
+#include <QFocusFrame>
 #include <QPointer>
 
 #include <memory>
@@ -145,6 +146,7 @@ private:
 public:
     bool ignoreNewInstance;
     bool firstNewInstance;
+    QPointer<QFocusFrame> focusFrame;
     QPointer<ConfigureDialog> configureDialog;
     QPointer<MainWindow> mainWindow;
     SmartCard::ReaderStatus readerStatus;
@@ -210,13 +212,28 @@ public:
         }
         UiServer::setLogStream(log->logFile());
 #endif
+    }
 
+    void updateFocusFrame(QWidget *focusWidget)
+    {
+        if (focusWidget && focusWidget->inherits("QLabel")) {
+            if (!focusFrame) {
+                focusFrame = new QFocusFrame{focusWidget};
+            }
+            focusFrame->setWidget(focusWidget);
+        } else if (focusFrame) {
+            focusFrame->setWidget(nullptr);
+        }
     }
 };
 
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     : QApplication(argc, argv), d(new Private(this))
 {
+    connect(this, &QApplication::focusChanged,
+            this, [this](QWidget *, QWidget *now) {
+                d->updateFocusFrame(now);
+            });
 }
 
 void KleopatraApplication::init()

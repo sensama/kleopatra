@@ -2,7 +2,7 @@
     view/htmllabel.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -11,40 +11,26 @@
 #include <config-kleopatra.h>
 
 #include "htmllabel.h"
-#include "utils/accessibility.h"
+
+#include "anchorcache_p.h"
 
 #include <QAccessible>
 #include <QDesktopServices>
-#include <QTextBlock>
-#include <QTextCursor>
-#include <QTextDocument>
 
 using namespace Kleo;
-
-namespace
-{
-struct AnchorData {
-    int start;
-    int end;
-    QString text;
-    QString href;
-};
-}
 
 class HtmlLabel::Private
 {
     HtmlLabel *q;
 public:
-    Private(HtmlLabel *q) : q{q} {}
+    Private(HtmlLabel *qq)
+        : q{qq}
+    {
+    }
 
     void updateText(const QString &newText = {});
 
-    std::vector<AnchorData> &anchors();
-    int anchorIndex(int start);
-    void invalidateAnchorCache();
-
-    bool mAnchorsValid = false;
-    std::vector<AnchorData> mAnchors;
+    AnchorCache mAnchorCache;
     QColor linkColor;
 };
 
@@ -62,79 +48,9 @@ void HtmlLabel::Private::updateText(const QString &newText)
     } else {
         q->setText(styleTag + newText);
     }
-    invalidateAnchorCache();
+    mAnchorCache.setText(q->text());
 }
 
-std::vector<AnchorData> &HtmlLabel::Private::anchors()
-{
-    if (mAnchorsValid) {
-        return mAnchors;
-    }
-
-    mAnchors.clear();
-
-    QTextDocument doc;
-    doc.setHtml(q->text());
-
-    // taken from QWidgetTextControl::setFocusToNextOrPreviousAnchor and QWidgetTextControl::findNextPrevAnchor
-    for (QTextBlock block = doc.begin(); block.isValid(); block = block.next()) {
-        QTextBlock::Iterator it = block.begin();
-
-        while (!it.atEnd()) {
-            const QTextFragment fragment = it.fragment();
-            const QTextCharFormat fmt = fragment.charFormat();
-
-            if (fmt.isAnchor() && fmt.hasProperty(QTextFormat::AnchorHref)) {
-                const int anchorStart = fragment.position();
-                const QString anchorHref = fmt.anchorHref();
-                int anchorEnd = -1;
-
-                // find next non-anchor fragment
-                for (; !it.atEnd(); ++it) {
-                    const QTextFragment fragment = it.fragment();
-                    const QTextCharFormat fmt = fragment.charFormat();
-
-                    if (!fmt.isAnchor() || fmt.anchorHref() != anchorHref) {
-                        anchorEnd = fragment.position();
-                        break;
-                    }
-                }
-
-                if (anchorEnd == -1) {
-                    anchorEnd = block.position() + block.length() - 1;
-                }
-
-                QTextCursor cursor{&doc};
-                cursor.setPosition(anchorStart);
-                cursor.setPosition(anchorEnd, QTextCursor::KeepAnchor);
-                QString anchorText = cursor.selectedText();
-                mAnchors.push_back({anchorStart, anchorEnd, anchorText, anchorHref});
-            } else {
-                ++it;
-            }
-        }
-    }
-
-    mAnchorsValid = true;
-    return mAnchors;
-}
-
-int HtmlLabel::Private::anchorIndex(int start)
-{
-    anchors(); // ensure that the anchor cache is valid
-    auto it = std::find_if(std::cbegin(mAnchors), std::cend(mAnchors), [start](const auto &anchor) {
-        return anchor.start == start;
-    });
-    if (it != std::cend(mAnchors)) {
-        return std::distance(std::cbegin(mAnchors), it);
-    }
-    return -1;
-}
-
-void HtmlLabel::Private::invalidateAnchorCache()
-{
-    mAnchorsValid = false;
-}
 
 HtmlLabel::HtmlLabel(QWidget *parent)
     : HtmlLabel{{}, parent}
@@ -156,7 +72,7 @@ void HtmlLabel::setHtml(const QString &html)
 {
     if (html.isEmpty()) {
         clear();
-        d->invalidateAnchorCache();
+        d->mAnchorCache.clear();
         return;
     }
     d->updateText(html);
@@ -170,21 +86,21 @@ void HtmlLabel::setLinkColor(const QColor &color)
 
 int HtmlLabel::numberOfAnchors() const
 {
-    return d->anchors().size();
+    return d->mAnchorCache.size();
 }
 
 QString HtmlLabel::anchorText(int index) const
 {
-    if (index >= 0 && index < numberOfAnchors()) {
-        return d->anchors()[index].text;
+    if (index >= 0 && index < d->mAnchorCache.size()) {
+        return d->mAnchorCache[index].text;
     }
     return {};
 }
 
 QString HtmlLabel::anchorHref(int index) const
 {
-    if (index >= 0 && index < numberOfAnchors()) {
-        return d->anchors()[index].href;
+    if (index >= 0 && index < d->mAnchorCache.size()) {
+        return d->mAnchorCache[index].href;
     }
     return {};
 }
@@ -192,10 +108,10 @@ QString HtmlLabel::anchorHref(int index) const
 void HtmlLabel::activateAnchor(int index)
 {
     // based on QWidgetTextControlPrivate::activateLinkUnderCursor
-    if (index < 0 || index >= numberOfAnchors()) {
+    if (index < 0 || index >= d->mAnchorCache.size()) {
         return;
     }
-    const auto &anchor = d->anchors()[index];
+    const auto &anchor = d->mAnchorCache[index];
     if (anchor.href.isEmpty()) {
         return;
     }
@@ -217,7 +133,7 @@ void HtmlLabel::activateAnchor(int index)
 
 int HtmlLabel::selectedAnchor() const
 {
-    return d->anchorIndex(selectionStart());
+    return d->mAnchorCache.findAnchor(selectionStart());
 }
 
 bool HtmlLabel::focusNextPrevChild(bool next)

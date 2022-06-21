@@ -473,6 +473,8 @@ set(_kleopatra_SRCS
   utils/writecertassuantransaction.h
   utils/wsastarter.cpp
   utils/wsastarter.h
+  view/anchorcache.cpp
+  view/anchorcache_p.h
   view/errorlabel.cpp
   view/errorlabel.h
   view/formtextinput.cpp

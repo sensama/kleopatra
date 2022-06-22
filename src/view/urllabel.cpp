@@ -44,6 +44,8 @@ void UrlLabel::focusInEvent(QFocusEvent *event)
     // immediately focus the URL when the label get focus
     QLabel::focusInEvent(event);
     if (!hasSelectedText()) {
-        focusNextPrevChild(true);
+        QMetaObject::invokeMethod(this, [this]() {
+            focusNextPrevChild(true);
+        }, Qt::QueuedConnection);
     }
 }

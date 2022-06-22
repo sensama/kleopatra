@@ -172,6 +172,47 @@ private:
         {
             gridLayout_2 = new QGridLayout(parent);
             gridLayout_2->setContentsMargins(0, 0, 0, 0);
+
+            int row = 0;
+            label = new QLabel(i18n("You can use this certificate to secure communication with the following email addresses:"), parent);
+            label->setWordWrap(true);
+
+            gridLayout_2->addWidget(label, row, 0, 1, 3);
+
+            row++;
+            smimeOwnerLbl = new QLabel(i18n("Owner:"), parent);
+
+            gridLayout_2->addWidget(smimeOwnerLbl, row, 0, 1, 1);
+
+            smimeOwner = new QLabel(parent);
+            smimeOwner->setWordWrap(true);
+            smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+            gridLayout_2->addWidget(smimeOwner, row, 1, 1, 2);
+
+            row++;
+            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
+            QFont font;
+            font.setBold(true);
+            font.setWeight(75);
+            smimeRelatedAddresses->setFont(font);
+
+            gridLayout_2->addWidget(smimeRelatedAddresses, row, 0, 1, 1);
+
+            row++;
+            userIDTable = new QTreeWidget(parent);
+            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+            userIDTable->setHeaderItem(__qtreewidgetitem);
+            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+            userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
+            userIDTable->setRootIsDecorated(false);
+            userIDTable->setUniformRowHeights(true);
+            userIDTable->setAllColumnsShowFocus(true);
+
+            gridLayout_2->addWidget(userIDTable, row, 0, 1, 3);
+
+            row++;
             hboxLayout_1 = new QHBoxLayout();
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
 
@@ -204,179 +245,146 @@ private:
 
             hboxLayout_1->addWidget(certifyBtn);
 
-            gridLayout_2->addLayout(hboxLayout_1, 4, 0, 1, 3);
+            gridLayout_2->addLayout(hboxLayout_1, row, 0, 1, 3);
 
+            row++;
             groupBox = new QGroupBox(i18n("Certificate Details"), parent);
             groupBox->setFlat(false);
-            gridLayout = new QGridLayout(groupBox);
-            int row = 0;
-            validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
-
-            gridLayout->addWidget(validFromLbl, row, 0, 1, 1);
-
-            validFrom = new QLabel(groupBox);
-            validFrom->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-            gridLayout->addWidget(validFrom, row, 1, 1, 1);
-
-            horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-            gridLayout->addItem(horizontalSpacer_3, row, 2, 1, 1);
-            row++;
-
-            expiresLbl = new QLabel(i18n("Expires:"), groupBox);
-
-            gridLayout->addWidget(expiresLbl, row, 0, 1, 1);
-
-            horizontalLayout_3 = new QHBoxLayout();
-            expires = new QLabel(groupBox);
-            expires->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-            horizontalLayout_3->addWidget(expires);
-
-            changeExpirationBtn = new QPushButton(groupBox);
-            changeExpirationBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-            changeExpirationBtn->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
-            changeExpirationBtn->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
-
-            horizontalLayout_3->addWidget(changeExpirationBtn);
-
-            gridLayout->addLayout(horizontalLayout_3, row, 1, 1, 1);
-            row++;
-
-            typeLbl = new QLabel(i18n("Type:"), groupBox);
-
-            gridLayout->addWidget(typeLbl, row, 0, 1, 1);
-
-            type = new QLabel(groupBox);
-            type->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-            gridLayout->addWidget(type, row, 1, 1, 1);
-            row++;
-
-            fingerprintLbl = new QLabel(i18n("Fingerprint:"), groupBox);
-
-            gridLayout->addWidget(fingerprintLbl, row, 0, 1, 1);
-
             {
-                auto hbox = new QHBoxLayout;
-                fingerprint = new QLabel{groupBox};
-                fingerprint->setTextInteractionFlags(Qt::TextSelectableByMouse);
-                hbox->addWidget(fingerprint);
-                copyFingerprintBtn = new QPushButton{groupBox};
-                copyFingerprintBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-                copyFingerprintBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
-                copyFingerprintBtn->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
-                copyFingerprintBtn->setVisible(QGuiApplication::clipboard());
-                hbox->addWidget(copyFingerprintBtn);
-                hbox->addStretch();
+                gridLayout = new QGridLayout(groupBox);
+                int boxRow = 0;
+                validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
 
-                gridLayout->addLayout(hbox, row, 1, 1, 2);
+                gridLayout->addWidget(validFromLbl, boxRow, 0, 1, 1);
+
+                validFrom = new QLabel(groupBox);
+                validFrom->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
+                gridLayout->addWidget(validFrom, boxRow, 1, 1, 1);
+
+                horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+                gridLayout->addItem(horizontalSpacer_3, boxRow, 2, 1, 1);
+
+                boxRow++;
+                expiresLbl = new QLabel(i18n("Expires:"), groupBox);
+
+                gridLayout->addWidget(expiresLbl, boxRow, 0, 1, 1);
+
+                horizontalLayout_3 = new QHBoxLayout();
+                expires = new QLabel(groupBox);
+                expires->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
+                horizontalLayout_3->addWidget(expires);
+
+                changeExpirationBtn = new QPushButton(groupBox);
+                changeExpirationBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                changeExpirationBtn->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
+                changeExpirationBtn->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
+
+                horizontalLayout_3->addWidget(changeExpirationBtn);
+
+                gridLayout->addLayout(horizontalLayout_3, boxRow, 1, 1, 1);
+
+                boxRow++;
+                typeLbl = new QLabel(i18n("Type:"), groupBox);
+
+                gridLayout->addWidget(typeLbl, boxRow, 0, 1, 1);
+
+                type = new QLabel(groupBox);
+                type->setTextInteractionFlags(Qt::TextSelectableByMouse);
+
+                gridLayout->addWidget(type, boxRow, 1, 1, 1);
+
+                boxRow++;
+                fingerprintLbl = new QLabel(i18n("Fingerprint:"), groupBox);
+
+                gridLayout->addWidget(fingerprintLbl, boxRow, 0, 1, 1);
+
+                {
+                    auto hbox = new QHBoxLayout;
+                    fingerprint = new QLabel{groupBox};
+                    fingerprint->setTextInteractionFlags(Qt::TextSelectableByMouse);
+                    hbox->addWidget(fingerprint);
+                    copyFingerprintBtn = new QPushButton{groupBox};
+                    copyFingerprintBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                    copyFingerprintBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+                    copyFingerprintBtn->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
+                    copyFingerprintBtn->setVisible(QGuiApplication::clipboard());
+                    hbox->addWidget(copyFingerprintBtn);
+                    hbox->addStretch();
+
+                    gridLayout->addLayout(hbox, boxRow, 1, 1, 2);
+                }
+
+                boxRow++;
+                publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
+
+                gridLayout->addWidget(publishingLbl, boxRow, 0, 1, 1);
+
+                publishing = new QPushButton(i18nc("@action:button", "Publish Certificate"), groupBox);
+
+                gridLayout->addWidget(publishing, boxRow, 1, 1, 1);
+
+                boxRow++;
+                smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
+
+                gridLayout->addWidget(smimeIssuerLbl, boxRow, 0, 1, 1);
+
+                smimeIssuer = new QLabel(groupBox);
+                smimeIssuer->setWordWrap(true);
+                smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+                gridLayout->addWidget(smimeIssuer, boxRow, 1, 1, 2);
+
+                boxRow++;
+                compliance = new QLabel(i18n("Compliance:"), groupBox);
+                compliance->setWordWrap(true);
+                compliance->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+                gridLayout->addWidget(compliance, boxRow, 0, 1, 1);
+
+                complianceLbl = new QLabel(groupBox);
+                complianceLbl->setWordWrap(true);
+                complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+                gridLayout->addWidget(complianceLbl, boxRow, 1, 1, 2);
+
+                boxRow++;
+                trustedIntroducerLbl = new QLabel(i18n("Trusted introducer for:"), groupBox);
+                trustedIntroducerLbl->setToolTip(i18n("See certifications for details."));
+                trustedIntroducerLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+                gridLayout->addWidget(trustedIntroducerLbl, boxRow, 0, 1, 1);
+
+                trustedIntroducer = new QLabel(groupBox);
+                trustedIntroducer->setWordWrap(true);
+                trustedIntroducer->setToolTip(i18n("See certifications for details."));
+                trustedIntroducer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+
+                gridLayout->addWidget(trustedIntroducer, boxRow, 1, 1, 2);
+
+                boxRow++;
+                horizontalLayout = new QHBoxLayout();
+                moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
+
+                horizontalLayout->addWidget(moreDetailsBtn);
+
+                exportBtn = new QPushButton(i18nc("@action:button", "Export..."), groupBox);
+
+                horizontalLayout->addWidget(exportBtn);
+
+                webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), groupBox);
+
+                horizontalLayout->addWidget(webOfTrustBtn);
+
+                horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+                horizontalLayout->addItem(horizontalSpacer);
+
+                gridLayout->addLayout(horizontalLayout, boxRow, 0, 1, 3);
             }
-            row++;
-
-            publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
-
-            gridLayout->addWidget(publishingLbl, row, 0, 1, 1);
-
-            publishing = new QPushButton(i18nc("@action:button", "Publish Certificate"), groupBox);
-
-            gridLayout->addWidget(publishing, row, 1, 1, 1);
-            row++;
-
-            smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
-
-            gridLayout->addWidget(smimeIssuerLbl, row, 0, 1, 1);
-
-            smimeIssuer = new QLabel(groupBox);
-            smimeIssuer->setWordWrap(true);
-            smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout->addWidget(smimeIssuer, row, 1, 1, 2);
-            row++;
-
-            compliance = new QLabel(i18n("Compliance:"), groupBox);
-            compliance->setWordWrap(true);
-            compliance->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout->addWidget(compliance, row, 0, 1, 1);
-
-            complianceLbl = new QLabel(groupBox);
-            complianceLbl->setWordWrap(true);
-            complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout->addWidget(complianceLbl, row, 1, 1, 2);
-            row++;
-
-            trustedIntroducerLbl = new QLabel(i18n("Trusted introducer for:"), groupBox);
-            trustedIntroducerLbl->setToolTip(i18n("See certifications for details."));
-            trustedIntroducerLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout->addWidget(trustedIntroducerLbl, row, 0, 1, 1);
-
-            trustedIntroducer = new QLabel(groupBox);
-            trustedIntroducer->setWordWrap(true);
-            trustedIntroducer->setToolTip(i18n("See certifications for details."));
-            trustedIntroducer->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout->addWidget(trustedIntroducer, row, 1, 1, 2);
-            row++;
-
-            horizontalLayout = new QHBoxLayout();
-            moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
-
-            horizontalLayout->addWidget(moreDetailsBtn);
-
-            exportBtn = new QPushButton(i18nc("@action:button", "Export..."), groupBox);
-
-            horizontalLayout->addWidget(exportBtn);
-
-            webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), groupBox);
-
-            horizontalLayout->addWidget(webOfTrustBtn);
-
-            horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-            horizontalLayout->addItem(horizontalSpacer);
-
-            gridLayout->addLayout(horizontalLayout, row, 0, 1, 3);
-
-            gridLayout_2->addWidget(groupBox, 6, 0, 1, 3);
-
-            userIDTable = new QTreeWidget(parent);
-            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-            userIDTable->setHeaderItem(__qtreewidgetitem);
-            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-            userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
-            userIDTable->setRootIsDecorated(false);
-            userIDTable->setUniformRowHeights(true);
-            userIDTable->setAllColumnsShowFocus(true);
-
-            gridLayout_2->addWidget(userIDTable, 3, 0, 1, 3);
-
-            label = new QLabel(i18n("You can use this certificate to secure communication with the following email addresses:"), parent);
-            label->setWordWrap(true);
-
-            gridLayout_2->addWidget(label, 0, 0, 1, 3);
-
-            smimeOwnerLbl = new QLabel(i18n("Owner:"), parent);
-
-            gridLayout_2->addWidget(smimeOwnerLbl, 1, 0, 1, 1);
-
-            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
-            QFont font;
-            font.setBold(true);
-            font.setWeight(75);
-            smimeRelatedAddresses->setFont(font);
-
-            gridLayout_2->addWidget(smimeRelatedAddresses, 2, 0, 1, 1);
-
-            smimeOwner = new QLabel(parent);
-            smimeOwner->setWordWrap(true);
-            smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout_2->addWidget(smimeOwner, 1, 1, 1, 2);
+            gridLayout_2->addWidget(groupBox, row, 0, 1, 3);
         }
     } ui;
 };

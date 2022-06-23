@@ -855,7 +855,7 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
         ui.trustedIntroducer->setText(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
     }
 
-    ui.refreshBtn->setToolTip(i18nc("@ingo:tooltip", "Update the key from external sources."));
+    ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the key from external sources."));
 }
 
 static QString formatDNToolTip(const Kleo::DN &dn)
@@ -913,7 +913,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
     ui.smimeOwner->setToolTip(formatDNToolTip(dn));
 
-    ui.refreshBtn->setToolTip(i18nc("@ingo:tooltip", "Update the CRLs and do a full validation check of the certificate."));
+    ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }
 
 void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)

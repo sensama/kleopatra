@@ -104,7 +104,6 @@ public:
     void keysMayHaveChanged();
     void showTrustChainDialog();
     void showMoreDetails();
-    void publishCertificate();
     void userIDTableContextMenuRequested(const QPoint &p);
 
     QString tofuTooltipString(const GpgME::UserID &uid) const;
@@ -144,8 +143,6 @@ private:
         QLabel *fingerprintLbl;
         QLabel *fingerprint;
         QPushButton *copyFingerprintBtn;
-        QLabel *publishingLbl;
-        QPushButton *publishing;
         QLabel *smimeIssuerLbl;
         QLabel *smimeIssuer;
         QLabel *compliance;
@@ -313,15 +310,6 @@ private:
                 }
 
                 boxRow++;
-                publishingLbl = new QLabel(i18n("Publishing:"), groupBox);
-
-                gridLayout->addWidget(publishingLbl, boxRow, 0, 1, 1);
-
-                publishing = new QPushButton(i18nc("@action:button", "Publish Certificate"), groupBox);
-
-                gridLayout->addWidget(publishing, boxRow, 1, 1, 1);
-
-                boxRow++;
                 smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
 
                 gridLayout->addWidget(smimeIssuerLbl, boxRow, 0, 1, 1);
@@ -403,8 +391,6 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { showTrustChainDialog(); });
     connect(ui.moreDetailsBtn, &QPushButton::pressed,
             q, [this]() { showMoreDetails(); });
-    connect(ui.publishing, &QPushButton::pressed,
-            q, [this]() { publishCertificate(); });
     connect(ui.refreshBtn, &QPushButton::clicked,
             q, [this]() { refreshCertificate(); });
     connect(ui.certifyBtn, &QPushButton::clicked,
@@ -422,9 +408,6 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
 
 void CertificateDetailsWidget::Private::setupCommonProperties()
 {
-    // TODO: Enable once implemented
-    HIDE_ROW(publishing)
-
     const bool hasSecret = key.hasSecret();
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
 
@@ -671,12 +654,6 @@ void CertificateDetailsWidget::Private::showTrustChainDialog()
     dlg->exec();
 }
 
-void CertificateDetailsWidget::Private::publishCertificate()
-{
-    qCWarning(KLEOPATRA_LOG) << "publishCertificateis not implemented.";
-    //TODO
-}
-
 namespace
 {
 bool isLastValidUserID(const GpgME::UserID &userId)
@@ -907,7 +884,6 @@ static QString formatDNToolTip(const Kleo::DN &dn)
 
 void CertificateDetailsWidget::Private::setupSMIMEProperties()
 {
-    HIDE_ROW(publishing)
     HIDE_ROW(trustedIntroducer)
 
     const auto ownerId = key.userID(0);

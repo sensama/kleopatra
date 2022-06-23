@@ -65,9 +65,9 @@
 #include <QLocale>
 #include <QMenu>
 #include <QPushButton>
-#include <QSpacerItem>
 #include <QStringBuilder>
 #include <QTreeWidget>
+#include <QVBoxLayout>
 
 #include <set>
 
@@ -127,8 +127,6 @@ public:
 
 private:
     struct UI {
-        QGridLayout *gridLayout_2;
-        QHBoxLayout *hboxLayout_1;
         QPushButton *addUserIDBtn;
         QPushButton *changePassphraseBtn;
         QPushButton *trustChainDetailsBtn;
@@ -136,12 +134,9 @@ private:
         QPushButton *refreshBtn;
         QPushButton *certifyBtn;
         QGroupBox *groupBox;
-        QGridLayout *gridLayout;
         QLabel *validFromLbl;
         QLabel *validFrom;
-        QSpacerItem *horizontalSpacer_3;
         QLabel *expiresLbl;
-        QHBoxLayout *horizontalLayout_3;
         QLabel *expires;
         QPushButton *changeExpirationBtn;
         QLabel *typeLbl;
@@ -157,11 +152,9 @@ private:
         QLabel *complianceLbl;
         QLabel *trustedIntroducerLbl;
         QLabel *trustedIntroducer;
-        QHBoxLayout *horizontalLayout;
         QPushButton *moreDetailsBtn;
         QPushButton *exportBtn;
         QPushButton *webOfTrustBtn;
-        QSpacerItem *horizontalSpacer;
         QTreeWidget *userIDTable;
         QLabel *label;
         QLabel *smimeOwnerLbl;
@@ -170,16 +163,18 @@ private:
 
         void setupUi(QWidget *parent)
         {
-            gridLayout_2 = new QGridLayout(parent);
-            gridLayout_2->setContentsMargins(0, 0, 0, 0);
+            auto mainLayout = new QVBoxLayout{parent};
 
-            int row = 0;
             label = new QLabel(i18n("You can use this certificate to secure communication with the following email addresses:"), parent);
             label->setWordWrap(true);
 
-            gridLayout_2->addWidget(label, row, 0, 1, 3);
+            mainLayout->addWidget(label);
 
-            row++;
+            {
+            auto gridLayout_2 = new QGridLayout;
+            gridLayout_2->setColumnStretch(1, 1);
+
+            int row = 0;
             smimeOwnerLbl = new QLabel(i18n("Owner:"), parent);
 
             gridLayout_2->addWidget(smimeOwnerLbl, row, 0, 1, 1);
@@ -188,7 +183,7 @@ private:
             smimeOwner->setWordWrap(true);
             smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-            gridLayout_2->addWidget(smimeOwner, row, 1, 1, 2);
+            gridLayout_2->addWidget(smimeOwner, row, 1, 1, 1);
 
             row++;
             smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
@@ -199,7 +194,9 @@ private:
 
             gridLayout_2->addWidget(smimeRelatedAddresses, row, 0, 1, 1);
 
-            row++;
+            mainLayout->addLayout(gridLayout_2);
+            }
+
             userIDTable = new QTreeWidget(parent);
             QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
             __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
@@ -210,20 +207,18 @@ private:
             userIDTable->setUniformRowHeights(true);
             userIDTable->setAllColumnsShowFocus(true);
 
-            gridLayout_2->addWidget(userIDTable, row, 0, 1, 3);
+            mainLayout->addWidget(userIDTable);
 
-            row++;
-            hboxLayout_1 = new QHBoxLayout();
+            {
+            auto hboxLayout_1 = new QHBoxLayout;
+
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
-
             hboxLayout_1->addWidget(addUserIDBtn);
 
             changePassphraseBtn = new QPushButton(i18nc("@action:button", "Change Passphrase"), parent);
-
             hboxLayout_1->addWidget(changePassphraseBtn);
 
             trustChainDetailsBtn = new QPushButton(i18nc("@action:button", "Trust Chain Details..."), parent);
-
             hboxLayout_1->addWidget(trustChainDetailsBtn);
 
             genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
@@ -232,7 +227,6 @@ private:
                                           "declare that a key shall not anymore be used.  It is not possible "
                                           "to retract such a revocation certificate once it has been published.") %
                                      u"</html>");
-
             hboxLayout_1->addWidget(genRevokeBtn);
 
             refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
@@ -242,16 +236,19 @@ private:
             hboxLayout_1->addWidget(refreshBtn);
 
             certifyBtn = new QPushButton(i18nc("@action:button", "Certify"), parent);
-
             hboxLayout_1->addWidget(certifyBtn);
 
-            gridLayout_2->addLayout(hboxLayout_1, row, 0, 1, 3);
+            hboxLayout_1->addStretch(1);
 
-            row++;
+            mainLayout->addLayout(hboxLayout_1);
+            }
+
             groupBox = new QGroupBox(i18n("Certificate Details"), parent);
             groupBox->setFlat(false);
             {
-                gridLayout = new QGridLayout(groupBox);
+                auto gridLayout = new QGridLayout(groupBox);
+                gridLayout->setColumnStretch(1, 1);
+
                 int boxRow = 0;
                 validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
 
@@ -262,16 +259,12 @@ private:
 
                 gridLayout->addWidget(validFrom, boxRow, 1, 1, 1);
 
-                horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-                gridLayout->addItem(horizontalSpacer_3, boxRow, 2, 1, 1);
-
                 boxRow++;
                 expiresLbl = new QLabel(i18n("Expires:"), groupBox);
 
                 gridLayout->addWidget(expiresLbl, boxRow, 0, 1, 1);
 
-                horizontalLayout_3 = new QHBoxLayout();
+                auto horizontalLayout_3 = new QHBoxLayout();
                 expires = new QLabel(groupBox);
                 expires->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
@@ -283,6 +276,8 @@ private:
                 changeExpirationBtn->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
 
                 horizontalLayout_3->addWidget(changeExpirationBtn);
+
+                horizontalLayout_3->addStretch(1);
 
                 gridLayout->addLayout(horizontalLayout_3, boxRow, 1, 1, 1);
 
@@ -314,7 +309,7 @@ private:
                     hbox->addWidget(copyFingerprintBtn);
                     hbox->addStretch();
 
-                    gridLayout->addLayout(hbox, boxRow, 1, 1, 2);
+                    gridLayout->addLayout(hbox, boxRow, 1, 1, 1);
                 }
 
                 boxRow++;
@@ -348,7 +343,7 @@ private:
                 complianceLbl->setWordWrap(true);
                 complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-                gridLayout->addWidget(complianceLbl, boxRow, 1, 1, 2);
+                gridLayout->addWidget(complianceLbl, boxRow, 1, 1, 1);
 
                 boxRow++;
                 trustedIntroducerLbl = new QLabel(i18n("Trusted introducer for:"), groupBox);
@@ -362,29 +357,25 @@ private:
                 trustedIntroducer->setToolTip(i18n("See certifications for details."));
                 trustedIntroducer->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-                gridLayout->addWidget(trustedIntroducer, boxRow, 1, 1, 2);
+                gridLayout->addWidget(trustedIntroducer, boxRow, 1, 1, 1);
 
                 boxRow++;
-                horizontalLayout = new QHBoxLayout();
-                moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
+                auto horizontalLayout = new QHBoxLayout;
 
+                moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
                 horizontalLayout->addWidget(moreDetailsBtn);
 
                 exportBtn = new QPushButton(i18nc("@action:button", "Export..."), groupBox);
-
                 horizontalLayout->addWidget(exportBtn);
 
                 webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), groupBox);
-
                 horizontalLayout->addWidget(webOfTrustBtn);
 
-                horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+                horizontalLayout->addStretch(1);
 
-                horizontalLayout->addItem(horizontalSpacer);
-
-                gridLayout->addLayout(horizontalLayout, boxRow, 0, 1, 3);
+                gridLayout->addLayout(horizontalLayout, boxRow, 0, 1, 2);
             }
-            gridLayout_2->addWidget(groupBox, row, 0, 1, 3);
+            mainLayout->addWidget(groupBox);
         }
     } ui;
 };
@@ -443,8 +434,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.changeExpirationBtn->setVisible(isOpenPGP && hasSecret);
     ui.addUserIDBtn->setVisible(hasSecret && isOpenPGP);
     ui.webOfTrustBtn->setVisible(isOpenPGP);
-
-    ui.hboxLayout_1->addStretch(1);
 
     ui.validFrom->setText(Kleo::Formatting::creationDateString(key));
     const QString expiry = Kleo::Formatting::expirationDateString(key);

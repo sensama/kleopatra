@@ -23,7 +23,9 @@ CertificateDetailsDialog::CertificateDetailsDialog(QWidget *parent)
 {
     setWindowTitle(i18nc("@title:window", "Certificate Details"));
     auto l = new QVBoxLayout(this);
-    l->addWidget(new CertificateDetailsWidget(this));
+    auto w = new CertificateDetailsWidget{this};
+    w->layout()->setContentsMargins(0, 0, 0, 0);
+    l->addWidget(w);
 
     auto bbox = new QDialogButtonBox(this);
     auto btn = bbox->addButton(QDialogButtonBox::Close);

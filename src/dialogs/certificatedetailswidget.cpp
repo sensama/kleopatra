@@ -75,6 +75,8 @@ Q_DECLARE_METATYPE(GpgME::UserID)
 
 using namespace Kleo;
 
+static const char *accessibleNameProperty = "_kleo_accessibleName";
+
 class InfoField {
 public:
     InfoField(const QString &label, QWidget *parent);
@@ -136,6 +138,7 @@ void InfoField::setAction(const QAction *action)
             onActionChanged();
         });
         onActionChanged();
+        mButton->setAccessibleName(mAction->property(accessibleNameProperty).toString());
         mButton->setVisible(true);
     } else {
         mButton->setVisible(false);
@@ -333,6 +336,7 @@ private:
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
+                changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change expiration"));
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
@@ -348,6 +352,7 @@ private:
                     copyFingerprintAction = new QAction{parent};
                     copyFingerprintAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
                     copyFingerprintAction->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
+                    copyFingerprintAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Copy fingerprint"));
                     fingerprintField->setAction(copyFingerprintAction);
                 }
                 gridLayout->addWidget(fingerprintField->label(), boxRow, 0, 1, 1);
@@ -358,6 +363,7 @@ private:
                 showIssuerCertificateAction = new QAction{parent};
                 showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
+                showIssuerCertificateAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);
                 gridLayout->addWidget(smimeIssuerField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(smimeIssuerField->layout(), boxRow, 1, 1, 1);

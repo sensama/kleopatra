@@ -454,9 +454,9 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.addUserIDBtn->setVisible(hasSecret && isOpenPGP);
     ui.webOfTrustBtn->setVisible(isOpenPGP);
 
-    ui.validFromField->setValue(Kleo::Formatting::creationDateString(key));
-    const QString expiry = Kleo::Formatting::expirationDateString(key);
-    ui.expiresField->setValue(expiry.isEmpty() ? i18nc("Expires", "never") : expiry);
+    ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
+    ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),
+                              Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
     ui.typeField->setValue(Kleo::Formatting::type(key));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()));
 

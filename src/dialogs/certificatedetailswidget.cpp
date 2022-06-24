@@ -71,17 +71,107 @@
 
 #include <set>
 
-#define HIDE_ROW(row) \
-    ui.row->setVisible(false); \
-    ui.row##Lbl->setVisible(false);
-
-#define SHOW_ROW(row) \
-    ui.row->setVisible(true); \
-    ui.row##Lbl->setVisible(true);
-
 Q_DECLARE_METATYPE(GpgME::UserID)
 
 using namespace Kleo;
+
+class InfoField {
+public:
+    InfoField(const QString &label, QWidget *parent);
+
+    void setValue(const QString &value, const QString &accessibleValue = {});
+    void setAction(const QAction *action);
+    void setToolTip(const QString &toolTip);
+    void setVisible(bool visible);
+
+    QLabel *label() const { return mLabel; }
+    QLayout *layout() const { return mLayout; }
+
+private:
+    void onActionChanged();
+
+    QLabel *mLabel = nullptr;
+    QHBoxLayout *mLayout = nullptr;
+    QLabel *mValue = nullptr;
+    QPushButton *mButton = nullptr;
+    const QAction *mAction = nullptr;
+};
+
+InfoField::InfoField(const QString &label, QWidget *parent)
+    : mLabel{new QLabel{label, parent}}
+    , mLayout{new QHBoxLayout}
+    , mValue{new QLabel{parent}}
+    , mButton{new QPushButton{parent}}
+{
+    mLabel->setBuddy(mValue);
+    mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    mValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    mValue->setFocusPolicy(Qt::TabFocus);
+    mLayout->addWidget(mValue);
+    mButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    mButton->setVisible(false);
+    mLayout->addWidget(mButton);
+    mLayout->addStretch();
+}
+
+void InfoField::setValue(const QString &value, const QString &accessibleValue)
+{
+    mValue->setText(value);
+    mValue->setAccessibleName(accessibleValue);
+}
+
+void InfoField::setAction(const QAction *action)
+{
+    if (action == mAction) {
+        return;
+    }
+    if (mAction) {
+        QObject::disconnect(mButton, {}, mAction, {});
+        QObject::disconnect(mAction, {}, mButton, {});
+    }
+    mAction = action;
+    if (mAction) {
+        QObject::connect(mButton, &QPushButton::clicked, action, &QAction::trigger);
+        QObject::connect(mAction, &QAction::changed, mButton, [this]() {
+            onActionChanged();
+        });
+        onActionChanged();
+        mButton->setVisible(true);
+    } else {
+        mButton->setVisible(false);
+        mButton->setText({});
+        mButton->setIcon({});
+    }
+}
+
+void InfoField::setToolTip(const QString &toolTip)
+{
+    mValue->setToolTip(toolTip);
+}
+
+void InfoField::setVisible(bool visible)
+{
+    mLabel->setVisible(visible);
+    mValue->setVisible(visible);
+    mButton->setVisible(visible && mAction);
+}
+
+void InfoField::onActionChanged()
+{
+    if (!mAction) {
+        return;
+    }
+    if (mAction->text() != mButton->text()) {
+        mButton->setText(mAction->text());
+    }
+    mButton->setIcon(mAction->icon());
+    if (mAction->toolTip() != mButton->toolTip()) {
+        mButton->setToolTip(mAction->toolTip());
+    }
+    if (mAction->isEnabled() != mButton->isEnabled()) {
+        mButton->setEnabled(mAction->isEnabled());
+    }
+}
 
 class CertificateDetailsWidget::Private
 {
@@ -126,38 +216,30 @@ public:
 
 private:
     struct UI {
-        QPushButton *addUserIDBtn;
-        QPushButton *changePassphraseBtn;
-        QPushButton *trustChainDetailsBtn;
-        QPushButton *genRevokeBtn;
-        QPushButton *refreshBtn;
-        QPushButton *certifyBtn;
-        QGroupBox *groupBox;
-        QLabel *validFromLbl;
-        QLabel *validFrom;
-        QLabel *expiresLbl;
-        QLabel *expires;
-        QPushButton *changeExpirationBtn;
-        QLabel *typeLbl;
-        QLabel *type;
-        QLabel *fingerprintLbl;
-        QLabel *fingerprint;
-        QPushButton *copyFingerprintBtn;
-        QLabel *smimeIssuerLbl;
-        QLabel *smimeIssuer;
-        QPushButton *showIssuerCertificateBtn;
-        QLabel *compliance;
-        QLabel *complianceLbl;
-        QLabel *trustedIntroducerLbl;
-        QLabel *trustedIntroducer;
-        QPushButton *moreDetailsBtn;
-        QPushButton *exportBtn;
-        QPushButton *webOfTrustBtn;
-        QTreeWidget *userIDTable;
-        QLabel *label;
-        QLabel *smimeOwnerLbl;
-        QLabel *smimeRelatedAddresses;
-        QLabel *smimeOwner;
+        QLabel *label = nullptr;
+        InfoField *smimeOwnerField = nullptr;
+        QLabel *smimeRelatedAddresses = nullptr;
+        QTreeWidget *userIDTable = nullptr;
+        QGroupBox *groupBox = nullptr;
+        InfoField *validFromField = nullptr;
+        InfoField *expiresField = nullptr;
+        QAction *changeExpirationAction = nullptr;
+        InfoField *typeField = nullptr;
+        InfoField *fingerprintField = nullptr;
+        QAction *copyFingerprintAction = nullptr;
+        InfoField *smimeIssuerField = nullptr;
+        QAction *showIssuerCertificateAction = nullptr;
+        InfoField *complianceField = nullptr;
+        InfoField *trustedIntroducerField = nullptr;
+        QPushButton *addUserIDBtn = nullptr;
+        QPushButton *changePassphraseBtn = nullptr;
+        QPushButton *trustChainDetailsBtn = nullptr;
+        QPushButton *genRevokeBtn = nullptr;
+        QPushButton *refreshBtn = nullptr;
+        QPushButton *certifyBtn = nullptr;
+        QPushButton *moreDetailsBtn = nullptr;
+        QPushButton *exportBtn = nullptr;
+        QPushButton *webOfTrustBtn = nullptr;
 
         void setupUi(QWidget *parent)
         {
@@ -173,15 +255,9 @@ private:
             gridLayout_2->setColumnStretch(1, 1);
 
             int row = 0;
-            smimeOwnerLbl = new QLabel(i18n("Owner:"), parent);
-
-            gridLayout_2->addWidget(smimeOwnerLbl, row, 0, 1, 1);
-
-            smimeOwner = new QLabel(parent);
-            smimeOwner->setWordWrap(true);
-            smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-            gridLayout_2->addWidget(smimeOwner, row, 1, 1, 1);
+            smimeOwnerField = new InfoField{i18n("Owner:"), parent};
+            gridLayout_2->addWidget(smimeOwnerField->label(), row, 0, 1, 1);
+            gridLayout_2->addLayout(smimeOwnerField->layout(), row, 1, 1, 1);
 
             row++;
             smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
@@ -248,114 +324,54 @@ private:
                 gridLayout->setColumnStretch(1, 1);
 
                 int boxRow = 0;
-                validFromLbl = new QLabel(i18n("Valid from:"), groupBox);
-
-                gridLayout->addWidget(validFromLbl, boxRow, 0, 1, 1);
-
-                validFrom = new QLabel(groupBox);
-                validFrom->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-                gridLayout->addWidget(validFrom, boxRow, 1, 1, 1);
+                validFromField = new InfoField{i18n("Valid from:"), groupBox};
+                gridLayout->addWidget(validFromField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(validFromField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                expiresLbl = new QLabel(i18n("Expires:"), groupBox);
-
-                gridLayout->addWidget(expiresLbl, boxRow, 0, 1, 1);
-
-                auto horizontalLayout_3 = new QHBoxLayout();
-                expires = new QLabel(groupBox);
-                expires->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-                horizontalLayout_3->addWidget(expires);
-
-                changeExpirationBtn = new QPushButton(groupBox);
-                changeExpirationBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-                changeExpirationBtn->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
-                changeExpirationBtn->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
-
-                horizontalLayout_3->addWidget(changeExpirationBtn);
-
-                horizontalLayout_3->addStretch(1);
-
-                gridLayout->addLayout(horizontalLayout_3, boxRow, 1, 1, 1);
+                expiresField = new InfoField{i18n("Expires:"), groupBox};
+                changeExpirationAction = new QAction{parent};
+                changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
+                changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
+                expiresField->setAction(changeExpirationAction);
+                gridLayout->addWidget(expiresField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                typeLbl = new QLabel(i18n("Type:"), groupBox);
-
-                gridLayout->addWidget(typeLbl, boxRow, 0, 1, 1);
-
-                type = new QLabel(groupBox);
-                type->setTextInteractionFlags(Qt::TextSelectableByMouse);
-
-                gridLayout->addWidget(type, boxRow, 1, 1, 1);
+                typeField = new InfoField{i18n("Type:"), groupBox};
+                gridLayout->addWidget(typeField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(typeField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                fingerprintLbl = new QLabel(i18n("Fingerprint:"), groupBox);
-
-                gridLayout->addWidget(fingerprintLbl, boxRow, 0, 1, 1);
-
-                {
-                    auto hbox = new QHBoxLayout;
-                    fingerprint = new QLabel{groupBox};
-                    fingerprint->setTextInteractionFlags(Qt::TextSelectableByMouse);
-                    hbox->addWidget(fingerprint);
-                    copyFingerprintBtn = new QPushButton{groupBox};
-                    copyFingerprintBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-                    copyFingerprintBtn->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
-                    copyFingerprintBtn->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
-                    copyFingerprintBtn->setVisible(QGuiApplication::clipboard());
-                    hbox->addWidget(copyFingerprintBtn);
-                    hbox->addStretch();
-
-                    gridLayout->addLayout(hbox, boxRow, 1, 1, 1);
+                fingerprintField = new InfoField{i18n("Fingerprint:"), groupBox};
+                if (QGuiApplication::clipboard()) {
+                    copyFingerprintAction = new QAction{parent};
+                    copyFingerprintAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+                    copyFingerprintAction->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
+                    fingerprintField->setAction(copyFingerprintAction);
                 }
+                gridLayout->addWidget(fingerprintField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(fingerprintField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                smimeIssuerLbl = new QLabel(i18n("Issuer:"), groupBox);
-
-                gridLayout->addWidget(smimeIssuerLbl, boxRow, 0, 1, 1);
-
-                {
-                    auto hbox = new QHBoxLayout;
-                    smimeIssuer = new QLabel(groupBox);
-                    smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
-                    hbox->addWidget(smimeIssuer);
-                    showIssuerCertificateBtn = new QPushButton{groupBox};
-                    showIssuerCertificateBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-                    showIssuerCertificateBtn->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
-                    showIssuerCertificateBtn->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
-                    hbox->addWidget(showIssuerCertificateBtn);
-                    hbox->addStretch();
-
-                    gridLayout->addLayout(hbox, boxRow, 1, 1, 1);
-                }
+                smimeIssuerField = new InfoField{i18n("Issuer:"), groupBox};
+                showIssuerCertificateAction = new QAction{parent};
+                showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
+                showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
+                smimeIssuerField->setAction(showIssuerCertificateAction);
+                gridLayout->addWidget(smimeIssuerField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(smimeIssuerField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                compliance = new QLabel(i18n("Compliance:"), groupBox);
-                compliance->setWordWrap(true);
-                compliance->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-                gridLayout->addWidget(compliance, boxRow, 0, 1, 1);
-
-                complianceLbl = new QLabel(groupBox);
-                complianceLbl->setWordWrap(true);
-                complianceLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-                gridLayout->addWidget(complianceLbl, boxRow, 1, 1, 1);
+                complianceField = new InfoField{i18n("Compliance:"), groupBox};
+                gridLayout->addWidget(complianceField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(complianceField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                trustedIntroducerLbl = new QLabel(i18n("Trusted introducer for:"), groupBox);
-                trustedIntroducerLbl->setToolTip(i18n("See certifications for details."));
-                trustedIntroducerLbl->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-                gridLayout->addWidget(trustedIntroducerLbl, boxRow, 0, 1, 1);
-
-                trustedIntroducer = new QLabel(groupBox);
-                trustedIntroducer->setWordWrap(true);
-                trustedIntroducer->setToolTip(i18n("See certifications for details."));
-                trustedIntroducer->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-                gridLayout->addWidget(trustedIntroducer, boxRow, 1, 1, 1);
+                trustedIntroducerField = new InfoField{i18n("Trusted introducer for:"), groupBox};
+                gridLayout->addWidget(trustedIntroducerField->label(), boxRow, 0, 1, 1);
+                trustedIntroducerField->setToolTip(i18n("See certifications for details."));
+                gridLayout->addLayout(trustedIntroducerField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
                 auto horizontalLayout = new QHBoxLayout;
@@ -391,9 +407,9 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { changePassphrase(); });
     connect(ui.genRevokeBtn, &QPushButton::clicked,
             q, [this]() { genRevokeCert(); });
-    connect(ui.changeExpirationBtn, &QPushButton::clicked,
+    connect(ui.changeExpirationAction, &QAction::triggered,
             q, [this]() { changeExpiration(); });
-    connect(ui.showIssuerCertificateBtn, &QPushButton::clicked,
+    connect(ui.showIssuerCertificateAction, &QAction::triggered,
             q, [this]() { showIssuerCertificate(); });
     connect(ui.trustChainDetailsBtn, &QPushButton::pressed,
             q, [this]() { showTrustChainDialog(); });
@@ -407,8 +423,10 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { webOfTrustClicked(); });
     connect(ui.exportBtn, &QPushButton::clicked,
             q, [this]() { exportClicked(); });
-    connect(ui.copyFingerprintBtn, &QPushButton::clicked,
-            q, [this]() { copyFingerprintToClipboard(); });
+    if (ui.copyFingerprintAction) {
+        connect(ui.copyFingerprintAction, &QAction::triggered,
+                q, [this]() { copyFingerprintToClipboard(); });
+    }
 
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             q, [this]() { keysMayHaveChanged(); });
@@ -422,20 +440,23 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
     ui.certifyBtn->setVisible(isOpenPGP && !hasSecret);
-    ui.changeExpirationBtn->setVisible(isOpenPGP && hasSecret);
+    if (isOpenPGP && hasSecret) {
+        ui.expiresField->setAction(ui.changeExpirationAction);
+    } else {
+        ui.expiresField->setAction(nullptr);
+    }
     ui.addUserIDBtn->setVisible(hasSecret && isOpenPGP);
     ui.webOfTrustBtn->setVisible(isOpenPGP);
 
-    ui.validFrom->setText(Kleo::Formatting::creationDateString(key));
+    ui.validFromField->setValue(Kleo::Formatting::creationDateString(key));
     const QString expiry = Kleo::Formatting::expirationDateString(key);
-    ui.expires->setText(expiry.isEmpty() ? i18nc("Expires", "never") : expiry);
-    ui.type->setText(Kleo::Formatting::type(key));
-    ui.fingerprint->setText(Formatting::prettyID(key.primaryFingerprint()));
+    ui.expiresField->setValue(expiry.isEmpty() ? i18nc("Expires", "never") : expiry);
+    ui.typeField->setValue(Kleo::Formatting::type(key));
+    ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()));
 
-    if (!Kleo::gnupgIsDeVsCompliant()) {
-        HIDE_ROW(compliance)
-    } else {
-        ui.complianceLbl->setText(Kleo::Formatting::complianceStringForKey(key));
+    ui.complianceField->setVisible(Kleo::gnupgIsDeVsCompliant());
+    if (Kleo::gnupgIsDeVsCompliant()) {
+        ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
 
     ui.userIDTable->clear();
@@ -560,9 +581,9 @@ void CertificateDetailsWidget::Private::changeExpiration()
     auto cmd = new Kleo::Commands::ChangeExpiryCommand(key);
     QObject::connect(cmd, &Kleo::Commands::ChangeExpiryCommand::finished,
                      q, [this]() {
-                         ui.changeExpirationBtn->setEnabled(true);
+                         ui.changeExpirationAction->setEnabled(true);
                      });
-    ui.changeExpirationBtn->setEnabled(false);
+    ui.changeExpirationAction->setEnabled(false);
     cmd->start();
 }
 
@@ -848,20 +869,16 @@ auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
 
 void CertificateDetailsWidget::Private::setupPGPProperties()
 {
-    HIDE_ROW(smimeOwner)
-    HIDE_ROW(smimeIssuer)
+    ui.smimeOwnerField->setVisible(false);
+    ui.smimeIssuerField->setVisible(false);
     ui.smimeRelatedAddresses->setVisible(false);
     ui.trustChainDetailsBtn->setVisible(false);
 
     ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
-    if (trustDomains.empty()) {
-        HIDE_ROW(trustedIntroducer)
-    } else {
-        SHOW_ROW(trustedIntroducer)
-        ui.trustedIntroducer->setText(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
-    }
+    ui.trustedIntroducerField->setVisible(!trustDomains.empty());
+    ui.trustedIntroducerField->setValue(QStringList(std::begin(trustDomains), std::end(trustDomains)).join(u", "));
 
     ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the key from external sources."));
 }
@@ -892,7 +909,7 @@ static QString formatDNToolTip(const Kleo::DN &dn)
 
 void CertificateDetailsWidget::Private::setupSMIMEProperties()
 {
-    HIDE_ROW(trustedIntroducer)
+    ui.trustedIntroducerField->setVisible(false);
 
     const auto ownerId = key.userID(0);
     const Kleo::DN dn(ownerId.id());
@@ -909,17 +926,16 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     } else {
         owner = i18nc("<name> of <company>", "%1 of %2", name, o);
     }
-    ui.smimeOwner->setText(owner);
-    ui.smimeOwner->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    ui.smimeOwnerField->setValue(owner);
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
-    ui.smimeIssuer->setText(issuer);
+    ui.smimeIssuerField->setValue(issuer);
 
-    ui.smimeIssuer->setToolTip(formatDNToolTip(issuerDN));
+    ui.smimeIssuerField->setToolTip(formatDNToolTip(issuerDN));
 
-    ui.smimeOwner->setToolTip(formatDNToolTip(dn));
+    ui.smimeOwnerField->setToolTip(formatDNToolTip(dn));
 
     ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }

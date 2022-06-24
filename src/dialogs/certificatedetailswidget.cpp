@@ -108,7 +108,7 @@ public:
 
     QString tofuTooltipString(const GpgME::UserID &uid) const;
 
-    void smimeLinkActivated(const QString &link);
+    void showIssuerCertificate();
 
     void updateKey();
     void setUpdatedKey(const GpgME::Key &key);
@@ -145,6 +145,7 @@ private:
         QPushButton *copyFingerprintBtn;
         QLabel *smimeIssuerLbl;
         QLabel *smimeIssuer;
+        QPushButton *showIssuerCertificateBtn;
         QLabel *compliance;
         QLabel *complianceLbl;
         QLabel *trustedIntroducerLbl;
@@ -314,11 +315,20 @@ private:
 
                 gridLayout->addWidget(smimeIssuerLbl, boxRow, 0, 1, 1);
 
-                smimeIssuer = new QLabel(groupBox);
-                smimeIssuer->setWordWrap(true);
-                smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+                {
+                    auto hbox = new QHBoxLayout;
+                    smimeIssuer = new QLabel(groupBox);
+                    smimeIssuer->setTextInteractionFlags(Qt::TextBrowserInteraction);
+                    hbox->addWidget(smimeIssuer);
+                    showIssuerCertificateBtn = new QPushButton{groupBox};
+                    showIssuerCertificateBtn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+                    showIssuerCertificateBtn->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
+                    showIssuerCertificateBtn->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
+                    hbox->addWidget(showIssuerCertificateBtn);
+                    hbox->addStretch();
 
-                gridLayout->addWidget(smimeIssuer, boxRow, 1, 1, 2);
+                    gridLayout->addLayout(hbox, boxRow, 1, 1, 1);
+                }
 
                 boxRow++;
                 compliance = new QLabel(i18n("Compliance:"), groupBox);
@@ -385,8 +395,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { changeExpiration(); });
     connect(ui.smimeOwner, &QLabel::linkActivated,
             q, [this](const QString &link) { smimeLinkActivated(link); });
-    connect(ui.smimeIssuer, &QLabel::linkActivated,
-            q, [this](const QString &link) { smimeLinkActivated(link); });
+    connect(ui.showIssuerCertificateBtn, &QPushButton::clicked,
+            q, [this]() { showIssuerCertificate(); });
     connect(ui.trustChainDetailsBtn, &QPushButton::pressed,
             q, [this]() { showTrustChainDialog(); });
     connect(ui.moreDetailsBtn, &QPushButton::pressed,
@@ -907,7 +917,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
-    ui.smimeIssuer->setText(QStringLiteral("<a href=\"#issuerDetails\">%1</a>").arg(issuer));
+    ui.smimeIssuer->setText(issuer);
 
     ui.smimeIssuer->setToolTip(formatDNToolTip(issuerDN));
 
@@ -916,20 +926,16 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }
 
-void CertificateDetailsWidget::Private::smimeLinkActivated(const QString &link)
+void CertificateDetailsWidget::Private::showIssuerCertificate()
 {
-    if (link == QLatin1String("#issuerDetails")) {
-        const auto parentKey = KeyCache::instance()->findIssuers(key, KeyCache::NoOption);
+    const auto parentKey = KeyCache::instance()->findIssuers(key, KeyCache::NoOption);
 
-        if (!parentKey.size()) {
-            return;
-        }
-        auto cmd = new Kleo::Commands::DetailsCommand(parentKey[0], nullptr);
-        cmd->setParentWidget(q);
-        cmd->start();
+    if (!parentKey.size()) {
         return;
     }
-    qCWarning(KLEOPATRA_LOG) << "Unknown link activated:" << link;
+    auto cmd = new Kleo::Commands::DetailsCommand(parentKey[0], nullptr);
+    cmd->setParentWidget(q);
+    cmd->start();
 }
 
 void CertificateDetailsWidget::Private::copyFingerprintToClipboard()

@@ -393,8 +393,6 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { genRevokeCert(); });
     connect(ui.changeExpirationBtn, &QPushButton::clicked,
             q, [this]() { changeExpiration(); });
-    connect(ui.smimeOwner, &QLabel::linkActivated,
-            q, [this](const QString &link) { smimeLinkActivated(link); });
     connect(ui.showIssuerCertificateBtn, &QPushButton::clicked,
             q, [this]() { showIssuerCertificate(); });
     connect(ui.trustChainDetailsBtn, &QPushButton::pressed,

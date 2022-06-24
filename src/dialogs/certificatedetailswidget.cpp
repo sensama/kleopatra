@@ -458,7 +458,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),
                               Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
     ui.typeField->setValue(Kleo::Formatting::type(key));
-    ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()));
+    ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
+                                  Formatting::accessibleHexID(key.primaryFingerprint()));
 
     ui.complianceField->setVisible(Kleo::gnupgIsDeVsCompliant());
     if (Kleo::gnupgIsDeVsCompliant()) {

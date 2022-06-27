@@ -176,6 +176,32 @@ void InfoField::onActionChanged()
     }
 }
 
+namespace
+{
+class UserIDTable : public QTreeWidget
+{
+    Q_OBJECT
+public:
+    using QTreeWidget::QTreeWidget;
+
+protected:
+    QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override
+    {
+        // make keyboard navigation with Left/Right possible by switching the selection behavior to SelectItems
+        // before calling QTreeWidget::moveCursor, because QTreeWidget::moveCursor ignores MoveLeft/MoveRight
+        // if the selection behavior is SelectRows
+        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
+            setSelectionBehavior(SelectItems);
+        }
+        const auto result = QTreeWidget::moveCursor(cursorAction, modifiers);
+        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
+            setSelectionBehavior(SelectRows);
+        }
+        return result;
+    }
+};
+}
+
 class CertificateDetailsWidget::Private
 {
 public:
@@ -222,7 +248,7 @@ private:
         QLabel *label = nullptr;
         InfoField *smimeOwnerField = nullptr;
         QLabel *smimeRelatedAddresses = nullptr;
-        QTreeWidget *userIDTable = nullptr;
+        UserIDTable *userIDTable = nullptr;
         QGroupBox *groupBox = nullptr;
         InfoField *validFromField = nullptr;
         InfoField *expiresField = nullptr;
@@ -274,7 +300,7 @@ private:
             mainLayout->addLayout(gridLayout_2);
             }
 
-            userIDTable = new QTreeWidget(parent);
+            userIDTable = new UserIDTable{parent};
             QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
             __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
             userIDTable->setHeaderItem(__qtreewidgetitem);
@@ -282,7 +308,7 @@ private:
             userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
             userIDTable->setRootIsDecorated(false);
             userIDTable->setUniformRowHeights(true);
-            userIDTable->setAllColumnsShowFocus(true);
+            userIDTable->setAllColumnsShowFocus(false);
 
             mainLayout->addWidget(userIDTable);
 
@@ -1039,4 +1065,5 @@ GpgME::Key CertificateDetailsWidget::key() const
     return d->key;
 }
 
+#include "certificatedetailswidget.moc"
 #include "moc_certificatedetailswidget.cpp"

@@ -8,6 +8,8 @@
 */
 #include "updatenotification.h"
 
+#include <view/htmllabel.h>
+
 #include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
 
@@ -178,9 +180,9 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version) 
                                           KIconLoader::User);
     logo->setPixmap(QIcon(iconPath).pixmap(100, 100));
 
-    auto label = new QLabel;
+    auto label = new HtmlLabel;
     const QString boldVersion = QStringLiteral("<b>%1</b>").arg(version);
-    label->setText (i18nc("%1 is the version number", "Version %1 is available.", boldVersion) +
+    label->setHtml(i18nc("%1 is the version number", "Version %1 is available.", boldVersion) +
         QStringLiteral("<br><br>") +
         i18nc("Link to NEWS style changelog",
               "See the <a href=\"https://www.gpg4win.org/change-history.html\">new features</a>."));

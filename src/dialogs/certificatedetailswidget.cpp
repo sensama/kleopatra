@@ -534,6 +534,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
         item->setData(0, Qt::DisplayRole, pMail);
         item->setData(0, Qt::ToolTipRole, toolTip);
+        item->setData(0, Qt::AccessibleTextRole, pMail.isEmpty() ? i18nc("text for screen readers for an empty email address", "no email") : pMail);
         item->setData(1, Qt::DisplayRole, pName);
         item->setData(1, Qt::ToolTipRole, toolTip);
 

@@ -499,6 +499,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDTable->setColumnWidth(0, 200);
     ui.userIDTable->setColumnWidth(1, 200);
     ui.userIDTable->setHeaderLabels(headers);
+    ui.userIDTable->setAccessibleName(isOpenPGP ? i18n("User IDs") : i18n("Related addresses"));
 
     const auto uids = key.userIDs();
     for (unsigned int i = 0; i < uids.size(); ++i) {

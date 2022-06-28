@@ -67,7 +67,7 @@ private:
     QToolButton toggleButton;
     QFrame headerLine;
     QParallelAnimationGroup toggleAnimation;
-    QScrollArea contentArea;
+    QWidget contentArea;
     int animationDuration{300};
 };
 
@@ -85,7 +85,6 @@ AnimatedExpander::AnimatedExpander(const QString &title, QWidget *parent):
     headerLine.setFrameShadow(QFrame::Sunken);
     headerLine.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
 
-    contentArea.setStyleSheet(QStringLiteral("QScrollArea { border: none; }"));
     contentArea.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     // start out collapsed

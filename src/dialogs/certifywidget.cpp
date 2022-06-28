@@ -270,29 +270,23 @@ class CertifyWidget::Private
 public:
     Private(CertifyWidget *qq)
         : q{qq}
-        , mFprLabel{new QLabel{q}}
-        , mSecKeySelect{new KeySelectionCombo{/* secretOnly= */true, q}}
-        , mMissingOwnerTrustInfo{new KMessageWidget{q}}
-        , mExportCB{new QCheckBox{q}}
-        , mPublishCB{new QCheckBox{q}}
-        , mTagsLE{new QLineEdit{q}}
-        , mTrustSignatureCB{new QCheckBox{q}}
-        , mTrustSignatureDomainLE{new QLineEdit{q}}
-        , mExpirationCheckBox{new QCheckBox{q}}
-        , mExpirationDateEdit{new KDateComboBox{q}}
-        , mSetOwnerTrustAction{new QAction{q}}
     {
         auto mainLay = new QVBoxLayout{q};
+
+        mFprLabel = new QLabel{q};
         mainLay->addWidget(mFprLabel);
 
         auto secKeyLay = new QHBoxLayout{q};
         secKeyLay->addWidget(new QLabel(i18n("Certify with:")));
 
+        mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
         mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
 
         secKeyLay->addWidget(mSecKeySelect, 1);
         mainLay->addLayout(secKeyLay);
 
+        mMissingOwnerTrustInfo = new KMessageWidget{q};
+        mSetOwnerTrustAction = new QAction{q};
         mSetOwnerTrustAction->setText(i18nc("@action:button", "Set Owner Trust"));
         mSetOwnerTrustAction->setToolTip(QLatin1String("<html>") +
                                          i18nc("@info:tooltip",
@@ -317,12 +311,14 @@ public:
 
         auto advLay = new QVBoxLayout{q};
 
+        mExportCB = new QCheckBox{q};
         mExportCB->setText(i18n("Certify for everyone to see (exportable)"));
         advLay->addWidget(mExportCB);
 
         {
             auto layout = new QHBoxLayout{q};
 
+            mPublishCB = new QCheckBox{q};
             mPublishCB->setText(i18n("Publish on keyserver afterwards"));
             mPublishCB->setEnabled(mExportCB->isChecked());
 
@@ -335,6 +331,7 @@ public:
         {
             auto tagsLay = new QHBoxLayout{q};
 
+            mTagsLE = new QLineEdit{q};
             mTagsLE->setPlaceholderText(i18n("Tags"));
             auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") +
                                             QStringLiteral("<br/><br/>") +
@@ -352,8 +349,10 @@ public:
         {
             auto layout = new QHBoxLayout{q};
 
+            mExpirationCheckBox = new QCheckBox{q};
             mExpirationCheckBox->setText(i18n("Expiration:"));
 
+            mExpirationDateEdit = new KDateComboBox{q};
             mExpirationDateEdit->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
                                             KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
             static const QDate maxAllowedDate{2106, 2, 5};
@@ -386,6 +385,7 @@ public:
         {
             auto layout = new QHBoxLayout{q};
 
+            mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
             auto infoBtn = createInfoButton(i18n("You can use this to certify a trusted introducer for a domain.") +
                                             QStringLiteral("<br/><br/>") +
@@ -403,6 +403,7 @@ public:
         {
             auto layout = new QHBoxLayout{q};
 
+            mTrustSignatureDomainLE = new QLineEdit{q};
             mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));
             mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
 

@@ -338,6 +338,7 @@ public:
                                             i18n("Tags created by anyone with full certification trust "
                                                 "are shown in the keylist and can be searched."),
                                             q);
+            infoBtn->setAccessibleName(i18n("Explain tags"));
 
             tagsLay->addWidget(new QLabel{i18n("Tags:"), q});
             tagsLay->addWidget(mTagsLE, 1);
@@ -374,6 +375,7 @@ public:
                                                  "your certification to a certain amount of time. Once the expiration "
                                                  "date has passed, your certification is no longer valid."),
                                             q);
+            infoBtn->setAccessibleName(i18n("Explain expiration"));
 
             layout->addWidget(mExpirationCheckBox);
             layout->addWidget(mExpirationDateEdit, 1);
@@ -394,6 +396,7 @@ public:
                                                  "as certified, i.e. a trusted introducer acts as a kind of "
                                                  "intermediate CA for a domain."),
                                             q);
+            infoBtn->setAccessibleName(i18n("Explain trusted introducer"));
 
             layout->addWidget(mTrustSignatureCB, 1);
             layout->addWidget(infoBtn);

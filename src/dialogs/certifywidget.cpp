@@ -276,7 +276,7 @@ public:
         mFprLabel = new QLabel{q};
         mainLay->addWidget(mFprLabel);
 
-        auto secKeyLay = new QHBoxLayout{q};
+        auto secKeyLay = new QHBoxLayout;
         secKeyLay->addWidget(new QLabel(i18n("Certify with:")));
 
         mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
@@ -309,14 +309,14 @@ public:
         auto expander = new AnimatedExpander{i18n("Advanced"), q};
         mainLay->addWidget(expander);
 
-        auto advLay = new QVBoxLayout{q};
+        auto advLay = new QVBoxLayout;
 
         mExportCB = new QCheckBox{q};
         mExportCB->setText(i18n("Certify for everyone to see (exportable)"));
         advLay->addWidget(mExportCB);
 
         {
-            auto layout = new QHBoxLayout{q};
+            auto layout = new QHBoxLayout;
 
             mPublishCB = new QCheckBox{q};
             mPublishCB->setText(i18n("Publish on keyserver afterwards"));
@@ -329,7 +329,7 @@ public:
         }
 
         {
-            auto tagsLay = new QHBoxLayout{q};
+            auto tagsLay = new QHBoxLayout;
 
             mTagsLE = new QLineEdit{q};
             mTagsLE->setPlaceholderText(i18n("Tags"));
@@ -347,7 +347,7 @@ public:
         }
 
         {
-            auto layout = new QHBoxLayout{q};
+            auto layout = new QHBoxLayout;
 
             mExpirationCheckBox = new QCheckBox{q};
             mExpirationCheckBox->setText(i18n("Expiration:"));
@@ -383,7 +383,7 @@ public:
         }
 
         {
-            auto layout = new QHBoxLayout{q};
+            auto layout = new QHBoxLayout;
 
             mTrustSignatureCB = new QCheckBox{q};
             mTrustSignatureCB->setText(i18n("Certify as trusted introducer"));
@@ -401,7 +401,7 @@ public:
             advLay->addLayout(layout);
         }
         {
-            auto layout = new QHBoxLayout{q};
+            auto layout = new QHBoxLayout;
 
             mTrustSignatureDomainLE = new QLineEdit{q};
             mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));

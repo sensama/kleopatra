@@ -245,7 +245,7 @@ public:
 
 private:
     struct UI {
-        QLabel *label = nullptr;
+        QLabel *userIDTableLabel = nullptr;
         InfoField *smimeOwnerField = nullptr;
         QLabel *smimeRelatedAddresses = nullptr;
         UserIDTable *userIDTable = nullptr;
@@ -273,10 +273,9 @@ private:
         {
             auto mainLayout = new QVBoxLayout{parent};
 
-            label = new QLabel(i18n("You can use this certificate to secure communication with the following email addresses:"), parent);
-            label->setWordWrap(true);
+            userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
 
-            mainLayout->addWidget(label);
+            mainLayout->addWidget(userIDTableLabel);
 
             {
             auto gridLayout_2 = new QGridLayout;
@@ -300,6 +299,7 @@ private:
             }
 
             userIDTable = new UserIDTable{parent};
+            userIDTableLabel->setBuddy(userIDTable);
             QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
             __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
             userIDTable->setHeaderItem(__qtreewidgetitem);
@@ -468,6 +468,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 {
     const bool hasSecret = key.hasSecret();
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
+
+    ui.userIDTableLabel->setVisible(isOpenPGP);
 
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);

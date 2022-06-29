@@ -11,6 +11,8 @@
 
 #include "certifywidget.h"
 
+#include <utils/accessibility.h>
+
 #include "kleopatra_debug.h"
 
 #include <KLocalizedString>
@@ -242,8 +244,8 @@ auto createInfoButton(const QString &text, QWidget *parent)
     infoBtn->setFlat(true);
 
     QObject::connect(infoBtn, &QPushButton::clicked, infoBtn, [infoBtn, text] () {
-        QToolTip::showText(infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0),
-                           text, infoBtn, QRect(), 30000);
+        const auto pos = infoBtn->mapToGlobal(QPoint()) + QPoint(infoBtn->width(), 0);
+        showToolTip(pos, text, infoBtn);
     });
 
     return infoBtn;

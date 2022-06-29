@@ -13,11 +13,17 @@
 
 #include <KLocalizedString>
 
+#ifdef Q_OS_WIN32
+#include <QApplication>
+#include <QDesktopWidget>
+#endif
 #include <QLabel>
 #include <QObject>
 #include <QTextDocument>
+#include <QToolTip>
 
 #include <algorithm>
+#include <chrono>
 
 #include "kleopatra_debug.h"
 
@@ -76,6 +82,45 @@ void Kleo::selectLabelText(QLabel *label)
     } else {
         qCDebug(KLEOPATRA_LOG) << "Label with unsupported text format" << label->textFormat() << "got focus";
     }
+}
+
+namespace
+{
+static void notifyAccessibilityClientsAboutToolTip(const QPoint &pos, QWidget *parent)
+{
+#ifdef Q_OS_WIN32
+    // On Windows, the tool tip's parent widget is a desktop screen widget (see implementation of QToolTip::showText)
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+    const auto desktop = QApplication::desktop();
+    const int screenNumber = desktop->isVirtualDesktop() ? desktop->screenNumber(pos) : desktop->screenNumber(parent);
+    parent = desktop->screen(screenNumber);
+QT_WARNING_POP
+#else
+    Q_UNUSED(pos);
+#endif
+    if (!parent) {
+        return;
+    }
+    if (auto toolTipLabel = parent->findChild<QLabel *>(QStringLiteral("qtooltip_label"))) {
+        // Qt explicitly does not notify accessibility clients about the tool tip being shown because
+        // "Tooltips are read aloud twice in MS narrator."
+        // The problem is that they are not read out by orca (on Linux) if the notification is omitted.
+        // Therefore, we take care of notifying the accessibility clients.
+#ifndef QT_NO_ACCESSIBILITY
+        QAccessibleEvent event(toolTipLabel, QAccessible::ObjectShow);
+        QAccessible::updateAccessibility(&event);
+#endif
+    }
+}
+}
+
+void Kleo::showToolTip(const QPoint &pos, const QString &text, QWidget *w)
+{
+    using namespace std::chrono_literals;
+    static const std::chrono::milliseconds timeout = 24h;
+    QToolTip::showText(pos, text, w, {}, timeout.count());
+    notifyAccessibilityClientsAboutToolTip(pos, w);
 }
 
 LabelHelper::LabelHelper()

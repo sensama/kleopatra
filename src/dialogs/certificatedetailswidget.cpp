@@ -45,6 +45,7 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KSeparator>
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
@@ -58,7 +59,6 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QGridLayout>
-#include <QGroupBox>
 #include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -249,7 +249,6 @@ private:
         InfoField *smimeOwnerField = nullptr;
         QLabel *smimeRelatedAddresses = nullptr;
         UserIDTable *userIDTable = nullptr;
-        QGroupBox *groupBox = nullptr;
         InfoField *validFromField = nullptr;
         InfoField *expiresField = nullptr;
         QAction *changeExpirationAction = nullptr;
@@ -346,19 +345,19 @@ private:
             mainLayout->addLayout(hboxLayout_1);
             }
 
-            groupBox = new QGroupBox(i18n("Certificate Details"), parent);
-            groupBox->setFlat(false);
+            mainLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
+
             {
-                auto gridLayout = new QGridLayout(groupBox);
+                auto gridLayout = new QGridLayout;
                 gridLayout->setColumnStretch(1, 1);
 
                 int boxRow = 0;
-                validFromField = new InfoField{i18n("Valid from:"), groupBox};
+                validFromField = new InfoField{i18n("Valid from:"), parent};
                 gridLayout->addWidget(validFromField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(validFromField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                expiresField = new InfoField{i18n("Expires:"), groupBox};
+                expiresField = new InfoField{i18n("Expires:"), parent};
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
@@ -368,12 +367,12 @@ private:
                 gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                typeField = new InfoField{i18n("Type:"), groupBox};
+                typeField = new InfoField{i18n("Type:"), parent};
                 gridLayout->addWidget(typeField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(typeField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                fingerprintField = new InfoField{i18n("Fingerprint:"), groupBox};
+                fingerprintField = new InfoField{i18n("Fingerprint:"), parent};
                 if (QGuiApplication::clipboard()) {
                     copyFingerprintAction = new QAction{parent};
                     copyFingerprintAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
@@ -385,7 +384,7 @@ private:
                 gridLayout->addLayout(fingerprintField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                smimeIssuerField = new InfoField{i18n("Issuer:"), groupBox};
+                smimeIssuerField = new InfoField{i18n("Issuer:"), parent};
                 showIssuerCertificateAction = new QAction{parent};
                 showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
@@ -395,12 +394,12 @@ private:
                 gridLayout->addLayout(smimeIssuerField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                complianceField = new InfoField{i18n("Compliance:"), groupBox};
+                complianceField = new InfoField{i18n("Compliance:"), parent};
                 gridLayout->addWidget(complianceField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(complianceField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                trustedIntroducerField = new InfoField{i18n("Trusted introducer for:"), groupBox};
+                trustedIntroducerField = new InfoField{i18n("Trusted introducer for:"), parent};
                 gridLayout->addWidget(trustedIntroducerField->label(), boxRow, 0, 1, 1);
                 trustedIntroducerField->setToolTip(i18n("See certifications for details."));
                 gridLayout->addLayout(trustedIntroducerField->layout(), boxRow, 1, 1, 1);
@@ -408,20 +407,21 @@ private:
                 boxRow++;
                 auto horizontalLayout = new QHBoxLayout;
 
-                moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), groupBox);
+                moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), parent);
                 horizontalLayout->addWidget(moreDetailsBtn);
 
-                exportBtn = new QPushButton(i18nc("@action:button", "Export..."), groupBox);
+                exportBtn = new QPushButton(i18nc("@action:button", "Export..."), parent);
                 horizontalLayout->addWidget(exportBtn);
 
-                webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), groupBox);
+                webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), parent);
                 horizontalLayout->addWidget(webOfTrustBtn);
 
                 horizontalLayout->addStretch(1);
 
                 gridLayout->addLayout(horizontalLayout, boxRow, 0, 1, 2);
+
+                mainLayout->addLayout(gridLayout);
             }
-            mainLayout->addWidget(groupBox);
         }
     } ui;
 };

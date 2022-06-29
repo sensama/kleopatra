@@ -317,28 +317,11 @@ private:
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
             hboxLayout_1->addWidget(addUserIDBtn);
 
-            changePassphraseBtn = new QPushButton(i18nc("@action:button", "Change Passphrase"), parent);
-            hboxLayout_1->addWidget(changePassphraseBtn);
-
-            trustChainDetailsBtn = new QPushButton(i18nc("@action:button", "Trust Chain Details..."), parent);
-            hboxLayout_1->addWidget(trustChainDetailsBtn);
-
-            genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
-            genRevokeBtn->setToolTip(u"<html>" %
-                                     i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
-                                          "declare that a key shall not anymore be used.  It is not possible "
-                                          "to retract such a revocation certificate once it has been published.") %
-                                     u"</html>");
-            hboxLayout_1->addWidget(genRevokeBtn);
-
-            refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
-#ifndef QGPGME_SUPPORTS_KEY_REFRESH
-            refreshBtn->setVisible(false);
-#endif
-            hboxLayout_1->addWidget(refreshBtn);
-
-            certifyBtn = new QPushButton(i18nc("@action:button", "Certify"), parent);
+            certifyBtn = new QPushButton(i18nc("@action:button", "Certify User ID"), parent);
             hboxLayout_1->addWidget(certifyBtn);
+
+            webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
+            hboxLayout_1->addWidget(webOfTrustBtn);
 
             hboxLayout_1->addStretch(1);
 
@@ -410,11 +393,28 @@ private:
                 moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), parent);
                 horizontalLayout->addWidget(moreDetailsBtn);
 
-                exportBtn = new QPushButton(i18nc("@action:button", "Export..."), parent);
+                trustChainDetailsBtn = new QPushButton(i18nc("@action:button", "Trust Chain Details"), parent);
+                horizontalLayout->addWidget(trustChainDetailsBtn);
+
+                refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
+#ifndef QGPGME_SUPPORTS_KEY_REFRESH
+                refreshBtn->setVisible(false);
+#endif
+                horizontalLayout->addWidget(refreshBtn);
+
+                exportBtn = new QPushButton(i18nc("@action:button", "Export"), parent);
                 horizontalLayout->addWidget(exportBtn);
 
-                webOfTrustBtn = new QPushButton(i18nc("@action:button", "Certifications..."), parent);
-                horizontalLayout->addWidget(webOfTrustBtn);
+                changePassphraseBtn = new QPushButton(i18nc("@action:button", "Change Passphrase"), parent);
+                horizontalLayout->addWidget(changePassphraseBtn);
+
+                genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
+                genRevokeBtn->setToolTip(u"<html>" %
+                                        i18n("A revocation certificate is a file that serves as a \"kill switch\" to publicly "
+                                            "declare that a key shall not anymore be used.  It is not possible "
+                                            "to retract such a revocation certificate once it has been published.") %
+                                        u"</html>");
+                horizontalLayout->addWidget(genRevokeBtn);
 
                 horizontalLayout->addStretch(1);
 

@@ -11,6 +11,7 @@
 
 #include "deletecertificatesdialog.h"
 
+#include <utils/accessibility.h>
 #include <view/keytreeview.h>
 
 #include <Libkleo/KeyListModel>
@@ -55,7 +56,7 @@ public:
         qCDebug(KLEOPATRA_LOG);
         if (QWidget *const widget = qobject_cast<QWidget *>(q->sender()))
             if (!widget->whatsThis().isEmpty()) {
-                QWhatsThis::showText(QCursor::pos(), widget->whatsThis());
+                showToolTip(QCursor::pos(), widget->whatsThis(), widget);
             }
     }
 

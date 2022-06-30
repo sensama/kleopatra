@@ -172,7 +172,7 @@ static bool is_de_vs_compliant(bool sign, bool encrypt, const std::vector<Sender
     if (sign) {
         for (const auto &sender: senders) {
             const auto &key = sender.resolvedSigningKey(presetProtocol);
-            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+            if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
                 return false;
             }
         }
@@ -181,14 +181,14 @@ static bool is_de_vs_compliant(bool sign, bool encrypt, const std::vector<Sender
     if (encrypt) {
         for (const auto &sender: senders) {
             const auto &key = sender.resolvedSigningKey(presetProtocol);
-            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+            if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
                 return false;
             }
         }
 
         for (const auto &recipient: recipients) {
             const auto &key = recipient.resolvedEncryptionKey(presetProtocol);
-            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+            if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
                 return false;
             }
         }

@@ -460,17 +460,17 @@ std::vector<Key> SignEncryptWidget::recipients() const
 bool SignEncryptWidget::isDeVsAndValid() const
 {
     if (!signKey().isNull()
-        && (!IS_DE_VS(signKey()) || keyValidity(signKey()) < GpgME::UserID::Validity::Full)) {
+        && (!signKey().isDeVs() || keyValidity(signKey()) < GpgME::UserID::Validity::Full)) {
         return false;
     }
 
     if (!selfKey().isNull()
-        && (!IS_DE_VS(selfKey()) || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
+        && (!selfKey().isDeVs() || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
         return false;
     }
 
     for (const auto &key: recipients()) {
-        if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+        if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
             return false;
         }
     }

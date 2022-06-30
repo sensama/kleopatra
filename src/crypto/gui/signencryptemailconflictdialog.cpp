@@ -256,14 +256,14 @@ private:
         // Handle compliance
         bool de_vs = true;
         for (const auto &key: q->resolvedSigningKeys()) {
-            if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+            if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
                 de_vs = false;
                 break;
             }
         }
         if (de_vs) {
             for (const auto &key: q->resolvedEncryptionKeys()) {
-                if (!IS_DE_VS(key) || keyValidity(key) < GpgME::UserID::Validity::Full) {
+                if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
                     de_vs = false;
                     break;
                 }

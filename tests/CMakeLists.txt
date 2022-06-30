@@ -24,11 +24,17 @@ ecm_mark_as_test(test_verify)
 target_link_libraries(test_verify
   KF5::Libkleo
   Qt${QT_MAJOR_VERSION}::Test
-  QGpgme
   KF5::CoreAddons
   KF5::I18n
   Qt${QT_MAJOR_VERSION}::Widgets
 )
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(test_verify QGpgmeQt6)
+else()
+    target_link_libraries(test_verify QGpgme)
+endif()
+
 
 ########### next target ###############
 
@@ -64,15 +70,17 @@ if(USABLE_ASSUAN_FOUND)
   if(WIN32)
     target_link_libraries(test_uiserver
       ${ASSUAN_VANILLA_LIBRARIES}
-      QGpgme
       ws2_32
     )
   else()
     target_link_libraries(test_uiserver
       ${ASSUAN_PTHREAD_LIBRARIES}
-      QGpgme
   )
   endif()
-
+  if (QT_MAJOR_VERSION STREQUAL "6")
+      target_link_libraries(test_uiserver QGpgmeQt6)
+  else()
+      target_link_libraries(test_uiserver QGpgme)
+  endif()
 endif()
 

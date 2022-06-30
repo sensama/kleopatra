@@ -583,7 +583,6 @@ endif ()
 
 target_link_libraries(kleopatra_bin
   Gpgmepp
-  QGpgme
   ${_kleopatra_extra_libs}
   KF5::Libkleo
   KF5::Mime
@@ -602,6 +601,12 @@ target_link_libraries(kleopatra_bin
   kleopatraclientcore
   ${_kleopatra_platform_libs}
 )
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kleopatra_bin QGpgmeQt6)
+else()
+    target_link_libraries(kleopatra_bin QGpgme)
+endif()
 
 install(TARGETS kleopatra_bin ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 

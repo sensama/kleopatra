@@ -21,7 +21,6 @@
 CertificateDetailsDialog::CertificateDetailsDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle(i18nc("@title:window", "Certificate Details"));
     auto l = new QVBoxLayout(this);
     auto w = new CertificateDetailsWidget{this};
     w->layout()->setContentsMargins(0, 0, 0, 0);
@@ -55,16 +54,29 @@ void CertificateDetailsDialog::writeConfig()
     dialog.sync();
 }
 
+namespace
+{
+QString title(const GpgME::Key &key)
+{
+    switch (key.protocol())
+    {
+    case GpgME::OpenPGP:
+        return i18nc("@title:window", "OpenPGP Certificate");
+    case GpgME::CMS:
+        return i18nc("@title:window", "S/MIME Certificate");
+    default:
+        return {};
+    }
+}
+}
+
 void CertificateDetailsDialog::setKey(const GpgME::Key &key)
 {
-    auto w = findChild<CertificateDetailsWidget*>();
-    Q_ASSERT(w);
-    w->setKey(key);
+    setWindowTitle(title(key));
+    findChild<CertificateDetailsWidget*>()->setKey(key);
 }
 
 GpgME::Key CertificateDetailsDialog::key() const
 {
-    auto w = findChild<CertificateDetailsWidget*>();
-    Q_ASSERT(w);
-    return w->key();
+    return findChild<CertificateDetailsWidget*>()->key();
 }

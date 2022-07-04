@@ -252,7 +252,6 @@ private:
         InfoField *validFromField = nullptr;
         InfoField *expiresField = nullptr;
         QAction *changeExpirationAction = nullptr;
-        InfoField *typeField = nullptr;
         InfoField *fingerprintField = nullptr;
         QAction *copyFingerprintAction = nullptr;
         InfoField *smimeIssuerField = nullptr;
@@ -348,11 +347,6 @@ private:
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
-
-                boxRow++;
-                typeField = new InfoField{i18n("Type:"), parent};
-                gridLayout->addWidget(typeField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(typeField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
                 fingerprintField = new InfoField{i18n("Fingerprint:"), parent};
@@ -485,7 +479,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
     ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),
                               Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
-    ui.typeField->setValue(Kleo::Formatting::type(key));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
                                   Formatting::accessibleHexID(key.primaryFingerprint()));
 

@@ -246,18 +246,18 @@ public:
 private:
     struct UI {
         QLabel *userIDTableLabel = nullptr;
-        InfoField *smimeOwnerField = nullptr;
+        std::unique_ptr<InfoField> smimeOwnerField;
         QLabel *smimeRelatedAddresses = nullptr;
         UserIDTable *userIDTable = nullptr;
-        InfoField *validFromField = nullptr;
-        InfoField *expiresField = nullptr;
+        std::unique_ptr<InfoField> validFromField;
+        std::unique_ptr<InfoField> expiresField;
         QAction *changeExpirationAction = nullptr;
-        InfoField *fingerprintField = nullptr;
+        std::unique_ptr<InfoField> fingerprintField;
         QAction *copyFingerprintAction = nullptr;
-        InfoField *smimeIssuerField = nullptr;
+        std::unique_ptr<InfoField> smimeIssuerField;
         QAction *showIssuerCertificateAction = nullptr;
-        InfoField *complianceField = nullptr;
-        InfoField *trustedIntroducerField = nullptr;
+        std::unique_ptr<InfoField> complianceField;
+        std::unique_ptr<InfoField> trustedIntroducerField;
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *changePassphraseBtn = nullptr;
         QPushButton *trustChainDetailsBtn = nullptr;
@@ -281,7 +281,7 @@ private:
             gridLayout_2->setColumnStretch(1, 1);
 
             int row = 0;
-            smimeOwnerField = new InfoField{i18n("Owner:"), parent};
+            smimeOwnerField = std::make_unique<InfoField>(i18n("Owner:"), parent);
             gridLayout_2->addWidget(smimeOwnerField->label(), row, 0, 1, 1);
             gridLayout_2->addLayout(smimeOwnerField->layout(), row, 1, 1, 1);
 
@@ -334,12 +334,12 @@ private:
                 gridLayout->setColumnStretch(1, 1);
 
                 int boxRow = 0;
-                validFromField = new InfoField{i18n("Valid from:"), parent};
+                validFromField = std::make_unique<InfoField>(i18n("Valid from:"), parent);
                 gridLayout->addWidget(validFromField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(validFromField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                expiresField = new InfoField{i18n("Expires:"), parent};
+                expiresField = std::make_unique<InfoField>(i18n("Expires:"), parent);
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
@@ -349,7 +349,7 @@ private:
                 gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                fingerprintField = new InfoField{i18n("Fingerprint:"), parent};
+                fingerprintField = std::make_unique<InfoField>(i18n("Fingerprint:"), parent);
                 if (QGuiApplication::clipboard()) {
                     copyFingerprintAction = new QAction{parent};
                     copyFingerprintAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
@@ -361,7 +361,7 @@ private:
                 gridLayout->addLayout(fingerprintField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                smimeIssuerField = new InfoField{i18n("Issuer:"), parent};
+                smimeIssuerField = std::make_unique<InfoField>(i18n("Issuer:"), parent);
                 showIssuerCertificateAction = new QAction{parent};
                 showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
@@ -371,12 +371,12 @@ private:
                 gridLayout->addLayout(smimeIssuerField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                complianceField = new InfoField{i18n("Compliance:"), parent};
+                complianceField = std::make_unique<InfoField>(i18n("Compliance:"), parent);
                 gridLayout->addWidget(complianceField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(complianceField->layout(), boxRow, 1, 1, 1);
 
                 boxRow++;
-                trustedIntroducerField = new InfoField{i18n("Trusted introducer for:"), parent};
+                trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
                 gridLayout->addWidget(trustedIntroducerField->label(), boxRow, 0, 1, 1);
                 trustedIntroducerField->setToolTip(i18n("See certifications for details."));
                 gridLayout->addLayout(trustedIntroducerField->layout(), boxRow, 1, 1, 1);

@@ -69,6 +69,7 @@
 #include <QTreeWidget>
 #include <QVBoxLayout>
 
+#include <map>
 #include <set>
 
 Q_DECLARE_METATYPE(GpgME::UserID)
@@ -246,7 +247,7 @@ public:
 private:
     struct UI {
         QLabel *userIDTableLabel = nullptr;
-        std::unique_ptr<InfoField> smimeOwnerField;
+        std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
         QLabel *smimeRelatedAddresses = nullptr;
         UserIDTable *userIDTable = nullptr;
         std::unique_ptr<InfoField> validFromField;
@@ -277,25 +278,30 @@ private:
             mainLayout->addWidget(userIDTableLabel);
 
             {
-            auto gridLayout_2 = new QGridLayout;
-            gridLayout_2->setColumnStretch(1, 1);
+                auto smimeGrid = new QGridLayout;
+                smimeGrid->setColumnStretch(1, 1);
 
-            int row = 0;
-            smimeOwnerField = std::make_unique<InfoField>(i18n("Owner:"), parent);
-            gridLayout_2->addWidget(smimeOwnerField->label(), row, 0, 1, 1);
-            gridLayout_2->addLayout(smimeOwnerField->layout(), row, 1, 1, 1);
+                int row = 0;
+                for (const auto &attribute : DN::attributeOrder()) {
+                    const auto attributeLabel = DN::attributeNameToLabel(attribute);
+                    if (attributeLabel.isEmpty()) {
+                        continue;
+                    }
+                    const auto labelWithColon = i18nc("interpunctation for labels", "%1:", attributeLabel);
+                    const auto & [it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
+                    if (inserted) {
+                        const auto &field = it->second;
+                        smimeGrid->addWidget(field->label(), row, 0, 1, 1);
+                        smimeGrid->addLayout(field->layout(), row, 1, 1, 1);
+                        row++;
+                    }
+                }
 
-            row++;
-            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
-            QFont font;
-            font.setBold(true);
-            font.setWeight(75);
-            smimeRelatedAddresses->setFont(font);
-
-            gridLayout_2->addWidget(smimeRelatedAddresses, row, 0, 1, 1);
-
-            mainLayout->addLayout(gridLayout_2);
+                mainLayout->addLayout(smimeGrid);
             }
+
+            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
+            mainLayout->addWidget(smimeRelatedAddresses);
 
             userIDTable = new UserIDTable{parent};
             userIDTableLabel->setBuddy(userIDTable);
@@ -899,7 +905,9 @@ auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
 
 void CertificateDetailsWidget::Private::setupPGPProperties()
 {
-    ui.smimeOwnerField->setVisible(false);
+    for (const auto &[_, field] : ui.smimeAttributeFields) {
+        field->setVisible(false);
+    }
     ui.smimeIssuerField->setVisible(false);
     ui.smimeRelatedAddresses->setVisible(false);
     ui.trustChainDetailsBtn->setVisible(false);
@@ -948,24 +956,17 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     const QString dnEmail = dn[QStringLiteral("EMAIL")];
     const QString name = cn.isEmpty() ? dnEmail : cn;
 
-    QString owner;
-    if (name.isEmpty()) {
-        owner = dn.dn();
-    } else if (o.isEmpty()) {
-        owner = name;
-    } else {
-        owner = i18nc("<name> of <company>", "%1 of %2", name, o);
+    for (const auto &[attributeName, field] : ui.smimeAttributeFields) {
+        const QString attributeValue = dn[attributeName];
+        field->setValue(attributeValue);
+        field->setVisible(!attributeValue.isEmpty());
     }
-    ui.smimeOwnerField->setValue(owner);
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
     ui.smimeIssuerField->setValue(issuer);
-
     ui.smimeIssuerField->setToolTip(formatDNToolTip(issuerDN));
-
-    ui.smimeOwnerField->setToolTip(formatDNToolTip(dn));
 
     ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }

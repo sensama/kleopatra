@@ -83,6 +83,7 @@ public:
     InfoField(const QString &label, QWidget *parent);
 
     void setValue(const QString &value, const QString &accessibleValue = {});
+    void setIcon(const QIcon &icon);
     void setAction(const QAction *action);
     void setToolTip(const QString &toolTip);
     void setVisible(bool visible);
@@ -95,6 +96,7 @@ private:
 
     QLabel *mLabel = nullptr;
     QHBoxLayout *mLayout = nullptr;
+    QLabel *mIcon = nullptr;
     QLabel *mValue = nullptr;
     QPushButton *mButton = nullptr;
     const QAction *mAction = nullptr;
@@ -103,11 +105,14 @@ private:
 InfoField::InfoField(const QString &label, QWidget *parent)
     : mLabel{new QLabel{label, parent}}
     , mLayout{new QHBoxLayout}
+    , mIcon{new QLabel{parent}}
     , mValue{new QLabel{parent}}
     , mButton{new QPushButton{parent}}
 {
     mLabel->setBuddy(mValue);
     mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    mIcon->setVisible(false);
+    mLayout->addWidget(mIcon);
     mValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
     mValue->setFocusPolicy(Qt::TabFocus);
     mLayout->addWidget(mValue);
@@ -121,6 +126,18 @@ void InfoField::setValue(const QString &value, const QString &accessibleValue)
 {
     mValue->setText(value);
     mValue->setAccessibleName(accessibleValue);
+}
+
+void InfoField::setIcon(const QIcon &icon)
+{
+    if (!icon.isNull()) {
+        const int iconSize = mIcon->style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, mIcon);
+        mIcon->setPixmap(icon.pixmap(iconSize));
+        mIcon->setVisible(true);
+    } else {
+        mIcon->setVisible(false);
+        mIcon->clear();
+    }
 }
 
 void InfoField::setAction(const QAction *action)
@@ -156,6 +173,7 @@ void InfoField::setToolTip(const QString &toolTip)
 void InfoField::setVisible(bool visible)
 {
     mLabel->setVisible(visible);
+    mIcon->setVisible(visible && !mIcon->pixmap(Qt::ReturnByValue).isNull());
     mValue->setVisible(visible);
     mButton->setVisible(visible && mAction);
 }
@@ -972,6 +990,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
         field->setValue(attributeValue);
         field->setVisible(!attributeValue.isEmpty());
     }
+    ui.smimeTrustLevelField->setIcon(trustLevelIcon(ownerId));
     ui.smimeTrustLevelField->setValue(trustLevelText(ownerId));
 
     const Kleo::DN issuerDN(key.issuerName());

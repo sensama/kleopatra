@@ -227,6 +227,8 @@ public:
     void userIDTableContextMenuRequested(const QPoint &p);
 
     QString tofuTooltipString(const GpgME::UserID &uid) const;
+    QIcon trustLevelIcon(const GpgME::UserID &uid) const;
+    QString trustLevelText(const GpgME::UserID &uid) const;
 
     void showIssuerCertificate();
 
@@ -248,6 +250,7 @@ private:
     struct UI {
         QLabel *userIDTableLabel = nullptr;
         std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
+        std::unique_ptr<InfoField> smimeTrustLevelField;
         QLabel *smimeRelatedAddresses = nullptr;
         UserIDTable *userIDTable = nullptr;
         std::unique_ptr<InfoField> validFromField;
@@ -296,6 +299,10 @@ private:
                         row++;
                     }
                 }
+
+                smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
+                smimeGrid->addWidget(smimeTrustLevelField->label(), row, 0, 1, 1);
+                smimeGrid->addLayout(smimeTrustLevelField->layout(), row, 1, 1, 1);
 
                 mainLayout->addLayout(smimeGrid);
             }
@@ -539,30 +546,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
         item->setData(1, Qt::DisplayRole, pName);
         item->setData(1, Qt::ToolTipRole, toolTip);
 
-        QIcon trustIcon;
-        if (updateInProgress) {
-           trustIcon = QIcon::fromTheme(QStringLiteral("emblem-question"));
-           item->setData(2, Qt::DisplayRole, i18n("Updating..."));
-        } else {
-            switch (uid.validity()) {
-            case GpgME::UserID::Unknown:
-            case GpgME::UserID::Undefined:
-                trustIcon = QIcon::fromTheme(QStringLiteral("emblem-question"));
-                break;
-            case GpgME::UserID::Never:
-                trustIcon = QIcon::fromTheme(QStringLiteral("emblem-error"));
-                break;
-            case GpgME::UserID::Marginal:
-                trustIcon = QIcon::fromTheme(QStringLiteral("emblem-warning"));
-                break;
-            case GpgME::UserID::Full:
-            case GpgME::UserID::Ultimate:
-                trustIcon = QIcon::fromTheme(QStringLiteral("emblem-success"));
-                break;
-            }
-            item->setData(2, Qt::DisplayRole, Kleo::Formatting::validityShort(uid));
-        }
-        item->setData(2, Qt::DecorationRole, trustIcon);
+        item->setData(2, Qt::DecorationRole, trustLevelIcon(uid));
+        item->setData(2, Qt::DisplayRole, trustLevelText(uid));
         item->setData(2, Qt::ToolTipRole, toolTip);
 
         GpgME::Error err;
@@ -866,6 +851,31 @@ QString CertificateDetailsWidget::Private::tofuTooltipString(const GpgME::UserID
     return html;
 }
 
+QIcon CertificateDetailsWidget::Private::trustLevelIcon(const GpgME::UserID &uid) const
+{
+    if (updateInProgress) {
+        return QIcon::fromTheme(QStringLiteral("emblem-question"));
+    }
+    switch (uid.validity()) {
+    case GpgME::UserID::Unknown:
+    case GpgME::UserID::Undefined:
+        return QIcon::fromTheme(QStringLiteral("emblem-question"));
+    case GpgME::UserID::Never:
+        return QIcon::fromTheme(QStringLiteral("emblem-error"));
+    case GpgME::UserID::Marginal:
+        return QIcon::fromTheme(QStringLiteral("emblem-warning"));
+    case GpgME::UserID::Full:
+    case GpgME::UserID::Ultimate:
+        return QIcon::fromTheme(QStringLiteral("emblem-success"));
+    }
+    return {};
+}
+
+QString CertificateDetailsWidget::Private::trustLevelText(const GpgME::UserID &uid) const
+{
+    return updateInProgress ? i18n("Updating...") : Formatting::validityShort(uid);
+}
+
 namespace
 {
 auto isGood(const GpgME::UserID::Signature &signature)
@@ -909,6 +919,7 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
         field->setVisible(false);
     }
     ui.smimeIssuerField->setVisible(false);
+    ui.smimeTrustLevelField->setVisible(false);
     ui.smimeRelatedAddresses->setVisible(false);
     ui.trustChainDetailsBtn->setVisible(false);
 
@@ -961,6 +972,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
         field->setValue(attributeValue);
         field->setVisible(!attributeValue.isEmpty());
     }
+    ui.smimeTrustLevelField->setValue(trustLevelText(ownerId));
 
     const Kleo::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];

@@ -281,17 +281,12 @@ void CryptoOperationsConfigWidget::setupGui()
         mAutoDecryptVerifyCB->setVisible(false);
     }
 
-    connect(mQuickSignCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mQuickEncryptCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mChecksumDefinitionCB.widget(), qOverload<int>(&QComboBox::currentIndexChanged),
-            this, &CryptoOperationsConfigWidget::changed);
-    connect(mArchiveDefinitionCB.widget(), qOverload<int>(&QComboBox::currentIndexChanged),
-            this, &CryptoOperationsConfigWidget::changed);
-    connect(mPGPFileExtCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mAutoDecryptVerifyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mASCIIArmorCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mTmpDirCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
-    connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    for (auto cb : findChildren<QCheckBox *>()) {
+        connect(cb, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
+    }
+    for (auto combo : findChildren<QComboBox *>()) {
+        connect(combo, qOverload<int>(&QComboBox::currentIndexChanged), this, &CryptoOperationsConfigWidget::changed);
+    }
 }
 
 CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}

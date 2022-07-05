@@ -71,7 +71,10 @@
 #include <QVBoxLayout>
 
 #include <map>
+#if __has_include(<ranges>)
 #include <ranges>
+#define USE_RANGES
+#endif
 #include <set>
 
 Q_DECLARE_METATYPE(GpgME::UserID)
@@ -622,7 +625,13 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
     }
 
     // iterate over the secondary user IDs
+#ifdef USE_RANGES
     for (const auto uids = key.userIDs(); const auto &uid : std::ranges::subrange(std::next(uids.begin()), uids.end())) {
+#else
+    const auto uids = key.userIDs();
+    for (auto it = std::next(uids.begin()); it != uids.end(); ++it) {
+        const auto &uid = *it;
+#endif
         const auto name = Kleo::Formatting::prettyName(uid);
         const auto email = Kleo::Formatting::prettyEMail(uid);
         if (name.isEmpty() && !email.isEmpty()) {

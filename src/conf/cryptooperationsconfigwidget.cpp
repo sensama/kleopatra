@@ -276,13 +276,6 @@ void CryptoOperationsConfigWidget::setupGui()
 
     baseLay->addStretch(1);
 
-
-    if (!GpgME::hasFeature(0, GpgME::BinaryAndFineGrainedIdentify)) {
-        /* Auto handling requires a working identify in GpgME.
-         * so that classify in kleoaptra can correctly detect the input.*/
-        mAutoDecryptVerifyCB->setVisible(false);
-    }
-
     for (auto cb : findChildren<QCheckBox *>()) {
         connect(cb, &QCheckBox::toggled, this, &CryptoOperationsConfigWidget::changed);
     }

@@ -82,9 +82,7 @@ DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyLi
       shared_qq(qq, [](DecryptVerifyFilesCommand*){})
 {
     FileOperationsPreferences prefs;
-    if (!forceManualMode &&
-        GpgME::hasFeature(0, GpgME::BinaryAndFineGrainedIdentify) &&
-        prefs.autoDecryptVerify()) {
+    if (!forceManualMode && prefs.autoDecryptVerify()) {
         mController = new AutoDecryptVerifyFilesController();
     } else {
         mController = new DecryptVerifyFilesController();

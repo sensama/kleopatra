@@ -62,6 +62,7 @@
 #include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QListWidget>
 #include <QLocale>
 #include <QMenu>
 #include <QPushButton>
@@ -70,6 +71,7 @@
 #include <QVBoxLayout>
 
 #include <map>
+#include <ranges>
 #include <set>
 
 Q_DECLARE_METATYPE(GpgME::UserID)
@@ -83,6 +85,8 @@ public:
     InfoField(const QString &label, QWidget *parent);
 
     void setValue(const QString &value, const QString &accessibleValue = {});
+    QString value() const;
+
     void setIcon(const QIcon &icon);
     void setAction(const QAction *action);
     void setToolTip(const QString &toolTip);
@@ -126,6 +130,11 @@ void InfoField::setValue(const QString &value, const QString &accessibleValue)
 {
     mValue->setText(value);
     mValue->setAccessibleName(accessibleValue);
+}
+
+QString InfoField::value() const
+{
+    return mValue->text();
 }
 
 void InfoField::setIcon(const QIcon &icon)
@@ -227,6 +236,8 @@ public:
     Private(CertificateDetailsWidget *qq);
 
     void setupCommonProperties();
+    void setUpUserIDTable();
+    void setUpSMIMEAdressList();
     void setupPGPProperties();
     void setupSMIMEProperties();
 
@@ -265,12 +276,22 @@ public:
     bool updateInProgress = false;
 
 private:
+    InfoField *attributeField(const QString &attributeName)
+    {
+        if (ui.smimeAttributeFields.contains(attributeName)) {
+            return ui.smimeAttributeFields.at(attributeName).get();
+        }
+        return nullptr;
+    }
+
+private:
     struct UI {
-        QLabel *userIDTableLabel = nullptr;
         std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
         std::unique_ptr<InfoField> smimeTrustLevelField;
         QLabel *smimeRelatedAddresses = nullptr;
+        QLabel *userIDTableLabel = nullptr;
         UserIDTable *userIDTable = nullptr;
+        QListWidget *smimeAddressList = nullptr;
         std::unique_ptr<InfoField> validFromField;
         std::unique_ptr<InfoField> expiresField;
         QAction *changeExpirationAction = nullptr;
@@ -297,6 +318,20 @@ private:
             userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
 
             mainLayout->addWidget(userIDTableLabel);
+
+            userIDTable = new UserIDTable{parent};
+            userIDTableLabel->setBuddy(userIDTable);
+            userIDTable->setAccessibleName(i18n("User IDs"));
+            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+            userIDTable->setHeaderItem(__qtreewidgetitem);
+            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+            userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
+            userIDTable->setRootIsDecorated(false);
+            userIDTable->setUniformRowHeights(true);
+            userIDTable->setAllColumnsShowFocus(false);
+
+            mainLayout->addWidget(userIDTable);
 
             {
                 auto smimeGrid = new QGridLayout;
@@ -328,18 +363,13 @@ private:
             smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
             mainLayout->addWidget(smimeRelatedAddresses);
 
-            userIDTable = new UserIDTable{parent};
-            userIDTableLabel->setBuddy(userIDTable);
-            QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
-            __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
-            userIDTable->setHeaderItem(__qtreewidgetitem);
-            userIDTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-            userIDTable->setSelectionMode(QAbstractItemView::SingleSelection);
-            userIDTable->setRootIsDecorated(false);
-            userIDTable->setUniformRowHeights(true);
-            userIDTable->setAllColumnsShowFocus(false);
+            smimeAddressList = new QListWidget{parent};
+            smimeRelatedAddresses->setBuddy(smimeAddressList);
+            smimeAddressList->setAccessibleName(i18n("Related addresses"));
+            smimeAddressList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+            smimeAddressList->setSelectionMode(QAbstractItemView::SingleSelection);
 
-            mainLayout->addWidget(userIDTable);
+            mainLayout->addWidget(smimeAddressList);
 
             {
             auto hboxLayout_1 = new QHBoxLayout;
@@ -456,6 +486,7 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
 {
     ui.setupUi(q);
 
+    ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
             q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
     connect(ui.addUserIDBtn, &QPushButton::clicked,
@@ -495,6 +526,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
 
     ui.userIDTableLabel->setVisible(isOpenPGP);
+    ui.userIDTable->setVisible(isOpenPGP);
 
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
@@ -517,7 +549,10 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     if (Kleo::gnupgIsDeVsCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
+}
 
+void CertificateDetailsWidget::Private::setUpUserIDTable()
+{
     ui.userIDTable->clear();
 
     QStringList headers = { i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags") };
@@ -525,7 +560,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDTable->setColumnWidth(0, 200);
     ui.userIDTable->setColumnWidth(1, 200);
     ui.userIDTable->setHeaderLabels(headers);
-    ui.userIDTable->setAccessibleName(isOpenPGP ? i18n("User IDs") : i18n("Related addresses"));
 
     const auto uids = key.userIDs();
     for (unsigned int i = 0; i < uids.size(); ++i) {
@@ -536,27 +570,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
         auto pMail = Kleo::Formatting::prettyEMail(uid);
         auto pName = Kleo::Formatting::prettyName(uid);
-        if (!isOpenPGP && pMail.isEmpty() && !pName.isEmpty()) {
-            // S/MIME UserIDs are sometimes split, with one userID
-            // containing the name another the Mail, we merge these
-            // UID's into a single item.
-
-            if (i + 1 < uids.size()) {
-                pMail = Kleo::Formatting::prettyEMail(uids[i + 1]);
-                // skip next uid
-                ++i;
-            }
-        }
-
-        if (!isOpenPGP && pMail.isEmpty() && pName.isEmpty()) {
-            // S/MIME certificates sometimes contain urls where both
-            // name and mail is empty. In that case we print whatever
-            // the uid is as name.
-            //
-            // Can be ugly like (3:uri24:http://ca.intevation.org), but
-            // this is better then showing an empty entry.
-            pName = QString::fromLatin1(uid.id());
-        }
 
         item->setData(0, Qt::DisplayRole, pMail);
         item->setData(0, Qt::ToolTipRole, toolTip);
@@ -585,6 +598,47 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     }
     if (!Tags::tagsEnabled()) {
         ui.userIDTable->hideColumn(3);
+    }
+}
+
+void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
+{
+    ui.smimeAddressList->clear();
+
+    const auto *const emailField = attributeField(QStringLiteral("EMAIL"));
+
+    // add email address from primary user ID if not listed already as attribute field
+    if (!emailField) {
+        const auto ownerId = key.userID(0);
+        const Kleo::DN dn(ownerId.id());
+        const QString dnEmail = dn[QStringLiteral("EMAIL")];
+        if (!dnEmail.isEmpty()) {
+            ui.smimeAddressList->addItem(dnEmail);
+        }
+    }
+
+    if (key.numUserIDs() < 2) {
+        return;
+    }
+
+    // iterate over the secondary user IDs
+    for (const auto uids = key.userIDs(); const auto &uid : std::ranges::subrange(std::next(uids.begin()), uids.end())) {
+        const auto name = Kleo::Formatting::prettyName(uid);
+        const auto email = Kleo::Formatting::prettyEMail(uid);
+        if (name.isEmpty() && !email.isEmpty()) {
+            // skip email addresses already listed in email attribute field
+            if (emailField && email != emailField->value()) {
+                ui.smimeAddressList->addItem(email);
+            }
+        } else {
+            // S/MIME certificates sometimes contain urls where both
+            // name and mail is empty. In that case we print whatever
+            // the uid is as name.
+            //
+            // Can be ugly like (3:uri24:http://ca.intevation.org), but
+            // this is better then showing an empty entry.
+            ui.smimeAddressList->addItem(QString::fromUtf8(uid.id()));
+        }
     }
 }
 
@@ -939,9 +993,10 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.smimeIssuerField->setVisible(false);
     ui.smimeTrustLevelField->setVisible(false);
     ui.smimeRelatedAddresses->setVisible(false);
+    ui.smimeAddressList->setVisible(false);
     ui.trustChainDetailsBtn->setVisible(false);
 
-    ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
+    setUpUserIDTable();
 
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
     ui.trustedIntroducerField->setVisible(!trustDomains.empty());
@@ -994,6 +1049,8 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
     ui.smimeIssuerField->setValue(issuer);
     ui.smimeIssuerField->setToolTip(formatDNToolTip(issuerDN));
+
+    setUpSMIMEAdressList();
 
     ui.refreshBtn->setToolTip(i18nc("@info:tooltip", "Update the CRLs and do a full validation check of the certificate."));
 }

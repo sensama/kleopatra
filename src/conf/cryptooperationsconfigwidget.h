@@ -58,6 +58,7 @@ private:
     QCheckBox *mQuickSignCB = nullptr;
     QCheckBox *mPGPFileExtCB = nullptr;
     QCheckBox *mAutoDecryptVerifyCB = nullptr;
+    QCheckBox *mAutoExtractArchivesCB = nullptr;
     QCheckBox *mASCIIArmorCB = nullptr;
     QCheckBox *mTmpDirCB = nullptr;
     QCheckBox *mSymmetricOnlyCB = nullptr;

@@ -383,13 +383,17 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 qCDebug(KLEOPATRA_LOG) << "Failed detection for: " << cFile.fileName << " adding to undetected.";
             }
         } else {
+            const FileOperationsPreferences fileOpSettings;
             // Any Message type so we have input and output.
             const auto input = Input::createFromFile(cFile.fileName);
-            const auto archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
 
-            const auto ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
+            std::shared_ptr<ArchiveDefinition> ad;
+            if (fileOpSettings.autoExtractArchives()) {
+                const auto archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
+                ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
+            }
 
-            if (FileOperationsPreferences().dontUseTmpDir()) {
+            if (fileOpSettings.dontUseTmpDir()) {
                 if (!m_workDir) {
                     m_workDir = new QTemporaryDir(heuristicBaseDirectory(fileNames) + QStringLiteral("/kleopatra-XXXXXX"));
                 }
@@ -405,9 +409,8 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
 
             const auto wd = QDir(m_workDir->path());
 
-            const auto output =
-                ad       ? ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd) :
-                /*else*/   Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
+            const auto output = ad ? ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd)
+                                   : Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
 
             // If this might be opaque CMS signature, then try that. We already handled
             // detached CMS signature above

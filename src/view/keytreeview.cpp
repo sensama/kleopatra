@@ -346,6 +346,8 @@ void KeyTreeView::init()
     m_view->setSortingEnabled(true);
     m_view->setAccessibleName(i18n("Certificates"));
     m_view->setAccessibleDescription(m_isHierarchical ? i18n("Hierarchical list of certificates") : i18n("List of certificates"));
+    // we show details on double-click
+    m_view->setExpandsOnDoubleClick(false);
 
     if (model()) {
         if (m_additionalProxy) {

@@ -980,10 +980,6 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
     const auto ownerId = key.userID(0);
     const Kleo::DN dn(ownerId.id());
-    const QString cn = dn[QStringLiteral("CN")];
-    const QString o = dn[QStringLiteral("O")];
-    const QString dnEmail = dn[QStringLiteral("EMAIL")];
-    const QString name = cn.isEmpty() ? dnEmail : cn;
 
     for (const auto &[attributeName, field] : ui.smimeAttributeFields) {
         const QString attributeValue = dn[attributeName];

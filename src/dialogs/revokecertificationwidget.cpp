@@ -108,8 +108,9 @@ public:
 
         for (int i = 0; i < rowCount(); ++i) {
             const auto &keyUid = keyUids[i];
-            const bool uidIsChecked = std::find_if(checkedUids.cbegin(), checkedUids.cend(),
-                                                   [keyUid](const GpgME::UserID &checkedUid) { return uidsAreEqual(keyUid, checkedUid); }) != checkedUids.cend();
+            const bool uidIsChecked = std::any_of(checkedUids.cbegin(), checkedUids.cend(), [keyUid](const auto &checkedUid) {
+                return uidsAreEqual(keyUid, checkedUid);
+            });
             item(i)->setCheckState(uidIsChecked ? Qt::Checked : Qt::Unchecked);
         }
     }

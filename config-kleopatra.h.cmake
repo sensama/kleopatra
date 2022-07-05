@@ -53,3 +53,6 @@
 
 /* Defined if QGpgME supports refreshing keys */
 #cmakedefine QGPGME_SUPPORTS_KEY_REFRESH 1
+
+/* Defined if QGpgME supports setting the file name of encrypted data */
+#cmakedefine QGPGME_SUPPORTS_SET_FILENAME 1

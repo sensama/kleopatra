@@ -636,7 +636,7 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
         const auto email = Kleo::Formatting::prettyEMail(uid);
         if (name.isEmpty() && !email.isEmpty()) {
             // skip email addresses already listed in email attribute field
-            if (emailField && email != emailField->value()) {
+            if (!emailField || email != emailField->value()) {
                 ui.smimeAddressList->addItem(email);
             }
         } else {

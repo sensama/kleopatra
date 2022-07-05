@@ -54,16 +54,16 @@ private:
               const Kleo::Settings &settings);
 
 private:
-    QCheckBox *mQuickEncryptCB,
-              *mQuickSignCB,
-              *mPGPFileExtCB,
-              *mAutoDecryptVerifyCB,
-              *mASCIIArmorCB,
-              *mTmpDirCB,
-              *mSymmetricOnlyCB;
+    QCheckBox *mQuickEncryptCB = nullptr;
+    QCheckBox *mQuickSignCB = nullptr;
+    QCheckBox *mPGPFileExtCB = nullptr;
+    QCheckBox *mAutoDecryptVerifyCB = nullptr;
+    QCheckBox *mASCIIArmorCB = nullptr;
+    QCheckBox *mTmpDirCB = nullptr;
+    QCheckBox *mSymmetricOnlyCB = nullptr;
     Kleo::LabelledWidget<QComboBox> mChecksumDefinitionCB;
     Kleo::LabelledWidget<QComboBox> mArchiveDefinitionCB;
-    QPushButton *mApplyBtn;
+    QPushButton *mApplyBtn = nullptr;
 };
 
 }

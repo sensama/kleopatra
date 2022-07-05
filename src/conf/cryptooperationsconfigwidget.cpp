@@ -54,8 +54,7 @@ using namespace Kleo;
 using namespace Kleo::Config;
 
 CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::WindowFlags f)
-    : QWidget(p, f),
-      mApplyBtn(nullptr)
+    : QWidget{p, f}
 {
     setupGui();
 }

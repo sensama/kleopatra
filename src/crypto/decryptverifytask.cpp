@@ -647,6 +647,7 @@ public:
             const VerificationResult &vr,
             const DecryptionResult &dr,
             const QByteArray &stuff,
+            const QString &fileName,
             int errCode,
             const QString &errString,
             const QString &input,
@@ -660,6 +661,7 @@ public:
         m_verificationResult(vr),
         m_decryptionResult(dr),
         m_stuff(stuff),
+        m_fileName(fileName),
         m_error(errCode),
         m_errorString(errString),
         m_inputLabel(input),
@@ -693,6 +695,7 @@ public:
     VerificationResult m_verificationResult;
     DecryptionResult m_decryptionResult;
     QByteArray m_stuff;
+    QString m_fileName;
     int m_error;
     QString m_errorString;
     QString m_inputLabel;
@@ -714,6 +717,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             VerificationResult(),
             dr,
             plaintext,
+            {},
             0,
             QString(),
             inputLabel(),
@@ -730,6 +734,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             VerificationResult(),
             DecryptionResult(err),
             QByteArray(),
+            {},
             err.code(),
             what,
             inputLabel(),
@@ -739,7 +744,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLog &auditLog)
 {
     int err = dr.error() ? dr.error().code() : vr.error().code();
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
@@ -747,6 +752,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             vr,
             dr,
             plaintext,
+            fileName,
             err,
             QString(),
             inputLabel(),
@@ -763,6 +769,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             VerificationResult(),
             DecryptionResult(err),
             QByteArray(),
+            {},
             err.code(),
             details,
             inputLabel(),
@@ -779,6 +786,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             vr,
             DecryptionResult(),
             plaintext,
+            {},
             0,
             QString(),
             inputLabel(),
@@ -794,6 +802,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             VerificationResult(err),
             DecryptionResult(),
             QByteArray(),
+            {},
             err.code(),
             details,
             inputLabel(),
@@ -810,6 +819,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
             vr,
             DecryptionResult(),
             QByteArray(),
+            {},
             0,
             QString(),
             inputLabel(),
@@ -825,6 +835,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
             VerificationResult(err),
             DecryptionResult(),
             QByteArray(),
+            {},
             err.code(),
             details,
             inputLabel(),
@@ -838,6 +849,7 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
         const VerificationResult &vr,
         const DecryptionResult &dr,
         const QByteArray &stuff,
+        const QString &fileName,
         int errCode,
         const QString &errString,
         const QString &inputLabel,
@@ -845,7 +857,7 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
         const AuditLog &auditLog,
         Task *parentTask,
         const Mailbox &informativeSender)
-    : Task::Result(), d(new Private(type, vr, dr, stuff, errCode, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
+    : Task::Result(), d(new Private(type, vr, dr, stuff, fileName, errCode, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
 {
 }
 
@@ -923,6 +935,11 @@ GpgME::VerificationResult DecryptVerifyResult::verificationResult() const
 GpgME::DecryptionResult DecryptVerifyResult::decryptionResult() const
 {
     return d->m_decryptionResult;
+}
+
+QString DecryptVerifyResult::fileName() const
+{
+    return d->m_fileName;
 }
 
 class AbstractDecryptVerifyTask::Private
@@ -1011,7 +1028,7 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
         return;
     }
 
-    emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, auditLog));
+    emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output->fileName(), auditLog));
 }
 
 DecryptVerifyTask::DecryptVerifyTask(QObject *parent) : AbstractDecryptVerifyTask(parent), d(new Private(this))

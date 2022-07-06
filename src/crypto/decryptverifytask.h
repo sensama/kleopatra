@@ -66,7 +66,7 @@ Q_SIGNALS:
 protected:
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
@@ -229,6 +229,7 @@ public:
 
     GpgME::VerificationResult verificationResult() const;
     GpgME::DecryptionResult decryptionResult() const;
+    QString fileName() const;
 
 private:
     static QString keyToString(const GpgME::Key &key);
@@ -242,6 +243,7 @@ private:
                         const GpgME::VerificationResult &vr,
                         const GpgME::DecryptionResult &dr,
                         const QByteArray &stuff,
+                        const QString &fileName,
                         int errCode,
                         const QString &errString,
                         const QString &inputLabel,

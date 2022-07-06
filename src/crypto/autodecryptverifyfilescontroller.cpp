@@ -54,10 +54,6 @@ class AutoDecryptVerifyFilesController::Private
     AutoDecryptVerifyFilesController *const q;
 public:
     explicit Private(AutoDecryptVerifyFilesController *qq);
-    ~Private() {
-        qCDebug(KLEOPATRA_LOG);
-        delete m_workDir;
-    }
 
     void slotDialogCanceled();
     void schedule();
@@ -88,7 +84,7 @@ public:
     bool m_errorDetected = false;
     DecryptVerifyOperation m_operation = DecryptVerify;
     DecryptVerifyFilesDialog *m_dialog = nullptr;
-    QTemporaryDir *m_workDir = nullptr;
+    std::unique_ptr<QTemporaryDir> m_workDir;
 };
 
 AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq)
@@ -395,15 +391,15 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
 
             if (fileOpSettings.dontUseTmpDir()) {
                 if (!m_workDir) {
-                    m_workDir = new QTemporaryDir(heuristicBaseDirectory(fileNames) + QStringLiteral("/kleopatra-XXXXXX"));
+                    m_workDir = std::make_unique<QTemporaryDir>(heuristicBaseDirectory(fileNames) + QStringLiteral("/kleopatra-XXXXXX"));
                 }
                 if (!m_workDir->isValid()) {
                     qCDebug(KLEOPATRA_LOG) << m_workDir->path() << "not a valid temporary directory.";
-                    delete m_workDir;
-                    m_workDir = new QTemporaryDir();
+                    m_workDir.reset();
                 }
-            } else if (!m_workDir) {
-                m_workDir = new QTemporaryDir();
+            }
+            if (!m_workDir) {
+                m_workDir = std::make_unique<QTemporaryDir>();
             }
             qCDebug(KLEOPATRA_LOG) << "Using:" << m_workDir->path() << "as temporary directory.";
 

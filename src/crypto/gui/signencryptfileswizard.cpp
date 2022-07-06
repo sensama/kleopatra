@@ -43,6 +43,7 @@
 
 #include <gpgme++/key.h>
 
+#include <array>
 
 using namespace GpgME;
 using namespace Kleo;

@@ -43,6 +43,7 @@
 #include <QFileDialog>
 #include <QTemporaryDir>
 
+#include <gpgme++/decryptionresult.h>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -58,6 +59,7 @@ public:
     void slotDialogCanceled();
     void schedule();
 
+    QString getEmbeddedFileName(const QString &fileName) const;
     void exec();
     std::vector<std::shared_ptr<Task> > buildTasks(const QStringList &, QStringList &);
 
@@ -110,6 +112,24 @@ void AutoDecryptVerifyFilesController::Private::schedule()
         for (const std::shared_ptr<const DecryptVerifyResult> &i : std::as_const(m_results)) {
             Q_EMIT q->verificationResult(i->verificationResult());
         }
+    }
+}
+
+QString AutoDecryptVerifyFilesController::Private::getEmbeddedFileName(const QString &fileName) const
+{
+    auto it = std::find_if(m_results.cbegin(), m_results.cend(), [fileName](const auto &r) {
+        return r->fileName() == fileName;
+    });
+    if (it != m_results.cend()) {
+        const auto embeddedFilePath = QString::fromUtf8((*it)->decryptionResult().fileName());
+        if (embeddedFilePath.contains(QLatin1Char{'\\'})) {
+            // ignore embedded file names containing '\'
+            return {};
+        }
+        // strip the path from the embedded file name
+        return QFileInfo{embeddedFilePath}.fileName();
+    } else {
+        return {};
     }
 }
 
@@ -183,7 +203,24 @@ void AutoDecryptVerifyFilesController::Private::exec()
                 }
                 continue;
             }
-            const auto outpath = outDir.absoluteFilePath(fi.fileName());
+
+            const auto embeddedFileName = getEmbeddedFileName(inpath);
+            QString outFileName = fi.fileName();
+            if (!embeddedFileName.isEmpty() && embeddedFileName != fi.fileName()) {
+                // we switch "Yes" and "No" because Yes is default, but saving with embedded file name could be dangerous
+                const auto answer = KMessageBox::questionYesNoCancel(m_dialog,
+                                                                     xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
+                                                                     i18n("Use Original File Name?"),
+                                                                     KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
+                                                                     KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
+                if (answer == KMessageBox::Cancel) {
+                    qCDebug(KLEOPATRA_LOG) << "Saving canceled for:" << inpath;
+                    continue;
+                } else if (answer == KMessageBox::No) {
+                    outFileName = embeddedFileName;
+                }
+            }
+            const auto outpath = outDir.absoluteFilePath(outFileName);
             qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
             const QFileInfo ofi(outpath);
             if (ofi.exists()) {

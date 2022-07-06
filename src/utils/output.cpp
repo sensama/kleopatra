@@ -82,10 +82,7 @@ namespace
 class TemporaryFile : public QTemporaryFile
 {
 public:
-    explicit TemporaryFile() : QTemporaryFile() {}
-    explicit TemporaryFile(const QString &templateName) : QTemporaryFile(templateName) {}
-    explicit TemporaryFile(QObject *parent) : QTemporaryFile(parent) {}
-    explicit TemporaryFile(const QString &templateName, QObject *parent) : QTemporaryFile(templateName, parent) {}
+    using QTemporaryFile::QTemporaryFile;
 
     void close() override {
         if (isOpen())

@@ -13,11 +13,12 @@
 
 #include <utils/pimpl_ptr.h>
 
+#include <QString>
+#include <QStringList>
+
 #include <memory>
 
 class QIODevice;
-class QString;
-#include <QStringList>
 class QDir;
 class QWidget;
 
@@ -62,6 +63,7 @@ public:
     virtual void setBinaryOpt(bool value) = 0;
     /** Whether or not the output failed. */
     virtual bool failed() const { return false; }
+    virtual QString fileName() const { return {}; }
 
     static std::shared_ptr<Output> createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &);
     static std::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);

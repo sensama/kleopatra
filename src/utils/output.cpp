@@ -382,7 +382,7 @@ public:
     void doCancel() override {
         qCDebug(KLEOPATRA_LOG) << this;
     }
-    QString fileName() const
+    QString fileName() const override
     {
         return m_fileName;
     }

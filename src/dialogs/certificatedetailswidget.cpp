@@ -289,12 +289,11 @@ private:
 
 private:
     struct UI {
-        std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
-        std::unique_ptr<InfoField> smimeTrustLevelField;
-        QLabel *smimeRelatedAddresses = nullptr;
         QLabel *userIDTableLabel = nullptr;
         UserIDTable *userIDTable = nullptr;
-        QListWidget *smimeAddressList = nullptr;
+
+        std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
+        std::unique_ptr<InfoField> smimeTrustLevelField;
         std::unique_ptr<InfoField> validFromField;
         std::unique_ptr<InfoField> expiresField;
         QAction *changeExpirationAction = nullptr;
@@ -304,6 +303,10 @@ private:
         QAction *showIssuerCertificateAction = nullptr;
         std::unique_ptr<InfoField> complianceField;
         std::unique_ptr<InfoField> trustedIntroducerField;
+
+        QLabel *smimeRelatedAddresses = nullptr;
+        QListWidget *smimeAddressList = nullptr;
+
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *changePassphraseBtn = nullptr;
         QPushButton *trustChainDetailsBtn = nullptr;
@@ -337,44 +340,6 @@ private:
             mainLayout->addWidget(userIDTable);
 
             {
-                auto smimeGrid = new QGridLayout;
-                smimeGrid->setColumnStretch(1, 1);
-
-                int row = 0;
-                for (const auto &attribute : DN::attributeOrder()) {
-                    const auto attributeLabel = DN::attributeNameToLabel(attribute);
-                    if (attributeLabel.isEmpty()) {
-                        continue;
-                    }
-                    const auto labelWithColon = i18nc("interpunctation for labels", "%1:", attributeLabel);
-                    const auto & [it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
-                    if (inserted) {
-                        const auto &field = it->second;
-                        smimeGrid->addWidget(field->label(), row, 0, 1, 1);
-                        smimeGrid->addLayout(field->layout(), row, 1, 1, 1);
-                        row++;
-                    }
-                }
-
-                smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
-                smimeGrid->addWidget(smimeTrustLevelField->label(), row, 0, 1, 1);
-                smimeGrid->addLayout(smimeTrustLevelField->layout(), row, 1, 1, 1);
-
-                mainLayout->addLayout(smimeGrid);
-            }
-
-            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
-            mainLayout->addWidget(smimeRelatedAddresses);
-
-            smimeAddressList = new QListWidget{parent};
-            smimeRelatedAddresses->setBuddy(smimeAddressList);
-            smimeAddressList->setAccessibleName(i18n("Related addresses"));
-            smimeAddressList->setEditTriggers(QAbstractItemView::NoEditTriggers);
-            smimeAddressList->setSelectionMode(QAbstractItemView::SingleSelection);
-
-            mainLayout->addWidget(smimeAddressList);
-
-            {
             auto hboxLayout_1 = new QHBoxLayout;
 
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
@@ -397,7 +362,28 @@ private:
                 auto gridLayout = new QGridLayout;
                 gridLayout->setColumnStretch(1, 1);
 
-                int boxRow = 0;
+                int boxRow = -1;
+                for (const auto &attribute : DN::attributeOrder()) {
+                    const auto attributeLabel = DN::attributeNameToLabel(attribute);
+                    if (attributeLabel.isEmpty()) {
+                        continue;
+                    }
+                    const auto labelWithColon = i18nc("interpunctation for labels", "%1:", attributeLabel);
+                    const auto & [it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
+                    if (inserted) {
+                        boxRow++;
+                        const auto &field = it->second;
+                        gridLayout->addWidget(field->label(), boxRow, 0, 1, 1);
+                        gridLayout->addLayout(field->layout(), boxRow, 1, 1, 1);
+                    }
+                }
+
+                boxRow++;
+                smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
+                gridLayout->addWidget(smimeTrustLevelField->label(), boxRow, 0, 1, 1);
+                gridLayout->addLayout(smimeTrustLevelField->layout(), boxRow, 1, 1, 1);
+
+                boxRow++;
                 validFromField = std::make_unique<InfoField>(i18n("Valid from:"), parent);
                 gridLayout->addWidget(validFromField->label(), boxRow, 0, 1, 1);
                 gridLayout->addLayout(validFromField->layout(), boxRow, 1, 1, 1);
@@ -445,7 +431,21 @@ private:
                 trustedIntroducerField->setToolTip(i18n("See certifications for details."));
                 gridLayout->addLayout(trustedIntroducerField->layout(), boxRow, 1, 1, 1);
 
-                boxRow++;
+                mainLayout->addLayout(gridLayout);
+            }
+
+            smimeRelatedAddresses = new QLabel(i18n("Related addresses:"), parent);
+            mainLayout->addWidget(smimeRelatedAddresses);
+
+            smimeAddressList = new QListWidget{parent};
+            smimeRelatedAddresses->setBuddy(smimeAddressList);
+            smimeAddressList->setAccessibleName(i18n("Related addresses"));
+            smimeAddressList->setEditTriggers(QAbstractItemView::NoEditTriggers);
+            smimeAddressList->setSelectionMode(QAbstractItemView::SingleSelection);
+
+            mainLayout->addWidget(smimeAddressList);
+
+            {
                 auto horizontalLayout = new QHBoxLayout;
 
                 moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), parent);
@@ -476,9 +476,7 @@ private:
 
                 horizontalLayout->addStretch(1);
 
-                gridLayout->addLayout(horizontalLayout, boxRow, 0, 1, 2);
-
-                mainLayout->addLayout(gridLayout);
+                mainLayout->addLayout(horizontalLayout);
             }
         }
     } ui;

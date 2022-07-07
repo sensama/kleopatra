@@ -638,11 +638,13 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
 #endif
         const auto name = Kleo::Formatting::prettyName(uid);
         const auto email = Kleo::Formatting::prettyEMail(uid);
+        QString itemText;
         if (name.isEmpty() && !email.isEmpty()) {
             // skip email addresses already listed in email attribute field
-            if (!emailField || email != emailField->value()) {
-                ui.smimeAddressList->addItem(email);
+            if (emailField && email == emailField->value()) {
+                continue;
             }
+            itemText = email;
         } else {
             // S/MIME certificates sometimes contain urls where both
             // name and mail is empty. In that case we print whatever
@@ -650,7 +652,11 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
             //
             // Can be ugly like (3:uri24:http://ca.intevation.org), but
             // this is better then showing an empty entry.
-            ui.smimeAddressList->addItem(QString::fromUtf8(uid.id()));
+            itemText = QString::fromUtf8(uid.id());
+        }
+        // avoid duplicate entries in the list
+        if (ui.smimeAddressList->findItems(itemText, Qt::MatchExactly).empty()) {
+            ui.smimeAddressList->addItem(itemText);
         }
     }
 }

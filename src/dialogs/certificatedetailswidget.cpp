@@ -1088,6 +1088,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
     ui.smimeIssuerField->setValue(issuer);
     ui.smimeIssuerField->setToolTip(formatDNToolTip(issuerDN));
+    ui.showIssuerCertificateAction->setEnabled(!key.isRoot());
 
     setUpSMIMEAdressList();
 

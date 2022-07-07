@@ -122,6 +122,10 @@ DecryptVerifyOperationWidget::Private::UI::UI(DecryptVerifyOperationWidget *q)
     connect(&verifyDetachedCB, &QCheckBox::toggled, &signedDataFileNameRQ, &FileNameRequester::setEnabled);
     connect(&verifyDetachedCB, SIGNAL(toggled(bool)), q, SLOT(enableDisableWidgets()));
     connect(&archiveCB, SIGNAL(toggled(bool)), q, SLOT(enableDisableWidgets()));
+
+    connect(&verifyDetachedCB, &QCheckBox::toggled, q, &DecryptVerifyOperationWidget::changed);
+    connect(&inputFileNameRQ, &FileNameRequester::fileNameChanged, q, &DecryptVerifyOperationWidget::changed);
+    connect(&signedDataFileNameRQ, &FileNameRequester::fileNameChanged, q, &DecryptVerifyOperationWidget::changed);
 }
 
 DecryptVerifyOperationWidget::Private::Private(DecryptVerifyOperationWidget *qq)
@@ -175,11 +179,13 @@ void DecryptVerifyOperationWidget::setMode(Mode mode, const std::shared_ptr<Arch
     d->ui.signedDataLB.setBuddy(signedDataWidget);
 
     d->ui.archiveCB.setChecked(ad.get() != nullptr);
-    for (int i = 0, end = d->ui.archivesCB.count(); i != end; ++i)
+    for (int i = 0, end = d->ui.archivesCB.count(); i != end; ++i) {
         if (ad == d->ui.archivesCB.itemData(i).value< std::shared_ptr<ArchiveDefinition> >()) {
             d->ui.archivesCB.setCurrentIndex(i);
             return;
         }
+    }
+    Q_EMIT changed();
 }
 
 DecryptVerifyOperationWidget::Mode DecryptVerifyOperationWidget::mode() const

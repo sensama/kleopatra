@@ -57,6 +57,9 @@ public:
     void setArchiveDefinitions(const std::vector< std::shared_ptr<ArchiveDefinition> > &ads);
     std::shared_ptr<ArchiveDefinition> selectedArchiveDefinition() const;
 
+Q_SIGNALS:
+    void changed();
+
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;

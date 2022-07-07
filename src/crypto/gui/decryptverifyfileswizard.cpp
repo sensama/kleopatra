@@ -85,7 +85,19 @@ public:
 
     bool isComplete() const override
     {
-        return true;
+        return std::all_of(m_widgets.cbegin(), m_widgets.cend(), [](const auto &w) {
+            switch (w->mode()) {
+            case DecryptVerifyOperationWidget::VerifyDetachedWithSignature:
+            case DecryptVerifyOperationWidget::VerifyDetachedWithSignedData: {
+                const QString sigFileName = w->inputFileName();
+                const QString dataFileName = w->signedDataFileName();
+                return !sigFileName.isEmpty() && !dataFileName.isEmpty() && QFile::exists(sigFileName) && QFile::exists(dataFileName);
+            }
+            case DecryptVerifyOperationWidget::DecryptVerifyOpaque:
+                ;
+            }
+            return true;
+        });
     }
 private:
     std::vector<DecryptVerifyOperationWidget *> m_widgets;
@@ -246,6 +258,7 @@ void OperationsWidget::ensureIndexAvailable(unsigned int idx)
         auto w = new DecryptVerifyOperationWidget(m_ui.scrollArea.widget());
         blay.insertWidget(blay.count() - 1, w);
         w->show();
+        connect(w, &DecryptVerifyOperationWidget::changed, this, &WizardPage::completeChanged);
         m_widgets.push_back(w);
     }
 }

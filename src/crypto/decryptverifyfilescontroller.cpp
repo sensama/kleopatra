@@ -169,7 +169,7 @@ void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 
 void DecryptVerifyFilesController::Private::slotWizardCanceled()
 {
-    qCDebug(KLEOPATRA_LOG);
+    q->emitDoneOrError();
 }
 
 void DecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)

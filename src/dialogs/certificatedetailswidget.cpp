@@ -38,6 +38,7 @@
 #include "utils/keys.h"
 #include "utils/tags.h"
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
@@ -292,6 +293,9 @@ private:
         QWidget *userIDs = nullptr;
         QLabel *userIDTableLabel = nullptr;
         UserIDTable *userIDTable = nullptr;
+        QPushButton *addUserIDBtn = nullptr;
+        QPushButton *certifyBtn = nullptr;
+        QPushButton *webOfTrustBtn = nullptr;
 
         std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
         std::unique_ptr<InfoField> smimeTrustLevelField;
@@ -308,15 +312,12 @@ private:
         QLabel *smimeRelatedAddresses = nullptr;
         QListWidget *smimeAddressList = nullptr;
 
-        QPushButton *addUserIDBtn = nullptr;
-        QPushButton *changePassphraseBtn = nullptr;
-        QPushButton *trustChainDetailsBtn = nullptr;
-        QPushButton *genRevokeBtn = nullptr;
-        QPushButton *refreshBtn = nullptr;
-        QPushButton *certifyBtn = nullptr;
         QPushButton *moreDetailsBtn = nullptr;
+        QPushButton *trustChainDetailsBtn = nullptr;
+        QPushButton *refreshBtn = nullptr;
+        QPushButton *changePassphraseBtn = nullptr;
         QPushButton *exportBtn = nullptr;
-        QPushButton *webOfTrustBtn = nullptr;
+        QPushButton *genRevokeBtn = nullptr;
 
         void setupUi(QWidget *parent)
         {
@@ -531,28 +532,58 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
 
 void CertificateDetailsWidget::Private::setupCommonProperties()
 {
-    const bool hasSecret = key.hasSecret();
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
+    const bool isSMIME = key.protocol() == GpgME::CMS;
+    const bool isOwnKey = key.hasSecret();
+    const auto secretKeys = KeyCache::instance()->secretKeys();
 
+    // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
-    ui.addUserIDBtn->setVisible(hasSecret);
-    ui.certifyBtn->setVisible(!hasSecret);
+    ui.addUserIDBtn->setVisible(isOwnKey);
+    // ui.certifyBtn->setVisible(true); // always visible (for OpenPGP keys)
+    // ui.webOfTrustBtn->setVisible(true); // always visible (for OpenPGP keys)
 
-    ui.changePassphraseBtn->setVisible(hasSecret);
-    ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
-    if (isOpenPGP && hasSecret) {
+    for (const auto &[_, field] : ui.smimeAttributeFields) {
+        field->setVisible(isSMIME);
+    }
+    ui.smimeTrustLevelField->setVisible(isSMIME);
+    // ui.validFromField->setVisible(true); // always visible
+    // ui.expiresField->setVisible(true); // always visible
+    if (isOpenPGP && isOwnKey) {
         ui.expiresField->setAction(ui.changeExpirationAction);
     } else {
         ui.expiresField->setAction(nullptr);
     }
+    // ui.fingerprintField->setVisible(true); // always visible
+    ui.smimeIssuerField->setVisible(isSMIME);
+    ui.complianceField->setVisible(Kleo::gnupgIsDeVsCompliant());
+    ui.trustedIntroducerField->setVisible(isOpenPGP); // may be hidden again by setupPGPProperties()
 
+    ui.smimeRelatedAddresses->setVisible(isSMIME);
+    ui.smimeAddressList->setVisible(isSMIME);
+
+    // ui.moreDetailsBtn->setVisible(true); // always visible
+    ui.trustChainDetailsBtn->setVisible(isSMIME);
+    // ui.refreshBtn->setVisible(true); // always visible
+    ui.changePassphraseBtn->setVisible(isSecretKeyStoredInKeyRing(key));
+    // ui.exportBtn->setVisible(true); // always visible
+    ui.genRevokeBtn->setVisible(isOpenPGP && isOwnKey);
+
+    // update availability of buttons
+    ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
+    ui.certifyBtn->setEnabled(Kleo::any_of(secretKeys, [](const auto &k) {
+        return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
+    }));
+    ui.changeExpirationAction->setEnabled(canBeUsedForSecretKeyOperations(key));
+    ui.changePassphraseBtn->setEnabled(isSecretKeyStoredInKeyRing(key));
+    ui.genRevokeBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
+
+    // update values of protocol-independent UI elements
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
     ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),
                               Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
                                   Formatting::accessibleHexID(key.primaryFingerprint()));
-
-    ui.complianceField->setVisible(Kleo::gnupgIsDeVsCompliant());
     if (Kleo::gnupgIsDeVsCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
@@ -1006,15 +1037,6 @@ auto accumulateTrustDomains(const std::vector<GpgME::UserID> &userIds)
 
 void CertificateDetailsWidget::Private::setupPGPProperties()
 {
-    for (const auto &[_, field] : ui.smimeAttributeFields) {
-        field->setVisible(false);
-    }
-    ui.smimeIssuerField->setVisible(false);
-    ui.smimeTrustLevelField->setVisible(false);
-    ui.smimeRelatedAddresses->setVisible(false);
-    ui.smimeAddressList->setVisible(false);
-    ui.trustChainDetailsBtn->setVisible(false);
-
     setUpUserIDTable();
 
     const auto trustDomains = accumulateTrustDomains(key.userIDs());
@@ -1050,8 +1072,6 @@ static QString formatDNToolTip(const Kleo::DN &dn)
 
 void CertificateDetailsWidget::Private::setupSMIMEProperties()
 {
-    ui.trustedIntroducerField->setVisible(false);
-
     const auto ownerId = key.userID(0);
     const Kleo::DN dn(ownerId.id());
 

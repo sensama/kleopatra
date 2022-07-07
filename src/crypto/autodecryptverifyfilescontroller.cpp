@@ -374,7 +374,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
             QString signedDataFileName = cFile.baseName;
             if (!QFile::exists(signedDataFileName)) {
                 signedDataFileName = QFileDialog::getOpenFileName(nullptr, xi18n("Select the file to verify with the signature <filename>%1</filename>", fi.fileName()),
-                                                                  fi.dir().path());
+                                                                  fi.path());
             }
             if (signedDataFileName.isEmpty()) {
                 qCDebug(KLEOPATRA_LOG) << "No signed data selected. Verify aborted.";

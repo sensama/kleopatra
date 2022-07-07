@@ -1076,12 +1076,14 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
 void CertificateDetailsWidget::Private::showIssuerCertificate()
 {
-    const auto parentKey = KeyCache::instance()->findIssuers(key, KeyCache::NoOption);
+    // there is either one or no parent key
+    const auto parentKeys = KeyCache::instance()->findIssuers(key, KeyCache::NoOption);
 
-    if (!parentKey.size()) {
+    if (parentKeys.empty()) {
+        KMessageBox::error(q, i18n("The issuer certificate could not be found locally."));
         return;
     }
-    auto cmd = new Kleo::Commands::DetailsCommand(parentKey[0], nullptr);
+    auto cmd = new Kleo::Commands::DetailsCommand(parentKeys.front(), nullptr);
     cmd->setParentWidget(q);
     cmd->start();
 }

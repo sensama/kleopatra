@@ -12,6 +12,9 @@
 
 #include <QByteArray>
 
+// needed for GPGME_VERSION_NUMBER
+#include <gpgme.h>
+
 #include <algorithm>
 #include <iterator>
 
@@ -33,8 +36,21 @@ bool Kleo::isRevokedOrExpired(const GpgME::UserID &userId)
 
 bool Kleo::canCreateCertifications(const GpgME::Key &key)
 {
-    // Key::hasSecret() is also true for offline keys (i.e. keys with a secret key stub that are not stored on a card),
-    // but those keys cannot be used for certifications; therefore, we check whether the primary subkey has a proper secret key
-    // or whether its secret key is stored on a card, so that gpg can ask for the card.
-    return key.canCertify() && (key.subkey(0).isSecret() || key.subkey(0).isCardKey());
+    return key.canCertify() && canBeUsedForSecretKeyOperations(key);
+}
+
+bool Kleo::canBeUsedForSecretKeyOperations(const GpgME::Key &key)
+{
+#if GPGME_VERSION_NUMBER >= 0x011102 // 1.17.2
+    // we need to check the primary subkey because Key::hasSecret() is also true if just the secret key stub of an offline key is available
+    return key.subkey(0).isSecret();
+#else
+    // older versions of GpgME did not always set the secret flag for card keys
+    return key.subkey(0).isSecret() || key.subkey(0).isCardKey();
+#endif
+}
+
+bool Kleo::isSecretKeyStoredInKeyRing(const GpgME::Key &key)
+{
+    return key.subkey(0).isSecret() && !key.subkey(0).isCardKey();
 }

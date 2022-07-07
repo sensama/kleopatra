@@ -33,10 +33,23 @@ bool isRevokedOrExpired(const GpgME::UserID &userId);
  * Returns true if \p key can be used to certify user IDs, i.e. if the key
  * has the required capability and if the secret key of the (primary)
  * certification subkey is available in the keyring or on a smart card.
+ */
+bool canCreateCertifications(const GpgME::Key &key);
+
+/**
+ * Returns true if \p key can be used for operations requiring the secret key,
+ * i.e. if the secret key of the primary key pair is available in the keyring
+ * or on a smart card.
  *
  * \note Key::hasSecret() also returns true if a secret key stub, e.g. of an
  * offline key, is available in the keyring.
  */
-bool canCreateCertifications(const GpgME::Key &key);
+bool canBeUsedForSecretKeyOperations(const GpgME::Key &key);
+
+/**
+ * Returns true if the secret key of the primary key pair of \p key is stored
+ * in the keyring.
+ */
+bool isSecretKeyStoredInKeyRing(const GpgME::Key &key);
 
 }

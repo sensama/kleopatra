@@ -345,20 +345,20 @@ private:
             userIDsLayout->addWidget(userIDTable);
 
             {
-            auto hboxLayout_1 = new QHBoxLayout;
+            auto buttonRow = new QHBoxLayout;
 
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
-            hboxLayout_1->addWidget(addUserIDBtn);
+            buttonRow->addWidget(addUserIDBtn);
 
             certifyBtn = new QPushButton(i18nc("@action:button", "Certify User ID"), parent);
-            hboxLayout_1->addWidget(certifyBtn);
+            buttonRow->addWidget(certifyBtn);
 
             webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
-            hboxLayout_1->addWidget(webOfTrustBtn);
+            buttonRow->addWidget(webOfTrustBtn);
 
-            hboxLayout_1->addStretch(1);
+            buttonRow->addStretch(1);
 
-            userIDsLayout->addLayout(hboxLayout_1);
+            userIDsLayout->addLayout(buttonRow);
             }
 
             userIDsLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
@@ -370,7 +370,7 @@ private:
                 auto gridLayout = new QGridLayout;
                 gridLayout->setColumnStretch(1, 1);
 
-                int boxRow = -1;
+                int row = -1;
                 for (const auto &attribute : DN::attributeOrder()) {
                     const auto attributeLabel = DN::attributeNameToLabel(attribute);
                     if (attributeLabel.isEmpty()) {
@@ -379,34 +379,34 @@ private:
                     const auto labelWithColon = i18nc("interpunctation for labels", "%1:", attributeLabel);
                     const auto & [it, inserted] = smimeAttributeFields.try_emplace(attribute, std::make_unique<InfoField>(labelWithColon, parent));
                     if (inserted) {
-                        boxRow++;
+                        row++;
                         const auto &field = it->second;
-                        gridLayout->addWidget(field->label(), boxRow, 0, 1, 1);
-                        gridLayout->addLayout(field->layout(), boxRow, 1, 1, 1);
+                        gridLayout->addWidget(field->label(), row, 0, 1, 1);
+                        gridLayout->addLayout(field->layout(), row, 1, 1, 1);
                     }
                 }
 
-                boxRow++;
+                row++;
                 smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
-                gridLayout->addWidget(smimeTrustLevelField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(smimeTrustLevelField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(smimeTrustLevelField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(smimeTrustLevelField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 validFromField = std::make_unique<InfoField>(i18n("Valid from:"), parent);
-                gridLayout->addWidget(validFromField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(validFromField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(validFromField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(validFromField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 expiresField = std::make_unique<InfoField>(i18n("Expires:"), parent);
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
                 changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change expiration"));
                 expiresField->setAction(changeExpirationAction);
-                gridLayout->addWidget(expiresField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(expiresField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(expiresField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(expiresField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 fingerprintField = std::make_unique<InfoField>(i18n("Fingerprint:"), parent);
                 if (QGuiApplication::clipboard()) {
                     copyFingerprintAction = new QAction{parent};
@@ -415,29 +415,29 @@ private:
                     copyFingerprintAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Copy fingerprint"));
                     fingerprintField->setAction(copyFingerprintAction);
                 }
-                gridLayout->addWidget(fingerprintField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(fingerprintField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(fingerprintField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(fingerprintField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 smimeIssuerField = std::make_unique<InfoField>(i18n("Issuer:"), parent);
                 showIssuerCertificateAction = new QAction{parent};
                 showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
                 showIssuerCertificateAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);
-                gridLayout->addWidget(smimeIssuerField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(smimeIssuerField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(smimeIssuerField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(smimeIssuerField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 complianceField = std::make_unique<InfoField>(i18n("Compliance:"), parent);
-                gridLayout->addWidget(complianceField->label(), boxRow, 0, 1, 1);
-                gridLayout->addLayout(complianceField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addWidget(complianceField->label(), row, 0, 1, 1);
+                gridLayout->addLayout(complianceField->layout(), row, 1, 1, 1);
 
-                boxRow++;
+                row++;
                 trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
-                gridLayout->addWidget(trustedIntroducerField->label(), boxRow, 0, 1, 1);
+                gridLayout->addWidget(trustedIntroducerField->label(), row, 0, 1, 1);
                 trustedIntroducerField->setToolTip(i18n("See certifications for details."));
-                gridLayout->addLayout(trustedIntroducerField->layout(), boxRow, 1, 1, 1);
+                gridLayout->addLayout(trustedIntroducerField->layout(), row, 1, 1, 1);
 
                 mainLayout->addLayout(gridLayout);
             }
@@ -454,25 +454,25 @@ private:
             mainLayout->addWidget(smimeAddressList);
 
             {
-                auto horizontalLayout = new QHBoxLayout;
+                auto buttonRow = new QHBoxLayout;
 
                 moreDetailsBtn = new QPushButton(i18nc("@action:button", "More Details..."), parent);
-                horizontalLayout->addWidget(moreDetailsBtn);
+                buttonRow->addWidget(moreDetailsBtn);
 
                 trustChainDetailsBtn = new QPushButton(i18nc("@action:button", "Trust Chain Details"), parent);
-                horizontalLayout->addWidget(trustChainDetailsBtn);
+                buttonRow->addWidget(trustChainDetailsBtn);
 
                 refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
 #ifndef QGPGME_SUPPORTS_KEY_REFRESH
                 refreshBtn->setVisible(false);
 #endif
-                horizontalLayout->addWidget(refreshBtn);
+                buttonRow->addWidget(refreshBtn);
 
                 exportBtn = new QPushButton(i18nc("@action:button", "Export"), parent);
-                horizontalLayout->addWidget(exportBtn);
+                buttonRow->addWidget(exportBtn);
 
                 changePassphraseBtn = new QPushButton(i18nc("@action:button", "Change Passphrase"), parent);
-                horizontalLayout->addWidget(changePassphraseBtn);
+                buttonRow->addWidget(changePassphraseBtn);
 
                 genRevokeBtn = new QPushButton(i18nc("@action:button", "Generate Revocation Certificate"), parent);
                 genRevokeBtn->setToolTip(u"<html>" %
@@ -480,11 +480,11 @@ private:
                                             "declare that a key shall not anymore be used.  It is not possible "
                                             "to retract such a revocation certificate once it has been published.") %
                                         u"</html>");
-                horizontalLayout->addWidget(genRevokeBtn);
+                buttonRow->addWidget(genRevokeBtn);
 
-                horizontalLayout->addStretch(1);
+                buttonRow->addStretch(1);
 
-                mainLayout->addLayout(horizontalLayout);
+                mainLayout->addLayout(buttonRow);
             }
         }
     } ui;

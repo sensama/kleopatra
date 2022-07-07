@@ -289,6 +289,7 @@ private:
 
 private:
     struct UI {
+        QWidget *userIDs = nullptr;
         QLabel *userIDTableLabel = nullptr;
         UserIDTable *userIDTable = nullptr;
 
@@ -321,9 +322,13 @@ private:
         {
             auto mainLayout = new QVBoxLayout{parent};
 
-            userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
+            userIDs = new QWidget{parent};
+            {
+            auto userIDsLayout = new QVBoxLayout{userIDs};
+            userIDsLayout->setContentsMargins({});
 
-            mainLayout->addWidget(userIDTableLabel);
+            userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
+            userIDsLayout->addWidget(userIDTableLabel);
 
             userIDTable = new UserIDTable{parent};
             userIDTableLabel->setBuddy(userIDTable);
@@ -337,7 +342,7 @@ private:
             userIDTable->setUniformRowHeights(true);
             userIDTable->setAllColumnsShowFocus(false);
 
-            mainLayout->addWidget(userIDTable);
+            userIDsLayout->addWidget(userIDTable);
 
             {
             auto hboxLayout_1 = new QHBoxLayout;
@@ -353,10 +358,13 @@ private:
 
             hboxLayout_1->addStretch(1);
 
-            mainLayout->addLayout(hboxLayout_1);
+            userIDsLayout->addLayout(hboxLayout_1);
             }
 
-            mainLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
+            userIDsLayout->addWidget(new KSeparator{Qt::Horizontal, parent});
+            }
+
+            mainLayout->addWidget(userIDs);
 
             {
                 auto gridLayout = new QGridLayout;
@@ -526,19 +534,17 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const bool hasSecret = key.hasSecret();
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
 
-    ui.userIDTableLabel->setVisible(isOpenPGP);
-    ui.userIDTable->setVisible(isOpenPGP);
+    ui.userIDs->setVisible(isOpenPGP);
+    ui.addUserIDBtn->setVisible(hasSecret);
+    ui.certifyBtn->setVisible(!hasSecret);
 
     ui.changePassphraseBtn->setVisible(hasSecret);
     ui.genRevokeBtn->setVisible(isOpenPGP && hasSecret);
-    ui.certifyBtn->setVisible(isOpenPGP && !hasSecret);
     if (isOpenPGP && hasSecret) {
         ui.expiresField->setAction(ui.changeExpirationAction);
     } else {
         ui.expiresField->setAction(nullptr);
     }
-    ui.addUserIDBtn->setVisible(hasSecret && isOpenPGP);
-    ui.webOfTrustBtn->setVisible(isOpenPGP);
 
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
     ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),

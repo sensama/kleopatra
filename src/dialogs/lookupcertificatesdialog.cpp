@@ -37,7 +37,7 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
-static const int minimalSearchTextLength = 2;
+static const int minimalSearchTextLength = 1;
 
 class LookupCertificatesDialog::Private
 {
@@ -336,7 +336,7 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
         return;
     }
 
-    ui.findPB->setEnabled(searchText().length() > minimalSearchTextLength);
+    ui.findPB->setEnabled(searchText().size() >= minimalSearchTextLength);
 
     const int n = q->selectedCertificates().size();
 

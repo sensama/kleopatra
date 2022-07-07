@@ -381,20 +381,20 @@ private:
                     if (inserted) {
                         row++;
                         const auto &field = it->second;
-                        gridLayout->addWidget(field->label(), row, 0, 1, 1);
-                        gridLayout->addLayout(field->layout(), row, 1, 1, 1);
+                        gridLayout->addWidget(field->label(), row, 0);
+                        gridLayout->addLayout(field->layout(), row, 1);
                     }
                 }
 
                 row++;
                 smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
-                gridLayout->addWidget(smimeTrustLevelField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(smimeTrustLevelField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(smimeTrustLevelField->label(), row, 0);
+                gridLayout->addLayout(smimeTrustLevelField->layout(), row, 1);
 
                 row++;
                 validFromField = std::make_unique<InfoField>(i18n("Valid from:"), parent);
-                gridLayout->addWidget(validFromField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(validFromField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(validFromField->label(), row, 0);
+                gridLayout->addLayout(validFromField->layout(), row, 1);
 
                 row++;
                 expiresField = std::make_unique<InfoField>(i18n("Expires:"), parent);
@@ -403,8 +403,8 @@ private:
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
                 changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change expiration"));
                 expiresField->setAction(changeExpirationAction);
-                gridLayout->addWidget(expiresField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(expiresField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(expiresField->label(), row, 0);
+                gridLayout->addLayout(expiresField->layout(), row, 1);
 
                 row++;
                 fingerprintField = std::make_unique<InfoField>(i18n("Fingerprint:"), parent);
@@ -415,8 +415,8 @@ private:
                     copyFingerprintAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Copy fingerprint"));
                     fingerprintField->setAction(copyFingerprintAction);
                 }
-                gridLayout->addWidget(fingerprintField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(fingerprintField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(fingerprintField->label(), row, 0);
+                gridLayout->addLayout(fingerprintField->layout(), row, 1);
 
                 row++;
                 smimeIssuerField = std::make_unique<InfoField>(i18n("Issuer:"), parent);
@@ -425,19 +425,19 @@ private:
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
                 showIssuerCertificateAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);
-                gridLayout->addWidget(smimeIssuerField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(smimeIssuerField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(smimeIssuerField->label(), row, 0);
+                gridLayout->addLayout(smimeIssuerField->layout(), row, 1);
 
                 row++;
                 complianceField = std::make_unique<InfoField>(i18n("Compliance:"), parent);
-                gridLayout->addWidget(complianceField->label(), row, 0, 1, 1);
-                gridLayout->addLayout(complianceField->layout(), row, 1, 1, 1);
+                gridLayout->addWidget(complianceField->label(), row, 0);
+                gridLayout->addLayout(complianceField->layout(), row, 1);
 
                 row++;
                 trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
-                gridLayout->addWidget(trustedIntroducerField->label(), row, 0, 1, 1);
+                gridLayout->addWidget(trustedIntroducerField->label(), row, 0);
                 trustedIntroducerField->setToolTip(i18n("See certifications for details."));
-                gridLayout->addLayout(trustedIntroducerField->layout(), row, 1, 1, 1);
+                gridLayout->addLayout(trustedIntroducerField->layout(), row, 1);
 
                 mainLayout->addLayout(gridLayout);
             }

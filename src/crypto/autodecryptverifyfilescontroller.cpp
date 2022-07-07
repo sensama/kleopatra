@@ -372,7 +372,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
         if (isDetachedSignature(cFile.classification)) {
             // Detached signature, try to find data or ask the user.
             QString signedDataFileName = cFile.baseName;
-            if (signedDataFileName.isEmpty()) {
+            if (!QFile::exists(signedDataFileName)) {
                 signedDataFileName = QFileDialog::getOpenFileName(nullptr, xi18n("Select the file to verify with \"%1\"", fi.fileName()),
                                                                   fi.dir().dirName());
             }

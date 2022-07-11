@@ -887,14 +887,6 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                       });
         action->setEnabled(canSignUserIDs);
     }
-    {
-        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                                      i18nc("@action:inmenu", "Revoke User ID"),
-                                      q, [this, singleUserID]() {
-                                          revokeUserID(singleUserID);
-                                      });
-        action->setEnabled(canCreateCertifications(key) && canRevokeUserID(singleUserID));
-    }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Revoke Certifications...")
                                                 : i18ncp("@action:inmenu", "Revoke Certification...", "Revoke Certifications...", userIDs.size());
@@ -927,6 +919,14 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         action->setEnabled(!singleUserID.isNull());
     }
 #endif // MAILAKONADI_ENABLED
+    {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                                      i18nc("@action:inmenu", "Revoke User ID"),
+                                      q, [this, singleUserID]() {
+                                          revokeUserID(singleUserID);
+                                      });
+        action->setEnabled(!singleUserID.isNull() && canCreateCertifications(key) && canRevokeUserID(singleUserID));
+    }
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
     menu->popup(ui.userIDTable->viewport()->mapToGlobal(p));
 }

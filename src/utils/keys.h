@@ -47,6 +47,12 @@ bool canCreateCertifications(const GpgME::Key &key);
 bool canBeUsedForSecretKeyOperations(const GpgME::Key &key);
 
 /**
+ * Returns true if \p userId can be revoked, i.e. if it isn't the last valid
+ * user ID of an OpenPGP key.
+ */
+bool canRevokeUserID(const GpgME::UserID &userId);
+
+/**
  * Returns true if the secret key of the primary key pair of \p key is stored
  * in the keyring.
  */

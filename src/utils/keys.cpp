@@ -18,6 +18,22 @@
 #include <algorithm>
 #include <iterator>
 
+namespace
+{
+bool isLastValidUserID(const GpgME::UserID &userId)
+{
+    if (Kleo::isRevokedOrExpired(userId)) {
+        return false;
+    }
+    const auto userIds = userId.parent().userIDs();
+    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds),
+                                                   [](const auto &u) {
+                                                       return !Kleo::isRevokedOrExpired(u);
+                                                   });
+    return numberOfValidUserIds == 1;
+}
+}
+
 bool Kleo::isSelfSignature(const GpgME::UserID::Signature &signature)
 {
     return !qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID());
@@ -48,6 +64,13 @@ bool Kleo::canBeUsedForSecretKeyOperations(const GpgME::Key &key)
     // older versions of GpgME did not always set the secret flag for card keys
     return key.subkey(0).isSecret() || key.subkey(0).isCardKey();
 #endif
+}
+
+bool Kleo::canRevokeUserID(const GpgME::UserID &userId)
+{
+    return (!userId.isNull() //
+            && userId.parent().protocol() == GpgME::OpenPGP
+            && !isLastValidUserID(userId));
 }
 
 bool Kleo::isSecretKeyStoredInKeyRing(const GpgME::Key &key)

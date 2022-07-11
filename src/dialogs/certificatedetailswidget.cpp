@@ -256,12 +256,14 @@ public:
     Private(CertificateDetailsWidget *qq);
 
     void setupCommonProperties();
+    void updateUserIDActions();
     void setUpUserIDTable();
     void setUpSMIMEAdressList();
     void setupPGPProperties();
     void setupSMIMEProperties();
 
     void revokeUserID(const GpgME::UserID &uid);
+    void revokeSelectedUserID();
     void genRevokeCert();
     void refreshCertificate();
     void certifyUserIDs();
@@ -311,6 +313,7 @@ private:
         UserIDTable *userIDTable = nullptr;
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *certifyBtn = nullptr;
+        QPushButton *revokeUserIDBtn = nullptr;
         QPushButton *webOfTrustBtn = nullptr;
 
         std::map<QString, std::unique_ptr<InfoField>> smimeAttributeFields;
@@ -372,6 +375,9 @@ private:
 
             webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
             buttonRow->addWidget(webOfTrustBtn);
+
+            revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
+            buttonRow->addWidget(revokeUserIDBtn);
 
             buttonRow->addStretch(1);
 
@@ -515,8 +521,12 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
     ui.userIDTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui.userIDTable, &QAbstractItemView::customContextMenuRequested,
             q, [this](const QPoint &p) { userIDTableContextMenuRequested(p); });
+    connect(ui.userIDTable, &QTreeWidget::itemSelectionChanged,
+            q, [this]() { updateUserIDActions(); });
     connect(ui.addUserIDBtn, &QPushButton::clicked,
             q, [this]() { addUserID(); });
+    connect(ui.revokeUserIDBtn, &QPushButton::clicked,
+            q, [this]() { revokeSelectedUserID(); });
     connect(ui.changePassphraseBtn, &QPushButton::clicked,
             q, [this]() { changePassphrase(); });
     connect(ui.genRevokeBtn, &QPushButton::clicked,
@@ -556,6 +566,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDs->setVisible(isOpenPGP);
     ui.addUserIDBtn->setVisible(isOwnKey);
     // ui.certifyBtn->setVisible(true); // always visible (for OpenPGP keys)
+    ui.revokeUserIDBtn->setVisible(isOwnKey);
     // ui.webOfTrustBtn->setVisible(true); // always visible (for OpenPGP keys)
 
     for (const auto &[_, field] : ui.smimeAttributeFields) {
@@ -587,6 +598,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     // update availability of buttons
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.certifyBtn->setEnabled(userHasCertificationKey());
+    ui.revokeUserIDBtn->setEnabled(false); // requires a selected user ID
     ui.changeExpirationAction->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.changePassphraseBtn->setEnabled(isSecretKeyStoredInKeyRing(key));
     ui.genRevokeBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
@@ -600,6 +612,12 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     if (Kleo::gnupgIsDeVsCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
+}
+
+void CertificateDetailsWidget::Private::updateUserIDActions()
+{
+    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    ui.revokeUserIDBtn->setEnabled((userIDs.size() == 1) && canCreateCertifications(key) && canRevokeUserID(userIDs.front()));
 }
 
 void CertificateDetailsWidget::Private::setUpUserIDTable()
@@ -723,13 +741,23 @@ void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId
 
     auto cmd = new Commands::RevokeUserIDCommand(userId);
     cmd->setParentWidget(q);
-    ui.userIDTable->setEnabled(false);
-    connect(cmd, &Command::finished,
-            q, [this]() {
+    connect(cmd, &Command::finished, q, [this]() {
         ui.userIDTable->setEnabled(true);
+        // the Revoke User ID button will be updated by the key update
         updateKey();
     });
+    ui.userIDTable->setEnabled(false);
+    ui.revokeUserIDBtn->setEnabled(false);
     cmd->start();
+}
+
+void CertificateDetailsWidget::Private::revokeSelectedUserID()
+{
+    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    if (userIDs.size() != 1) {
+        return;
+    }
+    revokeUserID(userIDs.front());
 }
 
 void CertificateDetailsWidget::Private::changeExpiration()
@@ -842,31 +870,6 @@ void CertificateDetailsWidget::Private::showTrustChainDialog()
     dlg->exec();
 }
 
-namespace
-{
-bool isLastValidUserID(const GpgME::UserID &userId)
-{
-    if (isRevokedOrExpired(userId)) {
-        return false;
-    }
-    const auto userIds = userId.parent().userIDs();
-    const int numberOfValidUserIds = std::count_if(std::begin(userIds), std::end(userIds),
-                                                   [](const auto &u) {
-                                                       return !isRevokedOrExpired(u);
-                                                   });
-    return numberOfValidUserIds == 1;
-}
-
-bool canRevokeUserID(const GpgME::UserID &userId)
-{
-    const auto key = userId.parent();
-    return (!userId.isNull() //
-            && key.protocol() == GpgME::OpenPGP
-            && canCreateCertifications(key)
-            && !isLastValidUserID(userId));
-}
-}
-
 void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QPoint &p)
 {
     const auto userIDs = ui.userIDTable->selectedUserIDs();
@@ -890,7 +893,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                       q, [this, singleUserID]() {
                                           revokeUserID(singleUserID);
                                       });
-        action->setEnabled(canRevokeUserID(singleUserID));
+        action->setEnabled(canCreateCertifications(key) && canRevokeUserID(singleUserID));
     }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Revoke Certifications...")

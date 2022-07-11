@@ -267,6 +267,7 @@ public:
     void genRevokeCert();
     void refreshCertificate();
     void certifyUserIDs();
+    void revokeCertifications();
     void webOfTrustClicked();
     void exportClicked();
     void addUserID();
@@ -313,6 +314,7 @@ private:
         UserIDTable *userIDTable = nullptr;
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *certifyBtn = nullptr;
+        QPushButton *revokeCertificationsBtn = nullptr;
         QPushButton *revokeUserIDBtn = nullptr;
         QPushButton *webOfTrustBtn = nullptr;
 
@@ -375,6 +377,9 @@ private:
 
             webOfTrustBtn = new QPushButton(i18nc("@action:button", "Show Certifications"), parent);
             buttonRow->addWidget(webOfTrustBtn);
+
+            revokeCertificationsBtn = new QPushButton(i18nc("@action:button", "Revoke Certifications"), parent);
+            buttonRow->addWidget(revokeCertificationsBtn);
 
             revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
             buttonRow->addWidget(revokeUserIDBtn);
@@ -543,6 +548,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { refreshCertificate(); });
     connect(ui.certifyBtn, &QPushButton::clicked,
             q, [this]() { certifyUserIDs(); });
+    connect(ui.revokeCertificationsBtn, &QPushButton::clicked,
+            q, [this]() { revokeCertifications(); });
     connect(ui.webOfTrustBtn, &QPushButton::clicked,
             q, [this]() { webOfTrustClicked(); });
     connect(ui.exportBtn, &QPushButton::clicked,
@@ -566,8 +573,9 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.userIDs->setVisible(isOpenPGP);
     ui.addUserIDBtn->setVisible(isOwnKey);
     // ui.certifyBtn->setVisible(true); // always visible (for OpenPGP keys)
-    ui.revokeUserIDBtn->setVisible(isOwnKey);
     // ui.webOfTrustBtn->setVisible(true); // always visible (for OpenPGP keys)
+    ui.revokeCertificationsBtn->setVisible(Kleo::Commands::RevokeCertificationCommand::isSupported());
+    ui.revokeUserIDBtn->setVisible(isOwnKey);
 
     for (const auto &[_, field] : ui.smimeAttributeFields) {
         field->setVisible(isSMIME);
@@ -596,8 +604,10 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.genRevokeBtn->setVisible(isOpenPGP && isOwnKey);
 
     // update availability of buttons
+    const auto userCanSignUserIDs = userHasCertificationKey();
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
-    ui.certifyBtn->setEnabled(userHasCertificationKey());
+    ui.certifyBtn->setEnabled(userCanSignUserIDs);
+    ui.revokeCertificationsBtn->setEnabled(userCanSignUserIDs);
     ui.revokeUserIDBtn->setEnabled(false); // requires a selected user ID
     ui.changeExpirationAction->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.changePassphraseBtn->setEnabled(isSecretKeyStoredInKeyRing(key));
@@ -818,6 +828,20 @@ void CertificateDetailsWidget::Private::certifyUserIDs()
     cmd->start();
 }
 
+void CertificateDetailsWidget::Private::revokeCertifications()
+{
+    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    auto cmd = userIDs.empty() ? new Kleo::Commands::RevokeCertificationCommand{key} //
+                               : new Kleo::Commands::RevokeCertificationCommand{userIDs};
+    QObject::connect(cmd, &Kleo::Command::finished,
+                     q, [this]() {
+                         updateKey();
+                         ui.revokeCertificationsBtn->setEnabled(true);
+                     });
+    ui.revokeCertificationsBtn->setEnabled(false);
+    cmd->start();
+}
+
 void CertificateDetailsWidget::Private::webOfTrustClicked()
 {
     QScopedPointer<WebOfTrustDialog> dlg(new WebOfTrustDialog(q));
@@ -892,17 +916,9 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                                 : i18ncp("@action:inmenu", "Revoke Certification...", "Revoke Certifications...", userIDs.size());
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
                                       actionText,
-                                      q, [this, userIDs]() {
-            auto cmd = userIDs.empty() ? new Kleo::Commands::RevokeCertificationCommand{key} //
-                                       : new Kleo::Commands::RevokeCertificationCommand{userIDs};
-            ui.userIDTable->setEnabled(false);
-            connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
-                    q, [this]() {
-                ui.userIDTable->setEnabled(true);
-                updateKey();
-            });
-            cmd->start();
-        });
+                                      q, [this]() {
+                                          revokeCertifications();
+                                      });
         action->setEnabled(canSignUserIDs);
     }
 #ifdef MAILAKONADI_ENABLED

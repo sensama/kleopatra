@@ -24,7 +24,9 @@ class RevokeCertificationCommand : public Command
     Q_OBJECT
 public:
     explicit RevokeCertificationCommand(QAbstractItemView *view, KeyListController *parent);
+    explicit RevokeCertificationCommand(const GpgME::Key &key);
     explicit RevokeCertificationCommand(const GpgME::UserID &uid);
+    explicit RevokeCertificationCommand(const std::vector<GpgME::UserID> &uids);
     explicit RevokeCertificationCommand(const GpgME::UserID::Signature &signature);
     ~RevokeCertificationCommand() override;
 

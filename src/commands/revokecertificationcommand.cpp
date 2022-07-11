@@ -185,10 +185,23 @@ RevokeCertificationCommand::RevokeCertificationCommand(QAbstractItemView *v, Key
     d->init();
 }
 
+RevokeCertificationCommand::RevokeCertificationCommand(const GpgME::Key &key)
+    : Command(key, new Private(this, nullptr))
+{
+    d->init();
+}
+
 RevokeCertificationCommand::RevokeCertificationCommand(const GpgME::UserID &uid)
     : Command(uid.parent(), new Private(this, nullptr))
 {
     std::vector<UserID>(1, uid).swap(d->uids);
+    d->init();
+}
+
+RevokeCertificationCommand::RevokeCertificationCommand(const std::vector<GpgME::UserID> &uids)
+    : Command{uids.empty() ? Key{} : uids.front().parent(), new Private{this, nullptr}}
+{
+    d->uids = uids;
     d->init();
 }
 

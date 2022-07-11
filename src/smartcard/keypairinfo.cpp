@@ -82,19 +82,3 @@ void KeyPairInfo::update(const KeyPairInfo &other)
         algorithm = other.algorithm;
     }
 }
-
-// C++20: Replace with defaulted equality operator
-bool KeyPairInfo::operator==(const KeyPairInfo &other) const
-{
-    return keyRef == other.keyRef
-        && grip == other.grip
-        && usage == other.usage
-        && keyTime == other.keyTime
-        && algorithm == other.algorithm;
-}
-
-// C++20: Remove
-bool KeyPairInfo::operator!=(const KeyPairInfo &other) const
-{
-    return !operator==(other);
-}

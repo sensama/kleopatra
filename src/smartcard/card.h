@@ -51,8 +51,7 @@ public:
     Card();
     virtual ~Card();
 
-    virtual bool operator == (const Card &other) const;
-    bool operator != (const Card &other) const;
+    bool operator==(const Card &) const = default;
 
     void setStatus(Status s);
     Status status() const;

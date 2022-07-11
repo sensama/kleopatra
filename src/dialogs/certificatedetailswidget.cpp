@@ -210,6 +210,13 @@ void InfoField::onActionChanged()
 
 namespace
 {
+static bool userHasCertificationKey() {
+    const auto secretKeys = KeyCache::instance()->secretKeys();
+    return Kleo::any_of(secretKeys, [](const auto &k) {
+        return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
+    });
+}
+
 class UserIDTable : public QTreeWidget
 {
     Q_OBJECT
@@ -535,7 +542,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
     const bool isSMIME = key.protocol() == GpgME::CMS;
     const bool isOwnKey = key.hasSecret();
-    const auto secretKeys = KeyCache::instance()->secretKeys();
 
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
@@ -571,9 +577,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     // update availability of buttons
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
-    ui.certifyBtn->setEnabled(Kleo::any_of(secretKeys, [](const auto &k) {
-        return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
-    }));
+    ui.certifyBtn->setEnabled(userHasCertificationKey());
     ui.changeExpirationAction->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.changePassphraseBtn->setEnabled(isSecretKeyStoredInKeyRing(key));
     ui.genRevokeBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
@@ -859,20 +863,24 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     }
 
     const auto userID = item->data(0, Qt::UserRole).value<GpgME::UserID>();
+    const bool canSignUserIDs = userHasCertificationKey();
 
     auto menu = new QMenu(q);
-    menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
-                    i18n("Certify..."),
-                    q, [this, userID]() {
-        auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
-        ui.userIDTable->setEnabled(false);
-        connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                q, [this]() {
-            ui.userIDTable->setEnabled(true);
-            updateKey();
+    {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
+                                      i18nc("@action:inmenu", "Certify..."),
+                                      q, [this, userID]() {
+            auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
+            ui.userIDTable->setEnabled(false);
+            connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
+                    q, [this]() {
+                ui.userIDTable->setEnabled(true);
+                updateKey();
+            });
+            cmd->start();
         });
-        cmd->start();
-    });
+        action->setEnabled(canSignUserIDs);
+    }
     {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
                                       i18nc("@action:inmenu", "Revoke User ID"),
@@ -882,9 +890,9 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
         action->setEnabled(canRevokeUserID(userID));
     }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
-        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                        i18n("Revoke Certification..."),
-                        q, [this, userID]() {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
+                                      i18nc("@action:inmenu", "Revoke Certification..."),
+                                      q, [this, userID]() {
             auto cmd = new Kleo::Commands::RevokeCertificationCommand(userID);
             ui.userIDTable->setEnabled(false);
             connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
@@ -894,6 +902,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
             });
             cmd->start();
         });
+        action->setEnabled(canSignUserIDs);
     }
 #ifdef MAILAKONADI_ENABLED
     if (key.hasSecret() && key.protocol() == GpgME::OpenPGP) {

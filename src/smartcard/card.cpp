@@ -210,6 +210,31 @@ void Card::setCanLearnKeys(bool value)
     mCanLearn = value;
 }
 
+bool Card::operator == (const Card &other) const
+{
+    return mCanLearn == other.mCanLearn
+        && mHasNullPin == other.mHasNullPin
+        && mStatus == other.mStatus
+        && mSerialNumber == other.mSerialNumber
+        && mAppName == other.mAppName
+        && mAppVersion == other.mAppVersion
+        && mCardType == other.mCardType
+        && mCardVersion == other.mCardVersion
+        && mCardHolder == other.mCardHolder
+        && mSigningKeyRef == other.mSigningKeyRef
+        && mEncryptionKeyRef == other.mEncryptionKeyRef
+        && mAuthenticationKeyRef == other.mAuthenticationKeyRef
+        && mPinStates == other.mPinStates
+        && mErrMsg == other.mErrMsg
+        && mKeyInfos == other.mKeyInfos
+        && mCardInfo == other.mCardInfo;
+}
+
+bool Card::operator != (const Card &other) const
+{
+    return !operator==(other);
+}
+
 void Card::setErrorMsg(const QString &msg)
 {
     mErrMsg = msg;

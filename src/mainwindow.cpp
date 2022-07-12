@@ -81,6 +81,7 @@
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
 #include <Libkleo/DocAction>
+#include <Libkleo/SystemInfo>
 
 #include <vector>
 #include <KSharedConfig>
@@ -237,14 +238,16 @@ public:
         if (Kleo::gnupgUsesDeVsCompliance()) {
             auto statusBar = std::make_unique<QStatusBar>();
             auto statusLbl = std::make_unique<QLabel>(Formatting::deVsString(Kleo::gnupgIsDeVsCompliant()));
-            const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
-                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
-            ).color();
-            const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
-                Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
-            ).color();
-            statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").
-                                     arg(color.name()).arg(background.name()));
+            if (!SystemInfo::isHighContrastModeActive()) {
+                const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
+                    Kleo::gnupgIsDeVsCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
+                ).color();
+                const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
+                    Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
+                ).color();
+                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").
+                                        arg(color.name()).arg(background.name()));
+            }
             statusBar->insertPermanentWidget(0, statusLbl.release());
             q->setStatusBar(statusBar.release());  // QMainWindow takes ownership
         } else {

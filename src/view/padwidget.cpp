@@ -16,6 +16,7 @@
 #include <Libkleo/Classify>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
+#include <Libkleo/SystemInfo>
 
 #include "crypto/gui/signencryptwidget.h"
 #include "crypto/gui/resultitemwidget.h"
@@ -494,9 +495,11 @@ public:
             mCryptBtn->setIcon(QIcon::fromTheme(de_vs
                         ? QStringLiteral("security-high")
                         : QStringLiteral("security-medium")));
-            mCryptBtn->setStyleSheet(QStringLiteral("QPushButton { background-color: %1; }").arg(de_vs
-                        ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
-                        : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
+            if (!SystemInfo::isHighContrastModeActive()) {
+                mCryptBtn->setStyleSheet(QStringLiteral("QPushButton { background-color: %1; }").arg(de_vs
+                            ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
+                            : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
+            }
             mAdditionalInfoLabel->setText(de_vs
                     ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                         "%1 communication possible.", Formatting::deVsString())

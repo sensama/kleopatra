@@ -13,6 +13,8 @@
 
 #ifndef QT_NO_DIRMODEL
 
+#include <Libkleo/SystemInfo>
+
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -58,7 +60,7 @@ public:
 
     QVariant data(const QModelIndex &mi, int role = Qt::DisplayRole) const override
     {
-        if (mi.isValid() && role == Qt::BackgroundRole) {
+        if (mi.isValid() && role == Qt::BackgroundRole && !SystemInfo::isHighContrastModeActive()) {
             const QHash<QString, VerifyChecksumsDialog::Status>::const_iterator
             it = statusMap.find(filePath(mi));
             if (it != statusMap.end())

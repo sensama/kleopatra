@@ -15,6 +15,8 @@
 
 #include <selftest/selftest.h>
 
+#include <Libkleo/SystemInfo>
+
 #include <KLocalizedString>
 #include <KColorScheme>
 
@@ -86,10 +88,12 @@ public:
                 }
                 break;
             case Qt::BackgroundRole:
-                KColorScheme scheme(qApp->palette().currentColorGroup());
-                return (m_tests[row]->skipped() ? scheme.background(KColorScheme::NeutralBackground) :
-                        m_tests[row]->passed()  ? scheme.background(KColorScheme::PositiveBackground) :
-                        scheme.background(KColorScheme::NegativeBackground)).color();
+                if (!SystemInfo::isHighContrastModeActive()) {
+                    KColorScheme scheme(qApp->palette().currentColorGroup());
+                    return (m_tests[row]->skipped() ? scheme.background(KColorScheme::NeutralBackground) :
+                            m_tests[row]->passed()  ? scheme.background(KColorScheme::PositiveBackground) :
+                            scheme.background(KColorScheme::NegativeBackground)).color();
+                }
             }
         return QVariant();
     }

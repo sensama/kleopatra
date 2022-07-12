@@ -212,7 +212,12 @@ GnuPGProcessCommand::GnuPGProcessCommand(const GpgME::Key &key)
 
 void GnuPGProcessCommand::Private::init()
 {
-    connect(&process, &QProcess::finished, q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
+#if QT_DEPRECATED_SINCE(5, 13)
+    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+#else
+    connect(&process, &QProcess::finished,
+#endif
+            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
     q->m_procReadyReadStdErrConnection = connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
 }
 

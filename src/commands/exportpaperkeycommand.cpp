@@ -35,7 +35,11 @@ ExportPaperKeyCommand::ExportPaperKeyCommand(QAbstractItemView *v, KeyListContro
     GnuPGProcessCommand(v, c),
     mParent(v)
 {
+#if QT_DEPRECATED_SINCE(5, 13)
+    connect(&mPkProc, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+#else
     connect(&mPkProc, &QProcess::finished,
+#endif
             this, &ExportPaperKeyCommand::pkProcFinished);
     mPkProc.setProgram(paperKeyInstallPath());
     mPkProc.setArguments(QStringList() << QStringLiteral("--output-type=base16"));

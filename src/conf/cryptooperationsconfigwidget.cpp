@@ -134,7 +134,11 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
 
     qDebug() << "Starting" << ei.fileName() << "with args" << gpgconf->arguments();
 
+#if QT_DEPRECATED_SINCE(5, 13)
+    connect(gpgconf, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+#else
     connect(gpgconf, &QProcess::finished,
+#endif
             this, [this, gpgconf, profile] () {
         mApplyBtn->setEnabled(true);
         if (gpgconf->exitStatus() != QProcess::NormalExit) {

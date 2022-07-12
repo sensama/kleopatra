@@ -170,8 +170,13 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     mMaxItems.createWidgets(q);
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
+#if QT_DEPRECATED_SINCE(5, 14)
+    connect(mMaxItems.widget(), qOverload<int>(&QSpinBox::valueChanged),
+            q, &DirectoryServicesConfigurationPage::markAsChanged);
+#else
     connect(mMaxItems.widget(), &QSpinBox::valueChanged,
             q, &DirectoryServicesConfigurationPage::markAsChanged);
+#endif
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 

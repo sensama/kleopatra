@@ -228,7 +228,12 @@ DumpCertificateCommand::DumpCertificateCommand(const GpgME::Key &k)
 
 void DumpCertificateCommand::Private::init()
 {
-    connect(&process, &QProcess::finished, q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
+#if QT_DEPRECATED_SINCE(5, 13)
+    connect(&process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+#else
+    connect(&process, &QProcess::finished,
+#endif
+            q, [this](int exitCode, QProcess::ExitStatus status) { slotProcessFinished(exitCode, status); });
     connect(&process, &QProcess::readyReadStandardError, q, [this]() { slotProcessReadyReadStandardError(); });
     connect(&process, &QProcess::readyReadStandardOutput, q, [this] { slotProcessReadyReadStandardOutput(); });
 

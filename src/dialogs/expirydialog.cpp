@@ -93,8 +93,13 @@ public:
         , inUnit{Days}
         , ui{mode, q}
     {
+#if QT_DEPRECATED_SINCE(5, 14)
+        connect(ui.inSB, qOverload<int>(&QSpinBox::valueChanged),
+                q, [this] () { slotInAmountChanged(); });
+#else
         connect(ui.inSB, &QSpinBox::valueChanged,
                 q, [this] () { slotInAmountChanged(); });
+#endif
         connect(ui.inCB, qOverload<int>(&QComboBox::currentIndexChanged),
                 q, [this] () { slotInUnitChanged(); });
         connect(ui.onCW, &QCalendarWidget::selectionChanged,

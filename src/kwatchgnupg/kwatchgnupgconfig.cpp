@@ -131,7 +131,11 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     auto button = new QPushButton(i18n("Set &Unlimited"), group);
     glay->addWidget(button, row, 2);
 
+#if QT_DEPRECATED_SINCE(5, 14)
+    connect(mLoglenSB, qOverload<int>(&QSpinBox::valueChanged), this, &KWatchGnuPGConfig::slotChanged);
+#else
     connect(mLoglenSB, &QSpinBox::valueChanged, this, &KWatchGnuPGConfig::slotChanged);
+#endif
     connect(button, &QPushButton::clicked, this, &KWatchGnuPGConfig::slotSetHistorySizeUnlimited);
 
     ++row;

@@ -301,8 +301,9 @@ public:
 private:
     InfoField *attributeField(const QString &attributeName)
     {
-        if (ui.smimeAttributeFields.contains(attributeName)) {
-            return ui.smimeAttributeFields.at(attributeName).get();
+        const auto keyValuePairIt = ui.smimeAttributeFields.find(attributeName);
+        if (keyValuePairIt != ui.smimeAttributeFields.end()) {
+            return (*keyValuePairIt).second.get();
         }
         return nullptr;
     }

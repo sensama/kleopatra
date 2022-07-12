@@ -22,6 +22,7 @@
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/Dn>
 #include <Libkleo/DNAttributeOrderConfigWidget>
+#include <Libkleo/SystemInfo>
 
 #include <KIconDialog>
 #include <QIcon>
@@ -55,8 +56,10 @@ enum {
     MayChangeBoldRole,
     MayChangeStrikeOutRole,
     MayChangeIconRole,
+    StoredForegroundRole, /*!< Stores the actual configured foreground color */
+    StoredBackgroundRole, /*!< Stores the actual configured background color */
 
-    EndDummy
+    EndDummy,
 };
 
 static QFont tryToFindFontFor(const QListWidgetItem *item)
@@ -129,11 +132,17 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
     item->setData(MayChangeNameRole, !group.isEntryImmutable("Name"));
 
     const QColor fg = group.readEntry("foreground-color", QColor());
-    item->setData(Qt::ForegroundRole, fg.isValid() ? QBrush(fg) : QVariant());
+    item->setData(StoredForegroundRole, fg.isValid() ? QBrush(fg) : QVariant());
+    if (!SystemInfo::isHighContrastModeActive()) {
+        item->setData(Qt::ForegroundRole, fg.isValid() ? QBrush(fg) : QVariant());
+    }
     item->setData(MayChangeForegroundRole, !group.isEntryImmutable("foreground-color"));
 
     const QColor bg = group.readEntry("background-color", QColor());
-    item->setData(Qt::BackgroundRole, bg.isValid() ? QBrush(bg) : QVariant());
+    item->setData(StoredBackgroundRole, bg.isValid() ? QBrush(bg) : QVariant());
+    if (!SystemInfo::isHighContrastModeActive()) {
+        item->setData(Qt::BackgroundRole, bg.isValid() ? QBrush(bg) : QVariant());
+    }
     item->setData(MayChangeBackgroundRole, !group.isEntryImmutable("background-color"));
 
     const QFont defaultFont = tryToFindFontFor(item);
@@ -208,7 +217,9 @@ static void set_default_appearance(QListWidgetItem *item)
     if (!item) {
         return;
     }
+    erase_if_allowed(item, StoredForegroundRole, MayChangeForegroundRole);
     erase_if_allowed(item, Qt::ForegroundRole, MayChangeForegroundRole);
+    erase_if_allowed(item, StoredBackgroundRole, MayChangeBackgroundRole);
     erase_if_allowed(item, Qt::BackgroundRole, MayChangeBackgroundRole);
     erase_if_allowed(item, Qt::DecorationRole, MayChangeIconRole);
     static const int fontRoles[] = { Qt::FontRole, HasFontRole };
@@ -248,8 +259,8 @@ static void save_to_config(const QListWidgetItem *item, KConfigGroup &group)
         return;
     }
     writeOrDelete(group, "Name", item->data(HasNameRole).toBool() ? item->text() : QVariant());
-    writeOrDelete(group, "foreground-color", brush2color(item->data(Qt::ForegroundRole)));
-    writeOrDelete(group, "background-color", brush2color(item->data(Qt::BackgroundRole)));
+    writeOrDelete(group, "foreground-color", brush2color(item->data(StoredForegroundRole)));
+    writeOrDelete(group, "background-color", brush2color(item->data(StoredBackgroundRole)));
     writeOrDelete(group, "icon", item->data(IconNameRole));
 
     group.deleteEntry("font");
@@ -301,6 +312,12 @@ public:
         if (QLayout *const l = q->layout()) {
             l->setContentsMargins(0, 0, 0, 0);
         }
+
+        highContrastMsg->setVisible(SystemInfo::isHighContrastModeActive());
+        highContrastMsg->setMessageType(KMessageWidget::Warning);
+        highContrastMsg->setIcon(q->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, q));
+        highContrastMsg->setText(i18n("The preview of colors is disabled because high-contrast mode is active."));
+        highContrastMsg->setCloseButtonVisible(false);
 
         if (Kleo::Settings{}.cmsEnabled()) {
             auto w = new QWidget;
@@ -558,13 +575,16 @@ void AppearanceConfigWidget::Private::slotForegroundClicked()
         return;
     }
 
-    const QVariant v = brush2color(item->data(Qt::ForegroundRole));
+    const QVariant v = brush2color(item->data(StoredForegroundRole));
 
     const QColor initial = v.isValid() ? v.value<QColor>() : categoriesLV->palette().color(QPalette::Normal, QPalette::Text);
     const QColor c = QColorDialog::getColor(initial, q);
 
     if (c.isValid()) {
-        item->setData(Qt::ForegroundRole, QBrush(c));
+        item->setData(StoredForegroundRole, QBrush(c));
+        if (!SystemInfo::isHighContrastModeActive()) {
+            item->setData(Qt::ForegroundRole, QBrush(c));
+        }
         Q_EMIT q->changed();
     }
 }
@@ -576,13 +596,16 @@ void AppearanceConfigWidget::Private::slotBackgroundClicked()
         return;
     }
 
-    const QVariant v = brush2color(item->data(Qt::BackgroundRole));
+    const QVariant v = brush2color(item->data(StoredBackgroundRole));
 
     const QColor initial = v.isValid() ? v.value<QColor>() : categoriesLV->palette().color(QPalette::Normal, QPalette::Base);
     const QColor c = QColorDialog::getColor(initial, q);
 
     if (c.isValid()) {
-        item->setData(Qt::BackgroundRole, QBrush(c));
+        item->setData(StoredBackgroundRole, QBrush(c));
+        if (!SystemInfo::isHighContrastModeActive()) {
+            item->setData(Qt::BackgroundRole, QBrush(c));
+        }
         Q_EMIT q->changed();
     }
 }

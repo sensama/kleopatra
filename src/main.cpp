@@ -109,6 +109,21 @@ int main(int argc, char **argv)
     QElapsedTimer timer;
     timer.start();
 
+    // Initialize GpgME
+    {
+        const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
+        if (gpgmeInitError) {
+            KMessageBox::sorry(nullptr, xi18nc("@info",
+                                        "<para>The version of the <application>GpgME</application> library you are running against "
+                                        "is older than the one that the <application>GpgME++</application> library was built against.</para>"
+                                        "<para><application>Kleopatra</application> will not function in this setting.</para>"
+                                        "<para>Please ask your administrator for help in resolving this issue.</para>"),
+                            i18nc("@title", "GpgME Too Old"));
+            return EXIT_FAILURE;
+        }
+        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: GPGME Initialized";
+    }
+
     KLocalizedString::setApplicationDomain("kleopatra");
 
     AboutData aboutData;
@@ -166,24 +181,10 @@ int main(int argc, char **argv)
 #endif
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
 
-    // Initialize GpgME
-    const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
-
     {
         const unsigned int threads = QThreadPool::globalInstance()->maxThreadCount();
         QThreadPool::globalInstance()->setMaxThreadCount(qMax(2U, threads));
     }
-    if (gpgmeInitError) {
-        KMessageBox::sorry(nullptr, xi18nc("@info",
-                                     "<para>The version of the <application>GpgME</application> library you are running against "
-                                     "is older than the one that the <application>GpgME++</application> library was built against.</para>"
-                                     "<para><application>Kleopatra</application> will not function in this setting.</para>"
-                                     "<para>Please ask your administrator for help in resolving this issue.</para>"),
-                           i18nc("@title", "GpgME Too Old"));
-        return EXIT_FAILURE;
-    }
-
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: GPGME Initialized";
 
     Kleo::ChecksumDefinition::setInstallPath(Kleo::gpg4winInstallPath());
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());

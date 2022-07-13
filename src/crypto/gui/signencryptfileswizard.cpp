@@ -41,6 +41,7 @@
 #include <QLabel>
 #include <QIcon>
 #include <QCheckBox>
+#include <QPushButton>
 #include <QStyle>
 
 #include <gpgme++/key.h>
@@ -442,19 +443,12 @@ private Q_SLOTS:
         if (mParent->currentPage() != this) {
             return;
         }
-        auto btn = mParent->button(QWizard::CommitButton);
+        auto btn = qobject_cast<QPushButton*>(mParent->button(QWizard::CommitButton));
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);
             if (DeVSCompliance::isActive()) {
                 const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
-                btn->setIcon(QIcon::fromTheme(de_vs
-                                             ? QStringLiteral("security-high")
-                                             : QStringLiteral("security-medium")));
-                if (!SystemInfo::isHighContrastModeActive()) {
-                    btn->setStyleSheet(QStringLiteral("QPushButton { background-color: %1; }").arg(de_vs
-                                    ? KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color().name()
-                                    : KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color().name()));
-                }
+                DeVSCompliance::decorate(btn, de_vs);
                 mParent->setLabelText(de_vs
                         ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                             "%1 communication possible.", DeVSCompliance::name(true))

@@ -17,6 +17,7 @@
 #include <QGpgME/DecryptJob>
 #include <QGpgME/DecryptVerifyJob>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Dn>
 #include <Libkleo/KleoException>
 #include <Libkleo/Stl_Util>
@@ -270,14 +271,14 @@ static QString formatSigningInformation(const Signature &sig)
     }
     text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 
-    if (Kleo::gnupgIsDeVsCompliant()) {
+    if (DeVSCompliance::isCompliant()) {
         text +=
             (QStringLiteral("<br/>")
              + (sig.isDeVs()
                 ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "The signature is %1", Formatting::deVsString())
+                        "The signature is %1", DeVSCompliance::name(true))
                 : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "The signature <b>is not</b> %1.", Formatting::deVsString())));
+                        "The signature <b>is not</b> %1.", DeVSCompliance::name(true))));
     }
 
     return text;
@@ -574,12 +575,12 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res, const 
 
     QString details;
 
-    if (Kleo::gnupgIsDeVsCompliant()) {
+    if (DeVSCompliance::isCompliant()) {
         details += ((res.isDeVs()
                      ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                             "The decryption is %1.", Formatting::deVsString())
+                             "The decryption is %1.", DeVSCompliance::name(true))
                      : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                             "The decryption <b>is not</b> %1.", Formatting::deVsString()))
+                             "The decryption <b>is not</b> %1.", DeVSCompliance::name(true)))
                     + QStringLiteral("<br/>"));
     }
 

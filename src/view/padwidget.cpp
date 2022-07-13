@@ -14,6 +14,7 @@
 
 #include <Libkleo/KleoException>
 #include <Libkleo/Classify>
+#include <Libkleo/Compliance>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
@@ -112,7 +113,7 @@ public:
         mMessageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                          "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                         Formatting::deVsString()));
+                                         DeVSCompliance::name(true)));
         mMessageWidget->setCloseButtonVisible(false);
         mMessageWidget->setVisible(false);
         vLay->addWidget(mMessageWidget);
@@ -384,12 +385,12 @@ public:
 
     void doEncryptSign()
     {
-        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+        if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
             KMessageBox::sorry(q->topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                       "<para>Sorry! You cannot use <application>Kleopatra</application> for signing or encryption "
                                       "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                      Formatting::deVsString()));
+                                      DeVSCompliance::name(true)));
             return;
         }
 
@@ -490,8 +491,8 @@ public:
             mCryptBtn->setEnabled(false);
         }
 
-        if (Kleo::gnupgUsesDeVsCompliance()) {
-            const bool de_vs = Kleo::gnupgIsDeVsCompliant() && mSigEncWidget->isDeVsAndValid();
+        if (DeVSCompliance::isActive()) {
+            const bool de_vs = DeVSCompliance::isCompliant() && mSigEncWidget->isDeVsAndValid();
             mCryptBtn->setIcon(QIcon::fromTheme(de_vs
                         ? QStringLiteral("security-high")
                         : QStringLiteral("security-medium")));
@@ -502,14 +503,14 @@ public:
             }
             mAdditionalInfoLabel->setText(de_vs
                     ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "%1 communication possible.", Formatting::deVsString())
+                        "%1 communication possible.", DeVSCompliance::name(true))
                     : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "%1 communication not possible.", Formatting::deVsString()));
+                        "%1 communication not possible.", DeVSCompliance::name(true)));
             mAdditionalInfoLabel->setVisible(true);
-            if (!Kleo::gnupgIsDeVsCompliant()) {
+            if (!DeVSCompliance::isCompliant()) {
                 mCryptBtn->setEnabled(false);
             }
-            mMessageWidget->setVisible(!Kleo::gnupgIsDeVsCompliant());
+            mMessageWidget->setVisible(!DeVSCompliance::isCompliant());
         }
     }
 

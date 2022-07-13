@@ -21,6 +21,7 @@
 #include "utils/gui-helper.h"
 #include "utils/kleo_assert.h"
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
@@ -247,7 +248,7 @@ private:
 
     void updateComplianceStatus()
     {
-        if (!Kleo::gnupgIsDeVsCompliant()) {
+        if (!DeVSCompliance::isCompliant()) {
             return;
         }
         if (q->selectedProtocol() == UnknownProtocol ||
@@ -283,9 +284,9 @@ private:
         }
         ui.complianceLB.setText(de_vs
                 ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                    "%1 communication possible.", Formatting::deVsString())
+                    "%1 communication possible.", DeVSCompliance::name(true))
                 : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                    "%1 communication not possible.", Formatting::deVsString()));
+                    "%1 communication not possible.", DeVSCompliance::name(true)));
         ui.complianceLB.setVisible(true);
     }
 

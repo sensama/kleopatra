@@ -73,6 +73,7 @@
 #include <QStatusBar>
 #include <QLabel>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyListModel>
@@ -235,15 +236,15 @@ public:
 
     void updateStatusBar()
     {
-        if (Kleo::gnupgUsesDeVsCompliance()) {
+        if (DeVSCompliance::isActive()) {
             auto statusBar = std::make_unique<QStatusBar>();
-            auto statusLbl = std::make_unique<QLabel>(Formatting::deVsString(Kleo::gnupgIsDeVsCompliant()));
+            auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
             if (!SystemInfo::isHighContrastModeActive()) {
                 const auto color = KColorScheme(QPalette::Active, KColorScheme::View).foreground(
-                    Kleo::gnupgIsDeVsCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
+                    DeVSCompliance::isCompliant() ? KColorScheme::NormalText: KColorScheme::NegativeText
                 ).color();
                 const auto background = KColorScheme(QPalette::Active, KColorScheme::View).background(
-                    Kleo::gnupgIsDeVsCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
+                    DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground
                 ).color();
                 statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").
                                         arg(color.name()).arg(background.name()));

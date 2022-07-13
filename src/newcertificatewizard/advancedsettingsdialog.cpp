@@ -22,6 +22,7 @@
 #include <settings.h>
 
 #include <Libkleo/Compat>
+#include <Libkleo/Compliance>
 #include <Libkleo/GnuPG>
 
 #include <KDateComboBox>
@@ -828,7 +829,7 @@ void AdvancedSettingsDialog::fillKeySizeComboBoxen()
     const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
 
     QList<int> rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << 2048 << -3072 << 4096);
-    if (Kleo::gnupgUsesDeVsCompliance()) {
+    if (DeVSCompliance::isActive()) {
         rsaKeySizes = config.readEntry(RSA_KEYSIZES_ENTRY, QList<int>() << -3072 << 4096);
     }
     const QList<int> dsaKeySizes = config.readEntry(DSA_KEYSIZES_ENTRY, QList<int>() << -2048);
@@ -997,7 +998,7 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
         ui->ecdsaRB->setText(QStringLiteral("ECDSA/EdDSA"));
     }
 
-    const bool deVsHack = Kleo::gnupgUsesDeVsCompliance();
+    const bool deVsHack = DeVSCompliance::isActive();
 
     if (deVsHack) {
         // GnuPG Provides no API to query which keys are compliant for

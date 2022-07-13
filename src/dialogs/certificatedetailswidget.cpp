@@ -39,6 +39,7 @@
 #include "utils/tags.h"
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
@@ -591,7 +592,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     }
     // ui.fingerprintField->setVisible(true); // always visible
     ui.smimeIssuerField->setVisible(isSMIME);
-    ui.complianceField->setVisible(Kleo::gnupgIsDeVsCompliant());
+    ui.complianceField->setVisible(DeVSCompliance::isCompliant());
     ui.trustedIntroducerField->setVisible(isOpenPGP); // may be hidden again by setupPGPProperties()
 
     ui.smimeRelatedAddresses->setVisible(isSMIME);
@@ -620,7 +621,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
                               Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
                                   Formatting::accessibleHexID(key.primaryFingerprint()));
-    if (Kleo::gnupgIsDeVsCompliant()) {
+    if (DeVSCompliance::isCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
 }

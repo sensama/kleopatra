@@ -26,6 +26,7 @@
 #include <Libkleo/GnuPG>
 #include "utils/kleo_assert.h"
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
 
@@ -393,12 +394,12 @@ void NewSignEncryptEMailController::startResolveCertificates(const std::vector<M
     d->dialog->pickProtocol();
     d->dialog->setConflict(conflict);
 
-    const bool compliant = !Kleo::gnupgUsesDeVsCompliance() ||
-                           (Kleo::gnupgIsDeVsCompliant() && is_de_vs_compliant(d->sign,
-                                                                               d->encrypt,
-                                                                               senders,
-                                                                               recipients,
-                                                                               d->presetProtocol));
+    const bool compliant = !DeVSCompliance::isActive() ||
+                           (DeVSCompliance::isCompliant() && is_de_vs_compliant(d->sign,
+                                                                                d->encrypt,
+                                                                                senders,
+                                                                                recipients,
+                                                                                d->presetProtocol));
 
     if (quickMode && !conflict && compliant) {
         QMetaObject::invokeMethod(this, "slotDialogAccepted", Qt::QueuedConnection);

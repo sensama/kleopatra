@@ -28,6 +28,7 @@
 #include <KMessageWidget>
 
 #include "kleopatra_debug.h"
+#include <Libkleo/Compliance>
 #include <Libkleo/GnuPG>
 #include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
@@ -193,9 +194,9 @@ public:
         messageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                          "<para>You cannot use <application>Kleopatra</application> for signing or encrypting files "
                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                         Formatting::deVsString()));
+                                         DeVSCompliance::name(true)));
         messageWidget->setCloseButtonVisible(false);
-        messageWidget->setVisible(Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant());
+        messageWidget->setVisible(DeVSCompliance::isActive() && !DeVSCompliance::isCompliant());
         vLay->addWidget(messageWidget);
 
         setMinimumHeight(300);
@@ -213,7 +214,7 @@ public:
 
     bool isComplete() const override
     {
-        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+        if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
             return false;
         }
         return mWidget->isComplete();
@@ -255,12 +256,12 @@ public:
 
     bool validatePage() override
     {
-        if (Kleo::gnupgUsesDeVsCompliance() && !Kleo::gnupgIsDeVsCompliant()) {
+        if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
             KMessageBox::sorry(topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                       "<para>Sorry! You cannot use <application>Kleopatra</application> for signing or encrypting files "
                                       "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                      Formatting::deVsString()));
+                                      DeVSCompliance::name(true)));
             return false;
         }
         bool sign = !mWidget->signKey().isNull();
@@ -444,8 +445,8 @@ private Q_SLOTS:
         auto btn = mParent->button(QWizard::CommitButton);
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);
-            if (Kleo::gnupgUsesDeVsCompliance()) {
-                const bool de_vs = Kleo::gnupgIsDeVsCompliant() && mWidget->isDeVsAndValid();
+            if (DeVSCompliance::isActive()) {
+                const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
                 btn->setIcon(QIcon::fromTheme(de_vs
                                              ? QStringLiteral("security-high")
                                              : QStringLiteral("security-medium")));
@@ -456,9 +457,9 @@ private Q_SLOTS:
                 }
                 mParent->setLabelText(de_vs
                         ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                            "%1 communication possible.", Formatting::deVsString())
+                            "%1 communication possible.", DeVSCompliance::name(true))
                         : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                            "%1 communication not possible.", Formatting::deVsString()));
+                            "%1 communication not possible.", DeVSCompliance::name(true)));
             }
         } else {
             mParent->setButtonText(QWizard::CommitButton, i18n("Next"));
@@ -546,7 +547,7 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
 {
     readConfig();
 
-    const bool de_vs = Kleo::gnupgUsesDeVsCompliance();
+    const bool de_vs = DeVSCompliance::isActive();
 #ifdef Q_OS_WIN
     // Enforce modern style to avoid vista style ugliness.
     setWizardStyle(QWizard::ModernStyle);

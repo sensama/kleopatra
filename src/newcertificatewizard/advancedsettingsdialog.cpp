@@ -17,6 +17,7 @@
 #include "keyalgo_p.h"
 #include "listwidget.h"
 
+#include "utils/gui-helper.h"
 #include "utils/scrollarea.h"
 
 #include <settings.h>
@@ -1061,33 +1062,6 @@ void AdvancedSettingsDialog::updateWidgetVisibility()
     ui->expiryCB->setVisible(protocol == OpenPGP);
 
     slotKeyMaterialSelectionChanged();
-}
-
-template<typename UnaryPredicate>
-bool focusFirstButtonIf(const std::vector<QAbstractButton *> &buttons, UnaryPredicate p)
-{
-    auto it = std::find_if(std::begin(buttons), std::end(buttons), p);
-    if (it != std::end(buttons)) {
-        (*it)->setFocus();
-        return true;
-    }
-    return false;
-}
-
-static bool focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons)
-{
-    return focusFirstButtonIf(buttons,
-                              [](auto btn) {
-                                  return btn && btn->isEnabled() && btn->isChecked();
-                              });
-}
-
-static bool focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons)
-{
-    return focusFirstButtonIf(buttons,
-                              [](auto btn) {
-                                  return btn && btn->isEnabled();
-                              });
 }
 
 void AdvancedSettingsDialog::setInitialFocus()

@@ -105,3 +105,30 @@ void Kleo::forceSetTabOrder(QWidget *first, QWidget *second)
         second->setFocusPolicy(secondFocusPolicy);
     }
 }
+
+template<typename UnaryPredicate>
+bool focusFirstButtonIf(const std::vector<QAbstractButton *> &buttons, UnaryPredicate p)
+{
+    auto it = std::find_if(std::begin(buttons), std::end(buttons), p);
+    if (it != std::end(buttons)) {
+        (*it)->setFocus();
+        return true;
+    }
+    return false;
+}
+
+bool Kleo::focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons)
+{
+    return focusFirstButtonIf(buttons,
+                              [](auto btn) {
+                                  return btn && btn->isEnabled() && btn->isChecked();
+                              });
+}
+
+bool Kleo::focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons)
+{
+    return focusFirstButtonIf(buttons,
+                              [](auto btn) {
+                                  return btn && btn->isEnabled();
+                              });
+}

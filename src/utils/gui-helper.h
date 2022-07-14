@@ -48,4 +48,22 @@ void aggressive_raise(QWidget *w, bool stayOnTop);
  */
 void forceSetTabOrder(QWidget *first, QWidget *second);
 
+/**
+ * Gives the keyboard input focus to the first of the \p buttons, that is
+ * enabled and checked.
+ *
+ * Returns true, if a button was given focus. Returns false, if no button was
+ * found that is enabled and checked.
+ */
+bool focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons);
+
+/**
+ * Gives the keyboard input focus to the first of the \p buttons, that is
+ * enabled.
+ *
+ * Returns true, if a button was given focus. Returns false, if no button was
+ * found that is enabled.
+ */
+bool focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons);
+
 }

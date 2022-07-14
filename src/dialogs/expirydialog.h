@@ -16,6 +16,7 @@
 #include <memory.h>
 
 class QDate;
+class QShowEvent;
 
 namespace Kleo
 {
@@ -41,6 +42,9 @@ public:
 
     void setUpdateExpirationOfAllSubkeys(bool update);
     bool updateExpirationOfAllSubkeys() const;
+
+protected:
+    void showEvent(QShowEvent *event) override;
 
 private:
     class Private;

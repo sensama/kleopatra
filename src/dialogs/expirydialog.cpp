@@ -13,6 +13,7 @@
 
 #include "expirydialog.h"
 
+#include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
 
 #include <KDateComboBox>
@@ -110,10 +111,12 @@ private:
 private:
     QDate inDate() const;
     int inAmountByDate(const QDate &date) const;
+    void setInitialFocus();
 
 private:
     ExpiryDialog::Mode mode;
     int inUnit;
+    bool initialFocusWasSet = false;
 
     struct UI {
         QRadioButton *neverRB;
@@ -271,6 +274,16 @@ int ExpiryDialog::Private::inAmountByDate(const QDate &selected) const
     return -1;
 }
 
+void ExpiryDialog::Private::setInitialFocus()
+{
+    if (initialFocusWasSet) {
+        return;
+    }
+    // give focus to the checked radio button
+    (void) focusFirstCheckedButton({ui.neverRB, ui.inRB, ui.onRB});
+    initialFocusWasSet = true;
+}
+
 ExpiryDialog::ExpiryDialog(Mode mode, QWidget *p)
     : QDialog{p}
     , d{new Private{mode, this}}
@@ -309,6 +322,12 @@ void ExpiryDialog::setUpdateExpirationOfAllSubkeys(bool update)
 bool ExpiryDialog::updateExpirationOfAllSubkeys() const
 {
     return d->ui.updateSubkeysCheckBox->isChecked();
+}
+
+void ExpiryDialog::showEvent(QShowEvent *event)
+{
+    d->setInitialFocus();
+    QDialog::showEvent(event);
 }
 
 #include "moc_expirydialog.cpp"

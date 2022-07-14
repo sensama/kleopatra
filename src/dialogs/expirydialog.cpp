@@ -16,6 +16,8 @@
 #include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
 
+#include <Libkleo/Formatting>
+
 #include <KDateComboBox>
 #include <KLocalizedString>
 #include <KStandardGuiItem>
@@ -58,6 +60,23 @@ static QDate date_by_amount_and_unit(int inAmount, int inUnit)
         Q_ASSERT(!"Should not reach here");
     }
     return QDate();
+}
+
+static QString accessibleValidityDuration(int amount, Period unit)
+{
+    switch (unit) {
+    case Days:
+        return i18ncp("(Expires) in x day(s)", "in %1 day", "in %1 days", amount);
+    case Weeks:
+        return i18ncp("(Expires) in x week(s)", "in %1 week", "in %1 weeks", amount);
+    case Months:
+        return i18ncp("(Expires) in x month(s)", "in %1 month", "in %1 months", amount);
+    case Years:
+        return i18ncp("(Expires) in x year(s)", "in %1 year", "in %1 years", amount);
+    default:
+        Q_ASSERT(!"invalid unit");
+    }
+    return {};
 }
 
 // these calculations should be precise enough for the forseeable future...
@@ -246,6 +265,7 @@ void ExpiryDialog::Private::slotInAmountChanged()
     if (ui.inRB->isChecked()) {
         ui.onCB->setDate(inDate());
     }
+    ui.inRB->setAccessibleName(accessibleValidityDuration(ui.inSB->value(), static_cast<Period>(ui.inCB->currentIndex())));
 }
 
 void ExpiryDialog::Private::slotOnDateChanged()
@@ -253,6 +273,7 @@ void ExpiryDialog::Private::slotOnDateChanged()
     if (ui.onRB->isChecked()) {
         ui.inSB->setValue(inAmountByDate(ui.onCB->date()));
     }
+    ui.onRB->setAccessibleName(i18nc("(Expires) on DATE", "on %1", Formatting::accessibleDate(ui.onCB->date())));
 }
 
 QDate ExpiryDialog::Private::inDate() const

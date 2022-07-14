@@ -15,10 +15,10 @@
 
 #include "utils/qt-cxx20-compat.h"
 
+#include <KDateComboBox>
 #include <KLocalizedString>
 #include <KStandardGuiItem>
 
-#include <QCalendarWidget>
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDate>
@@ -74,12 +74,6 @@ static int yearsBetween(const QDate &d1, const QDate &d2)
     return qRound(days / DAYS_IN_GREGORIAN_YEAR);
 }
 
-auto radioButtonSize(const QRadioButton *radioButton)
-{
-    QStyleOptionButton opt;
-    return radioButton->style()->sizeFromContents(QStyle::CT_RadioButton, &opt, QSize(), radioButton);
-}
-
 }
 
 class ExpiryDialog::Private
@@ -102,18 +96,8 @@ public:
 #endif
         connect(ui.inCB, qOverload<int>(&QComboBox::currentIndexChanged),
                 q, [this] () { slotInUnitChanged(); });
-        connect(ui.onCW, &QCalendarWidget::selectionChanged,
+        connect(ui.onCB, &KDateComboBox::dateChanged,
                 q, [this] () { slotOnDateChanged(); });
-        connect(ui.onCW, &QCalendarWidget::currentPageChanged,
-                q, [this] (int year, int month) {
-                    // We select the same day in the month when
-                    // a page is switched.
-                    auto date = ui.onCW->selectedDate();
-                    if (!date.setDate(year, month, date.day())) {
-                        date.setDate(year, month, 1);
-                    }
-                    ui.onCW->setSelectedDate(date);
-                });
 
         Q_ASSERT(ui.inCB->currentIndex() == inUnit);
     }
@@ -137,7 +121,7 @@ private:
         QSpinBox *inSB;
         QComboBox *inCB;
         QRadioButton *onRB;
-        QCalendarWidget *onCW;
+        KDateComboBox *onCB;
         QCheckBox *updateSubkeysCheckBox;
 
         explicit UI(Mode mode, Dialogs::ExpiryDialog *qq)
@@ -192,21 +176,18 @@ private:
                 vboxLayout->addLayout(hboxLayout);
             }
 
-            onRB = new QRadioButton{i18n("On this da&y:"), mainWidget};
-            onRB->setChecked(true);
-
-            vboxLayout->addWidget(onRB);
-
             {
                 auto hboxLayout = new QHBoxLayout;
 
-                hboxLayout->addSpacing(radioButtonSize(onRB).width());
+                onRB = new QRadioButton{i18n("On this da&y:"), mainWidget};
+                onRB->setChecked(true);
 
-                onCW = new QCalendarWidget{mainWidget};
-                onCW->setGridVisible(true);
-                onCW->setMinimumDate(QDate::currentDate().addDays(1));
+                hboxLayout->addWidget(onRB);
 
-                hboxLayout->addWidget(onCW);
+                onCB = new KDateComboBox{mainWidget};
+                onCB->setMinimumDate(QDate::currentDate().addDays(1));
+
+                hboxLayout->addWidget(onCB);
 
                 hboxLayout->addStretch(1);
 
@@ -238,7 +219,7 @@ private:
 
             mainLayout->addWidget(buttonBox);
 
-            connect(onRB, &QRadioButton::toggled, onCW, &QWidget::setEnabled);
+            connect(onRB, &QRadioButton::toggled, onCB, &QWidget::setEnabled);
             connect(inRB, &QRadioButton::toggled, inCB, &QWidget::setEnabled);
             connect(inRB, &QRadioButton::toggled, inSB, &QWidget::setEnabled);
         }
@@ -259,17 +240,15 @@ void ExpiryDialog::Private::slotInUnitChanged()
 
 void ExpiryDialog::Private::slotInAmountChanged()
 {
-    // Only modify onCW when onCW is slave:
     if (ui.inRB->isChecked()) {
-        ui.onCW->setSelectedDate(inDate());
+        ui.onCB->setDate(inDate());
     }
 }
 
 void ExpiryDialog::Private::slotOnDateChanged()
 {
-    // Only modify inSB/inCB when onCW is master:
     if (ui.onRB->isChecked()) {
-        ui.inSB->setValue(inAmountByDate(ui.onCW->selectedDate()));
+        ui.inSB->setValue(inAmountByDate(ui.onCB->date()));
     }
 }
 
@@ -306,10 +285,10 @@ void ExpiryDialog::setDateOfExpiry(const QDate &date)
     const QDate current = QDate::currentDate();
     if (date.isValid()) {
         d->ui.onRB->setChecked(true);
-        d->ui.onCW->setSelectedDate(qMax(date, current));
+        d->ui.onCB->setDate(qMax(date, current));
     } else {
         d->ui.neverRB->setChecked(true);
-        d->ui.onCW->setSelectedDate(current);
+        d->ui.onCB->setDate(current);
         d->ui.inSB->setValue(0);
     }
 }
@@ -318,7 +297,7 @@ QDate ExpiryDialog::dateOfExpiry() const
 {
     return
         d->ui.inRB->isChecked() ? d->inDate() :
-        d->ui.onRB->isChecked() ? d->ui.onCW->selectedDate() :
+        d->ui.onRB->isChecked() ? d->ui.onCB->date() :
         QDate{};
 }
 

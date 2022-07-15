@@ -134,7 +134,9 @@ public:
 
         mainLayout->addLayout(groupsLayout, /*stretch=*/ 1);
 
-        connect(ui.groupsFilter, &QLineEdit::textChanged, groupsFilterModel, &QSortFilterProxyModel::setFilterFixedString);
+        connect(ui.groupsFilter, &QLineEdit::textChanged, q, [this](const auto &s) {
+            groupsFilterModel->setFilterRegularExpression(QRegularExpression::escape(s));
+        });
         connect(ui.groupsList->selectionModel(), &QItemSelectionModel::selectionChanged,
                 q, [this] () { selectionChanged(); });
         connect(ui.groupsList, &QListView::doubleClicked,

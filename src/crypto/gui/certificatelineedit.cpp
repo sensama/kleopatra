@@ -406,7 +406,7 @@ void CertificateLineEdit::Private::updateKey()
     if (mailText.isEmpty()) {
         mStatus = Status::Empty;
     } else {
-        mFilterModel->setFilterFixedString(mailText);
+        mFilterModel->setFilterRegularExpression(QRegularExpression::escape(mailText));
         if (mFilterModel->rowCount() > 1) {
             // keep current key or group if they still match
             if (!mKey.isNull()) {

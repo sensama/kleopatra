@@ -123,6 +123,13 @@ public:
         None,       //< entered text does not match any certificates or groups
         Ambiguous,  //< entered text matches multiple certificates or groups
     };
+    enum class CursorPositioning
+    {
+        MoveToEnd,
+        KeepPosition,
+        MoveToStart,
+        Default = MoveToEnd,
+    };
 
     explicit Private(CertificateLineEdit *qq, AbstractKeyListModel *model, KeyFilter *filter);
 
@@ -137,13 +144,13 @@ public:
     void setAccessibleName(const QString &s);
 
 private:
-    void updateKey();
+    void updateKey(CursorPositioning positioning);
     void editChanged();
     void editFinished();
     void checkLocate();
     void onLocateJobResult(QGpgME::Job *job, const QString &email, const KeyListResult &result, const std::vector<GpgME::Key> &keys);
     void openDetailsDialog();
-    void setTextWithBlockedSignals(const QString &s);
+    void setTextWithBlockedSignals(const QString &s, CursorPositioning positioning);
     void showContextMenu(const QPoint &pos);
     QString errorMessage() const;
     QIcon statusIcon() const;
@@ -234,13 +241,13 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     }
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            q, [this]() { updateKey(); });
+            q, [this]() { updateKey(CursorPositioning::KeepPosition); });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupUpdated,
             q, [this](const KeyGroup &group) {
                 if (!mGroup.isNull() && mGroup.source() == group.source() && mGroup.id() == group.id()) {
-                    setTextWithBlockedSignals(Formatting::summaryLine(group));
+                    setTextWithBlockedSignals(Formatting::summaryLine(group), CursorPositioning::KeepPosition);
                     // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(q, [this]() { updateKey(); }, Qt::QueuedConnection);
+                    QMetaObject::invokeMethod(q, [this]() { updateKey(CursorPositioning::KeepPosition); }, Qt::QueuedConnection);
                 }
             });
     connect(KeyCache::instance().get(), &Kleo::KeyCache::groupRemoved,
@@ -250,7 +257,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
                     QSignalBlocker blocky{&ui.lineEdit};
                     ui.lineEdit.clear();
                     // queue the update to ensure that the model has been updated
-                    QMetaObject::invokeMethod(q, [this]() { updateKey(); }, Qt::QueuedConnection);
+                    QMetaObject::invokeMethod(q, [this]() { updateKey(CursorPositioning::KeepPosition); }, Qt::QueuedConnection);
                 }
             });
     connect(&ui.lineEdit, &QLineEdit::editingFinished,
@@ -280,7 +287,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
                     qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
                 }
             });
-    updateKey();
+    updateKey(CursorPositioning::Default);
 }
 
 void CertificateLineEdit::Private::openDetailsDialog()
@@ -297,10 +304,23 @@ void CertificateLineEdit::Private::openDetailsDialog()
     }
 }
 
-void CertificateLineEdit::Private::setTextWithBlockedSignals(const QString &s)
+void CertificateLineEdit::Private::setTextWithBlockedSignals(const QString &s, CursorPositioning positioning)
 {
     QSignalBlocker blocky{&ui.lineEdit};
+    const auto cursorPos = ui.lineEdit.cursorPosition();
     ui.lineEdit.setText(s);
+    switch(positioning)
+    {
+    case CursorPositioning::KeepPosition:
+        ui.lineEdit.setCursorPosition(cursorPos);
+        break;
+    case CursorPositioning::MoveToStart:
+        ui.lineEdit.setCursorPosition(0);
+        break;
+    case CursorPositioning::MoveToEnd:
+    default:
+        ; // setText() already moved the cursor to the end of the line
+    };
 }
 
 void CertificateLineEdit::Private::showContextMenu(const QPoint &pos)
@@ -331,7 +351,7 @@ void CertificateLineEdit::Private::editChanged()
 {
     const bool editingStarted = !mEditingInProgress;
     mEditingInProgress = true;
-    updateKey();
+    updateKey(CursorPositioning::Default);
     if (editingStarted) {
         Q_EMIT q->editingStarted();
     }
@@ -340,13 +360,13 @@ void CertificateLineEdit::Private::editChanged()
 void CertificateLineEdit::Private::editFinished()
 {
     // perform a first update with the "editing in progress" flag still set
-    updateKey();
+    updateKey(CursorPositioning::MoveToStart);
     mEditingInProgress = false;
     checkLocate();
     // perform another update with the "editing in progress" flag cleared
     // after a key locate may have been started; this makes sure that displaying
     // an error is delayed until the key locate job has finished
-    updateKey();
+    updateKey(CursorPositioning::MoveToStart);
 }
 
 void CertificateLineEdit::Private::checkLocate()
@@ -392,11 +412,11 @@ void CertificateLineEdit::Private::onLocateJobResult(QGpgME::Job *job, const QSt
         // inserting the key implicitly triggers an update
     } else {
         // explicitly trigger an update to display "no key" error
-        updateKey();
+        updateKey(CursorPositioning::MoveToStart);
     }
 }
 
-void CertificateLineEdit::Private::updateKey()
+void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
 {
     static const _detail::ByFingerprint<std::equal_to> keysHaveSameFingerprint;
 
@@ -452,13 +472,13 @@ void CertificateLineEdit::Private::updateKey()
         mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
         if (!mEditingInProgress) {
-            setTextWithBlockedSignals(Formatting::summaryLine(mKey));
+            setTextWithBlockedSignals(Formatting::summaryLine(mKey), positioning);
         }
     } else if (!mGroup.isNull()) {
         mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
         if (!mEditingInProgress) {
-            setTextWithBlockedSignals(Formatting::summaryLine(mGroup));
+            setTextWithBlockedSignals(Formatting::summaryLine(mGroup), positioning);
         }
     } else {
         ui.lineEdit.setToolTip({});
@@ -639,8 +659,9 @@ void CertificateLineEdit::Private::setKey(const Key &key)
     mKey = key;
     mGroup = KeyGroup();
     qCDebug(KLEOPATRA_LOG) << "Setting Key. " << Formatting::summaryLine(key);
-    setTextWithBlockedSignals(Formatting::summaryLine(key));
-    updateKey();
+    // position cursor, so that that the start of the summary is visible
+    setTextWithBlockedSignals(Formatting::summaryLine(key), CursorPositioning::MoveToStart);
+    updateKey(CursorPositioning::MoveToStart);
 }
 
 void CertificateLineEdit::setKey(const Key &key)
@@ -654,8 +675,9 @@ void CertificateLineEdit::Private::setGroup(const KeyGroup &group)
     mKey = Key();
     const QString summary = Formatting::summaryLine(group);
     qCDebug(KLEOPATRA_LOG) << "Setting KeyGroup. " << summary;
-    setTextWithBlockedSignals(summary);
-    updateKey();
+    // position cursor, so that that the start of the summary is visible
+    setTextWithBlockedSignals(summary, CursorPositioning::MoveToStart);
+    updateKey(CursorPositioning::MoveToStart);
 }
 
 void CertificateLineEdit::setGroup(const KeyGroup &group)
@@ -679,7 +701,7 @@ void CertificateLineEdit::Private::setKeyFilter(const std::shared_ptr<KeyFilter>
     mFilter = filter;
     mFilterModel->setKeyFilter(filter);
     mCompleterFilterModel->setKeyFilter(mFilter);
-    updateKey();
+    updateKey(CursorPositioning::Default);
 }
 
 void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)

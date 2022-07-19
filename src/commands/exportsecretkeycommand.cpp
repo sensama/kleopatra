@@ -241,6 +241,11 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
 
 void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const QByteArray &keyData)
 {
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+
     if (err) {
         showError(err);
         finished();

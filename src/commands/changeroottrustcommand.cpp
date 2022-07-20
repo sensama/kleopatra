@@ -338,9 +338,9 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
 
     if (!found) {  // add
         if (trust == Key::Ultimate) {
-            out.write(keyColon.toLatin1() + ' ' + 'S' + '\n');
+            out.write(keyColon.toLatin1() + " S relax\n");
         } else if (trust == Key::Never) {
-            out.write('!' + keyColon.toLatin1() + ' ' + 'S' + '\n');
+            out.write('!' + keyColon.toLatin1() + " S relax\n");
         }
     }
 

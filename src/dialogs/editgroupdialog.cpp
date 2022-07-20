@@ -75,19 +75,19 @@ public:
         auto mainLayout = new QVBoxLayout(q);
 
         auto groupNameLayout = new QHBoxLayout();
-        groupNameLayout->addWidget(new QLabel(i18nc("Name of a group of keys", "Name:")));
-        ui.groupNameEdit = new QLineEdit();
+        groupNameLayout->addWidget(new QLabel(i18nc("Name of a group of keys", "Name:"), q));
+        ui.groupNameEdit = new QLineEdit(q);
         groupNameLayout->addWidget(ui.groupNameEdit);
         mainLayout->addLayout(groupNameLayout);
 
-        mainLayout->addWidget(new KSeparator(Qt::Horizontal));
+        mainLayout->addWidget(new KSeparator(Qt::Horizontal, q));
 
-        auto centerLayout = new QVBoxLayout();
+        auto centerLayout = new QVBoxLayout;
 
-        auto availableKeysLayout = new QVBoxLayout();
-        availableKeysLayout->addWidget(new QLabel(i18n("Available keys:")));
+        auto availableKeysLayout = new QVBoxLayout;
+        availableKeysLayout->addWidget(new QLabel(i18n("Available keys:"), q));
 
-        ui.availableKeysFilter = new QLineEdit();
+        ui.availableKeysFilter = new QLineEdit(q);
         ui.availableKeysFilter->setClearButtonEnabled(true);
         ui.availableKeysFilter->setPlaceholderText(i18nc("Placeholder text", "Search..."));
         availableKeysLayout->addWidget(ui.availableKeysFilter);
@@ -105,17 +105,17 @@ public:
 
         centerLayout->addLayout(availableKeysLayout, /*stretch=*/ 1);
 
-        auto buttonsLayout = new QHBoxLayout();
+        auto buttonsLayout = new QHBoxLayout;
         buttonsLayout->addStretch(1);
 
-        auto addButton = new QPushButton();
+        auto addButton = new QPushButton(q);
         addButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-down")));
         addButton->setAccessibleName(i18nc("@action:button", "Add Selected Keys"));
         addButton->setToolTip(i18n("Add the selected keys to the group"));
         addButton->setEnabled(false);
         buttonsLayout->addWidget(addButton);
 
-        auto removeButton = new QPushButton();
+        auto removeButton = new QPushButton(q);
         removeButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-up")));
         addButton->setAccessibleName(i18nc("@action:button", "Remove Selected Keys"));
         removeButton->setToolTip(i18n("Remove the selected keys from the group"));
@@ -126,10 +126,10 @@ public:
 
         centerLayout->addLayout(buttonsLayout);
 
-        auto groupKeysLayout = new QVBoxLayout();
-        groupKeysLayout->addWidget(new QLabel(i18n("Group keys:")));
+        auto groupKeysLayout = new QVBoxLayout;
+        groupKeysLayout->addWidget(new QLabel(i18n("Group keys:"), q));
 
-        ui.groupKeysFilter = new QLineEdit();
+        ui.groupKeysFilter = new QLineEdit(q);
         ui.groupKeysFilter->setClearButtonEnabled(true);
         ui.groupKeysFilter->setPlaceholderText(i18nc("Placeholder text", "Search..."));
         groupKeysLayout->addWidget(ui.groupKeysFilter);
@@ -145,9 +145,9 @@ public:
 
         mainLayout->addLayout(centerLayout);
 
-        mainLayout->addWidget(new KSeparator(Qt::Horizontal));
+        mainLayout->addWidget(new KSeparator(Qt::Horizontal, q));
 
-        ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+        ui.buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, q);
         QPushButton *okButton = ui.buttonBox->button(QDialogButtonBox::Ok);
         KGuiItem::assign(okButton, KStandardGuiItem::ok());
         KGuiItem::assign(ui.buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());

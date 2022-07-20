@@ -87,11 +87,11 @@ public:
     {
         auto mainLayout = new QVBoxLayout(q);
 
-        auto groupsLayout = new QGridLayout();
+        auto groupsLayout = new QGridLayout;
         groupsLayout->setColumnStretch(0, 1);
         groupsLayout->setRowStretch(1, 1);
 
-        ui.groupsFilter = new QLineEdit();
+        ui.groupsFilter = new QLineEdit(q);
         ui.groupsFilter->setClearButtonEnabled(true);
         ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Search..."));
         groupsLayout->addWidget(ui.groupsFilter, 0, 0);
@@ -103,7 +103,7 @@ public:
         groupsFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
         groupsFilterModel->setSourceModel(groupsModel);
         groupsFilterModel->sort(KeyList::Summary, Qt::AscendingOrder);
-        ui.groupsList = new QListView();
+        ui.groupsList = new QListView(q);
         ui.groupsList->setModel(groupsFilterModel);
         ui.groupsList->setModelColumn(KeyList::Summary);
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -111,20 +111,20 @@ public:
 
         groupsLayout->addWidget(ui.groupsList, 1, 0);
 
-        auto groupsButtonLayout = new QVBoxLayout();
+        auto groupsButtonLayout = new QVBoxLayout;
 
-        ui.newButton = new QPushButton(i18nc("@action::button", "New"));
+        ui.newButton = new QPushButton(i18nc("@action::button", "New"), q);
         groupsButtonLayout->addWidget(ui.newButton);
 
-        ui.editButton = new QPushButton(i18nc("@action::button", "Edit"));
+        ui.editButton = new QPushButton(i18nc("@action::button", "Edit"), q);
         ui.editButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.editButton);
 
-        ui.deleteButton = new QPushButton(i18nc("@action::button", "Delete"));
+        ui.deleteButton = new QPushButton(i18nc("@action::button", "Delete"), q);
         ui.deleteButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.deleteButton);
 
-        ui.exportButton = new QPushButton{i18nc("@action::button", "Export")};
+        ui.exportButton = new QPushButton{i18nc("@action::button", "Export"), q};
         ui.exportButton->setEnabled(false);
         groupsButtonLayout->addWidget(ui.exportButton);
 

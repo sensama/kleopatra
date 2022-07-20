@@ -249,17 +249,35 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
 {
     QList<QByteArray> trustListFileContents;
 
-    {
-        QFile in(trustListFile);
-        if (in.exists()) {  // non-existence is not fatal...
-            if (in.open(QIODevice::ReadOnly)) {
-                trustListFileContents = in.readAll().split('\n');
-            } else { // ...but failure to open an existing file _is_
-                return i18n("Cannot open existing file \"%1\" for reading: %2",
-                            trustListFile, in.errorString());
-            }
+    if (QFile::exists(trustListFile)) {  // non-existence is not fatal...
+        if (QFile in(trustListFile); in.open(QIODevice::ReadOnly)) {
+            trustListFileContents = in.readAll().split('\n');
+        } else { // ...but failure to open an existing file _is_
+            return i18n("Cannot open existing file \"%1\" for reading: %2",
+                        trustListFile, in.errorString());
         }
-        // close, so KSaveFile doesn't clobber the original
+        // the file is now closed, so KSaveFile doesn't clobber the original
+    } else {
+        // the default contents of the trustlist.txt file (see the headerblurb variable in trustlist.c of gnupg);
+        // we add an additional comment about the "include-default" statement
+        trustListFileContents = {
+            "# This is the list of trusted keys.  Comment lines, like this one, as",
+            "# well as empty lines are ignored.  Lines have a length limit but this",
+            "# is not a serious limitation as the format of the entries is fixed and",
+            "# checked by gpg-agent.  A non-comment line starts with optional white",
+            "# space, followed by the SHA-1 fingerpint in hex, followed by a flag",
+            "# which may be one of 'P', 'S' or '*' and optionally followed by a list of",
+            "# other flags.  The fingerprint may be prefixed with a '!' to mark the",
+            "# key as not trusted.  You should give the gpg-agent a HUP or run the",
+            "# command \"gpgconf --reload gpg-agent\" after changing this file.",
+            "# Additionally to this file, gpg-agent will read the default trust list file",
+            "# if the statement \"include-default\" is used below.",
+            "",
+            "",
+            "# Include the default trust list",
+            "include-default",
+            "",
+        };
     }
 
     KFixedSaveFile out(trustListFile);

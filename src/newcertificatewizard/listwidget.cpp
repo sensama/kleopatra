@@ -174,9 +174,13 @@ private:
             setupUi(q);
 
             addTB->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+            addTB->setAccessibleName(i18nc("@action:button", "Add Entry"));
             removeTB->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
+            removeTB->setAccessibleName(i18nc("@action:button", "Remove Entry"));
             upTB->setIcon(QIcon::fromTheme(QStringLiteral("go-up")));
+            upTB->setAccessibleName(i18nc("@action:button", "Move Up"));
             downTB->setIcon(QIcon::fromTheme(QStringLiteral("go-down")));
+            downTB->setAccessibleName(i18nc("@action:button", "Move Down"));
         }
     } ui;
 

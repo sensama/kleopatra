@@ -13,7 +13,7 @@
 #include "command_p.h"
 
 #include <Libkleo/KeyCache>
-
+#include <Libkleo/Dn>
 #include <Libkleo/GnuPG>
 
 #include "kleopatra_debug.h"
@@ -182,7 +182,7 @@ void ChangeRootTrustCommand::doCancel()
     d->canceled = true;
 }
 
-static QString change_trust_file(const QString &trustListFile, const QString &key, Key::OwnerTrust trust);
+static QString change_trust_file(const QString &trustListFile, const QString &fingerprint, const DN &dn, Key::OwnerTrust trust);
 static QString run_gpgconf_reload_gpg_agent(const QString &gpgConfPath);
 
 void ChangeRootTrustCommand::Private::run()
@@ -190,14 +190,16 @@ void ChangeRootTrustCommand::Private::run()
 
     QMutexLocker locker(&mutex);
 
-    const QString key = QString::fromLatin1(keys().front().primaryFingerprint());
+    const auto key = keys().front();
+    const QString fpr = QString::fromLatin1(key.primaryFingerprint());
+    const auto dn = DN(key.userID(0).id());
     const Key::OwnerTrust trust = this->trust;
     const QString trustListFile = this->trustListFile;
     const QString gpgConfPath   = this->gpgConfPath;
 
     locker.unlock();
 
-    QString err = change_trust_file(trustListFile, key, trust);
+    QString err = change_trust_file(trustListFile, fpr, dn, trust);
     if (err.isEmpty()) {
         err = run_gpgconf_reload_gpg_agent(gpgConfPath);
     }
@@ -245,7 +247,7 @@ public:
 }
 
 // static
-QString change_trust_file(const QString &trustListFile, const QString &key, Key::OwnerTrust trust)
+QString change_trust_file(const QString &trustListFile, const QString &key, const DN &dn, Key::OwnerTrust trust)
 {
     QList<QByteArray> trustListFileContents;
 
@@ -341,6 +343,11 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
     }
 
     if (!found) {  // add
+        out.write("\n");
+        // write comment lines with DN attributes
+        std::for_each(dn.begin(), dn.end(), [&out](const auto &attr) {
+            out.write("# " + attr.name().toUtf8() + "=" + attr.value().toUtf8() + '\n');
+        });
         if (trust == Key::Ultimate) {
             out.write(keyColon.toLatin1() + " S relax\n");
         } else if (trust == Key::Never) {

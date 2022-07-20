@@ -252,6 +252,10 @@ QString change_trust_file(const QString &trustListFile, const QString &key, Key:
     if (QFile::exists(trustListFile)) {  // non-existence is not fatal...
         if (QFile in(trustListFile); in.open(QIODevice::ReadOnly)) {
             trustListFileContents = in.readAll().split('\n');
+            // remove last empty line to avoid adding more empty lines when we write the lines
+            if (!trustListFileContents.empty() && trustListFileContents.back().isEmpty()) {
+                trustListFileContents.pop_back();
+            }
         } else { // ...but failure to open an existing file _is_
             return i18n("Cannot open existing file \"%1\" for reading: %2",
                         trustListFile, in.errorString());

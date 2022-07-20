@@ -24,6 +24,7 @@
 
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QScrollArea>
 
 class GroupsConfigDialog::Private
 {
@@ -70,7 +71,11 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
     setWindowTitle(i18nc("@title:window", "Configure Groups"));
     setFaceType(KPageDialog::Plain);
 
-    addPage(d->configPage, i18n("Groups"), /*pixmapName=*/ QString(), /*header=*/ QString(), /*manage=*/ false);
+    const auto *const item = addPage(d->configPage, i18n("Groups"), /*pixmapName=*/ QString(), /*header=*/ QString(), /*manage=*/ false);
+    // prevent scroll area embedding the config page from receiving focus
+    for (const auto scrollAreas = item->widget()->findChildren<QScrollArea *>(); auto sa : scrollAreas) {
+        sa->setFocusPolicy(Qt::NoFocus);
+    }
 
     // there are no defaults to restore
     buttonBox()->removeButton(buttonBox()->button(QDialogButtonBox::RestoreDefaults));

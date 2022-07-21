@@ -76,11 +76,15 @@ public:
     {
         auto mainLayout = new QVBoxLayout(q);
 
+        {
         auto groupNameLayout = new QHBoxLayout();
-        groupNameLayout->addWidget(new QLabel(i18nc("Name of a group of keys", "Name:"), q));
+        auto label = new QLabel(i18nc("Name of a group of keys", "Name:"), q);
+        groupNameLayout->addWidget(label);
         ui.groupNameEdit = new QLineEdit(q);
+        label->setBuddy(ui.groupNameEdit);
         groupNameLayout->addWidget(ui.groupNameEdit);
         mainLayout->addLayout(groupNameLayout);
+        }
 
         mainLayout->addWidget(new KSeparator(Qt::Horizontal, q));
 

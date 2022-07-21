@@ -26,6 +26,7 @@
 #include <KStandardGuiItem>
 
 #include <QDialogButtonBox>
+#include <QGroupBox>
 #include <QHBoxLayout>
 #include <QItemSelectionModel>
 #include <QLabel>
@@ -85,8 +86,9 @@ public:
 
         auto centerLayout = new QVBoxLayout;
 
-        auto availableKeysLayout = new QVBoxLayout;
-        availableKeysLayout->addWidget(new QLabel(i18n("Available keys:"), q));
+        auto availableKeysGroupBox = new QGroupBox{i18nc("@title", "Available Keys"), q};
+        availableKeysGroupBox->setFlat(true);
+        auto availableKeysLayout = new QVBoxLayout{availableKeysGroupBox};
 
         {
             auto hbox = new QHBoxLayout;
@@ -115,7 +117,7 @@ public:
         }
         availableKeysLayout->addWidget(ui.availableKeysList, /*stretch=*/ 1);
 
-        centerLayout->addLayout(availableKeysLayout, /*stretch=*/ 1);
+        centerLayout->addWidget(availableKeysGroupBox, /*stretch=*/ 1);
 
         auto buttonsLayout = new QHBoxLayout;
         buttonsLayout->addStretch(1);
@@ -138,8 +140,9 @@ public:
 
         centerLayout->addLayout(buttonsLayout);
 
-        auto groupKeysLayout = new QVBoxLayout;
-        groupKeysLayout->addWidget(new QLabel(i18n("Group keys:"), q));
+        auto groupKeysGroupBox = new QGroupBox{i18nc("@title", "Group Keys"), q};
+        groupKeysGroupBox->setFlat(true);
+        auto groupKeysLayout = new QVBoxLayout{groupKeysGroupBox};
 
         {
             auto hbox = new QHBoxLayout;
@@ -164,7 +167,7 @@ public:
         ui.groupKeysList->setHierarchicalView(false);
         groupKeysLayout->addWidget(ui.groupKeysList, /*stretch=*/ 1);
 
-        centerLayout->addLayout(groupKeysLayout, /*stretch=*/ 1);
+        centerLayout->addWidget(groupKeysGroupBox, /*stretch=*/ 1);
 
         mainLayout->addLayout(centerLayout);
 

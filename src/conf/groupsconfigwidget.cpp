@@ -22,6 +22,7 @@
 #include <KLocalizedString>
 #include <KRandom>
 
+#include <QItemSelectionModel>
 #include <QLabel>
 #include <QLineEdit>
 #include <QListView>
@@ -38,6 +39,23 @@ Q_DECLARE_METATYPE(KeyGroup)
 
 namespace
 {
+
+class ListView : public QListView
+{
+    Q_OBJECT
+public:
+    using QListView::QListView;
+
+protected:
+    void focusInEvent(QFocusEvent *event) override
+    {
+        QListView::focusInEvent(event);
+        // select current item if it isn't selected
+        if (currentIndex().isValid() && !selectionModel()->isSelected(currentIndex())) {
+            selectionModel()->select(currentIndex(), QItemSelectionModel::ClearAndSelect);
+        }
+    }
+};
 
 class ProxyModel : public AbstractKeyListSortFilterProxyModel
 {
@@ -135,7 +153,7 @@ public:
         groupsFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
         groupsFilterModel->setSourceModel(groupsModel);
         groupsFilterModel->sort(KeyList::Summary, Qt::AscendingOrder);
-        ui.groupsList = new QListView(q);
+        ui.groupsList = new ListView(q);
         ui.groupsList->setModel(groupsFilterModel);
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui.groupsList->setSelectionMode(QAbstractItemView::ExtendedSelection);

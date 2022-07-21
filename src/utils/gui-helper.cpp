@@ -7,6 +7,9 @@
 */
 #include "gui-helper.h"
 
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QPushButton>
 #include <QWidget>
 
 #ifdef Q_OS_WIN
@@ -131,4 +134,26 @@ bool Kleo::focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons
                               [](auto btn) {
                                   return btn && btn->isEnabled();
                               });
+}
+
+void Kleo::unsetDefaultButtons(const QDialogButtonBox *buttonBox)
+{
+    if (!buttonBox) {
+        return;
+    }
+    for (const auto buttons = buttonBox->buttons(); auto button : buttons) {
+        if (auto pushButton = qobject_cast<QPushButton *>(button)) {
+            pushButton->setDefault(false);
+        }
+    }
+}
+
+void Kleo::unsetAutoDefaultButtons(const QDialog *dialog)
+{
+    if (!dialog) {
+        return;
+    }
+    for (const auto pushButtons = dialog->findChildren<QPushButton *>(); auto pushButton : pushButtons) {
+        pushButton->setAutoDefault(false);
+    }
 }

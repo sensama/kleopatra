@@ -45,6 +45,9 @@ public:
     void setGroupKeys(const std::vector<GpgME::Key> &keys);
     std::vector<GpgME::Key> groupKeys() const;
 
+protected:
+    void showEvent(QShowEvent *event) override;
+
 private:
     class Private;
     const std::unique_ptr<Private> d;

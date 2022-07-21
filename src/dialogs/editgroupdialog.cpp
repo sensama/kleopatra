@@ -11,6 +11,7 @@
 #include "editgroupdialog.h"
 
 #include "commands/detailscommand.h"
+#include "utils/gui-helper.h"
 #include "view/keytreeview.h"
 #include <settings.h>
 
@@ -176,6 +177,9 @@ public:
         okButton->setEnabled(false);
         mainLayout->addWidget(ui.buttonBox);
 
+        // prevent accidental closing of dialog when pressing Enter while a search field has focus
+        Kleo::unsetAutoDefaultButtons(q);
+
         connect(ui.groupNameEdit, &QLineEdit::textChanged,
                 q, [okButton] (const QString &text) {
                     okButton->setEnabled(!text.trimmed().isEmpty());
@@ -327,4 +331,12 @@ std::vector<Key> EditGroupDialog::groupKeys() const
         keys.push_back(d->groupKeysModel->key(index));
     }
     return keys;
+}
+
+void EditGroupDialog::showEvent(QShowEvent *event)
+{
+    QDialog::showEvent(event);
+
+    // prevent accidental closing of dialog when pressing Enter while a search field has focus
+    Kleo::unsetDefaultButtons(d->ui.buttonBox);
 }

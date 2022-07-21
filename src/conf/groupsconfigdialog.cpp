@@ -14,6 +14,8 @@
 
 #include "groupsconfigpage.h"
 
+#include "utils/gui-helper.h"
+
 #include <KConfigGroup>
 #include <KGuiItem>
 #include <KLocalizedString>
@@ -100,6 +102,9 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
         delete helpAction;
     }
 
+    // prevent accidental closing of dialog when pressing Enter while the search field has focus
+    Kleo::unsetAutoDefaultButtons(this);
+
     connect(buttonBox()->button(QDialogButtonBox::Reset), &QAbstractButton::clicked,
             this, &GroupsConfigDialog::updateWidgets);
 
@@ -116,6 +121,14 @@ GroupsConfigDialog::~GroupsConfigDialog() = default;
 QString GroupsConfigDialog::dialogName()
 {
     return QStringLiteral("Group Settings");
+}
+
+void GroupsConfigDialog::showEvent(QShowEvent *event)
+{
+    KConfigDialog::showEvent(event);
+
+    // prevent accidental closing of dialog when pressing Enter while the search field has focus
+    Kleo::unsetDefaultButtons(buttonBox());
 }
 
 void GroupsConfigDialog::updateSettings()

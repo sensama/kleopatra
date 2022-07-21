@@ -23,6 +23,9 @@ public:
 
     static QString dialogName();
 
+protected:
+    void showEvent(QShowEvent *event) override;
+
 private Q_SLOTS:
     void updateSettings() override;
     void updateWidgets() override;

@@ -11,6 +11,8 @@
 
 #include <QAbstractButton>
 
+class QDialog;
+class QDialogButtonBox;
 class QWidget;
 
 namespace Kleo
@@ -65,5 +67,26 @@ bool focusFirstCheckedButton(const std::vector<QAbstractButton *> &buttons);
  * found that is enabled.
  */
 bool focusFirstEnabledButton(const std::vector<QAbstractButton *> &buttons);
+
+/**
+ * Unsets the default property of all push buttons in the button box.
+ *
+ * This function needs to be called after the button box received the show event
+ * because QDialogButtonBox automatically sets a default button when it is shown.
+ *
+ * \sa unsetAutoDefaultButtons
+ */
+void unsetDefaultButtons(const QDialogButtonBox *buttonBox);
+
+/**
+ * Unsets the auto-default property of all push buttons in the dialog.
+ *
+ * This can be useful if you want to prevent the accidental closing of the dialog
+ * when the user presses Enter while another UI element, e.g. a text input field
+ * has focus.
+ *
+ * \sa unsetDefaultButtons
+ */
+void unsetAutoDefaultButtons(const QDialog *dialog);
 
 }

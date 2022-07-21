@@ -90,12 +90,26 @@ public:
         auto groupsLayout = new QGridLayout;
         groupsLayout->setColumnStretch(0, 1);
         groupsLayout->setRowStretch(1, 1);
+        int row = -1;
 
-        ui.groupsFilter = new QLineEdit(q);
-        ui.groupsFilter->setClearButtonEnabled(true);
-        ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Search..."));
-        groupsLayout->addWidget(ui.groupsFilter, 0, 0);
+        row++;
+        {
+            auto hbox = new QHBoxLayout;
+            auto label = new QLabel{i18nc("@label", "Search:")};
+            label->setToolTip(i18nc("@info:tooltip", "Search the list for groups matching the search term."));
+            hbox->addWidget(label);
 
+            ui.groupsFilter = new QLineEdit(q);
+            ui.groupsFilter->setClearButtonEnabled(true);
+            ui.groupsFilter->setToolTip(i18nc("@info:tooltip", "Search the list for groups matching the search term."));
+            ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
+            label->setBuddy(ui.groupsFilter);
+            hbox->addWidget(ui.groupsFilter, 1);
+
+            groupsLayout->addLayout(hbox, row, 0);
+        }
+
+        row++;
         groupsModel = AbstractKeyListModel::createFlatKeyListModel(q);
         groupsFilterModel = new ProxyModel(q);
         groupsFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -109,7 +123,7 @@ public:
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui.groupsList->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-        groupsLayout->addWidget(ui.groupsList, 1, 0);
+        groupsLayout->addWidget(ui.groupsList, row, 0);
 
         auto groupsButtonLayout = new QVBoxLayout;
 
@@ -130,7 +144,7 @@ public:
 
         groupsButtonLayout->addStretch(1);
 
-        groupsLayout->addLayout(groupsButtonLayout, 1, 1);
+        groupsLayout->addLayout(groupsButtonLayout, row, 1);
 
         mainLayout->addLayout(groupsLayout, /*stretch=*/ 1);
 

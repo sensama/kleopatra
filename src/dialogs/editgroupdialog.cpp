@@ -131,7 +131,7 @@ public:
 
         auto removeButton = new QPushButton(q);
         removeButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-up")));
-        addButton->setAccessibleName(i18nc("@action:button", "Remove Selected Keys"));
+        removeButton->setAccessibleName(i18nc("@action:button", "Remove Selected Keys"));
         removeButton->setToolTip(i18n("Remove the selected keys from the group"));
         removeButton->setEnabled(false);
         buttonsLayout->addWidget(removeButton);

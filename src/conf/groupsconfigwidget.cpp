@@ -132,6 +132,7 @@ public:
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
+            label->setAccessibleName(i18nc("@label", "Search groups"));
             label->setToolTip(i18nc("@info:tooltip", "Search the list for groups matching the search term."));
             hbox->addWidget(label);
 
@@ -154,6 +155,7 @@ public:
         groupsFilterModel->setSourceModel(groupsModel);
         groupsFilterModel->sort(KeyList::Summary, Qt::AscendingOrder);
         ui.groupsList = new ListView(q);
+        ui.groupsList->setAccessibleName(i18nc("groups of keys", "groups"));
         ui.groupsList->setModel(groupsFilterModel);
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui.groupsList->setSelectionMode(QAbstractItemView::ExtendedSelection);

@@ -25,6 +25,7 @@
 #include <Libkleo/DocAction>
 
 #include <QDialogButtonBox>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QScrollArea>
 
@@ -34,6 +35,7 @@ class GroupsConfigDialog::Private
     GroupsConfigDialog *const q;
 
     GroupsConfigPage *configPage = nullptr;
+    bool initialFocusWasSet = false;
 
 public:
     Private(GroupsConfigDialog *qq)
@@ -46,6 +48,21 @@ public:
     ~Private()
     {
         saveLayout();
+    }
+
+    void setInitialFocus()
+    {
+        if (initialFocusWasSet) {
+            return;
+        }
+        // this is a bit hacky, but fixing the focus chain where the dialog
+        // button box comes before the page, which causes the first button in
+        // the button box to be focussed initially, is even more hacky
+        Q_ASSERT(configPage->findChildren<QLineEdit *>().size() == 1);
+        if (auto searchField = configPage->findChild<QLineEdit *>()) {
+            searchField->setFocus();
+        }
+        initialFocusWasSet = true;
     }
 
 private:
@@ -125,6 +142,8 @@ QString GroupsConfigDialog::dialogName()
 
 void GroupsConfigDialog::showEvent(QShowEvent *event)
 {
+    d->setInitialFocus();
+
     KConfigDialog::showEvent(event);
 
     // prevent accidental closing of dialog when pressing Enter while the search field has focus

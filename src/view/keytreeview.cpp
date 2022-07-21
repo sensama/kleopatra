@@ -116,8 +116,26 @@ protected:
         return false;
     }
 
+    void focusInEvent(QFocusEvent *event) override
+    {
+        QTreeView::focusInEvent(event);
+        // queue the invokation, so that it happens after the widget itself got focus
+        QMetaObject::invokeMethod(this, &TreeView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+    }
+
     void keyPressEvent(QKeyEvent *event) override;
     QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override;
+
+private:
+    void forceAccessibleFocusEventForCurrentItem()
+    {
+        // force Qt to send a focus event for the current item to accessibility
+        // tools; otherwise, the user has no idea which item is selected when the
+        // list gets keyboard input focus
+        const auto current = currentIndex();
+        setCurrentIndex({});
+        setCurrentIndex(current);
+    }
 
 private:
     bool mMoveCursorUpdatedView = false;

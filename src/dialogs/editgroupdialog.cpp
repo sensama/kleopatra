@@ -97,12 +97,13 @@ public:
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
-            label->setToolTip(i18nc("@info:tooltip", "Search the list for keys matching the search term."));
+            label->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
             hbox->addWidget(label);
 
             ui.availableKeysFilter = new QLineEdit(q);
             ui.availableKeysFilter->setClearButtonEnabled(true);
-            ui.availableKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list for keys matching the search term."));
+            ui.availableKeysFilter->setAccessibleName(i18nc("@label", "Search available keys"));
+            ui.availableKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
             ui.availableKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
             label->setBuddy(ui.availableKeysFilter);
             hbox->addWidget(ui.availableKeysFilter, 1);
@@ -113,6 +114,7 @@ public:
         availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         availableKeysModel->useKeyCache(true, KeyList::AllKeys);
         ui.availableKeysList = new KeyTreeView(q);
+        ui.availableKeysList->view()->setAccessibleName(i18n("available keys"));
         ui.availableKeysList->view()->setRootIsDecorated(false);
         ui.availableKeysList->setFlatModel(availableKeysModel);
         ui.availableKeysList->setHierarchicalView(false);
@@ -151,12 +153,13 @@ public:
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
-            label->setToolTip(i18nc("@info:tooltip", "Search the list for keys matching the search term."));
+            label->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
             hbox->addWidget(label);
 
             ui.groupKeysFilter = new QLineEdit(q);
             ui.groupKeysFilter->setClearButtonEnabled(true);
-            ui.groupKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list for keys matching the search term."));
+            ui.groupKeysFilter->setAccessibleName(i18nc("@label", "Search group keys"));
+            ui.groupKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
             ui.groupKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
             label->setBuddy(ui.groupKeysFilter);
             hbox->addWidget(ui.groupKeysFilter, 1);
@@ -166,6 +169,7 @@ public:
 
         groupKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         ui.groupKeysList = new KeyTreeView(q);
+        ui.groupKeysList->view()->setAccessibleName(i18n("group keys"));
         ui.groupKeysList->view()->setRootIsDecorated(false);
         ui.groupKeysList->setFlatModel(groupKeysModel);
         ui.groupKeysList->setHierarchicalView(false);

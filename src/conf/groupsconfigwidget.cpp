@@ -55,6 +55,24 @@ public:
         // compiler-generated copy ctor is fine!
         return new ProxyModel(*this);
     }
+
+    int columnCount(const QModelIndex &parent = {}) const override
+    {
+        Q_UNUSED(parent)
+        // pretend that there is only one column to workaround a bug in
+        // QAccessibleTable which provides the accessibility interface for the
+        // list view
+        return 1;
+    }
+
+    QVariant data(const QModelIndex &idx, int role) const override
+    {
+        if (!idx.isValid()) {
+            return {};
+        }
+
+        return AbstractKeyListSortFilterProxyModel::data(index(idx.row(), KeyList::Summary), role);
+    }
 };
 
 struct Selection
@@ -119,7 +137,6 @@ public:
         groupsFilterModel->sort(KeyList::Summary, Qt::AscendingOrder);
         ui.groupsList = new QListView(q);
         ui.groupsList->setModel(groupsFilterModel);
-        ui.groupsList->setModelColumn(KeyList::Summary);
         ui.groupsList->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui.groupsList->setSelectionMode(QAbstractItemView::ExtendedSelection);
 

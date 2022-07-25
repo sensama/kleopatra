@@ -47,6 +47,18 @@ public:
     using QListView::QListView;
 
 protected:
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override
+    {
+        // workaround bug in QListView::currentChanged which sends an accessible focus event
+        // even if the list view doesn't have focus
+        if (hasFocus()) {
+            QListView::currentChanged(current, previous);
+        } else {
+            // skip the reimplementation of currentChanged in QListView
+            QAbstractItemView::currentChanged(current, previous);
+        }
+    }
+
     void focusInEvent(QFocusEvent *event) override
     {
         QListView::focusInEvent(event);

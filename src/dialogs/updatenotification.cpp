@@ -64,9 +64,11 @@ void UpdateNotification::forceUpdateCheck(QWidget *parent)
     auto proc = new QProcess;
 
     proc->setProgram(gnupgInstallPath() + QStringLiteral("/gpg-connect-agent.exe"));
-    proc->setArguments(QStringList() << QStringLiteral("--dirmngr")
-                       << QStringLiteral("loadswdb --force")
-                       << QStringLiteral("/bye"));
+    proc->setArguments({
+        QStringLiteral("--dirmngr"),
+        QStringLiteral("loadswdb --force"),
+        QStringLiteral("/bye"),
+    });
 
     auto progress = new QProgressDialog(i18n("Searching for updates..."),
                                         i18n("Cancel"), 0, 0, parent);

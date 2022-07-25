@@ -153,6 +153,7 @@ public:
             ui.groupsFilter->setAccessibleName(i18nc("@label", "Search groups"));
             ui.groupsFilter->setToolTip(i18nc("@info:tooltip", "Search the list for groups matching the search term."));
             ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
+            ui.groupsFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.groupsFilter);
             hbox->addWidget(ui.groupsFilter, 1);
 

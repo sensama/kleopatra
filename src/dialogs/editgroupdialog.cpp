@@ -106,6 +106,7 @@ public:
             ui.availableKeysFilter->setAccessibleName(i18nc("@label", "Search available keys"));
             ui.availableKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
             ui.availableKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
+            ui.availableKeysFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.availableKeysFilter);
             hbox->addWidget(ui.availableKeysFilter, 1);
 
@@ -163,6 +164,7 @@ public:
             ui.groupKeysFilter->setAccessibleName(i18nc("@label", "Search group keys"));
             ui.groupKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
             ui.groupKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
+            ui.groupKeysFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.groupKeysFilter);
             hbox->addWidget(ui.groupKeysFilter, 1);
 

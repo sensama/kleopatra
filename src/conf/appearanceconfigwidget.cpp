@@ -467,7 +467,7 @@ void AppearanceConfigWidget::load()
 {
     if (d->dnOrderWidget) {
         const Settings settings;
-        d->dnOrderWidget->setAttributeOrder(settings.attributeOrder());
+        d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
         d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
 

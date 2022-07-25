@@ -97,6 +97,7 @@ public:
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
+            label->setAccessibleName(i18nc("@label", "Search available keys"));
             label->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
             hbox->addWidget(label);
 
@@ -153,6 +154,7 @@ public:
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
+            label->setAccessibleName(i18nc("@label", "Search group keys"));
             label->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
             hbox->addWidget(label);
 

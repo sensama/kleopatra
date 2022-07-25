@@ -138,6 +138,7 @@ public:
 
             ui.groupsFilter = new QLineEdit(q);
             ui.groupsFilter->setClearButtonEnabled(true);
+            ui.groupsFilter->setAccessibleName(i18nc("@label", "Search groups"));
             ui.groupsFilter->setToolTip(i18nc("@info:tooltip", "Search the list for groups matching the search term."));
             ui.groupsFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
             label->setBuddy(ui.groupsFilter);

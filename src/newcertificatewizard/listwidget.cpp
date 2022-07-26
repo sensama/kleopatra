@@ -140,7 +140,7 @@ private:
     {
         const QModelIndex mi = stringListModel.index(idx);
         if (mi.isValid()) {
-            ui.listView->selectionModel()->select(mi, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+            ui.listView->setCurrentIndex(mi);
         }
     }
     void swapRows(int r1, int r2)

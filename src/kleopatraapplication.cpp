@@ -60,7 +60,12 @@
 #include <QFile>
 #include <QDir>
 #include <QFocusFrame>
+#if QT_CONFIG(graphicseffect)
+#include <QGraphicsEffect>
+#endif
 #include <QPointer>
+#include <QStyleOption>
+#include <QStylePainter>
 
 #include <memory>
 #include <KSharedConfig>
@@ -84,6 +89,63 @@ static QList<QByteArray> default_logging_options()
     QList<QByteArray> result;
     result.push_back("io");
     return result;
+}
+
+namespace
+{
+class FocusFrame : public QFocusFrame
+{
+    Q_OBJECT
+public:
+    using QFocusFrame::QFocusFrame;
+
+protected:
+    void paintEvent(QPaintEvent *event) override;
+};
+
+static QRect effectiveWidgetRect(const QWidget *w)
+{
+    // based on QWidgetPrivate::effectiveRectFor
+#if QT_CONFIG(graphicseffect)
+    if (auto graphicsEffect = w->graphicsEffect(); graphicsEffect && graphicsEffect->isEnabled())
+        return graphicsEffect->boundingRectFor(w->rect()).toAlignedRect();
+#endif // QT_CONFIG(graphicseffect)
+    return w->rect();
+}
+
+static QRect clipRect(const QWidget *w)
+{
+    // based on QWidgetPrivate::clipRect
+    if (!w->isVisible()) {
+        return QRect();
+    }
+    QRect r = effectiveWidgetRect(w);
+    int ox = 0;
+    int oy = 0;
+    while (w && w->isVisible() && !w->isWindow() && w->parentWidget()) {
+        ox -= w->x();
+        oy -= w->y();
+        w = w->parentWidget();
+        r &= QRect(ox, oy, w->width(), w->height());
+    }
+    return r;
+}
+
+void FocusFrame::paintEvent(QPaintEvent *)
+{
+    if (!widget()) {
+        return;
+    }
+
+    QStylePainter p(this);
+    QStyleOptionFocusRect option;
+    initStyleOption(&option);
+    const int vmargin = style()->pixelMetric(QStyle::PM_FocusFrameVMargin, &option);
+    const int hmargin = style()->pixelMetric(QStyle::PM_FocusFrameHMargin, &option);
+    const QRect rect = clipRect(widget()).adjusted(0, 0, hmargin*2, vmargin*2);
+    p.setClipRect(rect);
+    p.drawPrimitive(QStyle::PE_FrameFocusRect, option);
+}
 }
 
 class KleopatraApplication::Private
@@ -146,7 +208,7 @@ private:
 public:
     bool ignoreNewInstance;
     bool firstNewInstance;
-    QPointer<QFocusFrame> focusFrame;
+    QPointer<FocusFrame> focusFrame;
     QPointer<ConfigureDialog> configureDialog;
     QPointer<MainWindow> mainWindow;
     SmartCard::ReaderStatus readerStatus;
@@ -218,7 +280,7 @@ public:
     {
         if (focusWidget && focusWidget->inherits("QLabel")) {
             if (!focusFrame) {
-                focusFrame = new QFocusFrame{focusWidget};
+                focusFrame = new FocusFrame{focusWidget};
             }
             focusFrame->setWidget(focusWidget);
         } else if (focusFrame) {
@@ -734,3 +796,5 @@ void KleopatraApplication::startGpgAgent()
 {
     Kleo::launchGpgAgent();
 }
+
+#include "kleopatraapplication.moc"

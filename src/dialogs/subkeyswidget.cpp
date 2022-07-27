@@ -14,7 +14,6 @@
 #include <config-kleopatra.h>
 
 #include "subkeyswidget.h"
-#include "ui_subkeyswidget.h"
 
 #include "commands/changeexpirycommand.h"
 #ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
@@ -24,17 +23,22 @@
 #include "commands/importpaperkeycommand.h"
 #include "exportdialog.h"
 
-#include <gpgme++/key.h>
-#include <gpgme++/context.h>
+#include <Libkleo/Formatting>
 
 #include <KConfigGroup>
+#include <KLocalizedString>
 #include <KSharedConfig>
+
 #include <QDialogButtonBox>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QMenu>
 #include <QPushButton>
 #include <QTreeWidgetItem>
-#include <QMenu>
+#include <QVBoxLayout>
 
-#include <Libkleo/Formatting>
+#include <gpgme++/context.h>
+#include <gpgme++/key.h>
 
 Q_DECLARE_METATYPE(GpgME::Subkey)
 
@@ -43,21 +47,68 @@ using namespace Kleo::Commands;
 
 class SubKeysWidget::Private
 {
+    SubKeysWidget *const q;
 public:
-    Private(SubKeysWidget *q)
-        : q(q)
+    Private(SubKeysWidget *qq)
+        : q{qq}
+        , ui{qq}
     {
-        ui.setupUi(q);
         ui.subkeysTree->setContextMenuPolicy(Qt::CustomContextMenu);
         connect(ui.subkeysTree, &QAbstractItemView::customContextMenuRequested,
                 q, [this](const QPoint &p) { tableContextMenuRequested(p); });
     }
 
-    GpgME::Key key;
-    Ui::SubKeysWidget ui;
-    void tableContextMenuRequested(const QPoint &p);
 private:
-    SubKeysWidget *const q;
+    void tableContextMenuRequested(const QPoint &p);
+
+public:
+    GpgME::Key key;
+
+public:
+    struct UI {
+        QVBoxLayout *mainLayout;
+        QTreeWidget *subkeysTree;
+        QLabel *stored;
+
+        UI(QWidget *widget)
+        {
+            mainLayout = new QVBoxLayout{widget};
+            mainLayout->setContentsMargins(0, 0, 0, 0);
+
+            auto subkeysTreeLabel = new QLabel{i18nc("@label", "Subkeys:"), widget};
+            mainLayout->addWidget(subkeysTreeLabel);
+
+            subkeysTree = new QTreeWidget{widget};
+            subkeysTreeLabel->setBuddy(subkeysTree);
+            subkeysTree->setRootIsDecorated(false);
+            subkeysTree->setHeaderLabels({
+                i18nc("@title:column", "ID"),
+                i18nc("@title:column", "Type"),
+                i18nc("@title:column", "Valid From"),
+                i18nc("@title:column", "Valid Until"),
+                i18nc("@title:column", "Status"),
+                i18nc("@title:column", "Strength"),
+                i18nc("@title:column", "Usage"),
+                i18nc("@title:column", "Primary"),
+            });
+            mainLayout->addWidget(subkeysTree);
+
+            {
+                auto hbox = new QHBoxLayout;
+
+                auto label = new QLabel{i18nc("@label", "Stored:"), widget};
+                hbox->addWidget(label);
+
+                stored = new QLabel{i18nc("@", "unknown"), widget};
+                label->setBuddy(stored);
+                hbox->addWidget(stored);
+
+                hbox->addStretch();
+
+                mainLayout->addLayout(hbox);
+            }
+        }
+    } ui;
 };
 
 void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)

@@ -106,6 +106,7 @@ public:
 
             subkeysTree = new SubkeysTable{widget};
             subkeysTreeLabel->setBuddy(subkeysTree);
+            subkeysTree->setAccessibleName(i18nc("@label", "Subkeys"));
             subkeysTree->setRootIsDecorated(false);
             subkeysTree->setHeaderLabels({
                 i18nc("@title:column", "ID"),
@@ -253,13 +254,16 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         QByteArray(currentItem->data(0, Qt::UserRole).value<GpgME::Subkey>().fingerprint()) : QByteArray();
     d->ui.subkeysTree->clear();
 
-    for (const auto &subkey : key.subkeys()) {
-        auto item = new QTreeWidgetItem();
+    for (const auto subkeys = key.subkeys(); const auto &subkey : subkeys) {
+        auto item = new QTreeWidgetItem;
         item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
+        item->setData(0, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));
         item->setData(0, Qt::UserRole, QVariant::fromValue(subkey));
         item->setData(1, Qt::DisplayRole, Kleo::Formatting::type(subkey));
         item->setData(2, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
+        item->setData(2, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
         item->setData(3, Qt::DisplayRole, Kleo::Formatting::expirationDateString(subkey));
+        item->setData(3, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(subkey));
         item->setData(4, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
         switch (subkey.publicKeyAlgorithm()) {
             case GpgME::Subkey::AlgoECDSA:
@@ -271,7 +275,9 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
                 item->setData(5, Qt::DisplayRole, QString::number(subkey.length()));
         }
         item->setData(6, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
-        item->setData(7, Qt::DisplayRole, subkey.keyID() == key.keyID() ? QStringLiteral("✓") : QString());
+        const auto isPrimary = subkey.keyID() == key.keyID();
+        item->setData(7, Qt::DisplayRole, isPrimary ? QStringLiteral("✓") : QString());
+        item->setData(7, Qt::AccessibleTextRole, isPrimary ? i18nc("yes, is primary key", "yes") : i18nc("no, is not primary key", "no"));
         d->ui.subkeysTree->addTopLevelItem(item);
         if (subkey.fingerprint() == selectedKeyFingerprint) {
             d->ui.subkeysTree->setCurrentItem(item);

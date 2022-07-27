@@ -45,6 +45,32 @@ Q_DECLARE_METATYPE(GpgME::Subkey)
 using namespace Kleo;
 using namespace Kleo::Commands;
 
+namespace
+{
+class SubkeysTable : public QTreeWidget
+{
+    Q_OBJECT
+public:
+    using QTreeWidget::QTreeWidget;
+
+protected:
+    QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override
+    {
+        // make keyboard navigation with Left/Right possible by switching the selection behavior to SelectItems
+        // before calling QTreeWidget::moveCursor, because QTreeWidget::moveCursor ignores MoveLeft/MoveRight
+        // if the selection behavior is SelectRows
+        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
+            setSelectionBehavior(SelectItems);
+        }
+        const auto result = QTreeWidget::moveCursor(cursorAction, modifiers);
+        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
+            setSelectionBehavior(SelectRows);
+        }
+        return result;
+    }
+};
+}
+
 class SubKeysWidget::Private
 {
     SubKeysWidget *const q;
@@ -67,7 +93,7 @@ public:
 public:
     struct UI {
         QVBoxLayout *mainLayout;
-        QTreeWidget *subkeysTree;
+        SubkeysTable *subkeysTree;
         QLabel *stored;
 
         UI(QWidget *widget)
@@ -78,7 +104,7 @@ public:
             auto subkeysTreeLabel = new QLabel{i18nc("@label", "Subkeys:"), widget};
             mainLayout->addWidget(subkeysTreeLabel);
 
-            subkeysTree = new QTreeWidget{widget};
+            subkeysTree = new SubkeysTable{widget};
             subkeysTreeLabel->setBuddy(subkeysTree);
             subkeysTree->setRootIsDecorated(false);
             subkeysTree->setHeaderLabels({
@@ -317,3 +343,5 @@ GpgME::Key SubKeysDialog::key() const
     Q_ASSERT(w);
     return w->key();
 }
+
+#include "subkeyswidget.moc"

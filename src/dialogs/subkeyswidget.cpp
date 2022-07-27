@@ -286,7 +286,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         // hide information about storage location for keys of other people
         d->ui.subkeysTree->hideColumn(8);
     }
-    d->ui.subkeysTree->resizeColumnToContents(0);
+    d->ui.subkeysTree->header()->resizeSections(QHeaderView::ResizeToContents);
 }
 
 

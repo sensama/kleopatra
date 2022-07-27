@@ -18,6 +18,7 @@
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QKeyEvent>
 #include <QToolButton>
 #include <QLabel>
 #include <QAction>
@@ -37,6 +38,56 @@ static const QString templ = QStringLiteral(
 "");
 
 using namespace Kleo;
+
+namespace
+{
+/**
+ * A tool button that can be activated with the Enter and Return keys additionally to the Space key.
+ */
+class ToolButton : public QToolButton
+{
+    Q_OBJECT
+public:
+    using QToolButton::QToolButton;
+
+protected:
+    void keyPressEvent(QKeyEvent *e) override
+    {
+        switch (e->key()) {
+        case Qt::Key_Enter:
+        case Qt::Key_Return: {
+            // forward as key press of Key_Select to QToolButton
+            QKeyEvent alternateEvent{e->type(), Qt::Key_Select, e->modifiers(), e->nativeScanCode(), e->nativeVirtualKey(), e->nativeModifiers(), e->text(), e->isAutoRepeat(), static_cast<ushort>(e->count())};
+            QToolButton::keyPressEvent(&alternateEvent);
+            if (!alternateEvent.isAccepted()) {
+                e->ignore();
+            }
+            break;
+        }
+        default:
+            QToolButton::keyPressEvent(e);
+        }
+    }
+
+    void keyReleaseEvent(QKeyEvent *e) override
+    {
+        switch (e->key()) {
+        case Qt::Key_Enter:
+        case Qt::Key_Return: {
+            // forward as key release of Key_Select to QToolButton
+            QKeyEvent alternateEvent{e->type(), Qt::Key_Select, e->modifiers(), e->nativeScanCode(), e->nativeVirtualKey(), e->nativeModifiers(), e->text(), e->isAutoRepeat(), static_cast<ushort>(e->count())};
+            QToolButton::keyReleaseEvent(&alternateEvent);
+            if (!alternateEvent.isAccepted()) {
+                e->ignore();
+            }
+            break;
+        }
+        default:
+            QToolButton::keyReleaseEvent(e);
+        }
+    }
+};
+}
 
 class WelcomeWidget::Private
 {
@@ -79,7 +130,7 @@ public:
         connect(importAction, &QAction::triggered, q, [this] () { import(); });
         connect(genKeyAction, &QAction::triggered, q, [this] () { generate(); });
 
-        mGenerateBtn = new QToolButton{q};
+        mGenerateBtn = new ToolButton{q};
         mGenerateBtn->setDefaultAction(genKeyAction);
         mGenerateBtn->setIconSize(QSize(64, 64));
         mGenerateBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -89,7 +140,7 @@ public:
         KConfigGroup restrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
         mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
 
-        mImportBtn = new QToolButton{q};
+        mImportBtn = new ToolButton{q};
         mImportBtn->setDefaultAction(importAction);
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -141,8 +192,8 @@ public:
 
     WelcomeWidget *const q;
     HtmlLabel *mLabel = nullptr;
-    QToolButton *mGenerateBtn = nullptr;
-    QToolButton *mImportBtn = nullptr;
+    ToolButton *mGenerateBtn = nullptr;
+    ToolButton *mImportBtn = nullptr;
 };
 
 
@@ -155,3 +206,5 @@ void WelcomeWidget::focusFirstChild(Qt::FocusReason reason)
 {
     d->mLabel->setFocus(reason);
 }
+
+#include "welcomewidget.moc"

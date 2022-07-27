@@ -270,6 +270,11 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
     }
 }
 
+NewOpenPGPCertificateCommand::NewOpenPGPCertificateCommand()
+    : NewOpenPGPCertificateCommand(nullptr, nullptr)
+{
+}
+
 NewOpenPGPCertificateCommand::NewOpenPGPCertificateCommand(QAbstractItemView *v, KeyListController *c)
     : Command(v, new Private(this, c))
 {

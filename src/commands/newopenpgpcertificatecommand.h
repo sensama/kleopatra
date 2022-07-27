@@ -20,6 +20,7 @@ class NewOpenPGPCertificateCommand : public Command
 {
     Q_OBJECT
 public:
+    NewOpenPGPCertificateCommand();
     NewOpenPGPCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     ~NewOpenPGPCertificateCommand() override;
 

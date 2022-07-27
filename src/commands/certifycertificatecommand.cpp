@@ -11,7 +11,7 @@
 #include <config-kleopatra.h>
 
 #include "certifycertificatecommand.h"
-#include "newcertificatecommand.h"
+#include "newopenpgpcertificatecommand.h"
 
 #include "command_p.h"
 
@@ -162,11 +162,10 @@ void CertifyCertificateCommand::doStart()
                     i18n("Certification Not Possible"));
         if (sel == KMessageBox::Yes) {
             QEventLoop loop;
-            auto cmd = new Commands::NewCertificateCommand();
+            auto cmd = new NewOpenPGPCertificateCommand;
             cmd->setParentWidget(d->parentWidgetOrView());
-            cmd->setProtocol(GpgME::OpenPGP);
             connect(cmd, &Command::finished, &loop, &QEventLoop::quit);
-            QMetaObject::invokeMethod(cmd, &Commands::NewCertificateCommand::start, Qt::QueuedConnection);
+            QMetaObject::invokeMethod(cmd, &NewOpenPGPCertificateCommand::start, Qt::QueuedConnection);
             loop.exec();
         } else {
             Q_EMIT(canceled());

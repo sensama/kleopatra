@@ -23,7 +23,7 @@
 #include <QAction>
 
 #include "commands/importcertificatefromfilecommand.h"
-#include "commands/newcertificatecommand.h"
+#include "commands/newopenpgpcertificatecommand.h"
 
 #include <KLocalizedString>
 #include <KSharedConfig>
@@ -129,11 +129,10 @@ public:
     void generate()
     {
         mGenerateBtn->setEnabled(false);
-        auto cmd = new Commands::NewCertificateCommand();
-        cmd->setProtocol(GpgME::OpenPGP);
+        auto cmd = new NewOpenPGPCertificateCommand;
         cmd->setParentWidget(q);
 
-        QObject::connect(cmd, &Commands::NewCertificateCommand::finished,
+        QObject::connect(cmd, &NewOpenPGPCertificateCommand::finished,
                 q, [this]() {
             mGenerateBtn->setEnabled(true);
         });

@@ -31,6 +31,7 @@
 
 #include <QDialogButtonBox>
 #include <QHBoxLayout>
+#include <QHeaderView>
 #include <QLabel>
 #include <QMenu>
 #include <QPushButton>
@@ -94,7 +95,6 @@ public:
     struct UI {
         QVBoxLayout *mainLayout;
         SubkeysTable *subkeysTree;
-        QLabel *stored;
 
         UI(QWidget *widget)
         {
@@ -117,23 +117,9 @@ public:
                 i18nc("@title:column", "Strength"),
                 i18nc("@title:column", "Usage"),
                 i18nc("@title:column", "Primary"),
+                i18nc("@title:column", "Storage"),
             });
             mainLayout->addWidget(subkeysTree);
-
-            {
-                auto hbox = new QHBoxLayout;
-
-                auto label = new QLabel{i18nc("@label", "Stored:"), widget};
-                hbox->addWidget(label);
-
-                stored = new QLabel{i18nc("@", "unknown"), widget};
-                label->setBuddy(stored);
-                hbox->addWidget(stored);
-
-                hbox->addStretch();
-
-                mainLayout->addLayout(hbox);
-            }
         }
     } ui;
 };
@@ -278,17 +264,27 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         const auto isPrimary = subkey.keyID() == key.keyID();
         item->setData(7, Qt::DisplayRole, isPrimary ? QStringLiteral("✓") : QString());
         item->setData(7, Qt::AccessibleTextRole, isPrimary ? i18nc("yes, is primary key", "yes") : i18nc("no, is not primary key", "no"));
+        if (subkey.isCardKey()) {
+            if (const char *serialNo = subkey.cardSerialNumber()) {
+                item->setData(8, Qt::DisplayRole, i18nc("smart card <serial number>", "smart card %1", QString::fromUtf8(serialNo)));
+            } else {
+                item->setData(8, Qt::DisplayRole, i18n("smart card"));
+            }
+        } else if (isPrimary && key.hasSecret() && !subkey.isSecret()) {
+            item->setData(8, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
+        } else if (subkey.isSecret()) {
+            item->setData(8, Qt::DisplayRole, i18n("on this computer"));
+        } else {
+            item->setData(8, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
+        }
         d->ui.subkeysTree->addTopLevelItem(item);
         if (subkey.fingerprint() == selectedKeyFingerprint) {
             d->ui.subkeysTree->setCurrentItem(item);
         }
     }
-
-    const auto subkey = key.subkey(0);
-    if (const char *card = subkey.cardSerialNumber()) {
-        d->ui.stored->setText(i18nc("stored...", "on SmartCard with serial no. %1", QString::fromUtf8(card)));
-    } else {
-        d->ui.stored->setText(i18nc("stored...", "on this computer"));
+    if (!key.hasSecret()) {
+        // hide information about storage location for keys of other people
+        d->ui.subkeysTree->hideColumn(8);
     }
     d->ui.subkeysTree->resizeColumnToContents(0);
 }

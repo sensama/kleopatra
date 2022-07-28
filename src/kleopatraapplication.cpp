@@ -292,6 +292,10 @@ public:
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     : QApplication(argc, argv), d(new Private(this))
 {
+    // disable parent<->child navigation in tree views with left/right arrow keys
+    // because this interferes with column by column navigation that is required
+    // for accessibility
+    setStyleSheet(QStringLiteral("QTreeView { arrow-keys-navigate-into-children: 0; }"));
     connect(this, &QApplication::focusChanged,
             this, [this](QWidget *, QWidget *now) {
                 d->updateFocusFrame(now);

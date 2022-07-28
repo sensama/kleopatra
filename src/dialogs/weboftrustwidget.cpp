@@ -14,6 +14,7 @@
 #include "utils/tags.h"
 
 #include <Libkleo/KeyCache>
+#include <Libkleo/NavigatableTreeView>
 #include <Libkleo/UserIDListModel>
 
 #include <KLocalizedString>
@@ -21,7 +22,6 @@
 
 #include <QHeaderView>
 #include <QMenu>
-#include <QTreeView>
 #include <QVBoxLayout>
 
 #include <QGpgME/KeyListJob>
@@ -43,7 +43,7 @@ private:
     GpgME::Key key;
     UserIDListModel certificationsModel;
     QGpgME::KeyListJob *keyListJob = nullptr;
-    QTreeView *certificationsTV = nullptr;
+    NavigatableTreeView *certificationsTV = nullptr;
 
 public:
     Private(WebOfTrustWidget *qq)
@@ -51,9 +51,9 @@ public:
     {
         certificationsModel.enableRemarks(Tags::tagsEnabled());
 
-        certificationsTV = new QTreeView;
+        certificationsTV = new NavigatableTreeView{q};
         certificationsTV->setModel(&certificationsModel);
-        certificationsTV->setAllColumnsShowFocus(true);
+        certificationsTV->setAllColumnsShowFocus(false);
         certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
         if (!Tags::tagsEnabled()) {
             certificationsTV->hideColumn(static_cast<int>(UserIDListModel::Column::Tags));

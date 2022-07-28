@@ -16,6 +16,7 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyRearrangeColumnsProxyModel>
+#include <Libkleo/NavigatableTreeView>
 #include <Libkleo/Predicates>
 
 #include "utils/headerview.h"
@@ -29,7 +30,6 @@
 
 #include "kleopatra_debug.h"
 #include <QTimer>
-#include <QTreeView>
 #include <QHeaderView>
 #include <QItemSelectionModel>
 #include <QItemSelection>
@@ -39,7 +39,6 @@
 #include <QAction>
 #include <QEvent>
 #include <QContextMenuEvent>
-#include <QScrollBar>
 
 #include <KSharedConfig>
 #include <KLocalizedString>
@@ -54,10 +53,11 @@ Q_DECLARE_METATYPE(GpgME::Key)
 namespace
 {
 
-class TreeView : public QTreeView
+class TreeView : public NavigatableTreeView
 {
 public:
-    explicit TreeView(QWidget *parent = nullptr) : QTreeView(parent)
+    explicit TreeView(QWidget *parent = nullptr)
+        : NavigatableTreeView{parent}
     {
         header()->installEventFilter(this);
     }
@@ -123,9 +123,6 @@ protected:
         QMetaObject::invokeMethod(this, &TreeView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
     }
 
-    void keyPressEvent(QKeyEvent *event) override;
-    QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override;
-
 private:
     void forceAccessibleFocusEventForCurrentItem()
     {
@@ -138,97 +135,10 @@ private:
     }
 
 private:
-    bool mMoveCursorUpdatedView = false;
     QMenu *mHeaderPopup = nullptr;
 
     QList<QAction *> mColumnActions;
 };
-
-void TreeView::keyPressEvent(QKeyEvent *event)
-{
-    mMoveCursorUpdatedView = false;
-    QTreeView::keyPressEvent(event);
-    if (mMoveCursorUpdatedView) {
-        event->accept();
-    }
-}
-
-QModelIndex TreeView::moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers)
-{
-    // this code is based heavily on QTreeView::moveCursor()
-
-    QModelIndex current = currentIndex();
-    if (!current.isValid()) {
-        // let QTreeView handle invalid current index
-        return QTreeView::moveCursor(cursorAction, modifiers);
-    }
-
-    if (isRightToLeft()) {
-        if (cursorAction == MoveRight) {
-            cursorAction = MoveLeft;
-        } else if (cursorAction == MoveLeft) {
-            cursorAction = MoveRight;
-        }
-    }
-    switch (cursorAction) {
-    case MoveLeft: {
-        // HACK: call QTreeView::moveCursor with invalid cursor action to make it call the private executePostedLayout()
-        (void) QTreeView::moveCursor(static_cast<CursorAction>(-1), modifiers);
-
-        int visualColumn = header()->visualIndex(current.column()) - 1;
-        while (visualColumn >= 0 && isColumnHidden(header()->logicalIndex(visualColumn))) {
-            visualColumn--;
-        }
-        int newColumn = header()->logicalIndex(visualColumn);
-        QModelIndex next = current.sibling(current.row(), newColumn);
-        if (next.isValid()) {
-            return next;
-        }
-
-        //last restort: we change the scrollbar value
-        QScrollBar *sb = horizontalScrollBar();
-        int oldValue = sb->value();
-        sb->setValue(sb->value() - sb->singleStep());
-        if (oldValue != sb->value()) {
-            mMoveCursorUpdatedView = true;
-        }
-
-        updateGeometries();
-        viewport()->update();
-        break;
-    }
-    case MoveRight: {
-        // HACK: call QTreeView::moveCursor with invalid cursor action to make it call the private executePostedLayout()
-        (void) QTreeView::moveCursor(static_cast<CursorAction>(-1), modifiers);
-
-        int visualColumn = header()->visualIndex(current.column()) + 1;
-        while (visualColumn < model()->columnCount(current.parent()) && isColumnHidden(header()->logicalIndex(visualColumn))) {
-            visualColumn++;
-        }
-        const int newColumn = header()->logicalIndex(visualColumn);
-        const QModelIndex next = current.sibling(current.row(), newColumn);
-        if (next.isValid()) {
-            return next;
-        }
-
-        //last restort: we change the scrollbar value
-        QScrollBar *sb = horizontalScrollBar();
-        int oldValue = sb->value();
-        sb->setValue(sb->value() + sb->singleStep());
-        if (oldValue != sb->value()) {
-            mMoveCursorUpdatedView = true;
-        }
-
-        updateGeometries();
-        viewport()->update();
-        break;
-    }
-    default:
-        return QTreeView::moveCursor(cursorAction, modifiers);
-    }
-
-    return current;
-}
 
 const KeyListModelInterface * keyListModel(const QTreeView &view)
 {

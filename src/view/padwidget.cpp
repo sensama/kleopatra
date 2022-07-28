@@ -386,7 +386,7 @@ public:
     void doEncryptSign()
     {
         if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
-            KMessageBox::sorry(q->topLevelWidget(),
+            KMessageBox::error(q->topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                       "<para>Sorry! You cannot use <application>Kleopatra</application> for signing or encryption "
                                       "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",

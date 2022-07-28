@@ -613,7 +613,7 @@ public:
         QGpgME::ChangeOwnerTrustJob *const j = QGpgME::openpgp()->changeOwnerTrustJob();
         connect(j, &QGpgME::ChangeOwnerTrustJob::result, q, [this] (const GpgME::Error &err) {
             if (err) {
-                KMessageBox::sorry(q,
+                KMessageBox::error(q,
                                    i18n("<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>",
                                         Formatting::formatForComboBox(secKey()),
                                         QString::fromLocal8Bit(err.asString())),

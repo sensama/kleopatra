@@ -135,7 +135,7 @@ void KWatchGnuPGMainWindow::startWatcher()
     mWatcher->start();
     const bool ok = mWatcher->waitForStarted();
     if (!ok) {
-        KMessageBox::sorry(this, i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is unable to display any useful information."));
+        KMessageBox::error(this, i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is unable to display any useful information."));
     } else {
         mCentralWidget->append(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
         mCentralWidget->ensureCursorVisible();
@@ -195,7 +195,7 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
     }
     cconfig->sync(true);
     if (logclients.isEmpty()) {
-        KMessageBox::sorry(nullptr, i18n("There are no components available that support logging."));
+        KMessageBox::error(nullptr, i18n("There are no components available that support logging."));
     }
 }
 
@@ -206,7 +206,7 @@ void KWatchGnuPGMainWindow::slotWatcherExited(int, QProcess::ExitStatus)
         mCentralWidget->ensureCursorVisible();
         startWatcher();
     } else {
-        KMessageBox::sorry(this, i18n("The watchgnupg logging process is not running.\nThis log window is unable to display any useful information."));
+        KMessageBox::error(this, i18n("The watchgnupg logging process is not running.\nThis log window is unable to display any useful information."));
     }
 }
 

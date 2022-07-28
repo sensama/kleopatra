@@ -227,7 +227,7 @@ void OpenPGPKeyCardWidget::Private::showCertificateDetails(const std::string &op
             return;
         }
     }
-    KMessageBox::sorry(q, i18nc("@info", "Sorry, I cannot find the key with fingerprint %1.",
+    KMessageBox::error(q, i18nc("@info", "Sorry, I cannot find the key with fingerprint %1.",
                                 Formatting::prettyID(widgets.keyFingerprint.c_str())));
 }
 

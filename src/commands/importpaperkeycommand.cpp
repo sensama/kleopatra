@@ -150,7 +150,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
 void ImportPaperKeyCommand::doStart()
 {
     if (paperKeyInstallPath().isNull()) {
-        KMessageBox::sorry(d->parentWidgetOrView(),
+        KMessageBox::error(d->parentWidgetOrView(),
                            xi18nc("@info", "<para><application>Kleopatra</application> uses "
                                            "<application>PaperKey</application> to import your "
                                            "text backup.</para>"

@@ -182,7 +182,7 @@ private:
     void checkAccept()
     {
         if (!descriptionHasAcceptableInput()) {
-            KMessageBox::sorry(q, descriptionErrorMessage());
+            KMessageBox::error(q, descriptionErrorMessage());
         } else {
             q->accept();
         }

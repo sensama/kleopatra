@@ -113,7 +113,7 @@ int main(int argc, char **argv)
     {
         const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
         if (gpgmeInitError) {
-            KMessageBox::sorry(nullptr, xi18nc("@info",
+            KMessageBox::error(nullptr, xi18nc("@info",
                                         "<para>The version of the <application>GpgME</application> library you are running against "
                                         "is older than the one that the <application>GpgME++</application> library was built against.</para>"
                                         "<para><application>Kleopatra</application> will not function in this setting.</para>"

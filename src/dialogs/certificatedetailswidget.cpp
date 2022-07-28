@@ -44,6 +44,7 @@
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
 #include <Libkleo/GnuPG>
+#include <Libkleo/NavigatableTreeWidget>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -218,37 +219,18 @@ static bool userHasCertificationKey() {
     });
 }
 
-class UserIDTable : public QTreeWidget
-{
-    Q_OBJECT
-public:
-    using QTreeWidget::QTreeWidget;
-
-    std::vector<GpgME::UserID> selectedUserIDs() {
-        std::vector<GpgME::UserID> userIDs;
-        const auto selected = selectedItems();
-        std::transform(selected.begin(), selected.end(), std::back_inserter(userIDs), [](const QTreeWidgetItem *item) {
-            return item->data(0, Qt::UserRole).value<GpgME::UserID>();
-        });
-        return userIDs;
+std::vector<GpgME::UserID> selectedUserIDs(const QTreeWidget *treeWidget) {
+    if (!treeWidget) {
+        return {};
     }
 
-protected:
-    QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override
-    {
-        // make keyboard navigation with Left/Right possible by switching the selection behavior to SelectItems
-        // before calling QTreeWidget::moveCursor, because QTreeWidget::moveCursor ignores MoveLeft/MoveRight
-        // if the selection behavior is SelectRows
-        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
-            setSelectionBehavior(SelectItems);
-        }
-        const auto result = QTreeWidget::moveCursor(cursorAction, modifiers);
-        if ((cursorAction == MoveLeft) || (cursorAction == MoveRight)) {
-            setSelectionBehavior(SelectRows);
-        }
-        return result;
-    }
-};
+    std::vector<GpgME::UserID> userIDs;
+    const auto selected = treeWidget->selectedItems();
+    std::transform(selected.begin(), selected.end(), std::back_inserter(userIDs), [](const QTreeWidgetItem *item) {
+        return item->data(0, Qt::UserRole).value<GpgME::UserID>();
+    });
+    return userIDs;
+}
 }
 
 class CertificateDetailsWidget::Private
@@ -313,7 +295,7 @@ private:
     struct UI {
         QWidget *userIDs = nullptr;
         QLabel *userIDTableLabel = nullptr;
-        UserIDTable *userIDTable = nullptr;
+        NavigatableTreeWidget *userIDTable = nullptr;
         QPushButton *addUserIDBtn = nullptr;
         QPushButton *certifyBtn = nullptr;
         QPushButton *revokeCertificationsBtn = nullptr;
@@ -354,7 +336,7 @@ private:
             userIDTableLabel = new QLabel(i18n("User IDs:"), parent);
             userIDsLayout->addWidget(userIDTableLabel);
 
-            userIDTable = new UserIDTable{parent};
+            userIDTable = new NavigatableTreeWidget{parent};
             userIDTableLabel->setBuddy(userIDTable);
             userIDTable->setAccessibleName(i18n("User IDs"));
             QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
@@ -628,7 +610,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
 void CertificateDetailsWidget::Private::updateUserIDActions()
 {
-    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    const auto userIDs = selectedUserIDs(ui.userIDTable);
     ui.revokeUserIDBtn->setEnabled((userIDs.size() == 1) && canCreateCertifications(key) && canRevokeUserID(userIDs.front()));
 }
 
@@ -765,7 +747,7 @@ void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId
 
 void CertificateDetailsWidget::Private::revokeSelectedUserID()
 {
-    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    const auto userIDs = selectedUserIDs(ui.userIDTable);
     if (userIDs.size() != 1) {
         return;
     }
@@ -818,7 +800,7 @@ void CertificateDetailsWidget::Private::refreshCertificate()
 
 void CertificateDetailsWidget::Private::certifyUserIDs()
 {
-    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    const auto userIDs = selectedUserIDs(ui.userIDTable);
     auto cmd = userIDs.empty() ? new Kleo::Commands::CertifyCertificateCommand{key} //
                                : new Kleo::Commands::CertifyCertificateCommand{userIDs};
     QObject::connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
@@ -832,7 +814,7 @@ void CertificateDetailsWidget::Private::certifyUserIDs()
 
 void CertificateDetailsWidget::Private::revokeCertifications()
 {
-    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    const auto userIDs = selectedUserIDs(ui.userIDTable);
     auto cmd = userIDs.empty() ? new Kleo::Commands::RevokeCertificationCommand{key} //
                                : new Kleo::Commands::RevokeCertificationCommand{userIDs};
     QObject::connect(cmd, &Kleo::Command::finished,
@@ -898,7 +880,7 @@ void CertificateDetailsWidget::Private::showTrustChainDialog()
 
 void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QPoint &p)
 {
-    const auto userIDs = ui.userIDTable->selectedUserIDs();
+    const auto userIDs = selectedUserIDs(ui.userIDTable);
     const auto singleUserID = (userIDs.size() == 1) ? userIDs.front() : GpgME::UserID{};
     const bool canSignUserIDs = userHasCertificationKey();
 
@@ -1226,5 +1208,4 @@ GpgME::Key CertificateDetailsWidget::key() const
     return d->key;
 }
 
-#include "certificatedetailswidget.moc"
 #include "moc_certificatedetailswidget.cpp"

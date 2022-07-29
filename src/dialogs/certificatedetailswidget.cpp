@@ -465,6 +465,8 @@ private:
 
             mainLayout->addWidget(smimeAddressList);
 
+            mainLayout->addStretch();
+
             {
                 auto buttonRow = new QHBoxLayout;
 
@@ -680,40 +682,43 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
         }
     }
 
-    if (key.numUserIDs() < 2) {
-        return;
+    if (key.numUserIDs() > 1) {
+        // iterate over the secondary user IDs
+#ifdef USE_RANGES
+        for (const auto uids = key.userIDs(); const auto &uid : std::ranges::subrange(std::next(uids.begin()), uids.end())) {
+#else
+        const auto uids = key.userIDs();
+        for (auto it = std::next(uids.begin()); it != uids.end(); ++it) {
+            const auto &uid = *it;
+#endif
+            const auto name = Kleo::Formatting::prettyName(uid);
+            const auto email = Kleo::Formatting::prettyEMail(uid);
+            QString itemText;
+            if (name.isEmpty() && !email.isEmpty()) {
+                // skip email addresses already listed in email attribute field
+                if (emailField && email == emailField->value()) {
+                    continue;
+                }
+                itemText = email;
+            } else {
+                // S/MIME certificates sometimes contain urls where both
+                // name and mail is empty. In that case we print whatever
+                // the uid is as name.
+                //
+                // Can be ugly like (3:uri24:http://ca.intevation.org), but
+                // this is better then showing an empty entry.
+                itemText = QString::fromUtf8(uid.id());
+            }
+            // avoid duplicate entries in the list
+            if (ui.smimeAddressList->findItems(itemText, Qt::MatchExactly).empty()) {
+                ui.smimeAddressList->addItem(itemText);
+            }
+        }
     }
 
-    // iterate over the secondary user IDs
-#ifdef USE_RANGES
-    for (const auto uids = key.userIDs(); const auto &uid : std::ranges::subrange(std::next(uids.begin()), uids.end())) {
-#else
-    const auto uids = key.userIDs();
-    for (auto it = std::next(uids.begin()); it != uids.end(); ++it) {
-        const auto &uid = *it;
-#endif
-        const auto name = Kleo::Formatting::prettyName(uid);
-        const auto email = Kleo::Formatting::prettyEMail(uid);
-        QString itemText;
-        if (name.isEmpty() && !email.isEmpty()) {
-            // skip email addresses already listed in email attribute field
-            if (emailField && email == emailField->value()) {
-                continue;
-            }
-            itemText = email;
-        } else {
-            // S/MIME certificates sometimes contain urls where both
-            // name and mail is empty. In that case we print whatever
-            // the uid is as name.
-            //
-            // Can be ugly like (3:uri24:http://ca.intevation.org), but
-            // this is better then showing an empty entry.
-            itemText = QString::fromUtf8(uid.id());
-        }
-        // avoid duplicate entries in the list
-        if (ui.smimeAddressList->findItems(itemText, Qt::MatchExactly).empty()) {
-            ui.smimeAddressList->addItem(itemText);
-        }
+    if (ui.smimeAddressList->count() == 0) {
+        ui.smimeRelatedAddresses->setVisible(false);
+        ui.smimeAddressList->setVisible(false);
     }
 }
 

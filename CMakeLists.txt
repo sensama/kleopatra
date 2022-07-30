@@ -177,9 +177,9 @@ include_directories(
 add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 if (WIN32)
 # On Windows, we need to use stuff deprecated since Qt 5.11, e.g. from QDesktopWidget
-ecm_set_disabled_deprecation_versions(QT 5.10.0 KF 5.96.0)
+ecm_set_disabled_deprecation_versions(QT 5.10.0 KF 5.97.0)
 else ()
-ecm_set_disabled_deprecation_versions(QT 5.14.0 KF 5.96.0)
+ecm_set_disabled_deprecation_versions(QT 5.14.0 KF 5.97.0)
 endif ()
 
 if(CMAKE_COMPILER_IS_GNUCXX)

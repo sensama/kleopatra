@@ -52,6 +52,7 @@ public:
         certificationsModel.enableRemarks(Tags::tagsEnabled());
 
         certificationsTV = new NavigatableTreeView{q};
+        certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(false);
         certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);

@@ -47,6 +47,7 @@
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/detailscommand.h"
 #include "commands/newcertificatecommand.h"
+#include "commands/newopenpgpcertificatecommand.h"
 
 #include "dialogs/updatenotification.h"
 
@@ -468,10 +469,21 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
 
     // Check for --gen-key command
     if (parser.isSet(QStringLiteral("gen-key"))) {
-        auto cmd = new NewCertificateCommand(nullptr);
-        cmd->setParentWId(parentId);
-        cmd->setProtocol(protocol);
-        cmd->start();
+        if (protocol == GpgME::CMS) {
+            const Kleo::Settings settings{};
+            if (settings.cmsEnabled() && settings.cmsCertificateCreationAllowed()) {
+                auto cmd = new NewCertificateCommand(nullptr);
+                cmd->setParentWId(parentId);
+                cmd->setProtocol(protocol);
+                cmd->start();
+            } else {
+                return i18n("You are not allowed to create S/MIME certificate signing requests.");
+            }
+        } else {
+            auto cmd = new NewOpenPGPCertificateCommand;
+            cmd->setParentWId(parentId);
+            cmd->start();
+        }
         return QString();
     }
 

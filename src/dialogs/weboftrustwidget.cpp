@@ -55,7 +55,7 @@ public:
         certificationsTV->setAccessibleName(i18n("User IDs and certifications"));
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(false);
-        certificationsTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        certificationsTV->setSelectionMode(QAbstractItemView::SingleSelection);
         if (!Tags::tagsEnabled()) {
             certificationsTV->hideColumn(static_cast<int>(UserIDListModel::Column::Tags));
         }

@@ -28,7 +28,7 @@
 
 #include <commands/reloadkeyscommand.h>
 #include <commands/lookupcertificatescommand.h>
-#include <commands/newcertificatecommand.h>
+#include <commands/newopenpgpcertificatecommand.h>
 #include <commands/importcertificatefromfilecommand.h>
 
 #include <gpgme++/key.h>
@@ -94,9 +94,8 @@ private:
     }
     void create()
     {
-        auto cmd = new NewCertificateCommand(nullptr);
+        auto cmd = new NewOpenPGPCertificateCommand;
         cmd->setParentWidget(q);
-        cmd->setProtocol(protocolFromOptions(options));
         cmd->start();
     }
     void lookup()
@@ -145,6 +144,7 @@ private:
         SearchBar searchBar;
         TabWidget tabWidget;
         QDialogButtonBox buttonBox;
+        QPushButton *createButton = nullptr;
     } ui;
 
     void setUpUI(CertificateSelectionDialog *q)
@@ -171,9 +171,9 @@ private:
         QPushButton *const lookupButton = ui.buttonBox.addButton(i18n("Lookup..."), QDialogButtonBox::ActionRole);
         lookupButton->setToolTip(i18nc("@info:tooltip", "Look up certificate on server"));
         lookupButton->setAccessibleName(i18n("Look up certificate"));
-        QPushButton *const createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
-        createButton->setToolTip(i18nc("@info:tooltip", "Create a new certificate"));
-        createButton->setAccessibleName(i18n("Create certificate"));
+        ui.createButton = ui.buttonBox.addButton(i18n("New..."), QDialogButtonBox::ActionRole);
+        ui.createButton->setToolTip(i18nc("@info:tooltip", "Create a new OpenPGP certificate"));
+        ui.createButton->setAccessibleName(i18n("Create certificate"));
         QPushButton *const groupsButton = ui.buttonBox.addButton(i18n("Groups..."), QDialogButtonBox::ActionRole);
         groupsButton->setToolTip(i18nc("@info:tooltip", "Manage certificate groups"));
         groupsButton->setAccessibleName(i18n("Manage groups"));
@@ -183,7 +183,7 @@ private:
         connect(&ui.buttonBox, &QDialogButtonBox::rejected, q, &CertificateSelectionDialog::reject);
         connect(reloadButton, &QPushButton::clicked, q, [this] () { reload(); });
         connect(lookupButton, &QPushButton::clicked, q, [this] () { lookup(); });
-        connect(createButton, &QPushButton::clicked, q, [this] () { create(); });
+        connect(ui.createButton, &QPushButton::clicked, q, [this] () { create(); });
         connect(groupsButton, &QPushButton::clicked, q, [this] () { manageGroups(); });
         connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged,
                 q, [this] () { slotKeysMayHaveChanged(); });
@@ -258,6 +258,7 @@ void CertificateSelectionDialog::setOptions(Options options)
 
     d->slotKeysMayHaveChanged();
     d->updateLabelText();
+    d->ui.createButton->setVisible(options & OpenPGPFormat);
 }
 
 CertificateSelectionDialog::Options CertificateSelectionDialog::options() const

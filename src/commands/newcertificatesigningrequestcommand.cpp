@@ -44,9 +44,6 @@ private:
     void slotDialogAccepted();
 
 private:
-    void ensureDialogCreated();
-
-private:
     QPointer<NewCertificateWizard> dialog;
 };
 

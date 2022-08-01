@@ -15,9 +15,7 @@
 
 #include "command_p.h"
 
-#include "commands/detailscommand.h"
 #include "dialogs/newopenpgpcertificatedetailsdialog.h"
-#include "dialogs/newopenpgpcertificateresultdialog.h"
 #include "utils/emptypassphraseprovider.h"
 #include "utils/keyparameters.h"
 #include "utils/userinfo.h"
@@ -28,11 +26,9 @@
 #include <Libkleo/KeyCache>
 
 #include <KConfigGroup>
-#include <KGuiItem>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
-#include <KStandardGuiItem>
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
@@ -64,7 +60,6 @@ public:
     void getCertificateDetails();
     void createCertificate();
     void showResult(const KeyGenerationResult &result);
-    void showResultDialog(const KeyGenerationResult &result, const Key &key);
     void showErrorDialog(const KeyGenerationResult &result);
 
 private:
@@ -74,7 +69,6 @@ private:
     QPointer<NewOpenPGPCertificateDetailsDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
-    QPointer<NewOpenPGPCertificateResultDialog> resultDialog;
 };
 
 NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_func()
@@ -194,47 +188,15 @@ void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult
         }
     }
 
-    const KConfigGroup config(KSharedConfig::openConfig(), "CertificateCreationWizard");
-    if (config.readEntry("SkipResultPage", false)) {
-        if (!key.isNull()) {
-            auto cmd = new Commands::DetailsCommand(key, view(), controller());
-            cmd->setParentWidget(parentWidgetOrView());
-            cmd->setParentWId(parentWId());
-            cmd->start();
-        }
-        finished();
-        return;
-    }
-
     if (!key.isNull()) {
-        showResultDialog(result, key);
+        success(
+            xi18n("<para>A new OpenPGP certificate was created successfully.</para>"
+                  "<para>Fingerprint of the new certificate: %1</para>",
+                  Formatting::prettyID(key.primaryFingerprint())));
+        finished();
     } else {
         showErrorDialog(result);
     }
-}
-
-void NewOpenPGPCertificateCommand::Private::showResultDialog(const KeyGenerationResult &result, const Key &key)
-{
-    resultDialog = new NewOpenPGPCertificateResultDialog{result, key};
-    resultDialog->setAttribute(Qt::WA_DeleteOnClose);
-    applyWindowID(resultDialog);
-
-    connect(resultDialog, &NewOpenPGPCertificateResultDialog::retry, q, [this]() {
-        QMetaObject::invokeMethod(
-            q,
-            [this]() {
-                getCertificateDetails();
-            },
-            Qt::QueuedConnection);
-    });
-    connect(resultDialog, &QDialog::accepted, q, [this]() {
-        finished();
-    });
-    connect(resultDialog, &QDialog::rejected, q, [this]() {
-        finished();
-    });
-
-    resultDialog->show();
 }
 
 void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationResult &result)
@@ -292,9 +254,6 @@ void NewOpenPGPCertificateCommand::doCancel()
     if (d->detailsDialog) {
         d->detailsDialog->close();
     }
-    if (d->resultDialog) {
-        d->resultDialog->close();
-    }
     if (d->job) {
         d->job->slotCancel();
     }
@@ -302,5 +261,3 @@ void NewOpenPGPCertificateCommand::doCancel()
 
 #undef d
 #undef q
-
-#include "moc_newopenpgpcertificatecommand.cpp"

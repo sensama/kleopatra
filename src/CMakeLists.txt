@@ -337,8 +337,6 @@ set(_kleopatra_SRCS
   dialogs/nameandemailwidget.h
   dialogs/newopenpgpcertificatedetailsdialog.cpp
   dialogs/newopenpgpcertificatedetailsdialog.h
-  dialogs/newopenpgpcertificateresultdialog.cpp
-  dialogs/newopenpgpcertificateresultdialog.h
   dialogs/ownertrustdialog.cpp
   dialogs/ownertrustdialog.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp

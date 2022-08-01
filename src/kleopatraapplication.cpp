@@ -474,7 +474,6 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
             if (settings.cmsEnabled() && settings.cmsCertificateCreationAllowed()) {
                 auto cmd = new NewCertificateCommand(nullptr);
                 cmd->setParentWId(parentId);
-                cmd->setProtocol(protocol);
                 cmd->start();
             } else {
                 return i18n("You are not allowed to create S/MIME certificate signing requests.");

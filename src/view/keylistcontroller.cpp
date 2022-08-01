@@ -52,6 +52,7 @@
 #include "commands/revokecertificationcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/newcertificatecommand.h"
+#include "commands/newopenpgpcertificatecommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/exportpaperkeycommand.h"
@@ -356,7 +357,7 @@ void KeyListController::createActions(KActionCollection *coll)
     const std::vector<action_data> common_and_openpgp_action_data = {
         // File menu
         {
-            "file_new_certificate", i18n("New Key Pair..."), QString(),
+            "file_new_certificate", i18n("New OpenPGP Key Pair..."), i18n("Create a new OpenPGP certificate"),
             "view-certificate-add", nullptr, nullptr, QStringLiteral("Ctrl+N")
         },
         {
@@ -468,6 +469,11 @@ void KeyListController::createActions(KActionCollection *coll)
         // (come from MainWindow)
     };
 
+    static const action_data cms_create_csr_action_data = {
+        "file_new_certificate_signing_request", i18n("New S/MIME Certification Request..."), i18n("Create a new S/MIME certificate signing request (CSR)"),
+        "view-certificate-add", nullptr, nullptr, {},
+    };
+
     static const std::vector<action_data> cms_action_data = {
         // Certificate menu
         {
@@ -503,7 +509,10 @@ void KeyListController::createActions(KActionCollection *coll)
 
     std::vector<action_data> action_data = common_and_openpgp_action_data;
 
-    if (Settings{}.cmsEnabled()) {
+    if (const Kleo::Settings settings{}; settings.cmsEnabled()) {
+        if (settings.cmsCertificateCreationAllowed()) {
+            action_data.push_back(cms_create_csr_action_data);
+        }
         action_data.reserve(action_data.size() + cms_action_data.size());
         std::copy(std::begin(cms_action_data), std::end(cms_action_data),
                   std::back_inserter(action_data));
@@ -516,7 +525,8 @@ void KeyListController::createActions(KActionCollection *coll)
     }
 
     // ### somehow make this better...
-    registerActionForCommand<NewCertificateCommand>(coll->action(QStringLiteral("file_new_certificate")));
+    registerActionForCommand<NewOpenPGPCertificateCommand>(coll->action(QStringLiteral("file_new_certificate")));
+    registerActionForCommand<NewCertificateCommand>(coll->action(QStringLiteral("file_new_certificate_signing_request")));
     //---
     registerActionForCommand<LookupCertificatesCommand>(coll->action(QStringLiteral("file_lookup_certificates")));
     registerActionForCommand<ImportCertificateFromFileCommand>(coll->action(QStringLiteral("file_import_certificates")));

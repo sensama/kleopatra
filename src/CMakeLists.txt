@@ -317,8 +317,6 @@ set(_kleopatra_SRCS
   dialogs/certifycertificatedialog.h
   dialogs/certifywidget.cpp
   dialogs/certifywidget.h
-  dialogs/choosecertificateprotocoldialog.cpp
-  dialogs/choosecertificateprotocoldialog.h
   dialogs/createcsrforcardkeydialog.cpp
   dialogs/createcsrforcardkeydialog.h
   dialogs/deletecertificatesdialog.cpp

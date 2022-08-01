@@ -27,9 +27,6 @@ public:
     explicit NewCertificateCommand();
     ~NewCertificateCommand() override;
 
-    void setProtocol(GpgME::Protocol proto);
-    GpgME::Protocol protocol() const;
-
 private:
     void doStart() override;
     void doCancel() override;

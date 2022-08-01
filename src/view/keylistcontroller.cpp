@@ -51,7 +51,7 @@
 #include "commands/certifycertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/adduseridcommand.h"
-#include "commands/newcertificatecommand.h"
+#include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/checksumcreatefilescommand.h"
@@ -526,7 +526,7 @@ void KeyListController::createActions(KActionCollection *coll)
 
     // ### somehow make this better...
     registerActionForCommand<NewOpenPGPCertificateCommand>(coll->action(QStringLiteral("file_new_certificate")));
-    registerActionForCommand<NewCertificateCommand>(coll->action(QStringLiteral("file_new_certificate_signing_request")));
+    registerActionForCommand<NewCertificateSigningRequestCommand>(coll->action(QStringLiteral("file_new_certificate_signing_request")));
     //---
     registerActionForCommand<LookupCertificatesCommand>(coll->action(QStringLiteral("file_lookup_certificates")));
     registerActionForCommand<ImportCertificateFromFileCommand>(coll->action(QStringLiteral("file_import_certificates")));

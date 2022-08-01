@@ -175,8 +175,8 @@ set(_kleopatra_SRCS
   commands/learncardkeyscommand.h
   commands/lookupcertificatescommand.cpp
   commands/lookupcertificatescommand.h
-  commands/newcertificatecommand.cpp
-  commands/newcertificatecommand.h
+  commands/newcertificatesigningrequestcommand.cpp
+  commands/newcertificatesigningrequestcommand.h
   commands/newopenpgpcertificatecommand.cpp
   commands/newopenpgpcertificatecommand.h
   commands/pivgeneratecardkeycommand.cpp

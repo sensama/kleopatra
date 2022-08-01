@@ -46,7 +46,7 @@
 #include "commands/checksumcreatefilescommand.h"
 #include "commands/checksumverifyfilescommand.h"
 #include "commands/detailscommand.h"
-#include "commands/newcertificatecommand.h"
+#include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
 
 #include "dialogs/updatenotification.h"
@@ -472,7 +472,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
         if (protocol == GpgME::CMS) {
             const Kleo::Settings settings{};
             if (settings.cmsEnabled() && settings.cmsCertificateCreationAllowed()) {
-                auto cmd = new NewCertificateCommand(nullptr);
+                auto cmd = new NewCertificateSigningRequestCommand;
                 cmd->setParentWId(parentId);
                 cmd->start();
             } else {

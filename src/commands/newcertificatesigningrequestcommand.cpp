@@ -1,5 +1,5 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/newcertificatecommand.cpp
+    commands/newcertificatesigningrequestcommand.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
@@ -11,10 +11,9 @@
 
 #include <config-kleopatra.h>
 
-#include "newcertificatecommand.h"
+#include "newcertificatesigningrequestcommand.h"
 
 #include "command_p.h"
-#include "newopenpgpcertificatecommand.h"
 
 #include "newcertificatewizard/newcertificatewizard.h"
 
@@ -26,20 +25,20 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
-class NewCertificateCommand::Private : public Command::Private
+class NewCertificateSigningRequestCommand::Private : public Command::Private
 {
-    friend class ::Kleo::Commands::NewCertificateCommand;
-    NewCertificateCommand *q_func() const
+    friend class ::Kleo::Commands::NewCertificateSigningRequestCommand;
+    NewCertificateSigningRequestCommand *q_func() const
     {
-        return static_cast<NewCertificateCommand *>(q);
+        return static_cast<NewCertificateSigningRequestCommand *>(q);
     }
 public:
-    explicit Private(NewCertificateCommand *qq, KeyListController *c)
+    explicit Private(NewCertificateSigningRequestCommand *qq, KeyListController *c)
         : Command::Private{qq, c}
     {
     }
 
-    void createCertificate();
+    void createCSR();
 
 private:
     void slotDialogAccepted();
@@ -51,11 +50,11 @@ private:
     QPointer<NewCertificateWizard> dialog;
 };
 
-NewCertificateCommand::Private *NewCertificateCommand::d_func()
+NewCertificateSigningRequestCommand::Private *NewCertificateSigningRequestCommand::d_func()
 {
     return static_cast<Private *>(d.get());
 }
-const NewCertificateCommand::Private *NewCertificateCommand::d_func() const
+const NewCertificateSigningRequestCommand::Private *NewCertificateSigningRequestCommand::d_func() const
 {
     return static_cast<const Private *>(d.get());
 }
@@ -63,7 +62,7 @@ const NewCertificateCommand::Private *NewCertificateCommand::d_func() const
 #define d d_func()
 #define q q_func()
 
-void NewCertificateCommand::Private::createCertificate()
+void NewCertificateSigningRequestCommand::Private::createCSR()
 {
     Q_ASSERT(!dialog);
 
@@ -82,40 +81,35 @@ void NewCertificateCommand::Private::createCertificate()
     dialog->show();
 }
 
-void NewCertificateCommand::Private::slotDialogAccepted()
+void NewCertificateSigningRequestCommand::Private::slotDialogAccepted()
 {
     finished();
 }
 
-NewCertificateCommand::NewCertificateCommand()
-    : Command(new Private(this, nullptr))
+NewCertificateSigningRequestCommand::NewCertificateSigningRequestCommand()
+    : NewCertificateSigningRequestCommand(nullptr, nullptr)
 {
 }
 
-NewCertificateCommand::NewCertificateCommand(KeyListController *c)
-    : Command(new Private(this, c))
-{
-}
-
-NewCertificateCommand::NewCertificateCommand(QAbstractItemView *v, KeyListController *c)
+NewCertificateSigningRequestCommand::NewCertificateSigningRequestCommand(QAbstractItemView *v, KeyListController *c)
     : Command(v, new Private(this, c))
 {
 }
 
-NewCertificateCommand::~NewCertificateCommand() = default;
+NewCertificateSigningRequestCommand::~NewCertificateSigningRequestCommand() = default;
 
-void NewCertificateCommand::doStart()
+void NewCertificateSigningRequestCommand::doStart()
 {
     const Kleo::Settings settings{};
     if (settings.cmsEnabled() && settings.cmsCertificateCreationAllowed()) {
-        d->createCertificate();
+        d->createCSR();
     } else {
         d->error(i18n("You are not allowed to create S/MIME certificate signing requests."));
         d->finished();
     }
 }
 
-void NewCertificateCommand::doCancel()
+void NewCertificateSigningRequestCommand::doCancel()
 {
     if (d->dialog) {
         d->dialog->close();
@@ -124,5 +118,3 @@ void NewCertificateCommand::doCancel()
 
 #undef d
 #undef q
-
-#include "moc_newcertificatecommand.cpp"

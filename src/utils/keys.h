@@ -66,4 +66,26 @@ bool isSecretKeyStoredInKeyRing(const GpgME::Key &key);
  */
 bool userHasCertificationKey();
 
+enum CertificationRevocationFeasibility {
+    CertificationCanBeRevoked = 0,
+    CertificationNotMadeWithOwnKey,
+    CertificationIsSelfSignature,
+    CertificationIsRevocation,
+    CertificationIsExpired,
+    CertificationIsInvalid,
+    CertificationKeyNotAvailable,
+};
+
+/**
+ * Checks if the user can revoke the given \p certification.
+ */
+CertificationRevocationFeasibility userCanRevokeCertification(const GpgME::UserID::Signature &certification);
+
+/**
+ * Returns true if the user can revoke any of the certifications of the \p userId.
+ *
+ * \sa userCanRevokeCertification
+ */
+bool userCanRevokeCertifications(const GpgME::UserID &userId);
+
 }

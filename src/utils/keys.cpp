@@ -88,3 +88,30 @@ bool Kleo::userHasCertificationKey()
         return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
     });
 }
+
+Kleo::CertificationRevocationFeasibility Kleo::userCanRevokeCertification(const GpgME::UserID::Signature &certification)
+{
+    const auto certificationKey = KeyCache::instance()->findByKeyIDOrFingerprint(certification.signerKeyID());
+    const bool isSelfSignature = qstrcmp(certification.parent().parent().keyID(), certification.signerKeyID()) == 0;
+    if (!certificationKey.hasSecret()) {
+        return CertificationNotMadeWithOwnKey;
+    } else if (isSelfSignature) {
+        return CertificationIsSelfSignature;
+    } else if (certification.isRevokation()) {
+        return CertificationIsRevocation;
+    } else if (certification.isExpired()) {
+        return CertificationIsExpired;
+    } else if (certification.isInvalid()) {
+        return CertificationIsInvalid;
+    } else if (!canCreateCertifications(certificationKey)) {
+        return CertificationKeyNotAvailable;
+    }
+    return CertificationCanBeRevoked;
+}
+
+bool Kleo::userCanRevokeCertifications(const GpgME::UserID &userId)
+{
+    return Kleo::any_of(userId.signatures(), [](const auto &certification) {
+        return userCanRevokeCertification(certification) == CertificationCanBeRevoked;
+    });
+}

@@ -291,6 +291,21 @@ WebOfTrustWidget::WebOfTrustWidget(QWidget *parent)
 
 WebOfTrustWidget::~WebOfTrustWidget() = default;
 
+QAction *WebOfTrustWidget::detailsAction() const
+{
+    return d->detailsAction;
+}
+
+QAction *WebOfTrustWidget::certifyAction() const
+{
+    return d->certifyAction;
+}
+
+QAction *WebOfTrustWidget::revokeAction() const
+{
+    return d->revokeAction;
+}
+
 GpgME::Key WebOfTrustWidget::key() const
 {
     return d->key;

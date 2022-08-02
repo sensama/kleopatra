@@ -24,6 +24,10 @@ public:
     explicit WebOfTrustWidget(QWidget *parent = nullptr);
     ~WebOfTrustWidget() override;
 
+    QAction *detailsAction() const;
+    QAction *certifyAction() const;
+    QAction *revokeAction() const;
+
     void setKey(const GpgME::Key &key);
     GpgME::Key key() const;
 

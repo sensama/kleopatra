@@ -19,6 +19,7 @@
 
 #include <Libkleo/KeyHelpers>
 
+#include <QAction>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -33,6 +34,22 @@
 #include <set>
 
 using namespace Kleo;
+
+namespace
+{
+void addActionButton(QDialogButtonBox *buttonBox, QAction *action)
+{
+    if (!action) {
+        return;
+    }
+    auto button = buttonBox->addButton(action->text(), QDialogButtonBox::ActionRole);
+    button->setEnabled(action->isEnabled());
+    QObject::connect(action, &QAction::changed, button, [action, button]() {
+        button->setEnabled(action->isEnabled());
+    });
+    QObject::connect(button, &QPushButton::clicked, action, &QAction::trigger);
+}
+}
 
 WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
     : QDialog(parent)
@@ -52,6 +69,10 @@ WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
 
     auto btn = bbox->addButton(QDialogButtonBox::Close);
     connect(btn, &QPushButton::pressed, this, &QDialog::accept);
+
+    addActionButton(bbox, mWidget->detailsAction());
+    addActionButton(bbox, mWidget->certifyAction());
+    addActionButton(bbox, mWidget->revokeAction());
 
     mFetchKeysBtn = bbox->addButton(i18nc("@action:button", "Fetch Missing Keys"),
                                     QDialogButtonBox::ActionRole);

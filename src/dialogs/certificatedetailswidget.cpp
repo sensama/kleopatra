@@ -212,13 +212,6 @@ void InfoField::onActionChanged()
 
 namespace
 {
-static bool userHasCertificationKey() {
-    const auto secretKeys = KeyCache::instance()->secretKeys();
-    return Kleo::any_of(secretKeys, [](const auto &k) {
-        return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
-    });
-}
-
 std::vector<GpgME::UserID> selectedUserIDs(const QTreeWidget *treeWidget) {
     if (!treeWidget) {
         return {};

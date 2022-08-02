@@ -58,4 +58,12 @@ bool canRevokeUserID(const GpgME::UserID &userId);
  */
 bool isSecretKeyStoredInKeyRing(const GpgME::Key &key);
 
+/**
+ * Returns true if any keys suitable for certifying user IDs are available in
+ * the keyring or on a smart card.
+ *
+ * \sa canCreateCertifications
+ */
+bool userHasCertificationKey();
+
 }

@@ -10,6 +10,9 @@
 
 #include "keys.h"
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/KeyCache>
+
 #include <QByteArray>
 
 // needed for GPGME_VERSION_NUMBER
@@ -76,4 +79,12 @@ bool Kleo::canRevokeUserID(const GpgME::UserID &userId)
 bool Kleo::isSecretKeyStoredInKeyRing(const GpgME::Key &key)
 {
     return key.subkey(0).isSecret() && !key.subkey(0).isCardKey();
+}
+
+bool Kleo::userHasCertificationKey()
+{
+    const auto secretKeys = KeyCache::instance()->secretKeys();
+    return Kleo::any_of(secretKeys, [](const auto &k) {
+        return (k.protocol() == GpgME::OpenPGP) && canCreateCertifications(k);
+    });
 }

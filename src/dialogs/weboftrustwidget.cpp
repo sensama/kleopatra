@@ -11,6 +11,7 @@
 
 #include "commands/certifycertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
+#include "utils/keys.h"
 #include "utils/tags.h"
 
 #include <Libkleo/KeyCache>
@@ -44,6 +45,9 @@ private:
     UserIDListModel certificationsModel;
     QGpgME::KeyListJob *keyListJob = nullptr;
     NavigatableTreeView *certificationsTV = nullptr;
+    QAction *detailsAction = nullptr;
+    QAction *certifyAction = nullptr;
+    QAction *revokeAction = nullptr;
 
 public:
     Private(WebOfTrustWidget *qq)
@@ -64,111 +68,170 @@ public:
         vLay->setContentsMargins(0, 0, 0, 0);
         vLay->addWidget(certificationsTV);
 
+        detailsAction = new QAction{QIcon::fromTheme(QStringLiteral("dialog-information")), i18nc("@action", "Show Certificate Details"), q};
+        connect(detailsAction, &QAction::triggered, q, [this]() {
+            showCertificateDetails();
+        });
+
+        certifyAction = new QAction{QIcon::fromTheme(QStringLiteral("view-certificate-sign")), i18nc("@action", "Add Certification"), q};
+        connect(certifyAction, &QAction::triggered, q, [this]() {
+            addCertification();
+        });
+
+        if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
+            revokeAction = new QAction{QIcon::fromTheme(QStringLiteral("view-certificate-revoke")), i18nc("@action", "Revoke Certification"), q};
+            connect(revokeAction, &QAction::triggered, q, [this]() {
+                revokeCertification();
+            });
+        }
+
         connect(certificationsTV, &QAbstractItemView::doubleClicked,
-                q, [this] (const QModelIndex &idx) {
-                    certificationDblClicked(idx);
+                q, [this]() {
+                    certificationDblClicked();
                 });
         certificationsTV->setContextMenuPolicy(Qt::CustomContextMenu);
         connect(certificationsTV, &QWidget::customContextMenuRequested,
                 q, [this] (const QPoint &p) {
                     contextMenuRequested(p);
                 });
+        connect(certificationsTV->selectionModel(), &QItemSelectionModel::currentRowChanged, q, [this]() {
+            updateActions();
+        });
+        updateActions();
     }
 
-    void certificationDblClicked(const QModelIndex &idx)
+    GpgME::UserID selectedUserID()
     {
-        if (!idx.isValid()) {
+        return certificationsModel.userID(certificationsTV->currentIndex());
+    }
+
+    GpgME::UserID::Signature selectedCertification()
+    {
+        return certificationsModel.signature(certificationsTV->currentIndex());
+    }
+
+    void certificationDblClicked()
+    {
+        showCertificateDetails();
+    }
+
+    void showCertificateDetails()
+    {
+        const auto signature = selectedCertification();
+        if (signature.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "- no certification selected";
             return;
         }
-
-        if (!idx.parent().isValid()) {
-            // No parent -> root item.
-            return;
-        }
-
-        // grab the keyid
-        const auto query = certificationsModel.data(idx.sibling(idx.row(), 0)).toString();
-
-        // Show details widget or search
-        auto cmd = Command::commandForQuery(query);
+        auto cmd = Command::commandForQuery(QString::fromUtf8(signature.signerKeyID()));
         cmd->setParentWId(q->winId());
         cmd->start();
     }
 
-    void addActionsForUserID(QMenu *menu, const GpgME::UserID &userID)
+    void addCertification()
     {
-        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-sign")),
-                        i18n("Certify..."),
-                        q, [this, userID]() {
-            auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
-            cmd->setParentWidget(q);
-            certificationsTV->setEnabled(false);
-            connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
-                    q, [this]() {
-                certificationsTV->setEnabled(true);
-                // Trigger an update when done
-                q->setKey(key);
-            });
-            cmd->start();
+        auto userID = selectedUserID();
+        if (userID.isNull()) {
+            userID = selectedCertification().parent();
+        }
+        if (userID.isNull()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "- no user ID or certification selected";
+            return;
+        }
+        auto cmd = new Kleo::Commands::CertifyCertificateCommand(userID);
+        cmd->setParentWidget(q);
+        certificationsTV->setEnabled(false);
+        connect(cmd, &Kleo::Commands::CertifyCertificateCommand::finished,
+                q, [this]() {
+            certificationsTV->setEnabled(true);
+            // Trigger an update when done
+            q->setKey(key);
         });
-        if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
-            menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                            i18n("Revoke Certification..."),
-                            q, [this, userID]() {
-                auto cmd = new Kleo::Commands::RevokeCertificationCommand(userID);
-                cmd->setParentWidget(q);
-                certificationsTV->setEnabled(false);
-                connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
-                        q, [this]() {
-                    certificationsTV->setEnabled(true);
-                    // Trigger an update when done
-                    q->setKey(key);
-                });
-                cmd->start();
-            });
+        cmd->start();
+    }
+
+    void revokeCertification()
+    {
+        Command *cmd = nullptr;
+        if (const auto signature = selectedCertification(); !signature.isNull()) {
+            cmd = new Kleo::Commands::RevokeCertificationCommand(signature);
+        } else if (const auto userID = selectedUserID(); !userID.isNull()) {
+            cmd = new Kleo::Commands::RevokeCertificationCommand(userID);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "- no user ID or certification selected";
+            return;
+        }
+        cmd->setParentWidget(q);
+        certificationsTV->setEnabled(false);
+        connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
+                q, [this]() {
+            certificationsTV->setEnabled(true);
+            // Trigger an update when done
+            q->setKey(key);
+        });
+        cmd->start();
+    }
+
+    void addActionsForUserID(QMenu *menu)
+    {
+        menu->addAction(certifyAction);
+        if (revokeAction) {
+            menu->addAction(revokeAction);
         }
     }
 
-    void addActionsForSignature(QMenu *menu, const GpgME::UserID::Signature &signature)
+    void addActionsForSignature(QMenu *menu)
     {
-        menu->addAction(QIcon::fromTheme(QStringLiteral("dialog-information")),
-                        i18n("Show Certificate Details..."),
-                        q, [this, signature]() {
-            auto cmd = Command::commandForQuery(QString::fromUtf8(signature.signerKeyID()));
-            cmd->setParentWId(q->winId());
-            cmd->start();
-        });
-        if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
-            auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-revoke")),
-                                          i18n("Revoke Certification..."),
-                                          q, [this, signature]() {
-                auto cmd = new Kleo::Commands::RevokeCertificationCommand(signature);
-                cmd->setParentWidget(q);
-                certificationsTV->setEnabled(false);
-                connect(cmd, &Kleo::Commands::RevokeCertificationCommand::finished,
-                        q, [this]() {
-                    certificationsTV->setEnabled(true);
-                    // Trigger an update when done
-                    q->setKey(key);
-                });
-                cmd->start();
-            });
-            const auto certificationKey = KeyCache::instance()->findByKeyIDOrFingerprint(signature.signerKeyID());
-            const bool isSelfSignature = qstrcmp(signature.parent().parent().keyID(), signature.signerKeyID()) == 0;
-            action->setEnabled(!isSelfSignature && certificationKey.hasSecret() && !signature.isRevokation() && !signature.isExpired() && !signature.isInvalid());
-            if (isSelfSignature) {
-                action->setToolTip(i18n("Revocation of self-certifications is currently not possible."));
-            } else if (!certificationKey.hasSecret()) {
-                action->setToolTip(i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
-            } else if (signature.isRevokation()) {
-                action->setToolTip(i18n("You cannot revoke this revocation certification. (But you can re-certify the corresponding user ID.)"));
-            } else if (signature.isExpired()) {
-                action->setToolTip(i18n("You cannot revoke this expired certification."));
-            } else if (signature.isInvalid()) {
-                action->setToolTip(i18n("You cannot revoke this invalid certification."));
-            }
-            if (!action->isEnabled()) {
+        menu->addAction(detailsAction);
+        menu->addAction(certifyAction);
+        if (revokeAction) {
+            menu->addAction(revokeAction);
+            if (!revokeAction->isEnabled()) {
                 menu->setToolTipsVisible(true);
+            }
+        }
+    }
+
+    void updateActions() {
+        const auto userCanSignUserIDs = userHasCertificationKey();
+        const auto userID = selectedUserID();
+        const auto signature = selectedCertification();
+        detailsAction->setEnabled(!signature.isNull());
+        certifyAction->setEnabled(userCanSignUserIDs && (!userID.isNull() || !signature.isNull()));
+        if (revokeAction) {
+            revokeAction->setToolTip({});
+            if (!signature.isNull()) {
+                const auto revocationFeasibility = userCanRevokeCertification(signature);
+                revokeAction->setEnabled(revocationFeasibility == CertificationCanBeRevoked);
+                switch (revocationFeasibility) {
+                case CertificationCanBeRevoked:
+                    break;
+                case CertificationNotMadeWithOwnKey:
+                    revokeAction->setToolTip(i18n("You cannot revoke this certification because it wasn't made with one of your keys (or the required secret key is missing)."));
+                    break;
+                case CertificationIsSelfSignature:
+                    revokeAction->setToolTip(i18n("Revocation of self-certifications is currently not possible."));
+                    break;
+                case CertificationIsRevocation:
+                    revokeAction->setToolTip(i18n("You cannot revoke this revocation certification. (But you can re-certify the corresponding user ID.)"));
+                    break;
+                case CertificationIsExpired:
+                    revokeAction->setToolTip(i18n("You cannot revoke this expired certification."));
+                    break;
+                case CertificationIsInvalid:
+                    revokeAction->setToolTip(i18n("You cannot revoke this invalid certification."));
+                    break;
+                case CertificationKeyNotAvailable:
+                    revokeAction->setToolTip(i18n("You cannot revoke this certification because the required secret key is not available."));
+                    break;
+                };
+            } else if (!userID.isNull()) {
+                const bool canRevokeCertification = userCanRevokeCertifications(userID);
+                revokeAction->setEnabled(canRevokeCertification);
+                if (!canRevokeCertification) {
+                    revokeAction->setToolTip(i18n("You cannot revoke any of the certifications of this user ID. Select any of the certifications for details."));
+                }
+            } else {
+                revokeAction->setEnabled(false);
             }
         }
     }
@@ -185,10 +248,10 @@ public:
 
         auto menu = new QMenu(q);
         if (!userID.isNull()) {
-            addActionsForUserID(menu, userID);
+            addActionsForUserID(menu);
         }
         else if (!signature.isNull()) {
-            addActionsForSignature(menu, signature);
+            addActionsForSignature(menu);
         }
         connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
         menu->popup(certificationsTV->viewport()->mapToGlobal(p));
@@ -207,10 +270,6 @@ public:
         if (Tags::tagsEnabled()) {
             job->addMode(GpgME::SignatureNotations);
         }
-
-
-        /* Old style connect here again as QGPGME newstyle connects with
-         * default arguments don't work on windows. */
 
         connect(job, &QGpgME::KeyListJob::result,
             q, &WebOfTrustWidget::signatureListingDone);
@@ -246,6 +305,7 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
 
     d->key = key;
     d->certificationsModel.setKey(key);
+    d->updateActions();
     d->certificationsTV->expandAll();
     d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();

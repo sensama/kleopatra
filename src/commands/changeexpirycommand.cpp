@@ -196,16 +196,14 @@ void ChangeExpiryCommand::Private::createJob()
 void ChangeExpiryCommand::Private::showErrorDialog(const Error &err)
 {
     error(i18n("<p>An error occurred while trying to change "
-               "the expiry date for <b>%1</b>:</p><p>%2</p>",
+               "the end of the validity period for <b>%1</b>:</p><p>%2</p>",
                Formatting::formatForComboBox(key),
-               QString::fromLocal8Bit(err.asString())),
-          i18n("Expiry Date Change Error"));
+               QString::fromLocal8Bit(err.asString())));
 }
 
 void ChangeExpiryCommand::Private::showSuccessDialog()
 {
-    information(i18n("Expiry date changed successfully."),
-                i18n("Expiry Date Change Succeeded"));
+    success(i18n("End of validity period changed successfully."));
 }
 
 ChangeExpiryCommand::ChangeExpiryCommand(KeyListController *c)

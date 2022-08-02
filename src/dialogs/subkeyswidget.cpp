@@ -115,7 +115,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 
     if (isOpenPGPKey && subkey.parent().hasSecret()) {
         hasActions = true;
-        menu->addAction(i18n("Change Expiry Date..."), q,
+        menu->addAction(i18n("Change End of Validity Period..."), q,
                 [this, subkey]() {
                     auto cmd = new ChangeExpiryCommand(subkey.parent());
                     cmd->setSubkey(subkey);

@@ -402,11 +402,11 @@ private:
                 gridLayout->addLayout(validFromField->layout(), row, 1);
 
                 row++;
-                expiresField = std::make_unique<InfoField>(i18n("Expires:"), parent);
+                expiresField = std::make_unique<InfoField>(i18n("Valid until:"), parent);
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
-                changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the expiration date"));
-                changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change expiration"));
+                changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the end of the validity period"));
+                changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change Validity"));
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), row, 0);
                 gridLayout->addLayout(expiresField->layout(), row, 1);
@@ -594,8 +594,8 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 
     // update values of protocol-independent UI elements
     ui.validFromField->setValue(Formatting::creationDateString(key), Formatting::accessibleCreationDate(key));
-    ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Expires", "never")),
-                              Formatting::accessibleExpirationDate(key, i18nc("Expires", "never")));
+    ui.expiresField->setValue(Formatting::expirationDateString(key, i18nc("Valid until:", "unlimited")),
+                              Formatting::accessibleExpirationDate(key));
     ui.fingerprintField->setValue(Formatting::prettyID(key.primaryFingerprint()),
                                   Formatting::accessibleHexID(key.primaryFingerprint()));
     if (DeVSCompliance::isCompliant()) {

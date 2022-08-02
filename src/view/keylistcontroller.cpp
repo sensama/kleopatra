@@ -443,7 +443,7 @@ void KeyListController::createActions(KActionCollection *coll)
             "view-certificate-revoke", nullptr, nullptr, QString()
         },
         {
-            "certificates_change_expiry", i18n("Change Expiry Date..."), QString(),
+            "certificates_change_expiry", i18n("Change End of Validity Period..."), QString(),
             nullptr, nullptr, nullptr, QString()
         },
         {

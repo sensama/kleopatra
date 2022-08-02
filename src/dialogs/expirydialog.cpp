@@ -66,13 +66,13 @@ static QString accessibleValidityDuration(int amount, Period unit)
 {
     switch (unit) {
     case Days:
-        return i18ncp("(Expires) in x day(s)", "in %1 day", "in %1 days", amount);
+        return i18np("Valid for %1 day", "Valid for %1 days", amount);
     case Weeks:
-        return i18ncp("(Expires) in x week(s)", "in %1 week", "in %1 weeks", amount);
+        return i18np("Valid for %1 week", "Valid for %1 weeks", amount);
     case Months:
-        return i18ncp("(Expires) in x month(s)", "in %1 month", "in %1 months", amount);
+        return i18np("Valid for %1 month", "Valid for %1 months", amount);
     case Years:
-        return i18ncp("(Expires) in x year(s)", "in %1 year", "in %1 years", amount);
+        return i18np("Valid for %1 year", "Valid for %1 years", amount);
     default:
         Q_ASSERT(!"invalid unit");
     }
@@ -158,12 +158,12 @@ private:
             {
                 auto label = new QLabel{qq};
                 label->setText(mode == Mode::UpdateIndividualSubkey ?
-                               i18n("Please select when to expire this subkey:") :
-                               i18n("Please select when to expire this certificate:"));
+                               i18n("Please select until when the subkey should be valid:") :
+                               i18n("Please select until when the certificate should be valid:"));
                 vboxLayout->addWidget(label);
             }
 
-            neverRB = new QRadioButton(i18n("Ne&ver"), mainWidget);
+            neverRB = new QRadioButton(i18n("Unlimited validity"), mainWidget);
             neverRB->setChecked(false);
 
             vboxLayout->addWidget(neverRB);
@@ -171,7 +171,7 @@ private:
             {
                 auto hboxLayout = new QHBoxLayout;
 
-                inRB = new QRadioButton{i18n("In"), mainWidget};
+                inRB = new QRadioButton{i18n("Valid for:"), mainWidget};
                 inRB->setChecked(false);
 
                 hboxLayout->addWidget(inRB);
@@ -201,7 +201,7 @@ private:
             {
                 auto hboxLayout = new QHBoxLayout;
 
-                onRB = new QRadioButton{i18n("On this da&y:"), mainWidget};
+                onRB = new QRadioButton{i18n("Valid until:"), mainWidget};
                 onRB->setChecked(true);
 
                 hboxLayout->addWidget(onRB);
@@ -217,7 +217,7 @@ private:
             }
 
             {
-                updateSubkeysCheckBox = new QCheckBox{i18n("Also update the expiry of the subkeys"), qq};
+                updateSubkeysCheckBox = new QCheckBox{i18n("Also update the validity period of the subkeys"), qq};
 #ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
                 updateSubkeysCheckBox->setVisible(mode == Mode::UpdateCertificateWithSubkeys);
 #else
@@ -273,7 +273,7 @@ void ExpiryDialog::Private::slotOnDateChanged()
     if (ui.onRB->isChecked()) {
         ui.inSB->setValue(inAmountByDate(ui.onCB->date()));
     }
-    ui.onRB->setAccessibleName(i18nc("(Expires) on DATE", "on %1", Formatting::accessibleDate(ui.onCB->date())));
+    ui.onRB->setAccessibleName(i18nc("Valid until DATE", "Valid until %1", Formatting::accessibleDate(ui.onCB->date())));
 }
 
 QDate ExpiryDialog::Private::inDate() const
@@ -309,7 +309,7 @@ ExpiryDialog::ExpiryDialog(Mode mode, QWidget *p)
     : QDialog{p}
     , d{new Private{mode, this}}
 {
-    setWindowTitle(i18nc("@title:window", "Change Expiry"));
+    setWindowTitle(i18nc("@title:window", "Change Validity Period"));
 }
 
 ExpiryDialog::~ExpiryDialog() = default;

@@ -532,12 +532,10 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
                 return;
             }
 
-            QStringList uids;
             const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
-            uids.reserve(toTrustOwnerUserIDs.size());
-            for (const UserID &uid : toTrustOwnerUserIDs) {
-                uids << Formatting::prettyNameAndEMail(uid);
-            }
+            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(), toTrustOwnerUserIDs.cend(), KLocalizedString{}, [](KLocalizedString temp, const auto &uid) {
+                return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
+            });
 
             const QString str = xi18nc("@info",
                 "<title>You have imported a Secret Key.</title>"
@@ -545,11 +543,11 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
                 "<numid>%1</numid>"
                 "</para>"
                 "<para>And claims the user IDs:"
-                "<list><item>%2</item></list>"
+                "<list>%2</list>"
                 "</para>"
                 "Is this your own key? (Set trust level to ultimate)",
                 QString::fromUtf8(fingerPr),
-                uids.join(QLatin1String("</item><item>")));
+                uids);
 
             int k = KMessageBox::questionYesNo(nullptr, str, i18nc("@title:window",
                                                                "Secret key imported"));

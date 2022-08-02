@@ -11,11 +11,6 @@
 
 class QPushButton;
 
-namespace GpgME
-{
-    class Error;
-} // namespace GpgME
-
 namespace Kleo
 {
 

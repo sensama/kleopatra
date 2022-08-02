@@ -13,7 +13,6 @@
 
 #include <gpgme++/error.h>
 
-class QGridLayout;
 class QLabel;
 class QPushButton;
 

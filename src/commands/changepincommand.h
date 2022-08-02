@@ -10,11 +10,6 @@
 
 #include "cardcommand.h"
 
-namespace GpgME
-{
-class Error;
-}
-
 namespace Kleo
 {
 namespace Commands

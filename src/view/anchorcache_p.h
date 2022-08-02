@@ -14,7 +14,6 @@
 
 #include <vector>
 
-class QLabel;
 class QString;
 
 struct AnchorData {

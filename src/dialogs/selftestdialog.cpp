@@ -367,6 +367,7 @@ private:
                 auto groupBoxLayout = new QVBoxLayout{detailsGB};
 
                 auto scrollArea = new Kleo::ScrollArea{qq};
+                scrollArea->setFocusPolicy(Qt::NoFocus);
                 scrollArea->setMinimumHeight(100);
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -390,6 +391,7 @@ private:
                 auto groupBoxLayout = new QVBoxLayout{proposedCorrectiveActionGB};
 
                 auto scrollArea = new Kleo::ScrollArea{qq};
+                scrollArea->setFocusPolicy(Qt::NoFocus);
                 scrollArea->setMinimumHeight(100);
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

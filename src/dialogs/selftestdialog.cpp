@@ -250,8 +250,9 @@ public:
             slotDoItClicked();
         });
         connect(ui.rerunPB, &QAbstractButton::clicked, q, &SelfTestDialog::updateRequested);
-        connect(ui.resultsTV->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                q, SLOT(slotSelectionChanged()));
+        connect(ui.resultsTV->selectionModel(), &QItemSelectionModel::selectionChanged, q, [this]() {
+            slotSelectionChanged();
+        });
         connect(ui.showAllCB, &QAbstractButton::toggled,
                 &proxy, &Proxy::setShowAll);
     }

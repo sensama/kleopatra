@@ -440,17 +440,11 @@ private:
 };
 
 SelfTestDialog::SelfTestDialog(QWidget *p, Qt::WindowFlags f)
-    : SelfTestDialog{{}, p, f}
-{
-}
-
-SelfTestDialog::SelfTestDialog(const std::vector<std::shared_ptr<SelfTest>> &tests, QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f), d(new Private(this))
 {
     setWindowTitle(i18nc("@title:window", "Self Test"));
     resize(448, 610);
 
-    addSelfTests(tests);
     setAutomaticMode(false);
 }
 

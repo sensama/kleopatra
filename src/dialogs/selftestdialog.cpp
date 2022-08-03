@@ -257,6 +257,8 @@ public:
         connect(ui.showAllCB, &QAbstractButton::toggled,
                 &proxy, &Proxy::setShowAll);
         proxy.setShowAll(ui.showAllCB->isChecked());
+
+        ui.resultsTV->setFocus();
     }
 
 private:

@@ -226,6 +226,32 @@ private:
     bool m_showAll;
 };
 
+class TreeView : public NavigatableTreeView
+{
+    Q_OBJECT
+public:
+    using NavigatableTreeView::NavigatableTreeView;
+
+protected:
+    void focusInEvent(QFocusEvent *event) override
+    {
+        NavigatableTreeView::focusInEvent(event);
+        // queue the invokation, so that it happens after the widget itself got focus
+        QMetaObject::invokeMethod(this, &TreeView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+    }
+
+private:
+    void forceAccessibleFocusEventForCurrentItem()
+    {
+        // force Qt to send a focus event for the current item to accessibility
+        // tools; otherwise, the user has no idea which item is selected when the
+        // list gets keyboard input focus
+        const auto current = currentIndex();
+        setCurrentIndex({});
+        setCurrentIndex(current);
+    }
+};
+
 }
 
 class SelfTestDialog::Private
@@ -313,7 +339,7 @@ private:
     Proxy proxy;
 
     struct UI {
-        NavigatableTreeView *resultsTV = nullptr;
+        TreeView *resultsTV = nullptr;
         QCheckBox *showAllCB = nullptr;
         QGroupBox *detailsGB = nullptr;
         QLabel *detailsLB = nullptr;
@@ -348,7 +374,7 @@ private:
                 auto vbox = new QVBoxLayout{widget};
                 vbox->setContentsMargins(0, 0, 0, 0);
 
-                resultsTV = new NavigatableTreeView{qq};
+                resultsTV = new TreeView{qq};
                 resultsTV->setAccessibleName(i18n("test results"));
                 QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
                 sizePolicy.setHorizontalStretch(0);

@@ -12,6 +12,7 @@
 #include "selftestdialog.h"
 
 #include <selftest/selftest.h>
+#include <utils/accessibility.h>
 #include <utils/scrollarea.h>
 
 #include <Libkleo/NavigatableTreeView>
@@ -320,6 +321,8 @@ private:
         QDialogButtonBox *buttonBox;
         QPushButton *rerunPB = nullptr;
 
+        LabelHelper labelHelper;
+
         explicit UI(SelfTestDialog *qq)
         {
             auto mainLayout = new QVBoxLayout{qq};
@@ -329,6 +332,7 @@ private:
                     "<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
                     "<para>Note that all but the first failure might be due to prior tests failing.</para>"), qq};
                 label->setWordWrap(true);
+                labelHelper.addLabel(label);
 
                 mainLayout->addWidget(label);
             }
@@ -367,14 +371,15 @@ private:
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
-                scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
                 detailsLB = new QLabel{qq};
                 detailsLB->setTextFormat(Qt::RichText);
                 detailsLB->setTextInteractionFlags(Qt::TextSelectableByMouse);
                 detailsLB->setWordWrap(true);
+                labelHelper.addLabel(detailsLB);
 
                 scrollAreaLayout->addWidget(detailsLB);
+                scrollAreaLayout->addStretch();
 
                 groupBoxLayout->addWidget(scrollArea);
 
@@ -389,14 +394,15 @@ private:
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
-                scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
                 proposedCorrectiveActionLB = new QLabel{qq};
                 proposedCorrectiveActionLB->setTextFormat(Qt::RichText);
                 proposedCorrectiveActionLB->setTextInteractionFlags(Qt::TextSelectableByMouse);
                 proposedCorrectiveActionLB->setWordWrap(true);
+                labelHelper.addLabel(proposedCorrectiveActionLB);
 
                 scrollAreaLayout->addWidget(proposedCorrectiveActionLB);
+                scrollAreaLayout->addStretch();
 
                 groupBoxLayout->addWidget(scrollArea);
 

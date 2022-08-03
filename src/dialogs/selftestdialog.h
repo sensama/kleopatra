@@ -34,14 +34,10 @@ public:
 
     void setAutomaticMode(bool automatic);
 
-    void addSelfTest(const std::shared_ptr<SelfTest> &test);
-    void addSelfTests(const std::vector<std::shared_ptr<SelfTest>> &tests);
+    void setTests(const std::vector<std::shared_ptr<SelfTest>> &tests);
 
     void setRunAtStartUp(bool run);
     bool runAtStartUp() const;
-
-public Q_SLOTS:
-    void clear();
 
 Q_SIGNALS:
     void updateRequested();

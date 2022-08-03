@@ -144,8 +144,7 @@ private:
 
         ensureDialogCreated();
 
-        dialog->clear();
-        dialog->addSelfTests(tests);
+        dialog->setTests(tests);
 
         ensureDialogShown();
     }

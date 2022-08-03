@@ -452,19 +452,9 @@ SelfTestDialog::SelfTestDialog(QWidget *p, Qt::WindowFlags f)
 
 SelfTestDialog::~SelfTestDialog() = default;
 
-void SelfTestDialog::clear()
+void SelfTestDialog::setTests(const std::vector<std::shared_ptr<SelfTest>> &tests)
 {
     d->model.clear();
-}
-
-void SelfTestDialog::addSelfTest(const std::shared_ptr<SelfTest> &test)
-{
-    d->model.append(std::vector<std::shared_ptr<SelfTest>>(1, test));
-    d->updateColumnSizes();
-}
-
-void SelfTestDialog::addSelfTests(const std::vector<std::shared_ptr<SelfTest>> &tests)
-{
     d->model.append(tests);
     d->updateColumnSizes();
 }

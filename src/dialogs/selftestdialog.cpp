@@ -280,8 +280,12 @@ public:
         connect(ui.resultsTV->selectionModel(), &QItemSelectionModel::selectionChanged, q, [this]() {
             slotSelectionChanged();
         });
-        connect(ui.showAllCB, &QAbstractButton::toggled,
-                &proxy, &Proxy::setShowAll);
+        connect(ui.showAllCB, &QAbstractButton::toggled, q, [this](bool checked) {
+            proxy.setShowAll(checked);
+            if (checked) {
+                updateColumnSizes();
+            }
+        });
         proxy.setShowAll(ui.showAllCB->isChecked());
 
         ui.resultsTV->setFocus();

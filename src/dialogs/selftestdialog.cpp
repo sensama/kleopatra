@@ -357,10 +357,6 @@ private:
                 resultsTV->setAllColumnsShowFocus(true);
                 vbox->addWidget(resultsTV);
 
-                showAllCB = new QCheckBox{i18nc("@option:check", "Show all test results"), qq};
-                showAllCB->setChecked(true);
-                vbox->addWidget(showAllCB);
-
                 splitter->addWidget(widget);
             }
             {
@@ -425,9 +421,12 @@ private:
 
             mainLayout->addWidget(splitter);
 
+            showAllCB = new QCheckBox{i18nc("@option:check", "Show all test results"), qq};
+            showAllCB->setChecked(true);
+            mainLayout->addWidget(showAllCB);
+
             runAtStartUpCB = new QCheckBox{i18nc("@option:check", "Run these tests at startup"), qq};
             runAtStartUpCB->setChecked(true);
-
             mainLayout->addWidget(runAtStartUpCB);
 
             buttonBox = new QDialogButtonBox{qq};

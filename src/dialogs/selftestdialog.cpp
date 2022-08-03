@@ -285,6 +285,7 @@ public:
             if (checked) {
                 updateColumnSizes();
             }
+            ensureCurrentItemIsVisible();
         });
         proxy.setShowAll(ui.showAllCB->isChecked());
 
@@ -307,6 +308,7 @@ private:
             ui.proposedCorrectiveActionGB->setVisible(!t->passed() && !action.isEmpty());
             ui.proposedCorrectiveActionLB->setText(action);
             ui.doItPB->setVisible(!t->passed() && t->canFixAutomatically());
+            QMetaObject::invokeMethod(q, [this]() { ensureCurrentItemIsVisible(); }, Qt::QueuedConnection);
         }
     }
     void slotDoItClicked()
@@ -318,6 +320,10 @@ private:
     }
 
 private:
+    void ensureCurrentItemIsVisible()
+    {
+        ui.resultsTV->scrollTo(ui.resultsTV->currentIndex());
+    }
     void updateColumnSizes()
     {
         ui.resultsTV->header()->resizeSections(QHeaderView::ResizeToContents);

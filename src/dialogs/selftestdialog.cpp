@@ -349,6 +349,7 @@ private:
                 vbox->setContentsMargins(0, 0, 0, 0);
 
                 resultsTV = new NavigatableTreeView{qq};
+                resultsTV->setAccessibleName(i18n("test results"));
                 QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
                 sizePolicy.setHorizontalStretch(0);
                 sizePolicy.setVerticalStretch(1);

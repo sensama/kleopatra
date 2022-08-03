@@ -544,7 +544,6 @@ endif()
 ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/ownertrustdialog.ui
   dialogs/selectchecklevelwidget.ui
-  dialogs/selftestdialog.ui
   dialogs/setinitialpindialog.ui
   dialogs/trustchainwidget.ui
   newcertificatewizard/listwidget.ui

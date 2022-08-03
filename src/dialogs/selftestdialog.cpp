@@ -11,9 +11,8 @@
 
 #include "selftestdialog.h"
 
-#include "ui_selftestdialog.h"
-
 #include <selftest/selftest.h>
+#include <utils/scrollarea.h>
 
 #include <Libkleo/SystemInfo>
 
@@ -21,9 +20,20 @@
 #include <KColorScheme>
 
 #include <QAbstractTableModel>
-#include <QHeaderView>
-#include <QSortFilterProxyModel>
 #include <QApplication>
+#include <QCheckBox>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QHeaderView>
+#include <QLabel>
+#include <QPushButton>
+#include <QSortFilterProxyModel>
+#include <QSplitter>
+#include <QTreeView>
+#include <QVBoxLayout>
+
 #include "kleopatra_debug.h"
 
 
@@ -234,6 +244,12 @@ public:
         ui.detailsGB->hide();
         ui.proposedCorrectiveActionGB->hide();
 
+        connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &QDialog::accept);
+        connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
+        connect(ui.doItPB, &QAbstractButton::clicked, q, [this]() {
+            slotDoItClicked();
+        });
+        connect(ui.rerunPB, &QAbstractButton::clicked, q, &SelfTestDialog::updateRequested);
         connect(ui.resultsTV->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
                 q, SLOT(slotSelectionChanged()));
         connect(ui.showAllCB, &QAbstractButton::toggled,
@@ -291,39 +307,145 @@ private:
     Model model;
     Proxy proxy;
 
-    struct UI : public Ui_SelfTestDialog {
-
-        QPushButton *rerunPB;
+    struct UI {
+        QTreeView *resultsTV = nullptr;
+        QCheckBox *showAllCB = nullptr;
+        QGroupBox *detailsGB = nullptr;
+        QLabel *detailsLB = nullptr;
+        QGroupBox *proposedCorrectiveActionGB = nullptr;
+        QLabel *proposedCorrectiveActionLB = nullptr;
+        QPushButton *doItPB = nullptr;
+        QCheckBox *runAtStartUpCB;
+        QDialogButtonBox *buttonBox;
+        QPushButton *rerunPB = nullptr;
 
         explicit UI(SelfTestDialog *qq)
-            : Ui_SelfTestDialog(),
-              rerunPB(new QPushButton(i18n("Rerun Tests")))
         {
-            setupUi(qq);
+            auto mainLayout = new QVBoxLayout{qq};
 
-            buttonBox->addButton(rerunPB, QDialogButtonBox::ActionRole);
-            buttonBox->button(QDialogButtonBox::Ok)->setText(i18n("Continue"));
+            {
+                auto label = new QLabel{xi18n(
+                    "<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
+                    "<para>Note that all but the first failure might be due to prior tests failing.</para>"), qq};
+                label->setWordWrap(true);
 
-            connect(rerunPB, &QAbstractButton::clicked,
-                    qq, &SelfTestDialog::updateRequested);
+                mainLayout->addWidget(label);
+            }
+
+            auto splitter = new QSplitter{qq};
+            splitter->setOrientation(Qt::Vertical);
+
+            {
+                auto widget = new QWidget{qq};
+                auto vbox = new QVBoxLayout{widget};
+                vbox->setContentsMargins(0, 0, 0, 0);
+
+                resultsTV = new QTreeView{qq};
+                QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+                sizePolicy.setHorizontalStretch(0);
+                sizePolicy.setVerticalStretch(1);
+                sizePolicy.setHeightForWidth(resultsTV->sizePolicy().hasHeightForWidth());
+                resultsTV->setSizePolicy(sizePolicy);
+                resultsTV->setMinimumHeight(100);
+                resultsTV->setRootIsDecorated(false);
+                resultsTV->setAllColumnsShowFocus(true);
+                vbox->addWidget(resultsTV);
+
+                showAllCB = new QCheckBox{i18nc("@option:check", "Show all test results"), qq};
+                showAllCB->setChecked(true);
+                vbox->addWidget(showAllCB);
+
+                splitter->addWidget(widget);
+            }
+            {
+                detailsGB = new QGroupBox{i18nc("@title:group", "Details"), qq};
+                auto groupBoxLayout = new QVBoxLayout{detailsGB};
+
+                auto scrollArea = new Kleo::ScrollArea{qq};
+                scrollArea->setMinimumHeight(100);
+                scrollArea->setFrameShape(QFrame::NoFrame);
+                scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+                scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+
+                detailsLB = new QLabel{qq};
+                detailsLB->setTextFormat(Qt::RichText);
+                detailsLB->setTextInteractionFlags(Qt::TextSelectableByMouse);
+                detailsLB->setWordWrap(true);
+
+                scrollAreaLayout->addWidget(detailsLB);
+
+                groupBoxLayout->addWidget(scrollArea);
+
+                splitter->addWidget(detailsGB);
+            }
+            {
+                proposedCorrectiveActionGB = new QGroupBox{i18nc("@title:group", "Proposed Corrective Action"), qq};
+                auto groupBoxLayout = new QVBoxLayout{proposedCorrectiveActionGB};
+
+                auto scrollArea = new Kleo::ScrollArea{qq};
+                scrollArea->setMinimumHeight(100);
+                scrollArea->setFrameShape(QFrame::NoFrame);
+                scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+                scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
+
+                proposedCorrectiveActionLB = new QLabel{qq};
+                proposedCorrectiveActionLB->setTextFormat(Qt::RichText);
+                proposedCorrectiveActionLB->setTextInteractionFlags(Qt::TextSelectableByMouse);
+                proposedCorrectiveActionLB->setWordWrap(true);
+
+                scrollAreaLayout->addWidget(proposedCorrectiveActionLB);
+
+                groupBoxLayout->addWidget(scrollArea);
+
+                {
+                    auto hbox = new QHBoxLayout;
+                    hbox->addStretch();
+
+                    doItPB = new QPushButton{i18nc("@action:button", "Do It"), qq};
+                    doItPB->setEnabled(false);
+                    hbox->addWidget(doItPB);
+
+                    groupBoxLayout->addLayout(hbox);
+                }
+
+                splitter->addWidget(proposedCorrectiveActionGB);
+            }
+
+            mainLayout->addWidget(splitter);
+
+            runAtStartUpCB = new QCheckBox{i18nc("@option:check", "Run these tests at startup"), qq};
+            runAtStartUpCB->setChecked(true);
+
+            mainLayout->addWidget(runAtStartUpCB);
+
+            buttonBox = new QDialogButtonBox{qq};
+            buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Close|QDialogButtonBox::Ok);
+            buttonBox->button(QDialogButtonBox::Ok)->setText(i18nc("@action:button", "Continue"));
+            rerunPB = buttonBox->addButton(i18nc("@action:button", "Rerun Tests"), QDialogButtonBox::ActionRole);
+
+            mainLayout->addWidget(buttonBox);
         }
     } ui;
 };
 
 SelfTestDialog::SelfTestDialog(QWidget *p, Qt::WindowFlags f)
-    : QDialog(p, f), d(new Private(this))
+    : SelfTestDialog{{}, p, f}
 {
-    setAutomaticMode(false);
 }
 
 SelfTestDialog::SelfTestDialog(const std::vector<std::shared_ptr<SelfTest>> &tests, QWidget *p, Qt::WindowFlags f)
     : QDialog(p, f), d(new Private(this))
 {
+    setWindowTitle(i18nc("@title:window", "Self Test"));
+    resize(448, 610);
+
     addSelfTests(tests);
     setAutomaticMode(false);
 }
 
-SelfTestDialog::~SelfTestDialog() {}
+SelfTestDialog::~SelfTestDialog() = default;
 
 void SelfTestDialog::clear()
 {

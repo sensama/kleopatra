@@ -14,6 +14,7 @@
 #include <selftest/selftest.h>
 #include <utils/scrollarea.h>
 
+#include <Libkleo/NavigatableTreeView>
 #include <Libkleo/SystemInfo>
 
 #include <KLocalizedString>
@@ -31,7 +32,6 @@
 #include <QPushButton>
 #include <QSortFilterProxyModel>
 #include <QSplitter>
-#include <QTreeView>
 #include <QVBoxLayout>
 
 #include "kleopatra_debug.h"
@@ -309,7 +309,7 @@ private:
     Proxy proxy;
 
     struct UI {
-        QTreeView *resultsTV = nullptr;
+        NavigatableTreeView *resultsTV = nullptr;
         QCheckBox *showAllCB = nullptr;
         QGroupBox *detailsGB = nullptr;
         QLabel *detailsLB = nullptr;
@@ -341,7 +341,7 @@ private:
                 auto vbox = new QVBoxLayout{widget};
                 vbox->setContentsMargins(0, 0, 0, 0);
 
-                resultsTV = new QTreeView{qq};
+                resultsTV = new NavigatableTreeView{qq};
                 QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
                 sizePolicy.setHorizontalStretch(0);
                 sizePolicy.setVerticalStretch(1);

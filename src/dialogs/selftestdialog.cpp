@@ -256,6 +256,7 @@ public:
         });
         connect(ui.showAllCB, &QAbstractButton::toggled,
                 &proxy, &Proxy::setShowAll);
+        proxy.setShowAll(ui.showAllCB->isChecked());
     }
 
 private:
@@ -479,6 +480,7 @@ bool SelfTestDialog::runAtStartUp() const
 
 void SelfTestDialog::setAutomaticMode(bool automatic)
 {
+    d->ui.showAllCB->setChecked(!automatic);
     d->ui.buttonBox->button(QDialogButtonBox::Ok)->setVisible(automatic);
     d->ui.buttonBox->button(QDialogButtonBox::Cancel)->setVisible(automatic);
     d->ui.buttonBox->button(QDialogButtonBox::Close)->setVisible(!automatic);

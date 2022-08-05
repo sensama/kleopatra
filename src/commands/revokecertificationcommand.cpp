@@ -239,13 +239,29 @@ void RevokeCertificationCommand::doStart()
         return;
     }
 
+    // ensure that the certifications of the key have been loaded
+    if (d->certificationTarget.userID(0).numSignatures() == 0) {
+        d->certificationTarget.update();
+    }
+
+    // check if there are any certifications the user can revoke
+    const auto userIDsToConsider = d->uids.empty() ? d->certificationTarget.userIDs() : d->uids;
+    std::vector<UserID> revokableUserIDs;
+    std::copy_if(userIDsToConsider.begin(), userIDsToConsider.end(), std::back_inserter(revokableUserIDs), &Kleo::userCanRevokeCertifications);
+    if (revokableUserIDs.empty()) {
+        const auto message = d->uids.empty() //
+            ? i18n("You cannot revoke any certifications of this key.")
+            : i18np("You cannot revoke any certifications of this user ID.", "You cannot revoke any certifications of these user IDs.", d->uids.size());
+        KMessageBox::information(d->parentWidgetOrView(), message);
+        d->finished();
+        return;
+    }
+
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
 
     d->dialog->setCertificateToRevoke(d->certificationTarget);
-    if (!d->uids.empty()) {
-        d->dialog->setSelectedUserIDs(d->uids);
-    }
+    d->dialog->setSelectedUserIDs(revokableUserIDs);
     if (!d->certificationKey.isNull()) {
         d->dialog->setSelectedCertificationKey(d->certificationKey);
     }

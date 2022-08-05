@@ -32,6 +32,7 @@ QString ApplicationState::lastUsedExportDirectory()
 
 void ApplicationState::setLastUsedExportDirectory(const QString &path)
 {
+    const QFileInfo fi{path};
     KConfigGroup stateConfig{KSharedConfig::openStateConfig(), "Export"};
-    stateConfig.writeEntry("LastDirectory", QFileInfo{path}.absolutePath());
+    stateConfig.writeEntry("LastDirectory", fi.isDir() ? fi.absoluteFilePath() : fi.absolutePath());
 }

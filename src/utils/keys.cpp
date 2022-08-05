@@ -111,6 +111,9 @@ Kleo::CertificationRevocationFeasibility Kleo::userCanRevokeCertification(const 
 
 bool Kleo::userCanRevokeCertifications(const GpgME::UserID &userId)
 {
+    if (userId.numSignatures() == 0) {
+        qCWarning(KLEOPATRA_LOG) << __func__ << "- Error: Signatures of user ID" << QString::fromUtf8(userId.id()) << "not available";
+    }
     return Kleo::any_of(userId.signatures(), [](const auto &certification) {
         return userCanRevokeCertification(certification) == CertificationCanBeRevoked;
     });

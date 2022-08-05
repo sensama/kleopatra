@@ -116,10 +116,15 @@ void GenRevokeCommand::doStart()
         if (!mOutputFileName.endsWith(QLatin1String(".rev"))) {
             mOutputFileName += QLatin1String(".rev");
         }
-        if (QFileInfo(mOutputFileName).exists()) {
-            auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(), i18n("The file <b>%1</b> already exists.\n"
-                                                  "Overwrite?", mOutputFileName),
-                                                  i18n("Overwrite Existing File?"));
+        const QFileInfo fi{mOutputFileName};
+        if (fi.exists()) {
+            auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+                                                  xi18n("The file <filename>%1</filename> already exists. Do you wish to overwrite it?", fi.fileName()),
+                                                  i18nc("@title:window", "Overwrite File?"),
+                                                  KStandardGuiItem::overwrite(),
+                                                  KStandardGuiItem::cancel(),
+                                                  {},
+                                                  KMessageBox::Notify|KMessageBox::Dangerous);
             if (sel == KMessageBox::No) {
                 proposedFileName = mOutputFileName;
                 mOutputFileName.clear();

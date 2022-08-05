@@ -141,7 +141,8 @@ void Kleo::unsetDefaultButtons(const QDialogButtonBox *buttonBox)
     if (!buttonBox) {
         return;
     }
-    for (const auto buttons = buttonBox->buttons(); auto button : buttons) {
+    const auto buttons = buttonBox->buttons();
+    for (auto button : buttons) {
         if (auto pushButton = qobject_cast<QPushButton *>(button)) {
             pushButton->setDefault(false);
         }
@@ -153,7 +154,8 @@ void Kleo::unsetAutoDefaultButtons(const QDialog *dialog)
     if (!dialog) {
         return;
     }
-    for (const auto pushButtons = dialog->findChildren<QPushButton *>(); auto pushButton : pushButtons) {
+    const auto pushButtons = dialog->findChildren<QPushButton *>();
+    for (auto pushButton : pushButtons) {
         pushButton->setAutoDefault(false);
     }
 }

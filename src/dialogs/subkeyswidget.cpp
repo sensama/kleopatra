@@ -215,7 +215,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         QByteArray(currentItem->data(0, Qt::UserRole).value<GpgME::Subkey>().fingerprint()) : QByteArray();
     d->ui.subkeysTree->clear();
 
-    for (const auto subkeys = key.subkeys(); const auto &subkey : subkeys) {
+    const auto subkeys = key.subkeys();
+    for (const auto &subkey : subkeys) {
         auto item = new QTreeWidgetItem;
         item->setData(0, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
         item->setData(0, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));

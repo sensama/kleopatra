@@ -431,7 +431,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                     m_workDir = std::make_unique<QTemporaryDir>(heuristicBaseDirectory(fileNames) + QStringLiteral("/kleopatra-XXXXXX"));
                 }
                 if (!m_workDir->isValid()) {
-                    qCDebug(KLEOPATRA_LOG) << m_workDir->path() << "not a valid temporary directory.";
+                    qCDebug(KLEOPATRA_LOG) << heuristicBaseDirectory(fileNames) << "not a valid temporary directory.";
                     m_workDir.reset();
                 }
             }

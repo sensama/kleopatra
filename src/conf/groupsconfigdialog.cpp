@@ -92,7 +92,8 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
 
     const auto *const item = addPage(d->configPage, i18n("Groups"), /*pixmapName=*/ QString(), /*header=*/ QString(), /*manage=*/ false);
     // prevent scroll area embedding the config page from receiving focus
-    for (const auto scrollAreas = item->widget()->findChildren<QScrollArea *>(); auto sa : scrollAreas) {
+    const auto scrollAreas = item->widget()->findChildren<QScrollArea *>();
+    for (auto sa : scrollAreas) {
         sa->setFocusPolicy(Qt::NoFocus);
     }
 

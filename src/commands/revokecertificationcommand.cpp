@@ -16,7 +16,9 @@
 
 #include "exportopenpgpcertstoservercommand.h"
 #include "dialogs/revokecertificationdialog.h"
+#include <utils/keys.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
@@ -231,12 +233,11 @@ void RevokeCertificationCommand::doStart()
         return;
     }
 
-    for (const UserID &uid : std::as_const(d->uids))
-        if (qstricmp(uid.parent().primaryFingerprint(), d->certificationTarget.primaryFingerprint()) != 0) {
-            qCWarning(KLEOPATRA_LOG) << "User ID <-> Key mismatch!";
-            d->finished();
-            return;
-        }
+    if (!Kleo::all_of(d->uids, userIDBelongsToKey(d->certificationTarget))) {
+        qCWarning(KLEOPATRA_LOG) << "User ID <-> Key mismatch!";
+        d->finished();
+        return;
+    }
 
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);

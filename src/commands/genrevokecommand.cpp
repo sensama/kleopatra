@@ -12,8 +12,9 @@
 
 #include "genrevokecommand.h"
 
-#include <Libkleo/GnuPG>
+#include <utils/applicationstate.h>
 
+#include <Libkleo/GnuPG>
 #include <Libkleo/Formatting>
 
 #include <gpgme++/key.h>
@@ -100,9 +101,10 @@ void GenRevokeCommand::postSuccessHook(QWidget *parentWidget)
 /* Well not much to do with GnuPGProcessCommand anymore I guess.. */
 void GenRevokeCommand::doStart()
 {
+    auto proposedFileName = ApplicationState::lastUsedExportDirectory() + u'/' + QString::fromLatin1(d->key().primaryFingerprint()) + QLatin1String{".rev"};
     while (mOutputFileName.isEmpty()) {
         mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(), i18n("Generate revocation certificate"),
-                                                       QString(),
+                                                       proposedFileName,
                                                        QStringLiteral("%1 (*.rev)").arg(i18n("Revocation Certificates ")));
         if (mOutputFileName.isEmpty()) {
             d->finished();
@@ -116,11 +118,12 @@ void GenRevokeCommand::doStart()
                                                   "Overwrite?", mOutputFileName),
                                                   i18n("Overwrite Existing File?"));
             if (sel == KMessageBox::No) {
-                mOutputFileName = QString();
+                proposedFileName = mOutputFileName;
+                mOutputFileName.clear();
             }
         }
     }
-
+    ApplicationState::setLastUsedExportDirectory(mOutputFileName);
 
     auto proc = process();
     // We do custom io

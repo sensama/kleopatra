@@ -88,4 +88,19 @@ CertificationRevocationFeasibility userCanRevokeCertification(const GpgME::UserI
  */
 bool userCanRevokeCertifications(const GpgME::UserID &userId);
 
+/**
+ * Returns true, if the user ID \p userID belongs to the key \p key.
+ */
+bool userIDBelongsToKey(const GpgME::UserID &userID, const GpgME::Key &key);
+
+/**
+ * Returns a unary predicate to check if a user ID belongs to the key \p key.
+ */
+inline auto userIDBelongsToKey(const GpgME::Key &key)
+{
+    return [key](const GpgME::UserID &userID) {
+        return userIDBelongsToKey(userID, key);
+    };
+}
+
 }

@@ -115,3 +115,8 @@ bool Kleo::userCanRevokeCertifications(const GpgME::UserID &userId)
         return userCanRevokeCertification(certification) == CertificationCanBeRevoked;
     });
 }
+
+bool Kleo::userIDBelongsToKey(const GpgME::UserID &userID, const GpgME::Key &key)
+{
+    return !qstricmp(userID.parent().primaryFingerprint(), key.primaryFingerprint());
+}

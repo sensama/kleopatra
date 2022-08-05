@@ -10,6 +10,8 @@
 
 #include "keys.h"
 
+#include <kleopatra_debug.h>
+
 #include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 

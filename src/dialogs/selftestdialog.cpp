@@ -24,7 +24,6 @@
 #include <QAbstractTableModel>
 #include <QApplication>
 #include <QCheckBox>
-#include <QDialog>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>

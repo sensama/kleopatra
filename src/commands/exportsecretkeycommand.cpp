@@ -14,6 +14,7 @@
 #include "command_p.h"
 
 #include "fileoperationspreferences.h"
+#include <utils/applicationstate.h>
 #include "utils/filedialog.h"
 
 #include <Libkleo/Classify>
@@ -41,18 +42,6 @@ using namespace GpgME;
 
 namespace
 {
-
-QString getLastUsedExportDirectory()
-{
-    KConfigGroup config{KSharedConfig::openConfig(), "ExportDialog"};
-    return config.readEntry("LastDirectory", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
-}
-
-void updateLastUsedExportDirectory(const QString &path)
-{
-    KConfigGroup config{KSharedConfig::openConfig(), "ExportDialog"};
-    config.writeEntry("LastDirectory", QFileInfo{path}.absolutePath());
-}
 
 QString openPGPCertificateFileExtension()
 {
@@ -92,7 +81,7 @@ QString proposeFilename(const Key &key)
     filename = QStringView{u"%1_%2_SECRET"}.arg(name, shortKeyID);
     filename.replace(u'/', u'_');
 
-    return getLastUsedExportDirectory() + u'/' + filename + u'.' + certificateFileExtension(key.protocol());
+    return ApplicationState::lastUsedExportDirectory() + u'/' + filename + u'.' + certificateFileExtension(key.protocol());
 }
 
 QString secretKeyFileFilters(GpgME::Protocol protocol)
@@ -122,7 +111,7 @@ QString requestFilename(const Key &key, const QString &proposedFilename, QWidget
         if (fi.suffix().isEmpty()) {
             filename += u'.' + certificateFileExtension(key.protocol());
         }
-        updateLastUsedExportDirectory(filename);
+        ApplicationState::setLastUsedExportDirectory(filename);
     }
 
     return filename;

@@ -413,6 +413,8 @@ set(_kleopatra_SRCS
   utils/accessibility.h
   utils/action_data.cpp
   utils/action_data.h
+  utils/applicationstate.cpp
+  utils/applicationstate.h
   utils/archivedefinition.cpp
   utils/archivedefinition.h
   utils/auditlog.cpp

@@ -15,6 +15,7 @@
 
 #include "command_p.h"
 
+#include <utils/applicationstate.h>
 #include <utils/filedialog.h>
 
 #include <Libkleo/Classify>
@@ -178,8 +179,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
         return true;
     }
 
-    KConfigGroup config(KSharedConfig::openConfig(), "ExportDialog");
-    const auto lastDir = config.readEntry("LastDirectory", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    const auto lastDir = ApplicationState::lastUsedExportDirectory();
 
     QString proposedFileName = lastDir + QLatin1Char('/');
     if (keys().size() == 1) {
@@ -237,7 +237,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
     }
 
     fileNames[protocol] = fname;
-    config.writeEntry("LastDirectory", fi.absolutePath());
+    ApplicationState::setLastUsedExportDirectory(fi.absolutePath());
     return !fname.isEmpty();
 }
 

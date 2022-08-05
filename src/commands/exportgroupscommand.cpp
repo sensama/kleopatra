@@ -13,6 +13,7 @@
 #include "exportgroupscommand.h"
 #include "command_p.h"
 
+#include <utils/applicationstate.h>
 #include "utils/filedialog.h"
 
 #include <Libkleo/Algorithm>
@@ -42,23 +43,11 @@ namespace
 
 static const QString certificateGroupFileExtension{QLatin1String{".kgrp"}};
 
-QString getLastUsedExportDirectory()
-{
-    KConfigGroup config{KSharedConfig::openConfig(), "ExportDialog"};
-    return config.readEntry("LastDirectory", QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
-}
-
-void updateLastUsedExportDirectory(const QString &path)
-{
-    KConfigGroup config{KSharedConfig::openConfig(), "ExportDialog"};
-    config.writeEntry("LastDirectory", QFileInfo{path}.absolutePath());
-}
-
 QString proposeFilename(const std::vector<KeyGroup> &groups)
 {
     QString filename;
 
-    filename = getLastUsedExportDirectory() + QLatin1Char{'/'};
+    filename = ApplicationState::lastUsedExportDirectory() + QLatin1Char{'/'};
     if (groups.size() == 1) {
         filename += groups.front().name().replace(QLatin1Char{'/'}, QLatin1Char{'_'});
     } else {
@@ -83,7 +72,7 @@ QString requestFilename(QWidget *parent, const std::vector<KeyGroup> &groups)
         if (fi.suffix().isEmpty()) {
             filename += certificateGroupFileExtension;
         }
-        updateLastUsedExportDirectory(filename);
+        ApplicationState::setLastUsedExportDirectory(filename);
     }
 
     return filename;

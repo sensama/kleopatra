@@ -103,9 +103,12 @@ void GenRevokeCommand::doStart()
 {
     auto proposedFileName = ApplicationState::lastUsedExportDirectory() + u'/' + QString::fromLatin1(d->key().primaryFingerprint()) + QLatin1String{".rev"};
     while (mOutputFileName.isEmpty()) {
-        mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(), i18n("Generate revocation certificate"),
+        mOutputFileName = QFileDialog::getSaveFileName(d->parentWidgetOrView(),
+                                                       i18n("Generate revocation certificate"),
                                                        proposedFileName,
-                                                       QStringLiteral("%1 (*.rev)").arg(i18n("Revocation Certificates ")));
+                                                       QStringLiteral("%1 (*.rev)").arg(i18n("Revocation Certificates ")),
+                                                       {},
+                                                       QFileDialog::DontConfirmOverwrite);
         if (mOutputFileName.isEmpty()) {
             d->finished();
             return;

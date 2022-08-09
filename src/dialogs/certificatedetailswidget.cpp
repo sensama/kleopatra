@@ -30,6 +30,7 @@
 #include "commands/refreshcertificatecommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokeuseridcommand.h"
+#include "commands/setprimaryuseridcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
@@ -247,6 +248,7 @@ public:
     void webOfTrustClicked();
     void exportClicked();
     void addUserID();
+    void setPrimaryUserID(const GpgME::UserID &uid = {});
     void changePassphrase();
     void changeExpiration();
     void keysMayHaveChanged();
@@ -290,6 +292,7 @@ private:
         QLabel *userIDTableLabel = nullptr;
         NavigatableTreeWidget *userIDTable = nullptr;
         QPushButton *addUserIDBtn = nullptr;
+        QPushButton *setPrimaryUserIDBtn = nullptr;
         QPushButton *certifyBtn = nullptr;
         QPushButton *revokeCertificationsBtn = nullptr;
         QPushButton *revokeUserIDBtn = nullptr;
@@ -348,6 +351,10 @@ private:
 
             addUserIDBtn = new QPushButton(i18nc("@action:button", "Add User ID"), parent);
             buttonRow->addWidget(addUserIDBtn);
+
+            setPrimaryUserIDBtn = new QPushButton{i18nc("@action:button", "Flag as Primary"), parent};
+            setPrimaryUserIDBtn->setToolTip(i18nc("@info:tooltip", "Flag the selected user ID as the primary user ID of this key."));
+            buttonRow->addWidget(setPrimaryUserIDBtn);
 
             certifyBtn = new QPushButton(i18nc("@action:button", "Certify User IDs"), parent);
             buttonRow->addWidget(certifyBtn);
@@ -509,6 +516,8 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
             q, [this]() { updateUserIDActions(); });
     connect(ui.addUserIDBtn, &QPushButton::clicked,
             q, [this]() { addUserID(); });
+    connect(ui.setPrimaryUserIDBtn, &QPushButton::clicked,
+            q, [this]() { setPrimaryUserID(); });
     connect(ui.revokeUserIDBtn, &QPushButton::clicked,
             q, [this]() { revokeSelectedUserID(); });
     connect(ui.changePassphraseBtn, &QPushButton::clicked,
@@ -551,6 +560,11 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
     ui.addUserIDBtn->setVisible(isOwnKey);
+#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+    ui.setPrimaryUserIDBtn->setVisible(isOwnKey);
+#else
+    ui.setPrimaryUserIDBtn->setVisible(false);
+#endif
     // ui.certifyBtn->setVisible(true); // always visible (for OpenPGP keys)
     // ui.webOfTrustBtn->setVisible(true); // always visible (for OpenPGP keys)
     ui.revokeCertificationsBtn->setVisible(Kleo::Commands::RevokeCertificationCommand::isSupported());
@@ -585,6 +599,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     // update availability of buttons
     const auto userCanSignUserIDs = userHasCertificationKey();
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
+    ui.setPrimaryUserIDBtn->setEnabled(false); // requires a selected user ID
     ui.certifyBtn->setEnabled(userCanSignUserIDs);
     ui.revokeCertificationsBtn->setEnabled(userCanSignUserIDs);
     ui.revokeUserIDBtn->setEnabled(false); // requires a selected user ID
@@ -606,7 +621,13 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
 void CertificateDetailsWidget::Private::updateUserIDActions()
 {
     const auto userIDs = selectedUserIDs(ui.userIDTable);
-    ui.revokeUserIDBtn->setEnabled((userIDs.size() == 1) && canCreateCertifications(key) && canRevokeUserID(userIDs.front()));
+    const auto singleUserID = userIDs.size() == 1 ? userIDs.front() : GpgME::UserID{};
+    const bool isPrimaryUserID = !singleUserID.isNull() && (ui.userIDTable->selectedItems().front() == ui.userIDTable->topLevelItem(0));
+    ui.setPrimaryUserIDBtn->setEnabled(!singleUserID.isNull() //
+                                       && !isPrimaryUserID //
+                                       && !Kleo::isRevokedOrExpired(singleUserID) //
+                                       && canBeUsedForSecretKeyOperations(key));
+    ui.revokeUserIDBtn->setEnabled(!singleUserID.isNull() && canCreateCertifications(key) && canRevokeUserID(singleUserID));
 }
 
 void CertificateDetailsWidget::Private::setUpUserIDTable()
@@ -850,6 +871,28 @@ void CertificateDetailsWidget::Private::addUserID()
     cmd->start();
 }
 
+void CertificateDetailsWidget::Private::setPrimaryUserID(const GpgME::UserID &uid)
+{
+    auto userId = uid;
+    if (userId.isNull()) {
+        const auto userIDs = selectedUserIDs(ui.userIDTable);
+        if (userIDs.size() != 1) {
+            return;
+        }
+        userId = userIDs.front();
+    }
+
+    auto cmd = new Kleo::Commands::SetPrimaryUserIDCommand(userId);
+    QObject::connect(cmd, &Kleo::Commands::SetPrimaryUserIDCommand::finished, q, [this]() {
+        ui.userIDTable->setEnabled(true);
+        // the Flag As Primary button will be updated by the key update
+        updateKey();
+    });
+    ui.userIDTable->setEnabled(false);
+    ui.setPrimaryUserIDBtn->setEnabled(false);
+    cmd->start();
+}
+
 namespace
 {
 void ensureThatKeyDetailsAreLoaded(GpgME::Key &key)
@@ -880,9 +923,25 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 {
     const auto userIDs = selectedUserIDs(ui.userIDTable);
     const auto singleUserID = (userIDs.size() == 1) ? userIDs.front() : GpgME::UserID{};
+#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+    const bool isPrimaryUserID = !singleUserID.isNull() && (ui.userIDTable->selectedItems().front() == ui.userIDTable->topLevelItem(0));
+#endif
     const bool canSignUserIDs = userHasCertificationKey();
 
     auto menu = new QMenu(q);
+#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+    if (key.hasSecret()) {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("favorite")),
+                                      i18nc("@action:inmenu", "Flag as Primary User ID"),
+                                      q, [this, singleUserID]() {
+                                          setPrimaryUserID(singleUserID);
+                                      });
+        action->setEnabled(!singleUserID.isNull() //
+                           && !isPrimaryUserID //
+                           && !Kleo::isRevokedOrExpired(singleUserID) //
+                           && canBeUsedForSecretKeyOperations(key));
+    }
+#endif
     {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Certify User IDs...")
                                                 : i18ncp("@action:inmenu", "Certify User ID...", "Certify User IDs...", userIDs.size());

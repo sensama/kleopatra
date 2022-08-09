@@ -201,6 +201,8 @@ set(_kleopatra_SRCS
   commands/setinitialpincommand.h
   commands/setpivcardapplicationadministrationkeycommand.cpp
   commands/setpivcardapplicationadministrationkeycommand.h
+  commands/setprimaryuseridcommand.cpp
+  commands/setprimaryuseridcommand.h
   commands/signclipboardcommand.cpp
   commands/signclipboardcommand.h
   commands/signencryptfilescommand.cpp

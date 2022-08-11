@@ -92,6 +92,7 @@ AnimatedExpander::AnimatedExpander(const QString &title, QWidget *parent):
     // start out collapsed
     contentArea.setMaximumHeight(0);
     contentArea.setMinimumHeight(0);
+    contentArea.setVisible(false);
 
     // let the entire widget grow and shrink with its content
     toggleAnimation.addAnimation(new QPropertyAnimation(this, "minimumHeight"));
@@ -106,9 +107,19 @@ AnimatedExpander::AnimatedExpander(const QString &title, QWidget *parent):
     mainLayout.addWidget(&contentArea, row, 0, 1, 3);
     setLayout(&mainLayout);
     QObject::connect(&toggleButton, &QToolButton::clicked, [this](const bool checked) {
+        if (checked) {
+            // make the content visible when expanding starts
+            contentArea.setVisible(true);
+        }
         toggleButton.setArrowType(checked ? Qt::ArrowType::DownArrow : Qt::ArrowType::RightArrow);
         toggleAnimation.setDirection(checked ? QAbstractAnimation::Forward : QAbstractAnimation::Backward);
         toggleAnimation.start();
+    });
+    connect(&toggleAnimation, &QAbstractAnimation::finished, [this]() {
+        // hide the content area when it is fully collapsed
+        if (!toggleButton.isChecked()) {
+            contentArea.setVisible(false);
+        }
     });
 }
 

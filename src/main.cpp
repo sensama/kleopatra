@@ -190,15 +190,16 @@ int main(int argc, char **argv)
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
     int rc;
-    Kleo::UiServer server(parser.value(QStringLiteral("uiserver-socket")));
+    Kleo::UiServer *server = nullptr;
     try {
+        server = new Kleo::UiServer(parser.value(QStringLiteral("uiserver-socket")));
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer created";
 
-        QObject::connect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
+        QObject::connect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
 
-        QObject::connect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
+        QObject::connect(server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
 
-#define REGISTER( Command ) server.registerCommandFactory( std::shared_ptr<Kleo::AssuanCommandFactory>( new Kleo::GenericAssuanCommandFactory<Kleo::Command> ) )
+#define REGISTER( Command ) server->registerCommandFactory( std::shared_ptr<Kleo::AssuanCommandFactory>( new Kleo::GenericAssuanCommandFactory<Kleo::Command> ) )
         REGISTER(CreateChecksumsCommand);
         REGISTER(DecryptCommand);
         REGISTER(DecryptFilesCommand);
@@ -219,7 +220,7 @@ int main(int argc, char **argv)
         REGISTER(VerifyFilesCommand);
 #undef REGISTER
 
-        server.start();
+        server->start();
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer started";
     } catch (const std::exception &e) {
         qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
@@ -230,8 +231,8 @@ int main(int argc, char **argv)
         QMessageBox::information(nullptr, i18n("GPG UI Server Error"),
                                  i18n("<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>"
                                       "The error given was: <b>%1</b><br/>"
-                                      "You can use Kleopatra as a certificate manager, but cryptographic plugins that "
-                                      "rely on a GPG UI Server being present might not work correctly, or at all.</qt>",
+                                      "This likely means that there is a problem with your installation. Try reinstalling or "
+                                      "contact your Administrator for support.</qt>",
                                       QString::fromUtf8(e.what()).toHtmlEscaped()));
 #endif
     }
@@ -245,7 +246,9 @@ int main(int argc, char **argv)
     }
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
 
-    fillKeyCache(&server);
+    if (server) {
+        fillKeyCache(server);
+    }
 #ifndef QT_NO_SYSTEMTRAYICON
     app.startMonitoringSmartCard();
 #endif
@@ -263,11 +266,14 @@ int main(int argc, char **argv)
     rc = app.exec();
 
     app.setIgnoreNewInstance(true);
-    QObject::disconnect(&server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
-    QObject::disconnect(&server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
+    QObject::disconnect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
+    QObject::disconnect(server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
 
-    server.stop();
-    server.waitForStopped();
+    if (server) {
+        server->stop();
+        server->waitForStopped();
+        delete server;
+    }
 
     return rc;
 }

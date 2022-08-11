@@ -279,14 +279,18 @@ public:
         labelHelper.addLabel(mFprLabel);
         mainLay->addWidget(mFprLabel);
 
+        {
         auto secKeyLay = new QHBoxLayout;
-        secKeyLay->addWidget(new QLabel(i18n("Certify with:")));
+        auto label = new QLabel{i18n("Certify with:"), q};
+        secKeyLay->addWidget(label);
 
         mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
         mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
+        label->setBuddy(mSecKeySelect);
 
         secKeyLay->addWidget(mSecKeySelect, 1);
         mainLay->addLayout(secKeyLay);
+        }
 
         mMissingOwnerTrustInfo = new KMessageWidget{q};
         mSetOwnerTrustAction = new QAction{q};
@@ -334,8 +338,10 @@ public:
         {
             auto tagsLay = new QHBoxLayout;
 
+            auto label = new QLabel{i18n("Tags:"), q};
             mTagsLE = new QLineEdit{q};
-            mTagsLE->setPlaceholderText(i18n("Tags"));
+            label->setBuddy(mTagsLE);
+
             auto infoBtn = createInfoButton(i18n("You can use this to add additional info to a certification.") +
                                             QStringLiteral("<br/><br/>") +
                                             i18n("Tags created by anyone with full certification trust "
@@ -343,7 +349,7 @@ public:
                                             q);
             infoBtn->setAccessibleName(i18n("Explain tags"));
 
-            tagsLay->addWidget(new QLabel{i18n("Tags:"), q});
+            tagsLay->addWidget(label);
             tagsLay->addWidget(mTagsLE, 1);
             tagsLay->addWidget(infoBtn);
 
@@ -409,11 +415,14 @@ public:
         {
             auto layout = new QHBoxLayout;
 
+            auto label = new QLabel{i18n("Domain:"), q};
+
             mTrustSignatureDomainLE = new QLineEdit{q};
-            mTrustSignatureDomainLE->setPlaceholderText(i18n("Domain"));
             mTrustSignatureDomainLE->setEnabled(mTrustSignatureCB->isChecked());
+            label->setBuddy(mTrustSignatureDomainLE);
 
             layout->addSpacing(checkBoxSize(mTrustSignatureCB).width());
+            layout->addWidget(label);
             layout->addWidget(mTrustSignatureDomainLE);
 
             advLay->addLayout(layout);

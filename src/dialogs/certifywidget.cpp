@@ -60,7 +60,8 @@ class AnimatedExpander: public QWidget
 {
     Q_OBJECT
 public:
-    explicit AnimatedExpander(const QString &title = QString(),
+    explicit AnimatedExpander(const QString &title,
+                              const QString &accessibleTitle = {},
                               QWidget *parent = nullptr);
     void setContentLayout(QLayout *contentLayout);
 
@@ -73,13 +74,16 @@ private:
     int animationDuration{300};
 };
 
-AnimatedExpander::AnimatedExpander(const QString &title, QWidget *parent):
-    QWidget(parent)
+AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessibleTitle, QWidget *parent)
+    : QWidget{parent}
 {
     toggleButton.setStyleSheet(QStringLiteral("QToolButton { border: none; }"));
     toggleButton.setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toggleButton.setArrowType(Qt::ArrowType::RightArrow);
     toggleButton.setText(title);
+    if (!accessibleTitle.isEmpty()) {
+        toggleButton.setAccessibleName(accessibleTitle);
+    }
     toggleButton.setCheckable(true);
     toggleButton.setChecked(false);
 
@@ -324,7 +328,7 @@ public:
         mainLay->addWidget(listView, 1);
 
         // Setup the advanced area
-        auto expander = new AnimatedExpander{i18n("Advanced"), q};
+        auto expander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
         mainLay->addWidget(expander);
 
         auto advLay = new QVBoxLayout;

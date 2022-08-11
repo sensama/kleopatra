@@ -355,3 +355,5 @@ void RevokeCertificationCommand::doCancel()
 
 #undef d
 #undef q
+
+#include "moc_revokecertificationcommand.cpp"

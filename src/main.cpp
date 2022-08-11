@@ -225,15 +225,20 @@ int main(int argc, char **argv)
     } catch (const std::exception &e) {
         qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
 #ifdef Q_OS_WIN
-        // Once there actually is a plugin for other systems then Windows this
-        // error should probably be shown, too. But currently only Windows users need
-        // to care.
+        // We should probably change the UIServer to be only run on Windows at all because
+        // only the Windows Explorer Plugin uses it. But the plan of GnuPG devs as of 2022 is to
+        // change the Windows Explorer Plugin to use the command line and then remove the
+        // UiServer for everyone.
         QMessageBox::information(nullptr, i18n("GPG UI Server Error"),
-                                 i18n("<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>"
-                                      "The error given was: <b>%1</b><br/>"
-                                      "This likely means that there is a problem with your installation. Try reinstalling or "
-                                      "contact your Administrator for support.</qt>",
-                                      QString::fromUtf8(e.what()).toHtmlEscaped()));
+                                 i18nc("This error message is only shown on Windows when the socket to communicate with "
+                                       "Windows Explorer could not be created. This often times means that the whole installation is "
+                                       "buggy. e.g. GnuPG is not installed at all.",
+                                       "<qt>The Kleopatra Windows Explorer Module could not be initialized.<br/>"
+                                       "The error given was: <b>%1</b><br/>"
+                                       "This likely means that there is a problem with your installation. Try reinstalling or "
+                                       "contact your Administrator for support.<br/>"
+                                       "You can try to continue to use Kleopatra but there might be other problems.</qt>",
+                                       QString::fromUtf8(e.what()).toHtmlEscaped()));
 #endif
     }
     const bool daemon = parser.isSet(QStringLiteral("daemon"));

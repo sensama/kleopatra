@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <commands/command.h>
+#include "command.h"
 
 #include <gpgme++/key.h>
 
@@ -23,7 +23,7 @@ class RevokeCertificationCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit RevokeCertificationCommand(QAbstractItemView *view, KeyListController *parent);
+    RevokeCertificationCommand(QAbstractItemView *view, KeyListController *parent);
     explicit RevokeCertificationCommand(const GpgME::Key &key);
     explicit RevokeCertificationCommand(const GpgME::UserID &uid);
     explicit RevokeCertificationCommand(const std::vector<GpgME::UserID> &uids);

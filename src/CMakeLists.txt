@@ -343,10 +343,6 @@ set(_kleopatra_SRCS
   dialogs/ownertrustdialog.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
   dialogs/pivcardapplicationadministrationkeyinputdialog.h
-  dialogs/revokecertificationdialog.cpp
-  dialogs/revokecertificationdialog.h
-  dialogs/revokecertificationwidget.cpp
-  dialogs/revokecertificationwidget.h
   dialogs/revokekeydialog.cpp
   dialogs/revokekeydialog.h
   dialogs/selftestdialog.cpp

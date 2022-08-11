@@ -276,6 +276,7 @@ public:
         auto mainLay = new QVBoxLayout{q};
 
         mFprLabel = new QLabel{q};
+        labelHelper.addLabel(mFprLabel);
         mainLay->addWidget(mFprLabel);
 
         auto secKeyLay = new QHBoxLayout;
@@ -643,6 +644,8 @@ public:
     QCheckBox *mExpirationCheckBox = nullptr;
     KDateComboBox *mExpirationDateEdit = nullptr;
     QAction *mSetOwnerTrustAction = nullptr;
+
+    LabelHelper labelHelper;
 
     UserIDModel mUserIDModel;
     GpgME::Key mTarget;

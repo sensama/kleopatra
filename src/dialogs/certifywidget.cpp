@@ -350,6 +350,7 @@ public:
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
         userIdListView = new ListView{q};
+        userIdListView->setAccessibleName(i18n("User IDs"));
         userIdListView->setModel(&mUserIDModel);
         mainLay->addWidget(userIdListView, 1);
 

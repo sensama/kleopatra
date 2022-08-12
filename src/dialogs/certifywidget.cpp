@@ -349,9 +349,9 @@ public:
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        auto listView = new ListView{q};
-        listView->setModel(&mUserIDModel);
-        mainLay->addWidget(listView, 1);
+        userIdListView = new ListView{q};
+        userIdListView->setModel(&mUserIDModel);
+        mainLay->addWidget(userIdListView, 1);
 
         // Setup the advanced area
         auto expander = new AnimatedExpander{i18n("Advanced"), i18n("Show advanced options"), q};
@@ -471,7 +471,9 @@ public:
 
         expander->setContentLayout(advLay);
 
-        connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, &CertifyWidget::changed);
+        connect(&mUserIDModel, &QStandardItemModel::itemChanged, q, [this](QStandardItem *item) {
+            onItemChanged(item);
+        });
 
         connect(mExportCB, &QCheckBox::toggled, [this] (bool on) {
             mPublishCB->setEnabled(on);
@@ -681,11 +683,28 @@ public:
         j->start(secKey(), GpgME::Key::Ultimate);
     }
 
+    void onItemChanged(QStandardItem *item)
+    {
+        Q_EMIT q->changed();
+
+#ifndef QT_NO_ACCESSIBILITY
+        if (item) {
+            // assume that the checked state changed
+            QAccessible::State st;
+            st.checked = true;
+            QAccessibleStateChangeEvent e(userIdListView, st);
+            e.setChild(item->index().row());
+            QAccessible::updateAccessibility(&e);
+        }
+#endif
+    }
+
 public:
     CertifyWidget *const q;
     QLabel *mFprLabel = nullptr;
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
+    ListView *userIdListView = nullptr;
     QCheckBox *mExportCB = nullptr;
     QCheckBox *mPublishCB = nullptr;
     QLineEdit *mTagsLE = nullptr;

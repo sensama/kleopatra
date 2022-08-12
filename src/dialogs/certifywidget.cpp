@@ -280,6 +280,32 @@ QString formatDate(const QDate &date, QLocale::FormatType format)
     return QLocale{}.toString(date, dateFormatWithFourDigitYear(format));
 }
 
+class ListView : public QListView
+{
+    Q_OBJECT
+public:
+    using QListView::QListView;
+
+protected:
+    void focusInEvent(QFocusEvent *event) override
+    {
+        QListView::focusInEvent(event);
+        // queue the invokation, so that it happens after the widget itself got focus
+        QMetaObject::invokeMethod(this, &ListView::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
+    }
+
+private:
+    void forceAccessibleFocusEventForCurrentItem()
+    {
+        // force Qt to send a focus event for the current item to accessibility
+        // tools; otherwise, the user has no idea which item is selected when the
+        // list gets keyboard input focus
+        const auto current = currentIndex();
+        setCurrentIndex({});
+        setCurrentIndex(current);
+    }
+};
+
 }
 
 class CertifyWidget::Private
@@ -323,7 +349,7 @@ public:
 
         mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        auto listView = new QListView{q};
+        auto listView = new ListView{q};
         listView->setModel(&mUserIDModel);
         mainLay->addWidget(listView, 1);
 

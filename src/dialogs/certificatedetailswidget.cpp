@@ -38,6 +38,7 @@
 #include "utils/accessibility.h"
 #include "utils/keys.h"
 #include "utils/tags.h"
+#include "view/infofield.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
@@ -84,130 +85,6 @@
 Q_DECLARE_METATYPE(GpgME::UserID)
 
 using namespace Kleo;
-
-class InfoField {
-public:
-    InfoField(const QString &label, QWidget *parent);
-
-    void setValue(const QString &value, const QString &accessibleValue = {});
-    QString value() const;
-
-    void setIcon(const QIcon &icon);
-    void setAction(const QAction *action);
-    void setToolTip(const QString &toolTip);
-    void setVisible(bool visible);
-
-    QLabel *label() const { return mLabel; }
-    QLayout *layout() const { return mLayout; }
-
-private:
-    void onActionChanged();
-
-    QLabel *mLabel = nullptr;
-    QHBoxLayout *mLayout = nullptr;
-    QLabel *mIcon = nullptr;
-    QLabel *mValue = nullptr;
-    QPushButton *mButton = nullptr;
-    const QAction *mAction = nullptr;
-};
-
-InfoField::InfoField(const QString &label, QWidget *parent)
-    : mLabel{new QLabel{label, parent}}
-    , mLayout{new QHBoxLayout}
-    , mIcon{new QLabel{parent}}
-    , mValue{new QLabel{parent}}
-    , mButton{new QPushButton{parent}}
-{
-    mLabel->setBuddy(mValue);
-    mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
-    mIcon->setVisible(false);
-    mLayout->addWidget(mIcon);
-    mValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
-    mValue->setFocusPolicy(Qt::TabFocus);
-    mLayout->addWidget(mValue);
-    mButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    mButton->setVisible(false);
-    mLayout->addWidget(mButton);
-    mLayout->addStretch();
-}
-
-void InfoField::setValue(const QString &value, const QString &accessibleValue)
-{
-    mValue->setText(value);
-    mValue->setAccessibleName(accessibleValue);
-}
-
-QString InfoField::value() const
-{
-    return mValue->text();
-}
-
-void InfoField::setIcon(const QIcon &icon)
-{
-    if (!icon.isNull()) {
-        const int iconSize = mIcon->style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, mIcon);
-        mIcon->setPixmap(icon.pixmap(iconSize));
-        mIcon->setVisible(true);
-    } else {
-        mIcon->setVisible(false);
-        mIcon->clear();
-    }
-}
-
-void InfoField::setAction(const QAction *action)
-{
-    if (action == mAction) {
-        return;
-    }
-    if (mAction) {
-        QObject::disconnect(mButton, {}, mAction, {});
-        QObject::disconnect(mAction, {}, mButton, {});
-    }
-    mAction = action;
-    if (mAction) {
-        QObject::connect(mButton, &QPushButton::clicked, action, &QAction::trigger);
-        QObject::connect(mAction, &QAction::changed, mButton, [this]() {
-            onActionChanged();
-        });
-        onActionChanged();
-        mButton->setAccessibleName(getAccessibleName(mAction));
-        mButton->setVisible(true);
-    } else {
-        mButton->setVisible(false);
-        mButton->setText({});
-        mButton->setIcon({});
-    }
-}
-
-void InfoField::setToolTip(const QString &toolTip)
-{
-    mValue->setToolTip(toolTip);
-}
-
-void InfoField::setVisible(bool visible)
-{
-    mLabel->setVisible(visible);
-    mIcon->setVisible(visible && !mIcon->pixmap(Qt::ReturnByValue).isNull());
-    mValue->setVisible(visible);
-    mButton->setVisible(visible && mAction);
-}
-
-void InfoField::onActionChanged()
-{
-    if (!mAction) {
-        return;
-    }
-    if (mAction->text() != mButton->text()) {
-        mButton->setText(mAction->text());
-    }
-    mButton->setIcon(mAction->icon());
-    if (mAction->toolTip() != mButton->toolTip()) {
-        mButton->setToolTip(mAction->toolTip());
-    }
-    if (mAction->isEnabled() != mButton->isEnabled()) {
-        mButton->setEnabled(mAction->isEnabled());
-    }
-}
 
 namespace
 {

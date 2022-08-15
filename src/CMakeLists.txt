@@ -477,6 +477,8 @@ set(_kleopatra_SRCS
   view/formtextinput.h
   view/htmllabel.cpp
   view/htmllabel.h
+  view/infofield.cpp
+  view/infofield.h
   view/keycacheoverlay.cpp
   view/keycacheoverlay.h
   view/keylistcontroller.cpp

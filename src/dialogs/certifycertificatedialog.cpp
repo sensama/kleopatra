@@ -65,18 +65,16 @@ CertifyCertificateDialog::CertifyCertificateDialog(QWidget *p, Qt::WindowFlags f
     });
 
     KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
-    const QByteArray geom = cfgGroup.readEntry("geometry", QByteArray());
-    if (!geom.isEmpty()) {
-        restoreGeometry(geom);
-        return;
+    const auto size = cfgGroup.readEntry("Size", QSize{640, 480});
+    if (size.isValid()) {
+        resize(size);
     }
-    resize(QSize(640, 480));
 }
 
 CertifyCertificateDialog::~CertifyCertificateDialog()
 {
     KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "CertifyDialog");
-    cfgGroup.writeEntry("geometry", saveGeometry());
+    cfgGroup.writeEntry("Size", size());
     cfgGroup.sync();
 }
 

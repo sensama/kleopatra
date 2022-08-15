@@ -12,6 +12,7 @@
 #include "certifywidget.h"
 
 #include <utils/accessibility.h>
+#include "view/infofield.h"
 
 #include "kleopatra_debug.h"
 
@@ -316,21 +317,25 @@ public:
     {
         auto mainLay = new QVBoxLayout{q};
 
-        mFprLabel = new QLabel{q};
-        labelHelper.addLabel(mFprLabel);
-        mainLay->addWidget(mFprLabel);
-
         {
-        auto secKeyLay = new QHBoxLayout;
-        auto label = new QLabel{i18n("Certify with:"), q};
-        secKeyLay->addWidget(label);
+            auto grid = new QGridLayout;
+            grid->setColumnStretch(1, 1);
+            int row = -1;
 
-        mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
-        mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
-        label->setBuddy(mSecKeySelect);
+            row++;
+            mFprField = std::make_unique<InfoField>(i18n("Fingerprint:"), q);
+            grid->addWidget(mFprField->label(), row, 0);
+            grid->addLayout(mFprField->layout(), row, 1);
 
-        secKeyLay->addWidget(mSecKeySelect, 1);
-        mainLay->addLayout(secKeyLay);
+            row++;
+            auto label = new QLabel{i18n("Certify with:"), q};
+            mSecKeySelect = new KeySelectionCombo{/* secretOnly= */true, q};
+            mSecKeySelect->setKeyFilter(std::make_shared<SecKeyFilter>());
+            label->setBuddy(mSecKeySelect);
+            grid->addWidget(label, row, 0);
+            grid->addWidget(mSecKeySelect);
+
+            mainLay->addLayout(grid);
         }
 
         mMissingOwnerTrustInfo = new KMessageWidget{q};
@@ -555,9 +560,8 @@ public:
 
     void setTarget(const GpgME::Key &key)
     {
-        mFprLabel->setText(i18n("Fingerprint: <b>%1</b>",
-                            Formatting::prettyID(key.primaryFingerprint())) + QStringLiteral("<br/>") +
-                            i18n("<i>Only the fingerprint clearly identifies the key and its owner.</i>"));
+        mFprField->setValue(QStringLiteral("<b>") + Formatting::prettyID(key.primaryFingerprint()) + QStringLiteral("</b>"),
+                            Formatting::accessibleHexID(key.primaryFingerprint()));
         mUserIDModel.setKey(key);
         mTarget = key;
 
@@ -700,7 +704,7 @@ public:
 
 public:
     CertifyWidget *const q;
-    QLabel *mFprLabel = nullptr;
+    std::unique_ptr<InfoField> mFprField;
     KeySelectionCombo *mSecKeySelect = nullptr;
     KMessageWidget *mMissingOwnerTrustInfo = nullptr;
     ListView *userIdListView = nullptr;

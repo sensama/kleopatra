@@ -11,14 +11,30 @@
 #include <QAccessible>
 #include <QPointer>
 
+class QAction;
 class QLabel;
 class QObject;
 class QString;
 
 namespace Kleo
 {
-    QString getAccessibleName(QObject *object);
-    QString getAccessibleDescription(QObject *object);
+    QString getAccessibleName(QWidget *widget);
+    QString getAccessibleDescription(QWidget *widget);
+
+    /**
+     * Sets the accessible name of the action \p action.
+     *
+     * \note Qt does not provide an accessible object for a QAction. Therefore,
+     *       we store the accessible name as custom property of the action.
+     * \sa getAccessibleName
+     */
+    void setAccessibleName(QAction *action, const QString &name);
+    /**
+     * Returns the accessible name of the action \p action.
+     * \sa setAccessibleName
+     */
+    QString getAccessibleName(const QAction *action);
+
     QString invalidEntryText();
     QString requiredText();
 

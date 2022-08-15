@@ -13,6 +13,7 @@
 
 #include <KLocalizedString>
 
+#include <QAction>
 #ifdef Q_OS_WIN32
 #include <QApplication>
 #include <QDesktopWidget>
@@ -29,26 +30,38 @@
 
 using namespace Kleo;
 
+static const char *accessibleNameProperty = "_kleo_accessibleName";
+
 namespace
 {
-QString getAccessibleText(QObject *object, QAccessible::Text t)
+QString getAccessibleText(QWidget *widget, QAccessible::Text t)
 {
     QString name;
-    if (const auto *const iface = QAccessible::queryAccessibleInterface(object)) {
+    if (const auto *const iface = QAccessible::queryAccessibleInterface(widget)) {
         name = iface->text(t);
     }
     return name;
 }
 }
 
-QString Kleo::getAccessibleName(QObject *object)
+QString Kleo::getAccessibleName(QWidget *widget)
 {
-    return getAccessibleText(object, QAccessible::Name);
+    return getAccessibleText(widget, QAccessible::Name);
 }
 
-QString Kleo::getAccessibleDescription(QObject *object)
+QString Kleo::getAccessibleDescription(QWidget *widget)
 {
-    return getAccessibleText(object, QAccessible::Description);
+    return getAccessibleText(widget, QAccessible::Description);
+}
+
+void Kleo::setAccessibleName(QAction *action, const QString &name)
+{
+    action->setProperty(accessibleNameProperty, name);
+}
+
+QString Kleo::getAccessibleName(const QAction *action)
+{
+    return action->property(accessibleNameProperty).toString();
 }
 
 QString Kleo::invalidEntryText()

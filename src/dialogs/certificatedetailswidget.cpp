@@ -35,7 +35,7 @@
 #include "commands/genrevokecommand.h"
 #include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
-
+#include "utils/accessibility.h"
 #include "utils/keys.h"
 #include "utils/tags.h"
 
@@ -84,8 +84,6 @@
 Q_DECLARE_METATYPE(GpgME::UserID)
 
 using namespace Kleo;
-
-static const char *accessibleNameProperty = "_kleo_accessibleName";
 
 class InfoField {
 public:
@@ -172,7 +170,7 @@ void InfoField::setAction(const QAction *action)
             onActionChanged();
         });
         onActionChanged();
-        mButton->setAccessibleName(mAction->property(accessibleNameProperty).toString());
+        mButton->setAccessibleName(getAccessibleName(mAction));
         mButton->setVisible(true);
     } else {
         mButton->setVisible(false);
@@ -413,7 +411,7 @@ private:
                 changeExpirationAction = new QAction{parent};
                 changeExpirationAction->setIcon(QIcon::fromTheme(QStringLiteral("editor")));
                 changeExpirationAction->setToolTip(i18nc("@info:tooltip", "Change the end of the validity period"));
-                changeExpirationAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Change Validity"));
+                Kleo::setAccessibleName(changeExpirationAction, i18nc("@action:button", "Change Validity"));
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), row, 0);
                 gridLayout->addLayout(expiresField->layout(), row, 1);
@@ -424,7 +422,7 @@ private:
                     copyFingerprintAction = new QAction{parent};
                     copyFingerprintAction->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
                     copyFingerprintAction->setToolTip(i18nc("@info:tooltip", "Copy the fingerprint to the clipboard"));
-                    copyFingerprintAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Copy fingerprint"));
+                    Kleo::setAccessibleName(copyFingerprintAction, i18nc("@action:button", "Copy fingerprint"));
                     fingerprintField->setAction(copyFingerprintAction);
                 }
                 gridLayout->addWidget(fingerprintField->label(), row, 0);
@@ -435,7 +433,7 @@ private:
                 showIssuerCertificateAction = new QAction{parent};
                 showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
-                showIssuerCertificateAction->setProperty(accessibleNameProperty, i18nc("@action:button", "Show certificate"));
+                Kleo::setAccessibleName(showIssuerCertificateAction, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);
                 gridLayout->addWidget(smimeIssuerField->label(), row, 0);
                 gridLayout->addLayout(smimeIssuerField->layout(), row, 1);

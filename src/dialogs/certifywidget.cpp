@@ -336,11 +336,9 @@ public:
         mMissingOwnerTrustInfo = new KMessageWidget{q};
         mSetOwnerTrustAction = new QAction{q};
         mSetOwnerTrustAction->setText(i18nc("@action:button", "Set Owner Trust"));
-        mSetOwnerTrustAction->setToolTip(QLatin1String("<html>") +
-                                         i18nc("@info:tooltip",
+        mSetOwnerTrustAction->setToolTip(i18nc("@info:tooltip",
                                                "Click to set the trust level of the selected certification key to ultimate trust. "
-                                               "This is what you usually want to do for your own keys.") +
-                                         QLatin1String("</html>"));
+                                               "This is what you usually want to do for your own keys."));
         connect(mSetOwnerTrustAction, &QAction::triggered, q, [this] () { setOwnerTrust(); });
         mMissingOwnerTrustInfo->addAction(mSetOwnerTrustAction);
         mMissingOwnerTrustInfo->setVisible(false);

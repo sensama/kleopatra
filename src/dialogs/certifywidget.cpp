@@ -318,6 +318,17 @@ public:
         auto mainLay = new QVBoxLayout{q};
 
         {
+            auto label = new QLabel{i18n("Verify the fingerprint, mark the user IDs you want to certify, "
+                "and select the key you want to certify the user IDs with.<br>"
+                "<i>Note: Only the fingerprint clearly identifies the key and its owner.</i>"), q};
+            label->setWordWrap(true);
+            labelHelper.addLabel(label);
+            mainLay->addWidget(label);
+        }
+
+        mainLay->addWidget(new KSeparator{Qt::Horizontal, q});
+
+        {
             auto grid = new QGridLayout;
             grid->setColumnStretch(1, 1);
             int row = -1;

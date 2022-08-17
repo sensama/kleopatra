@@ -23,10 +23,10 @@ ecm_mark_as_test(test_verify)
 
 target_link_libraries(test_verify
   KF5::Libkleo
-  Qt${QT_MAJOR_VERSION}::Test
+  Qt::Test
   KF5::CoreAddons
   KF5::I18n
-  Qt${QT_MAJOR_VERSION}::Widgets
+  Qt::Widgets
 )
 
 if (QT_MAJOR_VERSION STREQUAL "6")

@@ -5,7 +5,7 @@ include(ECMAddTests)
 
 find_package(Qt${QT_MAJOR_VERSION}Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
 
-if(NOT TARGET Qt${QT_MAJOR_VERSION}::Test)
+if(NOT TARGET Qt::Test)
     message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, autotests will not be built.")
     return()
 endif()
@@ -19,7 +19,7 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/kuniqueservice.cpp
     ${logging_category_srcs}
     TEST_NAME kuniqueservicetest
-    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt${QT_MAJOR_VERSION}::Test
+    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt::Test
 )
 
 ecm_add_test(
@@ -27,7 +27,7 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
     ${logging_category_srcs}
     TEST_NAME stripsuffixtest
-    LINK_LIBRARIES KF5::I18n KF5::Libkleo Qt${QT_MAJOR_VERSION}::Test
+    LINK_LIBRARIES KF5::I18n KF5::Libkleo Qt::Test
 )
 
 ecm_add_test(
@@ -35,5 +35,5 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/keyparameters.cpp
     ${logging_category_srcs}
     TEST_NAME keyparameterstest
-    LINK_LIBRARIES Gpgmepp Qt${QT_MAJOR_VERSION}::Test
+    LINK_LIBRARIES Gpgmepp Qt::Test
 )

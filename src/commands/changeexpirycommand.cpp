@@ -261,7 +261,7 @@ void ChangeExpiryCommand::doStart()
     Q_ASSERT(d->dialog);
     const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
     d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() :
-                               QDateTime::fromSecsSinceEpoch(subkey.expirationTime()).date());
+                               QDateTime::fromSecsSinceEpoch(quint32(subkey.expirationTime())).date());
 #ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));

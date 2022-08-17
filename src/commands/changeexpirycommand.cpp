@@ -50,12 +50,14 @@ bool allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(const Key &key)
         });
     }
 
-    const auto primaryExpiration = primaryKey.expirationTime();
-    return std::all_of(std::begin(subkeys), std::end(subkeys), [primaryExpiration] (const auto &subkey) {
+    const auto primaryExpiration = quint32(primaryKey.expirationTime());
+    const auto range = std::make_pair(primaryExpiration > 10 ? primaryExpiration - 10 : 0,
+                                      primaryExpiration < std::numeric_limits<quint32>::max() - 10 ? primaryExpiration + 10 : std::numeric_limits<quint32>::max());
+    return std::all_of(std::begin(subkeys), std::end(subkeys), [range](const auto &subkey) {
         // revoked subkeys are ignored by gpg --quick-set-expire when updating the expiration of all subkeys;
         // check if expiration of subkey is (more or less) the same as the expiration of the primary key
         return subkey.isRevoked() ||
-            (primaryExpiration - 10 <= subkey.expirationTime() && subkey.expirationTime() <= primaryExpiration + 10);
+            (range.first <= quint32(subkey.expirationTime()) && quint32(subkey.expirationTime()) <= range.second);
     });
 }
 #endif

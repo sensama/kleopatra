@@ -235,6 +235,9 @@ OpenPGPKeyCardWidget::OpenPGPKeyCardWidget(QWidget *parent)
     : QWidget{parent}
     , d{std::make_unique<Private>(this)}
 {
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
+        d->update();
+    });
 }
 
 OpenPGPKeyCardWidget::~OpenPGPKeyCardWidget() = default;

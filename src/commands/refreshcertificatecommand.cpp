@@ -19,7 +19,7 @@
 #include <QGpgME/Protocol>
 #ifdef QGPGME_SUPPORTS_KEY_REFRESH
 #include <QGpgME/RefreshKeysJob>
-#include <QGpgME/RefreshOpenPGPKeysJob>
+#include <QGpgME/ReceiveKeysJob>
 #endif
 
 #include <gpgme++/importresult.h>
@@ -44,7 +44,7 @@ public:
     void cancel();
 
 #ifdef QGPGME_SUPPORTS_KEY_REFRESH
-    std::unique_ptr<QGpgME::RefreshOpenPGPKeysJob> startOpenPGPJob();
+    std::unique_ptr<QGpgME::ReceiveKeysJob> startOpenPGPJob();
     std::unique_ptr<QGpgME::RefreshKeysJob> startSMIMEJob();
 #endif
     void onOpenPGPJobResult(const ImportResult &result);
@@ -136,19 +136,19 @@ void RefreshCertificateCommand::Private::cancel()
 }
 
 #ifdef QGPGME_SUPPORTS_KEY_REFRESH
-std::unique_ptr<QGpgME::RefreshOpenPGPKeysJob> RefreshCertificateCommand::Private::startOpenPGPJob()
+std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::startOpenPGPJob()
 {
-    std::unique_ptr<QGpgME::RefreshOpenPGPKeysJob> refreshJob{QGpgME::openpgp()->refreshOpenPGPKeysJob()};
+    std::unique_ptr<QGpgME::ReceiveKeysJob> refreshJob{QGpgME::openpgp()->receiveKeysJob()};
     Q_ASSERT(refreshJob);
 
-    connect(refreshJob.get(), &QGpgME::RefreshOpenPGPKeysJob::result,
+    connect(refreshJob.get(), &QGpgME::ReceiveKeysJob::result,
             q, [this](const GpgME::ImportResult &result) {
                 onOpenPGPJobResult(result);
             });
     connect(refreshJob.get(), &QGpgME::Job::progress,
             q, &Command::progress);
 
-    const GpgME::Error err = refreshJob->start({key});
+    const GpgME::Error err = refreshJob->start({QString::fromLatin1(key.primaryFingerprint())});
     if (err) {
         showError(err);
         return {};

@@ -349,6 +349,11 @@ static QString make_report(const std::vector<ImportResultData> &results,
     return lines.join(QLatin1String{});
 }
 
+static bool isImportFromSingleSource(const std::vector<ImportResultData> &res)
+{
+    return (res.size() == 1) || (res.size() == 2 && res[0].id == res[1].id);
+}
+
 static QString make_message_report(const std::vector<ImportResultData> &res,
                                    const std::vector<ImportedGroup> &groups)
 {
@@ -356,8 +361,7 @@ static QString make_message_report(const std::vector<ImportResultData> &res,
     if (res.empty()) {
         report += i18n("No imports (should not happen, please report a bug).");
     } else {
-        const bool singleSource = (res.size() == 1) || (res.size() == 2 && res[0].id == res[1].id);
-        const QString title = singleSource && !res.front().id.isEmpty() ?
+        const QString title = isImportFromSingleSource(res) && !res.front().id.isEmpty() ?
                               i18n("Detailed results of importing %1:", res.front().id) :
                               i18n("Detailed results of import:");
         report += QLatin1String{"<p>"} + title + QLatin1String{"</p>"};
@@ -427,11 +431,39 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     return true;
 }
 
+namespace
+{
+/**
+ * Returns the Import of an OpenPGP key, if a single certificate was imported and this was an OpenPGP key.
+ * Otherwise, returns a null Import.
+ */
+auto getSingleOpenPGPImport(const std::vector<ImportResultData> &res)
+{
+    static const Import nullImport;
+    if (!isImportFromSingleSource(res)) {
+        return nullImport;
+    }
+    const auto numImported = std::accumulate(res.cbegin(), res.cend(), 0, [](auto s, const auto &r) {
+        return s + r.result.numImported();
+    });
+    if (numImported > 1) {
+        return nullImport;
+    }
+    if ((res.size() >= 1) && (res[0].protocol == GpgME::OpenPGP) && (res[0].result.numImported() == 1) && (res[0].result.imports().size() == 1)) {
+        return res[0].result.imports()[0];
+    } else if ((res.size() == 2) && (res[1].protocol == GpgME::OpenPGP) && (res[1].result.numImported() == 1) && (res[1].result.imports().size() == 1)) {
+        return res[1].result.imports()[0];
+    }
+    return nullImport;
+}
+}
+
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res,
                                                      const std::vector<ImportedGroup> &groups)
 {
-    if (res.size() == 1 && res[0].result.numImported() == 1 && res[0].result.imports().size() == 1) {
-        if (showPleaseCertify(res[0].result.imports()[0])) {
+    const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
+    if (!singleOpenPGPImport.isNull()) {
+        if (showPleaseCertify(singleOpenPGPImport)) {
             return;
         }
     }

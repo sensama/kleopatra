@@ -134,8 +134,13 @@ public:
         mGenerateBtn->setDefaultAction(genKeyAction);
         mGenerateBtn->setIconSize(QSize(64, 64));
         mGenerateBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        mGenerateBtn->setToolTip(i18n("Create a new OpenPGP key pair") + QStringLiteral("<br>") +
-                                 i18n("To create an S/MIME certificate request use \"New Key Pair\" from the 'File' Menu instead"));
+        const auto generateBtnDescription = kxi18nc("@info",
+                                                    "Create a new OpenPGP key pair.<nl/>"
+                                                    "To create an S/MIME certificate request use "
+                                                    "<interface>New S/MIME Certification Request</interface> "
+                                                    "from the <interface>File</interface> menu instead.");
+        mGenerateBtn->setToolTip(generateBtnDescription.toString());
+        mGenerateBtn->setAccessibleDescription(generateBtnDescription.toString(Kuit::PlainText));
 
         KConfigGroup restrictions(KSharedConfig::openConfig(), "KDE Action Restrictions");
         mGenerateBtn->setEnabled(restrictions.readEntry("action/file_new_certificate", true));
@@ -144,8 +149,11 @@ public:
         mImportBtn->setDefaultAction(importAction);
         mImportBtn->setIconSize(QSize(64, 64));
         mImportBtn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-        mImportBtn->setToolTip(i18n("Import from a file.") + QStringLiteral("<br>") +
-                               i18n("To import from a public keyserver use \"Lookup on Server\" instead."));
+        const auto importBtnDescription = kxi18nc("@info",
+                                                  "Import certificate from a file.<nl/>"
+                                                  "To import from a public keyserver use <interface>Lookup on Server</interface> instead.");
+        mImportBtn->setToolTip(importBtnDescription.toString());
+        mImportBtn->setAccessibleDescription(importBtnDescription.toString(Kuit::PlainText));
         mImportBtn->setEnabled(restrictions.readEntry("action/file_import_certificate", true));
 
         auto btnLayout = new QHBoxLayout;

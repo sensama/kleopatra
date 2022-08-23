@@ -35,6 +35,7 @@
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyGroupConfig>
 #include <Libkleo/Classify>
+#include <Libkleo/SystemInfo>
 
 #ifdef HAVE_USABLE_ASSUAN
 # include <uiserver/uiserver.h>
@@ -328,6 +329,13 @@ void KleopatraApplication::init()
     d->setUpSysTrayIcon();
     d->setUpFilterManager();
     d->setupLogging();
+#ifdef Q_OS_WIN
+    // Under Linux the Theme is set outside. On Windows we have to do
+    // it ourself.
+    if (SystemInfo::isDarkModeActive()) {
+        QIcon::setThemeName("breeze-dark");
+    }
+#endif
 #ifndef QT_NO_SYSTEMTRAYICON
     d->sysTray->show();
 #endif

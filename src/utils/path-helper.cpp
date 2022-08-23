@@ -153,9 +153,13 @@ bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
 
 bool Kleo::moveDir(const QString &src, const QString &dest)
 {
-    if (QStorageInfo(src).device() == QStorageInfo(dest).device()) {
-        // Easy same partition we can use qt.
-        return QFile::rename(src, dest);
+    // Need an existing path to query the device
+    const QString parentDest = QFileInfo(dest).dir().absolutePath();
+    const auto srcDevice = QStorageInfo(src).device();
+    if (!srcDevice.isEmpty() && srcDevice == QStorageInfo(parentDest).device() &&
+        QFile::rename(src, dest)) {
+        qCDebug(KLEOPATRA_LOG) << "Renamed" << src << "to" << dest;
+        return true;
     }
     // first copy
     if (!recursivelyCopy(src, dest)) {

@@ -303,6 +303,8 @@ public:
             config.writeEntry("wasCMS", proto == GpgME::CMS);
         }
 
+        mDecryptBtn->setEnabled(true);
+
         if (result->errorCode()) {
             if (!result->errorString().isEmpty()) {
                 KMessageBox::error(q,
@@ -314,7 +316,6 @@ public:
         mEdit->setPlainText(QString::fromUtf8(mOutputData));
         mOutputData.clear();
         mRevertBtn->setVisible(true);
-        mDecryptBtn->setEnabled(true);
 
         const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
         if (decryptVerifyResult) {

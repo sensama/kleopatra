@@ -26,4 +26,4 @@ QString lastUsedExportDirectory();
  */
 void setLastUsedExportDirectory(const QString &path);
 
-};
+}

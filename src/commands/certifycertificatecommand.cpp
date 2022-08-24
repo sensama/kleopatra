@@ -61,6 +61,7 @@ private:
     void createJob();
 
 private:
+    GpgME::Key target;
     std::vector<UserID> uids;
     QPointer<CertifyCertificateDialog> dialog;
     QPointer<QGpgME::SignKeyJob> job;
@@ -138,13 +139,14 @@ CertifyCertificateCommand::~CertifyCertificateCommand()
 
 void CertifyCertificateCommand::doStart()
 {
-
     const std::vector<Key> keys = d->keys();
     if (keys.size() != 1 ||
             keys.front().protocol() != GpgME::OpenPGP) {
         d->finished();
         return;
     }
+    // hold on to the key to certify to avoid invalidation during refreshes of the key cache
+    d->target = keys.front();
 
     auto findAnyGoodKey = []() {
         const std::vector<Key> secKeys = KeyCache::instance()->secretKeys();
@@ -195,11 +197,10 @@ void CertifyCertificateCommand::doStart()
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
 
-    Key target = d->key();
-    if (!(target.keyListMode() & GpgME::SignatureNotations)) {
-        target.update();
+    if (!(d->target.keyListMode() & GpgME::SignatureNotations)) {
+        d->target.update();
     }
-    d->dialog->setCertificateToCertify(target);
+    d->dialog->setCertificateToCertify(d->target);
     if (d->uids.size()) {
         d->dialog->setSelectedUserIDs(d->uids);
     }
@@ -215,7 +216,7 @@ void CertifyCertificateCommand::Private::slotDialogRejected()
 void CertifyCertificateCommand::Private::slotResult(const Error &err)
 {
     if (!err && !err.isCanceled() && dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
-        auto const cmd = new ExportOpenPGPCertsToServerCommand(key());
+        auto const cmd = new ExportOpenPGPCertsToServerCommand(target);
         cmd->start();
     } else if (!err) {
         information(i18n("Certification successful."),
@@ -223,7 +224,7 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
     } else {
         error(i18n("<p>An error occurred while trying to certify<br/><br/>"
                    "<b>%1</b>:</p><p>\t%2</p>",
-              Formatting::formatForComboBox(key()),
+              Formatting::formatForComboBox(target),
               QString::fromUtf8(err.asString())),
               i18n("Certification Error"));
     }
@@ -258,7 +259,7 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
         job->setExpirationDate(dialog->expirationDate());
     }
 
-    if (const Error err = job->start(key())) {
+    if (const Error err = job->start(target)) {
         slotResult(err);
     }
 }
@@ -288,7 +289,7 @@ void CertifyCertificateCommand::Private::createJob()
 {
     Q_ASSERT(!job);
 
-    Q_ASSERT(key().protocol() == OpenPGP);
+    Q_ASSERT(target.protocol() == OpenPGP);
     const auto backend = QGpgME::openpgp();
     if (!backend) {
         return;

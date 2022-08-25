@@ -54,7 +54,9 @@ static const about_data credits[] = {
 };
 
 AboutData::AboutData()
-    : KAboutData(QStringLiteral("kleopatra"), i18n("Kleopatra"),
+    : KAboutData(QStringLiteral("kleopatra"),
+      (Kleo::brandingWindowTitle().isEmpty() ?
+       i18n("Kleopatra") : Kleo::brandingWindowTitle()),
 #ifdef Q_OS_WIN
                  Kleo::gpg4winVersion(),
                  Kleo::gpg4winDescription(),

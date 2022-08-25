@@ -72,6 +72,7 @@
 #include <QStackedWidget>
 #include <QStatusBar>
 #include <QLabel>
+#include <QPixmap>
 
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
@@ -441,7 +442,8 @@ MainWindow::Private::Private(MainWindow *qq)
     q->createGUI(QStringLiteral("kleopatra.rc"));
 
     // make toolbar buttons accessible by keyboard
-    if (auto toolbar = q->findChild<KToolBar*>()) {
+    auto toolbar = q->findChild<KToolBar*>();
+    if (toolbar) {
         auto toolbarButtons = toolbar->findChildren<QToolButton*>();
         for (auto b : toolbarButtons) {
             b->setFocusPolicy(Qt::TabFocus);
@@ -453,6 +455,28 @@ MainWindow::Private::Private(MainWindow *qq)
         std::for_each(std::rbegin(toolbarChildren), std::rend(toolbarChildren), [toolbar](auto w) {
             forceSetTabOrder(toolbar, w);
         });
+    }
+
+    const auto title = Kleo::brandingWindowTitle();
+    if (!title.isEmpty()) {
+        QApplication::setApplicationDisplayName(title);
+    }
+
+    const auto icon = Kleo::brandingIcon();
+    if (!icon.isEmpty()) {
+        const auto dir = QDir(Kleo::gpg4winInstallPath() + QStringLiteral("/../share/kleopatra/pics"));
+        qCDebug(KLEOPATRA_LOG) << "Loading branding icon:" << dir.absoluteFilePath(icon);
+        QPixmap brandingIcon(dir.absoluteFilePath(icon));
+        if (!brandingIcon.isNull()) {
+            auto *w = new QWidget;
+            auto *hl = new QHBoxLayout;
+            auto *lbl = new QLabel;
+            w->setLayout(hl);
+            hl->addWidget(lbl);
+            lbl->setPixmap(brandingIcon);
+            toolbar->addSeparator();
+            toolbar->addWidget(w);
+        }
     }
 
     q->setAcceptDrops(true);

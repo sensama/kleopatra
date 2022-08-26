@@ -14,6 +14,8 @@
 
 #include <Libkleo/GnuPG>
 
+#include <QLocale>
+
 #include <KLocalizedString>
 #include <KLazyLocalizedString>
 static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
@@ -93,7 +95,13 @@ AboutData::AboutData()
         setVersion(Kleo::gpg4winVersion().toUtf8());
         setShortDescription(Kleo::gpg4winDescription());
         setOtherText(Kleo::gpg4winLongDescription());
-        setBugAddress("https://dev.gnupg.org/u/rgpg4win");
+
+        /* Bug reporting page is only available in german and english */
+        if (QLocale().uiLanguages().first().startsWith(QStringLiteral("de"))) {
+            setBugAddress("https://gnupg.com/vsd/report.de.html");
+        } else {
+            setBugAddress("https://gnupg.com/vsd/report.html");
+        }
     }
 
     const auto backendVersions = Kleo::backendVersionInfo();

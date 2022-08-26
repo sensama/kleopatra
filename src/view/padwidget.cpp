@@ -495,11 +495,7 @@ public:
         if (DeVSCompliance::isActive()) {
             const bool de_vs = DeVSCompliance::isCompliant() && mSigEncWidget->isDeVsAndValid();
             DeVSCompliance::decorate(mCryptBtn, de_vs);
-            mAdditionalInfoLabel->setText(de_vs
-                    ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "%1 communication possible.", DeVSCompliance::name(true))
-                    : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                        "%1 communication not possible.", DeVSCompliance::name(true)));
+            mAdditionalInfoLabel->setText(DeVSCompliance::name(de_vs));
             mAdditionalInfoLabel->setVisible(true);
             if (!DeVSCompliance::isCompliant()) {
                 mCryptBtn->setEnabled(false);

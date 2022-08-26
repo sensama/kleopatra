@@ -275,11 +275,7 @@ private:
         auto btn = ui.buttonBox.button(QDialogButtonBox::Ok);
 
         DeVSCompliance::decorate(btn, de_vs);
-        ui.complianceLB.setText(de_vs
-                ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                    "%1 communication possible.", DeVSCompliance::name(true))
-                : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                    "%1 communication not possible.", DeVSCompliance::name(true)));
+        ui.complianceLB.setText(DeVSCompliance::name(de_vs));
         ui.complianceLB.setVisible(true);
     }
 

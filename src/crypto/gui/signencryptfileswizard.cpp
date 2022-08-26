@@ -449,11 +449,7 @@ private Q_SLOTS:
             if (DeVSCompliance::isActive()) {
                 const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
                 DeVSCompliance::decorate(btn, de_vs);
-                mParent->setLabelText(de_vs
-                        ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                            "%1 communication possible.", DeVSCompliance::name(true))
-                        : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                            "%1 communication not possible.", DeVSCompliance::name(true)));
+                mParent->setLabelText(DeVSCompliance::name(de_vs));
             }
         } else {
             mParent->setButtonText(QWizard::CommitButton, i18n("Next"));

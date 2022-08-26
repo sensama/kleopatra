@@ -42,7 +42,7 @@ public:
         if (m_skipped) {
             m_explanation =
                 xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                       "<para><application>GnuPG</application> is not configured for %1 communication.</para>", DeVSCompliance::name(true));
+                       "<para><application>GnuPG</application> is not configured for %1.</para>", DeVSCompliance::name(true));
             return;
         }
 

@@ -30,10 +30,6 @@ protected:
     inline Private *d_func();
     inline const Private *d_func() const;
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
-    Q_PRIVATE_SLOT(d_func(), void importResult(GpgME::ImportResult))
-#endif
-
 protected:
     explicit ImportCertificatesCommand(Private *pp);
     explicit ImportCertificatesCommand(QAbstractItemView *view, Private *pp);

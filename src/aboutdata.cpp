@@ -102,6 +102,10 @@ AboutData::AboutData()
         } else {
             setBugAddress("https://gnupg.com/vsd/report.html");
         }
+    } else {
+#ifdef Q_OS_WIN
+       setBugAddress("https://dev.gnupg.org/u/rgpg4win");
+#endif
     }
 
     const auto backendVersions = Kleo::backendVersionInfo();
@@ -113,7 +117,4 @@ AboutData::AboutData()
                      QLatin1String{"</li></ul>"} +
                      otherText());
     }
-#ifdef Q_OS_WIN
-    setBugAddress("https://dev.gnupg.org/u/rgpg4win");
-#endif
 }

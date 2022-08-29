@@ -48,6 +48,9 @@ public:
         if (requiredAttributes & KeyOwnerName) {
             auto nameLabel = new QLabel(i18n("Name:"));
             mNameEdit = new QLineEdit(userFullName());
+            connect(mNameEdit, &QLineEdit::textChanged, q, [this]() {
+                checkAcceptable();
+            });
 
             grid->addWidget(nameLabel, row, 0);
             grid->addWidget(mNameEdit, row++, 1);
@@ -130,25 +133,16 @@ public:
 
     void checkAcceptable()
     {
-        // We only require a valid mail address
         if (!mEmailEdit) {
+            // email is not required
             return;
         }
         const QString mail = mEmailEdit->text();
-        if (!mail.isEmpty() &&
-            KEmailAddress::isValidSimpleAddress(mail)) {
-            mOkButton->setEnabled(true);
-            mInvalidEmailLabel->hide();
-            return;
-        }
-        if (!mail.isEmpty()) {
-            // Empty Mail is also acceptable if the name is set.
-            mOkButton->setEnabled(!mNameEdit->isEmpty());
-            mInvalidEmailLabel->show();
-        } else {
-            mInvalidEmailLabel->hide();
-        }
-        mOkButton->setEnabled(false);
+        const bool mailIsValid = !mail.isEmpty() && KEmailAddress::isValidSimpleAddress(mail);
+        mInvalidEmailLabel->setVisible(!mail.isEmpty() && !mailIsValid);
+
+        const bool nameIsValid = mNameEdit && !mNameEdit->text().isEmpty();
+        mOkButton->setEnabled(mailIsValid || nameIsValid);
     }
 
     GenCardKeyDialog *const q;

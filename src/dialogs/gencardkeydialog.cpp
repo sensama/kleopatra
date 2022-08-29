@@ -142,6 +142,8 @@ public:
             return;
         }
         if (!mail.isEmpty()) {
+            // Empty Mail is also acceptable if the name is set.
+            mOkButton->setEnabled(!mNameEdit->isEmpty());
             mInvalidEmailLabel->show();
         } else {
             mInvalidEmailLabel->hide();

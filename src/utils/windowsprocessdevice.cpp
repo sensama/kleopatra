@@ -428,6 +428,9 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
                          &piProcInfo);  // receives PROCESS_INFORMATION
     DeleteProcThreadAttributeList(attributeList);
     HeapFree(GetProcessHeap(), 0, attributeList);
+    CloseHandleX (mStdOutWr);
+    CloseHandleX (mStdErrWr);
+    CloseHandleX (mStdInRd);
 
     free(cmdLine);
     if (!suc) {
@@ -438,9 +441,8 @@ bool WindowsProcessDevice::Private::start(QIODevice::OpenMode mode)
 
     mProc = piProcInfo.hProcess;
     mThread = piProcInfo.hThread;
-
     if (mode == QIODevice::WriteOnly) {
-        CloseHandleX (mStdInRd);
+        CloseHandleX (mStdOutRd);
     }
 
     if (mode == QIODevice::ReadOnly) {

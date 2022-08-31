@@ -85,6 +85,8 @@ set(_kleopatra_SRCS
   accessibility/accessiblelink_p.h
   accessibility/accessiblerichtextlabel.cpp
   accessibility/accessiblerichtextlabel_p.h
+  accessibility/accessiblevaluelabel.cpp
+  accessibility/accessiblevaluelabel_p.h
   accessibility/accessiblewidgetfactory.cpp
   accessibility/accessiblewidgetfactory.h
   commands/adduseridcommand.cpp

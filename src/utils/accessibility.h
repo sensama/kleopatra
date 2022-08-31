@@ -10,6 +10,7 @@
 
 #include <QAccessible>
 #include <QPointer>
+#include <QtGlobal>
 
 class QAction;
 class QLabel;
@@ -34,6 +35,41 @@ namespace Kleo
      * \sa setAccessibleName
      */
     QString getAccessibleName(const QAction *action);
+
+    /**
+     * Sets \p value as accessible value of \p widget.
+     *
+     * Stores the string \p value as custom property of the widget \p widget
+     * for retrieval by a QAccessibleWidget.
+     *
+     * \sa getAccessibleValue
+     */
+    void setAccessibleValue(QWidget *widget, const QString &value);
+    /**
+     * Returns the accessible value of \p widget.
+     *
+     * \sa setAccessibleValue
+     */
+    QString getAccessibleValue(const QWidget *widget);
+
+    /**
+     * Mark \p widget as being represented as AccessibleValueWidget.
+     *
+     * This is useful, if you want Windows UI Automation to treat the widget
+     * as labelled value, i.e. a custom widget with a value and a name.
+     *
+     * \note: Don't use this on other platforms than Windows, unless you made
+     *        sure that it works as expected.
+     * \sa representAsAccessibleValueWidget
+     */
+    void setRepresentAsAccessibleValueWidget(QWidget *widget, bool);
+    /**
+     * Returns whether \p widget is marked as being represented as
+     * AccessibleValueWidget.
+     *
+     * \sa setRepresentAsAccessibleValueWidget
+     */
+    bool representAsAccessibleValueWidget(const QWidget *widget);
 
     QString invalidEntryText();
     QString requiredText();

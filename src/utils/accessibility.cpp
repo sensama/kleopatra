@@ -31,6 +31,9 @@
 using namespace Kleo;
 
 static const char *accessibleNameProperty = "_kleo_accessibleName";
+static const char *accessibleValueProperty = "_kleo_accessibleValue";
+
+static const char *useAccessibleValueLabelProperty = "_kleo_useAccessibleValueLabel";
 
 namespace
 {
@@ -62,6 +65,26 @@ void Kleo::setAccessibleName(QAction *action, const QString &name)
 QString Kleo::getAccessibleName(const QAction *action)
 {
     return action->property(accessibleNameProperty).toString();
+}
+
+void Kleo::setAccessibleValue(QWidget *widget, const QString &value)
+{
+    widget->setProperty(accessibleValueProperty, value);
+}
+
+QString Kleo::getAccessibleValue(const QWidget *widget)
+{
+    return widget->property(accessibleValueProperty).toString();
+}
+
+void Kleo::setRepresentAsAccessibleValueWidget(QWidget *widget, bool flag)
+{
+    widget->setProperty(useAccessibleValueLabelProperty, flag ? flag : QVariant{});
+}
+
+bool Kleo::representAsAccessibleValueWidget(const QWidget *widget)
+{
+    return widget->property(useAccessibleValueLabelProperty).toBool();
 }
 
 QString Kleo::invalidEntryText()

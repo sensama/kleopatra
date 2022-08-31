@@ -30,12 +30,20 @@ InfoField::InfoField(const QString &label, QWidget *parent)
     , mValue{new QLabel{parent}}
     , mButton{new QPushButton{parent}}
 {
+    mLabel->setObjectName(QStringLiteral("InfoField.label"));
+    mIcon->setObjectName(QStringLiteral("InfoField.icon"));
+    mValue->setObjectName(QStringLiteral("InfoField.value"));
+    mButton->setObjectName(QStringLiteral("InfoField.button"));
+
     mLabel->setBuddy(mValue);
     mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     mIcon->setVisible(false);
     mLayout->addWidget(mIcon);
     mValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
     mValue->setFocusPolicy(Qt::TabFocus);
+#ifdef Q_OS_WIN
+    Kleo::setRepresentAsAccessibleValueWidget(mValue, true);
+#endif
     mLayout->addWidget(mValue);
     mButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mButton->setVisible(false);
@@ -54,7 +62,11 @@ QLayout *InfoField::layout() const {
 void InfoField::setValue(const QString &value, const QString &accessibleValue)
 {
     mValue->setText(value);
+#ifdef Q_OS_WIN
+    Kleo::setAccessibleValue(mValue, accessibleValue);
+#else
     mValue->setAccessibleName(accessibleValue);
+#endif
 }
 
 QString InfoField::value() const

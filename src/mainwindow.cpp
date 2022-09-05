@@ -617,6 +617,12 @@ void MainWindow::Private::setupActions()
             QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_vsa10584"), vsa10584);
 
+    const auto smartcard = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("Smartcard Management"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "smartcard_howto_de.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_smartcard"), smartcard);
+
     const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("GnuPG Manual"),
             QStringLiteral("gnupg.pdf"), QStringLiteral("../share/doc/gnupg"));
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gpg);

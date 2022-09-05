@@ -565,7 +565,9 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
             }
 
             const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
-            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(), toTrustOwnerUserIDs.cend(), KLocalizedString{}, [](KLocalizedString temp, const auto &uid) {
+            // ki18n(" ") as initializer because initializing with empty string leads to
+            // (I18N_EMPTY_MESSAGE)
+            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(), toTrustOwnerUserIDs.cend(), KLocalizedString{ki18n(" ")}, [](KLocalizedString temp, const auto &uid) {
                 return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
             });
 

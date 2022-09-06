@@ -30,6 +30,8 @@
 #include <QFileInfo>
 #include <QStandardPaths>
 
+#include <gpgme++/context.h>
+
 #include <algorithm>
 #include <memory>
 #include <vector>
@@ -206,6 +208,10 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
     Q_ASSERT(backend);
     std::unique_ptr<QGpgME::ExportJob> exportJob{backend->secretKeyExportJob(armor)};
     Q_ASSERT(exportJob);
+
+    if (key.protocol() == GpgME::CMS) {
+        exportJob->setExportFlags(GpgME::Context::ExportPKCS12);
+    }
 
     connect(exportJob.get(), &QGpgME::ExportJob::result,
             q, [this](const GpgME::Error &err, const QByteArray &keyData) {

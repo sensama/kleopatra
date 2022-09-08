@@ -208,7 +208,7 @@ public:
                 doEncryptSign();
             });
 
-        connect(mSigEncWidget, &SignEncryptWidget::operationChanged, q, [this] (const QString &) {
+        connect(mSigEncWidget, &SignEncryptWidget::operationChanged, q, [this]() {
                 updateButtons();
             });
 
@@ -397,7 +397,19 @@ public:
         }
 
         doCryptoCommon();
-        mProgressLabel->setText(mSigEncWidget->currentOp() + QStringLiteral("..."));
+        switch (mSigEncWidget->currentOp()) {
+        case SignEncryptWidget::Sign:
+            mProgressLabel->setText(i18nc("@info:progress", "Signing notepad..."));
+            break;
+        case SignEncryptWidget::Encrypt:
+            mProgressLabel->setText(i18nc("@info:progress", "Encrypting notepad..."));
+            break;
+        case SignEncryptWidget::SignAndEncrypt:
+            mProgressLabel->setText(i18nc("@info:progress", "Signing and encrypting notepad..."));
+            break;
+        default:
+            ;
+        };
         auto input = Input::createFromByteArray(&mInputData,  i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
@@ -476,15 +488,18 @@ public:
         checkImportProtocol();
         mImportBtn->setEnabled(mImportProto != GpgME::UnknownProtocol);
 
-        if (!mSigEncWidget->currentOp().isEmpty()) {
-            mCryptBtn->setEnabled(true);
-            mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
-                                     "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
-                                     mSigEncWidget->currentOp()));
-        } else {
-            mCryptBtn->setText(i18n("Sign / Encrypt Notepad"));
-            mCryptBtn->setEnabled(false);
-        }
+        mCryptBtn->setEnabled(mSigEncWidget->currentOp() != SignEncryptWidget::NoOperation);
+        switch (mSigEncWidget->currentOp()) {
+        case SignEncryptWidget::Sign:
+            mCryptBtn->setText(i18nc("@action:button", "Sign Notepad"));
+            break;
+        case SignEncryptWidget::Encrypt:
+            mCryptBtn->setText(i18nc("@action:button", "Encrypt Notepad"));
+            break;
+        case SignEncryptWidget::SignAndEncrypt:
+        default:
+            mCryptBtn->setText(i18nc("@action:button", "Sign / Encrypt Notepad"));
+        };
 
         if (DeVSCompliance::isActive()) {
             const bool de_vs = DeVSCompliance::isCompliant() && mSigEncWidget->isDeVsAndValid();

@@ -483,22 +483,20 @@ void SignEncryptWidget::updateOp()
     const Key sigKey = signKey();
     const std::vector<Key> recp = recipients();
 
-    QString newOp;
     if (!sigKey.isNull() && (!recp.empty() || encryptSymmetric())) {
-        newOp = i18nc("@action", "Sign / Encrypt");
+        mOp = SignAndEncrypt;
     } else if (!recp.empty() || encryptSymmetric()) {
-        newOp = i18nc("@action", "Encrypt");
+        mOp = Encrypt;
     } else if (!sigKey.isNull()) {
-        newOp = i18nc("@action", "Sign");
+        mOp = Sign;
     } else {
-        newOp = QString();
+        mOp = NoOperation;
     }
-    mOp = newOp;
     Q_EMIT operationChanged(mOp);
     Q_EMIT keysChanged();
 }
 
-QString SignEncryptWidget::currentOp() const
+SignEncryptWidget::Operation SignEncryptWidget::currentOp() const
 {
     return mOp;
 }
@@ -645,7 +643,7 @@ void Kleo::SignEncryptWidget::onProtocolChanged()
 
 bool SignEncryptWidget::isComplete() const
 {
-    return !currentOp().isEmpty()
+    return currentOp() != NoOperation
         && std::all_of(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
                         [](auto w) { return !w->isEnabled() || w->hasAcceptableInput(); });
 }

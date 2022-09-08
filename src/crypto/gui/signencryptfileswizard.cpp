@@ -438,11 +438,25 @@ public:
     }
 
 private Q_SLOTS:
-    void updateCommitButton(const QString &label)
+    void updateCommitButton(const SignEncryptWidget::Operation op)
     {
         if (mParent->currentPage() != this) {
             return;
         }
+        QString label;
+        switch (op) {
+        case SignEncryptWidget::Sign:
+            label = i18nc("@action:button", "Sign");
+            break;
+        case SignEncryptWidget::Encrypt:
+            label = i18nc("@action:button", "Encrypt");
+            break;
+        case SignEncryptWidget::SignAndEncrypt:
+            label = i18nc("@action:button", "Sign / Encrypt");
+            break;
+        default:
+            ;
+        };
         auto btn = qobject_cast<QPushButton*>(mParent->button(QWizard::CommitButton));
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);

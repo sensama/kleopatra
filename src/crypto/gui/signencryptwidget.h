@@ -29,6 +29,13 @@ class SignEncryptWidget: public QWidget
 {
     Q_OBJECT
 public:
+    enum Operation {
+        NoOperation,
+        Sign,
+        Encrypt,
+        SignAndEncrypt
+    };
+
     /** If cmsSigEncExclusive is true CMS operations can be
      * done only either as sign or as encrypt */
     explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
@@ -52,9 +59,8 @@ public:
      * encrypt to self is disabled. */
     GpgME::Key selfKey() const;
 
-    /** Returns the operation based on the current selection or
-     * a null string if nothing would happen. */
-    QString currentOp() const;
+    /** Returns the operation based on the current selection. */
+    Operation currentOp() const;
 
     /** Whether or not symmetric encryption should also be used. */
     bool encryptSymmetric() const;
@@ -115,7 +121,7 @@ Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation
      * with that selection. e.g. "Sign" or "Sign/Encrypt".
      * If no crypto operation is selected this returns a null string. */
-    void operationChanged(const QString &op);
+    void operationChanged(Operation op);
 
     /* Emitted when the certificate selection might be changed. */
     void keysChanged();
@@ -136,7 +142,7 @@ private:
     QVector<GpgME::Key> mAddedKeys;
     QVector<KeyGroup> mAddedGroups;
     QVBoxLayout *mRecpLayout = nullptr;
-    QString mOp;
+    Operation mOp;
     AbstractKeyListModel *mModel = nullptr;
     QCheckBox *mSymmetric = nullptr;
     QCheckBox *mSigChk = nullptr;

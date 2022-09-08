@@ -82,6 +82,7 @@ public:
         mEdit(new QTextEdit),
         mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad"))),
         mDecryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-decrypt-verify")), i18n("Decrypt / Verify Notepad"))),
+        mImportBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("view-certificate-import")), i18n("Import Notepad"))),
         mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert"))),
         mMessageWidget{new KMessageWidget},
         mAdditionalInfoLabel(new QLabel),
@@ -99,6 +100,7 @@ public:
         vLay->addLayout(btnLay);
         btnLay->addWidget(mCryptBtn);
         btnLay->addWidget(mDecryptBtn);
+        btnLay->addWidget(mImportBtn);
         btnLay->addWidget(mRevertBtn);
 
         mRevertBtn->setVisible(false);
@@ -196,27 +198,27 @@ public:
                 });
         }
 
-        updateCommitButton();
+        updateButtons();
 
         connect(mEdit, &QTextEdit::textChanged, q, [this] () {
-                updateCommitButton();
+                updateButtons();
             });
 
         connect(mCryptBtn, &QPushButton::clicked, q, [this] () {
-                if (mImportProto != GpgME::UnknownProtocol) {
-                    doImport();
-                } else {
-                    doEncryptSign();
-                }
+                doEncryptSign();
             });
 
         connect(mSigEncWidget, &SignEncryptWidget::operationChanged, q, [this] (const QString &) {
-                updateCommitButton();
+                updateButtons();
             });
 
         connect(mDecryptBtn, &QPushButton::clicked, q, [this] () {
                 doDecryptVerify();
             });
+
+        connect(mImportBtn, &QPushButton::clicked, q, [this]() {
+            doImport();
+        });
 
         connect(mRevertBtn, &QPushButton::clicked, q, [this] () {
                 revert();
@@ -276,7 +278,7 @@ public:
 
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
     {
-        updateCommitButton();
+        updateButtons();
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);
 
@@ -302,8 +304,6 @@ public:
             KConfigGroup config(KSharedConfig::openConfig(), "Notepad");
             config.writeEntry("wasCMS", proto == GpgME::CMS);
         }
-
-        mDecryptBtn->setEnabled(true);
 
         if (result->errorCode()) {
             if (!result->errorString().isEmpty()) {
@@ -351,7 +351,7 @@ public:
             KMessageBox::error(q,
                     e.message(),
                     i18nc("@title", "Error in crypto action"));
-            updateCommitButton();
+            updateButtons();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
             return;
@@ -378,6 +378,7 @@ public:
     {
         mCryptBtn->setEnabled(false);
         mDecryptBtn->setEnabled(false);
+        mImportBtn->setEnabled(false);
         mProgressBar->setVisible(true);
         mProgressLabel->setVisible(true);
         mInputData = mEdit->toPlainText().toUtf8();
@@ -441,12 +442,10 @@ public:
         mProgressLabel->setText(i18n("Importing..."));
         auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
         connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this] () {
-                mCryptBtn->setEnabled(true);
-                mDecryptBtn->setEnabled(true);
+                updateButtons();
                 mProgressBar->setVisible(false);
                 mProgressLabel->setVisible(false);
 
-                updateCommitButton();
                 mRevertBtn->setVisible(true);
                 mEdit->setPlainText(QString());
             });
@@ -468,19 +467,14 @@ public:
         }
     }
 
-    void updateCommitButton()
+    void updateButtons()
     {
         mAdditionalInfoLabel->setVisible(false);
 
-        checkImportProtocol();
+        mDecryptBtn->setEnabled(mEdit->document() && !mEdit->document()->isEmpty());
 
-        if (mImportProto != GpgME::UnknownProtocol) {
-            mCryptBtn->setText(i18nc("1 is an operation to apply to the notepad. "
-                                     "Like Sign/Encrypt or just Encrypt.", "%1 Notepad",
-                                     i18n("Import")));
-            mCryptBtn->setEnabled(true);
-            return;
-        }
+        checkImportProtocol();
+        mImportBtn->setEnabled(mImportProto != GpgME::UnknownProtocol);
 
         if (!mSigEncWidget->currentOp().isEmpty()) {
             mCryptBtn->setEnabled(true);
@@ -509,6 +503,7 @@ private:
     QTextEdit *mEdit;
     QPushButton *mCryptBtn;
     QPushButton *mDecryptBtn;
+    QPushButton *mImportBtn;
     QPushButton *mRevertBtn;
     KMessageWidget *mMessageWidget;
     QLabel *mAdditionalInfoLabel;

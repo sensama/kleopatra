@@ -222,7 +222,7 @@ static QString makeResultDetails(const SigningResult &result, const QString &inp
         }
     }
 
-    if (err) {
+    if (err || err.isCanceled()) {
         return QString::fromLocal8Bit(err.asString()).toHtmlEscaped();
     }
     return QString();
@@ -239,7 +239,7 @@ static QString makeResultDetails(const EncryptionResult &result, const QString &
         }
     }
 
-    if (err) {
+    if (err || err.isCanceled()) {
         return QString::fromLocal8Bit(err.asString()).toHtmlEscaped();
     }
     return i18n(" Encryption succeeded.");

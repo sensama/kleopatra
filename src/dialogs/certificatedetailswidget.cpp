@@ -865,21 +865,15 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 
 void CertificateDetailsWidget::Private::showMoreDetails()
 {
-    ui.moreDetailsBtn->setEnabled(false);
     if (key.protocol() == GpgME::CMS) {
         auto cmd = new Kleo::Commands::DumpCertificateCommand(key);
         cmd->setParentWidget(q);
-        connect(cmd, &Kleo::Commands::DumpCertificateCommand::finished,
-                q, [this]() {
-                    ui.moreDetailsBtn->setEnabled(true);
-                });
         cmd->setUseDialog(true);
         cmd->start();
     } else {
         QScopedPointer<SubKeysDialog> dlg(new SubKeysDialog(q));
         dlg->setKey(key);
         dlg->exec();
-        ui.moreDetailsBtn->setEnabled(true);
     }
 }
 

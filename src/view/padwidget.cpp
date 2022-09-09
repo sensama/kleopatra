@@ -282,13 +282,15 @@ public:
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);
 
-        mLastResultWidget = new ResultItemWidget(result);
-        mLastResultWidget->showCloseButton(true);
-        mStatusLay->addWidget(mLastResultWidget);
+        if (!result->error().isCanceled()) {
+            mLastResultWidget = new ResultItemWidget(result);
+            mLastResultWidget->showCloseButton(true);
+            mStatusLay->addWidget(mLastResultWidget);
 
-        connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this] () {
-            removeLastResultItem();
-        });
+            connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this] () {
+                removeLastResultItem();
+            });
+        }
 
         // Check result protocol
         if (mPGPRB) {
@@ -305,21 +307,21 @@ public:
             config.writeEntry("wasCMS", proto == GpgME::CMS);
         }
 
-        if (result->error().code()) {
+        if (result->error()) {
             if (!result->errorString().isEmpty()) {
                 KMessageBox::error(q,
                         result->errorString(),
                         i18nc("@title", "Error in crypto action"));
             }
-            return;
-        }
-        mEdit->setPlainText(QString::fromUtf8(mOutputData));
-        mOutputData.clear();
-        mRevertBtn->setVisible(true);
+        } else if (!result->error().isCanceled()) {
+            mEdit->setPlainText(QString::fromUtf8(mOutputData));
+            mOutputData.clear();
+            mRevertBtn->setVisible(true);
 
-        const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
-        if (decryptVerifyResult) {
-            updateRecipientsFromResult(*decryptVerifyResult);
+            const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult*>(result.get());
+            if (decryptVerifyResult) {
+                updateRecipientsFromResult(*decryptVerifyResult);
+            }
         }
     }
 

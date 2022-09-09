@@ -270,6 +270,7 @@ void DumpCertificateCommand::doStart()
 
     if (d->useDialog) {
         d->dialog = new DumpCertificateDialog;
+        d->applyWindowID(d->dialog);
         d->dialog->setAttribute(Qt::WA_DeleteOnClose);
         d->dialog->setWindowTitle(i18nc("@title:window", "Certificate Dump"));
 

@@ -747,7 +747,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLog &auditLog)
 {
-    const auto err = dr.error() ? dr.error() : vr.error();
+    const auto err = dr.error().code() ? dr.error() : vr.error();
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             DecryptVerify,
             vr,

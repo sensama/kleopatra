@@ -58,9 +58,9 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    int errorCode() const override
+    GpgME::Error error() const override
     {
-        return m_error.encodedError();
+        return m_error;
     }
     QString errorString() const override
     {
@@ -133,7 +133,7 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    int errorCode() const override;
+    GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
     AuditLog auditLog() const override;
@@ -646,15 +646,15 @@ QString SignEncryptFilesResult::details() const
     return errorString();
 }
 
-int SignEncryptFilesResult::errorCode() const
+GpgME::Error SignEncryptFilesResult::error() const
 {
     if (m_sresult.error().code()) {
-        return m_sresult.error().encodedError();
+        return m_sresult.error();
     }
     if (m_eresult.error().code()) {
-        return m_eresult.error().encodedError();
+        return m_eresult.error();
     }
-    return 0;
+    return {};
 }
 
 QString SignEncryptFilesResult::errorString() const

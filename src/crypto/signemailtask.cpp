@@ -49,7 +49,7 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    int errorCode() const override;
+    GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
     AuditLog auditLog() const override;
@@ -257,9 +257,9 @@ QString SignEMailResult::details() const
     return QString();
 }
 
-int SignEMailResult::errorCode() const
+GpgME::Error SignEMailResult::error() const
 {
-    return m_result.error().encodedError();
+    return m_result.error();
 }
 
 QString SignEMailResult::errorString() const

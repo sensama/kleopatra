@@ -45,7 +45,7 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    int errorCode() const override;
+    GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
     AuditLog auditLog() const override;
@@ -205,9 +205,9 @@ QString EncryptEMailResult::details() const
     return QString();
 }
 
-int EncryptEMailResult::errorCode() const
+GpgME::Error EncryptEMailResult::error() const
 {
-    return m_result.error().encodedError();
+    return m_result.error();
 }
 
 QString EncryptEMailResult::errorString() const

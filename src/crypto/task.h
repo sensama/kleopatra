@@ -55,7 +55,7 @@ public:
 
     int id() const;
 
-    static std::shared_ptr<Task> makeErrorTask(int code, const QString &details, const QString &label);
+    static std::shared_ptr<Task> makeErrorTask(const GpgME::Error &error, const QString &details, const QString &label);
 
 public Q_SLOTS:
     virtual void cancel() = 0;
@@ -66,7 +66,7 @@ Q_SIGNALS:
     void started(QPrivateSignal);
 
 protected:
-    std::shared_ptr<Result> makeErrorResult(int errCode, const QString &details);
+    std::shared_ptr<Result> makeErrorResult(const GpgME::Error &error, const QString &details);
 
     void emitResult(const std::shared_ptr<const Task::Result> &result);
 
@@ -74,7 +74,7 @@ protected Q_SLOTS:
     void setProgress(const QString &msg, int processed, int total);
 
 private Q_SLOTS:
-    void emitError(int errCode, const QString &details);
+    void emitError(const GpgME::Error &error, const QString &details);
 
 private:
     virtual void doStart() = 0;
@@ -110,7 +110,7 @@ public:
     virtual QString icon() const;
     virtual QString overview() const = 0;
     virtual QString details() const = 0;
-    virtual int errorCode() const = 0;
+    virtual GpgME::Error error() const = 0;
     virtual QString errorString() const = 0;
     virtual VisualCode code() const = 0;
     virtual AuditLog auditLog() const = 0;

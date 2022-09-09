@@ -367,7 +367,7 @@ std::vector< std::shared_ptr<Task> > DecryptVerifyFilesController::Private::buil
             kleo_assert(fileDir.exists());
             tasks.push_back(taskFromOperationWidget(m_wizard->operationWidget(static_cast<unsigned int>(i)), fileNames[i], useOutDir ? outDir : fileDir, overwritePolicy));
         } catch (const GpgME::Exception &e) {
-            tasks.push_back(Task::makeErrorTask(e.error().code(), QString::fromLocal8Bit(e.what()), fileNames[i]));
+            tasks.push_back(Task::makeErrorTask(e.error(), QString::fromLocal8Bit(e.what()), fileNames[i]));
         }
 
     return tasks;

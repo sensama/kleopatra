@@ -305,7 +305,7 @@ public:
             config.writeEntry("wasCMS", proto == GpgME::CMS);
         }
 
-        if (result->errorCode()) {
+        if (result->error().code()) {
             if (!result->errorString().isEmpty()) {
                 KMessageBox::error(q,
                         result->errorString(),
@@ -358,7 +358,7 @@ public:
         }
 
         connect (task, &Task::result, q, [this, task] (const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
-                qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->errorCode();
+                qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->error().code();
                 task->deleteLater();
                 cryptDone(result);
             });
@@ -441,7 +441,7 @@ public:
         }
 
         connect (task, &Task::result, q, [this, task] (const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
-                qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->errorCode();
+                qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->error().code();
                 task->deleteLater();
                 cryptDone(result);
             });

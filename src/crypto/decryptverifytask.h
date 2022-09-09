@@ -220,7 +220,7 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    int errorCode() const override;
+    GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
     AuditLog auditLog() const override;
@@ -243,7 +243,7 @@ private:
                         const GpgME::DecryptionResult &dr,
                         const QByteArray &stuff,
                         const QString &fileName,
-                        int errCode,
+                        const GpgME::Error &error,
                         const QString &errString,
                         const QString &inputLabel,
                         const QString &outputLabel,

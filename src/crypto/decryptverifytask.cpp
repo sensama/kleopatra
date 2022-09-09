@@ -895,11 +895,6 @@ QString DecryptVerifyResult::details() const
                                             d->m_parentTask);
 }
 
-bool DecryptVerifyResult::hasError() const
-{
-    return d->m_error != 0;
-}
-
 int DecryptVerifyResult::errorCode() const
 {
     return d->m_error;

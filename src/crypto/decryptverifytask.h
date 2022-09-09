@@ -220,7 +220,6 @@ public:
 
     QString overview() const override;
     QString details() const override;
-    bool hasError() const;
     int errorCode() const override;
     QString errorString() const override;
     VisualCode code() const override;

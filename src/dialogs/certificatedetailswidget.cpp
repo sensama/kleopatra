@@ -1050,7 +1050,7 @@ void CertificateDetailsWidget::Private::showIssuerCertificate()
         KMessageBox::error(q, i18n("The issuer certificate could not be found locally."));
         return;
     }
-    auto cmd = new Kleo::Commands::DetailsCommand(parentKeys.front(), nullptr);
+    auto cmd = new Kleo::Commands::DetailsCommand(parentKeys.front());
     cmd->setParentWidget(q);
     cmd->start();
 }

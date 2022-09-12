@@ -128,7 +128,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent) :
             qCDebug(KLEOPATRA_LOG) << "Unhandled Model: " << mTreeView->view()->model()->metaObject()->className();
             return;
         }
-        auto cmd = new DetailsCommand(klm->key(idx), nullptr);
+        auto cmd = new DetailsCommand(klm->key(idx));
         cmd->setParentWidget(this);
         cmd->start();
     });

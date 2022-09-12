@@ -221,7 +221,7 @@ void OpenPGPKeyCardWidget::Private::showCertificateDetails(const std::string &op
         const std::string keyid = widgets.keyFingerprint.substr(widgets.keyFingerprint.size() - 16);
         const auto subkeys = KeyCache::instance()->findSubkeysByKeyID({keyid});
         if (!subkeys.empty() && !subkeys[0].isNull()) {
-            auto cmd = new Commands::DetailsCommand(subkeys[0].parent(), nullptr);
+            auto cmd = new Commands::DetailsCommand(subkeys[0].parent());
             cmd->setParentWidget(q);
             cmd->start();
             return;

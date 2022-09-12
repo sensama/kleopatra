@@ -271,7 +271,7 @@ private:
         }
         const auto key = index.model()->data(index, KeyList::KeyRole).value<GpgME::Key>();
         if (!key.isNull()) {
-            auto cmd = new DetailsCommand(key, nullptr);
+            auto cmd = new DetailsCommand(key);
             cmd->setParentWidget(q);
             cmd->start();
         }

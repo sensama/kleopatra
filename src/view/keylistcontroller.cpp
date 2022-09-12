@@ -658,7 +658,7 @@ void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
     }
 
     if (const auto *const keyListModel = dynamic_cast<KeyListModelInterface *>(view->model())) {
-        DetailsCommand *const c = new DetailsCommand{keyListModel->key(idx), nullptr};
+        DetailsCommand *const c = new DetailsCommand{keyListModel->key(idx)};
         c->setParentWidget(parentWidget ? parentWidget : view);
         c->start();
     }

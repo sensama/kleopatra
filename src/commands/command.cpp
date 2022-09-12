@@ -300,6 +300,6 @@ Command *Command::commandForQuery(const QString &query)
     if (key.isNull()) {
         return new LookupCertificatesCommand(query, nullptr);
     } else {
-        return new DetailsCommand(key, nullptr);
+        return new DetailsCommand(key);
     }
 }

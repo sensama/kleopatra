@@ -657,13 +657,11 @@ void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
         return;
     }
 
-    DetailsCommand *const c = new DetailsCommand(view, q);
-    if (parentWidget) {
-        c->setParentWidget(parentWidget);
+    if (const auto *const keyListModel = dynamic_cast<KeyListModelInterface *>(view->model())) {
+        DetailsCommand *const c = new DetailsCommand{keyListModel->key(idx), nullptr};
+        c->setParentWidget(parentWidget ? parentWidget : view);
+        c->start();
     }
-
-    c->setIndex(idx);
-    c->start();
 }
 
 void KeyListController::Private::slotActivated(const QModelIndex &idx)

@@ -54,27 +54,17 @@ public:
     {
         return parentWId_;
     }
-    KeyListModelInterface *model() const
-    {
-        return view_ ? dynamic_cast<KeyListModelInterface *>(view_->model()) : nullptr;
-    }
     KeyListController *controller() const
     {
         return controller_;
     }
-    QList<QModelIndex> indexes() const
-    {
-        QList<QModelIndex> result;
-        std::copy(indexes_.begin(), indexes_.end(), std::back_inserter(result));
-        return result;
-    }
     GpgME::Key key() const
     {
-        return keys_.empty() ? model() && !indexes_.empty() ? model()->key(indexes_.front()) : GpgME::Key::null : keys_.front();
+        return keys_.empty() ? GpgME::Key{} : keys_.front();
     }
     std::vector<GpgME::Key> keys() const
     {
-        return keys_.empty() ? model() ? model()->keys(indexes()) : std::vector<GpgME::Key>() : keys_;
+        return keys_;
     }
 
     void finished()
@@ -127,7 +117,6 @@ private:
     bool autoDelete : 1;
     bool warnWhenRunningAtShutdown : 1;
     std::vector<GpgME::Key> keys_;
-    QList<QPersistentModelIndex> indexes_;
     QPointer<QAbstractItemView> view_;
     QPointer<QWidget> parentWidget_;
     WId parentWId_ = 0;

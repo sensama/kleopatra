@@ -166,19 +166,23 @@ void Command::setView(QAbstractItemView *view)
         return;
     }
     d->view_ = view;
-    if (!view || !d->indexes_.empty()) {
+    if (!view || !d->keys_.empty()) {
+        return;
+    }
+    const auto *const keyListModel = dynamic_cast<KeyListModelInterface *>(view->model());
+    if (!keyListModel) {
+        qCWarning(KLEOPATRA_LOG) << "view" << view << "has not key list model";
         return;
     }
     const QItemSelectionModel *const sm = view->selectionModel();
     if (!sm) {
-        qCWarning(KLEOPATRA_LOG) << "view " << (void *)view << " has no selectionModel!";
+        qCWarning(KLEOPATRA_LOG) << "view" << view << "has no selection model";
         return;
     }
     const QList<QModelIndex> selected = sm->selectedRows();
-    if (!selected.empty()) {
-        std::copy(selected.begin(), selected.end(), std::back_inserter(d->indexes_));
-        return;
-    }
+    std::transform(selected.begin(), selected.end(), std::back_inserter(d->keys_), [keyListModel](const auto &idx) {
+        return keyListModel->key(idx);
+    });
 }
 
 void Command::setKey(const Key &key)

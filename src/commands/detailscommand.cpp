@@ -92,24 +92,10 @@ DetailsCommand::Private::Private(DetailsCommand *qq, KeyListController *c)
 
 DetailsCommand::Private::~Private() {}
 
-DetailsCommand::DetailsCommand(KeyListController *p)
-    : Command(new Private(this, p))
-{
-    d->init();
-}
-
 DetailsCommand::DetailsCommand(QAbstractItemView *v, KeyListController *p)
     : Command(v, new Private(this, p))
 {
     d->init();
-}
-
-DetailsCommand::DetailsCommand(const Key &key, KeyListController *p)
-    : Command(new Private(this, p))
-{
-    Q_ASSERT(!key.isNull());
-    d->init();
-    setKey(key);
 }
 
 DetailsCommand::DetailsCommand(const Key &key, QAbstractItemView *v, KeyListController *p)

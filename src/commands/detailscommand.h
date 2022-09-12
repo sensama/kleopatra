@@ -25,10 +25,8 @@ class DetailsCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit DetailsCommand(KeyListController *parent);
     explicit DetailsCommand(QAbstractItemView *view, KeyListController *parent);
     explicit DetailsCommand(const GpgME::Key &key, KeyListController *parent);
-    explicit DetailsCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent);
     ~DetailsCommand() override;
 
     /* reimp */ static Restrictions restrictions()

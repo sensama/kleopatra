@@ -546,7 +546,7 @@ void LookupCertificatesCommand::Private::slotSaveAsRequested(const std::vector<K
 
 void LookupCertificatesCommand::Private::slotDetailsRequested(const Key &key)
 {
-    Command *const cmd = new DetailsCommand(key, view(), controller());
+    Command *const cmd = new DetailsCommand(key, nullptr);
     cmd->setParentWidget(dialogOrParentWidgetOrView());
     cmd->start();
 }

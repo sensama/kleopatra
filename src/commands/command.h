@@ -90,8 +90,6 @@ public:
     void setParentWidget(QWidget *widget);
     void setParentWId(WId wid);
     void setView(QAbstractItemView *view);
-    void setIndex(const QModelIndex &idx);
-    void setIndexes(const QList<QModelIndex> &idx);
     void setKey(const GpgME::Key &key);
     void setKeys(const std::vector<GpgME::Key> &keys);
 

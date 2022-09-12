@@ -181,18 +181,6 @@ void Command::setView(QAbstractItemView *view)
     }
 }
 
-void Command::setIndex(const QModelIndex &idx)
-{
-    d->indexes_.clear();
-    d->indexes_.push_back(idx);
-}
-
-void Command::setIndexes(const QList<QModelIndex> &idx)
-{
-    d->indexes_.clear();
-    std::copy(idx.begin(), idx.end(), std::back_inserter(d->indexes_));
-}
-
 void Command::setKey(const Key &key)
 {
     d->keys_.clear();

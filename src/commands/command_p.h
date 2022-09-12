@@ -54,10 +54,6 @@ public:
     {
         return parentWId_;
     }
-    KeyListController *controller() const
-    {
-        return controller_;
-    }
     GpgME::Key key() const
     {
         return keys_.empty() ? GpgME::Key{} : keys_.front();

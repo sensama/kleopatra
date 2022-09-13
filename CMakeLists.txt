@@ -186,6 +186,11 @@ endif ()
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
 endif()
+if(MINGW)
+    # we do not care about different signedness of passed pointer arguments
+    add_compile_options(-Wno-pointer-sign)
+endif()
+
 add_definitions(-DQT_NO_EMIT)
 remove_definitions(-DQT_NO_FOREACH)
 

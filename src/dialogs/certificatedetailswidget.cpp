@@ -45,6 +45,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Dn>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/GnuPG>
 #include <Libkleo/NavigatableTreeWidget>
 
@@ -431,6 +432,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const bool isOpenPGP = key.protocol() == GpgME::OpenPGP;
     const bool isSMIME = key.protocol() == GpgME::CMS;
     const bool isOwnKey = key.hasSecret();
+    const auto isLocalKey = !isRemoteKey(key);
 
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
@@ -464,19 +466,20 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     ui.smimeRelatedAddresses->setVisible(isSMIME);
     ui.smimeAddressList->setVisible(isSMIME);
 
-    // ui.moreDetailsBtn->setVisible(true); // always visible
+    ui.moreDetailsBtn->setVisible(isLocalKey);
     ui.trustChainDetailsBtn->setVisible(isSMIME);
-    // ui.refreshBtn->setVisible(true); // always visible
+    ui.refreshBtn->setVisible(isLocalKey);
     ui.changePassphraseBtn->setVisible(isSecretKeyStoredInKeyRing(key));
-    // ui.exportBtn->setVisible(true); // always visible
+    ui.exportBtn->setVisible(isLocalKey);
     ui.genRevokeBtn->setVisible(isOpenPGP && isOwnKey);
 
     // update availability of buttons
     const auto userCanSignUserIDs = userHasCertificationKey();
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.setPrimaryUserIDBtn->setEnabled(false); // requires a selected user ID
-    ui.certifyBtn->setEnabled(userCanSignUserIDs);
-    ui.revokeCertificationsBtn->setEnabled(userCanSignUserIDs);
+    ui.certifyBtn->setEnabled(userCanSignUserIDs && isLocalKey);
+    ui.webOfTrustBtn->setEnabled(isLocalKey);
+    ui.revokeCertificationsBtn->setEnabled(userCanSignUserIDs && isLocalKey);
     ui.revokeUserIDBtn->setEnabled(false); // requires a selected user ID
     ui.changeExpirationAction->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.changePassphraseBtn->setEnabled(isSecretKeyStoredInKeyRing(key));
@@ -802,6 +805,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     const bool isPrimaryUserID = !singleUserID.isNull() && (ui.userIDTable->selectedItems().front() == ui.userIDTable->topLevelItem(0));
 #endif
     const bool canSignUserIDs = userHasCertificationKey();
+    const auto isLocalKey = !isRemoteKey(key);
 
     auto menu = new QMenu(q);
 #ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
@@ -825,7 +829,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                       q, [this]() {
                                           certifyUserIDs();
                                       });
-        action->setEnabled(canSignUserIDs);
+        action->setEnabled(isLocalKey && canSignUserIDs);
     }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Revoke Certifications...")
@@ -835,7 +839,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                       q, [this]() {
                                           revokeCertifications();
                                       });
-        action->setEnabled(canSignUserIDs);
+        action->setEnabled(isLocalKey && canSignUserIDs);
     }
 #ifdef MAILAKONADI_ENABLED
     if (key.hasSecret()) {

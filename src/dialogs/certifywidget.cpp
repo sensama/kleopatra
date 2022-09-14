@@ -12,6 +12,7 @@
 #include "certifywidget.h"
 
 #include <utils/accessibility.h>
+#include <utils/keys.h>
 #include "view/infofield.h"
 
 #include "kleopatra_debug.h"
@@ -199,7 +200,7 @@ public:
         const std::vector<GpgME::UserID> ids = key.userIDs();
         int i = 0;
         for (const auto &uid: key.userIDs()) {
-            if (uid.isRevoked() || uid.isInvalid()) {
+            if (uid.isRevoked() || uid.isInvalid() || Kleo::isRevokedOrExpired(uid)) {
                 // Skip user IDs that cannot really be certified.
                 i++;
                 continue;

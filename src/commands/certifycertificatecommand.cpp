@@ -148,6 +148,16 @@ void CertifyCertificateCommand::doStart()
     // hold on to the key to certify to avoid invalidation during refreshes of the key cache
     d->target = keys.front();
 
+    if (d->target.isExpired() || d->target.isRevoked()) {
+        const auto title = d->target.isRevoked() ? i18nc("@title:window", "Key is Revoked") : i18nc("@title:window", "Key is Expired");
+        const auto message = d->target.isRevoked() //
+            ? i18nc("@info", "This key has been revoked. You cannot certify it.")
+            : i18nc("@info", "This key has expired. You cannot certify it.");
+        d->information(message, title);
+        d->finished();
+        return;
+    }
+
     auto findAnyGoodKey = []() {
         const std::vector<Key> secKeys = KeyCache::instance()->secretKeys();
         return std::any_of(secKeys.cbegin(), secKeys.cend(), [](const Key &secKey) {

@@ -433,6 +433,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const bool isSMIME = key.protocol() == GpgME::CMS;
     const bool isOwnKey = key.hasSecret();
     const auto isLocalKey = !isRemoteKey(key);
+    const auto keyCanBeCertified = Kleo::canBeCertified(key);
 
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
@@ -477,7 +478,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     const auto userCanSignUserIDs = userHasCertificationKey();
     ui.addUserIDBtn->setEnabled(canBeUsedForSecretKeyOperations(key));
     ui.setPrimaryUserIDBtn->setEnabled(false); // requires a selected user ID
-    ui.certifyBtn->setEnabled(userCanSignUserIDs && isLocalKey);
+    ui.certifyBtn->setEnabled(isLocalKey && keyCanBeCertified && userCanSignUserIDs);
     ui.webOfTrustBtn->setEnabled(isLocalKey);
     ui.revokeCertificationsBtn->setEnabled(userCanSignUserIDs && isLocalKey);
     ui.revokeUserIDBtn->setEnabled(false); // requires a selected user ID
@@ -806,6 +807,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 #endif
     const bool canSignUserIDs = userHasCertificationKey();
     const auto isLocalKey = !isRemoteKey(key);
+    const auto keyCanBeCertified = Kleo::canBeCertified(key);
 
     auto menu = new QMenu(q);
 #ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
@@ -829,7 +831,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
                                       q, [this]() {
                                           certifyUserIDs();
                                       });
-        action->setEnabled(isLocalKey && canSignUserIDs);
+        action->setEnabled(isLocalKey && keyCanBeCertified && canSignUserIDs);
     }
     if (Kleo::Commands::RevokeCertificationCommand::isSupported()) {
         const auto actionText = userIDs.empty() ? i18nc("@action:inmenu", "Revoke Certifications...")

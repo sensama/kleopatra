@@ -193,10 +193,11 @@ public:
 
     void updateActions() {
         const auto userCanSignUserIDs = userHasCertificationKey();
+        const auto keyCanBeCertified = Kleo::canBeCertified(key);
         const auto userID = selectedUserID();
         const auto signature = selectedCertification();
         detailsAction->setEnabled(!signature.isNull());
-        certifyAction->setEnabled(userCanSignUserIDs && (!userID.isNull() || !signature.isNull()));
+        certifyAction->setEnabled(keyCanBeCertified && userCanSignUserIDs && (!userID.isNull() || !signature.isNull()));
         if (revokeAction) {
             revokeAction->setToolTip({});
             if (!signature.isNull()) {

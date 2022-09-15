@@ -58,6 +58,7 @@
 #include "commands/exportpaperkeycommand.h"
 #include "commands/revokekeycommand.h"
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/Formatting>
@@ -793,6 +794,12 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         result |= Command::MustBeOpenPGP;
     } else if (std::all_of(keys.cbegin(), keys.cend(), [](const Key &key) { return key.protocol() == CMS; })) {
         result |= Command::MustBeCMS;
+    }
+
+    if (Kleo::all_of(keys, [](const auto &key) {
+        return !key.isBad();
+    })) {
+        result |= Command::MustBeValid;
     }
 
     if (all_secret_are_not_owner_trust_ultimate(keys)) {

@@ -62,6 +62,8 @@ public:
         MustBeTrustedRoot   = 0x0400 | MustBeRoot,
         MustBeUntrustedRoot = 0x0800 | MustBeRoot,
 
+        MustBeValid         = 0x1000, //< key is neither revoked nor expired nor otherwise "bad"
+
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1
     };

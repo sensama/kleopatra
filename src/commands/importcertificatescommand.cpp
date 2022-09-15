@@ -17,6 +17,7 @@
 #include "importcertificatescommand_p.h"
 
 #include "certifycertificatecommand.h"
+#include <utils/keys.h>
 #include <settings.h>
 #include "kleopatra_debug.h"
 

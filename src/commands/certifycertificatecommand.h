@@ -34,7 +34,7 @@ public:
 
     /* reimp */ static Restrictions restrictions()
     {
-        return OnlyOneKey | MustBeOpenPGP;
+        return OnlyOneKey | MustBeOpenPGP | MustBeValid;
     }
 
 private:

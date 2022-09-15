@@ -53,6 +53,9 @@ bool Kleo::isSelfSignature(const GpgME::UserID::Signature &signature)
 
 bool Kleo::isRevokedOrExpired(const GpgME::UserID &userId)
 {
+    if (userId.isRevoked() || userId.parent().isExpired()) {
+        return true;
+    }
     const auto sigs = userId.signatures();
     std::vector<GpgME::UserID::Signature> selfSigs;
     std::copy_if(std::begin(sigs), std::end(sigs), std::back_inserter(selfSigs), &Kleo::isSelfSignature);

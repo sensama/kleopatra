@@ -399,6 +399,10 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         // No such key most likely not OpenPGP
         return false;
     }
+    if (!Kleo::canBeCertified(key)) {
+        // key is expired or revoked
+        return false;
+    }
 
     for (const auto &uid: key.userIDs()) {
         if (uid.validity() >= GpgME::UserID::Marginal) {

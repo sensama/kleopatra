@@ -280,7 +280,7 @@ public:
 
     void updateFocusFrame(QWidget *focusWidget)
     {
-        if (focusWidget && focusWidget->inherits("QLabel")) {
+        if (focusWidget && focusWidget->inherits("QLabel") && focusWidget->window()->testAttribute(Qt::WA_KeyboardFocusChange)) {
             if (!focusFrame) {
                 focusFrame = new FocusFrame{focusWidget};
             }

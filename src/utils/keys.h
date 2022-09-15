@@ -37,6 +37,13 @@ bool isRevokedOrExpired(const GpgME::UserID &userId);
 bool canCreateCertifications(const GpgME::Key &key);
 
 /**
+ * Returns true if the key \p key can be certified, i.e. it is an OpenPGP key
+ * which is neither revoked nor expired and which has at least one user ID
+ * that is neither revoked nor expired.
+ */
+bool canBeCertified(const GpgME::Key &key);
+
+/**
  * Returns true if \p key can be used for operations requiring the secret key,
  * i.e. if the secret key of the primary key pair is available in the keyring
  * or on a smart card.

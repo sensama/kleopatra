@@ -37,6 +37,13 @@ bool isLastValidUserID(const GpgME::UserID &userId)
                                                    });
     return numberOfValidUserIds == 1;
 }
+
+bool hasValidUserID(const GpgME::Key &key)
+{
+    return Kleo::any_of(key.userIDs(), [](const auto &u) {
+        return !Kleo::isRevokedOrExpired(u);
+    });
+}
 }
 
 bool Kleo::isSelfSignature(const GpgME::UserID::Signature &signature)
@@ -58,6 +65,13 @@ bool Kleo::isRevokedOrExpired(const GpgME::UserID &userId)
 bool Kleo::canCreateCertifications(const GpgME::Key &key)
 {
     return key.canCertify() && canBeUsedForSecretKeyOperations(key);
+}
+
+bool Kleo::canBeCertified(const GpgME::Key &key)
+{
+    return key.protocol() == GpgME::OpenPGP //
+        && !key.isBad() //
+        && hasValidUserID(key);
 }
 
 bool Kleo::canBeUsedForSecretKeyOperations(const GpgME::Key &key)

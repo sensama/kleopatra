@@ -30,6 +30,7 @@
 #include <Libkleo/Stl_Util>
 
 #include <QGpgME/CryptoConfig>
+#include <QGpgME/Debug>
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/ImportFromKeyserverJob>
@@ -402,7 +403,9 @@ void LookupCertificatesCommand::Private::slotWKDLookupResult(const WKDLookupResu
         qCDebug(KLEOPATRA_LOG) << __func__ << "unknown sender()" << q->sender();
     }
 
-    keyListing.result.mergeWith(KeyListResult{result.error()});
+    // we do not want to bother the user with errors during the WKD lookup;
+    // therefore, we log the result, but we do not merge it into keyListing.result
+    qCDebug(KLEOPATRA_LOG) << "Result of WKD lookup:" << result.error();
 
     const auto keys = removeKeysNotMatchingEmail(result.keyData().toKeys(GpgME::OpenPGP), result.pattern());
     if (!keys.empty()) {

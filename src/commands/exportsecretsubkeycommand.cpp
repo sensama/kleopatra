@@ -15,7 +15,9 @@
 
 #include "fileoperationspreferences.h"
 #include <utils/applicationstate.h>
+#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 #include "utils/filedialog.h"
+#endif
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>

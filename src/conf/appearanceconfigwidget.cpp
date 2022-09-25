@@ -18,7 +18,6 @@
 
 #include <settings.h>
 
-#include <QGpgME/Protocol>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/Dn>
 #include <Libkleo/DNAttributeOrderConfigWidget>

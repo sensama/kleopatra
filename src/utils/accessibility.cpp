@@ -19,7 +19,6 @@
 #include <QDesktopWidget>
 #endif
 #include <QLabel>
-#include <QObject>
 #include <QTextDocument>
 #include <QToolTip>
 

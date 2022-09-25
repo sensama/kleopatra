@@ -18,7 +18,6 @@
 
 #include <KLocalizedString>
 
-#include <QGpgME/Protocol>
 #ifdef QGPGME_SUPPORTS_KEY_REVOCATION
 #include <QGpgME/RevokeKeyJob>
 #endif

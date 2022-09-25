@@ -20,7 +20,6 @@
 #include <Libkleo/Stl_Util>
 
 #include <QByteArray>
-#include <QMap>
 
 
 using namespace Kleo;

@@ -19,7 +19,6 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 
-#include <KMime/HeaderParsing>
 
 #include <gpgme++/key.h>
 

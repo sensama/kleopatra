@@ -29,7 +29,6 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
-#include <QGpgME/CryptoConfig>
 #include <QGpgME/Debug>
 #include <QGpgME/Protocol>
 #include <QGpgME/KeyListJob>

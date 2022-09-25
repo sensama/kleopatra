@@ -21,7 +21,6 @@
 #include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/KeyHelpers>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 

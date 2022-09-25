@@ -14,7 +14,6 @@
 #include "email.h"
 
 #include <KLocalizedString>
-#include <KMessageBox>
 
 #include <QDesktopServices>
 #include <QFileInfo>

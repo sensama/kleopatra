@@ -13,7 +13,6 @@
 #include "kleopatra_debug.h"
 
 #include <KSharedConfig>
-#include <KConfigGroup>
 #include <Libkleo/KeyCache>
 
 using namespace Kleo;

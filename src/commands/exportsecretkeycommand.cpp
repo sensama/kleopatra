@@ -20,7 +20,6 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 

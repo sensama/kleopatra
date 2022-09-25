@@ -20,7 +20,6 @@
 #include <Libkleo/Compat>
 
 #include <QGpgME/CryptoConfig>
-#include <QGpgME/Protocol>
 
 #include <KLocalizedString>
 #include "kleopatra_debug.h"

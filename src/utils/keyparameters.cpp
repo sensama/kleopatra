@@ -15,7 +15,6 @@
 #include "keyusage.h"
 
 #include <QDate>
-#include <QMap>
 #include <QUrl>
 
 #include "kleopatra_debug.h"

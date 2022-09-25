@@ -31,7 +31,6 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
-#include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 #include <QGpgME/ImportJob>
 #include <QGpgME/ImportFromKeyserverJob>

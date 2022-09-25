@@ -19,8 +19,6 @@
 
 #include <QAbstractItemView>
 #include <QPointer>
-#include <QList>
-#include <QModelIndex>
 
 #include <gpgme++/key.h>
 

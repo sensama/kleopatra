@@ -34,13 +34,11 @@
 #include <KMessageBox>
 #include <KSharedConfig>
 
-#include <QDesktopServices>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTextBrowser>
-#include <QUrlQuery>
 #include <QVBoxLayout>
 
 #include <gpgme++/key.h>

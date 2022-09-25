@@ -22,12 +22,10 @@
 #include <KSharedConfig>
 
 #include <QDialogButtonBox>
-#include <QFrame>
 #include <QGridLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
-#include <QSpacerItem>
 #include <QTreeView>
 #include <QVBoxLayout>
 

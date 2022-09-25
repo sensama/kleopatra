@@ -42,7 +42,6 @@
 #include <QGpgME/Protocol>
 
 #include <QHBoxLayout>
-#include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
 #include <QToolButton>

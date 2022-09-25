@@ -15,7 +15,6 @@
 #include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 
-#include <QByteArray>
 
 // needed for GPGME_VERSION_NUMBER
 #include <gpgme.h>

@@ -43,7 +43,6 @@
 #include <QDialogButtonBox>
 #include <QItemSelectionModel>
 #include <QAbstractItemView>
-#include <QPointer>
 #include <QVBoxLayout>
 
 #include <algorithm>

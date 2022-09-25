@@ -8,7 +8,6 @@
 */
 #pragma once
 
-#include <QFlags>
 #include <QWidget>
 
 #include <memory>

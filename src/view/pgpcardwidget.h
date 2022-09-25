@@ -12,7 +12,6 @@
 
 #include "commands/changepincommand.h"
 
-#include <QMap>
 #include <QWidget>
 
 #include <gpgme++/error.h>

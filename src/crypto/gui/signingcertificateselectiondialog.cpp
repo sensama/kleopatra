@@ -18,7 +18,6 @@
 
 #include <KLocalizedString>
 
-#include <QMap>
 #include <QVBoxLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>

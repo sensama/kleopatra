@@ -20,11 +20,9 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <QGpgME/Protocol>
 #include <QGpgME/ExportJob>
 
 #include <QFileInfo>

@@ -37,7 +37,6 @@
 #include <QPushButton>
 #include <QRadioButton>
 #include <QVBoxLayout>
-#include <QVector>
 
 using namespace GpgME;
 using namespace Kleo;

@@ -10,7 +10,6 @@
 
 #include <QAccessible>
 #include <QPointer>
-#include <QtGlobal>
 
 class QAction;
 class QLabel;

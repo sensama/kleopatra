@@ -31,7 +31,6 @@
 #include <KSharedConfig>
 
 #include <QDialogButtonBox>
-#include <QHBoxLayout>
 #include <QHeaderView>
 #include <QLabel>
 #include <QMenu>

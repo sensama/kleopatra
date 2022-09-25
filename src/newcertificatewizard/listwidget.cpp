@@ -15,7 +15,6 @@
 
 #include <QIcon>
 
-#include <QItemSelectionModel>
 #include <QStringListModel>
 #include <QRegularExpressionValidator>
 #include <QItemDelegate>

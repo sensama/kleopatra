@@ -13,7 +13,6 @@
 #include "importcertificatescommand_p.h"
 
 #include <QGpgME/Protocol>
-#include <QGpgME/ImportJob>
 
 #include <Libkleo/Classify>
 

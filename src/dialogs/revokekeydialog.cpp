@@ -16,14 +16,10 @@
 #include <Libkleo/Formatting>
 
 #include <KConfigGroup>
-#include <KGuiItem>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KSeparator>
 #include <KSharedConfig>
-#include <KStandardGuiItem>
 
-#include <QAccessible>
 #include <QApplication>
 #include <QButtonGroup>
 #include <QDialogButtonBox>

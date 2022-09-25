@@ -20,7 +20,6 @@
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QToolButton>
-#include <QLabel>
 #include <QAction>
 
 #include "commands/importcertificatefromfilecommand.h"

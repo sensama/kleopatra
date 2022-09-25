@@ -26,7 +26,6 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QListView>
-#include <QPointer>
 #include <QPushButton>
 #include <QVBoxLayout>
 

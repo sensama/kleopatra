@@ -27,12 +27,10 @@
 
 #include <gpgme++/key.h>
 
-#include <KMime/HeaderParsing>
 
 #include <KLocalizedString>
 
 #include <QPointer>
-#include <QTimer>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;

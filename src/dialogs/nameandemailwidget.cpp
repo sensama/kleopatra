@@ -20,7 +20,6 @@
 
 #include <KLocalizedString>
 
-#include <QLabel>
 #include <QLineEdit>
 #include <QVBoxLayout>
 

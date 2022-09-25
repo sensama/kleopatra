@@ -16,7 +16,6 @@
 
 #include <KLocalizedString>
 
-#include <QGpgME/Protocol>
 #ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
 #include <QGpgME/SetPrimaryUserIDJob>
 #endif

@@ -18,7 +18,6 @@
 
 #include <QWizard>
 
-#include <QVector>
 #include <QMap>
 
 #include <memory>

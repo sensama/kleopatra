@@ -15,7 +15,6 @@
 
 #include <utils/pimpl_ptr.h>
 
-#include <KMime/HeaderParsing>
 #include <gpgme++/global.h>
 
 #include <memory>

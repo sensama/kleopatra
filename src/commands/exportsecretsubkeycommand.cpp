@@ -24,6 +24,7 @@
 #include <KSharedConfig>
 
 #include <QGpgME/ExportJob>
+#include <QGpgME/Protocol>
 
 #include <QFileInfo>
 #include <QStandardPaths>

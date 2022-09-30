@@ -23,6 +23,7 @@
 #endif
 
 #include "kleopatra_debug.h"
+#include <QGpgME/Protocol>
 
 using namespace Kleo;
 using namespace GpgME;

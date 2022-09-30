@@ -20,6 +20,7 @@
 #include <QGpgME/SetPrimaryUserIDJob>
 #endif
 
+#include <QGpgME/Protocol>
 #include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"

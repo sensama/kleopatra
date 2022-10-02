@@ -1,0 +1,4013 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>&kleopatra; käsiraamat</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Arendaja</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Arendaja</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Arendaja</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Arendaja</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Arendaja</contrib>
+</othercredit>
+
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+> <surname
+>Laane</surname
+> <affiliation
+><address
+><email
+>bald@smail.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>2013-07-04</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; aitab hallata <ulink url="http://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> ja <ulink url="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> sertifikaate. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>sertifikaat</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Sissejuhatus</title>
+
+<para
+>&kleopatra; on &kde; tööriist <ulink url="http://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> ja <ulink url="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> sertifikaatide haldamiseks <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> ja <ulink url="http://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+> võtmekastis ja sertifikaatide tõmbamiseks &ldap; ja muudest sertifikaadiserveritest.</para>
+
+<para
+>&kleopatra; saab käivitada nii &kmail;i menüüst <menuchoice
+><guimenu
+>Tööriistad</guimenu
+> <guimenuitem
+>Sertifikaadihaldur</guimenuitem
+></menuchoice
+> kui ka käsurealt. &kleopatra; käivitatava faili nimi on <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Rakendus on nime saanud kuulsa Egiptuse naisvaarao Kleopatra järgi, kes elas Julius Caesari ajastul ja kel teatavasti olid Caesariga ka lähedased suhted, millest sündis ka poeg Caesarion.</para>
+
+<para
+>Sellise nimevaliku taga seisab asjaolu, et programm on alguse saanud <ulink url="http://www.gnupg.org/aegypten2/"
+>projektist &Auml;gypten</ulink
+> (&Auml;gypten tähendab saksa keeles Egiptust).</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Põhifunktsioonid</title>
+
+<sect1 id="functions-view"
+><title
+>Kohaliku võtmekasti vaatamine</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>&kleopatra; põhifunktsioon on näidata ja võimaldada muuta kohaliku võtmekasti sisu. Võtmekast vastab põhimõtteliselt &gpg; võtmehoidjale, kuigi seda analoogiat ei peaks väga sõna-sõnalt võtma.</para>
+
+<para
+>Peaaken jaguneb suureks, mitmest kaardist koosnevaks võtmete nimekirja alaks, menüüribaks, <link linkend="functions-search"
+>otsinguribaks</link
+> akna ülaservas ja olekuribaks allservas.</para>
+
+<para
+>Iga rida võtmete nimekirjas vastab ühele sertifikaadile, mida identifitseerib niinimetatud <guilabel
+>Subjekti &dn;</guilabel
+>. &dn; tähendab <quote
+>Distinguished Name</quote
+> ehk eesti keeles <quote
+>eraldusnimi</quote
+>. See hierarhiline identifikaator sarnaneb mõnevõrra failisüsteemides kasutatavale otsinguteele ning peab olema antud sertifikaadi korral globaalselt unikaalne.</para>
+
+<para
+>Et (avalik) võti oleks kehtiv ja seeläbi kasutatav, peab selle olema allkirjastanud SK (sertifitseerimiskeskus). Sellist allkirja nimetatakse sertifikaadiks, kuid reeglina kasutatakse mõisteid <quote
+>sertifikaat</quote
+> ja <quote
+>(avalik) võti</quote
+> sünonüümidena. Nii talitame ka meie käesolevas käsiraamatus, kui me just otsesõnu neid ei erista.</para>
+
+<para
+>Et SK-d oleksid kehtivad, peavad nad olema signeeritud teiste SK-de poolt. Selline ahel ei saa mõistagi olla lõputu ning tipptaseme SK (juur-SK) signeerib oma võtme ise (seda nimetataksegi omasignatuuriks). Seepärast tuleb juursertifikaatide kehtivus (tavaliselt nimetatakse seda usaldusväärsuseks) anda käsitsi, &eg; pärast sõrmejälje kontrollimist SK veebileheküljel. Tavaliselt teeb seda süsteemiadministraator või sertifikaate kasutava toote tarnija, kuid seda võib &gpgsm; käsurida pruukides teha ka kasutaja ise.</para>
+
+<para
+>Kui soovid näha, millised sertifikaadid on juursertifikaadid, võid lülituda  hierarhilisele võtmeloendi vaatele käsuga <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Iga sertifikaadi üksikasju saab vaadata sellel topeltklõpsu tehes või käsuga <xref linkend="view-certificate-details"/>. Seejärel ilmub dialoog, mis näitab sertifikaadi põhiomadusi, sertifikaadiahelat (&ie; väljaandjate ahelat juur-SK-ni) ning kogu infot, mida taustaprogramm on suuteline sertifikaadist ammutama.</para>
+
+<para
+>Kui oled muutnud võtmekasti &kleopatra;t kasutamata (&eg; &gpgsm; käsurealiidesega), saad vaadet värskendada käsuga <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Sertifikaadi otsimine ja import</title>
+
+<para
+>Enamasti saad sa uusi sertifikaate e-kirjade allkirjade ehtsust kontrollides, sest üldjuhul on sertifikaadid allkirja põimitud. Kui sul on aga vaja saata e-kiri kellelegi, kellega sa pole varem suhelnud, tuleb sul tõmmata sertifikaat &ldap; kataloogist (seda võib <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>&gpgsm;</ulink
+> küll ka automaatselt teha) või hankida see failist. Samuti tuleb sul importida pärast SK-lt oma sertifikatsiooninõudele vastuse saamist enda sertifikaat.</para>
+
+<para
+>Sertifikaadi otsimiseks &ldap; kataloogis vali <menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Otsi sertifikaate serverist</guimenuitem
+></menuchoice
+> ja sisesta mingi tekst (&eg; isiku nimi, keda soovid sertifitseerida) dialoogi <guilabel
+>Võtmeserveri sertifikaadiotsing</guilabel
+> tekstireale ning klõpsa nupule <guilabel
+>Otsi</guilabel
+>. Tulemusi näeb võtmeloendis otsinguriba all, kus võib valida sertifikaadi ja seda uurida klõpsuga nupule <guibutton
+>Üksikasjad</guibutton
+> või alla laadida kohalikku võtmekasti klõpsuga nupule <guibutton
+>Impordi</guibutton
+>.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Otsitavaid &ldap; servereid saab määrata &kleopatra; seadistustedialoogi <link linkend="configuration-directory-services"
+><guilabel
+>Kataloogiteenuste</guilabel
+></link
+> kaardil.</para>
+
+<para
+>Kui said sertifikaadi failina, proovi käsku <xref linkend="file-import-certificates"/> &gpgsm; peab selleks aru saama sertifikaadifaili vormingust, nii et vaata &gpgsm; manuaalist, millised vormingud on toetatud ja millised mitte.</para>
+
+<para
+>Kui sa ei <link linkend="functions-newkey"
+>loo oma võtmepaari &gpgsm;-i kasutades</link
+>, pead ka käsitsi importima nii avaliku kui salajase võtme SK-lt saadud PKCS#12 failist. Seda saab teha käsureal <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>failinimi</filename
+></command
+></userinput
+></link
+> või &kleopatra; käsuga <xref linkend="file-import-certificates"/>, nagu see käib ka <quote
+>tavaliste</quote
+> sertifikaatide korral.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Uue võtmepaari loomine</title>
+
+<para
+>Menüükäsk <xref linkend="file-new-key-pair"/> käivitab <guilabel
+>sertifikaadi loomise nõustaja</guilabel
+>. See aitab sul mõne sammuga valmis saada sertifikaadisoovi.</para>
+<para
+>Kui oled nõustajas mingi sammuga ühele poole saanud, vajuta nupule <guibutton
+>Järgmine</guibutton
+>, et minna edasi järgmise sammu juurde (või nupule <guibutton
+>Tagasi</guibutton
+>, et vaadata kriitilise pilguga üle juba tehtu). Sertifikaadi loomise võib igal hetkel peatada, vajutades nupule <guibutton
+>Loobu</guibutton
+>. </para>
+<para
+>Nõustaja esimesel lehel saab valida, millist tüüpi sertifikaat luua:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Isikliku OpenPGP võtmepaari loomine</guilabel
+></term>
+<listitem
+><para
+>&openpgp; võtmepaarid luuakse kohalikult ning neid sertifitseerivad sinu sõbrad ja tuttavad. Keskne sertifitseerimiskeskus puudub, selle asemel loob iga üksikisik omaenda usaldusringi, sertifitseerides teiste kasutajate võtmepaare omaenda sertifikaadiga.</para>
+<para
+>Sisestada tuleb <guilabel
+>nimi</guilabel
+>, <guilabel
+>e-posti aadress</guilabel
+> ja soovi korral ka <guilabel
+>kommentaar</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Isikliku X.509 võtmepaari ja sertifikaadipäringu loomine</guilabel
+></term>
+<listitem>
+<para
+>&x509; võtmepaarid luuakse kohalikult, aga sertifitseeritakse tsentraalselt sertifitseerimiskeskuse (SK) poolt. SK võib sertifitseerida teisi SK-sid, luues tsentraliseeritud ja hierarhilise usaldusahela.</para>
+<para
+>Järgmine samm nõustajas on sisestada sertifikaadi tarbeks enda andmed. Täitmist vajavad väljad on järgmised: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Üldnimi (CN):</guilabel
+> sinu nimi;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>E-posti aadress:</guilabel
+> sinu e-posti aadress. Kirjuta sinna kindlasti kehtiv aadress, sest sellele saadavad inimesed kirju, kui nad sinu sertifikaati kasutavad.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Asukoht (L):</guilabel
+> linn või asula, kus sa elad.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Allüksus (OU):</guilabel
+> organisatsiooni allüksus, kuhu sa kuulud. Näiteks "Raamatupidamine".</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organisatsioon (O):</guilabel
+> organisatsioon, mida sa esindad (näiteks firma, milles töötad).</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Maakood (C):</guilabel
+> selle maa kahetäheline kood, kus sa elad. Näiteks "EE".</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>Järgmine samm nõustajas on valik, kas salvestada sertifikaat faili või saata otse SK-le. Sertifikaadisoovi saatmiseks tuleb määrata failinimi või e- posti aadress. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Võtme tühistamine</title>
+
+<para
+>Aegunud võtmepaari saab taas kasutusele võtta, kui on ligipääs privaatvõtmele ja paroolifraasile. Et muuta võti kindlalt kasutuskõlbmatuks, tuleb see tühistada. Selleks lisatakse võtmele spetsiaalne tühistamisallkiri.</para>
+
+<para
+>Tühistamisallkiri salvestatakse see eraldi faili, mille võib hiljem importida võtmerõngasse, millega see lisatakse võtmele ja muudetakse viimane kasutuskõlbmatuks. Palun pane tähele, et allkirja importimisel võtmesse ei ole parool nõutav. Seepärast tuleks tühistamisallkiri salvestada turvalisse, reeglina võtmepaarist erinevasse kohta. Soovitatav on salvestada see arvutist eraldi, näiteks kopeerida välisele salvestile (USB-pulk või midagi muud) või lausa trükkida.</para>
+
+<para
+>&kleopatra; ei paku võimalust luua niisugust tühistamisallkirja, kuid seda võib teha &kde; rakendusega &kgpg;, valides menüükäsu <menuchoice
+><guimenu
+>Võtmed</guimenu
+><guimenuitem
+>Tühista võti</guimenuitem
+></menuchoice
+> ning soovi korral importides otsekohe tühistamisallkirja oma võtmerõngasse.</para>
+
+<para
+>Teine viis tühistamissertifikaati genereerida on kasutada &gpg;-d otse käsureal: <userinput
+>gpg --output <replaceable
+>tühistamis_sertifikaat</replaceable
+>.asc --gen-revoke <replaceable
+>sinu_võti</replaceable
+></userinput
+>. Argument <replaceable
+>sinu_võti</replaceable
+> peab määrama võtme: see võib olla su primaarse võtmepaari võtme ID või mis tahes osa sinu võtmepaari tuvastavast kasutaja ID-st.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Menüükirjed</title>
+
+<sect1 id="menufile"
+><title
+>Menüü Fail</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Uus sertifikaat...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Loob uue võtmepaari (avalik ja privaatne)</action
+> ja võimaldab saata avaliku võtme signeerimiseks sertifitseerimiskeskusele (SK). Sealt saadetakse sertifikaat sulle tagasi või salvestatakse &ldap; serveris, kust saad selle alla tõmmata, et siis oma e-kirju signeerida ja krüptida.</para>
+
+<para
+>Sellist tegutsemisviisi nimetatakse <quote
+>detsentraliseeritud võtmetekitamiseks</quote
+>, sest kõik võtmed loovad kasutajad ise. &kleopatra; (ja &gpgsm;) ei toeta otseselt <quote
+>tsentraliseeritud võtmetekitamist</quote
+>, kuid sa võid käsuga <xref linkend="file-import-certificates"/> importida avaliku/salajase võtmekimbu, mille said SK-lt PKCS#12 vormingus.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Sertifikaadi otsing serveris...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Otsib ja impordib sertifikaadid sertifikaadiserveritest kohalikku võtmekasti.</action
+> Täpsemalt kõneleb <xref linkend="functions-search"/>. </para>
+            <para
+>Selleks peavad olema seadistatud võtmeserverid. Täpsemalt kõneleb <xref linkend="configuration-directory-services"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Impordi sertifikaadid...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Impordib sertifikaadid ja/või salajased võtmed failist kohalikku võtmekasti.</action
+> Täpsemalt kõneleb <xref linkend="functions-search"/>. </para>
+            <para
+>Sertifikaadifaili vorming peab olema mõistetav taustaprogrammile &gpgsm;/&gpg;. Täpsemat infot vaata &gpgsm; ja &gpg; manuaalist. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Ekspordi sertifikaadid...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Salvestab valitud sertifikaadid faili.</action>
+            </para>
+            <para
+>Eksporditavale failile valitud failinime laiend määrab ära faili vormingu. </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>&openpgp; sertifikaatide korral annavad <filename class="extension"
+>gpg</filename
+>  ja <filename class="extension"
+>pgp</filename
+> tulemuseks binaarfaili, <filename class="extension"
+>asc</filename
+> aga &ascii; vormingus faili. </para>
+              </listitem>
+              <listitem>
+                <para
+>&smime; sertifikaatide korral annab <filename class="extension"
+>der</filename
+> tulemuseks &der;-kodeeringus faili, <filename class="extension"
+>pem</filename
+> aga &ascii; vormingus faili. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Kui valitud pole just mitut sertifikaati, pakub &kleopatra; eksportfaili nimeks <filename
+><replaceable
+>fingerprint</replaceable
+>.{asc,pem}</filename
+>. </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on vähemalt üks sertifikaat. </para>
+            <note>
+              <para
+>See ekspordib ainult avaliku võtme isegi juhul, kui saada on salajane võti. Salajase võtme salvestamiseks faili kasuta käsku <xref linkend="file-export-secret-key"/>. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Ekspordi salajased võtmed...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Salvestab salajase võtme faili.</action>
+            </para>
+            <para
+>Vali avanevas dialoogis, kas soovid luua binaarfaili või &ascii; vormingus eksportfaili (<guilabel
+>ASCII armor</guilabel
+>). Seejärel klõpsa kataloogiikoonile paremal pool tekstikasti <guilabel
+>Väljundfail</guilabel
+> ning vali eksportfaili kataloog ja nimi. &smime; salajaste võtmete eksportimisel saab valida ka <guilabel
+>paroolifraasi kodeeringu</guilabel
+>. Täpsemalt vaata arutelu <option
+>--p12-charset&nbsp;<replaceable
+>kodeeringu</replaceable
+></option
+> üle &gpgsm; manuaalis. </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks sertifikaat ning saadaval on selle sertifikaadi salajane võti. </para>
+            <warning>
+              <para
+>Seda võimalust läheb haruharva vaja ja kui läheb, peaks ikkagi väga ettevaatlik olema. Salajase võtme migreerimiseks tuleb muu hulgas valida teisaldamiseks sobiv andmekandja ning viis, kuidas võtmeinfo vanalt masinalt turvaliselt kustutada. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Ekspordi sertifikaadid serverisse...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Avaldab valitud sertifikaadid võtmeserveris</action
+> (ainult &openpgp; puhul). </para>
+            <para
+>Sertifikaat saadetakse sertifikaadiserverisse, mis on &openpgp; puhul seadistatud (vt &nbsp;<xref linkend="configuration-directory-services"/>), vastasel juhul serverisse <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Seda funktsiooni saab kasutada ainult juhul, kui valitud on vähemalt üks &openpgp; (aga mitte &smime;) sertifikaat. </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Kui &openpgp; sertifikaadid on eksporditud avalikku kataloogiserverisse, on neid peaaegu võimatu taas eemaldada. Enne oma sertifikaadi eksportimist avalikku kataloogiserverisse kontrolli, et oleksid loonud tühistamissertifikaadi, millega saad sertifikaadi vajaduse korral hiljem tühistada. </para>
+            </note>
+            <note>
+              <para
+>Enamik avalikke &openpgp; sertifikaadiservereid sünkroonib omavahel sertifikaate, nii et pole erilist mõtet saata neid enam kui ühte serverisse. </para>
+              <para
+>Võib juhtuda, et otsing sertifikaadiserveris ei anna tulemusi, kuigi oled oma sertifikaadi just äsja sinna saatnud. Põhjuseks on see, et enamik avalikke võtmeserveri aadresse kasutab <acronym
+>DNS</acronym
+>-i roteerimist koormuse tasakaalustamiseks eri masinate vahel. Need masinad sünkroonivad oma andmeid, aga tavaliselt toimub see umbes kord ööpäevas. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Krüpti failid lahti/verifitseeri failid...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Krüptib failid lahti ja/või kontrollib failide allkirju</action
+>. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Allkirjasta/krüpti failid...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Allkirjastab ja/või krüptib faile.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Sulge</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Sulgeb &kleopatra; peaakna.</action
+> Selle saab taastada süsteemisalve ikoonist. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fail</guimenu
+><guimenuitem
+>Välju</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Sulgeb &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Menüü Vaade</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Näita uuesti</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Uuendab sertifikaatide loendit.</action>
+            </para>
+            <para
+>Selle funktsiooni kasutamine ei ole enamasti vajalik, sest &kleopatra; jälgib failisüsteemi muudatusi ning värskendab vajaduse korral automaatselt sertifikaatide nimekirja. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Esc;</keycombo
+></shortcut
+> <guimenu
+>Vaade</guimenu
+><guimenuitem
+>Peata tegevus</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Peatab kõik ootel toimingud,</action
+> &eg; otsingu, võtmete nimekirja laadimise või allalaadimise. </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui parajasti on käsil mõni toiming. </para>
+            <note>
+              <para
+>Taustaprogrammi piirangute tõttu toimingud mõnikord hanguvad, nii et see funktsioon ei suuda nende tegevust otsekohe või üldse lõpetada. </para>
+              <para
+>Sellistel juhtudel on ainuke lahendus maha tappa &scdaemon;, &dirmngr;, &gpgsm; ja &gpg; protsessid (just sellises järjekorras) operatsioonisüsteemi tööriistade abil (<command
+>top</command
+>, Task-Manager &etc;), kuni toiming pole enam tõkestatud. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Sertifikaadi üksikasjad</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Näitab parajasti valitud sertifikaadi üksikasju.</action
+></para>
+
+<para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks sertifikaat.</para>
+
+<para
+>Seda käsku saab kasutada ka vahetult loendis oleval kirjel topeltklõpsu tehes.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Hierarhiline sertifikaatide nimekiri</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Lülitab sertifikaatide loendi hierarhilist ja ühetaolist vaaterežiimi. </action
+></para>
+
+<para
+>Hierarhilises režiimis korraldatakse sertifikaadid väljaandja ja subjekti suhete järgi, mis võimaldab ühe pilguga näha, millisesse sertifikaadihierarhiasse mingi sertifikaat kuulub, kuid sertifikaati ennast on esmapilgul raskem leida (kuigi selleks saab mõistagi kasutada <link linkend="functions-search"
+>otsinguriba</link
+>).</para>
+
+<para
+>Ühetaolises režiimis näidatakse kõiki sertifikaate mittehierarhiliselt, tähestiku järgi järjestatuna. Nii on iga sertifikaati lihtne üles leida, kuid samas ei ole alati kohe selge, milline on selle juursertifikaat.</para>
+
+            <para
+>Selle abil saab lülitada hierarhilist režiimi antud kaardil, s.t igal kaardil on oma hierarhiaolek. Nii võib sul eri kaartidel olla korraga avatud nii hierarhiline kui ka mittehierarhiline nimekiri. </para>
+
+            <note>
+              <para
+>Hierarhiline esitus on praegu võimalik ainult &smime; sertifikaatide puhul. Arendajad ei ole jõudnud üksmeelele, kuidas oleks õige esitada hierarhiliselt &openpgp; sertifikaate (põhimõtteliselt käib vaidlus selle üle, kas <quote
+>eellane &equals; allkirjastaja</quote
+> või <quote
+>eellane &equals; allkirjastatu</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Ava kõik</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Avab kõik sertifikaadiloendi elemendid,</action
+> &ie; muudab kõik elemendid nähtavaks.</para>
+
+<para
+>See on hierarhilise võtmeloendi vaikeolek.</para>
+
+<para
+>Iga elementi võib avada või sulgeda mõistagi ka käsitsi.</para>
+
+<para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on käsk <xref linkend="view-hierarchical-key-list"/>.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Vaade</guimenu
+><guimenuitem
+>Sulge kõik</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Sulgeb kõik sertifikaadiloendid elemendid,</action
+> &ie; peidab kõik, välja arvatud tipptaseme elemendid.</para>
+
+<para
+>Iga elementi võib avada või sulgeda mõistagi ka käsitsi.</para>
+
+<para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on käsk <xref linkend="view-hierarchical-key-list"/>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Menüü Sertifikaadid</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Muuda omaniku usaldusväärsust...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab muuta valitud &openpgp; sertifikaadi omaniku usaldusväärsust.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &openpgp; sertifikaat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Usalda juursertifikaati</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Tähistab selle (&smime;) juursertifikaadi kui usaldusväärse.</action>
+            </para>
+            <para
+>Mõneti on see &smime; juursertifikaatide korral sama, mis <xref linkend="certificates-change-owner-trust"/>. Valida saab siiski ainult&mdash; &openpgp; mõisteid kasutades&mdash;<quote
+>täieliku</quote
+> usaldamise ja <quote
+>mitte kunagi usaldamise</quote
+> vahel. </para>
+            <note>
+              <para
+>Taustaprogramm (&gpgagent;) küsib juursertifikaadi importimise ajal, kas usaldada imporditud juursertifikaati. Siiski peab see funktsioon olema taustaprogrammi seadistuses konkreetselt sisse lülitatud (<option
+>allow-mark-trusted</option
+> failis <filename
+>gpg-agent.conf</filename
+> või kas <menuchoice
+><guimenu
+>GnuPG&nbsp;süsteem</guimenu
+> <guisubmenu
+>GPG&nbsp;agent</guisubmenu
+> <guimenuitem
+>Juursertifikaadid märgitakse usaldusväärseks</guimenuitem
+></menuchoice
+> või <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>S/MIME&nbsp;kontrollimine</guimenu
+> <guimenuitem
+>Juursertifikaadid märgitakse usaldusväärseks</guimenuitem
+></menuchoice
+></link
+> seadistustedialoogis <xref linkend="configuration"/>). </para>
+              <para
+>Selle funktsiooni sisselülitamine taustaprogrammis võib tuua kaasa &pinentry; hüpikdialoogide avanemise väga ebasobival ajal (nt. allkirju verifitseerides) ning seeläbi tõkestada kirjade töötlemise. Sel põhjusel, aga ka seepärast, et soovitatav on omada võimalust <emphasis
+>umbusaldada</emphasis
+> usaldusväärset juursertifikaati kunagi tulevikus, võimaldab &kleopatra; usaldusväärsust käsitsi määrata. </para>
+            </note>
+            <warning>
+              <para
+>Et taustaprogramm seda funktsiooni ei toeta, peab &kleopatra; suhtlema otse &gpgsm; usaldusväärsuse andmebaasiga (<filename
+>trustlist.txt</filename
+>). Selle funktsiooni kasutamisel kontrolli, et käimas poleks ükski muu krüptotoiming, mis võiks põrkuda &kleopatra;ga kokku andmebaasi muutmise käigus. </para>
+            </warning>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &smime; juursertifikaat ja see ei ole veel usaldusväärne. </para>
+            <para
+>Selle tagasivõtmiseks kasuta käsku <xref linkend="certificates-distrust-root"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Ära usalda juursertifikaati</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Tähistab selle (&smime;) juursertifikaadi kui mitteusaldusväärse.</action>
+            </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &smime; juursertifikaat ja see on usaldusväärne. </para>
+            <para
+>Kasutatakse käsu <xref linkend="certificates-trust-root"/> tühistamiseks; vaata lähemalt selle käsu kirjeldust. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Sertifitseeri sertifikaat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab sertifitseerida teist &openpgp; sertifikaati.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &openpgp; sertifikaat. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Muuda aegumisaega...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab muuta &openpgp; sertifikaadi aegumistähtaega.</action>
+            </para>
+            <para
+>Selle abil saab pikendada oma &openpgp; sertifikaatide kehtivusaega, nii et ei ole vaja luua uut sertifikaati ega määrata neile piiramatut kehtivusaega (<quote
+>ei aegu mitte kunagi</quote
+>). </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &openpgp; sertifikaat ning saadaval on selle sertifikaadi salajane võti. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Muuda paroolifraasi...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab muuta oma salajase võtme paroolifraasi.</action>
+            </para>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks sertifikaat ja saadaval on selle salajane võti. See nõuab üsna uut taustaprogrammi, sest me oleme muutnud teostust, eelistades &gpg; ja &gpgsm; otsese väljakutsumise asemel &gpgme;-põhist lahendust. </para>
+            <note>
+              <para
+>Turbekaalutlustel pärib &pinentry; nii vana kui ka uut paroolifraasi eri protsessina. Sõltuvalt sinu platvormist ja &pinentry; konkreetse versiooni kvaliteedist sellel platvormil võib juhtuda, et &pinentry; aken ilmub taustal. Nii et kui valid selle ja midagi ei juhtu, uuri igaks juhuks tegumiriba - äkki on &pinentry; aken avatud, aga ei ole lihtsalt näha. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Lisa kasutaja ID...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab lisada oma &openpgp; sertifikaadile uue kasutaja ID.</action>
+            </para>
+            <para
+>Selle abil saab lisada olemasolevale sertifikaadile uusi identiteete, mitte ei pea looma uusi võtmepaare. &openpgp; kasutaja ID on järgmise kujuga: </para>
+            <programlisting
+><replaceable
+>Pärisnimi</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Kommentaar</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>E-posti aadress</replaceable
+>&gt;</programlisting>
+            <para
+>Ilmuvas dialoogis palub &kleopatra; kõiki kolme parameetrit (<replaceable
+>pärisnimi</replaceable
+>, <replaceable
+>kommentaar</replaceable
+> ja <replaceable
+>e-posti aadress</replaceable
+>) eraldi ning näitab tulemust eelvaatlusena. </para>
+            <note>
+              <para
+>Need parameetrid alluvad samasuguste administraatori piirangutele nagu uute sertifikaatide puhul. Täpsemalt kõneleb <xref linkend="functions-newkey"/> ja <xref linkend="admin-certificate-request-wizard"/>. </para>
+            </note>
+            <para
+>Seda funktsiooni saab kasutada ainult siis, kui valitud on üks &openpgp; sertifikaat ning saadaval on selle sertifikaadi salajane võti. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Del</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Kustuta</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Kustutab valitud sertifikaadid</action
+> kohalikust võtmerõngast. </para>
+            <para
+>Kasuta seda tarvitamata võtmete eemaldamiseks oma kohalikust võtmekastist. Siiski arvesta, et kuna sertifikaadid on tavaliselt lisatud signeeritud e-kirjadele, võib kirja kontrollimisel selle käsuga eemaldatud võti taas kohalikku võtmekasti sattuda. Seepärast on ilmselt parem seda käsku võimalikult vähe kasutada. Kui sertifikaadid silme eest kirjuks löövad, kasuta tasakaalu tagasisaamiseks <link linkend="functions-search"
+>otsinguriba</link
+> või menüükäsku <xref linkend="view-hierarchical-key-list"/>. </para>
+            <warning>
+              <para
+>Ülaltoodul on üks erand. Kui kustutad mõne omaenda sertifikaadi, kustutad koos sellega ka salajase võtme. See tähendab, et sa ei ole enam võimeline lugema varasemaid sõnumeid, mis on sulle saadetud selle sertifikaadiga krüptides, kui sul pole just sellest tehtud varukoopiat. </para>
+              <para
+>&kleopatra; hoiatab, kui kavatsed kustutada salajast võtit. </para>
+            </warning>
+            <para
+>&smime; sertifikaatide hierarhilise iseloomu tõttu kustutatakse juhul, kui kustutad &smime; väljaandja sertifikaadi (SK sertifikaadi), ka kogu ahel.<footnote
+><para
+>See sarnaneb failisüsteemile: kui kustutad kataloogi, kustutad ka kõik selles leiduvad failid ja (alam)kataloogid.</para
+></footnote>
+            </para>
+            <para
+>Loomulikult saab seda funktsiooni kasutada ainult siis, kui valitud on vähemalt üks sertifikaat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Sertifikaadid</guimenu
+><guimenuitem
+>Tee sertifikaadi tõmmis</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Näitab kogu teavet, mida &gpgsm; omab valitud (&smime;) sertifikaadi kohta.</action>
+            </para>
+            <para
+>Väljundi üksikasjade kohta vaata täpsemalt võtme <option
+>--dump-key&nbsp;<replaceable
+>võti</replaceable
+></option
+> kirjeldus &gpgsm; manuaalis. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Menüü Tööriistad</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>GnuPG logi näitaja...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Käivitab <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+> ehk tööriista &gnupg; rakenduse silumisväljundi näitamiseks. Kui allkirjastamine, krüptimine või kontrollimine arusaamatul põhjusel peatub, võib selle abil leida, mis on lahti. </para>
+            <para
+>See funktsioon pole saadaval Windowsis, sest sel platvormil pole taustaprogrammi vastavad mehhanismid lihtsalt teostatud. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>Värskenda OpenPGP sertifikaate</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Värskendab kõiki &openpgp; sertifikaate</action
+>, käivitades käsu <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Käsu eduka täitmise järel kajastab sinu kohalik võtmehoidla viimaseid &openpgp; sertifikaatide kehtivust puudutavaid muudatusi. </para>
+            <para
+>Vaata mõningate ohtude kohta märkust <xref linkend="certificates-refresh-x509"/> juures. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>Värskenda X.509 sertifikaate</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Värskendab kõiki &smime; sertifikaate</action
+>, käivitades käsu <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Käsu eduka täitmise järel kajastab sinu kohalik võtmehoidla viimaseid &smime; sertifikaatide kehtivust puudutavaid muudatusi. </para>
+            <note>
+              <para
+>&x509; või &openpgp; sertifikaatide värskendamine tähendab kõigi sertifikaatide ja &crl;-ide allalaadimist kontrollimaks, kas neid ei ole vahepeal tühistatud. </para>
+              <para
+>See võib seada tõsise koormuse alla nii sinu kui ka teiste inimeste võrguühenduse ning võtta aega isegi üle mitme tunni sõltuvalt sinu võrguühendusest ja kontrollitavate sertifikaatide arvust. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>Impordi CRL failist...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Võimaldab käsitsi importida &crl;-id failist.</action>
+            </para>
+            <para
+>Tavaliselt tegeleb sertifikaatide tühistamise loenditega (&crl;-id) läbipaistvalt taustaprogramm, aga mõnikord on kasulik importida &crl; käsitsi oma kohalikku &crl;-puhvrisse. </para>
+            <note>
+              <para
+>Et &crl;-i import toimiks, peab tööriist &dirmngr; asuma otsinguteel (<envar
+>PATH</envar
+>). Kui menüü ei ole kasutatav, tuleks võtta ühendus süsteemiadministraatoriga ja paluda tal paigaldada &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>Puhasta CRL vahemälu</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Puhastab &gpgsm; &crl; puhvri.</action
+></para>
+
+<para
+>Tõenäoliselt ei ole seda siiski kunagi vaja ette võtta. Selle asemel võib &crl; puhvri uuendamise peale sundida kõiki sertifikaate ja käsku <xref linkend="certificates-refresh-x509"/> valides.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Tööriistad</guimenu
+><guimenuitem
+>CRL vahemälu</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Näitab &gpgsm; &crl; puhvri üksikasjalikku sisu.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Menüü Seadistused</title>
+
+<para
+>&kleopatra; kasutab tavapärast &kde; <guimenu
+>seadistuste</guimenu
+>menüüd, mida kirjeldab <ulink url="help:/fundamentals/ui.html#menus-settings"
+>&kde; põhialuste käsiraamat</ulink
+>, kuid sel on siiski üks lisakirje:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>Soorita enesetest</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Sooritab rea eneseteste ja näitab nende tulemust.</action>
+            </para>
+            <para
+>Tegemist on samade testidega, mis sooritatakse vaikimisi rakenduse käivitamisel. Kui oled käivitusaegsed enesetestid keelanud, saab neid siin taas sisse lülitada. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Menüü Aken</title>
+<para
+>Menüü <guimenu
+>Aken</guimenu
+> võimaldab hallata kaarte. Selle menüü abil saab kaarte ümber nimetada, lisada uusi kaarte, kloonida aktiivse kaardi, sulgeda aktiivse kaardi ning liigutada aktiivse kaardi vasakule või paremale.</para>
+
+<para
+>Klõpsates &HPNga; kaardi sakile, avaneb kontekstimenüü, kus leiab samad toimingud.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Menüü Abi</title>
+
+<para
+>&kleopatra; kasutab tavapärast &kde; <guimenu
+>abi</guimenu
+>menüüd, mida kirjeldab <ulink url="help:/fundamentals/ui.html#menus-help"
+>&kde; põhialuste käsiraamat</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Käsurea võtmete seletused</title>
+
+<para
+>Siin on ära toodud ainult &kleopatra; spetsiifilised võtmed. Nagu &kde; rakendustes ikka, saab võtmete täieliku loendi käsuga <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Sokli asukoht, mida UI server jälgib</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Ainult UI serveri käivitamine, peaaken peidetakse</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>&openpgp; kasutamine järgmiseks toiminguks</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>CMS-i (&x509;, S/&MIME;) kasutamine järgmiseks toiminguks</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Määrab faili või &URL; -i, kust importida sertifikaadid (või salajased võtmed).</action
+></para>
+
+<para
+>See on samane menüükäsuga <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Failide krüptimine</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Failide allkirjastamine</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Failide krüptimine ja/või allkirjastamine. Sama, mis <option
+>--sign-encrypt</option
+>, ära seda kasuta.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Failide lahtikrüptimine</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Faili/allkirja verifitseerimine</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Failide lahtikrüptimine ja/või verifitseerimine</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>&kleopatra; seadistamine</title>
+
+    <para
+>&kleopatra; seadistustedialoogi saab avada menüükäsuga <menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>&kleopatra; seadistamine..</guimenuitem
+></menuchoice
+>. </para>
+    <para
+>Järgnevalt kirjeldame dialoogi kõiki kaarte. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Kataloogiteenuste seadistamine</title>
+
+      <para
+>Siin saab seadistada, milliseid &ldap; servereid kasutada &smime; sertifikaatide otsimisel ja milliseid võtmeservereid kasutada &openpgp; sertifikaatide otsimisel. </para>
+      <note>
+        <para
+>See on lihtsalt kasutajasõbralikum versioon seadistustest, mida pakub <xref linkend="configuration-gnupg-system"/>. Kõike, mida saab seadistada siin, saab seadistada ka seal. </para>
+      </note>
+      <note>
+        <title
+>Märkus puhverserveri seadistuste kohta</title>
+        <para
+>Puhverserverit saab seadistada nii &http; kui ka &ldap; puhul dialoogis <xref linkend="configuration-smime-validation"/>, aga seda ainult &gpgsm; korral. &gpg; korral tuleb &gpg; võtmeserveri võtmete keerukuse ja selle tõttu, et &gpgconf; neid korralikult ei toeta, praegu muuta käsitsi seadistusfaili <filename
+>gpg.conf</filename
+>. Täpsemalt kõneleb sellest &gpg; manuaal. &kleopatra; arvestab nende seadistustega, kuid ei võimalda neid veel graafilises kasutajaliideses muuta. </para>
+      </note>
+      <para
+><guilabel
+>Kataloogiteenuste</guilabel
+> tabel näitab, millised serverid on parajasti seadistatud. Topeltklõps mõnel tabeli lahtril lubab muuta olemasolemate serverikirjete parameetreid. </para>
+      <para
+>Tabeli veergude tähendus on järgmine: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Skeem</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Määrab võrguprotokolli, mida kasutatakse ligipääsuks serverile. Levinumad skeemid on <guilabel
+>ldap</guilabel
+> (ja selle &ssl;-turbega sugulane <guilabel
+>ldaps</guilabel
+>) &ldap; serverite jaoks (tavaline protokoll &smime; korral ning ainuke, mida &gpgsm; toetab) ning <guilabel
+>hkp</guilabel
+> ehk Horowotzi võtmeserveri protokoll, tänapäeval tavaliselt &http; võtmeserveri protokoll ehk &http;-põhine protokoll, mida toetavad sisuliselt kõik avalikud &openpgp; võtmeserverid. </para>
+            <para
+>Toetatud skeemide kohta vaata täpsemat teavet &gpg; ja &gpgsm; manuaalist. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Serveri nimi</guilabel
+></term>
+          <listitem>
+            <para
+>Serveri domeeninimi, nt. <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Serveri port</guilabel
+></term>
+          <listitem>
+            <para
+>Võrguport, mida server jälgib. </para>
+            <para
+>See muutub automaatselt vaikimisi pordiks, kui muudad <xref linkend="configuration-directory-services-scheme"/>, kui selleks pole just algusest peale määratud mingi mittestandardne port. Kui oled muutnud vaikeporti ja ei saa seda enam tagasi, püüa määrata <xref linkend="configuration-directory-services-scheme"/> väärtuseks <userinput
+>http</userinput
+> ning <xref linkend="configuration-directory-services-server-port"/> väärtuseks <userinput
+>80</userinput
+> (vaikeväärtused &http; korral) ning siis vali see siin. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Baas DN</guilabel
+></term>
+          <listitem>
+            <para
+>Baas &dn; (ainult &ldap; ja &ldaps; korral) ehk &ldap; hierarhia alus, millest kõike arvama hakatakse. Sageli nimetatakse seda ka <quote
+>otsingujuureks</quote
+> (ingl search root) või <quote
+>otsingubaasiks</quote
+> (ingl search base). </para>
+            <para
+>Tavaliselt on see umbes selline: <userinput
+>c=de,o=Foo</userinput
+>, ning see antakse &ldap; &URL;-i osana. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Kasutajanimi</guilabel
+></term>
+          <listitem>
+            <para
+>Kasutajanimi, kui seda on vaja serverisse logimiseks. </para>
+            <para
+>See veerg on näha ainult siis, kui märgitud on valik <guilabel
+>Kasutaja ja parooliteabe näitamine</guilabel
+> (tabeli all). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Parool</guilabel
+></term>
+          <listitem>
+            <para
+>Parool, kui seda on vaja serverisse logimiseks. </para>
+            <para
+>See veerg on näha ainult siis, kui märgitud on valik <guilabel
+>Kasutaja ja parooliteabe näitamine</guilabel
+> (tabeli all). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Märgi veerg, kui kirjet tuleb kasutada &x509; (&smime;) sertifikaadi otsingus. </para>
+            <para
+>Ainult &ldap; (ja &ldaps;) serverid on toetatud &smime; korral. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Märgi veerg, kui kirjet tuleb kasutada &openpgp; sertifikaadi otsingus. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>&smime; (&x509;) servereid võib seadistada nii palju, kui süda lustib, aga &openpgp; servereid tohib korraga olla ainult üks. Graafiline kasutajaliides ei lasegi viimaseid rohkem seadistada. </para>
+      <para
+>Uue serveri lisamiseks klõpsa nupule <guibutton
+>Uus</guibutton
+>. See kloonib valitud kirje, kui oled mõne valinud, või lisab vaikimisi &openpgp; serveri. Seejärel saab määrata järgmised omadused: <xref linkend="configuration-directory-services-server-name"/>, <xref linkend="configuration-directory-services-server-port"/>, <xref linkend="configuration-directory-services-base-dn"/> ning tavaliselt ka <xref linkend="configuration-directory-services-password"/> ja <xref linkend="configuration-directory-services-user-name"/>, kuigi viimaseid kahte läheb vaja ainult siis, kui server nõuab autentimist.  </para>
+      <para
+>Otseseks &x509; sertifikaadi kirje lisamiseks vali <menuchoice
+><guimenu
+>Uus</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+> ning <menuchoice
+><guimenu
+>Uus</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+>, kui soovid lisada &openpgp; sertifikaadi kirje. </para>
+      <para
+>Serveri eemaldamiseks otsimisloendist vali server ja klõpsa nupule <guibutton
+>Kustuta</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>&ldap; aegumise, &ie; maksimaalse aja määramiseks, mille kestel taustaprogramm ootab serverilt vastust, kasuta vastavat välja <guilabel
+>LDAP aegumine (min:sek)</guilabel
+>. </para>
+      <para
+>Kui mõnel serveritest on suur andmebaas, nii et isegi mõistlik otsing, nagu näiteks <userinput
+>Smith</userinput
+>, ületab võimalusega <guilabel
+>maksimaalne päringu vastuste arv</guilabel
+> määratu, siis võiks mainitud läve tõsta. Seda, kas oled piiranguni jõudnud või mitte, saab teada imelihtsalt - kui see otsingu ajal peaks juhtuma, ilmub dialoog, mis annab teada, et tulemusi on seetõttu kärbitud. </para>
+      <note>
+        <para
+>Mõned serverid võivad ka omalt poolt kehtestada päringu vastuste limiidi. Sellisel juhul ei anna limiidi suurendamine sinu poolt mõistagi mingit tulemust. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Välimuse seadistamine</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+><guilabel
+>Kohtspikrite</guilabel
+> seadistamine</title>
+
+        <para
+>&kleopatra; võib sertifikaatide põhiloendis näidata sertifikaadi üksikasju kohtspikrina. Näidatav teave on sama, mida näeb dialoogi <guilabel
+>Sertifikaadi üksikasjad</guilabel
+> kaardil <guilabel
+>Ülevaade</guilabel
+>. Kohtspikrite puhul võib siiski määrata, et nad näitaksid ka oluliselt vähem teavet. </para>
+        <note>
+          <para
+><guilabel
+>Võtme-ID</guilabel
+>-d näidatakse <emphasis
+>alati</emphasis
+>. Nii tagatakse, et eri sertifikaatide kohtspikrid tõepoolest ka erineksid (see on eriti oluline siis, kui on valitud <xref linkend="tooltips-validity"/>). </para>
+        </note>
+        <para
+>Üksteisest sõltumatult saab lasta näidata või peita järgmist teavet: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Kehtivuse näitamine</guilabel
+></term>
+            <listitem>
+              <para
+>Näitab teavet sertifikaadi kehtivuse kohta: aktiivne olek, väljaandja &dn; (ainult &smime; korral), kehtivusaeg (kui see on määratud), kasutamise lipud. </para>
+              <para
+>Näide: <programlisting
+><!--
+                  -->This certificate is currently valid.
+<!--              -->Issuer:            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Validity:          from 25.08.2009 10:42 through 19.10.2010 10:42
+<!--              -->Certificate usage: Signing EMails and Files, Encrypting EMails and Files
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Omaniku teabe näitamine</guilabel
+></term>
+            <listitem>
+              <para
+>Näitab teavet sertifikaadi omaniku kohta: subjekti &dn; (ainult &smime; korral), kasutaja-ID-d (kaasa arvatud e-posti aadressid) ja omaniku usaldusväärsus (ainult &openpgp; korral). </para>
+              <para
+>&openpgp; näide: <programlisting
+><!--
+                  -->User-ID:           Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->Key-ID:            C6BF6664
+<!--              -->Ownertrust:        ultimate<!--
+                  --></programlisting
+> &smime; example: <programlisting
+><!--
+                  -->Subject:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->a.k.a.:            Gpg4winUserA@test.hq
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Näita tehnilisi üksikasju</guilabel
+></term>
+            <listitem>
+              <para
+>Näitab sertifikaadi tehnilist teavet: seerianumber (ainult &smime; korral), tüüp, sõrmejälg ja salvestamise asukoht. </para>
+              <para
+>Näide: <programlisting
+><!--
+                  -->Serial Number:     27
+<!--              -->Certificate type:  1,024-bit RSA (secret certificate available)
+<!--              -->Key-ID:            DC9D9E43
+<!--              -->Fingerprint:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Stored:            on this computer<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+><guilabel
+>Sertifikaadikategooriate</guilabel
+> seadistamine</title>
+
+        <para
+>&kleopatra; võimaldab muuta võtmete välimuse loendivaates just selliseks, nagu sa tahad. Muuta on võimalik nii esiplaani (teksti) ja tausta värvi kui ka fonti, samuti lasta näidata väikest ikooni. </para>
+        <para
+>Igale nimekirjas asuvale <guilabel
+>sertifikaadi kategooria</guilabel
+>le on omistatud värvid, ikoon (ei pruugi olla) ja font, millega kategooriasse kuuluvaid võtmeid näidatakse. Kategoorialoend on ühtlasi siin määratud seadistuste eelvaatluseks. Administraator või tema õigustes isik võib kategooriad vabalt määrata ja/või muuta - vaata <xref linkend="admin-key-filters"/> (<xref linkend="admin"/>). </para>
+        <para
+>Kategooria ikooni muutmiseks vali loendis kategooria ja klõpsa nupule <guibutton
+>Määra ikoon...</guibutton
+> Ilmub &kde; tavapärane ikooni valimise dialoog, kus saad valida mõnes &kde; kogus leiduva või kohandatud ikooni. </para>
+        <para
+>Ikooni eemaldamiseks klõpsa nupule <guibutton
+>Vaikevälimus</guibutton
+>. </para>
+        <para
+>Kategooria teksti (esiplaani) värvi muutmiseks vali loendis kategooria ja klõpsa nupule <guibutton
+>Määra teksti värv...</guibutton
+> Ilmub &kde; tavapärane värvi valimise dialoog, kus saad valida olemasoleva või luua uue värvi. </para>
+        <para
+>Taustavärvi valimine käib samamoodi, ainult et klõpsata tuleb nupule <guibutton
+>Määra taustavärv...</guibutton
+> </para>
+        <para
+>Fonti saab muuta kahel põhimõtteliselt erineval viisil: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Muutes standardset fonti, mida kasutatakse &kde; kõigis loendivaadetes. </para>
+          </listitem>
+          <listitem>
+            <para
+>Kasutades kohandatud fonti. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>Esimese võimaluse eeliseks on see, et font järgib stiili, mille valid kogu &kde; jaoks. Teine võimalus annab aga sulle kasutatava fondi üle igakülgse kontrolli. Nii et valik on sinu. </para>
+        <para
+>Muudetud standardse fondi kasutamiseks vali loendis kategooria ning märgi või eemalda märge fondikastidest <guilabel
+>kaldkiri</guilabel
+>, <guilabel
+>rasvane</guilabel
+> ja/või <guilabel
+>läbikriipsutatud</guilabel
+>. Tulemust võid kohe näha kategoorialoendis. </para>
+        <para
+>Kohandatud fondi kasutamiseks klõpsa nupule <guibutton
+>Määra font...</guibutton
+> Ilmub tavapärane &kde; fondi valimise dialoog, kus saab valida uue fondi. </para>
+        <note>
+          <para
+>Pane tähele, et ülaltoodud kastidega saab muuta ka kohandatud fondi välimust. </para>
+        </note>
+        <para
+>Kui soovid standardset fonti tagasi, klõpsa nupule <guibutton
+>Vaikevälimus</guibutton
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+><guilabel
+>DN atribuutide järjekorra</guilabel
+> määramine</title>
+
+<para
+>Kuigi &dn;-id on hierarhilised, ei ole üksikute komponentide (neid nimetatakse suhtelisteks ehk relatiivseteks &dn;-ideks (RDN või ka &dn; atribuudid). Seepärast on järjekord, milles atribuute näidatakse, isikliku eelistuse või firma reeglite otsustada, mistõttu &kleopatra; võimaldab seda ka muuta.</para>
+
+<note
+><para
+>Siinsed seadistused rakenduvad mitte ainult &kleopatra;le, vaid kõigile &kleopatra; tehnoloogiat kasutavatele rakendustele. Käsiraamatu kirjutamise ajal olid neiks &kmail;, &aadressiraamat; ja mõistagi &kleopatra; ise.</para
+></note>
+
+<para
+>Seadistustekaart koosneb kahest loendist, millest üks on teadaolevate atribuutide jaoks (<guilabel
+>Saadaolevad atribuudid</guilabel
+>), teises aga seisab <guilabel
+>praegune atribuutide järjekord</guilabel
+>.</para>
+
+<para
+>Mõlemad nimekirjad koosnevad kirjetest, mis sisaldavad nii atribuudi lühivormi (&eg; <guilabel
+>CN</guilabel
+>) kui ka pikka vormi (<guilabel
+>Ühine nimi</guilabel
+>).</para>
+
+<para
+><guilabel
+>Saadaolevad atribuudid</guilabel
+> on alati tähestikulises järjekorras, <guilabel
+>Praegune atribuutide järjekord</guilabel
+> aga kajastab olemasolevat &dn; atribuutide järjekorda, kus esimesena toodud atribuuti ka esimesena näidatakse.</para>
+
+<para
+>Näidatakse ainult atribuute, mida toob ära <guilabel
+>Praegune atribuutide järjekord</guilabel
+>, ülejäänud on vaikimisi peidetud.</para>
+
+<para
+>Kui aga kohanäitaja <guilabel
+>_X_</guilabel
+> (<guilabel
+>Kõik muud</guilabel
+>) seisab <quote
+>praeguste</quote
+> loendis, lisatakse kõik loendist puuduvad atribuudid (sõltumata sellest, kas nad on teada või mitte) <guilabel
+>_X_</guilabel
+> asukohta nende algupärases suhtelises järjekorras.</para>
+
+<para
+>Toome selgituseks näite:</para>
+
+<informalexample>
+<para
+>Kui &dn; on</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>atribuutide vaikimisi järjekord <quote
+>CN, L, _X_, OU, O, C</quote
+> annab tulemuseks järgmiselt vormindatud &dn;:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+><quote
+>CN, L, OU, O, C</quote
+> aga</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>Atribuudi lisamiseks näidatavate atribuutide loendisse vali see loendis <guilabel
+>Saadaolevad atribuudid</guilabel
+> ning klõpsa nupule <guilabel
+>Lisa praegusse atribuutide järjekorda</guilabel
+>.</para>
+
+<para
+>Atribuudi eemaldamisks näidatavate atribuutide loendis vali see loendis <guilabel
+>Praegune atribuutide järjekord</guilabel
+> ja klõpsa nupule <guilabel
+>Eemalda praegusest atribuutide järjekorras</guilabel
+>.</para>
+
+<para
+>Atribuudi liigutamiseks algusse/lõppu vali see loendis <guilabel
+>Praegune atribuutide järjekord</guilabel
+> ja klõpsa nupule <guilabel
+>Liiguta esimeseks</guilabel
+> (<guilabel
+>Liiguta viimaseks</guilabel
+>).</para>
+
+<para
+>Atribuudi liigutamiseks ühe positsiooni võrra üles/alla vali see loendis <guilabel
+>Praegune atribuutide järjekord</guilabel
+> ja klõpsa nupule <guilabel
+>Liiguta üles</guilabel
+> (<guilabel
+>Liiguta alla</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Krüptotoimingute seadistamine</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+><guilabel
+>E-posti toimingute</guilabel
+> seadistamine</title>
+
+        <para
+>Siin saab seadistada mõningaid &kleopatra; &uiserver;i e-posti toimingute aspekte. Praegu saab määrata ainult seda, kas kirjade allkirjastamisel ja krüptimisel kasutada <quote
+>kiirrežiimi</quote
+> või mitte. </para>
+        <para
+>Kui <quote
+>kiirrežiim</quote
+> on lubatud, ei näidata kirjade allkirjastamisel või krüptimisel dialoogi, kui ei teki just konflikt, mis vajab käsitsi lahendamist. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+><guilabel
+>Failitoimingute</guilabel
+> seadistamine</title>
+
+        <para
+>Siin saab seadistada mõningaid &kleopatra; &uiserver;i failitoimingute aspekte. Praegu saab valida ainult kontrollsumma programmi, mida kasutakse käsu <command
+>CHECKSUM_CREATE_FILES</command
+> korral. </para>
+        <para
+>Valikuga <guilabel
+>Kasutatav kontrollsummaprogramm</guilabel
+> saab määrata, millist seadistatud kontrollsummaprogrammi tuleb kasutada kontrollsummafailide loomisel. </para>
+        <para
+>Kontrollsummade verifitseerimisel leitakse vajalik programm automaatselt leitud kontrollsummafailide nimede põhjal. </para>
+        <note>
+          <para
+>Administraator ja kogenud kasutaja võivad igakülgselt määrata, millised kontrollsummaprogrammid on üldse &kleopatra;le kättesaadavad niinimetatud <quote
+>kontrollsummadefinitsioonide</quote
+> abil seadistusfailis. Täpsemalt kõneleb sellest <xref linkend="admin-checksum-definitions"/> <xref linkend="admin"/>is. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>S/&MIME; valideerimise omaduste seadistamine</title>
+
+      <para
+>Siin saab seadistada mõningaid &smime; sertifikaatide kontrollimise aspekte. </para>
+      <note>
+        <para
+>See on lihtsalt kasutajasõbralikum versioon seadistustest, mida pakub <xref linkend="configuration-gnupg-system"/>. Kõike, mida saab seadistada siin, saab seadistada ka seal, välja arvatud <xref linkend="configuration-smime-validation-refresh-interval"/>, mis on ainuomane &kleopatra;le. </para>
+      </note>
+      <para
+>Valikud on järgmised: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Sertifikaatide kontrollimise intervalli seadistamine</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Sertifikaadi kehtivuse kontrollimine iga <replaceable
+>N</replaceable
+> tunni järel</guilabel
+></term>
+            <listitem>
+              <para
+>Selle valikuga lülitatakse sisse sertifikaadi kehtivuse kontrollimine kindla ajavahemiku järel. Siin saab ka määrata kontrollimise intervalli tundides. See on sama toimega nagu <xref linkend="view-redisplay"/>, samas ei pakuta kindla ajavahemiku tagant kontrollimist ei <xref linkend="certificates-refresh-openpgp"/> ega <xref linkend="certificates-refresh-x509"/> korral. </para>
+              <note>
+                <para
+>Kontrollimine võetakse kindlasti ette siis, kui muutuvad olulised failid asukohas <filename
+>~/.gnupg</filename
+>. Nagu <xref linkend="certificates-refresh-openpgp"/> ja <xref linkend="certificates-refresh-x509"/>, mõjutab ka see valik ainult sertifikaadi kehtivuse välistegureid. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Kontrollimise meetodi seadistamine</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Sertifikaatide kontroll CRL-ide vahendusel</guilabel
+></term>
+            <listitem>
+              <para
+>Selle valimisel kontrollitakse &smime; sertifikaate sertifikaatide tühistamise nimekirju (&crl;) kasutades. </para>
+              <para
+>Alternatiivsest sertifikaadi kehtivuse meetodist kõneleb <xref linkend="configuration-smime-validation-use-ocsp"/>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Sertifikaatide kontroll võrgus (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Selle valimisel kontrollitakse &smime; sertifikaate võrgus interneti sertifikaatide staatuse protokolli (&ocsp;) kasutades. </para>
+              <warning>
+                <para
+>Selle meetodi valimisel saadetakse päring SK serverisse enam-vähem iga kord, kui saadad või saad krüptitud sõnumi, mis teoreetiliselt võimaldab sertifikaadi väljaandjal jälgida, kellega sa vahetad näiteks kirju. </para>
+              </warning>
+              <para
+>Meetodi kasutamiseks tuleb <xref linkend="configuration-smime-validation-ocsp-url"/> all sisestada &ocsp; keskuse &URL;. </para>
+              <para
+>Traditsioonilisemakst sertifikaadi kehtivuse meetodist kõneleb <xref linkend="configuration-smime-validation-use-ocsp"/> (see ei lekita teavet selle kohta, kellega kirju vahetad). </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>OCSP-serveri URL</guilabel
+></term>
+            <listitem>
+              <para
+>Anna siin sertifikaatide kontrollimise serveri aadress (&ocsp; keskus). &URL;-i alguses seisab tavaliselt <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>OCSP-serveri signatuur</guilabel
+></term>
+            <listitem>
+              <para
+>Siin saab valida sertifikaadi, millega &ocsp; server allkirjastab oma vastused. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Sertifikaatide teenuse URL-i ignoreerimine</guilabel
+></term>
+            <listitem>
+              <para
+>Iga &smime; sertifikaat sisaldab tavaliselt oma väljaandja &ocsp; serveri &URL;-i (<xref linkend="certificates-dump-certificate"/> näitab, kas konkreetne sertifikaat sisaldab seda või mitte). </para>
+              <para
+>Selle märkimisel eirab &gpgsm; neid &URL;-e ning kasutab ainult ülal määratuid. </para>
+              <para
+>Seda võib kasutada näiteks kogu ettevõttele kehtiva &ocsp; puhverserveri kehtestamiseks. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Kontrollimise valikute seadistamine</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Sertifikaadi reegleid ei kontrollita</guilabel
+></term>
+            <listitem>
+              <para
+>Vaikimisi kasutab &gpgsm; faili <filename
+>~/.gnupg/policies.txt</filename
+> kontrollimaks, kas sertifikaadi reegel on lubatud. Selle valimisel aga reegleid ei kontrollita. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>CRL-i ei kontrollita kunagi</guilabel
+></term>
+            <listitem>
+              <para
+>Sisselülitamisel ei kasutata &smime; sertifikaatide kontrollimiseks kunagi sertifikaatide tühistamise loendeid (CRL). </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Juursertifikaadid märgitakse usaldusväärseks</guilabel
+></term>
+            <listitem>
+            <para
+>Kui see on märgitud ning imporditakse SK juursertifikaati, palutakse sul kinnitada selle sõrmejälg ning määrata, kas pidada seda juursertifikaati usaldusväärseks või mitte. </para>
+              <para
+>Juursertifikaat peab olema usaldusväärne, enne kui saab usaldada sertifikaate, mida see sertifitseerib, kuid juursertifikaatide kergemeelne usaldamine ja nende paigutamine oma sertifikaadihoidlasse võib õõnestada süsteemi turvalisust. </para>
+              <note>
+                <para
+>Selle funktsiooni sisselülitamine taustaprogrammis võib tuua kaasa &pinentry; hüpikdialoogide avanemise väga ebasobival ajal (nt. allkirju verifitseerides) ning seeläbi tõkestada kirjade töötlemise. Sel põhjusel, aga ka seepärast, et soovitatav on omada võimalust <emphasis
+>umbusaldada</emphasis
+> usaldusväärset juursertifikaati kunagi tulevikus, võimaldab &kleopatra; usaldusväärsust käsitsi määrata, mida võimaldavad <xref linkend="certificates-trust-root"/> ja <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>See seadistus ei mõjuta &kleopatra; funktsiooni. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Tõmmatakse puuduvad väljaandja sertifikaadid</guilabel
+></term>
+            <listitem>
+              <para
+>Selle märkimisel tõmmatakse vajadusel puuduvad väljaandja sertifikaadid (kasutusel nii &crl;-ide kui &ocsp; korral;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>&http; päringute valikute seadistamine</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>HTTP päringuid ei sooritata</guilabel
+></term>
+            <listitem>
+              <para
+>Keelab täielikult &http; kasutamise &smime; korral. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>HTTP sertifikaatide CRL jagamispunkte ignoreeritakse</guilabel
+></term>
+            <listitem>
+              <para
+>&crl;-i asukoha otsimisel sisaldab testitav sertifikaat tavaliselt niinimetatud <quote
+>&crl;-i jagamispunkti</quote
+> (<acronym
+>DP</acronym
+>) kirjet, mis kujutab endast vajalikule &crl;-ile viivat &URL;-ide rida. Kasutatakse esimesena leitud jagamispunkti. </para>
+              <para
+>Selle valikuga jäetakse sobiva <acronym
+>DP</acronym
+> otsimisel kõrvale kõik &http;-skeemi kasutavad kirjed. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Süsteemi HTTP puhverserveri kasutamine</guilabel
+></term>
+            <listitem>
+              <para
+>Selle valimisel kasutatakse paremal asuvat &http; puhverserveri väärtust (mille määrab keskkonnamuutuja <envar
+>http_proxy</envar
+>) kõigi &http; päringute korral. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>HTTP päringuteks kasutatakse järgmist puhverserverit</guilabel
+></term>
+            <listitem>
+              <para
+>Kui süsteemset puhverserverit pole määratud või pead &gpgsm; jaoks kasutama mõnda teist puhverserverit, saab siin määrata selle asukoha. </para>
+              <para
+>Seda kasutatakse kõigi &HTTP; päringute jaoks S/&MIME; puhul. </para>
+              <para
+>Süntaks on <userinput
+><replaceable
+>masin</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>, &eg; <userinput
+>minupuhverserver.kuskil.ee:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>&ldap; päringute valikute seadistamine</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>LDAP päringuid ei sooritata</guilabel
+></term>
+            <listitem>
+              <para
+>&ldap; täielik keelamine &smime; puhul. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>LDAP sertifikaatide CRL jagamispunktide eiramine</guilabel
+></term>
+            <listitem>
+              <para
+>&crl;-i asukoha otsimisel sisaldab testitav sertifikaat tavaliselt niinimetatud "&crl;-i jagamispunkti" (<acronym
+>DP</acronym
+>) kirjet, mis kujutab endast vajalikule &crl;-ile viivat &URL;-ide rida. Kasutatakse esimesena leitud jagamispunkti. </para>
+              <para
+>Selle valikuga jäetakse sobiva <acronym
+>DP</acronym
+> otsimisel kõrvale kõik &ldap;-skeemi kasutavad kirjed. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>LDAP päringute primaarne masin</guilabel
+></term>
+            <listitem>
+              <para
+>Kui sisestada siia &ldap; server, siis suunduvad kõik &ldap; päringud esmalt sinna. Konkreetsemalt tühistab see seadistus kõik <replaceable
+>masina</replaceable
+> ja <replaceable
+>pordi</replaceable
+> määrangud &ldap; &URL;-is ning neid kasutatakse ka siis, kui <replaceable
+>masin</replaceable
+> ja <replaceable
+>port</replaceable
+> on &URL;-is üldse ära jäetud. </para>
+              <para
+>Teisi &ldap; servereid kasutatakse ainult siis, kui ühendus <quote
+>puhverserveriga</quote
+> katkeb. Süntaks on <userinput
+><replaceable
+>masin</replaceable
+></userinput
+> või <userinput
+><replaceable
+>masin</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>. Kui <replaceable
+>port</replaceable
+> on ära jäetud, kasutatakse porti 389 (standardne &ldap; port). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>&gnupg; süsteemi seadistamine</title>
+
+      <para
+>Dialoogi see osa täidetakse automaatselt käsu <command
+>gpgconf <option
+>--list-components</option
+></command
+> väljundiga ning iga <replaceable
+>komponendi</replaceable
+> puhul, mida mainitud käsk tagastab, käsu <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>komponent</replaceable
+></command
+> väljundiga. </para>
+      <note>
+        <para
+>Neist kõige tulusamad võtmed on topeldatud &kleopatra; seadistustedialoogi teistel lehtedel. <xref linkend="configuration-directory-services"/> ja <xref linkend="configuration-smime-validation"/> on kaks dialoogilehte, mis sisaldavad mõningaid selle dialoogiosa valikuid. </para>
+      </note>
+      <para
+>Dialoogi selle osa täpne sisu sõltub paigaldatud &gnupg; taustaprogrammi täpsest versioonist ning mõnikord ka platvormist, millel seda kasutad. Sestap käsitletakse siin dialoogi üldisi võimalusi, sealhulgas &gpgconf;i võtmete vasteid &kleopatra; graafilise kasutajaliidese valikute seas. </para>
+      <para
+>&gpgconf; tagastab seadistusteabe paljude komponentide kohta. Iga komponendi sees on üksikvõtmed ühendatud gruppidesse. </para>
+      <para
+>&kleopatra; näitab üht kaarti iga komponendi kohta, mida &gpgconf; tagastab, ning gruppe alustavad rõhtsad read, mis näitavad grupi nime sel kujul, nagu seda andis teada &gpgconf;. </para>
+      <para
+>Igal &gpgconf;i võtmel on tüüp. Kui jätta välja mõned hästi tuntud võtmed, mida &kleopatra; toetab spetsiaalsete juhtelementidega, et võimaldada kasutajale nende paremat ärakasutamist, on &gpgconf;i tüüpide ja &kleopatra; juhtelementide seosed järgmised: </para>
+      <table id="table-gpgconf-types">
+	<title
+>&gpgconf;i tüüpide ja graafilise kasutajaliidese valikute seosed</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>&gpgconf;i tüüp</entry>
+              <entry namest="lists" nameend="non-lists"
+>&kleopatra; valik</entry>
+            </row>
+            <row>
+	      <entry
+>loendi korral</entry>
+	      <entry
+>mitteloendi korral</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>none</literal
+></entry>
+	      <entry
+>Kerimiskast (<quote
+>arvu</quote
+>semantika)</entry>
+	      <entry
+>Märkekast</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>string</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>Tekstikast</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Tekstikast (vormindamata)</entry>
+              <entry morerows="1"
+>Kerimiskast:</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pathname</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>spetsiaalne valik</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ldap server</literal
+></entry>
+              <entry
+>spetsiaalne valik</entry>
+              <entry
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>key fingerprint</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pub key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>sec key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>alias list</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Täpsemalt, mida ja kuidas saab siin seadistada, kõneleb &gpgconf;i manuaal. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Administraatori juhised</title>
+
+<para
+>Administraatori juhistes kirjeldame &kleopatra; kohandamise neid võimalusi, mida saab teha ainult konfiguratsioonifaile muutes, mitte aga graafiliselt, &GUI; abil.</para>
+
+<para
+>Me eeldame, et lugeja tunneb &kde; rakenduste konfigureerimise tehnoloogiat, sealhulgas paigutust, asukohti failisüsteemis ja &kde; konfiguratsioonifailide kaskaadiseadmist ning KIOSKI raamistikku.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Sertifikaadi loomise nõustaja kohandamine</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>&dn; väljade kohandamine</title>
+
+<para
+>&kleopatra; lubab kohandada välju, mida kasutajal on lubatud täita oma sertifikaadi loomisel.</para>
+
+<para
+>Loo süsteemses failis <filename
+>kleopatrarc</filename
+> grupp <literal
+>CertificateCreationWizard</literal
+>. Kui soovid kohandada atribuutide järjekorda või lubada ainult teatud elementide näitamist, loo võti <varname
+>DNAttributeOrder</varname
+>. Argumendiks võivad olla <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+>. Kui soovid täita väljad eelnevalt määratud väärtustega, pane vajalikud väärtsed kirja kujul atribuut=väärtus. Kui soovid, et atribuut oleks nõutav, lisa selle järele hüüumärk (nt. <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, mis muide esineb ka vaikekonfiguratsioonis).</para>
+
+<para
+><acronym
+>KIOSK</acronym
+>i režiimi muutujate <varname
+>$e</varname
+> kasutamine lubab hankida väärtused keskkonnamuutujatest või konkreetsest skriptist või binaarfailist. Kui soovid lisaks keelata mõne välja muutmise, kasuta muutujat <varname
+>$i</varname
+>. Kui soovid keelata nupu <guibutton
+>Lisa minu aadress</guibutton
+> kasutamise, määra <varname
+>ShowSetWhoAmI</varname
+> väärtuseks 'väär' (false).</para>
+
+<tip
+><para
+>&kde; <acronym
+>KIOSK</acronym
+>i raamistiku iseloomu tõttu muudab muutmist vältiva lipu <varname
+>$i</varname
+> pruukimine kasutajal selle tühistamise võimatuks. Sellel on oma kindel mõte. Muutujaid <varname
+>$i</varname
+> ja <varname
+>$e</varname
+> saab kasutada mis tahes muu &kde; rakendustest tarvitatava võtmega.</para
+></tip>
+
+<para
+>Järgnev näide selgitab kohandamisvõimalusi:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;Keelab isiklike andmete kopeerimise aadressiraamatust, ei luba kohalikku tühistamist
+ShowSetWhoAmI[$i]=false
+
+;määrab kasutaja nimeks $USER
+CN[$e]=$USER
+
+;määrab firma nimeks "Minu firma", keelab muutmise
+OU[$i]=Minu firma
+
+;määrab osakonna nime hankimise skripti väärtusest
+O[$ei]=$(lookup_dept_from_ip)
+
+; määrab riigiks EE, kuid lubab kasutajal seda muuta
+C=EE
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Võtmetüüpide piiramine, mida kasutajal on lubatud luua</title>
+
+        <para
+>&kleopatra; võimaldab samuti piirata seda, milliseid sertifikaaditüüpe on kasutajal lubatud luua. Pane siiski tähele, et neist piirangutest saab hõlpsasti mööda, kui luua vajalik tüüp käsureal. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Avaliku võtme algoritmid</title>
+
+          <para
+>Kasutatava avaliku võtme algoritmi piiramiseks lisa faili <filename
+>kleopatrarc</filename
+> sektsiooni <literal
+>CertificateCreationWizard</literal
+> seadistusvõti <varname
+>PGPKeyType</varname
+> (ja <varname
+>CMSKeyType</varname
+>, kuid <acronym
+>CMS</acronym
+>-i puhul on nagunii toetatud ainult <acronym
+>RSA</acronym
+>). </para>
+
+          <para
+>Lubatud väärtused on <literal
+>RSA</literal
+> <acronym
+>RSA</acronym
+> võtmete, <literal
+>DAS</literal
+> <acronym
+>DSA</acronym
+> (ainult allkirjastamiseks mõeldud) võtmete ja <literal
+>DSA+ELG</literal
+> <acronym
+>DSA</acronym
+> (ainult allkirjastamiseks mõeldud) võtmete puhul koos krüptimiseks mõeldud Elgamali alamvõtmega. </para>
+
+          <para
+>Vaikeväärtuse annab &gpgconf; või kasutatakse <literal
+>RSA</literal
+>-d, kui &gpgconf; ei anna vaikeväärtust. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Avaliku võtme suurus</title>
+
+          <para
+>Avaliku algoritmi võtmete suuruse piiramiseks lisa faili <filename
+>kleopatrarc</filename
+> sektsiooni <literal
+>CertificateCreationWizard</literal
+> seadistusvõti <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>VõtmeSuurused</varname
+> (kus <replaceable
+>ALG</replaceable
+> võib olla <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> või <literal
+>ELG</literal
+>), mis sisaldab komadega eraldatult võtmesuuruste (bittides) loendit. Vaikeväärtuse võib tähistada võtmesuurusele sidekriipsu (<literal
+>-</literal
+>) ette lisades. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Ülaltoodu piirab <acronym
+>RSA</acronym
+> võtmete suurust. lubades neid luua 1536-, 2048- ja 3072-bitisena, kusjuures vaikeväärtus on 2048. </para>
+
+          <para
+>Lisaks suurusele endale võib määrata ka iga suuruse nimetuse. Selleks määra lihtsalt seadistusvõti <varname
+><replaceable
+>ALG</replaceable
+>VõtmeSuuruseNimed</varname
+> ning anna komadega eraldatult nimede loend. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = weak,normal,strong
+            </programlisting>
+          </para>
+
+          <para
+>Koos eelmisega annab ülaltoodu valikuks järgmised võimalused: <programlisting
+>weak (1536 bits)
+              normal (2048 bits)
+              strong (3072 bits)
+            </programlisting>
+          </para>
+
+          <para
+>Vaikeväärtused on järgmised: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Võtme kategooriate loomine ja muutmine</title>
+
+      <para
+>&kleopatra; võimaldab kasutajal seadistada võtme <link linkend="configuration-appearance-certificate-filters"
+>välimust</link
+>, võttes aluseks <guilabel
+>võtme kategooriate</guilabel
+> kontseptsiooni. <guilabel
+>Võtme kategooriaid</guilabel
+> kasutatakse ka sertifikaatide nimekirja filtreerimiseks. Käesolevas osas kirjeldame, kuidas muuta olemasolevaid kategooriad ja kuidas lisada uusi. </para>
+
+      <para
+>Võtme kategooria tuvastamisel püüab &kleopatra; leida selle vastet võtmefiltrite jadas, mis on kindlaks määratud failis <filename
+>libkleopatrarc</filename
+>. Esimene leitud sobivus määrabki kategooria, tuginedes allpool selgitatavale <emphasis
+>spetsiifilisuse</emphasis
+> kontseptsioonile. </para>
+
+      <para
+>Võtmefiltrid on kindlaks määratud grupis <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, kus <replaceable
+>n</replaceable
+> on arv alates <literal
+>0</literal
+>. </para>
+
+      <para
+>Ainsad kohustuslikud võtmed grupis <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> on <varname
+>Name</varname
+>, mis sisaldab kategooria nime kujul, nagu seda näitab <link linkend="configuration-appearance-certificate-filters"
+>seadistustedialoog</link
+>, ja <varname
+>id</varname
+>, mida kasutatakse filtri viitena teistes seadistussektsioonides (näiteks <literal
+>View #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> toob ära kõik võtmed, mis defineerivad kategooriasse kuuluvate võtmete näitamise omadusi ( &ie; nende võtmete, mida saab kohandada <link linkend="configuration-appearance-certificate-filters"
+>seadistustedialoogis</link
+>) ning <xref linkend="table-key-filters-criteria"/> toob ära kõik võtmed, mis defineerivad kriteeriumid, millega filtrites võtmeid võrreldakse. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Võtmefiltri näitamise omadusi määravad konfiguratsioonivõtmed</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Konfiguratsioonivõti</entry>
+	      <entry
+>Tüüp</entry>
+	      <entry
+>Kirjeldus</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>värv</entry>
+	      <entry
+>Kasutatav taustavärv. Kui puudub, on vaikeväärtuseks globaalselt loenditele määratud taustavärv. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>värv</entry>
+	      <entry
+>Kasutatav esiplaani värv. Kui puudub, on vaikeväärtuseks globaalselt loenditele määratud esiplaani värv. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>font</entry>
+	      <entry
+>Kasutatav kohandatud font. See skaleeritakse loenditele määratud suurusele, samuti rakendatakse kõiki määratud fondiatribuute (vaata allpool). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>Kui on <literal
+>true</literal
+> ja <varname
+>font</varname
+> on määramata, kasutatakse loendite vaikefonti rasvasel kujul (kui võimalik). Seda ignoreeritakse, kui <varname
+>font</varname
+> on määratud. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>Nagu <varname
+>font-bold</varname
+>, ainult et kaldkiri rasvase kirja asemel. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>Kui on <literal
+>true</literal
+>, tõmmatakse fondi keskelt joon läbi. Rakendatakse ka siis, kui <varname
+>font</varname
+> on määratud. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>icon</varname
+></entry>
+	      <entry
+>tekst</entry>
+	      <entry
+>Esimeses veerus näidatava ikooni nimi. Pole veel teostatud. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Võtmefiltri filtri kriteeriume määravad konfiguratsioonivõtmed</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Konfiguratsioonivõti</entry>
+	      <entry
+>Tüüp</entry>
+	      <entry
+>Määramise korral filter sobib, kui...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on tühistatud.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>context<footnote
+> <para
+>Kontekst on loend järgmiste lubatud väärtustega: <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> ja <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>kontekst, milles antud filter vastab.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on aegunud.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on keelatud (märgitud mittekasutatavaks) kasutaja poolt. Ignoreeritakse &smime; võtmete puhul. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on juursertifikaat. Ignoreeritakse &openpgp; võtmete puhul. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtit saab kasutada krüptimiseks. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtit saab kasutada krüptimiseks. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtit saab kasutada muude võtmete signeerimiseks (sertifitseerimiseks). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtit saab kasutada autentimiseks (&eg; <acronym
+>TLS</acronym
+> kliendi sertifikaadina). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtit saab kasutada kvalifitseeritud allkirja loomiseks (nagu seda määratleb Saksamaa digitaalallkirja seadus). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võtme sisu on salvestatud kiipkaardile, mitte arvutisse. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>saada on selle võtmepaari salajane võti. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on &openpgp; võti (<literal
+>true</literal
+>) või &smime; võti (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>tõeväärtus</entry>
+	      <entry
+>võti on tunnistatud kehtivaks. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefiks</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>usaldusväärsus<footnote
+> <para
+>Usaldusväärsus on (järjekorrastatud) loend järgmiste võimalike väärtustega: <literal
+>tundmatu</literal
+>, <literal
+>defineerimata</literal
+>, <literal
+>mitte kunagi</literal
+>, <literal
+>kesine</literal
+>, <literal
+>täielik</literal
+>, <literal
+>ülim</literal
+>. Vaata lähemalt &gpg; ja &gpgsm; manuaale.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>võtmel on täpselt (<replaceable
+>prefiks</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), pole üldse (<replaceable
+>prefiks</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), on vähemalt (<replaceable
+>prefiks</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>) või on maksimaalselt (<replaceable
+>prefiks</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) konfiguratsioonivõtme väärtusega antud usaldusväärsus. Kui ühes grupis esineb enam kui üks <varname
+><replaceable
+>prefiks</replaceable
+>-ownertrust</varname
+> võtit (erinevad <replaceable
+>prefiks</replaceable
+>id), on käitumine defineerimata. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefiks</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>usaldusväärsus</entry>
+	      <entry
+>Sarnane võtmega <varname
+><replaceable
+>prefiks</replaceable
+>-ownertrust</varname
+>, kuid omaniku usaldusväärsuse asemel kontrollitakse võtme usaldusväärsust. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Mõningaid huvitavamaid kriteeriume, näiteks <varname
+>is-revoked</varname
+> või <varname
+>is-expired</varname
+>, saab kasutada ainult <emphasis
+>kontrollitud</emphasis
+> võtmete puhul, mistõttu ka ainult kontrollitud võtmete korral kontrollitakse tühistamist ja aegumist, kuigi sa võid muidugi sellisest kontrollist ka loobuda. </para>
+      </note>
+
+      <para
+>Lisaks eespool loetletud seadistusvõtmetele võib võtmefiltril olla ka <varname
+>id</varname
+> ja <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>Filtri <varname
+>id</varname
+> abil, milleks vaikimisi on filtri seadistustegrupi nimi, kui midagi muud pole antud, võib viidata võtmefiltrile mujal seadistuses, &eg; &kleopatra; vaateseadistuses. <varname
+>id</varname
+> jääb &kleopatra; poolt interpreteeritamata, nii et selleks võib kasutada mis tahes stringi tingimusel, et see oleks unikaalne. </para>
+
+      <para
+><varname
+>match-contexts</varname
+> piirab filtri tegevusvälja. Praegu on defineeritud kaks konteksti: <literal
+>appearance</literal
+> on kasutusel vaate värvi- ja fondiomaduste määramisel, <literal
+>filtering</literal
+> aga sertifikaadi valikuliseks kaasamiseks või välistamiseks vaates. <literal
+>any</literal
+> võimaldab arvestada kõiki defineeritud kontekste ja see ongi vaikeväärtus, kui <varname
+>match-contexts</varname
+> on andmata või mingit muud konteksti pole. See tagab, et ükski võtmefilter ei muutu <quote
+>surnuks</quote
+>, &ie; ei ole kontekstita, mida sellele rakendada. </para>
+
+      <para
+>Kirje vorming on kohatäitjate loend, mida eristavad mittesõna-märgid. Iga kohatäitja ette võib vajaduse korral lisada hüüumärgi (<literal
+>!</literal
+>), mis tähendab eitust. Kohatäitjad rakenduvad järjekorras kontekstide sisemisele nimekirjale, mis esialgu on tühi. Sellest saab kõige paremini aru näite varal: <literal
+>any !appearance</literal
+> on sama, mis <literal
+>filtering</literal
+>, ning <literal
+>appearance !appearance</literal
+> annab tulemuseks tühja kogu, nagu ka <literal
+>!any</literal
+>. Kuid kahe viimase asemele pannakse seesmiselt <literal
+>any</literal
+>, sest nad ei paku üldse mingit konteksti. </para>
+
+      <para
+>Üldiselt ei kontrollita vastavust kriteeriumidele, mida ei ole määratud (&ie; mille seadistuskirjet pole antud). Kui kriteerium on antud, seda ka kontrollitakse ja see peab vastama täielikult filtrile, et see tunnistatakse sobivaks, &ie; kriteeriumid on seotud loogilise tehtega JA (AND). </para>
+
+      <para
+>Igal filtril on oma <quote
+>spetsiifilisus</quote
+>, mida kasutatakse kõigi sobivate filtrite järjestamiseks. Spetsiifilisem filter asetseb vähem spetsiifilise ees. Kui kahel filtril on ühesugune spetsiifilisus, seisab eespool see, mis on eespool seadistustefailis. Filtri spetsiifilisus on seotud temas leiduvate kriteeriumide arvuga. </para>
+
+      <example>
+	<title
+>Võtmefiltrite näited</title>
+	<para
+>Kõigi aegunud, kuid mittetühistatud juursertifikaatide kontrollimiseks sobib selline võtmefilter: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=expired, but not revoked
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Kõigi keelatud &openpgp; võtmete kontrollimiseks (pole veel &kleopatra; poolt toetatud), mille usaldusväärsus on vähemalt <quote
+>kesine</quote
+>: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=disabled OpenPGP keys with marginal or better ownertrust
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Pakkimisprogrammide seadistamine kasutamiseks failide allkirjastamisel/krüptimisel</title>
+
+      <para
+>&kleopatra; võimaldab administraatoril (ja kogenud kasutajal) seadistada pakkimisprogrammide nimekirja, mida saab kasutada failide allkirjastamise/krüptimise dialoogis. </para>
+
+      <para
+>Iga pakkimisprogramm on failis <filename
+>libkleopatrarc</filename
+> defineeritud omaette grupina <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, milles peavad olema järgmised võtmed: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensions</literal
+></term>
+          <listitem>
+            <para
+>Komadega eraldatud failinime laiendite loend, mis tavaliselt osutavad arhiivifaili vormingule. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Seda pakkimisprogrammi seesmiselt tuvastav unikaalne ID. Kahtluse korral kasuta käsu nime. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Name</literal
+> (tõlgitud)</term>
+          <listitem>
+            <para
+>Kasutajale nähtav pakkimisprogrammi nimi, nagu seda näeb failide allkirjastamise/krüptimise dialoogi vastavas rippmenüüs. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>Tegelik käsk, millega failid pakitakse. See võib olla milline tahes, ainult et see ei tohi nõuda käivitamiseks shelli. Teostusfaili otsitakse keskkonnamuutuja <envar
+>PATH</envar
+> määratluse põhjal, kui sa ei anna just faili absoluutset asukohta. Toetatud on ka tsiteerimine, nagu shelli puhul. <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Et längkriips (<literal
+>\</literal
+>) on &kde; seadistusfailides paomärk, tuleb neid asukohanimes kasutada topelt: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> Käsu enda puhul (erinevalt argumentidest) võib siiski kasutada kõigil platvormidel ka asukohaeraldajana lihtsalt kaldkriipsu (<literal
+>/</literal
+>): <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> Argumentides see toetatud ei ole, sest enamik &Windows; programme kasutab kaldkriipsu võtmete jaoks. Näiteks alltoodu ei toimi, sest <literal
+>C:/myarchivescript.bat</literal
+> on <command
+>cmd.exe</command
+> argument ning argumentides ei teisendata <literal
+>/</literal
+>, vaid ainult käskudes: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> Niisiis tuleb see kirjutada hoopis nii: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Sisendi failinime edastamine käsule <literal
+>pack-command</literal
+></title>
+
+      <para
+>Failinimesid saab pakkimiskäsule edastada kolmel viisil. Kõigi nende puhul kasutab <literal
+>pack-command</literal
+> konkreetset süntaksit: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Käsureaargumentidena.</para>
+            <para
+>Näide (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Näide (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> Sel juhul edastatakse failinimed käsureal samamoodi nagu ehtsat käsurida kasutades. &kleopatra; ei kasuta käsu käivitamiseks shelli. Seepärast on see turvaline viis failinimede edastamiseks, aga mõnel platvormil võivad tekkida probleemid käsurea pikkuse piirangutega. Kui on antud, asendatakse literaal <literal
+>%f</literal
+> arhiveeritavate failide nimedega. Vastasel juhul lisatakse failinimed käsureale. Niisiis võib ülaltoodud zip-näite kirjutada ka nii: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Standardsisendi kaudu reavahetustega eraldatult: ette tuleb lisada <literal
+>|</literal
+>.</para>
+            <para
+>Näide (&GNU;-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Näide (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> Sel juhul edastatakse failinimed pakkimisprogrammile standardsisendist (<acronym
+>stdin</acronym
+>), üks iga rea kohta. Nii välditakse probleeme platvormidel, kus lubatud käsureaargumentide arv on väga piiratud ning reavahetuste kasutamine ajab asja üldse nurja. </para>
+            <note>
+              <para
+>&kleopatra; toetab praegu reavahetusmärgina ainult <acronym
+>LF</acronym
+>, mitte <acronym
+>CRLF</acronym
+>. Sõltuvalt kasutajate tagasisidest võib see tulevikus muutuda. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Standardsisendi kaudu NUL-baitidega eraldatult: ette tuleb lisada <literal
+>0|</literal
+>.</para>
+            <para
+>Näide (&GNU;-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> See on sama, nagu eespool, ainult et failinimede eraldamiseks kasutatakse nullbaite. Et nullbaidid on failinimedes keelatud, on see kõige töökindlam failinimede edastamise viis, aga seda ei toeta sugugi kõik pakkimisprogrammid. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Kontrollsummaprogrammide seadistamine kasutamiseks kontrollsummade loomisel/kontrollimisel</title>
+
+      <para
+>&kleopatra; võimaldab administraatoril (ja kogenud kasutajal) seadistada kontrollsummaprogrammide loendit, mille seast kasutaja saab valida seadistustedialoogis ja mida &kleopatra; on võimeline automaatselt tuvastama, kui tal palutakse kontrollida antud faili kontrollsummat. </para>
+
+      <note>
+        <para
+>&kleopatra;le sobimiseks peab kontrollsummaprogrammi väljund (nii kirjutatud kontrollsummafail kui ka standardväljundi (<acronym
+>stdout</acronym
+>) väljund kontrollsumma kontrollimisel) olema ühilduv &GNU; programmidega <command
+>md5sum</command
+> ja <command
+>sha1sum</command
+>. </para>
+
+        <para
+>Konkreetsemalt peab kontrollsummafail koosnema ridadest, millel kõigil on järgmine vorming: <programlisting
+><replaceable
+>KONTROLLSUMMA</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>FAILINIMI</replaceable
+></programlisting
+> kus <replaceable
+>KONTROLLSUMMA</replaceable
+> koosneb ainult 16nd-koodis märkidest. Kui <replaceable
+>FAILINIMI</replaceable
+> sisaldab reavahetuse märki, peab see välja nägema selline: <programlisting
+>\<replaceable
+>KONTROLLSUMMA</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>VARJESTATUD-FAILINIMI</replaceable
+></programlisting
+> kus <replaceable
+>VARJESTATUD-FAILINIMI</replaceable
+> on failinimi, milles reavahetuste asemel on <literal
+>\n</literal
+> ning längkriipsud on topeldatud (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>Samamoodi peab <xref linkend="checksum-definition-verify-command"/> väljund olema kujul <programlisting
+><replaceable
+>FAILINIMI</replaceable
+> ( ': OK' | ': FAILED' )</programlisting
+> eraldatuna reavahetustega. Reavahetusi ja teisi märke väljundis <emphasis
+>ei varjestata</emphasis
+>.<footnote
+> <para
+>Jah, nende programmide kirjutamisel ei arvestatud graafiliste kasutajaliidestega ning &kleopatra; ei suudaks korrektselt parsida patoloogilisi failinimesid, mis sisaldavad ":&nbsp;OK" ning reavahetusi. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Iga kontrollsummaprogramm on failis <filename
+>libkleopatrarc</filename
+> defineeritud omaette grupina <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, milles peavad olema järgmised võtmed: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>Regulaaravaldiste loend, mis kirjeldab, milliseid faile tuleks selle kontrollsummaprogrammi puhul pidada kontrollsummafailideks. Süntaks on samasugune nagu &kde; seadistusfailides stringiloendite puhul. <note
+> <para
+> Et regulaaravaldised sisaldavad tavaliselt längkriipse, peab neid seadistusfailis hoolikalt varjestama. Soovitatav on kasutada mõnda seadistusfailide redigeerimise tööriista. </para
+> </note
+> Vastavalt platvormile tõlgendatakse mustreid kas tõstutundlikult või -tundetult. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>Antud kontrollsummaprogrammi tüüpilise väljundi failinimi (peab sobima loomulikult sellega, mida annab <xref linkend="checksum-definition-file-patterns"/>). Seda kasutab &kleopatra; väljundi failinimena antud tüüpi kontrollsummafaile luues. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Seda kontrollsummaprogrammi seesmiselt tuvastav unikaalne ID. Kahtluse korral kasuta käsu nime. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Name</literal
+> (tõlgitud)</term>
+          <listitem>
+            <para
+>Kasutajale nähtav kontrollsummaprogrammi nimi, nagu seda näeb &kleopatra; seadistustedialoogi rippmenüüs. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>Tegelik käsk kontrollsummafailide loomiseks. Süntaks, piirangud ja argumentide edastamise viisid on samad, mida kirjeldati käsu <xref linkend="archive-definition-pack-command"/> korral osas <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Sama, mis <xref linkend="checksum-definition-create-command"/>, kuid kontrollsumma kontrollimiseks. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Toome siin täieliku näite: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Autorid ja litsents</title>
+
+<para
+>&kleopatra; autoriõigus 2002: &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; ja &Jesper.Pedersen;, autoriõigus 2004: &Daniel.Molkentin;, autoriõigus 2004, 2007, 2008, 2009, 2010: Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Dokumentatsiooni autoriõigus 2002: &Steffen.Hansen;, autoriõigus 2004: &Daniel.Molkentin;, autoriõigus 2004, 2010: Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Kaasautorid</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Tõlge eesti keelde: Marek Laane<email
+>bald@starman.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

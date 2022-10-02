@@ -1,0 +1,3960 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>El manual del &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Desenvolupador</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Desenvolupador</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Desenvolupador</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Desenvolupador</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Desenvolupador</contrib>
+</othercredit>
+
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>4 de juliol de 2013</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>El &kleopatra; és una eina per a gestionar certificats <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> i <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+>. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>certificat</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Introducció</title>
+
+<para
+>El &kleopatra; és una eina &kde; per a gestionar certificats <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> i <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> als anells de claus <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> i <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+>, així com per a rebre certificats des de servidors &ldap; i d'altres.</para>
+
+<para
+>El &kleopatra; es pot iniciar des del menú <menuchoice
+><guimenu
+>Eines</guimenu
+> <guimenuitem
+>Gestor de certificats</guimenuitem
+></menuchoice
+> del &kmail;, així com des de la línia d'ordres. L'executable del &kleopatra; s'anomena <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Aquest programa s'anomena Cleòpatra, com una famosa faraona egípcia que va viure al temps d'en Juli Cèsar, amb qui es diu que va tenir un fill, Cesarió, no reconegut com el seu hereu.</para>
+
+<para
+>El nom es va escollir donat que el programa s'originà des del <ulink url="https://www.gnupg.org/aegypten2/"
+>projecte &Auml;gypten</ulink
+> (&Auml;gypten és Egipte en alemany). El &kleopatra; és la manera d'escriure Cleopatra en alemany.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Funcions principals</title>
+
+<sect1 id="functions-view"
+><title
+>Veure l'anell de claus local</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>La funció principal del &kleopatra; és mostrar i editar el contingut de la caixa de claus local, el qual és similar al concepte dels anells de claus de &gpg;, encara que no s'ajusti massa a aquesta analogia.</para>
+
+<para
+>La finestra principal està dividida en l'àrea gran del llistat de claus amb diverses pestanyes, la barra de menús i la <link linkend="functions-search"
+>barra de cerca</link
+> a dalt, i la barra d'estat de baix.</para>
+
+<para
+>Cada línia en la llista de claus es correspon amb un certificat, que s'identifica per l'anomenat <guilabel
+>Assumpte &dn;</guilabel
+>. &dn; és l'acrònim de <quote
+>Nom distintiu</quote
+>, un identificador jeràrquic, quelcom com un camí cap al sistema de fitxers amb una sintaxi poc usual, se suposa que és un identificador global únic per a un certificat en qüestió.</para>
+
+<para
+>Perquè siguin vàlides, i per tant usables, les claus (públiques) han d'estar signades per una &ca; (Autoritat certificadora). Aquestes signatures s'anomenen certificats, però normalment els termes <quote
+>certificat</quote
+> i <quote
+>clau (pública)</quote
+> s'utilitzen indistintament, i en aquest manual no en farem distincions, a excepció de quan s'indiqui de manera explícita.</para>
+
+<para
+>Les &ca; poden estar signades per altres &ca; per a ser vàlides. Per descomptat, ha d'existir algun límit, així que la &ca; de nivell superior (&ca; arrel) signa la seva clau amb ella mateixa (això s'anomena signar a si mateix). Als certificats arrel se'ls ha d'assignar manualment una validesa (sovint anomenada confiança), &pex;, després de comparar l'empremta dactilar amb la del lloc web de la &ca;. Normalment, sol fer-ho l'administrador del sistema o el venedor d'un producte que empri certificats, però també pot fer-ho qualsevol usuari amb la interfície de línia d'ordres de &gpgsm;.</para>
+
+<para
+>Per a veure quins dels certificats són certificats arrel, podeu canviar al mode de llista jeràrquica de claus amb <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Podeu veure els detalls de qualsevol certificat fent-hi doble clic o utilitzant <xref linkend="view-certificate-details"/>. Això obrirà un diàleg que us mostrarà les propietats més freqüents del certificat, la vostra cadena de certificat (&ead;, la cadena de l'emissora fins a la &ca; arrel) i un bolcat de tota la informació del certificat que es pot extraure des del dorsal.</para>
+
+<para
+>Si canvieu l'anell de claus sense utilitzar el &kleopatra; (&pex;, utilitzant la interfície de la línia d'ordres de &gpgsm;), hauríeu d'actualitzar la vista amb <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Cercar i importar els certificats</title>
+
+<para
+>La majoria de les vegades, adquirireu certificats nous en verificar signatures als correus electrònics, atès que els certificats són incrustats en les signatures que es fan en utilitzar-los. De tota manera, si us cal enviar un correu a algú amb el que encara no heu contactat, haureu d'obtenir el certificat des d'un directori &ldap; (tot i que <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>&gpgsm;</ulink
+> pot fer-ho automàticament), o des d'un fitxer. També haureu d'importar el vostre propi certificat després de rebre la resposta de la &ca; a la vostra petició de certificació.</para>
+
+<para
+>Per cercar un certificat en un directori &ldap;, seleccioneu <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Cerca de certificats en el servidor</guimenuitem
+></menuchoice
+> i escriviu algun text (&pex;, el nom de la persona de la qual voleu el certificat) a la línia d'edició del diàleg <guilabel
+>Cerca de certificats en servidors de certificats</guilabel
+>, a continuació, feu clic al botó <guilabel
+>Cerca</guilabel
+>. Els resultats es mostraran a la llista de claus sota la barra de cerca, on podeu seleccionar els certificats per a veure'ls fent clic al botó <guibutton
+>Detalls</guibutton
+> o amb el botó <guibutton
+>Importa</guibutton
+> descarregar-lo a l'anell de claus local.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Podeu configurar la llista de servidors &ldap; per a les cerques en la pàgina <link linkend="configuration-directory-services"
+><guilabel
+>Serveis de directori</guilabel
+></link
+> des del diàleg de configuració del &kleopatra;.</para>
+
+<para
+>Si vàreu rebre el certificat com a un fitxer, intenteu <xref linkend="file-import-certificates"/>. &gpgsm; necessita entendre el format del fitxer de certificat; si us plau, consulteu el manual de &gpgsm; per a una llista dels formats de fitxer admesos.</para>
+
+<para
+>Si no <link linkend="functions-newkey"
+>vàreu crear el vostre parell de claus amb &gpgsm;</link
+>, també haureu d'importar manualment la clau pública (així com la clau privada) des del fitxer PKCS#12 que vàreu obtenir de la &ca;. Podeu fer-ho des de la línia d'ordres amb <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>nom_fitxer</filename
+></command
+></userinput
+></link
+> o des del &kleopatra; amb <xref linkend="file-import-certificates"/>, tal com ho faríeu amb els certificats «normals».</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Crear un parell de claus nou</title>
+
+<para
+>L'element de menú <xref linkend="file-new-key-pair"/> inicia l'<guilabel
+>Assistent per a la creació del parell de claus</guilabel
+>, el qual us guiarà a través d'un cert nombre de passos per tal de crear el certificat que esteu sol·licitant.</para>
+<para
+>Una vegada realitzat cada pas dintre de l'assistent, premeu <guibutton
+>Següent</guibutton
+> per anar cap al pas següent (o <guibutton
+>Enrere</guibutton
+> per a tornar a veure els passos que ja heu completat). La creació d'una sol·licitud de certificat pot cancel·lar-se en qualsevol moment prement el botó <guibutton
+>Cancel·la</guibutton
+>. </para>
+<para
+>A la primera pàgina de l'assistent escollireu quin tipus de certificat voleu crear:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Crea un parell de claus OpenPGP personal</guilabel
+></term>
+<listitem
+><para
+>El parell de claus &openpgp; es crea localment, i és certificat pels vostres amics i coneguts. No existeix una autoritat de certificació central, sinó que cada individu crea un web de confiança personal mitjançant la certificació de parells de claus d'altres usuaris amb el seu propi certificat.</para>
+<para
+>Heu d'introduir un <guilabel
+>Nom</guilabel
+>, un <guilabel
+>Correu electrònic</guilabel
+> i de manera opcional un <guilabel
+>Comentari</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Crea un parell de claus X.509 personal i una sol·licitud de certificació</guilabel
+></term>
+<listitem>
+<para
+>El parell de claus &x509; es crea localment, però el centre de certificats per a una autoritat de certificació (&ca;). Les &ca; poden certificar altres &ca;, creant una cadena central, jeràrquica de confiança.</para>
+<para
+>El primer pas en l'assistent serà el d'omplir el certificat amb les vostres dades personals. Els camps a omplir són: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Nom comú (CN):</guilabel
+> El vostre nom;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Adreça de correu-e (EMAIL):</guilabel
+> La vostra adreça de correu electrònic. Assegureu-vos que és correcta -aquesta serà l'adreça a la qual la gent us enviarà el correu emprant aquest certificat-.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Ubicació (L):</guilabel
+> El poble o ciutat a on viviu.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Unitat organitzativa (OU):</guilabel
+> La unitat organitzacional en la qual esteu (per exemple «Logística»).</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organització (O):</guilabel
+> L'organització a la qual representeu (per exemple, l'empresa per a la qual treballeu).</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Codi de país (C):</guilabel
+> Les dues lletres pel país a on us trobeu (per exemple, «ES»).</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>El pas següent en l'assistent serà el de seleccionar a on desar-lo, en un fitxer o enviar-lo directament a una &ca;. Aquí podreu especificar un nom de fitxer o una adreça de correu electrònic a on enviar el certificat. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Com revocar una clau</title>
+
+<para
+>Un parell de claus que han expirat es poden tornar a un estat funcional, sempre que tingueu accés a la clau privada i a la frase de pas. Per tornar llegible una clau inusable necessitareu revocar-la. La revocació es porta a terme mitjançant l'afegit d'una signatura de revocació especial a la clau.</para>
+
+<para
+>Aquesta signatura de revocació s'emmagatzema en un fitxer a part. Aquest fitxer podrà ser importat més endavant al clauer i després afegit a la clau inusable. Si us plau, tingueu en compte que per a la importació d'aquesta signatura a la clau no és necessària la contrasenya. Per tant, hauríem d'emmagatzemar aquesta signatura de revocació en un lloc segur, en general diferent del parell de claus. És un bon consell utilitzar un lloc separat del vostre ordinador, o bé copiar-la a un dispositiu d'emmagatzematge extern com una memòria USB o imprimir-la.</para>
+
+<para
+>El &kleopatra; no proporciona en cap moment una funció per crear una signatura de revocació, però es pot fer amb l'aplicació &kgpg; del &kde; escollint <menuchoice
+><guimenu
+>Claus</guimenu
+> <guimenuitem
+>Revoca la clau</guimenuitem
+></menuchoice
+> i, de manera opcional, importar immediatament la signatura de revocació al vostre clauer.</para>
+
+<para
+>Una forma alternativa de generar un certificat de revocació és utilitzar &gpg; directament des de la línia d'ordres: <userinput
+>gpg --output <replaceable
+>certificat_de_revocació</replaceable
+>.asc --gen-revoke <replaceable
+>la_vostra_clau</replaceable
+></userinput
+>. L'argument <replaceable
+>la_vostra_clau</replaceable
+> haurà de ser un especificador de la clau, l'ID de la clau del vostre parell de claus primari o qualsevol part d'un ID de l'usuari que identifiqui el vostre parell de claus.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Referència del menú</title>
+
+<sect1 id="menufile"
+><title
+>El menú Fitxer</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Certificat nou...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Crea un parell nou de claus (pública i privada)</action
+> i permet enviar la part pública a una autoritat certificadora (&ca;) perquè la signi. El certificat resultant és el que us han de tornar o desar-lo en un servidor &ldap; perquè el descarregueu al vostre anell de claus local, perquè pugueu usar-lo per a signar i desencriptar correus.</para>
+
+<para
+>Aquest mode d'operació s'anomena <quote
+>generació de claus descentralitzada</quote
+>, donat que totes les claus es creen localment. El &kleopatra; (i &gpgsm;) no admeten directament la <quote
+>generació de claus centralitzada</quote
+>, però podeu importar recopilacions de claus públiques/privades que rebeu des de la &ca; en format PCKS#12 mitjançant <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Cerca certificats al servidor...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Cerca i importa certificats des de servidors de certificació a l'anell de claus local</action
+>. Vegeu <xref linkend="functions-search"/> pels detalls. </para>
+            <para
+>Necessitareu tenir configurats els servidors de claus perquè això funcioni. Per a més detalls, vegeu <xref linkend="configuration-directory-services"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Importa els certificats...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Importa certificats i/o claus privades des de fitxers cap a l'anell de claus local</action
+>. Vegeu <xref linkend="functions-search"/> pels detalls. </para>
+            <para
+>El format del fitxer del certificat hauria de ser un que estigui acceptat per &gpgsm;/&gpg;. Si us plau, consulteu els manuals de &gpgsm; i de &gpg; per a una llista dels formats admesos. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Exporta els certificats...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporta els certificats seleccionats a un fitxer.</action>
+            </para>
+            <para
+>L'extensió del nom de fitxer que escolliu per a exportar determinarà el format del fitxer exportat: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>Per a certificats &openpgp;, <filename class="extension"
+>gpg</filename
+> i <filename class="extension"
+>pgp</filename
+> resultaran en un fitxer binari, mentre que <filename class="extension"
+>asc</filename
+> resultarà en un fitxer amb armadura &ascii;. </para>
+              </listitem>
+              <listitem>
+                <para
+>Per a certificats &smime;, <filename class="extension"
+>der</filename
+> resultarà en un fitxer binari, un fitxer codificat amb &der;, mentre que <filename class="extension"
+>pem</filename
+> resultarà en un fitxer amb armadura &ascii;. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Si no se seleccionen diversos certificats, el &kleopatra; proposarà <filename
+><replaceable
+>empremta_digital</replaceable
+>.{asc,pem}</filename
+> com el nom del fitxer exportat. </para>
+            <para
+>Aquesta funcionalitat només estarà disponible si s'han seleccionat un o més certificats. </para>
+            <note>
+              <para
+>Això només exportarà les claus públiques, encara que la clau privada estigui disponible. Utilitzeu <xref linkend="file-export-secret-key"/> per exportar les claus privades a un fitxer. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Exporta les claus secretes...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporta la clau privada a un fitxer.</action>
+            </para>
+            <para
+>En el diàleg que s'obrirà, podeu triar si s'ha de crear un fitxer d'exportació binari o amb armadura &ascii; (<guilabel
+>Armadura ASCII</guilabel
+>). Després feu clic sobre la icona de carpeta al costat dret del quadre de text <guilabel
+>Fitxer de sortida</guilabel
+> i seleccioneu la carpeta i el nom del fitxer d'exportació. En exportar claus secretes &smime;, també podreu triar el <guilabel
+>Joc de caràcters per a la frase de pas</guilabel
+>. Per a més detalls, vegeu el debat de l'opció <option
+>--p12charset&nbsp;<replaceable
+>joc_de_caràcters</replaceable
+></option
+> en el manual de &gpgsm;. </para>
+            <para
+>Aquesta funcionalitat només estarà disponible si s'ha seleccionat exactament només un certificat, i si està disponible la clau secreta per a aquest. </para>
+            <warning>
+              <para
+>Rarament hauria de ser necessari utilitzar aquesta funcionalitat i, si ho fos, s'hauria de planificar amb cura. Planificar la migració d'una clau privada implica l'elecció del suport de transport i l'eliminació segura de les dades de la clau de la màquina antiga, així com del suport de transport, entre altres coses. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Exporta els certificats al servidor...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Publica els certificats seleccionats a un servidor de claus</action
+> (només &openpgp;). </para>
+            <para
+>El certificat s'envia al servidor de certificats configurat per a &openpgp; (cf.&nbsp;<xref linkend="configuration-directory-services"/>), si està establert, en cas contrari a <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Aquesta funcionalitat només estarà disponible si almenys s'ha seleccionat un certificat &openpgp; (i no &smime;). </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Quan s'han exportat els certificats &openpgp; a un servidor de directori públic, és pràcticament impossible eliminar-los. Abans d'exportar el vostre certificat a un servidor de directori públic, assegureu-vos que heu creat un certificat de revocació de manera que pugueu revocar-lo més tard, si cal. </para>
+            </note>
+            <note>
+              <para
+>La majoria dels servidors de certificació &openpgp; públics sincronitzen els certificats entre si, de manera que no té gaire sentit enviar-lo a més d'un. </para>
+              <para
+>Pot passar que una cerca en un servidor de certificats no doni cap resultat tot i que només li heu enviat el vostre certificat. Això és perquè la majoria d'adreces de servidor de claus públics utilitzen <acronym
+>DNS</acronym
+> amb «round-robin» per equilibrar la càrrega entre diverses màquines. Aquestes màquines se sincronitzen entre si, però en general, només cada 24 hores. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Desencripta/verifica fitxers...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Desencripta els fitxers i/o verifica les signatures</action
+> als fitxers. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Signa/encripta fitxers...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Signa i/o encripta els fitxers.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Tanca</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Tanca la finestra principal de &kleopatra;.</action
+> Podeu restaurar-la en qualsevol moment des de la icona a la safata del sistema. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Surt</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fa que finalitzi &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>El menú Visualitza</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Torna a mostrar</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Actualitza la llista de certificats.</action>
+            </para>
+            <para
+>L'ús d'aquesta funció generalment no és necessari, atès que &kleopatra; supervisa el sistema de fitxers per als canvis i actualitza automàticament la llista de certificats quan sigui necessari. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Esc;</keycombo
+></shortcut
+> <guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Atura l'operació</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Atura (cancel·la) totes les operacions pendents,</action
+> &pex;, una cerca, un llistat de claus o una descàrrega. </para>
+            <para
+>Aquesta funció només està disponible si almenys hi ha una operació activa. </para>
+            <note>
+              <para
+>Per les limitacions del dorsal, de vegades les operacions es pengen de manera que aquesta funció no serà capaç de cancel·lar, immediatament, o en absolut. </para>
+              <para
+>En aquests casos, l'única manera de restablir l'ordre és matar els processos &scdaemon;, &dirmngr;, &gpgsm; i &gpg;, en aquest ordre, a través de les eines del sistema operatiu (<command
+>top</command
+>, el Gestor de tasques, &etc;), fins que l'operació es desbloquegi. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Detalls del certificat</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Mostra els detalls del certificat actualment seleccionat.</action
+></para>
+
+<para
+>Aquesta funció només està disponible si s'ha seleccionat exactament un certificat.</para>
+
+<para
+>Aquesta funció també està disponible fent doble clic directament sobre l'element corresponent de la vista de llista.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Llista jeràrquica de certificats</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Canvia entre el mode jeràrquic i pla de la llista de claus. </action
+></para>
+
+<para
+>En el mode jeràrquic, els certificats estan ordenats per relacions emissor/subjecte, així que és fàcil veure a quina certificació jeràrquica pertany un certificat donat, però és més difícil trobar un certificat inicialment (per descomptat, també podeu utilitzar la <link linkend="functions-search"
+>barra de cerca</link
+>).</para>
+
+<para
+>En mode pla, es mostren tots els certificats en una llista plana, ordenats alfabèticament. En aquest mode, és fàcil de trobar un certificat indicat, però no s'apreua clarament a quin certificat arrel pertany.</para>
+
+            <para
+>Aquesta funció canvia la manera jeràrquica per pestanya, &ead;, cada pestanya té el seu propi estat de jerarquia. Això és perquè podeu tenir un llistat pla i un llistat jeràrquic a mà, cadascun en la seva pròpia pestanya. </para>
+
+            <note>
+              <para
+>Actualment, mostrar jeràrquicament només s'implementa per certificats &smime;. Hi ha desacord entre els desenvolupadors sobre la forma correcta per mostrar jeràrquicament els certificats &openpgp; (bàsicament, «pare &equals; signador» o «pare &equals; signant»). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Expandeix-ho tot</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Expandeix tots els elements en la vista de llista de certificats</action
+>, &ead;, fa que tots els elements estiguin visibles.</para>
+
+<para
+>És el valor predeterminat quan s'entra en el mode jeràrquic de llistat de claus.</para>
+
+<para
+>Per descomptat, encara podeu expandir i contraure els elements individualment.</para>
+
+<para
+>Aquesta funció només està disponible quan <xref linkend="view-hierarchical-key-list"/> està activat.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Visualitza</guimenu
+><guimenuitem
+>Redueix-ho tot</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Contrau tots els elements de la llista en la vista de llista de certificats</action
+>, &ead; oculta tots els elements, excepte els de nivell superior.</para>
+
+<para
+>Per descomptat, encara podeu expandir i contraure els elements individualment.</para>
+
+<para
+>Aquesta funció només està disponible quan <xref linkend="view-hierarchical-key-list"/> està activat.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>El menú Certificats</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Canvia la confiança del propietari...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Canvia la confiança del propietari del certificat &openpgp; seleccionat.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Aquesta funció només està disponible quan se selecciona exactament un certificat &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Confia en el certificat arrel</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Marcar això (&smime;) fa el certificat arrel com de confiança.</action>
+            </para>
+            <para
+>D'alguna manera, això és l'equivalent a <xref linkend="certificates-change-owner-trust"/> per a certificats arrel &smime;. Podeu, de tota manera, només triar entre els termes d'&openpgp; confiança «ultimate» i «never trust». </para>
+            <note>
+              <para
+>El dorsal (per mitjà de &gpgagent;) demanarà en el moment de la importació de certificats arrel si confieu en el certificat arrel d'importació. Tanmateix, aquesta funció ha de ser explícitament permesa en la configuració del dorsal (<option
+>allow-mark-trusted</option
+> a <filename
+>gpg-agent.conf</filename
+>, o bé <menuchoice
+><guimenu
+>Sistema GnuPG</guimenu
+> <guisubmenu
+>Agent GPG</guisubmenu
+> <guimenuitem
+>Permet als clients marcar les claus com a fiables</guimenuitem
+></menuchoice
+> o <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>Validació S/MIME</guimenu
+> <guimenuitem
+>Permet marcar els certificats arrel com a fiables</guimenuitem
+></menuchoice
+></link
+> sota <xref linkend="configuration"/>). </para>
+              <para
+>Habilitar aquesta funcionalitat en el dorsal pot produir emergents des de &pinentry; en moments inoportuns (&pex;, en la verificació de signatures), i per tant es pot blocar desatenent el processament del correu electrònic. Per aquesta raó, i perquè és convenient per a poder establir la <emphasis
+>desconfiança</emphasis
+> a un nou certificat arrel de confiança, &kleopatra; permet l'ajust manual de la confiança. </para>
+            </note>
+            <warning>
+              <para
+>A causa de la falta de suport del dorsal per a aquesta funció, &kleopatra; ha de treballar directament sobre la base de dades de confiança de &gpgsm; (<filename
+>trustlist.txt</filename
+>). En utilitzar aquesta funció, assegureu-vos que no hi ha altres operacions de criptografia en curs que podrien competir amb &kleopatra; en la modificació de la base de dades. </para>
+            </warning>
+            <para
+>Aquesta funció només està disponible quan està seleccionat exactament un certificat arrel &smime;, i aquest encara no és de confiança. </para>
+            <para
+>Utilitzeu <xref linkend="certificates-distrust-root"/> per a desfer aquesta funcionalitat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Desconfia del certificat arrel</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Marca aquest certificat arrel (&smime;) com de no confiança.</action>
+            </para>
+            <para
+>Aquesta funció només està disponible quan està seleccionat exactament un certificat arrel &smime;, i aquest és de confiança. </para>
+            <para
+>Utilitzeu <xref linkend="certificates-trust-root"/> per a desfer aquesta funcionalitat. Veure-ho per a més detalls. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Certifica un certificat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Us permet certificar un altre certificat &openpgp;.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Aquesta funció només està disponible si s'ha seleccionat exactament un certificat &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Canvia la data de venciment...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet canviar la data de venciment del certificat &openpgp;.</action>
+            </para>
+            <para
+>Utilitzeu aquesta funcionalitat per allargar la vida útil dels certificats &openpgp; com una alternativa a crear-ne un de nou, o l'ús il·limitat d'aquest («mai caduca»). </para>
+            <para
+>Aquesta funcionalitat només està disponible si s'ha seleccionat exactament només un certificat &openpgp;, i està disponible la clau secreta per a aquest. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Canvia la frase de pas...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet canviar la frase de pas de la clau secreta.</action>
+            </para>
+            <para
+>Aquesta funció només està disponible si s'ha seleccionat exactament un certificat, i la clau secreta està disponible per a aquest. Es requereix un dorsal molt recent, ja que hem canviat la implementació de la crida directa de &gpg; i &gpgsm; a una basada en &gpgme;. </para>
+            <note>
+              <para
+>Per raons de seguretat, &pinentry; demana tant l'antiga com la nova frase de pas, en un procés a part. Depenent de la plataforma on s'executen i sobre la qualitat de la implementació de &pinentry; en aquesta plataforma, pot succeir que la finestra de &pinentry; aparegui al fons. Per tant, si se selecciona aquesta funció i no passa res, comproveu la barra de tasques del sistema operatiu per si una finestra de &pinentry; està oberta en segon pla. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Afegeix un ID d'usuari...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Permet afegir un nou ID d'usuari pel certificat d'&openpgp;.</action>
+            </para>
+            <para
+>Utilitzeu aquesta opció per afegir noves identitats a un certificat ja existent com a alternativa a la creació d'un nou parell de claus. Una ID d'usuari d'&openpgp; té la forma següent: </para>
+            <programlisting
+><replaceable
+>Nom_real</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Comentari</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>Correu_electrònic</replaceable
+>&gt;</programlisting>
+            <para
+>En el diàleg que apareix quan se selecciona aquesta funció, &kleopatra; us demanarà separadament per cadascun dels tres paràmetres (<replaceable
+>Nom_real</replaceable
+>, <replaceable
+>Comentari</replaceable
+> i <replaceable
+>Correu_electrònic</replaceable
+>), i mostrarà el resultat en una vista prèvia. </para>
+            <note>
+              <para
+>Aquests paràmetres estan subjectes a les mateixes restriccions d'administrador que en els nous certificats. Per a més detalls vegeu <xref linkend="functions-newkey"/> i <xref linkend="admin-certificate-request-wizard"/>. </para>
+            </note>
+            <para
+>Aquesta funcionalitat només està disponible si s'ha seleccionat exactament només un certificat &openpgp;, i està disponible la clau secreta per a aquest. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Supr</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Certificats</guimenu
+><guimenuitem
+>Suprimeix</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Elimina el(s) certificat(s) seleccionat(s)</action
+> de l'anell de claus local. </para>
+            <para
+>Utilitzeu aquesta funció per eliminar les claus no usades del vostre anell de claus local. De tota manera, com que els certificats són afegits normalment als correus electrònics signats, la verificació d'un correu electrònic pot provocar que la clau eliminada torni a l'anell de claus local. Per tant, probablement serà millor evitar aquesta funció sempre que sigui possible. Quan es perdi, useu la <link linkend="functions-search"
+>barra de cerca</link
+> o la funció <xref linkend="view-hierarchical-key-list"/> per a tornar a tenir el control sobre la gran quantitat de certificats. </para>
+            <warning>
+              <para
+>Hi ha una excepció a l'anterior: Quan s'elimina un dels certificats propis, també elimineu la clau secreta. Això implica que no sereu capaç de llegir les comunicacions encriptades del passat fetes amb aquest certificat, llevat que tingueu una còpia de seguretat en algun lloc. </para>
+              <para
+>&kleopatra; us advertirà quan s'intenti eliminar una clau secreta. </para>
+            </warning>
+            <para
+>A causa de la naturalesa jeràrquica dels certificats &smime;, si elimineu un emissor del certificat &smime; (certificat &ca;), també s'eliminaran tots els assumptes.<footnote
+><para
+>Això és el mateix que en un sistema de fitxers: Quan s'elimina una carpeta, també esborreu tots els fitxers i carpetes dins seu.</para
+></footnote>
+            </para>
+            <para
+>Naturalment, aquesta funció només està disponible si heu seleccionat almenys un certificat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Certificats</guimenu
+><guimenuitem
+>Bolca un certificat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Mostra tota la informació que té &gpgsm; sobre el certificat (&smime;) seleccionat.</action>
+            </para>
+            <para
+>Veure el debat sobre <option
+>--dump-key&nbsp;<replaceable
+>clau</replaceable
+></option
+> en el manual de &gpgsm; per obtenir detalls sobre la sortida. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>El menú Eines</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Visualitzador del registre de GnuPG</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Inicia <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, una eina per a presentar la sortida de depuració d'aplicacions &gnupg;. Si la signatura, encriptatge, o verificació deixen de funcionar misteriosament, és possible esbrinar per què mirant al registre. </para>
+            <para
+>Aquesta funció no està disponible en &Windows;, ja que els mecanismes subjacents no estan implementats en el dorsal per a aquesta plataforma. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Actualitza els certificats OpenPGP</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Actualitza tots els certificats &openpgp;</action
+> mitjançant l'execució de <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Després de completar amb èxit l'ordre, l'anell de claus local reflectirà els canvis pel que fa a la validesa dels certificats &openpgp;. </para>
+            <para
+>Vegeu la nota sota <xref linkend="certificates-refresh-x509"/> per a algunes advertències. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Actualitza els certificats X.509</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Actualitza tots els certificats &smime;</action
+> mitjançant l'execució de <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Després de completar amb èxit l'ordre, l'anell de claus local reflectirà els últims canvis pel que fa a la validesa dels certificats &smime;. </para>
+            <note>
+              <para
+>L'actualització de certificats &x509; o &openpgp; implica la descàrrega de tots els certificats i les &crl;, per comprovar si algun ha estat revocat en l'interval. </para>
+              <para
+>Això pot provocar una congestió de la connexió de la xarxa (també la d'altres persones), i pot trigar fins a una hora en acabar, en funció de la vostra connexió de xarxa i el nombre de certificats a verificar. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Importa la CRL des d'un fitxer...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Us permet importar manualment les &crl; des de fitxers.</action>
+            </para>
+            <para
+>Normalment, les llistes de certificats revocats (les &crl;) es manegen de forma transparent pel dorsal, però de vegades pot ser útil per importar una &crl; manualment a la memòria cau de &crl; locals. </para>
+            <note>
+              <para
+>Perquè la importació de la &crl; funcioni, l'eina &dirmngr; haurà d'estar present en la cerca de la variable d'entorn <envar
+>PATH</envar
+>. Si aquest element de menú està inhabilitat, haureu de contactar amb l'administrador del sistema i preguntar-li si pot instal·lar &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Neteja el cau de la CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Neteja el cau &crl; de &gpgsm;.</action
+></para>
+
+<para
+>Probablement mai us caldrà. Podeu forçar una actualització del cau &crl; seleccionant tots els certificats i usant en el seu lloc <xref linkend="certificates-refresh-x509"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Bolcat del cau de la CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Mostra el contingut detallat del cau &crl; de &gpgsm;.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>El menú Arranjament</title>
+
+<para
+>El &kleopatra; disposa del menú <guimenu
+>Arranjament</guimenu
+> predeterminat del &kde;, com es descriu en els <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Fonaments del &kde;</ulink
+> amb una entrada addicional:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Executa una autocomprovació</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Realitza una sèrie de proves automàtiques i presenta els seus resultats.</action>
+            </para>
+            <para
+>Aquest és el mateix conjunt de proves que s'executa en l'arrencada per omissió. Si heu inhabilitat startup-time self-tests, ho podeu tornar a habilitar aquí. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>El menú Finestra</title>
+<para
+>El menú <guimenu
+>Finestra</guimenu
+> us permet manejar les pestanyes. L'ús dels elements en aquest menú pot canviar el nom d'una pestanya, afegir-ne una de nova, duplicar l'actual, tancar l'actual, i moure l'actual a l'esquerra o a la dreta.</para>
+
+<para
+>En fer clic amb &BDR; sobre una pestanya s'obrirà un menú contextual, on també es poden seleccionar les mateixes accions.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>El menú Ajuda</title>
+
+<para
+>El &kleopatra; disposa del menú <guimenu
+>Ajuda</guimenu
+> predeterminat del &kde;, com es descriu en els <ulink url="help:/fundamentals/menus.html#menus-help"
+>Fonaments del &kde;</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Referència de les opcions de la línia d'ordres</title>
+
+<para
+>Tan sols es mostren aquelles opcions específiques de &kleopatra;. Com amb totes les aplicacions de &kde;, podeu tenir una llista completa d'aquestes opcions executant l'ordre <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Ubicació del sòcol que està escoltant el servidor d'IU</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Executa només el servidor d'IU, amaga la pantalla principal.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>Usa &openpgp; per a la següent operació.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>Usa CMS (&x509;, S/&MIME;) per a l'operació següent.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Especifica un fitxer o un &URL; des d'on importar els certificats (o claus privades).</action
+></para>
+
+<para
+>Aquesta és la línia d'ordres equivalent de <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Encripta el/s fitxer/s.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Signa el/s fitxer/s.</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Encripta i/o signa el/s fitxer/s. Igual que <option
+>--sign-encrypt</option
+>, no l'utilitzeu.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Desencripta el/s fitxer/s.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Verifica el fitxer/signatura.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Desencripta i/o verifica el/s fitxer/s.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>Configurar &kleopatra;</title>
+
+    <para
+>Es pot accedir al diàleg de configuració del &kleopatra; mitjançant <guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura &kleopatra;...</guimenuitem
+> </para>
+    <para
+>Cadascuna de les seves pàgines es descriu en les següents seccions. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Configurar els serveis de directori</title>
+
+      <para
+>En aquesta pàgina, podeu configurar quins servidors &ldap; utilitzar per a les cerques de certificats &smime;, i quins servidors de claus utilitzar per a les cerques de certificats &openpgp;. </para>
+      <note>
+        <para
+>Això és simplement una versió més fàcil d'usar de la mateixa configuració que també es troba en <xref linkend="configuration-gnupg-system"/>. Tot el que podeu configurar aquí, també ho podeu configurar allà. </para>
+      </note>
+      <note>
+        <title
+>Una nota sobre la configuració de l'intermediari (proxy)</title>
+        <para
+>La configuració de l'intermediari es pot configurar per &http; i &ldap; en <xref linkend="configuration-smime-validation"/>, però només per a &gpgsm;. Per a &gpg;, a causa de la complexitat de les opcions de servidor de claus en &gpg; i la manca de suport adequat en &gpgconf;, actualment haureu de modificar directament el fitxer de configuració <filename
+>gpg.conf</filename
+>. Si us plau, consulteu el manual de &gpg; per a més detalls. &kleopatra; conservarà aquestes preferències, però encara no permet modificar-les en l'&IGU;. </para>
+      </note>
+      <para
+>La taula <guilabel
+>Serveis de directori</guilabel
+> mostra quins servidors estan configurats. Feu doble clic en una cel·la de la taula per a canviar els paràmetres d'entrades de servidor existent. </para>
+      <para
+>El significat de les columnes en la taula és el següent: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Esquema</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Determina el protocol de xarxa que s'utilitza per accedir al servidor. Els esquemes d'ús freqüent són <guilabel
+>ldap</guilabel
+> (i el seu germà segur &ssl; <guilabel
+>ldaps</guilabel
+>) pels servidors &ldap; (protocol comú per &smime;, l'únic suportat per &gpgsm;), i <guilabel
+>hkp</guilabel
+>, el protocol de servidor de claus Horowitz, avui en dia el protocol de servidor de claus &http;, un protocol basat en &http; que pràcticament suporten tots els servidors de claus &openpgp; públics. </para>
+            <para
+>Si us plau, consulteu els manuals de &gpg; i de &gpgsm; per a una llista dels esquemes suportats. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Nom del servidor</guilabel
+></term>
+          <listitem>
+            <para
+>El nom de domini del servidor, &pex;, <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Port del servidor</guilabel
+></term>
+          <listitem>
+            <para
+>El port de xarxa on el servidor està escoltant. </para>
+            <para
+>Això canvia automàticament al port per omissió quan es canvia el <xref linkend="configuration-directory-services-scheme"/>, a menys que s'hagi establert en un port no estàndard. Si heu canviat el port per omissió i no es pot recuperar, intenteu establir <xref linkend="configuration-directory-services-scheme"/> a <userinput
+>http</userinput
+> i <xref linkend="configuration-directory-services-server-port"/> a <userinput
+>80</userinput
+> (el per omissió per a &http;), llavors partiu d'aquí. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>DN Base</guilabel
+></term>
+          <listitem>
+            <para
+>La &dn; base (només per a &ldap; i &ldaps;), &ead;, l'arrel de la jerarquia &ldap;. Sovint l'anomenen «cerca arrel (search root)» o «cerca base (search base)». </para>
+            <para
+>En general, s'assembla a <userinput
+>c=de,o=Foo</userinput
+>, com a part de l'&URL; de &ldap;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Nom d'usuari</guilabel
+></term>
+          <listitem>
+            <para
+>El nom d'usuari, si és el cas, s'usa per a iniciar la sessió al servidor. </para>
+            <para
+>Aquesta columna només es mostra si l'opció <guilabel
+>Mostra la informació d'usuari i contrasenya</guilabel
+> (a la taula de sota) està marcat. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Contrasenya</guilabel
+></term>
+          <listitem>
+            <para
+>La contrasenya, si és el cas, s'usa per a iniciar la sessió al servidor. </para>
+            <para
+>Aquesta columna només es mostra si l'opció <guilabel
+>Mostra la informació d'usuari i contrasenya</guilabel
+> (a la taula de sota) està marcat. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Reviseu aquesta columna si aquesta entrada s'ha d'usar per a les cerques de certificats &x509; (&smime;). </para>
+            <para
+>Només els servidors &ldap; (i &ldaps;) són compatibles amb &smime;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Reviseu aquesta columna si aquesta entrada s'ha d'usar per a les cerques de certificats &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>Podeu configurar tants servidors &smime; (&x509;) com vulgueu, però en qualsevol moment només es permet un servidor &openpgp;. L'&IGU; ho forçarà. </para>
+      <para
+>Per afegir un nou servidor, feu clic al botó <guibutton
+>Nou</guibutton
+>. Això duplica l'entrada seleccionada, si existeix, o s'insereix un servidor &openpgp; per omissió. A continuació, podeu establir la <xref linkend="configuration-directory-services-server-name"/>, la <xref linkend="configuration-directory-services-server-port"/>, la <xref linkend="configuration-directory-services-base-dn"/>, i l'habitual <xref linkend="configuration-directory-services-password"/> i <xref linkend="configuration-directory-services-user-name"/>, dos dels quals només són necessaris si el servidor requereix autenticació. </para>
+      <para
+>Per inserir directament una entrada per a certificats &x509;, useu <menuchoice
+><guimenu
+>Nou</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+>; useu <menuchoice
+><guimenu
+>Nou</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> per a &openpgp;. </para>
+      <para
+>Per eliminar un servidor de cerca de la llista, seleccioneu-lo i després premeu el botó <guibutton
+>Esborra</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>Per a definir el temps d'espera &ldap;, &ead;, el temps màxim que s'esperarà el dorsal per a rebre la resposta del servidor, simplement useu el corresponent camp d'entrada, anomenat <guilabel
+>Temps d'expiració LDAP (minuts:segons)</guilabel
+>. </para>
+      <para
+>Si un dels servidors necessita una base de dades enorme, de manera que cada cerca raonable com <userinput
+>Smith</userinput
+> abasti el <guilabel
+>Nombre màxim d'elements retornats per aquesta consulta</guilabel
+>, potser voldreu incrementar aquest límit. Podeu esbrinar fàcilment si s'abasta aquest límit durant la cerca, perquè en aquest cas es mostrarà un diàleg per a dir-vos que es truncaran els resultats. </para>
+      <note>
+        <para
+>Alguns servidors poden imposar els seus propis límits al nombre d'elements que retornen des d'una consulta. En aquest cas, l'increment del límit no resultarà en el retorn de més elements. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Configurar l'aparença</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>Configurar els <guilabel
+>Consells</guilabel
+></title>
+
+        <para
+>A la llista de certificats principal, &kleopatra; pot mostrar els detalls d'un certificat en un consell. La informació mostrada és la mateixa que en la pestanya <guilabel
+>Vista general</guilabel
+> del diàleg <guilabel
+>Detalls del certificat</guilabel
+>. Els consells, però, es poden limitar a només mostrar un subconjunt de la informació per a una experiència menys detallada. </para>
+        <note>
+          <para
+>La <guilabel
+>ID de clau</guilabel
+> <emphasis
+>sempre</emphasis
+> es mostra. Això és per assegurar que els consells per als diferents certificats, de fet, són diferents (això és especialment important si només s'ha seleccionat <xref linkend="tooltips-validity"/>). </para>
+        </note>
+        <para
+>De forma independent podeu habilitar o inhabilitar la informació següent: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Mostra la validesa</guilabel
+></term>
+            <listitem>
+              <para
+>Mostra informació sobre la validesa d'un certificat: el seu estat actual, la &dn; de l'emissor (només &smime;), les dates d'expiració (si escau) i les etiquetes d'ús del certificat. </para>
+              <para
+>Exemple: <programlisting
+><!--
+                  -->Aquest certificat és vàlid en l'actualitat.
+<!--              -->Emissor:            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Validesa:          des del 25.08.2009 10:42 fins al 19.10.2010 10:42
+<!--              -->Ús del certificat: Signatura de correus i fitxers, Encriptatge de correus i fitxers
+<!--              -->ID de clau:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Mostra la informació del propietari</guilabel
+></term>
+            <listitem>
+              <para
+>Mostra informació sobre el propietari del certificat: assumpte-&dn; (només &smime;), ID d'usuari (incloent-hi les adreces de correu electrònic) i confiança de l'usuari (només &openpgp;). </para>
+              <para
+>&openpgp; exemple: <programlisting
+><!--
+                  -->ID d'usuari:           Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->ID de clau:            C6BF6664
+<!--              -->Confiança de l'usuari:        fonamental<!--
+                  --></programlisting
+> Exemple &smime;: <programlisting
+><!--
+                  -->Assumpte:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->t.c.c.:            Gpg4winUserA@test.hq
+<!--              -->ID de clau:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Mostra els detalls tècnics</guilabel
+></term>
+            <listitem>
+              <para
+>Mostra la informació tècnica sobre el certificat: número de sèrie (només &smime;), tipus, empremta digital, i ubicació d'emmagatzematge. </para>
+              <para
+>Exemple: <programlisting
+><!--
+                  -->Número de sèrie:     27
+<!--              -->Tipus de certificat:  1,024-bit RSA (certificat secret disponible)
+<!--              -->ID de clau:            DC9D9E43
+<!--              -->Empremta digital:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Emmagatzemada:           en aquest ordinador<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>Configurar les <guilabel
+>Categories de certificat</guilabel
+></title>
+
+        <para
+>&kleopatra; us permet personalitzar l'aparença dels certificats en la vista de llista. Inclou mostrar una petita icona, però també podeu influir en els colors de primer pla i de fons (pel text), així com en el tipus de lletra. </para>
+        <para
+>A cada categoria de certificat en la llista se li assigna un conjunt de colors, una icona (opcional) i un tipus de lletra per a quan es mostrin els certificats que pertanyen a aquesta categoria. La llista de categories actua com a vista prèvia de les opcions. Les categories poden ser definides lliurement per l'administrador o l'usuari avançat, mireu <xref linkend="admin-key-filters"/> en <xref linkend="admin"/>. </para>
+        <para
+>Per establir o canviar la icona d'una categoria, seleccioneu-la en la llista i premeu el botó <guibutton
+>Estableix la icona...</guibutton
+>. Apareixerà el diàleg de selecció d'icones estàndard del &kde; i podreu seleccionar-ne una d'existent des de la col·lecció del &kde; o carregar-ne una de personalitzada. </para>
+        <para
+>Per eliminar una icona, necessiteu prémer el botó <guilabel
+>Aparença per defecte</guilabel
+>. </para>
+        <para
+>Per a canviar el color del text (&ead;, primer pla) d'una categoria, seleccioneu-la en la llista i premeu el botó <guibutton
+>Estableix el color del text...</guibutton
+>. Apareixerà el diàleg de selecció de color estàndard del &kde; i podreu seleccionar o crear un color nou. </para>
+        <para
+>El canvi del color de fons es fa de la mateixa manera, simplement premeu <guilabel
+>Estableix el color del text...</guilabel
+>. </para>
+        <para
+>Per a canviar el tipus de lletra, bàsicament necessiteu dues opcions: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Modificar el tipus de lletra estàndard, usada en totes les vistes de llista del &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Usar un tipus de lletra personalitzat. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>La primera opció necessita l'avantatge que el tipus de lletra segueixi l'estil que escolliu per a tot el &kde;, mentre que l'última us dona control complet sobre el tipus de lletra que s'usarà. La decisió és vostra. </para>
+        <para
+>Per utilitzar el tipus de lletra estàndard modificada, seleccioneu la categoria de la llista, i marqueu o desmarqueu els modificadors de tipus de lletra <guilabel
+>Cursiva</guilabel
+>, <guilabel
+>Negreta</guilabel
+> i/o <guilabel
+>Ratllat</guilabel
+>. Podeu veure immediatament l'efecte del tipus de lletra en la llista de categories. </para>
+        <para
+>Per utilitzar un tipus de lletra a mida, premeu el botó <guilabel
+>Estableix el tipus de lletra...</guilabel
+>. Apareixerà el diàleg de selecció del tipus de lletra estàndard del &kde; i podreu seleccionar el nou tipus de lletra. </para>
+        <note>
+          <para
+>Pot seguir utilitzant els modificadors de tipus de lletra per a canviar el tipus de lletra a mida, així com per modificar el tipus de lletra estàndard. </para>
+        </note>
+        <para
+>Per a tornar al tipus de lletra estàndard, necessiteu prémer el botó <guilabel
+>Aparença per defecte</guilabel
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>Configurar l'<guilabel
+>Ordre dels atributs DN</guilabel
+></title>
+
+<para
+>Tot i que els &dn; són jeràrquics, l'ordre dels components individuals (anomenats &dn; relatius (les RDN), o atributs &dn;) no està definit. L'ordre en què es mostren els atributs és, per tant, qüestió de gustos personals o de política d'empresa, d'aquí que sigui configurable al &kleopatra;.</para>
+
+<note
+><para
+>Aquesta opció no només s'aplica al &kleopatra;, sinó a totes les aplicacions que utilitzen la seva tecnologia. En el moment d'escriure aquestes línies, entre elles estaven el &kmail;, el &kaddressbook;, així com el mateix &kleopatra;, per descomptat.</para
+></note>
+
+<para
+>Aquesta pàgina de configuració consta bàsicament de dues llistes, una per als atributs coneguts (<guilabel
+>Atributs disponibles</guilabel
+>) i una per a descriure l'<guilabel
+>Ordre actual dels atributs</guilabel
+>.</para>
+
+<para
+>Ambdues llistes contenen entrades que es descriuen com la forma breu de l'atribut (&pex;, <guilabel
+>CN</guilabel
+>), així com la manera expandida (<guilabel
+>Nom comú</guilabel
+>).</para>
+
+<para
+>La llista <guilabel
+>Atributs disponibles</guilabel
+> sempre s'ordena alfabèticament, mentre que la llista <guilabel
+>Ordre actual dels atributs</guilabel
+> reflecteix l'ordre de l'atribut &dn; configurat: El primer atribut de la llista també és el que es mostra primer.</para>
+
+<para
+>Tan sols els atributs que es mostren explícitament en la llista <guilabel
+>Ordre actual dels atributs</guilabel
+>.La resta estan ocults per omissió.</para>
+
+<para
+>De tota manera, si l'entrada marcador de posició <guilabel
+>_X_</guilabel
+> (<guilabel
+>Tots els altres</guilabel
+>) estan en la llista «actual», tots els atributs que sense llistar (siguin o no coneguts) seran inserits al punt <guilabel
+>_X_</guilabel
+>, en el seu ordre relatiu original.</para>
+
+<para
+>Un petit exemple ajudarà a aclarir l'assumpte:</para>
+
+<informalexample>
+<para
+>Donar el &dn;</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>l'ordre per omissió dels atributs «CN, L, _X_, OU, O, C» presentarà el &dn; en el següent format:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+>mentre que «CN, L, OU, O, C» presentarà</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>Per afegir un atribut a l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
+>Atributs disponibles</guilabel
+> i premeu el botó <guilabel
+>Afegeix a l'ordre actual dels atributs</guilabel
+>.</para>
+
+<para
+>Per eliminar un atribut de l'ordre de visualització de la llista, seleccioneu-lo en la llista <guilabel
+>Atributs disponibles</guilabel
+> i premeu el botó <guilabel
+>Eliminar de l'ordre actual dels atributs</guilabel
+>.</para>
+
+<para
+>Per a moure un atribut al començament (final), seleccioneu-lo en la llista <guilabel
+>Ordre actual dels atributs</guilabel
+> i premeu el botó <guilabel
+>Mou a dalt</guilabel
+> (<guilabel
+>Mou a baix</guilabel
+>).</para>
+
+<para
+>Per a moure un atribut cap avall (a sota) tan sols una posició, seleccioneu-lo de la llista <guilabel
+>Ordre actual dels atributs</guilabel
+> i premeu el botó <guilabel
+>Mou un amunt</guilabel
+> (<guilabel
+>Mou un avall</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Configurar les Operacions de criptografia</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>Configurar les <guilabel
+>Operacions amb correu electrònic</guilabel
+></title>
+
+        <para
+>Aquí es poden configurar alguns aspectes de les operacions de correu electrònic del &uiserver; de &kleopatra;. En l'actualitat, només es pot configurar si voleu utilitzar o no el <quote
+>mode ràpid</quote
+> per a signar i encriptar missatges de correu electrònic, individualment. </para>
+        <para
+>Quan s'habilita el «mode ràpid» no es mostra cap diàleg en signar (encriptar) els correus electrònics, a menys que hi hagi un conflicte que necessiti una resolució manual. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>Configurar les <guilabel
+>Operacions amb fitxers</guilabel
+></title>
+
+        <para
+>Aquí podeu configurar alguns aspectes de les operacions amb fitxers del &uiserver; de &kleopatra;. En l'actualitat, només podeu triar el programa de suma de verificació a utilitzar per <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>Utilitzeu <guilabel
+>Programa de suma de verificació a usar</guilabel
+> per triar quin dels programes de suma de verificació configurats s'ha d'utilitzar en crear fitxers de suma de verificació. </para>
+        <para
+>Quan es comproven les sumes de verificació, el programa a utilitzar les troba automàticament, a partir dels noms dels fitxers de suma de verificació trobats. </para>
+        <note>
+          <para
+>L'usuari administrador i l'usuari avançat poden definir quins programes de suma de verificació poden estar a disposició de &kleopatra; través de les anomenades «Definicions de la suma de verificació» al fitxer de configuració. Vegeu <xref linkend="admin-checksum-definitions"/> aquí <xref linkend="admin"/> per a més detalls. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Configurar l'aparença de la validació S/&MIME;</title>
+
+      <para
+>En aquesta pàgina, podeu configurar certs aspectes de la validació dels certificats de &smime;. </para>
+      <note>
+        <para
+>En la seva major part, això és simplement una versió més fàcil d'usar de la mateixa configuració que també es troba en <xref linkend="configuration-gnupg-system"/>. Tot el que podeu configurar aquí, també ho podeu configurar allà, amb l'excepció de <xref linkend="configuration-smime-validation-refresh-interval"/>, que és específic de &kleopatra;. </para>
+      </note>
+      <para
+>El significat de les opcions és el següent: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Configuració de l'interval de comprovació del certificat</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Comprova la validesa del certificat cada <replaceable
+>N</replaceable
+> hores</guilabel
+></term>
+            <listitem>
+              <para
+>Aquesta opció permet marcar l'interval de la validesa del certificat. També podeu triar l'interval de comprovació (en hores). L'efecte de marcar l'interval és el mateix que <xref linkend="view-redisplay"/>, no hi ha cap disposició per a programar l'interval de <xref linkend="certificates-refresh-openpgp"/> o <xref linkend="certificates-refresh-x509"/>. </para>
+              <note>
+                <para
+>La validació es realitza implícitament cada vegada que els fitxers importants en <filename
+>~/.gnupg</filename
+> canviïn. Aquesta opció, igual que <xref linkend="certificates-refresh-openpgp"/> i <xref linkend="certificates-refresh-x509"/>, per tant només afecta els factors externs de validesa del certificat. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Configurar el mètode de validació</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Valida els certificats usant les CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Si seleccioneu aquesta opció, els certificats &smime; es validen utilitzant llistes de certificats revocats (les &crl; -Certificate Revocation Lists-). </para>
+              <para
+>Vegeu <xref linkend="configuration-smime-validation-use-ocsp"/> pel mètode alternatiu de comprovació de la validesa del certificat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Valida els certificats en línia (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Si seleccioneu aquesta opció, els certificats &smime; són validats en línia amb el protocol d'estat de certificats en línia (&ocsp; -Online Certificates Status Protocol-). </para>
+              <warning>
+                <para
+>En triar aquest mètode, s'envia una sol·licitud al servidor de &ca; més o menys cada vegada que s'envia o es rep un missatge xifrat, el que teòricament permet a l'agència d'emissió de certificats realitzar un seguiment amb qui intercanvieu (&pex;) correus. </para>
+              </warning>
+              <para
+>Per utilitzar aquest mètode, cal introduir l'&URL; de la resposta &ocsp; en <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Vegeu <xref linkend="configuration-smime-validation-use-ocsp"/> per a un mètode més tradicional de comprovar la validació del certificat que no perdi informació sobre amb qui intercanvieu missatges. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>URL del contestador OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>Introduïu aquí l'adreça del servidor per a la validació de certificats en línia (contestador &ocsp;). L'&URL; en general comença amb <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Signatura del contestador OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>Seleccioneu aquí el certificat amb el qual el servidor &ocsp; signa les seves respostes. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Ignora l'URL de servei dels certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Cada certificat &smime; en general conté l'&URL; de resposta &ocsp; del seu emissor (<xref linkend="certificates-dump-certificate"/> revelarà si un certificat determinat la conté). </para>
+              <para
+>En seleccionar aquesta opció fa que &gpgsm; ometi els &URL; i només utilitza la configuració de sobre. </para>
+              <para
+>Utilitzeu-la per a &pex;, forçar l'ús d'un intermediari &ocsp; a tota l'empresa. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Configurar les opcions de validació</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>No comprovar les polítiques del certificat</guilabel
+></term>
+            <listitem>
+              <para
+>Per omissió, &gpgsm; utilitza el fitxer <filename
+>~/.gnupg/policies.txt</filename
+> per comprovar si està permesa la política de certificats. Si seleccioneu aquesta opció, no es comprovaran les polítiques. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>No consultar mai una CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Si aquesta opció està marcada, no s'empraran mai les llistes de revocació de certificats per a validar els certificats &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Permetre marcar els certificats arrel com a fiables</guilabel
+></term>
+            <listitem>
+            <para
+>Si aquesta opció està marcada, mentre s'importa un certificat &ca; arrel, se us demanarà que confirmeu la seva empremta digital i que indiqueu si es té o no com de confiança aquest certificat arrel. </para>
+              <para
+>Un certificat arrel necessita ser de confiança abans que els certificats que certifica siguin de confiança, però confiar a la lleugera en certificats arrel en el vostre magatzem de certificats posarà en perill la seguretat del sistema. </para>
+              <note>
+                <para
+>Habilitar aquesta funcionalitat en el dorsal pot produir emergents des de &pinentry; en moments inoportuns (&pex;, en la verificació de signatures), i per tant es pot blocar desatenent el processament del correu electrònic. Per aquesta raó, i perquè és convenient per a poder establir la <emphasis
+>desconfiança</emphasis
+> a un nou certificat arrel de confiança, &kleopatra; permet l'ajust manual de la confiança usant <xref linkend="certificates-trust-root"/> i <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Aquesta configuració no influeix en la funció de &kleopatra;. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Obtén els certificats de l'emissor que falten</guilabel
+></term>
+            <listitem>
+              <para
+>Si aquesta opció està marcada, els certificats d'emissor que manquen es recuperen quan és necessari (això s'aplica als mètodes de validació &crl; i &ocsp;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Configurar les opcions de la petició &http;:</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>No fer cap sol·licitud HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Inhabilita per complet l'ús de l'&http; per a &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>Ignora el punt de distribució CRL mitjançant HTTP dels certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades <quote
+>&crl; Punt de distribució</quote
+> (<acronym
+>DP</acronym
+>), que són &URL; que descriuen la manera d'accedir a la &crl;. S'utilitza la primera entrada <acronym
+>DP</acronym
+>. </para>
+              <para
+>Amb aquesta opció, totes les entrades que usin l'esquema &http; seran ignorades quan se cerca un <acronym
+>DP</acronym
+> adequat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Usa l'intermediari HTTP del sistema</guilabel
+></term>
+            <listitem>
+              <para
+>Si se selecciona aquesta opció, el valor de l'intermediari &http; que es mostra a la dreta (provinent de la variable d'entorn <envar
+>http_proxy</envar
+>) s'usarà per a totes les peticions &http;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Usa aquest intermediari per a les sol·licituds HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Si no s'ha definit cap intermediari del sistema o heu d'utilitzar un intermediari diferent per a &gpgsm;, introduïu aquí la seva ubicació. </para>
+              <para
+>S'utilitzarà per a totes les peticions &HTTP; relatives a S/&MIME;. </para>
+              <para
+>La sintaxi és <userinput
+><replaceable
+>màquina</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>, &pex;, <userinput
+>intermediari.enlloc.com:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Configurar les opcions de la petició &ldap;:</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>No fer cap sol·licitud LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Inhabilita per complet l'ús de &ldap; per a &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>Ignora el punt de distribució CRL mitjançant LDAP dels certificats</guilabel
+></term>
+            <listitem>
+              <para
+>Quan se cerca la ubicació d'un &crl;, el certificat a provar en general conté el que es coneix com a entrades <quote
+>&crl; Punt de distribució</quote
+> (<acronym
+>DP</acronym
+>), que són &URL; que descriuen la manera d'accedir a la &crl;. S'utilitza la primera entrada <acronym
+>DP</acronym
+>. </para>
+              <para
+>Amb aquesta opció, totes les entrades que usin l'esquema &ldap; seran ignorades quan se cerca un <acronym
+>DP</acronym
+> adequat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Màquina primària per a sol·licituds LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Introduir aquí un servidor &ldap; farà que totes les peticions &ldap; vagin primer a aquest servidor. Més precisament, aquesta configuració substitueix qualsevol especificació a la part <replaceable
+>màquina</replaceable
+> i <replaceable
+>port</replaceable
+> en un &URL; &ldap; i també s'utilitzarà si la <replaceable
+>màquina</replaceable
+> i el <replaceable
+>port</replaceable
+> s'han omès a l'&URL;. </para>
+              <para
+>Els altres servidors &ldap; només s'utilitzaran si la connexió a l'«intermediari» ha fallat. La sintaxi és <userinput
+><replaceable
+>màquina</replaceable
+></userinput
+> o <userinput
+><replaceable
+>màquina</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>. Si s'omet el <replaceable
+> port </replaceable
+>, s'utilitzarà el port 389 (el port &ldap; estàndard). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Configurar el sistema &gnupg;</title>
+
+      <para
+>Aquesta part del diàleg és autogenerada a partir de la sortida de <command
+>gpgconf <option
+>--list-components</option
+></command
+> i, per a cada <replaceable
+>component</replaceable
+> que retorna l'ordre anterior, la sortida de <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>component</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>El més útil d'aquestes opcions ha estat duplicat com a pàgines independents en el diàleg de configuració de &kleopatra;. Vegeu <xref linkend="configuration-directory-services"/> i <xref linkend="configuration-smime-validation"/> per a les dues pàgines de diàleg que contenen les opcions seleccionades en aquesta part del diàleg. </para>
+      </note>
+      <para
+>El contingut exacte d'aquesta part del diàleg depèn de la versió del dorsal de &gnupg; que hi hagi instal·lat i, potencialment, la plataforma en què s'executa. Per tant, només analitzarem la disposició general del diàleg, incloent-hi l'assignació des de l'opció de &gpgconf; al control de l'&IGU; &kleopatra;. </para>
+      <para
+>&gpgconf; retorna informació de configuració per a múltiples components. Dins de cada component, les opcions individuals es combinen en grups. </para>
+      <para
+>&kleopatra; mostra una pestanya per a cada component informat per &gpgconf;, els grups estan encapçalats per una línia horitzontal que mostra el nom del grup com l'ha retornat &gpgconf;. </para>
+      <para
+>Cada opció de &gpgconf; té un tipus. A excepció de certes opcions conegudes que &kleopatra; sosté amb controls especialitzats per a una millor experiència d'usuari, l'associació entre tipus de &gpgconf; i controls de &kleopatra; és el següent: </para>
+      <table id="table-gpgconf-types">
+	<title
+>Associació de tipus &gpgconf; a controls de l'&IGU;</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>Tipus de &gpgconf;</entry>
+              <entry namest="lists" nameend="non-lists"
+>Control de &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>per a les llistes</entry>
+	      <entry
+>per a no-llistes</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>none</literal
+></entry>
+	      <entry
+>Botó de selecció de valors («count»-semantics)</entry>
+	      <entry
+>Casella de selecció</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>string</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>Línia d'edició</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Línia d'edició (sense format)</entry>
+              <entry morerows="1"
+>Botó de selecció de valors</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pathname</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>control especialitzat</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ldap server</literal
+></entry>
+              <entry
+>control especialitzat</entry>
+              <entry
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>key fingerprint</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pub key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>sec key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>alias list</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Consulteu el manual de &gpgconf; per obtenir més informació sobre el que podeu configurar aquí, i com. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Guia de l'administrador</title>
+
+<para
+>La guia de l'administrador descriu maneres per a personalitzar &kleopatra; a les que no es pot accedir mitjançant l'&IGU;, sinó tan sols amb fitxers de configuració.</para>
+
+<para
+>S'assumeix que el lector està familiaritzat amb la tecnologia que s'usa per a configurar les aplicacions &kde;, incloent-hi la disposició, la ubicació en el sistema de fitxers i la cascada de fitxers de configuració del &kde;, així com l'entorn KIOSK.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Personalització de l'assistent de creació de certificats</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Personalitzar els camps de &dn;</title>
+
+<para
+>&kleopatra; us permet personalitzar els camps que permeten introduir l'usuari per a crear el seu certificat.</para>
+
+<para
+>Creeu un grup anomenat <literal
+>CertificateCreationWizard</literal
+> en el fitxer <filename
+>kleopatrarc</filename
+> del sistema. Si voleu que l'ordre dels atributs sigui personalitzat, o si voleu que tan sols apareguin certs elements, creeu una clau anomenada <varname
+>DNAttributeOrder</varname
+>. L'argument és un o més d'entre <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+>. Si voleu inicialitzar els camps amb algun valor, escriviu quelcom com Atribut=valor. Si voleu que l'atribut sigui requerit, afegiu una marca d'exclamació (per exemple, <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, el qual resultarà ser la configuració per omissió).</para>
+
+<para
+>Usant el modificador de mode <varname
+>$e</varname
+> de <acronym
+>KIOSK</acronym
+>, se us permet recuperar els valors de les variables d'entorn o d'un script o binari avaluat. Si voleu desactivar l'edició del camp respectiu, useu el modificador <varname
+>$i</varname
+>. Si voleu desactivar l'ús del botó <guibutton
+>Insereix la meva adreça</guibutton
+>, establiu <varname
+>ShowSetWhoAmI</varname
+> a «false».</para>
+
+<tip
+><para
+>Per la naturalesa de l'entorn <acronym
+>KIOSK</acronym
+> de &kde;, usant l'etiqueta immutable (<varname
+>$i</varname
+>), fa que sigui impossible per a l'usuari ometre l'etiqueta. És un comportament intencionat. <varname
+>$i</varname
+> i <varname
+>$e</varname
+> també es poden utilitzar amb totes les claus de configuració de les aplicacions de &kde;.</para
+></tip>
+
+<para
+>El següent exemple apunta les possibles personalitzacions:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;No permet copiar les dades personals des de la llibreta d'adreces, ni sobrepassar localment
+ShowSetWhoAmI[$i]=false
+
+;estableix el nom de l'usuari a $USER
+CN[$e]=$USER
+
+;estableix el nom de l'empresa a «La meva empresa», no permet editar
+O[$i]=La meva empresa
+
+;estableix el nom del departament segons què retorni l'script
+OU[$ei]=$(lookup_dept_from_ip)
+
+;estableix el país a AD, però permet que l'usuari el canviï
+C=AD
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Restringir els tipus de claus que un usuari pot crear</title>
+
+        <para
+>&kleopatra; també permet restringir el tipus de certificats que es permet crear a un usuari. Tingueu en compte, però, que una manera fàcil d'evitar aquestes restriccions és crear-ne una a la línia d'ordres. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Els algorismes de clau pública</title>
+
+          <para
+>Per restringir l'algorisme de clau pública a usar, afegiu la clau de configuració <varname
+>PGPKeyType</varname
+> (i <varname
+>CMSKeyType</varname
+>, però de totes maneres només <acronym
+>RSA</acronym
+> és compatible amb <acronym
+>CMS</acronym
+>) a la secció <literal
+>CertificateCreationWizard</literal
+> de <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>Els valors permesos són <literal
+>RSA</literal
+> per a les claus <acronym
+>RSA</acronym
+>, <literal
+>DAS</literal
+> per a les claus <acronym
+>DSA</acronym
+> (només firma), i <literal
+>DSA+ELG</literal
+> per a una clau <acronym
+>DSA</acronym
+> (només firma) amb una subclau Elgamal per a l'encriptatge. </para>
+
+          <para
+>Per omissió es llegeix &gpgconf; o bé <literal
+>RSA</literal
+> si &gpgconf; no proporciona un valor per omissió. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Mida de la clau pública</title>
+
+          <para
+>Per restringir la mida de les claus per a un algorisme públic, afegiu la clau de configuració <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>KeySizes</varname
+> (on <replaceable
+>ALG</replaceable
+> pot ser <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> o <literal
+>ELG</literal
+>) a la secció <literal
+>CertificateCreationWizard</literal
+> de <filename
+>kleopatrarc</filename
+> trobareu una llista separada per comes de mides de claus (en bits). Es pot indicar un valor per omissió pel prefix de la mida de clau amb un guió (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Això permet restringir la mida de clau <acronym
+>RSA</acronym
+> de 1536, 2048 i 3072, amb 2.048 el valor per omissió. </para>
+
+          <para
+>A més de les mides en si mateixes, també podeu donar les etiquetes de cadascuna de les mides. Només cal ajustar la clau de configuració <varname
+><replaceable
+>ALG</replaceable
+>KeySizeLabels</varname
+> a una llista separada per comes de les etiquetes. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = weak,normal,strong
+            </programlisting>
+          </para>
+
+          <para
+>Això, en relació amb l'exemple anterior, imprimirà quelcom a les següents opcions per a la selecció: <programlisting
+>weak (1536 bits)
+              normal (2048 bits)
+              strong (3072 bits)
+            </programlisting>
+          </para>
+
+          <para
+>Els valors per omissió són com si el següent estigués en efecte: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Crear i editar categories de claus</title>
+
+      <para
+>&kleopatra; permet a l'usuari configurar l'<link linkend="configuration-appearance"
+>aparença visual</link
+> de les claus basant-se en un concepte anomenat <guilabel
+>Categories de claus</guilabel
+>. Aquesta secció descriu com es poden editar les categories disponibles i afegir-ne de noves. </para>
+
+      <para
+>Quan s'intenta localitzar la categoria a la qual pertany una clau, &kleopatra; intenta fer coincidir la clau amb una seqüència de filtres de claus, configurats en el fitxer <filename
+>libkleopatrarc</filename
+>. El primer que coincideix defineix la categoria, basant-se en un concepte d'<emphasis
+>especificitat</emphasis
+>, s'explica a continuació. </para>
+
+      <para
+>Cada filtre de clau està definit en un grup de configuració anomenat <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, en el que <replaceable
+>n</replaceable
+> és un número, començant pel <literal
+>0</literal
+>. </para>
+
+      <para
+>Les úniques claus obligatòries en un grup <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> és <varname
+>Name</varname
+>, que contenint el nom de la categoria que es mostrarà en el <link linkend="configuration-appearance-certificate-filters"
+>diàleg de configuració</link
+>, i <varname
+>id</varname
+>, que s'utilitza com a referència pel filtre en altres seccions de la configuració (com ara <literal
+>View #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> Llista totes les claus que defineixen les propietats de visualització de claus que pertanyen a aquesta categoria (&ead;, les claus que es poden ajustar en el <link linkend="configuration-appearance-certificate-filters"
+>diàleg de configuració</link
+>), mentre que <xref linkend="table-key-filters-criteria"/> llista totes les claus que coincideixen amb els criteris definits de filtratge de claus. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Configurar el filtre de clau definint les propietats de visualització</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Clau a configurar</entry>
+	      <entry
+>Tipus</entry>
+	      <entry
+>Descripció</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>color</entry>
+	      <entry
+>El color de fons que a usar. Si no s'indica, per omissió serà el color de fons definit globalment per a les vistes de llista. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>color</entry>
+	      <entry
+>El color de primer pla a usar. Si no s'indica, per omissió serà el color de primer pla definit globalment per a les vistes de llista. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>tipus de lletra</entry>
+	      <entry
+>El tipus de lletra a mida a usar. El tipus de lletra serà escalat fins a la mida configurada per a les vistes de llista, i s'aplicaran els atributs de tipus de lletra (s'expliquen a sota). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>Si està establert a <literal
+>true</literal
+> i <varname
+>font</varname
+> no està establert, usa el tipus de lletra per omissió de la vista de llista amb l'estil de tipus de lletra negreta afegit (si està disponible). S'ignora si també està present <varname
+>font</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>Anàleg a <varname
+>font-bold</varname
+>, però amb l'estil de tipus de lletra cursiva en comptes de negreta. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>Si és <literal
+>true</literal
+>, dibuixa una línia per sobre del tipus de lletra. S'aplica encara que estigui establerta <varname
+>font</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>icon</varname
+></entry>
+	      <entry
+>text</entry>
+	      <entry
+>El nom d'una icona que es mostra en la primera columna. Encara no implementat. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Criteri de filtratge definint claus a la configuració de filtres de clau</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Clau a configurar</entry>
+	      <entry
+>Tipus</entry>
+	      <entry
+>Si s'especifica, els filtres coincideixen quan...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau ha estat revocada.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>context<footnote
+> <para
+>El context és una enumeració amb els següents valors permesos: <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> i <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>el context en què això coincideix amb el filtre.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau ha caducat.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau ha estat inhabilitada (marcada perquè no s'usi) per l'usuari. S'ignora per a claus &smime;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau és un certificat arrel. S'ignora per a claus &openpgp;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau es pot utilitzar per a l'encriptatge. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau es pot utilitzar per a signar. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau es pot utilitzar per a signar (certificar) altres claus. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau es pot utilitzar per autenticació (&pex; com un certificat de client <acronym
+>TLS</acronym
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau es pot utilitzar per fer firmes reconegudes (com es defineix en la Llei alemanya de firma digital). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>el material de claus s'emmagatzema en una targeta intel·ligent (en lloc de l'ordinador). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>està disponible la clau privada per a aquest parell de claus. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau és una clau &openpgp; (<literal
+>true</literal
+>), o una clau &smime; (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>booleà</entry>
+	      <entry
+>la clau ha estat validada. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>validity<footnote
+> <para
+>La validesa és una enumeració ordenada amb els següents valors: <literal
+>unknown</literal
+> (desconegut), <literal
+>undefined</literal
+> (sense definir), <literal
+>never</literal
+> (mai), <literal
+>marginal</literal
+>, <literal
+>full</literal
+> (completa), <literal
+>ultimate</literal
+> (definitiva). Vegeu els manuals de &gpg; i &gpgsm; per a una explicació detallada.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>la clau disposa exactament (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), ho té tot excepte (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), almenys té (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>), o a més té (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) la confiança del propietari dona el valor de la clau de configuració. Si hi ha més d'una clau <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+> (amb diferents valors de <replaceable
+>prefix</replaceable
+>) en tan sols un grup, el comportament està sense definir. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>validity</entry>
+	      <entry
+>Anàleg a <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+>, però per a la validesa de les claus en comptes de per a la confiança del propietari. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Alguns dels criteris més interessants, com <varname
+>is-revoked</varname
+> (està revocada) o <varname
+>is-expired</varname
+> (ha caducat) tan sols funcionarà amb claus <emphasis
+>validades</emphasis
+>, d'aquí que, per omissió, tan sols es comprovi la validesa de les claus per a la revocació i la caducitat, encara que pugueu eliminar aquestes comprovacions extres. </para>
+      </note>
+
+      <para
+>A més de les claus de configuració esmentades anteriorment, un filtre de clau també pot tenir un <varname
+>id</varname
+> i <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>L'ús del filtre <varname
+>id</varname
+>, que per omissió és el filtre de configuració de nom de grup si no s'indica o és buit, podeu fer referència a la clau del filtre en algun lloc de la configuració, &pex; en les configuracions de visualització de &kleopatra;. La <varname
+>id</varname
+> no és interpretada per &kleopatra;, així que podeu utilitzar qualsevol cadena que vulgueu, sempre que sigui única. </para>
+
+      <para
+>L'opció <varname
+>match-contexts</varname
+> limita l'aplicació del filtre. Hi ha definits dos contexts: el context <literal
+>appearance</literal
+> s'utilitza en la definició de color i les propietats de tipus de lletra per a les visualitzacions. El context <literal
+>filtering</literal
+> s'utilitza per incloure (i excloure) de manera selectiva certificats de les visualitzacions. El context <literal
+>any</literal
+> es pot utilitzar per indicar tots els contexts definits actualment, i és el per omissió si <varname
+>match-contexts</varname
+> no s'ha indicat, o d'altra manera no produeix contexts. Això assegura que un filtre de clau no pot finalitzar «mort», &ead;, sense contexts per aplicar. </para>
+
+      <para
+>El format de l'entrada és una llista de símbols, separats per caràcters no-paraula. Cadascun dels símbols és opcionalment precedit per un signe d'exclamació (<literal
+>!</literal
+>), que indica negació. Els símbols actuen en ordre sobre una llista interna de contexts, la qual comença buida. Això s'explica millor amb un exemple: <literal
+>any !appearance</literal
+> és el mateix que <literal
+>filtering</literal
+>, i <literal
+>appearance !appearance</literal
+> presentarà el conjunt buit, tal com <literal
+>!any</literal
+>. Tanmateix, els dos últims se substitueixen internament per <literal
+>any</literal
+>, ja que no produeixen contexts. </para>
+
+      <para
+>En general, els criteris no especificats (&ead;, l'entrada de configuració no està definida) no són comprovats. Si es dona un criteri, es comprova i aquest haurà de coincidir en tot amb el filtre perquè es faci coincidir, &ead;, els criteris són a la vegada AND. </para>
+
+      <para
+>Cada filtre té una «especificitat» implícita que s'utilitza per classificar tots els filtres que coincideixen. Els filtre més específic guanya sobre els menys específics. Si dos filtres tenen la mateixa especificitat, guanya el que està primer en el fitxer de configuració. L'especificitat d'un filtre és proporcional al nombre de criteris que conté. </para>
+
+      <example>
+	<title
+>Exemples de filtres de clau</title>
+	<para
+>Per a comprovar tots els certificats arrel caducats però no revocats, podeu usar un filtre de claus definit de la següent manera: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=expired, but not revoked
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Per a comprovar que totes les claus &openpgp; inhabilitades (&kleopatra; encara no ho permet) amb una confiança del propietari d'almenys «marginal», hauríeu d'usar: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=disabled OpenPGP keys with marginal or better ownertrust
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Configurar arxivadors per a l'ús amb fitxers signa/encripta</title>
+
+      <para
+>&kleopatra; permet a l'administrador (i a l'usuari avançat) configurar la llista d'arxivadors que es presenten en el diàleg de signar/encriptar fitxers. </para>
+
+      <para
+>Cada arxivador es defineix en <filename
+>libkleopatrarc</filename
+> com un grup separat <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, amb les següents claus obligatòries: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensions</literal
+></term>
+          <listitem>
+            <para
+>Una llista separada per comes d'extensions de noms de fitxer que solen indicar aquest format de fitxer. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Un ID únic utilitzat per a identificar aquest arxiu internament. En cas de dubte, utilitzeu el nom de l'ordre. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Name</literal
+> (traduït)</term>
+          <listitem>
+            <para
+>El nom visible per l'usuari d'aquest arxivador, com es mostra en el menú desplegable corresponent del diàleg signa/encripta fitxers. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>L'ordre real per arxivar fitxers. Podeu utilitzar qualsevol ordre, sempre que no es requereixi un intèrpret d'ordres per executar-la. El fitxer del programa se cerca amb la variable d'entorn <envar
+>PATH</envar
+>, llevat que utilitzeu un camí de fitxer absolut. Les cometes estan suportades com si s'estigués usant un intèrpret d'ordres: <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Atès que la barra inversa (<literal
+>\</literal
+>) és un caràcter d'escapament en els fitxers de configuració del &kde;, necessitareu duplicar-la quan aparegui en els noms de camí: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+>. Tanmateix, per l'ordre en si (com oposat als seus arguments), podeu utilitzar només barres inclinades (<literal
+>/</literal
+>) com separadors de camins en totes les plataformes: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+>. Això no s'admet pels arguments, com la majoria dels programes de &Windows; utilitzen la barra inclinada per a opcions. Per exemple, el següent no funcionarà, donat que <literal
+>C:/myarchivescript.bat</literal
+> és un argument a <command
+>cmd.exe</command
+>, i <literal
+>/</literal
+> no es converteix en els arguments a <literal
+>\</literal
+>, només en les ordres: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+>. Això es necessita escriure com: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Passar el nom de fitxer d'entrada per <literal
+>pack-command</literal
+></title>
+
+      <para
+>Hi ha tres formes de passar noms de fitxer a l'ordre d'empaquetar. Per a cadascuna, <literal
+>pack-command</literal
+> proporciona una sintaxi especial: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Com a arguments de la línia d'ordres.</para>
+            <para
+>Exemple (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Exemple (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> En aquest cas, els noms de fitxer es passen a la línia d'ordres, igual que ho faria quan s'utilitza un indicador d'ordres. &kleopatra; no utilitza un intèrpret d'ordres per executar l'ordre. Per tant, aquesta és una manera segura de passar els noms de fitxer, però podríeu trobar restriccions de longitud de línia d'ordres en algunes plataformes. Si és present un literal <literal
+>%f</literal
+>, serà substituït pels noms de fitxer a arxiu. En cas contrari, els noms de fitxer s'afegeixen a la línia d'ordres. Així, l'anterior exemple zip en forma equivalent es pot escriure així: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Via entrada estàndard, separada per salts de línia: anteposar <literal
+>|</literal
+>.</para>
+            <para
+>Exemple (TAR de &GNU;): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Exemple (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> En aquest cas, els noms de fitxer es passen a l'arxivador sobre <acronym
+>stdin</acronym
+>, un per línia. Això evita problemes en les plataformes que posen un límit sobre el nombre d'arguments de la línia d'ordres que estan permesos, però falla quan els noms de fitxer contenen, en realitat, salts de línia. </para>
+            <note>
+              <para
+>&kleopatra; actualment només suporta <acronym
+>LF</acronym
+> com un separador de salt de línia, no <acronym
+>CRLF</acronym
+> Això podria canviar en futures versions, basades en comentaris dels usuaris. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Via entrada estàndard, separada per octets NUL: anteposar <literal
+>0|</literal
+>.</para>
+            <para
+>Exemple (TAR de &GNU;): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> Aquest és el mateix que l'anterior, llevat que els octets NUL s'utilitzen per separar els noms de fitxer. Atès que els octets NUL estan prohibits en els noms de fitxer, aquesta és la forma més robusta de passar els noms de fitxer, però no ho admeten tots els arxivadors. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Configurar els programes de verificació pel seu ús creant o verificant sumes de verificació</title>
+
+      <para
+>&kleopatra; permet a l'administrador (i a l'usuari avançat) configurar la llista de programes de verificació que tria l'usuari en el diàleg de configuració i que &kleopatra; és capaç de detectar automàticament quan us demana verificar la suma de verificació d'un fitxer determinat. </para>
+
+      <note>
+        <para
+>Perquè els pugui utilitzar &kleopatra;, la sortida d'un programa de suma de verificació (tant el fitxer de suma de verificació escrit, com la sortida sobre <acronym
+>stdout</acronym
+> quan es verifiquen les sumes de verificació) ha de ser compatible amb <command
+>md5sum</command
+> i <command
+>sha1sum</command
+> de &GNU;. </para>
+
+        <para
+>Específicament, els fitxers de suma de verificació han d'estar basats en línies, cada línia amb el següent format: <programlisting
+><replaceable
+>SUMA_DE_VERIFICACIÓ</replaceable
+> ' ' ( ' ' |'*' ) <replaceable
+>NOM_DE_FITXER</replaceable
+></programlisting
+> on <replaceable
+>SUMA_DE_VERIFICACIÓ</replaceable
+> només consta de caràcters hexadecimals. Si <replaceable
+>NOM_DE_FITXER</replaceable
+> conté un caràcter de salt de línia, s'haurà de llegir la línia en el seu lloc: <programlisting
+>\<replaceable
+>SUMA_DE_VERIFICACIÓ</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>NOM_DE_FITXER_AMB_ESCAPE</replaceable
+></programlisting
+> on <replaceable
+>NOM_DE_FITXER_AMB_ESCAPE</replaceable
+> serà el nom de fitxer amb els salts de línia substituïts per <literal
+>\n</literal
+>, les barres inverses inclinades (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>De la mateixa manera, la sortida de <xref linkend="checksum-definition-verify-command"/> ha de ser de la forma <programlisting
+><replaceable
+>NOM_DE_FITXER</replaceable
+> (': OK' | ': FAILED')</programlisting
+> separats per salts de línia. Salts de línia i altres caràcters <emphasis
+>no</emphasis
+> s'escapen en la sortida.<footnote
+> <para
+>Sí, aquests programes no van ser escrits amb frontals gràfics en ment, i &kleopatra; falla en analitzar correctament els noms de fitxer patològics que contenen «:&nbsp;OK» seguit del salt de línia. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Cada programa de suma de verificació es defineix en <filename
+>libkleopatrarc</filename
+> com un grup separat <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, amb les següents claus obligatòries: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>Una llista d'expressions regulars que descriuen quins fitxers s'han de considerar com fitxers de suma de verificació per a aquest programa de suma de verificació. La sintaxi és la utilitzada per a les llistes de cadenes en els fitxers de configuració del &kde;. <note
+> <para
+> Com que les expressions regulars solen contenir barres invertides, s'ha de tenir cura d'escapar-les adequadament al fitxer de configuració. Es recomana l'ús d'una eina d'edició del fitxer de configuració. </para
+> </note
+> La plataforma permet definir si els patrons són o no tractats distingint majúscules i minúscules. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>La sortida típica pel nom de fitxer per aquest programa de suma de verificació (ha de coincidir amb un dels <xref linkend="checksum-definition-file-patterns"/>, per descomptat). Aquest és el que &kleopatra; utilitzarà com a nom de fitxer de sortida en crear fitxers de suma de verificació d'aquest tipus. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Un ID únic utilitzat per a identificar aquest programa de suma de verificació internament. En cas de dubte, utilitzeu el nom de l'ordre. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Name</literal
+> (traduït)</term>
+          <listitem>
+            <para
+>El nom visible per l'usuari d'aquest programa de suma de verificació, com es mostra en el menú desplegable corresponent del diàleg de configuració de &kleopatra;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>L'ordre real amb què crear fitxers de suma de verificació. La sintaxi, les restriccions i les opcions de pas d'arguments són les mateixes que les descrites per <xref linkend="archive-definition-pack-command"/> a <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Igual com <xref linkend="checksum-definition-create-command"/>, però per a la verificació de la suma de verificació. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Aquí tenim un exemple complet: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Crèdits i llicència</title>
+
+<para
+>&kleopatra; copyright 2002 &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; i &Jesper.Pedersen;, copyright 2004 &Daniel.Molkentin;, copyright 2004, 2007, 2008, 2009, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Copyright de la documentació 2002 &Steffen.Hansen;, copyright 2004 &Daniel.Molkentin;, copyright 2004, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Col·laboradors</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Traductor/Revisor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

@@ -1,0 +1,3985 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>Підручник з &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Розробник</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Розробник</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Розробник</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Розробник</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Розробник</contrib>
+</othercredit>
+
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>4 липня 2013 року</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; — це інструмент для роботи з сертифікатами <ulink url="https://uk.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> і <ulink url="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+>. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>сертифікат</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Вступ</title>
+
+<para
+>&kleopatra; — це інструмент &kde; для керування сертифікатами <ulink url="https://uk.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> і <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> у наборах ключів <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> і <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+>, а також для отримання сертифікатів з серверів &ldap;.</para>
+
+<para
+>&kleopatra; можна запустити з меню <menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Керування сертифікатами</guimenuitem
+></menuchoice
+> &kmail; або за допомогою командного рядка. Виконуваний файл програми &kleopatra; називається <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Програму було названо на честь Клеопатри, славнозвісної цариці Єгипту, яка жила у часи Юлія Цезаря, від якого, як говорять, у неї був син, Цезаріон, який мав стати її спадкоємцем Цезаря.</para>
+
+<para
+>Таку назву було обрано, оскільки програма бере початок з <ulink url="https://www.gnupg.org/aegypten2/"
+>&Auml;gypten Projects</ulink
+> (&Auml;gypten німецькою означає Єгипет). &kleopatra; — це запис німецькою мовою імені Клеопатри.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Основні функції</title>
+
+<sect1 id="functions-view"
+><title
+>Перегляд локального сховища ключів</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>Основною функцією &kleopatra; є показ і редагування вмісту локального сховища ключів, яке подібне до зв’язок ключів &gpg;, якщо не занадто захоплюватися продовженням цієї аналогії.</para>
+
+<para
+>Головне вікно програми поділено на велику область списку ключів, що складається з декількох вкладок, смужку меню і <link linkend="functions-search"
+>панель пошуку</link
+>, розташовані згори, і смужку стану, розташовану внизу вікна.</para>
+
+<para
+>Кожному рядку у списку ключів відповідає один сертифікат, що визначається так званим <guilabel
+>&dn; суб’єкта</guilabel
+>. &dn; — це скорочення від <quote
+>Distinguished Name</quote
+> (окрема назва), ідентифікатор у ієрархії, дуже подібний до системного шляху з незвичайним синтаксисом запису, який, як припускається, однозначно визначає даний сертифікат.</para>
+
+<para
+>Щоб бути чинними і придатними для використання, (відкриті) ключі мусять бути підписані &ca; (видавцем цифрових сертифікатів). Ці підписи називаються сертифікатами, але, зазвичай, терміни <quote
+>сертифікат</quote
+> і <quote
+>(відкритий) ключ</quote
+> використовуються один замість іншого в тому самому значенні, і ми також не будемо їх відрізняти в цьому підручнику (за винятком окремо зазначених випадків).</para>
+
+<para
+>Щоб &ca; набув чинності, його, у свою чергу, має бути підписано іншим &ca;. Звичайно ж, такий ланцюжок має десь закінчуватися, тому &ca; найвищого рівня (кореневий &ca;) підписує свій ключ самостійно (такий ключ називається самопідписаним). Таким чином, кореневим сертифікатам слід призначати чинність (яку зазвичай називають надійністю) вручну, наприклад після порівняння їх відбитку з відбитком з вебсайта &ca;. Зазвичай, ці дії виконуються системним адміністратором або виробником продукту, який використовує сертифікати, але користувач може виконати їх і самостійно за допомогою інтерфейсу командного рядка &gpgsm;.</para>
+
+<para
+>Щоб дізнатися, які з сертифікатів є кореневими, ви можете перемкнути програму у режим ієрархічного списку ключів за допомогою пункту меню <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Ви можете переглянути докладні відомості щодо будь-якого з сертифікатів, навівши на його позначку вказівник миші і клацнувши двічі лівою кнопкою, переглянути відомості можна і за допомогою пункту меню <xref linkend="view-certificate-details"/>. У відповідь на ваші дії програма відкриє діалогове вікно, у якому буде показано найзагальніші властивості сертифіката, його ланцюжок сертифікатів (тобто ланцюжок видавців, аж до кореневого &ca;), а також показано всі відомості, які сервер обробки зможе видобути з сертифіката.</para>
+
+<para
+>Якщо у сховище ключів було внесено зміни без використання &kleopatra; (наприклад, за допомогою інтерфейсу командного рядка &gpgsm;), ви можете оновити дані у перегляді за допомогою пункту меню <xref linkend="view-redisplay"/></para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Пошук та імпортування сертифікатів</title>
+
+<para
+>У більшості випадків нові сертифікати будуть отримуватися перевіркою підписів повідомлень електронної пошти, оскільки ці сертифікати вбудовано до підписів, які створюються за їх допомогою. У випадку ж, коли вам потрібно буде надіслати листа електронної пошти комусь, з ким у вас ще немає контакту, вам слід буде отримати сертифікат з каталогу &ldap; (хоча <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>&gpgsm;</ulink
+> може виконувати цю дію в автоматичному режимі) або з файла. Вам також слід буде імпортувати ваш власний сертифікат після отримання відповіді &ca; на ваш запит щодо сертифікації.</para>
+
+<para
+>Щоб виконати пошук сертифіката у каталозі &ldap;, скористайтеся пунктом меню <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Пошук сертифікатів на сервері</guimenuitem
+></menuchoice
+>, а потім введіть якийсь текст (наприклад ім’я особи, сертифікат якої ви бажаєте знайти) у поле діалогового вікна <guilabel
+>Пошук сертифіката на сервері ключів</guilabel
+> і натисніть кнопку <guilabel
+>Пошук</guilabel
+>. Результати буде показано у списку ключів, розташованому під панеллю пошуку. Там ви зможете обирати сертифікати для перегляду відомостей про них за допомогою натискання кнопки <guibutton
+>Подробиці</guibutton
+> або отримання їх до локального сховища ключів за допомогою кнопки <guibutton
+>Імпортувати</guibutton
+>.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Ви можете налаштувати список серверів &ldap;, на яких виконуватиметься пошук, на сторінці <link linkend="configuration-directory-services"
+><guilabel
+>Служби каталогу</guilabel
+></link
+> діалогового вікна налаштування &kleopatra;.</para>
+
+<para
+>Якщо ви отримали сертифікат у файлі, скористайтеся пунктом меню <xref linkend="file-import-certificates"/>. &gpgsm; має підтримувати формат файлів, у якому записано ваш файл сертифіката. Список підтримуваних форматів можна знайти у підручнику з &gpgsm;.</para>
+
+<para
+>Якщо ви не <link linkend="functions-newkey"
+>створювали вашу пару ключів за допомогою &gpgsm;</link
+>, вам також доведеться вручну імпортувати відкритий ключ (а також закритий ключ) з файла PKCS#12, який ви отримали від &ca;. Виконати цю дію можна за допомогою командного рядка, а саме, команди <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>назва файла</filename
+></command
+></userinput
+></link
+>, або за допомогою графічного інтерфейсу &kleopatra;, а саме, пункту меню <xref linkend="file-import-certificates"/>, тобто виконати дії, які ви виконуєте зі <quote
+>звичайними</quote
+> сертифікатами.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Як створювати нові пари ключів</title>
+
+<para
+>За допомогою пункту меню <xref linkend="file-new-key-pair"/> можна відкрити майстер створення пари ключів, який допоможе вам виконати декілька кроків створення запиту на сертифікат.</para>
+<para
+>Після заповнення сторінки майстра належними даним, натисніть кнопку <guibutton
+>Далі</guibutton
+>, щоб перейти до наступного кроку (або кнопку <guibutton
+>Назад</guibutton
+>, щоб змінити відомості введені на попередніх сторінках). Процес створення запиту на сертифікат можна у будь-який момент перервати натисканням кнопки <guibutton
+>Скасувати</guibutton
+>. </para>
+<para
+>На першій сторінці майстра вам слід обрати тип сертифіката, який ви бажаєте створити:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Створити особисту пару ключів OpenPGP</guilabel
+></term>
+<listitem
+><para
+>Пари ключів &openpgp; буде створено локально і посвідчено вашими друзями або знайомими. Централізовано гаранта сертифікатів не буде; замість цього кожен користувач створює особисту мережу надійності, посвідчуючи пари ключів інших користувачів своїм власним сертифікатом.</para>
+<para
+>Вам слід ввести <guilabel
+>Ім’я</guilabel
+>, <guilabel
+>Адресу ел. пошти</guilabel
+> і, за бажання, <guilabel
+>Коментар</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Створити особисту пару ключів X.509 і запит на посвідчення </guilabel
+></term>
+<listitem>
+<para
+>Пари ключів &x509; створюються локально, але сертифікуються централізовано службами сертифікації (&ca;). Служби сертифікації можуть надавати сертифікати іншим службам сертифікації. Таким чином, створюється централізований, ієрархічний ланцюжок надійності.</para>
+<para
+>На наступному кроці роботи майстра вам потрібно буде ввести ваші особисті дані для сертифіката. Серед полів, які вам потрібно буде заповнити: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>П. І. Б.:</guilabel
+> ваше ім’я;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Адреса ел. пошти:</guilabel
+> адреса вашої електронної пошти, перевірте правильність введеної інформації, — цю адресу буде використано тими, хто надсилатиме пошту з використанням вашого сертифіката.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Адреса:</guilabel
+> місто або селище, у якому ви мешкаєте;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Відділ організації:</guilabel
+> підрозділ організації, у якій ви працюєте (наприклад «Логістики»);</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Організація:</guilabel
+> організація, яку ви представляєте (наприклад компанія, на яку ви працюєте);</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Код країни:</guilabel
+> дволітерний код країни, у якій ви мешкаєте (наприклад «UA»);</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>Наступним кроком у майстрі буде вибір між збереженням сертифіката до файла і безпосереднім надсиланням його до &ca;. Вам слід буде вказати назву файла або адресу електронної пошти, на яку буде надіслано запит на сертифікацію. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Відкликання ключа</title>
+
+<para
+>Пару ключів, строк дії якої сплив, можна поновити, якщо у когось є доступ до закритого ключа і він знає пароль. Щоб надійно вилучити непотрібний ключ, вам слід його відкликати. Відкликання виконується додаванням до ключа особливого підпису відкликання.</para>
+
+<para
+>Цей підпис відкликання зберігатиметься у окремому файлі. Цей файл пізніше можна імпортувати до сховища ключів, а потім долучити до ключа для позначення його як непридатного до використання. Будь ласка, зауважте, що для імпортування цього підпису до ключа не потрібно вказувати пароль. Тому вам слід зберігати підпис відкликання у надійному місці, зазвичай окремо від пари ключів. Варто зберігати такий підпис на портативному пристрої зберігання даних, не з’єднаному з комп’ютером постійно, або просто надрукувати підпис на папері.</para>
+
+<para
+>У &kleopatra; не передбачено функціональної можливості створення такого підпису відкликання у довільний момент часу, але ви зможете це зробити це за допомогою програми &kde; &kgpg;. Просто скористайтеся пунктом <menuchoice
+><guimenu
+>Ключі</guimenu
+> <guimenuitem
+>Відкликати ключ</guimenuitem
+></menuchoice
+> і, якщо потрібно, негайно імпортуйте підпис відкликання до вашого сховища ключів.</para>
+
+<para
+>Ще одним способом створення сертифіката відкликання є використання &gpg; безпосередньо з командного рядка: <userinput
+>gpg --output <replaceable
+>сертифікат_відкликання</replaceable
+>.asc --gen-revoke <replaceable
+>ваш_ключ</replaceable
+></userinput
+>. Аргументом <replaceable
+>ваш_ключ</replaceable
+> має бути специфікатор ключа, ідентифікатор вашої основної пари ключів або частина ідентифікатора користувача. Цей ідентифікатор має однозначно визначати вашу пару ключів.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Довідник з меню</title>
+
+<sect1 id="menufile"
+><title
+>Меню «Файл»</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Створити сертифікат...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Створює нову пару ключів (відкритого і закритого)</action
+> і надає змогу надіслати відкриту частину до служби сертифікації (&ca;) для підписування. Отриманий сертифікат буде повернуто вам або збережено на сервері &ldap; для наступного отримання до локального сховища сертифікатів, звідки ви зможете скористатися ним для підписування і розшифрування повідомлень електронної пошти.</para>
+
+<para
+>Такий режим роботи називається <quote
+>децентралізованим створенням ключів</quote
+>, оскільки всі ключі створюються локально. &kleopatra; (і &gpgsm;) безпосередньо не підтримують <quote
+>централізованого створення ключів</quote
+>, але ви можете імпортувати зв’язку відкритих/закритих ключів, яку ви отримали від &ca; у форматі PKCS#12 за допомогою пункту меню <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+><guimenuitem
+>Пошук сертифікатів на сервері...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Шукає і імпортує сертифікати з серверів сертифікатів до локального сховища ключів.</action
+> Докладніше про імпорт можна дізнатися з розділу <xref linkend="functions-search"/>. </para>
+            <para
+>Для того, щоб скористатися цим пунктом, вам слід вказати параметри серверів ключів. Докладніше про це у розділі <xref linkend="configuration-directory-services"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Імпортувати сертифікати...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Імпортує сертифікати і/або закриті ключі з файлів до локального сховища ключів.</action
+> Докладніше про імпорт можна дізнатися з розділу <xref linkend="functions-search"/>. </para>
+            <para
+>Формат файла сертифіката має підтримуватися &gpgsm;/&gpg;. Будь ласка, зверніться до підручників з &gpgsm; та &gpg;, щоб переглянути список підтримуваних форматів. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Експортувати сертифікати...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Експортує вибрані сертифікати до файла.</action>
+            </para>
+            <para
+>Вибраний вами суфікс назви експортованого файла визначає формат експортованих даних: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>Для сертифікатів &openpgp; <filename class="extension"
+>gpg</filename
+> і <filename class="extension"
+>pgp</filename
+> призведуть до збереження бінарного файла, а <filename class="extension"
+>asc</filename
+> — шифрованого файла &ascii;. </para>
+              </listitem>
+              <listitem>
+                <para
+>Для сертифікатів &smime; <filename class="extension"
+>der</filename
+> призведе до збереження бінарного файла у кодуванні &der;, а <filename class="extension"
+>pem</filename
+> — шифрованого файла &ascii;. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Якщо не було позначено декілька сертифікатів, &kleopatra; запропонує назву файла для експортування <filename
+><replaceable
+>відбиток</replaceable
+>.{asc,pem}</filename
+>. </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено один або декілька сертифікатів. </para>
+            <note>
+              <para
+>За допомогою цього пункту меню можна експортувати лише відкриті ключі, навіть якщо ви маєте і закритий ключ. Для експорту до файла закритого ключа скористайтеся пунктом меню <xref linkend="file-export-secret-key"/>. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Експортувати закриті ключі...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Експортує закритий ключ до файла.</action>
+            </para>
+            <para
+>У діалоговому вікні, яке буде відкрито після вибору цього пункту, ви зможете вказати, чи слід створювати бінарний файл чи шифрований файл &ascii; (<guilabel
+>ASCII armor</guilabel
+>). Далі, натисніть піктограму теки праворуч від поля <guilabel
+>Вихідний файл</guilabel
+> і виберіть теку та назву експортованого файла. Під час експортування закритих ключів &smime; ви також зможете вибрати <guilabel
+>Набір символів пароля</guilabel
+>. Докладніше про це можна дізнатися з обговорення параметра <option
+>--p12-charset&nbsp;<replaceable
+>набір символів</replaceable
+></option
+> на сторінці підручника (man) &gpgsm;. </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат і доступний закритий ключ сертифіката. </para>
+            <warning>
+              <para
+>Потреба у використанні цього пункту виникатиме рідко, якщо ж вона виникатиме, вам слід все ретельно спланувати. Планування перенесення закритого ключа полягає зокрема у виборі носія для перенесення і надійному вилученні даних ключа з попередньої системи, а також з носія для перенесення. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Експортувати сертифікати на сервер...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Оприлюднює позначені сертифікати на сервері ключів</action
+> (лише для &openpgp;). </para>
+            <para
+>Якщо буде визначено цей пункт, сертифікат буде надіслано на сервер сертифікації для &openpgp; (див.&nbsp;<xref linkend="configuration-directory-services"/>), інакше сертифікат буде надіслано на сервер <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено принаймні один сертифікат &openpgp; (а не сертифікат &smime;). </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Після того, як сертифікати &openpgp; буде експортовано на загальнодоступний сервер каталогів, стане майже неможливо вилучити їх звідти. Перш ніж експортувати ваш сертифікат на загальнодоступний сервер каталогів переконайтеся, що ви створили сертифікат для відкликання, отже, що ви зможете відкликати сертифікат пізніше у разі потреби. </para>
+            </note>
+            <note>
+              <para
+>Більшість відкритих серверів сертифікатів &openpgp; виконують перехресну синхронізацію сертифікатів, отже навряд чи варто надсилати сертифікати одразу на декілька серверів. </para>
+              <para
+>Може статися так, що пошук сертифіката на сервері не поверне жодних результатів одразу після надсилання сертифіката на сервер. Причиною цього може бути те, що для більшості адрес серверів ключів використовується заміни <acronym
+>DNS</acronym
+> для врівноваження навантаження на декілька комп’ютерів. Комп’ютери синхронізують дані між собою, але інтервал між синхронізаціями може становити близько 24 годин. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Файл</guimenu
+><guimenuitem
+>Розшифрувати/Перевірити файли...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Розшифрувати файли і/або перевірити підписи</action
+>. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Підписати/Зашифрувати файли...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Підписати і/або зашифрувати файли.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Файл</guimenu
+> <guimenuitem
+>Закрити</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Закрити головне вікно &kleopatra;</action
+>. Розкрити головне вікно можна за допомогою піктограми системного лотка. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Файл</guimenu
+><guimenuitem
+>Вийти</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Завершує роботу &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Меню «Перегляд»</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Показати повторно</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Оновлює список сертифікатів.</action>
+            </para>
+            <para
+>Зазвичай потреби у використанні цього пункту не буде, оскільки &kleopatra; спостерігає за змінами у файловій системі і виконує автоматичне оновлення списку сертифікатів. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Esc</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Зупинити операцію</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Зупиняє (скасовує) всі операції з черги,</action
+> наприклад операції з пошуку, побудови списку або отримання. </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо задіяно принаймні одну дію. </para>
+            <note>
+              <para
+>Іноді через обмеження допоміжної програми виконання дій зациклюється таким чином, що за допомогою цього пункту не вдається скасувати дію одразу або взагалі. </para>
+              <para
+>У такому випадку, єдиним способом відновити порядок є аварійне завершення процесів &scdaemon;, &dirmngr;, &gpgsm; і &gpg;, саме у такому порядку, за допомогою відповідних інструментів операційної системи (<command
+>top</command
+>, засобу керування завданнями тощо), аж доки дію не буде розблоковано. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Подробиці про сертифікат</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Показує відомості щодо поточного обраного сертифіката.</action
+></para>
+
+<para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат.</para>
+
+<para
+>Доступ до цієї функціональної можливості можна також отримати наведенням вказівника миші на відповідну позначку у списку ключів з наступним подвійним клацанням лівою кнопкою миші.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Ієрархічний список сертифікатів</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Перемикає показ між режимами ієрархічного і плоского списків сертифікатів. </action
+></para>
+
+<para
+>У режимі перегляду ієрархії сертифікати буде впорядковано за параметрами видавця/предмета, таким чином, ви легко зможете побачити, до якої ієрархії сертифікатів належить той чи інший сертифікат, але знайти потрібний сертифікат буде складніше (хоча ви, звичайно ж, можете скористатися <link linkend="functions-search"
+>панеллю пошуку</link
+>).</para>
+
+<para
+>У плоскому режимі всі сертифікати буде показано як плоский список, впорядкований за абеткою. У цьому режимі легше знайти потрібний сертифікат, але вам буде непросто визначити, до якого кореневого сертифіката належить потрібний вам сертифікат.</para>
+
+            <para
+>За допомогою цього пункту можна увімкнути або вимкнути ієрархічний режим для вкладки (кожна вкладка має власний стан ієрархічного режиму). Отже ви можете користуватися одразу плоским і ієрархічним режимом, кожним у окремій вкладці. </para>
+
+            <note>
+              <para
+>Ієрархічний показ у поточній версії реалізовано лише для сертифікатів &smime;. Серед розробників немає одностайності щодо належного способу показу ієрархічної структури сертифікатів &openpgp; (на базовому рівні «батьківський елемент &equals; підписувач» або «батьківський елемент &equals; адресат підписування»). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Розгорнути всі</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Розгортає всі записи перегляду списку сертифікатів,</action
+> тобто робить всі записи видимими.</para>
+
+<para
+>Це типовий параметр після входу до режиму ієрархічного списку ключів.</para>
+
+<para
+>Ви, звичайно ж, можете розгорнути або згорнути кожен з записів окремо.</para>
+
+<para
+>Ця функціональна можливість стане доступною, лише якщо позначено пункт меню <xref linkend="view-hierarchical-key-list"/>.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Перегляд</guimenu
+><guimenuitem
+>Згорнути всі</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Згортає всі пункти перегляду списку сертифікатів,</action
+> тобто ховає всі підлеглі елементи елементів вищого рівня.</para>
+
+<para
+>Ви, звичайно ж, можете розгорнути або згорнути кожен з записів окремо.</para>
+
+<para
+>Ця функціональна можливість стане доступною, лише якщо позначено пункт меню <xref linkend="view-hierarchical-key-list"/>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Меню «Сертифікати»</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Змінити рівень надійності власника...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Змінити рівень надійності власника позначеного сертифіката &openpgp;.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Встановити надійність кореневого сертифіката</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Позначити поточний кореневий сертифікат (&smime;) як надійний.</action>
+            </para>
+            <para
+>У певному сенсі, цей пункт є тотожним до пункту <xref linkend="certificates-change-owner-trust"/> для кореневих сертифікатів &smime;, але ваш вибір обмежується, у термінах &openpgp;, «повною» довірою або «повною недовірою». </para>
+            <note>
+              <para
+>Сервер (у нашому випадку, &gpgagent;) під час імпортування кореневих сертифікатів надішле вам запит щодо визначення надійності (рівня довіри) імпортованих сертифікатів. Цю функціональну можливість слід явно увімкнути у налаштуваннях сервера (<option
+>allow-mark-trusted</option
+> у <filename
+>gpg-agent.conf</filename
+> або один з пунктів меню <menuchoice
+><guimenu
+>Система&nbsp;GnuPG</guimenu
+> <guisubmenu
+>GPG&nbsp;Agent</guisubmenu
+> <guimenuitem
+>Allow clients to mark keys as "trusted"</guimenuitem
+></menuchoice
+> або <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>Перевірка&nbsp;S/MIME</guimenu
+> <guimenuitem
+>Allow to mark root certificates as trusted</guimenuitem
+></menuchoice
+></link
+> у вікні <xref linkend="configuration"/>). </para>
+              <para
+>Вмикання цих функціональних можливостей у сервері може призвести до появи контекстних вікон &pinentry; у незручний час (наприклад, під час перевірки підписів), а отже може заблокувати обробку небажаних поштових повідомлень. З цієї причини, а також оскільки бажано мати можливість <emphasis
+>скасувати надійність</emphasis
+> кореневих сертифікатів, у &kleopatra; передбачено можливість налаштування рівня надійності вручну. </para>
+            </note>
+            <warning>
+              <para
+>Через брак підтримки цієї можливості з боку допоміжних програм, &kleopatra; доводиться працювати безпосередньо з базою даних надійних сертифікатів &gpgsm; (<filename
+>trustlist.txt</filename
+>). Якщо ви маєте намір скористатися цим пунктом, переконайтеся, що не виконується жодних дій, які можуть завадити &kleopatra; внести зміни до бази даних. </para>
+            </warning>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один кореневий сертифікат &smime; і цей сертифікат ще не позначено як надійний. </para>
+            <para
+>Скористайтеся пунктом <xref linkend="certificates-distrust-root"/>, щоб скасувати дію цього пункту. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Скасувати надійність кореневого сертифіката</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Позначити поточний кореневий сертифікат (&smime;) як ненадійний.</action>
+            </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один кореневий сертифікат &smime; і цей сертифікат ще не позначено як надійний. </para>
+            <para
+>Призначено для скасування дії пункту <xref linkend="certificates-trust-root"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Засвідчити сертифікат...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Надає вам змогу засвідчити інший сертифікат &openpgp;.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Змінити дату строку дії...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Надає вам змогу змінити дату завершення строку дії вашого сертифіката &openpgp;.</action>
+            </para>
+            <para
+>Скористайтеся цим пунктом для збільшення строку дії ваших сертифікатів &openpgp; замість створення нових або встановлення необмеженого строку дії сертифікатів (<quote
+>never expires</quote
+>). </para>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат &openpgp; і доступний закритий ключ сертифіката. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Змінити пароль…</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Надає змогу змінити пароль до вашого закритого ключа.</action>
+            </para>
+            <para
+>Цим пунктом можна скористатися, лише якщо позначено точно один сертифікат, і ви маєте закритий ключ цього сертифіката. Для того, щоб ви могли скористатися цим пунктом, у системі має бути встановлено нову версію сервера, оскільки у програмі змінено реалізацію роботи з безпосереднього виклику &gpg; та &gpgsm; на виклик, заснований на &gpgme;. </para>
+            <note>
+              <para
+>З міркувань безпеки &pinentry; попросить вас окремо ввести старий і новий пароль. Залежно від програмної платформи, на якій запущено програму та якості реалізації &pinentry; на цій платформі, вікно &pinentry; може бути відкрито у фоновому режимі. Отже, якщо ви скористаєтеся цим пунктом меню, а у відповідь нічого не трапиться, пошукайте на панелі задач операційної системи пункт вікна &pinentry;, відкритого у фоновому режимі. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Додати ІД користувача...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Надає вам змогу додати новий ідентифікатор користувача до вашого сертифіката &openpgp;.</action>
+            </para>
+            <para
+>Скористайтеся цим пунктом для додавання нових профілів до існуючого сертифіката, замість створення нової пари ключів. Ідентифікатор користувача &openpgp; має бути використано у такому форматі: </para>
+            <programlisting
+><replaceable
+>Справжнє&nbsp;ім’я</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Коментар</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>Адреса&nbsp;електронної&nbsp;пошти</replaceable
+>&gt;</programlisting>
+            <para
+>У діалоговому вікні, яке &kleopatra; відкриє у відповідь на вибір пункту, програма запитає вас про значення трьох параметрів (<replaceable
+>Справжнє&nbsp;ім’я</replaceable
+>, <replaceable
+>Коментар</replaceable
+> та <replaceable
+>Адресу ел. пошти</replaceable
+>) окремо, а потім покаже попередній перегляд результатів. </para>
+            <note>
+              <para
+>Ці параметри підлягають тим самим адміністративним обмеженням, як і нові сертифікати. Докладніше про це у розділах <xref linkend="functions-newkey"/> і <xref linkend="admin-certificate-request-wizard"/>. </para>
+            </note>
+            <para
+>Цим пунктом можна буде скористатися, лише якщо позначено точно один сертифікат &openpgp; і доступний закритий ключ сертифіката. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Del</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Сертифікати</guimenu
+><guimenuitem
+>Вилучити</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Вилучає позначені сертифікати</action
+> з локального сховища ключів. </para>
+            <para
+>За допомогою цього пункту можна вилучити з вашого локального сховища ключі, які не використовуються. Але, оскільки сертифікати типово долучаються до підписаних повідомлень електронної пошти, перевірка поштової скриньки може призвести до того, що щойно вилучений ключ знову з’явиться у сховищі ключів. Отже, вам, ймовірно, слід, за можливості, уникати використання цього пункту. Якщо вам важко розібратися у списку сертифікатів, скористайтеся <link linkend="functions-search"
+>панеллю пошуку</link
+> або пунктом меню <xref linkend="view-hierarchical-key-list"/>, щоб розібратися великому сховищі сертифікатів. </para>
+            <warning>
+              <para
+>Існує одне виключення з наведеного вище правила: якщо ви вилучаєте один з ваших власних сертифікатів, разом з ним ви вилучаєте разом з ним закритий ключ. Це означає, що ви не зможете читати наступний обмін повідомленнями, зашифрований для вас на основі вилученого сертифіката, якщо не маєте резервної копії сертифіката. </para>
+              <para
+>&kleopatra; попередить вас про те, що ви намагаєтеся вилучити закритий ключ. </para>
+            </warning>
+            <para
+>Через ієрархічну природу сертифікатів &smime; вилучення сертифіката видавця &smime; (сертифіката &ca;), буде також вилучено всі підлеглі сертифікати.<footnote
+><para
+>Схема вилучення нагадує схему файлової системи: якщо ви вилучаєте теку, ви вилучаєте всі файли і підтеки, що у ній містяться.</para
+></footnote>
+            </para>
+            <para
+>Природно, цим пунктом можна буде скористатися, лише якщо було позначено принаймні один пункт сертифіката. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Сертифікати</guimenu
+> <guimenuitem
+>Створити дамп сертифіката</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Показує всі відомості, які &gpgsm; може зібрати для позначеного сертифіката (&smime;).</action>
+            </para>
+            <para
+>Див. обговорення щодо параметра <option
+>--dump-key&nbsp;<replaceable
+>ключ</replaceable
+></option
+> у підручнику з &gpgsm;, щоб дізнатися більше про виведені командою дані. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Меню «Інструменти»</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Переглядач журналу GnuPG...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Запускає <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, інструмент для показу даних, які виводять програми &gnupg;. Якщо раптом з незрозумілих причин стає непрацездатним підписування, шифрування або перевірка, ви можете знайти причину у даних, які виводить ця програма. </para>
+            <para
+>Цим пунктом не можна скористатися у &Windows;, оскільки відповідні механізми не реалізовано у допоміжній програмі для цієї платформи. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Освіжити сертифікати OpenPGP</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Оновлює дані всіх сертифікатів &openpgp;</action
+> за допомогою команди <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Після успішного виконання команди, у ваше локальне сховище ключів буде внесено всі зміни, що стосуються чинності сертифікатів &openpgp;. </para>
+            <para
+>Докладніші відомості щодо недоліків можна знайти у розділі <xref linkend="certificates-refresh-x509"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Освіжити сертифікати X.509</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Оновлює дані всіх сертифікатів &smime;</action
+> за допомогою команди <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Після успішного виконання команди, у ваше локальне сховище ключів буде внесено всі зміни, що стосуються чинності сертифікатів &smime;. </para>
+            <note>
+              <para
+>Для оновлення сертифікатів &x509; або &openpgp; програмі доведеться отримати всі сертифікати і &crl;, щоб перевірити, чи не було часом відкликано деякі з них. </para>
+              <para
+>Подібне отримання може значно навантажити ваше мережеве з’єднання та інші мережеві з’єднання, а отже може тривати годину або більше, залежно від швидкості з’єднання та кількості сертифікатів, які слід перевірити. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Імпортувати CRL з файла...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Надає вам змогу вручну імпортувати &crl; з файлів.</action>
+            </para>
+            <para
+>Зазвичай, обробка списків анулювання (відкликання) сертифікатів (Certificate Revocation Lists або &crl;) виконується сервером у прозорому режимі, але іноді корисно імпортувати &crl; вручну до локального кешу &crl;. </para>
+            <note>
+              <para
+>Для того, щоб можна було здійснювати імпортування &crl;, програму &dirmngr; має бути встановлено у одному з каталогів, визначених системною змінною <envar
+>PATH</envar
+>. Якщо цей пункт меню буде неактивним, вам слід повідомити адміністратора вашої системи про те, що слід встановити &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Спорожнити кеш CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Спорожняє кеш &crl; &gpgsm;.</action
+></para>
+
+<para
+>Ймовірно, що цей пункт ніколи вам не знадобиться. Замість цього пункту ви можете освіжити кеш &crl; у примусовому порядку вибором всіх сертифікатів з наступним використанням пункту <xref linkend="certificates-refresh-x509"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Інструменти</guimenu
+> <guimenuitem
+>Скинути кеш CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Докладно показує вміст кешу &crl; &gpgsm;.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Меню «Параметри»</title>
+
+<para
+>У &kleopatra; передбачено типове меню <guimenu
+>Параметри</guimenu
+> &kde;, яке описано у <ulink url="help:/fundamentals/menus.html#menus-settings"
+>підручнику з основ &kde;</ulink
+>, з одним додатковим пунктом:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Виконати самоперевірку</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Виконує набір дій з самоперевірки та показує результат їх виконання.</action>
+            </para>
+            <para
+>Цей набір тестів є тим самим набором, який виконується під час запуску програми. Якщо ви вимкнули самоперевірку під час запуску, ви можете знову увімкнути цю перевірку за допомогою цього пункту. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Меню «Вікно»</title>
+<para
+>За допомогою меню <guimenu
+>Вікно</guimenu
+> ви можете керувати вкладками. Пункти цього меню призначено для перейменування вкладки, додавання нової вкладки, дублювання поточної вкладки, та пересування вкладки ліворуч або праворуч.</para>
+
+<para
+>Наведення вказівника миші на вкладку з наступним клацанням правою кнопкою миші відкриває контекстне меню, за допомогою якого ви зможете виконати ці самі дії.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Меню «Довідка»</title>
+
+<para
+>У &kleopatra; передбачено типове меню <guimenu
+>Довідка</guimenu
+> &kde;, яке описано у <ulink url="help:/fundamentals/menus.html#menus-help"
+>підручнику з основ &kde;</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Довідник з параметрів командного рядка</title>
+
+<para
+>Тут ви знайдете перелік параметрів, які специфічні для &kleopatra;. Як і у інших програмах &kde;, повний список параметрів можна переглянути за допомогою команди <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>параметр</replaceable
+></term>
+<listitem>
+<para
+>Розташування сокета, на якому слухає сервер інтерфейсу користувача</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Запустити лише сервер інтерфейсу користувача, сховати головне вікно</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>Використовувати &openpgp; для наступної дії</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>Використовувати CMS (&x509;, S/&MIME;) для наступної дії</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Визначає файл або адресу &URL;, з якої слід імпортувати сертифікати (або закриті ключі).</action
+></para>
+
+<para
+>Ця команда є еквівалентом пункту меню <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Зашифрувати файл(и)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Підписати файл(и)</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Зашифрувати і/або підписати файли. Те саме, що і <option
+>--sign-encrypt</option
+>, не використовуйте.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Розшифрувати файл(и)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Перевірити файл або підпис</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Розшифрувати і/або перевірити файл(и)</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>Як налаштувати &kleopatra;</title>
+
+    <para
+>Відкрити діалогове вікно налаштування &kleopatra; можна за допомогою пункту меню <menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати &kleopatra;...</guimenuitem
+></menuchoice
+>. </para>
+    <para
+>Кожну з його сторінок описано у подальших розділах. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Налаштування «Служб каталогів»</title>
+
+      <para
+>За допомогою цієї сторінки ви можете визначити, які сервери &ldap; слід використовувати для пошуку сертифікатів &smime;, і те, які сервери ключів слід використовувати для пошуку сертифікатів &openpgp;. </para>
+      <note>
+        <para
+>Цей пункт є зручнішою для користувачів версією керування параметрами, описаними у розділі <xref linkend="configuration-gnupg-system"/>. Будь-які параметри, які можна налаштувати за допомогою цього пункту, можна налаштувати і за допомогою вікна налаштування &gnupg;. </para>
+      </note>
+      <note>
+        <title
+>Нотатка щодо параметрів проксі-сервера</title>
+        <para
+>Параметри проксі-сервера можна налаштувати для серверів &http; і &ldap; у розділі <xref linkend="configuration-smime-validation"/>, але лише для &gpgsm;. Для &gpg; через складність параметрів сервера ключів &gpg; і брак належної підтримки цих параметрів у &gpgconf;, у поточній версії вам доведеться вносити зміни до файла налаштувань <filename
+>gpg.conf</filename
+> вручну. Будь ласка, зверніться до підручника з &gpg;, щоб дізнатися більше. &kleopatra; зважатиме на встановленні значення, але у програмі ще не передбачено можливості змінювати ці параметри за допомогою графічного інтерфейсу. </para>
+      </note>
+      <para
+>У таблиці <guilabel
+>Служби каталогів</guilabel
+> буде показано поточний список налаштованих серверів. Якщо ви хочете змінити параметри якогось з записів таблиці, наведіть на нього вказівник миші і двічі клацніть лівою кнопкою миші. </para>
+      <para
+>Призначення стовпчиків у цій таблиці: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Схема</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Визначає мережевий протокол, який буде використано для доступу до сервера. Серед розповсюджених схем <guilabel
+>ldap</guilabel
+> (на його відповідник з шифруванням &ssl;, <guilabel
+>ldaps</guilabel
+>) для серверів &ldap; (загальний протокол &smime;; єдиний підтримуваний &gpgsm;) і <guilabel
+>hkp</guilabel
+> або протокол сервера ключів Горовіца (Horowitz Keyserver Protocol), сучасний протокол обміну даними з серверами ключів &http;, заснований на &http; протокол, який підтримують майже всі публічні сервери ключів &openpgp;. </para>
+            <para
+>Будь ласка, зверніться до підручників з &gpg; та &gpgsm;, щоб переглянути список підтримуваних форматів. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Назва сервера</guilabel
+></term>
+          <listitem>
+            <para
+>Доменна назва сервера, наприклад <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Порт сервера</guilabel
+></term>
+          <listitem>
+            <para
+>Порт мережі, на якому сервер очікує на з’єднання. </para>
+            <para
+>Значення цього параметра буде автоматично повернуто до типового у разі зміни значення параметра <xref linkend="configuration-directory-services-scheme"/>, якщо його не було змінено до нетипового. Якщо ви змінили типовий номер порту і не можете повернути його, спробуйте встановити для параметра <xref linkend="configuration-directory-services-scheme"/> значення <userinput
+>http</userinput
+>, а для параметра <xref linkend="configuration-directory-services-server-port"/> — <userinput
+>80</userinput
+> (типове значення для &http;). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Кореневий DN</guilabel
+></term>
+          <listitem>
+            <para
+>Кореневий &dn; (лише для &ldap; і &ldaps;), тобто корінь ієрархії &ldap;. Цей корінь часто називають «коренем пошуку» або «основою пошуку». </para>
+            <para
+>Значення зазвичай подібне до <userinput
+>c=ua,o=Foo</userinput
+> визначається як частина адреси &ldap;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Ім'я користувача</guilabel
+></term>
+          <listitem>
+            <para
+>Ім’я користувача, якщо вказано, буде використано для реєстрації на сервері. </para>
+            <para
+>Цей стовпчик буде показано, лише якщо позначено пункт <guilabel
+>Показати інформацію про користувача і пароль</guilabel
+> (цей пункт розташовано під таблицею). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Пароль</guilabel
+></term>
+          <listitem>
+            <para
+>Пароль, якщо вказано, буде використано для реєстрації на сервері. </para>
+            <para
+>Цей стовпчик буде показано, лише якщо позначено пункт <guilabel
+>Показати інформацію про користувача і пароль</guilabel
+> (цей пункт розташовано під таблицею). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Цей стовпчик призначено для записів, які слід використовувати для пошуків сертифікатів &x509; (&smime;). </para>
+            <para
+>Підтримку &smime; передбачено лише для серверів &ldap; (і &ldaps;). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Цей стовпчик призначено для записів, які слід використовувати для пошуків сертифікатів &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>Ви можете налаштувати довільну кількість серверів &smime; (&x509;), але одночасно використовувати можна лише один сервер &openpgp;. Графічний інтерфейс просто не дозволить вам виконати інше налаштування. </para>
+      <para
+>Щоб додати новий запис сервера, натисніть кнопку <guibutton
+>Створити</guibutton
+>. Позначений запис, якщо ви позначили якийсь запис, буде здубльовано або буде створено типовий сервер &openpgp;. Після цього ви зможете встановити значення параметрів <xref linkend="configuration-directory-services-server-name"/>, <xref linkend="configuration-directory-services-server-port"/>, <xref linkend="configuration-directory-services-base-dn"/> і, звичайно ж, <xref linkend="configuration-directory-services-password"/> та <xref linkend="configuration-directory-services-user-name"/> (значення обох цих параметрів слід встановити, лише якщо для доступу до сервера слід пройти розпізнавання). </para>
+      <para
+>Щоб безпосередньо вставити запис сертифіката &x509;, скористайтеся пунктом <menuchoice
+><guimenu
+>Створити</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+>. Для &openpgp; слід скористатися пунктом <menuchoice
+><guimenu
+>Створити</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+>. </para>
+      <para
+>Щоб вилучити сервер зі списку пошуку, оберіть його позначку у списку і натисніть кнопку <guibutton
+>Вилучити</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>Щоб встановити час очікування &ldap;, тобто максимальний проміжок часу, протягом якого локальний сервер обробки очікуватиме на відповідь віддаленого сервера, просто скористайтеся полем для введення з міткою <guilabel
+>Тайм-аут LDAP (хвилини:секунди)</guilabel
+>. </para>
+      <para
+>Якщо на одному з ваших серверів міститься велика база даних, настільки велика, що навіть у результаті звичайного пошуку чогось на зразок <userinput
+>Smith</userinput
+>, кількість отриманих результатів перевищить <guilabel
+>максимальну кількість результатів запиту</guilabel
+>, ви можете розширити межі значень. Дізнатися про перевищення обмеження на кількість результатів можна дуже просто, оскільки у такому випадку програма відкриває контекстне вікно, у якому повідомляє про те, що буде показано лише частину результатів. </para>
+      <note>
+        <para
+>Деякі з серверів можуть накладати власні обмеження на кількість елементів, які буде повернуто у відповідь на запит. У такому випадку, збільшення максимальної кількості результатів за допомогою цього діалогового вікна не призведе до збільшення кількості показаних результатів. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Налаштування «Вигляду»</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>Налаштування <guilabel
+>Підказок</guilabel
+></title>
+
+        <para
+>У основному списку сертифікатів &kleopatra; може показувати подробиці щодо сертифіката у вікні підказки. Показані дані будуть збігатися з даними вкладки <guilabel
+>Огляд</guilabel
+> діалогового вікна <guilabel
+>Подробиці про сертифікат</guilabel
+>, але перелік даних у підказках може бути обмежено до бажаного. </para>
+        <note>
+          <para
+><guilabel
+>ІД ключа</guilabel
+> буде показано <emphasis
+>завжди</emphasis
+>. Так зроблено для того, щоб підказки для різних сертифікатів відрізнялися (це особливо важливо, якщо було позначено лише пункт <xref linkend="tooltips-validity"/>). </para>
+        </note>
+        <para
+>Ви можете незалежно вмикати або вимикати такі набори даних: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Показати чинність</guilabel
+></term>
+            <listitem>
+              <para
+>Показує відомості щодо чинності сертифіката: поточний стан, &dn; видавця (лише &smime;), строк дії (якщо такий передбачено) і прапорці використання сертифіката. </para>
+              <para
+>Приклад: <programlisting
+><!--
+                  -->Цей сертифікат є чинним.
+<!--              -->Видавець:            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Чинний:          from 25.08.2009 10:42 through 19.10.2010 10:42
+<!--              -->Використання сертифіката: Підписування ел.листів і файлів, Шифрування ел.листів і файлів
+<!--              -->ІД ключа:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Показати інформацію про власника</guilabel
+></term>
+            <listitem>
+              <para
+>Показує відомості щодо власника сертифіката: &dn; об’єкта (лише &smime;), ідентифікатори користувачів (зокрема адреси електронної пошти) і довіру до власника (лише &openpgp;). </para>
+              <para
+>Приклад &openpgp;: <programlisting
+><!--
+                  -->ІД користувача:      Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->ІД ключа:            C6BF6664
+<!--              -->Довіра до власника:  необмежена<!--
+                  --></programlisting
+> Приклад &smime;: <programlisting
+><!--
+                  -->Предмет:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->також відомий як:  Gpg4winUserA@test.hq
+<!--              -->ІД ключа:          DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Показати технічні подробиці</guilabel
+></term>
+            <listitem>
+              <para
+>Показує технічні відомості щодо сертифіката: серійний номер (лише &smime;), тип, відбиток та адресу сховища. </para>
+              <para
+>Приклад: <programlisting
+><!--
+                  -->Серійний номер:    27
+<!--              -->Тип сертифіката:   1.024-бітовий RSA (доступний закритий сертифікат)
+<!--              -->ІД ключа:          DC9D9E43
+<!--              -->Відбиток:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Збережено:          на цьому комп’ютері<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>Налаштування <guilabel
+>Категорій сертифікатів</guilabel
+></title>
+
+        <para
+>У &kleopatra; ви можете налаштувати вигляд сертифікатів на панелі перегляду списку ключів. Зміна вигляду стосується невеличкої піктограми сертифіката, але ви можете також змінити колір тексту і тла, а також шрифт символів тексту. </para>
+        <para
+>Кожній з категорій сертифікатів у списку відповідає піктограма (необов’язкова), набір кольорів і шрифт, яким буде показано пункти сертифікатів, що належать до відповідної категорії. Списком категорій можна скористатися також для перегляду параметрів. Список категорій може бути змінено довільним чином адміністратором або досвідченим користувачам, щоб дізнатися, як це зробити, див. розділ <xref linkend="admin-key-filters"/> у главі <xref linkend="admin"/>. </para>
+        <para
+>Щоб призначити або змінити піктограму категорії, позначте категорію у списку і натисніть кнопку <guibutton
+>Встановити піктограму...</guibutton
+>. У відповідь буде відкрито стандартне діалогове вікно вибору піктограми &kde;, за його допомогою ви можете вибрати одну з піктограм збірки піктограм &kde; або завантажити вашу власну піктограму. </para>
+        <para
+>Щоб вимкнути показ піктограм, вам слід натиснути кнопку <guibutton
+>Типовий вигляд</guibutton
+>. </para>
+        <para
+>Щоб змінити колір (наприклад тексту) категорії, оберіть її позначку у списку і натисніть кнопку <guibutton
+>Встановити колір тексту...</guibutton
+>. Програма відкриє стандартне діалогове вікно вибору кольору у &kde;, за допомогою якого ви зможете обрати або створити новий колір. </para>
+        <para
+>Зміну кольору тла можна виконати у той же спосіб, просто натисніть позначку <guibutton
+>Встановити колір тла...</guibutton
+>. </para>
+        <para
+>Для зміни шрифту ви можете скористатися одним з таких варіантів: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Змінити стандартний шрифт, який використовуватиметься у всіх переглядах списків &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Використовувати нетиповий шрифт. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>Перший варіант дозволить вам вказати колір, який збігатиметься з кольорами, які використовуються скрізь у стільничному середовищі &kde;, а другий варіант дозволить обрати будь-який колір, який вам подобається. Вибір за вами. </para>
+        <para
+>Щоб змінити вигляд стандартного шрифту, оберіть потрібну категорію у списку, а потім позначте або зніміть позначки з пунктів модифікаторів вигляду шрифту, <guilabel
+>Курсив</guilabel
+>, <guilabel
+>Жирний</guilabel
+> і/або <guilabel
+>Перекреслений</guilabel
+>. Результат можна одразу побачити за допомогою шрифту символів тексту позначки відповідної категорії у списку. </para>
+        <para
+>Щоб вказати шрифт самостійно, натисніть кнопку <guibutton
+>Встановити шрифт...</guibutton
+>. Програма відкриє стандартне діалогове вікно &kde; для вибору шрифту, за допомогою цього вікна ви зможете обрати новий шрифт. </para>
+        <note>
+          <para
+>Ви зможете також скористатися зміною гарнітури обраного шрифту, у той же спосіб, що і для стандартного шрифту. </para>
+        </note>
+        <para
+>Щоб перемкнутися знову на стандартний шрифт, вам слід натиснути кнопку <guibutton
+>Типовий вигляд</guibutton
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>Налаштування <guilabel
+>Порядку атрибутів DN</guilabel
+></title>
+
+<para
+>Хоча &dn; маю ієрархічну природу, порядок окремих компонентів (які називають відносними &dn; (relative &dn; або RDN) або атрибутами &dn;) не визначено. Таким чином, порядок, у якому атрибути буде показано, є предметом особистих уподобань або правил компанії. Ось чому цей порядок можна налаштувати за допомогою &kleopatra;.</para>
+
+<note
+><para
+>Значення цього параметра стосуватиметься не лише &kleopatra;, але й усіх програм, які використовують технології &kleopatra;. На час написання цього підручника серед цих програм були &kmail;, &kaddressbook;, а також сама &kleopatra;.</para
+></note>
+
+<para
+>Ця сторінка налаштувань в основному складається з двох списків, у одному з цих списків перелічено відомі атрибути (<guilabel
+>Наявні атрибути</guilabel
+>), у іншому описано <guilabel
+>Поточний порядок атрибутів</guilabel
+>.</para>
+
+<para
+>У обох списках містяться записи, які є скороченнями назв атрибутів (наприклад <guilabel
+>CN</guilabel
+>), а також повна назва атрибута (<guilabel
+>Common Name</guilabel
+>).</para>
+
+<para
+>Список <guilabel
+>Наявні атрибути</guilabel
+> завжди буде впорядковано за абеткою, у списку ж <guilabel
+>Поточний порядок атрибутів</guilabel
+> порядок пунктів відповідає налаштованому порядку атрибутів &dn;: перший атрибут у списку відповідає першому атрибуту, який буде показано.</para>
+
+<para
+>Буде показано лише атрибути явно переліченої у <guilabel
+>Поточному порядку атрибутів</guilabel
+>. Решту атрибутів типово буде сховано.</para>
+
+<para
+>Якщо ж запис заповнювача <guilabel
+>_X_</guilabel
+> (<guilabel
+>All others</guilabel
+>) буде переведено до <quote
+>поточного</quote
+> списку, всі не перелічені у списку атрибути (відомі чи ні) буде вставлено на місце <guilabel
+>_X_</guilabel
+> у початковому відносному порядку.</para>
+
+<para
+>Ось невеличкий приклад, який має все прояснити:</para>
+
+<informalexample>
+<para
+>Якщо вказати для &dn;:</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>за використання типового порядку атрибутів <quote
+>CN, L, _X_, OU, O, C</quote
+> буде створено такий форматований &dn;:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+>використання ж порядку атрибутів <quote
+>CN, L, OU, O, C</quote
+> дасть</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>Щоб додати атрибут до списку порядку показу, оберіть атрибут у списку <guilabel
+>Наявні атрибути</guilabel
+> і натисніть кнопку <guilabel
+>Додати до поточного порядку атрибутів</guilabel
+>.</para>
+
+<para
+>Щоб вилучити атрибут зі списку порядку показу атрибутів, виберіть його позначку у списку <guilabel
+>Поточний порядок атрибутів</guilabel
+> і натисніть кнопку <guilabel
+>Вилучити з поточного порядку атрибутів</guilabel
+>.</para>
+
+<para
+>Щоб пересунути атрибут на початок (в кінець) списку, оберіть атрибут у списку <guilabel
+>Поточний порядок атрибутів</guilabel
+>, а потім натисніть кнопку <guilabel
+>Пересунути вверх</guilabel
+> (<guilabel
+>Пересунути вниз</guilabel
+>).</para>
+
+<para
+>Щоб пересунути атрибут вгору (вниз) на одну позицію, оберіть атрибут у списку <guilabel
+>Поточний порядок атрибутів</guilabel
+>, а потім натисніть кнопку <guilabel
+>Пересунути вверх на один</guilabel
+> (<guilabel
+>Пересунути вниз на один</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Налаштування «Дій з шифрування»</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>Налаштування <guilabel
+>Роботи з електронною поштою</guilabel
+></title>
+
+        <para
+>Тут ви можете налаштувати деякі з аспектів обробки електронної пошти &uiserver; &kleopatra;. У поточній версії ви можете лише налаштувати «Швидкий режим» для підписування та шифрування електронної пошти, відповідно. </para>
+        <para
+>Якщо буде увімкнено «Швидкий режим», програма не показуватиме діалогових вікон під час підписування (шифрування) листів електронної пошти, якщо не буде виявлено конфлікту, який вимагатиме розв’язання вручну. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>Налаштування <guilabel
+>Дій над файлами</guilabel
+></title>
+
+        <para
+>Тут ви можете налаштувати аспекти обробки файлів за допомогою &uiserver; &kleopatra;. У поточній версії ви можете лише вибрати програму обчислення контрольних сум, яку буде використано для <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>Скористайтеся пунктом <guilabel
+>Програма контрольних сум</guilabel
+>, щоб вказати, яку з виявлених програм для обчислення контрольних сум слід використовувати для створення файлів контрольних сум. </para>
+        <para
+>Під час перевірки контрольних сум відповідну програму буде виявлено автоматично на основі назв знайдених файлів контрольних сум. </para>
+        <note>
+          <para
+>Користувач з правами адміністратора або досвідченого користувача може повністю визначити, які програми обчислення контрольних сум доступні для використання у &kleopatra;, на основі так званих «Визначень контрольних сум» у файлі налаштувань. Докладніше про це у розділі <xref linkend="admin-checksum-definitions"/> глави <xref linkend="admin"/>. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Налаштування параметрів «Перевірки S/&MIME;»</title>
+
+      <para
+>За допомогою цієї сторінки ви зможете змінити певні аспекти перевірки сертифікатів &smime;. </para>
+      <note>
+        <para
+>Здебільшого, цей пункт є зручнішою для користувачів версією керування параметрами, описаними у розділі <xref linkend="configuration-gnupg-system"/>. Будь-які параметри, які можна налаштувати за допомогою цього пункту, можна налаштувати і за допомогою вікна налаштування &gnupg;, за винятком параметра <xref linkend="configuration-smime-validation-refresh-interval"/>, який є специфічним для &kleopatra;. </para>
+      </note>
+      <para
+>Призначення параметрів: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Налаштування інтервалів між перевірками сертифікатів</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Перевіряти чинність сертифіката кожні <replaceable
+>N</replaceable
+> годин</guilabel
+></term>
+            <listitem>
+              <para
+>За допомогою цього пункту можна визначити інтервал перевірки чинності сертифікатів. Крім того, ви можете вказати інтервал між перевірками (у годинах). Ефект перевірки збігатиметься з ефектом використання пункту меню <xref linkend="view-redisplay"/>; пунктів зміни інтервалів перевірки, що відповідають пунктам меню <xref linkend="certificates-refresh-openpgp"/> і <xref linkend="certificates-refresh-x509"/>, не передбачено. </para>
+              <note>
+                <para
+>Перевірка виконується неявно у разі зміни значущих файлів <filename
+>~/.gnupg</filename
+>. Цей пункт подібний до пунктів меню <xref linkend="certificates-refresh-openpgp"/> і <xref linkend="certificates-refresh-x509"/>, отже визначається зовнішніми факторами чинності сертифікатів. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Налаштування способу перевірки</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Перевіряти сертифікати з використанням CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо буде позначено цей пункт, сертифікати &smime; будуть перевірятися на наявність у списках анулювання сертифікатів (&crl;). </para>
+              <para
+>Опис альтернативного способу перевірки чинності сертифікатів можна знайти у розділі щодо пункту <xref linkend="configuration-smime-validation-use-ocsp"/>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Інтерактивна перевірка сертифікатів (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо позначити цей пункт, програма перевірятиме сертифікати &smime; за допомогою мережевого протоколу стану сертифікатів (Online Certificates Status Protocol або <acronym
+>OCSP</acronym
+>). </para>
+              <warning>
+                <para
+>Якщо буде вибрано цей спосіб, на сервер &ca; буде надсилатися запит майже кожного разу, коли ви надсилатимете або отримуватимете зашифроване повідомлення. Таким чином, теоретично можна, наприклад, надати змогу видавцеві сертифікатів стежити за тим, з ким ви обмінюєтеся електронними листами. </para>
+              </warning>
+              <para
+>Щоб скористатися цим способом, вас слід ввести адресу відповідача &ocsp; у поле <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Опис традиційнішого способу перевірки чинності сертифікатів, без витоку інформації щодо вашого обміну повідомленнями можна знайти у розділі щодо пункту <xref linkend="configuration-smime-validation-use-ocsp"/>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>Адреса OCSP-відповідача</guilabel
+></term>
+            <listitem>
+              <para
+>Введіть тут адресу сервера для миттєвої перевірки сертифікатів (&ocsp;-відповідача). Типово адреса починається з <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Підпис OCSP-відповідача</guilabel
+></term>
+            <listitem>
+              <para
+>Тут ви можете вибрати сертифікат, за допомогою якого сервер &ocsp; підписуватиме відповіді. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Ігнорувати службову адресу (URL) сертифікатів</guilabel
+></term>
+            <listitem>
+              <para
+>У кожному з сертифікатів &smime; зазвичай міститься адреса відповідача &ocsp; його видавця (подивитися, чи містить сертифікат ці відомості, можна за допомогою пункту меню <xref linkend="certificates-dump-certificate"/>). </para>
+              <para
+>Позначення цього пункту призведе до ігнорування &gpgsm; відповідних адрес і переходу до використання однієї з вказаних адрес. </para>
+              <para
+>Скористайтеся цим пунктом, щоб, наприклад, визначити примусове використання загального проксі-сервера &ocsp; установи. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Як налаштувати параметри перевірки</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Не перевіряти правила сертифікатів</guilabel
+></term>
+            <listitem>
+              <para
+>Типово &gpgsm; використовує файл <filename
+>~/.gnupg/policies.txt</filename
+> для перевірки чи дозволені правила сертифікатів. Якщо буде позначено цей пункт, правила не перевіряються. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>Ніколи не звертатися до CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо буде позначено цей пункт, списки скасування сертифікатів ніколи не використовуватимуться для перевірки сертифікатів &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Дозволити позначення кореневих сертифікатів як надійних</guilabel
+></term>
+            <listitem>
+            <para
+>Якщо буде позначено цей пункт, під час імпортування кореневого сертифіката служби сертифікації програма запитає вас про підтвердження його відбитка та про те, чи вважаєте ви цей кореневий сертифікат надійним. </para>
+              <para
+>Щоб можна було вважати надійним якийсь з сертифікатів, його кореневий сертифікат має бути також надійним, але спрощення імпорту надійних кореневих сертифікатів до сховища вашої системи може підірвати її безпеку. </para>
+              <note>
+                <para
+>Вмикання цих функціональних можливостей у сервері може призвести до появи контекстних вікон &pinentry; у незручний час (наприклад, під час перевірки підписів), а отже може заблокувати обробку небажаних поштових повідомлень. З цієї причини, а також оскільки бажано мати можливість <emphasis
+>скасувати надійність</emphasis
+> кореневих сертифікатів, у &kleopatra; передбачено можливість налаштування рівня надійності вручну за допомогою пунктів меню <xref linkend="certificates-trust-root"/> і <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Вказане у цьому пункті значення не впливає на роботу &kleopatra;. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Надіслати запит щодо сертифікатів видавця, яких не вистачає</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо позначено цей параметр, за потреби надсилатиметься запит для сертифікатів з відсутнім видавцем (це стосується обох методів перевірки, &crl; і &ocsp;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Налаштування параметрів запитів &http;</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>Не виконувати жодних запитів HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Повністю вимкнути використання &http; для роботи з &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>Ігнорувати HTTP-точки розподілу CRL-сертифікатів</guilabel
+></term>
+            <listitem>
+              <para
+>Для відшукання місця, де знаходиться &crl;, сертифікат, який слід перевірити, зазвичай, містить те, що відоме як записи «Точок розподілу &crl;» (<acronym
+>DP</acronym
+>), які є адресами URL, що описують спосіб доступ до потрібного &crl;. </para>
+              <para
+>Якщо буде позначено цей пункт, при пошуку адреси точки розповсюдження всі записи, що вказують використовувати протокол &http;, будуть проігноровані. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Використовувати системний проксі</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо буде позначено, для всіх &http; запитів буде використовуватися &http;-проксі вказаний праворуч (це значення визначається змінною оточення <envar
+>http_proxy</envar
+>). </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Для запитів HTTP використовувати проксі</guilabel
+></term>
+            <listitem>
+              <para
+>Якщо не визначено параметрів системного проксі-сервера або ви бажаєте скористатися іншим проксі-сервером для &gpgsm;, ви можете ввести його адресу у це поле. </para>
+              <para
+>Сервер буде використано для всіх запитів &HTTP;, пов’язаних з S/&MIME;. </para>
+              <para
+>Синтаксис запису має бути таким: <userinput
+><replaceable
+>вузол</replaceable
+><literal
+>:</literal
+><replaceable
+>порт</replaceable
+></userinput
+>. Приклад: <userinput
+>myproxy.nowhere.com:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Налаштування параметрів запитів &ldap;</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>Не виконувати жодних запитів LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Повністю вимкнути використання &ldap; для запитів &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>Ігнорувати LDAP-точки розподілу CRL-сертифікатів</guilabel
+></term>
+            <listitem>
+              <para
+>Для відшукання місця, де знаходиться &crl;, сертифікат, який слід перевірити, зазвичай, містить те, що відоме як записи «Точок розподілу &crl;» (<acronym
+>DP</acronym
+>), які є адресами URL, що описують спосіб доступ до потрібного &crl;. </para>
+              <para
+>Якщо буде позначено цей пункт, при пошуку адреси точки розповсюдження всі записи, що вказують використовувати протокол &ldap;, будуть проігноровані. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Основний вузол для LDAP-запитів</guilabel
+></term>
+            <listitem>
+              <para
+>Введення адреси сервера &ldap; у це поле призведе до того, що всі запити &ldap; спочатку проходитимуть через вказаний сервер. Якщо точніше, вказані в цьому пункті дані перевизначатимуть значення параметрів <replaceable
+>вузол</replaceable
+> і <replaceable
+>порт</replaceable
+> адреси &ldap;, їх також буде використано, якщо у адресі не буде вказано <replaceable
+>вузла</replaceable
+> і <replaceable
+>порту</replaceable
+>. </para>
+              <para
+>Інші сервери &ldap; буде використано, лише якщо з’єднання з «проксі-сервером» встановити не вдасться. Формат має бути таким: <userinput
+><replaceable
+>вузол</replaceable
+></userinput
+> або <userinput
+><replaceable
+>вузол</replaceable
+><literal
+>:</literal
+><replaceable
+>порт</replaceable
+></userinput
+>. Якщо <replaceable
+>порт</replaceable
+> не буде вказано, програма використовуватиме порт 389 (стандартний порт &ldap;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Налаштування «Системи &gnupg;»</title>
+
+      <para
+>Цю частину даних діалогового вікна буде автоматично визначено на основі даних, виведених командою <command
+>gpgconf <option
+>--list-components</option
+></command
+>, а також для кожного з виведених цією командою <replaceable
+>компонентів</replaceable
+>, даних, виведених командою <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>компонент</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>Найкорисніші з цих пунктів продубльовано на окремих сторінках діалогового вікна налаштувань &kleopatra;. Довідку з вибраних пунктів цієї частини діалогового вікна, використаних на двох сторінках діалогового вікна налаштувань, можна знайти у розділах <xref linkend="configuration-directory-services"/> і <xref linkend="configuration-smime-validation"/>. </para>
+      </note>
+      <para
+>Точний перелік пунктів цієї частини діалогового вікна залежить від встановленої у вашій системі версії сервера &gnupg; і, потенційно, програмної платформи. Ми обговоримо лише загальне компонування діалогового вікна, зокрема відповідність параметрів &gpgconf; елементам керування графічного інтерфейсу &kleopatra;. </para>
+      <para
+>&gpgconf; повертає дані щодо налаштування багатьох компонентів. У межах кожного компонента окремі пункти об’єднано у групи. </para>
+      <para
+>&kleopatra; показуватиме для кожного з компонентів, про які повідомить &gpgconf;, окрему вкладку. У верхній частині кожної з груп буде показано горизонтальну лінію і назву групи, яку було повернуто &gpgconf;. </para>
+      <para
+>Кожному параметру &gpgconf; відповідає певний тип. Окрім деяких добре відомих параметрів, які у &kleopatra; керуються зручними спеціалізованими пунктами, відповідність типів &gpgconf; елементам керування &kleopatra; є такою: </para>
+      <table id="table-gpgconf-types">
+	<title
+>Відповідність типів &gpgconf; графічним елементам керування</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>Тип &gpgconf;</entry>
+              <entry namest="lists" nameend="non-lists"
+>Елемент керування у &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>для списків</entry>
+	      <entry
+>не для списків</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>none</literal
+></entry>
+	      <entry
+>Лічильник</entry>
+	      <entry
+>Поле для позначки</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>string</literal
+></entry>
+              <entry
+>Немає</entry>
+              <entry
+>Рядок введення тексту</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Рядок введення тексту (без форматування)</entry>
+              <entry morerows="1"
+>Поле лічильника</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pathname</literal
+></entry>
+              <entry
+>Немає</entry>
+              <entry
+>спеціалізований елемент керування</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ldap server</literal
+></entry>
+              <entry
+>спеціалізований елемент керування</entry>
+              <entry
+>Немає</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>key fingerprint</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>Немає</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pub key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>sec key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>alias list</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Докладніші відомості з налаштування та способів налаштування можна знайти на сторінці довідки (man) &gpgconf;. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Довідник адміністратора</title>
+
+<para
+>У «Довіднику адміністратора» описано способи налаштування &kleopatra;, доступ до яких не можна отримати за допомогою графічного інтерфейсу: ці параметри налаштовуються лише за допомогою файлів налаштування.</para>
+
+<para
+>У цьому розділі ми припускаємо, що читач знайомий з технологіями, які використовуються у налаштуванні програм &kde;, зокрема компонуванням вікна програми, структурою файлової системи і ієрархією файлів налаштування &kde;, а також оболонкою KIOSK.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Налаштування майстра створення сертифікатів</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Налаштування полів &dn;</title>
+
+<para
+>&kleopatra; надає вам змогу налаштувати поля, значення яких буде дозволено вводити користувачеві для створення власного сертифіката.</para>
+
+<para
+>Створіть групу з назвою <literal
+>CertificateCreationWizard</literal
+> у загальносистемному файлі <filename
+>kleopatrarc</filename
+>. Якщо вам потрібен специфічний порядок атрибутів, або якщо вам потрібно, щоб у списку атрибутів були лише певні записи, створіть у файлі ключ з назвою <varname
+>DNAttributeOrder</varname
+>. Аргументом ключа може бути одне або декілька значень, <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+> Якщо ви бажаєте, щоб якесь з полів початково містило певне значення, введіть щось на зразок Атрибут=значення. Якщо вам потрібно, щоб програма вважала атрибут необхідним, додайте знак оклику (наприклад <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, які є типовими у налаштуваннях).</para>
+
+<para
+>За використання режиму <acronym
+>KIOSK</acronym
+> модифікатор <varname
+>$e</varname
+> надає змогу отримувати значення зі змінних середовища і виводу скрипту або бінарного файла. Якщо ви бажаєте заборонити редагування відповідного поля, скористайтеся модифікатором <varname
+>$i</varname
+>. Якщо ви бажаєте заборонити використання кнопки <guibutton
+>Вставити мою адресу</guibutton
+> встановіть для змінної <varname
+>ShowSetWhoAmI</varname
+> значення false.</para>
+
+<tip
+><para
+>Природа оболонки <acronym
+>KIOSK</acronym
+> &kde; за використання прапорця блокування (<varname
+>$i</varname
+>) зробить неможливим для користувача зняття цього прапорця. Так зроблено навмисне. Прапорцями <varname
+>$i</varname
+> і <varname
+>$e</varname
+> можна скористатися і у інших ключах налаштування програм &kde;.</para
+></tip>
+
+<para
+>У наведеному нижче прикладі у загальних рисах показано можливості налаштування:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;Заборонити копіювання особистих даних з адресної книги, не дозволяти локальне перевизначення
+ShowSetWhoAmI[$i]=false
+
+;встановити значення імені користувача рівним змінній $USER
+CN[$e]=$USER
+
+;встановити назву компанії «Моя компанія», заборонити зміну назви
+O[$i]=Моя компанія
+
+;встановити назву відділу у значення, яке буде повернуто скриптом
+OU[$ei]=$(lookup_dept_from_ip)
+
+; встановити назву країни у значення UA, але дозволити зміну назви користувачем
+C=UA
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Обмеження типів ключів, які може створювати користувач</title>
+
+        <para
+>Крім того, &kleopatra; надає змогу обмежити тип сертифікатів, які може створювати користувач. Однак, ви маєте пам’ятати, що ці обмеження дуже легко обійти за допомогою відповідних команд, відданих у командному рядку. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Алгоритми відкритих ключів</title>
+
+          <para
+>Щоб обмежити перелік алгоритмів, якими можна користуватися, додайте ключ налаштування <varname
+>PGPKeyType</varname
+> (і <varname
+>CMSKeyType</varname
+>, але для <acronym
+>CMS</acronym
+> все одно підтримується лише <acronym
+>RSA</acronym
+>) до розділу <literal
+>CertificateCreationWizard</literal
+> файла <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>Можливими значеннями є <literal
+>RSA</literal
+> для ключів <acronym
+>RSA</acronym
+>, <literal
+>DAS</literal
+> для ключів <acronym
+>DSA</acronym
+> (лише підписування) та <literal
+>DSA+ELG</literal
+> для ключів <acronym
+>DSA</acronym
+> (лише підписування) з підключем Elgamal для шифрування. </para>
+
+          <para
+>Типові значення буде прочитано з &gpgconf; або <literal
+>RSA</literal
+>, якщо у &gpgconf; не вказано типового значення. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Розмір відкритого ключа</title>
+
+          <para
+>Щоб обмежити перелік доступних розмірів ключів алгоритму створення відкритого ключа, додайте до ключ налаштування <varname
+><replaceable
+>&lt;Алгоритм&gt;</replaceable
+>KeySizes</varname
+> (де <replaceable
+>Алгоритм</replaceable
+> може приймати значення <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> або <literal
+>ELG</literal
+>) до розділу <literal
+>CertificateCreationWizard</literal
+> файла <filename
+>kleopatrarc</filename
+>, зі списком відокремлених комами розмірів ключів (у бітах). Типовий розмір ключа позначається додаванням до відповідного запису знаку «мінус» (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Наведений вище запис обмежить дозволені розміри ключів <acronym
+>RSA</acronym
+> значеннями 1536, 2048 і 3072. Типовим буде значення 2048. </para>
+
+          <para
+>Окрім самих розмірів ключів, ви можете також вказати мітки для кожного з розмірів. Для цього просто встановіть значення ключа налаштування <varname
+><replaceable
+>Алгоритм</replaceable
+>KeySizeLabels</varname
+> (слід вказати список відокремлених комами міток). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = weak,normal,strong
+            </programlisting>
+          </para>
+
+          <para
+>У разі використання таких міток та попереднього прикладу матимемо такий набір варіантів: <programlisting
+>weak (1536-бітовий)
+              normal (2048-бітовий)
+              strong (3072-бітовий)
+            </programlisting>
+          </para>
+
+          <para
+>Типовими значеннями будуть такі: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Створення і редагування категорій ключів</title>
+
+      <para
+>У &kleopatra; користувач може налаштувати <link linkend="configuration-appearance-certificate-filters"
+>візуальне представлення</link
+> ключів на основі концепції з назвою <guilabel
+>Категорії ключів</guilabel
+>. <guilabel
+>Категорії ключів</guilabel
+> також використовуються для фільтрування списку сертифікатів. У цьому розділі описано редагування наявних категорій, а також способи додавання нових. </para>
+
+      <para
+>Під час пошуків категорії, до якої належить ключ &kleopatra; намагається пропустити ключ крізь послідовність фільтрів ключів, які налаштовано у файлі <filename
+>libkleopatrarc</filename
+>. Збіг ключа з певним фільтром визначає категорію ключа за допомогою концепції <emphasis
+>специфічності</emphasis
+>, яку описано далі за текстом. </para>
+
+      <para
+>Кожен з фільтрів ключів визначається у групі налаштування з назвою <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, де <replaceable
+>n</replaceable
+> є номером фільтра, нумерація розпочинається з <literal
+>0</literal
+>. </para>
+
+      <para
+>Єдиними обов’язковими ключами у групі <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> є <varname
+>Name</varname
+>, у цьому ключі міститься назва категорії, яку буде показано у <link linkend="configuration-appearance-certificate-filters"
+>діалоговому вікні налаштування</link
+>, і <varname
+>id</varname
+>, який використовується для посилання на фільтр з інших розділів налаштування (наприклад <literal
+>View #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> містить перелік всі ключів, які визначають параметри показу ключів, які належать до відповідної категорії (тобто тих ключів, які може бути налаштовано за допомогою <link linkend="configuration-appearance-certificate-filters"
+>діалогового вікна налаштувань</link
+>), а у <xref linkend="table-key-filters-criteria"/> міститься перелік всіх ключів, які визначають критерій, за яким визначається належність ключа до категорії. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Ключі налаштування фільтрів ключів, які визначають властивості показу</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Ключ налаштування</entry>
+	      <entry
+>Тип</entry>
+	      <entry
+>Опис</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>колір</entry>
+	      <entry
+>Колір тла, який буде використано. Якщо не вказано, типове значення кольору тла буде взято з загальних параметрів для переглядів списком. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>колір</entry>
+	      <entry
+>Колір тексту, який буде використано. Якщо не вказано, типове значення кольору тексту буде взято з загальних параметрів для переглядів списком. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>шрифт</entry>
+	      <entry
+>Назва нетипового шрифту. Розміри символів шрифту буде змінено відповідно до розміру, вказаного для переглядів списком, також буде застосовано всі атрибути шрифту (див. нижче). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>Якщо встановлено значення <literal
+>true</literal
+>, а значення <varname
+>font</varname
+> не встановлено, буде використано типовий шрифт перегляду списку напівжирної гарнітури (якщо таку передбачено шрифтом). Цей ключ буде проігноровано за наявності ключа <varname
+>font</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>Аналогічний до <varname
+>font-bold</varname
+>, але з використанням курсивної гарнітури замість напівжирної. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>Якщо має значення <literal
+>true</literal
+>, символи шрифту буде перекреслено центральною горизонтальною рискою. Буде застосовано, навіть якщо не вказано значення для параметра <varname
+>font</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>icon</varname
+></entry>
+	      <entry
+>текст</entry>
+	      <entry
+>Назва піктограми, яку буде показано у першому стовпчику. Ще не реалізовано. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Ключі налаштування фільтра ключів, які визначають критерії фільтрування</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Ключ налаштування</entry>
+	      <entry
+>Тип</entry>
+	      <entry
+>Якщо вказано, фільтр спрацьовуватиме, якщо...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ було відкликано.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>context<footnote
+> <para
+>Контекстом є список з таких можливих значень: <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> і <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>контекст, у якому застосовується цей фільтр.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>строк дії цього ключа вичерпано.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>ключ було вимкнено (знято позначку використання) користувачем. Ігнорується для ключів &smime;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>ключ є кореневим сертифікатом. Ігнорується для ключів &openpgp;. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ можна використовувати для шифрування. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ можна використовувати для підписування. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>ключ можна використовувати для підписування (сертифікації) інших ключів. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ можна використовувати для розпізнавання (наприклад, як клієнтський сертифікат <acronym
+>TLS</acronym
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ може бути використано для створення придатних підписів (Qualified Signatures) за визначенням німецьких законів про цифровий підпис. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>дані цього ключа зберігаються на картці пам’яті (поза межами комп’ютера). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>закритий ключ цієї пари доступний. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>ключ належить до ключів &openpgp; (<literal
+>true</literal
+>), або є ключем &smime; (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>булеве</entry>
+	      <entry
+>цей ключ було підтверджено. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>префікс</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>validity<footnote
+> <para
+>Validity (чинність) є (впорядкованим) переліком таких можливих значень: <literal
+>unknown</literal
+>, <literal
+>undefined</literal
+>, <literal
+>never</literal
+>, <literal
+>marginal</literal
+>, <literal
+>full</literal
+>, <literal
+>ultimate</literal
+>. Докладний опис значень можна знайти у підручниках з &gpg; і &gpgsm;.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>ключ може точно відповідати (<replaceable
+>префікс</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), точно не відповідати (<replaceable
+>префікс</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), мати принаймні (<replaceable
+>префікс</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>) або не вищий за (<replaceable
+>префікс</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) рівень надійності, який буде вказано яка значення ключа налаштування. Якщо у одній групі буде вказано декілька ключів <varname
+><replaceable
+>префікс</replaceable
+>-рівень_надійності</varname
+> (з різними значеннями <replaceable
+>префікса</replaceable
+>), група вважатиметься невизначеною. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>префікс</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>validity</entry>
+	      <entry
+>Аналогічний до <varname
+><replaceable
+>префікс</replaceable
+>-ownertrust</varname
+>, але для перевірки ключів, а не для довіри до власника. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Найцікавіші критерії, зокрема <varname
+>is-revoked</varname
+> or <varname
+>is-expired</varname
+>, працюватимуть лише для <emphasis
+>перевірених</emphasis
+> ключів, ось чому, типово, лише перевірені ключі перевіряються на скасування і завершення строку дії, хоча ви можете і вилучити ці додаткові перевірки. </para>
+      </note>
+
+      <para
+>Окрім ключів налаштування, описаних вище, у фільтрі ключів можуть бути ключі <varname
+>id</varname
+> і <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>За допомогою ключа <varname
+>id</varname
+> фільтра, типовим значенням якого є назва групи налаштування фільтра, якщо вона не є порожньою, ви можете посилатися на фільтр ключів у інших місцях налаштувань, наприклад у налаштуваннях перегляду &kleopatra;. Ключ <varname
+>id</varname
+> не обробляється програмою &kleopatra;, отже ви можете використовувати будь-який бажаний рядок, який втім не повинен повторюватися. </para>
+
+      <para
+>Ключ <varname
+>match-contexts</varname
+> визначає обмеження застосовності фільтра. У поточній версії можна визначити дві області застосування: область застосування <literal
+>appearance</literal
+> використовується для визначення розфарбовування і властивостей шрифтів для перегляду. Область застосування <literal
+>filtering</literal
+> використовується для вибіркового включення (або виключення) сертифікатів з перегляду. Для визначення всіх визначених областей застосування можна скористатися значенням <literal
+>any</literal
+>, це значення є типовим, якщо не вказано ключа <varname
+>match-contexts</varname
+> або іншим чином не створено області застосування. Таким чином забезпечується відсутність <quote
+>мертвих</quote
+> фільтрів ключів, тобто фільтрів, які взагалі не застосовуються. </para>
+
+      <para
+>Форматом цього запису є список елементів, відокремлених символами, які не належать до символів слів. Кожен з елементів може мати префікс у вигляді знаку оклику (<literal
+>!</literal
+>), який позначає зміну значення елемента на протилежне. Елементи буде використано у порядку внутрішнього списку областей застосування, який на початку є порожнім. Найкраще це можна зрозуміти з прикладу: <literal
+>any !appearance</literal
+> це те саме, що і <literal
+>filtering</literal
+>, а <literal
+>appearance !appearance</literal
+> дасть порожню множину, тобто те саме, що і <literal
+>!any</literal
+>. Останні два випадки буде замінено на <literal
+>any</literal
+>, оскільки вони визначають порожні області застосування. </para>
+
+      <para
+>Загалом кажучи, невказані критерії (тобто критерії, не встановлені записом у налаштуваннях) не будуть перевірятися. Якщо критерій буде вказано, програма перевірить відповідність йому ключа, фільтр вважатиметься пройденим, якщо ключ відповідатиме всім критеріям, тобто результат відповідності буде булівським добутком результатів відповідності критеріям. </para>
+
+      <para
+>Кожен з фільтрів має власну <quote
+>специфічність</quote
+>, яка використовується для впорядкування списку фільтрів, які було пройдено ключем. Специфічніший фільтр матиме перевагу над менш специфічним. Якщо два фільтри матимуть однаковий рівень специфічності, першим з них вважатиметься той, який першим записано у файлі налаштувань. Специфічність фільтра пропорційна до кількості критеріїв, які він містить. </para>
+
+      <example>
+	<title
+>Приклади фільтрів ключів</title>
+	<para
+>Щоб дістати список всіх кореневих сертифікатів, строк дії яких було вичерпано, але які не було відкликано, вам слід скористатися таким фільтром ключів: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=строк дії збіг, але не відкликано
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Щоб дістати список всіх вимкнених ключів &openpgp; (це ще не підтримується &kleopatra;), з рівнем довіри до власника не нижчим за <quote
+>обмежено надійний</quote
+>, скористайтеся фільтром: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=вимкнені ключі OpenPGP з рівнем довіри, вищим за обмежену
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Налаштування архіваторів для використання з інструментом підписування/шифрування файлів</title>
+
+      <para
+>&kleopatra; надає змогу адміністраторам (і досвідченим користувачам) налаштовувати список архіваторів, які буде показано у діалоговому вікні підписування/шифрування файлів. </para>
+
+      <para
+>Кожен з архіваторів визначається у файлі <filename
+>libkleopatrarc</filename
+> окремою групою <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> з такими обов’язковими ключами: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensions</literal
+></term>
+          <listitem>
+            <para
+>Відокремлений комами список суфіксів назв файлів, який зазвичай відповідає форматів, з якими працює архіватор. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Унікальний ідентифікатор, який програма використовуватиме для розпізнавання архіваторів. Якщо не знаєте, який ідентифікатор використати, вкажіть команду архівування. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Name</literal
+> (з можливістю перекладу)</term>
+          <listitem>
+            <para
+>Видима користувачеві назва архіватора, яку буде показано у спадному меню діалогового вікна підписування/шифрування файлів. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>Команда, яку буде використано для архівування файлів. Ви можете використовувати будь-яку команду, для виконання якої не потрібна зовнішня оболонка. Файл програми система шукатиме у каталогах, описаних у змінній середовища <envar
+>PATH</envar
+>, якщо ви не вкажете абсолютний шлях до файла. Можна використовувати лапки, подібно до того, як лапки використовуються у командній оболонці: <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Оскільки у файлах налаштування &kde; зворотна похила риска (<literal
+>\</literal
+>) є керівним символом, вам слід подвоювати такі риски у адресах файлів: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> У самій команді (на відміну від її параметрів) ви можете використовувати прямі похилі риски (<literal
+>/</literal
+>) у адресах всіх платформ: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> Використовувати прямі риски у параметрах не можна, оскільки у більшості програм &Windows; прямі риски використовуються для визначення параметрів. Наприклад, наведена нижче команда не працюватиме, оскільки <literal
+>C:/myarchivescript.bat</literal
+> є параметром програми <command
+>cmd.exe</command
+>, а <literal
+>/</literal
+> не буде перетворено на <literal
+>\</literal
+> у параметрах, таке перетворення можливе лише у командах: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> Цей ключ слід записати так: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Як передати назву файла <literal
+>pack-command</literal
+></title>
+
+      <para
+>Існує три способи передавання назв файлів команді пакування. Для кожного з цих способів у ключі <literal
+>pack-command</literal
+> передбачено окремий синтаксис: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Як параметр командного рядка.</para>
+            <para
+>Приклад (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Приклад (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> У цьому випадку назви файлів передаються у командному рядку, подібно до того, як вони передаються у звичайному командному рядку. &kleopatra; не використовуватиме для виконання команд командну оболонку. Тому цей спосіб передавання назв файлів є безпечним, хоча на деяких програмних платформах ви можете перевищити обмеження на довжину команди. Замінник <literal
+>%f</literal
+>, якщо такий вказано, позначає назви файлів, які буде додано до архіву. Якщо такий замінник не буде вказано, назви файлів буде просто додано до рядка команди. Таким чином, приклад з zip, наведений вище, можна також записати як: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>За допомогою стандартного джерела даних з розділенням записів окремих файлів символами розриву рядка: достатньо вказати перед командою <literal
+>|</literal
+>.</para>
+            <para
+>Приклад (&GNU;-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Приклад (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> У цьому випадку назви файлів буде передано архіватору через <acronym
+>stdin</acronym
+>, по одному на рядок. Таким чином, буде усунуто проблеми з накладанням деякими програмними платформами жорстких обмежень на кількість параметрів рядка команди. Цей спосіб є непридатним, якщо у назвах файлів містяться символи розриву рядків. </para>
+            <note>
+              <para
+>У поточній версії &kleopatra; передбачено підтримку лише символу розриву рядка <acronym
+>LF</acronym
+>, підтримки <acronym
+>CRLF</acronym
+> ще не передбачено. Цю підтримку може бути додано на прохання користувачів у наступних версіях програми. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>За допомогою стандартного джерела даних з розділенням записів окремих файлів NUL-байтами: достатньо вказати перед командою <literal
+>|</literal
+>.</para>
+            <para
+>Приклад (&GNU;-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> Спосіб подібний до наведеного раніше, але для відокремлення назв файлів використовуються NUL-байти. Оскільки використання NUL-байтів у назвах файлів є неможливим, цей спосіб є найнадійнішим з огляду на передавання назв файлі, але його підтримку передбачено не у всіх архіваторах. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Налаштування програм обчислення контрольних сум для створення/перевірки контрольних сум</title>
+
+      <para
+>У &kleopatra; передбачено можливість налаштування адміністратором системи (та досвідченим користувачем) списку програм обчислення контрольних сум, одну з яких користувач може вибрати за допомогою діалогового вікна налаштування, і програм, які &kleopatra; зможе автоматично використовувати у разі потреби у перевірці контрольної суми вказаного файла. </para>
+
+      <note>
+        <para
+>Щоб програмою можна було скористатися у &kleopatra;, виведені програмою обчислення контрольних сум дані (запис файла контрольної суми та вивід у <acronym
+>stdout</acronym
+> під час перевірки контрольної суми) мають бути сумісними з даними &GNU; <command
+>md5sum</command
+> і <command
+>sha1sum</command
+>. </para>
+
+        <para
+>Зокрема, файл контрольної суми має бути поділено на рядки, кожен з яких має бути записано у такому форматі: <programlisting
+><replaceable
+>КОНТРОЛЬНА_СУМА</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>НАЗВА_ФАЙЛА</replaceable
+></programlisting
+>, де <replaceable
+>КОНТРОЛЬНА_СУМА</replaceable
+> має складатися лише з шістнадцяткових цифр. Якщо у назві файла <replaceable
+>НАЗВА_ФАЙЛА</replaceable
+> міститься символ розриву рядка, рядок файла має бути таким: <programlisting
+>\<replaceable
+>КОНТРОЛЬНА_СУМА</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>НАЗВА_ФАЙЛА_З_ЕКРАНУВАННЯМ</replaceable
+></programlisting
+> де <replaceable
+>НАЗВА_ФАЙЛА_З_ЕКРАНУВАННЯМ</replaceable
+> — назва файла, у якій символи розриву рядків замінено на <literal
+>\n</literal
+>, а зворотні похилі риски подвоєно (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>Так само, дані, виведені <xref linkend="checksum-definition-verify-command"/> має бути записано у форматі <programlisting
+><replaceable
+>НАЗВА_ФАЙЛА</replaceable
+> ( ': OK' | ': FAILED' )</programlisting
+> з поділом на рядки. У виведених даних <emphasis
+>не</emphasis
+> повинно бути екранування символів розриву рядків та інших символів.<footnote
+> <para
+>Так, ці програми було написано без врахування потреб у графічному інтерфейсі. &kleopatra; не зможе правильно обробити результати для файлів, назви яких містять рядок ":&nbsp;OK" або символ розриву рядка. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Кожна з програм для обчислення контрольних сум визначається у файлі <filename
+>libkleopatrarc</filename
+> окремою групою <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> з такими обов’язковими ключами: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>Список формальних виразів, які описують назви файлів, які вважатимуться файлами контрольних сум відповідної програми для обчислення контрольних сум. Синтаксис виразів відповідає синтаксису списків рядків у файлах налаштувань &kde;. <note
+> <para
+> Оскільки у формальних виразах зазвичай містяться зворотні похилі риски, вам слід належним чином екранувати ці похилі риски у файлах налаштувань. Рекомендуємо скористатися спеціальною програмою для редагування файлів налаштувань. </para
+> </note
+> Врахування регістру символів у шаблонах залежить від використаної вами програмної платформи. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>Типова назва файла з виведеними даними для цієї програми обчислення контрольних сум (звичайно ж, має відповідати одному зі значень <xref linkend="checksum-definition-file-patterns"/>). Цю назву &kleopatra; використовуватиме для визначення назви файла з виведеними даними контрольної суми відповідного типу. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Унікальний ідентифікатор, який програма використовуватиме для розпізнавання програм обчислення контрольних сум. Якщо не знаєте, який ідентифікатор використати, вкажіть команду обчислення контрольної суми. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Name</literal
+> (з можливістю перекладу)</term>
+          <listitem>
+            <para
+>Показана користувачеві у спадному меню діалогового вікна налаштування &kleopatra; назва програми обчислення контрольних сум. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>Команда, за допомогою якої будуть створюватися файли контрольних сум. Синтаксис команди, обмеження та можливості передавання параметрів такі самі, як описані для ключа <xref linkend="archive-definition-pack-command"/> у розділі <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Те саме, що і <xref linkend="checksum-definition-create-command"/>, але для перевірки контрольних сум. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Ось повний текст прикладу: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Подяки і ліцензія</title>
+
+<para
+>Авторські права на програму &kleopatra; належать &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; і &Jesper.Pedersen;, ©2002, &Daniel.Molkentin;, © 2004 Klar&auml;lvdalens Datakonsult AB, ©2004—2010.</para>
+
+<para
+>Авторські права на документацію належать &Steffen.Hansen;, ©2002, &Daniel.Molkentin;, ©2004, Klar&auml;lvdalens Datakonsult AB, ©2004–2010</para>
+
+<itemizedlist>
+<title
+>Учасники розробки</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

@@ -1,0 +1,317 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY gnupg "<acronym
+>GnuPG</acronym
+>">
+  <!ENTITY gpgconf "<application
+>GPGConf</application
+>">
+  <!ENTITY watchgnupg "<application
+>WatchGnuPG</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+]>
+
+<book id="kwatchgnupg" lang="&language;">
+
+<bookinfo id="kwatchgnupginfo">
+<title
+>Підручник з &kwatchgnupg;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+>&Marc.Mutz.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <contrib
+>Розробник</contrib>
+<affiliation>
+<address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <affiliation
+> <address
+>&David.Faure.mail;</address>
+</affiliation>
+<contrib
+>Розробник</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>26 липня 2016 року</date>
+<releaseinfo
+>1.0 (Програми 16.08)</releaseinfo>
+
+<abstract>
+<para
+>&kwatchgnupg; — це простий переглядач журналів &gnupg;. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>GnuPG</keyword>
+<keyword
+>Переглядач журналів</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Вступ</title
+> 
+
+<para
+>&kwatchgnupg; — це проста програма для перегляду журналів &gnupg; для сучасних версій &gnupg;: 1.4, 2.0 і 2.1. Ця програма, по суті, є графічною оболонкою до інструмента командного рядка &watchgnupg;, який веде запис інформаційних рядків журналу, які надходять від сервера &gnupg;. Щоб дізнатися більше про &watchgnupg;, виконайте команду <userinput
+>info watchgnupg</userinput
+> з командного рядка.</para>
+
+<para
+>&kwatchgnupg; можна запустити за допомогою пунктів меню <menuchoice
+><guimenu
+>Інструменти</guimenu
+><guimenuitem
+>Переглядач журналів GnuPG</guimenuitem
+></menuchoice
+> програм &kleopatra; і &kmail;, а також з командного рядка. Виконуваний файл &kwatchgnupg; називається <userinput
+>kwatchgnupg</userinput
+>. </para>
+
+<sect1 id="mainfunc"
+><title
+>Основні функції</title>
+
+<sect2 id="mainfunc.viewing"
+><title
+>Перегляд журналу</title>
+
+<para
+>Основним завданням &kwatchgnupg; є, звичайно ж, надання користувачеві &gnupg; інформації для усунення вад і перегляд журналу. Головне вікно програми поділено на велику область перегляду тексту, де з’являтимуться повідомлення &gnupg; після їх створення, панель інструментів, за допомогою якої ви зможете пришвидшити доступ до функціональних можливостей, які використовуються найчастіше, а також необов’язкової смужки меню. </para>
+
+<para
+>Перед кожним рядком у області тексту, зазвичай стоїть ідентифікатор <acronym
+>FD</acronym
+> (дескриптора файла) і часовий штамп у форматі ISO. Ідентифікатором <acronym
+>FD</acronym
+> можна скористатися для того, щоб відрізнити між собою паралельно запущені різні процеси &gnupg;. За часовим штампом показано назву компонента, який є джерелом рядка журналу, разом з деякою внутрішньою інформацією у квадратних дужках, за якою буде показано початкове налагоджувальне повідомлення або вивід до журналу у вигляді, у якому його було здійснено компонентом. </para>
+
+<para
+>Типово, кількість рядків журналу, які зберігаються у пам’яті обмежено 10000 рядками. Ви можете змінити цю величину за допомогою діалогового вікна налаштування. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.saving">
+<title
+>Як зберегти вміст вікна журналу до файла</title>
+
+<para
+>Іноді буває зручним зберегти вміст поточного вікна журналу до файла, наприклад, щоб надіслати його електронною поштою розробникам, як частину звіту про помилку. Існує два способи зробити це у &kwatchgnupg;: </para>
+
+<para
+>По-перше, ви можете скористатися пунктом меню <menuchoice
+><guilabel
+>Файл</guilabel
+> <guimenuitem
+>Зберегти як...</guimenuitem
+></menuchoice
+> (або відповідною кнопкою з піктограмою на панелі інструментів), щоб зберегти весь вміст вікна журналу до файла. Програма попросить вас вказати розташування збереженого файла. </para>
+
+<para
+>По-друге, ви можете обрати рядки, що вас цікавлять за допомогою лівої кнопки миші, а потім вставити їх до текстового процесора або клієнта електронної пошти, так само, як ви це робите зі звичайним текстом. Але вам слід переконатися, що довгі рядки не буде розбито на частини, оскільки це утруднює читання журналу. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.clear"
+><title
+>Як очистити вікно журналу</title>
+
+<para
+>Для зручності, ви можете наказати &kwatchgnupg; очистити вікно журналу за допомогою пункту меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Очистити історію</guimenuitem
+></menuchoice
+> (можна також скористатися відповідною піктограмою на панелі інструментів). </para>
+
+<para
+>Скористайтеся цією дією перед запуском операції з шифрування, за якою ви бажаєте спостерігати, щоб бачити інформацію, яку виводить саме ця операція. Після цього ви можете зберегти журнал за допомогою пункту меню <menuchoice
+><guimenu
+>Файл</guimenu
+> <guimenuitem
+>Зберегти як...</guimenuitem
+></menuchoice
+>, як це було описано раніше. </para>
+
+<para
+>Очищення журналу призводить до вилучення вмісту всіх попередніх вікон. Якщо ви невпевнені щодо того, чи знадобиться вам поточний вміст пізніше, ви можете зберегти його до файла (див. вище) до очищення. </para>
+</sect2>
+</sect1>
+
+</chapter>
+
+<chapter id="configure"
+><title
+>Як налаштувати &kwatchgnupg;</title>
+
+<para
+>Щоб налаштувати &kwatchgnupg;, скористайтеся пунктом меню <menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати &kwatchgnupg;</guimenuitem
+></menuchoice
+> або відповідною піктограмою на панелі інструментів. Діалогове вікно налаштування &kwatchgnupg; поділено на дві частини, кожну з яких буде описано нижче. </para>
+
+<sect1 id="configure.dialog"
+><title
+>Діалогове вікно параметрів</title>
+
+<sect2 id="configure.watchgnupg"
+><title
+>Параметри &watchgnupg;</title>
+
+<para
+>&watchgnupg; — це процес, який спостерігає за активністю гнізда журналювання і форматує рядки так, як їх показано у полі перегляду тексту &kwatchgnupg;. Параметри у цій групі передаються серверу за допомогою механізму &gpgconf;. </para>
+
+<para
+>У полі <guilabel
+>Файл програми</guilabel
+> міститься шлях до програми &watchgnupg;. Якщо &watchgnupg; встановлено до теки, яку описано у системній змінній <varname
+>$PATH</varname
+>, ви можете не змінювати типового значення, <userinput
+>watchgnupg</userinput
+>. Якщо ж &watchgnupg; встановлено до теки, якої немає у системній змінній <varname
+>$PATH</varname
+>, або якщо у вашій системі встановлено декілька версій програми, введіть до цього поля повну назву до файла програми &watchgnupg;. </para>
+
+<para
+>У полі <guilabel
+>Сокет</guilabel
+> міститься запис про сокет, за яким має стежити &watchgnupg;. Зміна цього значення стосуватиметься всіх модулів сервера &gnupg;, які використовують &gpgconf;, отже, вам не потрібно змінювати цей параметр, якщо для ваших файлів налаштування &gnupg; встановлено інший параметр <varname
+>log-file</varname
+>. </para>
+
+<para
+><guilabel
+>Стандартний рівень запису журналу</guilabel
+> визначає об’єм відомостей, які повертатимуть модулі сервера. Щоб дізнатися про те, які відомості буде виведено на кожному з рівнів, перегляньте документацію з &watchgnupg;. Зміна цього значення стосуватиметься всіх модулів сервера &gnupg;, які використовують &gpgconf;, отже, вам не потрібно змінювати цей параметр, якщо для ваших файлів налаштування &gnupg; встановлено інший параметр <varname
+>log-file</varname
+>. </para>
+
+</sect2>
+
+<sect2 id="configure.logwindow"
+><title
+>Параметри вікна журналу</title>
+
+<para
+>Тут ви можете налаштувати розмір буфера історії, тобто кількість рядків, які зберігатиме у пам’яті програма. Якщо з часу останнього очищення журналу сервер &gnupg; виведе кількість рядків, більшу за вказану тут, найстаріші рядки будуть вилучатися, аж доки у буфері не залишиться достатньо місця для нових рядків. </para>
+
+<para
+>Ви можете вимкнути обмеження на розмір журналу натисканням кнопки <guibutton
+>Не обмежувати</guibutton
+>. Але зауважте, що зі зростанням кількості показаних рядків зростатиме і споживання пам’яті програмою &kwatchgnupg;. Якщо ви не обмежуватимете розмір історії, вам слід запускати &kwatchgnupg; лише для нетривалих операцій або регулярно очищувати історію вручну. </para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Подяки і ліцензія</title>
+
+<para
+>Авторські права на &kwatchgnupg; належать Klar&auml;lvdalens Datakonsult AB, ©2004</para>
+
+<para
+>Авторські права на документацію до програми належать Klar&auml;lvdalens Datakonsult AB, ©2004</para>
+
+<itemizedlist>
+<title
+>Учасники розробки</title>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

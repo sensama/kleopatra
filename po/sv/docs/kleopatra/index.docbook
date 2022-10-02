@@ -1,0 +1,4016 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>Handbok &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Utvecklare</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Utvecklare</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Utvecklare</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Utvecklare</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Utvecklare</contrib>
+</othercredit>
+
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>2013-07-04</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; är ett verktyg för att hantera <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+>- och <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+>-certifikat. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>certifikat</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Inledning</title>
+
+<para
+>&kleopatra; är ett &kde;-verktyg för att hantera <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+>- och <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+>-certifikat i <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> och <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+>, samt för att hämta certifikat från &ldap; och andra certifikatservrar.</para>
+
+<para
+>&kleopatra; kan startas från &kmail;s meny <menuchoice
+><guimenu
+>Verktyg</guimenu
+> <guimenuitem
+>Certifikathantering</guimenuitem
+></menuchoice
+>, samt från kommandoraden. Det körbara programmet &kleopatra; heter <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Programmet är uppkallat efter Kleopatra, en berömd kvinnlig egyptisk farao som levde samtidigt som Julius Caesar, med vilken hon hade ett barn, Caesarion, dock inte erkänd som hans arvinge.</para>
+
+<para
+>Namnet valdes eftersom programmet har sitt ursprung i <ulink url="https://www.gnupg.org/aegypten2/"
+>projektet &Auml;gypten</ulink
+> (&Auml;gypten är tyska för Egypten). &kleopatra; stavas också på samma sätt på tyska.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Huvudfunktioner</title>
+
+<sect1 id="functions-view"
+><title
+>Visa den lokala nyckellådan</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>&kleopatra;s huvudfunktion är att visa och redigera innehållet i den lokala nyckellådan, vilket liknar konceptet i &gpg; med nyckelringar, även om man inte ska läsa ut för mycket ur jämförelsen.</para>
+
+<para
+>Huvudfönstret är uppdelat i ett stort område för att lista nycklar som består av flera flikar, menyraden och <link linkend="functions-search"
+>sökraden</link
+> längst upp, och en statusrad längst ner.</para>
+
+<para
+>Varje rad i nyckellistan motsvarar ett certifikat, som identifieras av det så kallade <guilabel
+>Subjekt &dn;</guilabel
+>. &dn; är en förkortning som betyder <quote
+>Distinguished Name</quote
+> (särskiljande namn), en hierarkisk identifiering som i mycket liknar en sökväg i filsystemet med en ovanlig syntax, som är avsett att unikt identifiera ett givet certifikat i hela världen.</para>
+
+<para
+>För att vara giltiga, och sålunda användbara, måste (öppna) nycklar vara signerade av en certifikatutfärdare (&ca;). Signaturerna kallas certifikat, men oftast används begreppen <quote
+>certifikat</quote
+> och <quote
+>(öppen) nyckel</quote
+> omväxlande, och vi skiljer inte heller på dem i den här handboken, utom när det anges explicit.</para>
+
+<para
+>Certifikatutfärdare måste i sin tur vara signerade av andra certifikatutfärdare för att vara giltiga. Det här måste förstås sluta någonstans, så certifikatutfärdare på toppnivå (rotcertifikatutfärdare) signerar sin nyckel själv (det kallas en självsignatur). Rotcertifikat måste därför tilldelas giltighet (vanligen kallad pålitlighet) för hand, dvs. efter att ha jämfört fingeravtrycket med det som finns på certifikatutfärdarens webbplats. Det görs typiskt av systemadministratören eller leverantören av en produkt som använder certifikat, men kan också göras av användaren via &gpgsm;s kommandoradsgränssnitt.</para>
+
+<para
+>För att se vilka certifikat som är rotcertifikat, byter du till hierarkiskt läge för nyckellistan med <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Du kan se detaljinformation för vilket certifikat som helst genom att dubbelklicka på det, eller använda <xref linkend="view-certificate-details"/>. Då öppnas en dialogruta som visar de vanligaste egenskaperna hos certifikatet, dess certifikatkedja (dvs. kedjan av utfärdare upp till rotcertifikatutfärdaren), och en utskrift av all information som gränssnittet kan extrahera från certifikatet.</para>
+
+<para
+>Om du ändrar nyckellådan utan att använda &kleopatra; (t.ex. genom att använda kommandoradgränssnittet i &gpgsm;), kan du uppdatera vyn med <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Söka efter och importera certifikat</title>
+
+<para
+>För det mesta skaffar du nya certifikat genom att kontrollera signaturer i e-post, eftersom certifikat oftast är inbäddade i signaturerna som skapats med dem. Om du dock behöver skicka ett brev till någon som du ännu inte har haft kontakt med, måste du hämta certifikatet från en &ldap;-katalog (även om <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>&gpgsm;</ulink
+> kan göra det automatiskt), eller från en fil. Du måste också importera ditt eget certifikat efter att ha tagit emot certifikatutfärdarens svar på din certifikatbegäran.</para>
+
+<para
+>För att söka efter ett certifikat i en &ldap;-katalog, välj <menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Slå upp certifikat på server</guimenuitem
+></menuchoice
+> och skriv in någon text (t.ex. namnet på personen vars certifikat du vill ha) med redigeringsraden i dialogrutan <guilabel
+>Nyckelserver certifikatuppslagning</guilabel
+>, och klicka därefter på knappen <guilabel
+>Sök</guilabel
+>. Resultaten visas i nyckellistan under sökraden, där du kan markera certifikat för att titta på dem genom att klicka på knappen <guibutton
+>Detaljinformation</guibutton
+> eller ladda ner dem till den lokala nyckellådan med <guibutton
+>Importera</guibutton
+>.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Du kan ställa in listan med &ldap;-servrar som ska sökas i på sidan <link linkend="configuration-directory-services"
+><guilabel
+>Katalogtjänster</guilabel
+></link
+> i &kleopatra;s inställningsdialogruta.</para>
+
+<para
+>Om du tog emot certifikatet som en fil, försök med <xref linkend="file-import-certificates"/>. &gpgsm; måste förstå certifikatfilens format. Se handboken för &gpgsm; för en lista med filformat som stöds.</para>
+
+<para
+>Om du inte <link linkend="functions-newkey"
+>skapade ditt eget nyckelpar med &gpgsm;</link
+>, måste du också manuellt importera den öppna nyckeln (och den hemliga nyckeln) från PKCS#12-filen du fick från certifikatutfärdaren. Du kan göra det från kommandoraden med <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>filnamn</filename
+></command
+></userinput
+></link
+> eller inne i &kleopatra; med <xref linkend="file-import-certificates"/>, precis som du skulle göra för <quote
+>normala</quote
+> certifikat.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Skapa nya nyckelpar</title>
+
+<para
+>Menyalternativet <xref linkend="file-new-key-pair"/> startar <guilabel
+>Guide för att skapa nyckelpar</guilabel
+>, som leder dig genom ett antal steg för att skapa en begäran om ett certifikat.</para>
+<para
+>Så fort du är klar med ett steg i guiden, tryck på <guibutton
+>Nästa</guibutton
+> för att gå till nästa steg (eller <guibutton
+>Tillbaka</guibutton
+> för att kontrollera steg som redan är färdiga). Skapandet av begäran om certifikat kan avbrytas när som helst genom att trycka på knappen <guibutton
+>Avbryt</guibutton
+>. </para>
+<para
+>Välj vilken typ av certifikat du vill skapa på guidens första sida:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Skapa ett personligt OpenPGP-nyckelpar</guilabel
+></term>
+<listitem
+><para
+>&openpgp;-nyckelpar skapas lokalt, och certifieras av dina vänner och bekanta. Det finns ingen central certifikatutfärdare, istället skapar varje individ ett personligt pålitlighetsnät genom att certifiera andra användares nyckelpar med sitt eget certifikat.</para>
+<para
+>Du måste skriva in <guilabel
+>Namn</guilabel
+>, <guilabel
+>E-post</guilabel
+> och en valfri <guilabel
+>Kommentar</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Skapa ett personligt X.509-nyckelpar och en personlig certifikatbegäran</guilabel
+></term>
+<listitem>
+<para
+>&x509;-nyckelpar skapas lokalt, men certifieras centralt av en certifikatutfärdare (&ca;). En &ca; kan certifiera andra certifikatutfärdare, vilket skapar en central hierarkiskt pålitlighetskedja.</para>
+<para
+>Nästa steget i guiden är att skriva in din personliga data för certifikatet. Fälten som ska fyllas i är: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Vanligt namn (CN):</guilabel
+> Ditt namn.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>E-postadress (EMAIL):</guilabel
+> Din e-postadress. Försäkra dig om att du skriver in den rätt &mdash; det är adressen som alla skickar brev till när de använder ditt certifikat.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Plats (L):</guilabel
+> Staden eller kommunen du bor i.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Avdelning (OU):</guilabel
+> Enheten i organisationen där du finns (till exempel "Logistik").</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organisation (O):</guilabel
+> Organisationen du representerar (t.ex. företaget du arbetar på).</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Landskod (C):</guilabel
+> Koden med två bokstäver för landet du bor i (till exempel "SE").</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>Nästa steg i guiden är att välja om certifikatet ska lagras i en fil eller skickas direkt till certifikatutfärdaren. Du måste ange filnamn eller e-postadress dit begäran om certifikatet ska skickas. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Återkalla en nyckel</title>
+
+<para
+>Ett nyckelpar som har utgått kan återställas till användbart skick under förutsättning att du har tillgång till den privata nyckeln och lösenordsfrasen. För att göra en nyckel oanvändbar på ett tillförlitligt sätt måste den återkallas. Att återkalla görs genom att lägga till en särskild återkallelsesignatur i nyckeln.</para>
+
+<para
+>Denna återkallelsesignatur lagras den i en separat fil. Filen kan senare importeras till nyckelringen och ansluts då till nyckeln och gör den oanvändbar. Observera att inget lösenord krävs för att importera signaturen till nyckeln. Därför bör återkallelsesignaturen lagras på ett säkert ställe, oftast ett som skiljer sig från platsen där nyckelparet lagras. Ett gott råd är att använda en plats som kan kopplas från datorn, genom att antingen kopiera den till en extern lagringsenhet som en USB-sticka eller skriva ut den.</para>
+
+<para
+>&kleopatra; tillhandahåller inte en funktion för att skapa en sådan återkallelsesignatur när som helst, men du kan göra det med &kde;-programmet &kgpg; genom att välja <menuchoice
+><guimenu
+>Nycklar</guimenu
+> <guimenuitem
+>Återkalla nyckel</guimenuitem
+></menuchoice
+> och valfritt importera återkallelsesignaturen till din nyckelring omedelbart.</para>
+
+<para
+>Ett alternativt sätt att skapa ett återkallelsecertifikat är att använda &gpg; direkt från kommandoraden: <userinput
+>gpg --output <replaceable
+>återkallelsecertifikat</replaceable
+>.asc --gen-revoke <replaceable
+>nyckel</replaceable
+></userinput
+>. Argumentet <replaceable
+>nyckel</replaceable
+> måste vara en nyckelspecifikation, antingen nyckel-id för ditt primära nyckelpar eller någon del av ett användar-id som identifierar ditt nyckelpar.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Menyreferens</title>
+
+<sect1 id="menufile"
+><title
+>Menyn Arkiv</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Nytt certifikat...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Skapar ett nytt nyckelpar (öppen och hemlig)</action
+> och låter dig skicka den öppna delen till en certifikatutfärdare (&ca;) för signering. Det resulterande certifikatet skickas sedan tillbaka till dig, eller lagras på en &ldap;-server så att du kan ladda ner det till din lokala nyckelserver, där du kan använda den för att signera och avkoda e-post.</para>
+
+<para
+>Det här arbetssättet kallas <quote
+>decentraliserad nyckelframtagning</quote
+>, eftersom alla nycklar skapas lokalt. &kleopatra; (och &gpgsm;) stöder inte <quote
+>centraliserad nyckelframtagning</quote
+> direkt, men du kan importera nyckelknippan med öppen och hemlig nyckel som du tog emot från certifikatutfärdaren med PKCS#12-format via <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Slå upp certifikat på server...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Söker efter, och importerar certifikat från certifikatservrar till den lokala nyckellådan.</action
+> Se <xref linkend="functions-search"/> för detaljinformation. </para>
+            <para
+>Nyckelservrar måste vara inställda för att det ska fungera. Se <xref linkend="configuration-directory-services"/> för mer information. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Importera certifikat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Importerar certifikat och/eller hemliga nycklar från filer till den lokala nyckellådan.</action
+> Se <xref linkend="functions-search"/> för detaljinformation. </para>
+            <para
+>Certifikatfilens format ska vara ett som kan förstås av &gpgsm;/&gpgsm;. Se manualen för &gpgsm; och &gpg; för en lista av format som stöds. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Exportera certifikat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporterar markerade certifikat till en fil.</action>
+            </para>
+            <para
+>Filnamnsändelsen som väljes för exportfilen bestämmer exportfilens format: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>För &openpgp;-certifikat, ger <filename class="extension"
+>gpg</filename
+> och <filename class="extension"
+>pgp</filename
+> en binärfil, medan <filename class="extension"
+>asc</filename
+> ger en &ascii;-bepansrad fil. </para>
+              </listitem>
+              <listitem>
+                <para
+>För &smime; certifikat, ger <filename class="extension"
+>der</filename
+> en binär, &der;-kodad fil, medan <filename class="extension"
+>pem</filename
+> ger en &ascii;-bepansrad fil. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Om inte flera certifikat är markerade, föreslår &kleopatra; <filename
+><replaceable
+>fingeravtryck</replaceable
+>.{asc,pem}</filename
+> som exportfilnamn. </para>
+            <para
+>Funktionen är bara tillgänglig om ett eller flera certifikat har markerats. </para>
+            <note>
+              <para
+>Funktionen exporterar bara de öppna nycklarna, även om de hemliga nycklarna är tillgängliga. Använd <xref linkend="file-export-secret-key"/> för att exportera den hemliga nyckeln till en fil. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Exportera hemliga nycklar...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporterar den hemliga nyckeln till en fil.</action>
+            </para>
+            <para
+>Du kan välja filnamn för <guilabel
+>Utdatafil</guilabel
+>, och om en binär eller &ascii;-bepansrad exportfil ska skapas (<guilabel
+>ASCII-bepansrad</guilabel
+>), i dialogrutan som öppnas. Klicka därefter på katalogikonen på höger sida om textrutan <guilabel
+>Utdatafil</guilabel
+> och välj katalog och namn på den exporterade filen. Vid export av &smime; hemliga nycklar kan du också välja <guilabel
+>Lösenordsfrasens teckenuppsättning</guilabel
+>. Se beskrivningen av väljaren <option
+>--p12-charset&nbsp;<replaceable
+>teckenuppsättning</replaceable
+></option
+> i handboken för &gpgsm; för ytterligare detaljinformation. </para>
+            <para
+>Funktionen är bara tillgänglig om exakt ett certifikat har markerats, och certifikatets hemliga nyckel är tillgänglig. </para>
+            <warning>
+              <para
+>Det bör sällan vara nödvändigt att använda funktionen, och om det är det, måste det planeras noggrant. Planering av förflyttning av en hemlig nyckel omfattar bland annat val av transportmedia, och säker borttagning av nyckeldata på den gamla datorn, samt på transportmedia. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Exportera certifikat till server...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Publicera markerade certifikat på en nyckelserver</action
+> (bara &openpgp;). </para>
+            <para
+>Certifikatet skickas till certifikatservern inställd för &openpgp; (se&nbsp;<xref linkend="configuration-directory-services"/>), om det finns någon, annars till <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Funktionen är bara tillgänglig om åtminstone ett &openpgp; (och inget &smime;) certifikat har markerats. </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>När &openpgp;-certifikat har exporterats till en öppen katalogserver, är det nästan omöjligt att ta bort dem igen. Innan du exporterar ditt certifikat till en öppen katalogserver, försäkra dig om att du har skapat ett återkallelsecertifikat så att du kan återkalla certifikatet om det senare behövs. </para>
+            </note>
+            <note>
+              <para
+>De flesta öppna &openpgp; certifikatservrar synkroniserar certifikat mellan varandra, så det är rätt meningslöst att skicka till fler än en. </para>
+              <para
+>Det kan inträffa att en sökning på en certifikatserver inte ger något resultat, fastän du just har skickat ditt certifikat dit. Det beror på att de flesta adresser till öppna nyckelservrar använder roterande <acronym
+>DNS</acronym
+> för att balansera lasten mellan flera datorer. Dessa datorer synkroniseras med varandra, men oftast bara ungefär var 24:e timme. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Avkoda och verifiera filer...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Avkodar filer och/eller verifierar signaturer</action
+> för filer. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Signera och kryptera filer...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Signerar och/eller krypterar filer.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Stäng</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Stänger &kleopatra;s huvudfönster</action
+>. Det kan återställas från ikonen i systembrickan när som helst. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Arkiv</guimenu
+><guimenuitem
+>Avsluta</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Avslutar &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Menyn Visa</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+> </shortcut
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Visa igen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Uppdaterar certifikatlistan.</action>
+            </para>
+            <para
+>Att använda funktionen är oftast inte nödvändigt, eftersom &kleopatra; övervakar filsystemet efter ändringar och automatiskt uppdaterar certifikatlistan vid behov. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Esc</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Visa</guimenu
+><guimenuitem
+>Stoppa åtgärd</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Stoppar (avbryter) alla pågående åtgärder,</action
+> t.ex. en sökning, nyckellistning eller en nerladdning. </para>
+            <para
+>Funktionen är bara tillgänglig om åtminstone en åtgärd är aktiv. </para>
+            <note>
+              <para
+>På grund av begränsningar i gränssnitt, blockeras åtgärder på ett sådant sätt att den här funktionen inte kommer att kunna avbryta dem direkt, eller överhuvudtaget. </para>
+              <para
+>I sådana fall är det enda sättet att återställa ordningen att döda processerna &scdaemon;, &dirmngr;, &gpgsm; och &gpg;, i den ordningen, via operativsystemets verktyg (<command
+>top</command
+>, aktivitetshanterare, etc.), till blockeringen av åtgärden försvinner. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Certifikatinformation</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Visar detaljinformation om certifikatet som för närvarande är markerat.</action
+></para>
+
+<para
+>Funktionen är bara tillgänglig om exakt ett certifikat har markerats.</para>
+
+<para
+>Funktionen är också tillgänglig genom att direkt dubbelklicka på motsvarande objekt i listvyn.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Hierarkisk certifikatlista</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Byter mellan hierarkiskt och enkelt läge för certifikatlistan. </action
+></para>
+
+<para
+>I hierarkiskt läge ordnas certifikat enligt förhållandet utfärdare och subjekt, så det är enkelt att se vilken certifikathierarki som ett givet certifikat tillhör, men ett givet certifikat är svårare att hitta från början (även om du förstås kan använda <link linkend="functions-search"
+>sökraden</link
+>).</para>
+
+<para
+>I enkelt läge visas alla certifikat i en enkel lista, alfabetiskt sorterade. Ett givet certifikat är enkelt att hitta i detta läge, men det är inte direkt klart vilket rotcertifikat det tillhör.</para>
+
+            <para
+>Funktionen växlar hierarkiskt läge per flik, dvs. varje flik har sitt eget hierarkiska läge. Det är på detta vis så att man kan ha både en listning med enkelt och hierarkiskt läge, var och en under sin egen flik. </para>
+
+            <note>
+              <para
+>Hierarkisk visning är för närvarande bara implementerat för &smime; certifikat. Utvecklarna är inte överens om det rätta sättet att visa &openpgp; certifikat hierarkiskt (i huvudsak, <quote
+>överliggande certifikat lika med det signerat av utfärdaren</quote
+> eller <quote
+>överliggande certifikat lika med det signerat av användaren</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Expandera alla</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Expanderar alla listobjekt i certifikatlistans vy,</action
+> dvs. gör alla objekt synliga.</para>
+
+<para
+>Det här är normalt när hierarkiskt läge väljes för nyckellistan.</para>
+
+<para
+>Du kan förstås fortfarande expandera eller dra ihop varje enskild rad för sig.</para>
+
+<para
+>Funktionen är bara tillgänglig när <xref linkend="view-hierarchical-key-list"/> är på.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Visa</guimenu
+><guimenuitem
+>Dra ihop alla</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Drar ihop alla listobjekt i certifikatlistans vy,</action
+> dvs. döljer alla utom toppnivåobjekten.</para>
+
+<para
+>Du kan förstås fortfarande expandera eller dra ihop varje enskild rad för sig.</para>
+
+<para
+>Funktionen är bara tillgänglig när <xref linkend="view-hierarchical-key-list"/> är på.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Menyn Certifikat</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Ändra ägarens pålitlighet...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Ändrar ägarens pålitlighet för det markerade &openpgp; certifikatet.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Funktionen är bara tillgänglig när exakt ett &openpgp; certifikat är markerat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Lita på rotcertifikat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Markerar det här (&smime;) rotcertifikatet som pålitligt.</action>
+            </para>
+            <para
+>På ett sätt är det ekvivalent med <xref linkend="certificates-change-owner-trust"/> för &smime; rotcertifikat. Man kan dock bara välja mellan <quote
+>fullständig</quote
+> pålitlighet och <quote
+>lita aldrig på</quote
+>, enligt terminologin i &openpgp;. </para>
+            <note>
+              <para
+>Gränssnittet frågar om det importerade rotcertifikatet ska anses pålitligt när rotcertifikatet importeras (via &gpgagent;). Dock måste funktionen explicit aktiveras i gränssnittets inställning (<option
+>allow-mark-trusted</option
+> i <filename
+>gpg-agent.conf</filename
+>, eller antingen <menuchoice
+><guimenu
+>GnuPG-system</guimenu
+> <guisubmenu
+>GPG-agent</guisubmenu
+> <guimenuitem
+>Tillåt klienter att markera nycklar som "pålitliga"</guimenuitem
+></menuchoice
+> eller <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>S/MIME&nbsp;Validation</guimenu
+> <guimenuitem
+>Tillåt att rotcertifikat markeras som pålitliga</guimenuitem
+></menuchoice
+></link
+> under <xref linkend="configuration"/>). </para>
+              <para
+>Att aktivera funktionen i gränssnittet kan orsaka att dialogrutor från &pinentry; dyker upp vid olämpliga tillfällen (t.ex. när signaturer verifieras), och kan på så sätt blockera behandling av brev vid frånvaro. Av den orsaken, och eftersom det är önskvärt att kunna <emphasis
+>sluta lita på</emphasis
+> ett pålitligt rotcertifikat igen, tillåter &kleopatra; att pålitlighet ställs in manuellt. </para>
+            </note>
+            <warning>
+              <para
+>På grund av att stöd för funktionen saknas i gränssnittet, måste &kleopatra; arbeta direkt med &gpgsm; pålitlighetsdatabas (<filename
+>trustlist.txt</filename
+>). Försäkra dig om att inga andra krypteringsåtgärder pågår som skulle kunna tävla med &kleopatra; om att ändra databasen, när funktionen används. </para>
+            </warning>
+            <para
+>Funktionen är bara tillgänglig om exakt ett &smime; rotcertifikat har markerats, och certifikatet ännu inte är pålitligt. </para>
+            <para
+>Använd <xref linkend="certificates-distrust-root"/> för att ångra funktionen. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Lita inte på rotcertifikat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Markerar det här (&smime;) certifikatet som opålitligt.</action>
+            </para>
+            <para
+>Funktionen är bara tillgänglig om exakt ett &smime; rotcertifikat har markerats, och certifikatet för närvarande är pålitligt. </para>
+            <para
+>Använt för att ångra <xref linkend="certificates-trust-root"/>. Se det för detaljinformation. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Certifiera certifikat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Låter dig certifiera ett annat &openpgp; certifikat.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Funktionen är bara tillgänglig om exakt ett &openpgp; certifikat är markerat. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Ändra utgångsdatum...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Låter dig ändra ditt &openpgp; certifikats utgångsdatum.</action>
+            </para>
+            <para
+>Använd funktionen för att utöka livslängden hos dina &openpgp; certifikat, som alternativ till att antingen skapa nya, eller använda obegränsad livslängd (<quote
+>går aldrig ut</quote
+>). </para>
+            <para
+>Funktionen är bara tillgänglig om exakt ett &openpgp; certifikat är markerat, och den hemliga nyckeln är tillgänglig för certifikatet. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Ändra lösenordsfras...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Låter dig ändra din hemliga nyckels lösenordsfras.</action>
+            </para>
+            <para
+>Funktionen är bara tillgänglig om exakt ett certifikat är markerat, och den hemliga nyckeln är tillgänglig för certifikatet. Den kräver ett väldigt nytt gränssnitt, eftersom implementeringen har ändrats från att direkt anropa &gpg; och &gpgsm;, till en &gpgme;-baserad. </para>
+            <note>
+              <para
+>Av säkerhetsskäl efterfrågas både den gamla och den nya lösenodsfrasen av &pinentry;, en separat process. Beroende på plattformen du använder och kvaliteten hos implementeringen av &pinentry;, kan det inträffa att &pinentry;s fönster dyker upp i bakgrunden. Så om du väljer funktionen och ingenting händer, kontrollera operativsystemets aktivitetsfält ifall &pinentry;s fönster är öppet i bakgrunden. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Lägg till användar-id...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Låter dig lägga till ett nytt användar-id till ett &openpgp; certifikat.</action>
+            </para>
+            <para
+>Använd det här för att lägga till nya identiteter i ett befintligt certifikat, som alternativ till att skapa ett nytt nyckelpar. Ett &openpgp; användar-id har följande form: </para>
+            <programlisting
+><replaceable
+>Verkligt&nbsp;namn</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Kommentar</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>E-postadress</replaceable
+>&gt;</programlisting>
+            <para
+>I dialogrutan som dyker upp när funktionen väljes, frågar &kleopatra; dig om var och en av de tre parametrarna (<replaceable
+>Verkligt&nbsp;namn</replaceable
+>, <replaceable
+>Kommentar</replaceable
+> och <replaceable
+>E-postadress</replaceable
+>) separat, och visar resultatet i en förhandsgranskning. </para>
+            <note>
+              <para
+>Dessa parametrar lyder under samma administratörsbegränsningar som för nya certifikat. Se <xref linkend="functions-newkey"/> och <xref linkend="admin-certificate-request-wizard"/> för detaljinformation. </para>
+            </note>
+            <para
+>Funktionen är bara tillgänglig när exakt ett &openpgp; certifikat är markerat, och den hemliga nyckeln är tillgänglig för certifikatet. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Delete</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Ta bort</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Tar bort markerade certifikat</action
+> från den lokala nyckelringen. </para>
+            <para
+>Använd funktionen för att ta bort oanvända nycklar från den lokala nyckellådan. Eftersom certifikat typiskt finns som bilagor i signerad e-post, kan dock verifikation av ett brev göra att nyckeln som just tagits bort dyker upp igen i den lokala nyckellådan. Därför är det troligen bäst att undvika att använda funktionen så mycket som möjligt. När du kommit vilse, använd <link linkend="functions-search"
+>sökraden</link
+> eller funktionen <xref linkend="view-hierarchical-key-list"/> för att återfå kontrollen över hela uppsättningen med certifikat. </para>
+            <warning>
+              <para
+>Det finns ett undantag till det ovanstående. När du tar bort ett av dina egna certifikat, tar du också bort den hemliga nyckeln tillsammans med det. Det medför att du inte kommer att kunna läsa tidigare meddelanden krypterade till dig med det här certifikatet, om du inte har en säkerhetskopia någonstans. </para>
+              <para
+>&kleopatra; varnar dig när du försöker ta bort en hemlig nyckel. </para>
+            </warning>
+            <para
+>På grund av &smime; certifkatens hierarkiska natur, tas alla underliggande certifikat också bort om du tar bort en &smime;-utfärdares certifikat (certifikatutfärdares certifikat).<footnote
+><para
+>Det är samma sak som i ett filsystem. När du tar bort en katalog, tar du också bort alla filer och kataloger i den.</para
+></footnote>
+            </para>
+            <para
+>Naturligtvis är funktionen bara tillgänglig om du markerat minst ett certifikat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Certifikat</guimenu
+><guimenuitem
+>Hämta innehåll i certifikat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Visar all information som &gpgsm; har om det markerade (&smime;) certifikatet.</action>
+            </para>
+            <para
+>Se beskrivningen av <option
+>--dump-key&nbsp;<replaceable
+>nyckel</replaceable
+></option
+> i handboken för &gpgsm; för detaljinformation om utmatningen. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Menyn Verktyg</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>GnuPG-loggvisning...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Startar <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, ett verktyg för att visa felsökningsutmatning från &gnupg;-programmen. Om signering, kryptering eller verifikation slutar fungera utan anledning, kan du kanske ta reda på varför genom att titta i loggen. </para>
+            <para
+>Funktionen är inte tillgänglig på &Windows;, eftersom de underliggande mekanismerna inte är implementerade i den plattformens gränssnitt. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Uppdatera OpenPGP-certifikat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Uppdaterar alla &openpgp; certifikat</action
+> genom att köra <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Efter att kommandot har gjorts färdigt med lyckat resultat, kommer din lokala nyckellåda motsvara de senaste ändringarna med avseende på giltighet hos &openpgp; certifikat. </para>
+            <para
+>Se anmärkningen under <xref linkend="certificates-refresh-x509"/> för några varningar. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Uppdatera X.509-certifikat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Uppdaterar alla &smime; certifikat</action
+> genom att köra <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Efter att kommandot har gjorts färdigt med lyckat resultat, kommer din lokala nyckellåda motsvara de senaste ändringarna med avseende på giltighet hos &smime; certifikat.. </para>
+            <note>
+              <para
+>Att uppdatera &x509;- eller &openpgp;-certifikat innebär att ladda ner alla certifikat och certifikatåterkallningslistor, för att kontrollera om någon av dem har återkallats under tiden. </para>
+              <para
+>Det kan orsaka kännbar påfrestning både på din egen och andras nätverksanslutning, och kan ta mer än en timme att göra färdigt, beroende på nätverksanslutning och antal certifikat att kontrollera. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Importera CRL från fil...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Låter dig manuellt importera certifikatåterkallningslistor från filer.</action>
+            </para>
+            <para
+>Normalt hanteras certifikatåterkallningslistor (&crl;:er) transparent av gränssnittet, men det kan ibland vara användbart att importera en &crl; manuellt till den lokala &crl;-cachen. </para>
+            <note>
+              <para
+>För att &crl;-import ska fungera, måste verktyget &dirmngr; finnas i sökvägen <envar
+>PATH</envar
+>. Om menyalternativet är inaktiverat, bör du kontakta systemadministratören och be dem installera &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Rensa CRL-cache</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Rensar &gpgsm;s &crl;-cache.</action
+></para>
+
+<para
+>dDu behöver troligen aldrig det här. Du kan tvinga en uppdatering av &crl;-cachen genom att istället markera alla certifikat och istället använda <xref linkend="certificates-refresh-x509"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Verktyg</guimenu
+><guimenuitem
+>Rensa CRL-cache</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Visar detaljinnehållet i &gpgsm;s &crl;-cache.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Menyn Inställningar</title>
+
+<para
+>&kleopatra; har &kde;:s vanliga meny <guimenu
+>Inställningar</guimenu
+> som beskrivs i <ulink url="help:/fundamentals/menus.html#menus-settings"
+>&kde;:s grunder</ulink
+>, med ytterligare ett alternativ:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Utför självtest</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Utför ett antal självtester och presenterar deras resultat.</action>
+            </para>
+            <para
+>Det här är samma uppsättning tester som normalt körs vid start. Om du inaktiverade självtester vid start, kan du aktivera dem igen här. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Menyn Fönster</title>
+<para
+>Menyn <guimenu
+>Fönster</guimenu
+> låter dig hantera flikarna. Genom att använda alternativen i menyn kan du byta namn på en flik, lägga till en ny flik, duplicera nuvarande flik, stänga nuvarande flik, och flytta nuvarande flik åt vänster eller höger.</para>
+
+<para
+>Genom att klicka med höger musknapp på en flik öppnas en sammanhangsberoende meny, där man också kan välja samma alternativ.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Menyn Hjälp</title>
+
+<para
+>&kleopatra; har &kde;:s vanliga <guimenu
+>Hjälp</guimenu
+>-meny som beskrivs i <ulink url="help:/fundamentals/menus.html#menus-help"
+>&kde;:s grunder</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Referens till kommandoradsväljare</title>
+
+<para
+>Bara väljare som är specifika för &kleopatra; listas här. Som med alla &kde;-program, kan du få en fullständig lista med väljare genom att ge kommandot <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Plats för uttaget som UI-servern lyssnar på</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Kör bara UI-server, dölj huvudfönster</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>Använd &openpgp; för följande åtgärd</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>Använd CMS (&x509;, S/&MIME;) för följande åtgärd</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Anger en fil eller webbadress som ska användas för att importera certifikat (eller hemliga nycklar).</action
+></para>
+
+<para
+>Det här är motsvarigheten till <xref linkend="file-import-certificates"/> på kommandoraden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Kryptera fil(er)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Signera fil(er)</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Kryptera och/eller signera fil(er). Samma som <option
+>--sign-encrypt</option
+>, använd inte</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Avkoda fil(er)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Verifiera fil/signatur</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Avkoda och/eller verifiera fil(er)</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>Anpassa &kleopatra;</title>
+
+    <para
+>&kleopatra;s inställningsdialogruta kan kommas åt via <menuchoice
+><guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Anpassa &kleopatra;...</guimenuitem
+></menuchoice
+> </para>
+    <para
+>Var och en av dess sidor beskrivs i avsnitten nedan. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Anpassa Katalogtjänster</title>
+
+      <para
+>På den här sidan kan du ställa in vilka &ldap;-servrar som ska användas för sökningar efter &smime; certifikat, och vilka nyckelservrar som ska användas för sökningar efter &openpgp; certifikat. </para>
+      <note>
+        <para
+>Det är helt enkelt en mer användarvänlig version av samma inställningar som också finns i <xref linkend="configuration-gnupg-system"/>. Allt du kan ställa in här, kan du också ställa in där. </para>
+      </note>
+      <note>
+        <title
+>En anmärkning om proxy-inställningar</title>
+        <para
+>Proxyinställningar kan ställas in för &http; och &ldap; i <xref linkend="configuration-smime-validation"/>, men bara för &gpgsm;. För &gpg;, på grund av komplexiteten hos alternativen för nyckelservrar i &gpg; och avsaknad av riktigt stöd för dem i &gpgconf;, måste man för närvarande ändra inställningsfilen <filename
+>gpg.conf</filename
+> direkt. Se handboken för &gpg; för detaljinformation. &kleopatra; bevarar sådana inställningar, men tillåter inte ännu att de ändras i det grafiska gränssnittet. </para>
+      </note>
+      <para
+>Tabellen <guilabel
+>Katalogtjänster</guilabel
+> visar vilka servrar som för närvarande är inställda. Dubbelklicka på en cell i tabellen för att ändra de befintliga serverposternas parametrar. </para>
+      <para
+>Kolumnernas betydelse i tabellen är följande: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Schema</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Bestämmer nätverksprotokollet som används för att komma åt servern. Ofta använda metoder omfattar <guilabel
+>ldap</guilabel
+> (och dess syskon <guilabel
+>ldaps</guilabel
+>, säkrad med &ssl;) för &ldap;-servrar (vanligt protokoll för &smime;, det enda som stöds av &gpgsm;), och <guilabel
+>hkp</guilabel
+>, Horowitz nyckelserverprotkoll, nuförtiden oftast &http; nyckelserverprotkoll, ett &http;-baserat protokoll som i stort sett alla öppna &openpgp; nyckelservrar stöder. </para>
+            <para
+>Se manualen för &gpg; och &gpgsm; för en lista av metoder som stöds. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Servernamn</guilabel
+></term>
+          <listitem>
+            <para
+>Serverns domännamn, t.ex. <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Serverport</guilabel
+></term>
+          <listitem>
+            <para
+>Nätverksporten som servern lyssnar på. </para>
+            <para
+>Det här ändras automatiskt till standardporten när man ändrar <xref linkend="configuration-directory-services-scheme"/>, om det inte var inställt till något annat än en standardport från början. Om man ändrar standardport, och inte kan få tillbaka den, försök ställa in <xref linkend="configuration-directory-services-scheme"/> till <userinput
+>http</userinput
+> och <xref linkend="configuration-directory-services-server-port"/> till <userinput
+>80</userinput
+> (standardvärdet för &http;), och fortsätta därifrån. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Basdomännamn</guilabel
+></term>
+          <listitem>
+            <para
+>Basdomännamnet (bara för &ldap; och &ldaps;), dvs. roten för &ldap;-hierarkin att starta från. Den kallas ofta också <quote
+>sökroten</quote
+> eller <quote
+>sökbasen</quote
+>. </para>
+            <para
+>Den ser oftast ut som <userinput
+>c=de,o=Foo</userinput
+>, angiven som en del av &ldap; webbadressen. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Användarnamn</guilabel
+></term>
+          <listitem>
+            <para
+>Användarnamnet, om något finns, att använda för att logga in på servern. </para>
+            <para
+>Kolumnen visas bara om alternativet <guilabel
+>Visa användare och lösenordsinformation</guilabel
+> (under tabellen) är markerat. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Lösenord</guilabel
+></term>
+          <listitem>
+            <para
+>Lösenordet, om något finns, att använda för att logga in på servern. </para>
+            <para
+>Kolumnen visas bara om alternativet <guilabel
+>Visa användare och lösenordsinformation</guilabel
+> (under tabellen) är markerat. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Markera kolumnen om posten ska användas för &x509; (&smime;) certifikatsökningar. </para>
+            <para
+>Bara &ldap;- (och &ldaps;)-servrar stöds för &smime;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Markera kolumnen om posten ska användas för &openpgp; certifikatsökningar. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>Man kan ställa in så många &smime; (&x509;)-servrar som man vill, men bara en &openpgp;-server tillåts samtidigt. Det grafiska gränssnittet upprätthåller det. </para>
+      <para
+>Klicka på knappen <guibutton
+>Ny</guibutton
+> för att lägga till en ny server. Det duplicerar den markerade posten, om det finns någon, eller infogar annars en &openpgp; standardserver. Därefter kan man ställa in <xref linkend="configuration-directory-services-server-name"/>, <xref linkend="configuration-directory-services-server-port"/>, <xref linkend="configuration-directory-services-base-dn"/> samt de vanliga <xref linkend="configuration-directory-services-password"/> och <xref linkend="configuration-directory-services-user-name"/>, vilka båda bara behövs om servern kräver behörighetskontroll. </para>
+      <para
+>Använd <menuchoice
+><guimenu
+>Ny</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+> för att direkt infoga en post för &x509; certifkat, använd <menuchoice
+><guimenu
+>Ny</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> för &openpgp;. </para>
+      <para
+>För att ta bort en server från söklistan, markera den i listan och tryck därefter på knappen <guibutton
+>Ta bort</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>För att ställa in tidsgränsen för &ldap;, dvs. den maximala tiden som gränssnittet väntar på att en server ska svara, använd helt enkelt motsvarande inmatningsfält som heter <guilabel
+>LDAP-tidsgräns (minuter:sekunder)</guilabel
+>. </para>
+      <para
+>Om en av dina servrar har en stor databas, så att till och med rimliga sökningar som <userinput
+>Johansson</userinput
+> når <guilabel
+>maximalt antal objekt som returneras av en fråga</guilabel
+>, kanske du vill öka gränsen. Du kan enkelt ta reda på om du når gränsen under en sökning, eftersom en dialogruta som talar om för dig att resultatet har avkortats dyker upp, om det är fallet. </para>
+      <note>
+        <para
+>Vissa servrar kan införa egna begränsningar på antal objekt som returneras vid en fråga. Om det är fallet, resulterar inte en ökning av gränsen här att flera objekt returneras. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Anpassning av utseende</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>Anpassning av <guilabel
+>Verktygstips</guilabel
+></title>
+
+        <para
+>I huvudcertifikatlistan kan &kleopatra; visa information om ett certifikat i ett verktygstips. Informationen som visas är samma som under fliken <guilabel
+>Översikt</guilabel
+> i dialogrutan <guilabel
+>Certifikatinformation</guilabel
+>. Verktygstips kan dock begränsas att bara visa en delmängd av informationen för en mindre detaljerad upplevelse. </para>
+        <note>
+          <para
+><guilabel
+>Nyckel-ID</guilabel
+> visas <emphasis
+>alltid</emphasis
+>. Det görs för att försäkra att verktygstips för olika certifikat verkligen skiljer sig åt (det är särskilt viktigt om bara <xref linkend="tooltips-validity"/> har valts). </para>
+        </note>
+        <para
+>Man kan oberoende aktivera eller inaktivera följande informationsmängder: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Visa giltighet</guilabel
+></term>
+            <listitem>
+              <para
+>Visar information om ett certifikats giltighet: dess nuvarande status, utfärdarens domännamn (bara &smime;), utgångsdatum (om det finns något) och användningsflaggor för certifikatet. </para>
+              <para
+>Exempel: <programlisting
+><!--
+                   -->Certifikatet är för närvarande giltigt.
+<!--              -->Utfärdare:                 CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Giltighet:                   från 2009-08-25 10:42 till och med 2010-10-19 10:42
+<!--              -->Certifikatanvändning: Signering av e-post och filer, Kryptering av e-post och filer
+<!--              -->Nyckel-ID:                 DC9D9E43
+<!--              --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Visa ägarinformation</guilabel
+></term>
+            <listitem>
+              <para
+>Visar information om certifikatets ägare: ägar-DN (bara &dn;), </para>
+              <para
+>&openpgp; exempel: <programlisting
+><!--
+                  -->Användar-id:             Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->Nyckel-ID:               C6BF6664
+<!--              -->Ägarens pålitlighet:  fullständig<!--
+                  --></programlisting
+> &smime; exempel: <programlisting
+><!--
+                    -->Ägare:          CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->alias:            Gpg4winUserA@test.hq
+<!--              -->Nyckel-ID:     DC9D9E43<!--
+                    --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Visa teknisk detaljinformation</guilabel
+></term>
+            <listitem>
+              <para
+>Visar teknisk information om certifikatet: serienummer (bara &smime;), typ, fingeravtryck och lagrinsplats. </para>
+              <para
+>Exempel: <programlisting
+><!--
+                  -->Serienummer:     27
+<!--              -->Certifikattyp:      1,024-bit RSA (hemligt certifikat tillgängligt)
+<!--              -->Nyckel-ID:          DC9D9E43
+<!--              -->Fingeravtryck:    854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Lagrad:             på den här datorn<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>Anpassning av <guilabel
+>Certifikatkategorier</guilabel
+></title>
+
+        <para
+>&kleopatra; låter dig anpassa utseendet hos (kontrollerade) nycklar i listvyn. Det omfattar att visa en liten ikon, men du kan också påverka förgrundsfärgen (textfärgen) och bakgrundsfärgen, samt teckensnittet. </para>
+        <para
+>Varje certifikatkategori i listan tilldelas en uppsättning färger, en ikon (valfri) och ett teckensnitt som certifikat tillhörande kategorin visas med. Kategorilistan fungerar också som en förhandsgranskning av inställningarna. Kategorier kan fritt definieras av en administratör eller en avancerad användare, se <xref linkend="admin-key-filters"/> under <xref linkend="admin"/>. </para>
+        <para
+>För att ändra ikonen för en kategori, markera den i listan och tryck på knappen <guibutton
+>Ange ikon...</guibutton
+>. &kde;:s vanliga ikonvalsdialogruta visas, där du kan välja en befintlig ikon i &kde;s samling, eller läsa i en egen. </para>
+        <para
+>För att ta bort en ikon igen, måste du trycka på knappen <guibutton
+>Förvalt utseende</guibutton
+>. </para>
+        <para
+>För att ändra textfärgen (dvs. förgrundsfärgen) hos en kategori, markera den i listan och tryck på knappen <guibutton
+>Ange textfärg...</guibutton
+>. &kde;:s vanliga färgvalsdialogruta visas, där du kan välja färg eller skapa en ny färg. </para>
+        <para
+>Att ändra bakgrundsfärg görs på samma sätt, klicka bara på <guibutton
+>Ange bakgrundsfärg</guibutton
+> istället. </para>
+        <para
+>För att ändra teckensnitt har du egentligen två alternativ: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Ändra standardteckensnitt som används för alla listvyer i &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Använd ett eget teckensnitt. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>Det första alternativet har fördelen att teckensnittet följer vilken stil du än väljer i hela &kde;, medan den senare ger dig fullständig kontroll över teckensnittet som används. Valet är ditt. </para>
+        <para
+>För att använda det ändrade förvalda teckensnittet, markera kategorin i listan och markera eller avmarkera teckenegenskaperna <guilabel
+>kursiv</guilabel
+>, <guilabel
+>fetstil</guilabel
+> och/eller <guilabel
+>överstruken</guilabel
+>. Du ser omedelbart effekten på teckensnittet i kategorilistan. </para>
+        <para
+>Tryck på knappen <guibutton
+>Ange teckensnitt...</guibutton
+> för att använda ett eget teckensnitt. &kde;:s vanliga teckensnittsdialogruta visas, där du kan välja ett nytt teckensnitt. </para>
+        <note>
+          <para
+>Du kan fortfarande använda teckenegenskaper för att ändra det egna teckensnittet, precis som för att ändra förvalt teckensnitt. </para>
+        </note>
+        <para
+>För att byta tillbaka till förvalt teckensnitt, måste du trycka på knappen <guibutton
+>Förvalt utseende</guibutton
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>Anpassning av <guilabel
+>DN-egenskapsordning</guilabel
+></title>
+
+<para
+>Även om en DN är hierarkisk, definieras inte ordningen hos de enskilda komponenterna (som kallas relativa DN, RDN, eller DN egenskaper). Ordningen som egenskaperna visas är därför ett uttryck för personligt tycke eller företagspolicy, vilket är orsaken till att det kan ställas in i &kleopatra;.</para>
+
+<note
+><para
+>Den här inställningen gäller inte bara &kleopatra; utan alla program som använder &kleopatra; teknologin. När det här skrivs omfattar det &kleopatra;, KDE:s adressbok samt förstås &kleopatra; själv.</para
+></note>
+
+<para
+>Den här inställningssidan består i huvudsak av två listor, en för de kända egenskaperna (<guilabel
+>Tillgängliga egenskaper</guilabel
+>) och en som beskriver <guilabel
+>Nuvarande egenskapsordning</guilabel
+>.</para>
+
+<para
+>Båda listor innehåller poster som beskrivs av egenskapens korta form (t.ex. <guilabel
+>CN</guilabel
+>) samt den utskrivna formen (<guilabel
+>Vanligt namn</guilabel
+>).</para>
+
+<para
+>Listan <guilabel
+>Tillgängliga egenskaper</guilabel
+> är alltid sorterad i alfabetisk ordning, medan ordningen i listan <guilabel
+>Nuvarande egenskapsordning</guilabel
+> motsvarar den inställda DN-egenskapsordningen: den första egenskapen i listan är också den som visas först.</para>
+
+<para
+>Bara egenskaper som explicit listas i <guilabel
+>Nuvarande egenskapsordning</guilabel
+> visas över huvud taget. Övriga döljs normalt.</para>
+
+<para
+>Om platsmarkörposten <guilabel
+>_X_</guilabel
+> (<guilabel
+>Alla andra</guilabel
+>) dock finns i <quote
+>nuvarande</quote
+> listan, infogas alla egenskaper som inte listas (vare sig de är kända eller inte) på platsen <guilabel
+>_X_</guilabel
+>, i sin ursprungliga relativa ordning.</para>
+
+<para
+>Ett litet exempel hjälper till att klargöra detta:</para>
+
+<informalexample>
+<para
+>Givet DN</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>förvald egenskapsordning för <quote
+>CN, L, _X_, OU, O, C</quote
+> ger följande formaterade DN:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+>medan <quote
+>CN, L, OU, O, C</quote
+> ger</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>För att lägga till en egenskap i listan med egenskapsordning, markera den i listan <guilabel
+>Tillgängliga egenskaper</guilabel
+>, och tryck på knappen <guilabel
+>Lägg till i nuvarande egenskapsordning</guilabel
+>.</para>
+
+<para
+>För att ta bort en egenskap från listan med egenskapsordning, markera den i listan <guilabel
+>Nuvarande egenskapsordning</guilabel
+>, och tryck på knappen <guilabel
+>Ta bort från nuvarande egenskapsordning</guilabel
+>.</para>
+
+<para
+>För att bara flytta en egenskap till början (eller slutet), markera den i listan <guilabel
+>Nuvarande egenskapsordning</guilabel
+>, och tryck på knappen <guilabel
+>Flytta längst upp</guilabel
+> (eller <guilabel
+>Flytta längst ner</guilabel
+>).</para>
+
+<para
+>För att bara flytta en egenskap uppåt (eller neråt) ett steg, markera den i listan <guilabel
+>Nuvarande egenskapsordning</guilabel
+>, och tryck på knappen <guilabel
+>Flytta upp ett steg</guilabel
+> (eller <guilabel
+>Flytta ner ett steg</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Anpassning av krypteringsåtgärder</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>Anpassning av <guilabel
+>E-poståtgärder</guilabel
+></title>
+
+        <para
+>Här kan man ställa in vissa aspekter av e-postanvändningen för &kleopatra;s &uiserver;. För närvarande kan man bara anpassa om <quote
+>snabbläge</quote
+> används för att antingen signera eller kryptera e-post eller inte. </para>
+        <para
+>När <quote
+>Snabbläge</quote
+> är aktiverat visas ingen dialogruta när brev signeras, eller krypteras, om det inte finns en konflikt som behöver lösas upp manuellt. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>Anpassning av <guilabel
+>Filåtgärder</guilabel
+></title>
+
+        <para
+>Här kan man ställa in vissa aspekter av filåtgärder för &kleopatra;s &uiserver;. För närvarande kan man bara välja checksummeringsprogrammet att använda för <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>Använd <guilabel
+>Program för checksummering att använda</guilabel
+> för att välja vilket av de inställda checksummeringsprogrammen som ska användas när checksummeringsfiler skapas. </para>
+        <para
+>När checksummor verifieras, hittas programmet att använda automatiskt baserat på de funna checksummeringsfilernas namn. </para>
+        <note>
+          <para
+>Administratörer och avancerade användare kan helt och hållet definiera vilka checksummeringsprogram som ska vara tillgängliga i &kleopatra; via så kallade <quote
+>checksummeringsdefinitioner</quote
+> i inställningsfilen. Se <xref linkend="admin-checksum-definitions"/> i <xref linkend="admin"/> för detaljinformation. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Anpassning av aspekter rörande S/&MIME;-validering</title>
+
+      <para
+>På den här sidan kan man ställa in vissa aspekter av valideringen av &smime; certifikat. </para>
+      <note>
+        <para
+>Till största delen är det helt enkelt en mer användarvänlig version av samma inställningar som också finns i <xref linkend="configuration-gnupg-system"/>. Allt du kan ställa in här, kan du också ställa in där, med undantag av <xref linkend="configuration-smime-validation-refresh-interval"/>, som är specifik för &kleopatra;. </para>
+      </note>
+      <para
+>Alternativens betydelse är följande: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Anpassning av intervall mellan certifikatkontroller</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Kontrollera certifikatgiltighet var <replaceable
+>n:te</replaceable
+> timma</guilabel
+></term>
+            <listitem>
+              <para
+>Alternativet aktiverar periodisk kontroll av certifikatens giltighet. Man kan också välja intervall mellan kontroller (i timmar). Effekten av periodisk kontroll är samma som <xref linkend="view-redisplay"/>. Det finns ingen möjlighet att schemalägga <xref linkend="certificates-refresh-openpgp"/> eller <xref linkend="certificates-refresh-x509"/> periodiskt. </para>
+              <note>
+                <para
+>Validering utförs implicit så fort viktigare filer i <filename
+>~/.gnupg</filename
+> ändras. Alternativet påverkar därför bara externa faktorer rörande certifikatens giltighet, precis som <xref linkend="certificates-refresh-openpgp"/> och <xref linkend="certificates-refresh-x509"/>. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Anpassning av valideringsmetod</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Validera certifikat med CRL:er</guilabel
+></term>
+            <listitem>
+              <para
+>Om alternativet väljes, valideras &smime; certifikat genom att använda certifikatåterkallningslistor (&crl;:er). </para>
+              <para
+>Se <xref linkend="configuration-smime-validation-use-ocsp"/> för ett alternativt sätt att kontrollera certifkatens giltighet. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Direktvalidera certifikat (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Om alternativet är markerat, valideras &smime; certifikat direkt med &ocsp; (Online Certificates Status Protocol). </para>
+              <warning>
+                <para
+>När den här metoden är vald, skickas en begäran till certifikatutfärdarens server mer eller mindre varje gång man skickar eller tar emot ett krypterat brev, vilket sålunda i teorin låter certifikatutfärdaren spåra vem man (exempelvis) utbyter brev med. </para>
+              </warning>
+              <para
+>För att använda metoden måste man skriva in webbadressen för &ocsp; besvararen i <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Se <xref linkend="configuration-smime-validation-use-ocsp"/> för ett mer traditionellt sätt att kontrollera certifikatens giltighet, som inte läcker information om vem du utbyter brev med. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>Webbadress för OCSP-besvarare</guilabel
+></term>
+            <listitem>
+              <para
+>Skriv in adressen till servern för direktvalidering av certifikat (&ocsp; besvararen). Webbadressen börjar vanligtvis med <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Signatur för OCSP-besvarare</guilabel
+></term>
+            <listitem>
+              <para
+>Välj certifikatet som &ocsp;-servern signerar sina svar med här. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Ignorera tjänstwebbadress för certifikat</guilabel
+></term>
+            <listitem>
+              <para
+>Varje &smime; certifikat innehåller oftast webbadressen till utfärdarens &ocsp;-besvarare (<xref linkend="certificates-dump-certificate"/> avslöjar om ett givet certifikat innehåller den). </para>
+              <para
+>Att markera alternativet gör att &gpgsm; ignorerar dessa webbadresser och bara använder den som är inställd ovan. </para>
+              <para
+>Använd det för att t.ex. tvinga att en företagsomfattande &ocsp;-proxy används. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Anpassning av valideringsalternativ</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Kontrollera inte certifikatpolicy</guilabel
+></term>
+            <listitem>
+              <para
+>Normalt använder &gpgsm; filen <filename
+>~/.gnupg/policies.txt</filename
+> för att kontrollera om en certifikatpolicy är tillåten. Om alternativet är markerat kontrolleras inte policyn. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>Konsultera aldrig en CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Om det här alternativet är markerat, används certifikatåterkallningslistor aldrig för att validera &smime; certifikat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Tillåt att rotcertifikat markeras som pålitliga</guilabel
+></term>
+            <listitem>
+            <para
+>Om alternativet är markerat när rotcertifikat från certifikatutfärdaren importeras, blir du tillfrågad om att bekräfta dess fingeravtryck och tillstånd vare sig du anser att rotcertifikatet är pålitligt eller inte. </para>
+              <para
+>Ett rotcertifikat måste vara pålitligt innan de certifikat som det certifierar kan anses pålitliga, men att lättvindligt tillåta pålitliga rotcertifikat i din certifikatlagring, underminerar systemets säkerhet. </para>
+              <note>
+                <para
+>Att aktivera funktionen i gränssnittet kan orsaka att dialogrutor från &pinentry; dyker upp vid olämpliga tillfällen (t.ex. när signaturer verifieras), och kan på så sätt blockera behandling av brev vid frånvaro. Av den orsaken, och eftersom det är önskvärt att kunna <emphasis
+>sluta lita på</emphasis
+> ett pålitligt rotcertifikat igen, tillåter &kleopatra; att pålitlighet ställs in manuellt genom att använda <xref linkend="certificates-trust-root"/> och <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Inställningen här påverkar inte &kleopatra;s funktion. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Hämta saknade utfärdarcertifikat</guilabel
+></term>
+            <listitem>
+              <para
+>Om det här alternativet är markerat, hämtas saknade utgivarcertifikat om nödvändigt (detta gäller båda valideringsmetoderna, &crl;:er och &ocsp;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Anpassning av alternativ för &http;-begäran</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>Utför inte någon HTTP-begäran</guilabel
+></term>
+            <listitem>
+              <para
+>Inaktiverar användning av &http; för &smime; helt och hållet. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>Ignorera HTTP CRL-distributionsställe för certifikat</guilabel
+></term>
+            <listitem>
+              <para
+>Vid sökning efter platsen för en &crl;, innehåller certifikatet som ska testas oftast poster med så kallade <quote
+>&crl;-distributionsställen</quote
+> (<acronym
+>DS</acronym
+>) vilka är webbadresser som beskriver sättet att komma åt :en &crl;. Den första <acronym
+>DS</acronym
+>-posten som hittas används. </para>
+              <para
+>Med det här alternativet ignoreras alla poster som använder &http;-metoden vid sökning efter en lämplig <acronym
+>DS</acronym
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Använd systemets HTTP-proxy</guilabel
+></term>
+            <listitem>
+              <para
+>Om det här alternativet markeras, används värdet på &http;-proxyn som visas till höger (som kommer från miljövariabeln <envar
+>http_proxy</envar
+>) för varje &http;-begäran. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Använd denna proxy för HTTP-begäran</guilabel
+></term>
+            <listitem>
+              <para
+>Om ingen systemproxy är inställd, eller om du måste använda en annan proxy för &gpgsm;, kan du skriva in dess plats här. </para>
+              <para
+>Den kommer att användas för varje &HTTP;-begäran som har med S/&MIME; att göra. </para>
+              <para
+>Syntaxen är <userinput
+><replaceable
+>värddator</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>, t.ex. <userinput
+>minproxy.någonstans.se:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Anpassning av alternativ för &ldap;-begäran</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>Utför inte någon LDAP-begäran</guilabel
+></term>
+            <listitem>
+              <para
+>Inaktivera användning av &ldap; för &smime; helt och hållet. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>Ignorera LDAP CRL-distributionsställe för certifikat</guilabel
+></term>
+            <listitem>
+              <para
+>Vid sökning efter platsen för en &crl;, innehåller certifikatet som ska testas oftast poster med så kallade "&crl;-distributionsställen" (<acronym
+>DS</acronym
+>) vilka är webbadresser som beskriver sättet att komma åt &crl;:en. Den första <acronym
+>DS</acronym
+>-posten som hittas används. </para>
+              <para
+> Med det här alternativet ignoreras alla poster som använder &ldap;-metoden vid sökning efter en lämplig <acronym
+>DS</acronym
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Huvudvärddator för LDAP-begäran</guilabel
+></term>
+            <listitem>
+              <para
+>Att skriva in en &ldap;-server här gör att varje &ldap;-begäran går först till denna server. Närmare bestämt överskrider inställningen alla specifika <replaceable
+>host</replaceable
+> och <replaceable
+>port</replaceable
+> i en &ldap;-webbadress, och används också om <replaceable
+>host</replaceable
+> och <replaceable
+>port</replaceable
+> har utelämnats från webbadressen. </para>
+              <para
+>Andra &ldap;-servrar används bara om anslutningen till <quote
+>proxyservern</quote
+> misslyckas. Syntaxen är <userinput
+><replaceable
+>värddator</replaceable
+></userinput
+> eller <userinput
+><replaceable
+>värddator</replaceable
+><literal
+>:</literal
+><replaceable
+>port</replaceable
+></userinput
+>. Om <replaceable
+>port</replaceable
+> utelämnas, används port 389 (&ldap;s standardport). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Anpassning av &gnupg;-systemet</title>
+
+      <para
+>Den här delen av dialogrutan skapas automatiskt av utdata från <command
+>gpgconf <option
+>--list-components</option
+></command
+> och för varje <replaceable
+>komponent</replaceable
+> som ovanstående kommando returnerar, utdata från <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>komponent</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>De mest användbara av dessa alternativ har duplicerats som separata sidor i &kleopatra;s inställningsdialogruta. Se <xref linkend="configuration-directory-services"/> och <xref linkend="configuration-smime-validation"/>, de två dialogrutorna som innehåller utvalda alternativ från den här delen av dialogrutan. </para>
+      </note>
+      <para
+>Det exakta innehållet i den här delen av dialogrutan beror på versionen av &gnupg;-gränssnittet som är installerat, och möjligtvis plattformen som används. Sålunda beskriver vi bara dialogrutans allmänna utläggning, inklusive avbildningen från alternativ i &gpgconf; till det grafiska gränssnittets kontroller i &kleopatra;. </para>
+      <para
+>&gpgconf; returnerar inställningsinformation för flera komponenter, inne i varje komponent är enskilda alternativ kombinerade i grupper. </para>
+      <para
+>&kleopatra; visar en flik per komponent rapporterad av &gpgconf;. Grupper inleds med en horisontell linje som visar gruppnamnet som returmeras från &gpgconf;. </para>
+      <para
+>Varje alternativ i &gpgconf; har en typ. Förutom vissa välkända alternativ som &kleopatra; tar om hand med särskilda kontroller för en bättre användarupplevelse, är avbildningen mellan typer i &gpgconf; och kontroller i &kleopatra; den följande: </para>
+      <table id="table-gpgconf-types">
+	<title
+>Avbildning från typer i &gpgconf; till grafiska kontroller</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>typ i &gpgconf;</entry>
+              <entry namest="lists" nameend="non-lists"
+>kontroll i &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>för listor</entry>
+	      <entry
+>för annat än listor</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>none</literal
+></entry>
+	      <entry
+>Nummerruta (<quote
+>antal</quote
+>)</entry>
+	      <entry
+>Kryssruta</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>string</literal
+></entry>
+              <entry
+>Ej tillämplig</entry>
+              <entry
+>Radeditor</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Radeditor (oformaterad)</entry>
+              <entry morerows="1"
+>Nummerruta</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pathname</literal
+></entry>
+              <entry
+>Ej tillämplig</entry>
+              <entry
+>särskild kontroll</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ldap server</literal
+></entry>
+              <entry
+>särskild kontroll</entry>
+              <entry
+>Ej tillämplig</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>key fingerprint</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>Ej tillämplig</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>pub key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>sec key</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>alias list</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Se handboken för &gpgconf; för mer information om vad man kan ställa in här, och hur. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Administrationsguide</title>
+
+<para
+>Administrationsguiden beskriver sätt att anpassa &kleopatra; som inte är tillgängliga via det grafiska gränssnittet, utan bara via inställningsfiler.</para>
+
+<para
+>Det antas att läsaren känner till teknologin som används för att anpassa &kde;-program, inklusive layout, plats i filsystemet och ordning hos &kde;:s inställningsfiler, samt KIOSK-ramverket.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Anpassning av guiden för att skapa certifikat</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Anpassa domännamnsfälten</title>
+
+<para
+>&kleopatra; låter dig anpassa fälten som användaren får skriva in för att skapa sitt certifikat.</para>
+
+<para
+>Skapa en grupp som heter <literal
+>CertificateCreationWizard</literal
+> i systemets <filename
+>kleopatrarc</filename
+>. Om du vill ha en egen ordning av egenskaper eller om du bara vill att vissa poster ska visas, skapa en nyckel som heter <varname
+>DNAttributeOrder</varname
+>. Argumentet är en eller flera av <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+> om du vill att fält ska överskridas med ett visst värde, skriv något som liknar Egenskap=Värde. Om du vill att egenskapen ska behandlas som nödvändig, följ den med ett utropstecken (t.ex. <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, som råkar vara förinställt värde).</para>
+
+<para
+>Genom att använda <acronym
+>kiosk</acronym
+>lägets flaggor <varname
+>$e</varname
+> blir det möjligt att hämta värden från miljövariabler eller från utvärdering av ett skript eller ett körbart program. Om du dessutom vill förhindra redigering av respektive fält, använd flaggan <varname
+>$i</varname
+>. Om du vill förhindra att knappen <guibutton
+>Infoga min adress</guibutton
+> används, ange värdet false för <varname
+>ShowSetWhoAmI</varname
+>.</para>
+
+<tip
+><para
+>Beroende på naturen hos &kde;:s <acronym
+>kiosk</acronym
+>-ramverk, blir det omöjligt för användaren att överskrida flaggan för oförändringsbarhet (<varname
+>$i</varname
+>) när den används. Det är avsett beteende. <varname
+>$i</varname
+> och <varname
+>$e</varname
+> kan också användas med vilken annan inställningsnyckel som helst i &kde;-program.</para
+></tip>
+
+<para
+>Följande exempel ger en översikt av möjliga anpassningar:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;Tillåt inte kopiering av personlig data från adressboken, tillåt inte lokal överskridning
+ShowSetWhoAmI[$i]=false
+
+;ställer in användarnamnet till $USER
+CN[$e]=$USER
+
+;ställer in företagsnamnet till "Mitt företag", tillåter inte redigering
+O[$i]=Mitt företag
+
+;ställer in avdelningsnamnet till ett värde som returneras av ett skript
+OU[$ei]=$(lookup_dept_from_ip)
+
+;ställer in land till SE, men tillåter ändring av användaren
+C=SE
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Begränsa typer av nycklar som en användare tillåts skapa</title>
+
+        <para
+>&kleopatra; gör det också möjligt att begränsa vilka typer av certifikat en användare tillåts skapa. Observera dock att ett enkelt sätt att gå runt dessa begränsningar är att skapa ett på kommandoraden. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Algoritmer för öppna nycklar</title>
+
+          <para
+>För att begränsa algoritmerna för öppna nycklar som används, lägg till inställningsnyckeln <varname
+>PGPKeyType</varname
+> (och <varname
+>CMSKeyType</varname
+>, men bara <acronym
+>RSA</acronym
+> stöds för <acronym
+>CMS</acronym
+> ändå) under sektionen <literal
+>CertificateCreationWizard</literal
+> i <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>De tillåtna värdena är <literal
+>RSA</literal
+> för <acronym
+>RSA</acronym
+>-nycklar, <literal
+>DAS</literal
+> för <acronym
+>DSA</acronym
+>-nycklar (bara för signatur), och <literal
+>DSA+ELG</literal
+> för en <acronym
+>DSA</acronym
+>-nyckel (bara för signatur) med en Elgamal-delnyckel för kryptering. </para>
+
+          <para
+>Standardvärden läses från &gpgconf; eller från <literal
+>RSA</literal
+> om &gpgconf; inte tillhandahåller något standardvärde. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Storlek på öppen nyckel</title>
+
+          <para
+>För att begränsa tillgängliga nyckelstorlekar för en öppen algoritm, lägg till inställningsnyckeln <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>KeySizes</varname
+> (där <replaceable
+>ALG</replaceable
+> kan vara <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> eller <literal
+>ELG</literal
+>) under sektionen  <literal
+>CertificateCreationWizard</literal
+> i <filename
+>kleopatrarc</filename
+>, som innehåller en lista med nyckelstorlekar (i bitar) åtskilda av kommatecken. Ett standardvärde kan anges genom att inleda nyckelstorleke med ett tankstreck (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Ovanstående skulle begränsa tillåtna storlekar för <acronym
+>RSA</acronym
+>-nycklar till 1536, 2048 och 3072, med 2048 som standardstorlek. </para>
+
+          <para
+>Förutom själva storlekarna, kan du också ange beteckningar för varje storlek. Ställ helt enkelt in inställningsnyckeln <varname
+><replaceable
+>ALG</replaceable
+>KeySizeLabels</varname
+> till en lista med beteckningar åtskilda av kommatecken. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = svag,normal,stark
+            </programlisting>
+          </para>
+
+          <para
+>Ovanstående tillsammans med föregående exempel, skulle skriva ut något som liknar följande alternativ att välja: <programlisting
+>svag (1536 bitar)
+normal (2048 bitar)
+stark (3072 bitar)
+            </programlisting>
+          </para>
+
+          <para
+>Standardvärden är som om följande gällde: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+RSAKeySizeLabels =
+DSAKeySizes = -1024,2048
+DSAKeySizeLabels = v1,v2
+ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Skapa och redigera nyckelkategorier</title>
+
+      <para
+>&kleopatra; låter användaren anpassa <link linkend="configuration-appearance-certificate-filters"
+>synligt utseende</link
+> för nycklar baserat på ett koncept som kallas <guilabel
+>Nyckelkategorier</guilabel
+>. <guilabel
+>Nyckelkategorier</guilabel
+> används också för att filtrera certifikatlistan. Avsnittet beskriver hur man kan redigera tillgängliga kategorier och lägga till nya. </para>
+
+      <para
+>Vid försök att hitta kategorin som en nyckel hör till, försöker &kleopatra; matcha nyckeln med en följd av nyckelfilter, angivna i filen <filename
+>libkleopatrarc</filename
+>. Det första som matchar definierar kategorin, baserat på konceptet <emphasis
+>säregenhet</emphasis
+> (eng. specificity), som förklaras närmare nedan. </para>
+
+      <para
+>Varje nyckelfilter definieras i en konfigurationsgrupp som heter <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, där <replaceable
+>n</replaceable
+> är ett tal som börjar på <literal
+>0</literal
+>. </para>
+
+      <para
+>Det enda alternativen som krävs i gruppen <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> är <varname
+>Name</varname
+>, som innehåller namnet på kategorin som den visas i <link linkend="configuration-appearance-certificate-filters"
+>inställningsdialogrutan</link
+>, och <varname
+>id</varname
+> som används för att referera till filtret i andra inställningssektioner (såsom <literal
+>View #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> listar alla nycklar som definierar visningsegenskaperna för nycklar som hör till kategorin (dvs. de nycklar som kan ställas in i <link linkend="configuration-appearance-certificate-filters"
+>inställningsdialogrutan</link
+>), medan <xref linkend="table-key-filters-criteria"/> anger alla alternativ som definierar de kriterier som filtret använder för att matcha nycklar. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Inställningsalternativ för att definiera visningsegenskaper i nyckelfilter</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Inställningsalternativ</entry>
+	      <entry
+>Typ</entry>
+	      <entry
+>Beskrivning</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>färg</entry>
+	      <entry
+>Bakgrundsfärgen som ska användas. Om den saknas får den som standardvärde vilken bakgrundsfärg som än är definierad globalt för listvyer. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>färg</entry>
+	      <entry
+>Förgrundsfärgen som ska användas. Om den saknas får den som standardvärde vilken förgrundsfärg som än är definierad globalt för listvyer. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>teckensnitt</entry>
+	      <entry
+>Det egna teckensnittet som ska användas. Teckensnittet skalas till storleken som är inställd för listvyer, och eventuella teckenegenskaper (se nedan) införs. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Om angiven som <literal
+>true</literal
+> och <varname
+>font</varname
+> inte är angiven, används standardteckensnittet i listvyn med teckenstilen fetstil tillagd (om tillgänglig). Ignoreras om <varname
+>font</varname
+> också finns med. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Motsvarar <varname
+>font-bold</varname
+>, men använder kursivstil istället för fetstil. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Om <literal
+>true</literal
+> ritas en centrerad linje över teckensnittet. Gäller även om <varname
+>font</varname
+> är angiven. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>ikon</varname
+></entry>
+	      <entry
+>text</entry>
+	      <entry
+>Namnet på en ikon att visa i första kolumnen. Ännu inte implementerat. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Inställningsalternativ för att definiera filterkriterier i nyckelfilter</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Inställningsalternativ</entry>
+	      <entry
+>Typ</entry>
+	      <entry
+>Om angivet matchar filtret när...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln har återkallats.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>context<footnote
+> <para
+>Context är ett uppräkningsvärde med följande tillåtna värden: <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> och <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>sammanhanget där filtret matchar.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln har gått ut.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln har inaktiverats (markerats för att inte användas) av användaren. Ignoreras för &smime;-nycklar. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln är ett rotcertifikat. Ignoreras för &openpgp;-nycklar. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln kan användas för kryptering. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln kan användas för signering. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln kan användas för att signera (certifiera) andra nycklar. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln kan användas för behörighetskontroll (t.ex. som ett <acronym
+>TLS</acronym
+>-klientcertifikat). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln kan användas för att skapa kvalificerade signaturer (enligt definitionen i tysk lag rörande digitala signaturer). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln lagras på ett smartkort (istället för på datorn). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>den hemliga nyckeln i det här nyckelparet är tillgänglig. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln är en &openpgp;-nyckel (<literal
+>true</literal
+>), eller en &smime;-nyckel (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>nyckeln har validerats. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>validity<footnote
+> <para
+>Giltighet är en (ordnad) uppräkning av följande tillåtna värden: <literal
+>unknown</literal
+>, <literal
+>undefined</literal
+>, <literal
+>never</literal
+>, <literal
+>marginal</literal
+>, <literal
+>full</literal
+>, <literal
+>ultimate</literal
+>. Se handböckerna för &gpg; och &gpgsm; för en detaljerad förklaring.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>nyckeln har exakt (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), har vad som helst utom (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), har åtminstone (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>), eller har som mest (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+> ägarpålitligheten som anges som värde i inställningsalternativet. Om mer än en nyckel med <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+> (med olika <replaceable
+>prefix</replaceable
+> värden) finns i en enstaka grupp, är beteendet odefinierat. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>validity</entry>
+	      <entry
+>Motsvarar <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+>, men för nyckelgiltighet istället för ägarpålitlighet. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Några av de mest intressanta kriterierna, som <varname
+>is-revoked</varname
+> eller <varname
+>is-expired</varname
+> fungerar bara med <emphasis
+>kontrollerade</emphasis
+> nycklar, vilket är orsaken till att det normalt bara undersöks att kontrollerade nycklar är återkallade eller utgångna, även om det är fritt att ta bort de extra villkoren. </para>
+      </note>
+
+      <para
+>Förutom de inställningsvärden som listas ovan, kan ett nyckelfilter också ha <varname
+>id</varname
+> och <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>Genom att använda filtrets <varname
+>id</varname
+>, som normalt är filtrets gruppnamn i inställningarna om det inte anges eller är tomt, kan du referera till nyckelfiltret på andra ställen i inställningarna, t.ex. i &kleopatra;s vyinställningar. Värdet <varname
+>id</varname
+> tolkas inte av &kleopatra;, alltså kan du använda vilken sträng som helst, under förutsättning att den är unik. </para>
+
+      <para
+>Värdet <varname
+>match-contexts</varname
+> begränsar filtrets tillämplighet. För närvarande är två sammanhang definierade. Sammanhanget <literal
+>appearance</literal
+> används när vyernas färgläggnings- och teckensnittsegenskaper definieras. Sammanhanget <literal
+>filtering</literal
+> används för att selektivt inkludera (eller exkludera) certifikat från vyer. Värdet <literal
+>any</literal
+> kan användas för att ange alla sammanhang som för närvarande är definierade, och är normalvärdet om <varname
+>match-contexts</varname
+> inte anges, eller inte anger ett sammanhang på annat sätt. Det försäkrar att inget nyckelfilter kan bli <quote
+>dött</quote
+>, dvs. inte ha något sammanhang där det används. </para>
+
+      <para
+>Postens format är en lista med symboler, åtskilda av tecken som inte ingår i symbolen. Varje symbol inleds av ett valfritt utropstecken (<literal
+>!</literal
+>), som anger negering. Symbolerna agerar i tur och ordning på en intern lista med sammanhang, som är tom från början. Det förklaras bäst med ett exempel: <literal
+>any !apperance</literal
+> är samma sak som <literal
+>filtering</literal
+>, och <literal
+>appearance !appearance</literal
+> skapar en tom mängd, vilket också <literal
+>!any</literal
+> gör. Dock ersätts de två senaste internt med <literal
+>any</literal
+>, eftersom de inte ger något sammanhang alls. </para>
+
+      <para
+>I allmänhet undersöks inte kriterier som inte anges (dvs. om inställningsalternativet inte är med). Om ett kriterium anges, undersöks det och måste matcha för att filtret som helhet ska matcha, dvs. kriterierna sammanfogas med OCH. </para>
+
+      <para
+>Varje filter har en tänkt <quote
+>säregenhet</quote
+> som används för att ranka alla filter som matchar. Filtret med större säregenhet vinner över de med mindre säregenhet. Om två filter har samma säregenhet, vinner det som kommer först i inställningsfilen. Ett filters säregenhet är proportionellt till antalet kriterier det innehåller. </para>
+
+      <example>
+	<title
+>Exempel på nyckelfilter</title>
+	<para
+>För att söka efter alla utgångna men inte återkallade rotcertifikat, skulle du använda ett nyckelfilter som definieras på följande sätt: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=utgångna, men inte återkallade
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>För att söka efter alla inaktiverade &openpgp;-nycklar (som ännu inte stöds av &kleopatra;) med åtminstone <quote
+>marginell</quote
+> ägarpålitlighet, skulle du använda: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=inaktivera OpenPGP-nycklar med marginell eller bättre ägarpålitlighet
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Anpassa arkiveringsverktyg för användning med signerade och krypterade filer</title>
+
+      <para
+>&kleopatra; låter administratör (eller avancerad användare) ställa in listan med arkiveringsverktyg som presenteras i fildlalogrutan Signera/kryptera. </para>
+
+      <para
+>Varje arkiveringsverktyg definieras i <filename
+>libkleopatrarc</filename
+> som en separat grupp <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, med följande nödvändiga nycklar: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensions</literal
+></term>
+          <listitem>
+            <para
+>En lista med filnamnsändelser åtskilda av kommatecken, som oftast anger arkiveringsformatet. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>En unik identifierare som används för att identifiera arkiveringsverktyget internt. Om tveksam, använd kommandots namn. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Namn</literal
+> (översatt)</term>
+          <listitem>
+            <para
+>Namnet på arkiveringsverktyget synligt för användaren, som det visas i motsvarande kombinationsmenyn i fildialogrutan Signera/Kryptera. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>Själva kommandot för att arkivera filer. Vilket kommando som helst kan användas, så länge inget skal krävs för att köra det. Programfilen slås upp med miljövariabeln <envar
+>PATH</envar
+>,  <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Eftersom bakstreck (<literal
+>\</literal
+>) är ett skyddande tecken i &kde;:s inställningsfiler, måste de dubbleras när de ingår i sökvägar: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> För själva kommandot (i motsats till dess argument), kan man dock använda vanliga snedstreck (<literal
+>/</literal
+>) som avskiljare i sökvägar på alla plattformar: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> Det stöds inte i argument, eftersom de flesta program på &Windows; använder vanliga snedstreck för väljare. Exempelvis fungerar inte följande, eftersom <literal
+>C:/myarchivescript.bat</literal
+> är ett argument till <command
+>cmd.exe</command
+>, och <literal
+>/</literal
+> inte konverteras till <literal
+>\</literal
+> i argument, bara kommandon: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> Det måste istället skrivas som: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Skicka indatafilnamn till <literal
+>pack-command</literal
+></title>
+
+      <para
+>Det finns tre sätt att skicka filnamn till arkiveringskommandot. För vart och ett av dem, tillhandahåller <literal
+>pack-command</literal
+> en speciell syntax. </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Som kommandoradsväljare.</para>
+            <para
+>Exempel (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Exempel (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> I detta fall skickas filnamn på kommandoraden, precis som man skulle göra vid användning av en terminal. &kleopatra; använder inte ett skal för att köra kommandot. Därför är detta ett säkert sätt att skicka filnamn, men det kan råka ut för begränsningar av kommandoradens längd på vissa plattformar. Teckenföljden <literal
+>%f</literal
+>, om den finns, ersätts med namnen på filerna att arkivera. Annars läggs filnamnen till sist på kommandoraden. Sålunda skulle zip-exemplet ovan ekvivalent kunna skrivas så här: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Via standardinmatningen, åtskilda med nyrader: lägg till <literal
+>|</literal
+> först</para>
+            <para
+>Exempel (&GNU;-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Exempel (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> I detta fall skickas filnamn till arkiveringsverktyget på standardinmatningen, ett per rad. Det undviker problem på plattformar som har en låg gräns för antal kommandoradsväljare som tillåts, men misslyckas när filnamn faktiskt innehåller nyrader. </para>
+            <note>
+              <para
+>&kleopatra; stöder för närvarande bara <acronym
+>LF</acronym
+> som nyradstecken, inte <acronym
+>CRLF</acronym
+>. Det kan komma att ändras i framtida versioner, baserat på återmatning från användare. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Via standardinmatningen, åtskilda med NUL-tecken: lägg till <literal
+>0|</literal
+> först</para>
+            <para
+>Exempel (&GNU;-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> Detta är samma sak som ovan, utom att NUL-tecken används för att skilja filnamn åt. Eftersom NUL-tecken är förbjudna i filnamn, är detta det säkraste sättet att skicka filnamn, men inte alla arkiveringsverktyg stöder det. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Anpassa checksummeringsprogram för användning när checksummor skapas och verifieras</title>
+
+      <para
+>&kleopatra; låter administratör (eller avancerad användare) ställa in listan med checksummeringsprogram som användaren kan välja bland i inställningsdialogrutan, och &kleopatra; klarar av att automatiskt detektera verktyg när det ombeds att verifiera en given fils checksumma. </para>
+
+      <note>
+        <para
+>För att vara användbart av &kleopatra;, måste utdata från checksummeringsprogram (både den skriva checksummeringsfilen, och <acronym
+>standardutmatningen</acronym
+> vid verifiering av checksummor) vara kompatibelt med &GNU; <command
+>md5sum</command
+> och <command
+>sha1sum</command
+>. </para>
+
+        <para
+>Närmare bestämt måste checksummeringsfilen vara radbaserad, med varje rad på följande format: <programlisting
+><replaceable
+>CHECKSUMMA</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>FILNAMN</replaceable
+></programlisting
+> där <replaceable
+>CHECKSUMMA</replaceable
+> endast består av hexadecimala tecken. Om <replaceable
+>FILNAMN</replaceable
+> innehåller ett nyradstecken, måste raden istället lyda: <programlisting
+>\<replaceable
+>CHECKSUMMA</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>SKYDDAT-FILNAMN</replaceable
+></programlisting
+> där <replaceable
+>SKYDDAT-FILNAMN</replaceable
+> är filnamnet med nyrader ersatta med <literal
+>\n</literal
+>, och bakstreck dubblerade (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>På liknande sätt måste utdata från <xref linkend="checksum-definition-verify-command"/> ha formen <programlisting
+><replaceable
+>FILNAMN</replaceable
+> ( ': OK' | ': FAILED' )</programlisting
+> åtskilda med nyrader. Nyrader och andra tecken skyddas <emphasis
+>inte</emphasis
+> i utdata.<footnote
+> <para
+>Jo, dessa program skrevs inte med grafiska gränssnitt i åtanke, och &kleopatra; misslyckas tolka patologiska filnamn som innehåller ":&nbsp;OK" och nyrad riktigt. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Varje checksummeringsprogram definieras i <filename
+>libkleopatrarc</filename
+> som en separat grupp <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>, med följande nödvändiga nycklar: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>En lista med reguljära uttryck som beskriver vilka filer som ska anses vara checksummeringsfiler för det här checksummeringsprogrammet. Syntaxen är den som används för stränglistor i &kde;:s inställningsfiler. <note
+><para
+>Eftersom reguljära uttryck oftast innehåller bakstreck, måste försiktighet iakttas så att de skyddas på ett riktigt sätt i inställningsfilen. Användning av ett redigeringsverktyg av inställningsfiler rekommenderas.</para
+></note
+> Plattformen definierar om mönstren behandlas skiftlägeskänsligt eller inte. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>Det typiska utdatafilnamnet för det här checksummeringsprogrammet (ska naturligtvis motsvara ett av <xref linkend="checksum-definition-file-patterns"/>). Det är vad &kleopatra; kommer att använda som utdatafilnamn när checksummeringsfiler av den här typen skapas. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>En unik identifierare som används för att identifiera checksummeringsprogrammet internt. Om tveksam, använd kommandots namn. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Namn</literal
+> (översatt)</term>
+          <listitem>
+            <para
+>Namnet på checksummeringsprogrammet synligt för användaren, som det visas i kombinationsmenyn i &kleopatra;s inställningsdialogruta. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>Själva kommandot som används för att skapa checksummeringsfiler. Syntaxen, begränsningar och alternativ för att skicka väljare är samma som beskrivs för <xref linkend="archive-definition-pack-command"/> i <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Samma som <xref linkend="checksum-definition-create-command"/>, men för verifiering av checksummor. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Här är ett fullständigt exempel: <programlisting
+>          [Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Tack till och licens</title>
+
+<para
+>&kleopatra; copyright 2002 &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; och &Jesper.Pedersen;., copyright 2004 &Daniel.Molkentin;, copyright 2004, 2007, 2008, 2009, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Dokumentation copyright 2002 &Steffen.Hansen;, copyright 2004 &Daniel.Molkentin;, copyright 2004, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Bidragsgivare</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

@@ -1,0 +1,300 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY gnupg "<acronym
+>GnuPG</acronym
+>">
+  <!ENTITY gpgconf "<application
+>GPGConf</application
+>">
+  <!ENTITY watchgnupg "<application
+>WatchGnuPG</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+]>
+
+<book id="kwatchgnupg" lang="&language;">
+
+<bookinfo id="kwatchgnupginfo">
+<title
+>El manual del &kwatchgnupg;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+>&Marc.Mutz.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <contrib
+>Desenvolupador</contrib>
+<affiliation>
+<address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <affiliation
+> <address
+>&David.Faure.mail;</address>
+</affiliation>
+<contrib
+>Desenvolupador</contrib>
+</othercredit>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>26 de juliol de 2016</date>
+<releaseinfo
+>1.0 (Aplicacions 16.08)</releaseinfo>
+
+<abstract>
+<para
+>&kwatchgnupg; és un simple visualitzador del registre de &gnupg;. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>GnuPG</keyword>
+<keyword
+>Visualitzador del registre</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Introducció</title
+> 
+
+<para
+>El &kwatchgnupg; és un simple visualitzador del registre per a &gnupg;, per a les versions de &gnupg; 1.4, 2.0 i 2.1. Aquest treballa com a una &IGU; que envolta l'eina a la línia d'ordres, el &watchgnupg; escolta en un sòcol a l'espera de línies de registre per a les aplicacions del dorsal &gnupg;. Per a més informació quant al &watchgnupg; mireu <userinput
+>info watchgnupg</userinput
+>.</para>
+
+<para
+>&kwatchgnupg; es pot iniciar des del menú <menuchoice
+><guimenu
+>Eines</guimenu
+><guimenuitem
+>Visualitzador del registre de GnuPG</guimenuitem
+></menuchoice
+> tant des de &kleopatra; com &kmail;, així com des de la línia d'ordres. L'executable de &kwatchgnupg; s'anomena <userinput
+>kwatchgnupg</userinput
+>. </para>
+
+<sect1 id="mainfunc"
+><title
+>Funcions principals</title>
+
+<sect2 id="mainfunc.viewing"
+><title
+>Veure el registre</title>
+
+<para
+>La funció principal de &kwatchgnupg; és presentar a l'usuari la informació de depuració i de registre de &gnupg;. La finestra principal està dividida en una gran àrea de visualització de text, en la que apareixeran els missatges que generi &gnupg;, una barra d'eines que us donarà accés ràpid a la majoria de les funcions comunes, així com l'obligatòria barra de menús. </para>
+
+<para
+>Cada línia del visualitzador de text sol estar precedida amb un identificador <acronym
+>FD</acronym
+> i una marca temporal en format ISO. L'identificador <acronym
+>FD</acronym
+> es pot usar per a distingir entre les sortides de diferents instàncies de &gnupg; que s'estiguin executant en paral·lel. A continuació de la marca temporal ve el nom del component que és font de la línia del registre, junt amb informació interna entre claudàtors, seguit de la sortida de depuració o de registre original tal com l'ha imprès el component. </para>
+
+<para
+>Per omissió, el nombre de línies de registre que es mantenen en l'historial està limitat a 10000 línies. Podeu configurar dita mida en el diàleg de configuració. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.saving">
+<title
+>Desar el contingut de la finestra de registre a un fitxer</title>
+
+<para
+>A vegades pot ser útil desar a un fitxer el contingut de la finestra de registre actual, &pex; per a enviar-lo per correu electrònic als desenvolupadors com a part d'un informe d'error. Hi ha dues maneres de fer-ho: </para>
+
+<para
+>Primer, podeu escollir <menuchoice
+><guilabel
+>Fitxer</guilabel
+><guimenuitem
+>Desa com a...</guimenuitem
+></menuchoice
+> (o la icona de la barra d'eines corresponent) per a desar el contingut de tota la finestra de registre a un fitxer. Se us demanarà que especifiqueu la localització del fitxer a on desar. </para>
+
+<para
+>Segon, podeu seleccionar les línies interessants amb la selecció normal del botó esquerre i enganxar-les en un processador de text o agent de correu d'usuari, com qualsevol altre text. De manera que us haureu d'assegurar que les línies no es trenquin, atès que reduiria la llegibilitat del registre. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.clear"
+><title
+>Netejar la finestra del registre</title>
+
+<para
+>Per comoditat, li podeu dir a &kwatchgnupg; que netegi la finestra del registre, usant <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Neteja l'historial</guimenuitem
+></menuchoice
+> (o la icona corresponent de la barra d'eines). </para>
+
+<para
+>Useu això abans de començar l'operació de criptografia que voleu controlar, per a tan sols obtenir la sortida d'aquesta operació. Després podeu desar el registre usant <menuchoice
+><guimenu
+>Fitxer</guimenu
+><guimenuitem
+>Desa com a...</guimenuitem
+></menuchoice
+> tal com s'ha descrit anteriorment. </para>
+
+<para
+>Netejar el registre descarta qualsevol contingut previ de la finestra de registre. Si no esteu segur de si heu de desar el contingut, l'haureu de desar a un fitxer (consulteu més a dalt) abans de netejar. </para>
+</sect2>
+</sect1>
+
+</chapter>
+
+<chapter id="configure"
+><title
+>Configurar &kwatchgnupg;</title>
+
+<para
+>Per a configurar &kwatchgnupg;, seleccioneu <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura &kwatchgnupg;</guimenuitem
+></menuchoice
+>, o la icona corresponent de la barra d'eines. El diàleg de configuració de &kwatchgnupg; està dividit en dues parts, cadascuna de les quals es descriu a sota. </para>
+
+<sect1 id="configure.dialog"
+><title
+>Diàleg d'arranjament</title>
+
+<sect2 id="configure.watchgnupg"
+><title
+>Preferències del &watchgnupg;</title>
+
+<para
+>&watchgnupg; és el procés que realment controla el sòcol de registre per a l'activitat i dona format a les línies que podeu veure en la vista de text de &kwatchgnupg;. Les opcions d'aquest grup es passen al dorsal usant el mecanisme &gpgconf;. </para>
+
+<para
+><guilabel
+>Executable</guilabel
+> conté el camí cap a l'aplicació &watchgnupg;. Si &watchgnupg; està en la vostra <varname
+>$PATH</varname
+>, podeu mantenir el valor per omissió <userinput
+>watchgnupg</userinput
+>. Si &watchgnupg; no està en la vostra <varname
+>$PATH</varname
+> o si teniu més d'una versió instal·lada, introduïu aquí el nom de fitxer absolut cap a l'executable watchgnupg. </para>
+
+<para
+><guilabel
+>Sòcol</guilabel
+> conté el sòcol en el qual ha d'escoltar &watchgnupg;. Un canvi aquí es distribueix a tots els mòduls del dorsal &gnupg; usant &gpgconf;, de manera que no haureu de canviar aquesta opció si els fitxers de configuració de &gnupg; tenen establert un altre <varname
+>log-file</varname
+>. </para>
+
+<para
+><guilabel
+>Nivell de registre per omissió</guilabel
+> determina la quantitat d'informació de registre que retornen els mòduls de la dorsal. per a saber quina informació inclou cada nivell aneu a la documentació de &watchgnupg;. Un canvi aquí es distribueix a tots els mòduls del dorsal &gnupg; usant &gpgconf;, de manera que no haureu de canviar aquesta opció si els fitxers de configuració de &gnupg; tenen definit un altre <varname
+>log-level</varname
+>. </para>
+
+</sect2>
+
+<sect2 id="configure.logwindow"
+><title
+>Preferències de la finestra de registre</title>
+
+<para
+>Aquí podeu configurar la mida del cau de l'historial, &ead;, el nombre de línies de registre que es recordaran. Si el dorsal de &gnupg; ha emès més línies des de l'última neteja de l'historial, es descartaran les línies més antigues fins que hi hagi prou espai per a les noves. </para>
+
+<para
+>Podeu inhabilitar el límit de mida de l'historial fent clic sobre <guibutton
+>Estableix sense límit</guibutton
+>. De tota manera tingueu present que el consum de memòria creixerà amb el nombre de línies que es mostrin en aquest moment. Si useu una mida de l'historial sense límit, assegureu-vos de fer funcionar &kwatchgnupg; tan sols per a operacions curtes, o bé netegeu regularment l'historial de manera manual. </para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Crèdits i llicència</title>
+
+<para
+>Copyright de &kwatchgnupg; 2004 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Copyright de la documentació 2004 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Col·laboradors</title>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Traductor/Revisor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

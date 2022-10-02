@@ -1,0 +1,3996 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>Het handboek van &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+
+&Freek.de.Kruijf; 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>2013-07-04</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; is een hulpmiddel voor het beheer van certificaten volgens <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> en <ulink url="https://nl.wikipedia.org/wiki/OpenPGP"
+>&openpgp;</ulink
+>. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>certificaat</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Inleiding</title>
+
+<para
+>&kleopatra; is het &kde; hulpmiddel voor het beheer van certificaten volgens <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> en <ulink url="https://nl.wikipedia.org/wiki/OpenPGP"
+>&openpgp;</ulink
+>in de <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> en  <ulink url="https://nl.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+> sleutelringen en voor het ophalen van certificaten uit &ldap; en andere servers voor certificaten.</para>
+
+<para
+>&kleopatra; kan gestart worden vanuit het menu van &kmail; <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Certificatenbeheerder</guimenuitem
+></menuchoice
+>, evenals vanaf de commandoregel. Het &kleopatra; programma heeft de naam <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Dit programma is genoemd naar Cleopatra, een beroemde vrouwelijke Egyptische farao die leefde in de tijd van Julius Caesar, waarmee ze een kind had, Caesarion, niet erkent als zijn erfgenaam.</para>
+
+<para
+>De naam is gekozen omdat dit programma zijn oorsprong heeft in een <ulink url="https://www.gnupg.org/aegypten2/"
+>&Auml;gypten Projects</ulink
+> (&Auml;gypten is Duits voor Egypte). &kleopatra; is de Duitse spelling van Cleopatra.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Hoofdfuncties</title>
+
+<sect1 id="functions-view"
+><title
+>De lokale sleutelkast bekijken</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>De hoofd functie van &kleopatra; is het weergeven en bewerken van de inhoud van de lokale sleutelkast, wat gelijk is aan het concept sleutelring van &gpg;, hoewel men deze gelijkenis niet te veel moet doorzetten.</para>
+
+<para
+>Het hoofdvenster is opgedeeld in het grote gebied voor het weergeven van de sleutels, die bestaat uit verschillende tabbladen, de menubalk en de <link linkend="functions-search"
+>zoekbalk</link
+> bovenaan en een statusbalk onderaan.</para>
+
+<para
+>Elke regel in de lijst met sleutels komt overeen met één certificaat, geïdentificeerd door de zogenaamde <guilabel
+>Onderwerp-&dn;</guilabel
+>. &dn; is een acroniem voor <quote
+>Distinguished Name</quote
+>, een hiërarchische identifier, in grote mate overeenkomend met een pad in een bestandssysteem met een ongebruikelijke syntaxis, waarvan verondersteld wordt dat deze een globaal unieke identiteit geeft aan een gegeven certificaat.</para>
+
+<para
+>Om geldig te zijn en dus bruikbaar, moeten (publieke) sleutels door een &ca; (Certification Authority) ondertekend zijn. Deze ondertekeningen worden certificaten genoemd, maar de termen <quote
+>certificaat</quote
+> en <quote
+>(publieke) sleutel</quote
+> worden uitwisselbaar gebruikt en we zullen ze ook niet in deze handleiding van elkaar onderscheiden, behalve wanneer expliciet genoemd.</para>
+
+<para
+>&ca;'s moeten op hun beurt worden getekend door andere &ca;'s om geldig te zijn. Natuurlijk moet dit ergens eindigen, dus tekent de &ca; op het topniveau (root-&ca;) zijn sleutel met zichzelf (dit wordt zelftekenen genoemd). Root-certificaten moeten dus handmatig geldigheid toegekend worden (gewoonlijk vertrouwen genoemd), &eg; na vergelijking van de vingerafdruk met die op de website van de &ca;. Dit wordt typisch gedaan door de systeembeheerder of de verkoper van een product dat certificaten gebruikt, maar kan ook gedaan worden door de gebruiker via het commandoregelinterface van &gpgsm;.</para>
+
+<para
+>Om te zien welke van de certificaten root-certificaten zijn, schakelt u om naar de hiërarchische modus voor de sleutellijst met <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>U kunt de details zien van elk certificaat door er dubbel op te klikken of <xref linkend="view-certificate-details"/> te gebruiken. Deze opent een dialoog die de meest gebruikelijke eigenschappen van het certificaat toont, zijn ketting met certificaten (&ie; de ketting van uitgevers tot op de root-&ca;) en een dump van alle informatie die de backend uit het certificaat kan halen.</para>
+
+<para
+>Als u de sleutelkast wijzigt zonder &kleopatra; te gebruiken (&eg; met het commandoregelinterface van &gpgsm;), dan kunt u het beeld vernieuwen met <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Zoeken en importeren van certificaten</title>
+
+<para
+>Meestal zult u nieuwe certificaten verkrijgen door handtekeningen in e-mails te verifiëren, omdat certificaten meestal ingebed zijn in de gemaakte handtekeningen. Wanneer u echter een e-mail naar iemand moet zenden, waarmee u nog geen contact hebt gehad, dan moet u het certificaat uit een &ldap;-map (hoewel <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>&gpgsm;</ulink
+> dit automatisch kan doen) ophalen of uit een bestand. U moet ook uw eigen certificaat importeren na het ontvangen van het antwoord van de &ca; op uw verzoek om een certificaat.</para>
+
+<para
+>Om te zoeken naar een certificaat in een &ldap;-directory, selecteert u <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Certificaten op server opzoeken</guimenuitem
+></menuchoice
+> en voert u enige tekst in (&eg; de naam van de persoon waarvan u het certificaat wilt) in het tekstinvoervak van de dialoog <guilabel
+>Certificaten opzoeken op de sleutelserver</guilabel
+>, klik daarna op de knop <guilabel
+>Zoeken</guilabel
+>. De resultaten worden getoond in de lijst met sleutels onder de zoekbalk, waar u certificaten selecteert om ze beter te bekijken door te klikken op de knop <guibutton
+>Details</guibutton
+> of ze download met <guibutton
+>Importeren</guibutton
+> in de lokale sleutelkast.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>U kunt de lijst met &ldap;-servers instellen voor het zoeken in de pagina <link linkend="configuration-directory-services"
+><guilabel
+>Directory Services</guilabel
+></link
+> van de instellingendialoog van &kleopatra;.</para>
+
+<para
+>Als u het certificaat als een bestand ontvangt, probeer dan <xref linkend="file-import-certificates"/>. &gpgsm; moet het formaat van het certificaatbestand begrijpen; kijk in de handleiding van &gpgsm; voor een lijst van ondersteunde bestandsformaten.</para>
+
+<para
+>Als u <link linkend="functions-newkey"
+>uw eigen sleutelpaar met &gpgsm; aanmaken</link
+> niet hebt uitgevoerd, dan moet u ook handmatig de publieke sleutel (evenals de geheime sleutel) importeren uit het PKCS#12-bestand dat u van de &ca; ontving. U kunt dit op de commandoregel doen met <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>bestandsnaam</filename
+></command
+></userinput
+></link
+> of in &kleopatra; met <xref linkend="file-import-certificates"/>, zoals u ook zou doen met <quote
+>normale</quote
+> certificaten.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Nieuwe sleutelparen aanmaken</title>
+
+<para
+>Het menu-item <xref linkend="file-new-key-pair"/> start de <guilabel
+>Assistent voor aanmaken van een sleutelpaar</guilabel
+> die u door een aantal stappen voor het aanmaken van een certificaatverzoek.</para>
+<para
+>Wanneer u klaar bent met een stap in de assistent, druk dan op <guibutton
+>Volgende</guibutton
+> om naar de volgende stap (of <guibutton
+>Terug</guibutton
+> om stappen te herzien die al zijn voltooid). Het maken van het certificaatverzoek kan op elk moment worden geannuleerd door op de knop <guibutton
+>Annuleren</guibutton
+> te drukken. </para>
+<para
+>Op de eerste pagina van de assistent kiest u welk type certificaat u wilt aanmaken:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Een persoonlijk OpenPGP-sleutelpaar aanmaken</guilabel
+></term>
+<listitem
+><para
+>&openpgp; sleutelparen worden lokaal aangemaakt en gecertificeerd door uw vrienden en bekenden. Er is geen centrale certificatieautoriteit; in plaats daarvan kan elk individu een persoonlijk "Web van vertrouwen" door andere sleutelparen te certificeren met zijn eigen certificaat.</para>
+<para
+>U moet een <guilabel
+>Naam</guilabel
+>, <guilabel
+>E-mailadres</guilabel
+> en optioneel <guilabel
+>Commentaar</guilabel
+> invoeren.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Een persoonlijk X.509-sleutelpaar en certificatieverzoek aanmaken</guilabel
+></term>
+<listitem>
+<para
+>Sleuteparen voor &x509; worden lokaal aangemaakt, maar centraal gecertificeerd door een certificatieautoriteit (&ca;). Een &ca; kan een andere &ca; certificeren, waardoor een centrale, hiërarchische keten van vertrouwen ontstaat.</para>
+<para
+>De volgende stap in de assistent is het invoeren van uw persoonlijke gegevens voor het certificaat. De in te vullen velden zijn: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Algemene naam/Common Name (CN): </guilabel
+>Uw naam;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>E-mailadres (EMAIL):</guilabel
+> Uw e-mailadres; let er goed op dat dit juist is&mdash;dit zal worden gebruikt als het adres waar mensen e-mail naar zenden wanneer ze uw certificaat gebruiken.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Locatie (L):</guilabel
+> Het dorp of de stad waarin u woont;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organizational unit (OU):</guilabel
+> De eenheid in uw organisatie waarin u zich bevindt (bijvoorbeeld, "Administratie");</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organisatie (O):</guilabel
+> De organisatie die u vertegenwoordigt (bijvoorbeeld, het bedrijf waarvoor u werkt);</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Country code/landencode (C):</guilabel
+> De tweeletterige code voor het land waarin u woont (bijvoorbeeld, "NL");</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>De volgende stap in de assistent is het selecteren of het certificaat in een bestand moet worden opgeslagen of direct verzenden naar een &ca;. U zult de bestandsnaam of het e-mailadres, waarnaar het certificaatverzoek verzonden moet worden, moeten specificeren. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Een sleutel intrekken</title>
+
+<para
+>Een verlopen sleutelpaar kan teruggebracht worden in een operationele status zolang u toegang hebt tot de privé sleutel en de wachtwoordzin. Om een sleutelpaar betrouwbaar onbruikbaar te maken moet u het terugtrekken. Terugtrekken wordt gedaan door een speciale handtekening voor terugtrekken aan de sleutel toe te voegen.</para>
+
+<para
+>Deze handtekening voor terugtrekken is als een apart bestand opgeslagen. Dit bestand kan later geïmporteerd worden in de sleutelring en wordt dan vastgeplakt aan de sleutel waarmee het onbruikbaar wordt. Merk op dat bij het importeren van deze ondertekening naar de sleutel geen wachtwoord is vereist. Daarom moet u deze ondertekening voor terugtrekken op een veilige plek opslaan, gewoonlijk een plek die verschilt van waar uw sleutelpaar is opgeslagen. Een goed advies is om een plek te kiezen die apart van uw computer is, kopieer deze ofwel naar een externe opslag zoals een USB-stick of druk deze af.</para>
+
+<para
+>&kleopatra; biedt geen functie voor het aanmaken van zo'n handtekening voor intrekken op welk moment dan ook, maar u kunt dat doen met de &kde;-toepassing &kgpg; door te kiezen <menuchoice
+><guimenu
+>Sleutels</guimenu
+> <guimenuitem
+>Sleutel intrekken</guimenuitem
+></menuchoice
+> en, naar keuze, de handtekening voor intrekken direct in uw sleutelring te importeren.</para>
+
+<para
+>Een alternatieve manier voor het maken van een "revocation certificate" is met gebruik van &gpg; direct vanaf de commandoregel: <userinput
+>gpg --output <replaceable
+>revocation_certificate</replaceable
+>.asc --gen-revoke <replaceable
+>uw_sleutel</replaceable
+></userinput
+>. Het argument <replaceable
+>uw_sleutel</replaceable
+> moet een sleutel specificeren, ofwel de sleutel-ID van uw primaire sleutelpaar of een deel van een gebruikers-ID dat uw sleutelpaar identificeert.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Menureferentie</title>
+
+<sect1 id="menufile"
+><title
+>Menu Bestand</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Nieuw certificaat...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Maakt een nieuw sleutelpaar (publiek en privé) aan</action
+> en stelt u in staat om het publieke deel naar een certificatieautoriteit te sturen (&ca;) ter certificering. Het resulterende certificaat wordt dan naar u teruggezonden of opgeslagen in een &ldap;-server zodat u het kunt downloaden in uw lokale sleutelkast, waar u het kan gebruiken om te signeren en e-mails te ontcijferen.</para>
+
+<para
+>Deze manier van werken wordt <quote
+>gedecentraliseerde sleutelgeneratie</quote
+> genoemd, omdat alle sleutels lokaal worden aangemaakt. &kleopatra; (en &gpgsm;) ondersteunen geen directe <quote
+>gecentraliseerde sleutelgeneratie</quote
+>, maar u kunt het publieke/geheime sleutelpaar dat u ontvangt van de &ca; in het formaat PKCS#12 via <xref linkend="file-import-certificates"/> importeren.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Certificaten opzoeken op de server...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Zoekt naar en importeert certificaten op servers voor certificaten naar de lokale sleutelkast.</action
+> Zie <xref linkend="functions-search"/> voor details. </para>
+            <para
+>U moet servers voor certificaten hebben geconfigureerd om dit te laten werken. Zie <xref linkend="configuration-directory-services"/> voor meer details. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Certificaten importeren...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Importeert certificaten en/of geheime sleutels uit bestanden in de lokale sleutelkast.</action
+> Zie <xref linkend="functions-search"/> voor details. </para>
+            <para
+>Het formaat van het certificaat moet worden ondersteund door &gpgsm;/&gpg;. Kijk in de handleiding van &gpgsm; en &gpg; voor een lijst van ondersteunde bestandsformaten. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Certificaten exporteren...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporteert de geselecteerde certificaten naar een bestand.</action>
+            </para>
+            <para
+>De extensie van de bestandsnaam die u koos voor het exporteren bepaalt het formaat van het exportbestand: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>Voor &openpgp;-certificaten, resulteren <filename class="extension"
+>gpg</filename
+> en <filename class="extension"
+>pgp</filename
+> in een binair bestand, terwijl <filename class="extension"
+>asc</filename
+> resulteert in een &ascii; file. </para>
+              </listitem>
+              <listitem>
+                <para
+>Voor &smime; certificaten, resulteert <filename class="extension"
+>der</filename
+> in een binair, &der;-gecodeerd bestand, terwijl <filename class="extension"
+>pem</filename
+> resulteert in een &ascii; bestand. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Tenzij meerdere certificaten zijn geselecteerd, zal &kleopatra; <filename
+><replaceable
+>vingerafdruk</replaceable
+>.{asc,pem}</filename
+> als de naam van het te exporteren bestand voorstellen. </para>
+            <para
+>Deze functie is alleen beschikbaar wanneer een of meer certificaten zijn geselecteerd. </para>
+            <note>
+              <para
+>Deze functie exporteert alleen de publieke sleutels, zelfs als de geheime sleutel beschikbaar is . Gebruik <xref linkend="file-export-secret-key"/> om de geheime sleutels in een bestand te exporteren. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Geheim sleutels exporteren...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Exporteert de geheime sleutel naar een bestand.</action>
+            </para>
+            <para
+>In de geopende dialoog kunt u kiezen om een binair of &ascii;-bestand (<guilabel
+>ASCII-bewapend</guilabel
+>) voor export aan te maken. Klik vervolgens op het pictogram van de map aan de rechterkant van het tekstvak van het <guilabel
+>Uitvoerbestand</guilabel
+> en selecteer de map en de naam het exportbestand. Bij exporteren van geheime sleutels van &smime; kunt u ook de <guilabel
+>Tekenset van de wachtwoordzin</guilabel
+> kiezen. Zie voor meer details de discussie van de optie <option
+>--p12-charset&nbsp;<replaceable
+>tekenset</replaceable
+></option
+> in het handboek van &gpgsm;. </para>
+            <para
+>Deze functie is alleen beschikbaar wanneer precies één certificaat is geselecteerd en de geheime sleutel voor dat certificaat beschikbaar is. </para>
+            <warning>
+              <para
+>Het zou zelden nodig moeten zijn om deze functie te gebruiken, en als dat zo is, dan zou het zorgvuldig gepland moeten worden. De migratie van een geheime sleutel bevat een keuze van het transportmedium en de veilige verwijdering van de sleutelgegevens op de oude machine, evenals die onder andere op het transportmedium. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Bestand</guimenu
+><guimenuitem
+>Certificaten naar server exporteren...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Publiceer de geselecteerde certificaten op een sleutelserver</action
+> (alleen &openpgp;). </para>
+            <para
+>Het certificaat wordt verzonden naar de server voor certificaten geconfigureerd voor &openpgp; (cf.&nbsp;<xref linkend="configuration-directory-services"/>), als die is ingesteld, anders naar <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Deze functie is alleen beschikbaar als minstens een &openpgp; (en geen &smime;) certificaten zijn geselecteerd. </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Wanneer &openpgp;-certificaten naar een publieke directory-server geëxporteerd zijn, is het bijna onmogelijk om ze weer te verwijderen. Maak een intrekkingscertificaat aan, voordat u uw certificaten naar de publieke directory-server exporteert, zodat u ze indien nodig later weer kan intrekken. </para>
+            </note>
+            <note>
+              <para
+>De meeste publieke &openpgp; servers voor certificaten synchroniseren deze onder elkaar, zodat er weinig reden is ze naar meer dan een server te sturen. </para>
+              <para
+>Het kan zijn dat zoeken op een certificatenserver geen resultaten oplevert zelfs als u zojuist uw certificaat daarheen hebt opgestuurd. Dit is vanwege het feit dat publieke sleutelserveradressen round-robin uit de <acronym
+>DNS</acronym
+>-server komen om de belasting te balanceren over meerdere machines. Deze machines synchroniseren zich met elkaar, maar gewoonlijk slechts ongeveer elke 24 uur. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Ontcijfer/verifieer bestanden...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Ontcijfert bestanden en/of verifieert handtekeningen</action
+> over bestanden. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Onderteken/versleutel bestanden...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Ondertekent en/of versleutelt bestanden.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Sluiten</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Sluit het hoofdvenster van &kleopatra;.</action
+> U kunt het op elk moment herstellen met het pictogram in het systeemvak. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>&kleopatra; wordt beëindigd.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Menu Beeld</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+><guimenuitem
+>Opnieuw tonen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Ververst de certificatenlijst.</action>
+            </para>
+            <para
+>Het gebruik van deze functie is gewoonlijk niet nodig, omdat &kleopatra; het bestandssysteem monitort op wijzigingen en automatisch de certificatenlijst ververst indien nodig. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Esc;</keycombo
+></shortcut
+> <guimenu
+>Beeld</guimenu
+><guimenuitem
+>Bewerking stoppen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Stopt (annuleert) alle gaande acties,</action
+> &eg; een zoekopdracht, lijst met sleutels tonen of een download. </para>
+            <para
+>Deze functie is alleen beschikbaar als minstens een actie actief is. </para>
+            <note>
+              <para
+>Vanwege beperkingen in de backend, hangen bewerkingen soms op zo'n manier dat deze functie ze niet direct kan annuleren of zelfs helemaal niet. </para>
+              <para
+>In zulke gevallen is de enige manier om de orde te herstellen het killen van de processen &scdaemon;, &dirmngr;, &gpgsm; en &gpg;, in die volgorde, via de systeemhulpmiddelen (<command
+>top</command
+>, takenbeheerder  &etc;), totdat de bewerking niet geblokkeerd is. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Details van certificaat</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Toont de details van het geselecteerde certificaat.</action
+></para>
+
+<para
+>Deze functie is alleen beschikbaar wanneer precies één certificaat is geselecteerd.</para>
+
+<para
+>Deze functie is ook beschikbaar door direct te dubbelklikken op het overeenkomstige item in de getoonde lijst.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Hiërarchische certificatenlijst</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Wisselt tussen een hiërarchische en platte modus van de certificatenlijst. </action
+></para>
+
+<para
+>In de hiërarchische modus zijn certificaten gerangschikt in de relatie uitgever/onderwerp, zodat is gemakkelijk is te zien tot welke hiërarchie een gegeven certificaat behoort, maar een gegeven certificaat is initieel moeilijker te vinden (hoewel u natuurlijk de <link linkend="functions-search"
+>zoekbalk</link
+> kunt gebruiken).</para>
+
+<para
+>In platte modus worden alle certificaten in een platte lijst getoond, alfabetisch gesorteerd. In deze modus is een gegeven certificaat gemakkelijk te vinden, maar het is niet direct duidelijk tot welk root-certificaat het behoort.</para>
+
+            <para
+>Deze functie wisselt de hiërarchische modus per tabblad, &ie; elk tabblad heeft zijn eigen hiërarchiestatus. Dit is omdat u zowel een platte als een hiërarchische lijst bij hand kunt hebben, elk in zijn eigen tabblad. </para>
+
+            <note>
+              <para
+>Hiërarchische weergave is nu alleen geïmplementeerd voor &smime;-certificaten. Er is onder de ontwikkelaars onenigheid over de juiste manier om &openpgp;-certificaten hiërarchisch weer te geven (in wezen, <quote
+>ouder &equals; ondertekenaar</quote
+> of <quote
+>ouder &equals; ondertekende</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Alles uitvouwen</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Vouwt alle items in de lijst in de lijstweergave van de certificaten uit,</action
+> &ie; maakt alle items zichtbaar.</para>
+
+<para
+>Dit is de standaard bij het binnengaan in de modus hiërarchische sleutellijst.</para>
+
+<para
+>U kunt natuurlijk nog steeds elk individueel item invouwen of uitvouwen.</para>
+
+<para
+>Deze functie is alleen beschikbaar wanneer <xref linkend="view-hierarchical-key-list"/> aan is.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Alles invouwen</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Vouwt alle items in de lijst met certificaten in,</action
+> &ie; verbergt alles behalve het bovenste gedeelte van de items.</para>
+
+<para
+>U kunt natuurlijk nog steeds elk individueel item invouwen of uitvouwen.</para>
+
+<para
+>Deze functie is alleen beschikbaar wanneer <xref linkend="view-hierarchical-key-list"/> aan is.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Menu met certificaten</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Eigenaarvertrouwen wijzigen...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Wijzigt het vertrouwen in de eigenaar van het geselecteerde &openpgp;-certificaat.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Deze functie is alleen beschikbaar wanneer precies één &openpgp;-certificaat is geselecteerd. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Hoofdcertificaat vertrouwen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Markeert dit (&smime;)-hoofdcertificaat als vertrouwd.</action>
+            </para>
+            <para
+>Op een bepaalde manier is dit het equivalent van <xref linkend="certificates-change-owner-trust"/> voor &smime;-hoofdcertificaten. U kunt echter alleen kiezen tussen&mdash;in &openpgp; termen&mdash;<quote
+>volledig</quote
+> vertrouwen en <quote
+>geen vertrouwen</quote
+>. </para>
+            <note>
+              <para
+>De backend (via &gpgagent;) zal op het moment van het importeren van het hoofdcertificaat of het geïmporteerde hoofdcertificaat is te vertrouwen. Die functie moet expliciet worden ingeschakeld in instellingen van de backend (<option
+>allow-mark-trusted</option
+> in <filename
+>gpg-agent.conf</filename
+> of ofwel <menuchoice
+><guimenu
+>GnuPG-systeem</guimenu
+> <guisubmenu
+> GPG-agent</guisubmenu
+> <guimenuitem
+>Sta clients toe om sleutels als "vertrouwd" te markeren</guimenuitem
+></menuchoice
+> ofwel <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>S/MIME-validatie</guimenu
+> <guimenuitem
+>Sta toe hoofdcertificaten als vertrouwd te markeren</guimenuitem
+></menuchoice
+></link
+> onder <xref linkend="configuration"/>). </para>
+              <para
+>Die functionaliteit in de backend inschakelen kan leiden tot popups van &pinentry; op ongewenste tijden (&eg; bij het verifiëren van handtekeningen) en kan dus onbewaakte e-mailverwerking blokkeren. Daarom en omdat het gewenst is om in staat te zijn een vertrouwd hoofdcertificaat opnieuw te <emphasis
+>wantrouwen</emphasis
+>, staat &kleopatra; handmatig instellen van vertrouwen toe. </para>
+            </note>
+            <warning>
+              <para
+>Vanwege het ontbreken van ondersteuning voor deze functie door een backend, is het nodig dat &kleopatra; direct op de vertrouwensdatabase (<filename
+>trustlist.txt</filename
+>) van &gpgsm; werkt. Bij het gebruiken van deze functie moet u er zeker van zijn dat er geen andere versleutelingsbewerkingen bezig zijn die concurreren met &kleopatra; voor wijzigingen in die database. </para>
+            </warning>
+            <para
+>Deze functie is alleen beschikbaar wanneer precies één &smime;-hoofdcertificaat is geselecteerd en dat certificaat nog niet vertrouwd wordt. </para>
+            <para
+>Gebruik <xref linkend="certificates-distrust-root"/> om deze functie ongedaan te maken. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Wantrouw hoofdcertificaat</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Markeert dit &smime;-hoofdcertificaat als niet vertrouwd.</action>
+            </para>
+            <para
+>Deze functie is alleen beschikbaar wanneer precies één &smime;-hoofdcertificaat is geselecteerd en dat certificaat wordt nu vertrouwd. </para>
+            <para
+>Gebruikt om <xref linkend="certificates-trust-root"/> ongedaan te maken. Zie aldaar voor details. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Certificeer certificaat...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Stelt u in staat om een ander &openpgp;-certificaat te certificeren.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Deze functie is alleen beschikbaar als precies één &openpgp;-certificaat is geselecteerd. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Vervaldatum wijzigen...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Stelt u in staat om de vervaldatum van uw &openpgp;-certificaat te wijzigen.</action>
+            </para>
+            <para
+>Gebruik deze functie om de leeftijd van uw &openpgp;-certificaten, als alternatief voor ofwel een nieuwe aanmaken of een onbeperkte leeftijd te gebruiken (<quote
+>vervalt nooit</quote
+>). </para>
+            <para
+>Deze functie is alleen beschikbaar als precies één certificaat is geselecteerd en de geheime sleutel voor dat certificaat beschikbaar is. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Wachtwoordzin wijzigen...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Stelt u in staat om de wachtwoordzin van uw geheime sleutel te wijzigen.</action>
+            </para>
+            <para
+>Deze functie is alleen beschikbaar als precies één certificaat is geselecteerd en de geheime sleutel beschikbaar is voor dat certificaat. Het vereist een erg recente backend, omdat we de implementatie van het direct aanroepen van &gpg; en &gpgsm; hebben gewijzigd tot een op &gpgme; gebaseerde. </para>
+            <note>
+              <para
+>Uit veiligheidsredenen, wordt zowel de oude als de nieuwe wachtwoordzin gevraagd door &pinentry;, een separaat proces. Afhankelijk van het platform waarop u werkt en de kwaliteit van de implementatie van &pinentry; op dat platform, kan het zijn dat het venster van &pinentry; opkomt in de achtergrond. Dus als u deze functie selecteert en er gebeurt niets, controleer dan taakbalk van het besturingssyteem in geval een venster van &pinentry; geopend is in de achtergrond. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Gebruikers-id toevoegen...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Stelt u in staat om een nieuwe gebruikers-id aan uw &openpgp;-certificaat toe te voegen.</action>
+            </para>
+            <para
+>Gebruik dit om nieuwe identiteiten aan een bestaand certificaat toe te voegen als alternatief voor het aanmaken van een nieuw sleutelpaar. Een &openpgp; gebruikers-id heeft de volgende vorm: </para>
+            <programlisting
+><replaceable
+>Echte&nbsp;naam</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Commentaar</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>E-mailadres</replaceable
+>&gt;</programlisting>
+            <para
+>In de dialoog die verschijnt wanneer u deze functie selecteert, zal &kleopatra; u apart vragen naar elk van de drie parameters (<replaceable
+>Echte&nbsp;naam</replaceable
+>, <replaceable
+>Commentaar</replaceable
+> en <replaceable
+>E-mailadres</replaceable
+>) en het resultaat aan u tonen. </para>
+            <note>
+              <para
+>Deze parameters zijn onderworpen aan dezelfde beheerdersbeperkingen als in nieuwe certificaten. Zie <xref linkend="functions-newkey"/> en <xref linkend="admin-certificate-request-wizard"/> voor details. </para>
+            </note>
+            <para
+>Deze functie is alleen beschikbaar als precies één &openpgp;-certificaat is geselecteerd en de geheime sleutel voor dat certificaat beschikbaar is. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Del</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Verwijderen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Verwijdert de geselecteerde certificaten</action
+> uit de lokale sleutelring. </para>
+            <para
+>Gebruik deze functie om ongebruikte sleutels uit uw lokale sleutelkast te verwijderen. Certificaten zijn typisch vastgemaakt aan ondertekende e-mails, verifiëren van een e-mail kan er in resulteren dat de zojuist verwijderde weer de kop op steekt in de lokale sleutelkast. Het is dus waarschijnlijk het beste om deze functie zo min mogelijkheid te gebruiken. Als u zich verloren voelt, gebruik dan de <link linkend="functions-search"
+>zoekbalk</link
+> of de functie <xref linkend="view-hierarchical-key-list"/> om de controle terug te krijgen over de meeste certificaten. </para>
+            <warning>
+              <para
+>Er is één uitzondering op het bovenstaande: Als u een van uw eigen certificaten verwijdert, dan verwijdert u daarmee ook de geheime sleutel. Dat betekent dat u niet in staat zult zijn om vroeger met dit certificaat versleutelde communicatie te lezen, tenzij u nog ergens een reservekopie hebt. </para>
+              <para
+>&kleopatra; zal u waarschuwen wanneer u een geheime sleutel probeert te verwijderen. </para>
+            </warning>
+            <para
+>Vanwege de hiërarchische natuur van &smime;-certificaten is het zo dat, als u een &smime;-certificaat van een uitgever (&ca;-certificaat) verwijdert, alle afgeleiden ook worden verwijderd.<footnote
+><para
+>Dit is hetzelfde als een bestandssysteem: wanneer u een map verwijdert, verwijdert u ook alle bestanden en mappen erin.</para
+></footnote>
+            </para>
+            <para
+>Natuurlijk is deze functie alleen beschikbaar als u minstens één certificaat hebt geselecteerd. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Certificaten</guimenu
+><guimenuitem
+>Certificaat dumpen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Toont alle informatie die &gpgsm; heeft over het geselecteerde (&smime;-) certificaat.</action>
+            </para>
+            <para
+>Zie de discussie over <option
+>--dump-key&nbsp;<replaceable
+>sleutel</replaceable
+></option
+> in het handboek van &gpgsm; voor details over de uitvoer. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Menu hulpmiddelen</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>GnuPG-logweergave...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Start <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, een hulpmiddel om de debuguitvoer van &gnupg; toepassingen te tonen. Als ondertekenen, versleutelen of verifiëren mysterieus stop met werken, dan kunt misschien vinden waarom door in de log te kijken. </para>
+            <para
+>Deze functie is niet beschikbaar onder &Windows;, omdat de onderliggende mechanismen niet in de backend op dat platform zijn geïmplementeerd. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>OpenPGP-certificaten verversen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Alle &openpgp;-certificaten verversen</action
+> door het uitvoeren van <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Na succesvolle uitvoering van het commando, bevat uw lokale sleutelbos de laatste wijzigingen met betrekking tot de geldigheid van &openpgp;-certificaten. </para>
+            <para
+>Zie de opmerking onder <xref linkend="certificates-refresh-x509"/> voor enige valkuilen. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>X.509-certificaten verversen</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Alle &smime;-certificaten verversen</action
+> door het uitvoeren van <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Na succesvolle uitvoering van het commando bevat uw lokale sleutelbos de laatste wijzigingen met betrekking tot de geldigheid van &smime;-certificaten. </para>
+            <note>
+              <para
+>Het verversen van &x509; of &openpgp; certificaten houdt in het downloaden van alle certificaten en &crl;'s, om te controleren of ze intussen zijn ingetrokken. </para>
+              <para
+>Dit kan een zware belasting zijn voor uw eigen en andermans netwerk en kan meer dan een uur duren, afhankelijk van de netwerkverbinding en het aantal te controleren certificaten. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>CRL uit een bestand importeren...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Laat u handmatig &crl;'s uit bestanden importeren.</action>
+            </para>
+            <para
+>Normaal worden 'Certificate Revocation Lists' (&crl;'s) transparent afgehandeld door de backend, maar soms kan het nuttig zijn om een &crl; handmatig te importeren in de lokale &crl;-cache. </para>
+            <note>
+              <para
+>Om het importeren van &crl; te laten werken moet het hulpmiddel &dirmngr; in <envar
+>PATH</envar
+> zijn te vinden. Als dit menu-item is uitgeschakeld, dan zou u contact met de systeembeheerder moeten opnemen en hem vragen &dirmngr; te installeren. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>CRL-cache wissen</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Wist de &crl;-cache van &gpgsm;.</action
+></para>
+
+<para
+>U hebt dit waarschijnlijk nooit nodig. U kunt het verversen van de &crl;-cache forceren door alle certificaten te selecteren en in plaatst daarvan <xref linkend="certificates-refresh-x509"/> te gebruiken.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>CRL-cache dumpen</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Toont de gedetailleerde inhoud van de &crl;-cache van &gpgsm;.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Menu Instellingen</title>
+
+<para
+>&kleopatra; heeft een standaard <guimenu
+>Instellen</guimenu
+>-menu voor &kde;, zoals is beschreven in de <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Basisinformatie van &kde; </ulink
+> met één extra item:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>Zelftest uitvoeren</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Een set zelftesten uitvoeren en hun resultaat laten zien.</action>
+            </para>
+            <para
+>Dit is dezelfde set testen die bij opstarten standaard worden uitgevoerd. Als u de zelftesten bij opstarten hebt uitgeschakeld, dan kunt u ze hier weer aanzetten. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Venstermenu</title>
+<para
+>Het menu <guimenu
+>Venster</guimenu
+> stelt u in staat om de tabbladen te beheren. Met de items in dit menu kunt u een tabblad hernoemen, toevoegen, het huidige tabblad dupliceren, sluiten en naar links of rechts verplaatsen.</para>
+
+<para
+>Door met de &RMB; op een tabblad te klikken opent u een contextmenu, waarin u ook dezelfde acties kunt selecteren.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Menu Help</title>
+
+<para
+>&kleopatra; heeft een standaard <guimenu
+>Help</guimenu
+>-menu voor &kde;, zoals is beschreven in de <ulink url="help:/fundamentals/menus.html#menus-help"
+>Basisinformatie van &kde; </ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Naslag van opties op de commandoregel</title>
+
+<para
+>Alleen de opties die specifiek zijn voor &kleopatra; worden hier weergegeven. Zoals met alle &kde;-toepassingen, kunt u een complete lijst met opties krijgen met het commando <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Locatie van de socket waarnaar de ui-server luistert</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Alleen UI-server uitvoeren, hoofdvenster verbergen</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>&openpgp; voor de volgende actie gebruiken</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>CMS (&x509;, S/&MIME;) voor de volgende actie gebruiken</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Specificeert een bestand of &URL; waar vandaan certificaten (of geheime sleutels) geïmporteerd moeten worden.</action
+></para>
+
+<para
+>Dit is het equivalent op de commandoregel van <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Bestand(en) versleutelen</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Bestand(en) ondertekenen</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Versleutel en/of onderteken bestand(en). Zelfde als <option
+>--sign-encrypt</option
+>, niet gebruiken</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Bestand(en) ontcijferen</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Bestand/ondertekening verifiëren </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Bestand(en) ontcijferen en/of verifiëren</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>&kleopatra; instellen</title>
+
+    <para
+>De instellingendialoog van &kleopatra; kan bereikt worden via <menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>&kleopatra; instellen...</guimenuitem
+></menuchoice
+> </para>
+    <para
+>Elk van zijn pagina's wordt in de secties hieronder beschreven. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Directory Services instellen</title>
+
+      <para
+>Op deze pagina kunt u instellen welke &ldap;-servers te gebruiken voor het zoeken naar &smime;-certificaten en welke sleutelservers te gebruiken voor zoeken naar &openpgp;-certificaten. </para>
+      <note>
+        <para
+>Dit is eenvoudig een meer gebruikersvriendelijke versie van dezelfde instellingen die u ook vindt in <xref linkend="configuration-gnupg-system"/>. Alles wat u hier in kan stellen, kunt u ook daar instellen. </para>
+      </note>
+      <note>
+        <title
+>Een opmerking over Proxy-instellingen</title>
+        <para
+>Proxy-instellingen kunne worden geconfigureerd voor &http; en &ldap; in <xref linkend="configuration-smime-validation"/>, maar alleen voor &gpgsm;. Voor &gpg;, vanwege de complexiteit van de opties voor de keyserver in &gpg; en het ontbreken van voldoende ondersteuning hiervoor in &gpgconf;, moet u het configuratiebestand <filename
+>gpg.conf</filename
+> direct wijzigen. Kijk in het handboek van &gpg; voor details. &kleopatra; zal zulke instellingen bewaren, maar laat ze nog niet wijzigen in de &GUI;. </para>
+      </note>
+      <para
+>De tabel <guilabel
+>Directory services</guilabel
+> toont welke servers op dit moment zijn ingesteld. Dubbelklik op een cel in de tabel om parameters van bestaande servers te wijzigen. </para>
+      <para
+>De betekenis van de kolommen in de tabel is als volgt: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Schema</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Bepaalt het te gebruiken netwerkprotocol voor toegang tot de server. Vaak gebruikt schema's omvatten <guilabel
+>ldap</guilabel
+> (en zijn &ssl;-beveiligde tweeling <guilabel
+>ldaps</guilabel
+>) voor &ldap; servers (algemeen protocol voor &smime;; de enige ondersteund door &gpgsm;) en <guilabel
+>hkp</guilabel
+>, het Horowitz Keyserver Protocol, nu is gebruikelijk &http; Keyserver Protocol, een op het &http; protocol gebaseerd dat door vrijwel alle publieke &openpgp; keyservers wordt ondersteund. </para>
+            <para
+>Kijk in de handleiding van &gpg; en &gpgsm; voor een lijst van ondersteunde schema's. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Servernaam</guilabel
+></term>
+          <listitem>
+            <para
+>De domeinnaam van de server, &eg; <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Poort van server</guilabel
+></term>
+          <listitem>
+            <para
+>De netwerkpoort waarop de server luistert. </para>
+            <para
+>Dit verandert automatisch naar de standaard poort wanneer u de <xref linkend="configuration-directory-services-scheme"/>, tenzij het eerst was ingesteld op een niet-standaard poort. Als u de standaard poort hebt gewijzigd en niet terug kan gaan, probeer dan <xref linkend="configuration-directory-services-scheme"/> naar <userinput
+>http</userinput
+> en <xref linkend="configuration-directory-services-server-port"/> naar <userinput
+>80</userinput
+> (de standaard voor &http;) in te stellen en ga dan daar vanaf verder. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Basis-DN</guilabel
+></term>
+          <listitem>
+            <para
+>De basis-&dn; (alleen voor &ldap; en &ldaps;) is, &ie; het begin van de &ldap; hiërarchie om vanaf te starten. Dit wordt vaak ook de <quote
+>zoek-root</quote
+> of <quote
+>zoekbasis</quote
+> genoemd. </para>
+            <para
+>Gewoonlijk lijkt het op <userinput
+>c=nl,o=Foo</userinput
+>, opgegeven als deel van de &ldap; &URL;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Gebruikersnaam</guilabel
+></term>
+          <listitem>
+            <para
+>De gebruikersnaam, indien nodig, te gebruiken voor aanmelden aan de server. </para>
+            <para
+>Deze kolom wordt alleen getoond als de optie <guilabel
+>Gebruiker- en wachtwoordinformatie tonen</guilabel
+> (onder de tabel) is geactiveerd. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Wachtwoord</guilabel
+></term>
+          <listitem>
+            <para
+>De wachtwoord, indien nodig, te gebruiken voor aanmelden aan de server. </para>
+            <para
+>Deze kolom wordt alleen getoond als de optie <guilabel
+>Gebruiker- en wachtwoordinformatie tonen</guilabel
+> (onder de tabel) is geactiveerd. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Activeer deze kolom als dit item gebruikt moet worden voor zoeken naar &x509; (&smime;) certificaten. </para>
+            <para
+>Alleen &ldap; (en &ldaps;) servers worden voor &smime; ondersteund. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Activeer deze kolom als dit item gebruikt moet worden voor zoeken naar &openpgp; certificaten. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>U kunt zoveel &smime; (&x509;) servers instellen als u wilt, maar alleen één &openpgp; server is tegelijk toegestaan. De &GUI; zal dat afdwingen. </para>
+      <para
+>Om een nieuwe server toe te voegen klikt u op de knop <guibutton
+>Nieuw</guibutton
+>. Dit dupliceert het geselecteerde item, indien aanwezig, of voegt een standaard &openpgp; server in. Daarna kunt u de <xref linkend="configuration-directory-services-server-name"/>, de <xref linkend="configuration-directory-services-server-port"/>, de <xref linkend="configuration-directory-services-base-dn"/> en de gebruikelijke <xref linkend="configuration-directory-services-password"/> en <xref linkend="configuration-directory-services-user-name"/> instellen, die beiden alleen nodig zijn als de server authenticatie vereist.authentication. </para>
+      <para
+>Om direct een item voor &x509; certificaten in te voegen, gebruikt u <menuchoice
+><guimenu
+>Nieuw</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+>; gebruik <menuchoice
+><guimenu
+>Nieuw</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> voor &openpgp;. </para>
+      <para
+>Om een server uit de zoeklijst te verwijderen, selecteert u deze in de lijst en drukt daarna op de knop <guibutton
+>Verwijderen</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>Om de timeout van &ldap; in te stellen, &ie; de maximum tijd die de backend zal wachten op een antwoord van de server, gebruikt u eenvoudig het overeenkomstige invoerveld met het label <guilabel
+>LDAP-timeout (minuten:seconden)</guilabel
+>. </para>
+      <para
+>Als een van uw servers een grote database heeft, zodat zelfs redelijke zoekopdrachten zoals <userinput
+>Jansen</userinput
+> het <guilabel
+>maximale aantal per query teruggegeven items</guilabel
+> overstijgen, dan zou u deze limiet willen vergroten. U kunt gemakkelijk te weten komen of u de limiet bij een zoekopdracht overschrijdt, omdat er in dat geval een dialoogvenster te voorschijn komt, die u vertelt dat de resultaten zijn afgekort. </para>
+      <note>
+        <para
+>Sommige servers kunnen hun eigen limieten over het aantal terug te geven items op een query hebben. In dat geval, zal het verhogen van de limiet hier niet resulteren in meer teruggegeven items. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Het uiterlijk instellen</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+><guilabel
+>Tekstballonnen</guilabel
+> instellen</title>
+
+        <para
+>In de hoofdlijst van certificaten kan &kleopatra; details tonen over een certificaat in een tekstballon. De getoonde informatie is dezelfde als in het tabblad <guilabel
+>Overzicht</guilabel
+> van de dialoog <guilabel
+>Details van certificaten</guilabel
+>. Tekstballonnen kunnen echter beperkt worden om alleen een subset van de informatie te tonen voor een minder uitgebreide ervaring. </para>
+        <note>
+          <para
+>De <guilabel
+>Key-ID</guilabel
+> wordt <emphasis
+>altijd</emphasis
+> getoond. Dit is om te verzekeren dat tekstballonnen voor verschillende certificaten ook echt verschillen (dit is speciaal belangrijk als alleen <xref linkend="tooltips-validity"/> zijn geselecteerd). </para>
+        </note>
+        <para
+>U kunt onafhankelijk de volgende informatiesets in- of uitschakelen: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Geldigheid tonen</guilabel
+></term>
+            <listitem>
+              <para
+>Toont informatie over de geldigheid van een certificaat: zijn huidige status, uitgever-&dn; (alleen &smime;), verloopdatum (indien aanwezig) en gebruiksvlaggen voor gebruik. </para>
+              <para
+>Voorbeeld: <programlisting
+><!--
+                  -->Dit certificaat is nu geldig.
+<!--              -->Uitgever:          CN=Test-ZS 7,O=Intevation BV,C=NL
+<!--              -->Geldigheid:        vanaf 25.08.2009 10:42 tot 19.10.2010 10:42
+<!--              -->Certificaatgebruik: E-mails en bestanden, versleuteling e-mails en bestanden
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Eigenaarsinformatie tonen</guilabel
+></term>
+            <listitem>
+              <para
+>Toon informatie over de eigenaar van het certificaat: subject-&dn; (alleen &smime;), gebruiker-ID's (inclusief e-mailadressen) en vertrouwen in eigenaar (alleen &openpgp;). </para>
+              <para
+>&openpgp; voorbeeld: <programlisting
+><!--
+                  -->Gebruiker-ID:         Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->Key-ID:               C6BF6664
+<!--              -->Gebruikersvertrouwen: ultimate<!--
+                  --></programlisting
+> &smime; voorbeeld: <programlisting
+><!--
+                  -->Subject:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->a.k.a.:            Gpg4winUserA@test.hq
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Technische details tonen</guilabel
+></term>
+            <listitem>
+              <para
+>Toont technische informatie over het certificaat: serienummer (alleen &smime;), type, vingerafdruk en opslaglocatie. </para>
+              <para
+>Voorbeeld: <programlisting
+><!--
+                  -->Serienummer:       27
+<!--              -->Certificaattype:  1,024-bit RSA (geheime certificaat beschikbaar)
+<!--              -->Key-ID:            DC9D9E43
+<!--              -->Vingerafdruk:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Opgeslagen:            op deze computer<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+><guilabel
+>Certificaatcategorieën</guilabel
+> instellen</title>
+
+        <para
+>&kleopatra; stelt u in staat om het uiterlijk van certificaten in de lijstweergave aan te passen. Dit omvat het tonen van een klein pictogram, maar u kunt ook de voorgrond (tekst) en achtergrondkleuren beïnvloeden, evenals het lettertype. </para>
+        <para
+>Iedere categorie van certificaten in de lijst heeft een set kleuren, een pictogram (optioneel) en een lettertype toegewezen waarin certificaten in die categorie worden weergegeven. De lijst met categorieën fungeert ook als een overzicht van de instellingen. Categorieën kunnen vrij worden gedefinieerd door de beheerder of de zware gebruiker, zie <xref linkend="admin-key-filters"/> in <xref linkend="admin"/>. </para>
+        <para
+>Om het pictogram van een categorie in te stellen of te wijzigen, selecteert u deze in de lijst en drukt op de knop <guibutton
+>Pictogram instellen...</guibutton
+>. De standaard dialoog voor selectie van een &kde;-pictogram zal verschijnen, waarin u kunt een bestaand pictogram uit de &kde;-verzameling kunt selecteren of een eigen exemplaar kunt laden. </para>
+        <para
+>Om een pictogram opnieuw te verwijderen moet u de knop <guibutton
+>Standaard uiterlijk</guibutton
+> indrukken. </para>
+        <para
+>Om de tekstkleur (&ie; voorgrond) van een categorie te wijzigen, selecteert u het in de lijst en drukt op de knop <guibutton
+>Tekstkleur instellen...</guibutton
+>. De standaard kleurkeuzedialoog van &kde; zal verschijnen waar u een bestaande kleur kiest of een nieuwe aanmaakt. </para>
+        <para
+>De achtergrondkleur veranderen wordt op dezelfde manier gedaan, druk in plaats daarvan eenvoudig op <guibutton
+>Achtergrondkleur instellen...</guibutton
+>. </para>
+        <para
+>Om het lettertype te wijzigen hebt u in principe twee opties: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Verander het standaard lettertype, dat wordt gebruikt voor alle weergave van lijsten in &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Een aangepast lettertype gebruiken. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>De eerste optie heeft het voordeel dat het lettertype elke stijl volgt die u kiest voor geheel &kde;, terwijl de laatste u volledige controle geeft over het te gebruiken lettertype. De keuze is aan u. </para>
+        <para
+>Om het gewijzigde standaard lettertype te gebruiken, selecteert u de categorie in de lijst en activeert of deactiveert u de modifiers van lettertypen <guilabel
+>Cursief</guilabel
+>, <guilabel
+>Vet</guilabel
+> en/of <guilabel
+>Doorstrepen</guilabel
+>. U kunt onmiddellijk het effect zien op het lettertype in de lijst met categorieën. </para>
+        <para
+>Om een eigen lettertype te gebruiken, drukt u op de knop <guibutton
+>Lettertype instellen...</guibutton
+>. De standaard lettertypeselectiedialoog van &kde; zal verschijnen waar u het nieuwe lettertype kunt selecteren. </para>
+        <note>
+          <para
+>U kunt nog steeds de lettertype-modifiers gebruiken om het eigen lettertype te wijzigen, net als voor het wijzigen van het standaard lettertype. </para>
+        </note>
+        <para
+>Om terug te schakelen naar het standaard lettertype moet u de knop <guibutton
+>Standaard uiterlijk</guibutton
+> indrukken. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>De <guilabel
+>DN-attribuutvolgorde</guilabel
+></title>
+
+<para
+>Hoewel &dn;'s hiërarchisch zijn, is de volgorde van de individuele componenten (relatieve &dn;'s genoemd (RDNs) of &dn;-attributen) niet gedefinieerd. De volgorde waarin de attributen getoond worden is dus een zaak van persoonlijke smaak of bedrijfsbeleid, dat is waarom het in &kleopatra; is in te stellen.</para>
+
+<note
+><para
+>Deze instelling is niet alleen van toepassing op &kleopatra;, maar op alle toepassen die &kleopatra;-technologie gebruiken. Op het moment van schrijven hiervan omvat dit &kmail;, &kaddressbook;, evenals &kleopatra; zelf, natuurlijk.</para
+></note>
+
+<para
+>Deze configuratiepagina bestaat in de basis uit twee lijsten, een voor de bekende attributen (<guilabel
+>Beschikbare attributen</guilabel
+>) en met de beschrijving van <guilabel
+>Huidige attribuutvolgorde</guilabel
+>.</para>
+
+<para
+>Beide lijsten bevatten items beschreven door de korte vorm van het attribuut (&eg; <guilabel
+>CN</guilabel
+>) evenals de volledige vorm (<guilabel
+>Common Name</guilabel
+>).</para>
+
+<para
+>De lijst <guilabel
+>Beschikbare attributen</guilabel
+> is altijd alfabetisch gesorteerd, terwijl de <guilabel
+>Huidige attribuutvolgorde</guilabel
+> de volgorde van de lijst van de ingestelde attribuutvolgorde van &dn; weergeeft: het eerste attribuut in de lijst is ook als eerste weergegeven.</para>
+
+<para
+>Alleen expliciet in de lijst opgenomen attributen in de lijst met de <guilabel
+>Huidige attribuutvolgorde</guilabel
+> worden überhaupt getoond. De rest is standaard verborgen.</para>
+
+<para
+>Wanneer echter het plaatshouderitem <guilabel
+>_X_</guilabel
+> (<guilabel
+>Alle anderen</guilabel
+>) in de <quote
+>huidige</quote
+> lijst staat, worden alle niet in lijst opgenomen attributen (bekend of niet) ingevoegd op het punt van de <guilabel
+>_X_</guilabel
+> in hun originele relatieve volgorde.</para>
+
+<para
+>Een klein voorbeeld zal helpen dit helderder te maken:</para>
+
+<informalexample>
+<para
+>Gegeven de &dn;</para>
+<blockquote>
+<para
+>O=&kde;, C=NL, CN=David Ontwikkel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>zal de standaard volgorde van attributen <quote
+>CN, L, _X_, OU, O, C</quote
+> de volgende geformatteerde &dn; produceren:</para>
+<blockquote>
+<para
+>CN=David Ontwikkel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=NL </para>
+</blockquote>
+<para
+>terwijl <quote
+>CN, L, OU, O, C</quote
+> zal produceren</para>
+<blockquote>
+<para
+>CN=David Ontwikkel, OU=&kleopatra;, O=&kde;, C=NL </para>
+</blockquote>
+</informalexample>
+
+<para
+>Om een attribuut aan de lijst met weergavevolgorde toe te voegen, wordt het geselecteerd in de lijst <guilabel
+>Beschikbare attributen</guilabel
+> en daarna op de knop <guilabel
+>Aan huidige attribuutvolgorde toevoegen</guilabel
+> drukken.</para>
+
+<para
+>Om een attribuut uit de lijst met weergavevolgorde te verwijderen, wordt het geselecteerd in de lijst <guilabel
+>Huidige attribuutvolgorde</guilabel
+> en daarna op de knop <guilabel
+>Uit huidige attribuutvolgorde verwijderen</guilabel
+> drukken.</para>
+
+<para
+>Om een attribuut naar het begin (einde) te verplaatsen wordt het geselecteerd in de lijst <guilabel
+>Huidige attribuutvolgorde</guilabel
+> en daarna op de knop <guilabel
+>Naar de top verplaatsen</guilabel
+> (<guilabel
+>Naar onderaan verplaatsen</guilabel
+>) drukken.</para>
+
+<para
+>Om een attribuut één omhoog (omlaag) te verplaatsen, wordt het geselecteerd in de lijst <guilabel
+>Huidige attribuutvolgorde</guilabel
+> en daarna op de knop <guilabel
+>Één naar boven verplaatsen</guilabel
+> (<guilabel
+>Één naar beneden verplaatsen</guilabel
+>) drukken.</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Cryptografische bewerkingen instellen</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+><guilabel
+>E-mail bewerkingen</guilabel
+> instellen</title>
+
+        <para
+>Hier kunt u enige aspecten van de e-mail bewerkingen van de &uiserver; van &kleopatra; instellen. Op dit moment kunt u alleen instellen of u <quote
+>Snelle modus</quote
+> voor ondertekenen en versleutelen van e-mails wilt gebruiken of niet. </para>
+        <para
+>Met <quote
+>Snellemodus </quote
+>geactiveerd, wordt er geen dialoog getoond bij respectievelijk ondertekening (versleuteling) van e-mails, tenzij er een conflict is dat handmatig oplossen vereist. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+><guilabel
+>Bestandsbewerkingen</guilabel
+> instellen</title>
+
+        <para
+>Hier kunt u enkele aspecten van de bestandsbewerkingen van &kleopatra;'s &uiserver; instellen. Op dit moment kunt u alleen het te gebruiken controlesomprogramma voor <command
+>CHECKSUM_CREATE_FILES</command
+> kiezen. </para>
+        <para
+>Gebruik <guilabel
+>Te gebruiken controlesomprogramma</guilabel
+> om te kiezen welk van de geconfigureerde controlesomprogramma 's gebruikt zou moeten worden bij het aanmaken van controlsombestanden. </para>
+        <para
+>Bij het verifiëren van controlesommen wordt het te gebruiken programma automatisch gevonden, gebaseerd op de gevonden controlesombestanden. </para>
+        <note>
+          <para
+>De systeeembeheerder en grootgebruiker kunnen volledig definiëren welke programma's voor een controlesom beschikbaar gemaakt wordt aan &kleopatra; via de zogenaamde <quote
+>Controlesomdefinities</quote
+> in het instellingenbestand. Zie <xref linkend="admin-checksum-definitions"/> in <xref linkend="admin"/> voor details. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Aspecten van S/&MIME;-validatie instellen</title>
+
+      <para
+>Op deze pagina kunt u bepaalde aspecten van de validatie van &smime;-certificaten instellen. </para>
+      <note>
+        <para
+>Dit is grotendeels eenvoudig een meer gebruikersvriendelijke versie van dezelfde instellingen die u ook vindt in <xref linkend="configuration-gnupg-system"/>. Alles wat u hier in kan stelen, kunt u ook daar met uitzindering van <xref linkend="configuration-smime-validation-refresh-interval"/>, wat specifiek voor &kleopatra; is. </para>
+      </note>
+      <para
+>De betekenis van de opties is als volgt: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Regelmatige controle van certificaten instellen</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Geldigheid van certificaat elke <replaceable
+>N</replaceable
+> uren controleren</guilabel
+></term>
+            <listitem>
+              <para
+>Deze optie activeert het regelmatig controleren van geldigheid van certificaten. Ook kan het tijdinterval (in uren) ingesteld worden. Het effect van regelmatig controleren is hetzelfde als <xref linkend="view-redisplay"/>; er is geen voorziening voor regelmatig controleren van <xref linkend="certificates-refresh-openpgp"/> of <xref linkend="certificates-refresh-x509"/>. </para>
+              <note>
+                <para
+>Validatie wordt impliciet uitgevoerd wordt wanneer belangrijke bestanden in <filename
+>~/.gnupg</filename
+> veranderen. Deze optie, evenals <xref linkend="certificates-refresh-openpgp"/> en <xref linkend="certificates-refresh-x509"/>, heeft daarom alleen effect bij externe factoren van de geldigheid van een certificaat. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Validatiemethode instellen</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Certificaten met CRL's valideren</guilabel
+></term>
+            <listitem>
+              <para
+>Wanneer deze optie is geselecteerd, zullen &smime;-certificaten gevalideerd worden met Certificate Revocation Lists (&crl;'s). </para>
+              <para
+>Zie <xref linkend="configuration-smime-validation-use-ocsp"/> voor een alternatieve methode van het controleren van de geldigheid van een certificaat. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Certificaten online valideren (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Als deze optie ingeschakeld is, worden &smime;-certificaten gevalideerd met gebruikmaking van het Online Certificates Status Protocol (&ocsp;). </para>
+              <warning>
+                <para
+>Bij het kiezen van deze methode wordt er een verzoek naar de server van de &ca; verzonden, meer of minder elke keer dat u een versleuteld bericht verzendt of ontvangt, dus theoretisch stelt u de uitgevende organisatie van uw certificaat in staat om na te gaan met wie u (&eg;) e-mails uitwisselt. </para>
+              </warning>
+              <para
+>Om deze methode te kunnen gebruiken moet u de &URL; van de &ocsp; server invoeren in <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Zie <xref linkend="configuration-smime-validation-use-ocsp"/> voor een meer traditionele methode van het controleren van de geldigheid van een certificaat die geen informatie lekt met wie u berichten uitwisselt. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>URL-adres OCSP-dienst</guilabel
+></term>
+            <listitem>
+              <para
+>Voer hier het adres in van de server die de certificaten online valideert (&ocsp;-dienst). Het &URL;-adres begint doorgaans met <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Handtekening OCSP-dienst</guilabel
+></term>
+            <listitem>
+              <para
+>Hier het certificaat kiezen waarmee de &ocsp;-server zijn antwoorden ondertekend. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Service-URL van certificaten negeren</guilabel
+></term>
+            <listitem>
+              <para
+>Elk &smime;-certificaat bevat gewoonlijk de &URL; van de &ocsp; van de server van zijn uitgever (<xref linkend="certificates-dump-certificate"/> toont of een gegeven certificaat deze bevat). </para>
+              <para
+>Het activeren van deze optie zorgt ervoor dat &gpgsm; deze &URL;'s negeert en alleen de boven ingestelde gebruikt. </para>
+              <para
+>Dit &eg; gebruiken om het gebruik van een organisatie-brede &ocsp; proxy af te dwingen. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Validatieopties instellen</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Certificaatbeleid niet controleren</guilabel
+></term>
+            <listitem>
+              <para
+>Standaard gebruikt &gpgsm; het bestand <filename
+>~/.gnupg/policies.txt</filename
+> om te controleren of een certificaatbeleid toegestaan is. Wanneer deze optie is geselecteerd wordt het beleid niet gecontroleerd. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>Nooit een CRL raadplegen</guilabel
+></term>
+            <listitem>
+              <para
+>Als deze optie ingeschakeld is, worden Certificate Revocation Lists nooit gebruikt om &smime;-certificaten te valideren. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Sta toe om het hoofdcertificaat als vertrouwd te markeren</guilabel
+></term>
+            <listitem>
+            <para
+>Als deze optie is geactiveerd, terwijl een root-&ca;-certificaat wordt geïmporteerd, zult u worden gevraagd om zijn vingerafdruk te bevestigen en te verklaren of u wel of niet dit root-certificaat vertrouwd. </para>
+              <para
+>Een root-certificaat moet vertrouwd worden voordat de certificaten die het certificeert vertrouwd worden, maar lichtvaardig root-certificaten in uw certificatenopslag vertrouwen zal de veiligheid van het systeem ondermijnen. </para>
+              <note>
+                <para
+>Deze functionaliteit in de backend inschakelen kan leiden tot pop-ups van &pinentry; op ongewenste tijden (&eg; bij het verifiëren van handtekeningen) en kan dus onbewaakte e-mailverwerking blokkeren. Daarom en omdat het gewenst is om in staat te zijn een vertrouwd root-certificaat opnieuw te <emphasis
+>wantrouwen</emphasis
+>, staat &kleopatra; handmatig instellen van vertrouwen toe met <xref linkend="certificates-trust-root"/> en <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Deze instelling hier heeft geen invloed op het functioneren van &kleopatra;. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Ontbrekende uitgevercertificaten ophalen</guilabel
+></term>
+            <listitem>
+              <para
+>Wanneer deze optie is geactiveerd, zullen ontbrekende uitgevers-certificaten worden opgehaald indien nodig (dit is van toepassing op beide methoden, &crl;'s en &ocsp;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Opties voor &http;-verzoeken instellen</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>Geen HTTP-verzoeken uitvoeren</guilabel
+></term>
+            <listitem>
+              <para
+>Schakelt het gebruik van &http; voor &smime; geheel uit. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>HTTP CRL-distributiepunt van certificaten negeren</guilabel
+></term>
+            <listitem>
+              <para
+>Wanneer u de locatie van een &crl; aan het zoeken bent, zal het te testen certificaat items bevatten onder de naam <quote
+>&crl; Distribution Point</quote
+> (<acronym
+>DP</acronym
+>). Deze bevatten &URL;'s die het adres van de &crl; beschrijven. Het eerste gevonden <acronym
+>DP</acronym
+> wordt gebruikt. </para>
+              <para
+>Met deze optie worden alle items met het &http;-schema genegeerd wanneer er gezocht wordt naar een geschikte <acronym
+>DP</acronym
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>HTTP-proxy van systeem gebruiken</guilabel
+></term>
+            <listitem>
+              <para
+>Wanneer deze optie is geselecteerd zal de &http;-proxy, die rechts wordt getoond, gebruikt worden bij elk &http;-verzoek. (De waarde hiervan komt uit de omgevingsvariabele <envar
+>http_proxy</envar
+>). </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Deze proxy voor HTTP-verzoeken gebruiken</guilabel
+></term>
+            <listitem>
+              <para
+>Als er geen systeemproxy is ingesteld of u moet een andere proxy voor &gpgsm;, gebruiken, dan kunt u hier de locatie invoeren. </para>
+              <para
+>Het zal voor alle &HTTP;-verzoeken gerelateerd aan S/&MIME; worden gebruikt. </para>
+              <para
+>De syntaxis is <userinput
+><replaceable
+>hostnaam</replaceable
+><literal
+>:</literal
+><replaceable
+>poort</replaceable
+></userinput
+>, &eg; <userinput
+>mijnproxy.nergens.nl:3128.</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Opties voor &ldap;-verzoeken instellen</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>Geen LDAP-verzoeken uitvoeren</guilabel
+></term>
+            <listitem>
+              <para
+>Schakelt het gebruik van &ldap; voor &smime; geheel uit. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>LDAP CRL-distributiepunt van certificaten negeren</guilabel
+></term>
+            <listitem>
+              <para
+>Wanneer u de locatie van een &crl; aan het zoeken bent, zal het te testen certificaat items bevatten onder de naam "&crl; Distribution Point" (<acronym
+>DP</acronym
+>). Deze bevatten &URL;'s die het adres van de &crl; beschrijven. Het eerste gevonden <acronym
+>DP</acronym
+> wordt gebruikt. </para>
+              <para
+>Met deze optie worden alle items met het &ldap;-schema genegeerd wanneer er gezocht wordt naar een geschikte <acronym
+>DP</acronym
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Primaire host voor LDAP-verzoeken</guilabel
+></term>
+            <listitem>
+              <para
+>Hier een &ldap;-server invoeren maakt dat alle &ldap;-verzoeken eerst naar die server gaan. Meer precies, deze instelling overschrijft elke gespecificeerde <replaceable
+>hostnaam</replaceable
+> en <replaceable
+>poort</replaceable
+> in een &ldap;-&URL; en zal ook worden gebruikt als <replaceable
+>hostnaam</replaceable
+> en <replaceable
+>poort</replaceable
+> uit de &URL; zijn weggelaten. </para>
+              <para
+>Andere &ldap;-servers zullen alleen worden gebruikt als de verbinding naar de <quote
+>proxy</quote
+> mislukt. De syntaxis is <userinput
+><replaceable
+>hostnaam</replaceable
+></userinput
+> of <userinput
+><replaceable
+>hostnaam</replaceable
+><literal
+>:</literal
+><replaceable
+>poort</replaceable
+></userinput
+>. Als <replaceable
+>poort</replaceable
+> wordt weggelaten, dan wordt poort 389 (de standaard &ldap;-poort) gebruikt. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Het &gnupg;-systeem instellen</title>
+
+      <para
+>Dit deel van de dialoog is automatisch gegenereerd uit de uitvoer van <command
+>gpgconf <option
+>--list-components</option
+></command
+> en voor elke <replaceable
+>component</replaceable
+> die het bovenstaande commando terug geeft, de uitvoer van <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>component</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>De meest nuttige van deze opties zijn overgenomen als aparte pagina's in de instellingendialoog van &kleopatra;. Zie <xref linkend="configuration-directory-services"/> en <xref linkend="configuration-smime-validation"/> voor de twee dialoogpagina's die geselecteerde opties bevatten uit dit gedeelte van de dialoog. </para>
+      </note>
+      <para
+>De exacte inhoud van dit gedeelte van de dialoog hangt af van de versie van de geïnstalleerde &gnupg;-backend en, in principe, van het platform waarop u werkt. We zullen dus alleen de algemene indeling van de dialoog, inclusief het overeen laten komen van de &gpgconf;-optie met de &GUI; besturing van &kleopatra;. </para>
+      <para
+>&gpgconf; geeft configuratie-informatie voor meerdere componenten terug. Binnen elke component worden individuele opties gecombineerd in groepen. </para>
+      <para
+>&kleopatra; toont één tabblad per door &gpgconf; gerapporteerde component; groepen krijgen een kop met een horizontale lijn met de groepsnaam zoals teruggeven door &gpgconf;. </para>
+      <para
+>Elke optie van &gpgconf; heeft een type. Behalve voor bepaalde welbekende opties, die &kleopatra; ondersteunt met gespecialiseerde besturing voor een betere gebruikerservaring, is de koppeling tussen &gpgconf;-types en besturing van &kleopatra; als volgt: </para>
+      <table id="table-gpgconf-types">
+	<title
+>Koppeling tussen &gpgconf;-types en &GUI;-besturing</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>&gpgconf;-type</entry>
+              <entry namest="lists" nameend="non-lists"
+>Besturing van &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>voor lijsten</entry>
+	      <entry
+>voor niet-lijsten</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>geen</literal
+></entry>
+	      <entry
+>Numeriek keuzeveld (<quote
+>getallen</quote
+>-semantiek)</entry>
+	      <entry
+>Keuzevakje</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>tekenreeks</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>Regelinvoer</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Regelinvoer (ongeformatteerd)</entry>
+              <entry morerows="1"
+>Draaiveld</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>padnaam</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>gespecialiseerde besturing</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>LDAP-server</literal
+></entry>
+              <entry
+>gespecialiseerde besturing</entry>
+              <entry
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>vingerafdruk van sleutel</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>publieke sleutel</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>geheime sleutel</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>aliaslijst</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Zie het handboek van &gpgconf; voor meer informatie over wat u hier in kunt stellen en hoe. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Systeembeheerdersgids</title>
+
+<para
+>De systeembeheerdersgids beschrijft de manieren waarop &kleopatra; kan worden aangepast, die niet toegankelijk zijn via de &GUI;, maar alleen via de instellingenbestanden.</para>
+
+<para
+>De veronderstelling is dat de lezer bekend is met de technologie die wordt gebruikt voor het instellen van &kde; toepassingen, inclusief de indeling, locatie van het bestandssysteem en opstapelen van instellingenbestanden, evenals het KIOSK-framework.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Aanpassen van de assistent Certificaat aanmaken</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Aanpassen van de &dn;-velden</title>
+
+<para
+>&kleopatra; stelt u in staat de velden, die de gebruiker mag invoeren, aan te passen om hun certificaat aan te maken.</para>
+
+<para
+>Maak een groep genaamd <literal
+>CertificateCreationWizard</literal
+> in de systeembrede <filename
+>kleopatrarc</filename
+>. Als u een eigen volgorde van attributen wilt of als u alleen bepaalde items wilt laten verschijnen, maak dan een sleutel genaamd <varname
+>DNAttributeOrder</varname
+>. Het argument is een of meer uit <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+>. Als u velden met een bepaalde waarde wilt initialiseren, schrijf dan zoiets als Attribuut=waarde. Als u het attribuut als vereist wilt behandelen, voeg dan een uitroepteken achter (bijv. <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, hetwelk de standaard instelling is).</para>
+
+<para
+>Met gebruik van de <acronym
+>KIOSK</acronym
+> modus-modifier <varname
+>$e</varname
+> kunt u de waarden uit omgevingsvariabelen halen of uit een uitgevoerd script of binair programma. Als u bovendien bewerking van het respectievelijke wilt verbieden, gebruik dan de modifier <varname
+>$i</varname
+>. Als u het gebruik van de knop <guibutton
+>Mijn adres invoegen</guibutton
+> wilt verbieden, zet <varname
+>ShowSetWhoAmI</varname
+> dan op false.</para>
+
+<tip
+><para
+>Vanwege de aard van het &kde; <acronym
+>KIOSK</acronym
+> framework, maakt het gebruik van de niet-te-vervangen vlag (<varname
+>$i</varname
+>) het voor de gebruiker onmogelijk om de vlag te negeren. Dit is bewust gedrag. <varname
+>$i</varname
+> en <varname
+>$e</varname
+> kunnen ook worden gebruikt met alle andere instellingensleutels in &kde; toepassingen.</para
+></tip>
+
+<para
+>Het volgende voorbeeld legt uit wat de mogelijke aanpassingen zijn:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;Sta niet toe persoonlijke gegevens uit het adresboek te kopiëren, evenzo lokaal overschrijven
+ShowSetWhoAmI[$i]=false
+
+;stelt de gebruikersnaam in op $USER
+CN[$e]=$USER
+
+;stelt de bedrijfsnaam in op "Mijn bedrijf", bewerken niet toegestaan
+O[$i]=Mijn bedrijf
+
+;stelt de afdelingsnaam in op een waarde teruggegeven door een script
+OU[$ei]=$(lookup_dept_from_ip)
+
+; stel het land in op NL, maar mag door de gebruiker gewijzigd worden
+C=NL
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Beperken van de types sleutels die een gebruiker mag aanmaken</title>
+
+        <para
+>&kleopatra; kan ook beperken welk type certificaten een gebruiker mag aanmaken. Let op, hier is gemakkelijk omheen te gaan, de gebruiker kan deze nog steeds op de opdrachtregel aanmaken. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Algoritmes voor publieke sleutels</title>
+
+          <para
+>Om het te gebruiken algoritme voor de publieke sleutel te beperken, voegt u de configuratiesleutel <varname
+>PGPKeyType</varname
+> (en <varname
+>CMSKeyType</varname
+>, echter alleen <acronym
+>RSA</acronym
+> is voor <acronym
+>CMS</acronym
+> ondersteund) aan de sectie <literal
+>CertificateCreationWizard</literal
+> van <filename
+>kleopatrarc</filename
+> toe. </para>
+
+          <para
+>De toegestane waarden zijn <literal
+>RSA</literal
+> voor <acronym
+>RSA</acronym
+>-sleutels, <literal
+>DAS</literal
+> voor <acronym
+>DSA</acronym
+>-sleutels (alleen ondertekenen) en <literal
+>DSA+ELG</literal
+> voor een <acronym
+>DSA</acronym
+>-sleutel (alleen ondertekenen) met een Elgamal-subsleutel voor versleuteling. </para>
+
+          <para
+>De standaard wordt gelezen uit &gpgconf; of is anders <literal
+>RSA</literal
+> als &gpgconf; geen standaard levert. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Grootte publieke sleutel</title>
+
+          <para
+>Om de beschikbare sleutellengtes voor een publiek algoritme te beperken, voegt u de configuratiesleutel <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>KeySizes</varname
+> (waar <replaceable
+>ALG</replaceable
+> <literal
+>RSA</literal
+>, <literal
+>DSA</literal
+> of <literal
+>ELG</literal
+>) mag zijn, toe aan de sectie <literal
+>CertificateCreationWizard</literal
+> van <filename
+>kleopatrarc</filename
+>, die een komma-gescheiden lijst van sleutellengtes (in bits) bevat. Een standaard kan worden aangeduid door de sleutellengte te laten voorafgaan door een minteken (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Het bovenstaande beperkt de toegestane <acronym
+>RSA</acronym
+> sleutelgrootte tot 1536, 2048 en 3072, met 2048 als de standaard. </para>
+
+          <para
+>Naast de lengtes zelf, mag u labels voor elk van de lengtes specificeren. Stel eenvoudig de configuratiesleutel in op <varname
+><replaceable
+>ALG</replaceable
+>KeySizeLabels</varname
+> in op een komma-gescheiden lijst van labels. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = weak,normal,strong
+            </programlisting>
+          </para>
+
+          <para
+>Het bovenstaande, in combinatie met het vorige voorbeeld, zou zoiets als de volgende opties voor selectie laten zien: <programlisting
+>weak (1536 bits)
+              normal (2048 bits)
+              strong (3072 bits)
+            </programlisting>
+          </para>
+
+          <para
+>De standaarden zijn zoals het volgende laat zien: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Sleutelcategorieën aanmaken en bewerken</title>
+
+      <para
+>&kleopatra; stelt de gebruiker in staat om het <link linkend="configuration-appearance-certificate-filters"
+>visuele uiterlijk</link
+> van toetsen gebaseerd op een concept genaamd <guilabel
+>Sleutelcategorieën</guilabel
+>. <guilabel
+>Sleutelcategorieën</guilabel
+> worden ook gebruikt om de lijst met certificaten te filteren. Deze sectie beschrijft hoe u de beschikbare categorieën kunt bewerken en nieuwe kan toevoegen. </para>
+
+      <para
+>Bij het proberen om de categorie te vinden waar een sleutel bij hoort, probeert &kleopatra; om de sleutel te laten overeenkomen met een serie sleutelfilters, geconfigureerd in <filename
+>libkleopatrarc</filename
+>. De eerste die overeenkomt definieert de categorie, gebaseerd op een concept van <emphasis
+>meer specifiek</emphasis
+>, hieronder nader verklaart. </para>
+
+      <para
+>Elke sleutelfilter is gedefinieerd in een configuratiegroep genaamd <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, waar <replaceable
+>n</replaceable
+> een getal is, beginnend bij <literal
+>0</literal
+>. </para>
+
+      <para
+>De enige verplichte sleutels in een <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>-groep zijn <varname
+>Name</varname
+>, bevattende de naam van de categorie zoals getoond in de <link linkend="configuration-appearance-certificate-filters"
+>Instellingendialoog</link
+> en <varname
+>id</varname
+>, die wordt gebruikt als een referentie naar het filter in andere instellingensecties (zoals <literal
+>View #<replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> toont alle sleutels die de weergaveeigenschappen van sleutels behorende bij die categorie (&ie; die sleutels die aangepast kunnen worden in de <link linkend="configuration-appearance-certificate-filters"
+>instellingendialoog</link
+>), terwijl <xref linkend="table-key-filters-criteria"/> alle sleutels die de criteria definiëren van het filter waartegen de sleutels worden gehouden. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Instellingensleutels voor sleutelfilters die weergave-eigenschappen definiëren</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Configuratiesleutel</entry>
+	      <entry
+>Type</entry>
+	      <entry
+>Beschrijving</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>kleur</entry>
+	      <entry
+>De te gebruiken achtergrondkleur. Is standaard de achtergrondkleur die globaal is gedefinieerd voor weergave van lijsten, indien deze ontbreekt. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>kleur</entry>
+	      <entry
+>De te gebruiken voorgrondkleur. Is standaard de voorgrondkleur die globaal is gedefinieerd voor weergave van lijsten, indien deze ontbreekt. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>lettertype</entry>
+	      <entry
+>Het aangepaste te gebruiken lettertype. Het lettertype zal worden geschaald tot de grootte ingesteld voor weergave van lijsten en elke attribuut van lettertypes (zie onder) zal worden toegepast. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Indien ingesteld op <literal
+>true</literal
+> en <varname
+>font</varname
+> is niet ingesteld, wordt het standaard lettertype gebruikt voor lijstweergave met de stijl vet toegevoegd (indien beschikbaar). Genegeerd als <varname
+>font</varname
+> ook aanwezig is. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Analoog aan <varname
+>font-bold</varname
+>, maar voor de  lettertypestijl cursief in plaats van vet. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Indien <literal
+>true</literal
+>, tekent een gecentreerde lijn over het lettertype. Wordt zelfs toegepast als <varname
+>font</varname
+> is ingesteld. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>icon</varname
+></entry>
+	      <entry
+>tekst</entry>
+	      <entry
+>De naam van een pictogram om de eerste kolom te tonen. Nog niet geïmplementeerd. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Instellingensleutels voor sleutelfilters die filtercriteria definiëren</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Configuratiesleutel</entry>
+	      <entry
+>Type</entry>
+	      <entry
+>Indien gespecificeerd, filter komt overeen wanneer...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is ingetrokken.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>context<footnote
+> <para
+>Context is een opsomming met de volgende toegestane waarden: <literal
+>appearance</literal
+>, <literal
+>filtering</literal
+> and <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>de context waarin dit filter overeenkomt.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is verlopen.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is uitgeschakeld (gemarkeerd voor niet-gebruiken) door de gebruiker. Genegeerd voor &smime;-sleutels. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is een root-certificaat. Genegeerd voor &openpgp;-sleutels. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel kan gebruikt worden voor versleuteling. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel kan gebruikt worden voor ondertekening. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel kan gebruikt worden voor ondertekening (certificeren) van andere sleutels. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel kan gebruikt worden voor authenticatie (&eg; als een <acronym
+>TLS</acronym
+> client-certificaat). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel kan gebruikt worden om Qualified Signatures te maken (zoals gedefinieerd door de Duitse Digital Signature Law). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is opgeslagen op een smartcard (in plaats van op de computer). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de geheime sleutel voor dit sleutelpaar is beschikbaar. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is een &openpgp;-sleutel (<literal
+>true</literal
+>) of een &smime;-sleutel (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>de sleutel is gevalideerd. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>voorloop</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>geldigheid<footnote
+> <para
+>Geldigheid is een (geordende) opsomming met de volgende toegestane waarden: <literal
+>unknown</literal
+>, <literal
+>undefined</literal
+>, <literal
+>never</literal
+>, <literal
+>marginal</literal
+>, <literal
+>full</literal
+>, <literal
+>ultimate</literal
+>. Zie de handboeken van &gpg; en &gpgsm; voor een gedetailleerde uitleg.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>de sleutel heeft exact (<replaceable
+>voorloop</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>), heeft alles behalve (<replaceable
+>voorloop</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>), heeft minstens (<replaceable
+>voorloop</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>) of heeft hooguit (<replaceable
+>voorloop</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) het ownertrust gegeven als de waarde van de instellingssleutel. Als meer dan één sleutel <varname
+><replaceable
+>voorloop</replaceable
+>-ownertrust</varname
+> (met een verschillende <replaceable
+>voorloop</replaceable
+>-waarde) aanwezig zijn in een enkele groep, dan is het gedrag niet gedefinieerd. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>voorloop</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>geldigheid</entry>
+	      <entry
+>Analoog aan <varname
+><replaceable
+>voorloop</replaceable
+>-ownertrust</varname
+>, maar dan voor de sleutel validity in plaats van ownertrust. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Sommige van de meer interessante criteria, zoals <varname
+>is-revoked</varname
+> of <varname
+>is-expired</varname
+> zal alleen werken op <emphasis
+>gevalideerde</emphasis
+> sleutels, dit is waarom, standaard, alleen gevalideerde sleutels gecontroleerd worden op ingetrokken en verlopen, hoewel u vrij bent om deze extra controles te verwijderen. </para>
+      </note>
+
+      <para
+>Naast de boven weergegeven configuratiesleutels, kan een sleutelfilter ook een <varname
+>id</varname
+> en <varname
+>match-contexts</varname
+> hebben. </para>
+
+      <para
+>Met het gebruik van het <varname
+>id</varname
+> van het filter, die standaard de naam van de configuratiegroep van het filter heeft, indien niet gegeven of leeg, kunt u elders in de configurati aan het sleutelfilter refereren, &eg; in weergaveinstellingen van &kleopatra;. De <varname
+>id</varname
+> wordt door &kleopatra; niet geïnterpreteerd, zodat u elke gewenste tekenreeks kunt gebruiken, als deze maar uniek is. </para>
+
+      <para
+>De <varname
+>match-contexts</varname
+> beperkt de toepasbaarheid van het filter. Er zijn nu twee contexten gedefinieerd: De context <literal
+>appearance</literal
+> wordt gebruikt bij het definiëren van de kleuren en eigenschappen van lettertypes voor de weergaven. De context <literal
+>filtering</literal
+> wordt gebruikt om selectief certificaten mee te nemen (en uit te sluiten) in weergaven. <literal
+>any</literal
+> kan worden gebruikt om alle nu gedefinieerde contexten aan te duiden en is de standaard als <varname
+>match-contexts</varname
+> niet is gegeven of anders geen contexten oplevert. Dit verzekert dat geen sleutelfilter <quote
+>dead</quote
+> kan eindigen, &ie; zonder dat er een contexts op is toegepast. </para>
+
+      <para
+>Het formaat van het item is een lijst met tokens, gescheiden door niet-woord tekens. Elk van de tokens geeft optioneel een voorloop van een uitroepteken (<literal
+>!</literal
+>), hetgeen negatie betekent. De tokens werken in volgorde op een interne lijst met contexten, die leeg beginnen. Dit is het best uitgelegd met een voorbeeld: <literal
+>any !appearance</literal
+> is hetzelfde als <literal
+>filtering</literal
+> en <literal
+>appearance !appearance</literal
+> levert de lege verzameling, evenals <literal
+>!any</literal
+>. De laatste twee, echter, zullen intern vervangen worden door <literal
+>any</literal
+>, omdat ze helemaal geen contexts opleveren. </para>
+
+      <para
+>In het algemeen worden niet gespecificeerde criteria (&ie; het configuratie-item is niet ingesteld) niet gecontroleerd. Als er een criterium is gegeven, dan wordt er op gecontroleerd en moet als geheel overeenkomen met het filter om overeen te komen, &ie; aan alle criteria moet voldaan (en-functie). </para>
+
+      <para
+>Elk filter heeft een impliciete <quote
+>specificity</quote
+> die wordt gebruikt om alle overeenkomende filters een waardering te geven. Het meer specifieke filter wint boven minder specifieke filters. Als twee filters dezelfde specificity hebben, dan wint degene die als eerste in het instellingenbestand staat. Een specificity is evenredig aan het aantal criteria die het bevat. </para>
+
+      <example>
+	<title
+>Voorbeelden van sleutelfilters</title>
+	<para
+>Om op alle verlopen, maar niet-ingetrokken root-certificaten, te controleren zou u een sleutelfilter als volgt gedefinieerd kunnen gebruiken: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=verlopen, maar niet ingetrokken
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Om te controleren op alle uitgeschakelde &openpgp;-sleutels (nog niet ondersteund door &kleopatra;) met eigenaarsvertrouwen van minstens <quote
+>marginaal</quote
+>, zou u moeten gebruiken: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=uitgeschakelde OpenPGP-sleutels met marginale of beter eigenaarsvertrouwen
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Archiveerders instellen voor gebruik met ondertekenen/versleutelen van bestanden</title>
+
+      <para
+>&kleopatra; stelt de systeembeheerder (en grootgebruiker) in staat om de lijst met archiveerders, die gepresenteerd worden in de dialoog voor ondertekenen/versleutelen van bestanden, in te stellen. </para>
+
+      <para
+>Elke archiveerder is gedefinieerd in <filename
+>libkleopatrarc</filename
+> als een aparte <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> groep, met de volgende verplichte elementen: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>extensies</literal
+></term>
+          <listitem>
+            <para
+>Een komma-gescheiden lijst met bestandsnaamextensies die gewoonlijk dit formaat archief aangeven. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Een unieke ID gebruikt om deze archiveerder intern te identificeren. Bij twijfel gebruikt u de naam van het commando. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Name</literal
+> (vertaald)</term>
+          <listitem>
+            <para
+>De naam van deze archiveerder, zichtbaar voor de gebruiker, zoals getoond in het overeenkomende afrolmenu van de dialoog voor ondertekenen/versleutelen van bestanden. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>Het actuele commando om bestanden te archiveren. U kunt elk commando gebruiken, als er geen shell nodig is om het uit te voeren. Het programmabestand wordt opgezocht met de omgevingsvariabele <envar
+>PATH</envar
+>, tenzij u een absoluut bestandspad gebruikt. Gebruik van aanhalingstekens is ondersteund alsof een shell wordt gebruikt: <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Omdat de backslash (<literal
+>\</literal
+>) een escape-teken is in &kde; configuratiebestanden, moet u ze verdubbelen wanneer ze in padnamen verschijnen: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> Voor het commando zelf echter (in tegenstelling tot zijn argumenten), mag u gewoon voorwaartse slashes (<literal
+>/</literal
+>) op alle platforms als padscheidingstekens gebruiken: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> Dit wordt niet ondersteund in argumenten, omdat de meeste &Windows;-programma's de voorwaartse slash voor opties gebruiken. Het volgende zal echter niet werken, omdat <literal
+>C:/myarchivescript.bat</literal
+> een argument voor <command
+>cmd.exe</command
+> en <literal
+>/</literal
+> niet in argumenten geconverteerd wordt naar <literal
+>\</literal
+>, alleen commando's: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> Dit moet, in plaats hiervan, geschreven worden als: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Doorgeven van bestandsnamen voor invoer aan <literal
+>pack-command</literal
+></title>
+
+      <para
+>Er zijn drie manieren om bestandsnamen door te geven aan het commando pack. Voor elk van deze biedt <literal
+>pack-command</literal
+> een specifieke syntaxis: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Als argumenten in de opdrachtregel.</para>
+            <para
+>Voorbeeld (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Voorbeeld (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> In dit geval worden bestandsnamen doorgegeven op de opdrachtregel, net zoals u zou doen bij een prompt. &kleopatra; gebruikt geen shell om de opdracht uit te voeren. Daarom is dit een veilige manier om bestandsnamen door te geven, maar op sommige platforms kan dat leiden tot beperkingen van de lengte van deze regel. Een literal <literal
+>%f</literal
+>, indien aanwezig, wordt vervangen door de namen van de te archiveren bestanden. Anders worden bestandsnamen achtergevoegd op de opdrachtregel. Dus kan het voorbeeld van zip hierboven ook geschreven worden als: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Via standaard-invoer, gescheiden door nieuwe-regels: voeg voor <literal
+>|</literal
+>.</para>
+            <para
+>Voorbeeld (&GNU;-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Voorbeeld (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> In dit geval worden bestandsnamen doorgegeven naar de archiveringstoepassing via <acronym
+>stdin</acronym
+>, een per regel. Dit vermijdt problemen op platforms die een lage limiet zetten op het aantal toegestane argumenten op de opdrachtregel, maar mislukt wanneer bestandsnamen, in feite nieuwe-regels bevatten. </para>
+            <note>
+              <para
+>&kleopatra; ondersteunt nu alleen <acronym
+>LF</acronym
+> als een nieuwe-regel scheidingsteken, niet <acronym
+>CRLF</acronym
+>. Dit kan wijzigen in toekomstige versies, gebaseerd op terugkoppeling van de gebruiker. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Via standaard-invoer, gescheiden door NUL-bytes: voeg voor <literal
+>0|</literal
+>.</para>
+            <para
+>Voorbeeld (&GNU;-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> Dit is hetzelfde als boven, behalve dat NUL-bytes worden gebruikt om bestandsnamen te scheiden. Omdat NUL-bytes verboden zijn in bestandsnamen, dit is de meest robuuste manier van het doorgeven van bestandsnamen, maar niet alle archiveringstoepassingen ondersteunen het. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Programma's voor controlesommen voor gebruik bij aanmaken/verifiëren van controlesommen</title>
+
+      <para
+>&kleopatra; stelt de beheerder (en power-gebruiker) in staat om de lijst met programma's voor controlesommen in te stellen, waaruit de gebruiker kan kiezen in de instellingendialoog en die &kleopatra; automatisch kan detecteren wanneer deze gevraagd wordt om de controlesom van een gegeven bestand te verifiëren. </para>
+
+      <note>
+        <para
+>Om bruikbaar te zijn voor &kleopatra; moet de uitvoer van programma's voor controlesommen (zowel het geschreven controlesombestand als de uitvoer op <acronym
+>stdout</acronym
+> bij verifiëren van controlesommen) compatibel zijn met &GNU; <command
+>md5sum</command
+> en <command
+>sha1sum</command
+>. </para>
+
+        <para
+>Het controlesombestand moet op regels gebaseerd zijn met in elke regel het volgende formaat: <programlisting
+><replaceable
+>CONTROLESOM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>BESTANDSNAAM</replaceable
+></programlisting
+> waar <replaceable
+>CONTROLESOM</replaceable
+> alleen bestaat uit hex-tekens. Als <replaceable
+>BESTANDSNAAM</replaceable
+> een teken nieuwe-regel bevat, moet de regel er uit als volgt uitzien: <programlisting
+>\<replaceable
+>CONTROLESOM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>ESCAPED-BESTANDSNAAM</replaceable
+></programlisting
+> waar <replaceable
+>ESCAPED-BESTANDSNAAM</replaceable
+> de bestandsnaam is met nieuwe-regel vervangen door <literal
+>\n</literal
+> en backslashes verdubbeld (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>Evenzo moet de uitvoer van <xref linkend="checksum-definition-verify-command"/> van de vorm <programlisting
+><replaceable
+>BESTANDSNAAM</replaceable
+> ( ': OK' | ': FAILED' )</programlisting
+> zijn gescheiden door nieuwe-regels. Nieuwe-regels en andere tekens worden <emphasis
+>niet</emphasis
+> escaped in de uitvoer.<footnote
+> <para
+>Ja, deze programma's zijn niet geschreven met een grafisch frontend in gedachten, zodat het &kleopatra; niet zal lukken om op de juiste manier pathologische bestandsnamen die ":&nbsp;OK" plus nieuwe-regel bevatten, te gebruiken. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Elk programma voor controlesommen is gedefinieerd in <filename
+> libkleopatrarc</filename
+> als een aparte <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> groep, met de volgende verplichte elementen: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>bestandspatronen</literal
+></term>
+          <listitem>
+            <para
+>Een lijst met reguliere expressies die beschrijven welke bestanden beschouwd zouden moeten worden als controlesombestanden voor dit programma voor controlesommen. De syntaxis is die voor lijsten tekenreeksen in &kde; configuratiebestanden. <note
+> <para
+> Omdat reguliere expressies gewoonlijk backslashes bevatten, moet zorgvuldig omgegaan worden met het juiste gebruik van escapes in het configuratiebestand. Het gebruik van een bewerkingshulpmiddel voor een configuratiebestand wordt aangeraden. </para
+> </note
+> Het platform definieert of de patronen behandeld worden met of zonder onderscheid tussen hoofd- en kleine letter. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>uitvoerbestand</literal
+></term>
+          <listitem>
+            <para
+>De typische naam van het uitvoerbestand voor dit programma voor controlesommen (zou natuurlijk overeen moeten komen met een van de <xref linkend="checksum-definition-file-patterns"/>). Dit is wat &kleopatra; zal gebruiken als de uitvoerbestandsnaam bij het aanmaken van bestanden met controlesommen van dit type. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Een unieke ID gebruikt om dit programma voor controlesommen intern te identificeren. Bij twijfel gebruikt u de naam van het commando. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Name</literal
+> (vertaald)</term>
+          <listitem>
+            <para
+>De voor de gebruiker zichtbare naam van dit programma voor controlesommen, zoals getoond in het afrolmenu in de configuratiedialoog van &kleopatra;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>Het actuele commando waarmee controlesombestanden worden aangemaakt. De syntax, beperkingen en opties voor argumentenoverdracht zijn hetzelfde als beschreven voor <xref linkend="archive-definition-pack-command"/> in <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>Hetzelfde als <xref linkend="checksum-definition-create-command"/>, echter voor verificatie van de controlesom. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Hier is een volledig voorbeeld: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Dankbetuiging en licentie</title>
+
+<para
+>&kleopatra; copyright 2002 &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; en &Jesper.Pedersen;., copyright 2004 &Daniel.Molkentin;, copyright 2004, 2007, 2008, 2009, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Documentatie copyright 2002 &Steffen.Hansen;, copyright 2004 &Daniel.Molkentin;, copyright 2004, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Medewerkers</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+&meld.fouten;&vertaling.freek; &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->

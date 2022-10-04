@@ -301,17 +301,17 @@ msgstr "Şimdi bir tane oluşturmak ister misiniz?"
 #: src/commands/certifycertificatecommand.cpp:174
 #, kde-format
 msgid "Certification Not Possible"
-msgstr "Sertifikalama İşlemi Olanaksız"
+msgstr "Sertifikasyon İşlemi Olanaksız"
 
 #: src/commands/certifycertificatecommand.cpp:232
 #, kde-format
 msgid "Certification successful."
-msgstr "Sertifikalama başarılı."
+msgstr "Sertifikasyon başarılı."
 
 #: src/commands/certifycertificatecommand.cpp:233
 #, kde-format
 msgid "Certification Succeeded"
-msgstr "Sertifikalama Başarılı"
+msgstr "Sertifikasyon Başarılı"
 
 #: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
@@ -325,7 +325,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:239
 #, kde-format
 msgid "Certification Error"
-msgstr "Sertifikalama Hatası"
+msgstr "Sertifikasyon Hatası"
 
 #: src/commands/changeexpirycommand.cpp:200
 #, kde-format
@@ -347,23 +347,23 @@ msgid ""
 "<p>An error occurred while trying to change the certification trust for <b>"
 "%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p><b>%1</b> için sertifikalandırma güvenilirliği değiştirilmeye "
-"çalışılırken bir hata oluştu:</p><p>%2</p>"
+"<p><b>%1</b> için sertifikasyon güvenilirliği değiştirilmeye çalışılırken "
+"bir hata oluştu:</p><p>%2</p>"
 
 #: src/commands/changeownertrustcommand.cpp:226
 #, kde-format
 msgid "Certification Trust Change Error"
-msgstr "Sertifikalandırma Güvenilirliği Değiştirme Hatası"
+msgstr "Sertifikasyon Güvenilirliği Değiştirme Hatası"
 
 #: src/commands/changeownertrustcommand.cpp:231
 #, kde-format
 msgid "Certification trust changed successfully."
-msgstr "Sertifikalandırma güveni başarıyla değiştirildi."
+msgstr "Sertifikasyon güveni başarıyla değiştirildi."
 
 #: src/commands/changeownertrustcommand.cpp:232
 #, kde-format
 msgid "Certification Trust Change Succeeded"
-msgstr "Sertifikalandırma Güveni Başarıyla Değiştirildi"
+msgstr "Sertifikasyon Güveni Başarıyla Değiştirildi"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -650,8 +650,8 @@ msgid ""
 "<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
 "should now send the request to the Certification Authority (CA).</para>"
 msgstr ""
-"<para>İstek <filename>%1</filename> dosyasına başarılı bir şekilde yazıldı</"
-"para> <para>Şimdi bu isteği Sertifika Otoritesi'ne göndermelisiniz.</para>"
+"<para>İstek, <filename>%1</filename> dosyasına başarıyla yazıldı.</"
+"para><para>Şimdi bu isteği Sertifikasyon Otoritesi'ne göndermelisiniz.</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:211
 #: src/newcertificatewizard/resultpage.cpp:264
@@ -2352,16 +2352,13 @@ msgstr ""
 "sertifikanın parmak izi: %1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:207
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>Sertifikalar yüklenirken bir hata oluştu: <message>%1</message></para>"
+"<para>Yeni bir OpenPGP sertifikasının oluşturulması başarısız.</"
+"para><para>Hata: <message>%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:213
 #, kde-kuit-format
@@ -2370,6 +2367,9 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+"<para>Yeni bir OpenPGP sertifikası başarıyla oluşturuldu; ancak anahtar "
+"zincirinde bulunamadı.</para><para>Yeni sertifikanın parmak izi: <nl/>%1</"
+"para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
 #: src/crypto/newsignencryptemailcontroller.cpp:576
@@ -2380,130 +2380,110 @@ msgid "Error"
 msgstr "Hata"
 
 #: src/commands/pivgeneratecardkeycommand.cpp:130
-#, fuzzy, kde-format
-#| msgid "The existing key has the fingerprint:"
+#, kde-format
 msgid "The existing key has the ID:"
-msgstr "Mevcut anahtarın, parmak izi var:"
+msgstr "Var olan anahtarın kimliği:"
 
 #: src/commands/pivgeneratecardkeycommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "Signing failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Generating key failed: %1"
-msgstr "İmzalama başarısız oldu: %1"
+msgstr "Anahtar oluşturma başarısız: %1"
 
 #: src/commands/pivgeneratecardkeycommand.cpp:219
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Key Pair Successfully Created"
+#, kde-format
 msgctxt "@info"
 msgid "Key successfully generated."
-msgstr "Anahtar Çifti Başarılı Bir Şekilde Oluşturuldu"
+msgstr "Anahtar, başarıyla oluşturuldu."
 
 #: src/commands/refreshcertificatecommand.cpp:123
 #, kde-format
 msgid "The backend does not support updating individual certificates."
-msgstr ""
+msgstr "Arka uç, bireysel sertifikaların güncellenmesini desteklemiyor."
 
 #: src/commands/refreshcertificatecommand.cpp:156
-#, fuzzy, kde-format
-#| msgid "Export..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
-msgstr "Dışa Aktar..."
+msgstr "Anahtar güncelleniyor..."
 
 #: src/commands/refreshcertificatecommand.cpp:178
-#, fuzzy, kde-format
-#| msgid "Exporting certificates..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
-msgstr "Sertifikalar dışa aktarılıyor..."
+msgstr "Sertifikalar güncelleniyor..."
 
 #: src/commands/refreshcertificatecommand.cpp:198
-#, fuzzy, kde-format
-#| msgid "Secret keys unchanged:"
+#, kde-format
 msgid "The key hasn't changed."
-msgstr "Değiştirilmeyen gizli anahtarlar:"
+msgstr "Anahtar değiştirilmemiş."
 
 #: src/commands/refreshcertificatecommand.cpp:202
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This key has already been revoked."
+#, kde-format
 msgid "The key has been revoked."
-msgstr "Bu anahtar zaten yürürlükten kaldırılmış."
+msgstr "Bu anahtar yürürlükten kaldırılmış."
 
 #: src/commands/refreshcertificatecommand.cpp:205
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This key has already been revoked."
+#, kde-format
 msgid "The key has been updated."
-msgstr "Bu anahtar zaten yürürlükten kaldırılmış."
+msgstr "Bu anahtar güncellenmiş."
 
 #: src/commands/refreshcertificatecommand.cpp:209
-#, fuzzy, kde-format
-#| msgid "New user IDs:"
+#, kde-format
 msgid "New user IDs: %1"
-msgstr "Yeni kullanıcı numaraları:"
+msgstr "Yeni kullanıcı kimlikleri: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:212
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgid "New subkeys: %1"
-msgstr "Yeni alt anahtarlar:"
+msgstr "Yeni alt anahtarlar: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:215
-#, fuzzy, kde-format
-#| msgid "New signatures:"
+#, kde-format
 msgid "New signatures: %1"
-msgstr "Yeni imzalar:"
+msgstr "Yeni imzalar: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ek olarak, 1 yeni anahtar alındı."
+msgstr[1] "Ek olarak, %1 yeni anahtar alındı."
 
 #: src/commands/refreshcertificatecommand.cpp:244
 #, fuzzy, kde-format
-#| msgid "&Update"
+#| msgid "Key Updated"
 msgctxt "@title:window"
 msgid "Key Updated"
-msgstr "&Güncelle"
+msgstr "Anahtar Güncellendi"
 
 #: src/commands/refreshcertificatecommand.cpp:258
-#, fuzzy, kde-format
-#| msgid "No certificate selected"
+#, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
-msgstr "Hiç sertifika seçilmedi"
+msgstr "Sertifika güncellendi."
 
 #: src/commands/refreshcertificatecommand.cpp:259
-#, fuzzy, kde-format
-#| msgid "Certificate Usage"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
-msgstr "Sertifika Kullanımı"
+msgstr "Sertifika Güncellendi"
 
 #: src/commands/refreshcertificatecommand.cpp:267
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while updating the certificate:</para><para><message>"
 "%1</message></para>"
 msgstr ""
-"<para>Sertifikalar yüklenirken bir hata oluştu: <message>%1</message></para>"
+"<para>Sertifikayı güncellerken bir hata oluştu:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/refreshcertificatecommand.cpp:270
-#, fuzzy, kde-format
-#| msgid "Update available!"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
-msgstr "Güncelleme var!"
+msgstr "Güncelleme Başarısız"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:41
 #, kde-kuit-format
@@ -2518,7 +2498,7 @@ msgid ""
 "want to continue with <resource>keys.gnupg.net</resource> as fallback server?"
 "</para>"
 msgstr ""
-"<para>Hiç OpenPGP dizin sunucusu yapılandırılmadı.</para><para>Eğer "
+"<para>Hiçbir OpenPGP dizin sunucusu yapılandırılmadı.</para><para>Eğer "
 "sertifikalar tercih ettikleri sertifika sunucularının adlarını "
 "taşımıyorlarsa (çok azı taşır), bir geri dönüş sunucusuna gereksinimleri "
 "olur.</para><para>Başka yapılandırılan olmadığından <application>Kleopatra</"
@@ -2546,7 +2526,7 @@ msgid ""
 "complete, depending on your network connection, and the number of "
 "certificates to check.</para> <para>Are you sure you want to continue?</para>"
 msgstr ""
-"<para>OpenPGP sertifikalarının tazelenmesi tüm sertifikaların yeniden "
+"<para>OpenPGP sertifikalarının yenilenmesi, tüm sertifikaların yeniden "
 "indirilerek haklarında yürürlükten kaldırma sertifikaları oluşturulup "
 "oluşturulmadığını denetlemek anlamına gelir.</para><para>Bu hem kendinizin "
 "hem de diğer insanların ağ bağlantılarının üzerine ciddi bir yük "
@@ -2558,13 +2538,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Error"
-msgstr "OpenPGP Sertifika Tazeleme Hatası"
+msgstr "OpenPGP Sertifika Yenileme Hatası"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:88
 #, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate Refresh Finished"
-msgstr "OpenPGP Sertifika Tazeleme İşlemi Tamamlandı"
+msgstr "OpenPGP Sertifika Yenileme Tamamlandı"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:94
 #, kde-kuit-format
@@ -2575,30 +2555,24 @@ msgid ""
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
 "<para>OpenPGP sertifikalarını yenilemeye çalışan GPG süreci beklenmeyen bir "
-"hata nedeniyle erken sonlandı. Lütfen daha fazla bilgi <icode>%1</icode> "
-"çıktısını denetleyin.</para>"
+"hata nedeniyle erken sonlandı. Lütfen daha fazla bilgi için <icode>%1</"
+"icode> çıktısını denetleyin.</para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:102
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to refresh OpenPGP certificates.</para> "
 "<para>The output from <command>%1</command> was: <bcode>%2</bcode></para>"
 msgstr ""
-"<para>OpenPGP sertfikaları tazelenmeye çalışılırken bir hata oluştu.</"
-"para><para><command>%1</command> komutunun çıktısı: <message>%2</message></"
-"para>"
+"<para>OpenPGP sertifikalarını yenilemeye çalışırken bir hata oluştu.</para> "
+"<para><command>%1</command> komutu çıktısı şuydu: <bcode>%2</bcode></para>"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:109
 #, kde-format
 msgctxt "@info"
 msgid "OpenPGP certificates refreshed successfully."
-msgstr "OpenPGP sertifikaları başarılı bir şekilde tazelendi."
+msgstr "OpenPGP sertifikaları başarılı bir şekilde yenilendi."
 
 #: src/commands/refreshx509certscommand.cpp:42
 #, kde-kuit-format
@@ -2611,7 +2585,7 @@ msgid ""
 "your network connection, and the number of certificates to check.</para> "
 "<para>Are you sure you want to continue?</para>"
 msgstr ""
-"<para>X.509 sertifikalarını yenilemek tüm sertifikalar için CRL'lerin "
+"<para>X.509 sertifikalarını yenilemek, tüm sertifikalar için CRL'lerin "
 "indirilmesi anlamına gelir.</para><para>Bu hem kendinizin hem de diğer "
 "insanların ağ bağlantılarının üzerine ciddi bir yük getirecektir ve ağ "
 "bağlantının hızına ve denetlenecek sertifika sayısına bağlı olarak bir saat "
@@ -2627,13 +2601,13 @@ msgstr "X.509 Sertifika Yenilemesi"
 #, kde-format
 msgctxt "@title:window"
 msgid "X.509 Certificate Refresh Error"
-msgstr "X.509 Sertifika Tazeleme Hatası"
+msgstr "X.509 Sertifika Yenileme Hatası"
 
 #: src/commands/refreshx509certscommand.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "X.509 Certificate Refresh Finished"
-msgstr "X.509 Sertifika Tazeleme İşlemi Tamamlandı"
+msgstr "X.509 Sertifika Yenileme Tamamlandı"
 
 #: src/commands/refreshx509certscommand.cpp:72
 #, kde-kuit-format
@@ -2643,75 +2617,67 @@ msgid ""
 "prematurely because of an unexpected error.</para><para>Please check the "
 "output of <icode>%1</icode> for details.</para>"
 msgstr ""
-"<para>GpgSM süreci X.509 sertifikasını tazelemeye çalıştı ve beklenmeyen bir "
-"hata nedeniyle zamanından önce sonlandı.</para><para>Lütfen ayrıntılar için "
-"<icode>%1</icode> çıktısına bakın.</para>"
+"<para>GpgSM süreci, X.509 sertifikasını yenilemeye çalıştı ve beklenmeyen "
+"bir hata nedeniyle zamanından önce sonlandı.</para><para>Lütfen ayrıntılar "
+"için <icode>%1</icode> çıktısına bakın.</para>"
 
 #: src/commands/refreshx509certscommand.cpp:80
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to refresh X.509 certificates.</"
-#| "para><para>The output from <command>%1</command> was: <message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to refresh X.509 certificates.</"
 "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
 "para>"
 msgstr ""
-"<para>X.509 sertfikaları tazelenmeye çalışılırken bir hata oluştu.</"
-"para><para><command>%1</command> komutunun çıktısı: <message>%2</message></"
+"<para>X.509 sertifikalarını yenilemeye çalışırken bir hata oluştu.</"
+"para><para><command>%1</command> komutu çıktısı şuydu: <bcode>%2</bcode></"
 "para>"
 
 #: src/commands/refreshx509certscommand.cpp:87
 #, kde-format
 msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
-msgstr "X.509 sertifikaları başarılı bir şekilde tazelendi."
+msgstr "X.509 sertifikaları başarıyla yenilendi."
 
 #: src/commands/revokecertificationcommand.cpp:78
-#, fuzzy, kde-kuit-format
-#| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made "
 "with the key<nl/>%2.</para>"
-msgstr "<para>Şu anahtarı yürürlükten kaldırmak üzeresiniz:<nl/>%1</para>"
+msgstr ""
+"<para>%2 anahtarı ile yapılmış<nl/>%1<nl/>kullanıcısı kimliğinin<nl/"
+">sertifikasyonunu yürürlükten kaldırmak üzeresiniz.</para>"
 
 #: src/commands/revokecertificationcommand.cpp:83
 #: src/commands/revokecertificationcommand.cpp:97
 #: src/dialogs/certificatedetailswidget.cpp:628
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
-msgstr "Yürürlükten kaldırma nedeni"
+msgstr "Yürürlükten Kaldırmayı Onayla"
 
 #: src/commands/revokecertificationcommand.cpp:84
 #, kde-format
 msgid "Revoke Certification"
-msgstr "Sertifikalamayı Yürürlükten Kaldır"
+msgstr "Sertifikasyonu Yürürlükten Kaldır"
 
 #: src/commands/revokecertificationcommand.cpp:89
 #, kde-format
 msgid "User ID '%1' certified with key %2"
-msgstr ""
+msgstr "'%1' kullanıcı kimliği, %2 anahtarıyla sertifikalandı"
 
 #: src/commands/revokecertificationcommand.cpp:91
-#, fuzzy, kde-format
-#| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
-msgstr[0] "<para>Şu anahtarı yürürlükten kaldırmak üzeresiniz:<nl/>%1</para>"
-msgstr[1] "<para>Şu anahtarı yürürlükten kaldırmak üzeresiniz:<nl/>%1</para>"
+msgstr[0] "Aşağıdaki anahtarı yürürlükten kaldırmak üzeresiniz:"
+msgstr[1] "Aşağıdaki %1 anahtarı yürürlükten kaldırmak üzeresiniz:"
 
 #: src/commands/revokecertificationcommand.cpp:98
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgid "Revoke Certifications"
-msgstr "Sertifikalamayı Yürürlükten Kaldır"
+msgstr "Sertifikasyonu Yürürlükten Kaldır"
 
 #: src/commands/revokecertificationcommand.cpp:202
 #, kde-kuit-format
@@ -2723,63 +2689,62 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
+"<para>Sertifikasyon, başarıyla yürürlükten kaldırıldı.</"
+"para><para>Yürürlükten kaldırmayı yayımlamak istiyor musunuz?</para>"
 msgstr[1] ""
+"<para>%1 sertifikasyon, başarıyla yürürlükten kaldırıldı.</"
+"para><para>Yürürlükten kaldırmaları yayımlamak istiyor musunuz?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:207
-#, fuzzy, kde-format
-#| msgid "Publish revocations on keyserver"
+#, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
-msgstr[0] "Yürürlükten kaldırmaları anahtar sunucusunda yayımla"
-msgstr[1] "Yürürlükten kaldırmaları anahtar sunucusunda yayımla"
+msgstr[0] "Yürürlükten Kaldırmayı Yayımla"
+msgstr[1] "Yürürlükten Kaldırmaları Yayımla"
 
 #: src/commands/revokecertificationcommand.cpp:211
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Reason for revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
-msgstr "Yürürlükten kaldırma nedeni"
+msgstr "Yürürlükten Kaldırmayı Onayla"
 
 #: src/commands/revokecertificationcommand.cpp:234
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
-"<para>Sertifikalar yüklenirken bir hata oluştu: <message>%1</message></para>"
+"<para>%2<nl/>anahtarıyla yapılmış <nl/>%1<nl/> kullanıcısının "
+"sertifikasyonunun yürürlükten kaldırması başarısız:</para><nl/"
+"><para><message>%3</message></para>"
 
 #: src/commands/revokecertificationcommand.cpp:325
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgid "You cannot revoke any certifications of this key."
-msgstr "Bu geçersiz sertifikalamayı yürürlükten kaldıramazsınız."
+msgstr "Bu anahtarın hiçbir sertifikasyonunu yürürlükten kaldıramazsınız."
 
 #: src/commands/revokecertificationcommand.cpp:328
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this invalid certification."
+#, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
-msgstr[0] "Bu geçersiz sertifikalamayı yürürlükten kaldıramazsınız."
-msgstr[1] "Bu geçersiz sertifikalamayı yürürlükten kaldıramazsınız."
+msgstr[0] ""
+"Bu kullanıcı kimliğinin hiçbir sertifikasyonunu yürürlükten kaldıramazsınız."
+msgstr[1] ""
+"Bu kullanıcı kimliklerinin hiçbir sertifikasyonunu yürürlükten "
+"kaldıramazsınız."
 
 #: src/commands/revokecertificationcommand.cpp:333
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgid "You cannot revoke this certification."
-msgstr "Bu süresi geçmiş sertifikalamayı yürürlükten kaldıramazsınız."
+msgstr "Bu sertifikasyonu yürürlükten kaldıramazsınız."
 
 #: src/commands/revokekeycommand.cpp:109
 #, kde-format
 msgctxt "@info"
 msgid "This key has already been revoked."
-msgstr "Bu anahtar zaten yürürlükten kaldırılmış."
+msgstr "Bu anahtar halihazırda yürürlükten kaldırılmış."
 
 #: src/commands/revokekeycommand.cpp:203
 #, kde-format
@@ -2791,7 +2756,7 @@ msgstr "Anahtar yürürlükten kaldırılıyor..."
 #, kde-format
 msgctxt "@info"
 msgid "The key was revoked successfully."
-msgstr "Anahtar başarılı bir biçimde yürürlükten kaldırıldı."
+msgstr "Anahtar başarıyla yürürlükten kaldırıldı."
 
 #: src/commands/revokekeycommand.cpp:219
 #, kde-format
@@ -2817,19 +2782,15 @@ msgid "Revocation Failed"
 msgstr "Yürürlükten Kaldırma Başarısız"
 
 #: src/commands/revokeuseridcommand.cpp:123
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to restore the secret key.</para> "
-#| "<para>The output from <command>%1</command> was:</para><para><message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</"
 "emphasis>.</para><para><message>%2</message></para>"
 msgstr ""
-"<para>Gizli anahtar geri yüklenmeye çalışılırken bir hata oluştu.</para> "
-"<para><command>%1</command> komutunun çıktısı: <message>%2</message></para>"
+"<para>Aşağıdaki kullanıcı kimliğini yürürlükten kaldırmaya çalışırken bir "
+"hata oluştu<nl/><emphasis>%1</emphasis>.</para><para><message>%2</message></"
+"para>"
 
 #: src/commands/revokeuseridcommand.cpp:131
 #, kde-kuit-format
@@ -2838,28 +2799,26 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked "
 "successfully.</para>"
 msgstr ""
+"<para><emphasis>%1</emphasis><nl/>kullanıcı kimliği,<nl/>başarıya "
+"yürürlükten kaldırıldı.</para>"
 
 #: src/commands/revokeuseridcommand.cpp:133
-#, fuzzy, kde-format
-#| msgid "Revocation Succeeded"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revocation Succeeded"
 msgstr "Yürürlükten Kaldırma Başarılı"
 
 #: src/commands/setinitialpincommand.cpp:54
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Set Initial Pin"
+#, kde-format
 msgctxt "@title:window"
 msgid "Set Initial Pin"
 msgstr "Başlangıç Pinini Ayarla"
 
 #: src/commands/setinitialpincommand.cpp:79
 #: src/commands/setinitialpincommand.cpp:159
-#, fuzzy, kde-format
-#| msgid "Failed to find the card with the serial number: %1"
+#, kde-format
 msgid "Failed to find the NetKey card with the serial number: %1"
-msgstr "Şu seri numarasındaki kart bulunamadı: %1"
+msgstr "Şu seri numaralı NetKey kartı bulunamadı: %1"
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:118
 #, kde-format
@@ -2867,6 +2826,7 @@ msgid ""
 "Please enter the old PIV Card Application Administration Key in hex-encoded "
 "form."
 msgstr ""
+"Lütfen eski PIV Kart Uygulama Yönetim Anahtarını, onaltılık biçimde girin."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:159
 #, kde-format

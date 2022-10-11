@@ -11,10 +11,11 @@
 #pragma once
 
 #include <Qt>
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 // define some bitwise operators to avoid warning that bitwise operation between
 // different enumeration types is deprecated
 inline int operator|(Qt::Modifier modifier, Qt::Key key)
 {
     return static_cast<int>(modifier) | static_cast<int>(key);
 }
+#endif

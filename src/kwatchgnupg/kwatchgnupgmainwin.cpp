@@ -41,6 +41,7 @@
 #include <KSharedConfig>
 
 #include <gpgme++/gpgmepp_version.h>
+#include <kwidgetsaddons_version.h>
 #if GPGMEPP_VERSION >= 0x11000 // 1.16.0
 # define CRYPTOCONFIG_HAS_GROUPLESS_ENTRY_OVERLOAD
 #endif
@@ -201,7 +202,17 @@ void KWatchGnuPGMainWindow::setGnuPGConfig()
 
 void KWatchGnuPGMainWindow::slotWatcherExited(int, QProcess::ExitStatus)
 {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    if (KMessageBox::questionTwoActions(this,
+                                        i18n("The watchgnupg logging process died.\nDo you want to try to restart it?"),
+                                        QString(),
+                                        KGuiItem(i18n("Try Restart")),
+                                        KGuiItem(i18n("Do Not Try")))
+        == KMessageBox::ButtonCode::PrimaryAction) {
+#else
     if (KMessageBox::questionYesNo(this, i18n("The watchgnupg logging process died.\nDo you want to try to restart it?"), QString(), KGuiItem(i18n("Try Restart")), KGuiItem(i18n("Do Not Try"))) == KMessageBox::Yes) {
+
+#endif
         mCentralWidget->append(i18n("====== Restarting logging process ====="));
         mCentralWidget->ensureCursorVisible();
         startWatcher();

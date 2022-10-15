@@ -39,6 +39,7 @@
 #endif
 
 #include "kleopatra_debug.h"
+#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -459,10 +460,19 @@ void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
         /* TODO DELETE_KEY is too strong, because it also deletes the stub
          * of the secret key. I could not find out how GnuPG does this. Question
          * to GnuPG Developers is pending an answer
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (KMessageBox::questionTwoActions(d->parentWidgetOrView(),
+#else
         if (KMessageBox::questionYesNo(d->parentWidgetOrView(),
+
+#endif
                                        i18n("Do you want to delete the key on this computer?"),
                                        i18nc("@title:window",
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                                       "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
+#else
                                        "Key transferred to card")) == KMessageBox::Yes) {
+#endif
             const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
             // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
             ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");

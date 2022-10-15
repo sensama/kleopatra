@@ -59,6 +59,7 @@
 #include <KConfigGroup>
 #include <KConfigDialog>
 #include <KColorScheme>
+#include <kwidgetsaddons_version.h>
 
 #include <QAbstractItemView>
 #include <QCloseEvent>
@@ -198,14 +199,19 @@ public:
     void closeAndQuit()
     {
         const QString app = KAboutData::applicationData().displayName();
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        const int rc = KMessageBox::questionTwoActionsCancel(q,
+#else
         const int rc = KMessageBox::questionYesNoCancel(q,
-                       xi18n("<application>%1</application> may be used by other applications as a service.<nl/>"
-                             "You may instead want to close this window without exiting <application>%1</application>.", app),
-                       i18nc("@title:window", "Really Quit?"),
-                       KStandardGuiItem_close(),
-                       KStandardGuiItem_quit(),
-                       KStandardGuiItem::cancel(),
-                       QLatin1String("really-quit-") + app.toLower());
+#endif
+                                                             xi18n("<application>%1</application> may be used by other applications as a service.<nl/>"
+                                                                   "You may instead want to close this window without exiting <application>%1</application>.",
+                                                                   app),
+                                                             i18nc("@title:window", "Really Quit?"),
+                                                             KStandardGuiItem_close(),
+                                                             KStandardGuiItem_quit(),
+                                                             KStandardGuiItem::cancel(),
+                                                             QLatin1String("really-quit-") + app.toLower());
         if (rc == KMessageBox::Cancel) {
             return;
         }
@@ -214,7 +220,11 @@ public:
             return;
         }
         // WARNING: 'this' might be deleted at this point!
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (rc == KMessageBox::ButtonCode::SecondaryAction) {
+#else
         if (rc == KMessageBox::No) {
+#endif
             qApp->quit();
         }
     }

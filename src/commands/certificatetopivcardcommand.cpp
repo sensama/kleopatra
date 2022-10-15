@@ -36,6 +36,7 @@
 #endif
 
 #include "kleopatra_debug.h"
+#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -141,10 +142,23 @@ void CertificateToPIVCardCommand::Private::start()
     auto confirmButton = KStandardGuiItem::yes();
     confirmButton.setText(i18nc("@action:button", "Write certificate"));
     confirmButton.setToolTip(QString());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    const auto choice = KMessageBox::questionTwoActions(
+#else
     const auto choice = KMessageBox::questionYesNo(
-        parentWidgetOrView(), message, i18nc("@title:window", "Write certificate to card"),
-        confirmButton, KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::WindowModal);
+#endif
+        parentWidgetOrView(),
+        message,
+        i18nc("@title:window", "Write certificate to card"),
+        confirmButton,
+        KStandardGuiItem::cancel(),
+        QString(),
+        KMessageBox::Notify | KMessageBox::WindowModal);
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    if (choice != KMessageBox::ButtonCode::PrimaryAction) {
+#else
     if (choice != KMessageBox::Yes) {
+#endif
         finished();
         return;
     }

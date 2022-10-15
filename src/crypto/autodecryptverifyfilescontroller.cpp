@@ -35,6 +35,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include "kleopatra_debug.h"
+#include <kwidgetsaddons_version.h>
 
 #include <QDir>
 #include <QFile>
@@ -208,15 +209,25 @@ void AutoDecryptVerifyFilesController::Private::exec()
             QString outFileName = fi.fileName();
             if (!embeddedFileName.isEmpty() && embeddedFileName != fi.fileName()) {
                 // we switch "Yes" and "No" because Yes is default, but saving with embedded file name could be dangerous
-                const auto answer = KMessageBox::questionYesNoCancel(m_dialog,
-                                                                     xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
-                                                                     i18n("Use Original File Name?"),
-                                                                     KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
-                                                                     KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                const auto answer = KMessageBox::questionTwoActionsCancel(
+                    m_dialog,
+#else
+                const auto answer =
+                    KMessageBox::questionYesNoCancel(m_dialog,
+#endif
+                    xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
+                    i18n("Use Original File Name?"),
+                    KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
+                    KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
                 if (answer == KMessageBox::Cancel) {
                     qCDebug(KLEOPATRA_LOG) << "Saving canceled for:" << inpath;
                     continue;
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
+#else
                 } else if (answer == KMessageBox::No) {
+#endif
                     outFileName = embeddedFileName;
                 }
             }
@@ -226,18 +237,29 @@ void AutoDecryptVerifyFilesController::Private::exec()
             if (ofi.exists()) {
                 int sel = KMessageBox::No;
                 if (!overWriteAll) {
-                    sel = KMessageBox::questionYesNoCancel(m_dialog, i18n("The file <b>%1</b> already exists.\n"
-                                                           "Overwrite?", outpath),
-                                                           i18n("Overwrite Existing File?"),
-                                                           KStandardGuiItem::overwrite(),
-                                                           KGuiItem(i18n("Overwrite All")),
-                                                           KStandardGuiItem::cancel());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                    sel = KMessageBox::questionTwoActionsCancel(m_dialog,
+                                                                i18n("The file <b>%1</b> already exists.\n"
+#else
+                    sel = KMessageBox::questionYesNoCancel(m_dialog,
+                                                           i18n("The file <b>%1</b> already exists.\n"
+#endif
+                                                                     "Overwrite?",
+                                                                     outpath),
+                                                                i18n("Overwrite Existing File?"),
+                                                                KStandardGuiItem::overwrite(),
+                                                                KGuiItem(i18n("Overwrite All")),
+                                                                KStandardGuiItem::cancel());
                 }
                 if (sel == KMessageBox::Cancel) {
                     qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
                     continue;
                 }
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+                if (sel == KMessageBox::ButtonCode::SecondaryAction) { // Overwrite All
+#else
                 if (sel == KMessageBox::No) { //Overwrite All
+#endif
                     overWriteAll = true;
                 }
                 if (!QFile::remove(outpath)) {
@@ -556,3 +578,4 @@ void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::s
     QTimer::singleShot(0, this, SLOT(schedule()));
 }
 #include "moc_autodecryptverifyfilescontroller.cpp"
+

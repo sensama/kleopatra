@@ -35,6 +35,7 @@
 #include <KLocalizedString>
 
 #include "kleopatra_debug.h"
+#include <kwidgetsaddons_version.h>
 
 KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     : KPageDialog(parent)
@@ -86,17 +87,29 @@ void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPag
     KCModule *previousModule = qobject_cast<KCModule*>(previous->widget());
     bool canceled = false;
     if (previousModule && mChangedModules.contains(previousModule)) {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        const int queryUser = KMessageBox::warningTwoActionsCancel(
+#else
         const int queryUser = KMessageBox::warningYesNoCancel(
-                          this,
-                          i18n("The settings of the current module have changed.\n"
-                               "Do you want to apply the changes or discard them?"),
-                          i18n("Apply Settings"),
-                          KStandardGuiItem::apply(),
-                          KStandardGuiItem::discard(),
-                          KStandardGuiItem::cancel());
+#endif
+            this,
+            i18n("The settings of the current module have changed.\n"
+                 "Do you want to apply the changes or discard them?"),
+            i18n("Apply Settings"),
+            KStandardGuiItem::apply(),
+            KStandardGuiItem::discard(),
+            KStandardGuiItem::cancel());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (queryUser == KMessageBox::ButtonCode::PrimaryAction) {
+#else
         if (queryUser == KMessageBox::Yes) {
+#endif
             previousModule->save();
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        } else if (queryUser == KMessageBox::ButtonCode::SecondaryAction) {
+#else
         } else if (queryUser == KMessageBox::No) {
+#endif
             previousModule->load();
         }
         canceled = queryUser == KMessageBox::Cancel;

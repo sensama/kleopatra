@@ -26,6 +26,7 @@
 #include <QMutex>
 
 #include "kleopatra_debug.h"
+#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 
@@ -80,13 +81,23 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
         buttonYes.setText(i18n("Save changes"));
         auto buttonNo = KStandardGuiItem::no();
         buttonNo.setText(i18n("Discard changes"));
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        const auto answer = KMessageBox::questionTwoActions(
+#else
         const auto answer = KMessageBox::questionYesNo(
+#endif
             q->topLevelWidget(),
-            xi18nc("@info", "<para>The certificates or the certificate groups have been updated in the background.</para>"
-                            "<para>Do you want to save your changes?</para>"),
+            xi18nc("@info",
+                   "<para>The certificates or the certificate groups have been updated in the background.</para>"
+                   "<para>Do you want to save your changes?</para>"),
             i18nc("@title::window", "Save changes?"),
-            buttonYes, buttonNo);
+            buttonYes,
+            buttonNo);
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+#else
         if (answer == KMessageBox::Yes) {
+#endif
             q->save();
         } else {
             q->load();

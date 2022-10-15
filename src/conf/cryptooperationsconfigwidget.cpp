@@ -48,6 +48,7 @@
 #include <QLabel>
 #include <QRegularExpression>
 
+#include <kwidgetsaddons_version.h>
 #include <memory>
 
 using namespace Kleo;
@@ -105,12 +106,22 @@ void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
     qCDebug(KLEOPATRA_LOG) << "Applying profile " << profile;
 
     if (profile == i18n("default")) {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (KMessageBox::warningTwoActions(
+#else
         if (KMessageBox::warningYesNo(
-                          this,
-                          i18n("This means that every configuration option of the GnuPG System will be reset to its default."),
-                          i18n("Apply profile"),
-                          KStandardGuiItem::apply(),
-                          KStandardGuiItem::no()) != KMessageBox::Yes) {
+
+#endif
+                this,
+                i18n("This means that every configuration option of the GnuPG System will be reset to its default."),
+                i18n("Apply profile"),
+                KStandardGuiItem::apply(),
+                KStandardGuiItem::cancel())
+        #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+            != KMessageBox::ButtonCode::PrimaryAction) {
+#else
+                != KMessageBox::Yes) {
+        #endif
             return;
         }
         resetDefaults();

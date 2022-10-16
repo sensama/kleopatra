@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-01 00:49+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-09-16 06:25+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -178,10 +178,10 @@ msgid "Add User ID Succeeded"
 msgstr "Dodajanje uporabnikovega določilnika uspelo"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:125
-#: src/commands/certificatetopivcardcommand.cpp:120
-#: src/commands/certificatetopivcardcommand.cpp:172
+#: src/commands/certificatetopivcardcommand.cpp:121
+#: src/commands/certificatetopivcardcommand.cpp:186
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:336
 #: src/commands/pivgeneratecardkeycommand.cpp:120
 #: src/commands/pivgeneratecardkeycommand.cpp:186
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -203,22 +203,22 @@ msgstr ""
 "Prosimo, vnesite ključ za upravljanje aplikacije PIV kartice šestnajstiški "
 "kodirani obliki."
 
-#: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:313
+#: src/commands/certificatetopivcardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:314
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
 "Oprostite! Ni bilo mogoče najti ustreznega potrdila za zapis v to režo za "
 "kartice."
 
-#: src/commands/certificatetopivcardcommand.cpp:132
+#: src/commands/certificatetopivcardcommand.cpp:133
 #: src/view/pivcardwidget.cpp:254
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
 msgstr "%1 (%2, ustvaril: %3)"
 
-#: src/commands/certificatetopivcardcommand.cpp:138
+#: src/commands/certificatetopivcardcommand.cpp:139
 #, kde-format
 msgctxt "@info %1 name of card slot, %2 serial number of card"
 msgid ""
@@ -228,31 +228,31 @@ msgstr ""
 "<p>Prosimo potrdite, da želite napisati naslednja potrdila v %1 režo kartice "
 "%2:</p><center>%3</center>"
 
-#: src/commands/certificatetopivcardcommand.cpp:142
+#: src/commands/certificatetopivcardcommand.cpp:143
 #, kde-format
 msgctxt "@action:button"
 msgid "Write certificate"
 msgstr "Zapiši potrdilo"
 
-#: src/commands/certificatetopivcardcommand.cpp:145
+#: src/commands/certificatetopivcardcommand.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Write certificate to card"
 msgstr "Zapiši potrdilo na kartico"
 
-#: src/commands/certificatetopivcardcommand.cpp:164
+#: src/commands/certificatetopivcardcommand.cpp:178
 #, kde-format
 msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Izvoz potrdila ni uspel: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:239
+#: src/commands/certificatetopivcardcommand.cpp:253
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Zapisovanje potrdila na kartico ni uspelo: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:241
+#: src/commands/certificatetopivcardcommand.cpp:255
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
@@ -1435,12 +1435,12 @@ msgstr ""
 "<para>Med izvozom je prišlo do napake: </para><para><message>%1</message></"
 "para>"
 
-#: src/commands/genrevokecommand.cpp:74
+#: src/commands/genrevokecommand.cpp:75
 #, kde-format
 msgid "This is a revocation certificate for the OpenPGP key:"
 msgstr "To je potrdilo za preklic ključa OpenPGP:"
 
-#: src/commands/genrevokecommand.cpp:77
+#: src/commands/genrevokecommand.cpp:78
 #, kde-format
 msgid ""
 "A revocation certificate is a kind of \"kill switch\" to publicly\n"
@@ -1451,7 +1451,7 @@ msgstr ""
 "izjavo, da se ključ ne bo več uporabljal. Ko je preklic javno\n"
 "objavljen, ga ni več mogoče preklicati."
 
-#: src/commands/genrevokecommand.cpp:81
+#: src/commands/genrevokecommand.cpp:82
 #, kde-format
 msgid ""
 "Use it to revoke this key in case of a compromise or loss of\n"
@@ -1461,7 +1461,7 @@ msgstr ""
 "izgube\n"
 "tajnega zasebnega ključa."
 
-#: src/commands/genrevokecommand.cpp:84
+#: src/commands/genrevokecommand.cpp:85
 #, kde-format
 msgid ""
 "To avoid an accidental use of this file, a colon has been inserted\n"
@@ -1472,7 +1472,7 @@ msgstr ""
 "pred petimi črticami spodaj. Odstranite to dvopičje z urejevalnikom besedil\n"
 "pred uvozom in objavo tega potrdila o preklicu."
 
-#: src/commands/genrevokecommand.cpp:94
+#: src/commands/genrevokecommand.cpp:95
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1484,34 +1484,34 @@ msgstr ""
 "nehotenega uvoza preklica - morate potrdilo ročno urediti<br> preden ga je "
 "mogoče uvoziti."
 
-#: src/commands/genrevokecommand.cpp:98
+#: src/commands/genrevokecommand.cpp:99
 #, kde-format
 msgid "Revocation certificate created"
 msgstr "Ustvarjeno potrdilo za preklic"
 
-#: src/commands/genrevokecommand.cpp:107
+#: src/commands/genrevokecommand.cpp:108
 #, kde-format
 msgid "Generate revocation certificate"
 msgstr "Ustvari potrdilo o preklicu potrdila"
 
-#: src/commands/genrevokecommand.cpp:109
+#: src/commands/genrevokecommand.cpp:110
 #, kde-format
 msgid "Revocation Certificates "
 msgstr "Potrdila o preklicih "
 
-#: src/commands/genrevokecommand.cpp:122
+#: src/commands/genrevokecommand.cpp:127
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr "Datoteka <filename>%1</filename> že obstaja. Ali jo želite prepisati?"
 
-#: src/commands/genrevokecommand.cpp:123
+#: src/commands/genrevokecommand.cpp:128
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr "Prepišem datoteko?"
 
-#: src/commands/genrevokecommand.cpp:182
+#: src/commands/genrevokecommand.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -1560,7 +1560,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Iz vsebine odložišča ni bilo mogoče ugotoviti vrste potrdila."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:710
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:726
 #, kde-format
 msgid "Clipboard"
 msgstr "Odložišče"
@@ -1949,7 +1949,7 @@ msgid "Import CRL Finished"
 msgstr "Uvažanje seznama preklicanih potrdil (CRL) zaključeno"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:318
+#: src/crypto/autodecryptverifyfilescontroller.cpp:340
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Datoteke <filename>%1</filename> ni mogoče odpreti za branje."
@@ -2017,72 +2017,72 @@ msgstr ""
 "para><para>Izhod ukaza <command>%1</command> je bil: <message>%2</message></"
 "para>"
 
-#: src/commands/keytocardcommand.cpp:122
+#: src/commands/keytocardcommand.cpp:123
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:127
+#: src/commands/keytocardcommand.cpp:128
 #, kde-format
 msgid "Select Card"
 msgstr "Izberi kartico"
 
-#: src/commands/keytocardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:129
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Izberite kartico, kamor naj bo zapisan ključ:"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:154
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Ni bilo mogoče najti kartice s serijsko številko: %1"
 
-#: src/commands/keytocardcommand.cpp:163
+#: src/commands/keytocardcommand.cpp:164
 #, kde-format
 msgid "Sorry! Transferring keys to this card is not supported."
 msgstr "Oprostite! Prenos ključev na to kartico ni podprt."
 
-#: src/commands/keytocardcommand.cpp:189
+#: src/commands/keytocardcommand.cpp:190
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Signature (%1)"
 msgstr "Podpis (%1)"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:193
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Encryption (%1)"
 msgstr "Šifriranje (%1)"
 
-#: src/commands/keytocardcommand.cpp:195
+#: src/commands/keytocardcommand.cpp:196
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Authentication (%1)"
 msgstr "Overjanje (%1)"
 
-#: src/commands/keytocardcommand.cpp:199
+#: src/commands/keytocardcommand.cpp:200
 #, kde-format
 msgid "Select Card Slot"
 msgstr "Izberi režo za kartico"
 
-#: src/commands/keytocardcommand.cpp:200
+#: src/commands/keytocardcommand.cpp:201
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "Izberite režo za kartico, kamor naj bo zapisan ključ:"
 
-#: src/commands/keytocardcommand.cpp:211 src/view/pgpcardwidget.cpp:413
+#: src/commands/keytocardcommand.cpp:212 src/view/pgpcardwidget.cpp:413
 #: src/view/pgpcardwidget.cpp:460
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Kartice OpenPGP s serijsko številko ni bilo mogoče najti: %1"
 
-#: src/commands/keytocardcommand.cpp:221
+#: src/commands/keytocardcommand.cpp:222
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "Oprostite! Tega ključa ni mogoče prenesti na kartico OpenPGP."
 
-#: src/commands/keytocardcommand.cpp:239 src/commands/keytocardcommand.cpp:369
+#: src/commands/keytocardcommand.cpp:240 src/commands/keytocardcommand.cpp:370
 #: src/commands/pivgeneratecardkeycommand.cpp:132
 #: src/view/pgpcardwidget.cpp:348
 #, kde-format
@@ -2093,7 +2093,7 @@ msgstr ""
 "Ne bo več mogoče dešifrirati preteklih sporočil šifrirane komunikacije za "
 "obstoječi ključ."
 
-#: src/commands/keytocardcommand.cpp:246 src/commands/keytocardcommand.cpp:372
+#: src/commands/keytocardcommand.cpp:247 src/commands/keytocardcommand.cpp:373
 #: src/commands/pivgeneratecardkeycommand.cpp:128
 #, kde-format
 msgctxt "@info"
@@ -2106,36 +2106,36 @@ msgstr ""
 "ta ključ.</p><p>Če ne obstaja varnostna kopija, bo obstoječi ključ "
 "nepopravljivo izgubljen.</p>"
 
-#: src/commands/keytocardcommand.cpp:248
+#: src/commands/keytocardcommand.cpp:249
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Obstoječi ključ ima prstni odtis:"
 
-#: src/commands/keytocardcommand.cpp:252 src/commands/keytocardcommand.cpp:378
+#: src/commands/keytocardcommand.cpp:253 src/commands/keytocardcommand.cpp:379
 #: src/commands/pivgeneratecardkeycommand.cpp:135
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Prepisujem obstoječi ključ"
 
-#: src/commands/keytocardcommand.cpp:318
+#: src/commands/keytocardcommand.cpp:319
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Izberite potrdilo"
 
-#: src/commands/keytocardcommand.cpp:319
+#: src/commands/keytocardcommand.cpp:320
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "Izberite potrdilo od katerega želite zapisati par ključev na kartico:"
 
-#: src/commands/keytocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:355
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "Oprostite! Tega ključa ni mogoče prenesti na kartico PIV."
 
-#: src/commands/keytocardcommand.cpp:359
+#: src/commands/keytocardcommand.cpp:360
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
@@ -2144,12 +2144,12 @@ msgstr ""
 "Oprostite! Na PIV kartico lahko prenesete samo šifrirne ključe in ključe za "
 "podpisovanje."
 
-#: src/commands/keytocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:375
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "Obstoječi ključ ima oprijem ključa:"
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:458
 #, kde-format
 msgctxt "@info"
 msgid "Moving the key to the card failed: %1"
@@ -2157,31 +2157,35 @@ msgstr "Prenos ključa na kartico ni uspel: %1"
 
 #. i18n("Do you want to delete the key on this computer?"),
 #. i18nc("@title:window",
+#. #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+#. "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
+#. #else
 #. "Key transferred to card")) == KMessageBox::Yes) {
+#. #endif
 #. const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
 #. // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
 #. ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
 #. }
 #.
-#: src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:481
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "Ključ je uspešno prekopiran na kartico."
 
-#: src/commands/keytocardcommand.cpp:491
+#: src/commands/keytocardcommand.cpp:501
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key pair to the card failed: %1"
 msgstr "Prenašanje ključa na kartico ni uspelo: %1"
 
-#: src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key pair to the card."
 msgstr "Par ključev je bil uspešno prekopiran na kartico."
 
-#: src/commands/keytocardcommand.cpp:503
+#: src/commands/keytocardcommand.cpp:513
 #, kde-format
 msgctxt "@info"
 msgid "Failed to delete the key: %1"
@@ -2652,7 +2656,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "Potrdila X.509 so bila uspešno osvežena."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:79
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2662,25 +2666,25 @@ msgstr ""
 "<para>Nameravate preklicati potrdilo uporabnikovega določilnika:<nl/>%1<nl/"
 ">narejenega s ključem<nl/>%2.</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:628
+#: src/commands/revokecertificationcommand.cpp:88
+#: src/commands/revokecertificationcommand.cpp:106
+#: src/dialogs/certificatedetailswidget.cpp:635
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "Potrdite preklic"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:89
 #, kde-format
 msgid "Revoke Certification"
 msgstr "Prekliči potrdilo"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:94
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr "Uporabnikov določilnik '%1' potrjen s ključem %2"
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:96
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
@@ -2689,12 +2693,12 @@ msgstr[1] "Nameravate preklicati naslednja %1 potrdila:"
 msgstr[2] "Nameravate preklicati naslednja %1 potrdila:"
 msgstr[3] "Nameravate preklicati naslednjih %1 potrdil:"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:107
 #, kde-format
 msgid "Revoke Certifications"
 msgstr "Prekliči potrdila"
 
-#: src/commands/revokecertificationcommand.cpp:202
+#: src/commands/revokecertificationcommand.cpp:215
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2716,7 +2720,7 @@ msgstr[3] ""
 "<para>%1 potrdil je bilo uspešno preklicanih.</para><para>Ali želite "
 "objaviti preklice?</para>"
 
-#: src/commands/revokecertificationcommand.cpp:207
+#: src/commands/revokecertificationcommand.cpp:220
 #, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
@@ -2726,13 +2730,13 @@ msgstr[1] "Objavi preklica"
 msgstr[2] "Objavi preklice"
 msgstr[3] "Objavi preklice"
 
-#: src/commands/revokecertificationcommand.cpp:211
+#: src/commands/revokecertificationcommand.cpp:228
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "Potrdite objavo"
 
-#: src/commands/revokecertificationcommand.cpp:234
+#: src/commands/revokecertificationcommand.cpp:255
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2742,12 +2746,12 @@ msgstr ""
 "<para>Preklic potrdila uporabnikovega določilnika<nl/>%1<nl/>narejenega s "
 "ključem <nl/>%2<nl/>ni uspel:</para><para><message>%3</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:325
+#: src/commands/revokecertificationcommand.cpp:346
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "Ne morete preklicati nobenega potrdila tega ključa."
 
-#: src/commands/revokecertificationcommand.cpp:328
+#: src/commands/revokecertificationcommand.cpp:349
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
@@ -2760,7 +2764,7 @@ msgstr[2] ""
 msgstr[3] ""
 "Ne morete preklicati nobenega potrdila teh uporabnikovih določilnikov."
 
-#: src/commands/revokecertificationcommand.cpp:333
+#: src/commands/revokecertificationcommand.cpp:354
 #, kde-format
 msgid "You cannot revoke this certification."
 msgstr "Tega potrdila ne morete preklicati."
@@ -3044,7 +3048,7 @@ msgstr "Pokaži tehnične podrobnosti"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_tags)
 #: src/conf/appearanceconfigwidget.ui:178
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Tags"
 msgstr "Značke"
@@ -3099,13 +3103,13 @@ msgstr "Pametne kartice"
 msgid "GnuPG System"
 msgstr "Sistem GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:107
-#: src/conf/cryptooperationsconfigwidget.cpp:204
+#: src/conf/cryptooperationsconfigwidget.cpp:108
+#: src/conf/cryptooperationsconfigwidget.cpp:215
 #, kde-format
 msgid "default"
 msgstr "privzeto"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:110
+#: src/conf/cryptooperationsconfigwidget.cpp:116
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
@@ -3114,34 +3118,34 @@ msgstr ""
 "To pomeni, da se bo vsak parameter nastavitev sistema GnuPG postavil na "
 "privzeto vrednost."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:111
+#: src/conf/cryptooperationsconfigwidget.cpp:117
 #, kde-format
 msgid "Apply profile"
 msgstr "Uveljavi profil"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:152
+#: src/conf/cryptooperationsconfigwidget.cpp:163
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr "Uporabljen je bil nastanitveni profil \"%1\"."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:153
+#: src/conf/cryptooperationsconfigwidget.cpp:164
 #, kde-format
 msgid "GnuPG Profile - Kleopatra"
 msgstr "Profil GnuPG - Kleopatra"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:188
+#: src/conf/cryptooperationsconfigwidget.cpp:199
 #, kde-format
 msgctxt "@title"
 msgid "General Operations"
 msgstr "Splošne operacije"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:192
+#: src/conf/cryptooperationsconfigwidget.cpp:203
 #, kde-format
 msgid "Activate GnuPG Profile:"
 msgstr "Aktiviraj profil GnuPG:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:193
+#: src/conf/cryptooperationsconfigwidget.cpp:204
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
@@ -3150,17 +3154,17 @@ msgstr ""
 "Profil je sestavljen iz različnih nastavitev, ki se lahko uporabljajo za več "
 "komponent sistema GnuPG."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:209
+#: src/conf/cryptooperationsconfigwidget.cpp:220
 #, kde-format
 msgid "Apply"
 msgstr "Uveljavi"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:243
 #, kde-format
 msgid "EMail Operations"
 msgstr "E-poštna opravila"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:245
 #, kde-format
 msgid ""
 "Don't confirm signing certificate if there is only one valid certificate for "
@@ -3169,7 +3173,7 @@ msgstr ""
 "Ne potrdi potrdila za podpisovanje, če je na voljo eno samo veljavno "
 "potrdilo o istovetnosti"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:246
 #, kde-format
 msgid ""
 "Don't confirm encryption certificates if there is exactly one valid "
@@ -3178,12 +3182,12 @@ msgstr ""
 "Ne potrdi potrdil za šifriranje, če je na voljo natanko eno veljavno "
 "potrdilo za vsakega pošiljatelja"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:252
 #, kde-format
 msgid "File Operations"
 msgstr "Dejanja datotek"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:254
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3192,13 +3196,13 @@ msgstr ""
 "Datotekam šifriranim z OpenPGP dodaj pripono ».pgp« namesto pripone ».gpg«"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:255
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Ustvari podpisane ali šifrirane datoteke kot besedilne datoteke."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:256
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3211,7 +3215,7 @@ msgstr ""
 "v telesu sporočila. To poveča velikost datoteke za tretjino."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:248
+#: src/conf/cryptooperationsconfigwidget.cpp:259
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3219,19 +3223,19 @@ msgid ""
 msgstr ""
 "Samodejno zaženi dejavnost šifriranja/preverjanja glede na zaznavanje vhoda."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:249
+#: src/conf/cryptooperationsconfigwidget.cpp:260
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Samodejno izvleci arhive datotek po dešifriranju"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:250
+#: src/conf/cryptooperationsconfigwidget.cpp:261
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Ustvari začasne dešifrirane datoteke v mapi šifriranih datotek."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:251
+#: src/conf/cryptooperationsconfigwidget.cpp:262
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3239,26 +3243,26 @@ msgstr ""
 "Nastavite to možnost, da se izognete uporabi začasnega imenika uporabnikov."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:263
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Uporabljaj samo simetrično šifriranje."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:253
+#: src/conf/cryptooperationsconfigwidget.cpp:264
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Nastavite to možnost, da onemogočite šifriranje z javnim ključem."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:265
+#: src/conf/cryptooperationsconfigwidget.cpp:276
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Program za nadzorne vsote, ki bo uporabljen ob ustvarjanju datotek z "
 "nadzornimi vsotami:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:270
+#: src/conf/cryptooperationsconfigwidget.cpp:281
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Ukaz za arhiviranje, ki se uporablja pri arhiviranju datotek:"
@@ -3342,17 +3346,17 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigpage.cpp:80
+#: src/conf/groupsconfigpage.cpp:81
 #, kde-format
 msgid "Save changes"
 msgstr "Shrani spremembe"
 
-#: src/conf/groupsconfigpage.cpp:82
+#: src/conf/groupsconfigpage.cpp:83
 #, kde-format
 msgid "Discard changes"
 msgstr "Zavrzi spremembe"
 
-#: src/conf/groupsconfigpage.cpp:85
+#: src/conf/groupsconfigpage.cpp:91
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3362,7 +3366,7 @@ msgstr ""
 "<para>Potrdila ali grupe potrdil so bili posodobljeni v ozadju.</"
 "para><para>Ali želite shraniti vaše spremembe?</para>"
 
-#: src/conf/groupsconfigpage.cpp:87
+#: src/conf/groupsconfigpage.cpp:93
 #, kde-format
 msgctxt "@title::window"
 msgid "Save changes?"
@@ -3442,7 +3446,7 @@ msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Uredi grupo"
 
-#: src/conf/kleopageconfigdialog.cpp:91
+#: src/conf/kleopageconfigdialog.cpp:96
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3451,7 +3455,7 @@ msgstr ""
 "Nastavitve trenutnega modula so se spremenjene.\n"
 "Ali želite spremembe uveljaviti ali zavreči?"
 
-#: src/conf/kleopageconfigdialog.cpp:93
+#: src/conf/kleopageconfigdialog.cpp:98
 #, kde-format
 msgid "Apply Settings"
 msgstr "Uveljavi nastavitve"
@@ -3800,7 +3804,7 @@ msgstr ""
 "Oblika je: »GOSTITELJ« ali »GOSTITELJ:VRATA«. Če VRATA izpustite, bodo "
 "uporabljena standardna vrata 389."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:147
+#: src/crypto/autodecryptverifyfilescontroller.cpp:148
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3812,35 +3816,45 @@ msgstr ""
 "<nl/>Če vsebujejo podpisane ali šifrirane podatke, potem poročajte o hrošču "
 "(oglejte si Pomoč->Poročaj o hrošču)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:201
-#: src/crypto/autodecryptverifyfilescontroller.cpp:252
+#: src/crypto/autodecryptverifyfilescontroller.cpp:202
+#: src/crypto/autodecryptverifyfilescontroller.cpp:274
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Ni bilo mogoče premakniti <filename>%1</filename> v <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:212
+#: src/crypto/autodecryptverifyfilescontroller.cpp:219
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Naj bo datoteka shranjena z izvornim imenom <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:220
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Naj uporabim izvorno ime datoteke?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:214
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ne, shrani kot <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Da, shrani kot <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229 src/utils/output.cpp:526
+#: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
+#, fuzzy, kde-format
+#| msgid ""
+#| "The file <b>%1</b> already exists.\n"
+#| "Overwrite?"
+msgid "The file <b>%1</b> already exists.\n"
+msgstr ""
+"Datoteka <b>%1</b> že obstaja.\n"
+"Ali jo želite prepisati?"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -3849,22 +3863,22 @@ msgstr ""
 "Datoteka <b>%1</b> že obstaja.\n"
 "Ali jo želite prepisati?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:231 src/utils/output.cpp:528
+#: src/crypto/autodecryptverifyfilescontroller.cpp:249 src/utils/output.cpp:536
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Prepišem obstoječo datoteko?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:233 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:251 src/utils/output.cpp:538
 #, kde-format
 msgid "Overwrite All"
 msgstr "Prepiši vse"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:267
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Ni bilo mogoče izbrisati <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:326
+#: src/crypto/autodecryptverifyfilescontroller.cpp:348
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -3873,7 +3887,7 @@ msgstr ""
 "Datoteka <filename>%1</filename> vsebuje potrdila in je ni mogoče "
 "dešifrirati ali preveriti."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:376
+#: src/crypto/autodecryptverifyfilescontroller.cpp:398
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Izberi datoteko za preverjanje s podpisom <filename>%1</filename>"
@@ -3913,7 +3927,7 @@ msgstr ""
 "vsote. Mešanica ni dovoljena."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:777
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:787
 #, kde-format
 msgid "Cancel"
 msgstr "Prekliči"
@@ -3930,14 +3944,14 @@ msgid "Create Checksum Progress"
 msgstr "Napredek ustvarjanja nadzornih vsot"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:682
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:698
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Napaka med izvajanjem %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:685
+#: src/utils/output.cpp:701
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Izvajanje %1 ni uspelo: %2"
@@ -5627,7 +5641,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:71
-#: src/dialogs/certificatedetailswidget.cpp:267
+#: src/dialogs/certificatedetailswidget.cpp:268
 #: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -5701,186 +5715,186 @@ msgstr ""
 "Polje <interface>%1</interface> ni veljavno.<nl/>Krajevno pravilo skrbnika: "
 "<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:208
+#: src/dialogs/certificatedetailswidget.cpp:209
 #, kde-format
 msgid "User IDs:"
 msgstr "Uporabniški določilnik:"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:214
 #: src/dialogs/certifywidget.cpp:368
 #, kde-format
 msgid "User IDs"
 msgstr "Uporabniški določilnik"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "Dodaj uporabniški določilnik"
 
-#: src/dialogs/certificatedetailswidget.cpp:231
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "Označi kot primarnega"
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:233
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 "Označi izbrani uporabnikov določilnik kot primarni določilnik za ta ključ."
 
-#: src/dialogs/certificatedetailswidget.cpp:235
+#: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "Potrdi ID uporabnika"
 
-#: src/dialogs/certificatedetailswidget.cpp:238
+#: src/dialogs/certificatedetailswidget.cpp:239
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "Prikaži potrditve"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:242
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "Prekliči potrdila"
 
-#: src/dialogs/certificatedetailswidget.cpp:244
-#: src/dialogs/certificatedetailswidget.cpp:625
+#: src/dialogs/certificatedetailswidget.cpp:245
+#: src/dialogs/certificatedetailswidget.cpp:626
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "Prekliči uporabnikov določilnik"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:279
 #, kde-format
 msgid "Trust level:"
 msgstr "Stopnja zaupanja:"
 
-#: src/dialogs/certificatedetailswidget.cpp:283
+#: src/dialogs/certificatedetailswidget.cpp:284
 #, kde-format
 msgid "Valid from:"
 msgstr "Veljaven od:"
 
-#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/certificatedetailswidget.cpp:289
 #: src/dialogs/expirydialog.cpp:204
 #, kde-format
 msgid "Valid until:"
 msgstr "Veljaven do:"
 
-#: src/dialogs/certificatedetailswidget.cpp:291
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "Spremeni konec obdobja veljavnosti"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:293
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Spremeni veljavnost"
 
-#: src/dialogs/certificatedetailswidget.cpp:298
+#: src/dialogs/certificatedetailswidget.cpp:299
 #: src/dialogs/certifywidget.cpp:338
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Prstni odtis:"
 
-#: src/dialogs/certificatedetailswidget.cpp:302
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Kopiraj prstni odtis na odložišče"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:304
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Kopiraj prstni odtis"
 
-#: src/dialogs/certificatedetailswidget.cpp:310
+#: src/dialogs/certificatedetailswidget.cpp:311
 #, kde-format
 msgid "Issuer:"
 msgstr "Izdajatelj:"
 
-#: src/dialogs/certificatedetailswidget.cpp:313
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Prikaži potrdilo izdajatelja"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:315
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Prikaži potrdilo"
 
-#: src/dialogs/certificatedetailswidget.cpp:320
+#: src/dialogs/certificatedetailswidget.cpp:321
 #, kde-format
 msgid "Compliance:"
 msgstr "Ustreznost:"
 
-#: src/dialogs/certificatedetailswidget.cpp:325
+#: src/dialogs/certificatedetailswidget.cpp:326
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Zaupanja vreden uvajalec za:"
 
-#: src/dialogs/certificatedetailswidget.cpp:327
+#: src/dialogs/certificatedetailswidget.cpp:328
 #, kde-format
 msgid "See certifications for details."
 msgstr "Poglej podrobnosti potrdila."
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:334
 #, kde-format
 msgid "Related addresses:"
 msgstr "Sorodni naslovi:"
 
-#: src/dialogs/certificatedetailswidget.cpp:338
+#: src/dialogs/certificatedetailswidget.cpp:339
 #, kde-format
 msgid "Related addresses"
 msgstr "Sorodni naslovi"
 
-#: src/dialogs/certificatedetailswidget.cpp:349
+#: src/dialogs/certificatedetailswidget.cpp:350
 #, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "Več podrobnosti..."
 
-#: src/dialogs/certificatedetailswidget.cpp:352
+#: src/dialogs/certificatedetailswidget.cpp:353
 #, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr "Zaupaj podrobnosti verige"
 
-#: src/dialogs/certificatedetailswidget.cpp:355
+#: src/dialogs/certificatedetailswidget.cpp:356
 #, kde-format
 msgctxt "@action:button"
 msgid "Update"
 msgstr "Posodobi"
 
-#: src/dialogs/certificatedetailswidget.cpp:361
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Izvoz"
 
-#: src/dialogs/certificatedetailswidget.cpp:364
+#: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "Spremeni geselno frazo"
 
-#: src/dialogs/certificatedetailswidget.cpp:367
+#: src/dialogs/certificatedetailswidget.cpp:368
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "Ustvari potrdilo o preklicu potrdila"
 
-#: src/dialogs/certificatedetailswidget.cpp:369
+#: src/dialogs/certificatedetailswidget.cpp:370
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -5891,35 +5905,35 @@ msgstr ""
 "objavi, da se ključa več ne uporablja. Ko je preklic objavljen, tega dejstva "
 "ni več mogoče umakniti."
 
-#: src/dialogs/certificatedetailswidget.cpp:491
+#: src/dialogs/certificatedetailswidget.cpp:492
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "neomejeno"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Email"
 msgstr "E-pošta"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #: src/newcertificatewizard/enterdetailspage.cpp:61
 #, kde-format
 msgid "Name"
 msgstr "Ime"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Trust Level"
 msgstr "Stopnja zaupanja"
 
-#: src/dialogs/certificatedetailswidget.cpp:534
+#: src/dialogs/certificatedetailswidget.cpp:535
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "ni e-pošte"
 
-#: src/dialogs/certificatedetailswidget.cpp:622
+#: src/dialogs/certificatedetailswidget.cpp:623
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5929,19 +5943,19 @@ msgstr ""
 "<para>Ali zares želite preklicati uporabnikov določilnik: <nl/><emphasis>%1</"
 "emphasis> ?</para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:816
+#: src/dialogs/certificatedetailswidget.cpp:830
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr "Označi kot primarni uporabnikov določilnik"
 
-#: src/dialogs/certificatedetailswidget.cpp:827
+#: src/dialogs/certificatedetailswidget.cpp:841
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Potrdi ID uporabnika..."
 
-#: src/dialogs/certificatedetailswidget.cpp:828
+#: src/dialogs/certificatedetailswidget.cpp:842
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
@@ -5951,13 +5965,13 @@ msgstr[1] "Potrdi ID uporabnikov..."
 msgstr[2] "Potrdi ID uporabnikov..."
 msgstr[3] "Potrdi ID uporabnikov..."
 
-#: src/dialogs/certificatedetailswidget.cpp:837
+#: src/dialogs/certificatedetailswidget.cpp:851
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Preklici potrdila..."
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:852
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
@@ -5967,94 +5981,94 @@ msgstr[1] "Preklici potrdili..."
 msgstr[2] "Preklici potrdila..."
 msgstr[3] "Preklici potrdila..."
 
-#: src/dialogs/certificatedetailswidget.cpp:849
+#: src/dialogs/certificatedetailswidget.cpp:863
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Objavi pri dobavitelju pošte..."
 
-#: src/dialogs/certificatedetailswidget.cpp:862
+#: src/dialogs/certificatedetailswidget.cpp:876
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Prekliči uporabnikov določilnik"
 
-#: src/dialogs/certificatedetailswidget.cpp:909
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "never"
 msgstr "nikoli"
 
-#: src/dialogs/certificatedetailswidget.cpp:911
+#: src/dialogs/certificatedetailswidget.cpp:925
 #, kde-format
 msgid "Signing"
 msgstr "Podpisovanje"
 
-#: src/dialogs/certificatedetailswidget.cpp:912
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:926
+#: src/dialogs/certificatedetailswidget.cpp:930
 #, kde-format
 msgid "First message"
 msgstr "Prvo sporočilo"
 
-#: src/dialogs/certificatedetailswidget.cpp:913
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:927
+#: src/dialogs/certificatedetailswidget.cpp:931
 #, kde-format
 msgid "Last message"
 msgstr "Zadnje sporočilo"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
-#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:928
+#: src/dialogs/certificatedetailswidget.cpp:932
 #, kde-format
 msgid "Message count"
 msgstr "Število sporočil"
 
-#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:929
 #: src/smartcard/openpgpcard.cpp:95
 #, kde-format
 msgid "Encryption"
 msgstr "Šifriranje"
 
-#: src/dialogs/certificatedetailswidget.cpp:950
+#: src/dialogs/certificatedetailswidget.cpp:964
 #, kde-format
 msgid "Updating..."
 msgstr "Posodabljam..."
 
-#: src/dialogs/certificatedetailswidget.cpp:998
+#: src/dialogs/certificatedetailswidget.cpp:1012
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "Posodobi ključ iz zunanjih virov."
 
-#: src/dialogs/certificatedetailswidget.cpp:1014
+#: src/dialogs/certificatedetailswidget.cpp:1028
 #, kde-format
 msgid "Common Name"
 msgstr "Skupno ime"
 
-#: src/dialogs/certificatedetailswidget.cpp:1015
+#: src/dialogs/certificatedetailswidget.cpp:1029
 #, kde-format
 msgid "Organization"
 msgstr "Organizacija"
 
-#: src/dialogs/certificatedetailswidget.cpp:1016
+#: src/dialogs/certificatedetailswidget.cpp:1030
 #, kde-format
 msgid "Street"
 msgstr "Ulica"
 
-#: src/dialogs/certificatedetailswidget.cpp:1017
+#: src/dialogs/certificatedetailswidget.cpp:1031
 #, kde-format
 msgid "City"
 msgstr "Mesto"
 
-#: src/dialogs/certificatedetailswidget.cpp:1018
+#: src/dialogs/certificatedetailswidget.cpp:1032
 #, kde-format
 msgid "State"
 msgstr "Regija"
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1033
 #, kde-format
 msgid "Country"
 msgstr "Država"
 
-#: src/dialogs/certificatedetailswidget.cpp:1047
+#: src/dialogs/certificatedetailswidget.cpp:1061
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
@@ -6062,7 +6076,7 @@ msgstr ""
 "Posodobi sezname preklicanih potrdil (CRL) in izvedi celotno preverjanje "
 "veljavnosti potrdila."
 
-#: src/dialogs/certificatedetailswidget.cpp:1056
+#: src/dialogs/certificatedetailswidget.cpp:1070
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Potrdila izdajatelja lokalno ni bilo mogoče najti."
@@ -8553,19 +8567,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Neveljavni argumenti: %1"
 
-#: src/mainwindow.cpp:101
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "Zapusti <application>%1</application>"
 
-#: src/mainwindow.cpp:108
+#: src/mainwindow.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Samo zapri okno"
 
-#: src/mainwindow.cpp:202
+#: src/mainwindow.cpp:207
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -8576,13 +8590,13 @@ msgstr ""
 "<nl/>Namesto tega bi morda želeli zapreti to okno, ne da bi zapustili "
 "<application>%1</application>."
 
-#: src/mainwindow.cpp:204
+#: src/mainwindow.cpp:210
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Naj resnično končam?"
 
-#: src/mainwindow.cpp:283
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -8591,23 +8605,23 @@ msgstr ""
 "Pregledovalnika dnevnikov GnuPG (kwatchgnupg) ni bilo mogoče zagnati. "
 "Preverite vašo namestitev."
 
-#: src/mainwindow.cpp:285
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Napaka med zaganjanjem KWatchGnuPG"
 
-#: src/mainwindow.cpp:514
+#: src/mainwindow.cpp:524
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Pregledovalnik dnevnikov GnuPG"
 
-#: src/mainwindow.cpp:519
+#: src/mainwindow.cpp:529
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Ponovno zaženi procese v ozadju"
 
-#: src/mainwindow.cpp:520
+#: src/mainwindow.cpp:530
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8615,23 +8629,23 @@ msgid ""
 "configuration."
 msgstr "Ponovno zaženi procese v ozadju, npr. po spremembah v sestavi."
 
-#: src/mainwindow.cpp:526
+#: src/mainwindow.cpp:536
 #, kde-format
 msgid "Check for updates"
 msgstr "Preverite za posodobitvami"
 
-#: src/mainwindow.cpp:532
+#: src/mainwindow.cpp:542
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Potrdila"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:543
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Pokaži pregled potrdila"
 
-#: src/mainwindow.cpp:536
+#: src/mainwindow.cpp:546
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8639,45 +8653,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Beležnica"
 
-#: src/mainwindow.cpp:537
+#: src/mainwindow.cpp:547
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Prikaži podlogo za šifriranje/dešifriranje in podpisovanje/preverjanje "
 "besedila"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:550
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Pametne kartice"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:551
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Prikaži upravljanje s pametnimi karticami"
 
-#: src/mainwindow.cpp:545
+#: src/mainwindow.cpp:555
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Izvedi samopreizkus"
 
-#: src/mainwindow.cpp:549
+#: src/mainwindow.cpp:559
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Nastavi grupe..."
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Postavi žarišče na hitro iskanje"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:595
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win Compendium"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8685,72 +8699,72 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:596
+#: src/mainwindow.cpp:606
 #, kde-format
 msgid "Password-based encryption"
 msgstr "Šifriranje osnovano na geslu"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:608
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_symmetric_encryption_gnupg_en.pdf"
 msgstr "handout_symmetric_encryption_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:602
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Quickguide"
 msgstr "Hitri vodič"
 
-#: src/mainwindow.cpp:604
+#: src/mainwindow.cpp:614
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_sign_encrypt_gnupg_en.pdf"
 msgstr "handout_sign_encrypt_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:618
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:620
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:614
+#: src/mainwindow.cpp:624
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:616
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:620 src/view/smartcardwidget.cpp:119
+#: src/mainwindow.cpp:630 src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
 msgstr "Upravljanje s pametnimi karticami"
 
-#: src/mainwindow.cpp:622
+#: src/mainwindow.cpp:632
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:636
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "Priročnik GnuPG"
 
-#: src/mainwindow.cpp:650
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8759,28 +8773,28 @@ msgstr ""
 "V ozadju še potekajo nekatera opravila. Ob zaprtju okna bodo ta opravila "
 "končana. Ali želite nadaljevati?"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:663
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tekoča opravila v ozadju"
 
-#: src/mainwindow.cpp:761 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:771 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Podpiši/šifriraj..."
 
-#: src/mainwindow.cpp:762 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:772 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Dešifriraj/preveri..."
 
-#: src/mainwindow.cpp:767
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "Import Certificates"
 msgstr "Uvozi potrdila"
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:778
 #, kde-format
 msgid "Import CRLs"
 msgstr "Uvozi sezname preklicanih potrdil (CRL)"
@@ -10387,12 +10401,12 @@ msgstr "Datoteke \"%1\" ni bilo mogoče odpreti za branje"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Datoteka \"%1\" je že odprta, vendar ni berljiva"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:652
+#: src/utils/input.cpp:330 src/utils/output.cpp:668
 #, kde-format
 msgid "Command not specified"
 msgstr "Ukaz ni naveden"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:658
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:674
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Ni bilo mogoče zagnati %1 opravilo: %2"
@@ -10454,64 +10468,64 @@ msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""
 "Napaka dnevnika: dnevniške datoteke »%1« ni bilo mogoče odpreti za pisanje."
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:278
 #, kde-format
 msgid "No output device"
 msgstr "Ni izhodne naprave"
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:493
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "Opisovalnika datotek %1 ni bilo mogoče odpreti za pisanje"
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:519
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Ni bilo mogoče ustvariti začasne datoteke \"%1\" za izhod"
 
-#: src/utils/output.cpp:599
+#: src/utils/output.cpp:615
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Prepisovanje zavrnjeno"
 
-#: src/utils/output.cpp:605
+#: src/utils/output.cpp:621
 #, kde-format
 msgid "Could not remove file \"%1\" for overwriting."
 msgstr "Datoteke \"%1\" ni bilo mogoče odstraniti za prepis."
 
-#: src/utils/output.cpp:624
+#: src/utils/output.cpp:640
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Datoteke \"%1\" ni bilo mogoče preimenovati v \"%2\""
 
-#: src/utils/output.cpp:669
+#: src/utils/output.cpp:685
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Vhod v %1..."
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:687
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Vhod v %1"
 
-#: src/utils/output.cpp:703
+#: src/utils/output.cpp:719
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Pisanje v odložišče ni bilo mogoče"
 
-#: src/utils/output.cpp:712
+#: src/utils/output.cpp:728
 #, kde-format
 msgid "Find buffer"
 msgstr "Najdi medpomnilnik"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:730
 #, kde-format
 msgid "Selection"
 msgstr "Izbira"
 
-#: src/utils/output.cpp:728
+#: src/utils/output.cpp:744
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Odložišča ni bilo mogoče najti"

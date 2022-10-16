@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-01 00:49+0000\n"
+"POT-Creation-Date: 2022-10-16 00:47+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -164,10 +164,10 @@ msgid "Add User ID Succeeded"
 msgstr "사용자 ID 추가 성공"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:125
-#: src/commands/certificatetopivcardcommand.cpp:120
-#: src/commands/certificatetopivcardcommand.cpp:172
+#: src/commands/certificatetopivcardcommand.cpp:121
+#: src/commands/certificatetopivcardcommand.cpp:186
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:336
 #: src/commands/pivgeneratecardkeycommand.cpp:120
 #: src/commands/pivgeneratecardkeycommand.cpp:186
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -187,20 +187,20 @@ msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
 msgstr "PIV 카드 프로그램 관리 키를 십육진수 인코드된 형태로 입력하십시오."
 
-#: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:313
+#: src/commands/certificatetopivcardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:314
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "죄송합니다! 이 카드 슬롯에 기록할 수 있는 인증서를 찾을 수 없습니다."
 
-#: src/commands/certificatetopivcardcommand.cpp:132
+#: src/commands/certificatetopivcardcommand.cpp:133
 #: src/view/pivcardwidget.cpp:254
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
 msgstr "%1(%2, 생성됨: %3)"
 
-#: src/commands/certificatetopivcardcommand.cpp:138
+#: src/commands/certificatetopivcardcommand.cpp:139
 #, kde-format
 msgctxt "@info %1 name of card slot, %2 serial number of card"
 msgid ""
@@ -210,31 +210,31 @@ msgstr ""
 "<p>카드 %2의 슬롯 %1에 다음 인증서를 기록할 것인지 확인하십시오:</p><center>"
 "%3</center>"
 
-#: src/commands/certificatetopivcardcommand.cpp:142
+#: src/commands/certificatetopivcardcommand.cpp:143
 #, kde-format
 msgctxt "@action:button"
 msgid "Write certificate"
 msgstr "인증서 기록"
 
-#: src/commands/certificatetopivcardcommand.cpp:145
+#: src/commands/certificatetopivcardcommand.cpp:152
 #, kde-format
 msgctxt "@title:window"
 msgid "Write certificate to card"
 msgstr "카드에 인증서 기록"
 
-#: src/commands/certificatetopivcardcommand.cpp:164
+#: src/commands/certificatetopivcardcommand.cpp:178
 #, kde-format
 msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "인증서를 내보낼 수 없음: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:239
+#: src/commands/certificatetopivcardcommand.cpp:253
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "인증서를 카드에 기록할 수 없음: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:241
+#: src/commands/certificatetopivcardcommand.cpp:255
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
@@ -1389,12 +1389,12 @@ msgid ""
 msgstr ""
 "<para>내보내기 실행 중 오류 발생:</para><para><message>%1</message></para>"
 
-#: src/commands/genrevokecommand.cpp:74
+#: src/commands/genrevokecommand.cpp:75
 #, kde-format
 msgid "This is a revocation certificate for the OpenPGP key:"
 msgstr "다음은 OpenPGP 키의 철회 인증서입니다:"
 
-#: src/commands/genrevokecommand.cpp:77
+#: src/commands/genrevokecommand.cpp:78
 #, kde-format
 msgid ""
 "A revocation certificate is a kind of \"kill switch\" to publicly\n"
@@ -1405,7 +1405,7 @@ msgstr ""
 "\"킬 스위치\"의 일종입니다. 한 번 철회 인증서를 공개한 뒤에는\n"
 "철회 인증서를 더 이상 철회할 수 없습니다."
 
-#: src/commands/genrevokecommand.cpp:81
+#: src/commands/genrevokecommand.cpp:82
 #, kde-format
 msgid ""
 "Use it to revoke this key in case of a compromise or loss of\n"
@@ -1414,7 +1414,7 @@ msgstr ""
 "비밀 키가 누출되었거나 더 이상 사용할 수 없게 되었을 때 이 인증서로\n"
 "키를 철회하십시오."
 
-#: src/commands/genrevokecommand.cpp:84
+#: src/commands/genrevokecommand.cpp:85
 #, kde-format
 msgid ""
 "To avoid an accidental use of this file, a colon has been inserted\n"
@@ -1425,7 +1425,7 @@ msgstr ""
 "쌍점을 추가해 두었습니다. 철회 인증서를 가져오고 공개하기 전에 텍스트\n"
 "편집기를 사용하여 쌍점을 지우십시오."
 
-#: src/commands/genrevokecommand.cpp:94
+#: src/commands/genrevokecommand.cpp:95
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1437,34 +1437,34 @@ msgstr ""
 "기 위해서<br>철회 인증서를 가져오기 전에 수동으로 인증서를<br>편집해야 합니"
 "다."
 
-#: src/commands/genrevokecommand.cpp:98
+#: src/commands/genrevokecommand.cpp:99
 #, kde-format
 msgid "Revocation certificate created"
 msgstr "철회 인증서 생성됨"
 
-#: src/commands/genrevokecommand.cpp:107
+#: src/commands/genrevokecommand.cpp:108
 #, kde-format
 msgid "Generate revocation certificate"
 msgstr "철회 인증서 생성"
 
-#: src/commands/genrevokecommand.cpp:109
+#: src/commands/genrevokecommand.cpp:110
 #, kde-format
 msgid "Revocation Certificates "
 msgstr "철회 인증서"
 
-#: src/commands/genrevokecommand.cpp:122
+#: src/commands/genrevokecommand.cpp:127
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr "파일 <filename>%1</filename>이(가) 이미 존재합니다. 덮어쓰시겠습니까?"
 
-#: src/commands/genrevokecommand.cpp:123
+#: src/commands/genrevokecommand.cpp:128
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr "파일을 덮어쓰시겠습니까?"
 
-#: src/commands/genrevokecommand.cpp:182
+#: src/commands/genrevokecommand.cpp:191
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -1513,7 +1513,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "클립보드 내용의 인증서 형식을 확인할 수 없습니다."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:710
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:726
 #, kde-format
 msgid "Clipboard"
 msgstr "클립보드"
@@ -1888,7 +1888,7 @@ msgid "Import CRL Finished"
 msgstr "CRL 가져오기 완료됨"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:318
+#: src/crypto/autodecryptverifyfilescontroller.cpp:340
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename>에서 읽으려고 열 수 없습니다."
@@ -1955,72 +1955,72 @@ msgstr ""
 "<para>비밀 키를 복원하는 중 오류가 발생했습니다.</para><para><command>%1</"
 "command> 출력: <message>%2</message></para>"
 
-#: src/commands/keytocardcommand.cpp:122
+#: src/commands/keytocardcommand.cpp:123
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:127
+#: src/commands/keytocardcommand.cpp:128
 #, kde-format
 msgid "Select Card"
 msgstr "카드 선택"
 
-#: src/commands/keytocardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:129
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "키를 기록할 카드를 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:154
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "일련 번호가 다음과 같은 카드를 찾을 수 없음: %1"
 
-#: src/commands/keytocardcommand.cpp:163
+#: src/commands/keytocardcommand.cpp:164
 #, kde-format
 msgid "Sorry! Transferring keys to this card is not supported."
 msgstr "죄송합니다! 이 카드로 키를 전송하는 것은 아직 지원지 않습니다."
 
-#: src/commands/keytocardcommand.cpp:189
+#: src/commands/keytocardcommand.cpp:190
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Signature (%1)"
 msgstr "서명(%1)"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:193
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Encryption (%1)"
 msgstr "암호화(%1)"
 
-#: src/commands/keytocardcommand.cpp:195
+#: src/commands/keytocardcommand.cpp:196
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Authentication (%1)"
 msgstr "인증(%1)"
 
-#: src/commands/keytocardcommand.cpp:199
+#: src/commands/keytocardcommand.cpp:200
 #, kde-format
 msgid "Select Card Slot"
 msgstr "카드 슬롯 선택"
 
-#: src/commands/keytocardcommand.cpp:200
+#: src/commands/keytocardcommand.cpp:201
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "키를 기록할 카드 슬롯을 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:211 src/view/pgpcardwidget.cpp:413
+#: src/commands/keytocardcommand.cpp:212 src/view/pgpcardwidget.cpp:413
 #: src/view/pgpcardwidget.cpp:460
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "일련 번호가 다음과 같은 OpenPGP 카드를 찾을 수 없음: %1"
 
-#: src/commands/keytocardcommand.cpp:221
+#: src/commands/keytocardcommand.cpp:222
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "죄송합니다! 이 키는 OpenPGP 카드로 전송할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:239 src/commands/keytocardcommand.cpp:369
+#: src/commands/keytocardcommand.cpp:240 src/commands/keytocardcommand.cpp:370
 #: src/commands/pivgeneratecardkeycommand.cpp:132
 #: src/view/pgpcardwidget.cpp:348
 #, kde-format
@@ -2029,7 +2029,7 @@ msgid ""
 "the existing key."
 msgstr "더 이상 기존 키로 암호화된 과거 통신 기록을 복호화할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:246 src/commands/keytocardcommand.cpp:372
+#: src/commands/keytocardcommand.cpp:247 src/commands/keytocardcommand.cpp:373
 #: src/commands/pivgeneratecardkeycommand.cpp:128
 #, kde-format
 msgctxt "@info"
@@ -2042,48 +2042,48 @@ msgstr ""
 "어씁니다</b>.</p><p>해당 키의 백업이 없으면 기존 키를 더 이상 복구할 수 없습"
 "니다.</p>"
 
-#: src/commands/keytocardcommand.cpp:248
+#: src/commands/keytocardcommand.cpp:249
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "기존 키의 지문은 다음과 같습니다:"
 
-#: src/commands/keytocardcommand.cpp:252 src/commands/keytocardcommand.cpp:378
+#: src/commands/keytocardcommand.cpp:253 src/commands/keytocardcommand.cpp:379
 #: src/commands/pivgeneratecardkeycommand.cpp:135
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "기존 키 덮어쓰기"
 
-#: src/commands/keytocardcommand.cpp:318
+#: src/commands/keytocardcommand.cpp:319
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "인증서 선택"
 
-#: src/commands/keytocardcommand.cpp:319
+#: src/commands/keytocardcommand.cpp:320
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "키 쌍을 카드에 기록할 인증서를 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:355
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "죄송합니다! 이 키는 PIV 카드로 전송할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:359
+#: src/commands/keytocardcommand.cpp:360
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr "죄송합니다! 암호화 및 서명 키만 PIV 카드로 전송할 수 있습니다."
 
-#: src/commands/keytocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:375
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "기존 키의 키 그립은 다음과 같습니다:"
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:458
 #, kde-format
 msgctxt "@info"
 msgid "Moving the key to the card failed: %1"
@@ -2091,31 +2091,35 @@ msgstr "키를 카드로 이동할 수 없음: %1"
 
 #. i18n("Do you want to delete the key on this computer?"),
 #. i18nc("@title:window",
+#. #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+#. "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
+#. #else
 #. "Key transferred to card")) == KMessageBox::Yes) {
+#. #endif
 #. const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
 #. // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
 #. ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
 #. }
 #.
-#: src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:481
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "키를 카드에 복사했습니다."
 
-#: src/commands/keytocardcommand.cpp:491
+#: src/commands/keytocardcommand.cpp:501
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key pair to the card failed: %1"
 msgstr "키 쌍을 카드에 복사할 수 없음: %1"
 
-#: src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key pair to the card."
 msgstr "키 쌍을 카드에 복사했습니다."
 
-#: src/commands/keytocardcommand.cpp:503
+#: src/commands/keytocardcommand.cpp:513
 #, kde-format
 msgctxt "@info"
 msgid "Failed to delete the key: %1"
@@ -2567,7 +2571,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "X.509 인증서를 새로 고쳤습니다."
 
-#: src/commands/revokecertificationcommand.cpp:78
+#: src/commands/revokecertificationcommand.cpp:79
 #, fuzzy, kde-kuit-format
 #| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgctxt "@info"
@@ -2576,39 +2580,39 @@ msgid ""
 "with the key<nl/>%2.</para>"
 msgstr "<para>다음 키를 철회하려고 합니다:<nl/>%1</para>"
 
-#: src/commands/revokecertificationcommand.cpp:83
-#: src/commands/revokecertificationcommand.cpp:97
-#: src/dialogs/certificatedetailswidget.cpp:628
+#: src/commands/revokecertificationcommand.cpp:88
+#: src/commands/revokecertificationcommand.cpp:106
+#: src/dialogs/certificatedetailswidget.cpp:635
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr "철회 확인"
 
-#: src/commands/revokecertificationcommand.cpp:84
+#: src/commands/revokecertificationcommand.cpp:89
 #, kde-format
 msgid "Revoke Certification"
 msgstr "인증 철회"
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:94
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:91
+#: src/commands/revokecertificationcommand.cpp:96
 #, fuzzy, kde-format
 #| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "<para>다음 키를 철회하려고 합니다:<nl/>%1</para>"
 
-#: src/commands/revokecertificationcommand.cpp:98
+#: src/commands/revokecertificationcommand.cpp:107
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Revoke Certifications"
 msgid "Revoke Certifications"
 msgstr "인증 철회"
 
-#: src/commands/revokecertificationcommand.cpp:202
+#: src/commands/revokecertificationcommand.cpp:215
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<para>A new OpenPGP certificate was created successfully.</"
@@ -2624,7 +2628,7 @@ msgstr[0] ""
 "<para>새 OpenPGP 인증서를 생성했습니다.</para><para>새 인증서의 지문: %1</"
 "para>"
 
-#: src/commands/revokecertificationcommand.cpp:207
+#: src/commands/revokecertificationcommand.cpp:220
 #, fuzzy, kde-format
 #| msgid "Publish revocations on keyserver"
 msgctxt "@action:button"
@@ -2632,7 +2636,7 @@ msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "서버에 인증 철회 게시"
 
-#: src/commands/revokecertificationcommand.cpp:211
+#: src/commands/revokecertificationcommand.cpp:228
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Confirm Revocation"
@@ -2640,7 +2644,7 @@ msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr "철회 확인"
 
-#: src/commands/revokecertificationcommand.cpp:234
+#: src/commands/revokecertificationcommand.cpp:255
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<para>The creation of a new OpenPGP certificate failed.</"
@@ -2653,18 +2657,18 @@ msgstr ""
 "<para>새 OpenPGP 인증서 생성에 실패했습니다.</para><para>오류: <message>%1</"
 "message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:325
+#: src/commands/revokecertificationcommand.cpp:346
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
 msgstr "이 키의 인증을 철회할 수 없습니다."
 
-#: src/commands/revokecertificationcommand.cpp:328
+#: src/commands/revokecertificationcommand.cpp:349
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "이 사용자 ID의 인증을 철회할 수 없습니다."
 
-#: src/commands/revokecertificationcommand.cpp:333
+#: src/commands/revokecertificationcommand.cpp:354
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this expired certification."
 msgid "You cannot revoke this certification."
@@ -2950,7 +2954,7 @@ msgstr "기술 정보 표시"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_tags)
 #: src/conf/appearanceconfigwidget.ui:178
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Tags"
 msgstr "태그"
@@ -3005,47 +3009,47 @@ msgstr "스마트카드"
 msgid "GnuPG System"
 msgstr "GnuPG 시스템"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:107
-#: src/conf/cryptooperationsconfigwidget.cpp:204
+#: src/conf/cryptooperationsconfigwidget.cpp:108
+#: src/conf/cryptooperationsconfigwidget.cpp:215
 #, kde-format
 msgid "default"
 msgstr "기본값"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:110
+#: src/conf/cryptooperationsconfigwidget.cpp:116
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
 "to its default."
 msgstr "모든 GnuPG 옵션을 기본값으로 초기화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:111
+#: src/conf/cryptooperationsconfigwidget.cpp:117
 #, kde-format
 msgid "Apply profile"
 msgstr "프로필 적용"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:152
+#: src/conf/cryptooperationsconfigwidget.cpp:163
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr "설정 프로필 \"%1\"을(를) 적용했습니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:153
+#: src/conf/cryptooperationsconfigwidget.cpp:164
 #, kde-format
 msgid "GnuPG Profile - Kleopatra"
 msgstr "GnuPG 프로필 - Kleopatra"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:188
+#: src/conf/cryptooperationsconfigwidget.cpp:199
 #, kde-format
 msgctxt "@title"
 msgid "General Operations"
 msgstr "일반 옵션"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:192
+#: src/conf/cryptooperationsconfigwidget.cpp:203
 #, kde-format
 msgid "Activate GnuPG Profile:"
 msgstr "활성 GnuPG 프로필:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:193
+#: src/conf/cryptooperationsconfigwidget.cpp:204
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
@@ -3054,24 +3058,24 @@ msgstr ""
 "프로필은 GnuPG 시스템의 여러 구성 요소에 적용할 수 있는 다양한 설정을 포함합"
 "니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:209
+#: src/conf/cryptooperationsconfigwidget.cpp:220
 #, kde-format
 msgid "Apply"
 msgstr "적용"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:243
 #, kde-format
 msgid "EMail Operations"
 msgstr "이메일 작업"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:245
 #, kde-format
 msgid ""
 "Don't confirm signing certificate if there is only one valid certificate for "
 "the identity"
 msgstr "식별자에 유효한 인증서가 한 개만 있을 때에 서명 인증서를 확인하지 않음"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:246
 #, kde-format
 msgid ""
 "Don't confirm encryption certificates if there is exactly one valid "
@@ -3080,12 +3084,12 @@ msgstr ""
 "각각 수신자별로 유효한 인증서가 한 개씩만 있을 때에 암호화 인증서를 확인하지 "
 "않음"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:252
 #, kde-format
 msgid "File Operations"
 msgstr "파일 작업"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:254
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3093,13 +3097,13 @@ msgid ""
 msgstr "OpenPGP로 암호화된 파일에 \".gpg\" 확장자 대신 \".pgp\" 확장자 사용"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:255
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "서명되거나 암호화된 파일을 텍스트 형식으로 만듭니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:256
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3112,50 +3116,50 @@ msgstr ""
 "1/3 증가합니다."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:248
+#: src/conf/cryptooperationsconfigwidget.cpp:259
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:249
+#: src/conf/cryptooperationsconfigwidget.cpp:260
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "암호화 해제 후 자동으로 압축 풀기"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:250
+#: src/conf/cryptooperationsconfigwidget.cpp:261
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:251
+#: src/conf/cryptooperationsconfigwidget.cpp:262
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:263
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:253
+#: src/conf/cryptooperationsconfigwidget.cpp:264
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:265
+#: src/conf/cryptooperationsconfigwidget.cpp:276
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "체크섬 파일을 생성할 때 사용할 프로그램:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:270
+#: src/conf/cryptooperationsconfigwidget.cpp:281
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "파일을 압축할 때 사용할 압축 명령:"
@@ -3238,17 +3242,17 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigpage.cpp:80
+#: src/conf/groupsconfigpage.cpp:81
 #, kde-format
 msgid "Save changes"
 msgstr "변경 사항 저장"
 
-#: src/conf/groupsconfigpage.cpp:82
+#: src/conf/groupsconfigpage.cpp:83
 #, kde-format
 msgid "Discard changes"
 msgstr "변경 사항 무시"
 
-#: src/conf/groupsconfigpage.cpp:85
+#: src/conf/groupsconfigpage.cpp:91
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3258,7 +3262,7 @@ msgstr ""
 "<para>백그라운드에서 인증서나 인증서 그룹이 업데이트되었습니다.</para><para>"
 "변경 사항을 저장하시겠습니까?</para>"
 
-#: src/conf/groupsconfigpage.cpp:87
+#: src/conf/groupsconfigpage.cpp:93
 #, kde-format
 msgctxt "@title::window"
 msgid "Save changes?"
@@ -3338,7 +3342,7 @@ msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "그룹 편집"
 
-#: src/conf/kleopageconfigdialog.cpp:91
+#: src/conf/kleopageconfigdialog.cpp:96
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3347,7 +3351,7 @@ msgstr ""
 "현재 모듈의 설정이 수정되었습니다.\n"
 "변경 사항을 적용하거나 무시하시겠습니까?"
 
-#: src/conf/kleopageconfigdialog.cpp:93
+#: src/conf/kleopageconfigdialog.cpp:98
 #, kde-format
 msgid "Apply Settings"
 msgstr "설정 적용"
@@ -3683,7 +3687,7 @@ msgstr ""
 "문법은 \"호스트\" 및 \"호스트:포트\"이며, 포트가 없는 경우에는 표준 LDAP 포"
 "트 389번을 사용합니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:147
+#: src/crypto/autodecryptverifyfilescontroller.cpp:148
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3695,37 +3699,47 @@ msgstr ""
 "나 암호화된 데이터가 포함되어 있으면 버그를 보고해 주십시오(도움말->버그 보"
 "고 참조)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:201
-#: src/crypto/autodecryptverifyfilescontroller.cpp:252
+#: src/crypto/autodecryptverifyfilescontroller.cpp:202
+#: src/crypto/autodecryptverifyfilescontroller.cpp:274
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
 "다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:212
+#: src/crypto/autodecryptverifyfilescontroller.cpp:219
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 "파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:220
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "원래 파일 이름을 사용하시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:214
+#: src/crypto/autodecryptverifyfilescontroller.cpp:221
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "아니요, <filename>%1</filename>(으)로 저장"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:215
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "예, <filename>%1</filename>(으)로 저장"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229 src/utils/output.cpp:526
+#: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
+#, fuzzy, kde-format
+#| msgid ""
+#| "The file <b>%1</b> already exists.\n"
+#| "Overwrite?"
+msgid "The file <b>%1</b> already exists.\n"
+msgstr ""
+"<b>%1</b> 파일이 이미 존재합니다.\n"
+"덮어쓰시겠습니까?"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -3734,22 +3748,22 @@ msgstr ""
 "<b>%1</b> 파일이 이미 존재합니다.\n"
 "덮어쓰시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:231 src/utils/output.cpp:528
+#: src/crypto/autodecryptverifyfilescontroller.cpp:249 src/utils/output.cpp:536
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "존재하는 파일을 덮어쓰시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:233 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:251 src/utils/output.cpp:538
 #, kde-format
 msgid "Overwrite All"
 msgstr "모두 덮어쓰기"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245
+#: src/crypto/autodecryptverifyfilescontroller.cpp:267
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename>을(를) 삭제할 수 없습니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:326
+#: src/crypto/autodecryptverifyfilescontroller.cpp:348
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -3758,7 +3772,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 인증서가 포함되어 있으며 복호화하거나 검증할 "
 "수 없습니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:376
+#: src/crypto/autodecryptverifyfilescontroller.cpp:398
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "<filename>%1</filename> 서명을 사용하여 검증할 파일을 선택하십시오"
@@ -3797,7 +3811,7 @@ msgstr ""
 "니다. 두 종류의 파일을 섞을 수 없습니다."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:777
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:787
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
@@ -3814,14 +3828,14 @@ msgid "Create Checksum Progress"
 msgstr "체크섬 생성 진행"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:682
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:698
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "%1 실행 중 오류 발생: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:685
+#: src/utils/output.cpp:701
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "%1을(를) 실행할 수 없음: %2"
@@ -5492,7 +5506,7 @@ msgid "%1 (%2)"
 msgstr "%1(%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:71
-#: src/dialogs/certificatedetailswidget.cpp:267
+#: src/dialogs/certificatedetailswidget.cpp:268
 #: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -5566,24 +5580,24 @@ msgstr ""
 "<interface>%1</interface>이(가) 잘못되었습니다.<nl/>로컬 관리자 규칙: <icode>"
 "%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:208
+#: src/dialogs/certificatedetailswidget.cpp:209
 #, kde-format
 msgid "User IDs:"
 msgstr "사용자 ID:"
 
-#: src/dialogs/certificatedetailswidget.cpp:213
+#: src/dialogs/certificatedetailswidget.cpp:214
 #: src/dialogs/certifywidget.cpp:368
 #, kde-format
 msgid "User IDs"
 msgstr "사용자 ID"
 
-#: src/dialogs/certificatedetailswidget.cpp:228
+#: src/dialogs/certificatedetailswidget.cpp:229
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "사용자 ID 추가"
 
-#: src/dialogs/certificatedetailswidget.cpp:231
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, fuzzy, kde-format
 #| msgctxt "@title:column"
 #| msgid "Primary"
@@ -5591,162 +5605,162 @@ msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "주"
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:233
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:235
+#: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "사용자 ID 인증"
 
-#: src/dialogs/certificatedetailswidget.cpp:238
+#: src/dialogs/certificatedetailswidget.cpp:239
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "인증 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:241
+#: src/dialogs/certificatedetailswidget.cpp:242
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "인증 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:244
-#: src/dialogs/certificatedetailswidget.cpp:625
+#: src/dialogs/certificatedetailswidget.cpp:245
+#: src/dialogs/certificatedetailswidget.cpp:626
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:278
+#: src/dialogs/certificatedetailswidget.cpp:279
 #, kde-format
 msgid "Trust level:"
 msgstr "신뢰 단계:"
 
-#: src/dialogs/certificatedetailswidget.cpp:283
+#: src/dialogs/certificatedetailswidget.cpp:284
 #, kde-format
 msgid "Valid from:"
 msgstr "유효 기간 시작:"
 
-#: src/dialogs/certificatedetailswidget.cpp:288
+#: src/dialogs/certificatedetailswidget.cpp:289
 #: src/dialogs/expirydialog.cpp:204
 #, kde-format
 msgid "Valid until:"
 msgstr "유효 기간 끝:"
 
-#: src/dialogs/certificatedetailswidget.cpp:291
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr "유효 기간 종료 시점 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:293
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "유효 기간 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:298
+#: src/dialogs/certificatedetailswidget.cpp:299
 #: src/dialogs/certifywidget.cpp:338
 #, kde-format
 msgid "Fingerprint:"
 msgstr "지문:"
 
-#: src/dialogs/certificatedetailswidget.cpp:302
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "클립보드에 지문 복사"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:304
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "지문 복사"
 
-#: src/dialogs/certificatedetailswidget.cpp:310
+#: src/dialogs/certificatedetailswidget.cpp:311
 #, kde-format
 msgid "Issuer:"
 msgstr "발급자:"
 
-#: src/dialogs/certificatedetailswidget.cpp:313
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "발급자 인증서 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:315
 #, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "인증서 표시"
 
-#: src/dialogs/certificatedetailswidget.cpp:320
+#: src/dialogs/certificatedetailswidget.cpp:321
 #, kde-format
 msgid "Compliance:"
 msgstr "준수 사항:"
 
-#: src/dialogs/certificatedetailswidget.cpp:325
+#: src/dialogs/certificatedetailswidget.cpp:326
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "신뢰할 수 있는 도입자:"
 
-#: src/dialogs/certificatedetailswidget.cpp:327
+#: src/dialogs/certificatedetailswidget.cpp:328
 #, kde-format
 msgid "See certifications for details."
 msgstr "자세한 사항은 인증 정보를 참조하십시오."
 
-#: src/dialogs/certificatedetailswidget.cpp:333
+#: src/dialogs/certificatedetailswidget.cpp:334
 #, kde-format
 msgid "Related addresses:"
 msgstr "관계된 주소:"
 
-#: src/dialogs/certificatedetailswidget.cpp:338
+#: src/dialogs/certificatedetailswidget.cpp:339
 #, kde-format
 msgid "Related addresses"
 msgstr "관계된 주소"
 
-#: src/dialogs/certificatedetailswidget.cpp:349
+#: src/dialogs/certificatedetailswidget.cpp:350
 #, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "자세한 정보..."
 
-#: src/dialogs/certificatedetailswidget.cpp:352
+#: src/dialogs/certificatedetailswidget.cpp:353
 #, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr "서명 체인 자세한 정보"
 
-#: src/dialogs/certificatedetailswidget.cpp:355
+#: src/dialogs/certificatedetailswidget.cpp:356
 #, kde-format
 msgctxt "@action:button"
 msgid "Update"
 msgstr "업데이트"
 
-#: src/dialogs/certificatedetailswidget.cpp:361
+#: src/dialogs/certificatedetailswidget.cpp:362
 #, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "내보내기"
 
-#: src/dialogs/certificatedetailswidget.cpp:364
+#: src/dialogs/certificatedetailswidget.cpp:365
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "암구호 변경"
 
-#: src/dialogs/certificatedetailswidget.cpp:367
+#: src/dialogs/certificatedetailswidget.cpp:368
 #, kde-format
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "철회 인증서 생성"
 
-#: src/dialogs/certificatedetailswidget.cpp:369
+#: src/dialogs/certificatedetailswidget.cpp:370
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -5757,35 +5771,35 @@ msgstr ""
 "럼 작동하는 파일입니다. 한 번 철회 인증서를 공개한 뒤에는 철회 인증서를 더 이"
 "상 철회할 수 없습니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:491
+#: src/dialogs/certificatedetailswidget.cpp:492
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "무제한"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Email"
 msgstr "이메일"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #: src/newcertificatewizard/enterdetailspage.cpp:61
 #, kde-format
 msgid "Name"
 msgstr "이름"
 
-#: src/dialogs/certificatedetailswidget.cpp:516
+#: src/dialogs/certificatedetailswidget.cpp:517
 #, kde-format
 msgid "Trust Level"
 msgstr "신뢰 단계"
 
-#: src/dialogs/certificatedetailswidget.cpp:534
+#: src/dialogs/certificatedetailswidget.cpp:535
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "이메일 없음"
 
-#: src/dialogs/certificatedetailswidget.cpp:622
+#: src/dialogs/certificatedetailswidget.cpp:623
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5794,132 +5808,132 @@ msgid ""
 msgstr ""
 "<para>사용자 ID <message>%1</message>을(를)<nl/>철회하시겠습니까?</para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:816
+#: src/dialogs/certificatedetailswidget.cpp:830
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:827
+#: src/dialogs/certificatedetailswidget.cpp:841
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "사용자 ID 인증..."
 
-#: src/dialogs/certificatedetailswidget.cpp:828
+#: src/dialogs/certificatedetailswidget.cpp:842
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "사용자 ID 인증..."
 
-#: src/dialogs/certificatedetailswidget.cpp:837
+#: src/dialogs/certificatedetailswidget.cpp:851
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "인증 철회..."
 
-#: src/dialogs/certificatedetailswidget.cpp:838
+#: src/dialogs/certificatedetailswidget.cpp:852
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "인증 철회..."
 
-#: src/dialogs/certificatedetailswidget.cpp:849
+#: src/dialogs/certificatedetailswidget.cpp:863
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "메일 공급자에 게시..."
 
-#: src/dialogs/certificatedetailswidget.cpp:862
+#: src/dialogs/certificatedetailswidget.cpp:876
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:909
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "never"
 msgstr "안 함"
 
-#: src/dialogs/certificatedetailswidget.cpp:911
+#: src/dialogs/certificatedetailswidget.cpp:925
 #, kde-format
 msgid "Signing"
 msgstr "서명"
 
-#: src/dialogs/certificatedetailswidget.cpp:912
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:926
+#: src/dialogs/certificatedetailswidget.cpp:930
 #, kde-format
 msgid "First message"
 msgstr "첫 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:913
-#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:927
+#: src/dialogs/certificatedetailswidget.cpp:931
 #, kde-format
 msgid "Last message"
 msgstr "마지막 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
-#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:928
+#: src/dialogs/certificatedetailswidget.cpp:932
 #, kde-format
 msgid "Message count"
 msgstr "메시지 개수"
 
-#: src/dialogs/certificatedetailswidget.cpp:915
+#: src/dialogs/certificatedetailswidget.cpp:929
 #: src/smartcard/openpgpcard.cpp:95
 #, kde-format
 msgid "Encryption"
 msgstr "암호화"
 
-#: src/dialogs/certificatedetailswidget.cpp:950
+#: src/dialogs/certificatedetailswidget.cpp:964
 #, kde-format
 msgid "Updating..."
 msgstr "업데이트 중..."
 
-#: src/dialogs/certificatedetailswidget.cpp:998
+#: src/dialogs/certificatedetailswidget.cpp:1012
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "외부 원본에서 키를 업데이트합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1014
+#: src/dialogs/certificatedetailswidget.cpp:1028
 #, kde-format
 msgid "Common Name"
 msgstr "일반 이름"
 
-#: src/dialogs/certificatedetailswidget.cpp:1015
+#: src/dialogs/certificatedetailswidget.cpp:1029
 #, kde-format
 msgid "Organization"
 msgstr "조직"
 
-#: src/dialogs/certificatedetailswidget.cpp:1016
+#: src/dialogs/certificatedetailswidget.cpp:1030
 #, kde-format
 msgid "Street"
 msgstr "도로명"
 
-#: src/dialogs/certificatedetailswidget.cpp:1017
+#: src/dialogs/certificatedetailswidget.cpp:1031
 #, kde-format
 msgid "City"
 msgstr "도시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1018
+#: src/dialogs/certificatedetailswidget.cpp:1032
 #, kde-format
 msgid "State"
 msgstr "도/광역시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1033
 #, kde-format
 msgid "Country"
 msgstr "국가"
 
-#: src/dialogs/certificatedetailswidget.cpp:1047
+#: src/dialogs/certificatedetailswidget.cpp:1061
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "CRL을 업데이트하고 인증서에 대한 완전한 유효성 검사를 실행합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1056
+#: src/dialogs/certificatedetailswidget.cpp:1070
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
@@ -8318,19 +8332,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "잘못된 인자: %1"
 
-#: src/mainwindow.cpp:101
+#: src/mainwindow.cpp:102
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "<application>%1</application> 끝내기(&Q)"
 
-#: src/mainwindow.cpp:108
+#: src/mainwindow.cpp:109
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "창만 닫기(&C)"
 
-#: src/mainwindow.cpp:202
+#: src/mainwindow.cpp:207
 #, kde-kuit-format
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -8341,13 +8355,13 @@ msgstr ""
 "수도 있습니다.<nl/><application>%1</application>을(를) 끝내지 않고 이 창을 닫"
 "을 수도 있습니다."
 
-#: src/mainwindow.cpp:204
+#: src/mainwindow.cpp:210
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "정말 종료하시겠습니까?"
 
-#: src/mainwindow.cpp:283
+#: src/mainwindow.cpp:293
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -8355,23 +8369,23 @@ msgid ""
 msgstr ""
 "GnuPG 로그 뷰어(kwatchgnupg)를 시작할 수 없습니다. 설치 상태를 확인하십시오."
 
-#: src/mainwindow.cpp:285
+#: src/mainwindow.cpp:295
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG 시작 오류"
 
-#: src/mainwindow.cpp:514
+#: src/mainwindow.cpp:524
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG 로그 뷰어"
 
-#: src/mainwindow.cpp:519
+#: src/mainwindow.cpp:529
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "배경 프로세스 다시 시작"
 
-#: src/mainwindow.cpp:520
+#: src/mainwindow.cpp:530
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8379,23 +8393,23 @@ msgid ""
 "configuration."
 msgstr "설정을 변경하는 등 작업 이후에 배경 프로세스를 다시 시작합니다."
 
-#: src/mainwindow.cpp:526
+#: src/mainwindow.cpp:536
 #, kde-format
 msgid "Check for updates"
 msgstr "업데이트 확인"
 
-#: src/mainwindow.cpp:532
+#: src/mainwindow.cpp:542
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "인증서"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:543
 #, kde-format
 msgid "Show certificate overview"
 msgstr "인증서 요약 표시"
 
-#: src/mainwindow.cpp:536
+#: src/mainwindow.cpp:546
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8403,43 +8417,43 @@ msgctxt ""
 msgid "Notepad"
 msgstr "메모장"
 
-#: src/mainwindow.cpp:537
+#: src/mainwindow.cpp:547
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr "텍스트 암호화/복호화, 서명/검증 메모장 표시"
 
-#: src/mainwindow.cpp:540
+#: src/mainwindow.cpp:550
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "스마트카드"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:551
 #, kde-format
 msgid "Show smartcard management"
 msgstr "스마트카드 관리 표시"
 
-#: src/mainwindow.cpp:545
+#: src/mainwindow.cpp:555
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "자가 진단 실행"
 
-#: src/mainwindow.cpp:549
+#: src/mainwindow.cpp:559
 #, kde-format
 msgid "Configure Groups..."
 msgstr "그룹 설정..."
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:584
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "빠른 검색에 초점 맞추기"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:595
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win 도움말"
 
-#: src/mainwindow.cpp:589
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8447,72 +8461,72 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:596
+#: src/mainwindow.cpp:606
 #, kde-format
 msgid "Password-based encryption"
 msgstr "암호 기반 암호화"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:608
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_symmetric_encryption_gnupg_en.pdf"
 msgstr "handout_symmetric_encryption_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:602
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Quickguide"
 msgstr "빠른 안내서"
 
-#: src/mainwindow.cpp:604
+#: src/mainwindow.cpp:614
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_sign_encrypt_gnupg_en.pdf"
 msgstr "handout_sign_encrypt_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:618
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:610
+#: src/mainwindow.cpp:620
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:614
+#: src/mainwindow.cpp:624
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:616
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:620 src/view/smartcardwidget.cpp:119
+#: src/mainwindow.cpp:630 src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
 msgstr "스마트카드 관리"
 
-#: src/mainwindow.cpp:622
+#: src/mainwindow.cpp:632
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:636
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "GnuPG 도움말"
 
-#: src/mainwindow.cpp:650
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8521,28 +8535,28 @@ msgstr ""
 "백그라운드 작업이 진행 중입니다. 이 창을 닫으면 백그라운드 작업을 중단합니"
 "다. 계속 진행하시겠습니까?"
 
-#: src/mainwindow.cpp:653
+#: src/mainwindow.cpp:663
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "백그라운드 작업 진행 중"
 
-#: src/mainwindow.cpp:761 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:771 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "서명/암호화..."
 
-#: src/mainwindow.cpp:762 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:772 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "복호화/검증..."
 
-#: src/mainwindow.cpp:767
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "Import Certificates"
 msgstr "인증서 가져오기"
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:778
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL 가져오기"
@@ -10128,12 +10142,12 @@ msgstr "\"%1\" 파일에서 읽으려고 열 수 없음"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "파일 \"%1\"이(가) 열려 있지만 읽으려고 열리지 않았음"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:652
+#: src/utils/input.cpp:330 src/utils/output.cpp:668
 #, kde-format
 msgid "Command not specified"
 msgstr "지정한 명령이 없음"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:658
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:674
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "프로세스 %1을(를) 시작할 수 없음: %2"
@@ -10194,64 +10208,64 @@ msgstr "입력 장치 없음"
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr "로그 오류: 로그 파일 \"%1\"에 쓰려고 열 수 없습니다."
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:278
 #, kde-format
 msgid "No output device"
 msgstr "출력 장치 없음"
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:493
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "파일 설명자 %1에 쓸려고 열 수 없음"
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:519
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "출력 \"%1\"의 임시 파일을 생성할 수 없음"
 
-#: src/utils/output.cpp:599
+#: src/utils/output.cpp:615
 #, kde-format
 msgid "Overwriting declined"
 msgstr "덮어쓰기 거부됨"
 
-#: src/utils/output.cpp:605
+#: src/utils/output.cpp:621
 #, kde-format
 msgid "Could not remove file \"%1\" for overwriting."
 msgstr "\"%1\"에 덮어 쓰려고 삭제할 수 없습니다."
 
-#: src/utils/output.cpp:624
+#: src/utils/output.cpp:640
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "\"%1\" 파일의 이름을 \"%2\"(으)로 바꿀 수 없음"
 
-#: src/utils/output.cpp:669
+#: src/utils/output.cpp:685
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "%1에 전달할 입력..."
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:687
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "%1에 전달할 입력"
 
-#: src/utils/output.cpp:703
+#: src/utils/output.cpp:719
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "클립보드에 쓸 수 없음"
 
-#: src/utils/output.cpp:712
+#: src/utils/output.cpp:728
 #, kde-format
 msgid "Find buffer"
 msgstr "찾기 버퍼"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:730
 #, kde-format
 msgid "Selection"
 msgstr "선택"
 
-#: src/utils/output.cpp:728
+#: src/utils/output.cpp:744
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "클립보드를 찾을 수 없음"

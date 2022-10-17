@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-16 00:47+0000\n"
-"PO-Revision-Date: 2022-09-15 10:45+0200\n"
+"PO-Revision-Date: 2022-10-16 09:07+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -1633,7 +1633,8 @@ msgstr[1] "S'estan recuperant %1 claus... (pot tardar una estona)"
 #, kde-format
 msgid "Sorry! No certificate to import from this card slot was found."
 msgstr ""
-"No s'ha trobat cap certificat a importar des d'esta ranura de la targeta."
+"No s'ha trobat cap certificat que s'haja d'importar des d'esta ranura de la "
+"targeta."
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:91
 #, kde-format
@@ -1900,7 +1901,7 @@ msgstr "Llistes de revocació de certificats, codificades DER"
 #: src/commands/importcrlcommand.cpp:55
 #, kde-format
 msgid "Select CRL File to Import"
-msgstr "Seleccioneu el fitxer CRL que s'importarà"
+msgstr "Seleccioneu el fitxer CRL que s'ha d'importar"
 
 #: src/commands/importcrlcommand.cpp:172
 #, kde-format
@@ -3406,7 +3407,7 @@ msgstr "Busca la llista de grups que coincidisquen amb el terme de busca."
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
-msgstr "Introduïu el terme que cal buscar"
+msgstr "Introduïu el terme que s'ha de buscar"
 
 #: src/conf/groupsconfigwidget.cpp:171
 #, kde-format
@@ -3698,12 +3699,12 @@ msgid ""
 "used.  With this option, all entries using the HTTP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
-"Quan es busca la ubicació d'una CRL, el certificat a comprovar usualment "
-"conté el que es coneix com a entrades «punt de distribució (DP -Distribution "
-"Point-) CRL», les quals són els URL que descriuen la manera d'accedir a la "
-"CRL. La primera entrada DP que es trobe és la que s'utilitzarà. Amb esta "
-"opció, totes les entrades que empren l'esquema HTTP seran ignorades quan "
-"s'estiga buscant un DP adequat."
+"Quan es busca la ubicació d'una CRL, el certificat que es comprovarà "
+"usualment conté el que es coneix com a entrades «punt de distribució (DP -"
+"Distribution Point-) CRL», les quals són els URL que descriuen la manera "
+"d'accedir a la CRL. La primera entrada DP que es trobe és la que "
+"s'utilitzarà. Amb esta opció, totes les entrades que empren l'esquema HTTP "
+"seran ignorades quan s'estiga buscant un DP adequat."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreHTTPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:191
@@ -3778,12 +3779,12 @@ msgid ""
 "used.  With this option, all entries using the LDAP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
-"Quan es busca la ubicació d'una CRL, el certificat a comprovar usualment "
-"conté el que es coneix com a entrades «punt de distribució (DP -Distribution "
-"Point-) CRL», les quals són els URL que descriuen la manera d'accedir a la "
-"CRL. La primera entrada DP que es trobe és la que s'utilitzarà. Amb esta "
-"opció, totes les entrades que empren l'esquema LDAP seran ignorades quan "
-"s'estiga buscant un DP adequat."
+"Quan es busca la ubicació d'una CRL, el certificat que es comprovarà "
+"usualment conté el que es coneix com a entrades «punt de distribució (DP -"
+"Distribution Point-) CRL», les quals són els URL que descriuen la manera "
+"d'accedir a la CRL. La primera entrada DP que es trobe és la que "
+"s'utilitzarà. Amb esta opció, totes les entrades que empren l'esquema LDAP "
+"seran ignorades quan s'estiga buscant un DP adequat."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:265
@@ -3859,14 +3860,9 @@ msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Sí, guarda com a <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
-#, fuzzy, kde-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-format
 msgid "The file <b>%1</b> already exists.\n"
-msgstr ""
-"El fitxer <b>%1</b> ja existix.\n"
-"El sobreescric?"
+msgstr "El fitxer <b>%1</b> ja existix.\n"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
 #, kde-format
@@ -6446,13 +6442,14 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
-"El certificat a suprimir és el vostre propi. Conté material de clau privada, "
-"el qual es necessita per a desencriptar comunicacions antigues encriptades "
-"amb el certificat i, per tant, no es pot suprimir."
+"El certificat que se suprimirà és el vostre propi. Conté material de clau "
+"privada, el qual es necessita per a desencriptar comunicacions antigues "
+"encriptades amb el certificat i, per tant, no es pot suprimir."
 msgstr[1] ""
-"Tots els certificats a suprimir són els vostres propis. Contenen material de "
-"clau privada, el qual es necessita per a desencriptar comunicacions antigues "
-"encriptades amb els certificats i, per tant, no es poden suprimir."
+"Tots els certificats que se suprimiran són els vostres propis. Contenen "
+"material de clau privada, el qual es necessita per a desencriptar "
+"comunicacions antigues encriptades amb els certificats i, per tant, no es "
+"poden suprimir."
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6465,13 +6462,14 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
-"Un dels certificats a suprimir és el vostre propi. Conté material de clau "
-"privada, el qual es necessita per a desencriptar comunicacions antigues "
+"Un dels certificats que se suprimirà és el vostre propi. Conté material de "
+"clau privada, el qual es necessita per a desencriptar comunicacions antigues "
 "encriptades amb el certificat i, per tant, no es pot suprimir."
 msgstr[1] ""
-"Alguns dels certificats a suprimir són els vostres propis. Contenen material "
-"de clau privada, el qual es necessita per a desencriptar comunicacions "
-"antigues encriptades amb els certificats i, per tant, no es poden suprimir."
+"Alguns dels certificats que se suprimiran són els vostres propis. Contenen "
+"material de clau privada, el qual es necessita per a desencriptar "
+"comunicacions antigues encriptades amb els certificats i, per tant, no es "
+"poden suprimir."
 
 #: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:350
 #, kde-format
@@ -8410,7 +8408,7 @@ msgstr "Obri el diàleg de configuració"
 #: src/kleopatra_options.h:54
 #, kde-format
 msgid "File(s) to process"
-msgstr "Fitxers que s'hagen de processar"
+msgstr "Fitxers que s'han de processar"
 
 #: src/kleopatra_options.h:57
 #, kde-format

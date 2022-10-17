@@ -139,7 +139,11 @@ void CertificateToPIVCardCommand::Private::start()
         "<p>Please confirm that you want to write the following certificate to the %1 slot of card %2:</p>"
         "<center>%3</center>",
         PIVCard::keyDisplayName(cardSlot), QString::fromStdString(serialNumber()), certificateInfo);
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    auto confirmButton = KStandardGuiItem::ok();
+#else
     auto confirmButton = KStandardGuiItem::yes();
+#endif
     confirmButton.setText(i18nc("@action:button", "Write certificate"));
     confirmButton.setToolTip(QString());
 #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)

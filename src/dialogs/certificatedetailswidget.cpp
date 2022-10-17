@@ -622,7 +622,7 @@ void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId
         "@info",
         "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?</para>",
         QString::fromUtf8(userId.id()));
-    auto confirmButton = KStandardGuiItem::yes();
+    auto confirmButton = KStandardGuiItem::ok();
     confirmButton.setText(i18nc("@action:button", "Revoke User ID"));
     confirmButton.setToolTip({});
 #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)

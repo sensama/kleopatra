@@ -235,7 +235,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
             qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
             const QFileInfo ofi(outpath);
             if (ofi.exists()) {
-                int sel = KMessageBox::No;
+                int sel = KMessageBox::Cancel;
                 if (!overWriteAll) {
 #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
                     sel = KMessageBox::questionTwoActionsCancel(m_dialog,

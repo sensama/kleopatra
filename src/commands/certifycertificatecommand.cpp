@@ -30,8 +30,9 @@
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
+#include <KLocalizedString>
+#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -167,12 +168,22 @@ void CertifyCertificateCommand::doStart()
     };
 
     if (!findAnyGoodKey()) {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        auto sel =
+            KMessageBox::questionTwoActions(d->parentWidgetOrView(),
+#else
         auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(),
-                    xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.") +
-                    QStringLiteral("<br><br>") +
-                    i18n("Do you wish to create one now?"),
-                    i18n("Certification Not Possible"));
+#endif
+                                            xi18nc("@info", "To certify other certificates, you first need to create an OpenPGP certificate for yourself.")
+                                                + QStringLiteral("<br><br>") + i18n("Do you wish to create one now?"),
+                                            i18n("Certification Not Possible"),
+                                            KGuiItem(i18n("Create")),
+                                            KStandardGuiItem::cancel());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        if (sel == KMessageBox::ButtonCode::PrimaryAction) {
+#else
         if (sel == KMessageBox::Yes) {
+#endif
             QEventLoop loop;
             auto cmd = new NewOpenPGPCertificateCommand;
             cmd->setParentWidget(d->parentWidgetOrView());

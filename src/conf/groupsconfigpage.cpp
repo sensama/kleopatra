@@ -77,9 +77,9 @@ void GroupsConfigPage::Private::onKeysMayHaveChanged()
     if (!changed) {
         q->load();
     } else {
-        auto buttonYes = KStandardGuiItem::yes();
+        auto buttonYes = KStandardGuiItem::ok();
         buttonYes.setText(i18n("Save changes"));
-        auto buttonNo = KStandardGuiItem::no();
+        auto buttonNo = KStandardGuiItem::cancel();
         buttonNo.setText(i18n("Discard changes"));
 #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         const auto answer = KMessageBox::questionTwoActions(

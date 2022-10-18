@@ -110,7 +110,7 @@ QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
 
 void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorithms)
 {
-    const static std::vector<std::string> allowedAlgorithms = {
+    static const std::vector<std::string> allowedAlgorithms = {
         "brainpoolP256r1",
         "brainpoolP384r1",
         "brainpoolP512r1",
@@ -139,11 +139,11 @@ std::string OpenPGPCard::pubkeyUrl() const
 
 std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms(const std::string &keyRef)
 {
-    const static std::map<std::string, QString> displayNames = {
+    static const std::map<std::string, QString> displayNames = {
         { "brainpoolP256r1", i18nc("@info", "ECC (Brainpool P-256)") },
         { "brainpoolP384r1", i18nc("@info", "ECC (Brainpool P-384)") },
         { "brainpoolP512r1", i18nc("@info", "ECC (Brainpool P-512)") },
-        { "curve25519", i18nc("@info", "ECC (Curve 25519)") },
+        { "curve25519", i18nc("@info", "ECC (Curve25519)") },
         { "nistp256", i18nc("@info", "ECC (NIST P-256)") },
         { "nistp384", i18nc("@info", "ECC (NIST P-384)") },
         { "nistp521", i18nc("@info", "ECC (NIST P-521)") },

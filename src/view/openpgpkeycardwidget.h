@@ -1,7 +1,7 @@
 /*  view/openpgpkeycardwidget.h
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2021 g10 Code GmbH
+    SPDX-FileCopyrightText: 2021, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -27,7 +27,8 @@ public:
     enum Action {
         NoAction = 0x00,
         CreateCSR = 0x01,
-        AllActions = CreateCSR,
+        GenerateKey = 0x02,
+        AllActions = CreateCSR | GenerateKey,
     };
     Q_DECLARE_FLAGS(Actions, Action)
 
@@ -41,6 +42,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void createCSRRequested(const std::string &keyRef);
+    void generateKeyRequested(const std::string &keyRef);
 
 private:
     class Private;

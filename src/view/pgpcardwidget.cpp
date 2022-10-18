@@ -3,7 +3,7 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileCopyrightText: 2020, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -17,6 +17,7 @@
 
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
+#include "commands/openpgpgeneratecardkeycommand.h"
 
 #include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
@@ -182,6 +183,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent):
     mKeysWidget = new OpenPGPKeyCardWidget{this};
     areaVLay->addWidget(mKeysWidget);
     connect(mKeysWidget, &OpenPGPKeyCardWidget::createCSRRequested, this, &PGPCardWidget::createCSR);
+    connect(mKeysWidget, &OpenPGPKeyCardWidget::generateKeyRequested, this, &PGPCardWidget::generateKey);
 
     areaVLay->addWidget(new KSeparator(Qt::Horizontal));
 
@@ -499,6 +501,17 @@ void PGPCardWidget::createCSR(const std::string &keyref)
     auto cmd = new CreateCSRForCardKeyCommand(keyref, mRealSerial, OpenPGPCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateCSRForCardKeyCommand::finished,
+            this, [this]() {
+                this->setEnabled(true);
+            });
+    cmd->start();
+}
+
+void PGPCardWidget::generateKey(const std::string &keyref)
+{
+    auto cmd = new OpenPGPGenerateCardKeyCommand(keyref, mRealSerial, this);
+    this->setEnabled(false);
+    connect(cmd, &OpenPGPGenerateCardKeyCommand::finished,
             this, [this]() {
                 this->setEnabled(true);
             });

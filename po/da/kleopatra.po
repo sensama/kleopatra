@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-16 00:47+0000\n"
+"POT-Creation-Date: 2022-10-18 00:45+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -183,7 +183,7 @@ msgstr "Tilføjelse af bruger-id gennemført"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:125
 #: src/commands/certificatetopivcardcommand.cpp:121
-#: src/commands/certificatetopivcardcommand.cpp:186
+#: src/commands/certificatetopivcardcommand.cpp:190
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
 #: src/commands/keytocardcommand.cpp:336
 #: src/commands/pivgeneratecardkeycommand.cpp:120
@@ -229,28 +229,28 @@ msgid ""
 "slot of card %2:</p><center>%3</center>"
 msgstr ""
 
-#: src/commands/certificatetopivcardcommand.cpp:143
+#: src/commands/certificatetopivcardcommand.cpp:147
 #, fuzzy, kde-format
 #| msgid "With certificate:"
 msgctxt "@action:button"
 msgid "Write certificate"
 msgstr "Med certifikat:"
 
-#: src/commands/certificatetopivcardcommand.cpp:152
+#: src/commands/certificatetopivcardcommand.cpp:156
 #, fuzzy, kde-format
 #| msgid "With certificate:"
 msgctxt "@title:window"
 msgid "Write certificate to card"
 msgstr "Med certifikat:"
 
-#: src/commands/certificatetopivcardcommand.cpp:178
+#: src/commands/certificatetopivcardcommand.cpp:182
 #, fuzzy, kde-format
 #| msgid "Exporting certificates..."
 msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Eksporterer certifikater..."
 
-#: src/commands/certificatetopivcardcommand.cpp:253
+#: src/commands/certificatetopivcardcommand.cpp:257
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Moving the key to the card failed: %1"
@@ -258,7 +258,7 @@ msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Kunne ikke flytte nøglen til kortet: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:255
+#: src/commands/certificatetopivcardcommand.cpp:259
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Moving the key to the card failed: %1"
@@ -266,21 +266,21 @@ msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
 msgstr "Kunne ikke flytte nøglen til kortet: %1"
 
-#: src/commands/certifycertificatecommand.cpp:152
+#: src/commands/certifycertificatecommand.cpp:153
 #, fuzzy, kde-format
 #| msgid "Newly revoked:"
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "Nyligt fjernet:"
 
-#: src/commands/certifycertificatecommand.cpp:152
+#: src/commands/certifycertificatecommand.cpp:153
 #, fuzzy, kde-format
 #| msgid "key expired"
 msgctxt "@title:window"
 msgid "Key is Expired"
 msgstr "nøgle udløbet"
 
-#: src/commands/certifycertificatecommand.cpp:154
+#: src/commands/certifycertificatecommand.cpp:155
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
@@ -288,14 +288,14 @@ msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
 msgstr "OpenPGP-certifikater blev eksporteret."
 
-#: src/commands/certifycertificatecommand.cpp:155
+#: src/commands/certifycertificatecommand.cpp:156
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
 msgstr "Den private nøgle skal bruges for at dekryptere og signere."
 
-#: src/commands/certifycertificatecommand.cpp:171
+#: src/commands/certifycertificatecommand.cpp:177
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -305,29 +305,36 @@ msgstr ""
 "For at certificere andre certifikater skal du først oprette et OpenPGP-"
 "certifikat til dig selv."
 
-#: src/commands/certifycertificatecommand.cpp:173
+#: src/commands/certifycertificatecommand.cpp:178
 #, kde-format
 msgid "Do you wish to create one now?"
 msgstr "Vil du oprette en nu?"
 
-#: src/commands/certifycertificatecommand.cpp:174
+#: src/commands/certifycertificatecommand.cpp:179
 #, kde-format
 msgid "Certification Not Possible"
 msgstr "Certificering er ikke muligt"
 
-#: src/commands/certifycertificatecommand.cpp:232
+#: src/commands/certifycertificatecommand.cpp:180
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create"
+msgid "Create"
+msgstr "Opret"
+
+#: src/commands/certifycertificatecommand.cpp:243
 #, fuzzy, kde-format
 #| msgid "Certification successful."
 msgid "Certification successful."
 msgstr "Certificering gennemført."
 
-#: src/commands/certifycertificatecommand.cpp:233
+#: src/commands/certifycertificatecommand.cpp:244
 #, fuzzy, kde-format
 #| msgid "Certification canceled."
 msgid "Certification Succeeded"
 msgstr "Certificering annulleret."
 
-#: src/commands/certifycertificatecommand.cpp:235
+#: src/commands/certifycertificatecommand.cpp:246
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the expiry date for <b>%1</b>:"
@@ -339,7 +346,7 @@ msgstr ""
 "<p>En fejl opstod under forsøg på at ændre udløbsdatoen for <b>%1</b>:</p><p>"
 "%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:239
+#: src/commands/certifycertificatecommand.cpp:250
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "Certification Error"
@@ -1648,10 +1655,10 @@ msgstr "Indhold af udklipsholder ligner ikke et certifikat."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:497
-#: src/commands/importcertificatescommand.cpp:505
-#: src/commands/importcertificatescommand.cpp:840
-#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:512
+#: src/commands/importcertificatescommand.cpp:520
+#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:918
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Import af certifikat mislykkedes"
@@ -1676,7 +1683,7 @@ msgid "Notepad"
 msgstr "Notesblok"
 
 #: src/commands/importcertificatefromfilecommand.cpp:123
-#: src/commands/importcertificatescommand.cpp:184
+#: src/commands/importcertificatescommand.cpp:185
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@title:window"
@@ -1698,7 +1705,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Kunne ikke åbne filen %1 til læsning: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:147
-#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:287 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Certifikater"
@@ -1740,166 +1747,166 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Indlæs certifikater"
 
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Importing certificates... (this can take a while)"
 msgstr "Indlæs certificeringer (kan tage et stykke tid)"
 
-#: src/commands/importcertificatescommand.cpp:241
+#: src/commands/importcertificatescommand.cpp:242
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Importerede certifikater fra %1"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:246
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Importerede certifikater fra disse kilder:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:256
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Importerede certifikater"
 
-#: src/commands/importcertificatescommand.cpp:271
+#: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:273
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:287
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Total number processed:"
 msgstr "Samlet antal behandlet:"
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:290
 #, kde-format
 msgid "Imported:"
 msgstr "Importeret:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New signatures:"
 msgstr "Nye signaturer:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:296
 #, kde-format
 msgid "New user IDs:"
 msgstr "Nye bruger-ID'er:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certifikater uden bruger-id'er:"
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:302
 #, kde-format
 msgid "New subkeys:"
 msgstr "Nye undernøgler:"
 
-#: src/commands/importcertificatescommand.cpp:304
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Nyligt fjernet:"
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:308
 #, kde-format
 msgid "Not imported:"
 msgstr "Ikke importeret:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Unchanged:"
 msgstr "Uændret:"
 
-#: src/commands/importcertificatescommand.cpp:313
+#: src/commands/importcertificatescommand.cpp:314
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Hemmelige nøgler behandlet:"
 
-#: src/commands/importcertificatescommand.cpp:316
+#: src/commands/importcertificatescommand.cpp:317
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Hemmelige nøgler importeret:"
 
-#: src/commands/importcertificatescommand.cpp:320
+#: src/commands/importcertificatescommand.cpp:321
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Hemmelige nøgler <em>ikke</em> importeret:"
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Hemmelige nøgler uændret:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:327
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:340
+#: src/commands/importcertificatescommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgid "Certificate Groups"
 msgstr "Dump af certifikat"
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:344
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "Nye signaturer:"
 
-#: src/commands/importcertificatescommand.cpp:345
+#: src/commands/importcertificatescommand.cpp:346
 #, fuzzy, kde-format
 #| msgid "Update Card Status"
 msgid "Updated groups:"
 msgstr "Opdatér kortstatus"
 
-#: src/commands/importcertificatescommand.cpp:362
+#: src/commands/importcertificatescommand.cpp:363
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Ingen importeringer (Dette burde ikke ske. Rapportér venligst denne fejl)."
 
-#: src/commands/importcertificatescommand.cpp:365
+#: src/commands/importcertificatescommand.cpp:366
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:367
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Et telefonopkald til personen."
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Using a business card."
 msgstr "Med et firmakort."
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:417
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Bekræfter den på et betroet websted."
 
-#: src/commands/importcertificatescommand.cpp:419
+#: src/commands/importcertificatescommand.cpp:424
 #, kde-format
 msgid ""
 "In order to mark the certificate as valid (green) it needs to be certified."
@@ -1907,33 +1914,40 @@ msgstr ""
 "Certifikatet skal være certificeret, for at kunne markere det som gyldigt "
 "(grøn)."
 
-#: src/commands/importcertificatescommand.cpp:420
+#: src/commands/importcertificatescommand.cpp:425
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Certificering betyder at du tjekker fingeraftrykket."
 
-#: src/commands/importcertificatescommand.cpp:421
+#: src/commands/importcertificatescommand.cpp:426
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Nogle forslag til at gøre det er:"
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:428
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Vil du starte processen nu?"
 
-#: src/commands/importcertificatescommand.cpp:425
+#: src/commands/importcertificatescommand.cpp:429
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Vil du importere et nyt certifikat (offentlig nøgle)"
 
-#: src/commands/importcertificatescommand.cpp:476
+#: src/commands/importcertificatescommand.cpp:431
+#: src/commands/importcertificatescommand.cpp:613
+#: src/dialogs/lookupcertificatesdialog.cpp:199
+#, kde-format
+msgid "Import"
+msgstr "Importér"
+
+#: src/commands/importcertificatescommand.cpp:491
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Resultat fra certifikat import"
 
-#: src/commands/importcertificatescommand.cpp:484
+#: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -1942,7 +1956,7 @@ msgstr ""
 "<qt><p>En fejl opstod under forsøg på at importere certifikatet:</p><p><b>"
 "%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:488
+#: src/commands/importcertificatescommand.cpp:503
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -1953,19 +1967,19 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:574
+#: src/commands/importcertificatescommand.cpp:589
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:575
+#: src/commands/importcertificatescommand.cpp:590
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:579
+#: src/commands/importcertificatescommand.cpp:594
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -1984,13 +1998,13 @@ msgstr ""
 "<list><item>%2</item></list></para>Er det din egen nøgle? (sæt tillidsniveau "
 "ultimate)"
 
-#: src/commands/importcertificatescommand.cpp:591
+#: src/commands/importcertificatescommand.cpp:612
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret key imported"
 msgstr "Hemmelig nøgle importeret"
 
-#: src/commands/importcertificatescommand.cpp:803
+#: src/commands/importcertificatescommand.cpp:830
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -1998,8 +2012,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Indlæs certificeringer (kan tage et stykke tid)"
 msgstr[1] "Indlæs certificeringer (kan tage et stykke tid)"
 
-#: src/commands/importcertificatescommand.cpp:838
-#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:865
+#: src/commands/importcertificatescommand.cpp:916
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7046,11 +7060,6 @@ msgstr "Gem som..."
 #, kde-format
 msgid "Lookup on Server"
 msgstr "Opslå på server"
-
-#: src/dialogs/lookupcertificatesdialog.cpp:199
-#, kde-format
-msgid "Import"
-msgstr "Importér"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:163
 #, fuzzy, kde-format

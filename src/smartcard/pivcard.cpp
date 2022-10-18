@@ -9,6 +9,7 @@
 
 #include "pivcard.h"
 
+#include "algorithminfo.h"
 #include "keypairinfo.h"
 
 #include <KLocalizedString>
@@ -91,7 +92,7 @@ QString PIVCard::keyDisplayName(const std::string &keyRef)
 }
 
 // static
-std::vector< std::pair<std::string, QString> > PIVCard::supportedAlgorithms(const std::string &keyRef)
+std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRef)
 {
     if (keyRef == PIVCard::keyManagementKeyRef()) {
         return {

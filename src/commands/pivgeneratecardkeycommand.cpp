@@ -11,6 +11,7 @@
 
 #include "cardcommand_p.h"
 
+#include "smartcard/algorithminfo.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 

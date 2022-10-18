@@ -391,6 +391,7 @@ set(_kleopatra_SRCS
   selftest/libkleopatrarccheck.h
   selftest/selftest.cpp
   selftest/selftest.h
+  smartcard/algorithminfo.h
   smartcard/card.cpp
   smartcard/card.h
   smartcard/deviceinfowatcher.cpp

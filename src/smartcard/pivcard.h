@@ -14,6 +14,7 @@ namespace Kleo
 {
 namespace SmartCard
 {
+struct AlgorithmInfo;
 struct KeyPairInfo;
 
 /** Class to work with PIV smartcards or compatible tokens */
@@ -34,7 +35,7 @@ public:
 
     static const std::vector<KeyPairInfo> & supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
-    static std::vector< std::pair<std::string, QString> > supportedAlgorithms(const std::string &keyRef);
+    static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
 
     std::string keyAlgorithm(const std::string &keyRef) const;
     void setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm);

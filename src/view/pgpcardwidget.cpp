@@ -18,6 +18,7 @@
 #include "commands/createcsrforcardkeycommand.h"
 #include "commands/createopenpgpkeyfromcardkeyscommand.h"
 
+#include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
 
@@ -357,7 +358,7 @@ void PGPCardWidget::genkeyRequested()
     }
 
     auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
-    std::vector<std::pair<std::string, QString>> algos = {
+    std::vector<AlgorithmInfo> algos = {
         { "1024", QStringLiteral("RSA 1024") },
         { "2048", QStringLiteral("RSA 2048") },
         { "3072", QStringLiteral("RSA 3072") }

@@ -17,6 +17,11 @@
 
 namespace Kleo
 {
+namespace SmartCard
+{
+struct AlgorithmInfo;
+}
+
 class GenCardKeyDialog: public QDialog
 {
 Q_OBJECT
@@ -49,7 +54,7 @@ public:
 
     KeyParams getKeyParams() const;
 
-    void setSupportedAlgorithms(const std::vector<std::pair<std::string, QString>> &algorithms, const std::string &defaultAlgo);
+    void setSupportedAlgorithms(const std::vector<SmartCard::AlgorithmInfo> &algorithms, const std::string &defaultAlgo);
 
 private:
     class Private;

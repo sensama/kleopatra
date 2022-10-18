@@ -274,6 +274,35 @@ static const char * get_openpgp_card_manufacturer_from_serial_number(const std::
     }
 }
 
+static std::vector<std::string> get_openpgp_card_supported_algorithms(Card *card, std::shared_ptr<Context> &gpgAgent)
+{
+    if ((card->cardType() == "yubikey") && (card->cardVersion() >= 0x050203)) {
+        return {
+            "rsa2048",
+            "rsa3072",
+            "rsa4096",
+            "brainpoolP256r1",
+            "brainpoolP384r1",
+            "brainpoolP512r1",
+            "curve25519",
+        };
+    } else if ((card->cardType() == "zeitcontrol") && (card->appVersion() >= 0x0304)) {
+        return {
+            "rsa2048",
+            "rsa3072",
+            "rsa4096",
+            "brainpoolP256r1",
+            "brainpoolP384r1",
+            "brainpoolP512r1",
+        };
+    }
+    return {
+       "rsa2048",
+       "rsa3072",
+       "rsa4096"
+    };
+}
+
 static bool isOpenPGPCardSerialNumber(const std::string &serialNumber)
 {
     return serialNumber.size() == 32 && serialNumber.substr(0, 12) == "D27600012401";
@@ -341,6 +370,8 @@ static void handle_openpgp_card(std::shared_ptr<Card> &ci, std::shared_ptr<Conte
     setDisplaySerialNumber(pgpCard, gpg_agent);
 
     learnCardKeyStubs(pgpCard, gpg_agent);
+
+    pgpCard->setSupportedAlgorithms(get_openpgp_card_supported_algorithms(pgpCard, gpg_agent));
 
     ci.reset(pgpCard);
 }

@@ -3,7 +3,7 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileCopyrightText: 2020, 2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -22,12 +22,21 @@
 
 #include "openpgpcard.h"
 
+#include "algorithminfo.h"
+
+#include <Libkleo/Algorithm>
+
 #include <KLocalizedString>
 
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
+
+static QDebug operator<<(QDebug s, const std::string &string)
+{
+    return s << QString::fromStdString(string);
+}
 
 // static
 const std::string OpenPGPCard::AppName = "openpgp";
@@ -99,7 +108,56 @@ QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
     return displayNames.value(keyRef);
 }
 
+void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorithms)
+{
+    const static std::vector<std::string> allowedAlgorithms = {
+        "brainpoolP256r1",
+        "brainpoolP384r1",
+        "brainpoolP512r1",
+        "curve25519",
+        "nistp256",
+        "nistp384",
+        "nistp521",
+        "rsa2048",
+        "rsa3072",
+        "rsa4096",
+    };
+    mAlgorithms.clear();
+    std::copy_if(algorithms.begin(), algorithms.end(), std::back_inserter(mAlgorithms), [](const auto &algo) {
+        return Kleo::contains(allowedAlgorithms, algo);
+    });
+    if (mAlgorithms.size() < algorithms.size()) {
+        qWarning(KLEOPATRA_LOG).nospace() << "OpenPGPCard::" << __func__ << " Invalid algorithm in " << algorithms
+                                          << " (allowed algorithms: " << allowedAlgorithms << ")";
+    }
+}
+
 std::string OpenPGPCard::pubkeyUrl() const
 {
     return cardInfo("PUBKEY-URL");
+}
+
+std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms(const std::string &keyRef)
+{
+    const static std::map<std::string, QString> displayNames = {
+        { "brainpoolP256r1", i18nc("@info", "ECC (Brainpool P-256)") },
+        { "brainpoolP384r1", i18nc("@info", "ECC (Brainpool P-384)") },
+        { "brainpoolP512r1", i18nc("@info", "ECC (Brainpool P-512)") },
+        { "curve25519", i18nc("@info", "ECC (Curve 25519)") },
+        { "nistp256", i18nc("@info", "ECC (NIST P-256)") },
+        { "nistp384", i18nc("@info", "ECC (NIST P-384)") },
+        { "nistp521", i18nc("@info", "ECC (NIST P-521)") },
+        { "rsa2048", i18nc("@info", "RSA 2048") },
+        { "rsa3072", i18nc("@info", "RSA 3072") },
+        { "rsa4096", i18nc("@info", "RSA 4096") },
+    };
+    const std::string curve25519Algo = keyRef == OpenPGPCard::pgpEncKeyRef() ? "cv25519" : "ed25519";
+    std::vector<AlgorithmInfo> algos;
+    std::transform(mAlgorithms.cbegin(), mAlgorithms.cend(), std::back_inserter(algos), [curve25519Algo](const auto &algo) {
+        if (algo == "curve25519") {
+            return AlgorithmInfo{curve25519Algo, displayNames.at(algo)};
+        }
+        return AlgorithmInfo{algo, displayNames.at(algo)};
+    });
+    return algos;
 }

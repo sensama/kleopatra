@@ -19,6 +19,7 @@
 #include <Libkleo/GnuPG>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
+#include <Libkleo/Stl_Util>
 
 #include <QGpgME/Debug>
 
@@ -72,16 +73,16 @@ static_assert(sizeof prettyFlags / sizeof * prettyFlags == Card::NumStates, "");
 
 Q_DECLARE_METATYPE(GpgME::Error)
 
+static QDebug operator<<(QDebug s, const std::string &string)
+{
+    return s << QString::fromStdString(string);
+}
+
 namespace
 {
 static bool gpgHasMultiCardMultiAppSupport()
 {
     return !(engineInfo(GpgME::GpgEngine).engineVersion() < "2.3.0");
-}
-
-static QDebug operator<<(QDebug s, const std::string &string)
-{
-    return s << QString::fromStdString(string);
 }
 
 static QDebug operator<<(QDebug s, const std::vector< std::pair<std::string, std::string> > &v)
@@ -274,8 +275,57 @@ static const char * get_openpgp_card_manufacturer_from_serial_number(const std::
     }
 }
 
+static std::vector<std::string> get_openpgp_card_supported_algorithms_announced_by_card(std::shared_ptr<Context> &gpgAgent)
+{
+    static constexpr std::string_view cardSlotPrefix = "OPENPGP.1 ";
+    static const std::map<std::string_view, std::string_view> algoMapping = {
+        {"cv25519", "curve25519"},
+        {"cv448", "curve448"},
+        {"ed25519", "curve25519"},
+        {"ed448", "curve448"},
+        {"x448", "curve448"},
+    };
+
+    Error err;
+    const auto lines = Assuan::sendStatusLinesCommand(gpgAgent, "SCD GETATTR KEY-ATTR-INFO", err);
+    if (err) {
+        return {};
+    }
+
+    std::vector<std::string> algos;
+    kdtools::transform_if(lines.cbegin(),
+                          lines.cend(),
+                          std::back_inserter(algos),
+                          [](const auto &line) {
+                              auto algo = line.second.substr(cardSlotPrefix.size());
+                              // map a few algorithms to the standard names used by us
+                              const auto mapping = algoMapping.find(algo);
+                              if (mapping != algoMapping.end()) {
+                                  algo = mapping->second;
+                              }
+                              return algo;
+                          },
+                          [](const auto &line) {
+                              // only consider KEY-ATTR-INFO status lines for the first card slot;
+                              // for now, we assume that all card slots support the same algorithms
+                              return line.first == "KEY-ATTR-INFO" && line.second.starts_with(cardSlotPrefix);
+                          });
+    // remove duplicate algorithms
+    std::sort(algos.begin(), algos.end());
+    algos.erase(std::unique(algos.begin(), algos.end()), algos.end());
+    qCDebug(KLEOPATRA_LOG) << __func__ << "returns" << algos;
+    return algos;
+}
+
 static std::vector<std::string> get_openpgp_card_supported_algorithms(Card *card, std::shared_ptr<Context> &gpgAgent)
 {
+    // first ask the smart card for the supported algorithms
+    const std::vector<std::string> announcedAlgos = get_openpgp_card_supported_algorithms_announced_by_card(gpgAgent);
+    if (!announcedAlgos.empty()) {
+        return announcedAlgos;
+    }
+
+    // otherwise, fall back to hard-coded lists
     if ((card->cardType() == "yubikey") && (card->cardVersion() >= 0x050203)) {
         return {
             "rsa2048",

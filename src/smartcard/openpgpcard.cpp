@@ -108,6 +108,31 @@ QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
     return displayNames.value(keyRef);
 }
 
+// static
+std::string OpenPGPCard::getAlgorithmName(const std::string &algorithm, const std::string &keyRef)
+{
+    static const std::map<std::string, std::string> ecdhAlgorithmMapping = {
+        { "curve25519", "cv25519" },
+        { "curve448", "cv448" },
+    };
+    static const std::map<std::string, std::string> eddsaAlgorithmMapping = {
+        { "curve25519", "ed25519" },
+        { "curve448", "ed448" },
+    };
+    if (keyRef == OpenPGPCard::pgpEncKeyRef()) {
+        const auto it = ecdhAlgorithmMapping.find(algorithm);
+        if (it != ecdhAlgorithmMapping.end()) {
+            return it->second;
+        }
+    } else {
+        const auto it = eddsaAlgorithmMapping.find(algorithm);
+        if (it != eddsaAlgorithmMapping.end()) {
+            return it->second;
+        }
+    }
+    return algorithm;
+}
+
 void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorithms)
 {
     static const std::vector<std::string> allowedAlgorithms = {
@@ -115,12 +140,14 @@ void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorit
         "brainpoolP384r1",
         "brainpoolP512r1",
         "curve25519",
+        "curve448",
         "nistp256",
         "nistp384",
         "nistp521",
         "rsa2048",
         "rsa3072",
         "rsa4096",
+        "secp256k1",
     };
     mAlgorithms.clear();
     std::copy_if(algorithms.begin(), algorithms.end(), std::back_inserter(mAlgorithms), [](const auto &algo) {
@@ -137,26 +164,24 @@ std::string OpenPGPCard::pubkeyUrl() const
     return cardInfo("PUBKEY-URL");
 }
 
-std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms(const std::string &keyRef)
+std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms()
 {
     static const std::map<std::string, QString> displayNames = {
         { "brainpoolP256r1", i18nc("@info", "ECC (Brainpool P-256)") },
         { "brainpoolP384r1", i18nc("@info", "ECC (Brainpool P-384)") },
         { "brainpoolP512r1", i18nc("@info", "ECC (Brainpool P-512)") },
         { "curve25519", i18nc("@info", "ECC (Curve25519)") },
+        { "curve448", i18nc("@info", "ECC (Curve448)") },
         { "nistp256", i18nc("@info", "ECC (NIST P-256)") },
         { "nistp384", i18nc("@info", "ECC (NIST P-384)") },
         { "nistp521", i18nc("@info", "ECC (NIST P-521)") },
         { "rsa2048", i18nc("@info", "RSA 2048") },
         { "rsa3072", i18nc("@info", "RSA 3072") },
         { "rsa4096", i18nc("@info", "RSA 4096") },
+        { "secp256k1", i18nc("@info", "secp256k1") },
     };
-    const std::string curve25519Algo = keyRef == OpenPGPCard::pgpEncKeyRef() ? "cv25519" : "ed25519";
     std::vector<AlgorithmInfo> algos;
-    std::transform(mAlgorithms.cbegin(), mAlgorithms.cend(), std::back_inserter(algos), [curve25519Algo](const auto &algo) {
-        if (algo == "curve25519") {
-            return AlgorithmInfo{curve25519Algo, displayNames.at(algo)};
-        }
+    std::transform(mAlgorithms.cbegin(), mAlgorithms.cend(), std::back_inserter(algos), [](const auto &algo) {
         return AlgorithmInfo{algo, displayNames.at(algo)};
     });
     return algos;

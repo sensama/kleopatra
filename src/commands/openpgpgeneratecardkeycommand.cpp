@@ -136,7 +136,7 @@ void OpenPGPGenerateCardKeyCommand::Private::generateKey()
         command << "--force";
     }
     if (!algorithm.empty()) {
-        command << "--algo=" + QByteArray::fromStdString(algorithm);
+        command << "--algo=" + QByteArray::fromStdString(OpenPGPCard::getAlgorithmName(algorithm, keyRef));
     }
     command << "--" << QByteArray::fromStdString(keyRef);
     ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command.join(' '), q, [this](const GpgME::Error &err) {
@@ -188,7 +188,7 @@ void OpenPGPGenerateCardKeyCommand::doStart()
 
     d->ensureDialogCreated();
     Q_ASSERT(d->dialog);
-    d->dialog->setSupportedAlgorithms(pgpCard->supportedAlgorithms(d->keyRef), "rsa2048");
+    d->dialog->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), "rsa2048");
     d->dialog->show();
 }
 

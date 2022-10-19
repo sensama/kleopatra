@@ -39,6 +39,14 @@ public:
     static QString keyDisplayName(const std::string &keyRef);
 
     /**
+     * Returns an algorithm name for the algorithm \p algorithm that is suitable
+     * for passing to scdaemon for the card slot specified by \p keyRef.
+     *
+     * For example, it maps "curve25519" to either "ed25519" or "cv25519".
+     */
+    static std::string getAlgorithmName(const std::string &algorithm, const std::string &keyRef);
+
+    /**
      * Sets the algorithms supported by this smart card to \p algorithms.
      * The following values for algorithms are allowed:
      *   brainpoolP256r1, brainpoolP384r1, brainpoolP512r1,
@@ -51,13 +59,12 @@ public:
     std::string pubkeyUrl() const;
 
     /**
-     * Returns a list of algorithm names and corresponding display names suitable
-     * for the card slot specified by \p keyRef.
+     * Returns a list of algorithm IDs and corresponding display names.
      *
-     * \note For Curve25519, depending on the given card slot, either "ed25519"
-     *       or "cv25519" is returned as algorithm ID.
+     * \note: You have to use getAlgorithmName to map the algorithm ID to
+     *        an algorithm name suitable for a certain card slot.
      */
-    std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
+    std::vector<AlgorithmInfo> supportedAlgorithms();
 
 private:
     std::vector<std::string> mAlgorithms;

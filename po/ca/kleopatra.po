@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-20 00:50+0000\n"
-"PO-Revision-Date: 2022-10-18 09:46+0200\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2022-10-20 16:00+0200\n"
+"Last-Translator: Antoni Bella <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -2449,9 +2449,7 @@ msgid "The existing key has the ID:"
 msgstr "La clau existent té la ID:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Sobreescriure la clau existent"
@@ -9751,83 +9749,76 @@ msgid "Authentication"
 msgstr "Autenticació"
 
 #: src/smartcard/openpgpcard.cpp:170
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr "ECDH (Corba P-256)"
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:171
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr "ECDH (Corba P-384)"
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:172
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:173
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr "ECDH (Corba P-256)"
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:174
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr "ECDH (Corba P-384)"
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:175
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr "ECDH (Corba P-256)"
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:176
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr "ECDH (Corba P-384)"
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:177
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:178
-#, fuzzy, kde-format
-#| msgid "RSA (2048 bits)"
+#, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr "RSA (2048 bits)"
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:179
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:180
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "secp256k1"
-msgstr ""
+msgstr "secp256k1"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11132,11 +11123,10 @@ msgid "Show detailed information about this key"
 msgstr "Mostra informació detallada sobre aquesta clau"
 
 #: src/view/openpgpkeycardwidget.cpp:55 src/view/openpgpkeycardwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Key"
-msgstr "Genera claus noves"
+msgstr "Genera la clau"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:185
 #, kde-format
@@ -11151,12 +11141,10 @@ msgid "<em>No key</em>"
 msgstr "<em>Sense clau</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:173
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr "S'ha generat correctament una clau nova per a aquesta targeta."
+msgstr "Genera una clau per a aquest sòcol de la targeta"
 
 #: src/view/openpgpkeycardwidget.cpp:184
 #, kde-format
@@ -11171,17 +11159,18 @@ msgid "<em>Invalid fingerprint</em>"
 msgstr "<em>Empremta digital no vàlida</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:219
-#, fuzzy, kde-format
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "Genera claus noves"
+msgstr "Torna a generar la clau"
 
 #: src/view/openpgpkeycardwidget.cpp:220
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
 msgstr ""
+"Genera una clau nova per a aquest sòcol de la targeta que substitueixi la "
+"clau existent"
 
 #: src/view/openpgpkeycardwidget.cpp:243
 #, kde-format

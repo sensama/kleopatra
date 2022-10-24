@@ -9,6 +9,8 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
+#include <config-kleopatra.h>
+
 #include "pgpcardwidget.h"
 
 #include "openpgpkeycardwidget.h"
@@ -57,6 +59,11 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
+static QDebug operator<<(QDebug s, const std::string &string)
+{
+    return s << QString::fromStdString(string);
+}
+
 namespace {
 class GenKeyThread: public QThread
 {
@@ -80,19 +87,50 @@ class GenKeyThread: public QThread
         }
     protected:
         void run() override {
-            auto ei = new GpgME::GpgGenCardKeyInteractor(mSerial);
-            ei->setAlgo(GpgME::GpgGenCardKeyInteractor::RSA);
-            ei->setKeySize(QByteArray::fromStdString(mParams.algorithm).toInt());
+            // the index of the curves in this list has to match the enum values
+            // minus 1 of GpgGenCardKeyInteractor::Curve
+            static const std::vector<std::string> curves = {
+                "curve25519",
+#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+                "curve448",
+                "nistp256",
+                "nistp384",
+                "nistp521",
+                "brainpoolP256r1",
+                "brainpoolP384r1",
+                "brainpoolP512r1",
+                "secp256k1", // keep it, even if we don't support it in Kleopatra
+#endif
+            };
+
+            auto ei = std::make_unique<GpgME::GpgGenCardKeyInteractor>(mSerial);
+            if (mParams.algorithm.starts_with("rsa")) {
+                ei->setAlgo(GpgME::GpgGenCardKeyInteractor::RSA);
+                ei->setKeySize(QByteArray::fromStdString(mParams.algorithm.substr(3)).toInt());
+            } else {
+                ei->setAlgo(GpgME::GpgGenCardKeyInteractor::ECC);
+                const auto curveIt = std::find(curves.cbegin(), curves.cend(), mParams.algorithm);
+                if (curveIt != curves.end()) {
+#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+                    ei->setCurve(static_cast<GpgME::GpgGenCardKeyInteractor::Curve>(curveIt - curves.cbegin() + 1));
+#endif
+                } else {
+                    qCWarning(KLEOPATRA_LOG) << this << __func__ << "Invalid curve name:" << mParams.algorithm;
+                    mErr = GpgME::Error::fromCode(GPG_ERR_INV_VALUE);
+                    return;
+                }
+            }
             ei->setNameUtf8(mParams.name.toStdString());
             ei->setEmailUtf8(mParams.email.toStdString());
             ei->setDoBackup(mParams.backup);
 
             const auto ctx = std::shared_ptr<GpgME::Context> (GpgME::Context::createForProtocol(GpgME::OpenPGP));
+            ctx->setFlag("extended-edit", "1"); // we want to be able to select all curves
             QGpgME::QByteArrayDataProvider dp;
             GpgME::Data data(&dp);
 
-            mErr = ctx->cardEdit(GpgME::Key(), std::unique_ptr<GpgME::EditInteractor> (ei), data);
-            mBkpFile = ei->backupFileName();
+            mErr = ctx->cardEdit(GpgME::Key(), std::move(ei), data);
+            mBkpFile = static_cast<GpgME::GpgGenCardKeyInteractor*>(ctx->lastCardEditInteractor())->backupFileName();
         }
 
     private:
@@ -344,6 +382,12 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
 
 void PGPCardWidget::genkeyRequested()
 {
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(mRealSerial);
+    if (!pgpCard) {
+        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(mRealSerial)));
+        return;
+    }
+
     if (!mCardIsEmpty) {
         auto ret = KMessageBox::warningContinueCancel(this,
                 i18n("The existing keys on this card will be <b>deleted</b> "
@@ -360,16 +404,20 @@ void PGPCardWidget::genkeyRequested()
     }
 
     auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
+#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+    dlg->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), pgpCard->defaultAlgorithm());
+#else
     std::vector<AlgorithmInfo> algos = {
-        { "1024", QStringLiteral("RSA 1024") },
-        { "2048", QStringLiteral("RSA 2048") },
-        { "3072", QStringLiteral("RSA 3072") }
+        { "curve25519", i18nc("@info", "ECC (Curve25519)") },
+        { "rsa2048", i18nc("@info", "RSA 2048") },
+        { "rsa3072", i18nc("@info", "RSA 3072") },
     };
     // There is probably a better way to check for capabilities
     if (mIs21) {
-        algos.push_back({"4096", QStringLiteral("RSA 4096")});
+        algos.push_back({"rsa4096", i18nc("@info", "RSA 4096")});
     }
-    dlg->setSupportedAlgorithms(algos, "2048");
+    dlg->setSupportedAlgorithms(algos, "rsa2048");
+#endif
     connect(dlg, &QDialog::accepted, this, [this, dlg] () {
             doGenKey(dlg);
             dlg->deleteLater();

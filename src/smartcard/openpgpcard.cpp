@@ -194,3 +194,12 @@ std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms() const
     });
     return algos;
 }
+
+std::string OpenPGPCard::defaultAlgorithm() const
+{
+    if (Kleo::contains(mAlgorithms, "curve25519")) {
+        return "curve25519";
+    }
+    // we assume that all OpenPGP smart cards support at least RSA with 2048 bits
+    return "rsa2048";
+}

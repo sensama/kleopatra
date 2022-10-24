@@ -66,6 +66,11 @@ public:
      */
     std::vector<AlgorithmInfo> supportedAlgorithms() const;
 
+    /**
+     * Returns the ID of the default algorithm for this smart card.
+     */
+    std::string defaultAlgorithm() const;
+
 private:
     std::vector<std::string> mAlgorithms;
 };

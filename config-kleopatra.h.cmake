@@ -59,3 +59,6 @@
 
 /* Defined if QGpgME supports setting the primary user id of a key */
 #cmakedefine QGPGME_SUPPORTS_SET_PRIMARY_UID 1
+
+/* Defined if GpgME++ supports setting the curve when generating ECC card keys */
+#cmakedefine GPGMEPP_SUPPORTS_SET_CURVE 1

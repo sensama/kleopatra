@@ -173,7 +173,7 @@ std::string OpenPGPCard::pubkeyUrl() const
     return cardInfo("PUBKEY-URL");
 }
 
-std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms()
+std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms() const
 {
     static const std::map<std::string, QString> displayNames = {
         { "brainpoolP256r1", i18nc("@info", "ECC (Brainpool P-256)") },

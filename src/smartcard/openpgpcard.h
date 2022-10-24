@@ -64,7 +64,7 @@ public:
      * \note: You have to use getAlgorithmName to map the algorithm ID to
      *        an algorithm name suitable for a certain card slot.
      */
-    std::vector<AlgorithmInfo> supportedAlgorithms();
+    std::vector<AlgorithmInfo> supportedAlgorithms() const;
 
 private:
     std::vector<std::string> mAlgorithms;

@@ -147,6 +147,9 @@ void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorit
         "rsa2048",
         "rsa3072",
         "rsa4096",
+    };
+    // Curve secp256k1 is explicitly ignored
+    static const std::vector<std::string> ignoredAlgorithms = {
         "secp256k1",
     };
     mAlgorithms.clear();
@@ -154,8 +157,14 @@ void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorit
         return Kleo::contains(allowedAlgorithms, algo);
     });
     if (mAlgorithms.size() < algorithms.size()) {
-        qWarning(KLEOPATRA_LOG).nospace() << "OpenPGPCard::" << __func__ << " Invalid algorithm in " << algorithms
-                                          << " (allowed algorithms: " << allowedAlgorithms << ")";
+        std::vector<std::string> unsupportedAlgos;
+        std::copy_if(algorithms.begin(), algorithms.end(), std::back_inserter(unsupportedAlgos), [](const auto &algo) {
+            return !Kleo::contains(ignoredAlgorithms, algo) && !Kleo::contains(allowedAlgorithms, algo);
+        });
+        if (unsupportedAlgos.size() > 0) {
+            qWarning(KLEOPATRA_LOG).nospace() << "OpenPGPCard::" << __func__ << " Unsupported algorithms: " << unsupportedAlgos
+                                              << " (supported: " << allowedAlgorithms << ")";
+        }
     }
 }
 
@@ -178,7 +187,6 @@ std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms()
         { "rsa2048", i18nc("@info", "RSA 2048") },
         { "rsa3072", i18nc("@info", "RSA 3072") },
         { "rsa4096", i18nc("@info", "RSA 4096") },
-        { "secp256k1", i18nc("@info", "secp256k1") },
     };
     std::vector<AlgorithmInfo> algos;
     std::transform(mAlgorithms.cbegin(), mAlgorithms.cend(), std::back_inserter(algos), [](const auto &algo) {

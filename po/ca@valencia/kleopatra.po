@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-20 00:50+0000\n"
+"POT-Creation-Date: 2022-10-25 00:48+0000\n"
 "PO-Revision-Date: 2022-10-20 16:00+0200\n"
 "Last-Translator: Antoni Bella <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -756,7 +756,7 @@ msgstr "S'ha produït un error en desencriptar/verificar els fitxers"
 #: src/commands/decryptverifyfilescommand.cpp:185
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
-msgstr "Seleccioneu un o més fitxers a desencriptar i/o verificar"
+msgstr "Seleccioneu un o més fitxers que s'han de desencriptar i/o verificar"
 
 #: src/commands/deletecertificatescommand.cpp:78
 #, kde-format
@@ -2091,7 +2091,8 @@ msgstr ""
 #: src/commands/keytocardcommand.cpp:212
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
-#: src/view/pgpcardwidget.cpp:416 src/view/pgpcardwidget.cpp:463
+#: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:464
+#: src/view/pgpcardwidget.cpp:511
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "No s'ha pogut trobar la targeta OpenPGP amb el número de sèrie: %1"
@@ -2104,7 +2105,7 @@ msgstr "Esta clau no es pot transferir a una targeta OpenPGP."
 #: src/commands/keytocardcommand.cpp:240 src/commands/keytocardcommand.cpp:370
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
-#: src/view/pgpcardwidget.cpp:351
+#: src/view/pgpcardwidget.cpp:395
 #, kde-format
 msgid ""
 "It will no longer be possible to decrypt past communication encrypted for "
@@ -4679,7 +4680,7 @@ msgstr "Carpeta d'eixida no vàlida."
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
 msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Escolliu les operacions a realitzar</b>"
+msgstr "<b>Escolliu les operacions que s'han de realitzar</b>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:200
 #, kde-format
@@ -5388,7 +5389,7 @@ msgstr "Canvia els certificats de signatura..."
 #: src/crypto/gui/signerresolvepage.cpp:493
 #, kde-format
 msgid "<b>Choose Operation to be Performed</b>"
-msgstr "<b>Escolliu l'operació a realitzar</b>"
+msgstr "<b>Escolliu l'operació que s'ha de realitzar</b>"
 
 #: src/crypto/gui/signingcertificateselectiondialog.cpp:32
 #, kde-format
@@ -5543,8 +5544,8 @@ msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"S'ha detectat una excepció inesperada en SignEncryptFilesController::"
+"Private::slotWizardOperationPrepared: %1"
 
 #: src/crypto/signencryptfilescontroller.cpp:594
 #, kde-format
@@ -5552,8 +5553,8 @@ msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"S'ha detectat una excepció inesperada en SignEncryptFilesController::"
+"Private::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp:159
 #, kde-format
@@ -6496,7 +6497,7 @@ msgstr[1] ""
 "comunicacions antigues encriptades amb els certificats i, per tant, no es "
 "poden suprimir."
 
-#: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:353
+#: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:397
 #, kde-format
 msgid "Secret Key Deletion"
 msgstr "Supressió de la clau secreta"
@@ -8470,12 +8471,12 @@ msgstr "No s'ha especificat cap fitxer per a l'ordre «%1»"
 msgid "Cannot read \"%1\""
 msgstr "No s'ha pogut llegir «%1»"
 
-#: src/kleopatraapplication.cpp:814
+#: src/kleopatraapplication.cpp:824
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Obrir un enllaç extern està prohibit administrativament."
 
-#: src/kleopatraapplication.cpp:815
+#: src/kleopatraapplication.cpp:825
 #, kde-format
 msgid "Prohibited"
 msgstr "Prohibit"
@@ -9709,7 +9710,7 @@ msgid ""
 "resource>).</para>"
 msgstr ""
 "<para>Comproveu que el tallafoc no bloquege les connexions locals (ha de "
-"permetre les connexions a <resource>localhost</resource> o "
+"permetre les connexions amb <resource>localhost</resource> o "
 "<resource>127.0.0.1</resource>).</para>"
 
 #: src/selftest/uiservercheck.cpp:63
@@ -9746,77 +9747,71 @@ msgstr "Signatura"
 msgid "Authentication"
 msgstr "Autenticació"
 
-#: src/smartcard/openpgpcard.cpp:170
+#: src/smartcard/openpgpcard.cpp:179
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
 msgstr "ECC (Brainpool P-256)"
 
-#: src/smartcard/openpgpcard.cpp:171
+#: src/smartcard/openpgpcard.cpp:180
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
 msgstr "ECC (Brainpool P-384)"
 
-#: src/smartcard/openpgpcard.cpp:172
+#: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
 msgstr "ECC (Brainpool P-512)"
 
-#: src/smartcard/openpgpcard.cpp:173
+#: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:411
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
 msgstr "ECC (Curve25519)"
 
-#: src/smartcard/openpgpcard.cpp:174
+#: src/smartcard/openpgpcard.cpp:183
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
 msgstr "ECC (Curve448)"
 
-#: src/smartcard/openpgpcard.cpp:175
+#: src/smartcard/openpgpcard.cpp:184
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
 msgstr "ECC (NIST P-256)"
 
-#: src/smartcard/openpgpcard.cpp:176
+#: src/smartcard/openpgpcard.cpp:185
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
 msgstr "ECC (NIST P-384)"
 
-#: src/smartcard/openpgpcard.cpp:177
+#: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
 msgstr "ECC (NIST P-521)"
 
-#: src/smartcard/openpgpcard.cpp:178
+#: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
 msgstr "RSA 2048"
 
-#: src/smartcard/openpgpcard.cpp:179
+#: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:413
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
 msgstr "RSA 3072"
 
-#: src/smartcard/openpgpcard.cpp:180
+#: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
 msgstr "RSA 4096"
-
-#: src/smartcard/openpgpcard.cpp:181
-#, kde-format
-msgctxt "@info"
-msgid "secp256k1"
-msgstr "secp256k1"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -10167,14 +10162,14 @@ msgstr "DECRYPT/VERIFY_FILES no pot utilitzar directoris com a entrada"
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignCommand::Private::"
+"S'ha detectat una excepció inesperada en SignCommand::Private::"
 "slotMicAlgDetermined: %1"
 
 #: src/uiserver/echocommand.cpp:136 src/uiserver/signcommand.cpp:211
 #, kde-format
 msgid "Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignCommand::Private::"
+"S'ha detectat una excepció inesperada en SignCommand::Private::"
 "slotMicAlgDetermined"
 
 # skip-rule: kct-encrypt
@@ -10236,7 +10231,7 @@ msgid ""
 "Caught unexpected exception in EncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a EncryptCommand::Private::"
+"S'ha detectat una excepció inesperada en EncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 
 #: src/uiserver/encryptcommand.cpp:188
@@ -10244,7 +10239,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in EncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"S'ha detectat una excepció inesperada a EncryptCommand::Private::"
+"S'ha detectat una excepció inesperada en EncryptCommand::Private::"
 "slotRecipientsResolved"
 
 #: src/uiserver/prepencryptcommand.cpp:59
@@ -10272,7 +10267,7 @@ msgid ""
 "Caught unexpected exception in PrepEncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a PrepEncryptCommand::Private::"
+"S'ha detectat una excepció inesperada en PrepEncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 
 #: src/uiserver/prepencryptcommand.cpp:128
@@ -10281,7 +10276,7 @@ msgid ""
 "Caught unknown exception in PrepEncryptCommand::Private::"
 "slotRecipientsResolved"
 msgstr ""
-"S'ha detectat una excepció inesperada a PrepEncryptCommand::Private::"
+"S'ha detectat una excepció inesperada en PrepEncryptCommand::Private::"
 "slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp:63
@@ -10318,7 +10313,7 @@ msgid ""
 "Caught unexpected exception in PrepSignCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a PrepSignCommand::Private::"
+"S'ha detectat una excepció inesperada en PrepSignCommand::Private::"
 "slotRecipientsResolved: %1"
 
 #: src/uiserver/prepsigncommand.cpp:160
@@ -10326,7 +10321,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"S'ha detectat una excepció inesperada a PrepSignCommand::Private::"
+"S'ha detectat una excepció inesperada en PrepSignCommand::Private::"
 "slotRecipientsResolved"
 
 #: src/uiserver/selectcertificatecommand.cpp:171
@@ -10335,7 +10330,7 @@ msgid ""
 "Caught unexpected exception in SelectCertificateCommand::Private::"
 "slotDialogAccepted: %1"
 msgstr ""
-"S'ha detectat una excepció inesperada a SelectCertificateCommand::Private::"
+"S'ha detectat una excepció inesperada en SelectCertificateCommand::Private::"
 "slotDialogAccepted: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp:175
@@ -10344,7 +10339,7 @@ msgid ""
 "Caught unknown exception in SelectCertificateCommand::Private::"
 "slotDialogAccepted"
 msgstr ""
-"S'ha detectat una excepció inesperada a SelectCertificateCommand::Private::"
+"S'ha detectat una excepció inesperada en SelectCertificateCommand::Private::"
 "slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp:70
@@ -10377,7 +10372,7 @@ msgid ""
 "Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: "
 "%1"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignCommand::Private::"
+"S'ha detectat una excepció inesperada en SignCommand::Private::"
 "slotRecipientsResolved: %1"
 
 #: src/uiserver/signcommand.cpp:188
@@ -10385,7 +10380,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in SignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"S'ha detectat una excepció inesperada a SignCommand::Private::"
+"S'ha detectat una excepció inesperada en SignCommand::Private::"
 "slotRecipientsResolved"
 
 #: src/uiserver/signencryptfilescommand.cpp:65
@@ -10958,7 +10953,7 @@ msgid "List of certificates"
 msgstr "Llista de certificats"
 
 #: src/view/netkeywidget.cpp:80 src/view/p15cardwidget.cpp:81
-#: src/view/pgpcardwidget.cpp:139 src/view/pivcardwidget.cpp:110
+#: src/view/pgpcardwidget.cpp:177 src/view/pivcardwidget.cpp:110
 #, kde-format
 msgid "Serial number:"
 msgstr "Número de sèrie:"
@@ -10979,7 +10974,7 @@ msgctxt "@action"
 msgid "Load Certificates"
 msgstr "Carrega els certificats"
 
-#: src/view/netkeywidget.cpp:142 src/view/pgpcardwidget.cpp:190
+#: src/view/netkeywidget.cpp:142 src/view/pgpcardwidget.cpp:228
 #, kde-format
 msgid "Actions:"
 msgstr "Accions:"
@@ -11260,7 +11255,7 @@ msgstr "Destinataris"
 #: src/view/padwidget.cpp:158
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
-msgstr "Introduïu un missatge a encriptar o desencriptar..."
+msgstr "Introduïu un missatge que s'ha d'encriptar o desencriptar..."
 
 #: src/view/padwidget.cpp:314 src/view/padwidget.cpp:355
 #, kde-format
@@ -11328,24 +11323,24 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Signa i encripta el bloc de notes"
 
-#: src/view/pgpcardwidget.cpp:146
+#: src/view/pgpcardwidget.cpp:184
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "Titular de la targeta:"
 
-#: src/view/pgpcardwidget.cpp:152 src/view/pgpcardwidget.cpp:168
+#: src/view/pgpcardwidget.cpp:190 src/view/pgpcardwidget.cpp:206
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
 msgstr "Edita"
 
-#: src/view/pgpcardwidget.cpp:153 src/view/pgpcardwidget.cpp:169
+#: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:207
 #, kde-format
 msgid "Change"
 msgstr "Canvia"
 
-#: src/view/pgpcardwidget.cpp:162
+#: src/view/pgpcardwidget.cpp:200
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -11353,120 +11348,120 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "URL de la clau pública:"
 
-#: src/view/pgpcardwidget.cpp:181 src/view/pivcardwidget.cpp:120
+#: src/view/pgpcardwidget.cpp:219 src/view/pivcardwidget.cpp:120
 #, kde-format
 msgid "Keys:"
 msgstr "Claus:"
 
-#: src/view/pgpcardwidget.cpp:195
+#: src/view/pgpcardwidget.cpp:233
 #, kde-format
 msgid "Generate New Keys"
 msgstr "Genera claus noves"
 
-#: src/view/pgpcardwidget.cpp:196
+#: src/view/pgpcardwidget.cpp:234
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr "Crea una clau primària nova i genera les subclaus en la targeta."
 
-#: src/view/pgpcardwidget.cpp:201
+#: src/view/pgpcardwidget.cpp:239
 #, kde-format
 msgid "Change PIN"
 msgstr "Canvia el PIN"
 
-#: src/view/pgpcardwidget.cpp:202
+#: src/view/pgpcardwidget.cpp:240
 #, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
 msgstr ""
 "Canvia el PIN necessari per a utilitzar les claus en la targeta intel·ligent."
 
-#: src/view/pgpcardwidget.cpp:207
+#: src/view/pgpcardwidget.cpp:245
 #, kde-format
 msgid "Unblock Card"
 msgstr "Desbloqueja la targeta"
 
-#: src/view/pgpcardwidget.cpp:208
+#: src/view/pgpcardwidget.cpp:246
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
 msgstr "Desbloqueja la targeta intel·ligent i establix un PIN nou."
 
-#: src/view/pgpcardwidget.cpp:213
+#: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
 msgstr "Canvia el PIN d'administració"
 
-#: src/view/pgpcardwidget.cpp:214
+#: src/view/pgpcardwidget.cpp:252
 #, kde-format
 msgid "Change the PIN required for administrative operations."
 msgstr "Canvia el PIN necessari per a les operacions administratives."
 
-#: src/view/pgpcardwidget.cpp:219
+#: src/view/pgpcardwidget.cpp:257
 #, kde-format
 msgid "Change Reset Code"
 msgstr "Canviar el codi de restaurar"
 
-#: src/view/pgpcardwidget.cpp:220
+#: src/view/pgpcardwidget.cpp:258
 #, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
 msgstr ""
 "Canvia el PIN necessari per a desbloquejar la targeta intel·ligent i "
 "establir un PIN nou."
 
-#: src/view/pgpcardwidget.cpp:228
+#: src/view/pgpcardwidget.cpp:266
 #, kde-format
 msgid "Create OpenPGP Key"
 msgstr "Crea una clau OpenPGP"
 
-#: src/view/pgpcardwidget.cpp:229
+#: src/view/pgpcardwidget.cpp:267
 #, kde-format
 msgid "Create an OpenPGP key for the keys stored on the card."
 msgstr "Crea una clau OpenPGP per a les claus emmagatzemades en la targeta."
 
-#: src/view/pgpcardwidget.cpp:248
+#: src/view/pgpcardwidget.cpp:286
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "Targeta OpenPGP v%1 desconeguda"
 
-#: src/view/pgpcardwidget.cpp:250
+#: src/view/pgpcardwidget.cpp:288
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "Targeta OpenPGP v%2 de %1"
 
-#: src/view/pgpcardwidget.cpp:256 src/view/pgpcardwidget.cpp:258
+#: src/view/pgpcardwidget.cpp:294 src/view/pgpcardwidget.cpp:296
 #, kde-format
 msgid "not set"
 msgstr "Sense definir"
 
-#: src/view/pgpcardwidget.cpp:302
+#: src/view/pgpcardwidget.cpp:340
 #, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
 msgstr "Generació de les claus"
 
-#: src/view/pgpcardwidget.cpp:303
+#: src/view/pgpcardwidget.cpp:341
 #, kde-format
 msgid "This may take several minutes..."
 msgstr "Este procés pot tardar diversos minuts..."
 
-#: src/view/pgpcardwidget.cpp:319
+#: src/view/pgpcardwidget.cpp:357
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
 msgstr "No s'ha pogut generar la clau nova: %1"
 
-#: src/view/pgpcardwidget.cpp:328
+#: src/view/pgpcardwidget.cpp:366
 #, kde-format
 msgid "Save backup of encryption key"
 msgstr "Guarda una còpia de seguretat de la clau d'encriptació"
 
-#: src/view/pgpcardwidget.cpp:330
+#: src/view/pgpcardwidget.cpp:368
 #, kde-format
 msgid "Backup Key"
 msgstr "Còpia de seguretat de la clau"
 
-#: src/view/pgpcardwidget.cpp:333
+#: src/view/pgpcardwidget.cpp:371
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
@@ -11474,20 +11469,20 @@ msgstr ""
 "No s'ha pogut moure la còpia de seguretat. La clau de la còpia de seguretat "
 "encara es troba emmagatzemada a: %1"
 
-#: src/view/pgpcardwidget.cpp:340
+#: src/view/pgpcardwidget.cpp:378
 #, kde-format
 msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "S'ha generat correctament una clau nova per a esta targeta."
 
-#: src/view/pgpcardwidget.cpp:341 src/view/pgpcardwidget.cpp:436
-#: src/view/pgpcardwidget.cpp:483
+#: src/view/pgpcardwidget.cpp:379 src/view/pgpcardwidget.cpp:484
+#: src/view/pgpcardwidget.cpp:531
 #, kde-format
 msgctxt "@title"
 msgid "Success"
 msgstr "Correcta"
 
-#: src/view/pgpcardwidget.cpp:349
+#: src/view/pgpcardwidget.cpp:393
 #, kde-format
 msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
@@ -11496,69 +11491,69 @@ msgstr ""
 "Les claus existents en esta targeta seran <b>suprimides</b> i substituïdes "
 "per les claus noves."
 
-#: src/view/pgpcardwidget.cpp:386
+#: src/view/pgpcardwidget.cpp:434
 #, kde-format
 msgid "Change cardholder"
 msgstr "Canvia el titular de la targeta"
 
-#: src/view/pgpcardwidget.cpp:387
+#: src/view/pgpcardwidget.cpp:435
 #, kde-format
 msgid "New name:"
 msgstr "Nom nou:"
 
-#: src/view/pgpcardwidget.cpp:396
+#: src/view/pgpcardwidget.cpp:444
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "No es pot utilitzar el caràcter «<»."
 
-#: src/view/pgpcardwidget.cpp:401
+#: src/view/pgpcardwidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Els espais dobles no estan permesos"
 
-#: src/view/pgpcardwidget.cpp:406
+#: src/view/pgpcardwidget.cpp:454
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "La grandària del nom no podrà ser superior als 38 caràcters."
 
-#: src/view/pgpcardwidget.cpp:430
+#: src/view/pgpcardwidget.cpp:478
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "Ha fallat el canvi del nom: %1"
 
-#: src/view/pgpcardwidget.cpp:435
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "El nom s'ha canviat correctament."
 
-#: src/view/pgpcardwidget.cpp:446
+#: src/view/pgpcardwidget.cpp:494
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Canvia l'URL on es podrà trobar la clau pública"
 
-#: src/view/pgpcardwidget.cpp:447
+#: src/view/pgpcardwidget.cpp:495
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "URL nou de la clau pública:"
 
-#: src/view/pgpcardwidget.cpp:456
+#: src/view/pgpcardwidget.cpp:504
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "La grandària de l'URL no podrà ser superior als 254 caràcters."
 
-#: src/view/pgpcardwidget.cpp:477
+#: src/view/pgpcardwidget.cpp:525
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "Ha fallat el canvi de l'URL: %1"
 
-#: src/view/pgpcardwidget.cpp:482
+#: src/view/pgpcardwidget.cpp:530
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -11969,3 +11964,7 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
+
+#~ msgctxt "@info"
+#~ msgid "secp256k1"
+#~ msgstr "secp256k1"

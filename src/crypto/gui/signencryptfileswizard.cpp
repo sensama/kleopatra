@@ -191,7 +191,7 @@ public:
         auto messageWidget = new KMessageWidget;
         messageWidget->setMessageType(KMessageWidget::Error);
         messageWidget->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical, nullptr, this));
-        messageWidget->setText(i18n("Signing and encrypting files is not possible."));
+        messageWidget->setText(i18n("Invalid compliance settings for signing and encrypting files."));
         messageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                          "<para>You cannot use <application>Kleopatra</application> for signing or encrypting files "
                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",

@@ -105,14 +105,13 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         return;
     }
     const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
-    const bool isOpenPGPKey = subkey.parent().protocol() == GpgME::OpenPGP;
 
     auto menu = new QMenu(q);
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
     bool hasActions = false;
 
-    if (isOpenPGPKey && subkey.parent().hasSecret()) {
+    if (subkey.parent().hasSecret()) {
         hasActions = true;
         menu->addAction(i18n("Change End of Validity Period..."), q,
                 [this, subkey]() {
@@ -131,7 +130,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         );
     }
 
-    if (isOpenPGPKey && subkey.canAuthenticate()) {
+    if (subkey.canAuthenticate()) {
         hasActions = true;
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                 i18n("Export OpenSSH key"),
@@ -173,7 +172,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
 
 #ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     const bool isPrimarySubkey = subkey.keyID() == key.keyID();
-    if (isOpenPGPKey && subkey.isSecret() && !isPrimarySubkey) {
+    if (subkey.isSecret() && !isPrimarySubkey) {
         hasActions = true;
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                         i18n("Export secret subkey"),
@@ -207,6 +206,9 @@ SubKeysWidget::~SubKeysWidget()
 
 void SubKeysWidget::setKey(const GpgME::Key &key)
 {
+    if (key.protocol() != GpgME::OpenPGP) {
+        return;
+    }
     d->key = key;
 
     const auto currentItem = d->ui.subkeysTree->currentItem();

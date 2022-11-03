@@ -22,6 +22,7 @@
 #include "commands/keytocardcommand.h"
 #include "commands/importpaperkeycommand.h"
 #include "exportdialog.h"
+#include "utils/keys.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/NavigatableTreeWidget>
@@ -105,15 +106,14 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         return;
     }
     const auto subkey = item->data(0, Qt::UserRole).value<GpgME::Subkey>();
+    const bool isOwnKey = subkey.parent().hasSecret();
+    const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();
 
     auto menu = new QMenu(q);
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
 
-    bool hasActions = false;
-
-    if (subkey.parent().hasSecret()) {
-        hasActions = true;
-        menu->addAction(i18n("Change End of Validity Period..."), q,
+    if (isOwnKey) {
+        auto action = menu->addAction(i18n("Change End of Validity Period..."), q,
                 [this, subkey]() {
                     auto cmd = new ChangeExpiryCommand(subkey.parent());
                     cmd->setSubkey(subkey);
@@ -128,10 +128,10 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
                     cmd->start();
                 }
         );
+        action->setEnabled(canBeUsedForSecretKeyOperations(subkey.parent()));
     }
 
     if (subkey.canAuthenticate()) {
-        hasActions = true;
         menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
                 i18n("Export OpenSSH key"),
                 q, [this, subkey]() {
@@ -141,22 +141,17 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         });
     }
 
-    if (!subkey.isSecret()) {
-        hasActions = true;
-        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-import")),
-                        i18n("Restore printed backup"),
-                        q, [this, subkey] () {
-            auto cmd = new ImportPaperKeyCommand(subkey.parent());
-            ui.subkeysTree->setEnabled(false);
-            connect(cmd, &ImportPaperKeyCommand::finished,
-                    q, [this]() { ui.subkeysTree->setEnabled(true); });
-            cmd->setParentWidget(q);
-            cmd->start();
-        });
-    }
+    auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-import")), i18n("Restore printed backup"), q, [this, subkey]() {
+        auto cmd = new ImportPaperKeyCommand(subkey.parent());
+        ui.subkeysTree->setEnabled(false);
+        connect(cmd, &ImportPaperKeyCommand::finished,
+                q, [this]() { ui.subkeysTree->setEnabled(true); });
+        cmd->setParentWidget(q);
+        cmd->start();
+    });
+    action->setEnabled(!secretSubkeyStoredInKeyRing);
 
-    if (subkey.isSecret()) {
-        hasActions = true;
+    if (isOwnKey) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("send-to-symbolic")),
                                       i18n("Transfer to smartcard"),
                                       q, [this, subkey]() {
@@ -167,16 +162,13 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
             cmd->setParentWidget(q);
             cmd->start();
         });
-        action->setEnabled(!KeyToCardCommand::getSuitableCards(subkey).empty());
+        action->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
     }
 
 #ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     const bool isPrimarySubkey = subkey.keyID() == key.keyID();
-    if (subkey.isSecret() && !isPrimarySubkey) {
-        hasActions = true;
-        menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")),
-                        i18n("Export secret subkey"),
-                        q, [this, subkey]() {
+    if (isOwnKey && !isPrimarySubkey) {
+        auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")), i18n("Export secret subkey"), q, [this, subkey]() {
             auto cmd = new ExportSecretSubkeyCommand{{subkey}};
             ui.subkeysTree->setEnabled(false);
             connect(cmd, &ExportSecretSubkeyCommand::finished,
@@ -184,14 +176,11 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
             cmd->setParentWidget(q);
             cmd->start();
         });
+        action->setEnabled(secretSubkeyStoredInKeyRing);
     }
 #endif
 
-    if (hasActions) {
-        menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
-    } else {
-        delete menu;
-    }
+    menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
 }
 
 SubKeysWidget::SubKeysWidget(QWidget *parent)

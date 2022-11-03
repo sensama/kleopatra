@@ -39,7 +39,7 @@ public:
     void selectUserIDs(const std::vector<GpgME::UserID> &uids);
 
     /* The user IDs that should be signed */
-    std::vector<unsigned int> selectedUserIDs() const;
+    std::vector<GpgME::UserID> selectedUserIDs() const;
 
     /* The secret key selected */
     GpgME::Key secKey() const;

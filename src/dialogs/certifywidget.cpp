@@ -25,6 +25,7 @@
 #include <KSeparator>
 #include <KSharedConfig>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeySelectionCombo>
 #include <Libkleo/Formatting>
@@ -53,6 +54,11 @@
 #include <gpgme++/key.h>
 
 using namespace Kleo;
+
+static QDebug operator<<(QDebug s, const GpgME::UserID &userID)
+{
+    return s << Formatting::prettyUserID(userID);
+}
 
 namespace {
 
@@ -187,12 +193,28 @@ private:
     GpgME::Key mExcludedKey;
 };
 
+class UserIDItem : public QStandardItem
+{
+public:
+    explicit UserIDItem(const GpgME::UserID &uid)
+        : mUserId{uid}
+    {}
+
+    GpgME::UserID userId()
+    {
+        return mUserId;
+    }
+
+private:
+    GpgME::UserID mUserId;
+};
+
 class UserIDModel : public QStandardItemModel
 {
     Q_OBJECT
 public:
     enum Role {
-        UserIDIndex = Qt::UserRole
+        UserID = Qt::UserRole
     };
     explicit UserIDModel(QObject *parent = nullptr) : QStandardItemModel(parent) {}
 
@@ -213,9 +235,8 @@ public:
                 i++;
                 continue;
             }
-            auto const item = new QStandardItem;
+            const auto item = new UserIDItem{uid};
             item->setText(Formatting::prettyUserID(uid));
-            item->setData(i, UserIDIndex);
             item->setCheckable(true);
             item->setEditable(false);
             item->setCheckState(Qt::Checked);
@@ -224,37 +245,41 @@ public:
         }
     }
 
-    void setCheckedUserIDs(const std::vector<unsigned int> &uids)
+    void setCheckedUserIDs(const std::vector<GpgME::UserID> &uids)
     {
-        std::vector<unsigned int> sorted = uids;
-        std::sort(sorted.begin(), sorted.end());
         for (int i = 0, end = rowCount(); i != end; ++i) {
-            item(i)->setCheckState(std::binary_search(sorted.begin(), sorted.end(), i) ? Qt::Checked : Qt::Unchecked);
+            const auto uidItem = userIdItem(i);
+            const auto itemUserId = uidItem->userId();
+            const bool userIdIsInList = Kleo::any_of(uids, [itemUserId](const auto &uid) {
+                return Kleo::userIDsAreEqual(itemUserId, uid);
+            });
+            uidItem->setCheckState(userIdIsInList ? Qt::Checked : Qt::Unchecked);
         }
     }
 
-    std::vector<unsigned int> checkedUserIDs() const
+    std::vector<GpgME::UserID> checkedUserIDs() const
     {
-        std::vector<unsigned int> ids;
+        std::vector<GpgME::UserID> userIds;
+        userIds.reserve(rowCount());
         for (int i = 0; i < rowCount(); ++i) {
-            if (item(i)->checkState() == Qt::Checked) {
-                ids.push_back(item(i)->data(UserIDIndex).toUInt());
+            const auto uidItem = userIdItem(i);
+            if (uidItem->checkState() == Qt::Checked) {
+                userIds.push_back(uidItem->userId());
             }
         }
-        qCDebug(KLEOPATRA_LOG) << "Checked uids are: " << ids;
-        return ids;
+        qCDebug(KLEOPATRA_LOG) << "Checked user IDs:" << userIds;
+        return userIds;
+    }
+
+private:
+    UserIDItem *userIdItem(int row) const
+    {
+        return static_cast<UserIDItem *>(item(row));
     }
 
 private:
     GpgME::Key m_key;
 };
-
-static bool uidEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
-{
-    return qstrcmp(lhs.parent().primaryFingerprint(),
-                    rhs.parent().primaryFingerprint()) == 0
-            && qstrcmp(lhs.id(), rhs.id()) == 0;
-}
 
 auto checkBoxSize(const QCheckBox *checkBox)
 {
@@ -600,24 +625,10 @@ public:
 
     void selectUserIDs(const std::vector<GpgME::UserID> &uids)
     {
-        const auto all = mTarget.userIDs();
-
-        std::vector<unsigned int> indexes;
-        indexes.reserve(uids.size());
-
-        for (const auto &uid: uids) {
-            const unsigned int idx =
-                std::distance(all.cbegin(), std::find_if(all.cbegin(), all.cend(),
-                            [uid](const GpgME::UserID &other) { return uidEqual(uid, other); }));
-            if (idx < all.size()) {
-                indexes.push_back(idx);
-            }
-        }
-
-        mUserIDModel.setCheckedUserIDs(indexes);
+        mUserIDModel.setCheckedUserIDs(uids);
     }
 
-    std::vector<unsigned int> selectedUserIDs() const
+    std::vector<GpgME::UserID> selectedUserIDs() const
     {
         return mUserIDModel.checkedUserIDs();
     }
@@ -766,7 +777,7 @@ void CertifyWidget::selectUserIDs(const std::vector<GpgME::UserID> &uids)
     d->selectUserIDs(uids);
 }
 
-std::vector<unsigned int> CertifyWidget::selectedUserIDs() const
+std::vector<GpgME::UserID> CertifyWidget::selectedUserIDs() const
 {
     return d->selectedUserIDs();
 }

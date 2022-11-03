@@ -128,7 +128,7 @@ void CertifyCertificateDialog::setSelectedUserIDs(const std::vector<UserID> &uid
     mCertWidget->selectUserIDs(uids);
 }
 
-std::vector<unsigned int> CertifyCertificateDialog::selectedUserIDs() const
+std::vector<GpgME::UserID> CertifyCertificateDialog::selectedUserIDs() const
 {
     return mCertWidget->selectedUserIDs();
 }

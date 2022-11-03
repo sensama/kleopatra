@@ -37,7 +37,7 @@ public:
     bool nonRevocableCertificationSelected() const;
 
     void setSelectedUserIDs(const std::vector<GpgME::UserID> &uids);
-    std::vector<unsigned int> selectedUserIDs() const;
+    std::vector<GpgME::UserID> selectedUserIDs() const;
 
     GpgME::Key selectedSecretKey() const;
 

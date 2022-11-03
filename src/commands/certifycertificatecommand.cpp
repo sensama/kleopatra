@@ -17,8 +17,10 @@
 
 #include "exportopenpgpcertstoservercommand.h"
 #include "dialogs/certifycertificatedialog.h"
+#include "utils/keys.h"
 #include "utils/tags.h"
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Formatting>
 
@@ -260,11 +262,24 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
 {
     Q_ASSERT(dialog);
 
+    const auto selectedUserIds = dialog->selectedUserIDs();
+    std::vector<unsigned int> userIdIndexes;
+    userIdIndexes.reserve(selectedUserIds.size());
+    for (unsigned int i = 0, numUserIds = target.numUserIDs(); i < numUserIds; ++i) {
+        const auto userId = target.userID(i);
+        const bool userIdIsSelected = Kleo::any_of(selectedUserIds, [userId](const auto &uid) {
+            return Kleo::userIDsAreEqual(userId, uid);
+        });
+        if (userIdIsSelected) {
+            userIdIndexes.push_back(i);
+        }
+    }
+
     createJob();
     Q_ASSERT(job);
     job->setExportable(dialog->exportableCertificationSelected());
     job->setNonRevocable(dialog->nonRevocableCertificationSelected());
-    job->setUserIDsToSign(dialog->selectedUserIDs());
+    job->setUserIDsToSign(userIdIndexes);
     job->setSigningKey(dialog->selectedSecretKey());
     job->setCheckLevel(dialog->selectedCheckLevel());
     if (!dialog->tags().isEmpty()) {

@@ -110,4 +110,13 @@ inline auto userIDBelongsToKey(const GpgME::Key &key)
     };
 }
 
+/**
+ * Returns true, if the two user IDs \p lhs and \p rhs are equal.
+ *
+ * Equality means that both user IDs belong to the same key, contain identical
+ * text, and have the same creation date (i.e. the creation date of the first
+ * self-signature is the same).
+ */
+bool userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs);
+
 }

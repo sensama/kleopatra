@@ -141,3 +141,22 @@ bool Kleo::userIDBelongsToKey(const GpgME::UserID &userID, const GpgME::Key &key
 {
     return !qstricmp(userID.parent().primaryFingerprint(), key.primaryFingerprint());
 }
+
+static time_t creationDate(const GpgME::UserID &uid)
+{
+    // returns the date of the first self-signature
+    for (unsigned int i = 0, numSignatures = uid.numSignatures(); i < numSignatures; ++i) {
+        const auto sig = uid.signature(i);
+        if (Kleo::isSelfSignature(sig)) {
+            return sig.creationTime();
+        }
+    }
+    return 0;
+}
+
+bool Kleo::userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
+{
+    return (qstrcmp(lhs.parent().primaryFingerprint(), rhs.parent().primaryFingerprint()) == 0
+            && qstrcmp(lhs.id(), rhs.id()) == 0
+            && creationDate(lhs) == creationDate(rhs));
+}

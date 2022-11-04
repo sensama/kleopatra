@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-03 00:47+0000\n"
+"POT-Creation-Date: 2022-11-04 00:46+0000\n"
 "PO-Revision-Date: 2022-10-27 12:02+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -256,31 +256,31 @@ msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
 msgstr "El certificat s'ha escrit correctament a la targeta."
 
-#: src/commands/certifycertificatecommand.cpp:153
+#: src/commands/certifycertificatecommand.cpp:155
 #, kde-format
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "La clau està revocada"
 
-#: src/commands/certifycertificatecommand.cpp:153
+#: src/commands/certifycertificatecommand.cpp:155
 #, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
 msgstr "La clau ha caducat"
 
-#: src/commands/certifycertificatecommand.cpp:155
+#: src/commands/certifycertificatecommand.cpp:157
 #, kde-format
 msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
 msgstr "Aquesta clau s'ha revocat. No la podeu certificar."
 
-#: src/commands/certifycertificatecommand.cpp:156
+#: src/commands/certifycertificatecommand.cpp:158
 #, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
 msgstr "Aquesta clau ha caducat No la podeu certificar."
 
-#: src/commands/certifycertificatecommand.cpp:177
+#: src/commands/certifycertificatecommand.cpp:179
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -290,32 +290,32 @@ msgstr ""
 "Per a certificar altres certificats, primer heu de crear un certificat "
 "OpenPGP per a vós mateix."
 
-#: src/commands/certifycertificatecommand.cpp:178
+#: src/commands/certifycertificatecommand.cpp:180
 #, kde-format
 msgid "Do you wish to create one now?"
 msgstr "Voleu crear-ne un de nou?"
 
-#: src/commands/certifycertificatecommand.cpp:179
+#: src/commands/certifycertificatecommand.cpp:181
 #, kde-format
 msgid "Certification Not Possible"
 msgstr "No és possible la certificació"
 
-#: src/commands/certifycertificatecommand.cpp:180
+#: src/commands/certifycertificatecommand.cpp:182
 #, kde-format
 msgid "Create"
 msgstr "Crea"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:245
 #, kde-format
 msgid "Certification successful."
 msgstr "Certificació correcta."
 
-#: src/commands/certifycertificatecommand.cpp:244
+#: src/commands/certifycertificatecommand.cpp:246
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Certificació correcta"
 
-#: src/commands/certifycertificatecommand.cpp:246
+#: src/commands/certifycertificatecommand.cpp:248
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -324,7 +324,7 @@ msgstr ""
 "<p>S'ha produït un error en intentar certificar <br/><br/><b>%1</b>:</p><p>\t"
 "%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:250
+#: src/commands/certifycertificatecommand.cpp:252
 #, kde-format
 msgid "Certification Error"
 msgstr "Error en certificar"
@@ -5772,7 +5772,7 @@ msgid "User IDs:"
 msgstr "ID d'usuaris:"
 
 #: src/dialogs/certificatedetailswidget.cpp:214
-#: src/dialogs/certifywidget.cpp:376
+#: src/dialogs/certifywidget.cpp:401
 #, kde-format
 msgid "User IDs"
 msgstr "ID d'usuaris"
@@ -5851,7 +5851,7 @@ msgid "Change Validity"
 msgstr "Canvia la validesa"
 
 #: src/dialogs/certificatedetailswidget.cpp:299
-#: src/dialogs/certifywidget.cpp:346
+#: src/dialogs/certifywidget.cpp:371
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Empremta digital:"
@@ -6232,7 +6232,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certifica el certificat: %1"
 
-#: src/dialogs/certifywidget.cpp:330
+#: src/dialogs/certifywidget.cpp:355
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6244,18 +6244,18 @@ msgstr ""
 "l'usuari.<br><i>Nota: Només l'empremta digital identifica amb claredat la "
 "clau i el seu propietari.</i>"
 
-#: src/dialogs/certifywidget.cpp:351
+#: src/dialogs/certifywidget.cpp:376
 #, kde-format
 msgid "Certify with:"
 msgstr "Certifica amb:"
 
-#: src/dialogs/certifywidget.cpp:363
+#: src/dialogs/certifywidget.cpp:388
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Estableix la confiança en el propietari"
 
-#: src/dialogs/certifywidget.cpp:365
+#: src/dialogs/certifywidget.cpp:390
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6266,37 +6266,37 @@ msgstr ""
 "seleccionada a fonamental. Això és el que normalment voldreu fer amb les "
 "vostres pròpies claus."
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:406
 #, kde-format
 msgid "Advanced"
 msgstr "Avançat"
 
-#: src/dialogs/certifywidget.cpp:381
+#: src/dialogs/certifywidget.cpp:406
 #, kde-format
 msgid "Show advanced options"
 msgstr "Mostra les opcions avançades"
 
-#: src/dialogs/certifywidget.cpp:387
+#: src/dialogs/certifywidget.cpp:412
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifica perquè tothom ho vegi (exportable)"
 
-#: src/dialogs/certifywidget.cpp:394
+#: src/dialogs/certifywidget.cpp:419
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publica després al servidor de claus"
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "Tags:"
 msgstr "Etiquetes:"
 
-#: src/dialogs/certifywidget.cpp:410
+#: src/dialogs/certifywidget.cpp:435
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Podeu usar això per a afegir informació addicional a una certificació."
 
-#: src/dialogs/certifywidget.cpp:412
+#: src/dialogs/certifywidget.cpp:437
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6305,46 +6305,46 @@ msgstr ""
 "Les etiquetes creades per qualsevol amb una confiança de certificació "
 "completa es mostren a la llista de claus i es poden cercar."
 
-#: src/dialogs/certifywidget.cpp:415
+#: src/dialogs/certifywidget.cpp:440
 #, kde-format
 msgid "Explain tags"
 msgstr "Explica les etiquetes"
 
-#: src/dialogs/certifywidget.cpp:428
+#: src/dialogs/certifywidget.cpp:453
 #, kde-format
 msgid "Expiration:"
 msgstr "Venciment:"
 
-#: src/dialogs/certifywidget.cpp:436
+#: src/dialogs/certifywidget.cpp:461
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "La certificació ha de ser vàlida almenys fins demà."
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:462
 #, kde-format
 msgid "The latest allowed certification date is %1."
 msgstr "La darrera data de certificació permesa és %1."
 
-#: src/dialogs/certifywidget.cpp:440
+#: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "D'aquí a dos anys"
 
-#: src/dialogs/certifywidget.cpp:441
+#: src/dialogs/certifywidget.cpp:466
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "D'aquí a un any"
 
-#: src/dialogs/certifywidget.cpp:446
+#: src/dialogs/certifywidget.cpp:471
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Podeu utilitzar-la per a establir una data de venciment per a una "
 "certificació."
 
-#: src/dialogs/certifywidget.cpp:448
+#: src/dialogs/certifywidget.cpp:473
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6355,23 +6355,23 @@ msgstr ""
 "certificació a un cert període de temps. Una vegada que ha passat la data de "
 "venciment, la certificació ja no serà vàlida."
 
-#: src/dialogs/certifywidget.cpp:452
+#: src/dialogs/certifywidget.cpp:477
 #, kde-format
 msgid "Explain expiration"
 msgstr "Explica el venciment"
 
-#: src/dialogs/certifywidget.cpp:465
+#: src/dialogs/certifywidget.cpp:490
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Certificar com a presentador de confiança"
 
-#: src/dialogs/certifywidget.cpp:466
+#: src/dialogs/certifywidget.cpp:491
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Podeu usar això per a certificar un presentador de confiança per a un domini."
 
-#: src/dialogs/certifywidget.cpp:468
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6383,22 +6383,22 @@ msgstr ""
 "tractaran com a certificats, és a dir, un presentador de confiança actua com "
 "una mena de CA intermèdia per a un domini."
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:498
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Explica el presentador de confiança"
 
-#: src/dialogs/certifywidget.cpp:483
+#: src/dialogs/certifywidget.cpp:508
 #, kde-format
 msgid "Domain:"
 msgstr "Domini:"
 
-#: src/dialogs/certifywidget.cpp:678
+#: src/dialogs/certifywidget.cpp:689
 #, kde-format
 msgid "Is this your own key?"
 msgstr "És aquesta la vostra clau?"
 
-#: src/dialogs/certifywidget.cpp:693
+#: src/dialogs/certifywidget.cpp:704
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6406,12 +6406,12 @@ msgstr ""
 "<p>Ha fallat en canviar la confiança de certificació de la clau <b>%1</b>:</"
 "p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:696
+#: src/dialogs/certifywidget.cpp:707
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Ha fallat en canviar la confiança de la certificació"
 
-#: src/dialogs/certifywidget.cpp:703
+#: src/dialogs/certifywidget.cpp:714
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "S'ha establert correctament la confiança del propietari."
@@ -7314,138 +7314,138 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "Estableix el PIN inicial (SigG) (opcional)"
 
-#: src/dialogs/subkeyswidget.cpp:78
+#: src/dialogs/subkeyswidget.cpp:79
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Subclaus:"
 
-#: src/dialogs/subkeyswidget.cpp:83
+#: src/dialogs/subkeyswidget.cpp:84
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Subclaus"
 
-#: src/dialogs/subkeyswidget.cpp:86
+#: src/dialogs/subkeyswidget.cpp:87
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:87
+#: src/dialogs/subkeyswidget.cpp:88
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tipus"
 
-#: src/dialogs/subkeyswidget.cpp:88
+#: src/dialogs/subkeyswidget.cpp:89
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Vàlida des de"
 
-#: src/dialogs/subkeyswidget.cpp:89
+#: src/dialogs/subkeyswidget.cpp:90
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Vàlida fins"
 
-#: src/dialogs/subkeyswidget.cpp:90
+#: src/dialogs/subkeyswidget.cpp:91
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Estat"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:92
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Fortalesa"
 
-#: src/dialogs/subkeyswidget.cpp:92
+#: src/dialogs/subkeyswidget.cpp:93
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Ús"
 
-#: src/dialogs/subkeyswidget.cpp:93
+#: src/dialogs/subkeyswidget.cpp:94
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Primària"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:95
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Emmagatzematge"
 
-#: src/dialogs/subkeyswidget.cpp:117 src/view/keylistcontroller.cpp:447
+#: src/dialogs/subkeyswidget.cpp:116 src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Canvia el final del període de validesa..."
 
-#: src/dialogs/subkeyswidget.cpp:137
+#: src/dialogs/subkeyswidget.cpp:136
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Exporta la clau OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:148
+#: src/dialogs/subkeyswidget.cpp:144
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Restaura una còpia de seguretat impresa"
 
-#: src/dialogs/subkeyswidget.cpp:162
+#: src/dialogs/subkeyswidget.cpp:156
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Transfereix a la targeta intel·ligent"
 
-#: src/dialogs/subkeyswidget.cpp:179
+#: src/dialogs/subkeyswidget.cpp:171
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Exporta la subclau secreta"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "sí"
 
-#: src/dialogs/subkeyswidget.cpp:241
+#: src/dialogs/subkeyswidget.cpp:232
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "no"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:235
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "targeta intel·ligent %1"
 
-#: src/dialogs/subkeyswidget.cpp:246
+#: src/dialogs/subkeyswidget.cpp:237
 #, kde-format
 msgid "smart card"
 msgstr "targeta intel·ligent"
 
-#: src/dialogs/subkeyswidget.cpp:249
+#: src/dialogs/subkeyswidget.cpp:240
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "fora de línia"
 
-#: src/dialogs/subkeyswidget.cpp:251
+#: src/dialogs/subkeyswidget.cpp:242
 #, kde-format
 msgid "on this computer"
 msgstr "en aquest ordinador"
 
-#: src/dialogs/subkeyswidget.cpp:253
+#: src/dialogs/subkeyswidget.cpp:244
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "desconeguda"
 
-#: src/dialogs/subkeyswidget.cpp:278
+#: src/dialogs/subkeyswidget.cpp:269
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"

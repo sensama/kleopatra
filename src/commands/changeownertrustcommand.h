@@ -20,9 +20,7 @@ class ChangeOwnerTrustCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit ChangeOwnerTrustCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit ChangeOwnerTrustCommand(KeyListController *parent);
-    explicit ChangeOwnerTrustCommand(const GpgME::Key &key);
+    ChangeOwnerTrustCommand(QAbstractItemView *view, KeyListController *parent);
     ~ChangeOwnerTrustCommand() override;
 
     /* reimp */ static Restrictions restrictions()

@@ -42,17 +42,12 @@ class ChangeOwnerTrustCommand::Private : public Command::Private
         return static_cast<ChangeOwnerTrustCommand *>(q);
     }
 public:
-    explicit Private(ChangeOwnerTrustCommand *qq, KeyListController *c);
-    ~Private() override;
-
-    void init();
-
-private:
-    void slotResult(const Error &err);
+    Private(ChangeOwnerTrustCommand *qq, KeyListController *c);
 
 private:
     void startJob(Key::OwnerTrust trust);
     void createJob();
+    void slotResult(const Error &err);
     void showErrorDialog(const Error &error);
     void showSuccessDialog();
 
@@ -74,43 +69,18 @@ const ChangeOwnerTrustCommand::Private *ChangeOwnerTrustCommand::d_func() const
 #define q q_func()
 
 ChangeOwnerTrustCommand::Private::Private(ChangeOwnerTrustCommand *qq, KeyListController *c)
-    : Command::Private(qq, c),
-      job()
+    : Command::Private{qq, c}
 {
-
-}
-
-ChangeOwnerTrustCommand::Private::~Private()
-{
-    qCDebug(KLEOPATRA_LOG);
-}
-
-ChangeOwnerTrustCommand::ChangeOwnerTrustCommand(KeyListController *c)
-    : Command(new Private(this, c))
-{
-    d->init();
 }
 
 ChangeOwnerTrustCommand::ChangeOwnerTrustCommand(QAbstractItemView *v, KeyListController *c)
-    : Command(v, new Private(this, c))
+    : Command{v, new Private{this, c}}
 {
-    d->init();
-}
-
-ChangeOwnerTrustCommand::ChangeOwnerTrustCommand(const Key &key)
-    : Command(key, new Private(this, nullptr))
-{
-    d->init();
-}
-
-void ChangeOwnerTrustCommand::Private::init()
-{
-
 }
 
 ChangeOwnerTrustCommand::~ChangeOwnerTrustCommand()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
 }
 
 void ChangeOwnerTrustCommand::doStart()
@@ -232,7 +202,7 @@ void ChangeOwnerTrustCommand::Private::slotResult(const Error &err)
 
 void ChangeOwnerTrustCommand::doCancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     if (d->job) {
         d->job->slotCancel();
     }

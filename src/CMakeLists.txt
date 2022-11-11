@@ -343,8 +343,6 @@ set(_kleopatra_SRCS
   dialogs/nameandemailwidget.h
   dialogs/newopenpgpcertificatedetailsdialog.cpp
   dialogs/newopenpgpcertificatedetailsdialog.h
-  dialogs/ownertrustdialog.cpp
-  dialogs/ownertrustdialog.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
   dialogs/pivcardapplicationadministrationkeyinputdialog.h
   dialogs/revokekeydialog.cpp
@@ -549,7 +547,6 @@ if(KLEO_MODEL_TEST)
 endif()
 
 ki18n_wrap_ui(_kleopatra_SRCS
-  dialogs/ownertrustdialog.ui
   dialogs/selectchecklevelwidget.ui
   dialogs/setinitialpindialog.ui
   dialogs/trustchainwidget.ui

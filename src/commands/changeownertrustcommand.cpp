@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2022 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -13,22 +15,22 @@
 
 #include "command_p.h"
 
-#include <dialogs/ownertrustdialog.h>
-
+#include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
+
+#include <KLocalizedString>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/ChangeOwnerTrustJob>
 
 #include <gpgme++/key.h>
 
-#include <KLocalizedString>
 #include "kleopatra_debug.h"
 
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
@@ -46,19 +48,17 @@ public:
     void init();
 
 private:
-    void slotDialogAccepted();
-    void slotDialogRejected();
     void slotResult(const Error &err);
 
 private:
-    void ensureDialogCreated();
+    void startJob(Key::OwnerTrust trust);
     void createJob();
     void showErrorDialog(const Error &error);
     void showSuccessDialog();
 
 private:
-    QPointer<OwnerTrustDialog> dialog;
     QPointer<ChangeOwnerTrustJob> job;
+    Key::OwnerTrust trustToSet = Key::OwnerTrust::Unknown;
 };
 
 ChangeOwnerTrustCommand::Private *ChangeOwnerTrustCommand::d_func()
@@ -75,7 +75,6 @@ const ChangeOwnerTrustCommand::Private *ChangeOwnerTrustCommand::d_func() const
 
 ChangeOwnerTrustCommand::Private::Private(ChangeOwnerTrustCommand *qq, KeyListController *c)
     : Command::Private(qq, c),
-      dialog(),
       job()
 {
 
@@ -116,36 +115,99 @@ ChangeOwnerTrustCommand::~ChangeOwnerTrustCommand()
 
 void ChangeOwnerTrustCommand::doStart()
 {
-
     if (d->keys().size() != 1) {
         d->finished();
         return;
     }
 
     const Key key = d->key();
-    if (key.protocol() != GpgME::OpenPGP || (key.hasSecret() && key.ownerTrust() == Key::Ultimate)) {
+    if (key.protocol() != GpgME::OpenPGP) {
         d->finished();
         return;
     }
 
-    d->ensureDialogCreated();
-    Q_ASSERT(d->dialog);
+    const auto keyInfo = Formatting::formatForComboBox(key);
 
-    d->dialog->setHasSecretKey(key.hasSecret());
-    d->dialog->setFormattedCertificateName(Formatting::formatForComboBox(key));
-    d->dialog->setOwnerTrust(key.ownerTrust());
+    if (key.hasSecret()) {
+        const auto answer = KMessageBox::questionYesNoCancel(d->parentWidgetOrView(),
+                                                             xi18nc("@info", "Is '%1' your own certificate?", keyInfo),
+                                                             i18nc("@title:window", "Mark Own Certificate"),
+                                                             KGuiItem(i18nc("@action:button", "Yes, it's mine")),
+                                                             KGuiItem(i18nc("@action:button", "No, it's not mine")),
+                                                             KStandardGuiItem::cancel());
+        switch (answer) {
+        case KMessageBox::Yes: {
+            if (key.ownerTrust() < Key::Ultimate) {
+                d->startJob(Key::OwnerTrust::Ultimate);
+            }
+            return;
+        }
+        case KMessageBox::No: {
+            if (key.ownerTrust() == Key::Ultimate) {
+                d->startJob(Key::OwnerTrust::Unknown);
+                return;
+            }
+            // else ask next question
+            break;
+        }
+        case KMessageBox::Cancel: {
+            d->canceled();
+            return;
+        }
+        default:; // cannot happen
+        }
+    }
 
-    d->dialog->show();
-
+    if (key.ownerTrust() < Key::OwnerTrust::Full) {
+        const auto text = (DeVSCompliance::isCompliant() && Formatting::isKeyDeVs(key))
+            ? xi18nc("@info %1: a certificate, %2: name of a compliance mode",
+                     "<para>Do you want to grant '%1' the power to mark certificates as %2 for you?</para>"
+                     "<para><emphasis>This means that the owner of this certificate properly check fingerprints "
+                     "and confirms the identities of others.</emphasis></para>",
+                     keyInfo,
+                     DeVSCompliance::name())
+            : xi18nc("@info %1: a certificate",
+                     "<para>Do you want to grant '%1' the power to mark certificates as valid for you?</para>"
+                     "<para><emphasis>This means that the owner of this certificate properly check fingerprints "
+                     "and confirms the identities of others.</emphasis></para>",
+                     keyInfo);
+        const auto answer = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+                                                       text,
+                                                       i18nc("@title:window", "Grant Certification Power"),
+                                                       KGuiItem(i18nc("@action:button", "Grant Power")),
+                                                       KStandardGuiItem::cancel());
+        if (answer == KMessageBox::Yes) {
+            d->startJob(Key::OwnerTrust::Full);
+        } else {
+            d->canceled();
+        }
+    } else {
+        const auto text = (DeVSCompliance::isCompliant() && Formatting::isKeyDeVs(key))
+            ? xi18nc("@info %1: a certificate, %2: name of a compliance mode",
+                     "<para>The certificate '%1' is empowered to mark other certificates as %2 for you.</para>"
+                     "<para>Do you want to revoke this power?</para>",
+                     keyInfo,
+                     DeVSCompliance::name())
+            : xi18nc("@info %1: a certificate",
+                     "<para>The certificate '%1' is empowered to mark other certificates as valid for you.</para>"
+                     "<para>Do you want to revoke this power?</para>",
+                     keyInfo);
+        const auto answer = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+                                                       text,
+                                                       i18nc("@title:window", "Revoke Certification Power"),
+                                                       KGuiItem(i18nc("@action:button", "Revoke Power")),
+                                                       KStandardGuiItem::cancel());
+        if (answer == KMessageBox::Yes) {
+            d->startJob(Key::OwnerTrust::Unknown);
+        } else {
+            d->canceled();
+        }
+    }
 }
 
-void ChangeOwnerTrustCommand::Private::slotDialogAccepted()
+void ChangeOwnerTrustCommand::Private::startJob(Key::OwnerTrust trust)
 {
-    Q_ASSERT(dialog);
-
-    const Key::OwnerTrust trust = dialog->ownerTrust();
-
-    qCDebug(KLEOPATRA_LOG) << "trust " << trust;
+    trustToSet = trust;
 
     createJob();
     Q_ASSERT(job);
@@ -154,12 +216,6 @@ void ChangeOwnerTrustCommand::Private::slotDialogAccepted()
         showErrorDialog(err);
         finished();
     }
-}
-
-void ChangeOwnerTrustCommand::Private::slotDialogRejected()
-{
-    Q_EMIT q->canceled();
-    finished();
 }
 
 void ChangeOwnerTrustCommand::Private::slotResult(const Error &err)
@@ -182,30 +238,11 @@ void ChangeOwnerTrustCommand::doCancel()
     }
 }
 
-void ChangeOwnerTrustCommand::Private::ensureDialogCreated()
-{
-    if (dialog) {
-        return;
-    }
-
-    dialog = new OwnerTrustDialog;
-    applyWindowID(dialog);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-
-    connect(dialog, &QDialog::accepted, q, [this]() { slotDialogAccepted(); });
-    connect(dialog, &QDialog::rejected, q, [this]() { slotDialogRejected(); });
-}
-
 void ChangeOwnerTrustCommand::Private::createJob()
 {
     Q_ASSERT(!job);
 
-    const auto backend = (key().protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
-    if (!backend) {
-        return;
-    }
-
-    ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
+    ChangeOwnerTrustJob *const j = QGpgME::openpgp()->changeOwnerTrustJob();
     if (!j) {
         return;
     }
@@ -219,17 +256,48 @@ void ChangeOwnerTrustCommand::Private::createJob()
 
 void ChangeOwnerTrustCommand::Private::showErrorDialog(const Error &err)
 {
-    error(i18n("<p>An error occurred while trying to change "
-               "the certification trust for <b>%1</b>:</p><p>%2</p>",
-               Formatting::formatForComboBox(key()),
-               QString::fromLocal8Bit(err.asString())),
-          i18n("Certification Trust Change Error"));
+    const auto keyInfo = Formatting::formatForComboBox(key());
+    switch (trustToSet) {
+    case Key::OwnerTrust::Ultimate:
+        error(xi18nc("@info",
+                     "<para>An error occurred while marking certificate '%1' as your certificate.</para>"
+                     "<para><message>%2</message></para>",
+                     keyInfo,
+                     QString::fromUtf8(err.asString())));
+        break;
+    case Key::OwnerTrust::Full:
+        error(xi18nc("@info",
+                     "<para>An error occurred while granting certification power to '%1'.</para>"
+                     "<para><message>%2</message></para>",
+                     keyInfo,
+                     QString::fromUtf8(err.asString())));
+        break;
+    default:
+        error(xi18nc("@info",
+                     "<para>An error occurred while revoking the certification power of '%1'.</para>"
+                     "<para><message>%2</message></para>",
+                     keyInfo,
+                     QString::fromUtf8(err.asString())));
+    }
 }
 
 void ChangeOwnerTrustCommand::Private::showSuccessDialog()
 {
-    information(i18n("Certification trust changed successfully."),
-                i18n("Certification Trust Change Succeeded"));
+    auto updatedKey = key();
+    updatedKey.update();
+    KeyCache::mutableInstance()->insert(updatedKey);
+
+    const auto keyInfo = Formatting::formatForComboBox(updatedKey);
+    switch (updatedKey.ownerTrust()) {
+    case Key::OwnerTrust::Ultimate:
+        success(i18nc("@info", "Certificate '%1' was marked as your certificate.", keyInfo));
+        break;
+    case Key::OwnerTrust::Full:
+        success(i18nc("@info", "Certification power was granted to '%1'.", keyInfo));
+        break;
+    default:
+        success(i18nc("@info", "The certification power of '%1' was revoked.", keyInfo));
+    }
 }
 
 #undef d

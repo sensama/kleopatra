@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -371,35 +371,151 @@ msgstr "<p>មាន​កំហុស​​កើតឡើង​នៅ​ខណ
 msgid "End of validity period changed successfully."
 msgstr "បាន​ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់​ដោយ​ជោគជ័យ ។"
 
-#: src/commands/changeownertrustcommand.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the owner trust for <b>%1</b>:"
-#| "</p><p>%2</p>"
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
-msgstr ""
-"<p>កំហុស​មួយ​បានកើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​លើ​ម្ចាស់​សម្រាប់ <b>%1</b> ៖</p><p>"
-"%2</p>"
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(មិនស្គាល់​វិញ្ញាបនបត្រ)"
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgid "Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "វិញ្ញាបនបត្រ​"
+
+#: src/commands/changeownertrustcommand.cpp:105
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "វិញ្ញាបនបត្រ​"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "វិញ្ញាបនបត្រ​"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "ដកហូត​វិញ..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgid "Certifying other Certificates"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "បញ្ជាក់​វិញ្ញាបនបត្រ​ផ្សេងទៀត"
+
+#: src/commands/changeownertrustcommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Error"
-msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "កំហុស​ក្នុងកា​រផ្លាស់ប្ដូរ​ការ​ជឿជាក់​របស់​ម្ចាស់"
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:269
 #, fuzzy, kde-format
-#| msgid "Owner trust changed successfully."
-msgid "Certification trust changed successfully."
-msgstr "បាន​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់​ដោយ​ជោគជ័យ ។"
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Succeeded"
-msgid "Certification Trust Change Succeeded"
-msgstr "បាន​ជោគជ័យ​ក្នុង​កា​រ​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់"
+#| msgid "Configuration Error"
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "កំហុស​កំណត់​រចនាសម្ព័ន្ធ"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -7138,160 +7254,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(មិនស្គាល់​វិញ្ញាបនបត្រ)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Change Trust Level of %1"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "ផ្លាស់ប្ដូរ​កម្រិត​ទុកចិត្ត​របស់ %1"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"តើ​អ្នក​ទុកចិត្ត​វិញ្ញាបនបត្រ​ដែល​បាន​បង្កើត​ដោយ <b>%1</b> ថា​ផ្ទៀងផ្ទាត់​យ៉ាង​ត្រឹមត្រូវ​​តាម​វិញ្ញាបនបត្រ ?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "ខ្ញុំ​មិនដឹង"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(មិនស្គាល់​កា​រ​ទុកចិត្ត)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">ជ្រើស​វា ប្រសិន​បើ​អ្នក​គ្មានជម្រើស​អំពី​ភាពទុកចិត្ត​របស់​ម្ចាស់​វិញ្ញាបនបត្រ ។<br>កា​"
-"រ​បញ្ជាក់​នៅ​កម្រិត​នេះ​​ត្រូវ​បានមិនអើពើ នៅពេល​គូសធីក​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "ខ្ញុំ​មិន​ទុកចិត្ត​ពួកវា​ទេ"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(មិនទុកចិត្ត)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">ជ្រើស​វា​ប្រសិនបើអ្នក​ពិត​ជា <em>មិន</em> ទុកចិត្ត​ម្ចាស់​វិញ្ញាបនបត្រ ឧ. "
-"ពីព្រោះអ្នក​​ស្គាល់​គាត់​ ដោយ​បញ្ជាក់​ដោយ​មិនបាន​ត្រួតពិនិត្យ​ ឬ​ដោយ​មិន​​យល់ព្រម​តាម​ម្ចាស់​របស់​វិញ្ញាបនបត្រ ។"
-"<br>ការ​បញ្ជាក់​នៅ​កម្រិត​នេះ​ត្រូ​វបាន​មិនអើពើ​ នៅពេល​ត្រួតពិនិត្យ​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។</"
-"font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ធម្មតា"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(ទុកចិត្ត​ដោយផ្នែក)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, fuzzy, kde-format
-#| msgid ""
-#| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#| "blindly, but not very accuratly, either.<br>Certificates will only become "
-#| "valid with multiple certifications (typically three) at this trust level. "
-#| "This is usually a good choice.</font>"
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-"<font size=\"-1\">ជ្រើស​វា​ប្រសិន​បើ​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​មិន​ត្រូវ​បាន​ធ្វើ​ដោយ​គ្មានការ​ពិចារណា​ "
-"ប៉ុន្តែ​មិនត្រឹមត្រូវ​ទេ ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​ការ​បញ្ជាក់​ជា​ច្រើន (តាម​ធម្មតា​បី) "
-"នៅ​កម្រិត​ទុកចិត្ត​នេះ ។តាម​ធម្មតា​នេះជា​ជម្រើស​ដ៏​ល្អ ។</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ត្រឹមត្រូវ​បំផុត"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(ទុកចិត្ត​ពេញលេញ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">ជ្រើស​វា​ ប្រសិន​បើ​​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​ថា​ត្រូ​វបាន​ធ្វើ​ដោយ​សុវត្ថិភាព​បំផុត ។"
-"<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​នឹង​ការ​បញ្ជាក់​មួយ​​នៅ​កម្រិត​ទុក​ចិត្ត ដូច្នេះ​ផ្ដល់​នូវ​ការ​ទុកចិត្ត​"
-"ច្រើន​ ។</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "នេះ​ជា​វិញ្ញាបនបត្រ​របស់​ខ្ញុំ"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(ទុកចិត្ត​មែនទែន)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">ជ្រើស​វា​ ប្រសិនបើ​​​នេះ​ជា​វិញ្ញាបនបត្រ​របស់​អ្នក ។ នេះ​ជា​លំនាំ​ដើម ប្រសិន​បើ​សោ​"
-"សម្ងាត់​អាច​ប្រើ​បាន ប៉ុន្តែ​​ប្រសិនបើអ្នក​បាននាំចូល​វិញ្ញាបនបត្រ​នេះ អ្នក​អាច​លៃតម្រូវ​កម្រិត​ទុកចិត្ត​ដោយ​ខ្លួន​"
-"អ្នក​ផ្ទាល់​បាន ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​​ជា​មួយនឹង​កា​របញ្ជាក់​មួយ​នៅ​កម្រិត​ទុកចិត្ត ។</"
-"font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -11161,69 +11123,77 @@ msgstr "សុពលភាព​របស់​ហត្ថលេខា​មិ
 #: src/view/keylistcontroller.cpp:451
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "ផ្លាស់ប្ដូរ​កា​ជឿជាក់​លើ​ម្ចាស់..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "The validity of the signature cannot be verified."
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "សុពលភាព​របស់​ហត្ថលេខា​មិនអាច​​បញ្ជាក់​បានទេ ។"
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "បន្ថែម​លេខសម្គាល់​អ្នក​ប្រើ..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "វិញ្ញាបនបត្រ S/MIME"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "វិញ្ញាបនបត្រ​​ Root ដែល​ជឿ​ទុកចិត្ត​​"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "វិញ្ញាបនបត្រ​​ Root ដែល​មិន​ជឿ​ទុកចិត្ត​​"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "សេចក្ដី​លម្អិត​បច្ចេកទេស"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "វិញ្ញាបនបត្រ S/MIME"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "ជម្រះ​ឃ្លាំង​សម្ងាត់ CRL"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "បោះបង់ចោល​ឃ្លាំងសម្ងាត់​ CRL"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "នាំចូល​ CRL ពី​ឯកសារ..."
@@ -12312,6 +12282,132 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid ""
+#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
+#~| "b>:</p><p>%2</p>"
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr ""
+#~ "<p>កំហុស​មួយ​បានកើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​លើ​ម្ចាស់​សម្រាប់ <b>%1</b> ៖</p><p>"
+#~ "%2</p>"
+
+#, fuzzy
+#~| msgid "Owner trust changed successfully."
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "បាន​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់​ដោយ​ជោគជ័យ ។"
+
+#, fuzzy
+#~| msgid "Owner Trust Change Succeeded"
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "បាន​ជោគជ័យ​ក្នុង​កា​រ​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Change Trust Level of %1"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "ផ្លាស់ប្ដូរ​កម្រិត​ទុកចិត្ត​របស់ %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr ""
+#~ "តើ​អ្នក​ទុកចិត្ត​វិញ្ញាបនបត្រ​ដែល​បាន​បង្កើត​ដោយ <b>%1</b> ថា​ផ្ទៀងផ្ទាត់​យ៉ាង​ត្រឹមត្រូវ​​តាម​"
+#~ "វិញ្ញាបនបត្រ ?"
+
+#~ msgid "I do not know"
+#~ msgstr "ខ្ញុំ​មិនដឹង"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(មិនស្គាល់​កា​រ​ទុកចិត្ត)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">ជ្រើស​វា ប្រសិន​បើ​អ្នក​គ្មានជម្រើស​អំពី​ភាពទុកចិត្ត​របស់​ម្ចាស់​វិញ្ញាបនបត្រ ។"
+#~ "<br>កា​រ​បញ្ជាក់​នៅ​កម្រិត​នេះ​​ត្រូវ​បានមិនអើពើ នៅពេល​គូសធីក​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។</"
+#~ "font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "ខ្ញុំ​មិន​ទុកចិត្ត​ពួកវា​ទេ"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(មិនទុកចិត្ត)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">ជ្រើស​វា​ប្រសិនបើអ្នក​ពិត​ជា <em>មិន</em> ទុកចិត្ត​ម្ចាស់​វិញ្ញាបនបត្រ ឧ. "
+#~ "ពីព្រោះអ្នក​​ស្គាល់​គាត់​ ដោយ​បញ្ជាក់​ដោយ​មិនបាន​ត្រួតពិនិត្យ​ ឬ​ដោយ​មិន​​យល់ព្រម​តាម​ម្ចាស់​របស់​វិញ្ញាបនបត្រ ។"
+#~ "<br>ការ​បញ្ជាក់​នៅ​កម្រិត​នេះ​ត្រូ​វបាន​មិនអើពើ​ នៅពេល​ត្រួតពិនិត្យ​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។"
+#~ "</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ធម្មតា"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(ទុកចិត្ត​ដោយផ្នែក)</i>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~| "blindly, but not very accuratly, either.<br>Certificates will only "
+#~| "become valid with multiple certifications (typically three) at this "
+#~| "trust level. This is usually a good choice.</font>"
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">ជ្រើស​វា​ប្រសិន​បើ​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​មិន​ត្រូវ​បាន​ធ្វើ​ដោយ​គ្មានការ​ពិចារណា​ "
+#~ "ប៉ុន្តែ​មិនត្រឹមត្រូវ​ទេ ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​ការ​បញ្ជាក់​ជា​ច្រើន (តាម​ធម្មតា​"
+#~ "បី) នៅ​កម្រិត​ទុកចិត្ត​នេះ ។តាម​ធម្មតា​នេះជា​ជម្រើស​ដ៏​ល្អ ។</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ត្រឹមត្រូវ​បំផុត"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(ទុកចិត្ត​ពេញលេញ)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">ជ្រើស​វា​ ប្រសិន​បើ​​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​ថា​ត្រូ​វបាន​ធ្វើ​ដោយ​សុវត្ថិភាព​បំផុត ។"
+#~ "<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​នឹង​ការ​បញ្ជាក់​មួយ​​នៅ​កម្រិត​ទុក​ចិត្ត ដូច្នេះ​ផ្ដល់​នូវ​ការ​"
+#~ "ទុកចិត្ត​ច្រើន​ ។</font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "នេះ​ជា​វិញ្ញាបនបត្រ​របស់​ខ្ញុំ"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(ទុកចិត្ត​មែនទែន)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">ជ្រើស​វា​ ប្រសិនបើ​​​នេះ​ជា​វិញ្ញាបនបត្រ​របស់​អ្នក ។ នេះ​ជា​លំនាំ​ដើម ប្រសិន​បើ​សោ​"
+#~ "សម្ងាត់​អាច​ប្រើ​បាន ប៉ុន្តែ​​ប្រសិនបើអ្នក​បាននាំចូល​វិញ្ញាបនបត្រ​នេះ អ្នក​អាច​លៃតម្រូវ​កម្រិត​ទុកចិត្ត​ដោយ​"
+#~ "ខ្លួន​អ្នក​ផ្ទាល់​បាន ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​​ជា​មួយនឹង​កា​របញ្ជាក់​មួយ​នៅ​កម្រិត​ទុកចិត្ត ។"
+#~ "</font>"
+
+#, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "ការ​ចុះហត្ថលេខា និង​អ៊ិនគ្រីប​បាន​ជោគជ័យ ។"
@@ -12629,11 +12725,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "កំពុង​ឃ្លាំង​សម្ងាត់​វិញ្ញាបនបត្រ​..."
-
-#, fuzzy
-#~| msgid "Certifying other Certificates"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "បញ្ជាក់​វិញ្ញាបនបត្រ​ផ្សេងទៀត"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

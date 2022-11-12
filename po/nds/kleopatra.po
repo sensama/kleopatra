@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -378,34 +378,157 @@ msgstr ""
 msgid "End of validity period changed successfully."
 msgstr "Afloopdatum mit Spood ännert."
 
-#: src/commands/changeownertrustcommand.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the owner trust for <b>%1</b>:"
-#| "</p><p>%2</p>"
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
-msgstr ""
-"<p>Dat geev en Fehler bi't Ännern vun't Totroen för <b>%1</b>:</p><p>%2</p>"
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(nich begäng Zertifikaat)"
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgid "&Reload Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "&Zertifikaten nieg laden"
+
+#: src/commands/changeownertrustcommand.cpp:105
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certificate Signing Error"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "Fehler bi't Ünnerschrieven vun Zertifikaat"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "Beglöven"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "Torüchropen..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Dat geev en Fehler bi't Laden vun de Beglöven: <message>%1</message></"
+"para>"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Dat geev en Fehler bi't Laden vun de Beglöven: <message>%1</message></"
+"para>"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Dat geev en Fehler bi't Laden vun de Beglöven: <message>%1</message></"
+"para>"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgid "Certifying other Certificates"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "Anner Zertifikaten beglöven"
+
+#: src/commands/changeownertrustcommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Error"
-msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "Fehler bi't Ännern vun't Totroen"
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:269
 #, fuzzy, kde-format
-#| msgid "Owner trust changed successfully."
-msgid "Certification trust changed successfully."
-msgstr "Totroen mit Spood ännert."
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Succeeded"
-msgid "Certification Trust Change Succeeded"
-msgstr "Totroen ännert"
+#| msgid "Configuration Error"
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "Instellfehler"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -7269,167 +7392,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(nich begäng Zertifikaat)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Change Trust Level of %1"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "Totroenstoop vun %1 ännern"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"Wat is Dien Totroen, dat Beglöven vun <b>%1</b> akkraat de Echtheit vun "
-"Zertifikaten beglöven doot?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "Dat weet ik nich"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(Totroen nich begäng)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Söök man dit ut, wenn Du nix dor över weetst, wat dat "
-"Zertifikaat sien Eegner vertroenswördig is.<br>Zertifikaten mit disse "
-"Totroenstoop warrt övergahn, wenn pröövt warrt, wat en OpenPGP-Zertifikaat "
-"gellt.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "Beglöven sünd nich seker"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(Keen Vertroen)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Söök man dit ut, wenn Du dat Zertifikaat sien Eegner "
-"<em>nich</em> vertroen deist, a.B. wenn Du weetst, dat he beglöövt, ahn dat "
-"he sik mit Pröven quäält, oder ahn dat de Eegner vun't Zertifikaat dat weten "
-"deit.<br>Zertifikaten mit disse Totroenstoop warrt övergahn, wenn pröövt "
-"warrt, wat en OpenPGP-Zertifikaat gellt.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "Pröövt wull dit un dat"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(Deelwies Vertroen)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, fuzzy, kde-format
-#| msgid ""
-#| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#| "blindly, but not very accuratly, either.<br>Certificates will only become "
-#| "valid with multiple certifications (typically three) at this trust level. "
-#| "This is usually a good choice.</font>"
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-"<font size=\"-1\">Söök man dit ut, wenn Du Di dor op verlaten deist, dat he "
-"nich eenfach so ünnerschrifft, man ok nich allens nipp un nau pröövt."
-"<br>Zertifikaten gellt eerst mit mehr as een Beglöven mit disse Totroenstoop "
-"(normalerwies dree). Dat is normalerwies en gode Köör.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "Pröövt allens nipp un nau"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(Vull Vertroen)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">Söök man dit ut, wenn Du Di dor op verlaten deist, dat "
-"allens nipp un nau pröövt warrt.<br>Zertifikaten gellt al mit bloots een "
-"Beglöven mit disse Totroenstoop. Totroen in disse Hööchde muttst Du sinnig "
-"bruken.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "Dit is mien Zertifikaat"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(Büterst Vertroen)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">Söök dit bloots un redig bloots bi Dien egen Zertifikaat "
-"ut. Dat is de Standard, wenn de Privaatslötel verföögbor is, man wenn Du dit "
-"Zertifikaat importeert hest, muttst Du de Totroenstoop villicht vun Hand "
-"topassen.<br>Zertifikaten gellt al mit bloots een Beglöven mit disse "
-"Totroenstoop. Totroen in disse Hööchde muttst Du sinnig bruken.</font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -11352,69 +11314,77 @@ msgstr "Dat lett sik nich pröven, wat de Ünnerschrift gellt."
 #: src/view/keylistcontroller.cpp:451
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "Totroen to Eegner ännern..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "The validity of the signature cannot be verified."
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "Dat lett sik nich pröven, wat de Ünnerschrift gellt."
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Slötelsatz ännern..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Bruker-ID tofögen..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP-Zertifikaten opfrischen"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME-Zertifikaten"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "En persöönlich X.509-Slötelpoor un Beglöövanfraag opstellen"
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Wörtelzertifikaat vertroen"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Wörtelzertifikaat nich vertroen"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "Technische Enkelheiten"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME-Zertifikaten"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Wohrt Torüchrooplisten wegdoon"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Wohrt Torüchrooplisten utgeven"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "ZTL ut Datei importeren..."
@@ -12497,6 +12467,138 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid ""
+#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
+#~| "b>:</p><p>%2</p>"
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr ""
+#~ "<p>Dat geev en Fehler bi't Ännern vun't Totroen för <b>%1</b>:</p><p>%2</"
+#~ "p>"
+
+#, fuzzy
+#~| msgid "Owner trust changed successfully."
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "Totroen mit Spood ännert."
+
+#, fuzzy
+#~| msgid "Owner Trust Change Succeeded"
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "Totroen ännert"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Change Trust Level of %1"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "Totroenstoop vun %1 ännern"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr ""
+#~ "Wat is Dien Totroen, dat Beglöven vun <b>%1</b> akkraat de Echtheit vun "
+#~ "Zertifikaten beglöven doot?"
+
+#~ msgid "I do not know"
+#~ msgstr "Dat weet ik nich"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(Totroen nich begäng)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Söök man dit ut, wenn Du nix dor över weetst, wat dat "
+#~ "Zertifikaat sien Eegner vertroenswördig is.<br>Zertifikaten mit disse "
+#~ "Totroenstoop warrt övergahn, wenn pröövt warrt, wat en OpenPGP-"
+#~ "Zertifikaat gellt.</font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "Beglöven sünd nich seker"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(Keen Vertroen)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Söök man dit ut, wenn Du dat Zertifikaat sien Eegner "
+#~ "<em>nich</em> vertroen deist, a.B. wenn Du weetst, dat he beglöövt, ahn "
+#~ "dat he sik mit Pröven quäält, oder ahn dat de Eegner vun't Zertifikaat "
+#~ "dat weten deit.<br>Zertifikaten mit disse Totroenstoop warrt övergahn, "
+#~ "wenn pröövt warrt, wat en OpenPGP-Zertifikaat gellt.</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "Pröövt wull dit un dat"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(Deelwies Vertroen)</i>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~| "blindly, but not very accuratly, either.<br>Certificates will only "
+#~| "become valid with multiple certifications (typically three) at this "
+#~| "trust level. This is usually a good choice.</font>"
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Söök man dit ut, wenn Du Di dor op verlaten deist, dat "
+#~ "he nich eenfach so ünnerschrifft, man ok nich allens nipp un nau pröövt."
+#~ "<br>Zertifikaten gellt eerst mit mehr as een Beglöven mit disse "
+#~ "Totroenstoop (normalerwies dree). Dat is normalerwies en gode Köör.</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "Pröövt allens nipp un nau"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(Vull Vertroen)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Söök man dit ut, wenn Du Di dor op verlaten deist, dat "
+#~ "allens nipp un nau pröövt warrt.<br>Zertifikaten gellt al mit bloots een "
+#~ "Beglöven mit disse Totroenstoop. Totroen in disse Hööchde muttst Du "
+#~ "sinnig bruken.</font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "Dit is mien Zertifikaat"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(Büterst Vertroen)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Söök dit bloots un redig bloots bi Dien egen "
+#~ "Zertifikaat ut. Dat is de Standard, wenn de Privaatslötel verföögbor is, "
+#~ "man wenn Du dit Zertifikaat importeert hest, muttst Du de Totroenstoop "
+#~ "villicht vun Hand topassen.<br>Zertifikaten gellt al mit bloots een "
+#~ "Beglöven mit disse Totroenstoop. Totroen in disse Hööchde muttst Du "
+#~ "sinnig bruken.</font>"
+
+#, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "Mit Spood verslötelt un ünnerschreven."
@@ -12825,11 +12927,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "Zertifikaat-Twischenspieker warrt laadt..."
-
-#, fuzzy
-#~| msgid "Certifying other Certificates"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "Anner Zertifikaten beglöven"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

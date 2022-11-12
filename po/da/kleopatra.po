@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -370,29 +370,159 @@ msgstr ""
 msgid "End of validity period changed successfully."
 msgstr "Udløbsdato ændret."
 
-#: src/commands/changeownertrustcommand.cpp:222
-#, kde-format
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
-msgstr ""
-"<p>En fejl opstod under forsøg på at ændre tillid til certifikatet for <b>"
-"%1</b>:</p><p>%2</p>"
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(ukendt certifikat)"
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Load Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "Indlæs certifikater"
+
+#: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
-msgid "Certification Trust Change Error"
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "Certificering"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "Certificering"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "Tilbagekald..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgid "Certifying other Certificates"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "Bekræfter andre certifikater"
+
+#: src/commands/changeownertrustcommand.cpp:266
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "Fejl i ændring af tillid til certifikat"
 
-#: src/commands/changeownertrustcommand.cpp:231
-#, kde-format
-msgid "Certification trust changed successfully."
-msgstr "Tillid til certifikat ændret."
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, kde-format
-msgid "Certification Trust Change Succeeded"
-msgstr "Tillid til certifikat er ændret"
+#: src/commands/changeownertrustcommand.cpp:269
+#, fuzzy, kde-format
+#| msgctxt "%1 is the name of the profile"
+#| msgid "The configuration profile \"%1\" was applied."
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "Konfigurationsprofilen \"%1\" blev anvendt."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -7179,165 +7309,6 @@ msgstr "Angiv venligst et navn eller en e-mailadresse..."
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr "Angiv venligst et navn eller en e-mailadresse..."
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(ukendt certifikat)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Change Trust Level of %1"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "Ændr tillidsniveau for %1"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"Hvor meget tillid har du til certificeringer, der er lavet af <b>%1</b>, til "
-"korrekt verificering af certifikaters godkendelse?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "Ved ikke"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(ukendt tillid)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Vælg dette, hvis du ikke har nogen mening om tilliden til "
-"certifikatets ejer.<br>Certificeringer med dette tillidsniveau ignoreres, "
-"når validering af OpenPGP-certifikater tjekkes.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "Jeg har IKKE tillid til dem"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(aldrig tillid)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Vælg dette, hvis du overhovedet <em>ikke</em> har tilid "
-"tilcertifikatets ejer. Du har f.eks. kendskab til, at han certificerer uden "
-"at tjekke eller uden samtykke fra certifikatets ejer.<br>Certificeringer på "
-"dette tillidsniveau ignoreres, når gyldigheden af OpenPGP-certifikater "
-"tjekkes.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "Jeg tror, at tjekkene er tilfældige"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(marginal tillid)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, fuzzy, kde-format
-#| msgid ""
-#| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#| "blindly, but not very accuratly, either.<br>Certificates will only become "
-#| "valid with multiple certifications (typically three) at this trust level. "
-#| "This is usually a good choice.</font>"
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-"<font size=\"-1\">Vælg dette, hvis dine tillidscertificeringer ikke gøres i "
-"blinde, men heller ikke særligt præcist.<br>På dette tillidsniveau "
-"gyldiggøres certifikater kun med flere certificeringer (normalt tre). Dette "
-"er normalt et godt valg.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "Jeg tror, at tjekkene er meget præcise"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(fuld tillid)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">Vælg dette, hvis du mener, at certificeringer udføres "
-"meget præcist.<br>På dette tillidsniveau gyldiggøres certifikater med kun et "
-"enkelt certificering, anvis derfor så meget tillid med forsigtighed. </font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "Dette er mit certifikat"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(ultimativ tillid)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">Vælg dette, hvis - og kun hvis - dette er dit certifikat. "
-"Dette er standard, hvis den hemmelige nøgle er tilgængelig, men hvis du "
-"importerede dette certifikat, skal du sikkert selv justere tillidsniveauet."
-"<br>På dette tillidsniveau gyldiggøres certifikater med kun en enkelt "
-"certificering.</font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -11215,70 +11186,79 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "Certificér gyldigheden af det valgte certifikat"
 
 #: src/view/keylistcontroller.cpp:451
-#, kde-format
-msgid "Change Certification Trust..."
+#, fuzzy, kde-format
+#| msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "Ændr tillid til certifikat..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "Certify the validity of the selected certificate"
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "Certificér gyldigheden af det valgte certifikat"
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Ændr adgangsfrase..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Tilføj bruger-id..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Genopfrisk OpenPGP-certifikater"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME-certifikater"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "Create a new key pair or certificate signing request"
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Opret et ny nøglepar eller certifikatssigneringsanmodning"
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Betro rodcertifikat"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Betro ikke rodcertifikat"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "Tekniske detaljer"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME-certifikater"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Ryd CRL-cache"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Dump CRL-cache"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importér CRL fra fil..."
@@ -12359,6 +12339,128 @@ msgstr ""
 "Brug i stedet \"Opslå på server\" for at importere fra en offentlig "
 "nøgleserver."
 
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr ""
+#~ "<p>En fejl opstod under forsøg på at ændre tillid til certifikatet for <b>"
+#~ "%1</b>:</p><p>%2</p>"
+
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "Tillid til certifikat ændret."
+
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "Tillid til certifikat er ændret"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Change Trust Level of %1"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "Ændr tillidsniveau for %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr ""
+#~ "Hvor meget tillid har du til certificeringer, der er lavet af <b>%1</b>, "
+#~ "til korrekt verificering af certifikaters godkendelse?"
+
+#~ msgid "I do not know"
+#~ msgstr "Ved ikke"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(ukendt tillid)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Vælg dette, hvis du ikke har nogen mening om tilliden "
+#~ "til certifikatets ejer.<br>Certificeringer med dette tillidsniveau "
+#~ "ignoreres, når validering af OpenPGP-certifikater tjekkes.</font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "Jeg har IKKE tillid til dem"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(aldrig tillid)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Vælg dette, hvis du overhovedet <em>ikke</em> har tilid "
+#~ "tilcertifikatets ejer. Du har f.eks. kendskab til, at han certificerer "
+#~ "uden at tjekke eller uden samtykke fra certifikatets ejer."
+#~ "<br>Certificeringer på dette tillidsniveau ignoreres, når gyldigheden af "
+#~ "OpenPGP-certifikater tjekkes.</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "Jeg tror, at tjekkene er tilfældige"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(marginal tillid)</i>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~| "blindly, but not very accuratly, either.<br>Certificates will only "
+#~| "become valid with multiple certifications (typically three) at this "
+#~| "trust level. This is usually a good choice.</font>"
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Vælg dette, hvis dine tillidscertificeringer ikke gøres "
+#~ "i blinde, men heller ikke særligt præcist.<br>På dette tillidsniveau "
+#~ "gyldiggøres certifikater kun med flere certificeringer (normalt tre). "
+#~ "Dette er normalt et godt valg.</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "Jeg tror, at tjekkene er meget præcise"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(fuld tillid)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Vælg dette, hvis du mener, at certificeringer udføres "
+#~ "meget præcist.<br>På dette tillidsniveau gyldiggøres certifikater med kun "
+#~ "et enkelt certificering, anvis derfor så meget tillid med forsigtighed. </"
+#~ "font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "Dette er mit certifikat"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(ultimativ tillid)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Vælg dette, hvis - og kun hvis - dette er dit "
+#~ "certifikat. Dette er standard, hvis den hemmelige nøgle er tilgængelig, "
+#~ "men hvis du importerede dette certifikat, skal du sikkert selv justere "
+#~ "tillidsniveauet.<br>På dette tillidsniveau gyldiggøres certifikater med "
+#~ "kun en enkelt certificering.</font>"
+
 #, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
@@ -12723,11 +12825,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "Indlæser certifikat-cache..."
-
-#, fuzzy
-#~| msgid "Certifying other Certificates"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "Bekræfter andre certifikater"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -376,35 +376,157 @@ msgstr ""
 msgid "End of validity period changed successfully."
 msgstr "Жарамдылық мерзімі сәтті өзгертілді."
 
-#: src/commands/changeownertrustcommand.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the owner trust for <b>%1</b>:"
-#| "</p><p>%2</p>"
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
-msgstr ""
-"<p><b>%1</b> дегеннің иесінің сенімділік деңгейін өзгерту әрекеті кезінде "
-"қате пайда болды:</p><p>%2</p>"
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(беймәлім куәлік)"
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "&Куәліктер"
+
+#: src/commands/changeownertrustcommand.cpp:105
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "Куәліктер менеджерінің қатесі"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "Куәландыру"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "Күшін жою..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Куәліктерді жүктеп алу кезінде қате пайда болды: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Куәліктерді жүктеп алу кезінде қате пайда болды: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Куәліктерді жүктеп алу кезінде қате пайда болды: <message>%1</"
+"message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgid "Certifying other Certificates"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "Куәліктерді растау"
+
+#: src/commands/changeownertrustcommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Error"
-msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "Иесінің сенімділік деңгейін өзгерту қатесі"
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:269
 #, fuzzy, kde-format
-#| msgid "Owner trust changed successfully."
-msgid "Certification trust changed successfully."
-msgstr "Иесінің сенімділік деңгей сәтті өзгертілді."
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Succeeded"
-msgid "Certification Trust Change Succeeded"
-msgstr "Иесінің сенімділік деңгейін өзгерту сәтті өтті"
+#| msgid "Configuration Error"
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "Баптау қатесі"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -7168,162 +7290,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(беймәлім куәлік)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Change Trust Level of %1"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "%1 дегеннің сенімділік деңгейін өзгерту"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"<b>%1</b> деген өткізген куәліктердің шындылығын куәландыруына қаншалықты "
-"сенесіз?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "Білмеймін"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(сенімділігі беймәлім)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Куәлік иелінің сенімділігі туралы ештеңе айталмасаңыз, "
-"осыны таңдаңыз.<br>Бұндайда, OpenPGP куәлігінің жарамдылығы тексерілгенде, "
-"ол расталмайды.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "Бұларға СЕНБЕЙМІН"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(сенім жоқ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Куәлік иесіне кумансіз <em>СЕНБЕЙТІН</em> болсаңыз, осыны "
-"таңдаыз.<br>Бұндайда, OpenPGP куәлігінің жарамдылығы тексерілгенде, ол "
-"расталмайды.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "Шала тексерілген деп ойлаймын"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(сенімділігі шамалы)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, fuzzy, kde-format
-#| msgid ""
-#| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#| "blindly, but not very accuratly, either.<br>Certificates will only become "
-#| "valid with multiple certifications (typically three) at this trust level. "
-#| "This is usually a good choice.</font>"
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-"<font size=\"-1\">Растауы жасалған, бірақ мүкият емес десеңіз, онда осыны "
-"таңдаңыз,.<br>Бұндайда, куәлік бірнеше (әдетте, ұш) растауынан өткен соң "
-"жарамды деп саналады. Жөнді таңдау.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "Мүкият тексерілген деп ойлаймын"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(толық сенімді)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">Растауы мүкият жасалған десеңіз, онда осыны таңдаңыз,."
-"<br>Бұндайда, куәлік бір рет қана растауынан өткен соң жарамды деп саналады, "
-"сондықтан абайлап таңдаңыз.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "Бұл менің куәлігім"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(әбден сенімді)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">Бұны, бұл өзіңіздің, тек өзіңіздің куәлігіңіз болса ғана "
-"таңдаңыз. Егерде құпия кілтіңіз болса, бұл әдетті қолданатын куәлік. Алайда, "
-"бұл импортталған куәлік болса, онда бұның сенімділік деңгейін өзіңіз "
-"орнатуға тура келеді. <br>Бұндайда, куәлік бір рет қана растауынан өткен соң "
-"жарамды деп саналады.</font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -11219,69 +11185,77 @@ msgstr "Қолтаңбаның жарамдылы тексеруге келме�
 #: src/view/keylistcontroller.cpp:451
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "Иеснің сенімділігін өзгерту..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "The validity of the signature cannot be verified."
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "Қолтаңбаның жарамдылы тексеруге келмейді."
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Паролін өзгерту..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Пайдаланушы-ID-н қосу..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP куәліктерін жаңарту"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME куәліктері"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Дербес X.509 қос кілтіңізді жасау және куәландыруын сұрау "
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Түбір куәлігін сенімді қылу"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Түбір куәлігін сенімсіз қылу"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "Техникалық егжей-тегжейі"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME куәліктері"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL кэшін тазалау"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL кэшін дамп ету"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL тізімін файлдан импорттау..."
@@ -12364,6 +12338,132 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid ""
+#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
+#~| "b>:</p><p>%2</p>"
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr ""
+#~ "<p><b>%1</b> дегеннің иесінің сенімділік деңгейін өзгерту әрекеті кезінде "
+#~ "қате пайда болды:</p><p>%2</p>"
+
+#, fuzzy
+#~| msgid "Owner trust changed successfully."
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "Иесінің сенімділік деңгей сәтті өзгертілді."
+
+#, fuzzy
+#~| msgid "Owner Trust Change Succeeded"
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "Иесінің сенімділік деңгейін өзгерту сәтті өтті"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Change Trust Level of %1"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "%1 дегеннің сенімділік деңгейін өзгерту"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr ""
+#~ "<b>%1</b> деген өткізген куәліктердің шындылығын куәландыруына қаншалықты "
+#~ "сенесіз?"
+
+#~ msgid "I do not know"
+#~ msgstr "Білмеймін"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(сенімділігі беймәлім)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Куәлік иелінің сенімділігі туралы ештеңе айталмасаңыз, "
+#~ "осыны таңдаңыз.<br>Бұндайда, OpenPGP куәлігінің жарамдылығы "
+#~ "тексерілгенде, ол расталмайды.</font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "Бұларға СЕНБЕЙМІН"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(сенім жоқ)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Куәлік иесіне кумансіз <em>СЕНБЕЙТІН</em> болсаңыз, "
+#~ "осыны таңдаыз.<br>Бұндайда, OpenPGP куәлігінің жарамдылығы тексерілгенде, "
+#~ "ол расталмайды.</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "Шала тексерілген деп ойлаймын"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(сенімділігі шамалы)</i>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~| "blindly, but not very accuratly, either.<br>Certificates will only "
+#~| "become valid with multiple certifications (typically three) at this "
+#~| "trust level. This is usually a good choice.</font>"
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Растауы жасалған, бірақ мүкият емес десеңіз, онда осыны "
+#~ "таңдаңыз,.<br>Бұндайда, куәлік бірнеше (әдетте, ұш) растауынан өткен соң "
+#~ "жарамды деп саналады. Жөнді таңдау.</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "Мүкият тексерілген деп ойлаймын"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(толық сенімді)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Растауы мүкият жасалған десеңіз, онда осыны таңдаңыз,."
+#~ "<br>Бұндайда, куәлік бір рет қана растауынан өткен соң жарамды деп "
+#~ "саналады, сондықтан абайлап таңдаңыз.</font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "Бұл менің куәлігім"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(әбден сенімді)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Бұны, бұл өзіңіздің, тек өзіңіздің куәлігіңіз болса "
+#~ "ғана таңдаңыз. Егерде құпия кілтіңіз болса, бұл әдетті қолданатын куәлік. "
+#~ "Алайда, бұл импортталған куәлік болса, онда бұның сенімділік деңгейін "
+#~ "өзіңіз орнатуға тура келеді. <br>Бұндайда, куәлік бір рет қана растауынан "
+#~ "өткен соң жарамды деп саналады.</font>"
+
+#, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "Қолтаңбалау мен шифрлау сәтті өтті."
@@ -12687,11 +12787,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "Куәлік кэшін жүктеу..."
-
-#, fuzzy
-#~| msgid "Certifying other Certificates"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "Куәліктерді растау"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

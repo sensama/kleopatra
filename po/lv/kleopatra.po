@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -377,35 +377,154 @@ msgstr ""
 msgid "End of validity period changed successfully."
 msgstr "Beigu datums nomainīts veiksmīgi."
 
-#: src/commands/changeownertrustcommand.cpp:222
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>An error occurred while trying to change the owner trust for <b>%1</b>:"
-#| "</p><p>%2</p>"
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
-msgstr ""
-"<p>Radās kļūda, mēģinot mainīt īpašnieka uzticību priekš <b>%1</b>:</p><p>"
-"%2</p>"
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(nezināms sertifikāts)"
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgid "Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "Sertifikāti"
+
+#: src/commands/changeownertrustcommand.cpp:105
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "Sertifikācija"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "Sertifikācija"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "Atsaukt..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Radās kļūda, ielādējot sertifikācijas: <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Radās kļūda, ielādējot sertifikācijas: <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Radās kļūda, ielādējot sertifikācijas: <message>%1</message></para>"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgid "Certifying other Certificates"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "Citu sertifikātu sertificēšana"
+
+#: src/commands/changeownertrustcommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Error"
-msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "Īpašnieka uzticības nomaiņas kļūda"
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:269
 #, fuzzy, kde-format
-#| msgid "Owner trust changed successfully."
-msgid "Certification trust changed successfully."
-msgstr "Īpašnieka uzticība veiksmīgi nomainīta."
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Owner Trust Change Succeeded"
-msgid "Certification Trust Change Succeeded"
-msgstr "Īpašnieka uzticības nomaiņa veiksmīga"
+#| msgid "Configuration Error"
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "Konfigurācijas kļūda"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -7344,166 +7463,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(nezināms sertifikāts)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Change Trust Level of %1"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "Mainīt %1 uzticības līmeni"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"Cik daudz jūs uzticaties %1 sertifikācijām, lai pareizi pārbaudītu "
-"sertifikātu autentiskumu?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "Es nezinu"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(nezināma uzticamība)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Izvēlieties šo, ja jums nav viedokļa par sertifikāta "
-"īpašnieka uzticamību.<br>Pārbaudot OpenPGP sertifikātu derīgumu, šī "
-"uzticamības līmeņa sertifikācijas tiek ignorētas.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "Es NEUZTICOS viņiem"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(nekad neuzticēties)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Izvēlieties šo, ja skaidri zināt, ka neuzticaties "
-"sertifikāta īpašniekam, piem., jums ir zināms, ka viņš sertificē bez "
-"pārbaudīšanas vai bez sertifikāta īpašnieka piekrišanas.<br>Pārbaudot "
-"OpenPGP sertifikātu derīgumu, šī uzticamības līmeņa sertifikācijas tiek "
-"ignorētas.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "Man šķiet, ka pārbaudes ir paviršas"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(zema uzticamība)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, fuzzy, kde-format
-#| msgid ""
-#| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#| "blindly, but not very accuratly, either.<br>Certificates will only become "
-#| "valid with multiple certifications (typically three) at this trust level. "
-#| "This is usually a good choice.</font>"
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-"<font size=\"-1\">Izvēlieties šo, ja domājat, ka sertifikācijas netiek "
-"izdarītas 'akli', bet arī ne īpaši precīzi.<br>Šajā uzticamības līmenī "
-"sertifikāti kļūst derīgi pēc vairākām sertifikācijām (parasti trīs). Šī "
-"parasti ir laba izvēle.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "Es domāju, ka pārbaudes ir ļoti precīzas"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(pilna uzticamība)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">Izvēlieties šo, ja paļaujaties, ka sertifikācijas tiek "
-"izdarītas ļoti precīzi.<br>Šajā uzticamības līmenī sertifikāti kļūs derīgi "
-"ar vienu sertifikāciju, tādēļ piešķiriet šo uzticamību ar lielu piesardzību."
-"</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "Šis ir mans sertifikāts"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(vairāk nekā pilna uzticamība)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">Izvēlieties šo tikai tad, ja šis ir jūsu sertifikāts. Šis "
-"ir noklusējums, ja ir pieejama slepenā atslēga, bet ja šo sertifikātu "
-"importējāt, uzticamības līmeni, iespējams, vajadzēs noregulēt pašam. "
-"<br>Šajā uzticamības līmenī sertifikāti kļūs derīgi jau ar vienu "
-"sertifikāciju.</font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -11446,69 +11405,77 @@ msgstr "Paraksta derīgumu nevar apstiprināt."
 #: src/view/keylistcontroller.cpp:451
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "Mainīt īpašnieka uzticību..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "The validity of the signature cannot be verified."
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "Paraksta derīgumu nevar apstiprināt."
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Mainīt paroles frāzi..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Pievienot lietotāja ID..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Atsvaidzināt OpenPGP sertifikātus"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME sertifikāti"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Izveidot personīgo X.509 atslēgu pāri un sertificēšanas pieprasījumu "
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Uzticēties saknes sertifikātam"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Neuzticēties saknes sertifikātam"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "Tehniskās detaļas"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME sertifikāti"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Iztīrīt CRL kešatmiņu"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Veikt CRL kešatmiņas izmeti"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importēt CRL no faila..."
@@ -12597,6 +12564,136 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid ""
+#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
+#~| "b>:</p><p>%2</p>"
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr ""
+#~ "<p>Radās kļūda, mēģinot mainīt īpašnieka uzticību priekš <b>%1</b>:</p><p>"
+#~ "%2</p>"
+
+#, fuzzy
+#~| msgid "Owner trust changed successfully."
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "Īpašnieka uzticība veiksmīgi nomainīta."
+
+#, fuzzy
+#~| msgid "Owner Trust Change Succeeded"
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "Īpašnieka uzticības nomaiņa veiksmīga"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Change Trust Level of %1"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "Mainīt %1 uzticības līmeni"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr ""
+#~ "Cik daudz jūs uzticaties %1 sertifikācijām, lai pareizi pārbaudītu "
+#~ "sertifikātu autentiskumu?"
+
+#~ msgid "I do not know"
+#~ msgstr "Es nezinu"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(nezināma uzticamība)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Izvēlieties šo, ja jums nav viedokļa par sertifikāta "
+#~ "īpašnieka uzticamību.<br>Pārbaudot OpenPGP sertifikātu derīgumu, šī "
+#~ "uzticamības līmeņa sertifikācijas tiek ignorētas.</font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "Es NEUZTICOS viņiem"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(nekad neuzticēties)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Izvēlieties šo, ja skaidri zināt, ka neuzticaties "
+#~ "sertifikāta īpašniekam, piem., jums ir zināms, ka viņš sertificē bez "
+#~ "pārbaudīšanas vai bez sertifikāta īpašnieka piekrišanas.<br>Pārbaudot "
+#~ "OpenPGP sertifikātu derīgumu, šī uzticamības līmeņa sertifikācijas tiek "
+#~ "ignorētas.</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "Man šķiet, ka pārbaudes ir paviršas"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(zema uzticamība)</i>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~| "blindly, but not very accuratly, either.<br>Certificates will only "
+#~| "become valid with multiple certifications (typically three) at this "
+#~| "trust level. This is usually a good choice.</font>"
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Izvēlieties šo, ja domājat, ka sertifikācijas netiek "
+#~ "izdarītas 'akli', bet arī ne īpaši precīzi.<br>Šajā uzticamības līmenī "
+#~ "sertifikāti kļūst derīgi pēc vairākām sertifikācijām (parasti trīs). Šī "
+#~ "parasti ir laba izvēle.</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "Es domāju, ka pārbaudes ir ļoti precīzas"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(pilna uzticamība)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Izvēlieties šo, ja paļaujaties, ka sertifikācijas tiek "
+#~ "izdarītas ļoti precīzi.<br>Šajā uzticamības līmenī sertifikāti kļūs "
+#~ "derīgi ar vienu sertifikāciju, tādēļ piešķiriet šo uzticamību ar lielu "
+#~ "piesardzību.</font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "Šis ir mans sertifikāts"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(vairāk nekā pilna uzticamība)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">Izvēlieties šo tikai tad, ja šis ir jūsu sertifikāts. "
+#~ "Šis ir noklusējums, ja ir pieejama slepenā atslēga, bet ja šo sertifikātu "
+#~ "importējāt, uzticamības līmeni, iespējams, vajadzēs noregulēt pašam. "
+#~ "<br>Šajā uzticamības līmenī sertifikāti kļūs derīgi jau ar vienu "
+#~ "sertifikāciju.</font>"
+
+#, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "Parakstīšana un šifrēšana izdevās."
@@ -12919,11 +13016,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "Ielādē sertifikātu kešatmiņu..."
-
-#, fuzzy
-#~| msgid "Certifying other Certificates"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "Citu sertifikātu sertificēšana"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

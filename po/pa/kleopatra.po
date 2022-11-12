@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -348,30 +348,143 @@ msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌ�
 msgid "End of validity period changed successfully."
 msgstr "ਸ਼ਬਦ ਠੀਕ ਤਰ੍ਹਾਂ ਬਦਲਿਆ ਗਿਆ।"
 
-#: src/commands/changeownertrustcommand.cpp:222
+#: src/commands/changeownertrustcommand.cpp:103
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr "(ਅਣਜਾਣ ਸਰਟੀਫਿਕੇਟ)"
+
+#: src/commands/changeownertrustcommand.cpp:104
+#, fuzzy, kde-format
+#| msgid "Certificates"
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr "ਸਰਟੀਫਿਕੇਟ"
+
+#: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
-msgid ""
-"<p>An error occurred while trying to change the certification trust for <b>"
-"%1</b>:</p><p>%2</p>"
+msgctxt "@action:button"
+msgid "Yes, it's mine"
 msgstr ""
 
-#: src/commands/changeownertrustcommand.cpp:226
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:146
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Grant Certification Power"
+msgstr "ਸਰਟੀਫਿਕੇਸ਼ਨ"
+
+#: src/commands/changeownertrustcommand.cpp:147
+#, kde-format
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, fuzzy, kde-format
+#| msgid "Certification"
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr "ਸਰਟੀਫਿਕੇਸ਼ਨ"
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, fuzzy, kde-format
+#| msgid "Revoke..."
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr "ਮਨਸੂਖ..."
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, fuzzy, kde-kuit-format
+#| msgid "An error occurred importing this certificate: %1"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgid "An error occurred importing this certificate: %1"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, fuzzy, kde-kuit-format
+#| msgid "An error occurred importing this certificate: %1"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ: %1"
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Refresh certificate list"
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr "ਸਰਟੀਫਿਕੇਟ ਲਿਸਟ ਤਾਜ਼ਾ ਕਰੋ"
+
+#: src/commands/changeownertrustcommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "Owner Trust Change Error"
-msgid "Certification Trust Change Error"
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
 msgstr "ਓਨਰ ਟਰੱਸਟ ਬਦਲਣ ਗਲਤੀ"
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:269
 #, fuzzy, kde-format
-#| msgid "Certificate Usage"
-msgid "Certification trust changed successfully."
-msgstr "ਸਰਟੀਫਿਕੇਟ ਵਰਤੋਂ"
-
-#: src/commands/changeownertrustcommand.cpp:232
-#, fuzzy, kde-format
-#| msgid "Certification canceled."
-msgid "Certification Trust Change Succeeded"
-msgstr "ਸਰਟੀਫਿਕੇਸ਼ਨ ਰੱਦ ਕੀਤੀ।"
+#| msgid "Configuration Error"
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
+msgstr "ਸੰਰਚਨਾ ਗਲਤੀ"
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -6769,138 +6882,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(ਅਣਜਾਣ ਸਰਟੀਫਿਕੇਟ)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, fuzzy, kde-format
-#| msgctxt "as in \"verbosity level\""
-#| msgid "Level"
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr "ਲੈਵਲ"
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "ਮੈਨੂੰ ਨਹੀਂ ਪਤਾ"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(ਅਣਜਾਣ ਟਰੱਸਟ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "ਮੈਨੂੰ ਉਨ੍ਹਾਂ ਉੱਤੇ ਭਰੋਸਾ ਨਹੀਂ ਹੈ"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(ਕਦੇ ਵੀ ਟਰੱਸਟ ਨਹੀਂ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(ਪੂਰਾ ਟਰੱਸਟ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "ਇਹ ਮੇਰਾ ਸਰਟੀਫਿਕੇਟ ਹੈ"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(ਬੇਅੰਤ ਭਰੋਸਾ)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Revoke..."
@@ -10608,72 +10589,80 @@ msgstr "ਸਰਟੀਫਿਕੇਟ ਚੁਣੋ ਜੀ"
 #: src/view/keylistcontroller.cpp:451
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr "ਓਨਰ ਟਰੱਸਟ ਬਦਲੋ..."
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, fuzzy, kde-format
+#| msgid "Please select a certificate"
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr "ਸਰਟੀਫਿਕੇਟ ਚੁਣੋ ਜੀ"
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "ਪ੍ਹੈਰਾ ਬਦਲੋ..."
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "ਯੂਜ਼ਰ-ID ਸ਼ਾਮਲ..."
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP ਸਰਟੀਫਿਕੇਟ ਤਾਜ਼ੇ"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME ਸਰਟੀਫਿਕੇਟ"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Create a new certificate"
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "ਨਵਾਂ ਸਰਟੀਫਿਕੇਟ ਬਣਾਓ"
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, fuzzy, kde-format
 #| msgid "Dump Certificate"
 msgid "Trust Root Certificate"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਡੰਪ"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, fuzzy, kde-format
 #| msgid "Dump Certificate"
 msgid "Distrust Root Certificate"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਡੰਪ"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "ਤਕਨੀਨੀ ਵੇਰਵਾ"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME ਸਰਟੀਫਿਕੇਟ"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr ""
@@ -11761,6 +11750,44 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Certificate Usage"
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "ਸਰਟੀਫਿਕੇਟ ਵਰਤੋਂ"
+
+#, fuzzy
+#~| msgid "Certification canceled."
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "ਸਰਟੀਫਿਕੇਸ਼ਨ ਰੱਦ ਕੀਤੀ।"
+
+#, fuzzy
+#~| msgctxt "as in \"verbosity level\""
+#~| msgid "Level"
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "ਲੈਵਲ"
+
+#~ msgid "I do not know"
+#~ msgstr "ਮੈਨੂੰ ਨਹੀਂ ਪਤਾ"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(ਅਣਜਾਣ ਟਰੱਸਟ)</i>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "ਮੈਨੂੰ ਉਨ੍ਹਾਂ ਉੱਤੇ ਭਰੋਸਾ ਨਹੀਂ ਹੈ"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(ਕਦੇ ਵੀ ਟਰੱਸਟ ਨਹੀਂ)</i>"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(ਪੂਰਾ ਟਰੱਸਟ)</i>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "ਇਹ ਮੇਰਾ ਸਰਟੀਫਿਕੇਟ ਹੈ"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(ਬੇਅੰਤ ਭਰੋਸਾ)</i>"
+
+#, fuzzy
 #~| msgid "Signing and encryption succeeded."
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "ਸਾਈਨਿੰਗ ਅਤੇ ਇੰਕ੍ਰਿਪਸ਼ਨ ਸਫ਼ਲ ਹੈ।"
@@ -12010,12 +12037,6 @@ msgstr ""
 #~| msgid "Loading certificate cache..."
 #~ msgid "Loading certificates..."
 #~ msgstr "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Refresh certificate list"
-#~ msgid "Certificates added to the certificate list."
-#~ msgstr "ਸਰਟੀਫਿਕੇਟ ਲਿਸਟ ਤਾਜ਼ਾ ਕਰੋ"
 
 #, fuzzy
 #~| msgid "(no matching certificates found)"

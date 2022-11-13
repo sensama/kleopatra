@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-12 00:48+0000\n"
-"PO-Revision-Date: 2022-10-27 12:02+0200\n"
+"PO-Revision-Date: 2022-11-12 10:05+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -344,30 +344,28 @@ msgid "End of validity period changed successfully."
 msgstr "El final del període de validesa s'ha canviat correctament."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(certificat desconegut)"
+msgstr "És «%1» el vostre propi certificat?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Certificat de la targeta"
+msgstr "Marca com a certificat propi"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Sí, és meu"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "No, no és meu"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -378,6 +376,10 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Voleu concedir a «%1» el dret de marcar els certificats com a %2 per "
+"vós?</para><para><emphasis>Això significa que el propietari d'aquest "
+"certificat comprova correctament les empremtes dactilars i confirma les "
+"identitats d'altres.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -388,125 +390,102 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Voleu concedir a «%1» el dret de marcar els certificats com a vàlids "
+"per vós?</para><para><emphasis>Això significa que el propietari d'aquest "
+"certificat comprova correctament les empremtes dactilars i confirma les "
+"identitats d'altres.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Error en certificar"
+msgstr "Concessió del dret de certificació"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Concedeix el dret"
 
 #: src/commands/changeownertrustcommand.cpp:157
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Els certificats o els grups de certificats s'han actualitzat en segon "
-"pla.</para><para>Voleu desar els vostres canvis?</para>"
+"<para>El certificat «%1» està facultat per a marcar altres certificats com a "
+"%2 per vós.</para><para>Voleu revocar aquest dret?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Els certificats o els grups de certificats s'han actualitzat en segon "
-"pla.</para><para>Voleu desar els vostres canvis?</para>"
+"<para>El certificat «%1» està facultat per a marcar altres certificats com a "
+"vàlids per vós.</para><para>Voleu revocar aquest dret?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Revocació de la certificació"
+msgstr "Revocació del dret de certificació"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Revoca la clau"
+msgstr "Revoca el dret"
 
 #: src/commands/changeownertrustcommand.cpp:233
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>S'ha produït un error en actualitzar el certificat:</"
-"para><para><message>%1</message></para>"
+"<para>S'ha produït un error en marcar el certificat «%1» com a certificat "
+"vostre.</para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>S'ha produït un error en actualitzar el certificat:</"
-"para><para><message>%1</message></para>"
+"<para>S'ha produït un error en concedir el dret de certificació a «%1».</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>S'ha produït un error en actualitzar el certificat:</"
-"para><para><message>%1</message></para>"
+"<para>S'ha produït un error en revocar el dret de certificació de «%1».</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:263
 #, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr ""
+msgstr "El certificat «%1» s'ha marcat com a certificat vostre."
 
 #: src/commands/changeownertrustcommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Error en canviar la confiança de la certificació"
+msgstr "S'ha concedit el dret de certificació a «%1»."
 
 #: src/commands/changeownertrustcommand.cpp:269
-#, fuzzy, kde-format
-#| msgctxt "%1 is the name of the profile"
-#| msgid "The configuration profile \"%1\" was applied."
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "Ara, el perfil de configuració «%1» ha estat aplicat."
+msgstr "S'ha revocat el dret de certificació de «%1»."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -10861,18 +10840,16 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "Revoca la certificació del certificat seleccionat"
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Canvia la confiança de la certificació..."
+msgstr "Canvia el dret de certificació..."
 
 #: src/view/keylistcontroller.cpp:452
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "Revoca la certificació del certificat seleccionat"
+msgstr "Concedeix o revoca el dret de certificació del certificat seleccionat"
 
 #: src/view/keylistcontroller.cpp:456
 #, kde-format
@@ -11960,117 +11937,3 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
-
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<p>S'ha produït un error en provar de canviar la confiança de la "
-#~ "certificació per a <b>%1</b>:</p><p>%2</p>"
-
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "La confiança de la certificació s'ha canviat correctament."
-
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "Canvi correcte en la confiança de la certificació"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "Canvi del nivell de confiança de %1"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr ""
-#~ "Quant confieu en les certificacions efectuades per <b>%1</b> per a "
-#~ "verificar correctament l'autenticitat dels certificats?"
-
-#~ msgid "I do not know"
-#~ msgstr "No ho sé"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>(confiança desconeguda)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Trieu això si no teniu cap opinió quant a la "
-#~ "credibilitat del propietari del certificat.<br>Les certificacions amb "
-#~ "aquest nivell de confiança s'ignoren quan es comprova la validesa dels "
-#~ "certificats OpenPGP.</font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "NO hi crec"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>(confiança nul·la)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Trieu això si explícitament <em>no</em> confieu en el "
-#~ "propietari del certificat, p. ex. perquè us consta que no comprova els "
-#~ "certificats o ho fa sense el consentiment del propietari del certificat."
-#~ "<br>Les certificacions amb aquest nivell de confiança s'ignoren quan es "
-#~ "comprova la validesa dels certificats OpenPGP.</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "Crec que les comprovacions són informals"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>(confiança dubtosa)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Trieu això si la confiança de les certificacions no es "
-#~ "fa a cegues, però tampoc no molt acuradament.<br>Els certificats només "
-#~ "esdevindran vàlids amb certificacions múltiples (normalment tres) en "
-#~ "aquest nivell de confiança. Normalment és una bona selecció.</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "Crec que les comprovacions són molt acurades"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>(confiança completa)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Trieu això si la confiança de les certificacions es fa "
-#~ "amb molta cura.<br>Els certificats esdevindran vàlids amb només una "
-#~ "certificació en aquest nivell de confiança, per tant, assigneu aquesta "
-#~ "confiança amb compte.</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "Aquest és el meu certificat"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>(confiança fonamental)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Trieu això si, i només si aquest és el vostre "
-#~ "certificat. Aquest és el predeterminat si està disponible la clau "
-#~ "secreta, però si importeu aquest certificat, haureu d'ajustar el vostre "
-#~ "propi nivell de confiança.<br>Els certificats esdevindran vàlids amb una "
-#~ "única certificació en aquest nivell de confiança.</font>"

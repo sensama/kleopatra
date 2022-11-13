@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-12 00:48+0000\n"
-"PO-Revision-Date: 2022-10-27 13:35+0300\n"
+"PO-Revision-Date: 2022-11-12 09:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -346,30 +346,28 @@ msgid "End of validity period changed successfully."
 msgstr "Дату завершення періоду чинності успішно змінено."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(невідомий сертифікат)"
+msgstr "Чи є «%1» вашим власним сертифікатом?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Сертифікат картки"
+msgstr "Позначити власний сертифікат"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Так, це мій"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "Ні, це не мій"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -380,6 +378,10 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Хочете надати «%1» доступ до позначення сертифікатів як «%2» за вас?</"
+"para><para><emphasis>Це означатиме, що власником або власницею цього "
+"сертифіката належним чином перевіряє відбитки і підтверджує ідентичність "
+"інших користувачів.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -390,126 +392,102 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Хочете надати «%1» доступ до позначення сертифікатів чинними за вас?</"
+"para><para><emphasis>Це означатиме, що власником або власницею цього "
+"сертифіката належним чином перевіряє відбитки і підтверджує ідентичність "
+"інших користувачів.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Помилка сертифікації"
+msgstr "Надання доступу до сертифікації"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Надання доступу"
 
 #: src/commands/changeownertrustcommand.cpp:157
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Сертифікати або групи сертифікатів було оновлено у фоновому режимі.</"
-"para><para>Хочете зберегти внесені вами зміни?</para>"
+"<para>Сертифікату «%1» надано доступу до позначення інших сертифікатів як "
+"«%2» за вас.</para><para>Хочете відкликати цей доступ?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Сертифікати або групи сертифікатів було оновлено у фоновому режимі.</"
-"para><para>Хочете зберегти внесені вами зміни?</para>"
+"<para>Сертифікату «%1» надано доступу до позначення інших сертифікатів "
+"чинними за вас.</para><para>Хочете відкликати цей доступ?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Відкликати сертифікацію"
+msgstr "Відкликання доступу до сертифікації"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Відкликати ключ"
+msgstr "Відкликати доступ"
 
 #: src/commands/changeownertrustcommand.cpp:233
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Під час спроби оновити сертифікат сталася помилка:</"
-"para><para><message>%1</message></para>"
+"<para>Під час спроби позначення сертифіката «%1» як вашого сталася помилка.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Під час спроби оновити сертифікат сталася помилка:</"
-"para><para><message>%1</message></para>"
+"<para>Під час спроби надання доступу до сертифікації «%1» сталася помилка.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Під час спроби оновити сертифікат сталася помилка:</"
-"para><para><message>%1</message></para>"
+"<para>Під час спроби відкликання доступу до сертифікації «%1» сталася "
+"помилка.</para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:263
-#, fuzzy, kde-format
-#| msgid "Certificates added to the certificate list."
+#, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "Сертифікати додано до списку сертифікатів."
+msgstr "Сертифікат «%1» позначено як ваш."
 
 #: src/commands/changeownertrustcommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Помилка під час зміни рівня надійності сертифікації"
+msgstr "«%1» надано доступ до сертифікації."
 
 #: src/commands/changeownertrustcommand.cpp:269
-#, fuzzy, kde-format
-#| msgctxt "%1 is the name of the profile"
-#| msgid "The configuration profile \"%1\" was applied."
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "Застосовано профіль налаштувань «%1»."
+msgstr "Доступ до сертифікації «%1» відкликано."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -10910,18 +10888,17 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "Відкликати сертифікацію позначено сертифіката"
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Змінити рівень довіри до сертифіката…"
+msgstr "Змінити доступ до сертифікації…"
 
 #: src/view/keylistcontroller.cpp:452
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "Відкликати сертифікацію позначено сертифіката"
+msgstr ""
+"Надати або відкликати доступ до сертифікації для позначеного сертифіката"
 
 #: src/view/keylistcontroller.cpp:456
 #, kde-format

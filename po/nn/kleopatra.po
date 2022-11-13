@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-04 00:46+0000\n"
+"POT-Creation-Date: 2022-11-12 00:48+0000\n"
 "PO-Revision-Date: 2022-06-17 18:10+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -327,26 +327,130 @@ msgstr ""
 msgid "End of validity period changed successfully."
 msgstr ""
 
-#: src/commands/changeownertrustcommand.cpp:222
+#: src/commands/changeownertrustcommand.cpp:103
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Is '%1' your own certificate?"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:104
 #, kde-format
+msgctxt "@title:window"
+msgid "Mark Own Certificate"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:105
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes, it's mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:106
+#, kde-format
+msgctxt "@action:button"
+msgid "No, it's not mine"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:134
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
-"<p>An error occurred while trying to change the certification trust for "
-"<b>%1</b>:</p><p>%2</p>"
+"<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
+"</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
 msgstr ""
 
-#: src/commands/changeownertrustcommand.cpp:226
-#, kde-format
-msgid "Certification Trust Change Error"
+#: src/commands/changeownertrustcommand.cpp:140
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>Do you want to grant '%1' the power to mark certificates as valid for "
+"you?</para><para><emphasis>This means that the owner of this certificate "
+"properly check fingerprints and confirms the identities of others.</"
+"emphasis></para>"
 msgstr ""
 
-#: src/commands/changeownertrustcommand.cpp:231
+#: src/commands/changeownertrustcommand.cpp:146
 #, kde-format
-msgid "Certification trust changed successfully."
+msgctxt "@title:window"
+msgid "Grant Certification Power"
 msgstr ""
 
-#: src/commands/changeownertrustcommand.cpp:232
+#: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
-msgid "Certification Trust Change Succeeded"
+msgctxt "@action:button"
+msgid "Grant Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:157
+#, kde-kuit-format
+msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as %2 for "
+"you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:162
+#, kde-kuit-format
+msgctxt "@info %1: a certificate"
+msgid ""
+"<para>The certificate '%1' is empowered to mark other certificates as valid "
+"for you.</para><para>Do you want to revoke this power?</para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:167
+#, kde-format
+msgctxt "@title:window"
+msgid "Revoke Certification Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:168
+#, kde-format
+msgctxt "@action:button"
+msgid "Revoke Power"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:233
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while marking certificate '%1' as your certificate.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:240
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while granting certification power to '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:247
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>An error occurred while revoking the certification power of '%1'.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:263
+#, kde-format
+msgctxt "@info"
+msgid "Certificate '%1' was marked as your certificate."
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:266
+#, kde-format
+msgctxt "@info"
+msgid "Certification power was granted to '%1'."
+msgstr ""
+
+#: src/commands/changeownertrustcommand.cpp:269
+#, kde-format
+msgctxt "@info"
+msgid "The certification power of '%1' was revoked."
 msgstr ""
 
 #: src/commands/changepassphrasecommand.cpp:185
@@ -6484,154 +6588,6 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 
-#: src/dialogs/ownertrustdialog.cpp:37
-#, kde-format
-msgid "(unknown certificate)"
-msgstr "(ukjent sertifikat)"
-
-#: src/dialogs/ownertrustdialog.cpp:105
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Trust Level of %1"
-msgstr ""
-
-#: src/dialogs/ownertrustdialog.cpp:106
-#, kde-format
-msgctxt "@info"
-msgid ""
-"How much do you trust certifications made by <b>%1</b> to correctly verify "
-"authenticity of certificates?"
-msgstr ""
-"Kor stor tiltru har du til sertifikat laga av <b>%1</b> når det gjeld "
-"stadfesting av at sertifikat er ekte?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, unknownRB)
-#: src/dialogs/ownertrustdialog.ui:29
-#, kde-format
-msgid "I do not know"
-msgstr "Eg veit ikkje"
-
-#. i18n: ectx: property (text), widget (QLabel, label_7)
-#: src/dialogs/ownertrustdialog.ui:42
-#, kde-format
-msgid "<i>(unknown trust)</i>"
-msgstr "<i>(ukjend tiltrunivå)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/ownertrustdialog.ui:75
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you have no opinion about the "
-"trustworthyness of the certificate's owner.<br>Certifications at this trust "
-"level are ignored when checking the validity of OpenPGP certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Vel dette om du ikkje veit kor stor tiltru du har til "
-"eigaren av sertifikatet.<br/>Sertifikat med dette tiltrunivået vert ikkje "
-"brukte ved kontroll av om OpenPGP-sertifikat er gyldige.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, neverRB)
-#: src/dialogs/ownertrustdialog.ui:89
-#, kde-format
-msgid "I do NOT trust them"
-msgstr "Eg stolar IKKJE på dei"
-
-#. i18n: ectx: property (text), widget (QLabel, label_8)
-#: src/dialogs/ownertrustdialog.ui:99
-#, kde-format
-msgid "<i>(never trust)</i>"
-msgstr "<i>(aldri stol på)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/ownertrustdialog.ui:132
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-"certificate owner, e.g. because you have knowledge of him certifying without "
-"checking or without the certificate owner's consent.<br>Certifications at "
-"this trust level are ignored when checking the validity of OpenPGP "
-"certificates.</font>"
-msgstr ""
-"<font size=\"-1\">Vel dette om du <em>ikkje</em> stolar på "
-"sertifikateigaren, viss du for eksempel veit at han sertifiserer utan å "
-"kontrollera, eller utan samtykkjet til sertifikateigaren.<br/>Sertifikat med "
-"dette tiltrunivået vert ikkje brukte ved kontroll av om OpenPGP-sertifikat "
-"er gyldige.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, marginalRB)
-#: src/dialogs/ownertrustdialog.ui:146
-#, kde-format
-msgid "I believe checks are casual"
-msgstr "Eg trur kontrollane er ikkje er nøye"
-
-#. i18n: ectx: property (text), widget (QLabel, label_9)
-#: src/dialogs/ownertrustdialog.ui:156
-#, kde-format
-msgid "<i>(marginal trust)</i>"
-msgstr "<i>(marginal tiltru)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/ownertrustdialog.ui:189
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are not done "
-"blindly, but not very accurately, either.<br>Certificates will only become "
-"valid with multiple certifications (typically three) at this trust level. "
-"This is usually a good choice.</font>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, fullRB)
-#: src/dialogs/ownertrustdialog.ui:203
-#, kde-format
-msgid "I believe checks are very accurate"
-msgstr "Eg trur kontrollane er veldig nøye"
-
-#. i18n: ectx: property (text), widget (QLabel, label_10)
-#: src/dialogs/ownertrustdialog.ui:213
-#, kde-format
-msgid "<i>(full trust)</i>"
-msgstr "<i>(full tiltru)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/ownertrustdialog.ui:246
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if you trust certifications are done very "
-"accurately.<br>Certificates will become valid with just a single "
-"certification at this trust level, so assign this much trust with care.</"
-"font>"
-msgstr ""
-"<font size=\"-1\">Vel dette om du stolar på at sertifiseringane vert gjorde "
-"veldig nøye.<br/>Sertifikat vert rekna som gyldige med berre éi "
-"sertifisering, så ver forsiktig med kven du brukar dette nivået på.</font>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, ultimateRB)
-#: src/dialogs/ownertrustdialog.ui:263
-#, kde-format
-msgid "This is my certificate"
-msgstr "Dette er sertifikatet mitt"
-
-#. i18n: ectx: property (text), widget (QLabel, label_11)
-#: src/dialogs/ownertrustdialog.ui:273
-#, kde-format
-msgid "<i>(ultimate trust)</i>"
-msgstr "<i>(ultimat tiltru)</i>"
-
-#. i18n: ectx: property (text), widget (QLabel, label_6)
-#: src/dialogs/ownertrustdialog.ui:306
-#, kde-format
-msgid ""
-"<font size=\"-1\">Choose this if and only if this is your certificate. This "
-"is the default if the secret key is available, but if you imported this "
-"certificate, you might need to adjust the trust level yourself."
-"<br>Certificates will become valid with just a single certification at this "
-"trust level.</font>"
-msgstr ""
-"<font size=\"-1\">Vel dette viss og berre viss det er du som eig dette "
-"sertifikatet. Dette er standard om den hemmelege nøkkelen er tilgjengeleg, "
-"men viss du har importert sertifikatet sjølv, må du kanskje justera "
-"tiltrunivået sjølv.<br/>Sertifikat vert rekna som gyldige med berre éi "
-"sertifisering på dette nivået.</font>"
-
 #: src/dialogs/revokekeydialog.cpp:92
 #, kde-format
 msgctxt "title:window"
@@ -10245,65 +10201,72 @@ msgstr ""
 
 #: src/view/keylistcontroller.cpp:451
 #, kde-format
-msgid "Change Certification Trust..."
+msgctxt "@action:inmenu"
+msgid "Change Certification Power..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:455
+#: src/view/keylistcontroller.cpp:452
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Grant or revoke the certification power of the selected certificate"
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Endra passfrase …"
 
-#: src/view/keylistcontroller.cpp:459
+#: src/view/keylistcontroller.cpp:460
 #, kde-format
 msgid "Add User ID..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:464
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Oppdater OpenPGP-sertifikat"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:475
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:481
+#: src/view/keylistcontroller.cpp:482
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:486
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Technical Details"
 msgstr "Tekniske detaljar"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:495
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Tøm CRL-mellomlager"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:503
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Dump CRL-mellomlager"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importer CRL frå fil …"

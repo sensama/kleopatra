@@ -53,6 +53,7 @@ public:
         setExpired(DefaultKeyFilter::NotSet);
         setHasSecret(DefaultKeyFilter::Set);
         setCanSign(DefaultKeyFilter::Set);
+        setValidIfSMIME(DefaultKeyFilter::Set);
 
         if (proto == GpgME::OpenPGP) {
             setIsOpenPGP(DefaultKeyFilter::Set);
@@ -69,6 +70,7 @@ public:
         setRevoked(DefaultKeyFilter::NotSet);
         setExpired(DefaultKeyFilter::NotSet);
         setCanEncrypt(DefaultKeyFilter::Set);
+        setValidIfSMIME(DefaultKeyFilter::Set);
 
         if (proto == GpgME::OpenPGP) {
             setIsOpenPGP(DefaultKeyFilter::Set);
@@ -86,6 +88,7 @@ public:
         setExpired(DefaultKeyFilter::NotSet);
         setCanEncrypt(DefaultKeyFilter::Set);
         setHasSecret(DefaultKeyFilter::Set);
+        setValidIfSMIME(DefaultKeyFilter::Set);
     }
 };
 }

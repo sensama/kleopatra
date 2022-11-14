@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-12 00:48+0000\n"
-"PO-Revision-Date: 2022-10-21 05:41+0200\n"
+"PO-Revision-Date: 2022-11-13 07:42+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -136,7 +136,7 @@ msgstr ""
 #, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
-msgstr ""
+msgstr "გამოყენება:"
 
 #: src/commands/adduseridcommand.cpp:199
 #, kde-kuit-format
@@ -156,7 +156,7 @@ msgstr "მომხმარებლის ID-ის დამატები�
 #, kde-format
 msgctxt "@info"
 msgid "User ID successfully added."
-msgstr ""
+msgstr "მომხმარებლის ID წარმატებით დაემატა."
 
 #: src/commands/adduseridcommand.cpp:208
 #, kde-format
@@ -180,7 +180,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Authenticating to the card failed: %1"
-msgstr ""
+msgstr "ბარათზე ავთენტიკაციის შეცდომა: %1"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:173
 #, kde-format
@@ -231,13 +231,13 @@ msgstr "სერტიფიკატის გატანის შეცდ�
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
-msgstr ""
+msgstr "სერტიფიკატის ბარათზე ჩაწერის შეცდომა: %1"
 
 #: src/commands/certificatetopivcardcommand.cpp:259
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
-msgstr ""
+msgstr "სერტიფიკატის ბარათზე ჩაწერა წარმატებულია."
 
 #: src/commands/certifycertificatecommand.cpp:155
 #, kde-format
@@ -255,13 +255,13 @@ msgstr "გასაღების ვადაგასულია"
 #, kde-format
 msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
-msgstr ""
+msgstr "ეს გასაღები გაუქმებულია. მისი სერტიფიცირება არ შეგიძლიათ."
 
 #: src/commands/certifycertificatecommand.cpp:158
 #, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
-msgstr ""
+msgstr "ეს გასაღები ვადაგასულია. მისი სერტიფიცირება არ შეგიძლიათ."
 
 #: src/commands/certifycertificatecommand.cpp:179
 #, kde-kuit-format
@@ -274,7 +274,7 @@ msgstr ""
 #: src/commands/certifycertificatecommand.cpp:180
 #, kde-format
 msgid "Do you wish to create one now?"
-msgstr ""
+msgstr "გნებავთ შექმნათ ახლა?"
 
 #: src/commands/certifycertificatecommand.cpp:181
 #, kde-format
@@ -321,31 +321,28 @@ msgid "End of validity period changed successfully."
 msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "Unknown certificate"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "უცნობი სერთიფიკატი"
+msgstr "'%1' თქვენი საკუთარი სერტიფიკატია?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "OpenPGP სერთიფიკატი"
+msgstr "საკუთარი სერტიფიკატის დანიშვნა"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "დიახ, ჩემია"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "არა, ჩემი არაა"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -368,17 +365,16 @@ msgid ""
 msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "სერტიფიკაციის შეცდომა"
+msgstr "სერტიფიცირების უფლების მინიჭება"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "უფლების მინიჭება"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, kde-kuit-format
@@ -397,17 +393,16 @@ msgid ""
 msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "სერტიფიცირების გაუქმება"
+msgstr "სერტიფიცირების უფლების გაუქმება"
 
 #: src/commands/changeownertrustcommand.cpp:168
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr ""
+msgstr "უფლების გაუქმება"
 
 #: src/commands/changeownertrustcommand.cpp:233
 #, kde-kuit-format
@@ -461,17 +456,17 @@ msgstr ""
 #: src/commands/changepassphrasecommand.cpp:189
 #, kde-format
 msgid "Passphrase Change Error"
-msgstr ""
+msgstr "საკვანძო ფრაზის შეცვლის შეცდომა"
 
 #: src/commands/changepassphrasecommand.cpp:194
 #, kde-format
 msgid "Passphrase changed successfully."
-msgstr ""
+msgstr "საკვანძო ფრაზა წარმატებით შეიცვალა."
 
 #: src/commands/changepassphrasecommand.cpp:195
 #, kde-format
 msgid "Passphrase Change Succeeded"
-msgstr ""
+msgstr "საკვანძო ფრაზა წარმატებით შეიცვალა"
 
 #: src/commands/changepincommand.cpp:121
 #: src/commands/createcsrforcardkeycommand.cpp:138
@@ -647,7 +642,7 @@ msgstr "შეცდომა: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #, kde-format
 msgid "Create Checksum Files Error"
-msgstr ""
+msgstr "საკონტროლო ჯამის ფაილების შექმნის შეცდომა"
 
 #: src/commands/checksumcreatefilescommand.cpp:164
 #, kde-format
@@ -657,7 +652,7 @@ msgstr ""
 #: src/commands/checksumverifyfilescommand.cpp:151
 #, kde-format
 msgid "Verify Checksum Files Error"
-msgstr ""
+msgstr "საკონტროლო ჯამის ფაილების შემოწმების შეცდომა"
 
 #: src/commands/checksumverifyfilescommand.cpp:164
 #, kde-format
@@ -694,7 +689,7 @@ msgstr ""
 #: src/commands/clearcrlcachecommand.cpp:66
 #, kde-format
 msgid "CRL cache cleared successfully."
-msgstr ""
+msgstr "CRL ქეში წარმატებით გასუფთავდა."
 
 #: src/commands/command_p.h:89
 #, kde-format
@@ -757,7 +752,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
-msgstr ""
+msgstr "მოთხოვნის შენახვის შეცდომა"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:111
 #, kde-format
@@ -1332,13 +1327,13 @@ msgstr "საიდუმლო გასაღების ფაილებ�
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Export Error"
-msgstr ""
+msgstr "საიდუმლო გასაღების გატანის შეცდომა"
 
 #: src/commands/exportsecretkeycommand_old.cpp:123
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Export Finished"
-msgstr ""
+msgstr "საიდუმლო გასაღების გატანა დასრულდა"
 
 #: src/commands/exportsecretkeycommand_old.cpp:129
 #, kde-kuit-format
@@ -1353,13 +1348,13 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Secret key successfully exported."
-msgstr ""
+msgstr "საიდუმლო გასაღების გატანა წარმატებულია."
 
 #: src/commands/exportsecretkeycommand_old.cpp:155
 #, kde-format
 msgctxt "@info"
 msgid "Possibly bad passphrase given."
-msgstr ""
+msgstr "შესაძლოა შეყვანილი საიდუმლო ფრაზა არასწორია."
 
 #: src/commands/exportsecretkeycommand_old.cpp:164
 #, kde-format
@@ -1391,7 +1386,7 @@ msgstr "ქვეგასაღებების გატანა..."
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
-msgstr ""
+msgstr "გატანის შედეგი ცარიელია."
 
 #: src/commands/exportsecretsubkeycommand.cpp:247
 #, kde-kuit-format
@@ -1406,8 +1401,8 @@ msgstr[1] ""
 msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ქვეგასაღების გატანა წარმატებით დასრულდა."
+msgstr[1] "%1 ქვეგასაღების გატანა წარმატებით დასრულდა."
 
 #: src/commands/exportsecretsubkeycommand.cpp:266
 #, kde-kuit-format
@@ -1610,7 +1605,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
-msgstr ""
+msgstr "%1-დან სერტიფიკატების შემოტანა"
 
 #: src/commands/importcertificatescommand.cpp:246
 #, kde-format
@@ -1622,22 +1617,22 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
-msgstr ""
+msgstr "შემოტნილი სერტიფიკატები"
 
 #: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
-msgstr ""
+msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
 #: src/commands/importcertificatescommand.cpp:273
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
-msgstr ""
+msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
 #: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
-msgstr ""
+msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
 #: src/commands/importcertificatescommand.cpp:288
 #: src/commands/importcertificatescommand.cpp:342
@@ -1792,7 +1787,7 @@ msgstr "იმპორტი"
 #: src/commands/importcertificatescommand.cpp:491
 #, kde-format
 msgid "Certificate Import Result"
-msgstr ""
+msgstr "სერტიფიკატის შემოტანის შედეგი"
 
 #: src/commands/importcertificatescommand.cpp:499
 #, kde-format
@@ -1834,7 +1829,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret key imported"
-msgstr ""
+msgstr "საიდუმლო გასაღები შეოტანილია"
 
 #: src/commands/importcertificatescommand.cpp:830
 #, kde-format
@@ -1859,7 +1854,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:55
 #, kde-format
 msgid "Select CRL File to Import"
-msgstr ""
+msgstr "აირჩიეთ შემოსატანი CRL ფაილი"
 
 #: src/commands/importcrlcommand.cpp:172
 #, kde-format
@@ -1869,7 +1864,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:174
 #, kde-format
 msgid "Clear CRL Cache Error"
-msgstr ""
+msgstr "CRL ქეშის გასუფთავების შეცდომა"
 
 #: src/commands/importcrlcommand.cpp:192
 #, kde-format
@@ -1882,7 +1877,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:195 src/commands/importcrlcommand.cpp:199
 #, kde-format
 msgid "Import CRL Error"
-msgstr ""
+msgstr "CRL-ის შემოტანის შეცდომა"
 
 #: src/commands/importcrlcommand.cpp:197
 #, kde-format
@@ -1900,7 +1895,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:202
 #, kde-format
 msgid "Import CRL Finished"
-msgstr ""
+msgstr "CRL-ის შემოტანა დასრულდა"
 
 #: src/commands/importpaperkeycommand.cpp:86
 #: src/crypto/autodecryptverifyfilescontroller.cpp:340
@@ -1936,7 +1931,7 @@ msgstr "აირჩიეთ შეყვანის ფაილი"
 #: src/commands/importpaperkeycommand.cpp:165
 #, kde-format
 msgid "Paper backup"
-msgstr ""
+msgstr "ქაღალდის მარქაფი"
 
 #: src/commands/importpaperkeycommand.cpp:196
 #, kde-format
@@ -2061,13 +2056,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
-msgstr ""
+msgstr "არსებულ გასაღებზე გადაწერა"
 
 #: src/commands/keytocardcommand.cpp:319
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
-msgstr ""
+msgstr "აირჩიეთ სერტიფიკატი"
 
 #: src/commands/keytocardcommand.cpp:320
 #, kde-format
@@ -2351,32 +2346,32 @@ msgstr "სერტიფიკატის განახლება..."
 #: src/commands/refreshcertificatecommand.cpp:198
 #, kde-format
 msgid "The key hasn't changed."
-msgstr ""
+msgstr "გასაღები არ შეცვლილა."
 
 #: src/commands/refreshcertificatecommand.cpp:202
 #, kde-format
 msgid "The key has been revoked."
-msgstr ""
+msgstr "გასაღები გაუქმდა."
 
 #: src/commands/refreshcertificatecommand.cpp:205
 #, kde-format
 msgid "The key has been updated."
-msgstr ""
+msgstr "გასაღები განახლდა."
 
 #: src/commands/refreshcertificatecommand.cpp:209
 #, kde-format
 msgid "New user IDs: %1"
-msgstr ""
+msgstr "ახალი მომხმარებლის ID-ები: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:212
 #, kde-format
 msgid "New subkeys: %1"
-msgstr ""
+msgstr "ახალი ქვეგასაღებები: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:215
 #, kde-format
 msgid "New signatures: %1"
-msgstr ""
+msgstr "ახალი ხელმოწერები: %1"
 
 #: src/commands/refreshcertificatecommand.cpp:224
 #, kde-format
@@ -2808,7 +2803,7 @@ msgstr ""
 #: src/conf/appearanceconfigwidget.ui:17
 #, kde-format
 msgid "Certificate Categories"
-msgstr ""
+msgstr "სერტიფიკატის კატეგორიები"
 
 #. i18n: ectx: property (text), widget (QPushButton, iconButton)
 #: src/conf/appearanceconfigwidget.ui:34
@@ -3628,7 +3623,7 @@ msgstr ""
 #: src/crypto/autodecryptverifyfilescontroller.cpp:251 src/utils/output.cpp:538
 #, kde-format
 msgid "Overwrite All"
-msgstr ""
+msgstr "ყველას ზედგადაწერა"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:267
 #, kde-kuit-format
@@ -3699,19 +3694,19 @@ msgstr ""
 #: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:698
 #, kde-format
 msgid "Error while running %1: %2"
-msgstr ""
+msgstr "შეცდომა %1-ის შესრულებისას: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
 #: src/utils/output.cpp:701
 #, kde-format
 msgid "Failed to execute %1: %2"
-msgstr ""
+msgstr "%1-ის შესრულების შეცდომა: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:510
 #, kde-kuit-format
 msgid "Failed to overwrite <filename>%1</filename>."
-msgstr ""
+msgstr "<filename>%1</filename>-ის თავზე გადაწერის შეცდომა."
 
 #: src/crypto/createchecksumscontroller.cpp:537
 #, kde-format
@@ -3728,7 +3723,7 @@ msgstr ""
 #: src/crypto/verifychecksumscontroller.cpp:539
 #, kde-format
 msgid "Calculating total size..."
-msgstr ""
+msgstr "სრული ზომის გამოთვლა..."
 
 #: src/crypto/createchecksumscontroller.cpp:582
 #, kde-format
@@ -3940,41 +3935,41 @@ msgstr ""
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
-msgstr ""
+msgstr "%1 &rarr; %2"
 
 #: src/crypto/decryptverifytask.cpp:403
 #, kde-format
 msgid "<b>Verification canceled.</b>"
-msgstr ""
+msgstr "<b>გადამოწმება გაუქმდა.</b>"
 
 #: src/crypto/decryptverifytask.cpp:405
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
-msgstr ""
+msgstr "<b>გადამოწმების შეცდომა: %1.</b>"
 
 #: src/crypto/decryptverifytask.cpp:411
 #, kde-format
 msgid "<b>No signatures found.</b>"
-msgstr ""
+msgstr "<b>ხელმოწერები ვერ ვიპოვე.</b>"
 
 #: src/crypto/decryptverifytask.cpp:416
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>არასწორი ხელმოწერა.</b>"
+msgstr[1] "<b>%1 არასწორი ხელმოწერა.</b>"
 
 #: src/crypto/decryptverifytask.cpp:420
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>მონაცემების გადამოწმების შეცდომა.</b>"
+msgstr[1] "<b>%1 ხელმოწერის გადამოწმების შეცდომა.</b>"
 
 #: src/crypto/decryptverifytask.cpp:426
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
-msgstr ""
+msgstr "<b>ხელმოწერა გადამოწმებულია %1-ის მიერ</b>"
 
 #: src/crypto/decryptverifytask.cpp:428
 #, kde-format
@@ -3992,8 +3987,8 @@ msgstr "სერტიფიკატი"
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>სწორი ხელმოწერა.</b>"
+msgstr[1] "<b>%1 სწორი ხელმოწერა.</b>"
 
 #: src/crypto/decryptverifytask.cpp:433
 #, kde-format
@@ -5772,7 +5767,7 @@ msgstr ""
 #: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "Import certificate"
-msgstr ""
+msgstr "სერტიფიკატის შემოტანა"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
@@ -6403,7 +6398,7 @@ msgstr ""
 #: src/newcertificatewizard/enterdetailspage.cpp:179
 #, kde-format
 msgid "Advanced Settings..."
-msgstr ""
+msgstr "დამატებითი პარამეტრები..."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
 #, kde-format
@@ -6684,7 +6679,7 @@ msgstr ""
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
-msgstr ""
+msgstr "ქვეგასაღებები:"
 
 #: src/dialogs/subkeyswidget.cpp:84
 #, kde-format
@@ -6714,7 +6709,7 @@ msgstr "Ძალაშია"
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
-msgstr ""
+msgstr "ვადა"
 
 #: src/dialogs/subkeyswidget.cpp:91
 #, kde-format
@@ -7268,7 +7263,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:73
 #, kde-format
 msgid "Enable S/MIME"
-msgstr ""
+msgstr "S/MIME-ის ჩართვა"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:74
@@ -8210,7 +8205,7 @@ msgstr ""
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:452
 #, kde-format
 msgid "new email"
-msgstr ""
+msgstr "ახალი ელფოსტა"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:453
 #, kde-format
@@ -9602,7 +9597,7 @@ msgstr "სერტიფიკატის შემოტანა"
 #: src/utils/clipboardmenu.cpp:41
 #, kde-format
 msgid "Encrypt..."
-msgstr ""
+msgstr "დაშიფვრა..."
 
 #: src/utils/clipboardmenu.cpp:44
 #, kde-format
@@ -9939,11 +9934,10 @@ msgid "Revoke the certification of the selected certificate"
 msgstr ""
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "სერტიფიკაციის შეცდომა"
+msgstr "სერტიფიცირების უფლების შეცვლა..."
 
 #: src/view/keylistcontroller.cpp:452
 #, kde-format
@@ -9959,7 +9953,7 @@ msgstr ""
 #: src/view/keylistcontroller.cpp:460
 #, kde-format
 msgid "Add User ID..."
-msgstr ""
+msgstr "მომხმარებლის ID-ის დამატება..."
 
 #: src/view/keylistcontroller.cpp:465
 #, kde-format

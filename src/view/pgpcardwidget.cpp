@@ -408,13 +408,18 @@ void PGPCardWidget::genkeyRequested()
     dlg->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), pgpCard->defaultAlgorithm());
 #else
     std::vector<AlgorithmInfo> algos = {
-        { "curve25519", i18nc("@info", "ECC (Curve25519)") },
         { "rsa2048", i18nc("@info", "RSA 2048") },
         { "rsa3072", i18nc("@info", "RSA 3072") },
     };
     // There is probably a better way to check for capabilities
     if (mIs21) {
         algos.push_back({"rsa4096", i18nc("@info", "RSA 4096")});
+    }
+    const auto supportedAlgos = pgpCard->supportedAlgorithms();
+    if (std::any_of(supportedAlgos.begin(), supportedAlgos.end(), [](const auto &algo) {
+        return algo.id == "curve25519";
+    })) {
+        algos.push_back({"curve25519", i18nc("@info", "ECC (Curve25519)")});
     }
     dlg->setSupportedAlgorithms(algos, "rsa2048");
 #endif

@@ -52,7 +52,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSeparator>
-#include <kwidgetsaddons_version.h>
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
@@ -625,11 +624,7 @@ void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId
     auto confirmButton = KStandardGuiItem::ok();
     confirmButton.setText(i18nc("@action:button", "Revoke User ID"));
     confirmButton.setToolTip({});
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     const auto choice = KMessageBox::questionTwoActions(
-#else
-    const auto choice = KMessageBox::questionYesNo(
-#endif
         q->window(),
         message,
         i18nc("@title:window", "Confirm Revocation"),
@@ -637,11 +632,7 @@ void CertificateDetailsWidget::Private::revokeUserID(const GpgME::UserID &userId
         KStandardGuiItem::cancel(),
         {},
         KMessageBox::Notify | KMessageBox::WindowModal);
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (choice != KMessageBox::ButtonCode::PrimaryAction) {
-#else
-    if (choice != KMessageBox::Yes) {
-#endif
         return;
     }
 

@@ -40,7 +40,6 @@
 #endif
 
 #include <cerrno>
-#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 using namespace Kleo::_detail;
@@ -524,31 +523,18 @@ bool FileOutput::obtainOverwritePermission()
     if (m_policy->policy() != OverwritePolicy::Ask) {
         return m_policy->policy() == OverwritePolicy::Allow;
     }
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     const int sel = KMessageBox::questionTwoActionsCancel(m_policy->parentWidget(),
                                                           i18n("The file <b>%1</b> already exists.\n"
-#else
-    const int sel = KMessageBox::questionYesNoCancel(m_policy->parentWidget(),
-                                                     i18n("The file <b>%1</b> already exists.\n"
-#endif
                                                                "Overwrite?",
                                                                m_fileName),
                                                           i18n("Overwrite Existing File?"),
                                                           KStandardGuiItem::overwrite(),
                                                           KGuiItem(i18n("Overwrite All")),
                                                           KStandardGuiItem::cancel());
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (sel == KMessageBox::ButtonCode::SecondaryAction) { // Overwrite All
-#else
-    if (sel == KMessageBox::No) { //Overwrite All
-#endif
         m_policy->setPolicy(OverwritePolicy::Allow);
     }
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     return sel == KMessageBox::ButtonCode::PrimaryAction || sel == KMessageBox::ButtonCode::SecondaryAction;
-#else
-    return sel == KMessageBox::Yes || sel == KMessageBox::No;
-#endif
 }
 
 void FileOutput::doFinalize()

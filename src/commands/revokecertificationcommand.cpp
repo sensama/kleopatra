@@ -27,7 +27,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KStandardGuiItem>
-#include <kwidgetsaddons_version.h>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
@@ -79,11 +78,7 @@ static bool confirmRevocations(QWidget *parent, const std::vector<CertificationD
                                     "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made with the key<nl/>%2.</para>",
                                     QString::fromUtf8(userId.id()),
                                     Formatting::formatForComboBox(certificationKey));
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         answer = KMessageBox::questionTwoActions(parent,
-#else
-        answer = KMessageBox::questionYesNo(parent,
-#endif
                                                  message,
                                                  i18nc("@title:window", "Confirm Revocation"),
                                                  KGuiItem{i18n("Revoke Certification")},
@@ -96,22 +91,14 @@ static bool confirmRevocations(QWidget *parent, const std::vector<CertificationD
         const auto message = i18np("You are about to revoke the following certification:", //
                                    "You are about to revoke the following %1 certifications:",
                                    certifications.size());
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         answer = KMessageBox::questionTwoActionsList(parent,
-#else
-        answer = KMessageBox::questionYesNoList(parent,
-#endif
                                                      message,
                                                      l,
                                                      i18nc("@title:window", "Confirm Revocation"),
                                                      KGuiItem{i18n("Revoke Certifications")},
                                                      KStandardGuiItem::cancel());
     }
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     return answer == KMessageBox::ButtonCode::PrimaryAction;
-#else
-    return answer == KMessageBox::Yes;
-#endif
 }
 
 }
@@ -219,22 +206,14 @@ void RevokeCertificationCommand::Private::scheduleNextRevocation()
                                      completedRevocations.size());
         const auto yesButton = KGuiItem{i18ncp("@action:button", "Publish Revocation", "Publish Revocations", completedRevocations.size()),
                                         QIcon::fromTheme(QStringLiteral("view-certificate-export-server"))};
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
-#else
-        const auto answer = KMessageBox::questionYesNo(parentWidgetOrView(),
-#endif
                                                             message,
                                                             i18nc("@title:window", "Confirm Publication"),
                                                             yesButton,
                                                             KStandardGuiItem::cancel(),
                                                             {},
                                                             KMessageBox::Notify | KMessageBox::Dangerous);
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         if (answer == KMessageBox::ButtonCode::PrimaryAction) {
-#else
-        if (answer == KMessageBox::Yes) {
-#endif
             const auto cmd = new ExportOpenPGPCertsToServerCommand{certificationTarget};
             cmd->start();
         }

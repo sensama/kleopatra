@@ -29,7 +29,6 @@
 
 #include "command_p.h"
 #include "kleopatra_debug.h"
-#include <kwidgetsaddons_version.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -119,22 +118,14 @@ void GenRevokeCommand::doStart()
         }
         const QFileInfo fi{mOutputFileName};
         if (fi.exists()) {
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             auto sel = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
-#else
-            auto sel = KMessageBox::questionYesNo(d->parentWidgetOrView(),
-#endif
                                                        xi18n("The file <filename>%1</filename> already exists. Do you wish to overwrite it?", fi.fileName()),
                                                        i18nc("@title:window", "Overwrite File?"),
                                                        KStandardGuiItem::overwrite(),
                                                        KStandardGuiItem::cancel(),
                                                        {},
                                                        KMessageBox::Notify | KMessageBox::Dangerous);
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             if (sel == KMessageBox::ButtonCode::SecondaryAction) {
-#else
-            if (sel == KMessageBox::No) {
-#endif
                 proposedFileName = mOutputFileName;
                 mOutputFileName.clear();
             }

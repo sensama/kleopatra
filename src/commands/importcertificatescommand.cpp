@@ -47,7 +47,6 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <kwidgetsaddons_version.h>
 
 #include <QByteArray>
 #include <QEventLoop>
@@ -416,30 +415,17 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         << i18n("Using a business card.")
         << i18n("Confirming it on a trusted website.");
 
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     auto sel = KMessageBox::questionTwoActions(parentWidgetOrView(),
-#else
-    auto sel = KMessageBox::questionYesNo(parentWidgetOrView(),
-#endif
                                                i18n("In order to mark the certificate as valid (green) it needs to be certified.") + QStringLiteral("<br>")
                                                    + i18n("Certifying means that you check the Fingerprint.") + QStringLiteral("<br>")
                                                    + i18n("Some suggestions to do this are:")
                                                    + QStringLiteral("<li><ul>%1").arg(suggestions.join(QStringLiteral("</ul><ul>")))
                                                    + QStringLiteral("</ul></li>") + i18n("Do you wish to start this process now?"),
                                                i18nc("@title", "You have imported a new certificate (public key)"),
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
                                                KGuiItem(i18n("Import")),
                                                KStandardGuiItem::cancel(),
-#else
-                                          KStandardGuiItem::yes(),
-                                          KStandardGuiItem::no(),
-#endif
                                                QStringLiteral("CertifyQuestion"));
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (sel == KMessageBox::ButtonCode::PrimaryAction) {
-#else
-    if (sel == KMessageBox::Yes) {
-#endif
         QEventLoop loop;
         auto cmd = new Commands::CertifyCertificateCommand(key);
         cmd->setParentWidget(parentWidgetOrView());
@@ -602,22 +588,13 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
                 QString::fromUtf8(fingerPr),
                 uids);
 
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             int k = KMessageBox::questionTwoActions(nullptr,
                                                     str,
-#else
-            int k = KMessageBox::questionYesNo(nullptr,
-                                               str,
-#endif
                                                     i18nc("@title:window", "Secret key imported"),
                                                     KGuiItem(i18n("Import")),
                                                     KStandardGuiItem::cancel());
 
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
-#else
-            if (k == KMessageBox::Yes) {
-#endif
                 //To use the ChangeOwnerTrustJob over
                 //the CryptoBackendFactory
                 const QGpgME::Protocol *const backend = QGpgME::openpgp();

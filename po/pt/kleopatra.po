@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-12 00:48+0000\n"
+"POT-Creation-Date: 2022-11-15 00:47+0000\n"
 "PO-Revision-Date: 2022-10-27 23:57+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -2278,8 +2278,8 @@ msgstr "Seleccione por favor o local do cartão onde a chave deve ser gravada:"
 #: src/commands/keytocardcommand.cpp:212
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
-#: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:464
-#: src/view/pgpcardwidget.cpp:511
+#: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
+#: src/view/pgpcardwidget.cpp:516
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Não foi possível encontrar o cartão OpenPGP com o número de série: %1"
@@ -5462,34 +5462,34 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 "O estado e o progresso das operações de encriptação é apresentado aqui."
 
-#: src/crypto/gui/signencryptwidget.cpp:109
+#: src/crypto/gui/signencryptwidget.cpp:112
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Provar a autenticidade (assinar)"
 
-#: src/crypto/gui/signencryptwidget.cpp:110
+#: src/crypto/gui/signencryptwidget.cpp:113
 #, kde-format
 msgid "Sign as:"
 msgstr "Assinar como:"
 
-#: src/crypto/gui/signencryptwidget.cpp:129
+#: src/crypto/gui/signencryptwidget.cpp:132
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Encriptar"
 
-#: src/crypto/gui/signencryptwidget.cpp:134
+#: src/crypto/gui/signencryptwidget.cpp:137
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Encriptar para mim:"
 
-#: src/crypto/gui/signencryptwidget.cpp:143
+#: src/crypto/gui/signencryptwidget.cpp:146
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Encriptar para outros:"
 
-#: src/crypto/gui/signencryptwidget.cpp:178
+#: src/crypto/gui/signencryptwidget.cpp:181
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5497,7 +5497,7 @@ msgstr ""
 "Encriptar com uma senha. Todas as pessoas com quem partilhar a senha poderão "
 "ver os dados."
 
-#: src/crypto/gui/signencryptwidget.cpp:180
+#: src/crypto/gui/signencryptwidget.cpp:183
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5511,18 +5511,18 @@ msgstr ""
 "chave privada. O uso de uma senha é <b>menos seguro</b> que a criptografia "
 "por chave pública, mesmo que use uma senha muito forte."
 
-#: src/crypto/gui/signencryptwidget.cpp:270
+#: src/crypto/gui/signencryptwidget.cpp:273
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "chave do destinatário"
 
-#: src/crypto/gui/signencryptwidget.cpp:665
+#: src/crypto/gui/signencryptwidget.cpp:668
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Não foi possível encontrar uma chave para os seguintes destinatários:"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:670
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Não foi possível encontrar algumas chaves"
@@ -9796,7 +9796,7 @@ msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
 msgstr "ECC (Brainpool P-512)"
 
-#: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:411
+#: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
@@ -9826,19 +9826,19 @@ msgctxt "@info"
 msgid "ECC (NIST P-521)"
 msgstr "ECC (NIST P-521)"
 
-#: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:412
+#: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:411
 #, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
 msgstr "RSA 2048"
 
-#: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:413
+#: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
 msgstr "RSA 3072"
 
-#: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
+#: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:416
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
@@ -11513,8 +11513,8 @@ msgctxt "@info"
 msgid "Successfully generated a new key for this card."
 msgstr "Foi gerada com sucesso uma nova chave para este cartão."
 
-#: src/view/pgpcardwidget.cpp:379 src/view/pgpcardwidget.cpp:484
-#: src/view/pgpcardwidget.cpp:531
+#: src/view/pgpcardwidget.cpp:379 src/view/pgpcardwidget.cpp:489
+#: src/view/pgpcardwidget.cpp:536
 #, kde-format
 msgctxt "@title"
 msgid "Success"
@@ -11529,69 +11529,69 @@ msgstr ""
 "As chaves existentes neste cartão serão <b>apagadas</b> e substituídas por "
 "chaves novas."
 
-#: src/view/pgpcardwidget.cpp:434
+#: src/view/pgpcardwidget.cpp:439
 #, kde-format
 msgid "Change cardholder"
 msgstr "Modificar o dono do cartão"
 
-#: src/view/pgpcardwidget.cpp:435
+#: src/view/pgpcardwidget.cpp:440
 #, kde-format
 msgid "New name:"
 msgstr "Novo nome:"
 
-#: src/view/pgpcardwidget.cpp:444
+#: src/view/pgpcardwidget.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "Não é possível usar o carácter \"<\"."
 
-#: src/view/pgpcardwidget.cpp:449
+#: src/view/pgpcardwidget.cpp:454
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "Os espaços duplos não são permitidos"
 
-#: src/view/pgpcardwidget.cpp:454
+#: src/view/pgpcardwidget.cpp:459
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "O tamanho do nome não poderá exceder 38 caracteres."
 
-#: src/view/pgpcardwidget.cpp:478
+#: src/view/pgpcardwidget.cpp:483
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "A mudança de nome falhou: %1"
 
-#: src/view/pgpcardwidget.cpp:483
+#: src/view/pgpcardwidget.cpp:488
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "O nome foi modificado com sucesso."
 
-#: src/view/pgpcardwidget.cpp:494
+#: src/view/pgpcardwidget.cpp:499
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "Modificar o URL onde poderá ser encontrada a chave pública"
 
-#: src/view/pgpcardwidget.cpp:495
+#: src/view/pgpcardwidget.cpp:500
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "URL da nova chave pública:"
 
-#: src/view/pgpcardwidget.cpp:504
+#: src/view/pgpcardwidget.cpp:509
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "O tamanho do URL não poderá exceder 254 caracteres."
 
-#: src/view/pgpcardwidget.cpp:525
+#: src/view/pgpcardwidget.cpp:530
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "A mudança de URL falhou: %1"
 
-#: src/view/pgpcardwidget.cpp:530
+#: src/view/pgpcardwidget.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
@@ -12000,117 +12000,3 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
-
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<p>Ocorreu um erro ao tentar mudar a confiança de certificação do <b>%1</"
-#~ "b>:</p><p>%2</p>"
-
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "A confiança na certificação foi alterada com sucesso."
-
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "A Mudança da Confiança na Certificação Foi Bem-Sucedida"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "Mudar o Nível de Confiança de %1"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr ""
-#~ "Quanto é que confia nas certificações feitas por <b>%1</b> para verificar "
-#~ "correctamente a autenticidade dos certificados?"
-
-#~ msgid "I do not know"
-#~ msgstr "Não sei"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>(confiança desconhecida)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Escolha esta opção se não tiver opinião sobre a "
-#~ "confiança que tem no dono do certificado.<br>As certificações neste nível "
-#~ "de confiança são ignoradas ao verificar a validade dos certificados do "
-#~ "OpenPGP.</font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "NÃO confio neles"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>(nunca confiar)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Escolha isto se <em>não</em> confia explicitamente no "
-#~ "dono do certificado, por exemplo se sabe que ele certificou sem verificar "
-#~ "ou sem o consentimento do dono do certificado.<br>As certificações neste "
-#~ "nível de confiança são ignoradas ao verificar a validade dos certificados "
-#~ "do OpenPGP.</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "Acredito que as verificações são casuais"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>(confiança marginal)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Escolha isto se acredita que as certificações não são "
-#~ "feitas às cegas, mas que também não são muito rigorosas.<br>Os "
-#~ "certificados só se tornam válidos com várias certificações (normalmente "
-#~ "três) neste nível de confiança. Normalmente é uma boa escolha.</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "Acredito que as verificações são muito fidedignas"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>(confiança completa)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Escolha isto se confia que as certificações são feitas "
-#~ "com bastante rigor.<br>Os certificados tornar-se-ão válidos apenas com "
-#~ "uma única certificação neste nível de confiança; por isso, atribua esta "
-#~ "confiança com cuidado.</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "Este é o meu certificado"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>(confiança máxima)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Escolha isto se e só se este for o seu certificado. "
-#~ "Este é o valor por omissão, caso esteja disponível a chave privada; "
-#~ "porém, se importou este certificado, poderá ter de ajustar você mesmo o "
-#~ "nível de confiança.<br>Os certificados tornar-se-ão válidos apenas com "
-#~ "uma única certificação neste nível de confiança.</font>"

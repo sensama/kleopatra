@@ -99,20 +99,20 @@ void ChangeOwnerTrustCommand::doStart()
     const auto keyInfo = Formatting::formatForComboBox(key);
 
     if (key.hasSecret()) {
-        const auto answer = KMessageBox::questionYesNoCancel(d->parentWidgetOrView(),
+        const auto answer = KMessageBox::questionTwoActionsCancel(d->parentWidgetOrView(),
                                                              xi18nc("@info", "Is '%1' your own certificate?", keyInfo),
                                                              i18nc("@title:window", "Mark Own Certificate"),
                                                              KGuiItem(i18nc("@action:button", "Yes, it's mine")),
                                                              KGuiItem(i18nc("@action:button", "No, it's not mine")),
                                                              KStandardGuiItem::cancel());
         switch (answer) {
-        case KMessageBox::Yes: {
+        case KMessageBox::ButtonCode::PrimaryAction: {
             if (key.ownerTrust() < Key::Ultimate) {
                 d->startJob(Key::OwnerTrust::Ultimate);
             }
             return;
         }
-        case KMessageBox::No: {
+        case KMessageBox::ButtonCode::SecondaryAction: {
             if (key.ownerTrust() == Key::Ultimate) {
                 d->startJob(Key::OwnerTrust::Unknown);
                 return;
@@ -141,12 +141,12 @@ void ChangeOwnerTrustCommand::doStart()
                      "<para><emphasis>This means that the owner of this certificate properly check fingerprints "
                      "and confirms the identities of others.</emphasis></para>",
                      keyInfo);
-        const auto answer = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+        const auto answer = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
                                                        text,
                                                        i18nc("@title:window", "Grant Certification Power"),
                                                        KGuiItem(i18nc("@action:button", "Grant Power")),
                                                        KStandardGuiItem::cancel());
-        if (answer == KMessageBox::Yes) {
+        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
             d->startJob(Key::OwnerTrust::Full);
         } else {
             d->canceled();
@@ -162,12 +162,12 @@ void ChangeOwnerTrustCommand::doStart()
                      "<para>The certificate '%1' is empowered to mark other certificates as valid for you.</para>"
                      "<para>Do you want to revoke this power?</para>",
                      keyInfo);
-        const auto answer = KMessageBox::questionYesNo(d->parentWidgetOrView(),
+        const auto answer = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
                                                        text,
                                                        i18nc("@title:window", "Revoke Certification Power"),
                                                        KGuiItem(i18nc("@action:button", "Revoke Power")),
                                                        KStandardGuiItem::cancel());
-        if (answer == KMessageBox::Yes) {
+        if (answer == KMessageBox::ButtonCode::PrimaryAction) {
             d->startJob(Key::OwnerTrust::Unknown);
         } else {
             d->canceled();

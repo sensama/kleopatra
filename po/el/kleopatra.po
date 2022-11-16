@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-15 00:47+0000\n"
+"POT-Creation-Date: 2022-11-16 00:47+0000\n"
 "PO-Revision-Date: 2021-10-22 09:12+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -190,10 +190,10 @@ msgid "Add User ID Succeeded"
 msgstr "Επιτυχής προσθήκη ID χρήστη"
 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:125
-#: src/commands/certificatetopivcardcommand.cpp:121
-#: src/commands/certificatetopivcardcommand.cpp:190
+#: src/commands/certificatetopivcardcommand.cpp:120
+#: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:336
+#: src/commands/keytocardcommand.cpp:335
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -214,22 +214,22 @@ msgid ""
 msgstr ""
 "Εισαγάγετε το κλειδί διαχείρισης PIV Card Application σε δεκαεξαδική μορφή."
 
-#: src/commands/certificatetopivcardcommand.cpp:128
-#: src/commands/keytocardcommand.cpp:314
+#: src/commands/certificatetopivcardcommand.cpp:127
+#: src/commands/keytocardcommand.cpp:313
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
 "Συγγνώμη! Δε βρέθηκε κατάλληλο πιστοποιητικό για εγγραφή σε αυτήν την "
 "υποδοχή κάρτας."
 
-#: src/commands/certificatetopivcardcommand.cpp:133
+#: src/commands/certificatetopivcardcommand.cpp:132
 #: src/view/pivcardwidget.cpp:254
 #, kde-format
 msgctxt "X.509 certificate DN (validity, created: date)"
 msgid "%1 (%2, created: %3)"
 msgstr "%1 (%2, δημιουργήθηκε: %3)"
 
-#: src/commands/certificatetopivcardcommand.cpp:139
+#: src/commands/certificatetopivcardcommand.cpp:138
 #, kde-format
 msgctxt "@info %1 name of card slot, %2 serial number of card"
 msgid ""
@@ -239,51 +239,51 @@ msgstr ""
 "<p>Επιβεβαιώστε ότι θέλετε να γράψετε το ακόλουθο πιστοποιητικό στην %1 "
 "υποδοχή της κάρτας %2:</p><center>%3</center>"
 
-#: src/commands/certificatetopivcardcommand.cpp:147
+#: src/commands/certificatetopivcardcommand.cpp:142
 #, kde-format
 msgctxt "@action:button"
 msgid "Write certificate"
 msgstr "Εγγραφή πιστοποιητικού"
 
-#: src/commands/certificatetopivcardcommand.cpp:156
+#: src/commands/certificatetopivcardcommand.cpp:147
 #, kde-format
 msgctxt "@title:window"
 msgid "Write certificate to card"
 msgstr "Εγγραφή πιστοποιητικού στην κάρτα"
 
-#: src/commands/certificatetopivcardcommand.cpp:182
+#: src/commands/certificatetopivcardcommand.cpp:169
 #, kde-format
 msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Αποτυχία εξαγωγής του πιστοποιητικού: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:257
+#: src/commands/certificatetopivcardcommand.cpp:244
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Αποτυχία εγγραφής του πιστοποιητικού στην κάρτα: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:259
+#: src/commands/certificatetopivcardcommand.cpp:246
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
 msgstr "Επιτυχία εγγραφής του πιστοποιητικού στην κάρτα."
 
-#: src/commands/certifycertificatecommand.cpp:155
+#: src/commands/certifycertificatecommand.cpp:154
 #, fuzzy, kde-format
 #| msgid "Newly revoked:"
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "Πρόσφατα ανακληθέντα:"
 
-#: src/commands/certifycertificatecommand.cpp:155
+#: src/commands/certifycertificatecommand.cpp:154
 #, fuzzy, kde-format
 #| msgid "key expired"
 msgctxt "@title:window"
 msgid "Key is Expired"
 msgstr "το κλειδί έληξε"
 
-#: src/commands/certifycertificatecommand.cpp:157
+#: src/commands/certifycertificatecommand.cpp:156
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "OpenPGP certificates exported successfully."
@@ -291,14 +291,14 @@ msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
 msgstr "Η εξαγωγή των πιστοποιητικών OpenPGP έγινε με επιτυχία."
 
-#: src/commands/certifycertificatecommand.cpp:158
+#: src/commands/certifycertificatecommand.cpp:157
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
 msgstr "Το ιδιωτικό κλειδί απαιτείται για αποκρυπτογράφηση ή υπογραφή."
 
-#: src/commands/certifycertificatecommand.cpp:179
+#: src/commands/certifycertificatecommand.cpp:174
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -308,34 +308,34 @@ msgstr ""
 "Για την πιστοποίηση άλλων πιστοποιητικών, πρέπει πρώτα να δημιουργήσετε ένα "
 "πιστοποιητικό OpenPGP για εσάς."
 
-#: src/commands/certifycertificatecommand.cpp:180
+#: src/commands/certifycertificatecommand.cpp:175
 #, kde-format
 msgid "Do you wish to create one now?"
 msgstr "Θέλετε να δημιουργήσετε ένα τώρα;"
 
-#: src/commands/certifycertificatecommand.cpp:181
+#: src/commands/certifycertificatecommand.cpp:176
 #, kde-format
 msgid "Certification Not Possible"
 msgstr "Αδύνατη η πιστοποίηση"
 
-#: src/commands/certifycertificatecommand.cpp:182
+#: src/commands/certifycertificatecommand.cpp:177
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create"
 msgid "Create"
 msgstr "Δημιουργία"
 
-#: src/commands/certifycertificatecommand.cpp:245
+#: src/commands/certifycertificatecommand.cpp:236
 #, kde-format
 msgid "Certification successful."
 msgstr "Επιτυχής πιστοποίηση."
 
-#: src/commands/certifycertificatecommand.cpp:246
+#: src/commands/certifycertificatecommand.cpp:237
 #, kde-format
 msgid "Certification Succeeded"
 msgstr "Επιτυχία πιστοποίησης"
 
-#: src/commands/certifycertificatecommand.cpp:248
+#: src/commands/certifycertificatecommand.cpp:239
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -344,7 +344,7 @@ msgstr ""
 "<p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια πιστοποίησης<br/><br/><b>%1</b>:"
 "</p><p>\t%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:252
+#: src/commands/certifycertificatecommand.cpp:243
 #, kde-format
 msgid "Certification Error"
 msgstr "Σφάλμα πιστοποίησης"
@@ -1632,12 +1632,12 @@ msgstr ""
 "<para>Παρουσιάστηκε σφάλμα κατά τη φόρτωση των πιστοποιήσεων: <message>%1</"
 "message></para>"
 
-#: src/commands/genrevokecommand.cpp:75
+#: src/commands/genrevokecommand.cpp:74
 #, kde-format
 msgid "This is a revocation certificate for the OpenPGP key:"
 msgstr "Επιλέξτε πιστοποιητικό ανάκλησης για το OpenPGP κλειδί:"
 
-#: src/commands/genrevokecommand.cpp:78
+#: src/commands/genrevokecommand.cpp:77
 #, kde-format
 msgid ""
 "A revocation certificate is a kind of \"kill switch\" to publicly\n"
@@ -1648,7 +1648,7 @@ msgstr ""
 "μια δημόσια δήλωση ότι ένα κλειδί δεν πρέπει να χρησιμοποιείται\n"
 "και αφού δημοσιευθεί, δεν είναι δυνατόν να ανακληθεί."
 
-#: src/commands/genrevokecommand.cpp:82
+#: src/commands/genrevokecommand.cpp:81
 #, kde-format
 msgid ""
 "Use it to revoke this key in case of a compromise or loss of\n"
@@ -1657,7 +1657,7 @@ msgstr ""
 "Χρησιμοποιήστε το για να ανακαλέσετε το κλειδί σε περίπτωση\n"
 "αποκάλυψης ή απώλειας του μυστικού κλειδιού."
 
-#: src/commands/genrevokecommand.cpp:85
+#: src/commands/genrevokecommand.cpp:84
 #, kde-format
 msgid ""
 "To avoid an accidental use of this file, a colon has been inserted\n"
@@ -1668,7 +1668,7 @@ msgstr ""
 "εισαχθεί παρακάτω πριν τις 5 παύλες. Αφαιρέστε το με έναν επεξεργαστή\n"
 "κειμένου πριν την εισαγωγή και δημοσίευση του πιστοποιητικού ανάκλησης."
 
-#: src/commands/genrevokecommand.cpp:95
+#: src/commands/genrevokecommand.cpp:94
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1680,22 +1680,22 @@ msgstr ""
 "αποφύγετε την ακούσια εισαγωγή ανάκλησης<br>απαιτείται η χειροκίνητη "
 "επεξεργασία του πιστοποιητικού<br>πριν αυτό εισαχθεί."
 
-#: src/commands/genrevokecommand.cpp:99
+#: src/commands/genrevokecommand.cpp:98
 #, kde-format
 msgid "Revocation certificate created"
 msgstr "Το πιστοποιητικό ανάκλησης δημιουργήθηκε"
 
-#: src/commands/genrevokecommand.cpp:108
+#: src/commands/genrevokecommand.cpp:107
 #, kde-format
 msgid "Generate revocation certificate"
 msgstr "Δημιουργία πιστοποιητικού ανάκλησης"
 
-#: src/commands/genrevokecommand.cpp:110
+#: src/commands/genrevokecommand.cpp:109
 #, kde-format
 msgid "Revocation Certificates "
 msgstr "Πιστοποιητικά ανάκλησης "
 
-#: src/commands/genrevokecommand.cpp:127
+#: src/commands/genrevokecommand.cpp:122
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The file named \"%1\" already exists. Are you sure you want to overwrite "
@@ -1706,14 +1706,14 @@ msgstr ""
 "Το αρχείο με όνομα \"%1\" υπάρχει ήδη. Επιθυμείτε σίγουρα την αντικατάστασή "
 "του;"
 
-#: src/commands/genrevokecommand.cpp:128
+#: src/commands/genrevokecommand.cpp:123
 #, fuzzy, kde-format
 #| msgid "Overwrite File"
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr "Αντικατάσταση αρχείου"
 
-#: src/commands/genrevokecommand.cpp:191
+#: src/commands/genrevokecommand.cpp:182
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -1749,10 +1749,10 @@ msgstr "Τα περιεχόμενα στο πρόχειρο δεν μοιάζο�
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:512
-#: src/commands/importcertificatescommand.cpp:520
-#: src/commands/importcertificatescommand.cpp:867
-#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:498
+#: src/commands/importcertificatescommand.cpp:506
+#: src/commands/importcertificatescommand.cpp:844
+#: src/commands/importcertificatescommand.cpp:895
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Αποτυχία εισαγωγής του πιστοποιητικού"
@@ -1764,7 +1764,7 @@ msgstr ""
 "Αδυναμία καθορισμού τύπου του πιστοποιητικού στα περιεχόμενα του πρόχειρου."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:726
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:712
 #, kde-format
 msgid "Clipboard"
 msgstr "Πρόχειρο"
@@ -1778,7 +1778,7 @@ msgid "Notepad"
 msgstr "Σημειωματάριο"
 
 #: src/commands/importcertificatefromfilecommand.cpp:123
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:184
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@title:window"
@@ -1800,7 +1800,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Αδυναμία ανοίγματος του αρχείου %1 για ανάγνωση: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:147
-#: src/commands/importcertificatescommand.cpp:287 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
@@ -1842,169 +1842,169 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Πιστοποιητικό κάρτας"
 
-#: src/commands/importcertificatescommand.cpp:186
+#: src/commands/importcertificatescommand.cpp:185
 #, fuzzy, kde-format
 #| msgid "Loading certificates... (this can take a while)"
 msgid "Importing certificates... (this can take a while)"
 msgstr "Φόρτωση πιστοποιητικών... (μπορεί να διαρκέσει)"
 
-#: src/commands/importcertificatescommand.cpp:242
+#: src/commands/importcertificatescommand.cpp:241
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Εισηγμένα πιστοποιητικά από %1"
 
-#: src/commands/importcertificatescommand.cpp:246
+#: src/commands/importcertificatescommand.cpp:245
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Εισηγμένα πιστοποιητικά από αυτές τις πηγές:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:256
+#: src/commands/importcertificatescommand.cpp:255
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Εισηγμένα πιστοποιητικά"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:271
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:273
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:288
-#: src/commands/importcertificatescommand.cpp:342
+#: src/commands/importcertificatescommand.cpp:287
+#: src/commands/importcertificatescommand.cpp:341
 #, kde-format
 msgid "Total number processed:"
 msgstr "Συνολικός αριθμός επεξεργασμένων:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "Imported:"
 msgstr "Εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "New signatures:"
 msgstr "Νέες υπογραφές:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:295
 #, kde-format
 msgid "New user IDs:"
 msgstr "Νέα ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Πιστοποιητικά χωρίς ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "New subkeys:"
 msgstr "Νέα υποκλειδιά:"
 
-#: src/commands/importcertificatescommand.cpp:305
+#: src/commands/importcertificatescommand.cpp:304
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Πρόσφατα ανακληθέντα:"
 
-#: src/commands/importcertificatescommand.cpp:308
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Not imported:"
 msgstr "Μη εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "Unchanged:"
 msgstr "Μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:314
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Μυστικά κλειδιά που επεξεργάστηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:317
+#: src/commands/importcertificatescommand.cpp:316
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Μυστικά κλειδιά που εισήχθησαν:"
 
-#: src/commands/importcertificatescommand.cpp:321
+#: src/commands/importcertificatescommand.cpp:320
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Μυστικά κλειδιά <em>μη</em> εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Μυστικά κλειδιά μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:326
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Παλαιωμένα PGP-2 κλειδιά παραβλέφθηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:340
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certificate Dump"
 msgid "Certificate Groups"
 msgstr "Αποτύπωση πιστοποιητικού"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:343
 #, fuzzy, kde-format
 #| msgctxt "default name for new group of keys"
 #| msgid "New Group"
 msgid "New groups:"
 msgstr "Νέα ομάδα"
 
-#: src/commands/importcertificatescommand.cpp:346
+#: src/commands/importcertificatescommand.cpp:345
 #, fuzzy, kde-format
 #| msgid "Update Card Status"
 msgid "Updated groups:"
 msgstr "Ενημέρωση κατάστασης κάρτας"
 
-#: src/commands/importcertificatescommand.cpp:363
+#: src/commands/importcertificatescommand.cpp:362
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Χωρίς εισαγωγές (δεν θα έπρεπε να συμβαίνει αυτό, στείλτε μια αναφορά "
 "σφάλματος."
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:365
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:367
+#: src/commands/importcertificatescommand.cpp:366
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:414
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Τηλεφωνική κλήση στο πρόσωπο."
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "Using a business card."
 msgstr "Χρήση επαγγελματικής κάρτας."
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Επιβεβαίωση σε έμπιστο ιστότοπο."
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:419
 #, kde-format
 msgid ""
 "In order to mark the certificate as valid (green) it needs to be certified."
@@ -2012,40 +2012,40 @@ msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο (πράσινο) χρειάζεται να "
 "πιστοποιηθεί."
 
-#: src/commands/importcertificatescommand.cpp:425
+#: src/commands/importcertificatescommand.cpp:420
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Πιστοποίηση σημαίνει ότι ελέγχετε το αποτύπωμα."
 
-#: src/commands/importcertificatescommand.cpp:426
+#: src/commands/importcertificatescommand.cpp:421
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Ορισμένες προτάσεις για να το κάνετε αυτό είναι:"
 
-#: src/commands/importcertificatescommand.cpp:428
+#: src/commands/importcertificatescommand.cpp:423
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Θέλετε να ξεκινήσετε αυτήν τη διαδικασία τώρα;"
 
-#: src/commands/importcertificatescommand.cpp:429
+#: src/commands/importcertificatescommand.cpp:424
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Έχετε εισαγάγει ένα νέο πιστοποιητικό (δημόσιο κλειδί)"
 
-#: src/commands/importcertificatescommand.cpp:431
-#: src/commands/importcertificatescommand.cpp:613
+#: src/commands/importcertificatescommand.cpp:425
+#: src/commands/importcertificatescommand.cpp:594
 #: src/dialogs/lookupcertificatesdialog.cpp:199
 #, kde-format
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: src/commands/importcertificatescommand.cpp:491
+#: src/commands/importcertificatescommand.cpp:477
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Αποτέλεσμα εισαγωγής πιστοποιητικού"
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:485
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2054,7 +2054,7 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής πιστοποιητικού:</"
 "p><p><b>%1 </b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:503
+#: src/commands/importcertificatescommand.cpp:489
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2065,19 +2065,19 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:589
+#: src/commands/importcertificatescommand.cpp:575
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:590
+#: src/commands/importcertificatescommand.cpp:576
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:594
+#: src/commands/importcertificatescommand.cpp:580
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2096,13 +2096,13 @@ msgstr ""
 "χρήστη:<list><item>%2</item></list></para>Είναι το δικό σας κλειδί; "
 "(Ρυθμίστε το επίπεδο εμπιστοσύνης στο απόλυτο)"
 
-#: src/commands/importcertificatescommand.cpp:612
+#: src/commands/importcertificatescommand.cpp:593
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret key imported"
 msgstr "Μυστικά κλειδιά που εισήχθησαν"
 
-#: src/commands/importcertificatescommand.cpp:830
+#: src/commands/importcertificatescommand.cpp:807
 #, fuzzy, kde-format
 #| msgid "Loading certificates... (this can take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2110,8 +2110,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Φόρτωση πιστοποιητικών... (μπορεί να διαρκέσει)"
 msgstr[1] "Φόρτωση πιστοποιητικών... (μπορεί να διαρκέσει)"
 
-#: src/commands/importcertificatescommand.cpp:865
-#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:842
+#: src/commands/importcertificatescommand.cpp:893
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2180,7 +2180,7 @@ msgid "Import CRL Finished"
 msgstr "Ολοκλήρωση εισαγωγής CRL"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:321
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για ανάγνωση."
@@ -2249,61 +2249,61 @@ msgstr ""
 "κλειδιού.</para> <para>Η έξοδος του <command>%1</command> ήταν:<para></"
 "para><message>%2</message></para>"
 
-#: src/commands/keytocardcommand.cpp:123
+#: src/commands/keytocardcommand.cpp:122
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:127
 #, kde-format
 msgid "Select Card"
 msgstr "Επιλογή κάρτας"
 
-#: src/commands/keytocardcommand.cpp:129
+#: src/commands/keytocardcommand.cpp:128
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Επιλέξτε την κάρτας όπου θα γίνει η εγγραφή του κλειδιού:"
 
-#: src/commands/keytocardcommand.cpp:154
+#: src/commands/keytocardcommand.cpp:153
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Αποτυχία εύρεσης της κάρτας με το σειραϊκό αριθμό: %1"
 
-#: src/commands/keytocardcommand.cpp:164
+#: src/commands/keytocardcommand.cpp:163
 #, kde-format
 msgid "Sorry! Transferring keys to this card is not supported."
 msgstr "Συγγνώμη! Δεν υποστηρίζεται η μεταφορά κλειδιών σε αυτήν την κάρτα."
 
-#: src/commands/keytocardcommand.cpp:190
+#: src/commands/keytocardcommand.cpp:189
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Signature (%1)"
 msgstr "Υπογραφή (%1)"
 
-#: src/commands/keytocardcommand.cpp:193
+#: src/commands/keytocardcommand.cpp:192
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Encryption (%1)"
 msgstr "Κρυπτογράφηση (%1)"
 
-#: src/commands/keytocardcommand.cpp:196
+#: src/commands/keytocardcommand.cpp:195
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Authentication (%1)"
 msgstr "Ταυτοποίηση (%1)"
 
-#: src/commands/keytocardcommand.cpp:200
+#: src/commands/keytocardcommand.cpp:199
 #, kde-format
 msgid "Select Card Slot"
 msgstr "Επιλογή υποδοχή κάρτας"
 
-#: src/commands/keytocardcommand.cpp:201
+#: src/commands/keytocardcommand.cpp:200
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "Επιλέξτε την υποδοχή κάρτας όπου θα γίνει η εγγραφή του κλειδιού:"
 
-#: src/commands/keytocardcommand.cpp:212
+#: src/commands/keytocardcommand.cpp:211
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2312,13 +2312,13 @@ msgstr "Επιλέξτε την υποδοχή κάρτας όπου θα γίν
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Αποτυχία εύρεσης της OpenPGP κάρτας με το σειραϊκό αριθμό: %1"
 
-#: src/commands/keytocardcommand.cpp:222
+#: src/commands/keytocardcommand.cpp:221
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 "Συγγνώμη! Αυτό το κλειδί δεν μπορεί να μεταφερθεί σε μια OpenPGP κάρτα."
 
-#: src/commands/keytocardcommand.cpp:240 src/commands/keytocardcommand.cpp:370
+#: src/commands/keytocardcommand.cpp:239 src/commands/keytocardcommand.cpp:369
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2330,7 +2330,7 @@ msgstr ""
 "Δεν θα είναι πλέον δυνατόν να αποκρυπτογραφήσετε παρελθούσα επικοινωνία για "
 "το υπάρχον κλειδί."
 
-#: src/commands/keytocardcommand.cpp:247 src/commands/keytocardcommand.cpp:373
+#: src/commands/keytocardcommand.cpp:246 src/commands/keytocardcommand.cpp:372
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
 #: src/commands/pivgeneratecardkeycommand.cpp:129
 #, kde-format
@@ -2344,25 +2344,25 @@ msgstr ""
 "κλειδί θα <b>αντικατασταθεί</b>.</p><p>Αν δεν υπάρχει εφεδρικό αντίγραφο το "
 "υπάρχον κλειδί θα χαθεί αμετάκλητα.</p>"
 
-#: src/commands/keytocardcommand.cpp:249
+#: src/commands/keytocardcommand.cpp:248
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Το υπάρχον κλειδί έχει το αποτύπωμα:"
 
-#: src/commands/keytocardcommand.cpp:253 src/commands/keytocardcommand.cpp:379
+#: src/commands/keytocardcommand.cpp:252 src/commands/keytocardcommand.cpp:378
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Αντικατάσταση του υπάρχοντος κλειδιού"
 
-#: src/commands/keytocardcommand.cpp:319
+#: src/commands/keytocardcommand.cpp:318
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Επιλογή πιστοποιητικού"
 
-#: src/commands/keytocardcommand.cpp:320
+#: src/commands/keytocardcommand.cpp:319
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
@@ -2370,12 +2370,12 @@ msgstr ""
 "Επιλέξτε το πιστοποιητικό το ζεύγος κλειδιών του οποίου θέλετε να γράψετε "
 "στην κάρτα:"
 
-#: src/commands/keytocardcommand.cpp:355
+#: src/commands/keytocardcommand.cpp:354
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "Συγγνώμη! Αυτό το κλειδί δεν μπορεί να μεταφερθεί σε μια PIV κάρτα."
 
-#: src/commands/keytocardcommand.cpp:360
+#: src/commands/keytocardcommand.cpp:359
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
@@ -2384,12 +2384,12 @@ msgstr ""
 "Συγγνώμη! Μόνο κλειδιά κρυπτογράφησης και υπογραφής μπορούν να μεταφερθούν "
 "σε μια PIV κάρτα."
 
-#: src/commands/keytocardcommand.cpp:375
+#: src/commands/keytocardcommand.cpp:374
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "Το υπάρχον κλειδί έχει τη λαβή κλειδιού:"
 
-#: src/commands/keytocardcommand.cpp:458
+#: src/commands/keytocardcommand.cpp:457
 #, kde-format
 msgctxt "@info"
 msgid "Moving the key to the card failed: %1"
@@ -2397,35 +2397,31 @@ msgstr "Αποτυχία μετακίνησης του κλειδιού στην
 
 #. i18n("Do you want to delete the key on this computer?"),
 #. i18nc("@title:window",
-#. #if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
 #. "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
-#. #else
-#. "Key transferred to card")) == KMessageBox::Yes) {
-#. #endif
 #. const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
 #. // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
 #. ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
 #. }
 #.
-#: src/commands/keytocardcommand.cpp:481
+#: src/commands/keytocardcommand.cpp:471
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "Επιτυχώς αντιγράφτηκε το κλειδί στην κάρτα."
 
-#: src/commands/keytocardcommand.cpp:501
+#: src/commands/keytocardcommand.cpp:491
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key pair to the card failed: %1"
 msgstr "Αποτυχία αντιγραφής του ζεύγους κλειδιών στην κάρτα: %1"
 
-#: src/commands/keytocardcommand.cpp:503
+#: src/commands/keytocardcommand.cpp:493
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key pair to the card."
 msgstr "Επιτυχώς αντιγράφτηκε το ζεύγος κλειδιών στην κάρτα."
 
-#: src/commands/keytocardcommand.cpp:513
+#: src/commands/keytocardcommand.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "Failed to delete the key: %1"
@@ -2918,7 +2914,7 @@ msgctxt "@info"
 msgid "X.509 certificates refreshed successfully."
 msgstr "Τα πιστοποιητικά X.509 ανανεώθηκαν με επιτυχία."
 
-#: src/commands/revokecertificationcommand.cpp:79
+#: src/commands/revokecertificationcommand.cpp:78
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2932,25 +2928,25 @@ msgstr ""
 "<para>Παρουσιάστηκε σφάλμα κατά την προσπάθεια προσθήκης του id χρήστη: "
 "<message>%1</message></para>"
 
-#: src/commands/revokecertificationcommand.cpp:88
-#: src/commands/revokecertificationcommand.cpp:106
-#: src/dialogs/certificatedetailswidget.cpp:635
+#: src/commands/revokecertificationcommand.cpp:83
+#: src/commands/revokecertificationcommand.cpp:97
+#: src/dialogs/certificatedetailswidget.cpp:630
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:89
+#: src/commands/revokecertificationcommand.cpp:84
 #, kde-format
 msgid "Revoke Certification"
 msgstr "Ανάκληση πιστοποίησης"
 
-#: src/commands/revokecertificationcommand.cpp:94
+#: src/commands/revokecertificationcommand.cpp:89
 #, kde-format
 msgid "User ID '%1' certified with key %2"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:96
+#: src/commands/revokecertificationcommand.cpp:91
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this invalid certification."
 msgid "You are about to revoke the following certification:"
@@ -2958,13 +2954,13 @@ msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "Δεν μπορείτε να ανακαλέσετε αυτήν τη μη έγκυρη πιστοποίηση."
 msgstr[1] "Δεν μπορείτε να ανακαλέσετε αυτήν τη μη έγκυρη πιστοποίηση."
 
-#: src/commands/revokecertificationcommand.cpp:107
+#: src/commands/revokecertificationcommand.cpp:98
 #, fuzzy, kde-format
 #| msgid "Revoke Certification"
 msgid "Revoke Certifications"
 msgstr "Ανάκληση πιστοποίησης"
 
-#: src/commands/revokecertificationcommand.cpp:215
+#: src/commands/revokecertificationcommand.cpp:202
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2976,7 +2972,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/revokecertificationcommand.cpp:220
+#: src/commands/revokecertificationcommand.cpp:207
 #, fuzzy, kde-format
 #| msgid "Publish revocations on keyserver"
 msgctxt "@action:button"
@@ -2985,13 +2981,13 @@ msgid_plural "Publish Revocations"
 msgstr[0] "Δημοσίευση των ανακλήσεων στον εξυπηρετητή"
 msgstr[1] "Δημοσίευση των ανακλήσεων στον εξυπηρετητή"
 
-#: src/commands/revokecertificationcommand.cpp:228
+#: src/commands/revokecertificationcommand.cpp:211
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
 msgstr ""
 
-#: src/commands/revokecertificationcommand.cpp:255
+#: src/commands/revokecertificationcommand.cpp:234
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3004,13 +3000,13 @@ msgstr ""
 "<para>Αποτυχία αποθήκευσης της αίτησης.</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/revokecertificationcommand.cpp:346
+#: src/commands/revokecertificationcommand.cpp:325
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this invalid certification."
 msgid "You cannot revoke any certifications of this key."
 msgstr "Δεν μπορείτε να ανακαλέσετε αυτήν τη μη έγκυρη πιστοποίηση."
 
-#: src/commands/revokecertificationcommand.cpp:349
+#: src/commands/revokecertificationcommand.cpp:328
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this invalid certification."
 msgid "You cannot revoke any certifications of this user ID."
@@ -3018,7 +3014,7 @@ msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "Δεν μπορείτε να ανακαλέσετε αυτήν τη μη έγκυρη πιστοποίηση."
 msgstr[1] "Δεν μπορείτε να ανακαλέσετε αυτήν τη μη έγκυρη πιστοποίηση."
 
-#: src/commands/revokecertificationcommand.cpp:354
+#: src/commands/revokecertificationcommand.cpp:333
 #, fuzzy, kde-format
 #| msgid "You cannot revoke this expired certification."
 msgid "You cannot revoke this certification."
@@ -3326,7 +3322,7 @@ msgstr "Εμφάνιση τεχνικών λεπτομερειών"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_tags)
 #: src/conf/appearanceconfigwidget.ui:178
-#: src/dialogs/certificatedetailswidget.cpp:517
+#: src/dialogs/certificatedetailswidget.cpp:516
 #, kde-format
 msgid "Tags"
 msgstr "Ετικέτες"
@@ -3382,13 +3378,13 @@ msgstr "Έξυπνη κάρτα"
 msgid "GnuPG System"
 msgstr "Σύστημα GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:108
-#: src/conf/cryptooperationsconfigwidget.cpp:215
+#: src/conf/cryptooperationsconfigwidget.cpp:107
+#: src/conf/cryptooperationsconfigwidget.cpp:205
 #, kde-format
 msgid "default"
 msgstr "προκαθορισμένο"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:116
+#: src/conf/cryptooperationsconfigwidget.cpp:110
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
@@ -3397,34 +3393,34 @@ msgstr ""
 "Αυτό σημαίνει ότι κάθε επιλογή διαμόρφωσης του συστήματος GnuPG θα πάρει τις "
 "προκαθορισμένες τιμές."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:117
+#: src/conf/cryptooperationsconfigwidget.cpp:111
 #, kde-format
 msgid "Apply profile"
 msgstr "Εφαρμογή προφίλ"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:163
+#: src/conf/cryptooperationsconfigwidget.cpp:153
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr "Το προφίλ διαμόρφωσης «%1» εφαρμόστηκε."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:164
+#: src/conf/cryptooperationsconfigwidget.cpp:154
 #, kde-format
 msgid "GnuPG Profile - Kleopatra"
 msgstr "GnuPG προφίλ- Kleopatra"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:199
+#: src/conf/cryptooperationsconfigwidget.cpp:189
 #, kde-format
 msgctxt "@title"
 msgid "General Operations"
 msgstr "Γενικές λειτουργίες"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:203
+#: src/conf/cryptooperationsconfigwidget.cpp:193
 #, kde-format
 msgid "Activate GnuPG Profile:"
 msgstr "Ενεργοποίηση GnuPG προφίλ:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:204
+#: src/conf/cryptooperationsconfigwidget.cpp:194
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
@@ -3433,17 +3429,17 @@ msgstr ""
 "Το προφίλ αποτελείται από διάφορες ρυθμίσεις που εφαρμόζονται σε πολλά "
 "συστατικά του συστήματος GnuPG."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:220
+#: src/conf/cryptooperationsconfigwidget.cpp:210
 #, kde-format
 msgid "Apply"
 msgstr "Εφαρμογή"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:233
 #, kde-format
 msgid "EMail Operations"
 msgstr "Λειτουργίες ηλ. αλληλογραφίας"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:235
 #, kde-format
 msgid ""
 "Don't confirm signing certificate if there is only one valid certificate for "
@@ -3452,7 +3448,7 @@ msgstr ""
 "Μην επιβεβαιώσετε την υπογραφή του πιστοποιητικού αν υπάρχει μόνο ένα έγκυρο "
 "πιστοποιητικό ταυτότητας"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:246
+#: src/conf/cryptooperationsconfigwidget.cpp:236
 #, kde-format
 msgid ""
 "Don't confirm encryption certificates if there is exactly one valid "
@@ -3461,12 +3457,12 @@ msgstr ""
 "Μην επιβεβαιώσετε την κρυπτογράφηση του πιστοποιητικού αν υπάρχει ακριβώς "
 "ένα έγκυρο πιστοποιητικό για κάθε παραλήπτη"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:242
 #, kde-format
 msgid "File Operations"
 msgstr "Λειτουργίες αρχείου"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:254
+#: src/conf/cryptooperationsconfigwidget.cpp:244
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3476,14 +3472,14 @@ msgstr ""
 "αντί για \".gpg\""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:255
+#: src/conf/cryptooperationsconfigwidget.cpp:245
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 "Δημιουργία υπογεγραμμένων ή/και κρυπτογραφημένων αρχείων ως αρχείων κειμένου."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:246
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3497,7 +3493,7 @@ msgstr ""
 "αλληλογραφίας. Αυτό θα αυξήσει το μέγεθος του αρχείου κατά το ένα τρίτο."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:259
+#: src/conf/cryptooperationsconfigwidget.cpp:249
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3506,13 +3502,13 @@ msgstr ""
 "Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
 "αποκρυπτογράφηση/επαλήθευση."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:260
+#: src/conf/cryptooperationsconfigwidget.cpp:250
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:251
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
@@ -3520,7 +3516,7 @@ msgstr ""
 "Δημιουργία προσωρινών αποκρυπτογραφημένων αρχείων στο φάκελο του "
 "κρυπτογραφημένου αρχείου."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:262
+#: src/conf/cryptooperationsconfigwidget.cpp:252
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3529,13 +3525,13 @@ msgstr ""
 "καταλόγου των χρηστών."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:263
+#: src/conf/cryptooperationsconfigwidget.cpp:253
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:264
+#: src/conf/cryptooperationsconfigwidget.cpp:254
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
@@ -3543,14 +3539,14 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να απενεργοποιηθεί η κρυπτογράφηση δημόσιου "
 "κλειδιού."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:276
+#: src/conf/cryptooperationsconfigwidget.cpp:266
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Πρόγραμμα αθροίσματος ελέγχου προς χρήση κατά τη δημιουργία αρχείων "
 "αθροίσματος ελέγχου:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:281
+#: src/conf/cryptooperationsconfigwidget.cpp:271
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Εντολή για την τοποθέτηση αρχείων στην αρχειοθήκη:"
@@ -3634,18 +3630,18 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr ""
 
-#: src/conf/groupsconfigpage.cpp:81
+#: src/conf/groupsconfigpage.cpp:80
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgid "Save changes"
 msgstr "Αποθήκευση ως"
 
-#: src/conf/groupsconfigpage.cpp:83
+#: src/conf/groupsconfigpage.cpp:82
 #, kde-format
 msgid "Discard changes"
 msgstr ""
 
-#: src/conf/groupsconfigpage.cpp:91
+#: src/conf/groupsconfigpage.cpp:86
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3653,7 +3649,7 @@ msgid ""
 "background.</para><para>Do you want to save your changes?</para>"
 msgstr ""
 
-#: src/conf/groupsconfigpage.cpp:93
+#: src/conf/groupsconfigpage.cpp:88
 #, fuzzy, kde-format
 #| msgid "Save As"
 msgctxt "@title::window"
@@ -3743,7 +3739,7 @@ msgctxt "@title:window a group of keys"
 msgid "Edit Group"
 msgstr "Επεξεργασία ομάδας"
 
-#: src/conf/kleopageconfigdialog.cpp:96
+#: src/conf/kleopageconfigdialog.cpp:91
 #, kde-format
 msgid ""
 "The settings of the current module have changed.\n"
@@ -3752,7 +3748,7 @@ msgstr ""
 "Οι ρυθμίσεις του τρέχοντος αρθρώματος έχουν αλλάξει.\n"
 "Θέλετε να εφαρμόσετε τις αλλαγές ή να τις απορρίψετε;"
 
-#: src/conf/kleopageconfigdialog.cpp:98
+#: src/conf/kleopageconfigdialog.cpp:93
 #, kde-format
 msgid "Apply Settings"
 msgstr "Εφαρμογή ρυθμίσεων"
@@ -4105,7 +4101,7 @@ msgstr ""
 "Η σύνταξη είναι \"ΥΠΟΛΟΓΙΣΤΗΣ\" ή \"ΥΠΟΛΟΓΙΣΤΗΣ:ΘΥΡΑ\". Αν δεν οριστεί η "
 "ΘΥΡΑ, θα χρησιμοποιηθεί η 389 (η τυπική θύρα LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:148
+#: src/crypto/autodecryptverifyfilescontroller.cpp:147
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4117,14 +4113,14 @@ msgstr ""
 "με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
 "κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:202
-#: src/crypto/autodecryptverifyfilescontroller.cpp:274
+#: src/crypto/autodecryptverifyfilescontroller.cpp:201
+#: src/crypto/autodecryptverifyfilescontroller.cpp:255
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:219
+#: src/crypto/autodecryptverifyfilescontroller.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid ""
@@ -4132,34 +4128,24 @@ msgid ""
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:220
+#: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:221
+#: src/crypto/autodecryptverifyfilescontroller.cpp:215
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:222
+#: src/crypto/autodecryptverifyfilescontroller.cpp:216
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
-#, fuzzy, kde-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
-msgid "The file <b>%1</b> already exists.\n"
-msgstr ""
-"Το αρχείο <b>%1</b> υπάρχει ήδη.\n"
-"Να αντικατασταθεί;"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
+#: src/crypto/autodecryptverifyfilescontroller.cpp:231 src/utils/output.cpp:527
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4168,22 +4154,22 @@ msgstr ""
 "Το αρχείο <b>%1</b> υπάρχει ήδη.\n"
 "Να αντικατασταθεί;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249 src/utils/output.cpp:536
+#: src/crypto/autodecryptverifyfilescontroller.cpp:234 src/utils/output.cpp:530
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Να αντικατασταθεί το υπάρχον αρχείο;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:251 src/utils/output.cpp:538
+#: src/crypto/autodecryptverifyfilescontroller.cpp:236 src/utils/output.cpp:532
 #, kde-format
 msgid "Overwrite All"
 msgstr "Αντικατάσταση όλων"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:267
+#: src/crypto/autodecryptverifyfilescontroller.cpp:248
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:329
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4192,7 +4178,7 @@ msgstr ""
 "Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
 "αποκρυπτογραφηθεί ή να επαληθευθεί."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:379
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid "Select the file to verify with the signature <filename>%1</filename>"
@@ -4234,7 +4220,7 @@ msgstr ""
 "αρχεία, όχι ένα μίγμα και των δύο."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:787
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
 #, kde-format
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -4251,14 +4237,14 @@ msgid "Create Checksum Progress"
 msgstr "Πρόοδος δημιουργίας αθροίσματος ελέγχου"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:698
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Σφάλμα κατά την εκτέλεση %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:701
+#: src/utils/output.cpp:687
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Αποτυχία εκτέλεσης %1: %2"
@@ -5993,7 +5979,7 @@ msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:71
-#: src/dialogs/certificatedetailswidget.cpp:268
+#: src/dialogs/certificatedetailswidget.cpp:267
 #: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgctxt "interpunctation for labels"
@@ -6067,47 +6053,47 @@ msgstr ""
 "<interface>%1</interface> δεν είναι έγκυρο.<nl/>Κανόνας τοπικού διαχειριστή: "
 "<icode>%2</icode>"
 
-#: src/dialogs/certificatedetailswidget.cpp:209
+#: src/dialogs/certificatedetailswidget.cpp:208
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs:"
 msgstr "ID χρηστών"
 
-#: src/dialogs/certificatedetailswidget.cpp:214
+#: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:401
 #, fuzzy, kde-format
 #| msgid "User-IDs"
 msgid "User IDs"
 msgstr "ID χρηστών"
 
-#: src/dialogs/certificatedetailswidget.cpp:229
+#: src/dialogs/certificatedetailswidget.cpp:228
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "Προσθήκη ID χρήστη..."
 
-#: src/dialogs/certificatedetailswidget.cpp:232
+#: src/dialogs/certificatedetailswidget.cpp:231
 #, fuzzy, kde-format
 #| msgid "Primary"
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "Πρωτεύον"
 
-#: src/dialogs/certificatedetailswidget.cpp:233
+#: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:236
+#: src/dialogs/certificatedetailswidget.cpp:235
 #, fuzzy, kde-format
 #| msgid "Enter User ID"
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "Εισαγωγή ID χρήστη"
 
-#: src/dialogs/certificatedetailswidget.cpp:239
+#: src/dialogs/certificatedetailswidget.cpp:238
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Certifications"
@@ -6115,160 +6101,160 @@ msgctxt "@action:button"
 msgid "Show Certifications"
 msgstr "Πιστοποιήσεις"
 
-#: src/dialogs/certificatedetailswidget.cpp:242
+#: src/dialogs/certificatedetailswidget.cpp:241
 #, fuzzy, kde-format
 #| msgid "Revoke Certification"
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "Ανάκληση πιστοποίησης"
 
-#: src/dialogs/certificatedetailswidget.cpp:245
-#: src/dialogs/certificatedetailswidget.cpp:626
+#: src/dialogs/certificatedetailswidget.cpp:244
+#: src/dialogs/certificatedetailswidget.cpp:625
 #, fuzzy, kde-format
 #| msgid "Revoke this User ID"
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "Ανάκληση αυτής της ταυτότητας χρήστη"
 
-#: src/dialogs/certificatedetailswidget.cpp:279
+#: src/dialogs/certificatedetailswidget.cpp:278
 #, fuzzy, kde-format
 #| msgid "Trust Level"
 msgid "Trust level:"
 msgstr "Επίπεδο εμπιστοσύνης"
 
-#: src/dialogs/certificatedetailswidget.cpp:284
+#: src/dialogs/certificatedetailswidget.cpp:283
 #, kde-format
 msgid "Valid from:"
 msgstr "Έγκυρο από:"
 
-#: src/dialogs/certificatedetailswidget.cpp:289
+#: src/dialogs/certificatedetailswidget.cpp:288
 #: src/dialogs/expirydialog.cpp:204
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
 msgstr "Έγκυρο έως:"
 
-#: src/dialogs/certificatedetailswidget.cpp:292
+#: src/dialogs/certificatedetailswidget.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:293
+#: src/dialogs/certificatedetailswidget.cpp:292
 #, fuzzy, kde-format
 #| msgid "Validity"
 msgctxt "@action:button"
 msgid "Change Validity"
 msgstr "Εγκυρότητα"
 
-#: src/dialogs/certificatedetailswidget.cpp:299
+#: src/dialogs/certificatedetailswidget.cpp:298
 #: src/dialogs/certifywidget.cpp:371
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Αποτύπωμα:"
 
-#: src/dialogs/certificatedetailswidget.cpp:303
+#: src/dialogs/certificatedetailswidget.cpp:302
 #, fuzzy, kde-format
 #| msgid "Could not write to clipboard"
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
 msgstr "Αδυναμία εγγραφής στο πρόχειρο"
 
-#: src/dialogs/certificatedetailswidget.cpp:304
+#: src/dialogs/certificatedetailswidget.cpp:303
 #, fuzzy, kde-format
 #| msgid "Fingerprint:"
 msgctxt "@action:button"
 msgid "Copy fingerprint"
 msgstr "Αποτύπωμα:"
 
-#: src/dialogs/certificatedetailswidget.cpp:311
+#: src/dialogs/certificatedetailswidget.cpp:310
 #, kde-format
 msgid "Issuer:"
 msgstr "Εκδότης:"
 
-#: src/dialogs/certificatedetailswidget.cpp:314
+#: src/dialogs/certificatedetailswidget.cpp:313
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
 msgstr "Αδυναμία δημιουργίας του πιστοποιητικού: %1"
 
-#: src/dialogs/certificatedetailswidget.cpp:315
+#: src/dialogs/certificatedetailswidget.cpp:314
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgctxt "@action:button"
 msgid "Show certificate"
 msgstr "Εμφάνιση εγκυρότητας πιστοποιητικού"
 
-#: src/dialogs/certificatedetailswidget.cpp:321
+#: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
 msgstr "Συμμόρφωση:"
 
-#: src/dialogs/certificatedetailswidget.cpp:326
+#: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
 msgid "Trusted introducer for:"
 msgstr "Έμπιστος ενδιάμεσος για:"
 
-#: src/dialogs/certificatedetailswidget.cpp:328
+#: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
 msgid "See certifications for details."
 msgstr "Δείτε τις πιστοποιήσεις για λεπτομέρειες."
 
-#: src/dialogs/certificatedetailswidget.cpp:334
+#: src/dialogs/certificatedetailswidget.cpp:333
 #, kde-format
 msgid "Related addresses:"
 msgstr "Σχετικές διευθύνσεις:"
 
-#: src/dialogs/certificatedetailswidget.cpp:339
+#: src/dialogs/certificatedetailswidget.cpp:338
 #, fuzzy, kde-format
 #| msgid "Related addresses:"
 msgid "Related addresses"
 msgstr "Σχετικές διευθύνσεις:"
 
-#: src/dialogs/certificatedetailswidget.cpp:350
+#: src/dialogs/certificatedetailswidget.cpp:349
 #, fuzzy, kde-format
 #| msgid "More details..."
 msgctxt "@action:button"
 msgid "More Details..."
 msgstr "Περισσότερες λεπτομέρειες..."
 
-#: src/dialogs/certificatedetailswidget.cpp:353
+#: src/dialogs/certificatedetailswidget.cpp:352
 #, fuzzy, kde-format
 #| msgid "Trust chain details..."
 msgctxt "@action:button"
 msgid "Trust Chain Details"
 msgstr "Λεπτομέρειες έμπιστης ακολουθίας..."
 
-#: src/dialogs/certificatedetailswidget.cpp:356
+#: src/dialogs/certificatedetailswidget.cpp:355
 #, fuzzy, kde-format
 #| msgid "&Update"
 msgctxt "@action:button"
 msgid "Update"
 msgstr "Ενη&μέρωση"
 
-#: src/dialogs/certificatedetailswidget.cpp:362
+#: src/dialogs/certificatedetailswidget.cpp:361
 #, fuzzy, kde-format
 #| msgid "Export"
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: src/dialogs/certificatedetailswidget.cpp:365
+#: src/dialogs/certificatedetailswidget.cpp:364
 #, fuzzy, kde-format
 #| msgid "Change passphrase"
 msgctxt "@action:button"
 msgid "Change Passphrase"
 msgstr "Αλλαγή συνθηματικού"
 
-#: src/dialogs/certificatedetailswidget.cpp:368
+#: src/dialogs/certificatedetailswidget.cpp:367
 #, fuzzy, kde-format
 #| msgid "Generate revocation certificate"
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
 msgstr "Δημιουργία πιστοποιητικού ανάκλησης"
 
-#: src/dialogs/certificatedetailswidget.cpp:370
+#: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
@@ -6280,37 +6266,37 @@ msgstr ""
 "χρησιμοποιείται. Το πιστοποιητικό ανάκλησης αφού δημοσιευθεί, δεν είναι "
 "δυνατόν να ανακληθεί."
 
-#: src/dialogs/certificatedetailswidget.cpp:492
+#: src/dialogs/certificatedetailswidget.cpp:491
 #, fuzzy, kde-format
 #| msgid "unlimited"
 msgctxt "Valid until:"
 msgid "unlimited"
 msgstr "απεριόριστο"
 
-#: src/dialogs/certificatedetailswidget.cpp:517
+#: src/dialogs/certificatedetailswidget.cpp:516
 #, kde-format
 msgid "Email"
 msgstr "Email"
 
-#: src/dialogs/certificatedetailswidget.cpp:517
+#: src/dialogs/certificatedetailswidget.cpp:516
 #: src/newcertificatewizard/enterdetailspage.cpp:61
 #, kde-format
 msgid "Name"
 msgstr "Όνομα"
 
-#: src/dialogs/certificatedetailswidget.cpp:517
+#: src/dialogs/certificatedetailswidget.cpp:516
 #, kde-format
 msgid "Trust Level"
 msgstr "Επίπεδο εμπιστοσύνης"
 
-#: src/dialogs/certificatedetailswidget.cpp:535
+#: src/dialogs/certificatedetailswidget.cpp:534
 #, fuzzy, kde-format
 #| msgid "new email"
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "νέο μήνυμα"
 
-#: src/dialogs/certificatedetailswidget.cpp:623
+#: src/dialogs/certificatedetailswidget.cpp:622
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6324,20 +6310,20 @@ msgstr ""
 "<para>Παρουσιάστηκε σφάλμα κατά την προσπάθεια προσθήκης του id χρήστη: "
 "<message>%1</message></para>"
 
-#: src/dialogs/certificatedetailswidget.cpp:830
+#: src/dialogs/certificatedetailswidget.cpp:821
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:841
+#: src/dialogs/certificatedetailswidget.cpp:832
 #, fuzzy, kde-format
 #| msgid "Enter User ID"
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "Εισαγωγή ID χρήστη"
 
-#: src/dialogs/certificatedetailswidget.cpp:842
+#: src/dialogs/certificatedetailswidget.cpp:833
 #, fuzzy, kde-format
 #| msgid "Enter User ID"
 msgctxt "@action:inmenu"
@@ -6346,14 +6332,14 @@ msgid_plural "Certify User IDs..."
 msgstr[0] "Εισαγωγή ID χρήστη"
 msgstr[1] "Εισαγωγή ID χρήστη"
 
-#: src/dialogs/certificatedetailswidget.cpp:851
+#: src/dialogs/certificatedetailswidget.cpp:842
 #, fuzzy, kde-format
 #| msgid "Revoke Certification..."
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "Ανάκληση πιστοποίησης..."
 
-#: src/dialogs/certificatedetailswidget.cpp:852
+#: src/dialogs/certificatedetailswidget.cpp:843
 #, fuzzy, kde-format
 #| msgid "Revoke Certification..."
 msgctxt "@action:inmenu"
@@ -6362,103 +6348,103 @@ msgid_plural "Revoke Certifications..."
 msgstr[0] "Ανάκληση πιστοποίησης..."
 msgstr[1] "Ανάκληση πιστοποίησης..."
 
-#: src/dialogs/certificatedetailswidget.cpp:863
+#: src/dialogs/certificatedetailswidget.cpp:854
 #, fuzzy, kde-format
 #| msgid "Publish on Server..."
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "Δημοσίευση στον εξυπηρετητή..."
 
-#: src/dialogs/certificatedetailswidget.cpp:876
+#: src/dialogs/certificatedetailswidget.cpp:867
 #, fuzzy, kde-format
 #| msgid "Revoke this User ID"
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Ανάκληση αυτής της ταυτότητας χρήστη"
 
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:914
 #, kde-format
 msgid "never"
 msgstr "ποτέ"
 
-#: src/dialogs/certificatedetailswidget.cpp:925
+#: src/dialogs/certificatedetailswidget.cpp:916
 #, kde-format
 msgid "Signing"
 msgstr "Υπογραφή"
 
-#: src/dialogs/certificatedetailswidget.cpp:926
-#: src/dialogs/certificatedetailswidget.cpp:930
+#: src/dialogs/certificatedetailswidget.cpp:917
+#: src/dialogs/certificatedetailswidget.cpp:921
 #, kde-format
 msgid "First message"
 msgstr "Πρώτο μήνυμα"
 
-#: src/dialogs/certificatedetailswidget.cpp:927
-#: src/dialogs/certificatedetailswidget.cpp:931
+#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:922
 #, kde-format
 msgid "Last message"
 msgstr "Τελευταίο μήνυμα"
 
-#: src/dialogs/certificatedetailswidget.cpp:928
-#: src/dialogs/certificatedetailswidget.cpp:932
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "Message count"
 msgstr "Πλήθος μηνυμάτων"
 
-#: src/dialogs/certificatedetailswidget.cpp:929
+#: src/dialogs/certificatedetailswidget.cpp:920
 #: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Encryption"
 msgstr "Κρυπτογράφηση"
 
-#: src/dialogs/certificatedetailswidget.cpp:964
+#: src/dialogs/certificatedetailswidget.cpp:955
 #, kde-format
 msgid "Updating..."
 msgstr "Ενημέρωση..."
 
-#: src/dialogs/certificatedetailswidget.cpp:1012
+#: src/dialogs/certificatedetailswidget.cpp:1003
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailswidget.cpp:1028
+#: src/dialogs/certificatedetailswidget.cpp:1019
 #, kde-format
 msgid "Common Name"
 msgstr "Κοινό όνομα"
 
-#: src/dialogs/certificatedetailswidget.cpp:1029
+#: src/dialogs/certificatedetailswidget.cpp:1020
 #, kde-format
 msgid "Organization"
 msgstr "Οργανισμός"
 
-#: src/dialogs/certificatedetailswidget.cpp:1030
+#: src/dialogs/certificatedetailswidget.cpp:1021
 #, kde-format
 msgid "Street"
 msgstr "Οδός"
 
-#: src/dialogs/certificatedetailswidget.cpp:1031
+#: src/dialogs/certificatedetailswidget.cpp:1022
 #, kde-format
 msgid "City"
 msgstr "Πόλη"
 
-#: src/dialogs/certificatedetailswidget.cpp:1032
+#: src/dialogs/certificatedetailswidget.cpp:1023
 #, kde-format
 msgid "State"
 msgstr "Περιφέρεια"
 
-#: src/dialogs/certificatedetailswidget.cpp:1033
+#: src/dialogs/certificatedetailswidget.cpp:1024
 #, kde-format
 msgid "Country"
 msgstr "Χώρα"
 
-#: src/dialogs/certificatedetailswidget.cpp:1061
+#: src/dialogs/certificatedetailswidget.cpp:1052
 #, fuzzy, kde-format
 #| msgid "Please enter a name or email address..."
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "Δώστε όνομα ή διεύθυνση ηλ. αλληλογραφίας..."
 
-#: src/dialogs/certificatedetailswidget.cpp:1070
+#: src/dialogs/certificatedetailswidget.cpp:1061
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgid "The issuer certificate could not be found locally."
@@ -8839,20 +8825,20 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Μη έγκυρα ορίσματα: %1"
 
-#: src/mainwindow.cpp:102
+#: src/mainwindow.cpp:101
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr ""
 
-#: src/mainwindow.cpp:109
+#: src/mainwindow.cpp:108
 #, fuzzy, kde-format
 #| msgid "Only &Close Window"
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Κλείσιμο &μόνο του παραθύρου"
 
-#: src/mainwindow.cpp:207
+#: src/mainwindow.cpp:202
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "%1 may be used by other applications as a service.\n"
@@ -8865,14 +8851,14 @@ msgstr ""
 "Το %1 μπορεί να χρησιμοποιείται από άλλες εφαρμογές ως υπηρεσία.\n"
 "Ίσως επιθυμείτε το κλείσιμο του παραθύρου αυτού χωρίς έξοδο από το %1."
 
-#: src/mainwindow.cpp:210
+#: src/mainwindow.cpp:205
 #, fuzzy, kde-format
 #| msgid "Really Quit?"
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Πραγματικά έξοδος;"
 
-#: src/mainwindow.cpp:293
+#: src/mainwindow.cpp:284
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -8881,23 +8867,23 @@ msgstr ""
 "Αδυναμία εκκίνησης του προβολέα καταγραφής GnuPG (kwatchgnupg). Παρακαλώ "
 "ελέγξτε την εγκατάστασή σας."
 
-#: src/mainwindow.cpp:295
+#: src/mainwindow.cpp:286
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Σφάλμα εκκίνησης του KWatchGnuPG"
 
-#: src/mainwindow.cpp:524
+#: src/mainwindow.cpp:515
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Προβολέας καταγραφής GnuPG"
 
-#: src/mainwindow.cpp:529
+#: src/mainwindow.cpp:520
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:530
+#: src/mainwindow.cpp:521
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8905,23 +8891,23 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:536
+#: src/mainwindow.cpp:527
 #, kde-format
 msgid "Check for updates"
 msgstr "Έλεγχος για ενημερώσεις"
 
-#: src/mainwindow.cpp:542
+#: src/mainwindow.cpp:533
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
 
-#: src/mainwindow.cpp:543
+#: src/mainwindow.cpp:534
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Εμφάνιση επισκόπησης πιστοποιητικού"
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:537
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8929,45 +8915,45 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Σημειωματάριο"
 
-#: src/mainwindow.cpp:547
+#: src/mainwindow.cpp:538
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Να εμφανίζεται το σημειωματάριο για (απο)κρυπτογράφηση και υπογραφή/"
 "επικύρωση κειμένου"
 
-#: src/mainwindow.cpp:550
+#: src/mainwindow.cpp:541
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Έξυπνες κάρτες"
 
-#: src/mainwindow.cpp:551
+#: src/mainwindow.cpp:542
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Εμφάνιση διαχείρισης έξυπνων καρτών"
 
-#: src/mainwindow.cpp:555
+#: src/mainwindow.cpp:546
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Εκτέλεση αυτοελέγχου"
 
-#: src/mainwindow.cpp:559
+#: src/mainwindow.cpp:550
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Διαμόρφωση ομάδων..."
 
-#: src/mainwindow.cpp:584
+#: src/mainwindow.cpp:575
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Ρύθμιση εστίασης σε γρήγορη αναζήτηση"
 
-#: src/mainwindow.cpp:595
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win σύνοψη"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:590
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8975,73 +8961,73 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:606
+#: src/mainwindow.cpp:597
 #, fuzzy, kde-format
 #| msgid "Force decryption"
 msgid "Password-based encryption"
 msgstr "Εξαναγκασμός αποκρυπτογράφησης"
 
-#: src/mainwindow.cpp:608
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_symmetric_encryption_gnupg_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:612
+#: src/mainwindow.cpp:603
 #, kde-format
 msgid "Quickguide"
 msgstr ""
 
-#: src/mainwindow.cpp:614
+#: src/mainwindow.cpp:605
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_sign_encrypt_gnupg_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:618
+#: src/mainwindow.cpp:609
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:620
+#: src/mainwindow.cpp:611
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:615
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:617
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:630 src/view/smartcardwidget.cpp:119
+#: src/mainwindow.cpp:621 src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
 msgstr "Διαχείριση έξυπνων καρτών"
 
-#: src/mainwindow.cpp:632
+#: src/mainwindow.cpp:623
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "GnuPG Manual"
 msgstr ""
 
-#: src/mainwindow.cpp:660
+#: src/mainwindow.cpp:651
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9050,28 +9036,28 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:663
+#: src/mainwindow.cpp:654
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
 
-#: src/mainwindow.cpp:771 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Υπογραφή/κρυπτογράφηση..."
 
-#: src/mainwindow.cpp:772 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Αποκρυπτογράφηση/επαλήθευση..."
 
-#: src/mainwindow.cpp:777
+#: src/mainwindow.cpp:768
 #, kde-format
 msgid "Import Certificates"
 msgstr "Εισαγωγή πιστοποιητικών"
 
-#: src/mainwindow.cpp:778
+#: src/mainwindow.cpp:769
 #, kde-format
 msgid "Import CRLs"
 msgstr "Εισαγωγή CRL"
@@ -10831,12 +10817,12 @@ msgstr "Αδυναμία ανοίγματος του αρχείου \"%1\" γι�
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Το αρχείο \"%1\" είναι ήδη ανοιχτό, αλλά όχι για ανάγνωση"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:668
+#: src/utils/input.cpp:330 src/utils/output.cpp:654
 #, kde-format
 msgid "Command not specified"
 msgstr "Δεν ορίστηκε εντολή"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:674
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:660
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Αδυναμία εκκίνησης %1 διεργασίας: %2"
@@ -10899,64 +10885,64 @@ msgstr ""
 "Σφάλμα καταγραφής: Αδυναμία ανοίγματος του αρχείου καταγραφής \"%1\" για "
 "εγγραφή."
 
-#: src/utils/output.cpp:278
+#: src/utils/output.cpp:277
 #, kde-format
 msgid "No output device"
 msgstr "Δεν υπάρχει συσκευή εξόδου"
 
-#: src/utils/output.cpp:493
+#: src/utils/output.cpp:492
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "Αδυναμία ανοίγματος FD %1 για εγγραφή"
 
-#: src/utils/output.cpp:519
+#: src/utils/output.cpp:518
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Αδυναμία δημιουργίας προσωρινού αρχείου για έξοδο \"%1\""
 
-#: src/utils/output.cpp:615
+#: src/utils/output.cpp:601
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Άρνηση αντικατάστασης"
 
-#: src/utils/output.cpp:621
+#: src/utils/output.cpp:607
 #, kde-format
 msgid "Could not remove file \"%1\" for overwriting."
 msgstr "Αδυναμία αφαίρεσης του αρχείου \"%1\" για αντικατάσταση."
 
-#: src/utils/output.cpp:640
+#: src/utils/output.cpp:626
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Αδυναμία μετονομασίας του αρχείου \"%1\" σε \"%2\""
 
-#: src/utils/output.cpp:685
+#: src/utils/output.cpp:671
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Είσοδος στο %1 ..."
 
-#: src/utils/output.cpp:687
+#: src/utils/output.cpp:673
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Είσοδος στο %1"
 
-#: src/utils/output.cpp:719
+#: src/utils/output.cpp:705
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Αδυναμία εγγραφής στο πρόχειρο"
 
-#: src/utils/output.cpp:728
+#: src/utils/output.cpp:714
 #, kde-format
 msgid "Find buffer"
 msgstr "Ενδιάμεση μνήμη αναζήτησης"
 
-#: src/utils/output.cpp:730
+#: src/utils/output.cpp:716
 #, kde-format
 msgid "Selection"
 msgstr "Επιλογή"
 
-#: src/utils/output.cpp:744
+#: src/utils/output.cpp:730
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Αδυναμία εύρεσης προχείρου"
@@ -12278,6 +12264,15 @@ msgid ""
 msgstr ""
 "Για να κάνετε εισαγωγή από έναν δημόσιο εξυπηρετητή κλειδιών χρησιμοποιήστε "
 "το «Αναζήτηση στον εξυπηρετητή»."
+
+#, fuzzy
+#~| msgid ""
+#~| "The file <b>%1</b> already exists.\n"
+#~| "Overwrite?"
+#~ msgid "The file <b>%1</b> already exists.\n"
+#~ msgstr ""
+#~ "Το αρχείο <b>%1</b> υπάρχει ήδη.\n"
+#~ "Να αντικατασταθεί;"
 
 #~ msgid ""
 #~ "<p>An error occurred while trying to change the certification trust for "

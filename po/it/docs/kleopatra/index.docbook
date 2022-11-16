@@ -261,10 +261,8 @@
 
 <para
 >Il nome è stato scelto poiché questo programma deriva dai <ulink url="https://www.gnupg.org/aegypten2/"
->progetti Ägypten</ulink
-> (<foreignphrase lang="de"
->Ägypten</foreignphrase
-> in tedesco significa appunto Egitto). &kleopatra; è il nome in tedesco di Cleopatra.</para
+>progetti &Auml;gypten</ulink
+> (&Auml;gypten in tedesco significa appunto Egitto). &kleopatra; è il nome in tedesco di Cleopatra.</para
 ></note>
 
 </chapter>
@@ -289,13 +287,11 @@
 
 <para
 >Ogni riga dell'elenco di chiavi corrisponde a un certificato, identificato dal cosiddetto <guilabel
->Oggetto DN</guilabel
+>Oggetto &dn;</guilabel
 >. &dn; è un acronimo che sta per <quote
-><foreignphrase lang="en"
->Distinguished Name</foreignphrase
-></quote
+>Distinguished Name</quote
 >, in italiano <quote
->Nome Distinto</quote
+>Nome distinto</quote
 >: questo è un identificativo gerarchico, simile al percorso di un filesystem ma con una sintassi inusuale, che dovrebbe identificare univocamente il certificato a livello globale.</para>
 
 <para
@@ -461,7 +457,7 @@ not found in 4.2
 <varlistentry>
 <term
 ><guilabel
->Crea una coppia di chiavi personali &x509; e una richiesta di certificato</guilabel
+>Crea una coppia di chiavi personali X.509 e una richiesta di certificato</guilabel
 ></term>
 <listitem>
 <para
@@ -528,7 +524,7 @@ not found in 4.2
 >Questa firma di revoca viene salvata in un file a parte. Questo file può in seguito venire importato nel portachiavi e viene quindi allegato alla chiave, rendendola inutilizzabile. Nota che l'importazione di questa firma nella chiave non richiede una password; quindi, dovresti tenere questa firma di revoca in un posto sicuro, normalmente diverso da dove tieni la coppia di chiavi. È buona norma usare un posto diverso dal computer, come un dispositivo di memorizzazione esterna come una penna USB o uno stampato su carta.</para>
 
 <para
->&kleopatra; non fornisce una funzione per creare una tale firma di revoca in qualsiasi momento, ma lo puoi fare con l'applicazione &kgpg; di &kde; scegliendo &kgpg;<menuchoice
+>&kleopatra; non fornisce una funzione per creare una tale firma di revoca in qualsiasi momento, ma lo puoi fare con l'applicazione &kgpg; di &kde; scegliendo &kgpg; <menuchoice
 ><guimenu
 >Chiavi</guimenu
 ><guimenuitem
@@ -589,9 +585,7 @@ as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
 
 <sect1 id="menufile"
 ><title
->Il menu <guimenu
->File</guimenu
-></title>
+>Il menu File</title>
 
 <variablelist>
 
@@ -914,9 +908,7 @@ Verify Checksum Files...
 
 <sect1 id="menuview"
 ><title
->Il menu <guimenu
->Visualizza</guimenu
-></title>
+>Il menu Visualizza</title>
 
       <variablelist>
 
@@ -1115,9 +1107,7 @@ Verify Checksum Files...
 
 <sect1 id="menucertificates"
 ><title
->Il menu <guimenu
->Certificati</guimenu
-></title>
+>Il menu Certificati</title>
 
       <variablelist>
 
@@ -1158,7 +1148,7 @@ Verify Checksum Files...
 >Segna questo certificato radice (&smime;) come fidato.</action>
             </para>
             <para
->In qualche modo, questo è l'equivalente di <xref linkend="certificates-change-owner-trust"/> per i certificati radice &smime;. Puoi tuttavia scegliere solo tra la fiducia assuluta e nessuna fiducia, nella terminologia di &openpgp;. </para>
+>In qualche modo, questo è l'equivalente di <xref linkend="certificates-change-owner-trust"/> per i certificati radice &smime;. Puoi tuttavia scegliere solo tra la fiducia assoluta e nessuna fiducia, nella terminologia di &openpgp;. </para>
             <note>
               <para
 >Il motore (per mezzo di &gpgagent;) chiederà al momento dell'importazione del certificato radice se fidarsene. Tuttavia, quella funzione va abilitata esplicitamente nella configurazione del motore (<option
@@ -1467,7 +1457,7 @@ uncommon).</para>
 ><guimenu
 >Certificati</guimenu
 ><guimenuitem
->Sversa il certificato</guimenuitem
+>Estrai il certificato</guimenuitem
 > </menuchoice>
           </term>
           <listitem>
@@ -1509,9 +1499,7 @@ varlistentry id="certificates-download">
 
 <sect1 id="menutools"
 ><title
->Il menu <guimenu
->Strumenti</guimenu
-></title>
+>Il menu Strumenti</title>
 
 <variablelist>
 
@@ -1549,15 +1537,15 @@ varlistentry id="certificates-download">
             <para
 ><action
 >Aggiorna tutti i certificati &openpgp;</action
-> eseguendo <userinput
+> eseguendo <programlisting
 ><command
->gpg <option
+>gpg&nbsp;<option
 >--refresh-keys</option
 ></command
-></userinput
+></programlisting
 >. Dopo il corretto completamento del comando, la raccolta di chiavi locale rispecchierà le ultime modifiche alla validità dei certificati &openpgp;. </para>
             <para
->Vedi la nota sotto <xref linkend="configuration"/> per alcuni avvisi. </para>
+>Vedi la nota sotto <xref linkend="certificates-refresh-x509"/> per alcuni avvisi. </para>
           </listitem>
         </varlistentry>
 
@@ -1574,20 +1562,25 @@ varlistentry id="certificates-download">
             <para
 ><action
 >Aggiorna tutti i certificati &smime;</action
-> eseguendo
-<userinput
-><command
->gpgsm <option
+> eseguendo<programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
 >-k</option
-> <option
+>&nbsp;<!--
+                  --><option
 >--with-validation</option
-> <option
+>&nbsp;<!--
+                  --><option
 >--force-crl-refresh</option
-> <option
+>&nbsp;<!--
+                  --><option
 >--enable-crl-checks</option
-></command
-></userinput
->. Dopo il corretto completamento del comando, la raccolta di chiavi locale rispecchierà le ultime modifiche alla validità dei certificati &smime;. </para>
+><!--
+                  --></command
+></programlisting
+>Dopo il corretto completamento del comando, la raccolta di chiavi locale rispecchierà le ultime modifiche alla validità dei certificati &smime;. </para>
             <note>
               <para
 >Aggiornare i certificati &x509; o &openpgp; implica scaricare tutti i certificati e le &crl; per controllare se qualcuno di essi è stato nel frattempo revocato. </para>
@@ -1653,7 +1646,7 @@ that is wrong
 ><guimenu
 >Strumenti</guimenu
 ><guimenuitem
->Sversa cache delle CRL</guimenuitem
+>Estrai cache delle CRL</guimenuitem
 ></menuchoice
 ></term>
 
@@ -1696,9 +1689,7 @@ updated.</para>
 
 <sect1 id="menusettings"
 ><title
->Il menu <guimenu
->Impostazioni</guimenu
-></title>
+>Il menu Impostazioni</title>
 
 <para
 >&kleopatra; ha un menu delle <guimenu
@@ -1740,9 +1731,7 @@ updated.</para>
 
 <sect1 id="menuwindow"
 ><title
->Il menu <guimenu
->Finestra</guimenu
-></title>
+>Il menu Finestra</title>
 <para
 >Il menu <guimenu
 >Finestra</guimenu
@@ -1754,9 +1743,7 @@ updated.</para>
 
 <sect1 id="menuhelp"
 ><title
->Il menu <guimenu
->Aiuto</guimenu
-></title>
+>Il menu Aiuto</title>
 
 <para
 >&kleopatra; ha un menu <guimenu
@@ -2140,9 +2127,7 @@ list.</para>
 
     <sect1 id="configuration-appearance">
       <title
->Configurare l'<guilabel
->Aspetto</guilabel
-></title>
+>Configurare l'aspetto</title>
 
       <sect2 id="configuration-appearance-tooltips">
           <title
@@ -2250,7 +2235,7 @@ list.</para>
 >Imposta icona</guibutton
 >. Apparirà la finestra standard di selezione delle icone di &kde;, dove puoi scegliere un'icona dalla raccolta di &kde; o caricarne una nuova. </para>
         <para
->Per rimovere un'icona, devi premere il pulsante <guibutton
+>Per rimuovere un'icona, devi premere il pulsante <guibutton
 >Aspetto predefinito</guibutton
 >. </para>
         <para
@@ -2468,7 +2453,7 @@ list.</para>
 >Configurare aspetti della convalida S/&MIME;</title>
 
       <para
->Su questa pagina, puoi configurare certi aspetti della convalida dei certficati &smime;. </para>
+>Su questa pagina, puoi configurare certi aspetti della convalida dei certificati &smime;. </para>
       <note>
         <para
 >Per lo più, questa è solo una versione più facile da usare delle stesse impostazioni che trovi anche in <xref linkend="configuration-gnupg-system"/>. Tutto quello che puoi configurare qui, lo puoi configurare anche là, eccetto <xref linkend="configuration-smime-validation-refresh-interval"/>, che è specifico a &kleopatra;. </para>
@@ -2493,9 +2478,9 @@ list.</para>
 >Questa opzione abilita il controllo periodico della validità dei certificati. Puoi anche scegliere il periodo di controllo (in ore). L'effetto del controllo periodico è lo stesso di <xref linkend="view-redisplay"/>; non c'è la possibilità di pianificazione periodica di <xref linkend="certificates-refresh-openpgp"/> o <xref linkend="certificates-refresh-x509"/>. </para>
               <note>
                 <para
->La convalida viene effettuata implicitamente ogni volta che cambiano dei file significativi in <filename class="directory"
+>La convalida viene effettuata implicitamente ogni volta che cambiano dei file significativi in <filename
 >~/.gnupg</filename
->. Questa opzione, come <xref linkend="certificates-refresh-openpgp"/> e <xref linkend="certificates-refresh-x509"/>, è quindi importante solo nel caso di fattori esterni per la validità dei certificati. </para>
+>. Questa opzione, come <xref linkend="certificates-refresh-openpgp"/> and <xref linkend="certificates-refresh-x509"/>, è quindi importante solo nel caso di fattori esterni per la validità dei certificati. </para>
               </note>
             </listitem>
           </varlistentry>
@@ -2533,7 +2518,7 @@ list.</para>
 >Quando si sceglie questo metodo, si invia una richiesta al server della &ca; più o meno ogni volta che si invia o riceve un messaggio cifrato, il che in linea teorica permette all'agenzia che ha emesso il certificato di monitorare con chi stai scambiando (per esempio) messaggi di posta. </para>
               </warning>
               <para
->Se usi questo metodo, dovra inserire l'&URL; del risponditore &ocsp; in <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+>Se usi questo metodo, dovrai inserire l'&URL; del risponditore &ocsp; in <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
               <para
 >Vedi <xref linkend="configuration-smime-validation-use-ocsp"/> per un metodo più tradizionale di controllo della validità dei certificati che non tradisce informazioni sui tuoi contatti. </para>
             </listitem>
@@ -2799,22 +2784,18 @@ list.</para>
 >Configurare il sistema &gnupg;</title>
 
       <para
->Questa parte della finestra viene generata automaticamente dal risultato di <userinput
-><command
->gpgconf</command
-> <option
+>Questa parte della finestra viene generata automaticamente dal risultato di <command
+>gpgconf <option
 >--list-components</option
-></userinput
+></command
 > e, per ogni <replaceable
 >componente</replaceable
-> restituito dal comando sopra, il risultato di <userinput
-><command
->gpgconf</command
-> <option
+> restituito dal comando sopra, il risultato di <command
+>gpgconf <option
 >--list-options</option
 > <replaceable
 >componente</replaceable
-></userinput
+></command
 >. </para>
       <note>
         <para
@@ -2975,13 +2956,7 @@ list.</para>
 >DNAttributeOrder</varname
 >. L'argomento è uno o più tra <varname
 >CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
->. Se vuoi inizializzare i campi con un certo valore, scrivi qualcosa come <userinput
-><replaceable
->Attributo</replaceable
->=<replaceable
->valore</replaceable
-></userinput
->. Se vuoi che l'attributo sia trattato come uno obbligatorio, apponi un punto esclamativo (ad esempio <varname
+>. Se vuoi inizializzare i campi con un certo valore, scrivi qualcosa come Attributo=valore. Se vuoi che l'attributo sia trattato come uno obbligatorio, apponi un punto esclamativo (ad esempio <varname
 >CN!,L,OU,O!,C!,EMAIL!</varname
 >, che tra l'altro è la configurazione predefinita).</para>
 
@@ -2996,9 +2971,7 @@ list.</para>
 >Inserisci il mio indirizzo</guibutton
 >, imposta <varname
 >ShowSetWhoAmI</varname
-> a <userinput
->false</userinput
->.</para>
+> a false.</para>
 
 <tip
 ><para
@@ -3568,7 +3541,7 @@ C=IT
 >Alcuni dei criteri più interessanti, come <varname
 >is-revoked</varname
 > o <varname
->is_expired</varname
+>is-expired</varname
 > funzionano solo su chiavi <varname
 >convalidate</varname
 >, e questo è il motivo per cui, normalmente, solo per le chiavi convalidate sono controllate la revoca e la scadenza, sebbene tu possa eliminare questi controlli supplementari. </para>
@@ -3669,9 +3642,7 @@ is-at-least-ownertrust=marginal
 >Configurare programmi di archiviazione per file di firma e cifratura</title>
 
       <para
->&kleopatra; permette all'amministratore (e all'utente avanzato) di configurare l'elenco di programmi di archiviazione presentati nella finestra <guilabel
->Firma/Cifra file</guilabel
->. </para>
+>&kleopatra; permette all'amministratore (e all'utente avanzato) di configurare l'elenco di programmi di archiviazione presentati nella finestra Firma/Cifra file. </para>
 
       <para
 >Ogni programma di archiviazione è definito in <filename
@@ -3702,7 +3673,7 @@ is-at-least-ownertrust=marginal
 ></term>
           <listitem>
             <para
->Un identificativo univoco usato per indentificare internamente questo archivio. Se non sei sicuro, usa il nome del comando. </para>
+>Un identificativo univoco usato per identificare internamente questo archivio. Se non sei sicuro, usa il nome del comando. </para>
           </listitem>
         </varlistentry>
 
@@ -3713,9 +3684,7 @@ is-at-least-ownertrust=marginal
 > (tradotto)</term>
           <listitem>
             <para
->Il nome di questo programma di archiviazione così com'è visibile all'utente nel menu a tendina corrispondente della finestra <guilabel
->Firma/Cifra file</guilabel
->. </para>
+>Il nome di questo programma di archiviazione così com'è visibile all'utente nel menu a tendina corrispondente della finestra Firma/Cifra file. </para>
           </listitem>
         </varlistentry>
 
@@ -3833,9 +3802,7 @@ is-at-least-ownertrust=marginal
     <sect1 id="admin-checksum-definitions">
 
       <title
->Configurare i programmi dei codici di controllo per l'uso con <guilabel
->Crea/Verifica codici di controllo</guilabel
-></title>
+>Configurare i programmi dei codici di controllo per l'uso con Crea/Verifica codici di controllo</title>
 
       <para
 >&kleopatra; permette all'amministratore (e all'utente avanzato) di configurare l'elenco di programmi per i codici di controllo tra cui l'utente può scegliere nella finestra di configurazione e che &kleopatra; può rilevare automaticamente quando le si chiede di verificare il codice di controllo di un certo file. </para>
@@ -3884,9 +3851,7 @@ is-at-least-ownertrust=marginal
 >non</emphasis
 > vengono quotati nel risultato.<footnote
 > <para
->È vero, questi programmi non sono stati scritti pensando alle interfacce grafiche, e &kleopatra; non gestirà correttamente dei nomi di file patologici che contengono <userinput
->:&nbsp;OK</userinput
-> e un ritorno a capo. </para>
+>È vero, questi programmi non sono stati scritti pensando alle interfacce grafiche, e &kleopatra; non gestirà correttamente dei nomi di file patologici che contengono «:&nbsp;OK» e un ritorno a capo. </para>
           </footnote>
         </para>
       </note>
@@ -3999,10 +3964,10 @@ is-at-least-ownertrust=marginal
 >Riconoscimenti e licenza</title>
 
 <para
->&kleopatra; © 2002 di &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; e &Jesper.Pedersen;, © 2004 di &Daniel.Molkentin;, © 2004, 2007-2010 di Klarälvdalens Datakonsult AB.</para>
+>&kleopatra; © 2002 di &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; e &Jesper.Pedersen;, © 2004 di &Daniel.Molkentin;, © 2004, 2007-2010 di Klar&auml;lvdalens Datakonsult AB</para>
 
 <para
->La documentazione è copyright 2002 di &Steffen.Hansen;, copyright 2004 di &Daniel.Molkentin;, copyright 2004,2010 di Klarälvdalens Datakonsult AB.</para>
+>La documentazione è copyright 2002 di &Steffen.Hansen;, copyright 2004 di &Daniel.Molkentin;, copyright 2004,2010 di Klar&auml;lvdalens Datakonsult AB</para>
 
 <itemizedlist>
 <title

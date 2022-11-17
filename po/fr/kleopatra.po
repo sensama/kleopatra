@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-16 00:47+0000\n"
-"PO-Revision-Date: 2022-10-28 14:53+0200\n"
+"PO-Revision-Date: 2022-11-15 20:26+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -358,30 +358,28 @@ msgid "End of validity period changed successfully."
 msgstr "La fin de la période validité a été modifiée avec succès."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(certificat inconnu)"
+msgstr "%1 est-il votre certificat personnel ?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Certificats sur carte"
+msgstr "Marquer un certificat personnel"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Oui, c'est le mien"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "Non, ce n'est pas le mien"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -392,6 +390,10 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Voulez-vous attribuer à « %1 » les droits de marquage des certificats "
+"comme %2 le fait pour vous ?</para><para><emphasis>Ceci signifie que le "
+"propriétaire de ce certificat vérifie les empreintes numériques et confirme "
+"les identités des autres personnes.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -402,19 +404,22 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Voulez-vous attribuer à « %1 » les droits de marquage des certificats "
+"comme  valable pour vous ?</para><para><emphasis>Ceci signifie que le "
+"propriétaire de ce certificat vérifie les empreintes numériques et confirme "
+"les identités des autres personnes.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Erreur de certification"
+msgstr "Attribuer des privilèges de certification"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Attribuer des privilèges"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, fuzzy, kde-kuit-format
@@ -447,83 +452,64 @@ msgstr ""
 "modifications ?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Révoquer une certification"
+msgstr "Révoquer des privilèges de certification"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Révoquer une clé"
+msgstr "Révoquer des privilèges"
 
 #: src/commands/changeownertrustcommand.cpp:233
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Une erreur est survenue durant la mise à jour du certificat : </"
-"para><para><message>%1</message></para>"
+"<para>Une erreur est survenue durant le marquage du certificat « %1 » comme "
+"votre certificat : </para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Une erreur est survenue durant la mise à jour du certificat : </"
-"para><para><message>%1</message></para>"
+"<para>Une erreur est survenue durant l'attribution des privilèges de "
+"certification de « %1 » : </para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Une erreur est survenue durant la mise à jour du certificat : </"
-"para><para><message>%1</message></para>"
+"<para>Une erreur est survenue durant la révocation des privilèges de "
+"certification de « %1 » : </para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:263
-#, fuzzy, kde-format
-#| msgid "Certifying other Certificates"
+#, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "Certification d'autres certificats"
+msgstr "Le certificat « %1 » a été marqué comme votre certificat."
 
 #: src/commands/changeownertrustcommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Erreur de modification du niveau de confiance de la certification"
+msgstr "Les privilèges de certification ont été attribués à « %1 »."
 
 #: src/commands/changeownertrustcommand.cpp:269
-#, fuzzy, kde-format
-#| msgctxt "%1 is the name of the profile"
-#| msgid "The configuration profile \"%1\" was applied."
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "Le profil de configuration « %1 » a été appliqué."
+msgstr "Les privilèges de certification de « %1 » ont été révoqués."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -11009,18 +10995,18 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "Révoquer la certification du certificat sélectionné"
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Changer la confiance dans la certification..."
+msgstr "Modifier les privilèges de certification..."
 
 #: src/view/keylistcontroller.cpp:452
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "Révoquer la certification du certificat sélectionné"
+msgstr ""
+"Attribuer ou révoquer les privilèges de certification pour le certificat "
+"sélectionné"
 
 #: src/view/keylistcontroller.cpp:456
 #, kde-format

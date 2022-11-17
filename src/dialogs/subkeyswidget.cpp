@@ -24,7 +24,10 @@
 #include "exportdialog.h"
 #include "utils/keys.h"
 
+#include <kleopatra_debug.h>
+
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 #include <Libkleo/NavigatableTreeWidget>
 
 #include <KConfigGroup>
@@ -58,10 +61,13 @@ public:
         ui.subkeysTree->setContextMenuPolicy(Qt::CustomContextMenu);
         connect(ui.subkeysTree, &QAbstractItemView::customContextMenuRequested,
                 q, [this](const QPoint &p) { tableContextMenuRequested(p); });
+        connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
+                q, [this]() { keysMayHaveChanged(); });
     }
 
 private:
     void tableContextMenuRequested(const QPoint &p);
+    void keysMayHaveChanged();
 
 public:
     GpgME::Key key;
@@ -183,15 +189,22 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
 }
 
+void SubKeysWidget::Private::keysMayHaveChanged()
+{
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
+    const auto updatedKey = Kleo::KeyCache::instance()->findByFingerprint(key.primaryFingerprint());
+    if (!updatedKey.isNull()) {
+        q->setKey(updatedKey);
+    }
+}
+
 SubKeysWidget::SubKeysWidget(QWidget *parent)
     : QWidget(parent)
     , d(new Private(this))
 {
 }
 
-SubKeysWidget::~SubKeysWidget()
-{
-}
+SubKeysWidget::~SubKeysWidget() = default;
 
 void SubKeysWidget::setKey(const GpgME::Key &key)
 {

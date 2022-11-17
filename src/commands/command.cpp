@@ -200,7 +200,11 @@ void Command::setKeys(const std::vector<Key> &keys)
 
 void Command::start()
 {
-    doStart();
+    // defer the actual start and return immediately to avoid problems if the
+    // caller is deleted before start returns (e.g. an action of a context menu)
+    QMetaObject::invokeMethod(this, [this]() {
+        doStart();
+    }, Qt::QueuedConnection);
 }
 
 void Command::cancel()

@@ -882,9 +882,10 @@ void CertificateDetailsWidget::Private::showMoreDetails()
         cmd->setUseDialog(true);
         cmd->start();
     } else {
-        QScopedPointer<SubKeysDialog> dlg(new SubKeysDialog(q));
+        auto dlg = new SubKeysDialog{q};
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->setKey(key);
-        dlg->exec();
+        dlg->open();
     }
 }
 

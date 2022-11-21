@@ -69,6 +69,11 @@ private:
     void authenticationFinished();
     void authenticationCanceled();
 
+    void keyToCardDone(const GpgME::Error &err);
+    void keyToPIVCardDone(const GpgME::Error &err);
+
+    void keyHasBeenCopiedToCard();
+
 private:
     std::string appName;
     GpgME::Subkey subkey;
@@ -265,7 +270,7 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
         .arg(slot)
         .arg(timestamp);
     ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
-        q->keyToOpenPGPCardDone(err);
+        keyToCardDone(err);
     });
 }
 
@@ -389,7 +394,7 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
         .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
         .arg(QString::fromStdString(cardSlot));
     ReaderStatus::mutableInstance()->startSimpleTransaction(pivCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
-        q->keyToPIVCardDone(err);
+        keyToPIVCardDone(err);
     });
 }
 
@@ -418,6 +423,13 @@ void KeyToCardCommand::Private::authenticationCanceled()
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::authenticationCanceled()";
     hasBeenCanceled = true;
     canceled();
+}
+
+void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
+{
+    ReaderStatus::mutableInstance()->updateStatus();
+    success(i18nc("@info", "Successfully copied the key to the card."));
+    finished();
 }
 
 KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &subkey)
@@ -450,39 +462,30 @@ std::vector<std::shared_ptr<Card> > KeyToCardCommand::getSuitableCards(const Gpg
     return suitableCards;
 }
 
-void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
+void KeyToCardCommand::Private::keyToCardDone(const GpgME::Error &err)
 {
-    if (err) {
-        d->error(i18nc("@info",
-                       "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())));
-    } else if (!err.isCanceled()) {
-        d->success(i18nc("@info", "Successfully copied the key to the card."));
-        ReaderStatus::mutableInstance()->updateStatus();
+    if (!err && !err.isCanceled()) {
+        keyHasBeenCopiedToCard();
+        return;
     }
-    d->finished();
+    if (err) {
+        error(xi18nc("@info",
+                     "<para>Copying the key to the card failed:</para><para><message>%1</message></para>", QString::fromUtf8(err.asString())));
+    }
+    finished();
 }
 
-void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
+void KeyToCardCommand::Private::keyToPIVCardDone(const GpgME::Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::keyToPIVCardDone():"
-                           << err.asString() << "(" << err.code() << ")";
-    if (err) {
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << err.asString() << "(" << err.code() << ")";
 #ifdef GPG_ERROR_HAS_NO_AUTH
-        // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
-        if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
-            d->authenticate();
-            return;
-        }
-#endif
-
-        d->error(i18nc("@info",
-                       "Copying the key pair to the card failed: %1", QString::fromUtf8(err.asString())));
-    } else if (!err.isCanceled()) {
-        d->success(i18nc("@info", "Successfully copied the key pair to the card."));
-        ReaderStatus::mutableInstance()->updateStatus();
+    // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
+    if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {
+        authenticate();
+        return;
     }
-
-    d->finished();
+#endif
+    keyToCardDone(err);
 }
 
 void KeyToCardCommand::doStart()

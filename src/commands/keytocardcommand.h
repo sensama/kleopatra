@@ -40,10 +40,6 @@ public:
 
     static std::vector<std::shared_ptr<Kleo::SmartCard::Card> > getSuitableCards(const GpgME::Subkey &subkey);
 
-public Q_SLOTS:
-    void keyToOpenPGPCardDone(const GpgME::Error &err);
-    void keyToPIVCardDone(const GpgME::Error &err);
-
 private:
     void doStart() override;
     void doCancel() override;

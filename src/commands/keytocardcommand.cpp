@@ -255,7 +255,7 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
             encKeyWarning;
         const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
             i18nc("@title:window", "Overwrite existing key"),
-            KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+            KGuiItem{i18nc("@action:button", "Overwrite Existing Key")}, KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
         if (choice != KMessageBox::Continue) {
             finished();
             return;
@@ -381,7 +381,7 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
                 decryptionWarning;
             const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
                 i18nc("@title:window", "Overwrite existing key"),
-                KStandardGuiItem::cont(), KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
+                KGuiItem{i18nc("@action:button", "Overwrite Existing Key")}, KStandardGuiItem::cancel(), QString(), KMessageBox::Notify | KMessageBox::Dangerous);
             if (choice != KMessageBox::Continue) {
                 finished();
                 return;

@@ -3,7 +3,7 @@
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH
-    SPDX-FileCopyrightText: 2020 g10 Code GmbH
+    SPDX-FileCopyrightText: 2020,2022 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
@@ -15,22 +15,28 @@
 
 #include "cardcommand_p.h"
 
-#include "commands/authenticatepivcardapplicationcommand.h"
+#include "authenticatepivcardapplicationcommand.h"
 
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/utils.h"
+#include <utils/applicationstate.h>
+#include <utils/filedialog.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeySelectionDialog>
 
 #include <KLocalizedString>
 
 #include <QDateTime>
+#include <QDir>
 #include <QInputDialog>
+#include <QSaveFile>
 #include <QStringList>
 
 #include <gpg-error.h>
@@ -55,7 +61,6 @@ class KeyToCardCommand::Private : public CardCommand::Private
 public:
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey);
     explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
-    ~Private() override;
 
 private:
     void start();
@@ -73,6 +78,12 @@ private:
     void keyToPIVCardDone(const GpgME::Error &err);
 
     void keyHasBeenCopiedToCard();
+    bool backupKey();
+    std::vector<QByteArray> readSecretKeyFile();
+    bool writeSecretKeyBackup(const QString &filename, const std::vector<QByteArray> &keydata);
+
+    void startDeleteSecretKeyLocally();
+    void deleteSecretKeyLocallyFinished(const GpgME::Error &err);
 
 private:
     std::string appName;
@@ -94,7 +105,6 @@ const KeyToCardCommand::Private *KeyToCardCommand::d_func() const
 #define q q_func()
 #define d d_func()
 
-
 KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey_)
     : CardCommand::Private(qq, "", nullptr)
     , subkey(subkey_)
@@ -105,10 +115,6 @@ KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot
     : CardCommand::Private(qq, serialNumber, nullptr)
     , appName(appName_)
     , cardSlot(slot)
-{
-}
-
-KeyToCardCommand::Private::~Private()
 {
 }
 
@@ -427,6 +433,181 @@ void KeyToCardCommand::Private::authenticationCanceled()
 
 void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
 {
+    ReaderStatus::mutableInstance()->updateStatus();
+
+    const auto answer = KMessageBox::questionTwoActionsCancel(
+        parentWidgetOrView(),
+        xi18nc("@info",
+               "<para>The key has been copied to the card.</para>"
+               "<para>Do you want to delete the copy of the key stored on this computer?</para>"),
+        i18nc("@title:window", "Success"),
+        KGuiItem{i18nc("@action:button", "Create Backup and Delete Key")},
+        KGuiItem{i18nc("@action:button", "Delete Key")},
+        KGuiItem{i18nc("@action:button", "Keep Key")});
+    if (answer == KMessageBox::ButtonCode::Cancel) {
+        finished();
+        return;
+    }
+    if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+        if (!backupKey()) {
+            finished();
+            return;
+        }
+    }
+    startDeleteSecretKeyLocally();
+}
+
+namespace
+{
+QString gnupgPrivateKeyBackupExtension()
+{
+    return QStringLiteral(".gpgsk");
+}
+
+QString proposeFilename(const Subkey &subkey)
+{
+    QString filename;
+
+    const auto key = subkey.parent();
+    auto name = Formatting::prettyName(key);
+    if (name.isEmpty()) {
+        name = Formatting::prettyEMail(key);
+    }
+    const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
+    const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
+    const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
+    /* Not translated so it's better to use in tutorials etc. */
+    filename = ((shortKeyID == shortSubkeyID) //
+                ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, shortKeyID, usage)
+                : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage));
+    filename.replace(u'/', u'_');
+
+    return QDir{ApplicationState::lastUsedExportDirectory()}.filePath(filename + gnupgPrivateKeyBackupExtension());
+}
+
+QString requestPrivateKeyBackupFilename(const QString &proposedFilename, QWidget *parent)
+{
+    auto filename = FileDialog::getSaveFileNameEx(
+        parent,
+        i18nc("@title:window", "Backup Secret Key"),
+        QStringLiteral("imp"),
+        proposedFilename,
+        i18nc("description of filename filter", "Secret Key Backup Files") + QLatin1String{" (*.gpgsk)"});
+
+    if (!filename.isEmpty()) {
+        const QFileInfo fi{filename};
+        if (fi.suffix().isEmpty()) {
+            filename += gnupgPrivateKeyBackupExtension();
+        }
+        ApplicationState::setLastUsedExportDirectory(filename);
+    }
+
+    return filename;
+}
+}
+
+bool KeyToCardCommand::Private::backupKey()
+{
+    static const QByteArray backupInfoName = "Backup-info:";
+
+    auto keydata = readSecretKeyFile();
+    if (keydata.empty()) {
+        return false;
+    }
+    const auto filename = requestPrivateKeyBackupFilename(proposeFilename(subkey), parentWidgetOrView());
+    if (filename.isEmpty()) {
+        return false;
+    }
+
+    // remove old backup info
+    Kleo::erase_if(keydata, [](const auto &line) {
+        return line.startsWith(backupInfoName);
+    });
+    // prepend new backup info
+    const QByteArrayList backupInfo = {
+        backupInfoName,
+        subkey.keyGrip(),
+        QDateTime::currentDateTimeUtc().toString(Qt::ISODate).toUtf8(),
+        "Kleopatra",
+        Formatting::prettyNameAndEMail(subkey.parent()).toUtf8(),
+    };
+    keydata.insert(keydata.begin(), backupInfo.join(' ') + '\n');
+
+    return writeSecretKeyBackup(filename, keydata);
+}
+
+std::vector<QByteArray> KeyToCardCommand::Private::readSecretKeyFile()
+{
+    const auto filename = QString::fromLatin1(subkey.keyGrip()) + QLatin1String{".key"};
+    const auto path = QDir{Kleo::gnupgPrivateKeysDirectory()}.filePath(filename);
+
+    QFile file{path};
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        error(xi18n("Cannot open the private key file <filename>%1</filename> for reading.", path));
+        return {};
+    }
+
+    std::vector<QByteArray> lines;
+    while (!file.atEnd()) {
+        lines.push_back(file.readLine());
+    }
+    if (lines.empty()) {
+        error(xi18n("The private key file <filename>%1</filename> is empty.", path));
+    }
+    return lines;
+}
+
+bool KeyToCardCommand::Private::writeSecretKeyBackup(const QString &filename, const std::vector<QByteArray> &keydata)
+{
+    QSaveFile file{filename};
+    // open the file in binary format because we want to write Unix line endings
+    if (!file.open(QIODevice::WriteOnly)) {
+        error(xi18n("Cannot open the file <filename>%1</filename> for writing.", filename));
+        return false;
+    }
+    for (const auto &line : keydata) {
+        file.write(line);
+    }
+    if (!file.commit()) {
+        error(xi18n("Writing the backup of the secret key to <filename>%1</filename> failed.", filename));
+        return false;
+    };
+    return true;
+}
+
+void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
+{
+    const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
+    if (!card) {
+        error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
+    const auto answer = KMessageBox::questionTwoActions(
+        parentWidgetOrView(),
+        xi18n("Do you really want to delete the local copy of the secret key?"),
+        i18nc("@title:window", "Confirm Deletion"),
+        KStandardGuiItem::del(),
+        KStandardGuiItem::cancel(),
+        {},
+        KMessageBox::Notify | KMessageBox::Dangerous);
+    if (answer != KMessageBox::ButtonCode::PrimayAction) {
+        finished();
+        return;
+    }
+
+    const auto cmd = QByteArray{"DELETE_KEY --force "} + subkey.keyGrip();
+    ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd, q, [this](const GpgME::Error &err) {
+        deleteSecretKeyLocallyFinished(err);
+    });
+}
+
+void KeyToCardCommand::Private::deleteSecretKeyLocallyFinished(const GpgME::Error &err)
+{
+    if (err) {
+        error(xi18nc("@info", "<para>Failed to delete the key:</para><para><message>%1</message></para>", QString::fromUtf8(err.asString())));
+    }
     ReaderStatus::mutableInstance()->updateStatus();
     success(i18nc("@info", "Successfully copied the key to the card."));
     finished();

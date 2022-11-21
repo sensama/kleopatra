@@ -456,18 +456,6 @@ void KeyToCardCommand::keyToOpenPGPCardDone(const GpgME::Error &err)
         d->error(i18nc("@info",
                        "Moving the key to the card failed: %1", QString::fromUtf8(err.asString())));
     } else if (!err.isCanceled()) {
-        /* TODO DELETE_KEY is too strong, because it also deletes the stub
-         * of the secret key. I could not find out how GnuPG does this. Question
-         * to GnuPG Developers is pending an answer
-        if (KMessageBox::questionTwoActions(d->parentWidgetOrView(),
-                                       i18n("Do you want to delete the key on this computer?"),
-                                       i18nc("@title:window",
-                                       "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
-            const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
-            // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
-            ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
-        }
-        */
         d->success(i18nc("@info", "Successfully copied the key to the card."));
         ReaderStatus::mutableInstance()->updateStatus();
     }
@@ -494,14 +482,6 @@ void KeyToCardCommand::keyToPIVCardDone(const GpgME::Error &err)
         ReaderStatus::mutableInstance()->updateStatus();
     }
 
-    d->finished();
-}
-
-void KeyToCardCommand::deleteDone(const GpgME::Error &err)
-{
-    if (err) {
-        d->error(i18nc("@info", "Failed to delete the key: %1", QString::fromUtf8(err.asString())));
-    }
     d->finished();
 }
 

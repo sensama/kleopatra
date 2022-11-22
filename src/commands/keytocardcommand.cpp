@@ -52,6 +52,15 @@ using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 
+namespace
+{
+QString cardDisplayName(const std::shared_ptr<const Card> &card)
+{
+    return i18nc("smartcard application - serial number of smartcard", "%1 - %2",
+                 displayAppName(card->appName()), card->displaySerialNumber());
+}
+}
+
 class KeyToCardCommand::Private : public CardCommand::Private
 {
     friend class ::Kleo::Commands::KeyToCardCommand;
@@ -131,8 +140,7 @@ static std::shared_ptr<Card> getCardToTransferSubkeyTo(const Subkey &subkey, QWi
 
     QStringList options;
     for (const auto &card: suitableCards) {
-        options.push_back(i18nc("smartcard application - serial number of smartcard", "%1 - %2",
-            displayAppName(card->appName()), card->displaySerialNumber()));
+        options.push_back(cardDisplayName(card));
     }
 
     bool ok;
@@ -172,7 +180,7 @@ void KeyToCardCommand::Private::start()
     } else if (card->appName() == SmartCard::PIVCard::AppName) {
         startKeyToPIVCard();
     } else {
-        error(i18n("Sorry! Transferring keys to this card is not supported."));
+        error(xi18nc("@info", "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported.", cardDisplayName(card)));
         finished();
         return;
     }
@@ -254,11 +262,13 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
         existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpAuthKeyRef());
     }
     if (!existingKey.empty()) {
-        const QString message = i18nc("@info",
-            "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-            "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+        const QString message = i18nc(
+            "@info",
+            "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+            "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
+            cardDisplayName(pgpCard)) +
             i18n("The existing key has the fingerprint:") +
-            QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
+            QStringLiteral("<pre>%1</pre>").arg(Formatting::prettyID(existingKey.c_str())) +
             encKeyWarning;
         const auto choice = KMessageBox::warningContinueCancel(parentWidgetOrView(), message,
             i18nc("@title:window", "Overwrite existing key"),
@@ -380,9 +390,11 @@ void KeyToCardCommand::Private::startKeyToPIVCard()
             const QString decryptionWarning = (cardSlot == PIVCard::keyManagementKeyRef()) ?
                 i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
                 QString();
-            const QString message = i18nc("@info",
-                "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
-                "<p>If there is no backup the existing key will be irrecoverably lost.</p>") +
+            const QString message = i18nc(
+                "@info",
+                "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
+                "<p>If there is no backup the existing key will be irrecoverably lost.</p>",
+                cardDisplayName(pivCard)) +
                 i18n("The existing key has the key grip:") +
                 QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey)) +
                 decryptionWarning;

@@ -17,6 +17,7 @@
 
 #include "authenticatepivcardapplicationcommand.h"
 
+#include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
@@ -628,18 +629,34 @@ KeyToCardCommand::~KeyToCardCommand()
     qCDebug(KLEOPATRA_LOG) << "KeyToCardCommand::~KeyToCardCommand()";
 }
 
-// static
-std::vector<std::shared_ptr<Card> > KeyToCardCommand::getSuitableCards(const GpgME::Subkey &subkey)
+namespace
 {
-    std::vector<std::shared_ptr<Card> > suitableCards;
+bool cardSupportsKeyAlgorithm(const std::shared_ptr<const Card> &card, const std::string &keyAlgo)
+{
+    if (card->appName() == OpenPGPCard::AppName) {
+        const auto pgpCard = static_cast<const OpenPGPCard *>(card.get());
+        const auto cardAlgos = pgpCard->supportedAlgorithms();
+        return Kleo::any_of(cardAlgos, [keyAlgo](const auto &algo) {
+            return (keyAlgo == algo.id) //
+                || (keyAlgo == OpenPGPCard::getAlgorithmName(algo.id, OpenPGPCard::pgpEncKeyRef()))
+                || (keyAlgo == OpenPGPCard::getAlgorithmName(algo.id, OpenPGPCard::pgpSigKeyRef()));
+        });
+    }
+    return false;
+}
+}
+
+// static
+std::vector<std::shared_ptr<Card>> KeyToCardCommand::getSuitableCards(const GpgME::Subkey &subkey)
+{
+    std::vector<std::shared_ptr<Card>> suitableCards;
     if (subkey.isNull() || subkey.parent().protocol() != GpgME::OpenPGP) {
         return suitableCards;
     }
-    for (const auto &card: ReaderStatus::instance()->getCards()) {
-        if (card->appName() == OpenPGPCard::AppName) {
-            suitableCards.push_back(card);
-        }
-    }
+    const auto keyAlgo = subkey.algoName();
+    Kleo::copy_if(ReaderStatus::instance()->getCards(), std::back_inserter(suitableCards), [keyAlgo](const auto &card) {
+        return cardSupportsKeyAlgorithm(card, keyAlgo);
+    });
     return suitableCards;
 }
 

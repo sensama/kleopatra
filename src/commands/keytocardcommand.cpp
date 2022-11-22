@@ -605,7 +605,7 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
         KStandardGuiItem::cancel(),
         {},
         KMessageBox::Notify | KMessageBox::Dangerous);
-    if (answer != KMessageBox::ButtonCode::PrimayAction) {
+    if (answer != KMessageBox::ButtonCode::PrimaryAction) {
         finished();
         return;
     }

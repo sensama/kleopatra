@@ -87,6 +87,8 @@ private:
     void keyToCardDone(const GpgME::Error &err);
     void keyToPIVCardDone(const GpgME::Error &err);
 
+    void updateDone();
+
     void keyHasBeenCopiedToCard();
     bool backupKey();
     std::vector<QByteArray> readSecretKeyFile();
@@ -101,6 +103,7 @@ private:
     std::string cardSlot;
     bool overwriteExistingAlreadyApproved = false;
     bool hasBeenCanceled = false;
+    QMetaObject::Connection updateConnection;
 };
 
 KeyToCardCommand::Private *KeyToCardCommand::d_func()
@@ -443,10 +446,28 @@ void KeyToCardCommand::Private::authenticationCanceled()
     canceled();
 }
 
+void KeyToCardCommand::Private::updateDone()
+{
+    disconnect(updateConnection);
+    const auto card = SmartCard::ReaderStatus::instance()->getCard(serialNumber(), appName);
+    if (!card) {
+        error(i18n("Failed to find the card with the serial number: %1", QString::fromStdString(serialNumber())));
+        finished();
+        return;
+    }
+
+    const std::string keyGripOnCard = card->keyInfo(cardSlot).grip;
+    if (keyGripOnCard != subkey.keyGrip()) {
+        qCWarning(KLEOPATRA_LOG) << q << __func__ << "KEYTOCARD succeeded, but key on card doesn't match copied key";
+        error(i18nc("@info", "Copying the key to the card failed."));
+        finished();
+        return;
+    }
+    keyHasBeenCopiedToCard();
+}
+
 void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
 {
-    ReaderStatus::mutableInstance()->updateStatus();
-
     const auto answer = KMessageBox::questionTwoActionsCancel(
         parentWidgetOrView(),
         xi18nc("@info",
@@ -674,7 +695,10 @@ std::vector<std::shared_ptr<Card>> KeyToCardCommand::getSuitableCards(const GpgM
 void KeyToCardCommand::Private::keyToCardDone(const GpgME::Error &err)
 {
     if (!err && !err.isCanceled()) {
-        keyHasBeenCopiedToCard();
+        updateConnection = connect(ReaderStatus::instance(), &ReaderStatus::updateFinished, q, [this]() {
+            updateDone();
+        });
+        ReaderStatus::mutableInstance()->updateStatus();
         return;
     }
     if (err) {

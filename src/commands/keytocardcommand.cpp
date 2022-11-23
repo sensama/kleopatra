@@ -187,39 +187,47 @@ void KeyToCardCommand::Private::start()
 }
 
 namespace {
-static int getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
+static std::string getOpenPGPCardSlotForKey(const GpgME::Subkey &subKey, QWidget *parent)
 {
     // Check if we need to ask the user for the slot
     if ((subKey.canSign() || subKey.canCertify()) && !subKey.canEncrypt() && !subKey.canAuthenticate()) {
         // Signing only
-        return 1;
+        return OpenPGPCard::pgpSigKeyRef();
     }
     if (subKey.canEncrypt() && !(subKey.canSign() || subKey.canCertify()) && !subKey.canAuthenticate()) {
         // Encrypt only
-        return 2;
+        return OpenPGPCard::pgpEncKeyRef();
     }
     if (subKey.canAuthenticate() && !(subKey.canSign() || subKey.canCertify()) && !subKey.canEncrypt()) {
         // Auth only
-        return 3;
+        return OpenPGPCard::pgpAuthKeyRef();
     }
     // Multiple uses, ask user.
     QStringList options;
+    std::vector<std::string> cardSlots;
 
     if (subKey.canSign() || subKey.canCertify()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Signature (%1)", 1);
+        options.push_back(i18nc("@item:inlistbox", "Signature"));
+        cardSlots.push_back(OpenPGPCard::pgpSigKeyRef());
     }
     if (subKey.canEncrypt()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Encryption (%1)", 2);
+        options.push_back(i18nc("@item:inlistbox", "Encryption"));
+        cardSlots.push_back(OpenPGPCard::pgpEncKeyRef());
     }
     if (subKey.canAuthenticate()) {
-        options << i18nc("Placeholder is the number of a slot on a smart card", "Authentication (%1)", 3);
+        options.push_back(i18nc("@item:inlistbox", "Authentication"));
+        cardSlots.push_back(OpenPGPCard::pgpAuthKeyRef());
     }
 
     bool ok;
     const QString choice = QInputDialog::getItem(parent, i18n("Select Card Slot"),
         i18n("Please select the card slot the key should be written to:"), options, /* current= */ 0, /* editable= */ false, &ok);
-    const int slot = options.indexOf(choice) + 1;
-    return ok ? slot : -1;
+    const int choiceIndex = options.indexOf(choice);
+    if (ok && choiceIndex >= 0) {
+        return cardSlots[choiceIndex];
+    } else {
+        return {};
+    }
 }
 }
 
@@ -243,25 +251,18 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
         return;
     }
 
-    const auto slot = getOpenPGPCardSlotForKey(subkey, parentWidgetOrView());
-    if (slot < 1) {
+    cardSlot = getOpenPGPCardSlotForKey(subkey, parentWidgetOrView());
+    if (cardSlot.empty()) {
         finished();
         return;
     }
 
     // Check if we need to do the overwrite warning.
-    std::string existingKey;
-    QString encKeyWarning;
-    if (slot == 1) {
-        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpSigKeyRef());
-    } else if (slot == 2) {
-        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpEncKeyRef());
-        encKeyWarning = i18n("It will no longer be possible to decrypt past communication "
-                                "encrypted for the existing key.");
-    } else if (slot == 3) {
-        existingKey = pgpCard->keyFingerprint(OpenPGPCard::pgpAuthKeyRef());
-    }
+    const std::string existingKey = pgpCard->keyFingerprint(cardSlot);
     if (!existingKey.empty()) {
+        const auto encKeyWarning = (cardSlot == OpenPGPCard::pgpEncKeyRef()) ?
+            i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.") :
+            QString{};
         const QString message = i18nc(
             "@info",
             "<p>The card <em>%1</em> already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
@@ -282,10 +283,8 @@ void KeyToCardCommand::Private::startKeyToOpenPGPCard() {
     // Now do the deed
     const auto time = QDateTime::fromSecsSinceEpoch(quint32(subkey.creationTime()), Qt::UTC);
     const auto timestamp = time.toString(QStringLiteral("yyyyMMdd'T'HHmmss"));
-    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 OPENPGP.%3 %4")
-        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()))
-        .arg(slot)
-        .arg(timestamp);
+    const QString cmd = QStringLiteral("KEYTOCARD --force %1 %2 %3 %4")
+        .arg(QString::fromLatin1(subkey.keyGrip()), QString::fromStdString(serialNumber()), QString::fromStdString(cardSlot), timestamp);
     ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, cmd.toUtf8(), q_func(), [this](const GpgME::Error &err) {
         keyToCardDone(err);
     });

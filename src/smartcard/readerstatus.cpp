@@ -761,6 +761,7 @@ Q_SIGNALS:
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
+    void updateFinished();
     void oneTransactionFinished(const GpgME::Error &err);
 
 public Q_SLOTS:
@@ -898,6 +899,8 @@ private:
                 if (anyError) {
                     gpgAgent.reset();
                 }
+
+                Q_EMIT updateFinished();
             } else {
                 GpgME::Error err;
                 if (gpgHasMultiCardMultiAppSupport()) {
@@ -955,6 +958,8 @@ public:
                 q, &ReaderStatus::cardChanged);
         connect(this, &::ReaderStatusThread::cardRemoved,
                 q, &ReaderStatus::cardRemoved);
+        connect(this, &::ReaderStatusThread::updateFinished,
+                q, &ReaderStatus::updateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged,
                 q, &ReaderStatus::firstCardWithNullPinChanged);
         connect(this, &::ReaderStatusThread::anyCardCanLearnKeysChanged,

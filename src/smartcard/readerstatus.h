@@ -76,6 +76,7 @@ Q_SIGNALS:
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
+    void updateFinished();
     void startOfGpgAgentRequested();
 
 private:

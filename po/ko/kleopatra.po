@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-23 00:48+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -167,7 +167,7 @@ msgstr "사용자 ID 추가 성공"
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:357
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -188,7 +188,7 @@ msgid ""
 msgstr "PIV 카드 프로그램 관리 키를 십육진수 인코드된 형태로 입력하십시오."
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:313
+#: src/commands/keytocardcommand.cpp:335
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "죄송합니다! 이 카드 슬롯에 기록할 수 있는 인증서를 찾을 수 없습니다."
@@ -744,7 +744,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL 캐시를 지웠습니다."
 
-#: src/commands/command_p.h:89
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2109,61 +2109,64 @@ msgstr ""
 "<para>비밀 키를 복원하는 중 오류가 발생했습니다.</para><para><command>%1</"
 "command> 출력: <message>%2</message></para>"
 
-#: src/commands/keytocardcommand.cpp:122
+#: src/commands/keytocardcommand.cpp:59
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:127
+#: src/commands/keytocardcommand.cpp:147
 #, kde-format
 msgid "Select Card"
 msgstr "카드 선택"
 
-#: src/commands/keytocardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:148
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "키를 기록할 카드를 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "일련 번호가 다음과 같은 카드를 찾을 수 없음: %1"
 
-#: src/commands/keytocardcommand.cpp:163
-#, kde-format
-msgid "Sorry! Transferring keys to this card is not supported."
+#: src/commands/keytocardcommand.cpp:183
+#, fuzzy, kde-kuit-format
+#| msgid "Sorry! Transferring keys to this card is not supported."
+msgctxt "@info"
+msgid ""
+"Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr "죄송합니다! 이 카드로 키를 전송하는 것은 아직 지원지 않습니다."
 
-#: src/commands/keytocardcommand.cpp:189
+#: src/commands/keytocardcommand.cpp:209
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Signature (%1)"
 msgstr "서명(%1)"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:212
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Encryption (%1)"
 msgstr "암호화(%1)"
 
-#: src/commands/keytocardcommand.cpp:195
+#: src/commands/keytocardcommand.cpp:215
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Authentication (%1)"
 msgstr "인증(%1)"
 
-#: src/commands/keytocardcommand.cpp:199
+#: src/commands/keytocardcommand.cpp:219
 #, kde-format
 msgid "Select Card Slot"
 msgstr "카드 슬롯 선택"
 
-#: src/commands/keytocardcommand.cpp:200
+#: src/commands/keytocardcommand.cpp:220
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "키를 기록할 카드 슬롯을 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:211
+#: src/commands/keytocardcommand.cpp:231
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2172,12 +2175,12 @@ msgstr "키를 기록할 카드 슬롯을 선택하십시오:"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "일련 번호가 다음과 같은 OpenPGP 카드를 찾을 수 없음: %1"
 
-#: src/commands/keytocardcommand.cpp:221
+#: src/commands/keytocardcommand.cpp:241
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "죄송합니다! 이 키는 OpenPGP 카드로 전송할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:239 src/commands/keytocardcommand.cpp:369
+#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2187,13 +2190,16 @@ msgid ""
 "the existing key."
 msgstr "더 이상 기존 키로 암호화된 과거 통신 기록을 복호화할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:246 src/commands/keytocardcommand.cpp:372
-#: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/commands/pivgeneratecardkeycommand.cpp:129
-#, kde-format
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<p>This card already contains a key in this slot. Continuing will "
+#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
+#| "will be irrecoverably lost.</p>"
 msgctxt "@info"
 msgid ""
-"<p>This card already contains a key in this slot. Continuing will "
+"<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
@@ -2201,84 +2207,172 @@ msgstr ""
 "어씁니다</b>.</p><p>해당 키의 백업이 없으면 기존 키를 더 이상 복구할 수 없습"
 "니다.</p>"
 
-#: src/commands/keytocardcommand.cpp:248
+#: src/commands/keytocardcommand.cpp:270
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "기존 키의 지문은 다음과 같습니다:"
 
-#: src/commands/keytocardcommand.cpp:252 src/commands/keytocardcommand.cpp:378
+#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "기존 키 덮어쓰기"
 
-#: src/commands/keytocardcommand.cpp:318
+#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Overwrite existing key"
+msgctxt "@action:button"
+msgid "Overwrite Existing Key"
+msgstr "기존 키 덮어쓰기"
+
+#: src/commands/keytocardcommand.cpp:340
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "인증서 선택"
 
-#: src/commands/keytocardcommand.cpp:319
+#: src/commands/keytocardcommand.cpp:341
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "키 쌍을 카드에 기록할 인증서를 선택하십시오:"
 
-#: src/commands/keytocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:376
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "죄송합니다! 이 키는 PIV 카드로 전송할 수 없습니다."
 
-#: src/commands/keytocardcommand.cpp:359
+#: src/commands/keytocardcommand.cpp:381
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr "죄송합니다! 암호화 및 서명 키만 PIV 카드로 전송할 수 있습니다."
 
-#: src/commands/keytocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:398
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "기존 키의 키 그립은 다음과 같습니다:"
 
-#: src/commands/keytocardcommand.cpp:457
-#, kde-format
+#: src/commands/keytocardcommand.cpp:454
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully.</"
+#| "para><para>Fingerprint of the new certificate: %1</para>"
 msgctxt "@info"
-msgid "Moving the key to the card failed: %1"
-msgstr "키를 카드로 이동할 수 없음: %1"
+msgid ""
+"<para>The key has been copied to the card.</para><para>Do you want to delete "
+"the copy of the key stored on this computer?</para>"
+msgstr ""
+"<para>새 OpenPGP 인증서를 생성했습니다.</para><para>새 인증서의 지문: %1</"
+"para>"
 
-#. i18n("Do you want to delete the key on this computer?"),
-#. i18nc("@title:window",
-#. "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
-#. const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
-#. // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
-#. ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
-#. }
-#.
-#: src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:457
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@action:button"
+msgid "Create Backup and Delete Key"
+msgstr "비밀 키 백업"
+
+#: src/commands/keytocardcommand.cpp:458
+#, fuzzy, kde-format
+#| msgid "Select Key"
+msgctxt "@action:button"
+msgid "Delete Key"
+msgstr "키 선택"
+
+#: src/commands/keytocardcommand.cpp:459
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Key"
+msgctxt "@action:button"
+msgid "Keep Key"
+msgstr "키 철회"
+
+#: src/commands/keytocardcommand.cpp:505
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@title:window"
+msgid "Backup Secret Key"
+msgstr "비밀 키 백업"
+
+#: src/commands/keytocardcommand.cpp:508
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Secret Key Backup"
+msgctxt "description of filename filter"
+msgid "Secret Key Backup Files"
+msgstr "비밀 키 백업"
+
+#: src/commands/keytocardcommand.cpp:559
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
+msgid "Cannot open the private key file <filename>%1</filename> for reading."
+msgstr "<filename>%1</filename>에서 읽으려고 열 수 없습니다."
+
+#: src/commands/keytocardcommand.cpp:568
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgid "The private key file <filename>%1</filename> is empty."
+msgstr "<filename>%1</filename>에 비밀 키를 기록할 수 없습니다."
+
+#: src/commands/keytocardcommand.cpp:578
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
+msgid "Cannot open the file <filename>%1</filename> for writing."
+msgstr "<filename>%1</filename>에 쓰려고 열 수 없습니다."
+
+#: src/commands/keytocardcommand.cpp:585
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
+msgstr "<filename>%1</filename>에 비밀 키를 기록할 수 없습니다."
+
+#: src/commands/keytocardcommand.cpp:602
+#, kde-kuit-format
+msgid "Do you really want to delete the local copy of the secret key?"
+msgstr ""
+
+#: src/commands/keytocardcommand.cpp:603
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Confirm Revocation"
+msgctxt "@title:window"
+msgid "Confirm Deletion"
+msgstr "철회 확인"
+
+#: src/commands/keytocardcommand.cpp:622
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to delete the key:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>요청을 저장할 수 없습니다.</para><para><message>%1</message></para>"
+
+#: src/commands/keytocardcommand.cpp:625
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "키를 카드에 복사했습니다."
 
-#: src/commands/keytocardcommand.cpp:491
-#, kde-format
+#: src/commands/keytocardcommand.cpp:683
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
 msgctxt "@info"
-msgid "Copying the key pair to the card failed: %1"
-msgstr "키 쌍을 카드에 복사할 수 없음: %1"
-
-#: src/commands/keytocardcommand.cpp:493
-#, kde-format
-msgctxt "@info"
-msgid "Successfully copied the key pair to the card."
-msgstr "키 쌍을 카드에 복사했습니다."
-
-#: src/commands/keytocardcommand.cpp:503
-#, kde-format
-msgctxt "@info"
-msgid "Failed to delete the key: %1"
-msgstr "키를 삭제할 수 없음: %1"
+msgid ""
+"<para>Copying the key to the card failed:</para><para><message>%1</message></"
+"para>"
+msgstr ""
+"<para>요청을 저장할 수 없습니다.</para><para><message>%1</message></para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
 #, kde-format
@@ -2489,6 +2583,19 @@ msgstr "키 생성 실패: %1"
 msgctxt "@info"
 msgid "Key successfully generated."
 msgstr "키를 생성했습니다."
+
+#: src/commands/openpgpgeneratecardkeycommand.cpp:173
+#: src/commands/pivgeneratecardkeycommand.cpp:129
+#, kde-format
+msgctxt "@info"
+msgid ""
+"<p>This card already contains a key in this slot. Continuing will "
+"<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
+"be irrecoverably lost.</p>"
+msgstr ""
+"<p>이 카드의 지정한 슬롯에 이미 키가 있습니다. 계속 진행하면 해당 키를 <b>덮"
+"어씁니다</b>.</p><p>해당 키의 백업이 없으면 기존 키를 더 이상 복구할 수 없습"
+"니다.</p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:175
 #: src/commands/pivgeneratecardkeycommand.cpp:131
@@ -6008,88 +6115,88 @@ msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
+#: src/dialogs/certificatedetailswidget.cpp:915
 #, kde-format
 msgid "never"
 msgstr "안 함"
 
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:917
 #, kde-format
 msgid "Signing"
 msgstr "서명"
 
-#: src/dialogs/certificatedetailswidget.cpp:917
-#: src/dialogs/certificatedetailswidget.cpp:921
+#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:922
 #, kde-format
 msgid "First message"
 msgstr "첫 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:918
-#: src/dialogs/certificatedetailswidget.cpp:922
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "Last message"
 msgstr "마지막 메시지"
 
-#: src/dialogs/certificatedetailswidget.cpp:919
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:920
+#: src/dialogs/certificatedetailswidget.cpp:924
 #, kde-format
 msgid "Message count"
 msgstr "메시지 개수"
 
-#: src/dialogs/certificatedetailswidget.cpp:920
+#: src/dialogs/certificatedetailswidget.cpp:921
 #: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Encryption"
 msgstr "암호화"
 
-#: src/dialogs/certificatedetailswidget.cpp:955
+#: src/dialogs/certificatedetailswidget.cpp:956
 #, kde-format
 msgid "Updating..."
 msgstr "업데이트 중..."
 
-#: src/dialogs/certificatedetailswidget.cpp:1003
+#: src/dialogs/certificatedetailswidget.cpp:1004
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "외부 원본에서 키를 업데이트합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1020
 #, kde-format
 msgid "Common Name"
 msgstr "일반 이름"
 
-#: src/dialogs/certificatedetailswidget.cpp:1020
+#: src/dialogs/certificatedetailswidget.cpp:1021
 #, kde-format
 msgid "Organization"
 msgstr "조직"
 
-#: src/dialogs/certificatedetailswidget.cpp:1021
+#: src/dialogs/certificatedetailswidget.cpp:1022
 #, kde-format
 msgid "Street"
 msgstr "도로명"
 
-#: src/dialogs/certificatedetailswidget.cpp:1022
+#: src/dialogs/certificatedetailswidget.cpp:1023
 #, kde-format
 msgid "City"
 msgstr "도시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1023
+#: src/dialogs/certificatedetailswidget.cpp:1024
 #, kde-format
 msgid "State"
 msgstr "도/광역시"
 
-#: src/dialogs/certificatedetailswidget.cpp:1024
+#: src/dialogs/certificatedetailswidget.cpp:1025
 #, kde-format
 msgid "Country"
 msgstr "국가"
 
-#: src/dialogs/certificatedetailswidget.cpp:1052
+#: src/dialogs/certificatedetailswidget.cpp:1053
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
 msgstr "CRL을 업데이트하고 인증서에 대한 완전한 유효성 검사를 실행합니다."
 
-#: src/dialogs/certificatedetailswidget.cpp:1061
+#: src/dialogs/certificatedetailswidget.cpp:1062
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
@@ -7083,138 +7190,138 @@ msgstr "2단계: 인증된 서명용 인증서(\"SigG\")의 초기 PIN 설정:"
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(선택 사항) 초기 PIN(SigG) 설정"
 
-#: src/dialogs/subkeyswidget.cpp:79
+#: src/dialogs/subkeyswidget.cpp:85
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "하위 키:"
 
-#: src/dialogs/subkeyswidget.cpp:84
+#: src/dialogs/subkeyswidget.cpp:90
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "하위 키"
 
-#: src/dialogs/subkeyswidget.cpp:87
+#: src/dialogs/subkeyswidget.cpp:93
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "ID"
 
-#: src/dialogs/subkeyswidget.cpp:88
+#: src/dialogs/subkeyswidget.cpp:94
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "종류"
 
-#: src/dialogs/subkeyswidget.cpp:89
+#: src/dialogs/subkeyswidget.cpp:95
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "유효 기간 시작"
 
-#: src/dialogs/subkeyswidget.cpp:90
+#: src/dialogs/subkeyswidget.cpp:96
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "유효 기간 끝"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:97
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "상태"
 
-#: src/dialogs/subkeyswidget.cpp:92
+#: src/dialogs/subkeyswidget.cpp:98
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "강도"
 
-#: src/dialogs/subkeyswidget.cpp:93
+#: src/dialogs/subkeyswidget.cpp:99
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "용도"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "주"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:101
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "저장소"
 
-#: src/dialogs/subkeyswidget.cpp:116 src/view/keylistcontroller.cpp:447
+#: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "유효 기간 종료 시점 변경..."
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "OpenSSH 키 내보내기"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:150
 #, kde-format
 msgid "Restore printed backup"
 msgstr "인쇄된 백업 복원"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "스마트카드로 전송"
 
-#: src/dialogs/subkeyswidget.cpp:171
+#: src/dialogs/subkeyswidget.cpp:177
 #, kde-format
 msgid "Export secret subkey"
 msgstr "비밀 하위 키 내보내기"
 
-#: src/dialogs/subkeyswidget.cpp:232
+#: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "예"
 
-#: src/dialogs/subkeyswidget.cpp:232
+#: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "아니요"
 
-#: src/dialogs/subkeyswidget.cpp:235
+#: src/dialogs/subkeyswidget.cpp:248
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "스마트카드 %1"
 
-#: src/dialogs/subkeyswidget.cpp:237
+#: src/dialogs/subkeyswidget.cpp:250
 #, kde-format
 msgid "smart card"
 msgstr "스마트카드"
 
-#: src/dialogs/subkeyswidget.cpp:240
+#: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "오프라인"
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:255
 #, kde-format
 msgid "on this computer"
 msgstr "이 컴퓨터"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:257
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "알 수 없음"
 
-#: src/dialogs/subkeyswidget.cpp:269
+#: src/dialogs/subkeyswidget.cpp:282
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -11616,6 +11723,22 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "공개 키 서버에서 가져오려면 \"서버에서 찾아보기\"를 사용하십시오."
+
+#~ msgctxt "@info"
+#~ msgid "Moving the key to the card failed: %1"
+#~ msgstr "키를 카드로 이동할 수 없음: %1"
+
+#~ msgctxt "@info"
+#~ msgid "Copying the key pair to the card failed: %1"
+#~ msgstr "키 쌍을 카드에 복사할 수 없음: %1"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key pair to the card."
+#~ msgstr "키 쌍을 카드에 복사했습니다."
+
+#~ msgctxt "@info"
+#~ msgid "Failed to delete the key: %1"
+#~ msgstr "키를 삭제할 수 없음: %1"
 
 #, fuzzy
 #~| msgid ""

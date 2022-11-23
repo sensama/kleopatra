@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-16 00:47+0000\n"
+"POT-Creation-Date: 2022-11-23 00:48+0000\n"
 "PO-Revision-Date: 2022-08-09 08:53+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -188,7 +188,7 @@ msgstr "Успешное добавление идентификатора по�
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:357
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -209,7 +209,7 @@ msgid ""
 msgstr "Введите ключ администрирования карты PIV в шестнадцатеричной форме."
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:313
+#: src/commands/keytocardcommand.cpp:335
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr "Не найдено подходящего сертификата для записи в этот слот карты."
@@ -774,7 +774,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "Кэш отозванных сертификатов (CRL) очищен."
 
-#: src/commands/command_p.h:89
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2181,61 +2181,64 @@ msgstr ""
 "<para>Во время восстановления закрытого ключа произошла ошибка.</para> "
 "<para>Вывод команды <command>%1</command>: <message>%2</message></para>"
 
-#: src/commands/keytocardcommand.cpp:122
+#: src/commands/keytocardcommand.cpp:59
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 — %2"
 
-#: src/commands/keytocardcommand.cpp:127
+#: src/commands/keytocardcommand.cpp:147
 #, kde-format
 msgid "Select Card"
 msgstr "Выбор карты"
 
-#: src/commands/keytocardcommand.cpp:128
+#: src/commands/keytocardcommand.cpp:148
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Выберите карту для записи ключа:"
 
-#: src/commands/keytocardcommand.cpp:153
+#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Не удалось найти карту с серийным номером %1"
 
-#: src/commands/keytocardcommand.cpp:163
-#, kde-format
-msgid "Sorry! Transferring keys to this card is not supported."
+#: src/commands/keytocardcommand.cpp:183
+#, fuzzy, kde-kuit-format
+#| msgid "Sorry! Transferring keys to this card is not supported."
+msgctxt "@info"
+msgid ""
+"Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr "Перенос ключей на карты этого типа не поддерживается."
 
-#: src/commands/keytocardcommand.cpp:189
+#: src/commands/keytocardcommand.cpp:209
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Signature (%1)"
 msgstr "Подпись (%1)"
 
-#: src/commands/keytocardcommand.cpp:192
+#: src/commands/keytocardcommand.cpp:212
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Encryption (%1)"
 msgstr "Шифрование (%1)"
 
-#: src/commands/keytocardcommand.cpp:195
+#: src/commands/keytocardcommand.cpp:215
 #, kde-format
 msgctxt "Placeholder is the number of a slot on a smart card"
 msgid "Authentication (%1)"
 msgstr "Аутентификация (%1)"
 
-#: src/commands/keytocardcommand.cpp:199
+#: src/commands/keytocardcommand.cpp:219
 #, kde-format
 msgid "Select Card Slot"
 msgstr "Выбор слота карты"
 
-#: src/commands/keytocardcommand.cpp:200
+#: src/commands/keytocardcommand.cpp:220
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "Выберите слот карты для записи ключа:"
 
-#: src/commands/keytocardcommand.cpp:211
+#: src/commands/keytocardcommand.cpp:231
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2244,12 +2247,12 @@ msgstr "Выберите слот карты для записи ключа:"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Не удалось найти карту OpenPGP с серийным номером %1"
 
-#: src/commands/keytocardcommand.cpp:221
+#: src/commands/keytocardcommand.cpp:241
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "Этот ключ не может быть перенесён на карту OpenPGP."
 
-#: src/commands/keytocardcommand.cpp:239 src/commands/keytocardcommand.cpp:369
+#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2261,13 +2264,16 @@ msgstr ""
 "Расшифровать полученные ранее сообщения, зашифрованные для расшифровывания "
 "существующим ключом, станет невозможно."
 
-#: src/commands/keytocardcommand.cpp:246 src/commands/keytocardcommand.cpp:372
-#: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/commands/pivgeneratecardkeycommand.cpp:129
-#, kde-format
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<p>This card already contains a key in this slot. Continuing will "
+#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
+#| "will be irrecoverably lost.</p>"
 msgctxt "@info"
 msgid ""
-"<p>This card already contains a key in this slot. Continuing will "
+"<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
@@ -2275,36 +2281,44 @@ msgstr ""
 "<b>перезаписан</b>.</p> <p>Если для этого ключа отсутствуют резервные копии, "
 "то он будет безвозвратно утерян.</p>"
 
-#: src/commands/keytocardcommand.cpp:248
+#: src/commands/keytocardcommand.cpp:270
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Отпечаток существующего ключа:"
 
-#: src/commands/keytocardcommand.cpp:252 src/commands/keytocardcommand.cpp:378
+#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Замена существующего ключа"
 
-#: src/commands/keytocardcommand.cpp:318
+#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Overwrite existing key"
+msgctxt "@action:button"
+msgid "Overwrite Existing Key"
+msgstr "Замена существующего ключа"
+
+#: src/commands/keytocardcommand.cpp:340
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Выбор сертификата"
 
-#: src/commands/keytocardcommand.cpp:319
+#: src/commands/keytocardcommand.cpp:341
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "Выберите сертификат для копирования его пары ключей на карту:"
 
-#: src/commands/keytocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:376
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "Этот ключ не может быть перенесён на карту PIV."
 
-#: src/commands/keytocardcommand.cpp:359
+#: src/commands/keytocardcommand.cpp:381
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
@@ -2312,48 +2326,134 @@ msgid ""
 msgstr ""
 "На карту PIV могут быть перенесены только ключи шифрования и ключи подписи."
 
-#: src/commands/keytocardcommand.cpp:374
+#: src/commands/keytocardcommand.cpp:398
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "Существующий ключ имеет идентификатор (key grip):"
 
-#: src/commands/keytocardcommand.cpp:457
-#, kde-format
+#: src/commands/keytocardcommand.cpp:454
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully.</"
+#| "para><para>Fingerprint of the new certificate: %1</para>"
 msgctxt "@info"
-msgid "Moving the key to the card failed: %1"
-msgstr "Не удалось переместить ключ на карту: %1"
+msgid ""
+"<para>The key has been copied to the card.</para><para>Do you want to delete "
+"the copy of the key stored on this computer?</para>"
+msgstr ""
+"<para>Новый сертификат OpenPGP создан.</para><para>Отпечаток нового "
+"сертификата: %1</para>"
 
-#. i18n("Do you want to delete the key on this computer?"),
-#. i18nc("@title:window",
-#. "Key transferred to card")) == KMessageBox::ButtonCode::PrimaryAction) {
-#. const QString cmd = QStringLiteral("DELETE_KEY --force %1").arg(d->subkey.keyGrip());
-#. // Using readerstatus is a bit overkill but it's an easy way to talk to the agent.
-#. ReaderStatus::mutableInstance()->startSimpleTransaction(card, cmd.toUtf8(), this, "deleteDone");
-#. }
-#.
-#: src/commands/keytocardcommand.cpp:471
+#: src/commands/keytocardcommand.cpp:457
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@action:button"
+msgid "Create Backup and Delete Key"
+msgstr "Резервное копирование закрытого ключа"
+
+#: src/commands/keytocardcommand.cpp:458
+#, fuzzy, kde-format
+#| msgid "Select Key"
+msgctxt "@action:button"
+msgid "Delete Key"
+msgstr "Выбор ключа"
+
+#: src/commands/keytocardcommand.cpp:459
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Key"
+msgctxt "@action:button"
+msgid "Keep Key"
+msgstr "Отозвать ключ"
+
+#: src/commands/keytocardcommand.cpp:505
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@title:window"
+msgid "Backup Secret Key"
+msgstr "Резервное копирование закрытого ключа"
+
+#: src/commands/keytocardcommand.cpp:508
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Secret Key Backup"
+msgctxt "description of filename filter"
+msgid "Secret Key Backup Files"
+msgstr "Резервное копирование закрытого ключа"
+
+#: src/commands/keytocardcommand.cpp:559
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
+msgid "Cannot open the private key file <filename>%1</filename> for reading."
+msgstr "Не удалось открыть для чтения файл <filename>%1</filename>."
+
+#: src/commands/keytocardcommand.cpp:568
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgid "The private key file <filename>%1</filename> is empty."
+msgstr "Не удалось записать ключ в файл <filename>%1</filename>."
+
+#: src/commands/keytocardcommand.cpp:578
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
+msgid "Cannot open the file <filename>%1</filename> for writing."
+msgstr "Не удалось открыть для записи файл <filename>%1</filename>."
+
+#: src/commands/keytocardcommand.cpp:585
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
+msgstr "Не удалось записать ключ в файл <filename>%1</filename>."
+
+#: src/commands/keytocardcommand.cpp:602
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "_n: Do you really want to delete this certificate?\n"
+#| "Do you really want to delete these %n certificates?"
+msgid "Do you really want to delete the local copy of the secret key?"
+msgstr ""
+"Вы действительно хотите удалить %n сертификат?\n"
+"Вы действительно хотите удалить %n сертификата?\n"
+"Вы действительно хотите удалить %n сертификатов?"
+
+#: src/commands/keytocardcommand.cpp:603
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Confirm Revocation"
+msgctxt "@title:window"
+msgid "Confirm Deletion"
+msgstr "Подтверждение отзыва"
+
+#: src/commands/keytocardcommand.cpp:622
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to delete the key:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Не удалось сохранить запрос.</para><para><message>%1</message></para>"
+
+#: src/commands/keytocardcommand.cpp:625
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "Ключ скопирован на карту."
 
-#: src/commands/keytocardcommand.cpp:491
-#, kde-format
+#: src/commands/keytocardcommand.cpp:683
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
 msgctxt "@info"
-msgid "Copying the key pair to the card failed: %1"
-msgstr "Не удалось скопировать пару ключей на карту: %1"
-
-#: src/commands/keytocardcommand.cpp:493
-#, kde-format
-msgctxt "@info"
-msgid "Successfully copied the key pair to the card."
-msgstr "Пара ключей скопирована на карту."
-
-#: src/commands/keytocardcommand.cpp:503
-#, kde-format
-msgctxt "@info"
-msgid "Failed to delete the key: %1"
-msgstr "При удалении ключа произошла ошибка: %1"
+msgid ""
+"<para>Copying the key to the card failed:</para><para><message>%1</message></"
+"para>"
+msgstr ""
+"<para>Не удалось сохранить запрос.</para><para><message>%1</message></para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
 #, kde-format
@@ -2572,6 +2672,19 @@ msgstr "Не удалось создать ключ: %1"
 msgctxt "@info"
 msgid "Key successfully generated."
 msgstr "Ключ создан."
+
+#: src/commands/openpgpgeneratecardkeycommand.cpp:173
+#: src/commands/pivgeneratecardkeycommand.cpp:129
+#, kde-format
+msgctxt "@info"
+msgid ""
+"<p>This card already contains a key in this slot. Continuing will "
+"<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
+"be irrecoverably lost.</p>"
+msgstr ""
+"<p>В указанном слоте карты уже содержится ключ. При продолжении ключ будет "
+"<b>перезаписан</b>.</p> <p>Если для этого ключа отсутствуют резервные копии, "
+"то он будет безвозвратно утерян.</p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:175
 #: src/commands/pivgeneratecardkeycommand.cpp:131
@@ -6199,82 +6312,82 @@ msgctxt "@action:inmenu"
 msgid "Revoke User ID"
 msgstr "Отозвать идентификатор пользователя"
 
-#: src/dialogs/certificatedetailswidget.cpp:914
+#: src/dialogs/certificatedetailswidget.cpp:915
 #, kde-format
 msgid "never"
 msgstr "никогда"
 
-#: src/dialogs/certificatedetailswidget.cpp:916
+#: src/dialogs/certificatedetailswidget.cpp:917
 #, kde-format
 msgid "Signing"
 msgstr "Создание подписи"
 
-#: src/dialogs/certificatedetailswidget.cpp:917
-#: src/dialogs/certificatedetailswidget.cpp:921
+#: src/dialogs/certificatedetailswidget.cpp:918
+#: src/dialogs/certificatedetailswidget.cpp:922
 #, kde-format
 msgid "First message"
 msgstr "Первое письмо"
 
-#: src/dialogs/certificatedetailswidget.cpp:918
-#: src/dialogs/certificatedetailswidget.cpp:922
+#: src/dialogs/certificatedetailswidget.cpp:919
+#: src/dialogs/certificatedetailswidget.cpp:923
 #, kde-format
 msgid "Last message"
 msgstr "Последнее письмо"
 
-#: src/dialogs/certificatedetailswidget.cpp:919
-#: src/dialogs/certificatedetailswidget.cpp:923
+#: src/dialogs/certificatedetailswidget.cpp:920
+#: src/dialogs/certificatedetailswidget.cpp:924
 #, kde-format
 msgid "Message count"
 msgstr "Количество сообщений"
 
-#: src/dialogs/certificatedetailswidget.cpp:920
+#: src/dialogs/certificatedetailswidget.cpp:921
 #: src/smartcard/openpgpcard.cpp:104
 #, kde-format
 msgid "Encryption"
 msgstr "Шифрование"
 
-#: src/dialogs/certificatedetailswidget.cpp:955
+#: src/dialogs/certificatedetailswidget.cpp:956
 #, kde-format
 msgid "Updating..."
 msgstr "Обновление…"
 
-#: src/dialogs/certificatedetailswidget.cpp:1003
+#: src/dialogs/certificatedetailswidget.cpp:1004
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "Обновить ключ из внешних источников."
 
-#: src/dialogs/certificatedetailswidget.cpp:1019
+#: src/dialogs/certificatedetailswidget.cpp:1020
 #, kde-format
 msgid "Common Name"
 msgstr "Общее имя"
 
-#: src/dialogs/certificatedetailswidget.cpp:1020
+#: src/dialogs/certificatedetailswidget.cpp:1021
 #, kde-format
 msgid "Organization"
 msgstr "Организация"
 
-#: src/dialogs/certificatedetailswidget.cpp:1021
+#: src/dialogs/certificatedetailswidget.cpp:1022
 #, kde-format
 msgid "Street"
 msgstr "Улица"
 
-#: src/dialogs/certificatedetailswidget.cpp:1022
+#: src/dialogs/certificatedetailswidget.cpp:1023
 #, kde-format
 msgid "City"
 msgstr "Город"
 
-#: src/dialogs/certificatedetailswidget.cpp:1023
+#: src/dialogs/certificatedetailswidget.cpp:1024
 #, kde-format
 msgid "State"
 msgstr "Штат / регион"
 
-#: src/dialogs/certificatedetailswidget.cpp:1024
+#: src/dialogs/certificatedetailswidget.cpp:1025
 #, kde-format
 msgid "Country"
 msgstr "Страна"
 
-#: src/dialogs/certificatedetailswidget.cpp:1052
+#: src/dialogs/certificatedetailswidget.cpp:1053
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
@@ -6282,7 +6395,7 @@ msgstr ""
 "Обновить списки отозванных сертификатов и выполнить полную проверку "
 "действительности сертификата."
 
-#: src/dialogs/certificatedetailswidget.cpp:1061
+#: src/dialogs/certificatedetailswidget.cpp:1062
 #, kde-format
 msgid "The issuer certificate could not be found locally."
 msgstr "Не удалось найти локальный экземпляр сертификата центра выдачи."
@@ -7330,138 +7443,138 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(необязательно) Установить начальный PIN-код (SigG)"
 
-#: src/dialogs/subkeyswidget.cpp:79
+#: src/dialogs/subkeyswidget.cpp:85
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Подключи:"
 
-#: src/dialogs/subkeyswidget.cpp:84
+#: src/dialogs/subkeyswidget.cpp:90
 #, kde-format
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Подключи"
 
-#: src/dialogs/subkeyswidget.cpp:87
+#: src/dialogs/subkeyswidget.cpp:93
 #, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "Идентификатор"
 
-#: src/dialogs/subkeyswidget.cpp:88
+#: src/dialogs/subkeyswidget.cpp:94
 #, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Тип"
 
-#: src/dialogs/subkeyswidget.cpp:89
+#: src/dialogs/subkeyswidget.cpp:95
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Действителен с"
 
-#: src/dialogs/subkeyswidget.cpp:90
+#: src/dialogs/subkeyswidget.cpp:96
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Действителен до"
 
-#: src/dialogs/subkeyswidget.cpp:91
+#: src/dialogs/subkeyswidget.cpp:97
 #, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Состояние"
 
-#: src/dialogs/subkeyswidget.cpp:92
+#: src/dialogs/subkeyswidget.cpp:98
 #, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Длина"
 
-#: src/dialogs/subkeyswidget.cpp:93
+#: src/dialogs/subkeyswidget.cpp:99
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Применение"
 
-#: src/dialogs/subkeyswidget.cpp:94
+#: src/dialogs/subkeyswidget.cpp:100
 #, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Основной"
 
-#: src/dialogs/subkeyswidget.cpp:95
+#: src/dialogs/subkeyswidget.cpp:101
 #, kde-format
 msgctxt "@title:column"
 msgid "Storage"
 msgstr "Место хранения"
 
-#: src/dialogs/subkeyswidget.cpp:116 src/view/keylistcontroller.cpp:447
+#: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Изменить окончание периода действия…"
 
-#: src/dialogs/subkeyswidget.cpp:136
+#: src/dialogs/subkeyswidget.cpp:142
 #, kde-format
 msgid "Export OpenSSH key"
 msgstr "Экспорт ключа OpenSSH"
 
-#: src/dialogs/subkeyswidget.cpp:144
+#: src/dialogs/subkeyswidget.cpp:150
 #, kde-format
 msgid "Restore printed backup"
 msgstr "Восстановить из бумажной копии"
 
-#: src/dialogs/subkeyswidget.cpp:156
+#: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgid "Transfer to smartcard"
 msgstr "Перенести на смарт-карту"
 
-#: src/dialogs/subkeyswidget.cpp:171
+#: src/dialogs/subkeyswidget.cpp:177
 #, kde-format
 msgid "Export secret subkey"
 msgstr "Экспорт закрытого подключа"
 
-#: src/dialogs/subkeyswidget.cpp:232
+#: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
 msgstr "да"
 
-#: src/dialogs/subkeyswidget.cpp:232
+#: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
 msgstr "нет"
 
-#: src/dialogs/subkeyswidget.cpp:235
+#: src/dialogs/subkeyswidget.cpp:248
 #, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
 msgstr "смарт-карта %1"
 
-#: src/dialogs/subkeyswidget.cpp:237
+#: src/dialogs/subkeyswidget.cpp:250
 #, kde-format
 msgid "smart card"
 msgstr "смарт-карта"
 
-#: src/dialogs/subkeyswidget.cpp:240
+#: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
 msgstr "автономный"
 
-#: src/dialogs/subkeyswidget.cpp:242
+#: src/dialogs/subkeyswidget.cpp:255
 #, kde-format
 msgid "on this computer"
 msgstr "на этом компьютере"
 
-#: src/dialogs/subkeyswidget.cpp:244
+#: src/dialogs/subkeyswidget.cpp:257
 #, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "неизвестно"
 
-#: src/dialogs/subkeyswidget.cpp:269
+#: src/dialogs/subkeyswidget.cpp:282
 #, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
@@ -11960,6 +12073,22 @@ msgstr ""
 "Для импорта из открытого сервера ключей используйте пункт меню «Поиск на "
 "сервере»."
 
+#~ msgctxt "@info"
+#~ msgid "Moving the key to the card failed: %1"
+#~ msgstr "Не удалось переместить ключ на карту: %1"
+
+#~ msgctxt "@info"
+#~ msgid "Copying the key pair to the card failed: %1"
+#~ msgstr "Не удалось скопировать пару ключей на карту: %1"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key pair to the card."
+#~ msgstr "Пара ключей скопирована на карту."
+
+#~ msgctxt "@info"
+#~ msgid "Failed to delete the key: %1"
+#~ msgstr "При удалении ключа произошла ошибка: %1"
+
 #, fuzzy
 #~| msgid ""
 #~| "The file <b>%1</b> already exists.\n"
@@ -14260,14 +14389,6 @@ msgstr ""
 #~ "сертификатов?\n"
 #~ "Вы действительно хотите удалить %n сертификатов и %1 подписанных ими "
 #~ "сертификатов?"
-
-#~ msgid ""
-#~ "_n: Do you really want to delete this certificate?\n"
-#~ "Do you really want to delete these %n certificates?"
-#~ msgstr ""
-#~ "Вы действительно хотите удалить %n сертификат?\n"
-#~ "Вы действительно хотите удалить %n сертификата?\n"
-#~ "Вы действительно хотите удалить %n сертификатов?"
 
 #~ msgid ""
 #~ "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"

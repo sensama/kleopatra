@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-23 00:48+0000\n"
+"POT-Creation-Date: 2022-11-24 00:46+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -186,7 +186,7 @@ msgstr "A felhasználóazonosító hozzáadása sikerült"
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:357
+#: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -207,7 +207,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:337
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -805,7 +805,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "A CRL-gyorstár kiürítése sikeresen megtörtént."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2309,64 +2309,65 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:147
+#: src/commands/keytocardcommand.cpp:150
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card"
 msgstr "Minden kijelölése"
 
-#: src/commands/keytocardcommand.cpp:148
+#: src/commands/keytocardcommand.cpp:151
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card the key should be written to:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:615
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:183
+#: src/commands/keytocardcommand.cpp:186
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:209
+#: src/commands/keytocardcommand.cpp:213
 #, fuzzy, kde-format
 #| msgid "Signature file"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Signature (%1)"
+msgctxt "@item:inlistbox"
+msgid "Signature"
 msgstr "Aláírásfájl"
 
-#: src/commands/keytocardcommand.cpp:212
+#: src/commands/keytocardcommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "Encryption"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Encryption (%1)"
+msgctxt "@item:inlistbox"
+msgid "Encryption"
 msgstr "Titkosítás"
 
-#: src/commands/keytocardcommand.cpp:215
+#: src/commands/keytocardcommand.cpp:221
 #, fuzzy, kde-format
 #| msgid "Authentication"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Authentication (%1)"
+msgctxt "@item:inlistbox"
+msgid "Authentication"
 msgstr "Felhasználóazonosítás"
 
-#: src/commands/keytocardcommand.cpp:219
+#: src/commands/keytocardcommand.cpp:226
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card Slot"
 msgstr "Minden kijelölése"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card slot the key should be written to:"
 msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 
-#: src/commands/keytocardcommand.cpp:231
+#: src/commands/keytocardcommand.cpp:242
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2375,12 +2376,12 @@ msgstr "Válasszon egyet az alábbi tanúsítványok közül:"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:252
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:393
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2390,7 +2391,7 @@ msgid ""
 "the existing key."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2399,13 +2400,13 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:270
+#: src/commands/keytocardcommand.cpp:274
 #, fuzzy, kde-format
 #| msgid "I have verified the fingerprint"
 msgid "The existing key has the fingerprint:"
 msgstr "Ellenőriztem az ujjlenyomatot"
 
-#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:278 src/commands/keytocardcommand.cpp:404
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, fuzzy, kde-format
 #| msgid "Overwrite Existing File?"
@@ -2413,21 +2414,21 @@ msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Felül szeretné írni a fájlt?"
 
-#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
+#: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
 #, fuzzy, kde-format
 #| msgid "Overwrite Existing File?"
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "Felül szeretné írni a fájlt?"
 
-#: src/commands/keytocardcommand.cpp:340
+#: src/commands/keytocardcommand.cpp:342
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Tanúsítványfájl kiválasztása"
 
-#: src/commands/keytocardcommand.cpp:341
+#: src/commands/keytocardcommand.cpp:343
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Please select here whether you want to sign or encrypt files."
@@ -2436,25 +2437,33 @@ msgid ""
 msgstr ""
 "Kérjük itt válassza ki, hogy a fájlokat aláírni vagy titkosítani szeretné-e."
 
-#: src/commands/keytocardcommand.cpp:376
+#: src/commands/keytocardcommand.cpp:378
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:381
+#: src/commands/keytocardcommand.cpp:383
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:398
+#: src/commands/keytocardcommand.cpp:400
 #, fuzzy, kde-format
 #| msgid "I have verified the fingerprint"
 msgid "The existing key has the key grip:"
 msgstr "Ellenőriztem az ujjlenyomatot"
 
-#: src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:462
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Imported Certificates from %1"
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "Importált tanúsítványok innen: %1"
+
+#: src/commands/keytocardcommand.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2462,48 +2471,48 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:477
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "Titkos kulcsok exportálása…"
 
-#: src/commands/keytocardcommand.cpp:458
+#: src/commands/keytocardcommand.cpp:478
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "Fájl kiválasztása"
 
-#: src/commands/keytocardcommand.cpp:459
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Revoke..."
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "Visszavonás..."
 
-#: src/commands/keytocardcommand.cpp:505
+#: src/commands/keytocardcommand.cpp:525
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Titkos kulcsok exportálása…"
 
-#: src/commands/keytocardcommand.cpp:508
+#: src/commands/keytocardcommand.cpp:528
 #, fuzzy, kde-format
 #| msgid "Secret Key Files"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Titkos kulcs fájlok"
 
-#: src/commands/keytocardcommand.cpp:559
+#: src/commands/keytocardcommand.cpp:579
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "Nem sikerült megnyitni olvasásra: \"%1\""
 
-#: src/commands/keytocardcommand.cpp:568
+#: src/commands/keytocardcommand.cpp:588
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2514,13 +2523,13 @@ msgstr ""
 "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
 "ide: <filename>%2</filename>. <message>%3</message>"
 
-#: src/commands/keytocardcommand.cpp:578
+#: src/commands/keytocardcommand.cpp:598
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Nem sikerült megnyitni olvasásra: \"%1\""
 
-#: src/commands/keytocardcommand.cpp:585
+#: src/commands/keytocardcommand.cpp:605
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2531,19 +2540,19 @@ msgstr ""
 "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
 "ide: <filename>%2</filename>. <message>%3</message>"
 
-#: src/commands/keytocardcommand.cpp:602
+#: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:603
+#: src/commands/keytocardcommand.cpp:623
 #, fuzzy, kde-format
 #| msgid "Current selection"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Kijelölés"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2556,13 +2565,13 @@ msgstr ""
 "<para>Hiba történt a tanúsítványok betöltése közben: <message>%1</message></"
 "para>"
 
-#: src/commands/keytocardcommand.cpp:625
+#: src/commands/keytocardcommand.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:683
+#: src/commands/keytocardcommand.cpp:706
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -12490,11 +12499,22 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgctxt "@info"
-#~ msgid "Copying the key pair to the card failed: %1"
-#~ msgstr "Importált tanúsítványok innen: %1"
+#~| msgid "Signature file"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "Aláírásfájl"
+
+#, fuzzy
+#~| msgid "Encryption"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "Titkosítás"
+
+#, fuzzy
+#~| msgid "Authentication"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "Felhasználóazonosítás"
 
 #, fuzzy
 #~| msgid "Failed to execute %1: %2"

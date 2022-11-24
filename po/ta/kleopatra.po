@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-23 00:48+0000\n"
+"POT-Creation-Date: 2022-11-24 00:46+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -182,7 +182,7 @@ msgstr "ஏ.கே.ஏ"
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:357
+#: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -203,7 +203,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:337
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -790,7 +790,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL நினைவகம் வெற்றிகரமாக காலிசெய்யப்பட்டது."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2290,61 +2290,62 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:147
+#: src/commands/keytocardcommand.cpp:150
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "Select Card"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/commands/keytocardcommand.cpp:148
+#: src/commands/keytocardcommand.cpp:151
 #, fuzzy, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:615
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:183
+#: src/commands/keytocardcommand.cpp:186
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:209
+#: src/commands/keytocardcommand.cpp:213
 #, fuzzy, kde-format
 #| msgid "New signatures:"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Signature (%1)"
+msgctxt "@item:inlistbox"
+msgid "Signature"
 msgstr "புதிய கையெழுத்துக்கள்"
 
-#: src/commands/keytocardcommand.cpp:212
+#: src/commands/keytocardcommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Encryption (%1)"
+msgctxt "@item:inlistbox"
+msgid "Encryption"
 msgstr "மறையாக்கத்திற்கு மட்டுமே"
 
-#: src/commands/keytocardcommand.cpp:215
+#: src/commands/keytocardcommand.cpp:221
 #, fuzzy, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Authentication (%1)"
+msgctxt "@item:inlistbox"
+msgid "Authentication"
 msgstr "சான்றிதழ் தகவல்"
 
-#: src/commands/keytocardcommand.cpp:219
+#: src/commands/keytocardcommand.cpp:226
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "Select Card Slot"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, fuzzy, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:231
+#: src/commands/keytocardcommand.cpp:242
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2353,12 +2354,12 @@ msgstr "இந்த சான்றிதழை அழிக்க வேண்
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:252
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:393
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2368,7 +2369,7 @@ msgid ""
 "the existing key."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2377,12 +2378,12 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:270
+#: src/commands/keytocardcommand.cpp:274
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:278 src/commands/keytocardcommand.cpp:404
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
@@ -2390,44 +2391,51 @@ msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "கோப்பினை மேல் எழுத வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
+#: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "கோப்பினை மேல் எழுத வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:340
+#: src/commands/keytocardcommand.cpp:342
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "சான்றிதழ் கோப்பினை தேர்வு செய்"
 
-#: src/commands/keytocardcommand.cpp:341
+#: src/commands/keytocardcommand.cpp:343
 #, fuzzy, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:376
+#: src/commands/keytocardcommand.cpp:378
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:381
+#: src/commands/keytocardcommand.cpp:383
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:398
+#: src/commands/keytocardcommand.cpp:400
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:462
+#, fuzzy, kde-format
+#| msgid "Import Certificates..."
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "சான்றிதழ்களை இறக்குமதி செய்...."
+
+#: src/commands/keytocardcommand.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2435,77 +2443,77 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:477
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/commands/keytocardcommand.cpp:458
+#: src/commands/keytocardcommand.cpp:478
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "சிஆர்எல் கோப்பினை தேர்ந்தெடு"
 
-#: src/commands/keytocardcommand.cpp:459
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Revoke"
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "நிறுத்து"
 
-#: src/commands/keytocardcommand.cpp:505
+#: src/commands/keytocardcommand.cpp:525
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "இரகசிய விசையை ஏற்றுமதி செய்.... "
 
-#: src/commands/keytocardcommand.cpp:508
+#: src/commands/keytocardcommand.cpp:528
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "இரகசிய விசை ஏற்றுமதி"
 
-#: src/commands/keytocardcommand.cpp:559
+#: src/commands/keytocardcommand.cpp:579
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/commands/keytocardcommand.cpp:568
+#: src/commands/keytocardcommand.cpp:588
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/commands/keytocardcommand.cpp:578
+#: src/commands/keytocardcommand.cpp:598
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/commands/keytocardcommand.cpp:585
+#: src/commands/keytocardcommand.cpp:605
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/commands/keytocardcommand.cpp:602
+#: src/commands/keytocardcommand.cpp:622
 #, fuzzy, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/commands/keytocardcommand.cpp:603
+#: src/commands/keytocardcommand.cpp:623
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "சான்றிதழ் தகவல்"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2516,13 +2524,13 @@ msgid ""
 msgstr ""
 "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/keytocardcommand.cpp:625
+#: src/commands/keytocardcommand.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:683
+#: src/commands/keytocardcommand.cpp:706
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -12076,10 +12084,21 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info"
-#~ msgid "Copying the key pair to the card failed: %1"
-#~ msgstr "சான்றிதழ்களை இறக்குமதி செய்...."
+#~| msgid "New signatures:"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "புதிய கையெழுத்துக்கள்"
+
+#, fuzzy
+#~| msgid "For &encrypting only"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "மறையாக்கத்திற்கு மட்டுமே"
+
+#, fuzzy
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "சான்றிதழ் தகவல்"
 
 #, fuzzy
 #~| msgid ""

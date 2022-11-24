@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-23 00:48+0000\n"
+"POT-Creation-Date: 2022-11-24 00:46+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -185,7 +185,7 @@ msgstr "Tilføjelse af bruger-id gennemført"
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:357
+#: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -209,7 +209,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:337
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -810,7 +810,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL-cache ryddet."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Success"
@@ -2284,64 +2284,65 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:147
+#: src/commands/keytocardcommand.cpp:150
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card"
 msgstr "Vælg alle"
 
-#: src/commands/keytocardcommand.cpp:148
+#: src/commands/keytocardcommand.cpp:151
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card the key should be written to:"
 msgstr "Vælg ét af følgende certifikater:"
 
-#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:615
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Kunne ikke finde kortet med serienummeret: %1"
 
-#: src/commands/keytocardcommand.cpp:183
+#: src/commands/keytocardcommand.cpp:186
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:209
+#: src/commands/keytocardcommand.cpp:213
 #, fuzzy, kde-format
-#| msgid "Signature"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Signature (%1)"
-msgstr "Signatur"
+#| msgid "Signature:"
+msgctxt "@item:inlistbox"
+msgid "Signature"
+msgstr "Signatur:"
 
-#: src/commands/keytocardcommand.cpp:212
+#: src/commands/keytocardcommand.cpp:217
 #, fuzzy, kde-format
 #| msgid "Encryption"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Encryption (%1)"
+msgctxt "@item:inlistbox"
+msgid "Encryption"
 msgstr "Kryptering"
 
-#: src/commands/keytocardcommand.cpp:215
+#: src/commands/keytocardcommand.cpp:221
 #, fuzzy, kde-format
 #| msgid "Authentication"
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Authentication (%1)"
+msgctxt "@item:inlistbox"
+msgid "Authentication"
 msgstr "Godkendelse"
 
-#: src/commands/keytocardcommand.cpp:219
+#: src/commands/keytocardcommand.cpp:226
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "Select Card Slot"
 msgstr "Vælg alle"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select the card slot the key should be written to:"
 msgstr "Vælg ét af følgende certifikater:"
 
-#: src/commands/keytocardcommand.cpp:231
+#: src/commands/keytocardcommand.cpp:242
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2351,12 +2352,12 @@ msgstr "Vælg ét af følgende certifikater:"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "Kunne ikke finde kortet med serienummeret: %1"
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:252
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:393
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2368,7 +2369,7 @@ msgstr ""
 "Det vil ikke længere være muligt at dekryptere fortidens kommunikation "
 "krypteret til den eksisterende nøgle."
 
-#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2385,19 +2386,19 @@ msgstr ""
 "<b>overskrive</b> nøglen.</p><p>Hvis der ikke er nogen backup vil den "
 "eksisterende nøgle uigenkaldeligt gå tabt.</p>"
 
-#: src/commands/keytocardcommand.cpp:270
+#: src/commands/keytocardcommand.cpp:274
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "Den eksisterende nøgle har fingeraftrykket:"
 
-#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:278 src/commands/keytocardcommand.cpp:404
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Overskriv eksisterende nøgle"
 
-#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
+#: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Overwrite existing key"
@@ -2405,14 +2406,14 @@ msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "Overskriv eksisterende nøgle"
 
-#: src/commands/keytocardcommand.cpp:340
+#: src/commands/keytocardcommand.cpp:342
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Vælg certifikat-fil"
 
-#: src/commands/keytocardcommand.cpp:341
+#: src/commands/keytocardcommand.cpp:343
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Please select here whether you want to sign or encrypt files."
@@ -2420,25 +2421,33 @@ msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "Vælg om du vil signere eller kryptere filer her."
 
-#: src/commands/keytocardcommand.cpp:376
+#: src/commands/keytocardcommand.cpp:378
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:381
+#: src/commands/keytocardcommand.cpp:383
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:398
+#: src/commands/keytocardcommand.cpp:400
 #, fuzzy, kde-format
 #| msgid "The existing key has the fingerprint:"
 msgid "The existing key has the key grip:"
 msgstr "Den eksisterende nøgle har fingeraftrykket:"
 
-#: src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:462
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Moving the key to the card failed: %1"
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "Kunne ikke flytte nøglen til kortet: %1"
+
+#: src/commands/keytocardcommand.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2446,78 +2455,78 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:477
 #, fuzzy, kde-format
 #| msgid "Backup Key"
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "Backupnøgle"
 
-#: src/commands/keytocardcommand.cpp:458
+#: src/commands/keytocardcommand.cpp:478
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "Vælg fil"
 
-#: src/commands/keytocardcommand.cpp:459
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Revoke..."
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "Tilbagekald..."
 
-#: src/commands/keytocardcommand.cpp:505
+#: src/commands/keytocardcommand.cpp:525
 #, fuzzy, kde-format
 #| msgid "Backup Key"
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Backupnøgle"
 
-#: src/commands/keytocardcommand.cpp:508
+#: src/commands/keytocardcommand.cpp:528
 #, fuzzy, kde-format
 #| msgid "Secret Key Files"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Hemmelig nøgle-filer"
 
-#: src/commands/keytocardcommand.cpp:559
+#: src/commands/keytocardcommand.cpp:579
 #, fuzzy, kde-kuit-format
 #| msgid "Cannot open <filename>%1</filename> for reading."
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "Kan ikke <filename>%1</filename> til læsning."
 
-#: src/commands/keytocardcommand.cpp:568
+#: src/commands/keytocardcommand.cpp:588
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Kunne ikke slette <filename>%1</filename>."
 
-#: src/commands/keytocardcommand.cpp:578
+#: src/commands/keytocardcommand.cpp:598
 #, fuzzy, kde-kuit-format
 #| msgid "Cannot open <filename>%1</filename> for reading."
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Kan ikke <filename>%1</filename> til læsning."
 
-#: src/commands/keytocardcommand.cpp:585
+#: src/commands/keytocardcommand.cpp:605
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "Kunne ikke slette <filename>%1</filename>."
 
-#: src/commands/keytocardcommand.cpp:602
+#: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:603
+#: src/commands/keytocardcommand.cpp:623
 #, fuzzy, kde-format
 #| msgid "Current selection"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Nuværende udvalg"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2530,14 +2539,14 @@ msgstr ""
 "<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
 "message></para>"
 
-#: src/commands/keytocardcommand.cpp:625
+#: src/commands/keytocardcommand.cpp:645
 #, fuzzy, kde-format
 #| msgid "Successfully copied the key to the card."
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "Kopiering af nøglgen til kortet lykkedes."
 
-#: src/commands/keytocardcommand.cpp:683
+#: src/commands/keytocardcommand.cpp:706
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -12422,15 +12431,26 @@ msgstr ""
 "Brug i stedet \"Opslå på server\" for at importere fra en offentlig "
 "nøgleserver."
 
-#~ msgctxt "@info"
-#~ msgid "Moving the key to the card failed: %1"
-#~ msgstr "Kunne ikke flytte nøglen til kortet: %1"
+#, fuzzy
+#~| msgid "Signature"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "Signatur"
 
 #, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Moving the key to the card failed: %1"
+#~| msgid "Encryption"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "Kryptering"
+
+#, fuzzy
+#~| msgid "Authentication"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "Godkendelse"
+
 #~ msgctxt "@info"
-#~ msgid "Copying the key pair to the card failed: %1"
+#~ msgid "Moving the key to the card failed: %1"
 #~ msgstr "Kunne ikke flytte nøglen til kortet: %1"
 
 #, fuzzy

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-23 00:48+0000\n"
-"PO-Revision-Date: 2022-11-12 10:05+0100\n"
+"POT-Creation-Date: 2022-11-24 00:46+0000\n"
+"PO-Revision-Date: 2022-11-23 12:14+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -179,7 +179,7 @@ msgstr "S'ha afegit l'ID d'usuari"
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:357
+#: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -202,11 +202,11 @@ msgstr ""
 "codificat hexadecimal."
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:337
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
-"No s'ha trobat cap certificat adequat per escriure'l en esta ranura de la "
+"No s'ha trobat cap certificat adequat per a escriure'l en esta ranura de la "
 "targeta."
 
 #: src/commands/certificatetopivcardcommand.cpp:132
@@ -743,7 +743,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "S'ha netejat el cau de la CRL amb èxit."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2159,59 +2159,62 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:147
+#: src/commands/keytocardcommand.cpp:150
 #, kde-format
 msgid "Select Card"
 msgstr "Seleccioneu el targeta"
 
-#: src/commands/keytocardcommand.cpp:148
+#: src/commands/keytocardcommand.cpp:151
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "Seleccioneu la targeta en la qual s'ha d'escriure la clau:"
 
-#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:615
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "No s'ha pogut trobar la targeta amb el número de sèrie: %1"
 
-#: src/commands/keytocardcommand.cpp:183
-#, fuzzy, kde-kuit-format
-#| msgid "Sorry! Transferring keys to this card is not supported."
+#: src/commands/keytocardcommand.cpp:186
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
-msgstr "No està permés transferir claus a esta targeta."
+msgstr "No està permés escriure claus a la targeta <emphasis>%1</emphasis>."
 
-#: src/commands/keytocardcommand.cpp:209
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Signature (%1)"
-msgstr "Signatura (%1)"
+#: src/commands/keytocardcommand.cpp:213
+#, fuzzy, kde-format
+#| msgid "Signature"
+msgctxt "@item:inlistbox"
+msgid "Signature"
+msgstr "Signatura"
 
-#: src/commands/keytocardcommand.cpp:212
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Encryption (%1)"
-msgstr "Encriptació (%1)"
+#: src/commands/keytocardcommand.cpp:217
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgctxt "@item:inlistbox"
+msgid "Encryption"
+msgstr "Encriptació"
 
-#: src/commands/keytocardcommand.cpp:215
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Authentication (%1)"
-msgstr "Autenticació (%1)"
+#: src/commands/keytocardcommand.cpp:221
+#, fuzzy, kde-format
+#| msgid "Authentication"
+msgctxt "@item:inlistbox"
+msgid "Authentication"
+msgstr "Autenticació"
 
-#: src/commands/keytocardcommand.cpp:219
+#: src/commands/keytocardcommand.cpp:226
 #, kde-format
 msgid "Select Card Slot"
 msgstr "Selecciona la ranura de la targeta"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr ""
 "Seleccioneu la ranura de la targeta en la qual s'ha d'escriure la clau:"
 
-#: src/commands/keytocardcommand.cpp:231
+#: src/commands/keytocardcommand.cpp:242
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2220,12 +2223,12 @@ msgstr ""
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "No s'ha pogut trobar la targeta OpenPGP amb el número de sèrie: %1"
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:252
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "Esta clau no es pot transferir a una targeta OpenPGP."
 
-#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:393
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2237,50 +2240,43 @@ msgstr ""
 "Ja no serà possible desencriptar les comunicacions encriptades anteriors a "
 "la clau existent."
 
-#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<p>This card already contains a key in this slot. Continuing will "
-#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
-#| "will be irrecoverably lost.</p>"
+#: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
-"<p>Esta targeta ja conté una clau en esta ranura. A continuació se "
+"<p>La targeta <em>%1</em> ja conté una clau en esta ranura. A continuació se "
 "<b>sobreescriurà</b> esta clau.</p><p>Si no hi ha cap còpia de seguretat es "
 "perdrà irremeiablement la clau existent.</p>"
 
-#: src/commands/keytocardcommand.cpp:270
+#: src/commands/keytocardcommand.cpp:274
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "La clau existent té l'empremta digital:"
 
-#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:278 src/commands/keytocardcommand.cpp:404
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "Sobreescriure la clau existent"
 
-#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite Existing Key"
+#: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
-msgstr "Sobreescriure la clau existent"
+msgstr "Sobreescriu la clau existent"
 
-#: src/commands/keytocardcommand.cpp:340
+#: src/commands/keytocardcommand.cpp:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "Seleccioneu el certificat"
 
-#: src/commands/keytocardcommand.cpp:341
+#: src/commands/keytocardcommand.cpp:343
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
@@ -2288,12 +2284,12 @@ msgstr ""
 "Seleccioneu el certificat del qual voleu escriure el seu parell de claus a "
 "la targeta:"
 
-#: src/commands/keytocardcommand.cpp:376
+#: src/commands/keytocardcommand.cpp:378
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "Esta clau no es pot transferir a una targeta PIV."
 
-#: src/commands/keytocardcommand.cpp:381
+#: src/commands/keytocardcommand.cpp:383
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
@@ -2302,134 +2298,118 @@ msgstr ""
 "Només es poden transferir claus d'encriptació i claus de signatura a una "
 "targeta PIV."
 
-#: src/commands/keytocardcommand.cpp:398
+#: src/commands/keytocardcommand.cpp:400
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "La clau existent té el control de clau:"
 
-#: src/commands/keytocardcommand.cpp:454
-#, fuzzy, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:462
+#, fuzzy, kde-format
 #| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification has been revoked successfully.</para><para>Do you "
-#| "want to publish the revocation?</para>"
-#| msgid_plural ""
-#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
-#| "you want to publish the revocations?</para>"
+#| msgid "Writing the certificate to the card failed: %1"
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "No s'ha pogut escriure el certificat a la targeta: %1"
+
+#: src/commands/keytocardcommand.cpp:474
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
-"<para>La certificació s'ha revocat correctament.</para><para>Voleu publicar "
-"la revocació?</para>"
+"<para>La clau s'ha copiat a la targeta.</para><para>Voleu suprimir la còpia "
+"de la clau emmagatzemada en este ordinador?</para>"
 
-#: src/commands/keytocardcommand.cpp:457
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#: src/commands/keytocardcommand.cpp:477
+#, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr "Còpia de seguretat de la clau secreta"
+msgstr "Crea una còpia de seguretat i suprimix la clau"
 
-#: src/commands/keytocardcommand.cpp:458
-#, fuzzy, kde-format
-#| msgid "Select Key"
+#: src/commands/keytocardcommand.cpp:478
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "Selecciona una clau"
+msgstr "Suprimix la clau"
 
-#: src/commands/keytocardcommand.cpp:459
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#: src/commands/keytocardcommand.cpp:479
+#, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "Revoca la clau"
+msgstr "Mantín la clau"
 
-#: src/commands/keytocardcommand.cpp:505
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#: src/commands/keytocardcommand.cpp:525
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Còpia de seguretat de la clau secreta"
 
-#: src/commands/keytocardcommand.cpp:508
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Secret Key Backup"
+#: src/commands/keytocardcommand.cpp:528
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr "Còpia de seguretat de clau secreta"
+msgstr "Fitxers de còpia de seguretat de clau secreta"
 
-#: src/commands/keytocardcommand.cpp:559
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#: src/commands/keytocardcommand.cpp:579
+#, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "No s'ha pogut obrir el fitxer <filename>%1</filename> per a lectura."
+msgstr ""
+"No s'ha pogut obrir el fitxer de clau privada <filename>%1</filename> per a "
+"lectura."
 
-#: src/commands/keytocardcommand.cpp:568
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#: src/commands/keytocardcommand.cpp:588
+#, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr "No s'ha pogut escriure la clau en el fitxer <filename>%1</filename>."
+msgstr "El fitxer de clau privada <filename>%1</filename> està buit."
 
-#: src/commands/keytocardcommand.cpp:578
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#: src/commands/keytocardcommand.cpp:598
+#, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr ""
 "No s'ha pogut obrir el fitxer <filename>%1</filename> per a escriptura."
 
-#: src/commands/keytocardcommand.cpp:585
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
-msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
-msgstr "No s'ha pogut escriure la clau en el fitxer <filename>%1</filename>."
-
-#: src/commands/keytocardcommand.cpp:602
+#: src/commands/keytocardcommand.cpp:605
 #, kde-kuit-format
-msgid "Do you really want to delete the local copy of the secret key?"
+msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
-
-#: src/commands/keytocardcommand.cpp:603
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
-msgctxt "@title:window"
-msgid "Confirm Deletion"
-msgstr "Confirmació de la revocació"
+"No s'ha pogut escriure la còpia de seguretat de la clau privada a <filename>"
+"%1</filename>."
 
 #: src/commands/keytocardcommand.cpp:622
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
+msgid "Do you really want to delete the local copy of the secret key?"
+msgstr "Segur que voleu suprimir la còpia local de la clau secreta?"
+
+#: src/commands/keytocardcommand.cpp:623
+#, kde-format
+msgctxt "@title:window"
+msgid "Confirm Deletion"
+msgstr "Confirmeu la supressió"
+
+#: src/commands/keytocardcommand.cpp:642
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the key:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Ha fallat la sol·licitud de guardada.</para><para><message>%1</"
-"message></para>"
+"<para>No s'ha pogut suprimir la clau:</para><para><message>%1</message></"
+"para>"
 
-#: src/commands/keytocardcommand.cpp:625
+#: src/commands/keytocardcommand.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "S'ha copiat correctament la clau a la targeta."
 
-#: src/commands/keytocardcommand.cpp:683
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#: src/commands/keytocardcommand.cpp:706
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>Ha fallat la sol·licitud de guardada.</para><para><message>%1</"
+"<para>Ha fallat la còpia de la clau a la targeta:</para><para><message>%1</"
 "message></para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
@@ -11681,9 +11661,9 @@ msgid ""
 "Application."
 msgstr ""
 "Canvia la clau d'administració de l'aplicació de la targeta PIV utilitzada "
-"l'aplicació de la targeta PIV per autenticar l'administrador de l'aplicació "
-"de la targeta PIV i per l'administrador (resp. Kleopatra) per a autenticar "
-"l'aplicació de la targeta PIV."
+"l'aplicació de la targeta PIV per a autenticar l'administrador de "
+"l'aplicació de la targeta PIV i per l'administrador (resp. Kleopatra) per a "
+"autenticar l'aplicació de la targeta PIV."
 
 #: src/view/pivcardwidget.cpp:179 src/view/pivcardwidget.cpp:242
 #, kde-format
@@ -12043,21 +12023,14 @@ msgstr ""
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
 
-#~ msgctxt "@info"
-#~ msgid "Moving the key to the card failed: %1"
-#~ msgstr "No s'ha pogut moure la clau de la targeta: %1"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "Signatura (%1)"
 
-#~ msgctxt "@info"
-#~ msgid "Copying the key pair to the card failed: %1"
-#~ msgstr "No s'ha pogut copiar el parell de claus a la targeta: %1"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "Encriptació (%1)"
 
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key pair to the card."
-#~ msgstr "S'ha copiat correctament el parell de claus a la targeta."
-
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "No s'ha pogut suprimir la clau: %1"
-
-#~ msgid "The file <b>%1</b> already exists.\n"
-#~ msgstr "El fitxer <b>%1</b> ja existix.\n"
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "Autenticació (%1)"

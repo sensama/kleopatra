@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-23 00:48+0000\n"
-"PO-Revision-Date: 2022-11-13 07:42+0100\n"
+"POT-Creation-Date: 2022-11-24 00:46+0000\n"
+"PO-Revision-Date: 2022-11-23 06:28+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -168,7 +168,7 @@ msgstr "მომხმარებლის ID-ის დამატება 
 #: src/commands/certificatetopivcardcommand.cpp:120
 #: src/commands/certificatetopivcardcommand.cpp:177
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:357
+#: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:121
 #: src/commands/pivgeneratecardkeycommand.cpp:187
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:187
@@ -189,7 +189,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/certificatetopivcardcommand.cpp:127
-#: src/commands/keytocardcommand.cpp:335
+#: src/commands/keytocardcommand.cpp:337
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -663,7 +663,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Clear CRL Cache Error"
-msgstr ""
+msgstr "CRL ქეშის გასუფთავების შეცდომა"
 
 #: src/commands/clearcrlcachecommand.cpp:48
 #, kde-format
@@ -691,7 +691,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL ქეში წარმატებით გასუფთავდა."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:456
+#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -1594,12 +1594,12 @@ msgstr ""
 #: src/commands/importcertificatefrompivcardcommand.cpp:91
 #, kde-format
 msgid "Card Certificate"
-msgstr ""
+msgstr "ბარათის სერტიფიკატი"
 
 #: src/commands/importcertificatescommand.cpp:185
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
-msgstr ""
+msgstr "სერტიფიკატების შემოტანა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 
 #: src/commands/importcertificatescommand.cpp:241
 #, kde-format
@@ -1638,7 +1638,7 @@ msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 #: src/commands/importcertificatescommand.cpp:341
 #, kde-format
 msgid "Total number processed:"
-msgstr ""
+msgstr "სულ დამშავებული რაოდენობა:"
 
 #: src/commands/importcertificatescommand.cpp:289
 #, kde-format
@@ -1658,7 +1658,7 @@ msgstr "ახალი მომხმარებლის ID-ები:"
 #: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Certificates without user IDs:"
-msgstr ""
+msgstr "სერტიფიკატები მომხმარებლის ID-ის გარეშე:"
 
 #: src/commands/importcertificatescommand.cpp:301
 #, kde-format
@@ -1683,22 +1683,22 @@ msgstr "შეუცვლელი:"
 #: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Secret keys processed:"
-msgstr ""
+msgstr "დამუშავებული საიდუმლო გასაღებები:"
 
 #: src/commands/importcertificatescommand.cpp:316
 #, kde-format
 msgid "Secret keys imported:"
-msgstr ""
+msgstr "შემოტანილი საიდუმლო გასაღებები:"
 
 #: src/commands/importcertificatescommand.cpp:320
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
-msgstr ""
+msgstr "საიდუმლო გასაღებები <em>არ</em> შემოტანილა:"
 
 #: src/commands/importcertificatescommand.cpp:323
 #, kde-format
 msgid "Secret keys unchanged:"
-msgstr ""
+msgstr "საიდუმლო გასაღებები არ შეცვლილა:"
 
 #: src/commands/importcertificatescommand.cpp:326
 #, kde-format
@@ -1890,7 +1890,7 @@ msgstr ""
 #: src/commands/importcrlcommand.cpp:201
 #, kde-format
 msgid "CRL file imported successfully."
-msgstr ""
+msgstr "CRL ფაილის შემოტანა წარმატებულია."
 
 #: src/commands/importcrlcommand.cpp:202
 #, kde-format
@@ -1906,7 +1906,7 @@ msgstr ""
 #: src/commands/importpaperkeycommand.cpp:137
 #, kde-format
 msgid "Failed to restore any secret keys."
-msgstr ""
+msgstr "საიდუმლო გასაღებების აღდგენა შეუძლებელია."
 
 #: src/commands/importpaperkeycommand.cpp:145
 #, kde-kuit-format
@@ -1937,7 +1937,7 @@ msgstr "ქაღალდის მარქაფი"
 #, kde-format
 msgctxt "@title:window"
 msgid "Error importing secret key"
-msgstr ""
+msgstr "საიდუმლო გასაღების შემოტანის შეცდომა"
 
 #: src/commands/importpaperkeycommand.cpp:202
 #, kde-kuit-format
@@ -1963,57 +1963,61 @@ msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/keytocardcommand.cpp:147
+#: src/commands/keytocardcommand.cpp:150
 #, kde-format
 msgid "Select Card"
 msgstr "აირჩიეთ ბარათი"
 
-#: src/commands/keytocardcommand.cpp:148
+#: src/commands/keytocardcommand.cpp:151
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:173 src/commands/keytocardcommand.cpp:595
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:615
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:183
+#: src/commands/keytocardcommand.cpp:186
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:209
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Signature (%1)"
-msgstr "ხელმოწერა (%1)"
+#: src/commands/keytocardcommand.cpp:213
+#, fuzzy, kde-format
+#| msgid "Signature"
+msgctxt "@item:inlistbox"
+msgid "Signature"
+msgstr "ხელმოწერა"
 
-#: src/commands/keytocardcommand.cpp:212
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Encryption (%1)"
-msgstr "დაშიფვრა (%1)"
+#: src/commands/keytocardcommand.cpp:217
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgctxt "@item:inlistbox"
+msgid "Encryption"
+msgstr "დაშიფვრა"
 
-#: src/commands/keytocardcommand.cpp:215
-#, kde-format
-msgctxt "Placeholder is the number of a slot on a smart card"
-msgid "Authentication (%1)"
-msgstr "ავთენტიკაცია (%1)"
+#: src/commands/keytocardcommand.cpp:221
+#, fuzzy, kde-format
+#| msgid "Authentication"
+msgctxt "@item:inlistbox"
+msgid "Authentication"
+msgstr "ავთენტიკაცია"
 
-#: src/commands/keytocardcommand.cpp:219
+#: src/commands/keytocardcommand.cpp:226
 #, kde-format
 msgid "Select Card Slot"
 msgstr "აირჩიეთ ბარათის სლოტი"
 
-#: src/commands/keytocardcommand.cpp:220
+#: src/commands/keytocardcommand.cpp:227
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:231
+#: src/commands/keytocardcommand.cpp:242
 #: src/commands/openpgpgeneratecardkeycommand.cpp:128
 #: src/commands/openpgpgeneratecardkeycommand.cpp:165
 #: src/view/pgpcardwidget.cpp:387 src/view/pgpcardwidget.cpp:469
@@ -2022,12 +2026,12 @@ msgstr ""
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:252
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:259 src/commands/keytocardcommand.cpp:391
+#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:393
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #: src/view/pgpcardwidget.cpp:395
@@ -2037,7 +2041,7 @@ msgid ""
 "the existing key."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:267 src/commands/keytocardcommand.cpp:395
+#: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2046,56 +2050,62 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:270
+#: src/commands/keytocardcommand.cpp:274
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:274 src/commands/keytocardcommand.cpp:402
+#: src/commands/keytocardcommand.cpp:278 src/commands/keytocardcommand.cpp:404
 #: src/commands/pivgeneratecardkeycommand.cpp:136
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "არსებულ გასაღებზე გადაწერა"
 
-#: src/commands/keytocardcommand.cpp:275 src/commands/keytocardcommand.cpp:403
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite Existing Key"
+#: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "არსებულ გასაღებზე გადაწერა"
 
-#: src/commands/keytocardcommand.cpp:340
+#: src/commands/keytocardcommand.cpp:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "აირჩიეთ სერტიფიკატი"
 
-#: src/commands/keytocardcommand.cpp:341
+#: src/commands/keytocardcommand.cpp:343
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:376
+#: src/commands/keytocardcommand.cpp:378
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:381
+#: src/commands/keytocardcommand.cpp:383
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:398
+#: src/commands/keytocardcommand.cpp:400
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:454
+#: src/commands/keytocardcommand.cpp:462
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing the certificate to the card failed: %1"
+msgctxt "@info"
+msgid "Copying the key to the card failed."
+msgstr "სერტიფიკატის ბარათზე ჩაწერის შეცდომა: %1"
+
+#: src/commands/keytocardcommand.cpp:474
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2103,94 +2113,82 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:457
+#: src/commands/keytocardcommand.cpp:477
 #, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:458
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Delete"
+#: src/commands/keytocardcommand.cpp:478
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "წაშლა"
+msgstr "გასაღების წაშლა"
 
-#: src/commands/keytocardcommand.cpp:459
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate Key"
+#: src/commands/keytocardcommand.cpp:479
+#, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "გასაღების გენერაცია"
+msgstr "გასაღების შენარჩუნება"
 
-#: src/commands/keytocardcommand.cpp:505
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Print Secret Key"
+#: src/commands/keytocardcommand.cpp:525
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
-msgstr "საიდუმლო გასაღების დაბეჭდვა"
+msgstr "საიდუმლო გასაღების მარქაფის შეცდომა"
 
-#: src/commands/keytocardcommand.cpp:508
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Secret Key Backup"
+#: src/commands/keytocardcommand.cpp:528
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr "საიდუმლო გასაღების მარქაფი"
+msgstr "საიდუმლო გასაღების მარქაფის ფაილები"
 
-#: src/commands/keytocardcommand.cpp:559
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to overwrite <filename>%1</filename>."
+#: src/commands/keytocardcommand.cpp:579
+#, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "<filename>%1</filename>-ის თავზე გადაწერის შეცდომა."
+msgstr ""
+"პირადი გასაღების ფაილის <filename>%1</filename> წასაკითხად გახსნის შეცდომა."
 
-#: src/commands/keytocardcommand.cpp:568
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to overwrite <filename>%1</filename>."
+#: src/commands/keytocardcommand.cpp:588
+#, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr "<filename>%1</filename>-ის თავზე გადაწერის შეცდომა."
+msgstr "პირადი გასაღები <filename>%1</filename> ცარიელია."
 
-#: src/commands/keytocardcommand.cpp:578
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to overwrite <filename>%1</filename>."
+#: src/commands/keytocardcommand.cpp:598
+#, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
-msgstr "<filename>%1</filename>-ის თავზე გადაწერის შეცდომა."
+msgstr "პირადი გასაღების <filename>%1</filename> ჩასაწერად გახსნის შეცდომა."
 
-#: src/commands/keytocardcommand.cpp:585
+#: src/commands/keytocardcommand.cpp:605
 #, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:602
+#: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:603
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
+#: src/commands/keytocardcommand.cpp:623
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "დაადასტურეთ გაუქმება"
+msgstr "წაშლის დადასტურება"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:642
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the key:</para><para><message>%1</message></para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:625
+#: src/commands/keytocardcommand.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:683
+#: src/commands/keytocardcommand.cpp:706
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4741,7 +4739,7 @@ msgstr "გამოტანა"
 #: src/crypto/gui/signencryptfileswizard.cpp:170
 #, kde-format
 msgid "Please select an action."
-msgstr ""
+msgstr "აირჩიეთ ქმედება."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:173
 #, kde-format
@@ -11056,6 +11054,18 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "ხელმოწერა (%1)"
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "დაშიფვრა (%1)"
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "ავთენტიკაცია (%1)"
 
 #~ msgid "I do not know"
 #~ msgstr "არ ვიცი"

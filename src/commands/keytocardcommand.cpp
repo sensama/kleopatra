@@ -698,7 +698,7 @@ void KeyToCardCommand::Private::keyToCardDone(const GpgME::Error &err)
         updateConnection = connect(ReaderStatus::instance(), &ReaderStatus::updateFinished, q, [this]() {
             updateDone();
         });
-        ReaderStatus::mutableInstance()->updateStatus();
+        ReaderStatus::mutableInstance()->updateCard(serialNumber(), appName);
         return;
     }
     if (err) {

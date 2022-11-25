@@ -68,6 +68,7 @@ public:
 
 public Q_SLOTS:
     void updateStatus();
+    void updateCard(const std::string &serialNumber, const std::string &appName);
     void startMonitoring();
 
 Q_SIGNALS:

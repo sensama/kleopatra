@@ -852,49 +852,82 @@ private:
             }
 
             if ((nullSlot && command == updateTransaction.command)) {
-
-                std::vector<std::shared_ptr<Card> > newCards = update_cardinfo(gpgAgent);
-
-                KDAB_SYNCHRONIZED(m_mutex)
-                m_cardInfos = newCards;
-
-                bool anyLC = false;
-                std::string firstCardWithNullPin;
                 bool anyError = false;
-                for (const auto &newCard: newCards) {
-                    const auto serialNumber = newCard->serialNumber();
-                    const auto appName = newCard->appName();
-                    const auto matchingOldCard = std::find_if(oldCards.cbegin(), oldCards.cend(),
-                        [serialNumber, appName] (const std::shared_ptr<Card> &card) {
-                            return card->serialNumber() == serialNumber && card->appName() == appName;
-                        });
-                    if (matchingOldCard == oldCards.cend()) {
+
+                if (cardApp.serialNumber == "__all__" || cardApp.appName == "__all__") {
+                    std::vector<std::shared_ptr<Card> > newCards = update_cardinfo(gpgAgent);
+
+                    KDAB_SYNCHRONIZED(m_mutex) {
+                        m_cardInfos = newCards;
+                    }
+
+                    bool anyLC = false;
+                    std::string firstCardWithNullPin;
+                    for (const auto &newCard: newCards) {
+                        const auto serialNumber = newCard->serialNumber();
+                        const auto appName = newCard->appName();
+                        const auto matchingOldCard = std::find_if(oldCards.cbegin(), oldCards.cend(),
+                            [serialNumber, appName] (const std::shared_ptr<Card> &card) {
+                                return card->serialNumber() == serialNumber && card->appName() == appName;
+                            });
+                        if (matchingOldCard == oldCards.cend()) {
+                            qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "was added";
+                            Q_EMIT cardAdded(serialNumber, appName);
+                        } else {
+                            if (*newCard != **matchingOldCard) {
+                                qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
+                                Q_EMIT cardChanged(serialNumber, appName);
+                            }
+                            oldCards.erase(matchingOldCard);
+                        }
+                        if (newCard->canLearnKeys()) {
+                            anyLC = true;
+                        }
+                        if (newCard->hasNullPin() && firstCardWithNullPin.empty()) {
+                            firstCardWithNullPin = newCard->serialNumber();
+                        }
+                        if (newCard->status() == Card::CardError) {
+                            anyError = true;
+                        }
+                    }
+                    for (const auto &oldCard: oldCards) {
+                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << oldCard->serialNumber() << "with app" << oldCard->appName() << "was removed";
+                        Q_EMIT cardRemoved(oldCard->serialNumber(), oldCard->appName());
+                    }
+
+                    Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
+                    Q_EMIT anyCardCanLearnKeysChanged(anyLC);
+                } else {
+                    auto updatedCard = get_card_status(cardApp.serialNumber, cardApp.appName, gpgAgent);
+                    const auto serialNumber = updatedCard->serialNumber();
+                    const auto appName = updatedCard->appName();
+
+                    bool cardWasAdded = false;
+                    bool cardWasChanged = false;
+                    KDAB_SYNCHRONIZED(m_mutex) {
+                        const auto matchingCard = std::find_if(m_cardInfos.begin(), m_cardInfos.end(),
+                            [serialNumber, appName](const auto &card) {
+                                return card->serialNumber() == serialNumber && card->appName() == appName;
+                            });
+                        if (matchingCard == m_cardInfos.end()) {
+                            m_cardInfos.push_back(updatedCard);
+                            cardWasAdded = true;
+                        } else {
+                            cardWasChanged = (*updatedCard != **matchingCard);
+                            m_cardInfos[std::distance(m_cardInfos.begin(), matchingCard)] = updatedCard;
+                        }
+                        if (updatedCard->status() == Card::CardError) {
+                            anyError = true;
+                        }
+                    }
+                    if (cardWasAdded) {
                         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "was added";
                         Q_EMIT cardAdded(serialNumber, appName);
-                    } else {
-                        if (*newCard != **matchingOldCard) {
-                            qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
-                            Q_EMIT cardChanged(serialNumber, appName);
-                        }
-                        oldCards.erase(matchingOldCard);
-                    }
-                    if (newCard->canLearnKeys()) {
-                        anyLC = true;
-                    }
-                    if (newCard->hasNullPin() && firstCardWithNullPin.empty()) {
-                        firstCardWithNullPin = newCard->serialNumber();
-                    }
-                    if (newCard->status() == Card::CardError) {
-                        anyError = true;
+                    } else if (cardWasChanged) {
+                        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
+                        Q_EMIT cardChanged(serialNumber, appName);
                     }
                 }
-                for (const auto &oldCard: oldCards) {
-                    qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << oldCard->serialNumber() << "with app" << oldCard->appName() << "was removed";
-                    Q_EMIT cardRemoved(oldCard->serialNumber(), oldCard->appName());
-                }
-
-                Q_EMIT firstCardWithNullPinChanged(firstCardWithNullPin);
-                Q_EMIT anyCardCanLearnKeysChanged(anyLC);
 
                 if (anyError) {
                     gpgAgent.reset();
@@ -1080,6 +1113,13 @@ void ReaderStatus::startTransaction(const std::shared_ptr<Card> &card,
 void ReaderStatus::updateStatus()
 {
     d->ping();
+}
+
+void ReaderStatus::updateCard(const std::string &serialNumber, const std::string &appName)
+{
+    const CardApp cardApp = { serialNumber, appName };
+    const Transaction t = { cardApp, updateTransaction.command, nullptr, nullptr, nullptr };
+    d->addTransaction(t);
 }
 
 std::vector <std::shared_ptr<Card> > ReaderStatus::getCards() const

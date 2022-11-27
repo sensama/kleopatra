@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1637337 $
+# Version: $Revision: 1639066 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-04 00:46+0000\n"
-"PO-Revision-Date: 2022-10-18 18:01+0200\n"
+"PO-Revision-Date: 2022-11-26 10:46+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.2\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -2430,12 +2430,10 @@ msgid "The existing key has the ID:"
 msgstr "Istniejący klucz ma ID:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite Existing Key"
-msgstr "Zastąpienie istniejącego klucza"
+msgstr "Zastąp istniejący klucz"
 
 #: src/commands/refreshcertificatecommand.cpp:123
 #, kde-format
@@ -5000,6 +4998,7 @@ msgstr ""
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
+"Nieprawidłowe ustawienia zgodności dla podpisywania i szyfrowania plików."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:196
 #, kde-kuit-format
@@ -9675,77 +9674,70 @@ msgid "Authentication"
 msgstr "Uwierzytelnianie"
 
 #: src/smartcard/openpgpcard.cpp:179
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr "ECDH (krzywa P-256)"
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:180
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr "ECDH (krzywa P-384)"
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr "ECDH (krzywa P-256)"
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:183
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr "ECDH (krzywa P-384)"
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:184
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr "ECDH (krzywa P-256)"
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:185
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr "ECDH (krzywa P-384)"
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:412
-#, fuzzy, kde-format
-#| msgid "RSA (2048 bits)"
+#, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr "RSA (2048 bity)"
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:413
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11030,11 +11022,10 @@ msgid "Show detailed information about this key"
 msgstr "Pokaż szczegółowe dane o tym kluczu"
 
 #: src/view/openpgpkeycardwidget.cpp:55 src/view/openpgpkeycardwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "Generate Keypair"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Key"
-msgstr "Utwórz parę kluczy"
+msgstr "Utwórz klucz"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:185
 #, kde-format
@@ -11049,12 +11040,10 @@ msgid "<em>No key</em>"
 msgstr "<em>Brak klucza</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:173
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr "Pomyślnie utworzono nowy klucz dla tej karty."
+msgstr "Utwórz klucz dla tego gniazda karty"
 
 #: src/view/openpgpkeycardwidget.cpp:184
 #, kde-format
@@ -11069,17 +11058,16 @@ msgid "<em>Invalid fingerprint</em>"
 msgstr "<em>Nieprawidłowy odcisk klucza</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:219
-#, fuzzy, kde-format
-#| msgid "Generate Keypair"
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "Utwórz parę kluczy"
+msgstr "Utwórz klucz ponownie"
 
 #: src/view/openpgpkeycardwidget.cpp:220
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
-msgstr ""
+msgstr "Utwórz nowy klucz dla tego gniazda karty, zastępując istniejący klucz"
 
 #: src/view/openpgpkeycardwidget.cpp:243
 #, kde-format

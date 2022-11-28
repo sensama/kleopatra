@@ -14,7 +14,6 @@
 
 #include "resultitemwidget.h"
 
-#include "utils/auditlog.h"
 #include "commands/command.h"
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/lookupcertificatescommand.h"
@@ -22,6 +21,7 @@
 #include "view/htmllabel.h"
 #include "view/urllabel.h"
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/MessageBox>
 #include <Libkleo/Classify>
 #include <Libkleo/SystemInfo>

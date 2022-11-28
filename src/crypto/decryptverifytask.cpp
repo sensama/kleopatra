@@ -17,6 +17,7 @@
 #include <QGpgME/DecryptJob>
 #include <QGpgME/DecryptVerifyJob>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/Compliance>
 #include <Libkleo/Dn>
 #include <Libkleo/KleoException>
@@ -30,7 +31,6 @@
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
-#include <utils/auditlog.h>
 #include <Libkleo/GnuPG>
 
 #include <KMime/HeaderParsing>
@@ -64,9 +64,9 @@ using namespace KMime::Types;
 namespace
 {
 
-static AuditLog auditLogFromSender(QObject *sender)
+static AuditLogEntry auditLogFromSender(QObject *sender)
 {
-    return AuditLog::fromJob(qobject_cast<const QGpgME::Job *>(sender));
+    return AuditLogEntry::fromJob(qobject_cast<const QGpgME::Job *>(sender));
 }
 
 static bool addrspec_equal(const AddrSpec &lhs, const AddrSpec &rhs, Qt::CaseSensitivity cs)
@@ -653,7 +653,7 @@ public:
             const QString &errString,
             const QString &input,
             const QString &output,
-            const AuditLog &auditLog,
+            const AuditLogEntry &auditLog,
             Task *parentTask,
             const Mailbox &informativeSender,
             DecryptVerifyResult *qq) :
@@ -701,7 +701,7 @@ public:
     QString m_errorString;
     QString m_inputLabel;
     QString m_outputLabel;
-    const AuditLog m_auditLog;
+    const AuditLogEntry m_auditLog;
     QPointer <Task> m_parentTask;
     const Mailbox m_informativeSender;
 };
@@ -711,7 +711,7 @@ DecryptVerifyResult::SenderInfo DecryptVerifyResult::Private::makeSenderInfo() c
     return SenderInfo(m_informativeSender, KeyCache::instance()->findSigners(m_verificationResult));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Decrypt,
@@ -728,7 +728,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Decrypt,
@@ -745,7 +745,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLogEntry &auditLog)
 {
     const auto err = dr.error().code() ? dr.error() : vr.error();
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
@@ -763,7 +763,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             DecryptVerify,
@@ -780,7 +780,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
@@ -796,7 +796,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             this,
             informativeSender()));
 }
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
@@ -813,7 +813,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyOpaque
             informativeSender()));
 }
 
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
@@ -829,7 +829,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
             this,
             informativeSender()));
 }
-std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog)
+std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
 {
     return std::shared_ptr<DecryptVerifyResult>(new DecryptVerifyResult(
             Verify,
@@ -855,7 +855,7 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
         const QString &errString,
         const QString &inputLabel,
         const QString &outputLabel,
-        const AuditLog &auditLog,
+        const AuditLogEntry &auditLog,
         Task *parentTask,
         const Mailbox &informativeSender)
     : Task::Result(), d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
@@ -905,7 +905,7 @@ QString DecryptVerifyResult::errorString() const
     return d->m_errorString;
 }
 
-AuditLog DecryptVerifyResult::auditLog() const
+AuditLogEntry DecryptVerifyResult::auditLog() const
 {
     return d->m_auditLog;
 }
@@ -997,7 +997,7 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
         ss << dr << '\n' << vr;
         qCDebug(KLEOPATRA_LOG) << ss.str().c_str();
     }
-    const AuditLog auditLog = auditLogFromSender(q->sender());
+    const AuditLogEntry auditLog = auditLogFromSender(q->sender());
     if (dr.error().code() || vr.error().code()) {
         m_output->cancel();
     } else {
@@ -1135,11 +1135,11 @@ void DecryptVerifyTask::doStart()
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
     } catch (const GpgME::Exception &e) {
-        d->emitResult(fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
+        d->emitResult(fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
-        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromDecryptVerifyResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
 
 }
@@ -1181,7 +1181,7 @@ void DecryptTask::Private::slotResult(const DecryptionResult &result, const QByt
         ss << result;
         qCDebug(KLEOPATRA_LOG) << ss.str().c_str();
     }
-    const AuditLog auditLog = auditLogFromSender(q->sender());
+    const AuditLogEntry auditLog = auditLogFromSender(q->sender());
     if (result.error().code()) {
         m_output->cancel();
     } else {
@@ -1293,11 +1293,11 @@ void DecryptTask::doStart()
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
     } catch (const GpgME::Exception &e) {
-        d->emitResult(fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
+        d->emitResult(fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
-        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromDecryptResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
 }
 
@@ -1339,7 +1339,7 @@ void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, con
         ss << result;
         qCDebug(KLEOPATRA_LOG) << ss.str().c_str();
     }
-    const AuditLog auditLog = auditLogFromSender(q->sender());
+    const AuditLogEntry auditLog = auditLogFromSender(q->sender());
     if (result.error().code()) {
         m_output->cancel();
     } else {
@@ -1451,11 +1451,11 @@ void VerifyOpaqueTask::doStart()
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output ? d->m_output->ioDevice().get() : nullptr);
         job->start(d->m_input->ioDevice(), d->m_output ? d->m_output->ioDevice() : std::shared_ptr<QIODevice>());
     } catch (const GpgME::Exception &e) {
-        d->emitResult(fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
+        d->emitResult(fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
-        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
 }
 
@@ -1496,7 +1496,7 @@ void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
         ss << result;
         qCDebug(KLEOPATRA_LOG) << ss.str().c_str();
     }
-    const AuditLog auditLog = auditLogFromSender(q->sender());
+    const AuditLogEntry auditLog = auditLogFromSender(q->sender());
     try {
         kleo_assert(!result.isNull());
         emitResult(q->fromVerifyDetachedResult(result, auditLog));
@@ -1606,11 +1606,11 @@ void VerifyDetachedTask::doStart()
         ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
         job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
     } catch (const GpgME::Exception &e) {
-        d->emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLog()));
+        d->emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
-        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLog()));
+        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught exception: %1", QString::fromLocal8Bit(e.what())), AuditLogEntry()));
     } catch (...) {
-        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLog()));
+        d->emitResult(fromVerifyDetachedResult(Error::fromCode(GPG_ERR_INTERNAL), i18n("Caught unknown exception"), AuditLogEntry()));
     }
 }
 

@@ -14,8 +14,8 @@
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
-#include <utils/auditlog.h>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/Stl_Util>
 #include <QGpgME/Protocol>
 #include <QGpgME/EncryptJob>
@@ -38,9 +38,9 @@ namespace
 class EncryptEMailResult : public Task::Result
 {
     const EncryptionResult m_result;
-    const AuditLog m_auditLog;
+    const AuditLogEntry m_auditLog;
 public:
-    EncryptEMailResult(const EncryptionResult &r, const AuditLog &auditLog)
+    EncryptEMailResult(const EncryptionResult &r, const AuditLogEntry &auditLog)
         : Task::Result(), m_result(r), m_auditLog(auditLog) {}
 
     QString overview() const override;
@@ -48,7 +48,7 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
-    AuditLog auditLog() const override;
+    AuditLogEntry auditLog() const override;
 };
 
 QString makeResultString(const EncryptionResult &res)
@@ -192,7 +192,7 @@ void EncryptEMailTask::Private::slotResult(const EncryptionResult &result)
     } else {
         output->finalize();
     }
-    q->emitResult(std::shared_ptr<Result>(new EncryptEMailResult(result, AuditLog::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new EncryptEMailResult(result, AuditLogEntry::fromJob(job))));
 }
 
 QString EncryptEMailResult::overview() const
@@ -215,7 +215,7 @@ QString EncryptEMailResult::errorString() const
     return hasError() ? makeResultString(m_result) : QString();
 }
 
-AuditLog EncryptEMailResult::auditLog() const
+AuditLogEntry EncryptEMailResult::auditLog() const
 {
     return m_auditLog;
 }

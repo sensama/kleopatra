@@ -36,7 +36,7 @@ namespace Kleo
 {
 class Input;
 class Output;
-class AuditLog;
+class AuditLogEntry;
 }
 
 namespace Kleo
@@ -64,14 +64,14 @@ Q_SIGNALS:
     void decryptVerifyResult(const std::shared_ptr<const Kleo::Crypto::DecryptVerifyResult> &);
 
 protected:
-    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLog &auditLog);
-    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLog &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::DecryptionResult &dr, const GpgME::VerificationResult &vr, const QByteArray &plaintext, const QString &fileName, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromDecryptVerifyResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::VerificationResult &vr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLogEntry &auditLog);
+    std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
 
 private:
     class Private;
@@ -223,7 +223,7 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
-    AuditLog auditLog() const override;
+    AuditLogEntry auditLog() const override;
     QPointer<Task> parentTask() const override;
 
     GpgME::VerificationResult verificationResult() const;
@@ -247,7 +247,7 @@ private:
                         const QString &errString,
                         const QString &inputLabel,
                         const QString &outputLabel,
-                        const AuditLog &auditLog,
+                        const AuditLogEntry &auditLog,
                         Task *parentTask,
                         const KMime::Types::Mailbox &informativeSender);
 

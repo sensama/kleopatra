@@ -14,8 +14,8 @@
 #include <utils/input.h>
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
-#include <utils/auditlog.h>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/Stl_Util>
 
 #include <QGpgME/Protocol>
@@ -42,9 +42,9 @@ namespace
 class SignEMailResult : public Task::Result
 {
     const SigningResult m_result;
-    const AuditLog m_auditLog;
+    const AuditLogEntry m_auditLog;
 public:
-    explicit SignEMailResult(const SigningResult &r, const AuditLog &auditLog)
+    explicit SignEMailResult(const SigningResult &r, const AuditLogEntry &auditLog)
         : Task::Result(), m_result(r), m_auditLog(auditLog) {}
 
     QString overview() const override;
@@ -52,7 +52,7 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     VisualCode code() const override;
-    AuditLog auditLog() const override;
+    AuditLogEntry auditLog() const override;
 };
 
 QString makeResultString(const SigningResult &res)
@@ -239,7 +239,7 @@ void SignEMailTask::Private::slotResult(const SigningResult &result)
         output->finalize();
         micAlg = collect_micalgs(result, q->protocol());
     }
-    q->emitResult(std::shared_ptr<Result>(new SignEMailResult(result, AuditLog::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new SignEMailResult(result, AuditLogEntry::fromJob(job))));
 }
 
 QString SignEMailTask::micAlg() const
@@ -275,7 +275,7 @@ Task::Result::VisualCode SignEMailResult::code() const
     return m_result.error().code() ? NeutralError : NeutralSuccess;
 }
 
-AuditLog SignEMailResult::auditLog() const
+AuditLogEntry SignEMailResult::auditLog() const
 {
     return m_auditLog;
 }

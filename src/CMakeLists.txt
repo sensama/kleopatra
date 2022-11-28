@@ -418,8 +418,6 @@ set(_kleopatra_SRCS
   utils/applicationstate.h
   utils/archivedefinition.cpp
   utils/archivedefinition.h
-  utils/auditlog.cpp
-  utils/auditlog.h
   utils/clipboardmenu.cpp
   utils/clipboardmenu.h
   utils/debug-helpers.cpp

@@ -14,8 +14,8 @@
 
 #include <Libkleo/KleoException>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/GnuPG>
-#include <utils/auditlog.h>
 
 #include <gpgme++/exception.h>
 
@@ -58,9 +58,9 @@ public:
     {
         return NeutralError;
     }
-    AuditLog auditLog() const override
+    AuditLogEntry auditLog() const override
     {
-        return AuditLog();
+        return AuditLogEntry();
     }
 private:
     const GpgME::Error m_error;

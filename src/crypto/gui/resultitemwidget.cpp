@@ -22,7 +22,7 @@
 #include "view/urllabel.h"
 
 #include <Libkleo/AuditLogEntry>
-#include <Libkleo/MessageBox>
+#include <Libkleo/AuditLogViewer>
 #include <Libkleo/Classify>
 #include <Libkleo/SystemInfo>
 
@@ -354,7 +354,7 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 
 void ResultItemWidget::showAuditLog()
 {
-    MessageBox::auditLog(parentWidget(), d->m_result->auditLog().text());
+    AuditLogViewer::showAuditLog(parentWidget(), d->m_result->auditLog());
 }
 
 #include "moc_resultitemwidget.cpp"

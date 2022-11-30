@@ -27,6 +27,7 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/KeyHelpers>
+#include <Libkleo/MessageBox>
 #include <Libkleo/Predicates>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
@@ -461,6 +462,35 @@ auto getSingleOpenPGPImport(const std::vector<ImportResultData> &res)
     }
     return nullImport;
 }
+
+auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
+{
+    static const QString gpg = QStringLiteral("gpg");
+    static const QString gpgsm = QStringLiteral("gpgsm");
+
+    if (res.size() == 1) {
+        return res.front().auditLog;
+    }
+    QStringList auditLogs;
+    auto extractAndAnnotateAuditLog = [](const ImportResultData &r) {
+        QString s;
+        if (!r.id.isEmpty()) {
+            const auto program = r.protocol == GpgME::OpenPGP ? gpg : gpgsm;
+            const auto headerLine = i18nc("file name (imported with gpg/gpgsm)", "%1 (imported with %2)").arg(r.id, program);
+            s += QStringLiteral("<div><b>%1</b></div>").arg(headerLine);
+        }
+        if (r.auditLog.error().code() == GPG_ERR_NO_DATA) {
+            s += QStringLiteral("<em>") + i18nc("@info", "Audit log is empty.") + QStringLiteral("</em>");
+        } else if (r.result.error().isCanceled()) {
+            s += QStringLiteral("<em>") + i18nc("@info", "Import was canceled.") + QStringLiteral("</em>");
+        } else {
+            s += r.auditLog.text();
+        }
+        return s;
+    };
+    std::transform(res.cbegin(), res.cend(), std::back_inserter(auditLogs), extractAndAnnotateAuditLog);
+    return AuditLogEntry{auditLogs.join(QLatin1String{"<hr>"}), Error{}};
+}
 }
 
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res,
@@ -473,8 +503,7 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
         }
     }
     setImportResultProxyModel(res);
-    information(make_message_report(res, groups),
-                i18n("Certificate Import Result"));
+    MessageBox::information(parentWidgetOrView(), make_message_report(res, groups), consolidatedAuditLogEntries(res), i18n("Certificate Import Result"));
 }
 
 static QString make_error_message(const Error &err, const QString &id)
@@ -492,18 +521,9 @@ static QString make_error_message(const Error &err, const QString &id)
                   id, QString::fromLocal8Bit(err.asString()));
 }
 
-void ImportCertificatesCommand::Private::showError(QWidget *parent, const Error &err, const QString &id)
+void ImportCertificatesCommand::Private::showError(const ImportResultData &result)
 {
-    if (parent) {
-        KMessageBox::error(parent, make_error_message(err, id), i18n("Certificate Import Failed"));
-    } else {
-        showError(err, id);
-    }
-}
-
-void ImportCertificatesCommand::Private::showError(const Error &err, const QString &id)
-{
-    error(make_error_message(err, id), i18n("Certificate Import Failed"));
+    MessageBox::error(parentWidgetOrView(), make_error_message(result.result.error(), result.id), result.auditLog);
 }
 
 void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
@@ -536,7 +556,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
     jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
     increaseProgressValue();
 
-    importResult({job.id, job.protocol, job.type, result});
+    importResult({job.id, job.protocol, job.type, result, AuditLogEntry::fromJob(finishedJob)});
 }
 
 void ImportCertificatesCommand::Private::importResult(const ImportResultData &result)
@@ -722,7 +742,7 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
         setImportResultProxyModel(results);
         for (const auto &r : results) {
             if (importFailed(r)) {
-                showError(r.result.error(), r.id);
+                showError(r);
             }
         }
         finished();
@@ -842,7 +862,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, protocol, ImportType::Local, ImportResult{}});
+        importResult({id, protocol, ImportType::Local, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
@@ -862,7 +882,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 #endif
     const GpgME::Error err = job->start(data);
     if (err.code()) {
-        importResult({id, protocol, ImportType::Local, ImportResult{err}});
+        importResult({id, protocol, ImportType::Local, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
@@ -893,7 +913,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, protocol, ImportType::External, ImportResult{}});
+        importResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
@@ -907,7 +927,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
     const GpgME::Error err = job->start(keys);
     if (err.code()) {
-        importResult({id, protocol, ImportType::External, ImportResult{err}});
+        importResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
@@ -936,7 +956,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
     auto job = get_receive_keys_job(protocol);
     if (!job.get()) {
         qCWarning(KLEOPATRA_LOG) << "Failed to get ReceiveKeysJob for protocol" << Formatting::displayName(protocol);
-        importResult({id, protocol, ImportType::External, ImportResult{}});
+        importResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
@@ -953,7 +973,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
 
     const GpgME::Error err = job->start(keyIds);
     if (err.code()) {
-        importResult({id, protocol, ImportType::External, ImportResult{err}});
+        importResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});

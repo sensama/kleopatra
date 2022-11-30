@@ -14,6 +14,7 @@
 #include "command_p.h"
 #include "importcertificatescommand.h"
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/KeyGroup>
 
 #include <gpgme++/global.h>
@@ -65,6 +66,7 @@ struct ImportResultData
     GpgME::Protocol protocol;
     ImportType type;
     GpgME::ImportResult result;
+    Kleo::AuditLogEntry auditLog;
 };
 
 struct ImportedGroup
@@ -110,8 +112,7 @@ public:
 
     void importGroupsFromFile(const QString &filename);
 
-    void showError(QWidget *parent, const GpgME::Error &error, const QString &id = QString());
-    void showError(const GpgME::Error &error, const QString &id = QString());
+    void showError(const ImportResultData &result);
 
     void setImportResultProxyModel(const std::vector<ImportResultData> &results);
 

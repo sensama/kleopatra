@@ -15,7 +15,9 @@
 #include "view/keytreeview.h"
 #include <settings.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
@@ -114,7 +116,7 @@ public:
         }
 
         availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
-        availableKeysModel->useKeyCache(true, KeyList::AllKeys);
+        availableKeysModel->setKeys(KeyCache::instance()->keys());
         ui.availableKeysList = new KeyTreeView(q);
         ui.availableKeysList->view()->setAccessibleName(i18n("available keys"));
         ui.availableKeysList->view()->setRootIsDecorated(false);
@@ -220,6 +222,10 @@ public:
         connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &EditGroupDialog::accept);
         connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &EditGroupDialog::reject);
 
+        connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [this] {
+            updateFromKeyCache();
+        });
+
         // calculate default size with enough space for the key list
         const auto fm = q->fontMetrics();
         const QSize sizeHint = q->sizeHint();
@@ -279,6 +285,7 @@ private:
 
     void addKeysToGroup();
     void removeKeysFromGroup();
+    void updateFromKeyCache();
 };
 
 void EditGroupDialog::Private::addKeysToGroup()
@@ -287,16 +294,48 @@ void EditGroupDialog::Private::addKeysToGroup()
 
     const std::vector<Key> selectedKeys = ui.availableKeysList->selectedKeys();
     groupKeysModel->addKeys(selectedKeys);
+    for (const Key &key : selectedKeys) {
+        availableKeysModel->removeKey(key);
+    }
 
     ui.groupKeysList->selectKeys(selectedGroupKeys);
 }
 
 void EditGroupDialog::Private::removeKeysFromGroup()
 {
+    const auto selectedOtherKeys = ui.availableKeysList->selectedKeys();
+
     const std::vector<Key> selectedKeys = ui.groupKeysList->selectedKeys();
     for (const Key &key : selectedKeys) {
         groupKeysModel->removeKey(key);
     }
+    availableKeysModel->addKeys(selectedKeys);
+
+    ui.availableKeysList->selectKeys(selectedOtherKeys);
+}
+
+void EditGroupDialog::Private::updateFromKeyCache()
+{
+    const auto selectedGroupKeys = ui.groupKeysList->selectedKeys();
+    const auto selectedOtherKeys = ui.availableKeysList->selectedKeys();
+
+    const auto oldGroupKeys = q->groupKeys();
+    const auto wasGroupKey = [oldGroupKeys](const Key &key) {
+        return Kleo::any_of(oldGroupKeys, [key](const auto &k) {
+            return _detail::ByFingerprint<std::equal_to>()(k, key);
+        });
+    };
+    const auto allKeys = KeyCache::instance()->keys();
+    std::vector<Key> groupKeys;
+    groupKeys.reserve(allKeys.size());
+    std::vector<Key> otherKeys;
+    otherKeys.reserve(otherKeys.size());
+    std::partition_copy(allKeys.begin(), allKeys.end(), std::back_inserter(groupKeys), std::back_inserter(otherKeys), wasGroupKey);
+    groupKeysModel->setKeys(groupKeys);
+    availableKeysModel->setKeys(otherKeys);
+
+    ui.groupKeysList->selectKeys(selectedGroupKeys);
+    ui.availableKeysList->selectKeys(selectedOtherKeys);
 }
 
 EditGroupDialog::EditGroupDialog(QWidget *parent)
@@ -332,9 +371,19 @@ QString EditGroupDialog::groupName() const
     return d->ui.groupNameEdit->text().trimmed();
 }
 
-void EditGroupDialog::setGroupKeys(const std::vector<Key> &keys)
+void EditGroupDialog::setGroupKeys(const std::vector<Key> &groupKeys)
 {
-    d->groupKeysModel->setKeys(keys);
+    d->groupKeysModel->setKeys(groupKeys);
+
+    // update the keys in the "available keys" list
+    const auto isGroupKey = [groupKeys](const Key &key) {
+        return Kleo::any_of(groupKeys, [key](const auto &k) {
+            return _detail::ByFingerprint<std::equal_to>()(k, key);
+        });
+    };
+    auto otherKeys = KeyCache::instance()->keys();
+    Kleo::erase_if(otherKeys, isGroupKey);
+    d->availableKeysModel->setKeys(otherKeys);
 }
 
 std::vector<Key> EditGroupDialog::groupKeys() const

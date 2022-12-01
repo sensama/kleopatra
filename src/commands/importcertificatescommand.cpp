@@ -423,7 +423,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
                                                    + QStringLiteral("<li><ul>%1").arg(suggestions.join(QStringLiteral("</ul><ul>")))
                                                    + QStringLiteral("</ul></li>") + i18n("Do you wish to start this process now?"),
                                                i18nc("@title", "You have imported a new certificate (public key)"),
-                                               KGuiItem(i18n("Import")),
+                                               KGuiItem(i18nc("@action:button", "Certify")),
                                                KStandardGuiItem::cancel(),
                                                QStringLiteral("CertifyQuestion"));
     if (sel == KMessageBox::ButtonCode::PrimaryAction) {

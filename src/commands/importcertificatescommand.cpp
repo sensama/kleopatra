@@ -18,6 +18,7 @@
 
 #include "certifycertificatecommand.h"
 #include <utils/keys.h>
+#include <utils/memory-helpers.h>
 #include <settings.h>
 #include "kleopatra_debug.h"
 
@@ -391,7 +392,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     // Exactly one public key imported. Let's see if it is openpgp. We are async here so
     // we can just fetch it.
 
-    auto ctx = GpgME::Context::createForProtocol(GpgME::OpenPGP);
+    auto ctx = wrap_unique(GpgME::Context::createForProtocol(GpgME::OpenPGP));
     if (!ctx) {
         // WTF
         qCWarning(KLEOPATRA_LOG) << "Failed to create OpenPGP proto";
@@ -400,7 +401,6 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     ctx->addKeyListMode(KeyListMode::WithSecret);
     GpgME::Error err;
     const auto key = ctx->key(fpr, err, false);
-    delete ctx;
 
     if (key.isNull() || err) {
         // No such key most likely not OpenPGP

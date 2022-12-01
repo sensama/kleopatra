@@ -392,8 +392,9 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         qCWarning(KLEOPATRA_LOG) << "Failed to create OpenPGP proto";
         return false;
     }
+    ctx->addKeyListMode(KeyListMode::WithSecret);
     GpgME::Error err;
-    auto key = ctx->key(fpr, err, false);
+    const auto key = ctx->key(fpr, err, false);
     delete ctx;
 
     if (key.isNull() || err) {
@@ -402,6 +403,10 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
     }
     if (!Kleo::canBeCertified(key)) {
         // key is expired or revoked
+        return false;
+    }
+    if (key.hasSecret()) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "Secret key is available -> skipping certification";
         return false;
     }
 

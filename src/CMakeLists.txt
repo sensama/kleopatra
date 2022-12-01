@@ -448,6 +448,7 @@ set(_kleopatra_SRCS
   utils/kuniqueservice.h
   utils/log.cpp
   utils/log.h
+  utils/memory-helpers.h
   utils/multivalidator.cpp
   utils/multivalidator.h
   utils/output.cpp

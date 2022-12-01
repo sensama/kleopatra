@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:46+0000\n"
+"POT-Creation-Date: 2022-12-01 00:47+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -1635,10 +1635,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:498
-#: src/commands/importcertificatescommand.cpp:506
-#: src/commands/importcertificatescommand.cpp:844
-#: src/commands/importcertificatescommand.cpp:895
+#: src/commands/importcertificatescommand.cpp:864
+#: src/commands/importcertificatescommand.cpp:915
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਕਰਨਾ ਫੇਲ੍ਹ"
@@ -1663,7 +1661,7 @@ msgid "Notepad"
 msgstr ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:123
-#: src/commands/importcertificatescommand.cpp:184
+#: src/commands/importcertificatescommand.cpp:185
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
 msgctxt "@title:window"
@@ -1685,7 +1683,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:147
-#: src/commands/importcertificatescommand.cpp:286 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:287 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
@@ -1727,214 +1725,233 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
 msgid "Importing certificates... (this can take a while)"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
-#: src/commands/importcertificatescommand.cpp:241
+#: src/commands/importcertificatescommand.cpp:242
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "%1 ਤੋਂ ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:245
+#: src/commands/importcertificatescommand.cpp:246
 #, fuzzy, kde-format
 #| msgid "Imported Certificates from %1"
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "%1 ਤੋਂ ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:255
+#: src/commands/importcertificatescommand.cpp:256
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "ਇੰਪੋਰਟ ਕੀਤੇ ਸਰਟੀਫਿਕੇਟ"
 
-#: src/commands/importcertificatescommand.cpp:271
+#: src/commands/importcertificatescommand.cpp:272
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:273
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:287
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:288
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Total number processed:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:290
 #, kde-format
 msgid "Imported:"
 msgstr "ਇੰਪੋਰਟ ਕੀਤੇ:"
 
-#: src/commands/importcertificatescommand.cpp:292
+#: src/commands/importcertificatescommand.cpp:293
 #, kde-format
 msgid "New signatures:"
 msgstr "ਨਵੇਂ ਦਸਤਖਤ:"
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:296
 #, kde-format
 msgid "New user IDs:"
 msgstr "ਨਵੇਂ ਯੂਜ਼ਰ ID:"
 
-#: src/commands/importcertificatescommand.cpp:298
+#: src/commands/importcertificatescommand.cpp:299
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:302
 #, kde-format
 msgid "New subkeys:"
 msgstr "ਨਵੀਂ ਸਬ-ਕੀ:"
 
-#: src/commands/importcertificatescommand.cpp:304
+#: src/commands/importcertificatescommand.cpp:305
 #, kde-format
 msgid "Newly revoked:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:308
 #, kde-format
 msgid "Not imported:"
 msgstr "ਇੰਪੋਰਟ ਨਾ ਕੀਤੇ:"
 
-#: src/commands/importcertificatescommand.cpp:310
+#: src/commands/importcertificatescommand.cpp:311
 #, kde-format
 msgid "Unchanged:"
 msgstr "ਬਿਨ-ਬਦਲਾਅ:"
 
-#: src/commands/importcertificatescommand.cpp:313
+#: src/commands/importcertificatescommand.cpp:314
 #, fuzzy, kde-format
 #| msgid "Selected secret certificate:"
 msgid "Secret keys processed:"
 msgstr "ਚੁਣਿਆ ਗੁਪਤ ਸਰਟੀਫਿਕੇਟ:"
 
-#: src/commands/importcertificatescommand.cpp:316
+#: src/commands/importcertificatescommand.cpp:317
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Secret keys imported:"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਫਾਇਲ ਚੁਣੋ"
 
-#: src/commands/importcertificatescommand.cpp:320
+#: src/commands/importcertificatescommand.cpp:321
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Secret keys <em>not</em> imported:"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਫਾਇਲ ਚੁਣੋ"
 
-#: src/commands/importcertificatescommand.cpp:323
+#: src/commands/importcertificatescommand.cpp:324
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "ਗੁਪਤ ਕੁੰਜੀਆਂ ਨਹੀਂ ਬਦਲੀਆਂ:"
 
-#: src/commands/importcertificatescommand.cpp:326
+#: src/commands/importcertificatescommand.cpp:327
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:340
+#: src/commands/importcertificatescommand.cpp:341
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgid "Certificate Groups"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਡੰਪ"
 
-#: src/commands/importcertificatescommand.cpp:343
+#: src/commands/importcertificatescommand.cpp:344
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "ਨਵੇਂ ਦਸਤਖਤ:"
 
-#: src/commands/importcertificatescommand.cpp:345
+#: src/commands/importcertificatescommand.cpp:346
 #, kde-format
 msgid "Updated groups:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:362
+#: src/commands/importcertificatescommand.cpp:363
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:365
+#: src/commands/importcertificatescommand.cpp:366
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:367
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:415
 #, kde-format
 msgid "A phone call to the person."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:416
 #, kde-format
 msgid "Using a business card."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:417
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:419
+#: src/commands/importcertificatescommand.cpp:420
 #, kde-format
 msgid ""
 "In order to mark the certificate as valid (green) it needs to be certified."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:420
+#: src/commands/importcertificatescommand.cpp:421
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:421
+#: src/commands/importcertificatescommand.cpp:422
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:423
+#: src/commands/importcertificatescommand.cpp:424
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:425
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:425
-#: src/commands/importcertificatescommand.cpp:594
+#: src/commands/importcertificatescommand.cpp:426
+#: src/commands/importcertificatescommand.cpp:614
 #: src/dialogs/lookupcertificatesdialog.cpp:199
 #, kde-format
 msgid "Import"
 msgstr "ਇੰਪੋਰਟ"
 
-#: src/commands/importcertificatescommand.cpp:477
+#: src/commands/importcertificatescommand.cpp:479
+#, kde-format
+msgctxt "file name (imported with gpg/gpgsm)"
+msgid "%1 (imported with %2)"
+msgstr ""
+
+#: src/commands/importcertificatescommand.cpp:483
+#, kde-format
+msgctxt "@info"
+msgid "Audit log is empty."
+msgstr ""
+
+#: src/commands/importcertificatescommand.cpp:485
+#, fuzzy, kde-format
+#| msgid "Operation canceled."
+msgctxt "@info"
+msgid "Import was canceled."
+msgstr "ਓਪਰੇਸ਼ਨ ਰੱਦ ਕੀਤਾ।"
+
+#: src/commands/importcertificatescommand.cpp:506
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਇੰਪੋਰਟ ਨਤੀਜਾ"
 
-#: src/commands/importcertificatescommand.cpp:485
+#: src/commands/importcertificatescommand.cpp:514
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:489
+#: src/commands/importcertificatescommand.cpp:518
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -1943,19 +1960,19 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:575
+#: src/commands/importcertificatescommand.cpp:595
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:576
+#: src/commands/importcertificatescommand.cpp:596
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:580
+#: src/commands/importcertificatescommand.cpp:600
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1964,14 +1981,14 @@ msgid ""
 "%2</list></para>Is this your own key? (Set trust level to ultimate)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:593
+#: src/commands/importcertificatescommand.cpp:613
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@title:window"
 msgid "Secret key imported"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਫਾਇਲ ਚੁਣੋ"
 
-#: src/commands/importcertificatescommand.cpp:807
+#: src/commands/importcertificatescommand.cpp:827
 #, fuzzy, kde-format
 #| msgid "Loading certificate cache..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -1979,8 +1996,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 msgstr[1] "ਸਰਟੀਫਿਕੇਟ ਕੈਸ਼ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
-#: src/commands/importcertificatescommand.cpp:842
-#: src/commands/importcertificatescommand.cpp:893
+#: src/commands/importcertificatescommand.cpp:862
+#: src/commands/importcertificatescommand.cpp:913
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

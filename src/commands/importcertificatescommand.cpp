@@ -377,6 +377,11 @@ static QString make_message_report(const std::vector<ImportResultData> &res,
 // Returns false on error, true if please certify was shown.
 bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &imp)
 {
+    if (!Kleo::userHasCertificationKey()) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "No certification key available";
+        return false;
+    }
+
     const char *fpr = imp.fingerprint();
     if (!fpr) {
         // WTF

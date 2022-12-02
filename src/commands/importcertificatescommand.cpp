@@ -578,7 +578,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResultData &re
     tryToFinish();
 }
 
-static void handleOwnerTrust(const std::vector<ImportResultData> &results)
+static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
 {
     //iterate over all imported certificates
     for (const auto &r: results) {
@@ -608,22 +608,21 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results)
             });
 
             const QString str = xi18nc("@info",
-                "<title>You have imported a Secret Key.</title>"
-                "<para>The key has the fingerprint:<nl/>"
-                "<numid>%1</numid>"
-                "</para>"
-                "<para>And claims the user IDs:"
+                "<para>You have imported a certificate with fingerprint</para>"
+                "<para><numid>%1</numid></para>"
+                "<para>"
+                "and user IDs"
                 "<list>%2</list>"
                 "</para>"
-                "Is this your own key? (Set trust level to ultimate)",
-                QString::fromUtf8(fingerPr),
+                "<para>Is this your own certificate?</para>",
+                Formatting::prettyID(fpr),
                 uids);
 
-            int k = KMessageBox::questionTwoActions(nullptr,
+            int k = KMessageBox::questionTwoActions(dialog,
                                                     str,
-                                                    i18nc("@title:window", "Secret key imported"),
-                                                    KGuiItem(i18n("Import")),
-                                                    KStandardGuiItem::cancel());
+                                                    i18nc("@title:window", "Mark Own Certificate"),
+                                                    KGuiItem{i18nc("@action:button", "Yes, It's Mine")},
+                                                    KGuiItem{i18nc("@action:button", "No, It's Not Mine")});
 
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
                 //To use the ChangeOwnerTrustJob over
@@ -689,7 +688,7 @@ void ImportCertificatesCommand::Private::processResults()
     // ensure that the progress dialog is closed before we show any other dialogs
     setProgressToMaximum();
 
-    handleOwnerTrust(results);
+    handleOwnerTrust(results, parentWidgetOrView());
 
     showDetails(results, importedGroups);
 

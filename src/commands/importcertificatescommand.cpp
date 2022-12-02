@@ -580,24 +580,39 @@ void ImportCertificatesCommand::Private::importResult(const ImportResultData &re
 
 static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
 {
-    //iterate over all imported certificates
     for (const auto &r: results) {
-        //when a new certificate got a secret key
-        if (r.result.numSecretKeysImported() >= 1) {
-            const char *fingerPr = r.result.imports()[0].fingerprint();
-            GpgME::Error err;
-            QScopedPointer<Context>
-                ctx(Context::createForProtocol(GpgME::Protocol::OpenPGP));
+        if (r.protocol != GpgME::Protocol::OpenPGP) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping non-OpenPGP import";
+            continue;
+        }
+        const auto imports = r.result.imports();
+        for (const auto &import : imports) {
+            if (!(import.status() & (Import::Status::NewKey | Import::Status::ContainedSecretKey))) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping already known imported public key";
+                continue;
+            }
+            const char *fpr = import.fingerprint();
+            if (!fpr) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping import without fingerprint";
+                continue;
+            }
 
+            GpgME::Error err;
+            auto ctx = wrap_unique(Context::createForProtocol(GpgME::Protocol::OpenPGP));
             if (!ctx){
                 qCWarning(KLEOPATRA_LOG) << "Failed to get context";
                 continue;
             }
 
-            const Key toTrustOwner = ctx->key(fingerPr, err , false);
+            ctx->addKeyListMode(KeyListMode::WithSecret);
+            const Key toTrustOwner = ctx->key(fpr, err, false);
 
-            if (toTrustOwner.isNull()) {
-                return;
+            if (toTrustOwner.isNull() || !toTrustOwner.hasSecret()) {
+                continue;
+            }
+            if (toTrustOwner.ownerTrust() == Key::OwnerTrust::Ultimate) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping key with ultimate ownertrust";
+                continue;
             }
 
             const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
@@ -618,11 +633,11 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
                 Formatting::prettyID(fpr),
                 uids);
 
-            int k = KMessageBox::questionTwoActions(dialog,
-                                                    str,
-                                                    i18nc("@title:window", "Mark Own Certificate"),
-                                                    KGuiItem{i18nc("@action:button", "Yes, It's Mine")},
-                                                    KGuiItem{i18nc("@action:button", "No, It's Not Mine")});
+            int k = KMessageBox::questionTwoActionsCancel(dialog,
+                                                          str,
+                                                          i18nc("@title:window", "Mark Own Certificate"),
+                                                          KGuiItem{i18nc("@action:button", "Yes, It's Mine")},
+                                                          KGuiItem{i18nc("@action:button", "No, It's Not Mine")});
 
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
                 //To use the ChangeOwnerTrustJob over
@@ -636,6 +651,9 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
 
                 ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
                 j->start(toTrustOwner, Key::Ultimate);
+            } else if (k == KMessageBox::ButtonCode::Cancel) {
+                // do not bother the user with further "Is this yours?" questions
+                return;
             }
         }
     }

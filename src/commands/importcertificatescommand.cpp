@@ -553,6 +553,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
         finishedJob = qobject_cast<QGpgME::Job *>(q->sender());
     }
     Q_ASSERT(finishedJob);
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << finishedJob;
 
     auto it = std::find_if(std::cbegin(jobs), std::cend(jobs),
                            [finishedJob](const auto &job) { return job.job == finishedJob; });
@@ -571,7 +572,7 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
 
 void ImportCertificatesCommand::Private::importResult(const ImportResultData &result)
 {
-    qCDebug(KLEOPATRA_LOG) << __func__ << result.id;
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << result.result.error().asString();
     results.push_back(result);
 
     tryToFinish();
@@ -703,20 +704,28 @@ void ImportCertificatesCommand::Private::processResults()
 
 void ImportCertificatesCommand::Private::tryToFinish()
 {
-
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
     if (waitForMoreJobs || !jobs.empty()) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "There are unfinished jobs -> keep going";
         return;
     }
 
-    auto keyCache = KeyCache::mutableInstance();
-    keyListConnection = connect(keyCache.get(), &KeyCache::keyListingDone,
-                                q, [this]() { keyCacheUpdated(); });
-    keyCache->startKeyListing();
+    if (keyListConnection) {
+        qCWarning(KLEOPATRA_LOG) << q << __func__ << "There is already a valid keyListConnection!";
+    } else {
+        auto keyCache = KeyCache::mutableInstance();
+        keyListConnection = connect(keyCache.get(), &KeyCache::keyListingDone,
+                                    q, [this]() { keyCacheUpdated(); });
+        keyCache->startKeyListing();
+    }
 }
 
 void ImportCertificatesCommand::Private::keyCacheUpdated()
 {
-    disconnect(keyListConnection);
+    qCDebug(KLEOPATRA_LOG) << q << __func__;
+    if (!disconnect(keyListConnection)) {
+        qCWarning(KLEOPATRA_LOG) << q << __func__ << "Failed to disconnect keyListConnection";
+    }
 
     keyCacheAutoRefreshSuspension.reset();
 
@@ -1003,7 +1012,9 @@ void ImportCertificatesCommand::Private::setUpProgressDialog()
         return;
     }
     progressDialog = new QProgressDialog{parentWidgetOrView()};
-    progressDialog->setModal(true);
+    // use a non-modal progress dialog to avoid reentrancy problems (and crashes) if multiple jobs finish in the same event loop cycle
+    // (cf. the warning for QProgressDialog::setValue() in the API documentation)
+    progressDialog->setModal(false);
     progressDialog->setWindowTitle(progressWindowTitle);
     progressDialog->setLabelText(progressLabelText);
     progressDialog->setMinimumDuration(1000);

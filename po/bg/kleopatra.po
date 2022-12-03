@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-02 00:47+0000\n"
+"POT-Creation-Date: 2022-12-03 00:47+0000\n"
 "PO-Revision-Date: 2022-12-01 23:45+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -349,6 +349,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Вашият собствен сертификат ли е '%1'?"
 
 #: src/commands/changeownertrustcommand.cpp:104
+#: src/commands/importcertificatescommand.cpp:638
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1666,8 +1667,8 @@ msgstr "Съдържанието на клипборда не изглежда �
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:864
-#: src/commands/importcertificatescommand.cpp:915
+#: src/commands/importcertificatescommand.cpp:900
+#: src/commands/importcertificatescommand.cpp:951
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Грешка при импортиране на удостоверение"
@@ -1693,7 +1694,7 @@ msgid "Notepad"
 msgstr "Бележник"
 
 #: src/commands/importcertificatefromfilecommand.cpp:123
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1712,7 +1713,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Не можа да се отвори файл %1 за четене: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:147
-#: src/commands/importcertificatescommand.cpp:287 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Сертификати"
@@ -1751,162 +1752,162 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Сертификат за карта"
 
-#: src/commands/importcertificatescommand.cpp:186
+#: src/commands/importcertificatescommand.cpp:187
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Импортиране на сертификати... (това може да отнеме известно време)"
 
-#: src/commands/importcertificatescommand.cpp:242
+#: src/commands/importcertificatescommand.cpp:243
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Импортирани сертификати от %1"
 
-#: src/commands/importcertificatescommand.cpp:246
+#: src/commands/importcertificatescommand.cpp:247
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Импортирани сертификати от тези източници: <br/> %1"
 
-#: src/commands/importcertificatescommand.cpp:256
+#: src/commands/importcertificatescommand.cpp:257
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Импортирани сертификати"
 
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:273
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:274
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:275
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:288
-#: src/commands/importcertificatescommand.cpp:342
+#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:343
 #, kde-format
 msgid "Total number processed:"
 msgstr "Общо обработени:"
 
-#: src/commands/importcertificatescommand.cpp:290
+#: src/commands/importcertificatescommand.cpp:291
 #, kde-format
 msgid "Imported:"
 msgstr "Импортирани:"
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:294
 #, kde-format
 msgid "New signatures:"
 msgstr "Нови подписи:"
 
-#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:297
 #, kde-format
 msgid "New user IDs:"
 msgstr "Нови номера (UID):"
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:300
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Сертификати без потребителски идентификатори:"
 
-#: src/commands/importcertificatescommand.cpp:302
+#: src/commands/importcertificatescommand.cpp:303
 #, kde-format
 msgid "New subkeys:"
 msgstr "Нови подключове:"
 
-#: src/commands/importcertificatescommand.cpp:305
+#: src/commands/importcertificatescommand.cpp:306
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Ново анулирани:"
 
-#: src/commands/importcertificatescommand.cpp:308
+#: src/commands/importcertificatescommand.cpp:309
 #, kde-format
 msgid "Not imported:"
 msgstr "Неимпортирани:"
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:312
 #, kde-format
 msgid "Unchanged:"
 msgstr "Непроменени:"
 
-#: src/commands/importcertificatescommand.cpp:314
+#: src/commands/importcertificatescommand.cpp:315
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Обработени секретни ключове:"
 
-#: src/commands/importcertificatescommand.cpp:317
+#: src/commands/importcertificatescommand.cpp:318
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Импортирани тайни ключове:"
 
-#: src/commands/importcertificatescommand.cpp:321
+#: src/commands/importcertificatescommand.cpp:322
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Тайните ключове <em> не </em> импортирани:"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Тайните ключове непроменени:"
 
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:328
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Отпаднали остарели ключове PGP-2:"
 
-#: src/commands/importcertificatescommand.cpp:341
+#: src/commands/importcertificatescommand.cpp:342
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Сертификатни групи"
 
-#: src/commands/importcertificatescommand.cpp:344
+#: src/commands/importcertificatescommand.cpp:345
 #, kde-format
 msgid "New groups:"
 msgstr "Нови групи:"
 
-#: src/commands/importcertificatescommand.cpp:346
+#: src/commands/importcertificatescommand.cpp:347
 #, kde-format
 msgid "Updated groups:"
 msgstr "Актуализирани групи:"
 
-#: src/commands/importcertificatescommand.cpp:363
+#: src/commands/importcertificatescommand.cpp:364
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Няма импортирани данни (не трябва да се случва, моля, докладвайте за грешка)."
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:367
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Подробни резултати от импортиране %1:"
 
-#: src/commands/importcertificatescommand.cpp:367
+#: src/commands/importcertificatescommand.cpp:368
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Подробни резултати от импртиране:"
 
-#: src/commands/importcertificatescommand.cpp:415
+#: src/commands/importcertificatescommand.cpp:425
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Телефонно обаждане до човека."
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:426
 #, kde-format
 msgid "Using a business card."
 msgstr "Използване на визитка."
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:427
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Потвърждаване на доверен уебсайт."
 
-#: src/commands/importcertificatescommand.cpp:420
+#: src/commands/importcertificatescommand.cpp:430
 #, kde-format
 msgid ""
 "In order to mark the certificate as valid (green) it needs to be certified."
@@ -1914,58 +1915,58 @@ msgstr ""
 "За да маркирате сертификата като валиден (зелен), той трябва да бъде "
 "сертифициран."
 
-#: src/commands/importcertificatescommand.cpp:421
+#: src/commands/importcertificatescommand.cpp:431
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Сертифицирането означава, че проверявате пръстовия отпечатък."
 
-#: src/commands/importcertificatescommand.cpp:422
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Някои предложения за това са:"
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:434
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Искате ли да стартирате този процес сега?"
 
-#: src/commands/importcertificatescommand.cpp:425
+#: src/commands/importcertificatescommand.cpp:435
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Импортирахте нов сертификат (публичен ключ)"
 
-#: src/commands/importcertificatescommand.cpp:426
-#: src/commands/importcertificatescommand.cpp:614
-#: src/dialogs/lookupcertificatesdialog.cpp:199
-#, kde-format
-msgid "Import"
-msgstr "Импортиране"
+#: src/commands/importcertificatescommand.cpp:436
+#, fuzzy, kde-format
+#| msgid "Certify"
+msgctxt "@action:button"
+msgid "Certify"
+msgstr "Удостоверяване"
 
-#: src/commands/importcertificatescommand.cpp:479
+#: src/commands/importcertificatescommand.cpp:489
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (импортиран с %2)"
 
-#: src/commands/importcertificatescommand.cpp:483
+#: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Дневникът на проверката е празен."
 
-#: src/commands/importcertificatescommand.cpp:485
+#: src/commands/importcertificatescommand.cpp:495
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Импортирането е отменено."
 
-#: src/commands/importcertificatescommand.cpp:506
+#: src/commands/importcertificatescommand.cpp:516
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Резултат от импортирането на удостоверения"
 
-#: src/commands/importcertificatescommand.cpp:514
+#: src/commands/importcertificatescommand.cpp:524
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -1974,7 +1975,7 @@ msgstr ""
 "<qt> <p> Възникна грешка при опит за импортиране на сертификата: </p> <p><b> "
 "%1 </b> </p> </qt>"
 
-#: src/commands/importcertificatescommand.cpp:518
+#: src/commands/importcertificatescommand.cpp:528
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -1984,37 +1985,52 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:595
+#: src/commands/importcertificatescommand.cpp:621
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/importcertificatescommand.cpp:596
+#: src/commands/importcertificatescommand.cpp:622
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:600
-#, kde-kuit-format
+#: src/commands/importcertificatescommand.cpp:626
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<title>You have imported a Secret Key.</title><para>The key has the "
+#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
+#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
 msgctxt "@info"
 msgid ""
-"<title>You have imported a Secret Key.</title><para>The key has the "
-"fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:<list>"
-"%2</list></para>Is this your own key? (Set trust level to ultimate)"
+"<para>You have imported a certificate with fingerprint</para><para><numid>"
+"%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
+"own certificate?</para>"
 msgstr ""
 "<title>Импортирахте секретен ключ.</title><para>Ключът има пръстов отпечатък:"
 "<nl/><numid>%1</numid></para><para>И заявява идентификаторите на "
 "потребителите:<list><item>%2</item></list></para>Това ли е вашият собствен "
 "ключ? (Задайте ниво на доверие на крайно)"
 
-#: src/commands/importcertificatescommand.cpp:613
-#, kde-format
-msgctxt "@title:window"
-msgid "Secret key imported"
-msgstr "Импортиран таен ключ"
+#: src/commands/importcertificatescommand.cpp:639
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Yes, it's mine"
+msgctxt "@action:button"
+msgid "Yes, It's Mine"
+msgstr "Да, мое е"
 
-#: src/commands/importcertificatescommand.cpp:827
+#: src/commands/importcertificatescommand.cpp:640
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "No, it's not mine"
+msgctxt "@action:button"
+msgid "No, It's Not Mine"
+msgstr "Не, не е мое"
+
+#: src/commands/importcertificatescommand.cpp:863
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2023,8 +2039,8 @@ msgstr[0] ""
 msgstr[1] ""
 "Извличане на %1 подписващи ключа... (това може да отнеме известно време)"
 
-#: src/commands/importcertificatescommand.cpp:862
-#: src/commands/importcertificatescommand.cpp:913
+#: src/commands/importcertificatescommand.cpp:898
+#: src/commands/importcertificatescommand.cpp:949
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -6957,6 +6973,11 @@ msgstr "Запис като..."
 #, kde-format
 msgid "Lookup on Server"
 msgstr "Търсене на сървър"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:199
+#, kde-format
+msgid "Import"
+msgstr "Импортиране"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:163
 #, kde-format
@@ -11988,6 +12009,10 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@title:window"
+#~ msgid "Secret key imported"
+#~ msgstr "Импортиран таен ключ"
 
 #~ msgctxt "Placeholder is the number of a slot on a smart card"
 #~ msgid "Signature (%1)"

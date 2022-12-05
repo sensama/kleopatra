@@ -22,8 +22,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 22.08.3\n"
-"(http: //www.transifex.com/projects/p/kdepim-k-tr/language/tr/)\n"
-"X-POOTLE-MTIME: 1413131782.000000\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -45,7 +43,7 @@ msgstr "Andre Heinecke"
 
 #: src/aboutdata.cpp:31
 msgid "Current Maintainer"
-msgstr "Şimdiki Bakımcı"
+msgstr "Şu Anki Bakımcı"
 
 #: src/aboutdata.cpp:33
 msgid "Marc Mutz"
@@ -304,9 +302,7 @@ msgid "Certification Not Possible"
 msgstr "Sertifikasyon İşlemi Olanaksız"
 
 #: src/commands/certifycertificatecommand.cpp:177
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgid "Create"
 msgstr "Oluştur"
 
@@ -349,31 +345,29 @@ msgid "End of validity period changed successfully."
 msgstr "Geçerlilik tarihi sonu başarıyla değiştirildi."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(bilinmeyen sertifika)"
+msgstr "'%1', sizin kendi sertifikanız mı?"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:638
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Kart Sertifikası"
+msgstr "Kendi Sertifikanı İmle"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Evet, Benim"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "Hayır, Benim Değil"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -384,6 +378,10 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>'%1' için sertifikaları sizin için %2 olarak imleme yetkisi vermek "
+"istiyor musunuz? </para><para><emphasis>Bu demek olur ki, bu sertifikanın "
+"sahibi parmak izlerini denetleyebilir ve başkalarının kimliğini "
+"onaylayabilir.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -394,131 +392,104 @@ msgid ""
 "properly check fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>'%1' için sertifikaları sizin yerinize geçerli olarak imleme yetkisi "
+"vermek istiyor musunuz?</para><para><emphasis>Bu demek olur ki, bu "
+"sertifikanın sahibi parmak izlerini denetleyebilir ve başkalarının kimliğini "
+"onaylayabilir.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Sertifikasyon Hatası"
+msgstr "Sertifikasyon Yetkisi Ver"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Yetki Ver"
 
 #: src/commands/changeownertrustcommand.cpp:157
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification has been revoked successfully.</para><para>Do you "
-#| "want to publish the revocation?</para>"
-#| msgid_plural ""
-#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
-#| "you want to publish the revocations?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Sertifikasyon, başarıyla yürürlükten kaldırıldı.</"
-"para><para>Yürürlükten kaldırmayı yayımlamak istiyor musunuz?</para>"
+"<para>'%1' sertifikasının başka sertifikaları sizin için %2 olarak imleme "
+"yetkisi var.</para><para>Bu yetkiyi yürürlükten kaldırmak istiyor musunuz?</"
+"para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification has been revoked successfully.</para><para>Do you "
-#| "want to publish the revocation?</para>"
-#| msgid_plural ""
-#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
-#| "you want to publish the revocations?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Sertifikasyon, başarıyla yürürlükten kaldırıldı.</"
-"para><para>Yürürlükten kaldırmayı yayımlamak istiyor musunuz?</para>"
+"<para>'%1' sertifikasının başka sertifikaları sizin için geçerli olarak "
+"imleme yetkisi var.</para><para>Bu yetkiyi yürürlükten kaldırmak istiyor "
+"musunuz?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Sertifikasyonu Yürürlükten Kaldır"
+msgstr "Sertifikasyon Yetkisini Yürürlükten Kaldır"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Anahtarı Yürürlükten Kaldır"
+msgstr "Yetkiyi Yürürlükten Kaldır"
 
 #: src/commands/changeownertrustcommand.cpp:233
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Sertifikayı güncellerken bir hata oluştu:</para><para><message>%1</"
-"message></para>"
+"<para>'%1' sertifikasının sizin sertifikanız olarak imlerken bir hata oluştu."
+"</para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Sertifikayı güncellerken bir hata oluştu:</para><para><message>%1</"
-"message></para>"
+"<para>'%1' kişisine sertifikasyon yetkisi verirken bir hata oluştu.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Sertifikayı güncellerken bir hata oluştu:</para><para><message>%1</"
-"message></para>"
+"<para>'%1' kişisinin sertifikasyon yetkisini yürürlükten kaldırırken bir "
+"hata oluştu.</para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:263
 #, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr ""
+msgstr "'%1' sertifikası, sizin sertifikanız olarak imlendi."
 
 #: src/commands/changeownertrustcommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Sertifikasyon Güvenilirliği Değiştirme Hatası"
+msgstr "'%1' kişisine sertifikasyon yetkisi verildi."
 
 #: src/commands/changeownertrustcommand.cpp:269
-#, fuzzy, kde-format
-#| msgctxt "%1 is the name of the profile"
-#| msgid "The configuration profile \"%1\" was applied."
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "\"%1\" yapılandırma profili uygulandı."
+msgstr "'%1' kişisinin sertifikasyon yetkisi yürürlükten kaldırıldı."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -537,12 +508,12 @@ msgstr "Anahtar Parolası Değiştirme Hatası"
 #: src/commands/changepassphrasecommand.cpp:194
 #, kde-format
 msgid "Passphrase changed successfully."
-msgstr "Anahtar Parolası başarılı bir şekilde değiştirildi."
+msgstr "Anahtar Parolası başarılı bir biçimde değiştirildi."
 
 #: src/commands/changepassphrasecommand.cpp:195
 #, kde-format
 msgid "Passphrase Change Succeeded"
-msgstr "Anahtar Parolası Değiştirme İşlemi Tamamlandı"
+msgstr "Anahtar Parolası Değiştirme Başarılı"
 
 #: src/commands/changepincommand.cpp:121
 #: src/commands/createcsrforcardkeycommand.cpp:138
@@ -550,7 +521,7 @@ msgstr "Anahtar Parolası Değiştirme İşlemi Tamamlandı"
 #: src/view/netkeywidget.cpp:259 src/view/netkeywidget.cpp:309
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
-msgstr "Şu seri numaralı kart bulunamadı: %1"
+msgstr "Şu seri numaralı akıllı kart bulunamadı: %1"
 
 #: src/commands/changepincommand.cpp:144
 #, kde-format
@@ -735,7 +706,7 @@ msgstr "Sağlama Toplamı Dosya Hatalarını Doğrula"
 #: src/commands/checksumverifyfilescommand.cpp:164
 #, kde-format
 msgid "Select One or More Checksum Files"
-msgstr "Bir veya Daha Fazla Sağlama Toplamı Dosyası Seçin"
+msgstr "Bir veya Daha Fazla Sağlama Toplamı Dosyası Seç"
 
 #: src/commands/clearcrlcachecommand.cpp:43
 #, kde-format
@@ -984,7 +955,7 @@ msgid ""
 "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr ""
-"<qt> <p>Sertifikayı silmeye çalışırken bir hata oluştu:</p><p><b>%1</b></p></"
+"<qt><p>Sertifikayı silmeye çalışırken bir hata oluştu:</p><p><b>%1</b></p></"
 "qt>"
 
 #: src/commands/dumpcertificatecommand.cpp:72
@@ -1963,8 +1934,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Yeni bir sertifika (genel anahtar) içe aktardınız"
 
 #: src/commands/importcertificatescommand.cpp:436
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Onayla"
@@ -1973,25 +1943,24 @@ msgstr "Onayla"
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr ""
+msgstr "%1 (%2 ile içe aktarıldı)"
 
 #: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr ""
+msgstr "Denetleme günlüğü boş."
 
 #: src/commands/importcertificatescommand.cpp:495
-#, fuzzy, kde-format
-#| msgid "Operation canceled."
+#, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr "İşlem iptal edildi."
+msgstr "İçe aktarma iptal edildi."
 
 #: src/commands/importcertificatescommand.cpp:516
 #, kde-format
 msgid "Certificate Import Result"
-msgstr "Sertifika Alma Sonucu"
+msgstr "Sertifika İçe Aktarma Sonucu"
 
 #: src/commands/importcertificatescommand.cpp:524
 #, kde-format
@@ -2025,33 +1994,28 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:626
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<title>You have imported a Secret Key.</title><para>The key has the "
-#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
-#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Bir Gizli Anahtar içe aktardınız.</title><para>Anahtar parmak izi:<nl/"
-"><numid>%1</numid></para><para>Hak iddia ettiği kullanıcı kimlikleri:<list>"
-"%2</list></para>Bu, sizin anahtarınız mı? (En üst güvenme düzeyine ayarla)"
+"<para>Şu parmak izini:</para><para><numid>%1</numid></para><para>ve şu "
+"kullanıcı kimliklerini:<list>%2</list>içeren bir sertifika içe aktardınız</"
+"para><para>Bu sizin kendi sertifikanız mı?</para>"
 
 #: src/commands/importcertificatescommand.cpp:639
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr ""
+msgstr "Evet, Benim"
 
 #: src/commands/importcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr ""
+msgstr "Hayır, Benim Değil"
 
 #: src/commands/importcertificatescommand.cpp:863
 #, kde-format
@@ -2066,7 +2030,7 @@ msgstr[1] "%1 imzalayıcı anahtar getiriliyor... (bu biraz vakit alabilir)"
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
 "installation."
-msgstr "Bu sertifikanın (%1) türü, bu Kleopatra kurulumunda desteklenmiyor."
+msgstr "Bu sertifikanın türü (%1), bu Kleopatra kurulumunda desteklenmiyor."
 
 #: src/commands/importcrlcommand.cpp:54
 #, kde-format
@@ -2218,30 +2182,27 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Şu seri numaralı kart bulunamadı: %1"
 
 #: src/commands/keytocardcommand.cpp:186
-#, fuzzy, kde-kuit-format
-#| msgid "Sorry! Transferring keys to this card is not supported."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
-msgstr "Üzgünüm! Bu karta anahtar aktarımı desteklenmiyor."
+msgstr ""
+"Üzgünüm! Anahtarları <emphasis>%1</emphasis> kartına yazma desteklenmiyor."
 
 #: src/commands/keytocardcommand.cpp:213
-#, fuzzy, kde-format
-#| msgid "Signature:"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
-msgstr "İmza:"
+msgstr "İmza"
 
 #: src/commands/keytocardcommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "Şifreleme"
 
 #: src/commands/keytocardcommand.cpp:221
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "Yetkilendirme"
@@ -2249,7 +2210,7 @@ msgstr "Yetkilendirme"
 #: src/commands/keytocardcommand.cpp:226
 #, kde-format
 msgid "Select Card Slot"
-msgstr "Kart Yuvası Seçin"
+msgstr "Kart Yuvası Seç"
 
 #: src/commands/keytocardcommand.cpp:227
 #, kde-format
@@ -2283,21 +2244,16 @@ msgstr ""
 "olanaklı değil."
 
 #: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<p>This card already contains a key in this slot. Continuing will "
-#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
-#| "will be irrecoverably lost.</p>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
-"<p>Bu kart, halihazırda bu yuvada bir anahtar içeriyor. Sürdürürseniz bu "
-"anahtarın <b>üzerine yazılacaktır.</b></p><p>Yedeğiniz yoksa var olan "
-"anahtar geri alınamaz bir şekilde kaybolacaktır.</p>"
+"<p><em>%1</em> kartı, bu yuvada halihazırda bir anahtar içeriyor. Sürdürmek, "
+"o anahtarın <b>üzerine yazacak</b>.</p><p>Eğer bir yedek yoksa var olan "
+"anahtar geri alınamayacak bir biçimde kaybolacak.</p>"
 
 #: src/commands/keytocardcommand.cpp:274
 #, kde-format
@@ -2309,15 +2265,13 @@ msgstr "Var olan anahtarın parmak izi:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
-msgstr "Var olan anahtarın üzerine yaz"
+msgstr "Var Olan Anahtarın Üzerine Yaz"
 
 #: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
-msgstr "Var olan anahtarın üzerine yaz"
+msgstr "Var Olan Anahtarın Üzerine Yaz"
 
 #: src/commands/keytocardcommand.cpp:342
 #, kde-format
@@ -2351,116 +2305,89 @@ msgid "The existing key has the key grip:"
 msgstr "Var olan anahtarın tutacağı:"
 
 #: src/commands/keytocardcommand.cpp:462
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Copying the key pair to the card failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
-msgstr "Anahtar çiftini karta kopyalama başarısız: %1"
+msgstr "Anahtarı karta kopyalama başarısız."
 
 #: src/commands/keytocardcommand.cpp:474
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification has been revoked successfully.</para><para>Do you "
-#| "want to publish the revocation?</para>"
-#| msgid_plural ""
-#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
-#| "you want to publish the revocations?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
-"<para>Sertifikasyon, başarıyla yürürlükten kaldırıldı.</"
-"para><para>Yürürlükten kaldırmayı yayımlamak istiyor musunuz?</para>"
+"<para>Anahtar karta kopyalandı.</para><para>Bu bilgisayarda depolanan "
+"anahtar kopyasını silmek istiyor musunuz?</para>"
 
 #: src/commands/keytocardcommand.cpp:477
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr "Yedek Anahtarı Yedekle"
+msgstr "Yedek Oluştur ve Anahtarı Sil"
 
 #: src/commands/keytocardcommand.cpp:478
-#, fuzzy, kde-format
-#| msgid "Select File"
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "Dosya Seç"
+msgstr "Anahtarı Sil"
 
 #: src/commands/keytocardcommand.cpp:479
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "Anahtarı Yürürlükten Kaldır"
+msgstr "Anahtarı Tut"
 
 #: src/commands/keytocardcommand.cpp:525
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
-msgstr "Yedek Anahtarı Yedekle"
+msgstr "Gizli Anahtarı Yedekle"
 
 #: src/commands/keytocardcommand.cpp:528
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Secret Key Backup"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr "Gizli Anahtar Yedeği"
+msgstr "Gizli Anahtar Yedek Dosyaları"
 
 #: src/commands/keytocardcommand.cpp:579
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "<filename>%1</filename>, okuma için açılamadı."
+msgstr "Gizli anahtar dosyası <filename>%1</filename>, okuma için açılamıyor."
 
 #: src/commands/keytocardcommand.cpp:588
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr "<filename>%1</filename> dosyasına anahtar yazma başarısız."
+msgstr "Gizli anahtar dosyası <filename>%1</filename> boş."
 
 #: src/commands/keytocardcommand.cpp:598
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "<filename>%1</filename> dosyası, yazma için açılamıyor."
 
 #: src/commands/keytocardcommand.cpp:605
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
-msgstr "<filename>%1</filename> dosyasına anahtar yazma başarısız."
+msgstr ""
+"<filename>%1</filename> dosyasına gizli anahtarın yedeğini yazma başarısız."
 
 #: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
-msgstr ""
+msgstr "Gizli anahtarın yerel kopyasını silmek istediğinize emin misiniz?"
 
 #: src/commands/keytocardcommand.cpp:623
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "Yürürlükten Kaldırmayı Onayla"
+msgstr "Silmeyi Onayla"
 
 #: src/commands/keytocardcommand.cpp:642
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the key:</para><para><message>%1</message></para>"
-msgstr ""
-"<para>İsteği kaydetme başarısız.</para><para><message>%1</message></para>"
+msgstr "<para>Anahtar silinemedi:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:645
 #, kde-format
@@ -2469,16 +2396,14 @@ msgid "Successfully copied the key to the card."
 msgstr "Anahtar, karta başarıyla kopyalandı."
 
 #: src/commands/keytocardcommand.cpp:706
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>İsteği kaydetme başarısız.</para><para><message>%1</message></para>"
+"<para>Anahtarı karta kopyalama başarısız:</para><para><message>%1</message></"
+"para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
 #, kde-format
@@ -2718,12 +2643,10 @@ msgid "The existing key has the ID:"
 msgstr "Var olan anahtarın kimliği:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite Existing Key"
-msgstr "Var olan anahtarın üzerine yaz"
+msgstr "Var Olan Anahtarın Üzerine Yaz"
 
 #: src/commands/refreshcertificatecommand.cpp:123
 #, kde-format
@@ -2780,8 +2703,7 @@ msgstr[0] "Ek olarak, 1 yeni anahtar alındı."
 msgstr[1] "Ek olarak, %1 yeni anahtar alındı."
 
 #: src/commands/refreshcertificatecommand.cpp:244
-#, fuzzy, kde-format
-#| msgid "Key Updated"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key Updated"
 msgstr "Anahtar Güncellendi"
@@ -3163,56 +3085,49 @@ msgid ""
 "Please enter the new PIV Card Application Administration Key in hex-encoded "
 "form. The key needs to consist of 24 bytes, i.e. 48 hex-characters."
 msgstr ""
+"Lütfen yeni PIV Kard Uygulama Yönetim Anahtarını onaltılık biçimde girin. "
+"Anahtar 24 bayttan, yani 48 onaltılık karakterden oluşmalıdır."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:161
 #, kde-format
 msgid "Please enter the new PIV Card Application Administration Key again."
-msgstr ""
+msgstr "Lütfen yeni PIV Kart Uygulama Yönetim Anahtarını bir kez daha girin."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:178
 #, kde-format
 msgctxt "@info"
 msgid "The two keys you have entered do not match. Please retry."
-msgstr ""
+msgstr "Girdiğiniz iki anahtar eşleşmiyor. Lütfen yeniden deneyin."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:209
 #, kde-format
 msgctxt "@info"
 msgid "Setting the PIV Card Application Administration Key failed: %1"
-msgstr ""
+msgstr "PIV Kart Uygulama Yönetim Anahtarını ayarlama başarısız: %1"
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:211
 #, kde-format
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."
-msgstr ""
+msgstr "PIV Kart Uygulama Yönetim Anahtarı başarıyla ayarlandı."
 
 #: src/commands/setprimaryuseridcommand.cpp:89
-#, fuzzy, kde-format
-#| msgid ""
-#| "The CMS backend does not support certificate deletion.\n"
-#| "Check your installation."
+#, kde-format
 msgctxt "@info"
 msgid "The backend does not support this operation."
-msgstr ""
-"CMS arka ucu anahtar silmeyi desteklemiyor.\n"
-"Kurulumunuzu gözden geçirin."
+msgstr "Arka uç, bu işlemi desteklemiyor."
 
 #: src/commands/setprimaryuseridcommand.cpp:131
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to restore the secret key.</para> "
-#| "<para>The output from <command>%1</command> was:</para><para><message>%2</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to flag the user ID<nl/><emphasis>%1</"
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
-"<para>Gizli anahtar geri yüklenmeye çalışılırken bir hata oluştu.</para> "
-"<para><command>%1</command> komutunun çıktısı: <message>%2</message></para>"
+"<para>Kullanıcı kimliği<nl/><emphasis>%1</emphasis>,<nl/>birincil kullanıcı "
+"kimliği olarak ayarlamaya çalışırken bir hata oluştu.</para><para><message>"
+"%2</message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:140
 #, kde-kuit-format
@@ -3221,12 +3136,14 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
+"<para>Kullanıcı kimliği<nl/><emphasis>%1</emphasis>,<nl/>birincil kullanıcı "
+"kimliği olarak başarıyla bayraklandı.</para>"
 
 #: src/commands/signclipboardcommand.cpp:148
 #: src/commands/signclipboardcommand.cpp:162
 #, kde-format
 msgid "Sign Clipboard Error"
-msgstr "İmza Taşıma Panosu Hatası"
+msgstr "İmza Panosu Hatası"
 
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
@@ -3236,12 +3153,12 @@ msgstr "Dosyaları İmzalama/Şifreleme Hatası"
 #: src/commands/signencryptfilescommand.cpp:285
 #, kde-format
 msgid "Select One or More Files to Sign and/or Encrypt"
-msgstr "Bir veya daha fazla dosyayı İmzalamak ve/veya Şifrelemek için seçin"
+msgstr "İmzalamak ve/veya Şifrelemek için Bir veya Daha Çok Dosya Seç"
 
 #: src/commands/signencryptfoldercommand.cpp:37
 #, kde-format
 msgid "Select Folder to Sign and/or Encrypt"
-msgstr "İmzalamak ve/veya Şifrelemek için bir Düzün Seçin"
+msgstr "İmzalamak ve/veya Şifrelemek için Klasör Seç"
 
 #: src/conf/appearanceconfigwidget.cpp:129
 #, kde-format
@@ -3258,6 +3175,7 @@ msgstr "Bu parametre sistem yöneticisi tarafından kilitlendi."
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
+"Renk önizlemesi devre dışı bırakıldı; çünkü yüksek karşıtlık kipi etkin."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
 #: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:119
@@ -3281,7 +3199,7 @@ msgstr "&Simge Ayarla..."
 #: src/conf/appearanceconfigwidget.ui:44
 #, kde-format
 msgid "Set &Text Color..."
-msgstr "&Yazı Rengini Ayarla..."
+msgstr "&Metin Rengini Ayarla..."
 
 #. i18n: ectx: property (text), widget (QPushButton, backgroundButton)
 #: src/conf/appearanceconfigwidget.ui:54
@@ -3293,7 +3211,7 @@ msgstr "Arka &Plan Rengini Ayarla..."
 #: src/conf/appearanceconfigwidget.ui:64
 #, kde-format
 msgid "Set F&ont..."
-msgstr "Ya&zı Tipini Ayarla..."
+msgstr "Ya&zıtipini Ayarla..."
 
 #. i18n: ectx: property (text), widget (QCheckBox, italicCB)
 #: src/conf/appearanceconfigwidget.ui:74
@@ -3323,7 +3241,7 @@ msgstr "Öntanımlı Görünüş"
 #: src/conf/appearanceconfigwidget.ui:130
 #, kde-format
 msgid "Tooltips"
-msgstr "İpuçları"
+msgstr "Araç İpuçları"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/conf/appearanceconfigwidget.ui:136
@@ -3354,14 +3272,14 @@ msgstr "Teknik ayrıntıları göster"
 #: src/dialogs/certificatedetailswidget.cpp:516
 #, kde-format
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useTagsCheckBox)
 #. i18n: ectx: label, entry (UseTags), group (RemarkSettings)
 #: src/conf/appearanceconfigwidget.ui:184 src/kcfg/tagspreferences.kcfg:9
 #, kde-format
 msgid "Use tags"
-msgstr ""
+msgstr "Etiketler kullan"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, useTagsCheckBox)
 #. i18n: ectx: whatsthis, entry (UseTags), group (RemarkSettings)
@@ -3369,20 +3287,18 @@ msgstr ""
 #, kde-format
 msgid "Enable display and usage of tags attached to keys."
 msgstr ""
+"Anahtarlara ilişik etiketlerin görüntülenmesini ve kullanımını etkinleştir"
 
 #: src/conf/configuredialog.cpp:35
-#, fuzzy, kde-format
-#| msgid "Configure"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure"
 msgstr "Yapılandır"
 
 #: src/conf/configuredialog.cpp:39
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "No Directory Servers Configured"
+#, kde-format
 msgid "Directory Services"
-msgstr "Hiçbir Dizin Sunucusu Yapılandırılmamış"
+msgstr "Dizin Hizmetleri"
 
 #: src/conf/configuredialog.cpp:45
 #, kde-format
@@ -3390,26 +3306,24 @@ msgid "Appearance"
 msgstr "Görünüş"
 
 #: src/conf/configuredialog.cpp:51
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
+#, kde-format
 msgid "Crypto Operations"
-msgstr "İşlemi Durdur"
+msgstr "Şifre İşlemleri"
 
 #: src/conf/configuredialog.cpp:57
 #, kde-format
 msgid "S/MIME Validation"
-msgstr ""
+msgstr "S/MIME Doğrulaması"
 
 #: src/conf/configuredialog.cpp:63
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgid "Smart Cards"
-msgstr "Akıllı Kart"
+msgstr "Akıllı Kartlar"
 
 #: src/conf/configuredialog.cpp:69
 #, kde-format
 msgid "GnuPG System"
-msgstr ""
+msgstr "GnuPG Sistemi"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:107
 #: src/conf/cryptooperationsconfigwidget.cpp:205
@@ -3423,7 +3337,7 @@ msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
 "to its default."
 msgstr ""
-"Bunun anlamı, GnuPG Sisteminin her bir yapılandırma seçeneğinin, varsayılan "
+"Bunun anlamı, GnuPG Sisteminin her bir yapılandırma seçeneğinin, öntanımlı "
 "olarak sıfırlanacak olmasıdır."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:111
@@ -3449,10 +3363,9 @@ msgid "General Operations"
 msgstr "Genel İşlemler"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:193
-#, fuzzy, kde-format
-#| msgid "GnuPG Profile:"
+#, kde-format
 msgid "Activate GnuPG Profile:"
-msgstr "GnuPG Profili:"
+msgstr "GnuPG Profilini Etkinleştir:"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:194
 #, kde-format
@@ -3522,7 +3435,7 @@ msgid ""
 msgstr ""
 "Şifreli veya imzalı dosyaları base64 metni olarak kodlamak için bu seçeneği "
 "seçin. Böylece bir düzenleyici ile açılabilir veya bir posta gövdesi halinde "
-"gönderilebilirler. Bu, dosya boyutunu üçte bir oranında arttıracaktır."
+"gönderilebilirler. Bu, dosya boyutunu üçte bir oranında artıracaktır."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:249
@@ -3537,34 +3450,37 @@ msgstr ""
 #: src/conf/cryptooperationsconfigwidget.cpp:250
 #, kde-format
 msgid "Automatically extract file archives after decryption"
-msgstr ""
+msgstr "Şifre çözümü sonrası dosya arşivlerini kendiliğinden çıkar"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:251
 #: src/kcfg/fileoperationspreferences.kcfg:35
-#, fuzzy, kde-format
-#| msgid "Create signed or encrypted files as text files."
+#, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
-msgstr "İmzalı veya şifreli dosyaları, metin dosyası olarak oluştur."
+msgstr ""
+"Geçici olarak şifresi çözülen dosyaları şifreli dosyanın klasöründe oluştur."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:252
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
+"Kullanıcının geçici klasörünü kullanmaktan kaçınmak için bu seçeneği "
+"ayarlayın."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:253
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
-msgstr ""
+msgstr "Yalnızca simetrik şifreleme kullanın."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:254
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
+"Genel anahtar şifrelemesini devre dışı bırakmak için bu seçeneği ayarlayın."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:266
 #, kde-format
@@ -3579,17 +3495,14 @@ msgid "Archive command to use when archiving files:"
 msgstr "Dosyalar arşivlenirken kullanılacak olan arşiv komutu:"
 
 #: src/conf/dirservconfigpage.cpp:125
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgid "OpenPGP keyserver:"
-msgstr "OpenPGP"
+msgstr "OpenPGP anahtar sunucusu:"
 
 #: src/conf/dirservconfigpage.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "No Directory Servers Configured"
+#, kde-format
 msgid "X.509 Directory Services"
-msgstr "Hiçbir Dizin Sunucusu Yapılandırılmamış"
+msgstr "X.509 Dizin Hizmetleri"
 
 #: src/conf/dirservconfigpage.cpp:151
 #, kde-format
@@ -3597,6 +3510,8 @@ msgid ""
 "Configuration of directory services is not possible because the used gpgme "
 "libraries are too old."
 msgstr ""
+"Dizin hizmetlerinin yapılandırılması olanaksız; çünkü kullanılan gpgme "
+"kitaplıkları pek eski."
 
 #: src/conf/dirservconfigpage.cpp:161
 #, kde-format
@@ -3612,7 +3527,7 @@ msgstr "&Sorgu ile döndürülecek en yüksek öge sayısı:"
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
-msgstr ""
+msgstr "Yeni anahtarlar içe aktarılırken eksik sertifikasyon anahtarlarını al"
 
 #: src/conf/dirservconfigpage.cpp:190
 #, kde-kuit-format
@@ -3621,55 +3536,52 @@ msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys that "
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
+"Etkinleştirilmişse Kleopatra otomatik olarak yeni içe aktarılmış OpenPGP "
+"anahtarlarının kullanıcı kimliklerini sertifikalamada kullanılan anahtarları "
+"alacaktır."
 
 #: src/conf/dirservconfigpage.cpp:444
-#, fuzzy, kde-format
-#| msgid "Backend error: gpgconf does not seem to know the entry for %1/%2/%3"
+#, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
-msgstr "Arka uç hatası: gpgconf %1/%2/%3 girdisini bilmiyor görünüyor"
+msgstr "Arka uç hatası: gpgconf %1/%2 girdisini bilmiyor görünüyor"
 
 #: src/conf/dirservconfigpage.cpp:450
-#, fuzzy, kde-format
-#| msgid "Backend error: gpgconf has wrong type for %1/%2/%3: %4 %5"
+#, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
-msgstr "Arka uç hatası: %1/%2/%3: %4 %5 için gpgconf türü yanlış"
+msgstr "Arka uç hatası: %1/%2: %3 %4 için gpgconf türü yanlış"
 
 #: src/conf/groupsconfigdialog.cpp:90
-#, fuzzy, kde-format
-#| msgid "Configure"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Groups"
-msgstr "Yapılandır"
+msgstr "Grupları Yapılandır"
 
 #: src/conf/groupsconfigdialog.cpp:93
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "Groups"
-msgstr "Ayrıntıları Göster"
+msgstr "Gruplar"
 
 #: src/conf/groupsconfigdialog.cpp:108
-#, fuzzy, kde-format
-#| msgid "&Help"
+#, kde-format
 msgid "Help"
-msgstr "&Yardım"
+msgstr "Yardım"
 
 #: src/conf/groupsconfigdialog.cpp:110
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
-msgstr ""
+msgstr "handout_group-feature_gnupg_en.pdf"
 
 #: src/conf/groupsconfigpage.cpp:80
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgid "Save changes"
-msgstr "Farklı Kaydet"
+msgstr "Değişiklikleri kaydet"
 
 #: src/conf/groupsconfigpage.cpp:82
 #, kde-format
 msgid "Discard changes"
-msgstr ""
+msgstr "Değişiklikleri at"
 
 #: src/conf/groupsconfigpage.cpp:86
 #, kde-kuit-format
@@ -3678,66 +3590,62 @@ msgid ""
 "<para>The certificates or the certificate groups have been updated in the "
 "background.</para><para>Do you want to save your changes?</para>"
 msgstr ""
+"<para>Sertifikalar veya sertifika grupları arka planda güncellendi.</"
+"para><para>Değişikliklerinizi kaydetmek istiyor musunuz?</para>"
 
 #: src/conf/groupsconfigpage.cpp:88
-#, fuzzy, kde-format
-#| msgid "Save As"
+#, kde-format
 msgctxt "@title::window"
 msgid "Save changes?"
-msgstr "Farklı Kaydet"
+msgstr "Değişiklikler kaydedilsin mi?"
 
 #: src/conf/groupsconfigwidget.cpp:145 src/dialogs/editgroupdialog.cpp:101
 #: src/dialogs/editgroupdialog.cpp:159
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgctxt "@label"
 msgid "Search:"
-msgstr "Ara"
+msgstr "Ara:"
 
 #: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
 #, fuzzy, kde-format
-#| msgid "New signatures:"
+#| msgid "Search groups"
 msgctxt "@label"
 msgid "Search groups"
-msgstr "Yeni imzalar:"
+msgstr "Grupları ara"
 
 #: src/conf/groupsconfigwidget.cpp:147 src/conf/groupsconfigwidget.cpp:153
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
-msgstr ""
+msgstr "Arama terimiyle eşleşen grupları listede ara."
 
 #: src/conf/groupsconfigwidget.cpp:154 src/dialogs/editgroupdialog.cpp:110
 #: src/dialogs/editgroupdialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Signed user IDs:"
+#, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
-msgstr "İmzalanmış Kullanıcı Kimlikleri:"
+msgstr "Arama terimini gir"
 
 #: src/conf/groupsconfigwidget.cpp:171
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "groups of keys"
 msgid "groups"
-msgstr "Ayrıntıları Göster"
+msgstr "gruplar"
 
 #: src/conf/groupsconfigwidget.cpp:180
-#, fuzzy, kde-format
-#| msgid "New..."
+#, kde-format
 msgctxt "@action::button"
 msgid "New"
-msgstr "Yeni..."
+msgstr "Yeni"
 
 #: src/conf/groupsconfigwidget.cpp:183
 #, kde-format
 msgctxt "@action::button"
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #: src/conf/groupsconfigwidget.cpp:187
-#, fuzzy, kde-format
-#| msgid "Delete"
+#, kde-format
 msgctxt "@action::button"
 msgid "Delete"
 msgstr "Sil"
@@ -3752,19 +3660,19 @@ msgstr "Dışa Aktar"
 #, kde-format
 msgctxt "default name for new group of keys"
 msgid "New Group"
-msgstr ""
+msgstr "Yeni Grup"
 
 #: src/conf/groupsconfigwidget.cpp:304
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "New Group"
-msgstr ""
+msgstr "Yeni Grup"
 
 #: src/conf/groupsconfigwidget.cpp:342
 #, kde-format
 msgctxt "@title:window a group of keys"
 msgid "Edit Group"
-msgstr ""
+msgstr "Grubu Düzenle"
 
 #: src/conf/kleopageconfigdialog.cpp:91
 #, kde-format
@@ -3781,15 +3689,14 @@ msgid "Apply Settings"
 msgstr "Ayarları Uygula"
 
 #: src/conf/smartcardconfigpage.cpp:67
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgid "Smart card reader to use:"
-msgstr "Akıllı Kart"
+msgstr "Kullanılacak akıllı kart okuyucu:"
 
 #: src/conf/smartcardconfigpage.cpp:94
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
-msgstr ""
+msgstr "Kleopatra ile yapılandırılamıyor"
 
 #: src/conf/smimevalidationconfigurationwidget.cpp:127
 #, kde-format
@@ -3801,12 +3708,12 @@ msgstr "Bu seçenek dirmngr >= 0.9.0 gerektirir"
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
-msgstr "vekil sunucu  yok"
+msgstr "vekil yok"
 
 #: src/conf/smimevalidationconfigurationwidget.cpp:286
 #, kde-format
 msgid "(Current system setting: %1)"
-msgstr "(Geçerli sistem ayarları: %1)"
+msgstr "(Geçerli sistem ayarı: %1)"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, intervalRefreshCB)
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
@@ -12286,158 +12193,3 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Genel anahtar sunucusundan içe aktarmak için \"Sunucuda Ara\" kullanın."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Gizli anahtar içe aktarıldı"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "İmza (%1)"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "Şifreleme (%1)"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "Yetkilendirme (%1)"
-
-#~ msgctxt "@info"
-#~ msgid "Moving the key to the card failed: %1"
-#~ msgstr "Anahtarı kart üzerine taşıma başarısız oldu: %1"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key pair to the card."
-#~ msgstr "Anahtar çifti, karta başarıyla kopyalandı."
-
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Anahtar silinemedi: %1"
-
-#, fuzzy
-#~| msgid ""
-#~| "The file <b>%1</b> already exists.\n"
-#~| "Overwrite?"
-#~ msgid "The file <b>%1</b> already exists.\n"
-#~ msgstr ""
-#~ "<b>%1</b> dosyası zaten var.\n"
-#~ "Üzerine yazılsın mı?"
-
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<p><b>%1</b> için sertifikasyon güvenilirliği değiştirilmeye çalışılırken "
-#~ "bir hata oluştu:</p><p>%2</p>"
-
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "Sertifikasyon güveni başarıyla değiştirildi."
-
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "Sertifikasyon Güveni Başarıyla Değiştirildi"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "%1 Sertifikasının Güven Düzeyini Değiştir"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr ""
-#~ "<b>%1</b> tarafından üretilen sertifikalara geçerliliklerini doğrulamak "
-#~ "için ne kadar güveniyorsunuz?"
-
-#~ msgid "I do not know"
-#~ msgstr "Bilmiyorum"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>(bilinemeyen güven)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Bunu sertifika sahibinin güvenilirliği hakkında bir "
-#~ "fikriniz yoksa seçin.<br>Bu güven düzeyindeki sertifikalar OpenPGP "
-#~ "sertifikaların geçerliliği denetlenirken yok sayılacaktır.</font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "Onlara Güvenmiyorum"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>(asla güvenme)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Bunu sertifika sahibine kesinlikle <em>güvenmiyorsanız</"
-#~ "em> seçin, örneğin bu kişinin denetlemeden veya sertifika sahibinin izni "
-#~ "olmadan imzalama yaptığını biliyorsanız bunu seçebilirsiniz.<br>Bu güven "
-#~ "düzeyindeki sertifikalar OpenPGP sertifikalarının geçerliliği "
-#~ "denetlenirken yok sayılacaktır.</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "Denetlemelerin doğruluğuna rahatlıkla inanıyorum"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>(marjinal güven)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Bunu sertifikalara körü körüne değil ama çokça "
-#~ "güveniyorsanız seçin.<br>Bu güven düzeyinde sertifikalar; ancak çoklu "
-#~ "olduklarında (çoğunlukla üç) geçerli olurlar. Bu genellikle iyi bir "
-#~ "tercihtir.</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "Denetlemelerin çok doğru olduğuna inanıyorum"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>(tam güven)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Bunu; ancak güven sertifikalarınız çok iyi "
-#~ "denetlenmişse işaretleyin.<br>Bu güven düzeyindeki sertifikalar tek bir "
-#~ "sertifikalama geçerli hale geldiklerinden bu güven düzeyi çok dikkatli "
-#~ "kullanılmalıdır.</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "Bu benim sertifikam"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>(en yüksek güven)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Bunu sadece ve sadece kendi sertifikanızsa seçin. Gizli "
-#~ "anahtar kullanılabilir ise bu öntanımlıdır; ancak bu sertifikayı dışa "
-#~ "aktardıysanız kendinin güvenilirlik düzeyini düzenlemeye gereksiniminiz "
-#~ "olabilir.<br>Bu güven düzeyinde sertifikalar tek bir sertifikalamayla "
-#~ "geçerli olacaklardır.</font>"
-
-#, fuzzy
-#~| msgid "Signing and encryption succeeded."
-#~ msgid "Signing and encrypting files is not possible."
-#~ msgstr "İmzalama ve şifreleme işlemleri başarılı oldu."

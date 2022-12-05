@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2022-11-28 16:21+0000\n"
+"PO-Revision-Date: 2022-12-04 02:37+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -1991,8 +1991,7 @@ msgid "You have imported a new certificate (public key)"
 msgstr "Importou um novo certificado (chave pública)"
 
 #: src/commands/importcertificatescommand.cpp:436
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certificar"
@@ -2001,20 +2000,19 @@ msgstr "Certificar"
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr ""
+msgstr "%1 (importado com o %2)"
 
 #: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr ""
+msgstr "O registo da auditoria está vazio."
 
 #: src/commands/importcertificatescommand.cpp:495
-#, fuzzy, kde-format
-#| msgid "Operation canceled."
+#, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr "A operação foi cancelada."
+msgstr "A importação foi cancelada."
 
 #: src/commands/importcertificatescommand.cpp:516
 #, kde-format
@@ -2053,38 +2051,28 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:626
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<title>You have imported a Secret Key.</title><para>The key has the "
-#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
-#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Importou uma Chave Privada.</title><para>A chave tem a impressão "
-"digital:<nl/><numid>%1</numid></para><para>E denuncia os ID's de "
-"Utilizadores:<list><item>%2</item></list></para>Esta é a sua própria chave? "
-"(Muda o nível de confiança para o máximo)"
+"<para>Importou um certificado com a impressão digital</para><para><numid>%1</"
+"numid></para><para>E denuncia os ID's de Utilizadores:<list><item>%2</item></"
+"list></para><para>Este é o seu próprio certificado?</para>"
 
 #: src/commands/importcertificatescommand.cpp:639
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Yes, it's mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr "Sim, é meu"
+msgstr "Sim, é Meu"
 
 #: src/commands/importcertificatescommand.cpp:640
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "No, it's not mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr "Não é meu"
+msgstr "Não, Não é Meu"
 
 #: src/commands/importcertificatescommand.cpp:863
 #, kde-format
@@ -12097,7 +12085,3 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Chave privada importada"

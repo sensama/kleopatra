@@ -11,17 +11,17 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-03 00:47+0000\n"
-"PO-Revision-Date: 2022-12-02 06:42+0100\n"
+"PO-Revision-Date: 2022-12-04 07:53+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -2002,38 +2002,28 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:626
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<title>You have imported a Secret Key.</title><para>The key has the "
-#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
-#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Uvozili ste tajni ključ.</title><para>Ključ ima prstni odtis:<nl/"
-"><numid>%1</numid></para><para> in trdi, da pripada uporabnikom z "
-"določilniki:<list><item>%2</item></list></para>Ali je to vaš lastni ključ? "
-"(nastavite stopnjo zaupanja na ultimativno)"
+"<para>Uvozili ste potrdilo s prstnim odtisom</para><para><numid>%1</numid></"
+"para><para>in uporabnikovim določilnikom<list>%2</list></para><para>Ali je "
+"to vaše lastno potrdilo?</para>"
 
 #: src/commands/importcertificatescommand.cpp:639
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Yes, it's mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr "Da, je moje"
+msgstr "Da, to je moje"
 
 #: src/commands/importcertificatescommand.cpp:640
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "No, it's not mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr "Ne, ni moje"
+msgstr "Ne, to ni moje"
 
 #: src/commands/importcertificatescommand.cpp:863
 #, kde-format

@@ -575,6 +575,10 @@ void ImportCertificatesCommand::Private::importResult(const ImportResultData &re
     qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << result.result.error().asString();
     results.push_back(result);
 
+    if (importFailed(result)) {
+        showError(result);
+    }
+
     tryToFinish();
 }
 
@@ -769,19 +773,6 @@ void ImportCertificatesCommand::Private::keyCacheUpdated()
         // nothing was considered for import and at least one import per id was
         // canceled => treat the command as canceled
         canceled();
-        return;
-    }
-
-    if (std::any_of(std::cbegin(results), std::cend(results), &importFailed)) {
-        // ensure that the progress dialog is closed before we show any other dialogs
-        setProgressToMaximum();
-        setImportResultProxyModel(results);
-        for (const auto &r : results) {
-            if (importFailed(r)) {
-                showError(r);
-            }
-        }
-        finished();
         return;
     }
 

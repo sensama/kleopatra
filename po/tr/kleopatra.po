@@ -3543,7 +3543,7 @@ msgstr ""
 #: src/conf/dirservconfigpage.cpp:444
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
-msgstr "Arka uç hatası: gpgconf %1/%2 girdisini bilmiyor görünüyor"
+msgstr "Arka uç hatası: gpgconf, %1/%2 girdisini bilmiyor görünüyor"
 
 #: src/conf/dirservconfigpage.cpp:450
 #, kde-format
@@ -3809,7 +3809,7 @@ msgstr "Sertifikaların servis adreslerini yok say"
 #, kde-format
 msgid ""
 "Choose here the certificate with which the OCSP server signs its replies."
-msgstr "Cevapları imzalayacak OCSP sunucusunun sertifikasını seçin."
+msgstr "Yanıtları imzalayacak OCSP sunucusunun sertifikasını seçin."
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:131
@@ -3889,13 +3889,13 @@ msgstr "Yayınlanan kayıp sertifikaları getir"
 #: src/conf/smimevalidationconfigurationwidget.ui:172
 #, kde-format
 msgid "&HTTP Requests"
-msgstr "&HTTP İsteklerii"
+msgstr "&HTTP İstekleri"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, disableHTTPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:178
 #, kde-format
 msgid "Entirely disables the use of HTTP for S/MIME."
-msgstr "S/MIME için HTTP kullanımını tamamen kapatır."
+msgstr "S/MIME için HTTP kullanımını tümüyle kapatır."
 
 #. i18n: ectx: property (text), widget (QCheckBox, disableHTTPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:181
@@ -3972,7 +3972,7 @@ msgstr "&LDAP İstemleri"
 #: src/conf/smimevalidationconfigurationwidget.ui:252
 #, kde-format
 msgid "Entirely disables the use of LDAP for S/MIME."
-msgstr "S/MIME için LDAP kullanımını tamamen kapatır."
+msgstr "S/MIME için LDAP kullanımını tümüyle kapatır."
 
 #. i18n: ectx: property (text), widget (QCheckBox, disableLDAPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:255
@@ -4048,30 +4048,25 @@ msgstr ""
 "başarısız oldu."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:213
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"<filename>%1</filename> dosyasını <filename>%2</filename> konumuna taşıma "
-"başarısız oldu."
+msgstr "Dosya, özgün dosya adı <filename>%1</filename> ile mi kaydedilsin?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-format
 msgid "Use Original File Name?"
-msgstr ""
+msgstr "Özgün Dosya Adını Kullan?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:215
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
-msgstr "<filename>%1</filename> dosyasını silme başarısız oldu."
+msgstr "Hayır, <filename>%1</filename> Olarak Kaydet"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:216
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
-msgstr "<filename>%1</filename> dosyasını silme başarısız oldu."
+msgstr "Evet, <filename>%1</filename> Olarak Kaydet"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:231 src/utils/output.cpp:527
 #, kde-format
@@ -4079,13 +4074,13 @@ msgid ""
 "The file <b>%1</b> already exists.\n"
 "Overwrite?"
 msgstr ""
-"<b>%1</b> dosyası zaten var.\n"
+"<b>%1</b> dosyası halihazırda var.\n"
 "Üzerine yazılsın mı?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:234 src/utils/output.cpp:530
 #, kde-format
 msgid "Overwrite Existing File?"
-msgstr "Var Olan Dosyanın Üzerine Yazılsın mı?"
+msgstr "Var Olan Dosyanın Üzerine Yaz?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:236 src/utils/output.cpp:532
 #, kde-format
@@ -4103,16 +4098,13 @@ msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
-"<filename>%1</filename> dosyası, sertifikalar içeriyor ve şifresi açılamaz "
+"<filename>%1</filename> dosyası sertifikalar içeriyor ve şifresi açılamaz "
 "veya onaylanmış durumda."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:379
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"<filename>%1</filename> dosyasını <filename>%2</filename> konumuna taşıma "
-"başarısız oldu."
+msgstr "<filename>%1</filename> imzasıyla doğrulanacak dosyayı seç"
 
 #: src/crypto/createchecksumscontroller.cpp:62
 #, kde-format
@@ -4144,8 +4136,8 @@ msgid ""
 "Create Checksums: input files must be either all checksum files or all files "
 "to be checksummed, not a mixture of both."
 msgstr ""
-"Dosya Özetleri Oluştur: girdi dosyaları tüm dosya özetleri ya da tüm "
-"dosyaların özetleri alınmalıdır, ikisini karışımı olmamalıdır."
+"Dosya Sağlama Toplamları Oluştur: Girdi dosyaları tüm dosya özetleri ya da "
+"tüm dosyaların özetleri alınmalıdır, ikisini karışımı olmamalıdır."
 
 #: src/crypto/createchecksumscontroller.cpp:293
 #: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
@@ -4156,13 +4148,13 @@ msgstr "İptal"
 #: src/crypto/createchecksumscontroller.cpp:293
 #, kde-format
 msgid "Initializing..."
-msgstr "Başlatılıyor..."
+msgstr "İlklendiriliyor..."
 
 #: src/crypto/createchecksumscontroller.cpp:297
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Checksum Progress"
-msgstr "Sağlama Süreci Oluştur"
+msgstr "Sağlama Toplamı Süreci Oluştur"
 
 #: src/crypto/createchecksumscontroller.cpp:498
 #: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
@@ -4175,7 +4167,7 @@ msgstr "%1 çalıştırılırken hata: %2"
 #: src/utils/output.cpp:687
 #, kde-format
 msgid "Failed to execute %1: %2"
-msgstr "%1 çalıştırma başarısız: %2"
+msgstr "%1 yürütülemedi: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:510
 #, kde-kuit-format
@@ -4218,11 +4210,10 @@ msgstr "Şifreleme işleminin durumu ve ilerlemesi burada gösterilmektedir."
 #: src/crypto/decryptverifyemailcontroller.cpp:139
 #, kde-format
 msgid "User canceled"
-msgstr "Kullanıcı tarafından iptal edildi"
+msgstr "Kullanıcı iptal etti"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:234
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify E-Mail"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify E-Mail"
 msgstr "E-postanın Şifrelemesini Aç/Doğrula"
@@ -4274,8 +4265,7 @@ msgstr "Kullanılabilir girdi yok"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:85
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Files"
+#, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Dosyaların Şifrelemesini Aç/Doğrula"
@@ -4318,7 +4308,7 @@ msgstr "CRL kayıp"
 #: src/crypto/decryptverifytask.cpp:192
 #, kde-format
 msgid "CRL too old"
-msgstr "CRL çok eski"
+msgstr "CRL pek eski"
 
 #: src/crypto/decryptverifytask.cpp:194
 #, kde-format
@@ -4340,7 +4330,7 @@ msgstr "Kötü imza"
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
-msgstr "İmza geçerli ancak sertifikanın geçerliliği düşük."
+msgstr "İmza geçerli; ancak sertifikanın geçerliliği düşük."
 
 #: src/crypto/decryptverifytask.cpp:211
 #, kde-format
@@ -4358,17 +4348,17 @@ msgstr "İmza geçerli ve sertifikanın geçerliliğine sınırsız güveniliyor
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
-msgstr "İmza geçerli ancak sertifikanın geçerliliğine <em>güvenilmiyor</em>."
+msgstr "İmza geçerli; ancak sertifikanın geçerliliğine <em>güvenilmiyor</em>."
 
 #: src/crypto/decryptverifytask.cpp:217
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
-msgstr "İmza geçerli ancak sertifikanın geçerliliği bilinmiyor."
+msgstr "İmza geçerli; ancak sertifikanın geçerliliği bilinmiyor."
 
 #: src/crypto/decryptverifytask.cpp:220
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
-msgstr "İmza geçerli ancak sertifikanın geçerliliği belirlenemedi."
+msgstr "İmza geçerli; ancak sertifikanın geçerliliği belirlenemedi."
 
 #: src/crypto/decryptverifytask.cpp:232 src/crypto/decryptverifytask.cpp:247
 #, kde-format
@@ -4379,7 +4369,7 @@ msgstr "Bilinmeyen sertifika"
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
-msgstr "İmza, %1 üzerinde oluşturuldu"
+msgstr "İmza, %1 tarihinde oluşturuldu"
 
 #: src/crypto/decryptverifytask.cpp:270
 #, kde-format
@@ -4392,26 +4382,20 @@ msgid "With certificate:"
 msgstr "Sertifika ile:"
 
 #: src/crypto/decryptverifytask.cpp:279
-#, fuzzy, kde-format
-#| msgid "The signature is invalid: %1"
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature is %1"
-msgstr "İmza geçersiz: %1"
+msgstr "İmza %1"
 
 #: src/crypto/decryptverifytask.cpp:281
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "VS-NfD-conforming is a German standard for restricted documents for which "
-#| "special restrictions about algorithms apply.  The string states that a "
-#| "signature is not compliant with that."
-#| msgid "The signature <b>is not</b> VS-NfD-compliant."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The signature <b>is not</b> %1."
-msgstr "İmza, VS-NfD uyumlu <b>değildir</b>."
+msgstr "İmza, %1 <b>değil</b>."
 
 #: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:48
 #, kde-format
@@ -4446,7 +4430,7 @@ msgstr[1] "<b>%1 geçersiz imza.</b>"
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>Veri onaylanamadı.</b>"
-msgstr[1] "<b>%1 sertifikaları onaylanamadı.</b>"
+msgstr[1] "<b>%1 sertifika onaylanamadı.</b>"
 
 #: src/crypto/decryptverifytask.cpp:426
 #, kde-format
@@ -4491,7 +4475,7 @@ msgstr "<b>Şifreleme açma işlemi iptal edildi.</b>"
 #: src/crypto/decryptverifytask.cpp:448
 #, kde-format
 msgid "No integrity protection (MDC)."
-msgstr ""
+msgstr "Bütünlülük koruması yok (MDC)."
 
 #: src/crypto/decryptverifytask.cpp:448 src/crypto/decryptverifytask.cpp:451
 #: src/crypto/decryptverifytask.cpp:453
@@ -4575,35 +4559,25 @@ msgstr[0] "Bir bilinmeyen alıcı"
 msgstr[1] "%1 bilinmeyen alıcı"
 
 #: src/crypto/decryptverifytask.cpp:581
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "VS-NfD-conforming is a German standard for restricted documents for which "
-#| "special restrictions about algorithms apply.  The string states that the "
-#| "decryption is compliant with that."
-#| msgid "The decryption is VS-NfD-compliant."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption is %1."
-msgstr "Şifreyi açma, VS-NfD uyumludur."
+msgstr "Şifre açımı %1."
 
 #: src/crypto/decryptverifytask.cpp:583
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "VS-NfD-conforming is a German standard for restricted documents for which "
-#| "special restrictions about algorithms apply.  The string states that the "
-#| "decryption is compliant with that."
-#| msgid "The decryption <b>is not</b> VS-NfD-compliant."
+#, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption <b>is not</b> %1."
-msgstr "Şifreyi açma, VS-NfD uyumlu <b>değildir</b>."
+msgstr "Şifre açımı, %1 <b>değil</b>."
 
 #: src/crypto/decryptverifytask.cpp:593
 #, kde-format
 msgid "Embedded file name: '%1'"
-msgstr ""
+msgstr "Gömülü dosya adı: '%1'"
 
 #: src/crypto/decryptverifytask.cpp:600
 #, kde-format
@@ -4622,6 +4596,9 @@ msgid ""
 "that the file is legitimate.  This is because back then integrity protection "
 "was not widely used."
 msgstr ""
+"<b>İpucu:</b> Eğer bu dosya 2003 yılından önce şifrelenmişse dosya büyük "
+"olasılıkla özgünder. Bunun nedeni, o zamanlarda bütünlülük koruması pek "
+"yaygın bir biçimde kullanılmıyordu."
 
 #: src/crypto/decryptverifytask.cpp:610
 #, kde-format
@@ -4632,6 +4609,8 @@ msgid ""
 "If you are confident that the file was not manipulated you should re-encrypt "
 "it after you have forced the decryption."
 msgstr ""
+"Dosyaya ellenmediğinden eminseniz şifre açımını zorladıktan sonra onu "
+"yeniden şifrelemelisiniz."
 
 #: src/crypto/decryptverifytask.cpp:879
 #, kde-format
@@ -4719,7 +4698,7 @@ msgstr "<filename>%2</filename>, <filename>%1</filename> ile onaylanmış"
 #, kde-format
 msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
-"EncryptEMailController::protocolAsString() fonksiyonuna olan çağrı belirsiz."
+"EncryptEMailController::protocolAsString() işlevine olan çağrı belirsiz."
 
 #: src/crypto/encryptemailcontroller.cpp:143
 #: src/crypto/newsignencryptemailcontroller.cpp:429
@@ -4727,7 +4706,7 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp:339
 #, kde-format
 msgid "User cancel"
-msgstr "Kullanıcı tarafından iptal edildi"
+msgstr "Kullanıcı iptali"
 
 #: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:172
 #, kde-format
@@ -4747,41 +4726,35 @@ msgstr "Şifreleme işlemi başarılı oldu."
 #: src/crypto/gui/certificatelineedit.cpp:200
 #, kde-format
 msgid "Please enter a name or email address..."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr "Lütfen bir ad veya e-posta adresi girin..."
 
 #: src/crypto/gui/certificatelineedit.cpp:213
 #: src/crypto/gui/certificatelineedit.cpp:214
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgid "Show certificate list"
-msgstr "Sertifika geçerliliğini göster"
+msgstr "Sertifika listesini göster"
 
 #: src/crypto/gui/certificatelineedit.cpp:233
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Ayrıntıları Göster"
 
 #: src/crypto/gui/certificatelineedit.cpp:500
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "No matching certificates or groups found"
-msgstr "(eşleşen sertifika bulunamadı)"
+msgstr "Eşleşen sertifika veya grup bulunamadı"
 
 #: src/crypto/gui/certificatelineedit.cpp:502
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Multiple matching certificates or groups found"
-msgstr "(eşleşen sertifika bulunamadı)"
+msgstr "Birden çok eşleşen sertifika veya grup bulundu"
 
 #: src/crypto/gui/certificatelineedit.cpp:572 src/view/formtextinput.cpp:120
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Error"
+#, kde-format
 msgctxt "@info"
 msgid "Error: %1"
-msgstr "Hata"
+msgstr "Hata: %1"
 
 #: src/crypto/gui/certificateselectionline.cpp:39
 #, kde-format
@@ -4811,8 +4784,7 @@ msgid "&Output folder:"
 msgstr "Çıktı &klasörü:"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:92
-#, fuzzy, kde-format
-#| msgid "Verify Files"
+#, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Dosyaları Onayla"
@@ -4858,7 +4830,7 @@ msgstr "Çıktı klasörü yok."
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:218
 #, kde-format
 msgid "Please select a different output folder."
-msgstr "Lütfen farklı bir çıkdı klasörü seçin."
+msgstr "Lütfen farklı bir çıktı klasörü seçin."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:210
 #, kde-format
@@ -4873,7 +4845,7 @@ msgstr "Geçersiz çıktı klasörü."
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
 msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Yapılacak işlemi seçin</b>"
+msgstr "<b>Yapılacak işlemi seç</b>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:200
 #, kde-format
@@ -4915,11 +4887,10 @@ msgid "&Input file is an archive; unpack with:"
 msgstr "&Girdi dosyası bir arşiv; şununla açılsın:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:29
-#, fuzzy, kde-format
-#| msgid "Encrypt Mail Message"
+#, kde-format
 msgctxt "@title:window"
 msgid "Encrypt Mail Message"
-msgstr "E-posta İletisini Şifrele"
+msgstr "Posta İletisini Şifrele"
 
 #: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:122
 #, kde-format
@@ -4935,7 +4906,7 @@ msgstr "<b>Nesneler</b>"
 #: src/crypto/gui/resolverecipientspage.cpp:390
 #, kde-format
 msgid "Remove Selected"
-msgstr "Seçileni Kaldır"
+msgstr "Seçiliyi Kaldır"
 
 #: src/crypto/gui/objectspage.cpp:73
 #, kde-format
@@ -4977,7 +4948,7 @@ msgid ""
 "<b>Warning:</b> None of the selected certificates seem to be your own. You "
 "will not be able to decrypt the encrypted data again."
 msgstr ""
-"<b>Uyarı:</b> Seçilen sertifikaların hiçbiri sizin değil gibi duruyor. "
+"<b>Uyarı:</b> Seçili sertifikaların hiçbiri sizin değil gibi duruyor. "
 "Şifrelenmiş veriyi tekrar çözemeyeceksiniz."
 
 #: src/crypto/gui/resolverecipientspage.cpp:545
@@ -5002,10 +4973,9 @@ msgid "Sender"
 msgstr "Gönderen"
 
 #: src/crypto/gui/resultitemwidget.cpp:132
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgid "Force decryption"
-msgstr "Şifreleme"
+msgstr "Şifre açımını zorla"
 
 #: src/crypto/gui/resultitemwidget.cpp:176
 #, kde-format
@@ -5020,21 +4990,20 @@ msgid "Import%1"
 msgstr "İçe Aktar%1"
 
 #: src/crypto/gui/resultitemwidget.cpp:228
-#, fuzzy, kde-format
-#| msgid "Diagnostics:"
+#, kde-format
 msgid "Diagnostics"
-msgstr "Hata Tanılama:"
+msgstr "Hata Tanılama"
 
 #: src/crypto/gui/resultitemwidget.cpp:230
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
-msgstr "Audit Günlük Kaydını Göster"
+msgstr "Denetim Günlüğünü Göster"
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
 msgid "Keep open after operation completed"
-msgstr "İşlem tamamlandığında açık tut"
+msgstr "İşlem tamamlandıktan sonra açık tut"
 
 #: src/crypto/gui/signemailwizard.cpp:66
 #, kde-format
@@ -5042,31 +5011,29 @@ msgid "You need to select a signing certificate to proceed."
 msgstr "İlerlemek için imza sertifikası seçmelisiniz."
 
 #: src/crypto/gui/signemailwizard.cpp:73
-#, fuzzy, kde-format
-#| msgid "You need to select an %1 signing certificate to proceed."
+#, kde-format
 msgid "You need to select an OpenPGP signing certificate to proceed."
-msgstr "İlerlemek için %1 imza sertifikası seçmelisiniz."
+msgstr "İlerlemek için en az bir OpenPGP imzalama sertifikası seçmelisiniz."
 
 #: src/crypto/gui/signemailwizard.cpp:75
-#, fuzzy, kde-format
-#| msgid "You need to select an %1 signing certificate to proceed."
+#, kde-format
 msgid "You need to select an S/MIME signing certificate to proceed."
-msgstr "İlerlemek için %1 imza sertifikası seçmelisiniz."
+msgstr "İlerlemek için en az bir S/MIME imza sertifikası seçmelisiniz."
 
 #: src/crypto/gui/signemailwizard.cpp:78
-#, fuzzy, kde-format
-#| msgid "You need to select %1 and %2 signing certificates to proceed."
+#, kde-format
 msgid ""
 "You need to select an OpenPGP signing certificate and an S/MIME signing "
 "certificate to proceed."
-msgstr "İlerlemek için %1 ve %2 imzalama sertifikası seçmelisiniz."
+msgstr ""
+"İlerlemek için en az bir OpenPGP ve bir S/MIME imzalama sertifikası "
+"seçmelisiniz."
 
 #: src/crypto/gui/signemailwizard.cpp:110
-#, fuzzy, kde-format
-#| msgid "Sign Mail Message"
+#, kde-format
 msgctxt "@title:window"
 msgid "Sign Mail Message"
-msgstr "E-posta İletisini İmzala"
+msgstr "Posta İletisini İmzala"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -5145,11 +5112,10 @@ msgid "Only show this dialog in case of conflicts (experimental)"
 msgstr "Bu iletişim penceresini sadece çakışmalarda göster (deneysel)"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:389
-#, fuzzy, kde-format
-#| msgid "Select Certificates For Message"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select Certificates for Message"
-msgstr "İleti İçin Sertifika Seç"
+msgstr "İleti için Sertifikalar Seç"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:461
 #, kde-format
@@ -5162,53 +5128,45 @@ msgid "To:"
 msgstr "Kime:"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:514
-#, fuzzy, kde-format
-#| msgid "Select Certificates For Message \"%1\""
+#, kde-format
 msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
-msgstr "\"%1\" İletisi İçin Sertifikaları Seç"
+msgstr "\"%1\" İletisi için Sertifikalar Seç"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:147
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
-msgstr "Dosyaları İmzala / Şifrele"
+msgstr "Dosyaları İmzala/Şifrele"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:154
-#, fuzzy, kde-format
-#| msgid "Sign as:"
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
-msgstr "İmzalayan:"
+msgstr "İ&mzalayan:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:156
-#, fuzzy, kde-format
-#| msgid "Encrypt for me:"
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
-msgstr "Benim için şifrele:"
+msgstr "&Benim için şifrele:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:158
-#, fuzzy, kde-format
-#| msgid "Encrypt for others:"
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &others:"
-msgstr "Başkası için şifrele:"
+msgstr "Başkası &için şifrele:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:160
-#, fuzzy, kde-format
-#| msgid ""
-#| "Encrypt with password. Anyone you share the password with can read the "
-#| "data."
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid ""
 "Encrypt with &password. Anyone you share the password with can read the data."
 msgstr ""
-"Parola ile şifreleme. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
+"Parola ile şi&frele. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:167
-#, fuzzy, kde-format
-#| msgid "Output"
+#, kde-format
 msgctxt "@title:group"
 msgid "Output"
 msgstr "Çıktı"
@@ -5219,31 +5177,27 @@ msgid "Please select an action."
 msgstr "Lütfen bir eylem seçin."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:173
-#, fuzzy, kde-format
-#| msgid "&Output folder:"
+#, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
-msgstr "Çıktı &klasörü:"
+msgstr "Çıktı dosyaları/&klasörü:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:179
-#, fuzzy, kde-format
-#| msgid "Encrypt / Sign each file separately."
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
-msgstr "Her bir dosyayı ayır ayrı şifrele/imzala"
+msgstr "Her bir dosyayı ayrı ayrı şi&frele/imzala"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:181
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Keep each file separate instead of creating an archive for all."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
-msgstr "Tümü için bir arşiv oluşturmak yerine, her dosyayı ayrı şekilde sakla."
+msgstr "Tümü için bir arşiv oluşturmak yerine her bir dosyayı ayrı ayrı tut."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:194
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
-msgstr ""
+msgstr "Dosyaları imzalama ve şifreleme için geçersiz uyum ayarları."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:196
 #, kde-kuit-format

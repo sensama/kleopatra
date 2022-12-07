@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-07 00:47+0000\n"
 "PO-Revision-Date: 2022-12-03 15:13+0200\n"
 "Last-Translator: Fracture dept <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -352,7 +352,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Чи є «%1» вашим власним сертифікатом?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1681,9 +1681,9 @@ msgstr "Вміст буфера обміну не є даними сертифі
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:900
-#: src/commands/importcertificatescommand.cpp:951
+#: src/commands/importcertificatefromfilecommand.cpp:136
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:942
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Імпортування сертифіката зазнало невдачі"
@@ -1707,14 +1707,14 @@ msgstr "Буфер"
 msgid "Notepad"
 msgstr "Нотатник"
 
-#: src/commands/importcertificatefromfilecommand.cpp:123
+#: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
 msgstr "Імпорт сертифікатів"
 
-#: src/commands/importcertificatefromfilecommand.cpp:124
+#: src/commands/importcertificatefromfilecommand.cpp:127
 #, kde-format
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
@@ -1723,23 +1723,23 @@ msgstr[1] "Імпортуємо сертифікати з %1 файлів…"
 msgstr[2] "Імпортуємо сертифікати з %1 файлів…"
 msgstr[3] "Імпортуємо сертифікати з файла…"
 
-#: src/commands/importcertificatefromfilecommand.cpp:133
+#: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
 msgstr "Не вдалося відкрити файл %1 для читання: %2"
 
-#: src/commands/importcertificatefromfilecommand.cpp:147
+#: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Сертифікати"
 
-#: src/commands/importcertificatefromfilecommand.cpp:148
+#: src/commands/importcertificatefromfilecommand.cpp:158
 #, kde-format
 msgid "Any files"
 msgstr "Всі файли"
 
-#: src/commands/importcertificatefromfilecommand.cpp:154
+#: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
 msgid "Select Certificate File"
 msgstr "Виберіть файл сертифіката"
@@ -2003,18 +2003,18 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-format
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:630
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2026,19 +2026,19 @@ msgstr ""
 "numid></para><para>та ідентифікаторами користувача<list>%2</list></"
 "para><para>Це ваш власний сертифікат?</para>"
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Так, це мій"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:644
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ні, це не мій"
 
-#: src/commands/importcertificatescommand.cpp:863
+#: src/commands/importcertificatescommand.cpp:854
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2047,8 +2047,8 @@ msgstr[1] "Отримуємо %1 ключі підписувачів… (ця д
 msgstr[2] "Отримуємо %1 ключів підписувачів… (ця дія триватиме певний час)"
 msgstr[3] "Отримуємо ключ підписувача… (ця дія триватиме певний час)"
 
-#: src/commands/importcertificatescommand.cpp:898
-#: src/commands/importcertificatescommand.cpp:949
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

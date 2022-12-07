@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-07 00:47+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -378,7 +378,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "(ukendt certifikat)"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:642
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Load Certificates"
@@ -1785,9 +1785,9 @@ msgstr "Indhold af udklipsholder ligner ikke et certifikat."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:900
-#: src/commands/importcertificatescommand.cpp:951
+#: src/commands/importcertificatefromfilecommand.cpp:136
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:942
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Import af certifikat mislykkedes"
@@ -1811,7 +1811,7 @@ msgstr "Udklipsholder"
 msgid "Notepad"
 msgstr "Notesblok"
 
-#: src/commands/importcertificatefromfilecommand.cpp:123
+#: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
@@ -1819,7 +1819,7 @@ msgctxt "@title:window"
 msgid "Importing Certificates"
 msgstr "Importér certifikater"
 
-#: src/commands/importcertificatefromfilecommand.cpp:124
+#: src/commands/importcertificatefromfilecommand.cpp:127
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Import certificate from file"
@@ -1828,23 +1828,23 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "Importér certifikat fra fil"
 msgstr[1] "Importér certifikat fra fil"
 
-#: src/commands/importcertificatefromfilecommand.cpp:133
+#: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
 msgstr "Kunne ikke åbne filen %1 til læsning: %2"
 
-#: src/commands/importcertificatefromfilecommand.cpp:147
+#: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Certifikater"
 
-#: src/commands/importcertificatefromfilecommand.cpp:148
+#: src/commands/importcertificatefromfilecommand.cpp:158
 #, kde-format
 msgid "Any files"
 msgstr "Alle filer"
 
-#: src/commands/importcertificatefromfilecommand.cpp:154
+#: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
 msgid "Select Certificate File"
 msgstr "Vælg certifikat-fil"
@@ -2115,19 +2115,19 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:625
 #, fuzzy, kde-format
 #| msgid ", "
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:630
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2146,19 +2146,19 @@ msgstr ""
 "<list><item>%2</item></list></para>Er det din egen nøgle? (sæt tillidsniveau "
 "ultimate)"
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:644
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:863
+#: src/commands/importcertificatescommand.cpp:854
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2166,8 +2166,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Indlæs certificeringer (kan tage et stykke tid)"
 msgstr[1] "Indlæs certificeringer (kan tage et stykke tid)"
 
-#: src/commands/importcertificatescommand.cpp:898
-#: src/commands/importcertificatescommand.cpp:949
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

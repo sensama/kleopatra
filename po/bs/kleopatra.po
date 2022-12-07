@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-07 00:47+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -392,7 +392,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "(nepoznak certifikat)"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:642
 #, fuzzy, kde-format
 #| msgid "Certificates"
 msgctxt "@title:window"
@@ -1816,9 +1816,9 @@ msgstr "Sadržaj međuspremnika ne izgleda kao certifikat."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:900
-#: src/commands/importcertificatescommand.cpp:951
+#: src/commands/importcertificatefromfilecommand.cpp:136
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:942
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Uvoženje certifikata nije uspjelo"
@@ -1842,7 +1842,7 @@ msgstr "Klipbord"
 msgid "Notepad"
 msgstr ""
 
-#: src/commands/importcertificatefromfilecommand.cpp:123
+#: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Import Certificates"
@@ -1850,7 +1850,7 @@ msgctxt "@title:window"
 msgid "Importing Certificates"
 msgstr "Uvezi certifikate"
 
-#: src/commands/importcertificatefromfilecommand.cpp:124
+#: src/commands/importcertificatefromfilecommand.cpp:127
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
@@ -1860,23 +1860,23 @@ msgstr[0] "Uvezeni certifikati iz %1"
 msgstr[1] "Uvezeni certifikati iz %1"
 msgstr[2] "Uvezeni certifikati iz %1"
 
-#: src/commands/importcertificatefromfilecommand.cpp:133
+#: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
 msgstr "Ne mogu otvoriti datoteku \"%1\" za čitanje: %2"
 
-#: src/commands/importcertificatefromfilecommand.cpp:147
+#: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Certifikati"
 
-#: src/commands/importcertificatefromfilecommand.cpp:148
+#: src/commands/importcertificatefromfilecommand.cpp:158
 #, kde-format
 msgid "Any files"
 msgstr "Bilo koja datoteka"
 
-#: src/commands/importcertificatefromfilecommand.cpp:154
+#: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
 msgid "Select Certificate File"
 msgstr "Odaberite datoteku certifikata"
@@ -2145,20 +2145,20 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:625
 #, fuzzy, kde-format
 #| msgctxt "separator for a list of e-mail addresses"
 #| msgid ", "
 msgid " "
 msgstr ", "
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:630
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2167,19 +2167,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:644
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:863
+#: src/commands/importcertificatescommand.cpp:854
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2188,8 +2188,8 @@ msgstr[0] "Učitaj certifikate (može zahtijevati neko vrijeme)"
 msgstr[1] "Učitaj certifikate (može zahtijevati neko vrijeme)"
 msgstr[2] "Učitaj certifikate (može zahtijevati neko vrijeme)"
 
-#: src/commands/importcertificatescommand.cpp:898
-#: src/commands/importcertificatescommand.cpp:949
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

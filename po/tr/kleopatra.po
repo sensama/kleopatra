@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-07 00:47+0000\n"
 "PO-Revision-Date: 2022-11-21 22:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -351,7 +351,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1', sizin kendi sertifikanız mı?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:642
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1666,9 +1666,9 @@ msgstr "Pano içeriği bir sertifika gibi görünmüyor."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:900
-#: src/commands/importcertificatescommand.cpp:951
+#: src/commands/importcertificatefromfilecommand.cpp:136
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:942
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Sertifika İçe Aktarma Başarısız"
@@ -1692,37 +1692,37 @@ msgstr "Pano"
 msgid "Notepad"
 msgstr "Not Defteri"
 
-#: src/commands/importcertificatefromfilecommand.cpp:123
+#: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
 msgstr "Sertifikalar İçe Aktarma"
 
-#: src/commands/importcertificatefromfilecommand.cpp:124
+#: src/commands/importcertificatefromfilecommand.cpp:127
 #, kde-format
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "1 dosyadan sertifikalar içe aktarılıyor..."
 msgstr[1] "%1 dosyadan sertifikalar içe aktarılıyor..."
 
-#: src/commands/importcertificatefromfilecommand.cpp:133
+#: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
 msgstr "%1, okuma için açılamadı: %2"
 
-#: src/commands/importcertificatefromfilecommand.cpp:147
+#: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Sertifikalar"
 
-#: src/commands/importcertificatefromfilecommand.cpp:148
+#: src/commands/importcertificatefromfilecommand.cpp:158
 #, kde-format
 msgid "Any files"
 msgstr "Herhangi bir dosya"
 
-#: src/commands/importcertificatefromfilecommand.cpp:154
+#: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
 msgid "Select Certificate File"
 msgstr "Sertifika Dosyası Seç"
@@ -1982,18 +1982,18 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:630
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2005,27 +2005,27 @@ msgstr ""
 "kullanıcı kimliklerini:<list>%2</list>içeren bir sertifika içe aktardınız</"
 "para><para>Bu sizin kendi sertifikanız mı?</para>"
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Evet, Benim"
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:644
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Hayır, Benim Değil"
 
-#: src/commands/importcertificatescommand.cpp:863
+#: src/commands/importcertificatescommand.cpp:854
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "1 imzalayıcı anahtar getiriliyor... (bu biraz vakit alabilir)"
 msgstr[1] "%1 imzalayıcı anahtar getiriliyor... (bu biraz vakit alabilir)"
 
-#: src/commands/importcertificatescommand.cpp:898
-#: src/commands/importcertificatescommand.cpp:949
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3607,8 +3607,7 @@ msgid "Search:"
 msgstr "Ara:"
 
 #: src/conf/groupsconfigwidget.cpp:146 src/conf/groupsconfigwidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Search groups"
+#, kde-format
 msgctxt "@label"
 msgid "Search groups"
 msgstr "Grupları ara"
@@ -5209,6 +5208,9 @@ msgid ""
 "encrypting files because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>Dosyaları imzalamak veya şifrelemek için <application>Kleopatra</"
+"application>'yı kullanamazsınız; çünkü <application>Kleopatra</application> "
+"tarafından kullanılan <application>GnuPG</application> %1 değil.</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:263
 #, kde-kuit-format
@@ -5220,6 +5222,10 @@ msgid ""
 "or encrypting files because the <application>GnuPG</application> system used "
 "by <application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>Üzgünüm! Dosyaları imzalamak veya şifrelemek için "
+"<application>Kleopatra</application>'yı kullanamazsınız; çünkü "
+"<application>Kleopatra</application> tarafından kullanılan "
+"<application>GnuPG</application> %1 değil.</para>"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:282
 #, kde-kuit-format
@@ -5232,9 +5238,9 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
-"<para>sadece-imza ile birlikte yapılan arşivleme mat imzalar diye bilinen "
+"<para>Yalnızca imza ile birlikte yapılan arşivleme mat imzalar diye bilinen "
 "imzaları gerektirir - ataçlanmamış olanların aksine, bunlar içeriği imzanın "
-"içine gömer.</para><para>Bu formata pek sık rastlanmaz. Dosyaları ayrıca "
+"içine gömer.</para><para>Bu biçime pek sık rastlanmaz. Dosyaları ayrıca "
 "arşivlemek ve daha sonra Kleopatra ile arşivi tek dosya olarak imzalamak "
 "isteyebilirsiniz.</para><para>Kleopatra'nın sonraki sürümlerinin bu "
 "örnekteki gibi ataçlanmamış imzaları da desteklemesi bekleniyor.</para>"
@@ -5266,171 +5272,149 @@ msgid "Encrypt-To-Self Warning"
 msgstr "Kendine Şifreleme Uyarısı"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:348
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
-msgstr "S/MIME imzası"
+msgstr "Bu, S/MIME imzasının dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:349
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
-msgstr "S/MIME imzası"
+msgstr "S/MIME imza dosyası"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:350
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
-msgstr "S/MIME imzası"
+msgstr "S/MIME İmzaları (*.p7s)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:351
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
-msgstr "S/MIME imzası"
+msgstr "S/MIME İmzaları (*.p7s *.pem)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:356
-#, fuzzy, kde-format
-#| msgid "&Input file is a detached signature"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
-msgstr "&Girdi dosyası tarafsız bir imzadır"
+msgstr "Bu, ayrık OpenPGP imzasının dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:357
-#, fuzzy, kde-format
-#| msgid "OpenPGP signature file"
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "OpenPGP imza dosyası"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:358
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
-msgstr "S/MIME imzası"
+msgstr "OpenPGP İmzaları (*.sig *pgp)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:359
-#, fuzzy, kde-format
-#| msgid "OpenPGP signature file"
+#, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
-msgstr "OpenPGP imza dosyası"
+msgstr "OpenPGP İmzaları (*.asc *.sig)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:364
-#, fuzzy, kde-format
-#| msgid "The signed and encrypted file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
-msgstr "İmzalı ve şifreli dosya."
+msgstr "Bu, OpenPGP ile imzalanmış ve şifrelenmiş dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:365
-#, fuzzy, kde-format
-#| msgid "The signed and encrypted file."
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
-msgstr "İmzalı ve şifreli dosya."
+msgstr "OpenPGP ile imzalanmış ve şifrelenmiş dosya"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:366
 #: src/crypto/gui/signencryptfileswizard.cpp:374
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
-msgstr ""
+msgstr "OpenPGP Dosyaları (*.gpg *.pgp)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:367
 #: src/crypto/gui/signencryptfileswizard.cpp:375
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
-msgstr ""
+msgstr "OpenPGP Dosyaları (*.asc)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:372
-#, fuzzy, kde-format
-#| msgid "The signed and encrypted file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
-msgstr "İmzalı ve şifreli dosya."
+msgstr "Bu, OpenPGP ile imzalanmış dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:373
-#, fuzzy, kde-format
-#| msgid "The encrypted file."
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
-msgstr "Şifreli dosya."
+msgstr "OpenPGP ile şifrelenmiş dosya"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:380
-#, fuzzy, kde-format
-#| msgid "The S/MIME encrypted file."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
-msgstr "S/MIME şifreli dosya."
+msgstr "Bu, S/MIME ile şifrelenmiş dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:381
-#, fuzzy, kde-format
-#| msgid "The S/MIME encrypted file."
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
-msgstr "S/MIME şifreli dosya."
+msgstr "S/MIME ile şifrelenmiş dosya."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:382
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
-msgstr "S/MIME imzası"
+msgstr "S/MIME Dosyaları (*p7m)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:383
-#, fuzzy, kde-format
-#| msgid "The S/MIME signature."
+#, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
-msgstr "S/MIME imzası"
+msgstr "S/MIME Dosyaları (*.p7m *.pem)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:388
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
-msgstr ""
+msgstr "Ortaya çıkan dosyalar bu dizine yazıldı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:389
-#, fuzzy, kde-format
-#| msgid "Output directory."
+#, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
-msgstr "Çıktı dizini."
+msgstr "Çıktı dizini"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:449
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "İmzala"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:452
-#, fuzzy, kde-format
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Şifrele"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
-msgstr "İmzala / Şifrele"
+msgstr "İmzala/Şifrele"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:469
 #, kde-format
 msgid "Next"
-msgstr "İleri"
+msgstr "Sonraki"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:535
 #, kde-format
@@ -5445,8 +5429,7 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr "Şifreleme işleminin durumu ve ilerlemesi burada gösterilmektedir."
 
 #: src/crypto/gui/signencryptwidget.cpp:112
-#, fuzzy, kde-format
-#| msgid "Prove authenticity (sign)"
+#, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Doğruluğu (imza) kanıtla"
@@ -5457,8 +5440,7 @@ msgid "Sign as:"
 msgstr "İmzalayan:"
 
 #: src/crypto/gui/signencryptwidget.cpp:132
-#, fuzzy, kde-format
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Şifrele"
@@ -5478,16 +5460,10 @@ msgstr "Başkası için şifrele:"
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
-"Parola ile şifreleme. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
+"Parola ile şifrele. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
 
 #: src/crypto/gui/signencryptwidget.cpp:183
-#, fuzzy, kde-format
-#| msgctxt "Tooltip information for symetric encryption"
-#| msgid ""
-#| "Additionally to the keys of the recipients you can encrypt your data with "
-#| "a password. Anyone who has the password can read the data without any "
-#| "secret key. Using a password is <b>less secure</b> then public key "
-#| "cryptography. Even if you pick a very strong password."
+#, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
 "Additionally to the keys of the recipients you can encrypt your data with a "
@@ -5501,23 +5477,20 @@ msgstr ""
 "güvenlidir.</b> Çok güçlü bir şifre seçseniz bile bu böyledir."
 
 #: src/crypto/gui/signencryptwidget.cpp:273
-#, fuzzy, kde-format
-#| msgid "Recipient"
+#, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
-msgstr "Alıcı"
+msgstr "alıcı anahtarı"
 
 #: src/crypto/gui/signencryptwidget.cpp:668
-#, fuzzy, kde-format
-#| msgid "Could not bind to socket: %1"
+#, kde-format
 msgid "Could not find a key for the following recipients:"
-msgstr "Sokete bağlanılamıyor: %1"
+msgstr "Aşağıdaki alıcılar için bir anahtar bulunamadı:"
 
 #: src/crypto/gui/signencryptwidget.cpp:670
-#, fuzzy, kde-format
-#| msgid "Failed to send recipient %1: %2"
+#, kde-format
 msgid "Failed to find some keys"
-msgstr "%1 alıcısı gönderilemedi: %2"
+msgstr "Bazı anahtarlar bulunamadı"
 
 #: src/crypto/gui/signerresolvepage.cpp:61
 #, kde-format
@@ -5528,22 +5501,22 @@ msgstr "%1 kullnarak imzala: %2"
 #: src/crypto/gui/signerresolvepage.cpp:62
 #, kde-format
 msgid "No certificate selected"
-msgstr "Hiç sertifika seçilmedi"
+msgstr "Seçili sertifika yok"
 
 #: src/crypto/gui/signerresolvepage.cpp:288
 #, kde-format
 msgid "Sign and encrypt (OpenPGP only)"
-msgstr "İmzala ve şifrele (sadece OpenPGP)"
+msgstr "İmzala ve şifrele (yalnızca OpenPGP)"
 
 #: src/crypto/gui/signerresolvepage.cpp:294
 #, kde-format
 msgid "Encrypt only"
-msgstr "Sadece şifrele"
+msgstr "Yalnızca şifrele"
 
 #: src/crypto/gui/signerresolvepage.cpp:299
 #, kde-format
 msgid "Sign only"
-msgstr "Sadece imzala"
+msgstr "Yalnızca imzala"
 
 #: src/crypto/gui/signerresolvepage.cpp:304
 #, kde-format
@@ -5573,14 +5546,13 @@ msgstr "İmzalama Sertifikalarını Değiştir..."
 #: src/crypto/gui/signerresolvepage.cpp:493
 #, kde-format
 msgid "<b>Choose Operation to be Performed</b>"
-msgstr "<b>Yapılacak İşlemi Seçin</b>"
+msgstr "<b>Yapılacak İşlemi Seç</b>"
 
 #: src/crypto/gui/signingcertificateselectiondialog.cpp:32
-#, fuzzy, kde-format
-#| msgid "Select Signing Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "Select Signing Certificates"
-msgstr "İmzalama Seritifikalarını Seç"
+msgstr "İmzalama Sertifikalarını Seç"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rememberCO)
 #: src/crypto/gui/signingcertificateselectionwidget.ui:37
@@ -5601,12 +5573,10 @@ msgid "S/MIME Signing Certificate:"
 msgstr "S/MIME İmzalama Sertifikası:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:28
-#, fuzzy, kde-format
-#| msgid "One unknown recipient"
-#| msgid_plural "%1 unknown recipients"
+#, kde-format
 msgctxt "Caption for an unknown key/certificate where only ID is known."
 msgid "Unknown Recipient:"
-msgstr "Bir bilinmeyen alıcı"
+msgstr "Bilinmeyen Alıcı:"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:35
 #: src/dialogs/lookupcertificatesdialog.cpp:125
@@ -5615,15 +5585,14 @@ msgid "Search"
 msgstr "Ara"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:39
-#, fuzzy, kde-format
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgid "Search on keyserver"
-msgstr "Anahtar sunucusunda bir sertifika ara"
+msgstr "Anahtar sunucusunda ara"
 
 #: src/crypto/gui/unknownrecipientwidget.cpp:56
 #, kde-format
 msgid "The data was encrypted to this key / certificate."
-msgstr ""
+msgstr "Veri, bu anahtara/sertifikaya şifrelendi."
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:219
 #, kde-format
@@ -5746,17 +5715,17 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp:159
 #, kde-format
 msgid "Signing failed."
-msgstr "İmzalama ilşemi başarısız oldu."
+msgstr "İmzalama başarısız oldu."
 
 #: src/crypto/signencrypttask.cpp:176
 #, kde-format
 msgid "Encryption failed."
-msgstr "Şifreleme işlemi başarısız oldu."
+msgstr "Şifreleme başarısız oldu."
 
 #: src/crypto/signencrypttask.cpp:204
 #, kde-format
 msgid "Signing and encryption succeeded."
-msgstr "İmzalama ve şifreleme işlemleri başarılı oldu."
+msgstr "İmzalama ve şifreleme başarılı oldu."
 
 #: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
 #, kde-format
@@ -5766,12 +5735,12 @@ msgstr "Çıktı hatası: %1"
 #: src/crypto/signencrypttask.cpp:245
 #, kde-format
 msgid " Encryption succeeded."
-msgstr " Şifreleme işlemi başarılı oldu."
+msgstr " Şifreleme başarılı oldu."
 
 #: src/crypto/signencrypttask.cpp:257
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
-msgstr "%1: <b>İmzalama/şifreleme işlemi iptal edildi.</b>"
+msgstr "%1: <b>İmzalama/şifreleme iptal edildi.</b>"
 
 #: src/crypto/signencrypttask.cpp:257
 #, kde-format
@@ -5792,7 +5761,7 @@ msgstr "Görev için protokol belirlenemedi"
 #: src/crypto/task.cpp:166
 #, kde-format
 msgid "Unknown exception in Task::start()"
-msgstr "Task::start() içerisinde bilinmeyen istisna"
+msgstr "Task::start() içinde bilinmeyen istisna"
 
 #: src/crypto/taskcollection.cpp:161
 #, kde-format
@@ -5803,7 +5772,7 @@ msgstr "Çıktı tamamlanıyor..."
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Checksum Results"
-msgstr "Sağlama Sonuçlarını Doğrulayın"
+msgstr "Sağlama Sonuçlarını Doğrula"
 
 #: src/crypto/verifychecksumscontroller.cpp:370
 #, kde-format
@@ -5825,47 +5794,47 @@ msgstr "Kullanıcı Kimliği Ekle"
 #, kde-format
 msgid "Enter a name and an email address to use for the user ID."
 msgstr ""
+"Kullanıcı kimliği olarak kullanmak üzere bir ad ve e-posta adresi girin."
 
 #: src/dialogs/adduseriddialog.cpp:66
 #, kde-format
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
+"Kullanıcı kimliği olarak kullanmak üzere bir ad ve/veya e-posta adresi girin."
 
 #: src/dialogs/adduseriddialog.cpp:130
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:246
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgid "Enter a name or an email address."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr "Bir ad veya e-posta adresi girin."
 
 #: src/dialogs/adduseriddialog.cpp:141
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:257
 #, kde-format
 msgid "There is a problem."
-msgstr ""
+msgstr "Bir sorun var."
 
 #: src/dialogs/adduseriddialog.cpp:152
-#, fuzzy, kde-format
-#| msgid "This is how the new User-ID will be stored in the certificate:"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<div>This is how the new user ID will be stored in the certificate:</"
 "div><center><strong>%1</strong></center>"
-msgstr "Bu sertifikada yeni Kullanıcı Kimliğinin nasıl saklanacağını belirler:"
+msgstr ""
+"<div>Yeni kullanıcı kimliği sertifikada böyle depolanacak:</"
+"div><center><strong>%1</strong></center>"
 
 #: src/dialogs/certificatedetailsdialog.cpp:64
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "OpenPGP Certificate"
-msgstr "OpenPGP Sertifikaları"
+msgstr "OpenPGP Sertifikası"
 
 #: src/dialogs/certificatedetailsdialog.cpp:66
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgctxt "@title:window"
 msgid "S/MIME Certificate"
-msgstr "S/MIME Sertifikaları"
+msgstr "S/MIME Sertifikası"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:60
 #: src/newcertificatewizard/enterdetailspage.cpp:80
@@ -5894,14 +5863,14 @@ msgstr "(zorunlu)"
 #: src/newcertificatewizard/enterdetailspage.cpp:317
 #, kde-format
 msgid "(optional)"
-msgstr "(seçimlik)"
+msgstr "(isteğe bağlı)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:109
 #: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
-msgstr "<interface>%1</interface> zorunlu ama yok."
+msgstr "<interface>%1</interface> zorunlu; ancak boş."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
 #: src/newcertificatewizard/enterdetailspage.cpp:492
@@ -5911,8 +5880,8 @@ msgid ""
 "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
 "<icode>%2</icode>"
 msgstr ""
-"<interface>%1</interface> zorunlu ama yok.<nl/>Yerel Yönetici kuralı: <icode>"
-"%2</icode>"
+"<interface>%1</interface> zorunlu; ancak boş.<nl/>Yerel Yönetici kuralı: "
+"<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:117
 #: src/newcertificatewizard/enterdetailspage.cpp:498
@@ -5950,75 +5919,65 @@ msgstr ""
 "icode>"
 
 #: src/dialogs/certificatedetailswidget.cpp:208
-#, fuzzy, kde-format
-#| msgctxt "title:window"
-#| msgid "Add User ID"
+#, kde-format
 msgid "User IDs:"
-msgstr "Kullanıcı Kimliği Ekle"
+msgstr "Kullanıcı Kimlikleri:"
 
 #: src/dialogs/certificatedetailswidget.cpp:213
 #: src/dialogs/certifywidget.cpp:401
-#, fuzzy, kde-format
-#| msgctxt "title:window"
-#| msgid "Add User ID"
+#, kde-format
 msgid "User IDs"
-msgstr "Kullanıcı Kimliği Ekle"
+msgstr "Kullanıcı Kimlikleri"
 
 #: src/dialogs/certificatedetailswidget.cpp:228
-#, fuzzy, kde-format
-#| msgid "Add User-ID..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
-msgstr "Kullanıcı-Kimliği Ekle..."
+msgstr "Kullanıcı Kimliği Ekle"
 
 #: src/dialogs/certificatedetailswidget.cpp:231
-#, fuzzy, kde-format
-#| msgid "Primary"
+#, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
-msgstr "Birincil"
+msgstr "Birincil Olarak İmle"
 
 #: src/dialogs/certificatedetailswidget.cpp:232
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
+"Seçili kullanıcı kimliğini bu anahtarın birincil kullanıcı kimliği olarak "
+"imleyin."
 
 #: src/dialogs/certificatedetailswidget.cpp:235
-#, fuzzy, kde-format
-#| msgid "Signed user IDs:"
+#, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
-msgstr "İmzalanmış Kullanıcı Kimlikleri:"
+msgstr "Kullanıcı Kimliklerini Sertifikala"
 
 #: src/dialogs/certificatedetailswidget.cpp:238
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certifications"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Certifications"
-msgstr "Sertifikalamalar"
+msgstr "Sertifikasyonları Göster"
 
 #: src/dialogs/certificatedetailswidget.cpp:241
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
-msgstr "Sertifikalamayı Yürürlükten Kaldır"
+msgstr "Sertifikalasyonları Yürürlükten Kaldır"
 
 #: src/dialogs/certificatedetailswidget.cpp:244
 #: src/dialogs/certificatedetailswidget.cpp:625
-#, fuzzy, kde-format
-#| msgid "Revoke this user ID"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
-msgstr "Bu kullanıcı kimliğini yürürlükten kaldır"
+msgstr "Kullanıcı Kimliklerini Yürürlükten Kaldır"
 
 #: src/dialogs/certificatedetailswidget.cpp:278
-#, fuzzy, kde-format
-#| msgid "Trust Level"
+#, kde-format
 msgid "Trust level:"
-msgstr "Güven Düzeyi"
+msgstr "Güven düzeyi:"
 
 #: src/dialogs/certificatedetailswidget.cpp:283
 #, kde-format
@@ -6027,8 +5986,7 @@ msgstr "Geçerlilik süresi başlangıcı:"
 
 #: src/dialogs/certificatedetailswidget.cpp:288
 #: src/dialogs/expirydialog.cpp:204
-#, fuzzy, kde-format
-#| msgid "Valid until:"
+#, kde-format
 msgid "Valid until:"
 msgstr "Geçerlilik süresi sonu:"
 
@@ -6036,14 +5994,13 @@ msgstr "Geçerlilik süresi sonu:"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the end of the validity period"
-msgstr ""
+msgstr "Geçerlilik süresinin sonunu değiştir"
 
 #: src/dialogs/certificatedetailswidget.cpp:292
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Validity"
-msgstr "Yönetici PIN'ini değiştir"
+msgstr "Geçerliliği Değiştir"
 
 #: src/dialogs/certificatedetailswidget.cpp:298
 #: src/dialogs/certifywidget.cpp:371
@@ -6052,18 +6009,16 @@ msgid "Fingerprint:"
 msgstr "Parmak izi:"
 
 #: src/dialogs/certificatedetailswidget.cpp:302
-#, fuzzy, kde-format
-#| msgid "Could not write to clipboard"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the fingerprint to the clipboard"
-msgstr "Panoya yazılamadı"
+msgstr "Parmak izini panoya kopyala"
 
 #: src/dialogs/certificatedetailswidget.cpp:303
-#, fuzzy, kde-format
-#| msgid "Fingerprint:"
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy fingerprint"
-msgstr "Parmak izi:"
+msgstr "Parmak İzini Kopyala"
 
 #: src/dialogs/certificatedetailswidget.cpp:310
 #, kde-format
@@ -6071,29 +6026,26 @@ msgid "Issuer:"
 msgstr "Dağıtıcı:"
 
 #: src/dialogs/certificatedetailswidget.cpp:313
-#, fuzzy, kde-format
-#| msgid "Could not create certificate: %1"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Show the issuer certificate"
-msgstr "Sertifika oluşturulamadı: %1"
+msgstr "Veren sertifikasını göster"
 
 #: src/dialogs/certificatedetailswidget.cpp:314
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show certificate"
-msgstr "Sertifika geçerliliğini göster"
+msgstr "Sertifikayı Göster"
 
 #: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
-msgstr "Uyum:"
+msgstr "Uygunluk:"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
-#, fuzzy, kde-format
-#| msgid "Trusted issuer?"
+#, kde-format
 msgid "Trusted introducer for:"
-msgstr "Veren güvenilir mi?"
+msgstr "Şunun için güvenilen tanıştırıcı:"
 
 #: src/dialogs/certificatedetailswidget.cpp:327
 #, kde-format
@@ -6106,81 +6058,68 @@ msgid "Related addresses:"
 msgstr "İlgili adresler:"
 
 #: src/dialogs/certificatedetailswidget.cpp:338
-#, fuzzy, kde-format
-#| msgid "Related addresses:"
+#, kde-format
 msgid "Related addresses"
-msgstr "İlgili adresler:"
+msgstr "İlgili adresler"
 
 #: src/dialogs/certificatedetailswidget.cpp:349
-#, fuzzy, kde-format
-#| msgid "&More details..."
+#, kde-format
 msgctxt "@action:button"
 msgid "More Details..."
-msgstr "&Daha fazla ayrıntı..."
+msgstr "Daha Çok Ayrıntı..."
 
 #: src/dialogs/certificatedetailswidget.cpp:352
-#, fuzzy, kde-format
-#| msgid "Trust chain &details..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Trust Chain Details"
-msgstr "Güven zinciri &ayrıntıları..."
+msgstr "Güven Zinciri Ayrıntıları"
 
 #: src/dialogs/certificatedetailswidget.cpp:355
-#, fuzzy, kde-format
-#| msgid "&Update"
+#, kde-format
 msgctxt "@action:button"
 msgid "Update"
-msgstr "&Güncelle"
+msgstr "Güncelle"
 
 #: src/dialogs/certificatedetailswidget.cpp:361
-#, fuzzy, kde-format
-#| msgctxt "@action::button"
-#| msgid "Export"
+#, kde-format
 msgctxt "@action:button"
 msgid "Export"
 msgstr "Dışa Aktar"
 
 #: src/dialogs/certificatedetailswidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Change &passphrase"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
-msgstr "&Parola metnini değiştir"
+msgstr "Anahtar Parolasını Değiştir"
 
 #: src/dialogs/certificatedetailswidget.cpp:367
-#, fuzzy, kde-format
-#| msgid "Generate revocation certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Revocation Certificate"
-msgstr "İptal sertifikası oluştur"
+msgstr "Yürürlükten Kaldırma Sertifikası Oluştur"
 
 #: src/dialogs/certificatedetailswidget.cpp:369
-#, fuzzy, kde-format
-#| msgid ""
-#| "A revocation certificate is a file that serves as a \"kill switch\" to "
-#| "publicly\n"
-#| "declare that a key shall not anymore be used.  It is not possible\"\n"
-#| "to retract such a revocation certificate once it has been published."
+#, kde-format
 msgid ""
 "A revocation certificate is a file that serves as a \"kill switch\" to "
 "publicly declare that a key shall not anymore be used.  It is not possible "
 "to retract such a revocation certificate once it has been published."
 msgstr ""
-"İptal sertifikası, kamuya bildirmek için, dosya olarak sunulan bir çeşit\n"
-"\"açıl anahtarıdır\".  Böyle bir iptal sertifikası yayınlandıktan sonra geri "
-"çekilmesi\n"
-"mümkün değildir."
+"Yürürlükten kaldırma sertifikası, bu anahtarın bundan sonra "
+"kullanılmayacağını kamuya bildiren bir \"öldürme anahtarı\"dır. Bir kez "
+"yayımlandıktan sonra bir yürürlükten kaldırma sertifikasını geri almak "
+"olanaklı değildir."
 
 #: src/dialogs/certificatedetailswidget.cpp:491
 #, kde-format
 msgctxt "Valid until:"
 msgid "unlimited"
-msgstr ""
+msgstr "sınırsız"
 
 #: src/dialogs/certificatedetailswidget.cpp:516
 #, kde-format
 msgid "Email"
-msgstr "Eposta"
+msgstr "E-posta"
 
 #: src/dialogs/certificatedetailswidget.cpp:516
 #: src/newcertificatewizard/enterdetailspage.cpp:61
@@ -6194,77 +6133,66 @@ msgid "Trust Level"
 msgstr "Güven Düzeyi"
 
 #: src/dialogs/certificatedetailswidget.cpp:534
-#, fuzzy, kde-format
-#| msgid "new email"
+#, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
-msgstr "yeni e-posta"
+msgstr "e-posta yok"
 
 #: src/dialogs/certificatedetailswidget.cpp:622
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to add the user-id: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you really want to revoke the user ID<nl/><emphasis>%1</emphasis> ?"
 "</para>"
 msgstr ""
-"<para>Kullanıcı kimliği eklenmeye çalışırken bir hata oluştu: <message>%1</"
-"message></para>"
+"<para><emphasis>%1</emphasis><nl/>kullanıcı kimliğini yürürlükten kaldırmayı "
+"gerçekten istiyor musunuz?</para>"
 
 #: src/dialogs/certificatedetailswidget.cpp:821
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
-msgstr ""
+msgstr "Birincil Kullanıcı Kimliği Olarak İmle"
 
 #: src/dialogs/certificatedetailswidget.cpp:832
-#, fuzzy, kde-format
-#| msgid "Signed user IDs:"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
-msgstr "İmzalanmış Kullanıcı Kimlikleri:"
+msgstr "Kullanıcı Kimliklerini Sertifikala..."
 
 #: src/dialogs/certificatedetailswidget.cpp:833
-#, fuzzy, kde-format
-#| msgid "Signed user IDs:"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
-msgstr[0] "İmzalanmış Kullanıcı Kimlikleri:"
-msgstr[1] "İmzalanmış Kullanıcı Kimlikleri:"
+msgstr[0] "Kullanıcı Kimliğini Sertifikala..."
+msgstr[1] "Kullanıcı Kimliklerini Sertifikala..."
 
 #: src/dialogs/certificatedetailswidget.cpp:842
-#, fuzzy, kde-format
-#| msgid "Revoke Certification..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
-msgstr "Sertifikalamayı Yürürlükten Kaldır..."
+msgstr "Sertifikasyonları Yürürlükten Kaldır..."
 
 #: src/dialogs/certificatedetailswidget.cpp:843
-#, fuzzy, kde-format
-#| msgid "Revoke Certification..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
-msgstr[0] "Sertifikalamayı Yürürlükten Kaldır..."
-msgstr[1] "Sertifikalamayı Yürürlükten Kaldır..."
+msgstr[0] "Sertifikasyonu Yürürlükten Kaldır..."
+msgstr[1] "Sertifikasyonları Yürürlükten Kaldır..."
 
 #: src/dialogs/certificatedetailswidget.cpp:854
-#, fuzzy, kde-format
-#| msgid "Publish on Server..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
-msgstr "Sunucuda Yayımla..."
+msgstr "Posta Sunucusunda Yayımla..."
 
 #: src/dialogs/certificatedetailswidget.cpp:867
-#, fuzzy, kde-format
-#| msgid "Revoke this user ID"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
-msgstr "Bu kullanıcı kimliğini yürürlükten kaldır"
+msgstr "Kullanıcı Kimliğini Yürürlükten Kaldır"
 
 #: src/dialogs/certificatedetailswidget.cpp:915
 #, kde-format
@@ -6301,16 +6229,15 @@ msgid "Encryption"
 msgstr "Şifreleme"
 
 #: src/dialogs/certificatedetailswidget.cpp:956
-#, fuzzy, kde-format
-#| msgid "Export..."
+#, kde-format
 msgid "Updating..."
-msgstr "Dışa Aktar..."
+msgstr "Güncelleniyor..."
 
 #: src/dialogs/certificatedetailswidget.cpp:1004
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
-msgstr ""
+msgstr "Anahtarı dış kaynaklardan güncelle."
 
 #: src/dialogs/certificatedetailswidget.cpp:1020
 #, kde-format
@@ -6343,11 +6270,11 @@ msgid "Country"
 msgstr "Ülke"
 
 #: src/dialogs/certificatedetailswidget.cpp:1053
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Update the CRLs and do a full validation check of the certificate."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr ""
+"CRL'leri güncelleyin ve sertifikanın tam bir geçerlilik denetimini yapın."
 
 #: src/dialogs/certificatedetailswidget.cpp:1062
 #, fuzzy, kde-format

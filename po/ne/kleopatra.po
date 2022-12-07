@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-03 00:47+0000\n"
+"POT-Creation-Date: 2022-12-07 00:47+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -367,7 +367,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:642
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:window"
@@ -1773,9 +1773,9 @@ msgstr ""
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/commands/importcertificatefromfilecommand.cpp:133
-#: src/commands/importcertificatescommand.cpp:900
-#: src/commands/importcertificatescommand.cpp:951
+#: src/commands/importcertificatefromfilecommand.cpp:136
+#: src/commands/importcertificatescommand.cpp:891
+#: src/commands/importcertificatescommand.cpp:942
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "प्रमाणपत्र आयात गर्न असफल भयो"
@@ -1800,7 +1800,7 @@ msgstr ""
 msgid "Notepad"
 msgstr ""
 
-#: src/commands/importcertificatefromfilecommand.cpp:123
+#: src/commands/importcertificatefromfilecommand.cpp:126
 #: src/commands/importcertificatescommand.cpp:186
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
@@ -1808,7 +1808,7 @@ msgctxt "@title:window"
 msgid "Importing Certificates"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/importcertificatefromfilecommand.cpp:124
+#: src/commands/importcertificatefromfilecommand.cpp:127
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgid "Importing certificates from 1 file..."
@@ -1816,26 +1816,26 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "प्रमाणपत्र आयात गर्नुहोस्..."
 msgstr[1] "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/importcertificatefromfilecommand.cpp:133
+#: src/commands/importcertificatefromfilecommand.cpp:136
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not open file %1 for reading: %2"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/commands/importcertificatefromfilecommand.cpp:147
+#: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:288 src/view/keytreeview.cpp:275
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Certificates"
 msgstr "प्रमाणपत्र"
 
-#: src/commands/importcertificatefromfilecommand.cpp:148
+#: src/commands/importcertificatefromfilecommand.cpp:158
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Any files"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
-#: src/commands/importcertificatefromfilecommand.cpp:154
+#: src/commands/importcertificatefromfilecommand.cpp:164
 #, kde-format
 msgid "Select Certificate File"
 msgstr "प्रमाणपत्र फाइल चयन गर्नुहोस्"
@@ -2113,18 +2113,18 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:621
+#: src/commands/importcertificatescommand.cpp:625
 #, kde-format
 msgid " "
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:622
+#: src/commands/importcertificatescommand.cpp:626
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:626
+#: src/commands/importcertificatescommand.cpp:630
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2133,19 +2133,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:643
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:640
+#: src/commands/importcertificatescommand.cpp:644
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:863
+#: src/commands/importcertificatescommand.cpp:854
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2153,8 +2153,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "प्रमाणपत्र निर्यात गर्दैछ..."
 msgstr[1] "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/commands/importcertificatescommand.cpp:898
-#: src/commands/importcertificatescommand.cpp:949
+#: src/commands/importcertificatescommand.cpp:889
+#: src/commands/importcertificatescommand.cpp:940
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "

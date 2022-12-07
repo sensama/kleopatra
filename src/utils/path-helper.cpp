@@ -53,15 +53,21 @@ QString Kleo::heuristicBaseDirectory(const QStringList &fileNames)
     }
     qCDebug(KLEOPATRA_LOG) << "dirs" << dirs;
     const QString candidate = longestCommonPrefix(dirs);
-    /* Special case handling for Outlook attachment temporary path.
+    /* Special case handling for Outlook and KMail attachment temporary path.
      * This is otherwise something like:
      * c:\users\username\AppData\Local\Microsoft\Windows\INetCache\
      *      Content.Outlook\ADSDFG9\foo.txt
      *
+     * For KMail it is usually /tmp/messageviewer/foo
+     *
+     * Both are paths that are unlikely to be the target path to save the
+     * decrypted attachment.
+     *
      * This is very common when encrypted attachments are opened
-     * within outlook.
+     * within Outlook or KMail.
      */
-    if (candidate.contains(QStringLiteral("Content.Outlook"))) {
+    if (candidate.contains(QStringLiteral("Content.Outlook")) ||
+        candidate.contains(QStringLiteral("messageviewer"))) {
         return QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     }
     const int idx = candidate.lastIndexOf(QLatin1Char('/'));

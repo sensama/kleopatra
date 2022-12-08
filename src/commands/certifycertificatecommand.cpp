@@ -229,23 +229,25 @@ void CertifyCertificateCommand::Private::slotDialogRejected()
 
 void CertifyCertificateCommand::Private::slotResult(const Error &err)
 {
-    if (!err && !err.isCanceled() && dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
-        auto const cmd = new ExportOpenPGPCertsToServerCommand(target);
-        cmd->start();
-    } else if (!err) {
-        information(i18n("Certification successful."),
-                    i18n("Certification Succeeded"));
-    } else {
+    if (err.isCanceled()) {
+        // do nothing
+    } else if (err) {
         error(i18n("<p>An error occurred while trying to certify<br/><br/>"
                    "<b>%1</b>:</p><p>\t%2</p>",
               Formatting::formatForComboBox(target),
               QString::fromUtf8(err.asString())),
               i18n("Certification Error"));
+    } else if (dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
+        auto const cmd = new ExportOpenPGPCertsToServerCommand(target);
+        cmd->start();
+    } else {
+        information(i18n("Certification successful."),
+                    i18n("Certification Succeeded"));
     }
+
     if (!dialog->tags().isEmpty()) {
         Tags::enableTags();
     }
-
     finished();
 }
 

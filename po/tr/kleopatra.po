@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-07 00:47+0000\n"
+"POT-Creation-Date: 2022-12-08 00:46+0000\n"
 "PO-Revision-Date: 2022-11-21 22:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -6277,10 +6277,9 @@ msgstr ""
 "CRL'leri güncelleyin ve sertifikanın tam bir geçerlilik denetimini yapın."
 
 #: src/dialogs/certificatedetailswidget.cpp:1062
-#, fuzzy, kde-format
-#| msgid "Issuer Certificate Not Found (%1)"
+#, kde-format
 msgid "The issuer certificate could not be found locally."
-msgstr "Dağıtıcı sertifikası bulunamadı ( %1)"
+msgstr "Veren sertifikası yerel olarak bulunamadı."
 
 #: src/dialogs/certificateselectiondialog.cpp:132
 #, kde-format
@@ -6311,16 +6310,15 @@ msgid "Import..."
 msgstr "İçe Aktar..."
 
 #: src/dialogs/certificateselectiondialog.cpp:168
-#, fuzzy, kde-format
-#| msgid "Import a certificate from a file"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Import certificate from file"
-msgstr "Dosyadan bir sertifika içe aktar"
+msgstr "Dosyadan sertifika içe aktar"
 
 #: src/dialogs/certificateselectiondialog.cpp:169
 #, kde-format
 msgid "Import certificate"
-msgstr "Sertifikayı içe aktar"
+msgstr "Sertifika içe aktar"
 
 #: src/dialogs/certificateselectiondialog.cpp:170
 #, kde-format
@@ -6328,19 +6326,15 @@ msgid "Lookup..."
 msgstr "Bak..."
 
 #: src/dialogs/certificateselectiondialog.cpp:171
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Lookup certificates on server"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Look up certificate on server"
-msgstr "Sunucudaki sertifikalara bak"
+msgstr "Sunucuda sertifika bak"
 
 #: src/dialogs/certificateselectiondialog.cpp:172
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Lookup certificates on server"
+#, kde-format
 msgid "Look up certificate"
-msgstr "Sunucudaki sertifikalara bak"
+msgstr "Sunucuda sertifikalara bak"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
@@ -6348,41 +6342,34 @@ msgid "New..."
 msgstr "Yeni..."
 
 #: src/dialogs/certificateselectiondialog.cpp:174
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a new OpenPGP certificate"
-msgstr "OpenPGP Sertifikaları"
+msgstr "Yeni bir OpenPGP sertifikası oluştur"
 
 #: src/dialogs/certificateselectiondialog.cpp:175
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Create a new certificate"
+#, kde-format
 msgid "Create certificate"
-msgstr "Yeni sertifika oluştur"
+msgstr "Sertifika oluştur"
 
 #: src/dialogs/certificateselectiondialog.cpp:176
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "Groups..."
-msgstr "Ayrıntıları Göster"
+msgstr "Gruplar..."
 
 #: src/dialogs/certificateselectiondialog.cpp:177
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
-msgstr "Sertifikalandırma Güvenini Değiştir..."
+msgstr "Sertifika gruplarını yönet"
 
 #: src/dialogs/certificateselectiondialog.cpp:178
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "Manage groups"
-msgstr "Ayrıntıları Göster"
+msgstr "Grupları yönet"
 
 #: src/dialogs/certificateselectiondialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Certificate Selection"
+#, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
 msgstr "Sertifika Seçimi"
@@ -6390,12 +6377,10 @@ msgstr "Sertifika Seçimi"
 #: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
 msgid "Certify"
-msgstr "Onayla"
+msgstr "Sertifikala"
 
 #: src/dialogs/certifycertificatedialog.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "arg is name, email of certificate holder"
-#| msgid "Certify Certificate: %1"
+#, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Sertifikayı Onayla: %1"
@@ -6407,18 +6392,21 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
+"Parmak izini doğrulayın, sertifikalamak istediğiniz kullanıcı kimliklerini "
+"imleyin ve kullanıı kimliklerini sertifikalamak istediğiniz anahtarı seçin."
+"<br><i>Not: Yalnızca parmak izi anahtarı ve sahibini doğru bir biçimde "
+"tanımlar.</i>"
 
 #: src/dialogs/certifywidget.cpp:376
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgid "Certify with:"
-msgstr "Onayla"
+msgstr "Şununla sertifikala:"
 
 #: src/dialogs/certifywidget.cpp:388
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
-msgstr ""
+msgstr "Sahip Güvenini Ayarla"
 
 #: src/dialogs/certifywidget.cpp:390
 #, kde-format
@@ -6427,6 +6415,9 @@ msgid ""
 "Click to set the trust level of the selected certification key to ultimate "
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
+"Seçili sertifikasyon anahtarının güven düzeyinin en yüksek düzey olarak "
+"ayarlamak için tıklayın. Kendi anahtarlarınız için genelde bunu yapmak "
+"istersiniz."
 
 #: src/dialogs/certifywidget.cpp:406
 #, kde-format
@@ -6434,32 +6425,29 @@ msgid "Advanced"
 msgstr "Gelişmiş"
 
 #: src/dialogs/certifywidget.cpp:406
-#, fuzzy, kde-format
-#| msgid "Advanced Settings"
+#, kde-format
 msgid "Show advanced options"
-msgstr "Gelişmiş Ayarlar"
+msgstr "Gelişmiş seçenekleri göster"
 
 #: src/dialogs/certifywidget.cpp:412
-#, fuzzy, kde-format
-#| msgid "Certify for everyone to see"
+#, kde-format
 msgid "Certify for everyone to see (exportable)"
-msgstr "Görebilen herkes için onayla"
+msgstr "Herkesin görmesi için sertifikala (dışa aktarılabilir)"
 
 #: src/dialogs/certifywidget.cpp:419
-#, fuzzy, kde-format
-#| msgid "Publish on Server..."
+#, kde-format
 msgid "Publish on keyserver afterwards"
-msgstr "Sunucuda Yayımla..."
+msgstr "Sonrasında anahtar sunucusunda yayımla"
 
 #: src/dialogs/certifywidget.cpp:431
 #, kde-format
 msgid "Tags:"
-msgstr ""
+msgstr "Etiketler:"
 
 #: src/dialogs/certifywidget.cpp:435
 #, kde-format
 msgid "You can use this to add additional info to a certification."
-msgstr ""
+msgstr "Bunu, bir sertifikasyona ek bilgi eklemek için kullanabilirsiniz."
 
 #: src/dialogs/certifywidget.cpp:437
 #, kde-format
@@ -6467,44 +6455,47 @@ msgid ""
 "Tags created by anyone with full certification trust are shown in the "
 "keylist and can be searched."
 msgstr ""
+"Tam sertifikasyon güveni olan biri tarafından oluşturulan etiketler anahtar "
+"listesinde gösterilir ve aranabilirler."
 
 #: src/dialogs/certifywidget.cpp:440
 #, kde-format
 msgid "Explain tags"
-msgstr ""
+msgstr "Etiketleri açıkla"
 
 #: src/dialogs/certifywidget.cpp:453
-#, fuzzy, kde-format
-#| msgid "Option:"
+#, kde-format
 msgid "Expiration:"
-msgstr "Seçenek:"
+msgstr "Süre Dolumu::"
 
 #: src/dialogs/certifywidget.cpp:461
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
-msgstr ""
+msgstr "Sertifikasyon, en azından yarına dek geçerli olmalıdır."
 
 #: src/dialogs/certifywidget.cpp:462
 #, kde-format
 msgid "The latest allowed certification date is %1."
-msgstr "En son izin verilen sertifikalama tarihi %1."
+msgstr "En son izin verilen sertifikasyon tarihi %1."
 
 #: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
-msgstr ""
+msgstr "Bugünden itibaren iki yıl"
 
 #: src/dialogs/certifywidget.cpp:466
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
-msgstr ""
+msgstr "Bugünden itibaren bir yıl"
 
 #: src/dialogs/certifywidget.cpp:471
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
+"Bir sertifikasyon için süre dolum tarihi ayarlamak için bunu "
+"kullanabilirsiniz."
 
 #: src/dialogs/certifywidget.cpp:473
 #, kde-format
@@ -6513,22 +6504,26 @@ msgid ""
 "certification to a certain amount of time. Once the expiration date has "
 "passed, your certification is no longer valid."
 msgstr ""
+"Bir süre dolum tarihi ayarlayarak, sertifikasyonunuzun geçerlilik süresini "
+"belirli bir zamana sınırlandırabilirsiniz. Süre dolum tarihi geçtiğinde "
+"sertifikasyonunuz artık geçerli olmaz."
 
 #: src/dialogs/certifywidget.cpp:477
-#, fuzzy, kde-format
-#| msgid "Change Expiry Date..."
+#, kde-format
 msgid "Explain expiration"
-msgstr "Zamanaşımı Tarihini Değiştir..."
+msgstr "Süre dolumunu açıkla"
 
 #: src/dialogs/certifywidget.cpp:490
 #, kde-format
 msgid "Certify as trusted introducer"
-msgstr ""
+msgstr "Güvenilen tanıştırıcı olarak sertifikala"
 
 #: src/dialogs/certifywidget.cpp:491
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
+"Bir alan adı için güvenilen bir tanıştırıcı sertifikalamak için bunu "
+"kullanabilirsiniz."
 
 #: src/dialogs/certifywidget.cpp:493
 #, kde-format
@@ -6539,20 +6534,19 @@ msgid ""
 msgstr ""
 
 #: src/dialogs/certifywidget.cpp:498
-#, fuzzy, kde-format
-#| msgid "Trusted issuer?"
+#, kde-format
 msgid "Explain trusted introducer"
-msgstr "Veren güvenilir mi?"
+msgstr "Güvenilen tanıştırıcıyı açıkla"
 
 #: src/dialogs/certifywidget.cpp:508
 #, kde-format
 msgid "Domain:"
-msgstr ""
+msgstr "Alan adı:"
 
 #: src/dialogs/certifywidget.cpp:689
 #, kde-format
 msgid "Is this your own key?"
-msgstr ""
+msgstr "Bu sizin kendi anahtarınız mı?"
 
 #: src/dialogs/certifywidget.cpp:704
 #, kde-format
@@ -6565,14 +6559,12 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:707
 #, kde-format
 msgid "Certification Trust Change Failed"
-msgstr "Sertifikalama Güven Düzeyi Değiştirme Başarısız"
+msgstr "Sertifikasyon Güven Düzeyi Değiştirme Başarısız"
 
 #: src/dialogs/certifywidget.cpp:714
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "PIN set successfully."
+#, kde-format
 msgid "Owner trust set successfully."
-msgstr "PIN başarılı bir şekilde ayarlandı."
+msgstr "Sahip güveni başarıyla ayarlandı."
 
 #: src/dialogs/deletecertificatesdialog.cpp:92
 #, kde-format
@@ -6580,16 +6572,13 @@ msgid "These are the certificates you have selected for deletion:"
 msgstr "Bunlar silinmesi için seçtiğiniz sertifikalar:"
 
 #: src/dialogs/deletecertificatesdialog.cpp:94
-#, fuzzy, kde-format
-#| msgid ""
-#| "These certificates will be deleted even though you did <emphasis>not</"
-#| "emphasis><nl/> explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
+#, kde-format
 msgid ""
 "These certificates will be deleted even though you did <b>not</b> explicitly "
 "select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr ""
-"Bu sertifikalar açıkça onları <emphasis>seçmemiş</emphasis>olsanız bile<nl/"
-">silineceklerdir (<a href=\"whatsthis://\">Neden?</a>):"
+"Bu sertifikalar, onları açıkça <b>seçmemiş</b> olsanız bile silineceklerdir "
+"(<a href=\"whatsthis://\">Neden?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp:115
 #, kde-kuit-format
@@ -6608,9 +6597,10 @@ msgstr ""
 "title><para>CA sertifikalarını sildiğinizde (kök ve ara CA'lar) onlar "
 "tarafından verilen sertifikalar da silinecektir.</para><para>Bu kolayca "
 "<application>Kleopatra</application>'nın hiyerarşik görünüm kipinde "
-"görülebilir: Bu kipte çocukları olan bir sertifikayı silerseniz bu çocuklar "
-"da silinecektir. CA sertifikalarını bu sertifikaları barındıran dizinler "
-"olarak düşünün: Klasörü sildiğinizde içeriği de silmiş olursunuz.</para>"
+"görülebilir: Bu kipte alt ögeleri olan bir sertifikayı silerseniz bu "
+"çocuklar da silinecektir. CA sertifikalarını bu sertifikaları barındıran "
+"dizinler olarak düşünün: Klasörü sildiğinizde içeriği de silmiş olursunuz.</"
+"para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:127
 #, kde-format
@@ -6670,134 +6660,126 @@ msgstr "Ad:"
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
-msgstr ""
+msgstr "Kullanılabilir Anahtarlar"
 
 #: src/dialogs/editgroupdialog.cpp:102 src/dialogs/editgroupdialog.cpp:108
-#, fuzzy, kde-format
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgctxt "@label"
 msgid "Search available keys"
-msgstr "Anahtar sunucusunda bir sertifika ara"
+msgstr "Kullanılabilir anahtarları ara"
 
 #: src/dialogs/editgroupdialog.cpp:103 src/dialogs/editgroupdialog.cpp:109
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
+"Arama terimiyle eşleşen anahtarlar için kullanılabilir anahtarlar listesini "
+"arayın."
 
 #: src/dialogs/editgroupdialog.cpp:121
 #, kde-format
 msgid "available keys"
-msgstr ""
+msgstr "kullanılabilir anahtarlar"
 
 #: src/dialogs/editgroupdialog.cpp:137
-#, fuzzy, kde-format
-#| msgid "Select File"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
-msgstr "Dosya Seç"
+msgstr "Seçili Anahtarları Ekle"
 
 #: src/dialogs/editgroupdialog.cpp:138
 #, kde-format
 msgid "Add the selected keys to the group"
-msgstr ""
+msgstr "Seçili anahtarları gruba ekle"
 
 #: src/dialogs/editgroupdialog.cpp:144
-#, fuzzy, kde-format
-#| msgid "Remove Selected"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
-msgstr "Seçileni Kaldır"
+msgstr "Seçili Anahtarları Kaldır"
 
 #: src/dialogs/editgroupdialog.cpp:145
 #, kde-format
 msgid "Remove the selected keys from the group"
-msgstr ""
+msgstr "Gruptan seçili anahtarları kaldır"
 
 #: src/dialogs/editgroupdialog.cpp:153
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@title"
 msgid "Group Keys"
-msgstr "Ayrıntıları Göster"
+msgstr "Grup Anahtarları"
 
 #: src/dialogs/editgroupdialog.cpp:160 src/dialogs/editgroupdialog.cpp:166
-#, fuzzy, kde-format
-#| msgid "Search for a certificate on a keyserver"
+#, kde-format
 msgctxt "@label"
 msgid "Search group keys"
-msgstr "Anahtar sunucusunda bir sertifika ara"
+msgstr "Grup anahtarlarını ara"
 
 #: src/dialogs/editgroupdialog.cpp:161 src/dialogs/editgroupdialog.cpp:167
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
 msgstr ""
+"Arama terimiyle eşleşen anahtarlar için grup anahtarları listesini arayın."
 
 #: src/dialogs/editgroupdialog.cpp:178
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "group keys"
-msgstr "Ayrıntıları Göster"
+msgstr "grup anahtarları"
 
 #: src/dialogs/editgroupdialog.cpp:345
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
-msgstr ""
+msgstr "Grubu Düzenle"
 
 #: src/dialogs/expirydialog.cpp:69
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 gün için geçerli"
+msgstr[1] "%1 gün için geçerli"
 
 #: src/dialogs/expirydialog.cpp:71
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 hafta için geçerli"
+msgstr[1] "%1 hafta için geçerli"
 
 #: src/dialogs/expirydialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Valid from:"
+#, kde-format
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
-msgstr[0] "Geçerlilik süresi başlangıcı:"
-msgstr[1] "Geçerlilik süresi başlangıcı:"
+msgstr[0] "%1 ay için geçerli"
+msgstr[1] "%1 ay için geçerli"
 
 #: src/dialogs/expirydialog.cpp:75
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 yıl için geçerli"
+msgstr[1] "%1 yıl için geçerli"
 
 #: src/dialogs/expirydialog.cpp:161
-#, fuzzy, kde-format
-#| msgid "Please select one of the following certificates:"
+#, kde-format
 msgid "Please select until when the subkey should be valid:"
-msgstr "Lütfen bu sertifikalardan birini seçin:"
+msgstr "Alt anahtarın hangi tarihe dek geçerli olması gerektiğini seçin:"
 
 #: src/dialogs/expirydialog.cpp:162
-#, fuzzy, kde-format
-#| msgid "Please select one of the following certificates:"
+#, kde-format
 msgid "Please select until when the certificate should be valid:"
-msgstr "Lütfen bu sertifikalardan birini seçin:"
+msgstr "Sertifikanın hangi tarihe dek geçerli olması gerektiğini seçin:"
 
 #: src/dialogs/expirydialog.cpp:166
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgid "Unlimited validity"
-msgstr "Sertifika geçerliliğini göster"
+msgstr "Sınırsız geçerlilik"
 
 #: src/dialogs/expirydialog.cpp:174
-#, fuzzy, kde-format
-#| msgid "Valid from:"
+#, kde-format
 msgid "Valid for:"
-msgstr "Geçerlilik süresi başlangıcı:"
+msgstr "Şu kadar geçerli:"
 
 #: src/dialogs/expirydialog.cpp:187
 #, kde-format
@@ -6822,35 +6804,30 @@ msgstr "Yıl"
 #: src/dialogs/expirydialog.cpp:220
 #, kde-format
 msgid "Also update the validity period of the subkeys"
-msgstr ""
+msgstr "Ayrıca alt anahtarların da geçerlilik periyodunu güncelle"
 
 #: src/dialogs/expirydialog.cpp:276
-#, fuzzy, kde-format
-#| msgid "Valid until:"
+#, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
-msgstr "Geçerlilik süresi sonu:"
+msgstr "%1 tarihine dek geçerli"
 
 #: src/dialogs/expirydialog.cpp:312
-#, fuzzy, kde-format
-#| msgid "Change cardholder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
-msgstr "Kart sahibini değiştir"
+msgstr "Geçerlilik Periyodunu Değiştir"
 
 #: src/dialogs/exportdialog.cpp:65
-#, fuzzy, kde-format
-#| msgid "Export..."
+#, kde-format
 msgid "Exporting ..."
-msgstr "Dışa Aktar..."
+msgstr "Dışa Aktarılıyor..."
 
 #: src/dialogs/exportdialog.cpp:123
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to set PIN: %1"
+#, kde-format
 msgctxt "%1 is error message"
 msgid "Failed to export: '%1'"
-msgstr "PIN ayarlama başarısız oldu: %1"
+msgstr "Dışa aktarma başarısız oldu: '%1'"
 
 #: src/dialogs/exportdialog.cpp:186
 #, kde-format
@@ -6866,17 +6843,17 @@ msgstr "Ad:"
 #: src/dialogs/gencardkeydialog.cpp:60
 #, kde-format
 msgid "EMail:"
-msgstr "EPosta:"
+msgstr "E-posta:"
 
 #: src/dialogs/gencardkeydialog.cpp:64
 #, kde-format
 msgid "Invalid EMail"
-msgstr "Geçersiz EPosta"
+msgstr "Geçersiz E-posta"
 
 #: src/dialogs/gencardkeydialog.cpp:71
 #, kde-format
 msgid "Algorithm:"
-msgstr ""
+msgstr "Algoritma:"
 
 #: src/dialogs/gencardkeydialog.cpp:78
 #, kde-format
@@ -6898,16 +6875,15 @@ msgstr ""
 "koruyabilirisiniz."
 
 #: src/dialogs/groupdetailsdialog.cpp:128
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Group Details"
-msgstr "Ayrıntıları Göster"
+msgstr "Grup Ayrıntıları"
 
 #: src/dialogs/groupdetailsdialog.cpp:141
 #, kde-format
 msgid "Note: This group is defined in the configuration files of gpg."
-msgstr ""
+msgstr "Not: Bu grup, gpg'nin yapılandırma dosyalarında tanımlıdır."
 
 #: src/dialogs/lookupcertificatesdialog.cpp:118
 #, kde-format
@@ -6945,42 +6921,39 @@ msgid "Import"
 msgstr "İçe Aktar"
 
 #: src/dialogs/nameandemailwidget.cpp:61 src/dialogs/nameandemailwidget.cpp:163
-#, fuzzy, kde-format
-#| msgid "Name"
+#, kde-format
 msgctxt "@label"
 msgid "Name"
 msgstr "Ad"
 
 #: src/dialogs/nameandemailwidget.cpp:62
-#, fuzzy, kde-format
-#| msgid "new dns name"
+#, kde-format
 msgid "Enter a name."
-msgstr "yeni dns adı"
+msgstr "Bir ad girin."
 
 #: src/dialogs/nameandemailwidget.cpp:75 src/dialogs/nameandemailwidget.cpp:217
-#, fuzzy, kde-format
-#| msgid "EMail address:"
+#, kde-format
 msgctxt "@label"
 msgid "Email address"
-msgstr "E-posta adresi:"
+msgstr "E-posta adresi"
 
 #: src/dialogs/nameandemailwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgid "Enter an email address."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr "Bir e-posta adresi girin."
 
 #: src/dialogs/nameandemailwidget.cpp:94
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "The name must not include "
 msgid "The name must not include <, >, and @."
-msgstr ""
+msgstr "Ad; <, > ve @ içermemelidir."
 
 #: src/dialogs/nameandemailwidget.cpp:96
 #, kde-format
 msgctxt "text for screen readers"
 msgid ""
 "The name must not include less-than sign, greater-than sign, and at sign."
-msgstr ""
+msgstr "Ad; küçüktür, büyüktür ve @ işaretini içermemelidir."
 
 #: src/dialogs/nameandemailwidget.cpp:100
 #, kde-format
@@ -6988,6 +6961,8 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include <, >, and @."
 msgstr ""
+"Ad; kurumunuz tarafından belirtilen biçimde olmalıdır ve <, > ve @ "
+"içermemelidir."
 
 #: src/dialogs/nameandemailwidget.cpp:103
 #, kde-format
@@ -6996,23 +6971,26 @@ msgid ""
 "The name must be in the format required by your organization and it must not "
 "include less-than sign, greater-than sign, and at sign."
 msgstr ""
+"Ad; kurumunuz tarafından belirtilen biçimde olmalıdır ve küçüktür, büyüktür "
+"ve @ işaretini içermemelidir."
 
 #: src/dialogs/nameandemailwidget.cpp:113
 #, kde-format
 msgid "Enter an email address in the correct format, like name@example.com."
-msgstr ""
+msgstr "Doğru biçimde bir e-posta adresi girin; örneğin, ad@örnek.com."
 
 #: src/dialogs/nameandemailwidget.cpp:117
 #, kde-format
 msgid ""
 "Enter an email address in the correct format required by your organization."
 msgstr ""
+"Kurumunuz tarafından belirtilen biçimde doğru bir e-posta adresi girin."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:84
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
-msgstr ""
+msgstr "Üretilen anahtarı bir anahtar parolası ile koruyun."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
 #: src/newcertificatewizard/enterdetailspage.cpp:143
@@ -7021,6 +6999,8 @@ msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
 "for the passphrase during key generation."
 msgstr ""
+"Gizli anahtarı kurtarılması olanaklı olmayan bir anahtar parolası ile "
+"şifreler. Anahtar üretimi sırasında bu parola size sorulacaktır."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
 #: src/newcertificatewizard/enterdetailspage.cpp:179
@@ -7029,23 +7009,20 @@ msgid "Advanced Settings..."
 msgstr "Gelişmiş Ayarlar..."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:117
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
+#, kde-format
 msgctxt "title:window"
 msgid "Create OpenPGP Certificate"
-msgstr "OpenPGP Sertifikaları"
+msgstr "OpenPGP Sertifikası Oluştur"
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:125
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgid "Enter a name and an email address to use for the certificate."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr "Sertifikayla kullanım için bir ad ve e-posta adresi girin."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:126
-#, fuzzy, kde-format
-#| msgid "Please enter a name or email address..."
+#, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
-msgstr "Lütfen bir ad veya posta adresi girin..."
+msgstr "Sertifikayla kullanım için bir ad ve/veya bir e-posta adresi girin."
 
 #: src/dialogs/revokekeydialog.cpp:92
 #, kde-format
@@ -7176,7 +7153,7 @@ msgstr "Geçti"
 #: src/dialogs/selftestdialog.cpp:117
 #, kde-format
 msgid "Test Name"
-msgstr "Test Adı"
+msgstr "Sınama Adı"
 
 #: src/dialogs/selftestdialog.cpp:118
 #, kde-format
@@ -7186,85 +7163,72 @@ msgstr "Sonuç"
 #: src/dialogs/selftestdialog.cpp:299
 #, kde-format
 msgid "(select test first)"
-msgstr "(önce testi seçin)"
+msgstr "(önce sınamayı seçin)"
 
 #: src/dialogs/selftestdialog.cpp:370
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<p>These are the results of the Kleopatra self-test suite. Click on a "
-#| "test for details.</p><p>Note that all but the first failure might be due "
-#| "to prior tests failing.</p>"
+#, kde-kuit-format
 msgid ""
 "<para>These are the results of the Kleopatra self-test suite. Click on a "
 "test for details.</para><para>Note that all but the first failure might be "
 "due to prior tests failing.</para>"
 msgstr ""
-"<p>Bunlar Kleopatra'nın kendi kendine test aracının sonuçlarıdır. Bir test "
-"hakkında ayrıntı için üzerine tıklayın.</p><p>İlk hata dışında diğerlerinin "
-"nedeninin önceki testlerin başarısızlığı olabileceğini unutmayın.</p>"
+"<para>Bunlar Kleopatra'nın kendi kendine sınama aracının sonuçlarıdır. Bir "
+"sınama hakkında ayrıntı için üzerine tıklayın.</para><para>İlk hata dışında "
+"diğerlerinin nedeninin önceki sınamaların başarısızlığı olabileceğini "
+"unutmayın.</para>"
 
 #: src/dialogs/selftestdialog.cpp:387
-#, fuzzy, kde-format
-#| msgid "Show all test results"
+#, kde-format
 msgid "test results"
-msgstr "Tüm test sonuçlarını göster"
+msgstr "sınama sonuçları"
 
 #: src/dialogs/selftestdialog.cpp:401
-#, fuzzy, kde-format
-#| msgid "Details"
+#, kde-format
 msgctxt "@title:group"
 msgid "Details"
 msgstr "Ayrıntılar"
 
 #: src/dialogs/selftestdialog.cpp:425
-#, fuzzy, kde-format
-#| msgid "Proposed Corrective Action"
+#, kde-format
 msgctxt "@title:group"
 msgid "Proposed Corrective Action"
 msgstr "Önerilen Düzeltici Eylem"
 
 #: src/dialogs/selftestdialog.cpp:450
-#, fuzzy, kde-format
-#| msgid "Do It"
+#, kde-format
 msgctxt "@action:button"
 msgid "Do It"
 msgstr "Yap"
 
 #: src/dialogs/selftestdialog.cpp:462
-#, fuzzy, kde-format
-#| msgid "Show all test results"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show all test results"
-msgstr "Tüm test sonuçlarını göster"
+msgstr "Tüm sınama sonuçlarını göster"
 
 #: src/dialogs/selftestdialog.cpp:466
-#, fuzzy, kde-format
-#| msgid "Run these tests at startup"
+#, kde-format
 msgctxt "@option:check"
 msgid "Run these tests at startup"
-msgstr "Bu testleri başlangıçta çalıştır"
+msgstr "Bu sınamaları başlangıçta çalıştır"
 
 #: src/dialogs/selftestdialog.cpp:472
-#, fuzzy, kde-format
-#| msgid "Continue"
+#, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Sürdür"
 
 #: src/dialogs/selftestdialog.cpp:473
-#, fuzzy, kde-format
-#| msgid "Rerun Tests"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rerun Tests"
-msgstr "Testleri Yeniden Çalıştır"
+msgstr "Sınamaları Yeniden Çalıştır"
 
 #: src/dialogs/selftestdialog.cpp:483
-#, fuzzy, kde-format
-#| msgid "Perform Self-Test"
+#, kde-format
 msgctxt "@title:window"
 msgid "Self Test"
-msgstr "Kendi Kendine Test Uygula"
+msgstr "Kendi Kendini Sınama"
 
 #: src/dialogs/setinitialpindialog.cpp:66
 #, kde-kuit-format
@@ -7296,15 +7260,7 @@ msgstr "PIN başarılı bir şekilde ayarlandı."
 
 #. i18n: ectx: property (text), widget (QLabel, mainLB)
 #: src/dialogs/setinitialpindialog.ui:13
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>On this SmartCard, there is space for two certificates:\n"
-#| "<ol>\n"
-#| "<li>A normal certificate</li>\n"
-#| "<li>A special certificate for making <em>qualified signatures</em> "
-#| "according to the German Signaturgesetz</li>\n"
-#| "</ol>\n"
-#| "You need to set initial PINs for both of them.</p>"
+#, kde-format
 msgid ""
 "<p>On this SmartCard, there is space for two certificates:\n"
 "<ol>\n"
@@ -7345,98 +7301,85 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
 #: src/dialogs/setinitialpindialog.ui:81
-#, fuzzy, kde-format
-#| msgid "Set Initial PIN (SigG)"
+#, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
-msgstr "Başlangıç PIN'i Ata (SigG)"
+msgstr "(isteğe bağlı) Başlangıç PIN'i Ayarla (SigG)"
 
 #: src/dialogs/subkeyswidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Subkeys:"
+#, kde-format
 msgctxt "@label"
 msgid "Subkeys:"
 msgstr "Alt anahtarlar:"
 
 #: src/dialogs/subkeyswidget.cpp:90
-#, fuzzy, kde-format
-#| msgid "Subkeys:"
+#, kde-format
 msgctxt "@label"
 msgid "Subkeys"
-msgstr "Alt anahtarlar:"
+msgstr "Alt anahtarlar"
 
 #: src/dialogs/subkeyswidget.cpp:93
-#, fuzzy, kde-format
-#| msgid "ID"
+#, kde-format
 msgctxt "@title:column"
 msgid "ID"
 msgstr "Kimlik"
 
 #: src/dialogs/subkeyswidget.cpp:94
-#, fuzzy, kde-format
-#| msgid "Type"
+#, kde-format
 msgctxt "@title:column"
 msgid "Type"
 msgstr "Tür"
 
 #: src/dialogs/subkeyswidget.cpp:95
-#, fuzzy, kde-format
-#| msgid "Valid From"
+#, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Geçerlilik Süresinin Başlangıcı"
 
 #: src/dialogs/subkeyswidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "Valid Until"
+#, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Geçerlilik Süresinin Sonu"
 
 #: src/dialogs/subkeyswidget.cpp:97
-#, fuzzy, kde-format
-#| msgid "Status"
+#, kde-format
 msgctxt "@title:column"
 msgid "Status"
 msgstr "Durum"
 
 #: src/dialogs/subkeyswidget.cpp:98
-#, fuzzy, kde-format
-#| msgid "Strength"
+#, kde-format
 msgctxt "@title:column"
 msgid "Strength"
 msgstr "Güçlülük"
 
 #: src/dialogs/subkeyswidget.cpp:99
-#, fuzzy, kde-format
-#| msgid "Usage"
+#, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "Kullanım"
 
 #: src/dialogs/subkeyswidget.cpp:100
-#, fuzzy, kde-format
-#| msgid "Primary"
+#, kde-format
 msgctxt "@title:column"
 msgid "Primary"
 msgstr "Birincil"
 
 #: src/dialogs/subkeyswidget.cpp:101
-#, fuzzy, kde-format
-#| msgid "Stored:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Storage"
-msgstr "Kayıtlı:"
+msgstr "Depolama"
 
 #: src/dialogs/subkeyswidget.cpp:122 src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Change End of Validity Period..."
-msgstr ""
+msgstr "Geçerlilik Periyodu Sonunu Değiştir..."
 
 #: src/dialogs/subkeyswidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Export Secret Keys..."
+#, kde-format
 msgid "Export OpenSSH key"
-msgstr "Gizili Anahtarları Dışa Aktar..."
+msgstr "OpenSSH Anahtarı Dışa Aktar"
 
 #: src/dialogs/subkeyswidget.cpp:150
 #, kde-format
@@ -7449,67 +7392,60 @@ msgid "Transfer to smartcard"
 msgstr "Akıllı karta aktar"
 
 #: src/dialogs/subkeyswidget.cpp:177
-#, fuzzy, kde-format
-#| msgid "Export Secret Keys..."
+#, kde-format
 msgid "Export secret subkey"
-msgstr "Gizili Anahtarları Dışa Aktar..."
+msgstr "Gizli alt anahtarı dışa aktar"
 
 #: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "yes, is primary key"
 msgid "yes"
-msgstr ""
+msgstr "evet"
 
 #: src/dialogs/subkeyswidget.cpp:245
 #, kde-format
 msgctxt "no, is not primary key"
 msgid "no"
-msgstr ""
+msgstr "hayır"
 
 #: src/dialogs/subkeyswidget.cpp:248
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgctxt "smart card <serial number>"
 msgid "smart card %1"
-msgstr "Akıllı Kart"
+msgstr "akıllı kart %1"
 
 #: src/dialogs/subkeyswidget.cpp:250
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgid "smart card"
-msgstr "Akıllı Kart"
+msgstr "akıllı kart"
 
 #: src/dialogs/subkeyswidget.cpp:253
 #, kde-format
 msgctxt "key is 'offline key', i.e. secret key is not stored on this computer"
 msgid "offline"
-msgstr ""
+msgstr "çevrimdışı"
 
 #: src/dialogs/subkeyswidget.cpp:255
-#, fuzzy, kde-format
-#| msgctxt "stored..."
-#| msgid "on this computer"
+#, kde-format
 msgid "on this computer"
 msgstr "bu bilgisayarda"
 
 #: src/dialogs/subkeyswidget.cpp:257
-#, fuzzy, kde-format
-#| msgid "unknown"
+#, kde-format
 msgctxt "unknown storage location"
 msgid "unknown"
 msgstr "bilinmeyen"
 
 #: src/dialogs/subkeyswidget.cpp:282
-#, fuzzy, kde-format
-#| msgid "Subkeys details"
+#, kde-format
 msgctxt "@title:window"
 msgid "Subkeys Details"
-msgstr "Alt anahtar ayrıntıları"
+msgstr "Alt Anahtar Ayrıntıları"
 
 #: src/dialogs/trustchainwidget.cpp:63
 #, kde-format
 msgid "Issuer Certificate Not Found (%1)"
-msgstr "Dağıtıcı sertifikası bulunamadı ( %1)"
+msgstr "Veren sertifikası bulunamadı ( %1)"
 
 #: src/dialogs/trustchainwidget.cpp:86
 #, kde-format
@@ -7526,7 +7462,7 @@ msgstr "Güncellemeler aranıyor..."
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
-msgstr "Mevcut veritabanı sürümü için güncelleme yok."
+msgstr "Kullanılabilir sürüm veritabanı için güncelleme yok."
 
 #: src/dialogs/updatenotification.cpp:164
 #, kde-format
@@ -7551,11 +7487,10 @@ msgstr ""
 "a>'e göz atın."
 
 #: src/dialogs/updatenotification.cpp:198
-#, fuzzy, kde-format
-#| msgid "Update available!"
+#, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
-msgstr "Güncelleme var!"
+msgstr "Güncelleme Kullanılabilir"
 
 #: src/dialogs/updatenotification.cpp:203
 #, kde-format
@@ -7565,20 +7500,19 @@ msgstr "Gelecekteki güncellemeler için bu bildirimi göster."
 #: src/dialogs/updatenotification.cpp:210
 #, kde-format
 msgid "&Get update"
-msgstr "&Güncellemeleri Al"
+msgstr "&Güncellemeyi Al"
 
 #: src/dialogs/weboftrustdialog.cpp:62
 #, kde-format
 msgctxt "@title:window"
 msgid "Certifications"
-msgstr "Sertifikalamalar"
+msgstr "Sertifikasyonlar"
 
 #: src/dialogs/weboftrustdialog.cpp:77
-#, fuzzy, kde-format
-#| msgid "Generating keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Fetch Missing Keys"
-msgstr "Anahtarlar oluşturuluyor"
+msgstr "Eksik Anahtarları Getir"
 
 #: src/dialogs/weboftrustdialog.cpp:79
 #, kde-format
@@ -10720,12 +10654,12 @@ msgstr "Seçim"
 msgid "Could not find clipboard"
 msgstr "Pano bulunamadı"
 
-#: src/utils/path-helper.cpp:112
+#: src/utils/path-helper.cpp:118
 #, kde-format
 msgid "Cannot remove directory %1"
 msgstr "%1 dizini silinemedi"
 
-#: src/utils/path-helper.cpp:117
+#: src/utils/path-helper.cpp:123
 #, kde-format
 msgid "Cannot remove file %1: %2"
 msgstr "%1 dosyasıi silinemedi: %2"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-08 00:46+0000\n"
+"POT-Creation-Date: 2022-12-09 00:47+0000\n"
 "PO-Revision-Date: 2022-11-21 22:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -306,17 +306,7 @@ msgstr "Sertifikasyon İşlemi Olanaksız"
 msgid "Create"
 msgstr "Oluştur"
 
-#: src/commands/certifycertificatecommand.cpp:236
-#, kde-format
-msgid "Certification successful."
-msgstr "Sertifikasyon başarılı."
-
-#: src/commands/certifycertificatecommand.cpp:237
-#, kde-format
-msgid "Certification Succeeded"
-msgstr "Sertifikasyon Başarılı"
-
-#: src/commands/certifycertificatecommand.cpp:239
+#: src/commands/certifycertificatecommand.cpp:235
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
@@ -325,10 +315,20 @@ msgstr ""
 "<p><br/><br/><b>%1</b> sertifikalaması denenirken bir hata oluştu:</p><p>\t"
 "%2</p>"
 
-#: src/commands/certifycertificatecommand.cpp:243
+#: src/commands/certifycertificatecommand.cpp:239
 #, kde-format
 msgid "Certification Error"
 msgstr "Sertifikasyon Hatası"
+
+#: src/commands/certifycertificatecommand.cpp:244
+#, kde-format
+msgid "Certification successful."
+msgstr "Sertifikasyon başarılı."
+
+#: src/commands/certifycertificatecommand.cpp:245
+#, kde-format
+msgid "Certification Succeeded"
+msgstr "Sertifikasyon Başarılı"
 
 #: src/commands/changeexpirycommand.cpp:200
 #, kde-format
@@ -7521,34 +7521,31 @@ msgid ""
 "Look up and import all keys that were used to certify the user IDs of this "
 "key"
 msgstr ""
+"Bu anahtarın kullanıcı kimliklerini sertifikalamak için kullanılan tüm "
+"anahtarlara bak ve içe aktar"
 
 #: src/dialogs/weboftrustwidget.cpp:59
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Certifications"
+#, kde-format
 msgid "User IDs and certifications"
-msgstr "Sertifikalamalar"
+msgstr "Kullanıcı Kimlikleri ve Sertifikasyonlar"
 
 #: src/dialogs/weboftrustwidget.cpp:71
-#, fuzzy, kde-format
-#| msgid "Show certificate details"
+#, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
-msgstr "Sertifika ayrıntılarını göster"
+msgstr "Sertifika Ayrıntılarını Göster"
 
 #: src/dialogs/weboftrustwidget.cpp:76
-#, fuzzy, kde-format
-#| msgid "Certification"
+#, kde-format
 msgctxt "@action"
 msgid "Add Certification"
-msgstr "Onaylama"
+msgstr "Sertifikasyon Ekle"
 
 #: src/dialogs/weboftrustwidget.cpp:82
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@action"
 msgid "Revoke Certification"
-msgstr "Sertifikalamayı Yürürlükten Kaldır"
+msgstr "Sertifikasyonu Yürürlükten Kaldır"
 
 #: src/dialogs/weboftrustwidget.cpp:210
 #, kde-format
@@ -7556,8 +7553,8 @@ msgid ""
 "You cannot revoke this certification because it wasn't made with one of your "
 "keys (or the required secret key is missing)."
 msgstr ""
-"Bu sertifikalamayı yürürlükten kaldıramazsınız; çünkü sizin "
-"anahtarlarınızdan biriyle yapılmamıştı (veya gerekli gizli anahtar eksik)."
+"Bu sertifikasyonu yürürlükten kaldıramazsınız; çünkü sizin anahtarlarınızdan "
+"biriyle yapılmamıştı (veya gerekli gizli anahtar eksik)."
 
 #: src/dialogs/weboftrustwidget.cpp:213
 #, kde-format
@@ -7584,24 +7581,22 @@ msgid "You cannot revoke this invalid certification."
 msgstr "Bu geçersiz sertifikalamayı yürürlükten kaldıramazsınız."
 
 #: src/dialogs/weboftrustwidget.cpp:225
-#, fuzzy, kde-format
-#| msgid ""
-#| "You cannot revoke this certification because it wasn't made with one of "
-#| "your keys (or the required secret key is missing)."
+#, kde-format
 msgid ""
 "You cannot revoke this certification because the required secret key is not "
 "available."
 msgstr ""
-"Bu sertifikalamayı yürürlükten kaldıramazsınız; çünkü sizin "
-"anahtarlarınızdan biriyle yapılmamıştı (veya gerekli gizli anahtar eksik)."
+"Bu sertifikalamayı yürürlükten kaldıramazsınız; çünkü gereken gizli anahtar "
+"kullanılabilir değil."
 
 #: src/dialogs/weboftrustwidget.cpp:232
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgid ""
 "You cannot revoke any of the certifications of this user ID. Select any of "
 "the certifications for details."
-msgstr "Seçili sertifikanın sertifikalamayı yürürlükten kaldır"
+msgstr ""
+"Bu kullanıcı kimliğinin herhangi bir sertifikasyonunu yürürlükten "
+"kaldıramazsınız. Ayrıntılar için herhangi bir sertifikasyonu seçin."
 
 #: src/dialogs/weboftrustwidget.cpp:341
 #, kde-kuit-format
@@ -7616,13 +7611,13 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Certifications Loading Failed"
-msgstr "Sertifika Yükleme İşlemi Başarısız Oldu"
+msgstr "Sertifikasyonlar Yüklemesi Başarısız"
 
 #. i18n: ectx: label, entry (QuickSignEMail), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:10
 #, kde-format
 msgid "Quick Sign EMail"
-msgstr "E-postayı Çabuk İmzala"
+msgstr "Hızlı İmzala E-postası"
 
 #. i18n: ectx: whatsthis, entry (QuickSignEMail), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:11
@@ -7631,14 +7626,14 @@ msgid ""
 "Minimize the number of steps when signing emails, use preset defaults unless "
 "problems occur."
 msgstr ""
-"E-postaları imzalarken olan adımları azalt, sorun oluşmadığı müddetçe önceki "
+"E-postaları imzalarkenki adımları azalt, sorun oluşmadığı sürece önceki "
 "ayarları kullan."
 
 #. i18n: ectx: label, entry (QuickEncryptEMail), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:15
 #, kde-format
 msgid "Quick Encrypt EMail"
-msgstr "E-postayı Çabuk Şifrele"
+msgstr "Hızlı Şifrele E-postası"
 
 #. i18n: ectx: whatsthis, entry (QuickEncryptEMail), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:16
@@ -7647,14 +7642,14 @@ msgid ""
 "Minimize the number of steps when encrypting emails, use preset defaults "
 "unless problems occur."
 msgstr ""
-"E-postaları şifrelerken gereken adımları azalt, sorun oluşmadığı müddetçe "
-"önceki ayarları kullan."
+"E-postaları şifrelerkenki adımları azalt, sorun oluşmadığı sürece önceki "
+"ayarları kullan."
 
 #. i18n: ectx: label, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:20
 #, kde-format
 msgid "Decrypt/Verify Popup Geometry"
-msgstr "Deşifrele/Onayla Açılan Pencere Geometrisi"
+msgstr "Açılır Pencere Geometrisi Şifresini Çöz/Doğrula"
 
 #. i18n: ectx: whatsthis, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
 #: src/kcfg/emailoperationspreferences.kcfg:21
@@ -7664,9 +7659,9 @@ msgid ""
 "clients which do not support inline display of D/V results, such as MS "
 "Outlook."
 msgstr ""
-"MS Outlook gibi Deşifreleme/Şifreleme sonuçlarını sıralı gösterme desteği "
-"olayan istemciler tarafından kullanılan Deşifreleme/Şifreleme Sonuç "
-"penceresinin hatırlanan boyutu ve konumu."
+"MS Outlook gibi SÇ/D sonuçlarının satır içi görüntüsünü desteklemeyen "
+"istemciler tarafından kullanılan Şifreyi Çöz/Sonucu Doğrula Açılır "
+"Penceresinin hatırlanan boyutu ve konumu."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:10
@@ -7680,8 +7675,8 @@ msgstr "Üretilen OpenPGP dosyaları için öntanımlı uzantı olarak pgp'yi ku
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
-"OpenPGP dosyaları için pgp dosya uzantılarının öntanımlıını kleopatra yapmak "
-"için bunu seçin."
+"OpenPGP dosyaları için pgp dosya uzantılarının öntanımlısını Kleopatra "
+"yapmak için bunu seçin."
 
 #. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:16
@@ -7692,14 +7687,14 @@ msgid ""
 "applicable to the input."
 msgstr ""
 "Bu seçenek ile Kleopatra, girdi dosyaları ile ne yapmak istediğiniz artık "
-"sormaz, ancak bunun yerine giriş için geçerli olarak tespit ettiği işlemleri "
+"sormaz; ancak bunun yerine giriş için geçerli olarak tespit ettiği işlemleri "
 "otomatik olarak başlatır."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Automatically extract archives after decryption."
-msgstr ""
+msgstr "Şifre çözümü sonrası arşivleri kendiliğinden çıkarın."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:21
@@ -7708,12 +7703,14 @@ msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
 msgstr ""
+"Bu seçenek ayarlıysa Kleopatra, şifre çözümü sonrası arşivleri kendiliğinden "
+"çıkarır."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Use this command to create file archives."
-msgstr "Dosya arşivleri oluşturmak için bu komutu kullan."
+msgstr "Dosya arşivleri oluşturmak için bu komutu kullanın."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:26
@@ -7734,7 +7731,7 @@ msgid ""
 "increase file size by one third."
 msgstr ""
 "Şifreli veya imzalanmış dosyaları base64 kodlu metin olarak kodlamak için bu "
-"seçeneği belirleyin. Böylece bir düzenleyici ile açılabilir veya bir posta "
+"seçeneği ayarlayın. Böylece bir düzenleyici ile açılabilir veya bir posta "
 "gövdesi halinde gönderilebilirler. Bu, dosya boyutunu üçte biri oranında "
 "arttıracaktır."
 
@@ -7743,18 +7740,21 @@ msgstr ""
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
+"Kullanıcının geçici dizinini kullanmaktan kaçınmak için bu seçeneği "
+"ayarlayın."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr ""
+"Genel anahtar şifrelemesini devre dışı bırakmak için bu seçeneği ayarlayın."
 
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9
 #, kde-format
 msgid "Placeholder for CN"
-msgstr ""
+msgstr "Ortak Ad için Yer Tutucu"
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:10
@@ -7763,12 +7763,14 @@ msgid ""
 "This text will be used as placeholder text for the common name (CN) field of "
 "S/MIME certificates."
 msgstr ""
+"Bu metin, S/MIME sertifikalarının ortak ad (OA) alanı için yer tutucu olarak "
+"kullanılacaktır."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:14
 #, kde-format
 msgid "Prefill CN automatically"
-msgstr ""
+msgstr "OA'yı önden doldur"
 
 #. i18n: ectx: whatsthis, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:16
@@ -7779,12 +7781,15 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Ayarlıysa S/MIME sertifikalarının ortak ad (OA) alanı sistemden alınan bilgi "
+"ile önden doldurulacaktır;\n"
+"örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory'den."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Placeholder for EMAIL"
-msgstr ""
+msgstr "EPOSTA için Yer Tutucu"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -7793,12 +7798,14 @@ msgid ""
 "This text will be used as placeholder text for the email address field of "
 "OpenPGP and S/MIME certificates."
 msgstr ""
+"Bu metin, OpenPGP ve S/MIME sertifikalarının e-posta alanı için yer tutucu "
+"olarak kullanılacaktır."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
 #, kde-format
 msgid "Prefill EMAIL automatically"
-msgstr ""
+msgstr "EPOSTA'yı önden doldur"
 
 #. i18n: ectx: whatsthis, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:27
@@ -7809,12 +7816,15 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Ayarlıysa OpenPGP ve S/MIME sertifikalarının e-posta alanı sistemden alınan "
+"bilgi ile önden doldurulacaktır;\n"
+"örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory'den."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
 #, kde-format
 msgid "Placeholder for NAME"
-msgstr ""
+msgstr "AD için Yer Tutucu"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -7823,12 +7833,14 @@ msgid ""
 "This text will be used as placeholder text for the name field of OpenPGP "
 "certificates."
 msgstr ""
+"Bu metin, OpenPGP sertifikalarının ad alanı için yer tutucu olarak "
+"kullanılacaktır."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Prefill NAME automatically"
-msgstr ""
+msgstr "AD'ı önden doldur"
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:38
@@ -7839,18 +7851,23 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"Ayarlıysa OpenPGP sertifikalarının ad alanı sistemden alınan bilgi ile önden "
+"doldurulacaktır;\n"
+"örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory'den."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:42
 #, kde-format
 msgid "Default validity period"
-msgstr ""
+msgstr "Öntanımlı geçerlilik periyodu"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:43
 #, kde-format
 msgid "Specifies the default validity period of new OpenPGP keys in days."
 msgstr ""
+"Yeni OpenPGP anahtarlarının öntanımlı geçerlilik süresini gün türünden "
+"belirtir."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
@@ -7862,18 +7879,25 @@ msgid ""
 "negative value, then new OpenPGP keys will be valid for two years (possibly "
 "clamped to the allowed minimum or maximum validity period) by default."
 msgstr ""
+"Bu seçenek, yeni bir OpenPGP anahtarının öntanımlı olarak kaç gün geçerli "
+"kalacağını veya başka bir deyişle kaç günün sonunda süresinin dolacağını "
+"belirtir. Sınırsız geçerlilik için bunu 0 olarak ayarlayın. Bu seçenek "
+"ayarlı değilse veya negatif bir değere ayarlıysa yeni OpenPGP anahtarları "
+"öntanımlı olarak iki yıl süreyle geçerli olacaktır (büyük olasılıkla izin "
+"verilen en az veya en çok geçerlilik süresine bağlı olarak)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
 #, kde-format
 msgid "Minimum validity period"
-msgstr ""
+msgstr "En az geçerlilik periyodu"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:49
 #, kde-format
 msgid "Specifies the minimum validity period of new OpenPGP keys in days."
 msgstr ""
+"Yeni OpenPGP anahtarlarının en az geçerlilik süresini gün türünden belirtir."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:50
@@ -7883,18 +7907,22 @@ msgid ""
 "or, in other words, after how many days the new key will expire at the "
 "earliest."
 msgstr ""
+"Bu seçenek, yeni bir OpenPGP anahtarının en az kaç gün geçerli kalacağını "
+"veya başka bir deyişle en erken kaç günün sonunda süresinin dolacağını "
+"belirtir."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
 #, kde-format
 msgid "Maximum validity period"
-msgstr ""
+msgstr "En çok geçerlilik periyodu"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:55
 #, kde-format
 msgid "Specifies the maximum validity period of new OpenPGP keys in days."
 msgstr ""
+"Yeni OpenPGP anahtarlarının en çok geçerlilik süresini gün türünden belirtir."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:56
@@ -7905,13 +7933,16 @@ msgid ""
 "If this setting is not set or if it is set to a negative value, then "
 "unlimited validity is allowed."
 msgstr ""
+"Bu seçenek, yeni bir OpenPGP anahtarının en çok kaç gün geçerli kalacağını "
+"veya başka bir deyişle en geç kaç günün sonunda süresinin dolacağını "
+"belirtir. Bu ayarlı değilse veya negatif bir değere ayarlıysa sınırsız "
+"geçerliliğe izin verilir."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
-#, fuzzy, kde-format
-#| msgid "Advanced Settings"
+#, kde-format
 msgid "Hide advanced settings"
-msgstr "Gelişmiş Ayarlar"
+msgstr "Gelişmiş ayarları gizle"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:61
@@ -7919,27 +7950,27 @@ msgstr "Gelişmiş Ayarlar"
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
 msgstr ""
+"Ayarlıysa yeni sertifika sihirbazındaki gelişmiş ayarlar düğmesini gizler."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Checksum program to use when creating checksum files:"
+#, kde-format
 msgid "Checksum program to use when creating checksum files"
-msgstr "Özet dosyaları oluşturulurken, kullanılanacak özet çıkarma programı."
+msgstr ""
+"Sağlama toplamı dosyaları oluşturulurken kullanılacak sağlama toplamı "
+"programı"
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:73
-#, fuzzy, kde-format
-#| msgid "S/MIME"
+#, kde-format
 msgid "Enable S/MIME"
-msgstr "S/MIME"
+msgstr "S/MIMa'yi etkinleştir"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:74
-#, fuzzy, kde-format
-#| msgid "No backend support for S/MIME"
+#, kde-format
 msgid "Enables support for S/MIME (CMS)."
-msgstr "S/MIME için arka uç desteği yok"
+msgstr "S/MIME için desteği etkinleştirir (CMS)."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:75
@@ -7948,20 +7979,20 @@ msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
 "to S/MIME (CMS)."
 msgstr ""
+"Ayarlı değilse Kleopatra'nın ana kullanıcı arayüzü S/MIME ile ilgili "
+"herhangi bir işlevi kullanıcıya sunmayacaktır."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:79
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgid "Allow S/MIME certificate creation"
-msgstr "S/MIME Sertifikaları"
+msgstr "S/MIME sertifikası oluşturmaya izin ver"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:80
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
-msgstr "Yeni bir anahtar çifti oluştur veya imzlama isteğini onayla"
+msgstr "S/MIME sertifika imzalama isteklerinin oluşturulmasına izin ver."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:81
@@ -7970,21 +8001,21 @@ msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
 "signing requests."
 msgstr ""
-"Yanlışsa o zaman Kleopatra S/MIME sertifika imzalama istekleri oluşturmayı "
+"Ayarlı değilse Kleopatra, S/MIME sertifika imzalama istekleri oluşturmayı "
 "önermeyecektir."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:85
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgid "Allow signing with S/MIME certificates"
-msgstr "S/MIME Sertifikaları"
+msgstr "S/MIME sertifikaları ile imzalamaya izin ver"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
+"Metin veya dosyaların S/MIME sertifikaları ile imzalanmasına izin verir."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
 #: src/kcfg/settings.kcfg:87
@@ -7993,79 +8024,77 @@ msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
 "signatures with S/MIME certificates."
 msgstr ""
+"Ayarlı değilse Kleopatra, S/MIME sertifikalarının oluşturulmasıyla ilgili "
+"herhangi bir işlevselliği kullanıcıya sunmayacaktırr."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:93
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show appearance configuration"
-msgstr "Sahip bilgilerini göster"
+msgstr "Görünüş yapılandırmasını göster"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:97
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#, kde-format
 msgid "Show crypto operations configuration"
-msgstr "Sertifika sahibi bilgilerini göster"
+msgstr "Şifre işlemleri yapılandırmasını göster"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:101
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "No Directory Servers Configured"
+#, kde-format
 msgid "Show directory services configuration"
-msgstr "Hiçbir Dizin Sunucusu Yapılandırılmamış"
+msgstr "Dizin hizmetleri yapılandırmasını göster"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:105
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show GnuPG system configuration"
-msgstr "Sahip bilgilerini göster"
+msgstr "GnuPG sistem yapılandırmasını göster"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:109
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgid "Show smart cards configuration"
-msgstr "Sahip bilgilerini göster"
+msgstr "Akıllı kart yapılandırmasını göster"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show S/MIME validation configuration"
-msgstr ""
+msgstr "S/MIME doğrulama yapılandırmasını göster"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
 #: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
+"X.509 sertifikalarının DN özniteliklerinin görüntülenme sırasını belirtir."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
 #: src/kcfg/settings.kcfg:126
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgid "Enable Groups"
-msgstr "Ayrıntıları Göster"
+msgstr "Grupları Etkinleştir"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
 #: src/kcfg/settings.kcfg:127
 #, kde-format
 msgid "Enable usage of groups of keys."
-msgstr ""
+msgstr "Anahtarların gruplarının kullanımını etkinleştir."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
 #: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
+"Alıcılar listeleri oluşturmak için anahtarların gruplarının kullanımını "
+"etkinleştir."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
 #: src/kcfg/settings.kcfg:134
 #, kde-format
 msgid "Retrieve signer keys after import"
-msgstr ""
+msgstr "İçe aktarma sonrası imzacı anahtarlarını al"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
 #: src/kcfg/settings.kcfg:137

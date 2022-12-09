@@ -624,6 +624,12 @@ void MainWindow::Private::setupActions()
             QStringLiteral("../share/doc/gnupg-vsd"));
     coll->addAction(QStringLiteral("help_doc_smartcard"), smartcard);
 
+    const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("dvipdf")), i18n("Group configuration"),
+            i18nc("Only available in German and English. Leave to English for other languages.",
+                "handout_group-feature_gnupg_en.pdf"),
+            QStringLiteral("../share/doc/gnupg-vsd"));
+    coll->addAction(QStringLiteral("help_doc_groups"), groups);
+
     const auto man_gpg = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")), i18n("GnuPG Manual"),
             QStringLiteral("gnupg.pdf"), QStringLiteral("../share/doc/gnupg"));
     coll->addAction(QStringLiteral("help_doc_gnupg"), man_gpg);

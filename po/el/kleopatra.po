@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-09 00:47+0000\n"
+"POT-Creation-Date: 2022-12-10 00:46+0000\n"
 "PO-Revision-Date: 2021-10-22 09:12+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3758,7 +3758,7 @@ msgstr "Ομάδες"
 msgid "Help"
 msgstr "&Βοήθεια"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4355,7 +4355,7 @@ msgstr ""
 "αρχεία, όχι ένα μίγμα και των δύο."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
 #, kde-format
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -9163,11 +9163,17 @@ msgid "smartcard_howto_de.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:627
+#, fuzzy, kde-format
+#| msgid "Show owner information"
+msgid "Group configuration"
+msgstr "Εμφάνιση πληροφοριών ιδιοκτήτη"
+
+#: src/mainwindow.cpp:633
 #, kde-format
 msgid "GnuPG Manual"
 msgstr ""
 
-#: src/mainwindow.cpp:651
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9176,28 +9182,28 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
 
-#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Υπογραφή/κρυπτογράφηση..."
 
-#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Αποκρυπτογράφηση/επαλήθευση..."
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "Import Certificates"
 msgstr "Εισαγωγή πιστοποιητικών"
 
-#: src/mainwindow.cpp:769
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "Import CRLs"
 msgstr "Εισαγωγή CRL"

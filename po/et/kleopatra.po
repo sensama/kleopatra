@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-09 00:47+0000\n"
+"POT-Creation-Date: 2022-12-10 00:46+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -3724,7 +3724,7 @@ msgstr "Näita üksikasju"
 msgid "Help"
 msgstr "&Abi"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4314,7 +4314,7 @@ msgstr ""
 "aga need ei tohi segiläbi esineda."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
 #, kde-format
 msgid "Cancel"
 msgstr "Loobu"
@@ -9099,11 +9099,17 @@ msgid "smartcard_howto_de.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:627
+#, fuzzy, kde-format
+#| msgid "Show owner information"
+msgid "Group configuration"
+msgstr "Omaniku teabe näitamine"
+
+#: src/mainwindow.cpp:633
 #, kde-format
 msgid "GnuPG Manual"
 msgstr ""
 
-#: src/mainwindow.cpp:651
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9112,28 +9118,28 @@ msgstr ""
 "Taustal tootavad ikka veel mõned ülesanded. Akna sulgemisel nende töö "
 "lõpetatakse. Kas jätkata?"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Taustal töötavad ülesanded"
 
-#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Allkirjasta/krüpti..."
 
-#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Krüpti lahti/verifitseeri..."
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "Import Certificates"
 msgstr "Impordi sertifikaadid"
 
-#: src/mainwindow.cpp:769
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "Import CRLs"
 msgstr "Impordi CRL-id"

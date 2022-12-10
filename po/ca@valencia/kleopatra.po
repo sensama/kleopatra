@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-09 00:47+0000\n"
+"POT-Creation-Date: 2022-12-10 00:46+0000\n"
 "PO-Revision-Date: 2022-12-03 12:36+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -3602,7 +3602,7 @@ msgstr "Grups"
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4186,7 +4186,7 @@ msgstr ""
 "d'ambdós."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -8896,11 +8896,17 @@ msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_en.pdf"
 
 #: src/mainwindow.cpp:627
+#, fuzzy, kde-format
+#| msgid "Show appearance configuration"
+msgid "Group configuration"
+msgstr "Mostra la configuració de l'aparença"
+
+#: src/mainwindow.cpp:633
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "Manual de GnuPG"
 
-#: src/mainwindow.cpp:651
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8909,28 +8915,28 @@ msgstr ""
 "Encara hi ha algunes operacions en curs en segon pla. Es finalitzaran en "
 "tancar la finestra. Voleu continuar?"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tasques en curs en segon pla"
 
-#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signa/encripta..."
 
-#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Desencriptació/verificació..."
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "Import Certificates"
 msgstr "Importació de certificats"
 
-#: src/mainwindow.cpp:769
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "Import CRLs"
 msgstr "Importació de les CRL"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-09 00:47+0000\n"
+"POT-Creation-Date: 2022-12-10 00:46+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -3714,7 +3714,7 @@ msgstr "顯示所有詳情"
 msgid "Help"
 msgstr "說明(&H)"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4309,7 +4309,7 @@ msgstr ""
 "不能混著給。"
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
@@ -9037,11 +9037,17 @@ msgid "smartcard_howto_de.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:627
+#, fuzzy, kde-format
+#| msgid "Show owner information"
+msgid "Group configuration"
+msgstr "顯示擁有者資訊"
+
+#: src/mainwindow.cpp:633
 #, kde-format
 msgid "GnuPG Manual"
 msgstr ""
 
-#: src/mainwindow.cpp:651
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9050,28 +9056,28 @@ msgstr ""
 "還有一些背景的操作正在進行中。若是關閉此視窗，這些操作都會被中止。確定要繼續"
 "嗎？"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "還有背景工作"
 
-#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "簽署/加密..."
 
-#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "解密/檢查..."
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "Import Certificates"
 msgstr "匯入憑證"
 
-#: src/mainwindow.cpp:769
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "Import CRLs"
 msgstr "匯入廢棄憑證清單"

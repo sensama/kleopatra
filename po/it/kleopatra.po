@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-09 00:47+0000\n"
-"PO-Revision-Date: 2022-11-24 14:22+0100\n"
+"POT-Creation-Date: 2022-12-10 00:46+0000\n"
+"PO-Revision-Date: 2022-12-03 23:30+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -1953,20 +1953,19 @@ msgstr "Certifica"
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr ""
+msgstr "%1 (importato con %2)"
 
 #: src/commands/importcertificatescommand.cpp:493
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr ""
+msgstr "Il registro di audit è vuoto."
 
 #: src/commands/importcertificatescommand.cpp:495
-#, fuzzy, kde-format
-#| msgid "Operation canceled."
+#, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr "Operazione annullata."
+msgstr "L'importazione è stata annullata."
 
 #: src/commands/importcertificatescommand.cpp:516
 #, kde-format
@@ -2005,35 +2004,25 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:630
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<title>You have imported a Secret Key.</title><para>The key has the "
-#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
-#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Hai importato una chiave segreta.</title><para>La chiave ha "
-"l'impronta digitale:<nl/><numid>%1</numid></para><para>Dichiara i seguenti "
-"ID utente:<list><item>%2</item></list></para>È questa la tua chiave? "
-"(imposta il livello di fiducia ad «assoluta»)"
+"<para>Hai importato un certificato con impronta digitale</para><para><numid>"
+"%1</numid></para><para>e ID utente <list>%2</list></para><para>È questo il "
+"tuo certificato?</para>"
 
 #: src/commands/importcertificatescommand.cpp:643
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Yes, it's mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr "Sì è mio"
+msgstr "Sì, è mio"
 
 #: src/commands/importcertificatescommand.cpp:644
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "No, it's not mine"
+#, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "No, non è mio"
@@ -3610,7 +3599,7 @@ msgstr "Gruppi"
 msgid "Help"
 msgstr "Aiuto"
 
-#: src/conf/groupsconfigdialog.cpp:110
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4190,7 +4179,7 @@ msgstr ""
 "ma non un misto."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
 #, kde-format
 msgid "Cancel"
 msgstr "Annulla"
@@ -8887,11 +8876,17 @@ msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
 #: src/mainwindow.cpp:627
+#, fuzzy, kde-format
+#| msgid "Show appearance configuration"
+msgid "Group configuration"
+msgstr "Mostra la configurazione dell'aspetto"
+
+#: src/mainwindow.cpp:633
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "Manuale di GnuPG"
 
-#: src/mainwindow.cpp:651
+#: src/mainwindow.cpp:657
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8900,28 +8895,28 @@ msgstr ""
 "C'è ancora qualche operazione in sottofondo in esecuzione. Queste verranno "
 "interrotte quando la finestra verrà chiusa. Vuoi procedere lo stesso?"
 
-#: src/mainwindow.cpp:654
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Operazioni in sottofondo in esecuzione"
 
-#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Firma/cifra..."
 
-#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Decifra/verifica..."
 
-#: src/mainwindow.cpp:768
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "Import Certificates"
 msgstr "Importa certificati"
 
-#: src/mainwindow.cpp:769
+#: src/mainwindow.cpp:775
 #, kde-format
 msgid "Import CRLs"
 msgstr "Importa CRL"

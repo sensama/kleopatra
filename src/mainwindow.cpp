@@ -276,17 +276,11 @@ public:
 
     void gnupgLogViewer()
     {
-      const QString exec =
-          QStandardPaths::findExecutable(QStringLiteral("kwatchgnupg"));
-      if (exec.isEmpty()) {
-        KMessageBox::error(
-            q,
-            i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
-                 "Please check your installation."),
-            i18n("Error Starting KWatchGnuPG"));
-      } else {
-        QProcess::startDetached(QStringLiteral("kwatchgnupg"), QStringList());
-      }
+        // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
+        if (!QProcess::startDetached(QStringLiteral("kwatchgnupg"), QStringList()))
+            KMessageBox::error(q, i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
+                                       "Please check your installation."),
+                               i18n("Error Starting KWatchGnuPG"));
     }
 
     void forceUpdateCheck()

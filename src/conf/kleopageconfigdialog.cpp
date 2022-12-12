@@ -181,14 +181,8 @@ void KleoPageConfigDialog::slotHelpClicked()
     docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
 #endif
     if (docUrl.scheme() == QLatin1String("help") || docUrl.scheme() == QLatin1String("man") || docUrl.scheme() == QLatin1String("info")) {
-      const QString exec =
-          QStandardPaths::findExecutable(QStringLiteral("khelpcenter"));
-      if (exec.isEmpty()) {
-        qCWarning(KLEOPATRA_LOG) << "Could not find khelpcenter in PATH.";
-      } else {
-        QProcess::startDetached(QStringLiteral("khelpcenter"),
-                                QStringList() << docUrl.toString());
-      }
+        // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
+        QProcess::startDetached(QStringLiteral("khelpcenter"), QStringList() << docUrl.toString());
     } else {
         QDesktopServices::openUrl(docUrl);
     }

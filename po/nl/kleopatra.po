@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-10 00:46+0000\n"
+"POT-Creation-Date: 2022-12-13 00:57+0000\n"
 "PO-Revision-Date: 2022-12-10 10:56+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -3599,7 +3599,7 @@ msgstr "Groepen"
 msgid "Help"
 msgstr "Help"
 
-#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:623
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4183,7 +4183,7 @@ msgstr ""
 "moet worden, geen mengsel van beiden."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
 #, kde-format
 msgid "Cancel"
 msgstr "Annuleren"
@@ -8563,17 +8563,17 @@ msgstr "Een externe koppeling openen is administratief verboden."
 msgid "Prohibited"
 msgstr "Verboden"
 
-#: src/libkleopatraclient/core/command.cpp:467
+#: src/libkleopatraclient/core/command.cpp:463
 #, kde-format
 msgid "Failed to start uiserver %1"
 msgstr "Starten van uiserver %1 is mislukt"
 
-#: src/libkleopatraclient/core/command.cpp:583
+#: src/libkleopatraclient/core/command.cpp:577
 #, kde-format
 msgid "Invalid socket name!"
 msgstr "Ongeldige socketnaam!"
 
-#: src/libkleopatraclient/core/command.cpp:594
+#: src/libkleopatraclient/core/command.cpp:588
 #, kde-format
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
@@ -8581,37 +8581,37 @@ msgstr ""
 "Kon geen hulpmiddelen toekennen om naar Kleopatra UI-server te verbinden op "
 "%1: %2"
 
-#: src/libkleopatraclient/core/command.cpp:621
+#: src/libkleopatraclient/core/command.cpp:615
 #, kde-format
 msgid "Could not connect to Kleopatra UI server at %1: %2"
 msgstr "Kon niet naar Kleopatra UI-server verbinden op %1: %2"
 
-#: src/libkleopatraclient/core/command.cpp:634
+#: src/libkleopatraclient/core/command.cpp:628
 #, kde-format
 msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
 msgstr "Kon het proces-id niet ophalen van de Kleopatra UI-server op %1: %2"
 
-#: src/libkleopatraclient/core/command.cpp:664
+#: src/libkleopatraclient/core/command.cpp:658
 #, kde-format
 msgid "Failed to send critical option %1: %2"
 msgstr "Zenden van kritische optie %1: %2 is mislukt"
 
-#: src/libkleopatraclient/core/command.cpp:673
+#: src/libkleopatraclient/core/command.cpp:667
 #, kde-format
 msgid "Failed to send file path %1: %2"
 msgstr "Verzenden van bestandspad %1: %2 is mislukt"
 
-#: src/libkleopatraclient/core/command.cpp:680
+#: src/libkleopatraclient/core/command.cpp:674
 #, kde-format
 msgid "Failed to send sender %1: %2"
 msgstr "Verzenden van zender %1: %2 is mislukt"
 
-#: src/libkleopatraclient/core/command.cpp:687
+#: src/libkleopatraclient/core/command.cpp:681
 #, kde-format
 msgid "Failed to send recipient %1: %2"
 msgstr "Verzenden van ontvanger %1: %2 is mislukt"
 
-#: src/libkleopatraclient/core/command.cpp:701
+#: src/libkleopatraclient/core/command.cpp:695
 #, kde-format
 msgid "Command (%1) failed: %2"
 msgstr "Commando (%1) is mislukt: %2"
@@ -8738,30 +8738,30 @@ msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Wilt u stoppen?"
 
-#: src/mainwindow.cpp:284
+#: src/mainwindow.cpp:281
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
 "installation."
 msgstr "Kon de GnuPG-logweergave niet starten. Controleer uw installatie."
 
-#: src/mainwindow.cpp:286
+#: src/mainwindow.cpp:283
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Fout bij starten van KWatchGnuPG"
 
-#: src/mainwindow.cpp:515
+#: src/mainwindow.cpp:509
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-logweergave"
 
-#: src/mainwindow.cpp:520
+#: src/mainwindow.cpp:514
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Achtergrondproces herstarten"
 
-#: src/mainwindow.cpp:521
+#: src/mainwindow.cpp:515
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8771,23 +8771,23 @@ msgstr ""
 "Het achtergrondproces herstarten, bijv. na het maken van wijzigingen in de "
 "configuratie."
 
-#: src/mainwindow.cpp:527
+#: src/mainwindow.cpp:521
 #, kde-format
 msgid "Check for updates"
 msgstr "Controleren op bijwerken"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:527
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificaten"
 
-#: src/mainwindow.cpp:534
+#: src/mainwindow.cpp:528
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Overzicht van certificaten tonen"
 
-#: src/mainwindow.cpp:537
+#: src/mainwindow.cpp:531
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8795,44 +8795,44 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Tekstgebied"
 
-#: src/mainwindow.cpp:538
+#: src/mainwindow.cpp:532
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Pad voor versleutelen/ontcijferen en ondertekenen/verifiëren van tekst tonen"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Smartcards"
 
-#: src/mainwindow.cpp:542
+#: src/mainwindow.cpp:536
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Beheer van smartcards tonen"
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:540
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Zelftest uitvoeren"
 
-#: src/mainwindow.cpp:550
+#: src/mainwindow.cpp:544
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Groepen configureren..."
 
-#: src/mainwindow.cpp:575
+#: src/mainwindow.cpp:569
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Focus op snelzoeken instellen"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:580
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-compendium"
 
-#: src/mainwindow.cpp:590
+#: src/mainwindow.cpp:584
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8840,77 +8840,77 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:591
 #, kde-format
 msgid "Password-based encryption"
 msgstr "Op wachtwoord gebaseerde versleuteling"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:593
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_symmetric_encryption_gnupg_en.pdf"
 msgstr "handout_symmetric_encryption_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:603
+#: src/mainwindow.cpp:597
 #, kde-format
 msgid "Quickguide"
 msgstr "Snelgids"
 
-#: src/mainwindow.cpp:605
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_sign_encrypt_gnupg_en.pdf"
 msgstr "handout_sign_encrypt_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:603
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:605
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:615
+#: src/mainwindow.cpp:609
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:617
+#: src/mainwindow.cpp:611
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:621 src/view/smartcardwidget.cpp:119
+#: src/mainwindow.cpp:615 src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
 msgstr "Beheer van smartcards"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:617
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
-#: src/mainwindow.cpp:627
+#: src/mainwindow.cpp:621
 #, kde-format
 msgid "Group configuration"
 msgstr "Groepsconfiguratie"
 
-#: src/mainwindow.cpp:633
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "GnuPG-handleiding"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:651
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8919,28 +8919,28 @@ msgstr ""
 "Er zijn nog enkele achtergrondacties actief. Deze worden door het sluiten "
 "van het venster gestopt. Doorgaan?"
 
-#: src/mainwindow.cpp:660
+#: src/mainwindow.cpp:654
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Actieve achtergrondtaken"
 
-#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Ontcijferen/verifiëren..."
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:768
 #, kde-format
 msgid "Import Certificates"
 msgstr "Certificaten importeren"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:769
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL's importeren"

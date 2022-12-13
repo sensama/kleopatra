@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-10 00:46+0000\n"
-"PO-Revision-Date: 2022-11-21 22:31+0300\n"
+"POT-Creation-Date: 2022-12-13 00:57+0000\n"
+"PO-Revision-Date: 2022-12-12 21:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -149,7 +149,7 @@ msgstr "(c) 2010-%1 Kleopatra geliştiricileri, g10 Code GmbH"
 #, kde-format
 msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 msgid "Uses:"
-msgstr "Kullanımları:"
+msgstr "Şunları kullanır:"
 
 #: src/commands/adduseridcommand.cpp:199
 #, kde-kuit-format
@@ -696,7 +696,7 @@ msgstr "Sağlama Toplamı Dosyaları Oluşturma Hatası"
 #: src/commands/checksumcreatefilescommand.cpp:164
 #, kde-format
 msgid "Select One or More Files to Create Checksums For"
-msgstr "Sağlama Toplamları Oluşturmak Üzere Bir veya Daha Fazla Dosya Seçin"
+msgstr "Sağlama Toplamları Oluşturmak Üzere Bir veya Daha Çok Dosya Seç"
 
 #: src/commands/checksumverifyfilescommand.cpp:151
 #, kde-format
@@ -863,7 +863,7 @@ msgstr "Pano Hatasının Şifresini Çöz/Doğrula"
 #: src/commands/decryptverifyfilescommand.cpp:57
 #, kde-format
 msgid "Decrypt/Verify Failed"
-msgstr "Şifreyi Açma/Doğrulama Başarısız"
+msgstr "Şifre Çözme/Doğrulama Başarısız"
 
 #: src/commands/decryptverifyfilescommand.cpp:172
 #, kde-format
@@ -1937,7 +1937,7 @@ msgstr "Yeni bir sertifika (genel anahtar) içe aktardınız"
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
-msgstr "Onayla"
+msgstr "Sertifikala"
 
 #: src/commands/importcertificatescommand.cpp:489
 #, kde-format
@@ -3566,7 +3566,7 @@ msgstr "Gruplar"
 msgid "Help"
 msgstr "Yardım"
 
-#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:629
+#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:623
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -3729,9 +3729,9 @@ msgid ""
 msgstr ""
 "Bu seçenek sertifika geçerliliğin aralıklı denetimini etkinleştirir. Aynı "
 "zamanda siz de denetim aralığı seçebilirsiniz (saat olarak). Onaylamanın ~/."
-"gnupg içerisindeki önemli dosyalar değiştirildiğinde uygulandığına dikkat "
-"edin. Bu seçenek, bu nedenle sadece sertifika geçerliliğinin dış "
-"faktörlerini etkiler."
+"gnupg içindeki önemli dosyalar değiştirildiğinde uygulandığına dikkat edin. "
+"Bu seçenek, bu nedenle yalnızca sertifika geçerliliğinin dış faktörlerini "
+"etkiler."
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
@@ -4036,7 +4036,7 @@ msgstr ""
 "Bir veya daha fazla dosya içinde şifrelenmiş veya imzalanmış veri bulamadı."
 "<nl/> Şu anda dosyalarla ne yapılacağını elle seçebilirsiniz.<nl/> İmzalı "
 "veya şifrelenmiş veri içeriyorsa lütfen hata bildirimi yapın (bkz. Yardım -> "
-"Hata Raporlama)."
+"Hata Bildir...)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:201
 #: src/crypto/autodecryptverifyfilescontroller.cpp:255
@@ -4097,8 +4097,8 @@ msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
-"<filename>%1</filename> dosyası sertifikalar içeriyor ve şifresi açılamaz "
-"veya onaylanmış durumda."
+"<filename>%1</filename> dosyası sertifikalar içeriyor ve şifresi çözülemez "
+"veya doğrulanamaz."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:379
 #, kde-kuit-format
@@ -4135,11 +4135,11 @@ msgid ""
 "Create Checksums: input files must be either all checksum files or all files "
 "to be checksummed, not a mixture of both."
 msgstr ""
-"Dosya Sağlama Toplamları Oluştur: Girdi dosyaları tüm dosya özetleri ya da "
-"tüm dosyaların özetleri alınmalıdır, ikisini karışımı olmamalıdır."
+"Sağlama Toplamları Oluştur: Girdi dosyaları tüm dosya özetleri veya tüm "
+"dosyaların özetleri alınmalıdır, ikisinin karışımı olmamalıdır."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:784
+#: src/dialogs/updatenotification.cpp:74 src/mainwindow.cpp:778
 #, kde-format
 msgid "Cancel"
 msgstr "İptal"
@@ -4235,7 +4235,7 @@ msgstr "İmza/imzalanan veri miktarı eşleşmiyor"
 #: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
-msgstr "İmzalı veri sadece tarafsız imza doğrulaması için verilir"
+msgstr "İmzalı veri yalnızca tarafsız imza doğrulaması için verilir"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:275
 #, kde-format
@@ -4469,7 +4469,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:445
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
-msgstr "<b>Şifreleme açma işlemi iptal edildi.</b>"
+msgstr "<b>Şifre çözümü iptal edildi.</b>"
 
 #: src/crypto/decryptverifytask.cpp:448
 #, kde-format
@@ -4480,12 +4480,12 @@ msgstr "Bütünlülük koruması yok (MDC)."
 #: src/crypto/decryptverifytask.cpp:453
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
-msgstr "<b>Şifre açma işlemi başarısız oldu: %1</b>"
+msgstr "<b>Şifre çözme başarısız oldu: %1</b>"
 
 #: src/crypto/decryptverifytask.cpp:455
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
-msgstr "<b>Şifre açma işlemi başarılı oldu.</b>"
+msgstr "<b>Şifre çözme başarılı oldu.</b>"
 
 #: src/crypto/decryptverifytask.cpp:475 src/crypto/decryptverifytask.cpp:496
 #, kde-format
@@ -4563,7 +4563,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption is %1."
-msgstr "Şifre açımı %1."
+msgstr "Şifre çözümü %1."
 
 #: src/crypto/decryptverifytask.cpp:583
 #, kde-format
@@ -4571,7 +4571,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption <b>is not</b> %1."
-msgstr "Şifre açımı, %1 <b>değil</b>."
+msgstr "Şifre çözümü %1 <b>değil</b>."
 
 #: src/crypto/decryptverifytask.cpp:593
 #, kde-format
@@ -4608,7 +4608,7 @@ msgid ""
 "If you are confident that the file was not manipulated you should re-encrypt "
 "it after you have forced the decryption."
 msgstr ""
-"Dosyaya ellenmediğinden eminseniz şifre açımını zorladıktan sonra onu "
+"Dosyaya ellenmediğinden eminseniz şifre çözümünü zorladıktan sonra onu "
 "yeniden şifrelemelisiniz."
 
 #: src/crypto/decryptverifytask.cpp:879
@@ -4647,7 +4647,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1072 src/crypto/decryptverifytask.cpp:1257
 #, kde-format
 msgid "Decrypting: %1..."
-msgstr "Şifre açılıyor: %1..."
+msgstr "Şifre çözülüyor: %1..."
 
 #: src/crypto/decryptverifytask.cpp:1250
 #, kde-format
@@ -4678,7 +4678,7 @@ msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
-msgstr "Onaylama: <filename>%2</filename> ile <filename>%1</filename>..."
+msgstr "Doğrulama: <filename>%2</filename> ile <filename>%1</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1567
 #, kde-format
@@ -4691,7 +4691,7 @@ msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
 "data.The second file is signature."
 msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgstr "<filename>%2</filename>, <filename>%1</filename> ile onaylanmış"
+msgstr "<filename>%2</filename>, <filename>%1</filename> ile doğrulanmış"
 
 #: src/crypto/encryptemailcontroller.cpp:125
 #, kde-format
@@ -4786,7 +4786,7 @@ msgstr "Çıktı &klasörü:"
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
-msgstr "Dosyaları Onayla"
+msgstr "Dosyaları Doğrula"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:95
@@ -4858,7 +4858,7 @@ msgstr ""
 #: src/crypto/gui/decryptverifyfileswizard.cpp:203
 #, kde-format
 msgid "&Decrypt/Verify"
-msgstr "Şifrelemeyi Aç/&Doğrula"
+msgstr "Şifre Çöz/&Doğrula"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:209
 #, kde-format
@@ -4974,7 +4974,7 @@ msgstr "Gönderen"
 #: src/crypto/gui/resultitemwidget.cpp:132
 #, kde-format
 msgid "Force decryption"
-msgstr "Şifre açımını zorla"
+msgstr "Şifre çözümünü zorla"
 
 #: src/crypto/gui/resultitemwidget.cpp:176
 #, kde-format
@@ -5108,7 +5108,7 @@ msgstr "Şifreleme Sertifikasını Seç"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:368
 #, kde-format
 msgid "Only show this dialog in case of conflicts (experimental)"
-msgstr "Bu iletişim penceresini sadece çakışmalarda göster (deneysel)"
+msgstr "Bu iletişim penceresini yalnızca çakışmalarda göster (deneysel)"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:389
 #, kde-format
@@ -6383,7 +6383,7 @@ msgstr "Sertifikala"
 #, kde-format
 msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
-msgstr "Sertifikayı Onayla: %1"
+msgstr "Sertifikayı Sertifikala: %1"
 
 #: src/dialogs/certifywidget.cpp:355
 #, kde-format
@@ -6532,6 +6532,9 @@ msgid ""
 "certified by the trusted introducer are treated as certified, i.e. a trusted "
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
+"Güvenilir tanıtıcı tarafından onaylanan etki alanına ait e-posta adreslerine "
+"sahip tüm sertifikalar, sertifikalı olarak kabul edilir, yani güvenilir bir "
+"tanıtıcı, bir etki alanı için bir tür ara sertifika otoritesi görevi görür."
 
 #: src/dialogs/certifywidget.cpp:498
 #, kde-format
@@ -7171,8 +7174,8 @@ msgid ""
 "test for details.</para><para>Note that all but the first failure might be "
 "due to prior tests failing.</para>"
 msgstr ""
-"<para>Bunlar Kleopatra'nın kendi kendine sınama aracının sonuçlarıdır. Bir "
-"sınama hakkında ayrıntı için üzerine tıklayın.</para><para>İlk hata dışında "
+"<para>Bunlar Kleopatra'nın öz sınama aracının sonuçlarıdır. Bir sınama "
+"hakkında ayrıntı için üzerine tıklayın.</para><para>İlk hata dışında "
 "diğerlerinin nedeninin önceki sınamaların başarısızlığı olabileceğini "
 "unutmayın.</para>"
 
@@ -7227,7 +7230,7 @@ msgstr "Sınamaları Yeniden Çalıştır"
 #, kde-format
 msgctxt "@title:window"
 msgid "Self Test"
-msgstr "Kendi Kendini Sınama"
+msgstr "Öz Sınama"
 
 #: src/dialogs/setinitialpindialog.cpp:66
 #, kde-kuit-format
@@ -8462,54 +8465,54 @@ msgstr "Dış bir bağlantıyı açmak yönetim tarafından yasaklandı."
 msgid "Prohibited"
 msgstr "Yasaklı"
 
-#: src/libkleopatraclient/core/command.cpp:467
+#: src/libkleopatraclient/core/command.cpp:463
 #, kde-format
 msgid "Failed to start uiserver %1"
 msgstr "uiserver %1 başlatılamadı"
 
-#: src/libkleopatraclient/core/command.cpp:583
+#: src/libkleopatraclient/core/command.cpp:577
 #, kde-format
 msgid "Invalid socket name!"
 msgstr "Geçersiz yuva adı!"
 
-#: src/libkleopatraclient/core/command.cpp:594
+#: src/libkleopatraclient/core/command.cpp:588
 #, kde-format
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
 msgstr "%1 konumundaki Kleopatra arayüz bağlantısı için kaynak ayrılamadı: %2"
 
-#: src/libkleopatraclient/core/command.cpp:621
+#: src/libkleopatraclient/core/command.cpp:615
 #, kde-format
 msgid "Could not connect to Kleopatra UI server at %1: %2"
 msgstr "%1 Kleopatra arayüz sunucusuna bağlanılamadı: %2"
 
-#: src/libkleopatraclient/core/command.cpp:634
+#: src/libkleopatraclient/core/command.cpp:628
 #, kde-format
 msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
 msgstr ""
 "%1 konumundaki Kleopatra arayüz sunucusunun süreç numarası alınamadı: %2"
 
-#: src/libkleopatraclient/core/command.cpp:664
+#: src/libkleopatraclient/core/command.cpp:658
 #, kde-format
 msgid "Failed to send critical option %1: %2"
 msgstr "%1 kritik seçeneği gönderilemedi: %2"
 
-#: src/libkleopatraclient/core/command.cpp:673
+#: src/libkleopatraclient/core/command.cpp:667
 #, kde-format
 msgid "Failed to send file path %1: %2"
 msgstr "%1 dosya yolu gönderilemedi: %2"
 
-#: src/libkleopatraclient/core/command.cpp:680
+#: src/libkleopatraclient/core/command.cpp:674
 #, kde-format
 msgid "Failed to send sender %1: %2"
 msgstr "%1 göndericisi gönderilemedi: %2"
 
-#: src/libkleopatraclient/core/command.cpp:687
+#: src/libkleopatraclient/core/command.cpp:681
 #, kde-format
 msgid "Failed to send recipient %1: %2"
 msgstr "%1 alıcısı gönderilemedi: %2"
 
-#: src/libkleopatraclient/core/command.cpp:701
+#: src/libkleopatraclient/core/command.cpp:695
 #, kde-format
 msgid "Command (%1) failed: %2"
 msgstr "(%1) komutu başarısız oldu: %2"
@@ -8635,7 +8638,7 @@ msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Gerçekten Çık?"
 
-#: src/mainwindow.cpp:284
+#: src/mainwindow.cpp:281
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -8644,23 +8647,23 @@ msgstr ""
 "GnuPG Günlük Kaydı Görüntüleyici (kwatchgnupg) başlatılamadı. Lütfen "
 "kurulumunuzu denetleyin."
 
-#: src/mainwindow.cpp:286
+#: src/mainwindow.cpp:283
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG Başlatılırken Hata"
 
-#: src/mainwindow.cpp:515
+#: src/mainwindow.cpp:509
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG Günlük Görüntüleyici"
 
-#: src/mainwindow.cpp:520
+#: src/mainwindow.cpp:514
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Arka Plan Süreçlerini Yeniden Başlat"
 
-#: src/mainwindow.cpp:521
+#: src/mainwindow.cpp:515
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -8670,23 +8673,23 @@ msgstr ""
 "Arka plan süreçlerini yeniden başlat; örneğin, yapılandırmaya değişiklik "
 "yaptıktan sonra."
 
-#: src/mainwindow.cpp:527
+#: src/mainwindow.cpp:521
 #, kde-format
 msgid "Check for updates"
 msgstr "Güncellemeleri denetle"
 
-#: src/mainwindow.cpp:533
+#: src/mainwindow.cpp:527
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Sertifikalar"
 
-#: src/mainwindow.cpp:534
+#: src/mainwindow.cpp:528
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Sertifika genel görünümünü göster"
 
-#: src/mainwindow.cpp:537
+#: src/mainwindow.cpp:531
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -8694,44 +8697,44 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Not Defteri"
 
-#: src/mainwindow.cpp:538
+#: src/mainwindow.cpp:532
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Metin şifrelemek/şifre çözmek ve imzalamak/doğrulamak için defteri göster"
 
-#: src/mainwindow.cpp:541
+#: src/mainwindow.cpp:535
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Akıllı Kartlar"
 
-#: src/mainwindow.cpp:542
+#: src/mainwindow.cpp:536
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Akıllı kart yönetimini göster"
 
-#: src/mainwindow.cpp:546
+#: src/mainwindow.cpp:540
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Öz Sınama Gerçekleştir"
 
-#: src/mainwindow.cpp:550
+#: src/mainwindow.cpp:544
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Grupları Yapılandır..."
 
-#: src/mainwindow.cpp:575
+#: src/mainwindow.cpp:569
 #, kde-format
 msgid "Set Focus to Quick Search"
 msgstr "Odağı Hızlı Aramaya Ayarla"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:580
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win İnceleme"
 
-#: src/mainwindow.cpp:590
+#: src/mainwindow.cpp:584
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -8739,77 +8742,77 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:597
+#: src/mainwindow.cpp:591
 #, kde-format
 msgid "Password-based encryption"
 msgstr "Parola tabanlı şifreleme"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:593
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_symmetric_encryption_gnupg_en.pdf"
 msgstr "handout_symmetric_encryption_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:603
+#: src/mainwindow.cpp:597
 #, kde-format
 msgid "Quickguide"
 msgstr "Hızlı Kılavuz"
 
-#: src/mainwindow.cpp:605
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_sign_encrypt_gnupg_en.pdf"
 msgstr "handout_sign_encrypt_gnupg_en.pdf"
 
-#: src/mainwindow.cpp:609
+#: src/mainwindow.cpp:603
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:605
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:615
+#: src/mainwindow.cpp:609
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:617
+#: src/mainwindow.cpp:611
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:621 src/view/smartcardwidget.cpp:119
+#: src/mainwindow.cpp:615 src/view/smartcardwidget.cpp:119
 #, kde-format
 msgid "Smartcard Management"
 msgstr "Akıllı Kart Yönetimi"
 
-#: src/mainwindow.cpp:623
+#: src/mainwindow.cpp:617
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
-#: src/mainwindow.cpp:627
+#: src/mainwindow.cpp:621
 #, kde-format
 msgid "Group configuration"
 msgstr "Grup yapılandırması"
 
-#: src/mainwindow.cpp:633
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "GnuPG Manual"
 msgstr "GnuPG Kılavuzu"
 
-#: src/mainwindow.cpp:657
+#: src/mainwindow.cpp:651
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8818,28 +8821,28 @@ msgstr ""
 "Hâlâ süren bazı arka plan işlemleri var. Bunlar pencere kapatıldığında "
 "bitirilecek. Sürdürülsün mü?"
 
-#: src/mainwindow.cpp:660
+#: src/mainwindow.cpp:654
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Süren Arka Plan Görevleri"
 
-#: src/mainwindow.cpp:768 src/view/keylistcontroller.cpp:399
+#: src/mainwindow.cpp:762 src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "İmzala/Şifrele..."
 
-#: src/mainwindow.cpp:769 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:763 src/utils/clipboardmenu.cpp:47
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt/Verify..."
-msgstr "Şifrelemeyi Çöz/&Doğrula..."
+msgstr "Şifre Çöz/Doğrula..."
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:768
 #, kde-format
 msgid "Import Certificates"
 msgstr "Sertifikalar İçe Aktar"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:769
 #, kde-format
 msgid "Import CRLs"
 msgstr "CRL'ler İçe Aktar"
@@ -9486,7 +9489,7 @@ msgid ""
 "only %5 is installed.</para>"
 msgstr ""
 "<para><application>%1</application> bu test için v%2.%3.%4 gerekiyor ancak "
-"sadece %5 kurulu.</para>"
+"yalnızca %5 kurulu.</para>"
 
 #: src/selftest/enginecheck.cpp:186
 #, kde-kuit-format
@@ -9714,10 +9717,9 @@ msgstr ""
 "Çalışan diğer <application>Kleopatra</application> uygulamasını kapatın."
 
 #: src/smartcard/openpgpcard.cpp:103
-#, fuzzy, kde-format
-#| msgid "Signature:"
+#, kde-format
 msgid "Signature"
-msgstr "İmza:"
+msgstr "İmza"
 
 #: src/smartcard/openpgpcard.cpp:105
 #, kde-format
@@ -9728,131 +9730,126 @@ msgstr "Yetkilendirme"
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr ""
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:180
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr ""
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr ""
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:183
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr ""
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:184
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr ""
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:185
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr ""
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:411
 #, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr ""
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:412
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:416
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
-#, fuzzy, kde-format
-#| msgid "Authentication:"
+#, kde-format
 msgid "PIV Authentication Key"
-msgstr "Kimlik Doğrulama:"
+msgstr "PIV Kimlik Doğrulama Anahtarı"
 
 #: src/smartcard/pivcard.cpp:86
-#, fuzzy, kde-format
-#| msgid "Authentication:"
+#, kde-format
 msgid "Card Authentication Key"
-msgstr "Kimlik Doğrulama:"
+msgstr "Kart Kimlik Doğrulama Anahtarı"
 
 #: src/smartcard/pivcard.cpp:87
-#, fuzzy, kde-format
-#| msgid "Bad signature"
+#, kde-format
 msgid "Digital Signature Key"
-msgstr "Kötü imza"
+msgstr "Sayısal İmza Anahtarı"
 
 #: src/smartcard/pivcard.cpp:88
-#, fuzzy, kde-format
-#| msgid "Generate new Keys"
+#, kde-format
 msgid "Key Management Key"
-msgstr "Yeni Anahtarlar Oluştur"
+msgstr "Anahtar Yönetim Anahtarı"
 
 #: src/smartcard/pivcard.cpp:99
 #, kde-format
 msgid "RSA key transport (2048 bits)"
-msgstr ""
+msgstr "RSA anahtar taşıması (2048 bit)"
 
 #: src/smartcard/pivcard.cpp:100
 #, kde-format
 msgid "ECDH (Curve P-256)"
-msgstr ""
+msgstr "ECDH (Curve P-256)"
 
 #: src/smartcard/pivcard.cpp:101
 #, kde-format
 msgid "ECDH (Curve P-384)"
-msgstr ""
+msgstr "ECDH (Curve P-384)"
 
 #: src/smartcard/pivcard.cpp:105 src/smartcard/pivcard.cpp:113
 #, kde-format
 msgid "RSA (2048 bits)"
-msgstr ""
+msgstr "RSA (2048 bit)"
 
 #: src/smartcard/pivcard.cpp:106 src/smartcard/pivcard.cpp:114
 #, kde-format
 msgid "ECDSA (Curve P-256)"
-msgstr ""
+msgstr "ECDSA (Curve P-256)"
 
 #: src/smartcard/pivcard.cpp:107
 #, kde-format
 msgid "ECDSA (Curve P-384)"
-msgstr ""
+msgstr "ECDSA (Curve P-384)"
 
 #: src/smartcard/utils.cpp:25
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "NetKey"
-msgstr ""
+msgstr "NetKey"
 
 #: src/smartcard/utils.cpp:27
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "OpenPGP"
 msgstr "OpenPGP"
@@ -9861,65 +9858,60 @@ msgstr "OpenPGP"
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "PIV"
-msgstr ""
+msgstr "PIV"
 
 #: src/systrayicon.cpp:131
-#, fuzzy, kde-format
-#| msgid "&Open Certificate Manager..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
-msgstr "&Sertifika Yöneticisini Aç..."
+msgstr "Sertifika Yöneticisini &Aç..."
 
 #: src/systrayicon.cpp:133
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
-msgstr ""
+msgstr "<application>%1</application> Uygulamasını &Yapılandır..."
 
 #: src/systrayicon.cpp:135
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
-msgstr ""
+msgstr "<application>%1</application> &Hakkında..."
 
 #: src/systrayicon.cpp:137
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
-msgstr ""
+msgstr "<application>%1</application> Uygulamasından Çı&k"
 
 #: src/systrayicon.cpp:139
-#, fuzzy, kde-format
-#| msgid "SmartCard"
+#, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Akıllı Kart"
 
 #: src/systrayicon.cpp:140
-#, fuzzy, kde-format
-#| msgid "Update Card Status"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Kart Durumunu Güncelle"
 
 #: src/systrayicon.cpp:141
-#, fuzzy, kde-format
-#| msgid "Set NetKey v3 Initial PIN..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
-msgstr "Başlangıç NetKey v3 Pinini Ayarla..."
+msgstr "Başlangıç NetKey v3 PIN'ini Ayarla..."
 
 #: src/systrayicon.cpp:142
-#, fuzzy, kde-format
-#| msgid "Learn NetKey v3 Card Certificates"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
-msgstr "NetKey v3 Kart Sertifikalarını Al"
+msgstr "NetKey v3 Kart Sertifikalarını Öğren"
 
 #: src/uiserver/assuanserverconnection.cpp:168
 #, kde-format
 msgid "No option name given"
-msgstr "Seçenek adı verilmedi"
+msgstr "Verilen seçenek adı yok"
 
 #: src/uiserver/assuanserverconnection.cpp:362
 #, kde-format
@@ -9929,7 +9921,7 @@ msgstr "Ayrıştırma hatası"
 #: src/uiserver/assuanserverconnection.cpp:371
 #, kde-format
 msgid "Parse error: numeric session id too large"
-msgstr "Ayıklama hatası: oturum anahtarı çok büyük"
+msgstr "Ayrıştırma hatası: Sayısal oturum anahtarı pek büyük"
 
 #: src/uiserver/assuanserverconnection.cpp:394
 #, kde-format
@@ -9965,12 +9957,12 @@ msgstr "Boş dosya yolu"
 #: src/uiserver/assuanserverconnection.cpp:637
 #, kde-format
 msgid "Only absolute file paths are allowed"
-msgstr "Sadece tam dosya yolları geçerlidir"
+msgstr "Yalnızca tam dosya yolları geçerlidir"
 
 #: src/uiserver/assuanserverconnection.cpp:554
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
-msgstr "GİRDİ/ÇIKTI DOSYASI için sadece dosyalar kabul edilir"
+msgstr "INPUT/OUTPUT FILE için yalnızca dosyalar kabul edilir"
 
 #: src/uiserver/assuanserverconnection.cpp:654
 #, kde-format
@@ -9980,17 +9972,17 @@ msgstr "bilinmeyen istisna yakalandı"
 #: src/uiserver/assuanserverconnection.cpp:719
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
-msgstr "--info ile GÖNDERİCİ veya ALICI birlikte kullanılamaz"
+msgstr "--info ile SENDER veya RECIPIENT birlikte kullanılamaz"
 
 #: src/uiserver/assuanserverconnection.cpp:723
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
-msgstr "Argüman RFC-2822 formatına uygun değil"
+msgstr "Argüman RFC-2822 posta kutusu değil"
 
 #: src/uiserver/assuanserverconnection.cpp:726
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
-msgstr "Geçerli RFC-2822 e-posta kutusundan sonra çöp tespit edildi"
+msgstr "Geçerli RFC-2822 posta kutusundan sonra çöp tespit edildi"
 
 #: src/uiserver/assuanserverconnection.cpp:1191
 #, kde-format
@@ -10036,12 +10028,12 @@ msgstr "Gerekli olan --protocol seçeneği eksik"
 #: src/uiserver/assuanserverconnection.cpp:1667
 #, kde-format
 msgid "--protocol is not allowed here"
-msgstr "burada --protocol kullanımına izin verilmiyor"
+msgstr "--protocol kullanımına burada izin verilmiyor"
 
 #: src/uiserver/assuanserverconnection.cpp:1677
 #, kde-format
 msgid "invalid protocol \"%1\""
-msgstr "\"%1\" geçersiz protokol"
+msgstr "geçersiz protokol \"%1\""
 
 #: src/uiserver/createchecksumscommand.cpp:56
 #: src/uiserver/decryptverifycommandfilesbase.cpp:155
@@ -10049,48 +10041,48 @@ msgstr "\"%1\" geçersiz protokol"
 #: src/uiserver/verifychecksumscommand.cpp:58
 #, kde-format
 msgid "At least one FILE must be present"
-msgstr "En azından bir DOSYA olmalı"
+msgstr "En azından bir FILE olmalı"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:126
 #, kde-format
 msgid "Cannot use non-info SENDER"
-msgstr "Bilgi dışı GÖNDER kullanılamaz"
+msgstr "Bilgi olmayan SENDER kullanılamaz"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:130
 #, kde-format
 msgid "Cannot use non-info RECIPIENT"
-msgstr "Bilgi dışı ALICI kullanılamaz"
+msgstr "Bilgi olmayan RECIPIENT kullanılamaz"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:145
 #, kde-format
 msgid "FILES present"
-msgstr "DOSYALAR mevcut"
+msgstr "FILES var"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:150
 #, kde-format
 msgid "At least one INPUT needs to be provided"
-msgstr "En azından bir GİRDİ sağlanmalıdır"
+msgstr "En azından bir INPUT sağlanmalıdır"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:155
 #, kde-format
 msgid "INPUT/SENDER --info count mismatch"
-msgstr "GİRDİ/GÖNDERİCİ --info sayısı uyuşmuyor"
+msgstr "INPUT/SENDER --info sayısı uyuşmuyor"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:160
 #, kde-format
 msgid "INPUT/MESSAGE count mismatch"
-msgstr "GİRDİ/İLETİ sayısı uyuşmuyor"
+msgstr "INPUT/MESSAGE sayısı uyuşmuyor"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:163
 #, kde-format
 msgid "MESSAGE can only be given for detached signature verification"
-msgstr "İLETİ sadece imza doğrulamak için verilebilir"
+msgstr "MESSAGE yalnızca imza doğrulamak için verilebilir"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:169
 #: src/uiserver/encryptcommand.cpp:85 src/uiserver/signcommand.cpp:82
 #, kde-format
 msgid "INPUT/OUTPUT count mismatch"
-msgstr "GİRDİ/ÇIKTI sayıları birbirini tutmuyor"
+msgstr "INPUT/OUTPUT sayıları birbirini tutmuyor"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:172
 #, kde-format
@@ -10100,67 +10092,64 @@ msgstr "Aynı anda OUTPUT ve MESSAGE kullanılamaz"
 #: src/uiserver/decryptverifycommandemailbase.cpp:180
 #, kde-format
 msgid "No backend support for OpenPGP"
-msgstr "OpenPGP için arka uç desteği yok"
+msgstr "OpenPGP arka uç desteği yok"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:181
 #, kde-format
 msgid "No backend support for S/MIME"
-msgstr "S/MIME için arka uç desteği yok"
+msgstr "S/MIME arka uç desteği yok"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:133
 #, kde-format
 msgid "Cannot use SENDER"
-msgstr "GÖNDERİCİ kullanılamaz"
+msgstr "SENDER kullanılamaz"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:137
 #, kde-format
 msgid "Cannot use RECIPIENT"
-msgstr "ALICI kullanılamaz"
+msgstr "RECIPIENT kullanılamaz"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "INPUT present"
-msgstr "GİRDİ mevcut"
+msgstr "INPUT var"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:147
 #, kde-format
 msgid "MESSAGE present"
-msgstr "İLETİ mevcut"
+msgstr "MESSAGE var"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:150
 #, kde-format
 msgid "OUTPUT present"
-msgstr "ÇIKTI mevcut"
+msgstr "OUTPUT var"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:158
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
-msgstr "DEŞİFRELE/DOSYALARI_ONAYLA girdi olarak dizin kullanamaz"
+msgstr "DECRYPTVERIFY_FILES girdi olarak dizin kullanamaz"
 
 #: src/uiserver/echocommand.cpp:132 src/uiserver/signcommand.cpp:207
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1"
 msgstr ""
-"SignCommand::Private::slotMicAlgDetermined içerisinde beklenmeyen bir "
-"istisna yakalandı :%1"
+"SignCommand::Private::slotMicAlgDetermined içinde beklenmeyen bir istisna "
+"yakalandı: %1"
 
 #: src/uiserver/echocommand.cpp:136 src/uiserver/signcommand.cpp:211
 #, kde-format
 msgid "Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"
 msgstr ""
-"SignCommand::Private::slotMicAlgDetermined içerisinde bilinmeyen bir hata "
+"SignCommand::Private::slotMicAlgDetermined içinde bilinmeyen bir hata "
 "yakalandı"
 
 #: src/uiserver/encryptcommand.cpp:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "ENCRYPT is an email mode command, connection seems to be in filmanager "
-#| "mode"
+#, kde-format
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
-"ŞİFRELE bir e-posta kipi komutudur, bağlantı dosya yöneticisi kipinde gibi "
+"ENCRYPT, bir e-posta kipi komutudur; bağlantı dosya yöneticisi kipinde gibi "
 "görünüyor"
 
 #: src/uiserver/encryptcommand.cpp:73
@@ -10202,7 +10191,7 @@ msgstr "PREP_ENCRYPT komutundan sonra yeni göndericiler eklendi"
 #: src/uiserver/encryptcommand.cpp:111 src/uiserver/prepencryptcommand.cpp:71
 #, kde-format
 msgid "No recipients given, or only with --info"
-msgstr "Hiç alıcı girilmedi ya da sadece --info girildi"
+msgstr "Hiç alıcı girilmedi ya da yalnızca --info girildi"
 
 #: src/uiserver/encryptcommand.cpp:184
 #, kde-format
@@ -10210,7 +10199,7 @@ msgid ""
 "Caught unexpected exception in EncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"EncryptCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"EncryptCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı: %1"
 
 #: src/uiserver/encryptcommand.cpp:188
@@ -10218,7 +10207,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in EncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"EncryptCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"EncryptCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı"
 
 #: src/uiserver/prepencryptcommand.cpp:59
@@ -10248,8 +10237,8 @@ msgid ""
 "Caught unexpected exception in PrepEncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"PrepEncryptCommand::Private::slotRecipientsResolved içerisinde beklenmeyen "
-"bir olağandışılık yakalandı: %1"
+"PrepEncryptCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
+"olağandışılık yakalandı: %1"
 
 #: src/uiserver/prepencryptcommand.cpp:128
 #, kde-format
@@ -10257,13 +10246,13 @@ msgid ""
 "Caught unknown exception in PrepEncryptCommand::Private::"
 "slotRecipientsResolved"
 msgstr ""
-"PrepEncryptCommand::Private::slotRecipientsResolved içerisinde beklenmeyen "
-"bir olağandışılık yakalandı"
+"PrepEncryptCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
+"olağandışılık yakalandı"
 
 #: src/uiserver/prepsigncommand.cpp:63
 #, kde-format
 msgid "INPUT/OUTPUT/MESSAGE may only be given after PREP_SIGN"
-msgstr "GİRDİ/ÇIKTI/İLETİ sadece PREP_SIGN sonrası verilebilir"
+msgstr "GİRDİ/ÇIKTI/İLETİ yalnızca PREP_SIGN sonrası verilebilir"
 
 #: src/uiserver/prepsigncommand.cpp:67
 #, kde-format
@@ -10294,7 +10283,7 @@ msgid ""
 "Caught unexpected exception in PrepSignCommand::Private::"
 "slotRecipientsResolved: %1"
 msgstr ""
-"PrepSignCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"PrepSignCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı: %1"
 
 #: src/uiserver/prepsigncommand.cpp:160
@@ -10302,7 +10291,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"PrepSignCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"PrepSignCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı"
 
 #: src/uiserver/selectcertificatecommand.cpp:171
@@ -10311,8 +10300,8 @@ msgid ""
 "Caught unexpected exception in SelectCertificateCommand::Private::"
 "slotDialogAccepted: %1"
 msgstr ""
-"SelectCertificateCommand::Private::slotDialogAccepted içerisinde beklenmeyen "
-"bir olağandışılık yakalandı: %1"
+"SelectCertificateCommand::Private::slotDialogAccepted içinde beklenmeyen bir "
+"olağandışılık yakalandı: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp:175
 #, kde-format
@@ -10320,31 +10309,31 @@ msgid ""
 "Caught unknown exception in SelectCertificateCommand::Private::"
 "slotDialogAccepted"
 msgstr ""
-"SelectCertificateCommand::Private::slotDialogAccepted içerisinde beklenmeyen "
-"bir olağandışılık yakalandı"
+"SelectCertificateCommand::Private::slotDialogAccepted içinde beklenmeyen bir "
+"olağandışılık yakalandı"
 
 #: src/uiserver/signcommand.cpp:70
 #, kde-format
 msgid ""
 "SIGN is an email mode command, connection seems to be in filemanager mode"
 msgstr ""
-"İMZALA bir e-posta kipi komutudur, bağlantı dosya yöneticisi kipi içinden "
-"gibi görünüyor"
+"SIGN bir e-posta kipi komutudur, bağlantı dosya yöneticisi kipi içinden gibi "
+"görünüyor"
 
 #: src/uiserver/signcommand.cpp:74
 #, kde-format
 msgid "RECIPIENT may not be given prior to SIGN, except with --info"
-msgstr "ALICI, İMZALA için verilemez, sadece --info ile kullanılabilir"
+msgstr "RECIPIENT, SIGN için verilemez, yalnızca --info ile kullanılabilir"
 
 #: src/uiserver/signcommand.cpp:86
 #, kde-format
 msgid "MESSAGE command is not allowed before SIGN"
-msgstr "İLETİ komutuna İMZALA öncesinde izin verilmez"
+msgstr "SIGN öncesi MESSAGE komutuna izin verilmez"
 
 #: src/uiserver/signcommand.cpp:107
 #, kde-format
 msgid "No senders given, or only with --info"
-msgstr "Hiç gönderici girilmedi veya sadece --info girildi"
+msgstr "Hiç gönderici girilmedi veya yalnızca --info girildi"
 
 #: src/uiserver/signcommand.cpp:184
 #, kde-format
@@ -10352,7 +10341,7 @@ msgid ""
 "Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: "
 "%1"
 msgstr ""
-"SignCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"SignCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı: %1"
 
 #: src/uiserver/signcommand.cpp:188
@@ -10360,7 +10349,7 @@ msgstr ""
 msgid ""
 "Caught unknown exception in SignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"SignCommand::Private::slotRecipientsResolved içerisinde beklenmeyen bir "
+"SignCommand::Private::slotRecipientsResolved içinde beklenmeyen bir "
 "olağandışılık yakalandı"
 
 #: src/uiserver/signencryptfilescommand.cpp:65
@@ -10404,22 +10393,22 @@ msgstr "%1 adresinde çalışan diğer bir gnupg UI sunucusu belirlendi."
 #: src/uiserver/uiserver_unix.cpp:43 src/uiserver/uiserver_win.cpp:39
 #, kde-format
 msgid "Could not create socket: %1"
-msgstr "Soket oluşturulamadı: %1"
+msgstr "Yuva oluşturulamadı: %1"
 
 #: src/uiserver/uiserver_unix.cpp:57 src/uiserver/uiserver_win.cpp:49
 #, kde-format
 msgid "Could not bind to socket: %1"
-msgstr "Sokete bağlanılamıyor: %1"
+msgstr "Yuvaya bağlanılamıyor: %1"
 
 #: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:53
 #, kde-format
 msgid "Could not get socket nonce: %1"
-msgstr "Soket alınamadı: %1"
+msgstr "Yuva alınamadı: %1"
 
 #: src/uiserver/uiserver_unix.cpp:69 src/uiserver/uiserver_win.cpp:58
 #, kde-format
 msgid "Could not listen to socket: %1"
-msgstr "Soket dinlenemiyor: %1"
+msgstr "Yuva dinlenemiyor: %1"
 
 #: src/uiserver/uiserver_unix.cpp:73 src/uiserver/uiserver_win.cpp:62
 #, kde-format
@@ -10427,31 +10416,29 @@ msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "
 "bug."
 msgstr ""
-"Qt'ye soket aktarılamadı: %1. Bunun olmaması gerekiyordu, lütfen bu hatayı "
+"Qt'ye yuva aktarılamadı: %1. Bunun olmaması gerekiyordu, lütfen bu hatayı "
 "bildirin."
 
 #: src/utils/accessibility.cpp:93
-#, fuzzy, kde-format
-#| msgid "Selection"
+#, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
 "form field, has an error"
 msgid "invalid entry"
-msgstr "Seçim"
+msgstr "geçersiz girdi"
 
 #: src/utils/accessibility.cpp:100
-#, fuzzy, kde-format
-#| msgid "(required)"
+#, kde-format
 msgctxt ""
 "text for screen readers to indicate that the associated object, such as a "
 "form field must be filled out"
 msgid "required"
-msgstr "(zorunlu)"
+msgstr "zorunlu"
 
 #: src/utils/archivedefinition.cpp:85
 #, kde-format
 msgid "Error in archive definition %1: %2"
-msgstr "%1 Arşiv tanımlamasında hata: %2"
+msgstr "%1 arşiv tanımlamasında hata: %2"
 
 #: src/utils/archivedefinition.cpp:135
 #, kde-format
@@ -10466,7 +10453,7 @@ msgstr "'%1' girdisi içinde alıntılama hatası"
 #: src/utils/archivedefinition.cpp:150
 #, kde-format
 msgid "'%1' too complex (would need shell)"
-msgstr "'%1' fazla karmaşık (kabuk gerektirir)"
+msgstr "'%1' pek karmaşık (kabuk gerektirir)"
 
 #: src/utils/archivedefinition.cpp:154 src/utils/archivedefinition.cpp:204
 #: src/utils/archivedefinition.cpp:218 src/utils/archivedefinition.cpp:230
@@ -10490,18 +10477,18 @@ msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
-"Ortak taban dizini bu dosyalar için bulunamıyor:\n"
+"Bu dosyalar için ortak taban dizin bulunamıyor:\n"
 "%1"
 
 #: src/utils/archivedefinition.cpp:407
 #, kde-format
 msgid "Caught unknown exception in group %1"
-msgstr "%1 grubu içerisinde beklenmeyen bir istisna yakalandı"
+msgstr "%1 grubu içinde beklenmeyen bir istisna yakalandı"
 
 #: src/utils/clipboardmenu.cpp:40
 #, kde-format
 msgid "Certificate Import"
-msgstr "İçe Sertifika Aktar"
+msgstr "Sertifika İçe Aktar"
 
 #: src/utils/clipboardmenu.cpp:41
 #, kde-format
@@ -10511,27 +10498,27 @@ msgstr "Şifrele..."
 #: src/utils/clipboardmenu.cpp:44
 #, kde-format
 msgid "S/MIME-Sign..."
-msgstr "S/MIME-İmzalaması..."
+msgstr "S/MIME İmzala..."
 
 #: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "OpenPGP-Sign..."
-msgstr "OpenPGP-İmzalaması..."
+msgstr "OpenPGP İmzala..."
 
 #: src/utils/input.cpp:220
 #, kde-format
 msgid "Could not open FD %1 for reading"
-msgstr "FD %1 dosyası okumak için açılamadı"
+msgstr "FD %1 dosyası okuma için açılamadı"
 
 #: src/utils/input.cpp:250 src/utils/input.cpp:266
 #, kde-format
 msgid "Could not open file \"%1\" for reading"
-msgstr "\"%1\" dosyası okumak için açılamadı"
+msgstr "\"%1\" dosyası okuma için açılamadı"
 
 #: src/utils/input.cpp:263
 #, kde-format
 msgid "File \"%1\" is already open, but not for reading"
-msgstr "\"%1\" dosyası zaten açık ama okunmak için değil"
+msgstr "\"%1\" dosyası halihazırda açık; ancak okuma için değil"
 
 #: src/utils/input.cpp:330 src/utils/output.cpp:654
 #, kde-format
@@ -10552,7 +10539,7 @@ msgstr "%1 sürecine girdi yazılamadı: %2"
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file1 ...\""
 msgid "Output of %1 ..."
-msgstr "%1 çıktısı ..."
+msgstr "%1 çıktısı..."
 
 #: src/utils/input.cpp:364
 #, kde-format
@@ -10572,7 +10559,7 @@ msgstr ""
 #: src/utils/input.cpp:424
 #, kde-format
 msgid "Could not open clipboard for reading"
-msgstr "Pano okumak için açılamadı"
+msgstr "Pano okuma için açılamadı"
 
 #: src/utils/input.cpp:436
 #, kde-format
@@ -10582,7 +10569,7 @@ msgstr "Pano içeriği"
 #: src/utils/input.cpp:438
 #, kde-format
 msgid "FindBuffer contents"
-msgstr "FindBuffer içerikleri"
+msgstr "FindBuffer içeriği"
 
 #: src/utils/input.cpp:440
 #, kde-format
@@ -10597,7 +10584,7 @@ msgstr "Girdi aygıtı yok"
 #: src/utils/log.cpp:140
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
-msgstr "Günlük Kaydı Hatası: \"%1\" günlük dosyası yazmak için açılamadı."
+msgstr "Günlük Hatası: \"%1\" günlük dosyası yazma için açılamadı."
 
 #: src/utils/output.cpp:277
 #, kde-format
@@ -10622,18 +10609,18 @@ msgstr "Üzerine yazma reddedildi"
 #: src/utils/output.cpp:607
 #, kde-format
 msgid "Could not remove file \"%1\" for overwriting."
-msgstr "\"%1\" dosyası üzerine yazmak için silinemedi."
+msgstr "\"%1\" dosyası üzerine yazma için silinemedi."
 
 #: src/utils/output.cpp:626
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
-msgstr "\"%1\" dosyası \"%2\" olarak yeniden adlandırılamadı."
+msgstr "\"%1\" dosyası, \"%2\" olarak yeniden adlandırılamadı."
 
 #: src/utils/output.cpp:671
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
-msgstr "%1 için girdi ..."
+msgstr "%1 için girdi..."
 
 #: src/utils/output.cpp:673
 #, kde-format
@@ -10649,7 +10636,7 @@ msgstr "Panoya yazılamadı"
 #: src/utils/output.cpp:714
 #, kde-format
 msgid "Find buffer"
-msgstr "Tampon bellek bul"
+msgstr "Arabellek bul"
 
 #: src/utils/output.cpp:716
 #, kde-format
@@ -10664,29 +10651,28 @@ msgstr "Pano bulunamadı"
 #: src/utils/path-helper.cpp:118
 #, kde-format
 msgid "Cannot remove directory %1"
-msgstr "%1 dizini silinemedi"
+msgstr "%1 dizini kaldırılamadı"
 
 #: src/utils/path-helper.cpp:123
 #, kde-format
 msgid "Cannot remove file %1: %2"
-msgstr "%1 dosyasıi silinemedi: %2"
+msgstr "%1 dosyası kaldırılamadı: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
-msgstr ""
+msgstr "Hata: Bir değer girin."
 
 #: src/view/formtextinput.cpp:33
 #, kde-format
 msgid "Error: Enter a value in the correct format."
-msgstr ""
+msgstr "Hata: Doğru biçimde bir değer girin."
 
 #: src/view/formtextinput.cpp:86
-#, fuzzy, kde-format
-#| msgid "(required)"
+#, kde-format
 msgctxt "@label label text (required)"
 msgid "%1 (required)"
-msgstr "(zorunlu)"
+msgstr "%1 (zorunlu)"
 
 #: src/view/keycacheoverlay.cpp:38
 #, kde-format
@@ -10694,16 +10680,14 @@ msgid "Loading certificate cache..."
 msgstr "Sertifika önbelleği yükleniyor..."
 
 #: src/view/keylistcontroller.cpp:361
-#, fuzzy, kde-format
-#| msgid "New Key Pair..."
+#, kde-format
 msgid "New OpenPGP Key Pair..."
-msgstr "Yeni Anahtar Çifti..."
+msgstr "Yeni OpenPGP Anahtar Çifti..."
 
 #: src/view/keylistcontroller.cpp:361
-#, fuzzy, kde-format
-#| msgid "OpenPGP Certificates"
+#, kde-format
 msgid "Create a new OpenPGP certificate"
-msgstr "OpenPGP Sertifikaları"
+msgstr "Yeni bir OpenPGP sertifikası oluştur"
 
 #: src/view/keylistcontroller.cpp:365
 #, kde-format
@@ -10713,7 +10697,7 @@ msgstr "Dışa Aktar..."
 #: src/view/keylistcontroller.cpp:365
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
-msgstr "Seçili sertifikayı (genel anahtar) bir dosyaya aktar"
+msgstr "Seçili sertifikayı (genel anahtar) bir dosyaya dışa aktar"
 
 #: src/view/keylistcontroller.cpp:369
 #, kde-format
@@ -10726,18 +10710,18 @@ msgid "Publish the selected certificate (public key) on a public keyserver"
 msgstr "Seçili sertifikayı (genel anahtar) genel anahtar sunucuna yayımla"
 
 #: src/view/keylistcontroller.cpp:374
-#, fuzzy, kde-format
-#| msgid "Publish on Server..."
+#, kde-format
 msgid "Publish at Mail Provider..."
-msgstr "Sunucuda Yayımla..."
+msgstr "Posta Sağlayıcısında Yayımla..."
 
 #: src/view/keylistcontroller.cpp:374
-#, fuzzy, kde-format
-#| msgid "Publish the selected certificate (public key) on a public keyserver"
+#, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
-msgstr "Seçili sertifikayı (genel anahtar) genel anahtar sunucuna yayımla"
+msgstr ""
+"Sunulmuşsa seçili sertifikayı (genel anahtar), posta sağlayıcısının Web "
+"Anahtar Dizini'nde yayımla"
 
 #: src/view/keylistcontroller.cpp:379
 #, kde-format
@@ -10767,12 +10751,12 @@ msgstr "Dosyadan bir sertifika içe aktar"
 #: src/view/keylistcontroller.cpp:395
 #, kde-format
 msgid "Decrypt and/or verify files"
-msgstr "Dosyaları şifresini aç ve/veya doğrula"
+msgstr "Dosyalar şifresini aç ve/veya doğrula"
 
 #: src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Encrypt and/or sign files"
-msgstr "Dosyaların şifrele ve/veya doğrula"
+msgstr "Dosyaları şifrele ve/veya doğrula"
 
 #: src/view/keylistcontroller.cpp:403
 #, kde-format
@@ -10782,22 +10766,22 @@ msgstr "Klasörü İmzala/Şifrele..."
 #: src/view/keylistcontroller.cpp:403
 #, kde-format
 msgid "Encrypt and/or sign folders"
-msgstr "Klasörleri şifrele ve/veta imzala"
+msgstr "Klasörleri şifrele ve/veya imzala"
 
 #: src/view/keylistcontroller.cpp:407
 #, kde-format
 msgid "Create Checksum Files..."
-msgstr "Dosya Özetleri Oluştur..."
+msgstr "Sağlama Toplamı Dosyaları Oluştur..."
 
 #: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Verify Checksum Files..."
-msgstr "Dosya Sağlama Toplamlarını Doğrula..."
+msgstr "Sağlama Toplamı Dosyalarını Doğrula..."
 
 #: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Redisplay"
-msgstr "Yeniden Göster"
+msgstr "Yeniden Görüntüle"
 
 #: src/view/keylistcontroller.cpp:420
 #, kde-format
@@ -10832,7 +10816,7 @@ msgstr "Seçili sertifikaları sil"
 #: src/view/keylistcontroller.cpp:439
 #, kde-format
 msgid "Certify..."
-msgstr "Onayla..."
+msgstr "Sertifikala..."
 
 #: src/view/keylistcontroller.cpp:439
 #, kde-format
@@ -10842,31 +10826,30 @@ msgstr "Seçili sertifikanın geçerliliğini onayla"
 #: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Revoke Certification..."
-msgstr "Sertifikalamayı Yürürlükten Kaldır..."
+msgstr "Sertifikasyonu Yürürlükten Kaldır..."
 
 #: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
-msgstr "Seçili sertifikanın sertifikalamayı yürürlükten kaldır"
+msgstr "Seçili sertifikanın sertifikasyonunu yürürlükten kaldır"
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Sertifikalandırma Güvenini Değiştir..."
+msgstr "Sertifikasyon Gücünü Değiştir..."
 
 #: src/view/keylistcontroller.cpp:452
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "Seçili sertifikanın sertifikalamayı yürürlükten kaldır"
+msgstr ""
+"Seçili sertifikanın sertifikasyon gücünü onayla veya yürürlükten kaldır"
 
 #: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Change Passphrase..."
-msgstr "Parolayı Değiştir..."
+msgstr "Anahtar Parolasını Değiştir..."
 
 #: src/view/keylistcontroller.cpp:460
 #, kde-format
@@ -10879,16 +10862,14 @@ msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP Sertifikalarını Yenile"
 
 #: src/view/keylistcontroller.cpp:475
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgid "New S/MIME Certification Request..."
-msgstr "S/MIME Sertifikaları"
+msgstr "Yeni S/MIME Sertifikasyonu İsteği..."
 
 #: src/view/keylistcontroller.cpp:475
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
-msgstr "Yeni bir anahtar çifti oluştur veya imzlama isteğini onayla"
+msgstr "Yeni bir S/MIME sertifika imzalama isteği oluştur (CSR)"
 
 #: src/view/keylistcontroller.cpp:482
 #, kde-format
@@ -10906,10 +10887,9 @@ msgid "Technical Details"
 msgstr "Teknik Ayrıntılar"
 
 #: src/view/keylistcontroller.cpp:495
-#, fuzzy, kde-format
-#| msgid "S/MIME Certificates"
+#, kde-format
 msgid "Refresh S/MIME Certificates"
-msgstr "S/MIME Sertifikaları"
+msgstr "S/MIME Sertifikalarını Yenile"
 
 #: src/view/keylistcontroller.cpp:499
 #, kde-format
@@ -10924,24 +10904,22 @@ msgstr "CRL Önbelleğini Dök"
 #: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Import CRL From File..."
-msgstr "CRL'yi Dosyadan İçe Aktar..."
+msgstr "Dosyadan CRL İçe Aktar..."
 
 #: src/view/keytreeview.cpp:80
 #, kde-format
 msgid "View Columns"
-msgstr ""
+msgstr "Sütunları Görüntüle"
 
 #: src/view/keytreeview.cpp:276 src/view/keytreeview.cpp:615
-#, fuzzy, kde-format
-#| msgid "Hierarchical Certificate List"
+#, kde-format
 msgid "Hierarchical list of certificates"
-msgstr "Hiyerarşik Sertifika Listesi"
+msgstr "Sertifikaların hiyerarşik listesi"
 
 #: src/view/keytreeview.cpp:276 src/view/keytreeview.cpp:615
-#, fuzzy, kde-format
-#| msgid "Listing X.509 certificates"
+#, kde-format
 msgid "List of certificates"
-msgstr "X.509 sertifikaları listeleniyor"
+msgstr "Sertifikaların listesi"
 
 #: src/view/netkeywidget.cpp:80 src/view/p15cardwidget.cpp:81
 #: src/view/pgpcardwidget.cpp:177 src/view/pivcardwidget.cpp:110
@@ -10955,10 +10933,9 @@ msgid "Certificates:"
 msgstr "Sertifikalar:"
 
 #: src/view/netkeywidget.cpp:93
-#, fuzzy, kde-format
-#| msgid "Good signature by unknown certificate %1."
+#, kde-format
 msgid "There are unknown certificates on this card."
-msgstr "Bilinmeyen %1 sertifikasından doğru imza."
+msgstr "Bu kartta bilinmeyen sayıda sertifika var."
 
 #: src/view/netkeywidget.cpp:94
 #, kde-format
@@ -10972,47 +10949,41 @@ msgid "Actions:"
 msgstr "Eylemler:"
 
 #: src/view/netkeywidget.cpp:148 src/view/pivcardwidget.cpp:135
-#, fuzzy, kde-format
-#| msgid "Create a new OpenPGP key pair"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create OpenPGP Key"
-msgstr "Yeni bir OpenPGP anatar çifti oluştur"
+msgstr "OpenPGP Anahtarı Oluştur"
 
 #: src/view/netkeywidget.cpp:149 src/view/pivcardwidget.cpp:136
-#, fuzzy, kde-format
-#| msgid "Create a new primary key and generate subkeys on the card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr ""
-"Yeni bir birincil anahtar oluştur ve kart üzerinde alt anahtarını oluştur."
+msgstr "Kartta depolanan anahtarlar için bir OpenPGP anahtarı oluşturun."
 
 #: src/view/netkeywidget.cpp:156 src/view/openpgpkeycardwidget.cpp:59
 #: src/view/pivcardwidget.cpp:184
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create CSR"
-msgstr "Oluştur"
+msgstr "CSR Oluştur"
 
 #: src/view/netkeywidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for a key stored on the card."
-msgstr "Yeni bir anahtar çifti oluştur veya imzlama isteğini onayla"
+msgstr "Karta depolanan anahtar için bir sertifika imzalama isteği oluşturun."
 
 #: src/view/netkeywidget.cpp:163
 #, kde-format
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
-msgstr "NKS PIN Değiştir"
+msgstr "NKS PIN'ini Değiştir"
 
 #: src/view/netkeywidget.cpp:164 src/view/netkeywidget.cpp:227
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
-msgstr "SigG PIN Değiştir"
+msgstr "SigG PIN'ini Değiştir"
 
 #: src/view/netkeywidget.cpp:210
 #, kde-format
@@ -11024,27 +10995,23 @@ msgstr "NetKey %1 Kartı"
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
-msgstr "SigG PIN Ayarla"
+msgstr "SigG PIN'ini Ayarla"
 
 #: src/view/netkeywidget.cpp:237
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Error"
+#, kde-format
 msgid "Error"
 msgstr "Hata"
 
 #: src/view/netkeywidget.cpp:298
-#, fuzzy, kde-format
-#| msgid "Select File"
+#, kde-format
 msgid "Select Key"
-msgstr "Dosya Seç"
+msgstr "Anahtar Seç"
 
 #: src/view/netkeywidget.cpp:299
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgid ""
 "Please select the key you want to create a certificate signing request for:"
-msgstr "Yeni bir anahtar çifti oluştur veya imzlama isteğini onayla"
+msgstr "Bir sertifika imzalama isteği oluşturmak istediğiniz anahtarı seçin:"
 
 #: src/view/netkeywidget.cpp:315
 #, kde-format
@@ -11052,6 +11019,8 @@ msgid ""
 "Sorry! No keys suitable for creating a certificate signing request found on "
 "the smartcard."
 msgstr ""
+"Üzgünüm! Akıllı kart üzerinde bir imzalama isteği oluşturulabilecek bir "
+"anahtar bulunamadı."
 
 #: src/view/nullpinwidget.cpp:34
 #, kde-format
@@ -11059,23 +11028,23 @@ msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
 "should be understandable by Netkey cardholders"
 msgid "The NullPIN is still active on this card."
-msgstr "NullPIN, hala bu kartta etkin."
+msgstr "NullPIN, hâlâ bu kartta etkin."
 
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
 msgid "You need to set a PIN before you can use the certificates."
-msgstr "Sertifikaları kullanabilmeniz için, önce bir PIN ayarlamalısınız."
+msgstr "Sertifikaları kullanabilmeniz için önce bir PIN ayarlamalısınız."
 
 #: src/view/nullpinwidget.cpp:41
 #, kde-format
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Set NKS PIN"
-msgstr "NKS PIN Ayarla"
+msgstr "NKS PIN'ini Ayarla"
 
 #: src/view/nullpinwidget.cpp:69
 #, kde-format
 msgid "Setting a PIN is required but <b>can't be reverted</b>."
-msgstr "PIN ayarlama gerekli, ancak <b>geri döndürülemez</b>."
+msgstr "PIN ayarlama gerekli; ancak <b>geri döndürülemez</b>."
 
 #: src/view/nullpinwidget.cpp:71
 #, kde-format
@@ -11092,17 +11061,16 @@ msgid ""
 "It will <b>not be possible</b> to recover the card if the PIN has been "
 "entered wrongly more than 2 times."
 msgstr ""
-"PIN yanlışlıkla 2 defadan fazla girildiğinde kartı kurtarmak <b>mümkün "
+"PIN yanlışlıkla 2 defadan fazla girildiğinde kartı kurtarmak <b>olanaklı "
 "olmayacaktır</b>."
 
 #: src/view/nullpinwidget.cpp:75
 #, kde-format
 msgid "Set initial PIN"
-msgstr "Başlangıç PIN'i Ayarla"
+msgstr "Başlangıç PIN'ini Ayarla"
 
 #: src/view/openpgpkeycardwidget.cpp:52
-#, fuzzy, kde-format
-#| msgid "Show Details"
+#, kde-format
 msgctxt "@action:button"
 msgid "Show Details"
 msgstr "Ayrıntıları Göster"
@@ -11111,142 +11079,120 @@ msgstr "Ayrıntıları Göster"
 #, kde-format
 msgctxt "@action:tooltip"
 msgid "Show detailed information about this key"
-msgstr ""
+msgstr "Bu anahtar hakkında ayrıntılı bilgi göster"
 
 #: src/view/openpgpkeycardwidget.cpp:55 src/view/openpgpkeycardwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "Generate new Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Key"
-msgstr "Yeni Anahtarlar Oluştur"
+msgstr "Anahtar Üret"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:185
-#, fuzzy, kde-format
-#| msgid "Create a new key pair or certificate signing request"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a certificate signing request for this key"
-msgstr "Yeni bir anahtar çifti oluştur veya imzlama isteğini onayla"
+msgstr "Bu anahtar için bir sertifika imzalama isteği oluştur"
 
 #: src/view/openpgpkeycardwidget.cpp:171
-#, fuzzy, kde-format
-#| msgid "Slot empty"
+#, kde-format
 msgctxt "@info"
 msgid "<em>No key</em>"
-msgstr "Boş yuva"
+msgstr "<em>Anahtar yok</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:173
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr "Bu kart için yeni bir anahtar başarıyla oluşturuldu."
+msgstr "Bu kart yuvası için bir anahtar üret"
 
 #: src/view/openpgpkeycardwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid "Public key not found."
+#, kde-format
 msgctxt "@info"
 msgid "<em>Public key not found locally</em>"
-msgstr "Açık anahtar bulunamadı."
+msgstr "<em>Genel anahtar, yerel olarak bulunamadı</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:209
-#, fuzzy, kde-format
-#| msgid "<b>Invalid signature.</b>"
-#| msgid_plural "<b>%1 invalid signatures.</b>"
+#, kde-format
 msgctxt "@info"
 msgid "<em>Invalid fingerprint</em>"
-msgstr "<b>Geçersiz imza.</b>"
+msgstr "<em>Geçersiz parmak izi</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:219
-#, fuzzy, kde-format
-#| msgid "Generate new Keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "Yeni Anahtarlar Oluştur"
+msgstr "Anahtarı Yeniden Üret"
 
 #: src/view/openpgpkeycardwidget.cpp:220
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
-msgstr ""
+msgstr "Bu kart yuvası için var olan anahtarı değiştiren yeni bir anahtar üret"
 
 #: src/view/openpgpkeycardwidget.cpp:243
 #, kde-format
 msgctxt "@info"
 msgid "Sorry, I cannot find the key with fingerprint %1."
-msgstr ""
+msgstr "Üzgünüm, %1 parmak izine sahip anahtarı bulamıyorum."
 
 #: src/view/p15cardwidget.cpp:96
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
+#, kde-format
 msgid "OpenPGP keys:"
-msgstr "OpenPGP"
+msgstr "OpenPGP anahtarları:"
 
 #: src/view/p15cardwidget.cpp:117
-#, fuzzy, kde-format
-#| msgid "Scanning directories..."
+#, kde-format
 msgid "Searching in directory service..."
-msgstr "Dizinler taranıyor..."
+msgstr "Dizin hizmetinde aranıyor..."
 
 #: src/view/p15cardwidget.cpp:132
 #, kde-format
 msgid "Automatic import finished."
-msgstr ""
+msgstr "Otomatik içe aktarma bitti."
 
 #: src/view/p15cardwidget.cpp:137
 #, kde-format
 msgid "Error multiple keys found on server."
-msgstr ""
+msgstr "Hata, sunucuda birden çok anahtarlar bulundu."
 
 #: src/view/p15cardwidget.cpp:140
 #, kde-format
 msgid "Key not found in directory service."
-msgstr ""
+msgstr "Dizin hizmetinde anahtar bulunamadı."
 
 #: src/view/p15cardwidget.cpp:149
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
-msgstr ""
+msgstr "%1 PKCS#15 kard"
 
 #: src/view/padwidget.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgid "Sign / Encrypt Notepad"
-msgstr "İmzala / Şifrele"
+msgstr "Not Defteri İmzala/Şifrele"
 
 #: src/view/padwidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Failed"
+#, kde-format
 msgid "Decrypt / Verify Notepad"
-msgstr "Şifreyi Açma/Doğrulama Başarısız"
+msgstr "Not Defteri Şifresini Çöz/Doğrula"
 
 #: src/view/padwidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Imported:"
+#, kde-format
 msgid "Import Notepad"
-msgstr "Alınan:"
+msgstr "Not Defteri İçe Aktar"
 
 #: src/view/padwidget.cpp:86
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgid "Revert"
-msgstr "asla"
+msgstr "Geri Al"
 
 #: src/view/padwidget.cpp:114
-#, fuzzy, kde-format
-#| msgid "Signing and encryption succeeded."
+#, kde-format
 msgid "Signing and encryption is not possible."
-msgstr "İmzalama ve şifreleme işlemleri başarılı oldu."
+msgstr "İmzalama ve şifreleme olanaklı değil."
 
 #: src/view/padwidget.cpp:116
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para><application>Kleopatra</application> uses <application>PaperKey</"
-#| "application> to import your text backup.</para><para>Please make sure it "
-#| "is installed.</para>"
+#, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
@@ -11255,38 +11201,35 @@ msgid ""
 "encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
-"<para><application>Kleopatra</application>, metin yedeklemeniz için "
-"<application>PaperKey</application> kullanır.</para><para>Yüklü olduğundan "
-"emin olun.</para>"
+"<para><application>Kleopatra</application>'yi imzalamak veya şifreleme için "
+"kullanamazsınız; çünkü <application>Kleopatra</application> tarafından "
+"kullanılan <application>GnuPG</application> sistemi %1 değil.</para>"
 
 #: src/view/padwidget.cpp:150
 #, kde-format
 msgid "<h3>Protocol:</h3>"
-msgstr ""
+msgstr "<h3>Protokol:</h3>"
 
 #: src/view/padwidget.cpp:156
-#, fuzzy, kde-format
-#| msgid "Recipient"
+#, kde-format
 msgid "Recipients"
-msgstr "Alıcı"
+msgstr "Alıcılar"
 
 #: src/view/padwidget.cpp:158
 #, kde-format
 msgid "Enter a message to encrypt or decrypt..."
-msgstr ""
+msgstr "Şifrelemek veya şifresini çözmek için bir ileti gir..."
 
 #: src/view/padwidget.cpp:314 src/view/padwidget.cpp:355
-#, fuzzy, kde-format
-#| msgid "Encryption Options"
+#, kde-format
 msgctxt "@title"
 msgid "Error in crypto action"
-msgstr "Şifreleme Seçenekleri"
+msgstr "Şifre eyleminde hata"
 
 #: src/view/padwidget.cpp:332
-#, fuzzy, kde-format
-#| msgid "&Decrypt/Verify"
+#, kde-format
 msgid "Decrypt / Verify"
-msgstr "Şifrelemeyi Aç/&Doğrula"
+msgstr "Şifre Çöz/Doğrula"
 
 #: src/view/padwidget.cpp:395
 #, kde-kuit-format
@@ -11298,56 +11241,51 @@ msgid ""
 "or encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
+"<para>Üzgünüm! <application>Kleopatra</application>'yı imzalamak veya "
+"şifrelemek için kullanamazsınız; çünkü <application>Kleopatra</application> "
+"tarafından kullanılan <application>GnuPG</application> sistemi %1 değil.</"
+"para>"
 
 #: src/view/padwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "Signing canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
-msgstr "İmzalama işlemi iptal edildi."
+msgstr "Not defteri imzalanıyor..."
 
 #: src/view/padwidget.cpp:407
-#, fuzzy, kde-format
-#| msgid "Encryption canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
-msgstr "Şifreleme iptal edildi."
+msgstr "Not defteri şifreleniyor..."
 
 #: src/view/padwidget.cpp:410
-#, fuzzy, kde-format
-#| msgid "Signing and encryption succeeded."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
-msgstr "İmzalama ve şifreleme işlemleri başarılı oldu."
+msgstr "Not defteri imzalanıyor ve şifreleniyor..."
 
 #: src/view/padwidget.cpp:456
-#, fuzzy, kde-format
-#| msgid "Import..."
+#, kde-format
 msgid "Importing..."
-msgstr "İçe Aktar..."
+msgstr "İçe aktarılıyor..."
 
 #: src/view/padwidget.cpp:496
-#, fuzzy, kde-format
-#| msgid "Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
-msgstr "Not Defteri"
+msgstr "Not Defteri İmzala"
 
 #: src/view/padwidget.cpp:499
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
-msgstr "İmzala / Şifrele"
+msgstr "Not Defteri Şifrele"
 
 #: src/view/padwidget.cpp:503
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
-msgstr "İmzala / Şifrele"
+msgstr "Not Defteri İmzala/Şifrele"
 
 #: src/view/pgpcardwidget.cpp:184
 #, kde-format
@@ -11359,7 +11297,7 @@ msgstr "Kart Sahibi:"
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #: src/view/pgpcardwidget.cpp:191 src/view/pgpcardwidget.cpp:207
 #, kde-format
@@ -11367,13 +11305,12 @@ msgid "Change"
 msgstr "Değiştir"
 
 #: src/view/pgpcardwidget.cpp:200
-#, fuzzy, kde-format
-#| msgid "Subkey Usage:"
+#, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
 "downloaded"
 msgid "Pubkey URL:"
-msgstr "Alt Anahtar Kullanımı:"
+msgstr "Genel Anahtar URL'si:"
 
 #: src/view/pgpcardwidget.cpp:219 src/view/pivcardwidget.cpp:120
 #, kde-format
@@ -11381,49 +11318,45 @@ msgid "Keys:"
 msgstr "Anahtarlar:"
 
 #: src/view/pgpcardwidget.cpp:233
-#, fuzzy, kde-format
-#| msgid "Generate new Keys"
+#, kde-format
 msgid "Generate New Keys"
-msgstr "Yeni Anahtarlar Oluştur"
+msgstr "Yeni Anahtarlar Üret"
 
 #: src/view/pgpcardwidget.cpp:234
 #, kde-format
 msgid "Create a new primary key and generate subkeys on the card."
 msgstr ""
-"Yeni bir birincil anahtar oluştur ve kart üzerinde alt anahtarını oluştur."
+"Yeni bir birincil anahtar oluştur ve kart üzerinde alt anahtarlar üret."
 
 #: src/view/pgpcardwidget.cpp:239
 #, kde-format
 msgid "Change PIN"
-msgstr "PIN Değiştir"
+msgstr "PIN'i Değiştir"
 
 #: src/view/pgpcardwidget.cpp:240
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unlock the smartcard."
+#, kde-format
 msgid "Change the PIN required for using the keys on the smartcard."
-msgstr "Akıllı kartın kilidini açmak için kullanılan PIN'i değiştir."
+msgstr "Akıllı kartın kilidini açmak için kullanılan PIN'i değiştirin."
 
 #: src/view/pgpcardwidget.cpp:245
-#, fuzzy, kde-format
-#| msgid "Select All"
+#, kde-format
 msgid "Unblock Card"
-msgstr "Tümünü Seç"
+msgstr "Kartın Blokunu Kaldır"
 
 #: src/view/pgpcardwidget.cpp:246
 #, kde-format
 msgid "Unblock the smartcard and set a new PIN."
-msgstr ""
+msgstr "Akıllı kartın blokunu kaldırın ve yeni bir PIN ayarlayın."
 
 #: src/view/pgpcardwidget.cpp:251
 #, kde-format
 msgid "Change Admin PIN"
-msgstr "Yönetici PIN'ini değiştir"
+msgstr "Yönetici PIN'ini Değiştir"
 
 #: src/view/pgpcardwidget.cpp:252
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unlock the smartcard."
+#, kde-format
 msgid "Change the PIN required for administrative operations."
-msgstr "Akıllı kartın kilidini açmak için kullanılan PIN'i değiştir."
+msgstr "Yönetimsel işlemler için gereken PIN'i değiştirin."
 
 #: src/view/pgpcardwidget.cpp:257
 #, kde-format
@@ -11431,32 +11364,27 @@ msgid "Change Reset Code"
 msgstr "Sıfırlama Kodunu Değiştir"
 
 #: src/view/pgpcardwidget.cpp:258
-#, fuzzy, kde-format
-#| msgid "Change the PIN required to unblock the smartcard."
+#, kde-format
 msgid "Change the PIN required to unblock the smartcard and set a new PIN."
-msgstr "Akıllı kart blokunu kaldırmak için PIN değiştirme gerekiyor."
+msgstr ""
+"Akıllı kartın blokunu kaldırmak için gereken PIN'i değiştirin ve yeni bir "
+"PIN ayarlayın."
 
 #: src/view/pgpcardwidget.cpp:266
-#, fuzzy, kde-format
-#| msgid "Create a new OpenPGP key pair"
+#, kde-format
 msgid "Create OpenPGP Key"
-msgstr "Yeni bir OpenPGP anatar çifti oluştur"
+msgstr "OpenPGP Anahtarı Oluştur"
 
 #: src/view/pgpcardwidget.cpp:267
-#, fuzzy, kde-format
-#| msgid "Create a new primary key and generate subkeys on the card."
+#, kde-format
 msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr ""
-"Yeni bir birincil anahtar oluştur ve kart üzerinde alt anahtarını oluştur."
+msgstr "Kartta depolanan anahtarlar için yeni bir OpenPGP anahtarı oluşturun."
 
 #: src/view/pgpcardwidget.cpp:286
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "First placeholder is manufacturer, second placeholder is a version number"
-#| msgid "%1 OpenPGP v%2 card"
+#, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
-msgstr "%1 OpenPGP v%2 kart"
+msgstr "Bilinmeyen OpenPGP v%1 kartı"
 
 #: src/view/pgpcardwidget.cpp:288
 #, kde-format
@@ -11466,17 +11394,15 @@ msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 kart"
 
 #: src/view/pgpcardwidget.cpp:294 src/view/pgpcardwidget.cpp:296
-#, fuzzy, kde-format
-#| msgid "Cannot send data"
+#, kde-format
 msgid "not set"
-msgstr "Veri gönderilemedi"
+msgstr "ayarlanmadı"
 
 #: src/view/pgpcardwidget.cpp:340
-#, fuzzy, kde-format
-#| msgid "Generating keys"
+#, kde-format
 msgctxt "@title:window"
 msgid "Generating Keys"
-msgstr "Anahtarlar oluşturuluyor"
+msgstr "Anahtarlar Üretiliyor"
 
 #: src/view/pgpcardwidget.cpp:341
 #, kde-format
@@ -11487,7 +11413,7 @@ msgstr "Bu işlem birkaç dakika sürebilir..."
 #, kde-format
 msgctxt "@info"
 msgid "Failed to generate new key: %1"
-msgstr "Yeni anahtar oluşturma başarısız oldu: %1"
+msgstr "Yeni anahtar üretme başarısız oldu: %1"
 
 #: src/view/pgpcardwidget.cpp:366
 #, kde-format
@@ -11497,13 +11423,13 @@ msgstr "Şifreleme anahtarının yedeğini kaydet"
 #: src/view/pgpcardwidget.cpp:368
 #, kde-format
 msgid "Backup Key"
-msgstr "Yedek Anahtar"
+msgstr "Anahtarı Yedekle"
 
 #: src/view/pgpcardwidget.cpp:371
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
-msgstr "Yedek taşıma başarısız oldu. Yedek anahtar şurda kayıtlı: %1"
+msgstr "Yedek taşınamadı. Yedek anahtar hâlâ şurada kayıtlı: %1"
 
 #: src/view/pgpcardwidget.cpp:378
 #, kde-format
@@ -11524,7 +11450,7 @@ msgid ""
 "The existing keys on this card will be <b>deleted</b> and replaced by new "
 "keys."
 msgstr ""
-"Kart üstündeki mevcut anahtarlar <b>silinecek</b> ve yeni anahtarlar ile "
+"Kart üstündeki var olan anahtarlar <b>silinecek</b> ve yeni anahtarlar ile "
 "değiştirilecek."
 
 #: src/view/pgpcardwidget.cpp:439
@@ -11570,13 +11496,12 @@ msgstr "Ad başarıyla değiştirildi."
 #: src/view/pgpcardwidget.cpp:499
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
-msgstr ""
+msgstr "URL'yi, genel anahtarın bulunamayacağı bir biçimde değiştir"
 
 #: src/view/pgpcardwidget.cpp:500
-#, fuzzy, kde-format
-#| msgid "New subkeys:"
+#, kde-format
 msgid "New pubkey URL:"
-msgstr "Yeni alt anahtarlar:"
+msgstr "Yeni genel anahtar URL'si:"
 
 #: src/view/pgpcardwidget.cpp:509
 #, kde-format
@@ -11585,27 +11510,22 @@ msgid "The size of the URL may not exceed 254 characters."
 msgstr "URL boyutu 254 karakteri geçemez."
 
 #: src/view/pgpcardwidget.cpp:530
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "PIN change failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
-msgstr "PIN değiştirme başarısız oldu: %1"
+msgstr "URL değiştirme başarısız: %1"
 
 #: src/view/pgpcardwidget.cpp:535
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Code successfully changed."
+#, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
-msgstr "Kod başarıyla değiştirildi."
+msgstr "URL başarıyla değiştirildi."
 
 #: src/view/pivcardwidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Change PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change PIN"
-msgstr "PIN Değiştir"
+msgstr "PIN'i Değiştir"
 
 #: src/view/pivcardwidget.cpp:143
 #, kde-format
@@ -11614,26 +11534,28 @@ msgid ""
 "Change the PIV Card Application PIN that activates the PIV Card and enables "
 "private key operations using the stored keys."
 msgstr ""
+"PIV kartı etkinleştiren PIV Kart Uygulama PIN'ini değiştirir ve depolanan "
+"anahtarlarla özel anahtar işlemlerine izin verir."
 
 #: src/view/pivcardwidget.cpp:149
-#, fuzzy, kde-format
-#| msgid "Change PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change PUK"
-msgstr "PIN Değiştir"
+msgstr "PUK'u Değiştir"
 
 #: src/view/pivcardwidget.cpp:150
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
 msgstr ""
+"Bir PIN'in sıfırlanmasına izin veren PIN Blok Kaldırma Anahtarı'nı "
+"değiştirin."
 
 #: src/view/pivcardwidget.cpp:155
-#, fuzzy, kde-format
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action:button"
 msgid "Change Admin Key"
-msgstr "Yönetici PIN'ini değiştir"
+msgstr "Yönetici Anahtarını Değiştir"
 
 #: src/view/pivcardwidget.cpp:156
 #, kde-format
@@ -11644,82 +11566,76 @@ msgid ""
 "by the administrator (resp. Kleopatra) to authenticate the PIV Card "
 "Application."
 msgstr ""
+"PIV Kart Uygulama Yöneticisinin kimliğini doğrulamak için PIV Kart "
+"Uygulaması tarafından ve PIV Kart Uygulamasının kimliğini doğrulamak için "
+"yönetici (sırasıyla Kleopatra) tarafından kullanılan PIV Kart Uygulama "
+"Yönetim Anahtarını değiştirin."
 
 #: src/view/pivcardwidget.cpp:179 src/view/pivcardwidget.cpp:242
-#, fuzzy, kde-format
-#| msgid "Generating keys"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate"
-msgstr "Anahtarlar oluşturuluyor"
+msgstr "Üret"
 
 #: src/view/pivcardwidget.cpp:190
-#, fuzzy, kde-format
-#| msgid "With certificate:"
+#, kde-format
 msgctxt "@action:button"
 msgid "Write Certificate"
-msgstr "Sertifika ile:"
+msgstr "Sertifika Yaz"
 
 #: src/view/pivcardwidget.cpp:191
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Moving the key to the card failed: %1"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the certificate corresponding to this key to the card"
-msgstr "Anahtarı kart üzerine taşıma başarısız oldu: %1"
+msgstr "Bu anahtarla eşleşen sertifikayı karta yaz"
 
 #: src/view/pivcardwidget.cpp:195
 #, kde-format
 msgctxt "@action:button"
 msgid "Import Certificate"
-msgstr "Sertifikayı İçe Aktar"
+msgstr "Sertifika İçe Aktar"
 
 #: src/view/pivcardwidget.cpp:196
-#, fuzzy, kde-format
-#| msgid "With certificate:"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Import the certificate stored on the card"
-msgstr "Sertifika ile:"
+msgstr "Kartta depolanan sertifikayı içe aktar"
 
 #: src/view/pivcardwidget.cpp:201
-#, fuzzy, kde-format
-#| msgid "Print Secret Key..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Write Key"
-msgstr "Gizli Anahtarı Yazdır..."
+msgstr "Anahtar Yaz"
 
 #: src/view/pivcardwidget.cpp:202
-#, fuzzy, kde-format
-#| msgid "With certificate:"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
-msgstr "Sertifika ile:"
+msgstr "Bir sertifikanın anahtar çiftini karta yaz"
 
 #: src/view/pivcardwidget.cpp:218
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
-msgstr ""
+msgstr "PIV v%1 kart"
 
 #: src/view/pivcardwidget.cpp:238
-#, fuzzy, kde-format
-#| msgid "Slot empty"
+#, kde-format
 msgctxt "@info"
 msgid "<em>slot empty</em>"
-msgstr "Boş yuva"
+msgstr "<em>yuva boş</em>"
 
 #: src/view/pivcardwidget.cpp:244
-#, fuzzy, kde-format
-#| msgid "Generating keys"
+#, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Generate %1"
-msgstr "Anahtarlar oluşturuluyor"
+msgstr "%1 Üret"
 
 #: src/view/pivcardwidget.cpp:261
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgctxt "@info"
 msgid "<em>no matching certificate</em>"
-msgstr "(eşleşen sertifika bulunamadı)"
+msgstr "<em>eşleşen sertifika yok</em>"
 
 #: src/view/pivcardwidget.cpp:269
 #, kde-format
@@ -11737,7 +11653,7 @@ msgstr "Değiştir"
 #, kde-format
 msgctxt "@info:tooltip %1 display name of a key"
 msgid "Replace %1 with new key"
-msgstr ""
+msgstr "%1 anahtarını yeni anahtarla değiştir"
 
 #: src/view/searchbar.cpp:137
 #, kde-format
@@ -11745,33 +11661,29 @@ msgid "Search..."
 msgstr "Ara..."
 
 #: src/view/searchbar.cpp:138
-#, fuzzy, kde-format
-#| msgid "With certificate:"
+#, kde-format
 msgid "Filter certificates by text"
-msgstr "Sertifika ile:"
+msgstr "Sertifikaları metne göre süz"
 
 #: src/view/searchbar.cpp:139
 #, kde-format
 msgid "Show only certificates that match the entered search term."
-msgstr ""
+msgstr "Yalnızca girilen arama terimiyle eşleşen sertifikaları gösterin."
 
 #: src/view/searchbar.cpp:142
-#, fuzzy, kde-format
-#| msgid "With certificate:"
+#, kde-format
 msgid "Filter certificates by category"
-msgstr "Sertifika ile:"
+msgstr "Sertifikaları kategoriye göre süz"
 
 #: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Certify the validity of the selected certificate"
+#, kde-format
 msgid "Show only certificates that belong to the selected category."
-msgstr "Seçili sertifikanın geçerliliğini onayla"
+msgstr "Yalnızca seçili kategoriye ait sertifikaları gösterin."
 
 #: src/view/searchbar.cpp:147
-#, fuzzy, kde-format
-#| msgid "Could not create certificate: %1"
+#, kde-format
 msgid "Show not certified certificates"
-msgstr "Sertifika oluşturulamadı: %1"
+msgstr "Sertifikalanmamış sertifikaları göster"
 
 #: src/view/searchbar.cpp:148
 #, kde-format
@@ -11780,72 +11692,68 @@ msgid ""
 "certificates.<br/><br/>Certification is required to make sure that the "
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
-"Bazı sertifikalar henüz onaylanmamıştır. Bu sertifikaların bir listesini "
-"görmek için buraya tıklayın.<br/><br/>Sertifikaların, onaylanması, ait "
-"olduklarını iddia eden kimliğe ait olduğundan emin olmak için gereklidir."
+"Bazı sertifikalar henüz sertifikalanmamıştır. Bu sertifikaların bir "
+"listesini görmek için buraya tıklayın.<br/><br/>Sertifikaların onaylanması, "
+"ait olduklarını iddia eden kimliğe ait olduğundan emin olmak için gereklidir."
 
 #: src/view/searchbar.cpp:187
 #, kde-format
 msgid "Search...<%1>"
-msgstr "<%1> ara..."
+msgstr "Ara...<%1>"
 
 #: src/view/smartcardwidget.cpp:52
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 - v3.3"
-msgstr ""
+msgstr "OpenPGP v2.0 - v3.3"
 
 #: src/view/smartcardwidget.cpp:53
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
-msgstr ""
+msgstr "Gnuk"
 
 #: src/view/smartcardwidget.cpp:54
-#, fuzzy, kde-format
-#| msgctxt "1 is a Version number"
-#| msgid "NetKey v%1 Card"
+#, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3"
-msgstr "NetKey %1 Kartı"
+msgstr "NetKey v3"
 
 #: src/view/smartcardwidget.cpp:55
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
-msgstr ""
+msgstr "PIV (GnuPG 2.3 veya sonrası gerektirir)"
 
 #: src/view/smartcardwidget.cpp:56
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
-msgstr ""
+msgstr "CardOS 5 (çeşitli uygulamalar)"
 
 #: src/view/smartcardwidget.cpp:58
 #, kde-format
 msgid "Please insert a compatible smartcard."
-msgstr "Lütfen uyumlu bir akıllı kart ekleyin."
+msgstr "Lütfen uyumlu bir akıllı kart takın."
 
 #: src/view/smartcardwidget.cpp:61
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
-msgstr "Kleopatra, mevcut durumda şu kart türlerini desteklemektedir:"
+msgstr "Kleopatra, şu anda şu kart türlerini desteklemektedir:"
 
 #: src/view/smartcardwidget.cpp:161
-#, fuzzy, kde-format
-#| msgctxt "name, email, key id"
-#| msgid "%1 %2 (%3)"
+#, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
 "smartcard"
 msgid "%1 - %2 - %3"
-msgstr "%1 %2 (%3)"
+msgstr "%1 - %2 - %3"
 
 #: src/view/smartcardwidget.cpp:164
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
-msgstr ""
+msgstr "%1 - %2"
 
 #: src/view/tabwidget.cpp:614
 #, kde-format
@@ -11925,24 +11833,23 @@ msgstr "Hiyerarşik Sertifika Listesi"
 #: src/view/tabwidget.cpp:845
 #, kde-format
 msgid "Expand All"
-msgstr "Tümünü Aç"
+msgstr "Tümünü Genişlet"
 
 #: src/view/tabwidget.cpp:849
 #, kde-format
 msgid "Collapse All"
-msgstr "Tümünü Kapat"
+msgstr "Tümünü Daralt"
 
 #: src/view/tabwidget.cpp:963
-#, fuzzy, kde-format
-#| msgid "Certificates"
+#, kde-format
 msgid "All Certificates"
-msgstr "Sertifikalar"
+msgstr "Tüm Sertifikalar"
 
 #: src/view/welcomewidget.cpp:99
 #, kde-format
 msgctxt "%1 is version"
 msgid "Welcome to Kleopatra %1"
-msgstr "Kleopatra %1 Hoşgeldiniz"
+msgstr "Kleopatra %1 sürümüne hoş geldiniz"
 
 #: src/view/welcomewidget.cpp:105
 #, kde-format
@@ -11950,8 +11857,8 @@ msgid ""
 "Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
 "\">GnuPG</a>."
 msgstr ""
-"Kleopatra <a href=\"https://gnupg.org\">GnuPG</a> şifreleme yazılımı için ön "
-"yüzdür."
+"Kleopatra, <a href=\"https://gnupg.org\">GnuPG</a> şifreleme yazılımı için "
+"bir ön yüzdür."
 
 #: src/view/welcomewidget.cpp:107
 #, kde-format
@@ -11959,13 +11866,13 @@ msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "private key."
 msgstr ""
-"Bir çok eylem için başkalarının genel anahtar (sertifika) veya kendinizin "
-"gizli anahtarına ihtiyaç vardır."
+"Çoğu eylem için ya bir genel anahtara (sertifika) ya da kendi özel "
+"anahtarınıza gereksiniminiz vardır."
 
 #: src/view/welcomewidget.cpp:109
 #, kde-format
 msgid "The private key is needed to decrypt or sign."
-msgstr "Şifre açmak veya imazalamk için özel anahtar gerekir."
+msgstr "Şifre çözmek veya imzalamak için bir özel anahtar gerekir."
 
 #: src/view/welcomewidget.cpp:110
 #, kde-format
@@ -11973,8 +11880,8 @@ msgid ""
 "The public key can be used by others to verify your identity or encrypt to "
 "you."
 msgstr ""
-"Genel anahtar, kimliğinizi doğrulamak ya da şifrelemek için başkaları "
-"tarafından kullanılabilir."
+"Genel anahtar, başkaları tarafından kimliğinizi doğrulamak veya size "
+"şifreleme yapmak için kullanılabilir."
 
 #: src/view/welcomewidget.cpp:113
 #, kde-format
@@ -11989,8 +11896,8 @@ msgstr "https://tr.wikipedia.org/wiki/Açık_anahtarlı_şifreleme"
 msgctxt "%1 is link a wiki article"
 msgid "You can learn more about this on <a href=\"%1\">Wikipedia</a>."
 msgstr ""
-"Bununla ilgili daha fazla bilgilyi <a href=\"%1\">Wikipedia</a> adresinde "
-"bulabilirsiniz."
+"Bununla ilgili ayrıntılı bilgiye, <a href=\"%1\">Vikipedi</a> üzerinden "
+"ulaşabilirsiniz."
 
 #: src/view/welcomewidget.cpp:122
 #, kde-format
@@ -12005,13 +11912,16 @@ msgid ""
 "use <interface>New S/MIME Certification Request</interface> from the "
 "<interface>File</interface> menu instead."
 msgstr ""
+"Yeni bir OpenPGP anahtar çifti oluşturun.<nl/>Bir S/MIME sertifika isteği "
+"oluşturmak için, <interface>Dosya</interface> menüsünden <interface>Yeni S/"
+"MIME Sertifikasyonu İsteği</interface> seçeneğini kullanın."
 
 #: src/view/welcomewidget.cpp:152
-#, fuzzy, kde-kuit-format
-#| msgid "To import from a public keyserver use \"Lookup on Server\" instead."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-"Genel anahtar sunucusundan içe aktarmak için \"Sunucuda Ara\" kullanın."
+"Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
+"aktarmak için, <interface>Sunucuda Ara</interface> seçeneğini kullanın."

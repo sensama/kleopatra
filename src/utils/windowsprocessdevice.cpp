@@ -457,5 +457,4 @@ QString WindowsProcessDevice::errorString()
     return d->errorString();
 }
 
-#include "windowsprocessdevice.moc"
 #endif

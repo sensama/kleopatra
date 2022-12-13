@@ -194,7 +194,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 if(MINGW)
     # we do not care about different signedness of passed pointer arguments
-    add_compile_options(-Wno-pointer-sign)
+    add_compile_options($<$<COMPILE_LANGUAGE:C>:-Wno-pointer-sign>)
 endif()
 
 add_definitions(-DQT_NO_EMIT)

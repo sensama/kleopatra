@@ -61,12 +61,12 @@ public:
 
     }
 
-    /* reimp */ bool canFixAutomatically() const
+    /* reimp */ bool canFixAutomatically() const override
     {
         return true;
     }
 
-    /* reimp */ bool fix()
+    /* reimp */ bool fix() override
     {
 
         QSettings settings(gnupg_path, QSettings::NativeFormat);

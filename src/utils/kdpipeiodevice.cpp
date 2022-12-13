@@ -925,7 +925,7 @@ void Writer::run()
             mutex.unlock();
 #ifdef Q_OS_WIN32
             DWORD numWritten;
-            QDebug("%p (fd=%d): Writer::run: buffer before WriteFile (numBytes=%lld): %s:",
+            QDebug("%p (fd=%d): Writer::run: buffer before WriteFile (numBytes=%u): %s:",
                    (void *) this, fd, numBytesInBuffer, buffer);
             QDebug("%p (fd=%d): Writer::run: Going into WriteFile", (void *) this, fd);
             if (!WriteFile(handle, buffer + totalWritten, numBytesInBuffer - totalWritten, &numWritten, 0)) {

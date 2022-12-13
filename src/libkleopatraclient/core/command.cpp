@@ -642,11 +642,7 @@ void Command::Private::run()
     }
 
     if (in.parentWId) {
-#if defined(Q_OS_WIN32)
-        err = send_option(ctx, "window-id", QString::asprintf("%lx", reinterpret_cast<quintptr>(in.parentWId)));
-#else
-        err = send_option(ctx, "window-id", QString::asprintf("%lx", static_cast<unsigned long>(in.parentWId)));
-#endif
+        err = send_option(ctx, "window-id", QString::number(in.parentWId, 16));
         if (err) {
             qDebug("sending option window-id failed - ignoring");
         }

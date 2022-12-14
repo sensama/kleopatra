@@ -132,13 +132,13 @@ void ChangeOwnerTrustCommand::doStart()
         const auto text = (DeVSCompliance::isCompliant() && Formatting::isKeyDeVs(key))
             ? xi18nc("@info %1: a certificate, %2: name of a compliance mode",
                      "<para>Do you want to grant '%1' the power to mark certificates as %2 for you?</para>"
-                     "<para><emphasis>This means that the owner of this certificate properly check fingerprints "
+                     "<para><emphasis>This means that the owner of this certificate properly checks fingerprints "
                      "and confirms the identities of others.</emphasis></para>",
                      keyInfo,
                      DeVSCompliance::name())
             : xi18nc("@info %1: a certificate",
                      "<para>Do you want to grant '%1' the power to mark certificates as valid for you?</para>"
-                     "<para><emphasis>This means that the owner of this certificate properly check fingerprints "
+                     "<para><emphasis>This means that the owner of this certificate properly checks fingerprints "
                      "and confirms the identities of others.</emphasis></para>",
                      keyInfo);
         const auto answer = KMessageBox::questionTwoActions(d->parentWidgetOrView(),

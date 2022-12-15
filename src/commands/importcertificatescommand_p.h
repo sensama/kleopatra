@@ -107,8 +107,8 @@ public:
     void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
     void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
     void startImport(GpgME::Protocol proto, const QStringList &keyIds, const QString &id = {});
-    void importResult(const GpgME::ImportResult &, QGpgME::Job *job = nullptr);
-    void importResult(const ImportResultData &result);
+    void onImportResult(const GpgME::ImportResult &, QGpgME::Job *job = nullptr);
+    void addImportResult(const ImportResultData &result);
 
     void importGroupsFromFile(const QString &filename);
 

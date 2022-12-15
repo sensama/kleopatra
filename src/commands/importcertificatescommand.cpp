@@ -547,7 +547,7 @@ void ImportCertificatesCommand::Private::setWaitForMoreJobs(bool wait)
     }
 }
 
-void ImportCertificatesCommand::Private::importResult(const ImportResult &result, QGpgME::Job *finishedJob)
+void ImportCertificatesCommand::Private::onImportResult(const ImportResult &result, QGpgME::Job *finishedJob)
 {
     if (!finishedJob) {
         finishedJob = qobject_cast<QGpgME::Job *>(q->sender());
@@ -567,10 +567,10 @@ void ImportCertificatesCommand::Private::importResult(const ImportResult &result
     jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
     increaseProgressValue();
 
-    importResult({job.id, job.protocol, job.type, result, AuditLogEntry::fromJob(finishedJob)});
+    addImportResult({job.id, job.protocol, job.type, result, AuditLogEntry::fromJob(finishedJob)});
 }
 
-void ImportCertificatesCommand::Private::importResult(const ImportResultData &result)
+void ImportCertificatesCommand::Private::addImportResult(const ImportResultData &result)
 {
     qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << result.result.error().asString();
     results.push_back(result);
@@ -889,14 +889,14 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, protocol, ImportType::Local, ImportResult{}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::Local, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { importResult(result); }),
+        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
         connect(job.get(), &Job::progress,
                 q, &Command::progress)
     };
@@ -909,7 +909,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 #endif
     const GpgME::Error err = job->start(data);
     if (err.code()) {
-        importResult({id, protocol, ImportType::Local, ImportResult{err}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::Local, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
@@ -940,21 +940,21 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         error(i18n("The type of this certificate (%1) is not supported by this Kleopatra installation.",
                    Formatting::displayName(protocol)),
               i18n("Certificate Import Failed"));
-        importResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {
-        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { importResult(result); }),
+        connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
         connect(job.get(), &Job::progress,
                 q, &Command::progress)
     };
 
     const GpgME::Error err = job->start(keys);
     if (err.code()) {
-        importResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
@@ -983,7 +983,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
     auto job = get_receive_keys_job(protocol);
     if (!job.get()) {
         qCWarning(KLEOPATRA_LOG) << "Failed to get ReceiveKeysJob for protocol" << Formatting::displayName(protocol);
-        importResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::External, ImportResult{}, AuditLogEntry{}});
         return;
     }
 
@@ -992,7 +992,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
 
     std::vector<QMetaObject::Connection> connections = {
         connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) {
-            importResult(result);
+            onImportResult(result);
         }),
         connect(job.get(), &Job::progress,
                 q, &Command::progress)
@@ -1000,7 +1000,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
 
     const GpgME::Error err = job->start(keyIds);
     if (err.code()) {
-        importResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
+        addImportResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
         jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
@@ -1086,7 +1086,7 @@ void ImportCertificatesCommand::doCancel()
                       std::for_each(std::cbegin(job.connections), std::cend(job.connections),
                                     &disconnectConnection);
                       job.job->slotCancel();
-                      d->importResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
+                      d->onImportResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
                   });
 }
 

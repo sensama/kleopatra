@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-14 00:47+0000\n"
-"PO-Revision-Date: 2022-12-05 00:13+0100\n"
+"POT-Creation-Date: 2022-12-15 00:48+0000\n"
+"PO-Revision-Date: 2022-12-14 20:08+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -368,12 +368,18 @@ msgid "No, it's not mine"
 msgstr "Не, не е мое"
 
 #: src/commands/changeownertrustcommand.cpp:134
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
+#| msgid ""
+#| "<para>Do you want to grant '%1' the power to mark certificates as %2 for "
+#| "you?</para><para><emphasis>This means that the owner of this certificate "
+#| "properly check fingerprints and confirms the identities of others.</"
+#| "emphasis></para>"
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
 "</para><para><emphasis>This means that the owner of this certificate "
-"properly check fingerprints and confirms the identities of others.</"
+"properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
 "<para>Искате ли да предоставите на \"%1\" правото да маркира сертификати "
@@ -382,12 +388,18 @@ msgstr ""
 "самоличността на другите.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info %1: a certificate"
+#| msgid ""
+#| "<para>Do you want to grant '%1' the power to mark certificates as valid "
+#| "for you?</para><para><emphasis>This means that the owner of this "
+#| "certificate properly check fingerprints and confirms the identities of "
+#| "others.</emphasis></para>"
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>Do you want to grant '%1' the power to mark certificates as valid for "
 "you?</para><para><emphasis>This means that the owner of this certificate "
-"properly check fingerprints and confirms the identities of others.</"
+"properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
 "<para>Искате ли да предоставите на \"%1\" правото да маркира сертификатите "
@@ -8859,10 +8871,9 @@ msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
 #: src/mainwindow.cpp:621
-#, fuzzy, kde-format
-#| msgid "Show appearance configuration"
+#, kde-format
 msgid "Group configuration"
-msgstr "Конфигурация на външния вид"
+msgstr "Конфигурация на групата"
 
 #: src/mainwindow.cpp:627
 #, kde-format
@@ -12004,31 +12015,3 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Импортиран таен ключ"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "Подпис (%1)"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "Шифроване (%1)"
-
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "Удостоверяване (%1)"
-
-#~ msgctxt "@info"
-#~ msgid "Moving the key to the card failed: %1"
-#~ msgstr "Преместването на ключа към картата не бе успешно: %1"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key pair to the card."
-#~ msgstr "Копирана успешно двойката ключове на картата."
-
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Неуспешно изтриване на ключа: %1"

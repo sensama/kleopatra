@@ -569,7 +569,7 @@ void ImportCertificatesCommand::Private::onImportResult(const ImportResult &resu
         return;
     }
 
-    std::ranges::for_each(it->connections, &disconnectConnection);
+    Kleo::for_each(it->connections, &disconnectConnection);
     it->connections.clear();
 
     increaseProgressValue();

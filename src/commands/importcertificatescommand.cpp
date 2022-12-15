@@ -67,6 +67,12 @@ using namespace GpgME;
 using namespace Kleo;
 using namespace QGpgME;
 
+static void disconnectConnection(const QMetaObject::Connection &connection)
+{
+    // trivial function for disconnecting a signal-slot connection
+    QObject::disconnect(connection);
+}
+
 bool operator==(const ImportJobData &lhs, const ImportJobData &rhs)
 {
     return lhs.job == rhs.job;
@@ -555,28 +561,35 @@ void ImportCertificatesCommand::Private::onImportResult(const ImportResult &resu
     Q_ASSERT(finishedJob);
     qCDebug(KLEOPATRA_LOG) << q << __func__ << finishedJob;
 
-    auto it = std::find_if(std::cbegin(jobs), std::cend(jobs),
+    auto it = std::find_if(std::begin(jobs), std::end(jobs),
                            [finishedJob](const auto &job) { return job.job == finishedJob; });
-    Q_ASSERT(it != std::cend(jobs));
-    if (it == std::cend(jobs)) {
+    Q_ASSERT(it != std::end(jobs));
+    if (it == std::end(jobs)) {
         qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Finished job not found";
         return;
     }
 
-    const auto job = *it;
-    jobs.erase(std::remove(std::begin(jobs), std::end(jobs), job), std::end(jobs));
+    std::ranges::for_each(it->connections, &disconnectConnection);
+    it->connections.clear();
+
     increaseProgressValue();
 
-    addImportResult({job.id, job.protocol, job.type, result, AuditLogEntry::fromJob(finishedJob)});
+    const auto job = *it;
+    addImportResult({job.id, job.protocol, job.type, result, AuditLogEntry::fromJob(finishedJob)}, job);
 }
 
-void ImportCertificatesCommand::Private::addImportResult(const ImportResultData &result)
+void ImportCertificatesCommand::Private::addImportResult(const ImportResultData &result, const ImportJobData &job)
 {
     qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << result.result.error().asString();
     results.push_back(result);
 
     if (importFailed(result)) {
         showError(result);
+    }
+
+    if (job.job) {
+        const auto count = std::erase(jobs, job);
+        Q_ASSERT(count == 1);
     }
 
     tryToFinish();
@@ -1069,25 +1082,17 @@ void ImportCertificatesCommand::Private::setProgressToMaximum()
     progressDialog->setValue(progressDialog->maximum());
 }
 
-static void disconnectConnection(const QMetaObject::Connection &connection)
-{
-    // trivial function for disconnecting a signal-slot connection because
-    // using a lambda seems to confuse older GCC / MinGW and unnecessarily
-    // capturing 'this' generates warnings
-    QObject::disconnect(connection);
-}
-
 void ImportCertificatesCommand::doCancel()
 {
     const auto jobsToCancel = d->jobs;
-    std::for_each(std::begin(jobsToCancel), std::end(jobsToCancel),
-                  [this](const auto &job) {
-                      qCDebug(KLEOPATRA_LOG) << "Canceling job" << job.job;
-                      std::for_each(std::cbegin(job.connections), std::cend(job.connections),
-                                    &disconnectConnection);
-                      job.job->slotCancel();
-                      d->onImportResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
-                  });
+    std::for_each(std::begin(jobsToCancel), std::end(jobsToCancel), [this](const auto &job) {
+        if (!job.connections.empty()) {
+            // ignore jobs without connections; they are already completed
+            qCDebug(KLEOPATRA_LOG) << "Canceling job" << job.job;
+            job.job->slotCancel();
+            d->onImportResult(ImportResult{Error::fromCode(GPG_ERR_CANCELED)}, job.job);
+        }
+    });
 }
 
 #undef d

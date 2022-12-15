@@ -45,6 +45,7 @@ class QProgressDialog;
 
 enum class ImportType
 {
+    Unknown,
     Local,
     External,
 };
@@ -52,9 +53,9 @@ enum class ImportType
 struct ImportJobData
 {
     QString id;
-    GpgME::Protocol protocol;
-    ImportType type;
-    QGpgME::Job *job;
+    GpgME::Protocol protocol = GpgME::UnknownProtocol;
+    ImportType type = ImportType::Unknown;
+    QGpgME::Job *job = nullptr;
     std::vector<QMetaObject::Connection> connections;
 };
 
@@ -63,8 +64,8 @@ bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
 struct ImportResultData
 {
     QString id;
-    GpgME::Protocol protocol;
-    ImportType type;
+    GpgME::Protocol protocol = GpgME::UnknownProtocol;
+    ImportType type = ImportType::Unknown;
     GpgME::ImportResult result;
     Kleo::AuditLogEntry auditLog;
 };

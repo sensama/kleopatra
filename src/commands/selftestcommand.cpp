@@ -22,9 +22,7 @@
 #endif
 #include <selftest/enginecheck.h>
 #include <selftest/gpgconfcheck.h>
-#ifdef HAVE_KLEOPATRACLIENT_LIBRARY
-# include <selftest/uiservercheck.h>
-#endif
+#include <selftest/uiservercheck.h>
 #include <selftest/gpgagentcheck.h>
 #include <selftest/libkleopatrarccheck.h>
 #include <selftest/compliancecheck.h>
@@ -113,10 +111,8 @@ private:
 #if defined(Q_OS_WIN)
         qCDebug(KLEOPATRA_LOG) << "Checking Windows Registry...";
         tests.push_back(makeGpgProgramRegistryCheckSelfTest());
-#if defined(HAVE_KLEOPATRACLIENT_LIBRARY)
         qCDebug(KLEOPATRA_LOG) << "Checking Ui Server connectivity...";
         tests.push_back(makeUiServerConnectivitySelfTest());
-#endif
 #endif
         qCDebug(KLEOPATRA_LOG) << "Checking gpg installation...";
         tests.push_back(makeGpgEngineCheckSelfTest());

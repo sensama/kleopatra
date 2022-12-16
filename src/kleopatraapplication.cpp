@@ -37,9 +37,7 @@
 #include <Libkleo/Classify>
 #include <Libkleo/SystemInfo>
 
-#ifdef HAVE_USABLE_ASSUAN
-# include <uiserver/uiserver.h>
-#endif
+#include <uiserver/uiserver.h>
 
 #include "commands/signencryptfilescommand.h"
 #include "commands/decryptverifyfilescommand.h"
@@ -270,12 +268,10 @@ public:
         }
         qInstallMessageHandler(Log::messageHandler);
 
-#ifdef HAVE_USABLE_ASSUAN
         if (logAll || options.contains("pipeio")) {
             KDPipeIODevice::setDebugLevel(KDPipeIODevice::Debug);
         }
         UiServer::setLogStream(log->logFile());
-#endif
     }
 
     void updateFocusFrame(QWidget *focusWidget)

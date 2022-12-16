@@ -19,10 +19,8 @@ static void kleopatra_options(QCommandLineParser *parser)
     parser->addOptions({
         QCommandLineOption({QStringLiteral("openpgp"), QStringLiteral("p")}, i18n("Use OpenPGP for the following operation")),
         QCommandLineOption({QStringLiteral("cms"), QStringLiteral("c")}, i18n("Use CMS (X.509, S/MIME) for the following operation")),
-#ifdef HAVE_USABLE_ASSUAN
         QCommandLineOption(QStringLiteral("uiserver-socket"), i18n("Location of the socket the ui server is listening on"), QStringLiteral("argument")),
         QCommandLineOption(QStringLiteral("daemon"), i18n("Run UI server only, hide main window")),
-#endif
         QCommandLineOption({QStringLiteral("import-certificate"), QStringLiteral("i")}, i18n("Import certificate file(s)")),
         QCommandLineOption({QStringLiteral("encrypt"), QStringLiteral("e")}, i18n("Encrypt file(s)")),
         QCommandLineOption({QStringLiteral("sign"), QStringLiteral("s")}, i18n("Sign file(s)")),

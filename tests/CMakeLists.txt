@@ -38,8 +38,6 @@ endif()
 
 ########### next target ###############
 
-if(USABLE_ASSUAN_FOUND)
-
   # this doesn't yet work on Windows
 
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_2)
@@ -75,5 +73,4 @@ if(USABLE_ASSUAN_FOUND)
   else()
       target_link_libraries(test_uiserver QGpgme)
   endif()
-endif()
 

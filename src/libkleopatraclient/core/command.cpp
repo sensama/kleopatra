@@ -390,17 +390,14 @@ struct AssuanClientContext : AssuanContextBase {
 };
 }
 
-// compatibility typedef - remove when we require assuan v2...
-using assuan_error_t = gpg_error_t;
-
-static assuan_error_t
+static gpg_error_t
 my_assuan_transact(const AssuanClientContext &ctx,
                    const char *command,
-                   assuan_error_t (*data_cb)(void *, const void *, size_t) = nullptr,
+                   gpg_error_t (*data_cb)(void *, const void *, size_t) = nullptr,
                    void *data_cb_arg = nullptr,
-                   assuan_error_t (*inquire_cb)(void *, const char *) = nullptr,
+                   gpg_error_t (*inquire_cb)(void *, const char *) = nullptr,
                    void *inquire_cb_arg = nullptr,
-                   assuan_error_t (*status_cb)(void *, const char *) = nullptr,
+                   gpg_error_t (*status_cb)(void *, const char *) = nullptr,
                    void *status_cb_arg = nullptr)
 {
     return assuan_transact(ctx.get(), command, data_cb, data_cb_arg, inquire_cb, inquire_cb_arg, status_cb, status_cb_arg);
@@ -456,14 +453,14 @@ static QString start_uiserver()
     }
 }
 
-static assuan_error_t getinfo_pid_cb(void *opaque, const void *buffer, size_t length)
+static gpg_error_t getinfo_pid_cb(void *opaque, const void *buffer, size_t length)
 {
     qint64 &pid = *static_cast<qint64 *>(opaque);
     pid = QByteArray(static_cast<const char *>(buffer), length).toLongLong();
     return 0;
 }
 
-static assuan_error_t command_data_cb(void *opaque, const void *buffer, size_t length)
+static gpg_error_t command_data_cb(void *opaque, const void *buffer, size_t length)
 {
     QByteArray &ba = *static_cast<QByteArray *>(opaque);
     ba.append(QByteArray(static_cast<const char *>(buffer), length));
@@ -478,7 +475,7 @@ struct inquire_data {
 };
 }
 
-static assuan_error_t command_inquire_cb(void *opaque, const char *what)
+static gpg_error_t command_inquire_cb(void *opaque, const char *what)
 {
     if (!opaque) {
         return 0;
@@ -497,7 +494,7 @@ static inline std::ostream &operator<<(std::ostream &s, const QByteArray &ba)
     return s << std::string(ba.data(), ba.size());
 }
 
-static assuan_error_t send_option(const AssuanClientContext &ctx, const char *name, const QVariant &value)
+static gpg_error_t send_option(const AssuanClientContext &ctx, const char *name, const QVariant &value)
 {
     std::stringstream ss;
     ss << "OPTION " << name;
@@ -507,14 +504,14 @@ static assuan_error_t send_option(const AssuanClientContext &ctx, const char *na
     return my_assuan_transact(ctx, ss.str().c_str());
 }
 
-static assuan_error_t send_file(const AssuanClientContext &ctx, const QString &file)
+static gpg_error_t send_file(const AssuanClientContext &ctx, const QString &file)
 {
     std::stringstream ss;
     ss << "FILE " << hexencode(QFile::encodeName(file));
     return my_assuan_transact(ctx, ss.str().c_str());
 }
 
-static assuan_error_t send_recipient(const AssuanClientContext &ctx, const QString &recipient, bool info)
+static gpg_error_t send_recipient(const AssuanClientContext &ctx, const QString &recipient, bool info)
 {
     std::stringstream ss;
     ss << "RECIPIENT ";
@@ -525,7 +522,7 @@ static assuan_error_t send_recipient(const AssuanClientContext &ctx, const QStri
     return my_assuan_transact(ctx, ss.str().c_str());
 }
 
-static assuan_error_t send_sender(const AssuanClientContext &ctx, const QString &sender, bool info)
+static gpg_error_t send_sender(const AssuanClientContext &ctx, const QString &sender, bool info)
 {
     std::stringstream ss;
     ss << "SENDER ";
@@ -555,7 +552,7 @@ void Command::Private::run()
     }
 
     AssuanClientContext ctx;
-    assuan_error_t err = 0;
+    gpg_error_t err = 0;
 
     inquire_data id = { &in.inquireData, &ctx };
 

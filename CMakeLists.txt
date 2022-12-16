@@ -181,7 +181,6 @@ include_directories(
     ${ASSUAN2_INCLUDES}
     )
 
-add_definitions(-D_ASSUAN_ONLY_GPG_ERRORS)
 if (WIN32)
 # On Windows, we need to use stuff deprecated since Qt 5.11, e.g. from QDesktopWidget
 ecm_set_disabled_deprecation_versions(QT 5.10.0  KF 5.101.0)

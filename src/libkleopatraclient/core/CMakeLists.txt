@@ -1,8 +1,5 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-add_definitions(
-  -D_ASSUAN_ONLY_GPG_ERRORS
-)
 
 if(WIN32)
   set(_kleopatraclientcore_extra_SRCS ../../utils/gnupg-registry.c)

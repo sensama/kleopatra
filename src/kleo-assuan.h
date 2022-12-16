@@ -9,10 +9,6 @@
 
 #pragma once
 
-#ifndef _ASSUAN_ONLY_GPG_ERRORS
-#define _ASSUAN_ONLY_GPG_ERRORS
-#endif
-
 #ifdef HAVE_USABLE_ASSUAN
 # include <assuan.h>
 #else

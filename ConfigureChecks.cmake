@@ -60,12 +60,6 @@ else ( USABLE_ASSUAN_FOUND )
   message( STATUS "NO usable assuan found for Kleopatra" )
 endif ( USABLE_ASSUAN_FOUND )
 
-OPTION( BUILD_libkleopatraclient "Build directory kleopatra/libkleopatraclient" ${USABLE_ASSUAN_FOUND} )
-
-if ( NOT USABLE_ASSUAN_FOUND )
-  set( BUILD_libkleopatraclient false )
-endif ( NOT USABLE_ASSUAN_FOUND )
-
 if (USABLE_ASSUAN_FOUND)
   set (HAVE_USABLE_ASSUAN 1)
   set (HAVE_KLEOPATRACLIENT_LIBRARY 1)

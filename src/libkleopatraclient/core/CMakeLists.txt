@@ -40,6 +40,6 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kleopatraclientcore PROPERTIES UNITY_BUILD ON)
 endif()
 
-target_link_libraries(kleopatraclientcore ${LibAssuan_LIBRARIES} Qt::Widgets KF5::I18n Gpgmepp)
+target_link_libraries(kleopatraclientcore ${LibAssuan_LIBRARIES} ${LibGpgError_LIBRARIES} Qt::Widgets KF5::I18n Gpgmepp)
 
 install(TARGETS kleopatraclientcore ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

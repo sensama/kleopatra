@@ -41,6 +41,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
 endif()
 set(GPGME_REQUIRED_VERSION "1.16.0")
 set(LIBASSUAN_REQUIRED_VERSION "2.4.2")
+set(GPG_ERROR_REQUIRED_VERSION "1.36")
 
 if (WIN32)
   set(KF5_WANT_VERSION "5.70.0")
@@ -147,6 +148,10 @@ set_package_properties(LibAssuan PROPERTIES
   TYPE REQUIRED
   PURPOSE "Needed for Kleopatra to act as the GnuPG UI Server"
 )
+find_package(LibGpgError ${GPG_ERROR_REQUIRED_VERSION} REQUIRED)
+set_package_properties(LibGpgError PROPERTIES
+  TYPE REQUIRED
+)
 
 set(kleopatra_release FALSE)
 
@@ -181,6 +186,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${LibAssuan_INCLUDE_DIRS}
+    ${LibGpgError_INCLUDE_DIRS}
 )
 
 if (WIN32)

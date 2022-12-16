@@ -42,31 +42,16 @@ endif()
 
 
 if(WIN32)
-  if(ASSUAN2_FOUND)
     target_link_libraries(kleopatraclientcore
       
       ${ASSUAN2_LIBRARIES}
       ws2_32
     )
-  else()
-    target_link_libraries(kleopatraclientcore
-      
-      ${ASSUAN_VANILLA_LIBRARIES}
-      ws2_32
-    )
-  endif()
 else()
-  if(ASSUAN2_FOUND)
     target_link_libraries(kleopatraclientcore
       
       ${ASSUAN2_LIBRARIES}
     )
-  else()
-    target_link_libraries(kleopatraclientcore
-      
-      ${ASSUAN_PTHREAD_LIBRARIES}
-    )
-  endif()
 endif()
 
 target_link_libraries(kleopatraclientcore Qt::Widgets KF5::I18n Gpgmepp)

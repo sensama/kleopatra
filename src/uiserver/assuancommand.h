@@ -15,10 +15,8 @@
 #include <gpgme++/global.h>
 #include <gpgme++/error.h>
 
-#ifdef HAVE_ASSUAN2
 #include <gpg-error.h>
 
-#endif
 #include <KMime/HeaderParsing>
 
 #include <qwindowdefs.h> // for WId
@@ -326,18 +324,10 @@ public:
     virtual std::shared_ptr<AssuanCommand> create() const = 0;
     virtual const char *name() const = 0;
 
-#ifndef HAVE_ASSUAN2
-    typedef int(*_Handler)(assuan_context_s *, char *);
-#else
     using _Handler = gpg_error_t (*)(assuan_context_s *, char *);
-#endif
     virtual _Handler _handler() const = 0;
 
-#ifndef HAVE_ASSUAN2
-    static int _handle(assuan_context_s *, char *, const char *);
-#else
     static gpg_error_t _handle(assuan_context_s *, char *, const char *);
-#endif
 };
 
 template <typename Command>
@@ -347,13 +337,8 @@ class GenericAssuanCommandFactory : public AssuanCommandFactory
     {
         return &GenericAssuanCommandFactory::_handle;
     }
-#ifndef HAVE_ASSUAN2
-    static int _handle(assuan_context_s *_ctx, char *_line)
-    {
-#else
     static gpg_error_t _handle(assuan_context_s *_ctx, char *_line)
     {
-#endif
         return AssuanCommandFactory::_handle(_ctx, _line, Command::staticName());
     }
     std::shared_ptr<AssuanCommand> create() const override

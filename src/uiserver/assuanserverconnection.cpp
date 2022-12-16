@@ -77,7 +77,6 @@ static const unsigned int INIT_SOCKET_FLAGS = 3; // says info assuan...
 static const int FOR_READING = 0;
 static const unsigned int MAX_ACTIVE_FDS = 32;
 
-#ifdef HAVE_ASSUAN2
 static void my_assuan_release(assuan_context_t ctx)
 {
     if (ctx) {
@@ -85,28 +84,16 @@ static void my_assuan_release(assuan_context_t ctx)
     }
 }
 
-#endif
 // std::shared_ptr for assuan_context_t w/ deleter enforced to assuan_deinit_server:
 using AssuanContextBase = std::shared_ptr<std::remove_pointer<assuan_context_t>::type>;
 struct AssuanContext : AssuanContextBase {
     AssuanContext() : AssuanContextBase() {}
-#ifndef HAVE_ASSUAN2
-    explicit AssuanContext(assuan_context_t ctx) : AssuanContextBase(ctx, &assuan_deinit_server) {}
-#else
     explicit AssuanContext(assuan_context_t ctx) : AssuanContextBase(ctx, &my_assuan_release) {}
-#endif
 
-#ifndef HAVE_ASSUAN2
-    void reset(assuan_context_t ctx = 0)
-    {
-        AssuanContextBase::reset(ctx, &assuan_deinit_server);
-    }
-#else
     void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &my_assuan_release);
     }
-#endif
 };
 
 static inline gpg_error_t assuan_process_done_msg(assuan_context_t ctx, gpg_error_t err, const char *err_msg)
@@ -235,12 +222,8 @@ public Q_SLOTS:
     void slotReadActivity(int)
     {
         Q_ASSERT(ctx);
-#ifndef HAVE_ASSUAN2
-        if (const int err = assuan_process_next(ctx.get())) {
-#else
         int done = false;
         if (const int err = assuan_process_next(ctx.get(), &done) || done) {
-#endif
             //if ( err == -1 || gpg_err_code(err) == GPG_ERR_EOF ) {
             topHalfDeletion();
             if (nohupedCommands.empty()) {
@@ -307,31 +290,19 @@ private:
     }
 
 private:
-#ifndef HAVE_ASSUAN2
-    static void reset_handler(assuan_context_t ctx_)
-    {
-#else
     static gpg_error_t reset_handler(assuan_context_t ctx_, char *)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
 
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
         conn.reset();
-#ifdef HAVE_ASSUAN2
 
         return 0;
-#endif
     }
 
-#ifndef HAVE_ASSUAN2
-    static int option_handler(assuan_context_t ctx_, const char *key, const char *value)
-    {
-#else
     static gpg_error_t option_handler(assuan_context_t ctx_, const char *key, const char *value)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
 
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
@@ -345,13 +316,8 @@ private:
         //return gpg_error( GPG_ERR_UNKNOWN_OPTION );
     }
 
-#ifndef HAVE_ASSUAN2
-    static int session_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t session_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -383,13 +349,8 @@ private:
         return assuan_process_done(ctx_, 0);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int capabilities_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t capabilities_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         if (!QByteArray(line).trimmed().isEmpty()) {
             static const QString errorString = i18n("CAPABILITIES does not take arguments");
             return assuan_process_done_msg(ctx_, gpg_error(GPG_ERR_ASS_PARAMETER), errorString);
@@ -402,13 +363,8 @@ private:
         return assuan_process_done(ctx_, assuan_send_data(ctx_, capabilities, sizeof capabilities - 1));
     }
 
-#ifndef HAVE_ASSUAN2
-    static int getinfo_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t getinfo_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -437,13 +393,8 @@ private:
         return assuan_process_done(ctx_, assuan_send_data(ctx_, ba.constData(), ba.size()));
     }
 
-#ifndef HAVE_ASSUAN2
-    static int start_keymanager_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t start_keymanager_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -457,13 +408,8 @@ private:
         return assuan_process_done(ctx_, 0);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int start_confdialog_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t start_confdialog_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -482,13 +428,8 @@ private:
 
     // format: TAG (FD|FD=\d+|FILE=...)
     template <bool in, typename T_memptr>
-#ifndef HAVE_ASSUAN2
-    static int IO_handler(assuan_context_t ctx_, char *line_, T_memptr which)
-    {
-#else
     static gpg_error_t IO_handler(assuan_context_t ctx_, char *line_, T_memptr which)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -591,43 +532,23 @@ private:
 
     }
 
-#ifndef HAVE_ASSUAN2
-    static int input_handler(assuan_context_t ctx, char *line)
-    {
-#else
     static gpg_error_t input_handler(assuan_context_t ctx, char *line)
     {
-#endif
         return IO_handler<true>(ctx, line, &Private::inputs);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int output_handler(assuan_context_t ctx, char *line)
-    {
-#else
     static gpg_error_t output_handler(assuan_context_t ctx, char *line)
     {
-#endif
         return IO_handler<false>(ctx, line, &Private::outputs);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int message_handler(assuan_context_t ctx, char *line)
-    {
-#else
     static gpg_error_t message_handler(assuan_context_t ctx, char *line)
     {
-#endif
         return IO_handler<true>(ctx, line, &Private::messages);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int file_handler(assuan_context_t ctx_, char *line)
-    {
-#else
     static gpg_error_t file_handler(assuan_context_t ctx_, char *line)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx_));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx_));
 
@@ -697,13 +618,8 @@ private:
     }
 
     template <typename T_memptr, typename T_memptr2>
-#ifndef HAVE_ASSUAN2
-    static int recipient_sender_handler(T_memptr mp, T_memptr2 info, assuan_context_t ctx, char *line, bool sender = false)
-    {
-#else
     static gpg_error_t recipient_sender_handler(T_memptr mp, T_memptr2 info, assuan_context_t ctx, char *line, bool sender = false)
     {
-#endif
         Q_ASSERT(assuan_get_pointer(ctx));
         AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx));
 
@@ -736,23 +652,13 @@ private:
         }
     }
 
-#ifndef HAVE_ASSUAN2
-    static int recipient_handler(assuan_context_t ctx, char *line)
-    {
-#else
     static gpg_error_t recipient_handler(assuan_context_t ctx, char *line)
     {
-#endif
         return recipient_sender_handler(&Private::recipients, &Private::informativeRecipients, ctx, line);
     }
 
-#ifndef HAVE_ASSUAN2
-    static int sender_handler(assuan_context_t ctx, char *line)
-    {
-#else
     static gpg_error_t sender_handler(assuan_context_t ctx, char *line)
     {
-#endif
         return recipient_sender_handler(&Private::senders, &Private::informativeSenders, ctx, line, true);
     }
 
@@ -898,10 +804,6 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
         throw Exception(gpg_error(GPG_ERR_INV_ARG), "pre-assuan_init_socket_server_ext");
     }
 
-#ifndef HAVE_ASSUAN2
-    assuan_context_t naked_ctx = 0;
-    if (const gpg_error_t err = assuan_init_socket_server_ext(&naked_ctx, fd, INIT_SOCKET_FLAGS))
-#else
     {
         assuan_context_t naked_ctx = nullptr;
         if (const gpg_error_t err = assuan_new(&naked_ctx)) {
@@ -910,12 +812,7 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
         ctx.reset(naked_ctx);
     }
     if (const gpg_error_t err = assuan_init_socket_server(ctx.get(), fd, INIT_SOCKET_FLAGS))
-#endif
         throw Exception(err, "assuan_init_socket_server_ext");
-
-#ifndef HAVE_ASSUAN2
-    ctx.reset(naked_ctx); naked_ctx = 0;
-#endif
 
     // for callbacks, associate the context with this connection:
     assuan_set_pointer(ctx.get(), this);
@@ -942,81 +839,33 @@ AssuanServerConnection::Private::Private(assuan_fd_t fd_, const std::vector< std
     }
 
     // register our INPUT/OUTPUT/MESSGAE/FILE handlers:
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "INPUT",  input_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "INPUT",  input_handler, ""))
-#endif
         throw Exception(err, "register \"INPUT\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "MESSAGE",  message_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "MESSAGE",  message_handler, ""))
-#endif
         throw Exception(err, "register \"MESSAGE\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "OUTPUT", output_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "OUTPUT", output_handler, ""))
-#endif
         throw Exception(err, "register \"OUTPUT\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "FILE", file_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "FILE", file_handler, ""))
-#endif
         throw Exception(err, "register \"FILE\" handler");
 
     // register user-defined commands:
     for (std::shared_ptr<AssuanCommandFactory> fac : std::as_const(factories))
-#ifndef HAVE_ASSUAN2
-        if (const gpg_error_t err = assuan_register_command(ctx.get(), fac->name(), fac->_handler()))
-#else
         if (const gpg_error_t err = assuan_register_command(ctx.get(), fac->name(), fac->_handler(), ""))
-#endif
             throw Exception(err, std::string("register \"") + fac->name() + "\" handler");
 
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "GETINFO", getinfo_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "GETINFO", getinfo_handler, ""))
-#endif
         throw Exception(err, "register \"GETINFO\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "START_KEYMANAGER", start_keymanager_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "START_KEYMANAGER", start_keymanager_handler, ""))
-#endif
         throw Exception(err, "register \"START_KEYMANAGER\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "START_CONFDIALOG", start_confdialog_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "START_CONFDIALOG", start_confdialog_handler, ""))
-#endif
         throw Exception(err, "register \"START_CONFDIALOG\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "RECIPIENT", recipient_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "RECIPIENT", recipient_handler, ""))
-#endif
         throw Exception(err, "register \"RECIPIENT\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "SENDER", sender_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "SENDER", sender_handler, ""))
-#endif
         throw Exception(err, "register \"SENDER\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "SESSION", session_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "SESSION", session_handler, ""))
-#endif
         throw Exception(err, "register \"SESSION\" handler");
-#ifndef HAVE_ASSUAN2
-    if (const gpg_error_t err = assuan_register_command(ctx.get(), "CAPABILITIES", capabilities_handler))
-#else
     if (const gpg_error_t err = assuan_register_command(ctx.get(), "CAPABILITIES", capabilities_handler, ""))
-#endif
         throw Exception(err, "register \"CAPABILITIES\" handler");
 
     assuan_set_hello_line(ctx.get(), "GPG UI server (Kleopatra/" KLEOPATRA_VERSION_STRING ") ready to serve");
@@ -1076,24 +925,14 @@ class InquiryHandler : public QObject
     Q_OBJECT
 public:
 
-#if defined(HAVE_ASSUAN2) || defined(HAVE_ASSUAN_INQUIRE_EXT)
     explicit InquiryHandler(const char *keyword_, QObject *p = nullptr)
         : QObject(p),
-# if !defined(HAVE_ASSUAN2) && !defined(HAVE_NEW_STYLE_ASSUAN_INQUIRE_EXT)
-          buffer(0),
-          buflen(0),
-# endif
           keyword(keyword_)
     {
 
     }
 
-# if defined(HAVE_ASSUAN2) || defined(HAVE_NEW_STYLE_ASSUAN_INQUIRE_EXT)
-#  ifndef HAVE_ASSUAN2
-    static int handler(void *cb_data, int rc, unsigned char *buffer, size_t buflen)
-#  else
     static gpg_error_t handler(void *cb_data, gpg_error_t rc, unsigned char *buffer, size_t buflen)
-#  endif
     {
         Q_ASSERT(cb_data);
         auto this_ = static_cast<InquiryHandler *>(cb_data);
@@ -1102,26 +941,9 @@ public:
         delete this_;
         return 0;
     }
-# else
-    static int handler(void *cb_data, int rc)
-    {
-        Q_ASSERT(cb_data);
-        InquiryHandler *this_ = static_cast<InquiryHandler *>(cb_data);
-        Q_EMIT this_->signal(rc, QByteArray::fromRawData(reinterpret_cast<const char *>(this_->buffer), this_->buflen), this_->keyword);
-        std::free(this_->buffer);
-        delete this_;
-        return 0;
-    }
-# endif
 
 private:
-#if !defined(HAVE_ASSUAN2) && !defined(HAVE_NEW_STYLE_ASSUAN_INQUIRE_EXT)
-    friend class ::Kleo::AssuanCommand;
-    unsigned char *buffer;
-    size_t buflen;
-#endif
     const char *keyword;
-#endif // defined(HAVE_ASSUAN2) || defined(HAVE_ASSUAN_INQUIRE_EXT)
 
 Q_SIGNALS:
     void signal(int rc, const QByteArray &data, const QByteArray &keyword);
@@ -1379,21 +1201,14 @@ int AssuanCommand::inquire(const char *keyword, QObject *receiver, const char *s
         return makeError(GPG_ERR_INV_OP);
     }
 
-#if defined(HAVE_ASSUAN2) || defined(HAVE_ASSUAN_INQUIRE_EXT)
     std::unique_ptr<InquiryHandler> ih(new InquiryHandler(keyword, receiver));
     receiver->connect(ih.get(), SIGNAL(signal(int,QByteArray,QByteArray)), slot);
     if (const gpg_error_t err = assuan_inquire_ext(d->ctx.get(), keyword,
-# if !defined(HAVE_ASSUAN2) && !defined(HAVE_NEW_STYLE_ASSUAN_INQUIRE_EXT)
-                                &ih->buffer, &ih->buflen,
-# endif
                                 maxSize, InquiryHandler::handler, ih.get())) {
         return err;
     }
     ih.release();
     return 0;
-#else
-    return makeError(GPG_ERR_NOT_SUPPORTED);   // libassuan too old
-#endif // defined(HAVE_ASSUAN2) || defined(HAVE_ASSUAN_INQUIRE_EXT)
 }
 
 void AssuanCommand::done(const GpgME::Error &err, const QString &details)
@@ -1493,13 +1308,8 @@ const std::vector<KMime::Types::Mailbox> &AssuanCommand::senders() const
     return d->senders;
 }
 
-#ifndef HAVE_ASSUAN2
-int AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, const char *commandName)
-{
-#else
 gpg_error_t AssuanCommandFactory::_handle(assuan_context_t ctx, char *line, const char *commandName)
 {
-#endif
     Q_ASSERT(assuan_get_pointer(ctx));
     AssuanServerConnection::Private &conn = *static_cast<AssuanServerConnection::Private *>(assuan_get_pointer(ctx));
 

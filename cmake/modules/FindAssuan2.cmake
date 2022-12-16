@@ -74,12 +74,6 @@ if ( WIN32 )
 
   endif()
 
-  if (ASSUAN2_FOUND)
-    set (HAVE_ASSUAN2 1)
-  else()
-    set (HAVE_ASSUAN2 0)
-  endif()
-
 else() # not WIN32
 
   # On *nix, we have the libassuan-config script which can tell us all we
@@ -203,12 +197,6 @@ else() # not WIN32
 
     endif()
 
-  endif()
-
-  if (ASSUAN2_FOUND)
-    set (HAVE_ASSUAN2 1)
-  else()
-    set (HAVE_ASSUAN2 0)
   endif()
 
 endif() # WIN32 | Unix

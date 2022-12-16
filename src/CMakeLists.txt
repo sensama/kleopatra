@@ -47,17 +47,8 @@ set(_kleopatra_uiserver_SRCS
     uiserver/verifychecksumscommand.cpp
   )
 
-if(ASSUAN2_FOUND)
   include_directories(${ASSUAN2_INCLUDES})
   set(_kleopatra_uiserver_extra_libs ${ASSUAN2_LIBRARIES})
-else()
-  include_directories(${ASSUAN_INCLUDES})
-  if(WIN32)
-    set(_kleopatra_uiserver_extra_libs ${ASSUAN_VANILLA_LIBRARIES})
-  else()
-    set(_kleopatra_uiserver_extra_libs ${ASSUAN_PTHREAD_LIBRARIES})
-  endif()
-endif()
 
 if(HAVE_GPG_ERR_SOURCE_KLEO)
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)

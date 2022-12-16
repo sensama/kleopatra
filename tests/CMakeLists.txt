@@ -55,17 +55,10 @@ if(USABLE_ASSUAN_FOUND)
   endif()
   target_link_libraries(test_uiserver KF5::I18n)
 
-  if(ASSUAN2_FOUND)
     target_link_libraries(test_uiserver
       KF5::Libkleo
       ${ASSUAN2_LIBRARIES}
     )
-  else()
-    target_link_libraries(test_uiserver
-      KF5::Libkleo
-      ${ASSUAN_LIBRARIES}
-    )
-  endif()
 
   if(WIN32)
     target_link_libraries(test_uiserver

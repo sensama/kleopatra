@@ -370,40 +370,28 @@ QByteArray Command::command() const
 // here comes the ugly part
 //
 
-#ifdef HAVE_ASSUAN2
 static void my_assuan_release(assuan_context_t ctx)
 {
     if (ctx) {
         assuan_release(ctx);
     }
 }
-#endif
 
 using AssuanContextBase = std::shared_ptr<std::remove_pointer<assuan_context_t>::type>;
 namespace
 {
 struct AssuanClientContext : AssuanContextBase {
     AssuanClientContext() : AssuanContextBase() {}
-#ifndef HAVE_ASSUAN2
-    explicit AssuanClientContext(assuan_context_t ctx) : AssuanContextBase(ctx, &assuan_disconnect) {}
-    void reset(assuan_context_t ctx = nullptr)
-    {
-        AssuanContextBase::reset(ctx, &assuan_disconnect);
-    }
-#else
     explicit AssuanClientContext(assuan_context_t ctx) : AssuanContextBase(ctx, &my_assuan_release) {}
     void reset(assuan_context_t ctx = nullptr)
     {
         AssuanContextBase::reset(ctx, &my_assuan_release);
     }
-#endif
 };
 }
 
-#ifdef HAVE_ASSUAN2
 // compatibility typedef - remove when we require assuan v2...
 using assuan_error_t = gpg_error_t;
-#endif
 
 static assuan_error_t
 my_assuan_transact(const AssuanClientContext &ctx,
@@ -566,9 +554,6 @@ void Command::Private::run()
         out.serverLocation = default_socket_name();
     }
 
-#ifndef HAVE_ASSUAN2
-    assuan_context_t naked_ctx = 0;
-#endif
     AssuanClientContext ctx;
     assuan_error_t err = 0;
 
@@ -580,9 +565,6 @@ void Command::Private::run()
         goto leave;
     }
 
-#ifndef HAVE_ASSUAN2
-    err = assuan_socket_connect(&naked_ctx, socketName.toUtf8().constData(), -1);
-#else
     {
         assuan_context_t naked_ctx = nullptr;
         err = assuan_new(&naked_ctx);
@@ -596,7 +578,6 @@ void Command::Private::run()
     }
 
     err = assuan_socket_connect(ctx.get(), socketName.toUtf8().constData(), -1, 0);
-#endif
     if (err) {
         qDebug("UI server not running, starting it");
 
@@ -618,11 +599,6 @@ void Command::Private::run()
                                socketName, to_error_string(err));
         goto leave;
     }
-
-#ifndef HAVE_ASSUAN2
-    ctx.reset(naked_ctx);
-    naked_ctx = 0;
-#endif
 
     out.serverPid = -1;
     err = my_assuan_transact(ctx, "GETINFO pid", &getinfo_pid_cb, &out.serverPid);

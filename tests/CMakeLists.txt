@@ -51,23 +51,9 @@ endif()
   else()
     add_executable(test_uiserver ${test_uiserver_SRCS})
   endif()
-  target_link_libraries(test_uiserver KF5::I18n)
 
-    target_link_libraries(test_uiserver
-      KF5::Libkleo
-      ${ASSUAN2_LIBRARIES}
-    )
+  target_link_libraries(test_uiserver KF5::I18n KF5::Libkleo ${LibAssuan_LIBRARIES})
 
-  if(WIN32)
-    target_link_libraries(test_uiserver
-      ${ASSUAN_VANILLA_LIBRARIES}
-      ws2_32
-    )
-  else()
-    target_link_libraries(test_uiserver
-      ${ASSUAN_PTHREAD_LIBRARIES}
-  )
-  endif()
   if (QT_MAJOR_VERSION STREQUAL "6")
       target_link_libraries(test_uiserver QGpgmeQt6)
   else()

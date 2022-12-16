@@ -40,20 +40,6 @@ if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kleopatraclientcore PROPERTIES UNITY_BUILD ON)
 endif()
 
-
-if(WIN32)
-    target_link_libraries(kleopatraclientcore
-      
-      ${ASSUAN2_LIBRARIES}
-      ws2_32
-    )
-else()
-    target_link_libraries(kleopatraclientcore
-      
-      ${ASSUAN2_LIBRARIES}
-    )
-endif()
-
-target_link_libraries(kleopatraclientcore Qt::Widgets KF5::I18n Gpgmepp)
+target_link_libraries(kleopatraclientcore ${LibAssuan_LIBRARIES} Qt::Widgets KF5::I18n Gpgmepp)
 
 install(TARGETS kleopatraclientcore ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

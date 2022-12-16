@@ -40,6 +40,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     set(QT_REQUIRED_VERSION "6.4.0")
 endif()
 set(GPGME_REQUIRED_VERSION "1.16.0")
+set(LIBASSUAN_REQUIRED_VERSION "2.4.2")
 
 if (WIN32)
   set(KF5_WANT_VERSION "5.70.0")
@@ -141,8 +142,11 @@ find_package(KF5MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
-find_package(Assuan2 REQUIRED)
-
+find_package(LibAssuan ${LIBASSUAN_REQUIRED_VERSION} REQUIRED)
+set_package_properties(LibAssuan PROPERTIES
+  TYPE REQUIRED
+  PURPOSE "Needed for Kleopatra to act as the GnuPG UI Server"
+)
 
 set(kleopatra_release FALSE)
 
@@ -171,15 +175,13 @@ if(NOT kleopatra_release)
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/version-kleopatra.h)
-
-include (ConfigureChecks.cmake)
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kleopatra.h)
+
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${ASSUAN2_INCLUDES}
-    )
+    ${LibAssuan_INCLUDE_DIRS}
+)
 
 if (WIN32)
 # On Windows, we need to use stuff deprecated since Qt 5.11, e.g. from QDesktopWidget

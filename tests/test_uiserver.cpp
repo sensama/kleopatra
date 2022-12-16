@@ -13,7 +13,7 @@
 
 #include <config-kleopatra.h>
 
-#include <kleo-assuan.h>
+#include <assuan.h>
 #include <gpg-error.h>
 
 #include <Libkleo/Hex>

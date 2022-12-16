@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <kleo-assuan.h> // for assuan_fd_t
+#include <assuan.h> // for assuan_fd_t
 
 #include <utils/pimpl_ptr.h>
 

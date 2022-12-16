@@ -18,7 +18,7 @@
 #include <QTcpServer>
 #include <QFile>
 
-#include <kleo-assuan.h>
+#include <assuan.h>
 
 #include <memory>
 #include <algorithm>

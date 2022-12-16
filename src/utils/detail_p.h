@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include <kleo-assuan.h>
+#include <assuan.h>
 
 
 #ifdef _WIN32

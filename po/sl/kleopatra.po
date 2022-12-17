@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-16 00:51+0000\n"
-"PO-Revision-Date: 2022-12-11 08:41+0100\n"
+"PO-Revision-Date: 2022-12-16 08:35+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
 
@@ -371,13 +371,7 @@ msgid "No, it's not mine"
 msgstr "Ne, ni moje"
 
 #: src/commands/changeownertrustcommand.cpp:134
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
-#| msgid ""
-#| "<para>Do you want to grant '%1' the power to mark certificates as %2 for "
-#| "you?</para><para><emphasis>This means that the owner of this certificate "
-#| "properly check fingerprints and confirms the identities of others.</"
-#| "emphasis></para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>Do you want to grant '%1' the power to mark certificates as %2 for you?"
@@ -387,16 +381,10 @@ msgid ""
 msgstr ""
 "<para>Ali želite podeliti '%1' pravico označevanja potrdil kot %2 za vas?</"
 "para><para><emphasis>To pomeni, da lastnik tega potrdila pravilno preverja "
-"prstne odtise in potrjuje identitete ostalih.</emphasis></para>"
+"prstne odtise in potrjuje identitete drugih.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info %1: a certificate"
-#| msgid ""
-#| "<para>Do you want to grant '%1' the power to mark certificates as valid "
-#| "for you?</para><para><emphasis>This means that the owner of this "
-#| "certificate properly check fingerprints and confirms the identities of "
-#| "others.</emphasis></para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>Do you want to grant '%1' the power to mark certificates as valid for "
@@ -406,7 +394,7 @@ msgid ""
 msgstr ""
 "<para>Ali želite podeliti '%1' pravico označevanja potrdil kot veljavnih za "
 "vas?</para><para><emphasis>To pomeni, da lastnik tega potrdila pravilno "
-"preverja prstne odtise in potrjuje identitete ostalih.</emphasis></para>"
+"preverja prstne odtise in potrjuje identitete drugih.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
 #, kde-format

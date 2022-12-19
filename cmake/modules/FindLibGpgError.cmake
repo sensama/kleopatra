@@ -7,33 +7,29 @@
 FindLibGpgError
 ---------------
 
-Finds the Libgpg-error library.
-
-Result Variables
-^^^^^^^^^^^^^^^^
+Try to find the Libgpg-error library.
 
 This will define the following variables:
 
 ``LibGpgError_FOUND``
-    True if the system has the Libgpg-error library.
+    True if (the requested version of) Libgpg-error was found
 ``LibGpgError_VERSION``
-    The version of the Libgpg-error library which was found.
-``LibGpgError_INCLUDE_DIRS``
-    Include directories needed to use Libgpg-error.
+    The version of the Libgpg-error library which was found
 ``LibGpgError_LIBRARIES``
-    Libraries needed to link to Libgpg-error.
+    Libraries you need to link when using Libgpg-error This can be passed to
+    target_link_libraries() instead of the ``LibGpgError::LibGpgError`` target.
+``LibGpgError_INCLUDE_DIRS``
+    Include directories needed to use Libgpg-error This should be passed to
+    target_include_directories() if the target is not used for linking.
 ``LibGpgError_DEFINITIONS``
-    The compile definitions to use when compiling code that uses Libgpg-error.
+    Compile definitions to use when compiling code that uses Libgpg-error
+    This should be passed to target_compile_options() if the target is not
+    used for linking.
 
-Cache Variables
-^^^^^^^^^^^^^^^
+If ``LibGpgError_FOUND`` is TRUE, it will also define the following imported target:
 
-The following cache variables may also be set:
-
-``LibGpgError_INCLUDE_DIR``
-    The directory containing ``gpg-error.h``.
-``LibGpgError_LIBRARY``
-    The path to the Libgpg-error library.
+``LibGpgError::LibGpgError``
+    The Libgpg-error library
 
 #]=======================================================================]
 
@@ -78,6 +74,15 @@ find_package_handle_standard_args(LibGpgError
     VERSION_VAR
         LibGpgError_VERSION
 )
+
+if(LibGpgError_FOUND AND NOT TARGET LibGpgError::LibGpgError)
+    add_library(LibGpgError::LibGpgError UNKNOWN IMPORTED)
+    set_target_properties(LibGpgError::LibGpgError PROPERTIES
+        IMPORTED_LOCATION "${LibGpgError_LIBRARY}"
+        INTERFACE_COMPILE_OPTIONS "${LibGpgError_DEFINITIONS}"
+        INTERFACE_INCLUDE_DIRECTORIES "${LibGpgError_INCLUDE_DIR}"
+    )
+endif()
 
 mark_as_advanced(
     LibGpgError_INCLUDE_DIR

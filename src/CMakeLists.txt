@@ -47,8 +47,7 @@ set(_kleopatra_uiserver_SRCS
     uiserver/verifychecksumscommand.cpp
   )
 
-include_directories(${LibGpgError_INCLUDE_DIRS})
-set(_kleopatra_uiserver_extra_libs LibAssuan::LibAssuan ${LibGpgError_LIBRARIES})
+set(_kleopatra_uiserver_extra_libs LibAssuan::LibAssuan LibGpgError::LibGpgError)
 
 if(HAVE_GPG_ERR_SOURCE_KLEO)
   add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)

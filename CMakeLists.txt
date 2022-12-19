@@ -185,7 +185,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kleopatra.h.cmake ${CMAKE_CURR
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${LibAssuan_INCLUDE_DIRS}
     ${LibGpgError_INCLUDE_DIRS}
 )
 

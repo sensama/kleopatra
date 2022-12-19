@@ -7,33 +7,29 @@
 FindLibAssuan
 -------------
 
-Finds the Libassuan library.
-
-Result Variables
-^^^^^^^^^^^^^^^^
+Try to find the Libassuan library.
 
 This will define the following variables:
 
 ``LibAssuan_FOUND``
-    True if the system has the Libassuan library.
+    True if (the requested version of) Libassuan was found
 ``LibAssuan_VERSION``
-    The version of the Libassuan library which was found.
-``LibAssuan_INCLUDE_DIRS``
-    Include directories needed to use Libassuan.
+    The version of the Libassuan library which was found
 ``LibAssuan_LIBRARIES``
-    Libraries needed to link to Libassuan.
+    Libraries you need to link when using Libassuan. This can be passed to
+    target_link_libraries() instead of the ``LibAssuan::LibAssuan`` target.
+``LibAssuan_INCLUDE_DIRS``
+    Include directories needed to use Libassuan. This should be passed to
+    target_include_directories() if the target is not used for linking.
 ``LibAssuan_DEFINITIONS``
-    The compile definitions to use when compiling code that uses Libassuan.
+    Compile definitions to use when compiling code that uses Libassuan.
+    This should be passed to target_compile_options() if the target is not
+    used for linking.
 
-Cache Variables
-^^^^^^^^^^^^^^^
+If ``LibAssuan_FOUND`` is TRUE, it will also define the following imported target:
 
-The following cache variables may also be set:
-
-``LibAssuan_INCLUDE_DIR``
-    The directory containing ``assuan.h``.
-``LibAssuan_LIBRARY``
-    The path to the Libassuan library.
+``LibAssuan::LibAssuan``
+    The Libassuan library
 
 #]=======================================================================]
 
@@ -82,6 +78,16 @@ find_package_handle_standard_args(LibAssuan
     VERSION_VAR
         LibAssuan_VERSION
 )
+
+if(LibAssuan_FOUND AND NOT TARGET LibAssuan::LibAssuan)
+    add_library(LibAssuan::LibAssuan UNKNOWN IMPORTED)
+    set_target_properties(LibAssuan::LibAssuan PROPERTIES
+        IMPORTED_LOCATION "${LibAssuan_LIBRARY}"
+        INTERFACE_COMPILE_OPTIONS "${LibAssuan_DEFINITIONS}"
+        INTERFACE_INCLUDE_DIRECTORIES "${LibAssuan_INCLUDE_DIR}"
+    )
+    set_property(TARGET LibAssuan::LibAssuan APPEND PROPERTY INTERFACE_LINK_LIBRARIES ${_LibAssuan_ADDITIONAL_LIBRARIES})
+endif()
 
 mark_as_advanced(
     LibAssuan_INCLUDE_DIR

@@ -52,7 +52,7 @@ endif()
     add_executable(test_uiserver ${test_uiserver_SRCS})
   endif()
 
-  target_link_libraries(test_uiserver KF5::I18n KF5::Libkleo ${LibAssuan_LIBRARIES} ${LibGpgError_LIBRARIES})
+  target_link_libraries(test_uiserver KF5::I18n KF5::Libkleo LibAssuan::LibAssuan ${LibGpgError_LIBRARIES})
 
   if (QT_MAJOR_VERSION STREQUAL "6")
       target_link_libraries(test_uiserver QGpgmeQt6)

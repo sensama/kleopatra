@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-16 00:51+0000\n"
+"POT-Creation-Date: 2022-12-20 00:47+0000\n"
 "PO-Revision-Date: 2022-08-29 18:11+0200\n"
 "Last-Translator: aheinecke <aheinecke@gnupg.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2680,7 +2680,7 @@ msgid "No Directory Servers Configured"
 msgstr "Keine Verzeichnisdienste eingerichtet"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:104
-#: src/kleopatraapplication.cpp:487
+#: src/kleopatraapplication.cpp:483
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -4811,8 +4811,8 @@ msgstr "Ausnahme aufgetreten: %1"
 #: src/crypto/decryptverifytask.cpp:1198 src/crypto/decryptverifytask.cpp:1300
 #: src/crypto/decryptverifytask.cpp:1356 src/crypto/decryptverifytask.cpp:1458
 #: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1613
-#: src/uiserver/assuanserverconnection.cpp:1557
-#: src/uiserver/assuanserverconnection.cpp:1608
+#: src/uiserver/assuanserverconnection.cpp:1367
+#: src/uiserver/assuanserverconnection.cpp:1418
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Unbekannte Ausnahme aufgetreten"
@@ -8555,69 +8555,69 @@ msgstr "Für die folgende Operation OpenPGP verwenden"
 msgid "Use CMS (X.509, S/MIME) for the following operation"
 msgstr "Für die folgende Operation CMS (X.509, S/MIME) verwenden"
 
-#: src/kleopatra_options.h:23
+#: src/kleopatra_options.h:22
 #, kde-format
 msgid "Location of the socket the ui server is listening on"
 msgstr ""
 "Adresse der Socket-Datei, an der der Benutzerschnittstellen-Server nach "
 "Befehlen lauscht"
 
-#: src/kleopatra_options.h:24
+#: src/kleopatra_options.h:23
 #, kde-format
 msgid "Run UI server only, hide main window"
 msgstr "Nur Benutzerschnittstellen-Server starten, Hauptfenster nicht anzeigen"
 
-#: src/kleopatra_options.h:26
+#: src/kleopatra_options.h:24
 #, kde-format
 msgid "Import certificate file(s)"
 msgstr "Zertifikat-Datei(en) importieren"
 
-#: src/kleopatra_options.h:27
+#: src/kleopatra_options.h:25
 #, kde-format
 msgid "Encrypt file(s)"
 msgstr "Datei(en) verschlüsseln"
 
-#: src/kleopatra_options.h:28
+#: src/kleopatra_options.h:26
 #, kde-format
 msgid "Sign file(s)"
 msgstr "Datei(en) signieren"
 
-#: src/kleopatra_options.h:29
+#: src/kleopatra_options.h:27
 #, kde-format
 msgid "Sign and/or encrypt file(s)"
 msgstr "Datei(en) signieren und/oder verschlüsseln"
 
-#: src/kleopatra_options.h:30
+#: src/kleopatra_options.h:28
 #, kde-format
 msgid "Same as --sign-encrypt, do not use"
 msgstr "Dasselbe wie --sign-encrypt, bitte nicht benutzen"
 
-#: src/kleopatra_options.h:31
+#: src/kleopatra_options.h:29
 #, kde-format
 msgid "Decrypt file(s)"
 msgstr "Datei(en) entschlüsseln"
 
-#: src/kleopatra_options.h:32
+#: src/kleopatra_options.h:30
 #, kde-format
 msgid "Verify file/signature"
 msgstr "Datei/Signatur überprüfen"
 
-#: src/kleopatra_options.h:33
+#: src/kleopatra_options.h:31
 #, kde-format
 msgid "Decrypt and/or verify file(s)"
 msgstr "Dateien entschlüsseln und/oder prüfen"
 
-#: src/kleopatra_options.h:34
+#: src/kleopatra_options.h:32
 #, kde-format
 msgid "Search for a certificate on a keyserver"
 msgstr "Nach Zertifikaten auf Schlüsselservern suchen"
 
-#: src/kleopatra_options.h:35
+#: src/kleopatra_options.h:33
 #, kde-format
 msgid "Create or check a checksum file"
 msgstr "Prüfsummendateien erstellen oder verifizieren"
 
-#: src/kleopatra_options.h:39
+#: src/kleopatra_options.h:37
 #, kde-format
 msgctxt ""
 "If a certificate is already known it shows the certificate details dialog. "
@@ -8629,125 +8629,125 @@ msgstr ""
 "Details eines lokalen Zertifikats anzeigen oder danach anhand des "
 "Fingerabdrucks auf einem Schlüsselserver suchen"
 
-#: src/kleopatra_options.h:40
+#: src/kleopatra_options.h:38
 #, kde-format
 msgid "Create a new key pair or certificate signing request"
 msgstr "Neues Schlüsselpaar oder Beglaubigungsanfrage erstellen"
 
-#: src/kleopatra_options.h:41
+#: src/kleopatra_options.h:39
 #, kde-format
 msgid "Parent Window Id for dialogs"
 msgstr "ID (Kennung) des übergeordneten Fensters für Dialoge"
 
-#: src/kleopatra_options.h:42
+#: src/kleopatra_options.h:40
 #, kde-format
 msgid "Open the config dialog"
 msgstr "Öffnet den Einrichtungsdialog"
 
-#: src/kleopatra_options.h:54
+#: src/kleopatra_options.h:52
 #, kde-format
 msgid "File(s) to process"
 msgstr "Zu bearbeitende Datei(en)"
 
-#: src/kleopatra_options.h:57
+#: src/kleopatra_options.h:55
 #, kde-format
 msgid "String or Fingerprint for query and search"
 msgstr "Suchbegriff oder Fingerabdruck für Abfrage und Suche"
 
-#: src/kleopatraapplication.cpp:382
+#: src/kleopatraapplication.cpp:378
 #, kde-format
 msgid "Failed to execute command"
 msgstr "Der Befehl kann nicht ausgeführt werden"
 
-#: src/kleopatraapplication.cpp:425
+#: src/kleopatraapplication.cpp:421
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Mehrdeutiges Protokoll: --openpgp und --cms"
 
-#: src/kleopatraapplication.cpp:459
+#: src/kleopatraapplication.cpp:455
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Kein Suchbegriff angegeben mit --search"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:466
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Kein Fingerabdruck angegeben mit --query"
 
-#: src/kleopatraapplication.cpp:526
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Mehrdeutige Befehle: „%1“ und „%2“"
 
-#: src/kleopatraapplication.cpp:533
+#: src/kleopatraapplication.cpp:529
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Keine Dateien für den Befehl „%1“ angegeben"
 
-#: src/kleopatraapplication.cpp:547
+#: src/kleopatraapplication.cpp:543
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "„%1“ kann nicht gelesen werden"
 
-#: src/kleopatraapplication.cpp:824
+#: src/kleopatraapplication.cpp:820
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Das Öffnen externer Adressen wurde durch den Systemverwalter verboten."
 
-#: src/kleopatraapplication.cpp:825
+#: src/kleopatraapplication.cpp:821
 #, kde-format
 msgid "Prohibited"
 msgstr "Verboten"
 
-#: src/libkleopatraclient/core/command.cpp:465
+#: src/libkleopatraclient/core/command.cpp:450
 #, kde-format
 msgid "Failed to start uiserver %1"
 msgstr "Start des Benutzerschnittstellen-Servers %1 fehlgeschlagen"
 
-#: src/libkleopatraclient/core/command.cpp:579
+#: src/libkleopatraclient/core/command.cpp:561
 #, kde-format
 msgid "Invalid socket name!"
 msgstr "Ungültiger Socket-Name"
 
-#: src/libkleopatraclient/core/command.cpp:590
+#: src/libkleopatraclient/core/command.cpp:569
 #, kde-format
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
 msgstr "Fehler bei der Verbindungserstellung mit dem UI Server an %1: %2"
 
-#: src/libkleopatraclient/core/command.cpp:617
+#: src/libkleopatraclient/core/command.cpp:595
 #, kde-format
 msgid "Could not connect to Kleopatra UI server at %1: %2"
 msgstr ""
 "Der Kleopatra-Benutzerschnittstellen-Server ist unter %1 nicht erreichbar: %2"
 
-#: src/libkleopatraclient/core/command.cpp:630
+#: src/libkleopatraclient/core/command.cpp:603
 #, kde-format
 msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
 msgstr ""
 "Die Prozess-ID des Kleopatra-UI-Servers %1 kann nicht ermittelt werden: %2"
 
-#: src/libkleopatraclient/core/command.cpp:656
+#: src/libkleopatraclient/core/command.cpp:629
 #, kde-format
 msgid "Failed to send critical option %1: %2"
 msgstr "Die kritische Option %1 kann nicht gesendet werden: %2"
 
-#: src/libkleopatraclient/core/command.cpp:665
+#: src/libkleopatraclient/core/command.cpp:638
 #, kde-format
 msgid "Failed to send file path %1: %2"
 msgstr "Dateipfad %1 kann nicht gesendet werden: %2"
 
-#: src/libkleopatraclient/core/command.cpp:672
+#: src/libkleopatraclient/core/command.cpp:645
 #, kde-format
 msgid "Failed to send sender %1: %2"
 msgstr "Der Absender %1 kann nicht gesendet werden: %2"
 
-#: src/libkleopatraclient/core/command.cpp:679
+#: src/libkleopatraclient/core/command.cpp:652
 #, kde-format
 msgid "Failed to send recipient %1: %2"
 msgstr "Der Empfänger %1 kann nicht gesendet werden: %2"
 
-#: src/libkleopatraclient/core/command.cpp:693
+#: src/libkleopatraclient/core/command.cpp:666
 #, kde-format
 msgid "Command (%1) failed: %2"
 msgstr "Befehl (%1) fehlgeschlagen: %2"
@@ -10176,132 +10176,132 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "Zertifikate von NetKey-v3-Karte anlernen"
 
-#: src/uiserver/assuanserverconnection.cpp:168
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "Kein Optionsname angegeben"
 
-#: src/uiserver/assuanserverconnection.cpp:362
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "Fehler beim Einlesen"
 
-#: src/uiserver/assuanserverconnection.cpp:371
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr "Einlesefehler: Nummerische Sitzungskennung ist zu groß"
 
-#: src/uiserver/assuanserverconnection.cpp:394
+#: src/uiserver/assuanserverconnection.cpp:355
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "Für CAPABILITIES werden keine Parameter akzeptiert"
 
-#: src/uiserver/assuanserverconnection.cpp:434
+#: src/uiserver/assuanserverconnection.cpp:390
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "Unbekannter Wert für WHAT"
 
-#: src/uiserver/assuanserverconnection.cpp:451
+#: src/uiserver/assuanserverconnection.cpp:402
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "Für START_KEYMANAGER werden keine Parameter akzeptiert"
 
-#: src/uiserver/assuanserverconnection.cpp:471
+#: src/uiserver/assuanserverconnection.cpp:417
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "Für START_CONFDIALOG werden keine Parameter akzeptiert"
 
-#: src/uiserver/assuanserverconnection.cpp:535
+#: src/uiserver/assuanserverconnection.cpp:476
 #, kde-format
 msgid "Message #%1"
 msgstr "Nachricht #%1"
 
-#: src/uiserver/assuanserverconnection.cpp:547
+#: src/uiserver/assuanserverconnection.cpp:488
 #, kde-format
 msgid "Empty file path"
 msgstr "Leerer Pfad zu Datei"
 
-#: src/uiserver/assuanserverconnection.cpp:551
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:492
+#: src/uiserver/assuanserverconnection.cpp:558
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "Nur absolute Pfade sind zulässig"
 
-#: src/uiserver/assuanserverconnection.cpp:554
+#: src/uiserver/assuanserverconnection.cpp:495
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "In EINGABE-/AUSGABE-DATEI sind nur Dateien erlaubt"
 
-#: src/uiserver/assuanserverconnection.cpp:654
+#: src/uiserver/assuanserverconnection.cpp:575
 #, kde-format
 msgid "unknown exception caught"
 msgstr "Unbekannte Ausnahme aufgetreten"
 
-#: src/uiserver/assuanserverconnection.cpp:719
+#: src/uiserver/assuanserverconnection.cpp:635
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr ""
 "„--info“ kann nicht zusammen mit SENDER oder RECIPIENT ohne --info verwendet "
 "werden"
 
-#: src/uiserver/assuanserverconnection.cpp:723
+#: src/uiserver/assuanserverconnection.cpp:639
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "Der Parameter ist keine nach RFC-2822 gültige Mailbox"
 
-#: src/uiserver/assuanserverconnection.cpp:726
+#: src/uiserver/assuanserverconnection.cpp:642
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr "Auf eine nach RFC-2822 gültige Mailbox folgen unerwartete Daten"
 
-#: src/uiserver/assuanserverconnection.cpp:1191
+#: src/uiserver/assuanserverconnection.cpp:1013
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "Unerwartete Ausnahme aufgetreten: %1"
 
-#: src/uiserver/assuanserverconnection.cpp:1196
+#: src/uiserver/assuanserverconnection.cpp:1018
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr ""
 "Es ist eine unbekannte Ausnahme aufgetreten – bitte berichten Sie diesen "
 "Fehler an die Programmentwickler."
 
-#: src/uiserver/assuanserverconnection.cpp:1354
+#: src/uiserver/assuanserverconnection.cpp:1176
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "Status „%1“ lässt sich nicht senden"
 
-#: src/uiserver/assuanserverconnection.cpp:1364
+#: src/uiserver/assuanserverconnection.cpp:1186
 #, kde-format
 msgid "Cannot send data"
 msgstr "Daten lassen sich nicht senden"
 
-#: src/uiserver/assuanserverconnection.cpp:1368
+#: src/uiserver/assuanserverconnection.cpp:1190
 #, kde-format
 msgid "Cannot flush data"
 msgstr "Daten lassen sich nicht schreiben (flush)"
 
-#: src/uiserver/assuanserverconnection.cpp:1630
+#: src/uiserver/assuanserverconnection.cpp:1440
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "Die erforderliche Option „--mode“ fehlt"
 
-#: src/uiserver/assuanserverconnection.cpp:1640
+#: src/uiserver/assuanserverconnection.cpp:1450
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "Ungültiger Modus: „%1“"
 
-#: src/uiserver/assuanserverconnection.cpp:1662
+#: src/uiserver/assuanserverconnection.cpp:1472
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "Die erforderliche Option „--protocol“ fehlt"
 
-#: src/uiserver/assuanserverconnection.cpp:1667
+#: src/uiserver/assuanserverconnection.cpp:1477
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "„--protocol“ ist hier nicht zulässig"
 
-#: src/uiserver/assuanserverconnection.cpp:1677
+#: src/uiserver/assuanserverconnection.cpp:1487
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "Ungültiges Protokoll „%1“"
@@ -10626,7 +10626,7 @@ msgstr ""
 "%1 ist ein Befehl zur Dateiverwaltung, die Verbindung befindet sich aber "
 "anscheinend im E-Mail-Modus (%2 vorhanden)"
 
-#: src/uiserver/uiserver.cpp:252
+#: src/uiserver/uiserver.cpp:238
 #, kde-format
 msgid ""
 "Could not determine the GnuPG home directory. Consider setting the GNUPGHOME "
@@ -10635,7 +10635,7 @@ msgstr ""
 "Der Ordner für GnuPG lässt sich nicht bestimmen. Möglicherweise müssen Sie "
 "die Variable GNUPGHOME verwenden."
 
-#: src/uiserver/uiserver.cpp:266
+#: src/uiserver/uiserver.cpp:252
 #, kde-format
 msgid ""
 "Cannot determine the GnuPG home directory: %1 exists but is not a directory."
@@ -10643,37 +10643,37 @@ msgstr ""
 "Der Ordner für GnuPG lässt sich nicht bestimmen: %1 existiert, ist aber kein "
 "Ordner."
 
-#: src/uiserver/uiserver.cpp:274
+#: src/uiserver/uiserver.cpp:260
 #, kde-format
 msgid "Could not create GnuPG home directory %1: %2"
 msgstr "Der Ordner %1 für GnuPG lässt sich nicht erstellen: %2"
 
-#: src/uiserver/uiserver.cpp:288
+#: src/uiserver/uiserver.cpp:274
 #, kde-format
 msgid "Detected another running gnupg UI server listening at %1."
 msgstr "Es wartet bereits ein anderer GnuPG-Oberflächen-Server auf %1."
 
-#: src/uiserver/uiserver_unix.cpp:43 src/uiserver/uiserver_win.cpp:39
+#: src/uiserver/uiserver_unix.cpp:39 src/uiserver/uiserver_win.cpp:39
 #, kde-format
 msgid "Could not create socket: %1"
 msgstr "Socket lässt sich nicht erzeugen: %1"
 
-#: src/uiserver/uiserver_unix.cpp:57 src/uiserver/uiserver_win.cpp:49
+#: src/uiserver/uiserver_unix.cpp:49 src/uiserver/uiserver_win.cpp:49
 #, kde-format
 msgid "Could not bind to socket: %1"
 msgstr "Socket lässt sich nicht binden: %1"
 
-#: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:53
+#: src/uiserver/uiserver_unix.cpp:54 src/uiserver/uiserver_win.cpp:53
 #, kde-format
 msgid "Could not get socket nonce: %1"
 msgstr "Socket-Nonce nicht erhalten: %1"
 
-#: src/uiserver/uiserver_unix.cpp:69 src/uiserver/uiserver_win.cpp:58
+#: src/uiserver/uiserver_unix.cpp:59 src/uiserver/uiserver_win.cpp:58
 #, kde-format
 msgid "Could not listen to socket: %1"
 msgstr "Am Socket kann nicht gelauscht werden: %1"
 
-#: src/uiserver/uiserver_unix.cpp:73 src/uiserver/uiserver_win.cpp:62
+#: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:62
 #, kde-format
 msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "

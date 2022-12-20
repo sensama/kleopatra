@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-16 00:51+0000\n"
+"POT-Creation-Date: 2022-12-20 00:47+0000\n"
 "PO-Revision-Date: 2022-12-13 12:21\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2400,7 +2400,7 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:104
-#: src/kleopatraapplication.cpp:487
+#: src/kleopatraapplication.cpp:483
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
@@ -4362,8 +4362,8 @@ msgstr "捕捉到异常：%1"
 #: src/crypto/decryptverifytask.cpp:1198 src/crypto/decryptverifytask.cpp:1300
 #: src/crypto/decryptverifytask.cpp:1356 src/crypto/decryptverifytask.cpp:1458
 #: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1613
-#: src/uiserver/assuanserverconnection.cpp:1557
-#: src/uiserver/assuanserverconnection.cpp:1608
+#: src/uiserver/assuanserverconnection.cpp:1367
+#: src/uiserver/assuanserverconnection.cpp:1418
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "捕捉到未知异常"
@@ -7855,67 +7855,67 @@ msgstr "对以下操作使用 OpenPGP"
 msgid "Use CMS (X.509, S/MIME) for the following operation"
 msgstr "对以下操作使用 CMS(X.509、S/MIME)"
 
-#: src/kleopatra_options.h:23
+#: src/kleopatra_options.h:22
 #, kde-format
 msgid "Location of the socket the ui server is listening on"
 msgstr "界面服务器要监听的套接字地址"
 
-#: src/kleopatra_options.h:24
+#: src/kleopatra_options.h:23
 #, kde-format
 msgid "Run UI server only, hide main window"
 msgstr "只运行界面服务器，隐藏主窗口"
 
-#: src/kleopatra_options.h:26
+#: src/kleopatra_options.h:24
 #, kde-format
 msgid "Import certificate file(s)"
 msgstr "导入证书文件"
 
-#: src/kleopatra_options.h:27
+#: src/kleopatra_options.h:25
 #, kde-format
 msgid "Encrypt file(s)"
 msgstr "加密文件"
 
-#: src/kleopatra_options.h:28
+#: src/kleopatra_options.h:26
 #, kde-format
 msgid "Sign file(s)"
 msgstr "签名文件"
 
-#: src/kleopatra_options.h:29
+#: src/kleopatra_options.h:27
 #, kde-format
 msgid "Sign and/or encrypt file(s)"
 msgstr "签名/加密文件"
 
-#: src/kleopatra_options.h:30
+#: src/kleopatra_options.h:28
 #, kde-format
 msgid "Same as --sign-encrypt, do not use"
 msgstr "和 --sign-encrypt 一致，现不使用"
 
-#: src/kleopatra_options.h:31
+#: src/kleopatra_options.h:29
 #, kde-format
 msgid "Decrypt file(s)"
 msgstr "解密文件"
 
-#: src/kleopatra_options.h:32
+#: src/kleopatra_options.h:30
 #, kde-format
 msgid "Verify file/signature"
 msgstr "校验文件/签名"
 
-#: src/kleopatra_options.h:33
+#: src/kleopatra_options.h:31
 #, kde-format
 msgid "Decrypt and/or verify file(s)"
 msgstr "解密/校验文件"
 
-#: src/kleopatra_options.h:34
+#: src/kleopatra_options.h:32
 #, kde-format
 msgid "Search for a certificate on a keyserver"
 msgstr "在密钥服务器上搜索证书"
 
-#: src/kleopatra_options.h:35
+#: src/kleopatra_options.h:33
 #, kde-format
 msgid "Create or check a checksum file"
 msgstr "创建或检查校验和文件"
 
-#: src/kleopatra_options.h:39
+#: src/kleopatra_options.h:37
 #, kde-format
 msgctxt ""
 "If a certificate is already known it shows the certificate details dialog. "
@@ -7925,123 +7925,123 @@ msgid ""
 "fingerprint"
 msgstr "显示本地证书的详细信息或通过指纹在密钥服务器上搜索它"
 
-#: src/kleopatra_options.h:40
+#: src/kleopatra_options.h:38
 #, kde-format
 msgid "Create a new key pair or certificate signing request"
 msgstr "创建一个新的密钥对或证书签名请求"
 
-#: src/kleopatra_options.h:41
+#: src/kleopatra_options.h:39
 #, kde-format
 msgid "Parent Window Id for dialogs"
 msgstr "对话框的父窗口 ID"
 
-#: src/kleopatra_options.h:42
+#: src/kleopatra_options.h:40
 #, kde-format
 msgid "Open the config dialog"
 msgstr "打开配置对话框"
 
-#: src/kleopatra_options.h:54
+#: src/kleopatra_options.h:52
 #, kde-format
 msgid "File(s) to process"
 msgstr "待处理的文件"
 
-#: src/kleopatra_options.h:57
+#: src/kleopatra_options.h:55
 #, kde-format
 msgid "String or Fingerprint for query and search"
 msgstr "用于查询和搜索的字符串或指纹"
 
-#: src/kleopatraapplication.cpp:382
+#: src/kleopatraapplication.cpp:378
 #, kde-format
 msgid "Failed to execute command"
 msgstr "执行命令失败"
 
-#: src/kleopatraapplication.cpp:425
+#: src/kleopatraapplication.cpp:421
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "模糊协议：--openpgp 和 --cms"
 
-#: src/kleopatraapplication.cpp:459
+#: src/kleopatraapplication.cpp:455
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "没有为 --search 指定搜索字符串"
 
-#: src/kleopatraapplication.cpp:470
+#: src/kleopatraapplication.cpp:466
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "没有为 --query 指定指纹参数"
 
-#: src/kleopatraapplication.cpp:526
+#: src/kleopatraapplication.cpp:522
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "模糊命令 %1 和 %2"
 
-#: src/kleopatraapplication.cpp:533
+#: src/kleopatraapplication.cpp:529
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "没有为 %1 命令指定文件"
 
-#: src/kleopatraapplication.cpp:547
+#: src/kleopatraapplication.cpp:543
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "无法读取“%1”"
 
-#: src/kleopatraapplication.cpp:824
+#: src/kleopatraapplication.cpp:820
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:825
+#: src/kleopatraapplication.cpp:821
 #, kde-format
 msgid "Prohibited"
 msgstr ""
 
-#: src/libkleopatraclient/core/command.cpp:465
+#: src/libkleopatraclient/core/command.cpp:450
 #, kde-format
 msgid "Failed to start uiserver %1"
 msgstr "无法启动 UI 服务器 %1"
 
-#: src/libkleopatraclient/core/command.cpp:579
+#: src/libkleopatraclient/core/command.cpp:561
 #, kde-format
 msgid "Invalid socket name!"
 msgstr "套接字名称无效！"
 
-#: src/libkleopatraclient/core/command.cpp:590
+#: src/libkleopatraclient/core/command.cpp:569
 #, kde-format
 msgid ""
 "Could not allocate resources to connect to Kleopatra UI server at %1: %2"
 msgstr "无法分配资源以连接到位于 %1 的 Kleopatra UI 服务器：%2"
 
-#: src/libkleopatraclient/core/command.cpp:617
+#: src/libkleopatraclient/core/command.cpp:595
 #, kde-format
 msgid "Could not connect to Kleopatra UI server at %1: %2"
 msgstr "无法连接到位于 %1 的 Kleopatra UI 服务器：%2"
 
-#: src/libkleopatraclient/core/command.cpp:630
+#: src/libkleopatraclient/core/command.cpp:603
 #, kde-format
 msgid "Could not get the process-id of the Kleopatra UI server at %1: %2"
 msgstr "无法获取位于 %1 的 Kleopatra UI 服务器的进程 ID：%2"
 
-#: src/libkleopatraclient/core/command.cpp:656
+#: src/libkleopatraclient/core/command.cpp:629
 #, kde-format
 msgid "Failed to send critical option %1: %2"
 msgstr "发送关键选项 %1 失败：%2"
 
-#: src/libkleopatraclient/core/command.cpp:665
+#: src/libkleopatraclient/core/command.cpp:638
 #, kde-format
 msgid "Failed to send file path %1: %2"
 msgstr "发送文件路径 %1 失败：%2"
 
-#: src/libkleopatraclient/core/command.cpp:672
+#: src/libkleopatraclient/core/command.cpp:645
 #, kde-format
 msgid "Failed to send sender %1: %2"
 msgstr "发送发件人 %1 失败：%2"
 
-#: src/libkleopatraclient/core/command.cpp:679
+#: src/libkleopatraclient/core/command.cpp:652
 #, kde-format
 msgid "Failed to send recipient %1: %2"
 msgstr "发送收件人 %1 失败：%2"
 
-#: src/libkleopatraclient/core/command.cpp:693
+#: src/libkleopatraclient/core/command.cpp:666
 #, kde-format
 msgid "Command (%1) failed: %2"
 msgstr "命令 %1 失败：%2"
@@ -9385,128 +9385,128 @@ msgctxt "@action:inmenu"
 msgid "Learn NetKey v3 Card Certificates"
 msgstr "识别 NetKey v3 智能卡证书"
 
-#: src/uiserver/assuanserverconnection.cpp:168
+#: src/uiserver/assuanserverconnection.cpp:155
 #, kde-format
 msgid "No option name given"
 msgstr "未给出选项名"
 
-#: src/uiserver/assuanserverconnection.cpp:362
+#: src/uiserver/assuanserverconnection.cpp:328
 #, kde-format
 msgid "Parse error"
 msgstr "解析出错"
 
-#: src/uiserver/assuanserverconnection.cpp:371
+#: src/uiserver/assuanserverconnection.cpp:337
 #, kde-format
 msgid "Parse error: numeric session id too large"
 msgstr "解析错误：会话 ID 过长"
 
-#: src/uiserver/assuanserverconnection.cpp:394
+#: src/uiserver/assuanserverconnection.cpp:355
 #, kde-format
 msgid "CAPABILITIES does not take arguments"
 msgstr "CAPABILITIES 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:434
+#: src/uiserver/assuanserverconnection.cpp:390
 #, kde-format
 msgid "Unknown value for WHAT"
 msgstr "WHAT 的值未知"
 
-#: src/uiserver/assuanserverconnection.cpp:451
+#: src/uiserver/assuanserverconnection.cpp:402
 #, kde-format
 msgid "START_KEYMANAGER does not take arguments"
 msgstr "START_KEYMANAGER 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:471
+#: src/uiserver/assuanserverconnection.cpp:417
 #, kde-format
 msgid "START_CONFDIALOG does not take arguments"
 msgstr "START_CONFDIALOG 命令不接受参数"
 
-#: src/uiserver/assuanserverconnection.cpp:535
+#: src/uiserver/assuanserverconnection.cpp:476
 #, kde-format
 msgid "Message #%1"
 msgstr "信件 #%1"
 
-#: src/uiserver/assuanserverconnection.cpp:547
+#: src/uiserver/assuanserverconnection.cpp:488
 #, kde-format
 msgid "Empty file path"
 msgstr "空文件路径"
 
-#: src/uiserver/assuanserverconnection.cpp:551
-#: src/uiserver/assuanserverconnection.cpp:637
+#: src/uiserver/assuanserverconnection.cpp:492
+#: src/uiserver/assuanserverconnection.cpp:558
 #, kde-format
 msgid "Only absolute file paths are allowed"
 msgstr "只允许绝对的文件路径"
 
-#: src/uiserver/assuanserverconnection.cpp:554
+#: src/uiserver/assuanserverconnection.cpp:495
 #, kde-format
 msgid "Only files are allowed in INPUT/OUTPUT FILE"
 msgstr "INPUT/OUTPUT FILE 参数只接受文件"
 
-#: src/uiserver/assuanserverconnection.cpp:654
+#: src/uiserver/assuanserverconnection.cpp:575
 #, kde-format
 msgid "unknown exception caught"
 msgstr "捕捉到未知异常"
 
-#: src/uiserver/assuanserverconnection.cpp:719
+#: src/uiserver/assuanserverconnection.cpp:635
 #, kde-format
 msgid "Cannot mix --info with non-info SENDER or RECIPIENT"
 msgstr "无法将 --info 选项和无信息的 SENDER 或 RECIPIENT 参数结合使用"
 
-#: src/uiserver/assuanserverconnection.cpp:723
+#: src/uiserver/assuanserverconnection.cpp:639
 #, kde-format
 msgid "Argument is not a valid RFC-2822 mailbox"
 msgstr "参数不是一个有效的 RFC-2822 邮件箱"
 
-#: src/uiserver/assuanserverconnection.cpp:726
+#: src/uiserver/assuanserverconnection.cpp:642
 #, kde-format
 msgid "Garbage after valid RFC-2822 mailbox detected"
 msgstr "在有效的 RFC-2822 邮件箱中检测到垃圾数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1191
+#: src/uiserver/assuanserverconnection.cpp:1013
 #, kde-format
 msgid "Caught unexpected exception: %1"
 msgstr "捕捉到未知异常：%1"
 
-#: src/uiserver/assuanserverconnection.cpp:1196
+#: src/uiserver/assuanserverconnection.cpp:1018
 #, kde-format
 msgid "Caught unknown exception - please report this error to the developers."
 msgstr "捕捉到未知异常 - 请向开发者报告此错误。"
 
-#: src/uiserver/assuanserverconnection.cpp:1354
+#: src/uiserver/assuanserverconnection.cpp:1176
 #, kde-format
 msgid "Cannot send \"%1\" status"
 msgstr "无法发送“%1”状态"
 
-#: src/uiserver/assuanserverconnection.cpp:1364
+#: src/uiserver/assuanserverconnection.cpp:1186
 #, kde-format
 msgid "Cannot send data"
 msgstr "无法发送数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1368
+#: src/uiserver/assuanserverconnection.cpp:1190
 #, kde-format
 msgid "Cannot flush data"
 msgstr "无法刷新数据"
 
-#: src/uiserver/assuanserverconnection.cpp:1630
+#: src/uiserver/assuanserverconnection.cpp:1440
 #, kde-format
 msgid "Required --mode option missing"
 msgstr "丢失所需的 --mode 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1640
+#: src/uiserver/assuanserverconnection.cpp:1450
 #, kde-format
 msgid "invalid mode: \"%1\""
 msgstr "无效的模式：“%1”"
 
-#: src/uiserver/assuanserverconnection.cpp:1662
+#: src/uiserver/assuanserverconnection.cpp:1472
 #, kde-format
 msgid "Required --protocol option missing"
 msgstr "丢失所需的 --protocol 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1667
+#: src/uiserver/assuanserverconnection.cpp:1477
 #, kde-format
 msgid "--protocol is not allowed here"
 msgstr "不能在此使用 --protocol 选项"
 
-#: src/uiserver/assuanserverconnection.cpp:1677
+#: src/uiserver/assuanserverconnection.cpp:1487
 #, kde-format
 msgid "invalid protocol \"%1\""
 msgstr "无效的协议“%1”"
@@ -9816,50 +9816,50 @@ msgid ""
 msgstr ""
 "%1 是在文件管理器模式中使用的命令，而当前连接似乎是在邮件模式(现在是 %2)下。"
 
-#: src/uiserver/uiserver.cpp:252
+#: src/uiserver/uiserver.cpp:238
 #, kde-format
 msgid ""
 "Could not determine the GnuPG home directory. Consider setting the GNUPGHOME "
 "environment variable."
 msgstr "无法确定 GnuPG 的主目录。请指定 GNUPGHOME 环境变量。"
 
-#: src/uiserver/uiserver.cpp:266
+#: src/uiserver/uiserver.cpp:252
 #, kde-format
 msgid ""
 "Cannot determine the GnuPG home directory: %1 exists but is not a directory."
 msgstr "无法确定 GnuPG 的主目录：%1 存在，但它不是一个目录。"
 
-#: src/uiserver/uiserver.cpp:274
+#: src/uiserver/uiserver.cpp:260
 #, kde-format
 msgid "Could not create GnuPG home directory %1: %2"
 msgstr "无法创建 GnuPG 主目录 %1：%2"
 
-#: src/uiserver/uiserver.cpp:288
+#: src/uiserver/uiserver.cpp:274
 #, kde-format
 msgid "Detected another running gnupg UI server listening at %1."
 msgstr "检测到另一个监听在 %1 的 gnupg 界面服务器。"
 
-#: src/uiserver/uiserver_unix.cpp:43 src/uiserver/uiserver_win.cpp:39
+#: src/uiserver/uiserver_unix.cpp:39 src/uiserver/uiserver_win.cpp:39
 #, kde-format
 msgid "Could not create socket: %1"
 msgstr "无法创建套接字：%1"
 
-#: src/uiserver/uiserver_unix.cpp:57 src/uiserver/uiserver_win.cpp:49
+#: src/uiserver/uiserver_unix.cpp:49 src/uiserver/uiserver_win.cpp:49
 #, kde-format
 msgid "Could not bind to socket: %1"
 msgstr "无法绑定到套接字：%1"
 
-#: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:53
+#: src/uiserver/uiserver_unix.cpp:54 src/uiserver/uiserver_win.cpp:53
 #, kde-format
 msgid "Could not get socket nonce: %1"
 msgstr "无法获得目前的套接字：%1"
 
-#: src/uiserver/uiserver_unix.cpp:69 src/uiserver/uiserver_win.cpp:58
+#: src/uiserver/uiserver_unix.cpp:59 src/uiserver/uiserver_win.cpp:58
 #, kde-format
 msgid "Could not listen to socket: %1"
 msgstr "无法监听套接字：%1"
 
-#: src/uiserver/uiserver_unix.cpp:73 src/uiserver/uiserver_win.cpp:62
+#: src/uiserver/uiserver_unix.cpp:63 src/uiserver/uiserver_win.cpp:62
 #, kde-format
 msgid ""
 "Could not pass socket to Qt: %1. This should not happen, please report this "

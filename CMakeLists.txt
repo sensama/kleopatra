@@ -24,6 +24,10 @@ set(kleopatra_version "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${K
 # The following is for Windows
 set(kleopatra_version_win "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_MICRO}")
 set(kleopatra_fileversion_win "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_MICRO},0")
+if (NOT KLEOPATRA_DISTRIBUTION_TEXT)
+    # This is only used on Windows for the file attributes of Kleopatra
+    set(KLEOPATRA_DISTRIBUTION_TEXT "KDE")
+endif()
 
 project(kleopatra VERSION ${kleopatra_version})
 

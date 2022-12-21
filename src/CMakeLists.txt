@@ -20,6 +20,7 @@ if(WIN32)
       utils/gnupg-registry.c
       utils/userinfo_win.cpp
       utils/windowsprocessdevice.cpp
+      versioninfo.rc
   )
 else()
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_unix.cpp)

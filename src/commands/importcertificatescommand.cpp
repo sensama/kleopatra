@@ -433,7 +433,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         << i18n("Confirming it on a trusted website.");
 
     auto sel = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                               i18n("In order to mark the certificate as valid (green) it needs to be certified.") + QStringLiteral("<br>")
+                                               i18n("In order to mark the certificate as valid it needs to be certified.") + QStringLiteral("<br>")
                                                    + i18n("Certifying means that you check the Fingerprint.") + QStringLiteral("<br>")
                                                    + i18n("Some suggestions to do this are:")
                                                    + QStringLiteral("<li><ul>%1").arg(suggestions.join(QStringLiteral("</ul><ul>")))

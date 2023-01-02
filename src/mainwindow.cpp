@@ -474,6 +474,16 @@ MainWindow::Private::Private(MainWindow *qq)
         }
     }
 
+    // Disable whats this as the vast majority of things does not have whats this
+    // set in Kleopatra.
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // With Qt 6 this is default and the attribute is no longer documented.
+    QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+#endif
+    if (auto action = q->actionCollection()->action(QStringLiteral("help_whats_this"))) {
+        delete action;
+    }
+
     q->setAcceptDrops(true);
 
     // set default window size

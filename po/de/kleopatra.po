@@ -10,25 +10,26 @@
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2010.
 # Björn Ricks <bjoern.ricks@intevation.de>, 2010, 2011.
 # Torbjörn Klatt <torbjoern@torbjoern-klatt.de>, 2011.
-# Andre Heinecke <andre.heinecke@intevation.de>, 2017, 2018.
+# Andre Heinecke <andre.heinecke@intevation.de>, 2017, 2018, 2022.
 # aheinecke <aheinecke@gnupg.org>, 2018, 2019, 2020, 2021, 2022.
 # Heike Falk <hfalk@g10code.com>, 2019.
 # Alois Spitzbart <spitz234@hotmail.com>, 2021.
 # Frank Steinmetzger <dev@felsenfleischer.de>, 2022.
+# Eva Bolten <eva.bolten@gnupg.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-04 00:46+0000\n"
-"PO-Revision-Date: 2022-08-29 18:11+0200\n"
-"Last-Translator: aheinecke <aheinecke@gnupg.org>\n"
+"PO-Revision-Date: 2022-12-21 12:51+0100\n"
+"Last-Translator: Andre Heinecke <aheinecke@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.11.70\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -266,34 +267,28 @@ msgid "Writing the certificate to the card succeeded."
 msgstr "Schlüssel erfolgreich übertragen."
 
 #: src/commands/certifycertificatecommand.cpp:155
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Key Revoked"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Revoked"
-msgstr "Schlüssel widerrufen"
+msgstr "Der Schlüssel ist widerrufen"
 
 #: src/commands/certifycertificatecommand.cpp:155
-#, fuzzy, kde-format
-#| msgid "key expired"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
-msgstr "Zertifikat abgelaufen"
+msgstr "Der Schlüssel ist abgelaufen"
 
 #: src/commands/certifycertificatecommand.cpp:157
-#, fuzzy, kde-format
-#| msgid "The key has been revoked."
+#, kde-format
 msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
-msgstr "Der Schlüssel wurde widerrufen."
+msgstr "Dieser Schlüssel wurde widerrufen. Sie können ihn nicht beglaubigen."
 
 #: src/commands/certifycertificatecommand.cpp:158
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This subkey is required for encryption."
+#, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
-msgstr "Dieser Unterschlüssel wird zum Verschlüsseln benötigt."
+msgstr "Dieser Schlüssel ist abgelaufen. Sie können ihn nicht beglaubigen."
 
 #: src/commands/certifycertificatecommand.cpp:179
 #, kde-kuit-format
@@ -316,9 +311,7 @@ msgid "Certification Not Possible"
 msgstr "Beglaubigen nicht möglich"
 
 #: src/commands/certifycertificatecommand.cpp:182
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgid "Create"
 msgstr "Erstellen"
 
@@ -1895,10 +1888,9 @@ msgstr ""
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
 #: src/commands/importcertificatescommand.cpp:589
-#, fuzzy, kde-format
-#| msgid ", "
+#, kde-format
 msgid " "
-msgstr ", "
+msgstr "."
 
 #: src/commands/importcertificatescommand.cpp:590
 #, kde-kuit-format
@@ -2485,9 +2477,7 @@ msgid "The existing key has the ID:"
 msgstr "Der vorhandene Schlüssel hat die folgende ID:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Vorhandenen Schlüssel überschreiben"
@@ -2557,7 +2547,7 @@ msgstr "Schlüssel aktualisiert"
 #, kde-format
 msgctxt "@info"
 msgid "The certificate has been updated."
-msgstr "Das Zertifikate wurde aktualisiert."
+msgstr "Das Zertifikat wurde aktualisiert."
 
 #: src/commands/refreshcertificatecommand.cpp:259
 #, kde-format
@@ -3933,14 +3923,9 @@ msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ja, als <filename>%1</filename> abspeichern."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
-#, fuzzy, kde-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-format
 msgid "The file <b>%1</b> already exists.\n"
-msgstr ""
-"Eine Datei namens <b>%1</b> existiert bereits.\n"
-"Soll sie überschrieben werden?"
+msgstr "Datei <b>%1</b> existiert bereits.\n"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
 #, kde-format
@@ -4407,7 +4392,7 @@ msgid ""
 "or the Certificate Authority is unknown."
 msgstr ""
 "Das Zertifikat wurde nicht von einer vertrauenswürdigen "
-"Zertifizierungsstelle beglaubigt. Oder die Zertifzierungsstelle ist nicht "
+"Zertifizierungsstelle beglaubigt. Oder die Zertifizierungsstelle ist nicht "
 "importiert."
 
 #: src/crypto/decryptverifytask.cpp:516 src/crypto/decryptverifytask.cpp:569
@@ -5103,6 +5088,8 @@ msgstr "Dateien einzeln verarbeiten und kein Archiv erstellen."
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
+"Ungültige Compliance-Einstellungen für das Signieren und Verschlüsseln von "
+"Dateien."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:196
 #, kde-kuit-format
@@ -5304,24 +5291,19 @@ msgid "Output directory"
 msgstr "Ausgabe-Ordner"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:449
-#, fuzzy, kde-format
-#| msgid "Sign"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Signieren"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Signieren/Verschlüsseln"
@@ -8907,7 +8889,7 @@ msgstr "Smartcard-Verwaltung"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
-msgstr ""
+msgstr "smartcard_howto_de.pdf"
 
 #: src/mainwindow.cpp:636
 #, kde-format
@@ -9847,77 +9829,70 @@ msgid "Authentication"
 msgstr "Authentifizierung"
 
 #: src/smartcard/openpgpcard.cpp:179
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr "ECDH (Curve P-256)"
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:180
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr "ECDH (Curve P-384)"
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr "ECDH (Curve P-256)"
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:183
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr "ECDH (Curve P-384)"
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:184
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr "ECDH (Curve P-256)"
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:185
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr "ECDH (Curve P-384)"
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:412
-#, fuzzy, kde-format
-#| msgid "RSA (2048 bits)"
+#, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr "RSA (2048 Bit)"
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:413
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11211,11 +11186,10 @@ msgid "Show detailed information about this key"
 msgstr "Zeigt detaillierte Informationen über diesen Schlüssel"
 
 #: src/view/openpgpkeycardwidget.cpp:55 src/view/openpgpkeycardwidget.cpp:172
-#, fuzzy, kde-format
-#| msgid "Generate Keypair"
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Key"
-msgstr "Schlüsselpaar erstellen"
+msgstr "Schlüssel erzeugen"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:185
 #, kde-format
@@ -11230,12 +11204,10 @@ msgid "<em>No key</em>"
 msgstr "<em>Kein Schlüssel</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:173
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr "Neuer Schlüssel für diese Karte wurde erfolgreich erstellt."
+msgstr "Generieren eines Schlüssels für diesen Kartenslot."
 
 #: src/view/openpgpkeycardwidget.cpp:184
 #, kde-format
@@ -11250,17 +11222,18 @@ msgid "<em>Invalid fingerprint</em>"
 msgstr "<em>Ungültiger Fingerabdruck</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:219
-#, fuzzy, kde-format
-#| msgid "Generate Keypair"
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "Schlüsselpaar erstellen"
+msgstr "Schlüssel erneuern"
 
 #: src/view/openpgpkeycardwidget.cpp:220
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
 msgstr ""
+"Generiere einen neuen Schlüssel für diesen Kartenslot, um damit den "
+"Existierenden zu ersetzen."
 
 #: src/view/openpgpkeycardwidget.cpp:243
 #, kde-format
@@ -11310,10 +11283,9 @@ msgid "Decrypt / Verify Notepad"
 msgstr "Notizblock entschlüsseln/prüfen"
 
 #: src/view/padwidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Imported:"
+#, kde-format
 msgid "Import Notepad"
-msgstr "Importiert:"
+msgstr "Notepad importieren"
 
 #: src/view/padwidget.cpp:86
 #, kde-format
@@ -11382,25 +11354,22 @@ msgstr ""
 "</para>"
 
 #: src/view/padwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "Signing canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
-msgstr "Signieren abgebrochen."
+msgstr "Notepad signieren..."
 
 #: src/view/padwidget.cpp:407
-#, fuzzy, kde-format
-#| msgid "Encryption canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
-msgstr "Verschlüsseln abgebrochen."
+msgstr "Notepad verschlüsseln..."
 
 #: src/view/padwidget.cpp:410
-#, fuzzy, kde-format
-#| msgid "Signing and encryption succeeded."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
-msgstr "Kombiniertes Signieren/Verschlüsseln abgeschlossen."
+msgstr "Notepad signieren/verschlüsseln..."
 
 #: src/view/padwidget.cpp:456
 #, kde-format
@@ -11408,25 +11377,22 @@ msgid "Importing..."
 msgstr "Wird importiert ..."
 
 #: src/view/padwidget.cpp:496
-#, fuzzy, kde-format
-#| msgid "Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
-msgstr "Notizblock"
+msgstr "Signiere Notizblock"
 
 #: src/view/padwidget.cpp:499
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
-msgstr "Notizblock signieren/verschlüsseln"
+msgstr "Verschlüssele Notizblock"
 
 #: src/view/padwidget.cpp:503
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
-msgstr "Notizblock signieren/verschlüsseln"
+msgstr "Signiere/Verschlüssele Notizblock"
 
 #: src/view/pgpcardwidget.cpp:184
 #, kde-format

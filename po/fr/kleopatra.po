@@ -14,14 +14,15 @@
 # Sebastien Renard <renard@kde.org>, 2013, 2014, 2015.
 # Vincent Pinon <vpinon@kde.org>, 2017, 2018.
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
+# Xavier BESNARD <xavier.besnard]neuf.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-04 00:46+0000\n"
-"PO-Revision-Date: 2022-10-28 14:53+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
-"Language-Team: French <kde-francophone@kde.org>\n"
+"PO-Revision-Date: 2023-01-02 17:24+0100\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1214,7 +1215,7 @@ msgid ""
 msgstr ""
 "<para>Certains fournisseurs de messagerie ne prennent en charge « WKS », "
 "donc toute clé exportée de cette manière peut échouer individuellement.</"
-"para><para>Si elle est exportée, un courrier de demande de confirmation sera "
+"para><para>Si elle est exportée, un courriel de demande de confirmation sera "
 "envoyé à <email>%1</email> qui doit être acquittée par un programme de "
 "messagerie pour compléter le processus d'exportation.</"
 "para><para><application>KMail</application> peut traiter ces mails, mais "
@@ -1330,7 +1331,7 @@ msgstr "Erreur de sauvegarde des clés privées"
 #, kde-format
 msgctxt "@info:status"
 msgid "Backing up secret key..."
-msgstr "Sauvegarde en cours de la clé privée..."
+msgstr "Enregistrement en cours de la clé privée..."
 
 #: src/commands/exportsecretkeycommand.cpp:250
 #, kde-format
@@ -1551,7 +1552,7 @@ msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr ""
 "Le fichier <filename>%1</filename> existe déjà. Voulez-vous vraiment "
-"l''écraser ?"
+"l'écraser ?"
 
 #: src/commands/genrevokecommand.cpp:128
 #, kde-format
@@ -2451,7 +2452,7 @@ msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>La création d’un nouveau certificat « OpenPGP » a échoué. </"
+"<para>La création d'un nouveau certificat « OpenPGP » a échoué. </"
 "para><para>Erreur : <message>%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:213
@@ -2461,9 +2462,9 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
-"<para>Un nouveau certificat « OpenPGP » a été créé avec succès, mais il n’a "
-"pas été trouvé dans le porte-clés. </para><para>Empreinte numérique du "
-"nouveau certificat :<nl/>%1</para>"
+"<para>Un nouveau certificat « OpenPGP » a été créé avec succès, mais il a "
+"été impossible de le trouver dans le porte-clé. </para><para>Empreinte "
+"numérique du nouveau certificat :<nl/>%1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
 #: src/crypto/newsignencryptemailcontroller.cpp:576
@@ -3400,7 +3401,7 @@ msgstr "Nombre &maximal d'éléments retournés par requête :"
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
-"Rechercher les clés de certification manquantes lors de l’importation de "
+"Rechercher les clés de certification manquantes lors de l'importation de "
 "nouvelles clés"
 
 #: src/conf/dirservconfigpage.cpp:190
@@ -3996,7 +3997,7 @@ msgstr ""
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
-"Sélectionner le fichier à vérifier avec  la signature <filename>%1</filename>"
+"Sélectionner le fichier à vérifier avec la signature <filename>%1</filename>"
 
 #: src/crypto/createchecksumscontroller.cpp:62
 #, kde-format
@@ -6906,7 +6907,7 @@ msgstr "Veuillez saisir une adresse de courriel."
 #, kde-format
 msgid "The name must not include <, >, and @."
 msgstr ""
-"Le nom ne doit pas inclure les caractères suivants : « < »,« > » et « @ »."
+"Le nom ne doit pas inclure les caractères suivants : « < », « > » et « @ »."
 
 #: src/dialogs/nameandemailwidget.cpp:96
 #, kde-format
@@ -6923,7 +6924,7 @@ msgid ""
 "include <, >, and @."
 msgstr ""
 "Le nom doit être dans le format requis par votre organisation et ne doit pas "
-"inclure les caractères suivants : « < »,« > » et « @ »."
+"inclure les caractères suivants : « < », « > » et « @ »."
 
 #: src/dialogs/nameandemailwidget.cpp:103
 #, kde-format
@@ -8240,7 +8241,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:134
 #, kde-format
 msgid "Retrieve signer keys after import"
-msgstr "Retrouver les clés du signataire après l’importation"
+msgstr "Retrouver les clés du signataire après l'importation"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
 #: src/kcfg/settings.kcfg:137
@@ -8763,12 +8764,12 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
-"<qt>Le module « Windows Explorer » pour Kleopatra n’a pas pu être "
-"initialisé. <br/>L’erreur indiquée était : <b>%1</b><br/>Cela signifie "
-"probablement qu’il y a un problème avec votre installation. Veuillez essayer "
-"de le réinstaller ou contacter votre administrateur pour obtenir de l’aide. "
+"<qt>Le module « Windows Explorer » pour Kleopatra n'a pas pu être "
+"initialisé. <br/>L'erreur indiquée était : <b>%1</b><br/>Cela signifie "
+"probablement qu'il y a un problème avec votre installation. Veuillez essayer "
+"de le réinstaller ou contacter votre administrateur pour obtenir de l'aide. "
 "<br/>Vous pouvez essayer de continuer à utiliser Kleopatra, mais il pourrait "
-"y avoir d’autres problèmes. </qt>"
+"y avoir d'autres problèmes. </qt>"
 
 #: src/main.cpp:265
 #, kde-format
@@ -12128,8 +12129,8 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-"Importer un certificat à partir d’un fichier. <nl/>Pour importer à partir "
-"d’un serveur de clés publiques, veuillez plutôt utiliser "
+"Importer un certificat à partir d'un fichier. <nl/>Pour importer à partir "
+"d'un serveur de clés publiques, veuillez plutôt utiliser "
 "<interface>Rechercher sur le serveur</interface>."
 
 #~ msgid "Signing and encrypting files is not possible."

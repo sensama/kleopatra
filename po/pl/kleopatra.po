@@ -1,27 +1,27 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1641316 $
+# Version: $Revision: 1641478 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2008, 2010.
 # Marta Rybczynska <kde-i18n@rybczynska.net>, 2008, 2009, 2013.
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
 # Grzegorz Koryga <rehork@tutamail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-03 00:48+0000\n"
-"PO-Revision-Date: 2022-11-26 10:46+0100\n"
+"PO-Revision-Date: 2023-01-04 21:07+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.12.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -345,31 +345,29 @@ msgid "End of validity period changed successfully."
 msgstr "Koniec okresu ważności został pomyślnie zmieniony."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
-#| msgid "(unknown certificate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(nieznany certyfikat)"
+msgstr "Czy '%1' jest twoim własnym certyfikatem?"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:655
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Certyfikat karty"
+msgstr "Oznacz własny certyfikat"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Tak, on jest mój"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "Nie, on nie jest mój"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -380,6 +378,10 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Czy udzielić '%1' upoważnienia do oznaczania certyfikatów jako %2 w "
+"twoim imieniu?</para><para><emphasis>Oznacza to, że właściciel tego "
+"certyfikatu poprawnie sprawdza odciski certyfikatów i potwierdza tożsamości "
+"innych.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -390,126 +392,102 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>Czy udzielić '%1' upoważnienia do oznaczania certyfikatów jako ważne w "
+"twoim imieniu?</para><para><emphasis>Oznacza to, że właściciel tego "
+"certyfikatu poprawnie sprawdza odciski certyfikatów i potwierdza tożsamości "
+"innych.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
-#| msgid "Certification Error"
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Błąd certyfikowania"
+msgstr "Udziel upoważnienia do certyfikowania"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Udziel upoważnienia"
 
 #: src/commands/changeownertrustcommand.cpp:157
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Certyfikaty lub grupy certyfikatów zostały uaktualnione w tle.</"
-"para><para>Czy zapisać zmiany?</para>"
+"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
+"jako %2 w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certificates or the certificate groups have been updated in the "
-#| "background.</para><para>Do you want to save your changes?</para>"
+#, kde-kuit-format
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
-"<para>Certyfikaty lub grupy certyfikatów zostały uaktualnione w tle.</"
-"para><para>Czy zapisać zmiany?</para>"
+"<para>Certyfikat '%1' jest uprawniony do tego, aby oznaczać inne certyfikaty "
+"jako ważne w twoim imieniu.</para><para>Czy wycofać to upoważnienie?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, fuzzy, kde-format
-#| msgid "Revoke Certification"
+#, kde-format
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "Unieważnij certyfikowanie"
+msgstr "Wycofaj upoważnienie do certyfikowania"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Unieważnij klucz"
+msgstr "Unieważnij upoważnienie"
 
 #: src/commands/changeownertrustcommand.cpp:233
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Wystąpił błąd podczas uaktualniania certyfikatu:</para><para><message>"
-"%1</message></para>"
+"<para>Wystąpił błąd przy oznaczaniu certyfikatu '%1' jako twojego własnego.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Wystąpił błąd podczas uaktualniania certyfikatu:</para><para><message>"
-"%1</message></para>"
+"<para>Wystąpił błąd przy udzielaniu '%1' uprawnienia do certyfikowania.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:247
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while updating the certificate:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
 msgstr ""
-"<para>Wystąpił błąd podczas uaktualniania certyfikatu:</para><para><message>"
-"%1</message></para>"
+"<para>Wystąpił błąd przy wycofywaniu '%1' uprawnienia do certyfikowania.</"
+"para><para><message>%2</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:263
-#, fuzzy, kde-format
-#| msgid "Certifying other Certificates"
+#, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "Certyfikowanie innych certyfikatów"
+msgstr "Oznaczono certyfikat '%1' jako twój własny."
 
 #: src/commands/changeownertrustcommand.cpp:266
-#, fuzzy, kde-format
-#| msgid "Certification Trust Change Error"
+#, kde-format
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "Błąd podczas zmiany zaufania certyfikatu"
+msgstr "Udzielono '%1' upoważnienia do certyfikowania."
 
 #: src/commands/changeownertrustcommand.cpp:269
-#, fuzzy, kde-format
-#| msgctxt "%1 is the name of the profile"
-#| msgid "The configuration profile \"%1\" was applied."
+#, kde-format
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "Zastosowano profil ustawień \"%1\"."
+msgstr "Wycofano '%1' upoważnienie do certyfikowania."
 
 #: src/commands/changepassphrasecommand.cpp:185
 #, kde-format
@@ -1936,13 +1914,9 @@ msgid "Confirming it on a trusted website."
 msgstr "Potwierdzając go na zaufanej stronie."
 
 #: src/commands/importcertificatescommand.cpp:436
-#, fuzzy, kde-format
-#| msgid ""
-#| "In order to mark the certificate as valid (green) it needs to be "
-#| "certified."
+#, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr ""
-"Aby oznaczyć certyfikat jako ważny (zielony) musi on być certyfikowany."
+msgstr "Aby oznaczyć certyfikat jako ważny, musi on być certyfikowany."
 
 #: src/commands/importcertificatescommand.cpp:437
 #, kde-format
@@ -1975,20 +1949,19 @@ msgstr "Certyfikuj"
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr ""
+msgstr "%1 (zaimportowano przy użyciu %2)"
 
 #: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr ""
+msgstr "Dziennik audytu jest pusty."
 
 #: src/commands/importcertificatescommand.cpp:501
-#, fuzzy, kde-format
-#| msgid "Operation canceled."
+#, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr "Porzucono działanie."
+msgstr "Anulowano import."
 
 #: src/commands/importcertificatescommand.cpp:522
 #, kde-format
@@ -2027,34 +2000,28 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:643
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<title>You have imported a Secret Key.</title><para>The key has the "
-#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
-#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Zaimportowano tajny klucz.</title><para>Klucz ten ma odcisk klucza:"
-"<nl/><numid>%1</numid></para><para>i dotyczy identyfikatorów użytkowników:"
-"<list>%2</list></para>Czy to jest twój własny klucz? (Jeśli tak to ustaw "
-"poziom zaufania na najwyższy)"
+"<para>Zaimportowałeś certyfikat o odcisku</para><para><numid>%1</numid></"
+"para><para>i ID użytkownika<list>%2</list></para><para>Czy to twój własny "
+"certyfikat?</para>"
 
 #: src/commands/importcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr ""
+msgstr "Tak, on jest mój"
 
 #: src/commands/importcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr ""
+msgstr "Nie, on nie jest mój"
 
 #: src/commands/importcertificatescommand.cpp:867
 #, kde-format
@@ -2225,30 +2192,28 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Nie udało się znaleźć karty o numerze seryjnym: %1"
 
 #: src/commands/keytocardcommand.cpp:186
-#, fuzzy, kde-kuit-format
-#| msgid "Sorry! Transferring keys to this card is not supported."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
-msgstr "Wybacz! Przesyłanie kluczy na tę kartę jest nieobsługiwane."
+msgstr ""
+"Wybacz! Zapisywanie kluczy na kartę <emphasis>%1</emphasis> jest "
+"nieobsługiwane."
 
 #: src/commands/keytocardcommand.cpp:213
-#, fuzzy, kde-format
-#| msgid "Signature"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "Podpis"
 
 #: src/commands/keytocardcommand.cpp:217
-#, fuzzy, kde-format
-#| msgid "Encryption"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "Szyfrowanie"
 
 #: src/commands/keytocardcommand.cpp:221
-#, fuzzy, kde-format
-#| msgid "Authentication"
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "Uwierzytelnianie"
@@ -2290,21 +2255,16 @@ msgstr ""
 "istniejącego klucza."
 
 #: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<p>This card already contains a key in this slot. Continuing will "
-#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
-#| "will be irrecoverably lost.</p>"
+#, kde-format
 msgctxt "@info"
 msgid ""
 "<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
-"<p>Ta karta zawiera już klucz w gnieździe. Kontynuowanie <b>zastąpi</b> ten "
-"klucz.</p><p>Jeśli nie ma kopii zapsowej, to istniejący klucz zostanie "
-"nieodwracalnie utracony.</p>"
+"<p>Karta <em>%1</em> zawiera już klucz w tym gnieździe. Kontynuowanie "
+"<b>zastąpi</b> ten klucz.</p><p>Jeśli nie ma kopii zapasowej, to istniejący "
+"klucz zostanie nieodwracalnie utracony.</p>"
 
 #: src/commands/keytocardcommand.cpp:274
 #, kde-format
@@ -2319,12 +2279,10 @@ msgid "Overwrite existing key"
 msgstr "Zastąpienie istniejącego klucza"
 
 #: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
-msgstr "Zastąpienie istniejącego klucza"
+msgstr "Zastąp istniejący klucz"
 
 #: src/commands/keytocardcommand.cpp:342
 #, kde-format
@@ -2357,116 +2315,92 @@ msgid "The existing key has the key grip:"
 msgstr "Istniejący klucz ma odcisk klucza:"
 
 #: src/commands/keytocardcommand.cpp:462
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Copying the key pair to the card failed: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
-msgstr "Nie udało skopiować pary kluczy na kartę: %1"
+msgstr "Nie udało się skopiować klucza na kartę."
 
 #: src/commands/keytocardcommand.cpp:474
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The certification has been revoked successfully.</para><para>Do you "
-#| "want to publish the revocation?</para>"
-#| msgid_plural ""
-#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
-#| "you want to publish the revocations?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
-"<para>Pomyślnie unieważniono certyfikację.</para><para>Chcesz opublikować  "
-"unieważnienie?</para>"
+"<para>Skopiowano klucz na kartę.</para><para>Czy chcesz usunąć kopię tego "
+"klucza przechowywaną na twoim komputerze?</para>"
 
 #: src/commands/keytocardcommand.cpp:477
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr "Kopia zapasowa klucza poufnego"
+msgstr "Utwórz kopię zapasową i usuń klucz"
 
 #: src/commands/keytocardcommand.cpp:478
-#, fuzzy, kde-format
-#| msgid "Select Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "Wybierz klucz"
+msgstr "Usuń klucz"
 
 #: src/commands/keytocardcommand.cpp:479
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Key"
+#, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "Unieważnij klucz"
+msgstr "Zachowaj klucz"
 
 #: src/commands/keytocardcommand.cpp:525
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Kopia zapasowa klucza poufnego"
 
 #: src/commands/keytocardcommand.cpp:528
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Secret Key Backup"
+#, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr "Kopia zapasowa klucz poufnego"
+msgstr "Pliki kopii zapasowej klucz poufnego"
 
 #: src/commands/keytocardcommand.cpp:579
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "Nie można otworzyć <filename>%1</filename> do odczytu."
+msgstr ""
+"Nie można otworzyć pliku klucza prywatnego <filename>%1</filename> do "
+"odczytu."
 
 #: src/commands/keytocardcommand.cpp:588
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr "Nie udało się zapisać klucza do pliku <filename>%1</filename>."
+msgstr "Plik klucza prywatnego <filename>%1</filename> jest pusty."
 
 #: src/commands/keytocardcommand.cpp:598
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Nie można otworzyć pliku <filename>%1</filename> do zapisu."
 
 #: src/commands/keytocardcommand.cpp:605
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
-msgstr "Nie udało się zapisać klucza do pliku <filename>%1</filename>."
+msgstr ""
+"Nie udało się zapisać kopii klucza prywatnego do <filename>%1</filename>."
 
 #: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
-msgstr ""
+msgstr "Czy na pewno usunąć miejscową kopię klucza poufnego?"
 
 #: src/commands/keytocardcommand.cpp:623
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "Potwierdź unieważnienie"
+msgstr "Potwierdź usunięcie"
 
 #: src/commands/keytocardcommand.cpp:642
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the key:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Nie udało się zapisać żądania.</para><para><message>%1</message></para>"
+"<para>Nie udało się usunąć klucza:</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:645
 #, kde-format
@@ -2475,16 +2409,14 @@ msgid "Successfully copied the key to the card."
 msgstr "Pomyślnie skopiowano klucz na kartę."
 
 #: src/commands/keytocardcommand.cpp:706
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>Nie udało się zapisać żądania.</para><para><message>%1</message></para>"
+"<para>Nie udało się skopiować klucza na kartę:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
 #, kde-format
@@ -8895,10 +8827,9 @@ msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_de.pdf"
 
 #: src/mainwindow.cpp:631
-#, fuzzy, kde-format
-#| msgid "Show appearance configuration"
+#, kde-format
 msgid "Group configuration"
-msgstr "Pokaż ustawienia wyglądu"
+msgstr "Ustawienia grupy"
 
 #: src/mainwindow.cpp:637
 #, kde-format
@@ -10925,18 +10856,16 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "Unieważnij certyfikację wybranego certyfikatu"
 
 #: src/view/keylistcontroller.cpp:451
-#, fuzzy, kde-format
-#| msgid "Change Certification Trust..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "Zmień certyfikat zaufania..."
+msgstr "Zmień upoważnienie do certyfikowania..."
 
 #: src/view/keylistcontroller.cpp:452
-#, fuzzy, kde-format
-#| msgid "Revoke the certification of the selected certificate"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "Unieważnij certyfikację wybranego certyfikatu"
+msgstr "Udziel lub wycofaj uprawnienie do certyfikowania wybranego certyfikatu"
 
 #: src/view/keylistcontroller.cpp:456
 #, kde-format

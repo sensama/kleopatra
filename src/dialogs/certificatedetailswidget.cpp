@@ -353,7 +353,7 @@ private:
                 buttonRow->addWidget(trustChainDetailsBtn);
 
                 refreshBtn = new QPushButton{i18nc("@action:button", "Update"), parent};
-#ifndef QGPGME_SUPPORTS_KEY_REFRESH
+#if !QGPGME_SUPPORTS_KEY_REFRESH
                 refreshBtn->setVisible(false);
 #endif
                 buttonRow->addWidget(refreshBtn);
@@ -438,7 +438,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     // update visibility of UI elements
     ui.userIDs->setVisible(isOpenPGP);
     ui.addUserIDBtn->setVisible(isOwnKey);
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     ui.setPrimaryUserIDBtn->setVisible(isOwnKey);
 #else
     ui.setPrimaryUserIDBtn->setVisible(false);
@@ -807,7 +807,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
 {
     const auto userIDs = selectedUserIDs(ui.userIDTable);
     const auto singleUserID = (userIDs.size() == 1) ? userIDs.front() : GpgME::UserID{};
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     const bool isPrimaryUserID = !singleUserID.isNull() && (ui.userIDTable->selectedItems().front() == ui.userIDTable->topLevelItem(0));
 #endif
     const bool canSignUserIDs = userHasCertificationKey();
@@ -815,7 +815,7 @@ void CertificateDetailsWidget::Private::userIDTableContextMenuRequested(const QP
     const auto keyCanBeCertified = Kleo::canBeCertified(key);
 
     auto menu = new QMenu(q);
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     if (key.hasSecret()) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("favorite")),
                                       i18nc("@action:inmenu", "Flag as Primary User ID"),

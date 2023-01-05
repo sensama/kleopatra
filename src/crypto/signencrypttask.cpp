@@ -468,7 +468,7 @@ void SignEncryptTask::doStart()
         if (d->sign) {
             std::unique_ptr<QGpgME::SignEncryptJob> job = d->createSignEncryptJob(protocol());
             kleo_assert(job.get());
-#ifdef QGPGME_SUPPORTS_SET_FILENAME
+#if QGPGME_SUPPORTS_SET_FILENAME
             if (d->inputFileNames.size() == 1) {
                 job->setFileName(d->inputFileNames.front());
             }
@@ -481,7 +481,7 @@ void SignEncryptTask::doStart()
         } else {
             std::unique_ptr<QGpgME::EncryptJob> job = d->createEncryptJob(protocol());
             kleo_assert(job.get());
-#ifdef QGPGME_SUPPORTS_SET_FILENAME
+#if QGPGME_SUPPORTS_SET_FILENAME
             if (d->inputFileNames.size() == 1) {
                 job->setFileName(d->inputFileNames.front());
             }

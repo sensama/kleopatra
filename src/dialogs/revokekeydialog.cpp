@@ -32,7 +32,7 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
 #include <gpgme++/global.h>
 #endif
 #include <gpgme++/key.h>
@@ -96,7 +96,7 @@ public:
         ui.infoLabel = new QLabel{q};
         mainLayout->addWidget(ui.infoLabel);
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
         auto groupBox = new QGroupBox{i18nc("@title:group", "Reason for revocation"), q};
 
         reasonGroup.addButton(new QRadioButton{i18nc("@option:radio", "No reason specified"), q},
@@ -278,7 +278,7 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
         .arg(Formatting::summaryLine(key)));
 }
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
 GpgME::RevocationReason RevokeKeyDialog::reason() const
 {
     return static_cast<RevocationReason>(d->reasonGroup.checkedId());

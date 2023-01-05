@@ -91,7 +91,7 @@ class GenKeyThread: public QThread
             // minus 1 of GpgGenCardKeyInteractor::Curve
             static const std::vector<std::string> curves = {
                 "curve25519",
-#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+#if GPGMEPP_SUPPORTS_SET_CURVE
                 "curve448",
                 "nistp256",
                 "nistp384",
@@ -111,7 +111,7 @@ class GenKeyThread: public QThread
                 ei->setAlgo(GpgME::GpgGenCardKeyInteractor::ECC);
                 const auto curveIt = std::find(curves.cbegin(), curves.cend(), mParams.algorithm);
                 if (curveIt != curves.end()) {
-#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+#if GPGMEPP_SUPPORTS_SET_CURVE
                     ei->setCurve(static_cast<GpgME::GpgGenCardKeyInteractor::Curve>(curveIt - curves.cbegin() + 1));
 #endif
                 } else {
@@ -404,7 +404,7 @@ void PGPCardWidget::genkeyRequested()
     }
 
     auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
-#ifdef GPGMEPP_SUPPORTS_SET_CURVE
+#if GPGMEPP_SUPPORTS_SET_CURVE
     dlg->setSupportedAlgorithms(pgpCard->supportedAlgorithms(), pgpCard->defaultAlgorithm());
 #else
     std::vector<AlgorithmInfo> algos = {

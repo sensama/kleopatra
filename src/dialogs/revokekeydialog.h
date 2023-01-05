@@ -19,7 +19,7 @@
 namespace GpgME
 {
 class Key;
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
 enum class RevocationReason;
 #endif
 }
@@ -36,7 +36,7 @@ public:
 
     void setKey(const GpgME::Key &key);
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
     GpgME::RevocationReason reason() const;
 #endif
     QString description() const;

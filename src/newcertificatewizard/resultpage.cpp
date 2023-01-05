@@ -17,7 +17,7 @@
 
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
-#ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 # include "commands/exportsecretkeycommand.h"
 #else
 # include "commands/exportsecretkeycommand_old.h"
@@ -49,7 +49,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::NewCertificateUi;
 using namespace GpgME;
-#ifndef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
+#if !QGPGME_SUPPORTS_SECRET_KEY_EXPORT
 using Kleo::Commands::Compat::ExportSecretKeyCommand;
 #endif
 

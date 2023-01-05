@@ -78,7 +78,7 @@ WebOfTrustDialog::WebOfTrustDialog(QWidget *parent)
                                     QDialogButtonBox::ActionRole);
     mFetchKeysBtn->setToolTip(i18nc("@info:tooltip", "Look up and import all keys that were used to certify the user IDs of this key"));
     connect(mFetchKeysBtn, &QPushButton::pressed, this, &WebOfTrustDialog::fetchMissingKeys);
-#ifndef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if !QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     mFetchKeysBtn->setVisible(false);
 #endif
 

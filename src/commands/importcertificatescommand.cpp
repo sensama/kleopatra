@@ -37,7 +37,7 @@
 #include <QGpgME/ImportJob>
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/ChangeOwnerTrustJob>
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
 #include <QGpgME/ReceiveKeysJob>
 #endif
 
@@ -707,7 +707,7 @@ void ImportCertificatesCommand::Private::processResults()
 {
     importGroups();
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     if (Settings{}.retrieveSignerKeysAfterImport() && !importingSignerKeys) {
         importingSignerKeys = true;
         const auto missingSignerKeys = getMissingSignerKeyIds(results);
@@ -928,10 +928,10 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
                 q, &Command::progress)
     };
 
-#ifdef QGPGME_SUPPORTS_IMPORT_WITH_FILTER
+#if QGPGME_SUPPORTS_IMPORT_WITH_FILTER
     job->setImportFilter(options.importFilter);
 #endif
-#ifdef QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN
+#if QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN
     job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
 #endif
 #if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
@@ -1000,7 +1000,7 @@ static auto get_receive_keys_job(GpgME::Protocol protocol)
 {
     Q_ASSERT(protocol != UnknownProtocol);
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     std::unique_ptr<ReceiveKeysJob> job{};
     if (const auto backend = (protocol == GpgME::OpenPGP ? QGpgME::openpgp() : QGpgME::smime())) {
         job.reset(backend->receiveKeysJob());
@@ -1022,7 +1022,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
         return;
     }
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
     std::vector<QMetaObject::Connection> connections = {

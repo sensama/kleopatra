@@ -17,7 +17,7 @@
 #include <KMessageBox>
 
 #include <QGpgME/Protocol>
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
 #include <QGpgME/RefreshKeysJob>
 #include <QGpgME/ReceiveKeysJob>
 #endif
@@ -43,7 +43,7 @@ public:
     void start();
     void cancel();
 
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
     std::unique_ptr<QGpgME::ReceiveKeysJob> startOpenPGPJob();
     std::unique_ptr<QGpgME::RefreshKeysJob> startSMIMEJob();
 #endif
@@ -53,7 +53,7 @@ public:
 
 private:
     Key key;
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
     QPointer<QGpgME::Job> job;
 #endif
 };
@@ -102,7 +102,7 @@ void RefreshCertificateCommand::Private::start()
         return;
     }
 
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
     std::unique_ptr<QGpgME::Job> refreshJob;
     switch (key.protocol()) {
     case GpgME::OpenPGP:
@@ -127,7 +127,7 @@ void RefreshCertificateCommand::Private::start()
 
 void RefreshCertificateCommand::Private::cancel()
 {
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
     if (job) {
         job->slotCancel();
     }
@@ -135,7 +135,7 @@ void RefreshCertificateCommand::Private::cancel()
 #endif
 }
 
-#ifdef QGPGME_SUPPORTS_KEY_REFRESH
+#if QGPGME_SUPPORTS_KEY_REFRESH
 std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::startOpenPGPJob()
 {
     std::unique_ptr<QGpgME::ReceiveKeysJob> refreshJob{QGpgME::openpgp()->receiveKeysJob()};

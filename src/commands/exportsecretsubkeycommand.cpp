@@ -15,7 +15,7 @@
 
 #include "fileoperationspreferences.h"
 #include <utils/applicationstate.h>
-#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 #include "utils/filedialog.h"
 #endif
 
@@ -41,7 +41,7 @@ using namespace GpgME;
 namespace
 {
 
-#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
 QString openPGPCertificateFileExtension()
 {
     return QLatin1String{outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate,
@@ -157,7 +157,7 @@ ExportSecretSubkeyCommand::Private::~Private() = default;
 
 void ExportSecretSubkeyCommand::Private::start()
 {
-#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     if (subkeys.empty()) {
         finished();
         return;
@@ -192,7 +192,7 @@ void ExportSecretSubkeyCommand::Private::cancel()
 
 std::unique_ptr<QGpgME::ExportJob> ExportSecretSubkeyCommand::Private::startExportJob(const std::vector<Subkey> &subkeys)
 {
-#ifdef QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_SUBKEY_EXPORT
     const bool armor = filename.endsWith(u".asc", Qt::CaseInsensitive);
     std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretSubkeyExportJob(armor)};
     Q_ASSERT(exportJob);

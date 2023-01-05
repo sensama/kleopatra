@@ -18,7 +18,7 @@
 
 #include <KLocalizedString>
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
 #include <QGpgME/RevokeKeyJob>
 #endif
 
@@ -47,7 +47,7 @@ private:
     void onDialogAccepted();
     void onDialogRejected();
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
     std::unique_ptr<QGpgME::RevokeKeyJob> startJob();
 #endif
     void onJobResult(const Error &err);
@@ -56,7 +56,7 @@ private:
 private:
     Key key;
     QPointer<RevokeKeyDialog> dialog;
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
     QPointer<QGpgME::RevokeKeyJob> job;
 #endif
 };
@@ -120,7 +120,7 @@ void RevokeKeyCommand::Private::start()
 
 void RevokeKeyCommand::Private::cancel()
 {
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
     if (job) {
         job->slotCancel();
     }
@@ -144,7 +144,7 @@ void RevokeKeyCommand::Private::ensureDialogCreated()
 
 void RevokeKeyCommand::Private::onDialogAccepted()
 {
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
     auto revokeJob = startJob();
     if (!revokeJob) {
         finished();
@@ -181,7 +181,7 @@ auto descriptionToLines(const QString &description)
 }
 }
 
-#ifdef QGPGME_SUPPORTS_KEY_REVOCATION
+#if QGPGME_SUPPORTS_KEY_REVOCATION
 std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
 {
     std::unique_ptr<QGpgME::RevokeKeyJob> revokeJob{QGpgME::openpgp()->revokeKeyJob()};

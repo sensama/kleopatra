@@ -180,7 +180,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     ++row;
     mFetchMissingSignerKeysCB = new QCheckBox{q};
     mFetchMissingSignerKeysCB->setText(i18nc("@option:check",
@@ -264,7 +264,7 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
 
         mOpenPGPKeyserverEdit.widget()->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
         mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
-#ifdef QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
+#if QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE
         if (newEntry && !newEntry->defaultValue().isNull()) {
             mOpenPGPKeyserverEdit.widget()->setPlaceholderText(newEntry->defaultValue().toString());
         } else
@@ -312,7 +312,7 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
     }
     mMaxItems.setEnabled(mMaxItemsConfigEntry && !mMaxItemsConfigEntry->isReadOnly());
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     mFetchMissingSignerKeysCB->setChecked(settings.retrieveSignerKeysAfterImport());
     mFetchMissingSignerKeysCB->setEnabled(!settings.isImmutable(QStringLiteral("RetrieveSignerKeysAfterImport")));
 #else
@@ -401,7 +401,7 @@ void DirectoryServicesConfigurationPage::Private::save()
 
     mConfig->sync(true);
 
-#ifdef QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
+#if QGPGME_SUPPORTS_RECEIVING_KEYS_BY_KEY_ID
     Settings settings;
     settings.setRetrieveSignerKeysAfterImport(mFetchMissingSignerKeysCB->isChecked());
     settings.save();

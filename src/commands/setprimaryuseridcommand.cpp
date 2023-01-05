@@ -16,7 +16,7 @@
 
 #include <KLocalizedString>
 
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
 #include <QGpgME/SetPrimaryUserIDJob>
 #endif
 
@@ -51,7 +51,7 @@ private:
 
 private:
     GpgME::UserID userId;
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     QPointer<QGpgME::SetPrimaryUserIDJob> job;
 #endif
 };
@@ -78,7 +78,7 @@ SetPrimaryUserIDCommand::Private::~Private() = default;
 
 void Commands::SetPrimaryUserIDCommand::Private::startJob()
 {
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     createJob();
     if (!job) {
         finished();
@@ -92,7 +92,7 @@ void Commands::SetPrimaryUserIDCommand::Private::startJob()
 
 void SetPrimaryUserIDCommand::Private::createJob()
 {
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     Q_ASSERT(!job);
 
     const auto backend = QGpgME::openpgp();
@@ -170,7 +170,7 @@ void SetPrimaryUserIDCommand::doStart()
 void SetPrimaryUserIDCommand::doCancel()
 {
     qCDebug(KLEOPATRA_LOG).nospace() << this << "::" << __func__;
-#ifdef QGPGME_SUPPORTS_SET_PRIMARY_UID
+#if QGPGME_SUPPORTS_SET_PRIMARY_UID
     if (d->job) {
         d->job->slotCancel();
     }

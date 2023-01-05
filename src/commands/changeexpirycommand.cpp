@@ -37,7 +37,7 @@ using namespace QGpgME;
 
 namespace
 {
-#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
 bool allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(const Key &key)
 {
     Q_ASSERT(!key.isNull() && key.numSubkeys() > 0);
@@ -124,7 +124,7 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     createJob();
     Q_ASSERT(job);
 
-#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (subkey.isNull() && dialog->updateExpirationOfAllSubkeys()) {
         job->setOptions(ChangeExpiryJob::UpdateAllSubkeys);
     }
@@ -264,7 +264,7 @@ void ChangeExpiryCommand::doStart()
     const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
     d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() :
                                QDateTime::fromSecsSinceEpoch(quint32(subkey.expirationTime())).date());
-#ifdef QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+#if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));
     }

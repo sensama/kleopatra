@@ -201,7 +201,7 @@ void ExportSecretKeyCommand::Private::cancel()
 
 std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJob(const Key &key)
 {
-#ifdef QGPGME_SUPPORTS_SECRET_KEY_EXPORT
+#if QGPGME_SUPPORTS_SECRET_KEY_EXPORT
     const bool armor = key.protocol() == GpgME::OpenPGP && filename.endsWith(u".asc", Qt::CaseInsensitive);
     const QGpgME::Protocol *const backend = (key.protocol() == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
     Q_ASSERT(backend);

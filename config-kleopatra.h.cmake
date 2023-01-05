@@ -39,3 +39,6 @@
 
 /* Defined if GpgME++ supports setting the curve when generating ECC card keys */
 #cmakedefine GPGMEPP_SUPPORTS_SET_CURVE 1
+
+/* Defined if QGpgME supports deferred start of ImportJob */
+#cmakedefine01 QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB

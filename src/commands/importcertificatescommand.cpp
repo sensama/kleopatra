@@ -561,10 +561,10 @@ void ImportCertificatesCommand::Private::onImportResult(const ImportResult &resu
     Q_ASSERT(finishedJob);
     qCDebug(KLEOPATRA_LOG) << q << __func__ << finishedJob;
 
-    auto it = std::find_if(std::begin(jobs), std::end(jobs),
+    auto it = std::find_if(std::begin(runningJobs), std::end(runningJobs),
                            [finishedJob](const auto &job) { return job.job == finishedJob; });
-    Q_ASSERT(it != std::end(jobs));
-    if (it == std::end(jobs)) {
+    Q_ASSERT(it != std::end(runningJobs));
+    if (it == std::end(runningJobs)) {
         qCWarning(KLEOPATRA_LOG) << __func__ << "Error: Finished job not found";
         return;
     }
@@ -588,7 +588,7 @@ void ImportCertificatesCommand::Private::addImportResult(const ImportResultData 
     }
 
     if (job.job) {
-        const auto count = std::erase(jobs, job);
+        const auto count = std::erase(runningJobs, job);
         Q_ASSERT(count == 1);
     }
 
@@ -739,10 +739,24 @@ void ImportCertificatesCommand::Private::processResults()
 void ImportCertificatesCommand::Private::tryToFinish()
 {
     qCDebug(KLEOPATRA_LOG) << q << __func__;
-    if (waitForMoreJobs || !jobs.empty()) {
+    if (waitForMoreJobs) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "Waiting for more jobs -> keep going";
+        return;
+    }
+    if (!runningJobs.empty()) {
         qCDebug(KLEOPATRA_LOG) << q << __func__ << "There are unfinished jobs -> keep going";
         return;
     }
+#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
+    if (!pendingJobs.empty()) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "There are pending jobs -> start the next one";
+        auto job = pendingJobs.front();
+        pendingJobs.pop();
+        job.job->startNow();
+        runningJobs.push_back(job);
+        return;
+    }
+#endif
 
     if (keyListConnection) {
         qCWarning(KLEOPATRA_LOG) << q << __func__ << "There is already a valid keyListConnection!";
@@ -920,12 +934,20 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 #ifdef QGPGME_SUPPORTS_IMPORT_WITH_KEY_ORIGIN
     job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
 #endif
+#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
+    const GpgME::Error err = job->startLater(data);
+#else
     const GpgME::Error err = job->start(data);
+#endif
     if (err.code()) {
         addImportResult({id, protocol, ImportType::Local, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
-        jobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
+#if QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
+        pendingJobs.push({id, protocol, ImportType::Local, job.release(), connections});
+#else
+        runningJobs.push_back({id, protocol, ImportType::Local, job.release(), connections});
+#endif
     }
 }
 
@@ -970,7 +992,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
         addImportResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
-        jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
+        runningJobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 }
 
@@ -1016,7 +1038,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
         addImportResult({id, protocol, ImportType::External, ImportResult{err}, AuditLogEntry{}});
     } else {
         increaseProgressMaximum();
-        jobs.push_back({id, protocol, ImportType::External, job.release(), connections});
+        runningJobs.push_back({id, protocol, ImportType::External, job.release(), connections});
     }
 #endif
 }
@@ -1084,7 +1106,7 @@ void ImportCertificatesCommand::Private::setProgressToMaximum()
 
 void ImportCertificatesCommand::doCancel()
 {
-    const auto jobsToCancel = d->jobs;
+    const auto jobsToCancel = d->runningJobs;
     std::for_each(std::begin(jobsToCancel), std::end(jobsToCancel), [this](const auto &job) {
         if (!job.connections.empty()) {
             // ignore jobs without connections; they are already completed

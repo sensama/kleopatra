@@ -21,7 +21,7 @@
 
 #include "utils/wsastarter.h"
 
-#ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -37,7 +37,7 @@
 
 using namespace Kleo;
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 static const bool HAVE_FD_PASSING = false;
 #else
 static const bool HAVE_FD_PASSING = true;
@@ -55,7 +55,7 @@ static void usage(const std::string &msg = std::string())
               "\n"
               "Usage: test_uiserver <socket> [<io>] [<options>] [<inquire>] command [<args>]\n"
               "where:\n"
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
               "      <io>: [--input[-fd] <file>] [--output[-fd] <file>] [--message[-fd] <file>]\n"
 #else
               "      <io>: [--input <file>] [--output <file>] [--message <file>]\n"
@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
         } else if (qstrcmp(arg, "--message") == 0) {
             const std::string file = argv[++optind];
             msgFiles.push_back(file);
-#ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN
         } else if (qstrcmp(arg, "--input-fd") == 0) {
             int inFD;
             if ((inFD = open(argv[++optind], O_RDONLY)) == -1) {
@@ -182,7 +182,7 @@ int main(int argc, char *argv[])
 
     assuan_set_log_stream(ctx, stderr);
 
-#ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN
     for (std::vector<int>::const_iterator it = inFDs.begin(), end = inFDs.end(); it != end; ++it) {
         if (const gpg_error_t err = assuan_sendfd(ctx, *it)) {
             qDebug("%s", Exception(err, "assuan_sendfd( inFD )").what());

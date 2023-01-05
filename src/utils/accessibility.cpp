@@ -14,7 +14,7 @@
 #include <KLocalizedString>
 
 #include <QAction>
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 #include <QApplication>
 #include <QDesktopWidget>
 #endif
@@ -123,7 +123,7 @@ namespace
 {
 static void notifyAccessibilityClientsAboutToolTip(const QPoint &pos, QWidget *parent)
 {
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     // On Windows, the tool tip's parent widget is a desktop screen widget (see implementation of QToolTip::showText)
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED

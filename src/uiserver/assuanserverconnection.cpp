@@ -63,7 +63,7 @@
 # include <ext/algorithm> // for is_sorted
 #endif
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 # include <io.h>
 # include <process.h>
 #else
@@ -266,7 +266,7 @@ private:
             currentCommand->canceled();
         }
         if (fd != ASSUAN_INVALID_FD) {
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
             CloseHandle(fd);
 #else
             ::close(fd);
@@ -466,7 +466,7 @@ private:
                         throw err;
                     }
                 } else {
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN)
                     fd = (assuan_fd_t)std::stoi(fdstr);
 #else
                     fd = std::stoi(fdstr);

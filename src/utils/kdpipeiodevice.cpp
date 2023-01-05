@@ -19,7 +19,7 @@
 #include <memory>
 #include <algorithm>
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
 # ifndef NOMINMAX
 #  define NOMINMAX
 # endif
@@ -289,7 +289,7 @@ KDPipeIODevice::~KDPipeIODevice()
 bool KDPipeIODevice::open(int fd, OpenMode mode)
 {
     KDAB_CHECK_THIS;
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     return d->doOpen(fd, (HANDLE)_get_osfhandle(fd), mode);
 #else
     return d->doOpen(fd, nullptr, mode);
@@ -299,7 +299,7 @@ bool KDPipeIODevice::open(int fd, OpenMode mode)
 bool KDPipeIODevice::open(Qt::HANDLE h, OpenMode mode)
 {
     KDAB_CHECK_THIS;
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     return d->doOpen(-1, h, mode);
 #else
     Q_UNUSED(h)
@@ -377,7 +377,7 @@ bool KDPipeIODevice::Private::doOpen(int fd_, Qt::HANDLE handle_, OpenMode mode_
         return false;
     }
 
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     if (!handle_) {
         return false;
     }
@@ -751,7 +751,7 @@ void KDPipeIODevice::close()
     }
     waitAndDelete(d->reader);
 #undef waitAndDelete
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     if (d->fd != -1) {
         _close(d->fd);
     } else {
@@ -820,7 +820,7 @@ void Reader::run()
             Q_ASSERT(numBytes > 0);
 
             QDebug("%p: Reader::run: trying to read %d bytes from fd %d", (void *)this, numBytes, fd);
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
             isReading = true;
             mutex.unlock();
             DWORD numRead;
@@ -923,7 +923,7 @@ void Writer::run()
         qint64 totalWritten = 0;
         do {
             mutex.unlock();
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
             DWORD numWritten;
             QDebug("%p (fd=%d): Writer::run: buffer before WriteFile (numBytes=%u): %s:",
                    (void *) this, fd, numBytesInBuffer, buffer);
@@ -973,7 +973,7 @@ std::pair<KDPipeIODevice *, KDPipeIODevice *> KDPipeIODevice::makePairOfConnecte
 {
     KDPipeIODevice *read = nullptr;
     KDPipeIODevice *write = nullptr;
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
     HANDLE rh;
     HANDLE wh;
     SECURITY_ATTRIBUTES sa;
@@ -1005,7 +1005,7 @@ KDAB_DEFINE_CHECKS(KDPipeIODevice)
         Q_ASSERT(openMode() == NotOpen);
         Q_ASSERT(!d->reader);
         Q_ASSERT(!d->writer);
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
         Q_ASSERT(!d->handle);
 #else
         Q_ASSERT(d->fd < 0);
@@ -1023,7 +1023,7 @@ KDAB_DEFINE_CHECKS(KDPipeIODevice)
             synchronized(d->writer)
             Q_ASSERT(d->writer->error || d->writer->isRunning());
         }
-#ifdef Q_OS_WIN32
+#ifdef Q_OS_WIN
         Q_ASSERT(d->handle);
 #else
         Q_ASSERT(d->fd >= 0);

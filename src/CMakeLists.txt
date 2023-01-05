@@ -537,7 +537,6 @@ if(KLEO_MODEL_TEST)
 endif()
 
 ki18n_wrap_ui(_kleopatra_SRCS
-  dialogs/selectchecklevelwidget.ui
   dialogs/setinitialpindialog.ui
   dialogs/trustchainwidget.ui
   newcertificatewizard/listwidget.ui

@@ -43,8 +43,6 @@ public:
 
     bool sendToServer() const;
 
-    unsigned int selectedCheckLevel() const;
-
     void setCertificateToCertify(const GpgME::Key &key);
 
     QString tags() const;

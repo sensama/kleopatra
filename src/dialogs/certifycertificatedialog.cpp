@@ -114,15 +114,6 @@ bool CertifyCertificateDialog::sendToServer() const
     return mCertWidget->publishSelected();
 }
 
-unsigned int CertifyCertificateDialog::selectedCheckLevel() const
-{
-    //PENDING
-#ifdef KLEO_SIGN_KEY_CERTLEVEL_SUPPORT
-    return d->selectCheckLevelPage->checkLevel();
-#endif
-    return 0;
-}
-
 void CertifyCertificateDialog::setSelectedUserIDs(const std::vector<UserID> &uids)
 {
     mCertWidget->selectUserIDs(uids);

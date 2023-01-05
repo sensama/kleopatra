@@ -274,7 +274,6 @@ void CertifyCertificateCommand::Private::slotCertificationPrepared()
     job->setNonRevocable(dialog->nonRevocableCertificationSelected());
     job->setUserIDsToSign(userIdIndexes);
     job->setSigningKey(dialog->selectedSecretKey());
-    job->setCheckLevel(dialog->selectedCheckLevel());
     if (!dialog->tags().isEmpty()) {
         // do not set an empty remark to avoid an empty signature notation (GnuPG bug T5142)
         job->setRemark(dialog->tags());

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -1789,8 +1789,8 @@ msgstr "Алмасу буферіндегісі куәлікке ұқсамай�
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Куәлікті импорттау жаңылысы"
@@ -2144,15 +2144,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, fuzzy, kde-format
 #| msgid "Load Certifications (may take a while)"
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Куәліктерді алуы (біршама уақыт алуы мүмкін)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7475,63 +7475,6 @@ msgstr ""
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr ""
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>2-қадам:</b> Талап еткен куәлігі шынында берген тұлғағанікі екенін "
-"қаншалықты мүкият тексердіңіз?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "Мүлдем тексерген жоқпыны"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Мағынасын түсіндіру..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "Шала-пұла тексердім"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Оны білемін, куәлік онікі мә деп сұрағанмын, бірақ құпия куәлігінің иесі "
-"екенін шындылығын тексерген жоқпын десеңіз, осыны таңдаңыз."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "Өте мүкият тексердім"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Тұлғаның ID-картасын тексерсеңіз және құпия кілтіне ие екені (мысалы "
-"шифрланған мәтінді жіберіп, шифрын шешіп беруін сұрап) тексерілген болса, "
-"осыны тадаңыз."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -12465,6 +12408,42 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>2-қадам:</b> Талап еткен куәлігі шынында берген тұлғағанікі екенін "
+#~ "қаншалықты мүкият тексердіңіз?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "Мүлдем тексерген жоқпыны"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Мағынасын түсіндіру..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "Шала-пұла тексердім"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Оны білемін, куәлік онікі мә деп сұрағанмын, бірақ құпия куәлігінің иесі "
+#~ "екенін шындылығын тексерген жоқпын десеңіз, осыны таңдаңыз."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "Өте мүкият тексердім"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Тұлғаның ID-картасын тексерсеңіз және құпия кілтіне ие екені (мысалы "
+#~ "шифрланған мәтінді жіберіп, шифрын шешіп беруін сұрап) тексерілген болса, "
+#~ "осыны тадаңыз."
 
 #, fuzzy
 #~| msgid "Secret keys imported:"

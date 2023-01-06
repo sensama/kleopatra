@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-12-23 20:55+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -1721,8 +1721,8 @@ msgstr "O conteúdo da área de transferência não se parece com um certificado
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Importação do Certificado Falhou"
@@ -2073,15 +2073,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Não, Não é Meu"
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "A obter 1 chave do assinante... (isto poderá levar algum tempo)"
 msgstr[1] "A obter %1 chaves do assinante... (isto poderá levar algum tempo)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7207,64 +7207,6 @@ msgstr "Erro: A descrição não deverá ter linhas em branco."
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>Está prestes a revogar a seguinte chave:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>Passo 2:</b> Com que detalhe verificou se este certificado pertence de "
-"facto à pessoa que diz ser?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "Não verifiquei de todo"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Descrever a semântica aqui..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "Verifiquei casualmente"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Escolha isto se conhece a pessoa e se lhe perguntou se este era o seu "
-"certificado, mas se não verificou se este tinha em seu poder o certificado "
-"privado."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "Verifiquei com bastante atenção"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Escolha isto se tiver verificado p.ex. o BI da pessoa, e se tiver verificado "
-"que esta possui a chave privada (p.ex., ao enviar e-mails encriptados para "
-"ele e pedir-lhe para os descodificar)."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -12089,3 +12031,40 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>Passo 2:</b> Com que detalhe verificou se este certificado pertence de "
+#~ "facto à pessoa que diz ser?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "Não verifiquei de todo"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Descrever a semântica aqui..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "Verifiquei casualmente"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Escolha isto se conhece a pessoa e se lhe perguntou se este era o seu "
+#~ "certificado, mas se não verificou se este tinha em seu poder o "
+#~ "certificado privado."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "Verifiquei com bastante atenção"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Escolha isto se tiver verificado p.ex. o BI da pessoa, e se tiver "
+#~ "verificado que esta possui a chave privada (p.ex., ao enviar e-mails "
+#~ "encriptados para ele e pedir-lhe para os descodificar)."

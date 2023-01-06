@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2023-01-02 07:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1595,8 +1595,8 @@ msgstr "剪贴板内容似乎不是一份证书。"
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "证书导入失败"
@@ -1935,14 +1935,14 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "否"
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在从服务器获取 %1 个签名密钥... (这可能需要一段时间)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -6792,60 +6792,6 @@ msgstr ""
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr ""
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr "<b>第二步：</b>您用什么方式检查过此证书确实属于它所宣称的来源方？"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "我还未检查过"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "在这里描述语义..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "我已粗略检查过"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"如果您知道此人，并且向他们确认过这是他们的证书， 但你还没有验证他们实际上拥有"
-"证书私钥，请选择此项。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "我已彻底检查过"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"若你已检查了这个人的身份证，并且已经证实他们拥有这个密钥（例如通过发送加密的"
-"邮件并要求它解密），选择此选项。"
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -11400,3 +11346,36 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr "<b>第二步：</b>您用什么方式检查过此证书确实属于它所宣称的来源方？"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "我还未检查过"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "在这里描述语义..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "我已粗略检查过"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "如果您知道此人，并且向他们确认过这是他们的证书， 但你还没有验证他们实际上"
+#~ "拥有证书私钥，请选择此项。"
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "我已彻底检查过"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "若你已检查了这个人的身份证，并且已经证实他们拥有这个密钥（例如通过发送加密"
+#~ "的邮件并要求它解密），选择此选项。"

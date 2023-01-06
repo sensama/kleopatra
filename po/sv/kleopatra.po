@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-10-01 16:55+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -1675,8 +1675,8 @@ msgstr "Klippbordets innehåll ser inte ut som ett certifikat."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Import av certifikat misslyckades"
@@ -2033,15 +2033,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Hämtar 1 signeringsnyckel ... (det kan ta en stund)"
 msgstr[1] "Hämtar %1 signeringsnycklar ... (det kan ta en stund)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7151,64 +7151,6 @@ msgstr "Fel: Beskrivningen får inte innehålla tomma rader."
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>Du är på väg att återkalla följande nyckel:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>Steg 2:</b> Hur noggrant har du kontrollerat att certifikatet verkligen "
-"tillhör personen det hävdar att det är från?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "Jag har inte kontrollerat alls"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Beskriv semantik här..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "Jag har kontrollerat ytligt"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Välj det här om du känner personen, och har frågat om certifikatet tillhör "
-"personen, men inte själv har verifierat att personen verkligen äger det "
-"hemliga certifikatet."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "Jag har kontrollerat mycket noga"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Välj det här om du t.ex. har kontrollerat personens id-kort, och har "
-"verifierat att han verkligen äger den hemliga nyckeln (t.ex. genom att ha "
-"skickat krypterad e-post till honom och bett honom att avkoda den)."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -11994,6 +11936,43 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>Steg 2:</b> Hur noggrant har du kontrollerat att certifikatet "
+#~ "verkligen tillhör personen det hävdar att det är från?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "Jag har inte kontrollerat alls"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Beskriv semantik här..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "Jag har kontrollerat ytligt"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Välj det här om du känner personen, och har frågat om certifikatet "
+#~ "tillhör personen, men inte själv har verifierat att personen verkligen "
+#~ "äger det hemliga certifikatet."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "Jag har kontrollerat mycket noga"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Välj det här om du t.ex. har kontrollerat personens id-kort, och har "
+#~ "verifierat att han verkligen äger den hemliga nyckeln (t.ex. genom att ha "
+#~ "skickat krypterad e-post till honom och bett honom att avkoda den)."
 
 #~ msgctxt "@title:window"
 #~ msgid "Secret key imported"

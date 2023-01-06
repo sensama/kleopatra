@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-08-19 13:13+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1685,8 +1685,8 @@ msgstr "Leikepöydän sisältö ei vaikuta varmenteelta."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Varmenteen tuonti epäonnistui"
@@ -2044,15 +2044,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Noudetaan 1 allekirjoittaja-avain… (tämä voi kestää hetken)"
 msgstr[1] "Noudetaan %1 allekirjoittaja-avainta… (tämä voi kestää hetken)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7150,64 +7150,6 @@ msgstr "Virhe: Kuvauksessa ei saa olla tyhjiä rivejä."
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>Olet perumassa seuraavaa avainta:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>Vaihe 2:</b> Kuinka tarkasti olet tarkistanut tämän varmenteen todella "
-"kuuluvan henkilölle, jolta se väittää olevansa?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "En ole tarkistanut lainkaan"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Kuvaile merkitystä tähän…"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "Olen tarkistanut satunnaisesti"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Valitse tämä, jos tunnet henkilön ja olet kysynyt häneltä, onko tämä hänen "
-"varmenteensa, muttet ole varmistanut, että hänellä todella on salainenkin "
-"varmenne hallussaan."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "Olen tarkistanut hyvin tarkasti"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Valitse tämä, jos esimerkiksi olet varmistanut jonkun henkilöllisyyden "
-"henkilökortista sekä että hänellä on salainen avain hallussaan (esim. "
-"lähettämällä hänelle salatun viestin ja pyytämällä häntä avamaan sen)."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -11991,6 +11933,43 @@ msgid ""
 msgstr ""
 "Tuodaksesi tietoa julkisesta avainpalvelimesta valitse ”Etsi palvelimesta” "
 "tämän sijaan."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>Vaihe 2:</b> Kuinka tarkasti olet tarkistanut tämän varmenteen todella "
+#~ "kuuluvan henkilölle, jolta se väittää olevansa?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "En ole tarkistanut lainkaan"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Kuvaile merkitystä tähän…"
+
+#~ msgid "I have checked casually"
+#~ msgstr "Olen tarkistanut satunnaisesti"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Valitse tämä, jos tunnet henkilön ja olet kysynyt häneltä, onko tämä "
+#~ "hänen varmenteensa, muttet ole varmistanut, että hänellä todella on "
+#~ "salainenkin varmenne hallussaan."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "Olen tarkistanut hyvin tarkasti"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Valitse tämä, jos esimerkiksi olet varmistanut jonkun henkilöllisyyden "
+#~ "henkilökortista sekä että hänellä on salainen avain hallussaan (esim. "
+#~ "lähettämällä hänelle salatun viestin ja pyytämällä häntä avamaan sen)."
 
 #~ msgctxt "@title:window"
 #~ msgid "Secret key imported"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-12-23 14:33+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -1678,8 +1678,8 @@ msgstr "El contingut del porta-retalls no pareix un certificat."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "La importació del certificat ha fallat"
@@ -2029,15 +2029,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "No, no és meu"
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "S'està recuperant 1 clau de signant... (pot tardar una estona)"
 msgstr[1] "S'estan recuperant %1 claus de signant... (pot tardar una estona)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7163,63 +7163,6 @@ msgstr "S'ha produït un error: La descripció no pot contindre línies buides."
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>Esteu a punt de revocar la clau següent:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>Pas 2:</b> Com heu verificat que este certificat pertany realment a la "
-"persona de qui diu ser?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "No he comprovat res"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Descriviu ací la semàntica..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "L'he comprovat informalment"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Escolliu açò si coneixeu la persona, i li heu preguntat si este és el seu "
-"certificat, però no heu verificat que realment tinga el certificat secret."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "L'he comprovat completament"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Escolliu açò si heu, p. ex. comprovat la targeta d'identificació de la "
-"persona, i heu verificat que té la clau secreta (p. ex. enviant-li correus "
-"que haja encriptat i demanant-li que els desencripte)."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -12047,3 +11990,39 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>Pas 2:</b> Com heu verificat que este certificat pertany realment a la "
+#~ "persona de qui diu ser?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "No he comprovat res"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Descriviu ací la semàntica..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "L'he comprovat informalment"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Escolliu açò si coneixeu la persona, i li heu preguntat si este és el seu "
+#~ "certificat, però no heu verificat que realment tinga el certificat secret."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "L'he comprovat completament"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Escolliu açò si heu, p. ex. comprovat la targeta d'identificació de la "
+#~ "persona, i heu verificat que té la clau secreta (p. ex. enviant-li "
+#~ "correus que haja encriptat i demanant-li que els desencripte)."

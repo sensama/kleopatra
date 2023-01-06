@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1647,8 +1647,8 @@ msgstr "클립보드 내용이 인증서가 아닌 것 같습니다."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "인증서 가져오기 실패"
@@ -2001,14 +2001,14 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "서명자 키 %1개 가져오는 중...(시간이 걸릴 수 있습니다)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7018,62 +7018,6 @@ msgstr "오류: 설명에 빈 줄이 들어갈 수 없습니다."
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>다음 키를 철회하려고 합니다:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>2단계:</b> 인증서와 인증서 소유자 사이의 관계를 얼마나 주의 깊게 확인하셨"
-"습니까?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "전혀 확인하지 않음"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "여기에 특성 입력..."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "일상적인 수준으로 확인함"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"인증서 소유자를 알고 있고, 소유자에게 인증서의 소유 여부를 물어는 보았지만 비"
-"밀 인증서 소유 여부를 확실하게 확인하지는 않았다면 선택하십시오."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "매우 정확하게 확인함"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"인증서 소유자의 신분증을 확인했고 비밀 키를 확실히 소유했음을 확인했다면(예: "
-"암호화된 이메일을 보내고 복호화 요청) 선택하십시오."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -11776,6 +11720,41 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "공개 키 서버에서 가져오려면 \"서버에서 찾아보기\"를 사용하십시오."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>2단계:</b> 인증서와 인증서 소유자 사이의 관계를 얼마나 주의 깊게 확인하"
+#~ "셨습니까?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "전혀 확인하지 않음"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "여기에 특성 입력..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "일상적인 수준으로 확인함"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "인증서 소유자를 알고 있고, 소유자에게 인증서의 소유 여부를 물어는 보았지"
+#~ "만 비밀 인증서 소유 여부를 확실하게 확인하지는 않았다면 선택하십시오."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "매우 정확하게 확인함"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "인증서 소유자의 신분증을 확인했고 비밀 키를 확실히 소유했음을 확인했다면"
+#~ "(예: 암호화된 이메일을 보내고 복호화 요청) 선택하십시오."
 
 #~ msgctxt "@title:window"
 #~ msgid "Secret key imported"

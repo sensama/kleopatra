@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
-"PO-Revision-Date: 2023-01-04 07:49+0100\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
+"PO-Revision-Date: 2023-01-05 05:46+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1512,8 +1512,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "სერტიფიკატების შემოტანის შეცდომა"
@@ -1737,7 +1737,7 @@ msgstr "დეტალური შედეგები შემოსატ�
 #: src/commands/importcertificatescommand.cpp:431
 #, kde-format
 msgid "A phone call to the person."
-msgstr "სატელეფონო ზარი პიროვნებასთან"
+msgstr "სატელეფონო ზარი პიროვნებასთან."
 
 #: src/commands/importcertificatescommand.cpp:432
 #, kde-format
@@ -1852,15 +1852,15 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "არა, ჩემი არაა"
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -4681,12 +4681,12 @@ msgstr "ყველა მიმღების ჩვენება"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:366
 #, kde-format
 msgid "Select Signing Certificate"
-msgstr ""
+msgstr "აირჩიეთ ხელმოსაწერი სერტიფიკატი"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:367
 #, kde-format
 msgid "Select Encryption Certificate"
-msgstr ""
+msgstr "აირჩიეთ დაშიფვრის სერტიფიკატი"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:368
 #, kde-format
@@ -4719,7 +4719,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
-msgstr ""
+msgstr "ფაილების დაშიფვრა/ხელმოწერა"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:154
 #, kde-format
@@ -4731,13 +4731,13 @@ msgstr "&შესვლა, როგორც:"
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
-msgstr ""
+msgstr "&ჩემთვის დაშიფვრა:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:158
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &others:"
-msgstr ""
+msgstr "&სხვებისთვის დაშიფვრა:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:160
 #, kde-format
@@ -4761,7 +4761,7 @@ msgstr "აირჩიეთ ქმედება."
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
-msgstr ""
+msgstr "გამოტანის &ფაილები/საქაღალდე:"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:179
 #, kde-format
@@ -4852,13 +4852,13 @@ msgstr ""
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
-msgstr ""
+msgstr "S/MIME ხელმოწერები (*.p7s)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:351
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
-msgstr ""
+msgstr "S/MIME ხელმოწერები (*.p7s *.pem)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:356
 #, kde-format
@@ -4876,13 +4876,13 @@ msgstr ""
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
-msgstr ""
+msgstr "OpenPGP ხელმოწერები (*.sig *.pgp)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:359
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
-msgstr ""
+msgstr "OpenPGP ხელმოწერები (*.asc *.sig)"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:364
 #, kde-format
@@ -5013,12 +5013,12 @@ msgstr "დაშიფრვა"
 #: src/crypto/gui/signencryptwidget.cpp:137
 #, kde-format
 msgid "Encrypt for me:"
-msgstr ""
+msgstr "ჩემთვის დაშიფვრა:"
 
 #: src/crypto/gui/signencryptwidget.cpp:146
 #, kde-format
 msgid "Encrypt for others:"
-msgstr ""
+msgstr "სხვებისთვის დაშიფვრა:"
 
 #: src/crypto/gui/signencryptwidget.cpp:181
 #, kde-format
@@ -6567,56 +6567,6 @@ msgstr ""
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr ""
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -6964,10 +6914,10 @@ msgid "&Get update"
 msgstr "განახლების &მიღება"
 
 #: src/dialogs/weboftrustdialog.cpp:62
-#, kde-format
+#, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Certifications"
-msgstr ""
+msgstr "სერთიფიკატები"
 
 #: src/dialogs/weboftrustdialog.cpp:77
 #, kde-format
@@ -7771,7 +7721,7 @@ msgid "String or Fingerprint for query and search"
 msgstr ""
 
 #: src/kleopatraapplication.cpp:378
-#, fuzzy, kde-format
+#, kde-format
 msgid "Failed to execute command"
 msgstr "ბრძანების შესრულების შეცდომა"
 

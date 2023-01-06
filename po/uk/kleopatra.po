@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-03 00:48+0000\n"
+"POT-Creation-Date: 2023-01-06 00:48+0000\n"
 "PO-Revision-Date: 2022-12-23 08:49+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1682,8 +1682,8 @@ msgstr "Вміст буфера обміну не є даними сертифі
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:904
-#: src/commands/importcertificatescommand.cpp:955
+#: src/commands/importcertificatescommand.cpp:918
+#: src/commands/importcertificatescommand.cpp:977
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Імпортування сертифіката зазнало невдачі"
@@ -2035,7 +2035,7 @@ msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ні, це не мій"
 
-#: src/commands/importcertificatescommand.cpp:867
+#: src/commands/importcertificatescommand.cpp:881
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2044,8 +2044,8 @@ msgstr[1] "Отримуємо %1 ключі підписувачів… (ця д
 msgstr[2] "Отримуємо %1 ключів підписувачів… (ця дія триватиме певний час)"
 msgstr[3] "Отримуємо ключ підписувача… (ця дія триватиме певний час)"
 
-#: src/commands/importcertificatescommand.cpp:902
-#: src/commands/importcertificatescommand.cpp:953
+#: src/commands/importcertificatescommand.cpp:916
+#: src/commands/importcertificatescommand.cpp:975
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -7219,64 +7219,6 @@ msgstr "Помилка: в описі не повинно бути порожн�
 msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
 msgstr "<para>Ви наказали програмі відкликати цей ключ:<nl/>%1</para>"
 
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/dialogs/selectchecklevelwidget.ui:16
-#, kde-format
-msgid ""
-"<b>Step 2:</b> How thoroughly have you checked that this certificate "
-"actually belongs to the person it claims it is from?"
-msgstr ""
-"<b>Крок 2:</b> Наскільки ретельно ви перевірили належність цього сертифіката "
-"саме тій особі, яка про цю належність оголосила?"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelNotCheckedRB)
-#: src/dialogs/selectchecklevelwidget.ui:26
-#, kde-format
-msgid "I have not checked at all"
-msgstr "Я зовсім не перевіряв(ла)"
-
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: src/dialogs/selectchecklevelwidget.ui:52
-#, kde-format
-msgid "Describe semantics here..."
-msgstr "Тут пояснити семантику…"
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelCasualRB)
-#: src/dialogs/selectchecklevelwidget.ui:62
-#, kde-format
-msgid "I have checked casually"
-msgstr "Я перевірив(ла) це частково"
-
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: src/dialogs/selectchecklevelwidget.ui:88
-#, kde-format
-msgid ""
-"Choose this if you know the person, and have asked them whether this was "
-"their certificate, but you have not verified they are actually in possession "
-"of the secret certificate."
-msgstr ""
-"Виберіть цей пункт, якщо ви знаєте цю особу, і запитали її про те, чи "
-"належить їй цей сертифікат, але ви не перевіряли, чи має вона закритий "
-"сертифікат."
-
-#. i18n: ectx: property (text), widget (QRadioButton, checkLevelThoroughlyRB)
-#: src/dialogs/selectchecklevelwidget.ui:98
-#, kde-format
-msgid "I have checked very thoroughly"
-msgstr "Я все перевірив(ла) дуже ретельно"
-
-#. i18n: ectx: property (text), widget (QLabel, label_5)
-#: src/dialogs/selectchecklevelwidget.ui:124
-#, kde-format
-msgid ""
-"Choose this if you have, for instance, checked the ID card of the person, "
-"and have verified that they are in possession of the secret key (e.g. by "
-"sending them encrypted mail and asking for it to be decrypted)."
-msgstr ""
-"Виберіть цей пункт, якщо ви, наприклад, перевірили картку ідентифікації цієї "
-"особи, а також перевірили, що у неї є закритий ключ (наприклад, надіслали їй "
-"зашифрованого листа і попросили розшифрувати його)."
-
 #: src/dialogs/selftestdialog.cpp:95
 #, kde-format
 msgid "Skipped"
@@ -12090,6 +12032,43 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr ""
+#~ "<b>Крок 2:</b> Наскільки ретельно ви перевірили належність цього "
+#~ "сертифіката саме тій особі, яка про цю належність оголосила?"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "Я зовсім не перевіряв(ла)"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "Тут пояснити семантику…"
+
+#~ msgid "I have checked casually"
+#~ msgstr "Я перевірив(ла) це частково"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "Виберіть цей пункт, якщо ви знаєте цю особу, і запитали її про те, чи "
+#~ "належить їй цей сертифікат, але ви не перевіряли, чи має вона закритий "
+#~ "сертифікат."
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "Я все перевірив(ла) дуже ретельно"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "Виберіть цей пункт, якщо ви, наприклад, перевірили картку ідентифікації "
+#~ "цієї особи, а також перевірили, що у неї є закритий ключ (наприклад, "
+#~ "надіслали їй зашифрованого листа і попросили розшифрувати його)."
 
 #~ msgctxt "@title:window"
 #~ msgid "Secret key imported"

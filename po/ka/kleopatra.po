@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-06 00:48+0000\n"
-"PO-Revision-Date: 2023-01-05 05:46+0100\n"
+"PO-Revision-Date: 2023-01-06 07:03+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1548,13 +1548,13 @@ msgstr "სერტიფიკატების შემოტანა"
 #, kde-format
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "სერტიფიკატების შემოტანა 1 ფაილიდან..."
+msgstr[1] "სერტიფიკატების შემოტანა %1 ფაილიდან..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
-msgstr ""
+msgstr "ფაილის (%1) წასაკითხად გახსნის შეცდომა: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:294 src/view/keytreeview.cpp:275
@@ -1582,8 +1582,8 @@ msgstr "გასაღბების გამოთხოვა"
 #, kde-format
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 გასაღების გამოთხოვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
+msgstr[1] "%1 გასაღების გამოთხოვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
@@ -3189,7 +3189,7 @@ msgstr "OpenPGP -ის გასაღებების სერვერი:
 #: src/conf/dirservconfigpage.cpp:137
 #, kde-format
 msgid "X.509 Directory Services"
-msgstr ""
+msgstr "X.509 დირექტორიის სერვისები"
 
 #: src/conf/dirservconfigpage.cpp:151
 #, kde-format
@@ -3684,17 +3684,17 @@ msgstr ""
 #: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-format
 msgid "Use Original File Name?"
-msgstr ""
+msgstr "გამოვიყენო ფაილის საწყისი სახელი?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:215
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
-msgstr ""
+msgstr "არა. შეინახე, როგორც <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:216
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
-msgstr ""
+msgstr "დიახ. შეინახე, როგორც <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:231 src/utils/output.cpp:527
 #, kde-format
@@ -3702,6 +3702,8 @@ msgid ""
 "The file <b>%1</b> already exists.\n"
 "Overwrite?"
 msgstr ""
+"ფაილი <b>%1</b> უკვე არსებობს.\n"
+"გადავაწერო?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:234 src/utils/output.cpp:530
 #, kde-format
@@ -3991,7 +3993,7 @@ msgstr "უცნობი სერთიფიკატი"
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
-msgstr ""
+msgstr "ხელმოწერის შექმნის დრო: %1"
 
 #: src/crypto/decryptverifytask.cpp:270
 #, kde-format
@@ -4188,7 +4190,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:593
 #, kde-format
 msgid "Embedded file name: '%1'"
-msgstr ""
+msgstr "ჩაშენებული ფაილის სახელი: '%1'"
 
 #: src/crypto/decryptverifytask.cpp:600
 #, kde-format
@@ -5226,7 +5228,7 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp:115
 #, kde-format
 msgid "Sign Files"
-msgstr ""
+msgstr "ფაილების ხელმოწერა"
 
 #: src/crypto/signencryptfilescontroller.cpp:121
 #, kde-format
@@ -5236,7 +5238,7 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp:123
 #, kde-format
 msgid "Encrypt Files"
-msgstr ""
+msgstr "ფაილების დაშიფვრა"
 
 #: src/crypto/signencryptfilescontroller.cpp:128
 #, kde-format
@@ -5246,7 +5248,7 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp:130
 #, kde-format
 msgid "Sign/Encrypt Files"
-msgstr ""
+msgstr "ფაილების დაშიფვრა/ხელმოწერა"
 
 #: src/crypto/signencryptfilescontroller.cpp:269
 #, kde-format
@@ -5271,17 +5273,17 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp:159
 #, kde-format
 msgid "Signing failed."
-msgstr ""
+msgstr "ხელმოწერის შეცდომა."
 
 #: src/crypto/signencrypttask.cpp:176
 #, kde-format
 msgid "Encryption failed."
-msgstr ""
+msgstr "დაშიფვრის შეცდომა."
 
 #: src/crypto/signencrypttask.cpp:204
 #, kde-format
 msgid "Signing and encryption succeeded."
-msgstr ""
+msgstr "დაშიფვრა და ხელმოწერა წარმატებულია."
 
 #: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
 #, kde-format
@@ -5291,7 +5293,7 @@ msgstr "გამოტანის შეცდომა: %1"
 #: src/crypto/signencrypttask.cpp:245
 #, kde-format
 msgid " Encryption succeeded."
-msgstr ""
+msgstr "დაშიფვრა წარმატებულია."
 
 #: src/crypto/signencrypttask.cpp:257
 #, kde-format
@@ -5301,7 +5303,7 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp:257
 #, kde-format
 msgid " %1: Sign/encrypt failed."
-msgstr ""
+msgstr " %1: დაშიფვრის/ხელმოწერის შეცდომა."
 
 #: src/crypto/signencrypttask.cpp:259
 #, kde-format
@@ -5322,7 +5324,7 @@ msgstr ""
 #: src/crypto/taskcollection.cpp:161
 #, kde-format
 msgid "Finalizing output..."
-msgstr ""
+msgstr "გამოტანის დასრულება..."
 
 #: src/crypto/verifychecksumscontroller.cpp:181
 #, kde-format
@@ -5584,7 +5586,7 @@ msgstr ""
 #: src/dialogs/certificatedetailswidget.cpp:320
 #, kde-format
 msgid "Compliance:"
-msgstr ""
+msgstr "შესაბამისობა:"
 
 #: src/dialogs/certificatedetailswidget.cpp:325
 #, kde-format
@@ -5871,7 +5873,7 @@ msgstr ""
 #: src/dialogs/certificateselectiondialog.cpp:172
 #, kde-format
 msgid "Look up certificate"
-msgstr ""
+msgstr "სერტიფიკატის მოძებნა"
 
 #: src/dialogs/certificateselectiondialog.cpp:173
 #, kde-format
@@ -5898,7 +5900,7 @@ msgstr "ჯგუფები..."
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Manage certificate groups"
-msgstr ""
+msgstr "სერტიფიკატის ჯგუფების მართვა"
 
 #: src/dialogs/certificateselectiondialog.cpp:178
 #, kde-format
@@ -5909,7 +5911,7 @@ msgstr "ჯგუფების მართვა"
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Selection"
-msgstr ""
+msgstr "სერტიფიკატის არჩევანი"
 
 #: src/dialogs/certifycertificatedialog.cpp:55
 #, kde-format
@@ -5957,7 +5959,7 @@ msgstr "დამატებით"
 #: src/dialogs/certifywidget.cpp:406
 #, kde-format
 msgid "Show advanced options"
-msgstr ""
+msgstr "დამატებითი პარამეტრების ჩვენება"
 
 #: src/dialogs/certifywidget.cpp:412
 #, kde-format
@@ -6914,7 +6916,7 @@ msgid "&Get update"
 msgstr "განახლების &მიღება"
 
 #: src/dialogs/weboftrustdialog.cpp:62
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Certifications"
 msgstr "სერთიფიკატები"

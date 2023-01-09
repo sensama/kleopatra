@@ -40,7 +40,6 @@ public:
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &result);
     void allDone();
-    void keepOpenWhenDone(bool keep);
     QLabel *labelForTag(const QString &tag);
 
     std::shared_ptr<TaskCollection> m_tasks;
@@ -65,7 +64,6 @@ ResultPage::Private::Private(ResultPage *qq) : q(qq)
     m_keepOpenCB = new QCheckBox;
     m_keepOpenCB->setText(i18n("Keep open after operation completed"));
     m_keepOpenCB->setChecked(true);
-    connect(m_keepOpenCB, &QAbstractButton::toggled, q, &ResultPage::keepOpenWhenDone);
     layout->addWidget(m_keepOpenCB);
 }
 
@@ -76,10 +74,6 @@ void ResultPage::Private::progress(const QString &msg, int progress, int total)
     Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
     m_progressBar->setValue(progress);
-}
-
-void ResultPage::Private::keepOpenWhenDone(bool)
-{
 }
 
 void ResultPage::Private::allDone()

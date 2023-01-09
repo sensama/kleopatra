@@ -23,10 +23,7 @@
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
 
-#include "emailoperationspreferences.h"
-
 #include <gpgme++/key.h>
-
 
 #include <KLocalizedString>
 
@@ -91,7 +88,6 @@ EncryptEMailController::~EncryptEMailController()
     if (d->wizard && !d->wizard->isVisible()) {
         delete d->wizard;
     }
-    //d->wizard->close(); ### ?
 }
 
 EncryptEMailController::Mode EncryptEMailController::mode() const
@@ -287,8 +283,6 @@ void EncryptEMailController::Private::ensureWizardCreated()
 
     std::unique_ptr<EncryptEMailWizard> w(new EncryptEMailWizard);
     w->setAttribute(Qt::WA_DeleteOnClose);
-    Kleo::EMailOperationsPreferences prefs;
-    w->setQuickMode(prefs.quickEncryptEMail());
     connect(w.get(), &EncryptEMailWizard::recipientsResolved, q, &EncryptEMailController::recipientsResolved, Qt::QueuedConnection);
     connect(w.get(), &EncryptEMailWizard::canceled, q, [this]() { slotWizardCanceled(); }, Qt::QueuedConnection);
 

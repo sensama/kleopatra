@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2023 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -10,7 +12,8 @@
 #include <config-kleopatra.h>
 
 #include "encryptemailwizard.h"
-#include <crypto/gui/resolverecipientspage.h>
+
+#include <settings.h>
 
 #include <KLocalizedString>
 
@@ -18,41 +21,24 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
-class EncryptEMailWizard::Private
+EncryptEMailWizard::EncryptEMailWizard(QWidget *parent, Qt::WindowFlags flags)
+    : SignEncryptWizard(parent, flags)
 {
-public:
-    bool m_quickMode = false;
-};
-
-EncryptEMailWizard::EncryptEMailWizard(QWidget *parent, Qt::WindowFlags flags) : SignEncryptWizard(parent, flags), d(new Private)
-{
-    setWindowTitle(i18nc("@title:window", "Encrypt Mail Message"));
+    setWindowTitle(i18nc("@title:window", "Encrypt Text"));
     std::vector<int> pageOrder;
     pageOrder.push_back(Page::ResolveRecipients);
     pageOrder.push_back(Page::Result);
     setPageOrder(pageOrder);
     setCommitPage(Page::ResolveRecipients);
+
+    setKeepResultPageOpenWhenDone(Kleo::Settings{}.showResultsAfterEncryptingClipboard());
 }
 
 EncryptEMailWizard::~EncryptEMailWizard()
 {
-
+    // always save the setting even if the dialog was canceled (the dialog's result
+    // is always Rejected because the result page has no Finish button)
+    Kleo::Settings settings;
+    settings.setShowResultsAfterEncryptingClipboard(keepResultPageOpenWhenDone());
+    settings.save();
 }
-
-bool EncryptEMailWizard::quickMode() const
-{
-    return d->m_quickMode;
-}
-
-void EncryptEMailWizard::setQuickMode(bool quick)
-{
-    if (quick == d->m_quickMode) {
-        return;
-    }
-    d->m_quickMode = quick;
-    signerResolvePage()->setAutoAdvance(quick);
-    resolveRecipientsPage()->setAutoAdvance(quick);
-    setKeepResultPageOpenWhenDone(!quick);
-}
-
-#include "encryptemailwizard.h"

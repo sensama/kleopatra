@@ -68,6 +68,18 @@
         <default>sha256sum</default>
      </entry>
  </group>
+ <group name="Clipboard">
+    <entry key="ShowResultsAfterSigning" name="ShowResultsAfterSigningClipboard" type="Bool">
+      <label>Show results after signing</label>
+      <whatsthis>If true, then the results are shown after successfully signing the clipboard.</whatsthis>
+      <default>true</default>
+    </entry>
+    <entry key="ShowResultsAfterEncryption" name="ShowResultsAfterEncryptingClipboard" type="Bool">
+      <label>Show results after encryption</label>
+      <whatsthis>If true, then the results are shown after successfully encrypting the clipboard.</whatsthis>
+      <default>true</default>
+    </entry>
+ </group>
  <group name="CMS">
    <entry key="Enabled" name="cmsEnabled" type="Bool">
      <label>Enable S/MIME</label>

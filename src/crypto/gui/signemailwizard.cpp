@@ -3,6 +3,8 @@
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2023 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -12,6 +14,8 @@
 #include "signemailwizard.h"
 
 #include "signerresolvepage.h"
+
+#include <settings.h>
 
 #include <Libkleo/Formatting>
 
@@ -91,59 +95,32 @@ bool SignerResolveValidator::isComplete() const
     return complete;
 }
 
-class SignEMailWizard::Private
+SignEMailWizard::SignEMailWizard(QWidget *parent, Qt::WindowFlags f)
+    : SignEncryptWizard(parent, f)
 {
-    friend class ::Kleo::Crypto::Gui::SignEMailWizard;
-    SignEMailWizard *const q;
-public:
-    explicit Private(SignEMailWizard *qq);
-    ~Private();
-
-    void operationSelected();
-
-    bool m_quickMode;
-};
-
-SignEMailWizard::Private::Private(SignEMailWizard *qq)
-    : q(qq), m_quickMode(false)
-{
-    q->setWindowTitle(i18nc("@title:window", "Sign Mail Message"));
+    setWindowTitle(i18nc("@title:window", "Sign Text"));
 
     std::vector<int> pageOrder;
-    q->setSignerResolvePageValidator(std::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(q->signerResolvePage())));
+    setSignerResolvePageValidator(std::shared_ptr<SignerResolveValidator>(new SignerResolveValidator(signerResolvePage())));
     pageOrder.push_back(Page::ResolveSigner);
     pageOrder.push_back(Page::Result);
-    q->setPageOrder(pageOrder);
-    q->setCommitPage(Page::ResolveSigner);
-    q->setEncryptionSelected(false);
-    q->setEncryptionUserMutable(false);
-    q->setSigningSelected(true);
-    q->setSigningUserMutable(false);
-    q->signerResolvePage()->setProtocolSelectionUserMutable(false);
-    q->setMultipleProtocolsAllowed(false);
+    setPageOrder(pageOrder);
+    setCommitPage(Page::ResolveSigner);
+    setEncryptionSelected(false);
+    setEncryptionUserMutable(false);
+    setSigningSelected(true);
+    setSigningUserMutable(false);
+    signerResolvePage()->setProtocolSelectionUserMutable(false);
+    setMultipleProtocolsAllowed(false);
+
+    setKeepResultPageOpenWhenDone(Kleo::Settings{}.showResultsAfterSigningClipboard());
 }
 
-SignEMailWizard::Private::~Private() {}
-
-SignEMailWizard::SignEMailWizard(QWidget *parent, Qt::WindowFlags f)
-    : SignEncryptWizard(parent, f), d(new Private(this))
+SignEMailWizard::~SignEMailWizard()
 {
+    // always save the setting even if the dialog was canceled (the dialog's result
+    // is always Rejected because the result page has no Finish button)
+    Kleo::Settings settings;
+    settings.setShowResultsAfterSigningClipboard(keepResultPageOpenWhenDone());
+    settings.save();
 }
-
-bool SignEMailWizard::quickMode() const
-{
-    return d->m_quickMode;
-}
-
-void SignEMailWizard::setQuickMode(bool quick)
-{
-    if (quick == d->m_quickMode) {
-        return;
-    }
-    d->m_quickMode = quick;
-    signerResolvePage()->setAutoAdvance(quick);
-    setKeepResultPageOpenWhenDone(!quick);
-}
-
-SignEMailWizard::~SignEMailWizard() {}
-

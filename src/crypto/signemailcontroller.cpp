@@ -21,10 +21,7 @@
 #include <utils/output.h>
 #include <utils/kleo_assert.h>
 
-#include "emailoperationspreferences.h"
-
 #include <Libkleo/Stl_Util>
-
 
 #include <KLocalizedString>
 
@@ -99,7 +96,6 @@ SignEMailController::~SignEMailController()
     if (d->wizard && !d->wizard->isVisible()) {
         delete d->wizard;
     }
-    //d->wizard->close(); ### ?
 }
 
 SignEMailController::Mode SignEMailController::mode() const
@@ -327,8 +323,6 @@ void SignEMailController::Private::ensureWizardCreated()
     connect(w.get(), SIGNAL(signersResolved()), q, SLOT(slotWizardSignersResolved()), Qt::QueuedConnection);
     connect(w.get(), SIGNAL(canceled()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
     w->setPresetProtocol(protocol);
-    EMailOperationsPreferences prefs;
-    w->setQuickMode(prefs.quickSignEMail());
     wizard = w.release();
 }
 

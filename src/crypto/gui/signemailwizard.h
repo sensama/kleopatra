@@ -26,13 +26,6 @@ class SignEMailWizard : public SignEncryptWizard
 public:
     explicit SignEMailWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~SignEMailWizard() override;
-
-    bool quickMode() const;
-    void setQuickMode(bool quick);
-
-private:
-    class Private;
-    kdtools::pimpl_ptr<Private> d;
 };
 
 }

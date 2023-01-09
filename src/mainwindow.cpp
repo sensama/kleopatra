@@ -463,9 +463,9 @@ MainWindow::Private::Private(MainWindow *qq)
         qCDebug(KLEOPATRA_LOG) << "Loading branding icon:" << dir.absoluteFilePath(icon);
         QPixmap brandingIcon(dir.absoluteFilePath(icon));
         if (!brandingIcon.isNull()) {
-            auto *w = new QWidget;
-            auto *hl = new QHBoxLayout;
-            auto *lbl = new QLabel;
+            auto w = new QWidget;
+            auto hl = new QHBoxLayout;
+            auto lbl = new QLabel;
             w->setLayout(hl);
             hl->addWidget(lbl);
             lbl->setPixmap(brandingIcon);

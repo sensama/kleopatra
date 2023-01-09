@@ -361,22 +361,6 @@ bool NewSignEncryptEMailController::areCertificatesResolved() const
     return d->certificatesResolved;
 }
 
-static bool is_dialog_quick_mode(bool sign, bool encrypt)
-{
-    const EMailOperationsPreferences prefs;
-    return (!sign    || prefs.quickSignEMail())
-           && (!encrypt || prefs.quickEncryptEMail())
-           ;
-}
-
-static void save_dialog_quick_mode(bool on)
-{
-    EMailOperationsPreferences prefs;
-    prefs.setQuickSignEMail(on);
-    prefs.setQuickEncryptEMail(on);
-    prefs.save();
-}
-
 void NewSignEncryptEMailController::startResolveCertificates(const std::vector<Mailbox> &r, const std::vector<Mailbox> &s)
 {
     d->certificatesResolved = false;
@@ -384,35 +368,18 @@ void NewSignEncryptEMailController::startResolveCertificates(const std::vector<M
 
     const std::vector<Sender> senders = mailbox2sender(s);
     const std::vector<Recipient> recipients = mailbox2recipient(r);
-    const bool quickMode = is_dialog_quick_mode(d->sign, d->encrypt);
 
-    const bool conflict = quickMode && has_conflict(d->sign, d->encrypt, senders, recipients, d->presetProtocol);
-
-    d->dialog->setQuickMode(quickMode);
+    d->dialog->setQuickMode(false);
     d->dialog->setSenders(senders);
     d->dialog->setRecipients(recipients);
     d->dialog->pickProtocol();
-    d->dialog->setConflict(conflict);
+    d->dialog->setConflict(false);
 
-    const bool compliant = !DeVSCompliance::isActive() ||
-                           (DeVSCompliance::isCompliant() && is_de_vs_compliant(d->sign,
-                                                                                d->encrypt,
-                                                                                senders,
-                                                                                recipients,
-                                                                                d->presetProtocol));
-
-    if (quickMode && !conflict && compliant) {
-        QMetaObject::invokeMethod(this, "slotDialogAccepted", Qt::QueuedConnection);
-    } else {
-        d->ensureDialogVisible();
-    }
+    d->ensureDialogVisible();
 }
 
 void NewSignEncryptEMailController::Private::slotDialogAccepted()
 {
-    if (dialog->isQuickMode() != is_dialog_quick_mode(sign, encrypt)) {
-        save_dialog_quick_mode(dialog->isQuickMode());
-    }
     resolvingInProgress = false;
     certificatesResolved = true;
     signers = dialog->resolvedSigningKeys();

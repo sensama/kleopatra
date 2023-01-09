@@ -18,7 +18,6 @@
 #include "cryptooperationsconfigwidget.h"
 #include "kleopatra_debug.h"
 
-#include "emailoperationspreferences.h"
 #include "fileoperationspreferences.h"
 #include "settings.h"
 
@@ -230,15 +229,6 @@ void CryptoOperationsConfigWidget::setupGui()
     auto baseLay = new QVBoxLayout(this);
     baseLay->setContentsMargins(0, 0, 0, 0);
 
-    auto mailGrp = new QGroupBox(i18n("EMail Operations"));
-    auto mailGrpLayout = new QVBoxLayout;
-    mQuickSignCB = new QCheckBox(i18n("Don't confirm signing certificate if there is only one valid certificate for the identity"));
-    mQuickEncryptCB = new QCheckBox(i18n("Don't confirm encryption certificates if there is exactly one valid certificate for each recipient"));
-    mailGrpLayout->addWidget(mQuickSignCB);
-    mailGrpLayout->addWidget(mQuickEncryptCB);
-    mailGrp->setLayout(mailGrpLayout);
-    baseLay->addWidget(mailGrp);
-
     auto fileGrp = new QGroupBox(i18n("File Operations"));
     auto fileGrpLay = new QVBoxLayout;
     mPGPFileExtCB = new QCheckBox(i18n(R"(Create OpenPGP encrypted files with ".pgp" file extensions instead of ".gpg")"));
@@ -293,10 +283,6 @@ CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget() {}
 
 void CryptoOperationsConfigWidget::defaults()
 {
-    EMailOperationsPreferences emailPrefs;
-    emailPrefs.setQuickSignEMail(emailPrefs.findItem(QStringLiteral("QuickSignEMail"))->getDefault().toBool());
-    emailPrefs.setQuickEncryptEMail(emailPrefs.findItem(QStringLiteral("QuickEncryptEMail"))->getDefault().toBool());
-
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(filePrefs.findItem(QStringLiteral("UsePGPFileExt"))->getDefault().toBool());
     filePrefs.setAutoDecryptVerify(filePrefs.findItem(QStringLiteral("AutoDecryptVerify"))->getDefault().toBool());
@@ -309,18 +295,12 @@ void CryptoOperationsConfigWidget::defaults()
     Settings settings;
     settings.setChecksumDefinitionId(settings.findItem(QStringLiteral("ChecksumDefinitionId"))->getDefault().toString());
 
-    load(emailPrefs, filePrefs, settings);
+    load(filePrefs, settings);
 }
 
-void CryptoOperationsConfigWidget::load(const Kleo::EMailOperationsPreferences &emailPrefs,
-                                        const Kleo::FileOperationsPreferences &filePrefs,
+void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs,
                                         const Kleo::Settings &settings)
 {
-    mQuickSignCB->setChecked(emailPrefs.quickSignEMail());
-    mQuickSignCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickSignEMail")));
-    mQuickEncryptCB->setChecked(emailPrefs.quickEncryptEMail());
-    mQuickEncryptCB->setEnabled(!emailPrefs.isImmutable(QStringLiteral("QuickEncryptEMail")));
-
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
     mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
@@ -380,17 +360,11 @@ void CryptoOperationsConfigWidget::load()
         }
     }
 
-    load(EMailOperationsPreferences{}, FileOperationsPreferences{}, Settings{});
+    load(FileOperationsPreferences{}, Settings{});
 }
 
 void CryptoOperationsConfigWidget::save()
 {
-
-    EMailOperationsPreferences emailPrefs;
-    emailPrefs.setQuickSignEMail(mQuickSignCB   ->isChecked());
-    emailPrefs.setQuickEncryptEMail(mQuickEncryptCB->isChecked());
-    emailPrefs.save();
-
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
     filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());

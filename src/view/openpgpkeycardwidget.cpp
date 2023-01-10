@@ -15,6 +15,7 @@
 #include "smartcard/keypairinfo.h"
 #include "smartcard/openpgpcard.h"
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
@@ -34,8 +35,8 @@ namespace
 {
 struct KeyWidgets {
     std::string cardKeyRef;
-    std::string keyGrip;
     std::string keyFingerprint;
+    KeyPairInfo keyInfo;
     QLabel *keyTitleLabel = nullptr;
     QLabel *keyInfoLabel = nullptr;
     QPushButton *showCertificateDetailsButton = nullptr;
@@ -144,8 +145,8 @@ void OpenPGPKeyCardWidget::Private::updateCachedValues(const std::string &openPG
 {
     KeyWidgets &widgets = mKeyWidgets.at(openPGPKeyRef);
     widgets.cardKeyRef = cardKeyRef;
-    widgets.keyGrip = card->keyInfo(cardKeyRef).grip;
     widgets.keyFingerprint = card->keyFingerprint(openPGPKeyRef);
+    widgets.keyInfo = card->keyInfo(cardKeyRef);
 }
 
 void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPKeyRef)
@@ -219,7 +220,7 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
         widgets.generateButton->setText(i18nc("@action:button", "Regenerate Key"));
         widgets.generateButton->setToolTip(i18nc("@info:tooltip", "Generate a new key for this card slot replacing the existing key"));
         if (widgets.createCSRButton) {
-            widgets.createCSRButton->setEnabled(true);
+            widgets.createCSRButton->setEnabled(DeVSCompliance::algorithmIsCompliant(widgets.keyInfo.algorithm));
         }
     }
 

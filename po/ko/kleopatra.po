@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-06 00:48+0000\n"
+"POT-Creation-Date: 2023-01-10 00:57+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2605,8 +2605,8 @@ msgstr ""
 "para><para>새 인증서의 지문: <nl/>%1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
-#: src/crypto/newsignencryptemailcontroller.cpp:576
-#: src/crypto/newsignencryptemailcontroller.cpp:581
+#: src/crypto/newsignencryptemailcontroller.cpp:388
+#: src/crypto/newsignencryptemailcontroller.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
@@ -3178,7 +3178,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "고대비 모드가 활성화되어 있으므로 색상을 미리 볼 수 없습니다."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:119
+#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 속성 순서"
@@ -3324,47 +3324,47 @@ msgstr "스마트카드"
 msgid "GnuPG System"
 msgstr "GnuPG 시스템"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:107
-#: src/conf/cryptooperationsconfigwidget.cpp:205
+#: src/conf/cryptooperationsconfigwidget.cpp:106
+#: src/conf/cryptooperationsconfigwidget.cpp:204
 #, kde-format
 msgid "default"
 msgstr "기본값"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:110
+#: src/conf/cryptooperationsconfigwidget.cpp:109
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
 "to its default."
 msgstr "모든 GnuPG 옵션을 기본값으로 초기화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:111
+#: src/conf/cryptooperationsconfigwidget.cpp:110
 #, kde-format
 msgid "Apply profile"
 msgstr "프로필 적용"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:153
+#: src/conf/cryptooperationsconfigwidget.cpp:152
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr "설정 프로필 \"%1\"을(를) 적용했습니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:154
+#: src/conf/cryptooperationsconfigwidget.cpp:153
 #, kde-format
 msgid "GnuPG Profile - Kleopatra"
 msgstr "GnuPG 프로필 - Kleopatra"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:189
+#: src/conf/cryptooperationsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@title"
 msgid "General Operations"
 msgstr "일반 옵션"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:193
+#: src/conf/cryptooperationsconfigwidget.cpp:192
 #, kde-format
 msgid "Activate GnuPG Profile:"
 msgstr "활성 GnuPG 프로필:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:194
+#: src/conf/cryptooperationsconfigwidget.cpp:193
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
@@ -3373,38 +3373,17 @@ msgstr ""
 "프로필은 GnuPG 시스템의 여러 구성 요소에 적용할 수 있는 다양한 설정을 포함합"
 "니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:210
+#: src/conf/cryptooperationsconfigwidget.cpp:209
 #, kde-format
 msgid "Apply"
 msgstr "적용"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:233
-#, kde-format
-msgid "EMail Operations"
-msgstr "이메일 작업"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:235
-#, kde-format
-msgid ""
-"Don't confirm signing certificate if there is only one valid certificate for "
-"the identity"
-msgstr "식별자에 유효한 인증서가 한 개만 있을 때에 서명 인증서를 확인하지 않음"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:236
-#, kde-format
-msgid ""
-"Don't confirm encryption certificates if there is exactly one valid "
-"certificate for each recipient"
-msgstr ""
-"각각 수신자별로 유효한 인증서가 한 개씩만 있을 때에 암호화 인증서를 확인하지 "
-"않음"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:232
 #, kde-format
 msgid "File Operations"
 msgstr "파일 작업"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:234
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3412,13 +3391,13 @@ msgid ""
 msgstr "OpenPGP로 암호화된 파일에 \".gpg\" 확장자 대신 \".pgp\" 확장자 사용"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:235
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "서명되거나 암호화된 파일을 텍스트 형식으로 만듭니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:246
+#: src/conf/cryptooperationsconfigwidget.cpp:236
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3431,50 +3410,50 @@ msgstr ""
 "1/3 증가합니다."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:249
+#: src/conf/cryptooperationsconfigwidget.cpp:239
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:250
+#: src/conf/cryptooperationsconfigwidget.cpp:240
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "암호화 해제 후 자동으로 압축 풀기"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:251
+#: src/conf/cryptooperationsconfigwidget.cpp:241
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:242
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:253
+#: src/conf/cryptooperationsconfigwidget.cpp:243
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:254
+#: src/conf/cryptooperationsconfigwidget.cpp:244
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:266
+#: src/conf/cryptooperationsconfigwidget.cpp:256
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "체크섬 파일을 생성할 때 사용할 프로그램:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:271
+#: src/conf/cryptooperationsconfigwidget.cpp:261
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "파일을 압축할 때 사용할 압축 명령:"
@@ -4659,14 +4638,14 @@ msgctxt ""
 msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgstr "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 검증함"
 
-#: src/crypto/encryptemailcontroller.cpp:125
+#: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
 msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr "EncryptEMailController::protocolAsString() 호출이 모호합니다."
 
-#: src/crypto/encryptemailcontroller.cpp:143
-#: src/crypto/newsignencryptemailcontroller.cpp:429
-#: src/crypto/signemailcontroller.cpp:163
+#: src/crypto/encryptemailcontroller.cpp:139
+#: src/crypto/newsignencryptemailcontroller.cpp:241
+#: src/crypto/signemailcontroller.cpp:159
 #: src/crypto/signencryptfilescontroller.cpp:339
 #, kde-format
 msgid "User cancel"
@@ -4754,27 +4733,27 @@ msgid "Verify Files"
 msgstr "파일 검증"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:116
-#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:95
+#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: 모든 작업을 완료했습니다."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:118
-#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:97
+#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "모든 작업을 완료했습니다."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultlistwidget.cpp:195
-#: src/crypto/gui/resultpage.cpp:114
+#: src/crypto/gui/resultpage.cpp:108
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "작업 %1: %2"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:142
-#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
@@ -4850,13 +4829,15 @@ msgstr "서명된 데이터(&S):"
 msgid "&Input file is an archive; unpack with:"
 msgstr "입력 파일이 압축 파일임, 다음으로 압축 해제(&I):"
 
-#: src/crypto/gui/encryptemailwizard.cpp:29
-#, kde-format
+#: src/crypto/gui/encryptemailwizard.cpp:27
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Encrypt"
 msgctxt "@title:window"
-msgid "Encrypt Mail Message"
-msgstr "이메일 메시지 암호화"
+msgid "Encrypt Text"
+msgstr "암호화"
 
-#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:122
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:116
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>결과</b>"
@@ -4964,27 +4945,27 @@ msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "감사 로그 표시"
 
-#: src/crypto/gui/resultpage.cpp:66
+#: src/crypto/gui/resultpage.cpp:65
 #, kde-format
 msgid "Keep open after operation completed"
 msgstr "작업이 끝난 후에도 열어 놓기"
 
-#: src/crypto/gui/signemailwizard.cpp:66
+#: src/crypto/gui/signemailwizard.cpp:70
 #, kde-format
 msgid "You need to select a signing certificate to proceed."
 msgstr "진행하려면 서명용 인증서를 선택해야 합니다."
 
-#: src/crypto/gui/signemailwizard.cpp:73
+#: src/crypto/gui/signemailwizard.cpp:77
 #, kde-format
 msgid "You need to select an OpenPGP signing certificate to proceed."
 msgstr "진행하려면 OpenPGP 서명용 인증서를 선택해야 합니다."
 
-#: src/crypto/gui/signemailwizard.cpp:75
+#: src/crypto/gui/signemailwizard.cpp:79
 #, kde-format
 msgid "You need to select an S/MIME signing certificate to proceed."
 msgstr "진행하려면 S/MIME 서명용 인증서를 선택해야 합니다."
 
-#: src/crypto/gui/signemailwizard.cpp:78
+#: src/crypto/gui/signemailwizard.cpp:82
 #, kde-format
 msgid ""
 "You need to select an OpenPGP signing certificate and an S/MIME signing "
@@ -4992,11 +4973,12 @@ msgid ""
 msgstr ""
 "진행하려면 OpenPGP 서명용 인증서와 S/MIME 서명용 인증서를 선택해야 합니다."
 
-#: src/crypto/gui/signemailwizard.cpp:110
-#, kde-format
+#: src/crypto/gui/signemailwizard.cpp:101
+#, fuzzy, kde-format
+#| msgid "Sign Files"
 msgctxt "@title:window"
-msgid "Sign Mail Message"
-msgstr "이메일 메시지에 서명"
+msgid "Sign Text"
+msgstr "파일 서명"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -5607,7 +5589,7 @@ msgstr "다음(&N)"
 msgid "Back"
 msgstr "뒤로"
 
-#: src/crypto/newsignencryptemailcontroller.cpp:323
+#: src/crypto/newsignencryptemailcontroller.cpp:168
 #, kde-format
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr "NewSignEncryptEMailController::protocolAsString() 호출이 모호합니다."
@@ -7484,43 +7466,14 @@ msgctxt "@title"
 msgid "Certifications Loading Failed"
 msgstr "인증 불러오기 실패"
 
-#. i18n: ectx: label, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:10
-#, kde-format
-msgid "Quick Sign EMail"
-msgstr "이메일에 빠르게 서명"
-
-#. i18n: ectx: whatsthis, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:11
-#, kde-format
-msgid ""
-"Minimize the number of steps when signing emails, use preset defaults unless "
-"problems occur."
-msgstr "문제가 발생하지 않았다면 기본값을 사용해서 이메일에 빠르게 서명합니다."
-
-#. i18n: ectx: label, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:15
-#, kde-format
-msgid "Quick Encrypt EMail"
-msgstr "이메일을 빠르게 암호화"
-
-#. i18n: ectx: whatsthis, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"Minimize the number of steps when encrypting emails, use preset defaults "
-"unless problems occur."
-msgstr ""
-"문제가 발생하지 않았다면 기본값을 사용해서 이메일을 빠르게 암호화합니다."
-
 #. i18n: ectx: label, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:20
+#: src/kcfg/emailoperationspreferences.kcfg:10
 #, kde-format
 msgid "Decrypt/Verify Popup Geometry"
 msgstr "복호화/검증 팝업 크기"
 
 #. i18n: ectx: whatsthis, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:21
+#: src/kcfg/emailoperationspreferences.kcfg:11
 #, kde-format
 msgid ""
 "The remembered size and position of the Decrypt/Verify Result Popup used by "
@@ -7811,20 +7764,47 @@ msgstr "이 옵션을 설정하면 새 인증서 마법사의 고급 설정 단�
 msgid "Checksum program to use when creating checksum files"
 msgstr "체크섬 파일을 생성할 때 사용할 프로그램"
 
-#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:73
+#, kde-format
+msgid "Show results after signing"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:74
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully signing the clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:78
+#, kde-format
+msgid "Show results after encryption"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:79
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully encrypting the "
+"clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "S/MIME 활성화"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "S/MIME(CMS) 지원을 활성화합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:75
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -7834,19 +7814,19 @@ msgstr ""
 "다."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:91
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "S/MIME 인증서 생성 허용"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:80
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "S/MIME 인증서 서명 요청 생성을 허용합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:81
+#: src/kcfg/settings.kcfg:93
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -7856,19 +7836,19 @@ msgstr ""
 "니다."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "S/MIME 인증서로 서명 허용"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:98
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "텍스트나 파일을 S/MIME 인증서로 서명하는 것을 허용합니다."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -7877,73 +7857,73 @@ msgstr ""
 "거짓으로 설정하면 Kleopatra에서 S/MIME 인증서 서명 기능을 제공하지 않습니다."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "모양 설정 표시"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "암호화 작업 설정 표시"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "디렉터리 서비스 설정 표시"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "GnuPG 시스템 설정 표시"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "스마트카드 설정 표시"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "S/MIME 검증 설정 표시"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:120
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "X.509 인증서의 DN 속성의 표시 순서를 설정합니다."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:138
 #, kde-format
 msgid "Enable Groups"
 msgstr "그룹 활성화"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "키 그룹을 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:128
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "수신자 목록을 만드는 키 그룹을 사용합니다."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "가져온 후 서명자 키 가져오기"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:137
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -7957,13 +7937,13 @@ msgstr ""
 "         신뢰할 수 있는 도입자와 함께 사용할 때 유용합니다."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "URL schemes to block"
 msgstr "차단할 URL 스키마"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:145
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -7975,13 +7955,13 @@ msgstr ""
 "다."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:151
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "항상 키 서버에서 스마트카드 인증서 검색"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:152
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -7989,7 +7969,7 @@ msgid ""
 msgstr "스마트카드 키에 해당하는 인증서를 설정한 키 서버에서 검색합니다."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:154
+#: src/kcfg/settings.kcfg:166
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8002,19 +7982,19 @@ msgstr ""
 "        기본값으로 LDAP 키 서버에서만 이 작업을 수행합니다."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "PKCS#15 스마트카드에서 S/MIME 인증서 불러오기 시도"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:159
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "자동으로 PKCS#15(CardOS) 스마트카드에서 S/MIME 인증서 불러오기"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8026,7 +8006,7 @@ msgstr ""
 "수 있으며 명령이 실행 중일 때 스마트카드를 점유합니다."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "Disable profile settings"
 msgstr "프로필 설정 비활성화"
@@ -11720,6 +11700,48 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "공개 키 서버에서 가져오려면 \"서버에서 찾아보기\"를 사용하십시오."
+
+#~ msgid "EMail Operations"
+#~ msgstr "이메일 작업"
+
+#~ msgid ""
+#~ "Don't confirm signing certificate if there is only one valid certificate "
+#~ "for the identity"
+#~ msgstr ""
+#~ "식별자에 유효한 인증서가 한 개만 있을 때에 서명 인증서를 확인하지 않음"
+
+#~ msgid ""
+#~ "Don't confirm encryption certificates if there is exactly one valid "
+#~ "certificate for each recipient"
+#~ msgstr ""
+#~ "각각 수신자별로 유효한 인증서가 한 개씩만 있을 때에 암호화 인증서를 확인하"
+#~ "지 않음"
+
+#~ msgctxt "@title:window"
+#~ msgid "Encrypt Mail Message"
+#~ msgstr "이메일 메시지 암호화"
+
+#~ msgctxt "@title:window"
+#~ msgid "Sign Mail Message"
+#~ msgstr "이메일 메시지에 서명"
+
+#~ msgid "Quick Sign EMail"
+#~ msgstr "이메일에 빠르게 서명"
+
+#~ msgid ""
+#~ "Minimize the number of steps when signing emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr ""
+#~ "문제가 발생하지 않았다면 기본값을 사용해서 이메일에 빠르게 서명합니다."
+
+#~ msgid "Quick Encrypt EMail"
+#~ msgstr "이메일을 빠르게 암호화"
+
+#~ msgid ""
+#~ "Minimize the number of steps when encrypting emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr ""
+#~ "문제가 발생하지 않았다면 기본값을 사용해서 이메일을 빠르게 암호화합니다."
 
 #~ msgid ""
 #~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "

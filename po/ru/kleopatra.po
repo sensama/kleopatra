@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-06 00:48+0000\n"
+"POT-Creation-Date: 2023-01-10 00:57+0000\n"
 "PO-Revision-Date: 2022-08-09 08:53+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -2694,8 +2694,8 @@ msgstr ""
 "para><para>Отпечаток нового сертификата:<nl/>%1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
-#: src/crypto/newsignencryptemailcontroller.cpp:576
-#: src/crypto/newsignencryptemailcontroller.cpp:581
+#: src/crypto/newsignencryptemailcontroller.cpp:388
+#: src/crypto/newsignencryptemailcontroller.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
@@ -3296,7 +3296,7 @@ msgstr ""
 "контрастности."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:119
+#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Порядок атрибутов уникальных имён"
@@ -3443,13 +3443,13 @@ msgstr "Смарт-карты"
 msgid "GnuPG System"
 msgstr "Система GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:107
-#: src/conf/cryptooperationsconfigwidget.cpp:205
+#: src/conf/cryptooperationsconfigwidget.cpp:106
+#: src/conf/cryptooperationsconfigwidget.cpp:204
 #, kde-format
 msgid "default"
 msgstr "по умолчанию"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:110
+#: src/conf/cryptooperationsconfigwidget.cpp:109
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
@@ -3458,74 +3458,51 @@ msgstr ""
 "Выбор профиля «по умолчанию» означает, что все параметры подсистемы GnuPG  "
 "будут возвращены в первоначальные значения."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:111
+#: src/conf/cryptooperationsconfigwidget.cpp:110
 #, kde-format
 msgid "Apply profile"
 msgstr "Применение профиля"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:153
+#: src/conf/cryptooperationsconfigwidget.cpp:152
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr "Применён профиль конфигурации «%1»."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:154
+#: src/conf/cryptooperationsconfigwidget.cpp:153
 #, kde-format
 msgid "GnuPG Profile - Kleopatra"
 msgstr "Профиль GnuPG — Kleopatra"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:189
+#: src/conf/cryptooperationsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@title"
 msgid "General Operations"
 msgstr "Основные операции"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:193
+#: src/conf/cryptooperationsconfigwidget.cpp:192
 #, kde-format
 msgid "Activate GnuPG Profile:"
 msgstr "Выбор профиля GnuPG:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:194
+#: src/conf/cryptooperationsconfigwidget.cpp:193
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
 "of the GnuPG system."
 msgstr "Профиль содержит различные параметры компонентов системы GnuPG."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:210
+#: src/conf/cryptooperationsconfigwidget.cpp:209
 #, kde-format
 msgid "Apply"
 msgstr "Применить"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:233
-#, kde-format
-msgid "EMail Operations"
-msgstr "Действия с электронной почтой"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:235
-#, kde-format
-msgid ""
-"Don't confirm signing certificate if there is only one valid certificate for "
-"the identity"
-msgstr ""
-"Не подтверждать выбор единственного возможного сертификата при создании "
-"подписи"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:236
-#, kde-format
-msgid ""
-"Don't confirm encryption certificates if there is exactly one valid "
-"certificate for each recipient"
-msgstr ""
-"Не подтверждать выбор единственного возможного сертификата для адресатов "
-"сообщения электронной почты"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:232
 #, kde-format
 msgid "File Operations"
 msgstr "Действия с файлами"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:234
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3535,14 +3512,14 @@ msgstr ""
 "«.gpg»"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:235
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 "Сохранять подписанные или зашифрованные файлы в формате текстовых файлов."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:246
+#: src/conf/cryptooperationsconfigwidget.cpp:236
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3556,7 +3533,7 @@ msgstr ""
 "увеличивает размер итоговых файлов на треть."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:249
+#: src/conf/cryptooperationsconfigwidget.cpp:239
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3565,19 +3542,19 @@ msgstr ""
 "Начинать операцию автоматически на основании определения ввода данных для "
 "расшифровки или проверки."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:250
+#: src/conf/cryptooperationsconfigwidget.cpp:240
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Автоматически извлекать данные из файловых архивов после расшифровки"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:251
+#: src/conf/cryptooperationsconfigwidget.cpp:241
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Создавать временные расшифрованные файлы в папке с исходным файлом."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:242
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3586,24 +3563,24 @@ msgstr ""
 "каталога временных файлов."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:253
+#: src/conf/cryptooperationsconfigwidget.cpp:243
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Использовать только симметричное шифрование."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:254
+#: src/conf/cryptooperationsconfigwidget.cpp:244
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Используйте этот параметр для отключения шифрования с открытым ключом."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:266
+#: src/conf/cryptooperationsconfigwidget.cpp:256
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Программа для подсчёта контрольных сумм файлов:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:271
+#: src/conf/cryptooperationsconfigwidget.cpp:261
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Программа для создания архивов:"
@@ -4833,14 +4810,14 @@ msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgstr ""
 "Файл <filename>%1</filename> проверен с помощью <filename>%2</filename>"
 
-#: src/crypto/encryptemailcontroller.cpp:125
+#: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
 msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr "Неоднозначный вызов EncryptEMailController::protocolAsString()."
 
-#: src/crypto/encryptemailcontroller.cpp:143
-#: src/crypto/newsignencryptemailcontroller.cpp:429
-#: src/crypto/signemailcontroller.cpp:163
+#: src/crypto/encryptemailcontroller.cpp:139
+#: src/crypto/newsignencryptemailcontroller.cpp:241
+#: src/crypto/signemailcontroller.cpp:159
 #: src/crypto/signencryptfilescontroller.cpp:339
 #, kde-format
 msgid "User cancel"
@@ -4928,27 +4905,27 @@ msgid "Verify Files"
 msgstr "Проверка файлов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:116
-#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:95
+#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: все задания выполнены."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:118
-#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:97
+#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr "Все задания выполнены."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultlistwidget.cpp:195
-#: src/crypto/gui/resultpage.cpp:114
+#: src/crypto/gui/resultpage.cpp:108
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Задание %1: %2"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:142
-#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:110
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
@@ -5024,13 +5001,15 @@ msgstr "&Подписанные данные:"
 msgid "&Input file is an archive; unpack with:"
 msgstr "&Входной файл является архивом, распаковать с помощью:"
 
-#: src/crypto/gui/encryptemailwizard.cpp:29
-#, kde-format
+#: src/crypto/gui/encryptemailwizard.cpp:27
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Encrypt"
 msgctxt "@title:window"
-msgid "Encrypt Mail Message"
-msgstr "Шифрование письма"
+msgid "Encrypt Text"
+msgstr "Шифрование"
 
-#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:122
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:116
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>Результаты</b>"
@@ -5138,38 +5117,39 @@ msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Журнал аудита"
 
-#: src/crypto/gui/resultpage.cpp:66
+#: src/crypto/gui/resultpage.cpp:65
 #, kde-format
 msgid "Keep open after operation completed"
 msgstr "Оставить открытым после завершения операции"
 
-#: src/crypto/gui/signemailwizard.cpp:66
+#: src/crypto/gui/signemailwizard.cpp:70
 #, kde-format
 msgid "You need to select a signing certificate to proceed."
 msgstr "Выберите сертификат для подписи."
 
-#: src/crypto/gui/signemailwizard.cpp:73
+#: src/crypto/gui/signemailwizard.cpp:77
 #, kde-format
 msgid "You need to select an OpenPGP signing certificate to proceed."
 msgstr "Необходимо выбрать сертификат OpenPGP для подписи."
 
-#: src/crypto/gui/signemailwizard.cpp:75
+#: src/crypto/gui/signemailwizard.cpp:79
 #, kde-format
 msgid "You need to select an S/MIME signing certificate to proceed."
 msgstr "Необходимо выбрать сертификат S/MIME для подписи."
 
-#: src/crypto/gui/signemailwizard.cpp:78
+#: src/crypto/gui/signemailwizard.cpp:82
 #, kde-format
 msgid ""
 "You need to select an OpenPGP signing certificate and an S/MIME signing "
 "certificate to proceed."
 msgstr "Необходимо выбрать сертификаты OpenPGP и S/MIME для подписи."
 
-#: src/crypto/gui/signemailwizard.cpp:110
-#, kde-format
+#: src/crypto/gui/signemailwizard.cpp:101
+#, fuzzy, kde-format
+#| msgid "Sign Files"
 msgctxt "@title:window"
-msgid "Sign Mail Message"
-msgstr "Подпись электронного письма"
+msgid "Sign Text"
+msgstr "Подписывание файлов"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -5792,7 +5772,7 @@ msgstr "&Далее"
 msgid "Back"
 msgstr "Назад"
 
-#: src/crypto/newsignencryptemailcontroller.cpp:323
+#: src/crypto/newsignencryptemailcontroller.cpp:168
 #, kde-format
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr "Неоднозначный вызов NewSignEncryptEMailController::protocolAsString()."
@@ -7743,46 +7723,14 @@ msgctxt "@title"
 msgid "Certifications Loading Failed"
 msgstr "Не удалось загрузить сертификаты"
 
-#. i18n: ectx: label, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:10
-#, kde-format
-msgid "Quick Sign EMail"
-msgstr "Быстрое подписывание письма"
-
-#. i18n: ectx: whatsthis, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:11
-#, kde-format
-msgid ""
-"Minimize the number of steps when signing emails, use preset defaults unless "
-"problems occur."
-msgstr ""
-"Уменьшить количество действий для подписывания письма, использовать "
-"параметры по умолчанию, если не возникает ошибок."
-
-#. i18n: ectx: label, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:15
-#, kde-format
-msgid "Quick Encrypt EMail"
-msgstr "Быстрое шифрование письма"
-
-#. i18n: ectx: whatsthis, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"Minimize the number of steps when encrypting emails, use preset defaults "
-"unless problems occur."
-msgstr ""
-"Уменьшить количество действий для шифрования письма, использовать параметры "
-"по умолчанию, если не возникает ошибок."
-
 #. i18n: ectx: label, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:20
+#: src/kcfg/emailoperationspreferences.kcfg:10
 #, kde-format
 msgid "Decrypt/Verify Popup Geometry"
 msgstr "Координаты всплывающей подсказки о расшифровке/проверке"
 
 #. i18n: ectx: whatsthis, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:21
+#: src/kcfg/emailoperationspreferences.kcfg:11
 #, kde-format
 msgid ""
 "The remembered size and position of the Decrypt/Verify Result Popup used by "
@@ -8088,20 +8036,48 @@ msgstr ""
 msgid "Checksum program to use when creating checksum files"
 msgstr "Программа для подсчёта контрольных сумм файлов"
 
-#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:73
+#, fuzzy, kde-format
+#| msgid "Can be used for signing"
+msgid "Show results after signing"
+msgstr "Может использоваться для подписи"
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:74
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully signing the clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:78
+#, kde-format
+msgid "Show results after encryption"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:79
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully encrypting the "
+"clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "Включить S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Включает поддержку S/MIME (CMS)."
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:75
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8111,19 +8087,19 @@ msgstr ""
 "будет предоставлять возможностей, связанных с S/MIME (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:91
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Разрешить создание сертификатов S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:80
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Разрешает создание запросов подписывания сертификатов S/MIME"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:81
+#: src/kcfg/settings.kcfg:93
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8133,20 +8109,20 @@ msgstr ""
 "создания запросов подписывания сертификатов S/MIME."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Разрешить подписывание с помощью сертификатов S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:98
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
 "Разрешить подписывание текста или файлов с помощью сертификатов S/MIME."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8156,74 +8132,74 @@ msgstr ""
 "создания подписей с помощью сертификатов S/MIME."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Показывать конфигурацию внешнего вида"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:109
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Показывать конфигурацию криптографических операций"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Показать конфигурацию служб каталогов"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Показать конфигурацию системы GnuPG"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Показать конфигурацию смарт-карт"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Показать конфигурацию проверки S/MIME"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:120
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
 "Указывает порядок отображения атрибутов уникальных имён сертификатов X.509."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:138
 #, kde-format
 msgid "Enable Groups"
 msgstr "Использовать группы"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Включить использование групп ключей."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:128
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "Включить использование групп ключей для создания списков получателей."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Получать ключи подписывающего лица после импорта"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:137
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8239,13 +8215,13 @@ msgstr ""
 "представителями."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Схемы URL-адресов для блокировки"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:145
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8257,13 +8233,13 @@ msgstr ""
 "во внешних приложениях."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:151
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Всегда выполнять поиск сертификатов смарт-карты на сервере ключей"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:152
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8273,7 +8249,7 @@ msgstr ""
 "ключей."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:154
+#: src/kcfg/settings.kcfg:166
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8286,20 +8262,20 @@ msgstr ""
 "        По умолчанию такой поиск выполняется только для серверов ключей LDAP."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Пытаться загружать сертификаты S/MIME со смарт-карт PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:159
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
 "Автоматически загружать сертификаты S/MIME со смарт-карт PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8312,7 +8288,7 @@ msgstr ""
 "будет заблокирована."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Отключить параметры профиля"
@@ -12068,6 +12044,51 @@ msgstr ""
 "Для импорта из открытого сервера ключей используйте пункт меню «Поиск на "
 "сервере»."
 
+#~ msgid "EMail Operations"
+#~ msgstr "Действия с электронной почтой"
+
+#~ msgid ""
+#~ "Don't confirm signing certificate if there is only one valid certificate "
+#~ "for the identity"
+#~ msgstr ""
+#~ "Не подтверждать выбор единственного возможного сертификата при создании "
+#~ "подписи"
+
+#~ msgid ""
+#~ "Don't confirm encryption certificates if there is exactly one valid "
+#~ "certificate for each recipient"
+#~ msgstr ""
+#~ "Не подтверждать выбор единственного возможного сертификата для адресатов "
+#~ "сообщения электронной почты"
+
+#~ msgctxt "@title:window"
+#~ msgid "Encrypt Mail Message"
+#~ msgstr "Шифрование письма"
+
+#~ msgctxt "@title:window"
+#~ msgid "Sign Mail Message"
+#~ msgstr "Подпись электронного письма"
+
+#~ msgid "Quick Sign EMail"
+#~ msgstr "Быстрое подписывание письма"
+
+#~ msgid ""
+#~ "Minimize the number of steps when signing emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr ""
+#~ "Уменьшить количество действий для подписывания письма, использовать "
+#~ "параметры по умолчанию, если не возникает ошибок."
+
+#~ msgid "Quick Encrypt EMail"
+#~ msgstr "Быстрое шифрование письма"
+
+#~ msgid ""
+#~ "Minimize the number of steps when encrypting emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr ""
+#~ "Уменьшить количество действий для шифрования письма, использовать "
+#~ "параметры по умолчанию, если не возникает ошибок."
+
 #~ msgid ""
 #~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
 #~ "actually belongs to the person it claims it is from?"
@@ -14340,9 +14361,6 @@ msgstr ""
 
 #~ msgid "Support for obsolete EMAIL RDN in Certificate Wizard"
 #~ msgstr "Поддержка устаревшей EMAIL RDN в мастере сертификатов"
-
-#~ msgid "Can be used for signing"
-#~ msgstr "Может использоваться для подписи"
 
 #~ msgid "Can be used for certification"
 #~ msgstr "Может использоваться для сертификации"

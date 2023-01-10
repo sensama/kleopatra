@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-06 00:48+0000\n"
+"POT-Creation-Date: 2023-01-10 00:57+0000\n"
 "PO-Revision-Date: 2005-12-13 17:23+0100\n"
 "Last-Translator: Marcos <marcos@euskalgnu.org>\n"
 "Language-Team:  <eu@li.org>\n"
@@ -2763,8 +2763,8 @@ msgid ""
 msgstr ""
 
 #: src/commands/newopenpgpcertificatecommand.cpp:220
-#: src/crypto/newsignencryptemailcontroller.cpp:576
-#: src/crypto/newsignencryptemailcontroller.cpp:581
+#: src/crypto/newsignencryptemailcontroller.cpp:388
+#: src/crypto/newsignencryptemailcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgctxt "@title:window"
@@ -3368,7 +3368,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:119
+#: src/conf/appearanceconfigwidget.cpp:327 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr ""
@@ -3522,89 +3522,69 @@ msgstr "Hautatu CRL fitxategia"
 msgid "GnuPG System"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:107
-#: src/conf/cryptooperationsconfigwidget.cpp:205
+#: src/conf/cryptooperationsconfigwidget.cpp:106
+#: src/conf/cryptooperationsconfigwidget.cpp:204
 #, kde-format
 msgid "default"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:110
+#: src/conf/cryptooperationsconfigwidget.cpp:109
 #, kde-format
 msgid ""
 "This means that every configuration option of the GnuPG System will be reset "
 "to its default."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:111
+#: src/conf/cryptooperationsconfigwidget.cpp:110
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Apply profile"
 msgstr "Ziurtagirien ezabapenak huts egin du"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:153
+#: src/conf/cryptooperationsconfigwidget.cpp:152
 #, kde-format
 msgctxt "%1 is the name of the profile"
 msgid "The configuration profile \"%1\" was applied."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:154
+#: src/conf/cryptooperationsconfigwidget.cpp:153
 #, fuzzy, kde-format
 #| msgid "GnuPG Log Viewer..."
 msgid "GnuPG Profile - Kleopatra"
 msgstr "GnuPG egunkari ikustailea..."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:189
+#: src/conf/cryptooperationsconfigwidget.cpp:188
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgctxt "@title"
 msgid "General Operations"
 msgstr "Gelditu eragiketa"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:193
+#: src/conf/cryptooperationsconfigwidget.cpp:192
 #, fuzzy, kde-format
 #| msgid "GnuPG Log Viewer..."
 msgid "Activate GnuPG Profile:"
 msgstr "GnuPG egunkari ikustailea..."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:194
+#: src/conf/cryptooperationsconfigwidget.cpp:193
 #, kde-format
 msgid ""
 "A profile consists of various settings that can apply to multiple components "
 "of the GnuPG system."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:210
+#: src/conf/cryptooperationsconfigwidget.cpp:209
 #, kde-format
 msgid "Apply"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:233
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
-msgid "EMail Operations"
-msgstr "Gelditu eragiketa"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:235
-#, kde-format
-msgid ""
-"Don't confirm signing certificate if there is only one valid certificate for "
-"the identity"
-msgstr ""
-
-#: src/conf/cryptooperationsconfigwidget.cpp:236
-#, kde-format
-msgid ""
-"Don't confirm encryption certificates if there is exactly one valid "
-"certificate for each recipient"
-msgstr ""
-
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:232
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgid "File Operations"
 msgstr "Gelditu eragiketa"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:234
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3612,14 +3592,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:245
+#: src/conf/cryptooperationsconfigwidget.cpp:235
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Create signed or encrypted files as text files."
 msgstr "Gakoak ezabatzen..."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:246
+#: src/conf/cryptooperationsconfigwidget.cpp:236
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3629,51 +3609,51 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:249
+#: src/conf/cryptooperationsconfigwidget.cpp:239
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:250
+#: src/conf/cryptooperationsconfigwidget.cpp:240
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:251
+#: src/conf/cryptooperationsconfigwidget.cpp:241
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Gakoak ezabatzen..."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:252
+#: src/conf/cryptooperationsconfigwidget.cpp:242
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:253
+#: src/conf/cryptooperationsconfigwidget.cpp:243
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:254
+#: src/conf/cryptooperationsconfigwidget.cpp:244
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:266
+#: src/conf/cryptooperationsconfigwidget.cpp:256
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:271
+#: src/conf/cryptooperationsconfigwidget.cpp:261
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -4841,14 +4821,14 @@ msgctxt ""
 msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgstr ""
 
-#: src/crypto/encryptemailcontroller.cpp:125
+#: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
 msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 
-#: src/crypto/encryptemailcontroller.cpp:143
-#: src/crypto/newsignencryptemailcontroller.cpp:429
-#: src/crypto/signemailcontroller.cpp:163
+#: src/crypto/encryptemailcontroller.cpp:139
+#: src/crypto/newsignencryptemailcontroller.cpp:241
+#: src/crypto/signemailcontroller.cpp:159
 #: src/crypto/signencryptfilescontroller.cpp:339
 #, kde-format
 msgid "User cancel"
@@ -4945,20 +4925,20 @@ msgid "Verify Files"
 msgstr "Gakoak ezabatzen..."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:116
-#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:95
+#: src/crypto/gui/newresultpage.cpp:97 src/crypto/gui/resultpage.cpp:89
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:118
-#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:97
+#: src/crypto/gui/newresultpage.cpp:99 src/crypto/gui/resultpage.cpp:91
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultlistwidget.cpp:195
-#: src/crypto/gui/resultpage.cpp:114
+#: src/crypto/gui/resultpage.cpp:108
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgctxt "number, operation description"
@@ -4966,7 +4946,7 @@ msgid "Operation %1: %2"
 msgstr "Gelditu eragiketa"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:142
-#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:122 src/crypto/gui/resultpage.cpp:110
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -5042,14 +5022,14 @@ msgstr ""
 msgid "&Input file is an archive; unpack with:"
 msgstr ""
 
-#: src/crypto/gui/encryptemailwizard.cpp:29
+#: src/crypto/gui/encryptemailwizard.cpp:27
 #, fuzzy, kde-format
-#| msgid "Certificate Deletion Failed"
+#| msgid "For &encrypting only"
 msgctxt "@title:window"
-msgid "Encrypt Mail Message"
-msgstr "Ziurtagirien ezabapenak huts egin du"
+msgid "Encrypt Text"
+msgstr "&Enkriptatzeko bakarrik"
 
-#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:122
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:116
 #, kde-format
 msgid "<b>Results</b>"
 msgstr ""
@@ -5161,41 +5141,41 @@ msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr ""
 
-#: src/crypto/gui/resultpage.cpp:66
+#: src/crypto/gui/resultpage.cpp:65
 #, kde-format
 msgid "Keep open after operation completed"
 msgstr ""
 
-#: src/crypto/gui/signemailwizard.cpp:66
+#: src/crypto/gui/signemailwizard.cpp:70
 #, kde-format
 msgid "You need to select a signing certificate to proceed."
 msgstr ""
 
-#: src/crypto/gui/signemailwizard.cpp:73
+#: src/crypto/gui/signemailwizard.cpp:77
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid "You need to select an OpenPGP signing certificate to proceed."
 msgstr "CA ziurtagiriak ezabatzen"
 
-#: src/crypto/gui/signemailwizard.cpp:75
+#: src/crypto/gui/signemailwizard.cpp:79
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgid "You need to select an S/MIME signing certificate to proceed."
 msgstr "CA ziurtagiriak ezabatzen"
 
-#: src/crypto/gui/signemailwizard.cpp:78
+#: src/crypto/gui/signemailwizard.cpp:82
 #, kde-format
 msgid ""
 "You need to select an OpenPGP signing certificate and an S/MIME signing "
 "certificate to proceed."
 msgstr ""
 
-#: src/crypto/gui/signemailwizard.cpp:110
+#: src/crypto/gui/signemailwizard.cpp:101
 #, fuzzy, kde-format
-#| msgid "Canceled."
+#| msgid "For &signing only"
 msgctxt "@title:window"
-msgid "Sign Mail Message"
-msgstr "Ezeztatua."
+msgid "Sign Text"
+msgstr "&Sinatzeko bakarrik"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, fuzzy, kde-format
@@ -5819,7 +5799,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: src/crypto/newsignencryptemailcontroller.cpp:323
+#: src/crypto/newsignencryptemailcontroller.cpp:168
 #, kde-format
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
@@ -7781,43 +7761,15 @@ msgctxt "@title"
 msgid "Certifications Loading Failed"
 msgstr "Errorea ziurtagiriak zerrendatzean"
 
-#. i18n: ectx: label, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:10
-#, kde-format
-msgid "Quick Sign EMail"
-msgstr ""
-
-#. i18n: ectx: whatsthis, entry (QuickSignEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:11
-#, kde-format
-msgid ""
-"Minimize the number of steps when signing emails, use preset defaults unless "
-"problems occur."
-msgstr ""
-
-#. i18n: ectx: label, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:15
-#, kde-format
-msgid "Quick Encrypt EMail"
-msgstr ""
-
-#. i18n: ectx: whatsthis, entry (QuickEncryptEMail), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"Minimize the number of steps when encrypting emails, use preset defaults "
-"unless problems occur."
-msgstr ""
-
 #. i18n: ectx: label, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:20
+#: src/kcfg/emailoperationspreferences.kcfg:10
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypt/Verify Popup Geometry"
 msgstr "Gakoak ezabatzen..."
 
 #. i18n: ectx: whatsthis, entry (DecryptVerifyPopupGeometry), group (EMailOperations)
-#: src/kcfg/emailoperationspreferences.kcfg:21
+#: src/kcfg/emailoperationspreferences.kcfg:11
 #, kde-format
 msgid ""
 "The remembered size and position of the Decrypt/Verify Result Popup used by "
@@ -8071,20 +8023,47 @@ msgstr ""
 msgid "Checksum program to use when creating checksum files"
 msgstr ""
 
-#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:73
+#, kde-format
+msgid "Show results after signing"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:74
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully signing the clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:78
+#, kde-format
+msgid "Show results after encryption"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
+#: src/kcfg/settings.kcfg:79
+#, kde-format
+msgid ""
+"If true, then the results are shown after successfully encrypting the "
+"clipboard."
+msgstr ""
+
+#. i18n: ectx: label, entry (cmsEnabled), group (CMS)
+#: src/kcfg/settings.kcfg:85
 #, kde-format
 msgid "Enable S/MIME"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:75
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8092,21 +8071,21 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:91
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgid "Allow S/MIME certificate creation"
 msgstr "ASCII-blindatu ziurtagiri bildumak (*.pem)"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:80
+#: src/kcfg/settings.kcfg:92
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Ezabatu ziurtagiriak"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:81
+#: src/kcfg/settings.kcfg:93
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid ""
@@ -8115,21 +8094,21 @@ msgid ""
 msgstr "Ezabatu ziurtagiriak"
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:97
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgid "Allow signing with S/MIME certificates"
 msgstr "ASCII-blindatu ziurtagiri bildumak (*.pem)"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:98
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "ASCII-blindatu ziurtagiri bildumak (*.pem)"
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8137,75 +8116,75 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:105
 #, fuzzy, kde-format
 msgid "Show appearance configuration"
 msgstr "Ziurtagiriaren informazioa"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:109
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Information"
 msgid "Show crypto operations configuration"
 msgstr "Ziurtagiri kudeatzailearen informazioa"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:101
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show directory services configuration"
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:117
 #, fuzzy, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Ziurtagiriaren informazioa"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:121
 #, fuzzy, kde-format
 msgid "Show smart cards configuration"
 msgstr "Ziurtagiriaren informazioa"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:120
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:138
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Enable Groups"
 msgstr "&Xehetasunak"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:127
+#: src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:128
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:137
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8215,13 +8194,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:143
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "URL schemes to block"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:145
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8230,14 +8209,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:151
+#: src/kcfg/settings.kcfg:163
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Ziurtagiriaren deskargak huts egin du"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:152
+#: src/kcfg/settings.kcfg:164
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgid ""
@@ -8246,7 +8225,7 @@ msgid ""
 msgstr "Ziurtagiriaren deskargak huts egin du"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:154
+#: src/kcfg/settings.kcfg:166
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8256,19 +8235,19 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:158
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:159
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:172
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8277,7 +8256,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:178
 #, kde-format
 msgid "Disable profile settings"
 msgstr ""
@@ -12036,6 +12015,23 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Stop Operation"
+#~ msgid "EMail Operations"
+#~ msgstr "Gelditu eragiketa"
+
+#, fuzzy
+#~| msgid "Certificate Deletion Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Encrypt Mail Message"
+#~ msgstr "Ziurtagirien ezabapenak huts egin du"
+
+#, fuzzy
+#~| msgid "Canceled."
+#~ msgctxt "@title:window"
+#~ msgid "Sign Mail Message"
+#~ msgstr "Ezeztatua."
 
 #, fuzzy
 #~| msgid "Secret keys imported:"

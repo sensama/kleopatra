@@ -24,12 +24,6 @@
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/KeyFilterManager>
 
-#include <QGpgME/Protocol>
-#include <QGpgME/CryptoConfig>
-
-#include <gpgme++/context.h>
-#include <gpgme++/engineinfo.h>
-
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -42,7 +36,6 @@
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QPushButton>
-#include <QProcess>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QRegularExpression>
@@ -56,172 +49,6 @@ CryptoOperationsConfigWidget::CryptoOperationsConfigWidget(QWidget *p, Qt::Windo
     : QWidget{p, f}
 {
     setupGui();
-}
-
-static void resetDefaults()
-{
-    auto config = QGpgME::cryptoConfig();
-
-    if (!config) {
-        qCWarning(KLEOPATRA_LOG) << "Failed to obtain config";
-        return;
-    }
-
-    const QStringList componentList = config->componentList();
-    for (const auto &compName: componentList) {
-        auto comp = config->component(compName);
-        if (!comp) {
-            qCWarning(KLEOPATRA_LOG) << "Failed to find component:" << comp;
-            return;
-        }
-        const QStringList groupList = comp->groupList();
-        for (const auto &grpName: groupList) {
-            auto grp = comp->group(grpName);
-            if (!grp) {
-                qCWarning(KLEOPATRA_LOG) << "Failed to find group:" << grp << "in component:" << compName;
-                return;
-            }
-            const QStringList entries = grp->entryList();
-            for (const auto &entryName: entries) {
-                auto entry = grp->entry(entryName);
-                if (!entry) {
-                    qCWarning(KLEOPATRA_LOG) << "Failed to find entry:" << entry << "in group:"<< grp << "in component:" << compName;
-                    return;
-                }
-                entry->resetToDefault();
-            }
-        }
-    }
-    config->sync(true);
-    return;
-}
-
-void CryptoOperationsConfigWidget::applyProfile(const QString &profile)
-{
-    if (profile.isEmpty()) {
-        return;
-    }
-    qCDebug(KLEOPATRA_LOG) << "Applying profile " << profile;
-
-    if (profile == i18n("default")) {
-        if (KMessageBox::warningTwoActions(
-                this,
-                i18n("This means that every configuration option of the GnuPG System will be reset to its default."),
-                i18n("Apply profile"),
-                KStandardGuiItem::apply(),
-                KStandardGuiItem::cancel())
-            != KMessageBox::ButtonCode::PrimaryAction) {
-            return;
-        }
-        resetDefaults();
-        KeyFilterManager::instance()->reload();
-        return;
-    }
-
-    mApplyBtn->setEnabled(false);
-
-    QDir datadir(QString::fromUtf8(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
-    const auto path = datadir.filePath(profile + QStringLiteral(".prf"));
-
-    auto gpgconf = new QProcess;
-    const auto ei = GpgME::engineInfo(GpgME::GpgConfEngine);
-    Q_ASSERT (ei.fileName());
-    gpgconf->setProgram(QFile::decodeName(ei.fileName()));
-    gpgconf->setProcessChannelMode(QProcess::MergedChannels);
-    gpgconf->setArguments(QStringList() << QStringLiteral("--runtime")
-                                        << QStringLiteral("--apply-profile")
-                                        << path);
-
-    qDebug() << "Starting" << ei.fileName() << "with args" << gpgconf->arguments();
-
-#if QT_DEPRECATED_SINCE(5, 13)
-    connect(gpgconf, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
-#else
-    connect(gpgconf, &QProcess::finished,
-#endif
-            this, [this, gpgconf, profile] () {
-        mApplyBtn->setEnabled(true);
-        if (gpgconf->exitStatus() != QProcess::NormalExit) {
-            KMessageBox::error(this, QStringLiteral("<pre>%1</pre>").arg(QString::fromUtf8(gpgconf->readAll())));
-            delete gpgconf;
-            return;
-        }
-        delete gpgconf;
-        KMessageBox::information(this,
-                         i18nc("%1 is the name of the profile",
-                               "The configuration profile \"%1\" was applied.", profile),
-                         i18n("GnuPG Profile - Kleopatra"));
-        auto config = QGpgME::cryptoConfig();
-        if (config) {
-            config->clear();
-        }
-        KeyFilterManager::instance()->reload();
-    });
-    gpgconf->start();
-}
-
-// Get a list of available profile files and add a configuration
-// group if there are any.
-void CryptoOperationsConfigWidget::setupProfileGui(QBoxLayout *layout)
-{
-    const Settings settings;
-    if (settings.profilesDisabled() || GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.20" || !layout) {
-        //  Profile support is new in 2.1.20
-        qCDebug(KLEOPATRA_LOG) << "Profile settings disabled";
-        return;
-    }
-    QDir datadir(QString::fromUtf8(GpgME::dirInfo("datadir")) + QStringLiteral("/../doc/gnupg/examples"));
-
-    if (!datadir.exists()) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find gnupg's example profile directory" << datadir.path();
-        return;
-    }
-
-    const auto profiles = datadir.entryInfoList(QStringList() << QStringLiteral("*.prf"), QDir::Readable | QDir::Files, QDir::Name);
-
-    if (profiles.isEmpty()) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find any profiles in: " << datadir.path();
-        return;
-    }
-
-
-    auto genGrp = new QGroupBox(i18nc("@title", "General Operations"));
-    auto profLayout = new QHBoxLayout;
-    genGrp->setLayout(profLayout);
-    layout->addWidget(genGrp);
-    auto profLabel = new QLabel(i18n("Activate GnuPG Profile:"));
-    profLabel->setToolTip(i18n("A profile consists of various settings that can apply to multiple components of the GnuPG system."));
-
-    auto combo = new QComboBox;
-    profLabel->setBuddy(combo);
-
-    // Add an empty Item to avoid the impression that this GUI element
-    // shows the currently selected profile.
-    combo->addItem(QString());
-
-    // We don't translate "default" here because the other profile names are
-    // also not translated as they are taken directly from file.
-    combo->addItem(i18n("default"));
-    for (const auto &profile: profiles) {
-        combo->addItem(profile.baseName());
-    }
-
-    mApplyBtn = new QPushButton(i18n("Apply"));
-
-    mApplyBtn->setEnabled(false);
-
-    profLayout->addWidget(profLabel);
-    profLayout->addWidget(combo);
-    profLayout->addWidget(mApplyBtn);
-    profLayout->addStretch(1);
-
-    connect(mApplyBtn, &QPushButton::clicked, this, [this, combo] () {
-        applyProfile(combo->currentText());
-    });
-
-    connect(combo, &QComboBox::currentTextChanged, this, [this] (const QString &text) {
-        mApplyBtn->setEnabled(!text.isEmpty());
-    });
 }
 
 void CryptoOperationsConfigWidget::setupGui()
@@ -266,8 +93,6 @@ void CryptoOperationsConfigWidget::setupGui()
 
     fileGrp->setLayout(fileGrpLay);
     baseLay->addWidget(fileGrp);
-
-    setupProfileGui(baseLay);
 
     baseLay->addStretch(1);
 

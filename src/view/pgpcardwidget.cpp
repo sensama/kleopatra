@@ -27,6 +27,7 @@
 
 #include "dialogs/gencardkeydialog.h"
 
+#include <Libkleo/Compliance>
 #include <Libkleo/GnuPG>
 
 #include <QProgressDialog>
@@ -304,7 +305,10 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey()
+                                          && card->hasEncryptionKey()
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
 }
 

@@ -7,13 +7,13 @@
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2015.
 # Yaşar ŞENTÜRK <yasar@dijitaltek.com>, 2004.
 # Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-10 00:57+0000\n"
-"PO-Revision-Date: 2022-12-23 20:39+0300\n"
+"POT-Creation-Date: 2023-01-11 00:58+0000\n"
+"PO-Revision-Date: 2023-01-10 21:21+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1297,7 +1297,7 @@ msgstr ""
 "aktarılan herhangi bir anahtar bireysel olarak başarısız olabilir.</"
 "para><para>Dışa aktarılmışsa bir onay isteği <email>%1</email> adresine "
 "gönderilir; dışa aktarma sürecinin tamamlanabilmesi için bir posta "
-"programının bunu onaylaması gereklidir.</para><para><application>KMail</"
+"programının bunu onaylaması gereklidir.</para><para><application>K Posta</"
 "application>, bu postaları işleyebilir; ancak tüm posta programları bunu "
 "yapamaz.</para><para>Aktarma bittiğinde, standart, henüz yayımlanmış bir "
 "anahtarın otomatikleştirilmiş kaldırılmasına izin vermez (henüz).</"
@@ -3323,68 +3323,12 @@ msgstr "Akıllı Kartlar"
 msgid "GnuPG System"
 msgstr "GnuPG Sistemi"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:106
-#: src/conf/cryptooperationsconfigwidget.cpp:204
-#, kde-format
-msgid "default"
-msgstr "öntanımlı"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:109
-#, kde-format
-msgid ""
-"This means that every configuration option of the GnuPG System will be reset "
-"to its default."
-msgstr ""
-"Bunun anlamı, GnuPG Sisteminin her bir yapılandırma seçeneğinin, öntanımlı "
-"olarak sıfırlanacak olmasıdır."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:110
-#, kde-format
-msgid "Apply profile"
-msgstr "Profili uygula"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:152
-#, kde-format
-msgctxt "%1 is the name of the profile"
-msgid "The configuration profile \"%1\" was applied."
-msgstr "\"%1\" yapılandırma profili uygulandı."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:153
-#, kde-format
-msgid "GnuPG Profile - Kleopatra"
-msgstr "GnuPG Profili - Kleopatra"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:188
-#, kde-format
-msgctxt "@title"
-msgid "General Operations"
-msgstr "Genel İşlemler"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:192
-#, kde-format
-msgid "Activate GnuPG Profile:"
-msgstr "GnuPG Profilini Etkinleştir:"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:193
-#, kde-format
-msgid ""
-"A profile consists of various settings that can apply to multiple components "
-"of the GnuPG system."
-msgstr ""
-"Profil, GnuPG sisteminin birden çok bileşenine uygulanabilen çeşitli "
-"ayarlardan oluşur."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:209
-#, kde-format
-msgid "Apply"
-msgstr "Uygula"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
 msgid "File Operations"
 msgstr "Dosya İşlemleri"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:61
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3394,13 +3338,13 @@ msgstr ""
 "uzantılarıyla oluştur"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "İmzalı veya şifreli dosyaları, metin dosyası olarak oluştur."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:236
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3413,7 +3357,7 @@ msgstr ""
 "gönderilebilirler. Bu, dosya boyutunu üçte bir oranında artıracaktır."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:239
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3422,20 +3366,20 @@ msgstr ""
 "Şifre açma/onaylma için girdi algılaması tabanlı işlemleri otomatik olarak "
 "başlat."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:240
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Şifre çözümü sonrası dosya arşivlerini kendiliğinden çıkar"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Geçici olarak şifresi çözülen dosyaları şifreli dosyanın klasöründe oluştur."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3444,27 +3388,27 @@ msgstr ""
 "ayarlayın."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Yalnızca simetrik şifreleme kullanın."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 "Genel anahtar şifrelemesini devre dışı bırakmak için bu seçeneği ayarlayın."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:83
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Sağlama toplamı dosyaları oluşturulurken kullanılacak sağlama toplamı "
 "programı:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Dosyalar arşivlenirken kullanılacak olan arşiv komutu:"
@@ -4861,12 +4805,10 @@ msgid "&Input file is an archive; unpack with:"
 msgstr "&Girdi dosyası bir arşiv; şununla açılsın:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:27
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@title:window"
 msgid "Encrypt Text"
-msgstr "Şifrele"
+msgstr "Metni Şifrele"
 
 #: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:116
 #, kde-format
@@ -5006,11 +4948,10 @@ msgstr ""
 "seçmelisiniz."
 
 #: src/crypto/gui/signemailwizard.cpp:101
-#, fuzzy, kde-format
-#| msgid "Sign Files"
+#, kde-format
 msgctxt "@title:window"
 msgid "Sign Text"
-msgstr "Dosyaları İmzala"
+msgstr "Metni İmzala"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -7854,20 +7795,20 @@ msgstr ""
 #: src/kcfg/settings.kcfg:73
 #, kde-format
 msgid "Show results after signing"
-msgstr ""
+msgstr "İmzalama sonrası sonuçları göster"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:74
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
-msgstr ""
+msgstr "Doğruysa panonun başarıyla imzalanmasından sonra sonuçlar gösterilir."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:78
 #, kde-format
 msgid "Show results after encryption"
-msgstr ""
+msgstr "Şifreleme sonrası sonuçları göster"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:79
@@ -7875,7 +7816,7 @@ msgstr ""
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
 "clipboard."
-msgstr ""
+msgstr "Doğruysa panonun başarıyla şifrelenmesinden sonra sonuçlar gösterilir"
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:85
@@ -11840,6 +11781,43 @@ msgid ""
 msgstr ""
 "Bir dosyadan sertifika içe aktarın.<nl/>Genel bir anahtar sunucusundan içe "
 "aktarmak için, <interface>Sunucuda Ara</interface> seçeneğini kullanın."
+
+#~ msgid "default"
+#~ msgstr "öntanımlı"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr ""
+#~ "Bunun anlamı, GnuPG Sisteminin her bir yapılandırma seçeneğinin, "
+#~ "öntanımlı olarak sıfırlanacak olmasıdır."
+
+#~ msgid "Apply profile"
+#~ msgstr "Profili uygula"
+
+#~ msgctxt "%1 is the name of the profile"
+#~ msgid "The configuration profile \"%1\" was applied."
+#~ msgstr "\"%1\" yapılandırma profili uygulandı."
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "GnuPG Profili - Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "Genel İşlemler"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "GnuPG Profilini Etkinleştir:"
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr ""
+#~ "Profil, GnuPG sisteminin birden çok bileşenine uygulanabilen çeşitli "
+#~ "ayarlardan oluşur."
+
+#~ msgid "Apply"
+#~ msgstr "Uygula"
 
 #~ msgid "EMail Operations"
 #~ msgstr "E-posta İşlemleri"

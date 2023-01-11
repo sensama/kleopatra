@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-10 00:57+0000\n"
+"POT-Creation-Date: 2023-01-11 00:58+0000\n"
 "PO-Revision-Date: 2023-01-02 07:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -3178,64 +3178,12 @@ msgstr "智能卡"
 msgid "GnuPG System"
 msgstr "GnuPG 系统"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:106
-#: src/conf/cryptooperationsconfigwidget.cpp:204
-#, kde-format
-msgid "default"
-msgstr "默认"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:109
-#, kde-format
-msgid ""
-"This means that every configuration option of the GnuPG System will be reset "
-"to its default."
-msgstr "这意味着，GnuPG 系统的每个配置选项将重置为默认值。"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:110
-#, kde-format
-msgid "Apply profile"
-msgstr "应用配置方案"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:152
-#, kde-format
-msgctxt "%1 is the name of the profile"
-msgid "The configuration profile \"%1\" was applied."
-msgstr "配置文件“%1”已被应用。"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:153
-#, kde-format
-msgid "GnuPG Profile - Kleopatra"
-msgstr "GnuPG 配置文件 - Kleopatra"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:188
-#, kde-format
-msgctxt "@title"
-msgid "General Operations"
-msgstr "常规操作"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:192
-#, kde-format
-msgid "Activate GnuPG Profile:"
-msgstr "激活 GnuPG 配置："
-
-#: src/conf/cryptooperationsconfigwidget.cpp:193
-#, kde-format
-msgid ""
-"A profile consists of various settings that can apply to multiple components "
-"of the GnuPG system."
-msgstr "配置文件由多种设置组成，可以应用于 GnuPG 系统的多个组件。"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:209
-#, kde-format
-msgid "Apply"
-msgstr "执行"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
 msgid "File Operations"
 msgstr "文件操作"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:61
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3243,13 +3191,13 @@ msgid ""
 msgstr "创建 OpenPGP 加密文件时，以“.pgp”为扩展名，而不是“.gpg”"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "创建文本文件格式的签名或加密文件"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:236
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3261,50 +3209,50 @@ msgstr ""
 "者通过邮件正文发送。 这会使文件大小增加三分之一。"
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:239
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
 "Automatically start operation based on input detection for decrypt/verify."
 msgstr "基于输入检测自动开始解密或验证操作"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:240
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "解密后解压文件"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密文件的文件夹中创建临时解密文件。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "设置此选项以避免使用用户临时目录。"
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "只使用对称加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "选中此选项以禁用公钥加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:83
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "创建校验和文件时所用的校验和程序："
 
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "归档文件时所用归档命令："
@@ -11329,6 +11277,39 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "default"
+#~ msgstr "默认"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr "这意味着，GnuPG 系统的每个配置选项将重置为默认值。"
+
+#~ msgid "Apply profile"
+#~ msgstr "应用配置方案"
+
+#~ msgctxt "%1 is the name of the profile"
+#~ msgid "The configuration profile \"%1\" was applied."
+#~ msgstr "配置文件“%1”已被应用。"
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "GnuPG 配置文件 - Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "常规操作"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "激活 GnuPG 配置："
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr "配置文件由多种设置组成，可以应用于 GnuPG 系统的多个组件。"
+
+#~ msgid "Apply"
+#~ msgstr "执行"
 
 #~ msgid "EMail Operations"
 #~ msgstr "邮件操作"

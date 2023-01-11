@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-10 00:57+0000\n"
+"POT-Creation-Date: 2023-01-11 00:58+0000\n"
 "PO-Revision-Date: 2022-12-24 01:19+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -3353,68 +3353,12 @@ msgstr "Smartcard"
 msgid "GnuPG System"
 msgstr "Sistema GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:106
-#: src/conf/cryptooperationsconfigwidget.cpp:204
-#, kde-format
-msgid "default"
-msgstr "predefinita"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:109
-#, kde-format
-msgid ""
-"This means that every configuration option of the GnuPG System will be reset "
-"to its default."
-msgstr ""
-"Questo vuol dire che ogni opzione di configurazione del sistema GnuPG verrà "
-"ripristinata al valore predefinito."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:110
-#, kde-format
-msgid "Apply profile"
-msgstr "Applica profilo"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:152
-#, kde-format
-msgctxt "%1 is the name of the profile"
-msgid "The configuration profile \"%1\" was applied."
-msgstr "È stato applicato il profilo di configurazione «%1»."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:153
-#, kde-format
-msgid "GnuPG Profile - Kleopatra"
-msgstr "Profilo GnuPG - Kleopatra"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:188
-#, kde-format
-msgctxt "@title"
-msgid "General Operations"
-msgstr "Operazioni generali"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:192
-#, kde-format
-msgid "Activate GnuPG Profile:"
-msgstr "Attiva profilo GnuPG:"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:193
-#, kde-format
-msgid ""
-"A profile consists of various settings that can apply to multiple components "
-"of the GnuPG system."
-msgstr ""
-"Un profilo è composto dalle varie impostazioni che possono applicarsi a "
-"diversi componenti del sistema GnuPG."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:209
-#, kde-format
-msgid "Apply"
-msgstr "Applica"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
 msgid "File Operations"
 msgstr "Operazioni sui file"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:61
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3422,13 +3366,13 @@ msgid ""
 msgstr "Crea file OpenPGP cifrati con estensione «.pgp» invece di «.gpg»"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Crea file firmati o cifrati come file di testo."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:236
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3442,7 +3386,7 @@ msgstr ""
 "file incrementerà di un terzo."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:239
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3451,13 +3395,13 @@ msgstr ""
 "Avvia automaticamente l'operazione in base al riconoscimento dei dati in "
 "ingresso per decifrazione/verifica."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:240
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Estrai automaticamente gli archivi di file dopo averli decifrati"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
@@ -3465,7 +3409,7 @@ msgstr ""
 "Crea i file temporanei decifrati nella cartella del corrispondente file "
 "cifrato."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3474,27 +3418,27 @@ msgstr ""
 "utenti."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Usa solo la cifratura simmetrica."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 "Imposta questa opzione per disabilitare la cifratura a chiave pubblica."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:83
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Programma per i codici di controllo da usare quando vengono creati i file di "
 "codici di controllo:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Comando di archiviazione da usare quando vengono archiviati i file:"
@@ -11939,6 +11883,43 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#~ msgid "default"
+#~ msgstr "predefinita"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr ""
+#~ "Questo vuol dire che ogni opzione di configurazione del sistema GnuPG "
+#~ "verrà ripristinata al valore predefinito."
+
+#~ msgid "Apply profile"
+#~ msgstr "Applica profilo"
+
+#~ msgctxt "%1 is the name of the profile"
+#~ msgid "The configuration profile \"%1\" was applied."
+#~ msgstr "È stato applicato il profilo di configurazione «%1»."
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "Profilo GnuPG - Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "Operazioni generali"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "Attiva profilo GnuPG:"
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr ""
+#~ "Un profilo è composto dalle varie impostazioni che possono applicarsi a "
+#~ "diversi componenti del sistema GnuPG."
+
+#~ msgid "Apply"
+#~ msgstr "Applica"
 
 #~ msgid "EMail Operations"
 #~ msgstr "Operazioni di posta"

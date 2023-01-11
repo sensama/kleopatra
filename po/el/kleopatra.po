@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-10 00:57+0000\n"
+"POT-Creation-Date: 2023-01-11 00:58+0000\n"
 "PO-Revision-Date: 2021-10-22 09:12+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -3515,68 +3515,12 @@ msgstr "Έξυπνη κάρτα"
 msgid "GnuPG System"
 msgstr "Σύστημα GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:106
-#: src/conf/cryptooperationsconfigwidget.cpp:204
-#, kde-format
-msgid "default"
-msgstr "προκαθορισμένο"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:109
-#, kde-format
-msgid ""
-"This means that every configuration option of the GnuPG System will be reset "
-"to its default."
-msgstr ""
-"Αυτό σημαίνει ότι κάθε επιλογή διαμόρφωσης του συστήματος GnuPG θα πάρει τις "
-"προκαθορισμένες τιμές."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:110
-#, kde-format
-msgid "Apply profile"
-msgstr "Εφαρμογή προφίλ"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:152
-#, kde-format
-msgctxt "%1 is the name of the profile"
-msgid "The configuration profile \"%1\" was applied."
-msgstr "Το προφίλ διαμόρφωσης «%1» εφαρμόστηκε."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:153
-#, kde-format
-msgid "GnuPG Profile - Kleopatra"
-msgstr "GnuPG προφίλ- Kleopatra"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:188
-#, kde-format
-msgctxt "@title"
-msgid "General Operations"
-msgstr "Γενικές λειτουργίες"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:192
-#, kde-format
-msgid "Activate GnuPG Profile:"
-msgstr "Ενεργοποίηση GnuPG προφίλ:"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:193
-#, kde-format
-msgid ""
-"A profile consists of various settings that can apply to multiple components "
-"of the GnuPG system."
-msgstr ""
-"Το προφίλ αποτελείται από διάφορες ρυθμίσεις που εφαρμόζονται σε πολλά "
-"συστατικά του συστήματος GnuPG."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:209
-#, kde-format
-msgid "Apply"
-msgstr "Εφαρμογή"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
 msgid "File Operations"
 msgstr "Λειτουργίες αρχείου"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:61
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3586,14 +3530,14 @@ msgstr ""
 "αντί για \".gpg\""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 "Δημιουργία υπογεγραμμένων ή/και κρυπτογραφημένων αρχείων ως αρχείων κειμένου."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:236
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3607,7 +3551,7 @@ msgstr ""
 "αλληλογραφίας. Αυτό θα αυξήσει το μέγεθος του αρχείου κατά το ένα τρίτο."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:239
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3616,13 +3560,13 @@ msgstr ""
 "Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
 "αποκρυπτογράφηση/επαλήθευση."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:240
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
@@ -3630,7 +3574,7 @@ msgstr ""
 "Δημιουργία προσωρινών αποκρυπτογραφημένων αρχείων στο φάκελο του "
 "κρυπτογραφημένου αρχείου."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3639,13 +3583,13 @@ msgstr ""
 "καταλόγου των χρηστών."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
@@ -3653,14 +3597,14 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να απενεργοποιηθεί η κρυπτογράφηση δημόσιου "
 "κλειδιού."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:83
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Πρόγραμμα αθροίσματος ελέγχου προς χρήση κατά τη δημιουργία αρχείων "
 "αθροίσματος ελέγχου:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Εντολή για την τοποθέτηση αρχείων στην αρχειοθήκη:"
@@ -12328,6 +12272,43 @@ msgid ""
 msgstr ""
 "Για να κάνετε εισαγωγή από έναν δημόσιο εξυπηρετητή κλειδιών χρησιμοποιήστε "
 "το «Αναζήτηση στον εξυπηρετητή»."
+
+#~ msgid "default"
+#~ msgstr "προκαθορισμένο"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr ""
+#~ "Αυτό σημαίνει ότι κάθε επιλογή διαμόρφωσης του συστήματος GnuPG θα πάρει "
+#~ "τις προκαθορισμένες τιμές."
+
+#~ msgid "Apply profile"
+#~ msgstr "Εφαρμογή προφίλ"
+
+#~ msgctxt "%1 is the name of the profile"
+#~ msgid "The configuration profile \"%1\" was applied."
+#~ msgstr "Το προφίλ διαμόρφωσης «%1» εφαρμόστηκε."
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "GnuPG προφίλ- Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "Γενικές λειτουργίες"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "Ενεργοποίηση GnuPG προφίλ:"
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr ""
+#~ "Το προφίλ αποτελείται από διάφορες ρυθμίσεις που εφαρμόζονται σε πολλά "
+#~ "συστατικά του συστήματος GnuPG."
+
+#~ msgid "Apply"
+#~ msgstr "Εφαρμογή"
 
 #~ msgid "EMail Operations"
 #~ msgstr "Λειτουργίες ηλ. αλληλογραφίας"

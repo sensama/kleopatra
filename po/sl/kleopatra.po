@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-01-10 00:57+0000\n"
+"POT-Creation-Date: 2023-01-11 00:58+0000\n"
 "PO-Revision-Date: 2022-12-24 06:39+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -3349,68 +3349,12 @@ msgstr "Pametne kartice"
 msgid "GnuPG System"
 msgstr "Sistem GnuPG"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:106
-#: src/conf/cryptooperationsconfigwidget.cpp:204
-#, kde-format
-msgid "default"
-msgstr "privzeto"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:109
-#, kde-format
-msgid ""
-"This means that every configuration option of the GnuPG System will be reset "
-"to its default."
-msgstr ""
-"To pomeni, da se bo vsak parameter nastavitev sistema GnuPG postavil na "
-"privzeto vrednost."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:110
-#, kde-format
-msgid "Apply profile"
-msgstr "Uveljavi profil"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:152
-#, kde-format
-msgctxt "%1 is the name of the profile"
-msgid "The configuration profile \"%1\" was applied."
-msgstr "Uporabljen je bil nastanitveni profil \"%1\"."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:153
-#, kde-format
-msgid "GnuPG Profile - Kleopatra"
-msgstr "Profil GnuPG - Kleopatra"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:188
-#, kde-format
-msgctxt "@title"
-msgid "General Operations"
-msgstr "Splošne operacije"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:192
-#, kde-format
-msgid "Activate GnuPG Profile:"
-msgstr "Aktiviraj profil GnuPG:"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:193
-#, kde-format
-msgid ""
-"A profile consists of various settings that can apply to multiple components "
-"of the GnuPG system."
-msgstr ""
-"Profil je sestavljen iz različnih nastavitev, ki se lahko uporabljajo za več "
-"komponent sistema GnuPG."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:209
-#, kde-format
-msgid "Apply"
-msgstr "Uveljavi"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:232
+#: src/conf/cryptooperationsconfigwidget.cpp:59
 #, kde-format
 msgid "File Operations"
 msgstr "Dejanja datotek"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:234
+#: src/conf/cryptooperationsconfigwidget.cpp:61
 #, kde-format
 msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
@@ -3419,13 +3363,13 @@ msgstr ""
 "Datotekam šifriranim z OpenPGP dodaj pripono ».pgp« namesto pripone ».gpg«"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:235
+#: src/conf/cryptooperationsconfigwidget.cpp:62
 #: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Ustvari podpisane ali šifrirane datoteke kot besedilne datoteke."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:236
+#: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3438,7 +3382,7 @@ msgstr ""
 "v telesu sporočila. To poveča velikost datoteke za tretjino."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:239
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid ""
@@ -3446,19 +3390,19 @@ msgid ""
 msgstr ""
 "Samodejno zaženi dejavnost šifriranja/preverjanja glede na zaznavanje vhoda."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:240
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
 msgstr "Samodejno izvleci arhive datotek po dešifriranju"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:241
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Ustvari začasne dešifrirane datoteke v mapi šifriranih datotek."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:242
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -3466,26 +3410,26 @@ msgstr ""
 "Nastavite to možnost, da se izognete uporabi začasnega imenika uporabnikov."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/conf/cryptooperationsconfigwidget.cpp:243
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Uporabljaj samo simetrično šifriranje."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:244
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Nastavite to možnost, da onemogočite šifriranje z javnim ključem."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:256
+#: src/conf/cryptooperationsconfigwidget.cpp:83
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Program za nadzorne vsote, ki bo uporabljen ob ustvarjanju datotek z "
 "nadzornimi vsotami:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:261
+#: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Ukaz za arhiviranje, ki se uporablja pri arhiviranju datotek:"
@@ -11883,6 +11827,43 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgid "default"
+#~ msgstr "privzeto"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr ""
+#~ "To pomeni, da se bo vsak parameter nastavitev sistema GnuPG postavil na "
+#~ "privzeto vrednost."
+
+#~ msgid "Apply profile"
+#~ msgstr "Uveljavi profil"
+
+#~ msgctxt "%1 is the name of the profile"
+#~ msgid "The configuration profile \"%1\" was applied."
+#~ msgstr "Uporabljen je bil nastanitveni profil \"%1\"."
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "Profil GnuPG - Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "Splošne operacije"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "Aktiviraj profil GnuPG:"
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr ""
+#~ "Profil je sestavljen iz različnih nastavitev, ki se lahko uporabljajo za "
+#~ "več komponent sistema GnuPG."
+
+#~ msgid "Apply"
+#~ msgstr "Uveljavi"
 
 #~ msgid "EMail Operations"
 #~ msgstr "E-poštna opravila"

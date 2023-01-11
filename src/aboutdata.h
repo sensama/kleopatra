@@ -16,10 +16,3 @@ class AboutData : public KAboutData
 public:
     AboutData();
 };
-
-class AboutGpg4WinData : public KAboutData
-{
-public:
-    AboutGpg4WinData();
-};
-

@@ -204,7 +204,7 @@ PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &key
         connect(keyWidgets.writeKeyButton, &QPushButton::clicked,
                 this, [this, keyRef] () { writeKeyToCard(keyRef); });
     }
-    mKeyWidgets.insert(keyRef, keyWidgets);
+    mKeyWidgets.insert({keyRef, keyWidgets});
     return keyWidgets;
 }
 
@@ -220,20 +220,33 @@ void PIVCardWidget::setCard(const PIVCard *card)
     mSerialNumber->setText(card->displaySerialNumber());
     mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
 
-    updateKeyWidgets(PIVCard::pivAuthenticationKeyRef(), card);
-    updateKeyWidgets(PIVCard::cardAuthenticationKeyRef(), card);
-    updateKeyWidgets(PIVCard::digitalSignatureKeyRef(), card);
-    updateKeyWidgets(PIVCard::keyManagementKeyRef(), card);
+    if (card) {
+        updateCachedValues(PIVCard::pivAuthenticationKeyRef(), card);
+        updateCachedValues(PIVCard::cardAuthenticationKeyRef(), card);
+        updateCachedValues(PIVCard::digitalSignatureKeyRef(), card);
+        updateCachedValues(PIVCard::keyManagementKeyRef(), card);
+    }
+    updateKeyWidgets(PIVCard::pivAuthenticationKeyRef());
+    updateKeyWidgets(PIVCard::cardAuthenticationKeyRef());
+    updateKeyWidgets(PIVCard::digitalSignatureKeyRef());
+    updateKeyWidgets(PIVCard::keyManagementKeyRef());
 
     if (mKeyForCardKeysButton) {
         mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
     }
 }
 
-void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *card)
+void PIVCardWidget::updateCachedValues(const std::string &keyRef, const SmartCard::PIVCard *card)
 {
-    KeyWidgets widgets = mKeyWidgets.value(keyRef);
-    const std::string grip = card ? card->keyInfo(keyRef).grip : widgets.keyGrip->text().toStdString();
+    KeyWidgets &widgets = mKeyWidgets.at(keyRef);
+    widgets.keyInfo = card->keyInfo(keyRef);
+    widgets.certificateData = card->certificateData(keyRef);
+}
+
+void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
+{
+    const KeyWidgets &widgets = mKeyWidgets.at(keyRef);
+    const std::string grip = widgets.keyInfo.grip;
     if (grip.empty()) {
         widgets.certificateInfo->setText(i18nc("@info", "<em>slot empty</em>"));
         widgets.certificateInfo->setToolTip(QString());
@@ -262,13 +275,11 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef, const PIVCard *c
             widgets.certificateInfo->setToolTip(QString());
             widgets.writeCertificateButton->setEnabled(false);
         }
-        if (card) {
-            // update information if called with card
-            widgets.keyGrip->setText(QString::fromStdString(grip));
-            const std::string algo = card->keyAlgorithm(keyRef);
-            widgets.keyAlgorithm->setText(algo.empty() ? i18nc("@info unknown key algorithm", "unknown") : QString::fromStdString(algo));
-            widgets.importCertificateButton->setEnabled(!card->certificateData(keyRef).empty());
-        }
+        widgets.keyGrip->setText(QString::fromStdString(grip));
+        const std::string algo = widgets.keyInfo.algorithm;
+        widgets.keyAlgorithm->setText(algo.empty() ? i18nc("@info unknown key algorithm", "unknown") : QString::fromStdString(algo));
+        widgets.importCertificateButton->setEnabled(!widgets.certificateData.empty());
+
         widgets.generateButton->setText(i18nc("@action:button", "Replace"));
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
@@ -321,7 +332,7 @@ void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
     this->setEnabled(false);
     connect(cmd, &ImportCertificateFromPIVCardCommand::finished,
             this, [this, keyref] () {
-                this->updateKeyWidgets(keyref, nullptr);
+                this->updateKeyWidgets(keyref);
                 this->setEnabled(true);
             });
     cmd->setParentWidget(this);

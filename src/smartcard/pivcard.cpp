@@ -115,16 +115,6 @@ std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRe
     };
 }
 
-std::string PIVCard::keyAlgorithm(const std::string &keyRef) const
-{
-    return cardInfo("KLEO-KEYALGO-" + keyRef);
-}
-
-void PIVCard::setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm)
-{
-    addCardInfo("KLEO-KEYALGO-" + keyRef, algorithm);
-}
-
 std::string PIVCard::certificateData(const std::string &keyRef) const
 {
     return cardInfo("KLEO-CERTIFICATE-" + keyRef);

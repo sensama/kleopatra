@@ -435,19 +435,8 @@ static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCa
         qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
         return;
     }
-    for (const auto &pair: keyPairInfoLines) {
-        if (pair.first == "KEYPAIRINFO") {
-            const KeyPairInfo info = KeyPairInfo::fromStatusLine(pair.second);
-            if (info.grip.empty()) {
-                qCWarning(KLEOPATRA_LOG) << "Invalid KEYPAIRINFO status line"
-                        << QString::fromStdString(pair.second);
-                continue;
-            }
-            pivCard->setKeyAlgorithm(keyRef, info.algorithm);
-        } else {
-            logUnexpectedStatusLine(pair, "readKeyPairInfoFromPIVCard()", command);
-        }
-    }
+    // this adds the key algorithm (and the key creation date, but that seems to be unset for PIV) to the existing key pair information
+    pivCard->setCardInfo(keyPairInfoLines);
 }
 
 static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)

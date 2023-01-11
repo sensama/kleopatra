@@ -37,9 +37,6 @@ public:
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
 
-    std::string keyAlgorithm(const std::string &keyRef) const;
-    void setKeyAlgorithm(const std::string &keyRef, const std::string &algorithm);
-
     std::string certificateData(const std::string &keyRef) const;
     void setCertificateData(const std::string &keyRef, const std::string &data);
 };

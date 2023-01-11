@@ -8,6 +8,8 @@
 */
 #pragma once
 
+#include <smartcard/keypairinfo.h>
+
 #include <QMap>
 #include <QWidget>
 
@@ -21,7 +23,6 @@ namespace Kleo
 
 namespace SmartCard
 {
-struct KeyPairInfo;
 class PIVCard;
 } // namespace SmartCard
 
@@ -35,6 +36,8 @@ public:
     void setCard(const SmartCard::PIVCard* card);
 
     struct KeyWidgets {
+        SmartCard::KeyPairInfo keyInfo;
+        std::string certificateData;
         QLabel *keyGrip = nullptr;
         QLabel *keyAlgorithm = nullptr;
         QLabel *certificateInfo = nullptr;
@@ -47,7 +50,8 @@ public:
 
 private:
     KeyWidgets createKeyWidgets(const SmartCard::KeyPairInfo &keyInfo);
-    void updateKeyWidgets(const std::string &keyRef, const SmartCard::PIVCard *card);
+    void updateCachedValues(const std::string &keyRef, const SmartCard::PIVCard *card);
+    void updateKeyWidgets(const std::string &keyRef);
     void generateKey(const std::string &keyref);
     void createCSR(const std::string &keyref);
     void writeCertificateToCard(const std::string &keyref);
@@ -62,7 +66,7 @@ private:
     QLabel *mSerialNumber = nullptr;
     QLabel *mVersionLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
-    QMap<std::string, KeyWidgets> mKeyWidgets;
+    std::map<std::string, KeyWidgets> mKeyWidgets;
 };
 } // namespace Kleo
 

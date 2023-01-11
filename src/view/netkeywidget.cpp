@@ -187,15 +187,18 @@ namespace
 {
 std::vector<KeyPairInfo> getKeysSuitableForCSRCreation(const NetKeyCard *netKeyCard)
 {
-    std::vector<KeyPairInfo> keys;
+    if (netKeyCard->hasNKSNullPin()) {
+        return {};
+    }
 
+    std::vector<KeyPairInfo> keys;
     for (const auto &key : netKeyCard->keyInfos()) {
         if (key.keyRef.substr(0, 9) == "NKS-SIGG.") {
             // SigG certificates for qualified signatures are issued with the physical cards;
             // it's not possible to request a certificate for them
             continue;
         }
-        if (key.canSign() && (key.keyRef.substr(0, 9) == "NKS-NKS3.") && !netKeyCard->hasNKSNullPin()) {
+        if (key.canSign() && (key.keyRef.substr(0, 9) == "NKS-NKS3.")) {
             keys.push_back(key);
         }
     }

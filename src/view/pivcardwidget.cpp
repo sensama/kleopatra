@@ -23,6 +23,7 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -232,7 +233,10 @@ void PIVCardWidget::setCard(const PIVCard *card)
     updateKeyWidgets(PIVCard::keyManagementKeyRef());
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(card->hasSigningKey() && card->hasEncryptionKey());
+        mKeyForCardKeysButton->setEnabled(card->hasSigningKey()
+                                          && card->hasEncryptionKey()
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
 }
 
@@ -284,7 +288,7 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
         widgets.generateButton->setToolTip(
             i18nc("@info:tooltip %1 display name of a key", "Replace %1 with new key", PIVCard::keyDisplayName(keyRef)));
         if (widgets.createCSRButton) {
-            widgets.createCSRButton->setEnabled(true);
+            widgets.createCSRButton->setEnabled(DeVSCompliance::algorithmIsCompliant(algo));
         }
     }
 

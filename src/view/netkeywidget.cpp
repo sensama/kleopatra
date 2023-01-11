@@ -22,6 +22,8 @@
 #include "commands/learncardkeyscommand.h"
 #include "commands/detailscommand.h"
 
+#include <Libkleo/Algorithm>
+#include <Libkleo/Compliance>
 #include <Libkleo/KeyListModel>
 
 #include <KConfigGroup>
@@ -192,16 +194,16 @@ std::vector<KeyPairInfo> getKeysSuitableForCSRCreation(const NetKeyCard *netKeyC
     }
 
     std::vector<KeyPairInfo> keys;
-    for (const auto &key : netKeyCard->keyInfos()) {
-        if (key.keyRef.substr(0, 9) == "NKS-SIGG.") {
+    Kleo::copy_if(netKeyCard->keyInfos(), std::back_inserter(keys), [](const auto &keyInfo) {
+        if (keyInfo.keyRef.substr(0, 9) == "NKS-SIGG.") {
             // SigG certificates for qualified signatures are issued with the physical cards;
             // it's not possible to request a certificate for them
-            continue;
+            return false;
         }
-        if (key.canSign() && (key.keyRef.substr(0, 9) == "NKS-NKS3.")) {
-            keys.push_back(key);
-        }
-    }
+        return keyInfo.canSign()
+            && (keyInfo.keyRef.substr(0, 9) == "NKS-NKS3.")
+            && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm);
+    });
 
     return keys;
 }
@@ -247,7 +249,11 @@ void NetKeyWidget::setCard(const NetKeyCard* card)
     mTreeView->setKeys(keys);
 
     if (mKeyForCardKeysButton) {
-        mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey());
+        mKeyForCardKeysButton->setEnabled(!card->hasNKSNullPin()
+                                          && card->hasSigningKey()
+                                          && card->hasEncryptionKey()
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
+                                          && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
     if (mCreateCSRButton) {
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());

@@ -73,6 +73,8 @@
 #include <iostream>
 #include <QCommandLineParser>
 
+QElapsedTimer startupTimer;
+
 static bool selfCheck()
 {
     Kleo::Commands::SelfTestCommand cmd(nullptr);
@@ -98,12 +100,11 @@ static void fillKeyCache(Kleo::UiServer *server)
 
 int main(int argc, char **argv)
 {
-    QElapsedTimer timer;
-    timer.start();
+    startupTimer.start();
 
     KleopatraApplication app(argc, argv);
 
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
+    STARTUP_TIMING << "Application created";
     /* Create the unique service ASAP to prevent double starts if
      * the application is started twice very quickly. */
     KUniqueService service;
@@ -113,7 +114,7 @@ int main(int argc, char **argv)
     &service, [&service](int i) {
         service.setExitValue(i);
     });
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Service created";
+    STARTUP_TIMING << "Service created";
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
@@ -140,14 +141,14 @@ int main(int argc, char **argv)
                             i18nc("@title", "GpgME Too Old"));
             return EXIT_FAILURE;
         }
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: GPGME Initialized";
+        STARTUP_TIMING << "GPGME Initialized";
     }
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
     /* This is more expensive as it sounds as it might run a verification
      * on a signed Version file and initializes the whole GpgME::Engine. */
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Versions checked";
+    STARTUP_TIMING << "Versions checked";
 
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because
@@ -175,7 +176,7 @@ int main(int argc, char **argv)
     // have terminated us and so we can avoid overhead (e.g. keycache
     // setup / systray icon).
     app.init();
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application initialized";
+    STARTUP_TIMING << "Application initialized";
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
@@ -198,11 +199,12 @@ int main(int argc, char **argv)
     Kleo::ChecksumDefinition::setInstallPath(Kleo::gpg4winInstallPath());
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
+#ifndef DISABLE_UISERVER
     int rc;
     Kleo::UiServer *server = nullptr;
     try {
         server = new Kleo::UiServer(parser.value(QStringLiteral("uiserver-socket")));
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer created";
+        STARTUP_TIMING << "UiServer created";
 
         QObject::connect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
 
@@ -230,7 +232,7 @@ int main(int argc, char **argv)
 #undef REGISTER
 
         server->start();
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: UiServer started";
+        STARTUP_TIMING << "UiServer started";
     } catch (const std::exception &e) {
         qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
 #ifdef Q_OS_WIN
@@ -250,6 +252,7 @@ int main(int argc, char **argv)
                                        QString::fromUtf8(e.what()).toHtmlEscaped()));
 #endif
     }
+#endif // DISABLE_UISERVER
     const bool daemon = parser.isSet(QStringLiteral("daemon"));
     if (!daemon && app.isSessionRestored()) {
         app.restoreMainWindow();
@@ -258,7 +261,7 @@ int main(int argc, char **argv)
     if (!selfCheck()) {
         return EXIT_FAILURE;
     }
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: SelfCheck completed";
+    STARTUP_TIMING << "SelfCheck completed";
 
     if (server) {
         fillKeyCache(server);
@@ -274,7 +277,7 @@ int main(int argc, char **argv)
             std::cerr << i18n("Invalid arguments: %1", err).toLocal8Bit().constData() << "\n";
             return EXIT_FAILURE;
         }
-        qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: new instance created";
+        STARTUP_TIMING << "new instance created";
     }
 
     rc = app.exec();

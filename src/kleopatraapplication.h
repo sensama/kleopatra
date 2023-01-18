@@ -14,10 +14,15 @@
 
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QElapsedTimer>
 
 #include <utils/pimpl_ptr.h>
 
 #include <gpgme++/global.h>
+
+extern QElapsedTimer startupTimer;
+#define STARTUP_TIMING qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:"
+#define STARTUP_TRACE  qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:" << SRCNAME << __func__ << __LINE__;
 
 class MainWindow;
 class SysTrayIcon;

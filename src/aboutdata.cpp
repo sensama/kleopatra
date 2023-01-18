@@ -72,7 +72,7 @@ AboutData::AboutData()
                  QLatin1Char('\n') +
                  i18n("(c) 2016-2018 Intevation GmbH") +
                  QLatin1Char('\n') +
-                 i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2022"))
+                 i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023"))
 #ifdef Q_OS_WIN
                  , Kleo::gpg4winLongDescription()
 #endif

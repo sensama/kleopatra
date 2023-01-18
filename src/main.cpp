@@ -98,16 +98,31 @@ static void fillKeyCache(Kleo::UiServer *server)
 
 int main(int argc, char **argv)
 {
+    QElapsedTimer timer;
+    timer.start();
+
+    KleopatraApplication app(argc, argv);
+
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
+    /* Create the unique service ASAP to prevent double starts if
+     * the application is started twice very quickly. */
+    KUniqueService service;
+    QObject::connect(&service, &KUniqueService::activateRequested,
+                     &app, &KleopatraApplication::slotActivateRequested);
+    QObject::connect(&app, &KleopatraApplication::setExitValue,
+    &service, [&service](int i) {
+        service.setExitValue(i);
+    });
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Service created";
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 #endif
-    KleopatraApplication app(argc, argv);
+
     KCrash::initialize();
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
-
-    QElapsedTimer timer;
-    timer.start();
+    qCDebug(KLEOPATRA_LOG) << "Application created";
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
@@ -130,6 +145,9 @@ int main(int argc, char **argv)
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
+    /* This is more expensive as it sounds as it might run a verification
+     * on a signed Version file and initializes the whole GpgME::Engine. */
+    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Versions checked";
 
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because
@@ -153,18 +171,9 @@ int main(int argc, char **argv)
         }
         qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
     }
-
-    KUniqueService service;
-    QObject::connect(&service, &KUniqueService::activateRequested,
-                     &app, &KleopatraApplication::slotActivateRequested);
-    QObject::connect(&app, &KleopatraApplication::setExitValue,
-    &service, [&service](int i) {
-        service.setExitValue(i);
-    });
     // Delay init after KUniqueservice call as this might already
     // have terminated us and so we can avoid overhead (e.g. keycache
     // setup / systray icon).
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Service created";
     app.init();
     qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application initialized";
 
@@ -181,8 +190,6 @@ int main(int argc, char **argv)
     migrate.setUiFiles(QStringList() << QStringLiteral("kleopatra.rc"));
     migrate.migrate();
 #endif
-    qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
-
     {
         const unsigned int threads = QThreadPool::globalInstance()->maxThreadCount();
         QThreadPool::globalInstance()->setMaxThreadCount(qMax(2U, threads));

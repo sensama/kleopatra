@@ -41,6 +41,8 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Dialogs;
 
+#define CURRENT_SELFTEST_VERSION 1
+
 static const char *const components[] = {
     nullptr, // gpgconf
     "gpg",
@@ -95,6 +97,25 @@ private:
     bool runAtStartUp() const
     {
         const KConfigGroup config(KSharedConfig::openConfig(), "Self-Test");
+
+        if (config.readEntry("run-at-startup", false)) {
+            qCDebug(KLEOPATRA_LOG) << "Selftest forced";
+            return true;
+        }
+#ifdef Q_OS_WIN
+        /* On Windows the selftest only needs to run once as we control
+         * the distribution of both GnuPG and Kleopatra together. While
+         * under Linux it is more important to check for installation
+         * incositencies. Under Windows it is also more rarely that
+         * multiple versions of GnuPG run in the same home directory and
+         * might interfer with their config files. */
+        const int lastVersionRun = config.readEntry("last-selftest-version", 0);
+        if (lastVersionRun < CURRENT_SELFTEST_VERSION) {
+            qCDebug(KLEOPATRA_LOG) << "Last successful selftest:" << lastVersionRun << "starting it.";
+            return true;
+        }
+        return false;
+#endif
         return config.readEntry("run-at-startup", true);
     }
 
@@ -135,6 +156,8 @@ private:
                                         return test->failed();
                                     })) {
             finished();
+            KConfigGroup config(KSharedConfig::openConfig(), "Self-Test");
+            config.writeEntry("last-selftest-version", CURRENT_SELFTEST_VERSION);
             return;
         }
 

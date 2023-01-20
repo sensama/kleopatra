@@ -16,10 +16,10 @@ add_subdirectory(kconf_update)
 if(WIN32)
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_win.cpp)
   set(_kleopatra_extra_SRCS
-      selftest/registrycheck.cpp
+      selftest/registrycheck.cpp selftest/registrycheck.h
       utils/gnupg-registry.c
       utils/userinfo_win.cpp
-      utils/windowsprocessdevice.cpp
+      utils/windowsprocessdevice.cpp utils/windowsprocessdevice.h
       versioninfo.rc
   )
 else()
@@ -30,22 +30,22 @@ endif()
 set(_kleopatra_uiserver_SRCS
     ${_kleopatra_extra_uiserver_SRCS}
 
-    selftest/uiservercheck.cpp
-    uiserver/assuanserverconnection.cpp
-    uiserver/createchecksumscommand.cpp
-    uiserver/decryptverifycommandemailbase.cpp
-    uiserver/decryptverifycommandfilesbase.cpp
-    uiserver/echocommand.cpp
-    uiserver/encryptcommand.cpp
-    uiserver/importfilescommand.cpp
-    uiserver/prepencryptcommand.cpp
-    uiserver/prepsigncommand.cpp
+    selftest/uiservercheck.cpp selftest/uiservercheck.h
+    uiserver/assuanserverconnection.cpp uiserver/assuanserverconnection.h
+    uiserver/createchecksumscommand.cpp uiserver/createchecksumscommand.h
+    uiserver/decryptverifycommandemailbase.cpp uiserver/decryptverifycommandemailbase.h
+    uiserver/decryptverifycommandfilesbase.cpp uiserver/decryptverifycommandfilesbase.h
+    uiserver/echocommand.cpp uiserver/echocommand.h
+    uiserver/encryptcommand.cpp uiserver/encryptcommand.h
+    uiserver/importfilescommand.cpp uiserver/importfilescommand.h
+    uiserver/prepencryptcommand.cpp uiserver/prepencryptcommand.h
+    uiserver/prepsigncommand.cpp uiserver/prepsigncommand.h
     uiserver/selectcertificatecommand.cpp
-    uiserver/sessiondata.cpp
-    uiserver/signcommand.cpp
+    uiserver/sessiondata.cpp uiserver/sessiondata.h
+    uiserver/signcommand.cpp uiserver/signcommand.h
     uiserver/signencryptfilescommand.cpp
     uiserver/uiserver.cpp
-    uiserver/verifychecksumscommand.cpp
+    uiserver/verifychecksumscommand.cpp uiserver/verifychecksumscommand.h
   )
 
 set(_kleopatra_uiserver_extra_libs LibAssuan::LibAssuan LibGpgError::LibGpgError)
@@ -522,7 +522,7 @@ if(WIN32)
   set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc ${_kleopatra_SRCS})
 endif()
 
-set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp ${_kleopatra_SRCS})
+set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp conf/kleopageconfigdialog.h ${_kleopatra_SRCS})
 
 ecm_qt_declare_logging_category(_kleopatra_SRCS HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra
         DESCRIPTION "kleopatra (kleopatra)"

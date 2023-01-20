@@ -109,6 +109,8 @@ int main(int argc, char **argv)
     QElapsedTimer timer;
     timer.start();
 
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
+
     // Initialize GpgME
     {
         const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);

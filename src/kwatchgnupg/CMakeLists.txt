@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 set(kwatchgnupg_version 1.0)
 
-find_package(KF5Notifications ${KF5_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF5TextWidgets ${KF5_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF5TextWidgets ${KF_MIN_VERSION} CONFIG REQUIRED)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kwatchgnupg.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/version-kwatchgnupg.h)
 

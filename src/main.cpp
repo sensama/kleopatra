@@ -111,6 +111,8 @@ int main(int argc, char **argv)
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
+    KLocalizedString::setApplicationDomain("kleopatra");
+
     // Initialize GpgME
     {
         const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
@@ -125,8 +127,6 @@ int main(int argc, char **argv)
         }
         qCDebug(KLEOPATRA_LOG) << "Startup timing:" << timer.elapsed() << "ms elapsed: GPGME Initialized";
     }
-
-    KLocalizedString::setApplicationDomain("kleopatra");
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);

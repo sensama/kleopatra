@@ -573,13 +573,13 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_extra_libs}
   KF5::Libkleo
   KF5::Mime
-  KF5::I18n
-  KF5::XmlGui
-  KF5::IconThemes
-  KF5::WindowSystem
-  KF5::CoreAddons
-  KF5::ItemModels
-  KF5::Crash
+  KF${KF_MAJOR_VERSION}::I18n
+  KF${KF_MAJOR_VERSION}::XmlGui
+  KF${KF_MAJOR_VERSION}::IconThemes
+  KF${KF_MAJOR_VERSION}::WindowSystem
+  KF${KF_MAJOR_VERSION}::CoreAddons
+  KF${KF_MAJOR_VERSION}::ItemModels
+  KF${KF_MAJOR_VERSION}::Crash
   ${_kleopatra_mail_libs}
   Qt::Network
   Qt::PrintSupport # Printing secret keys

@@ -27,7 +27,7 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
     ${logging_category_srcs}
     TEST_NAME stripsuffixtest
-    LINK_LIBRARIES KF5::I18n KF5::Libkleo Qt::Test
+    LINK_LIBRARIES KF${KF_MAJOR_VERSION}::I18n KF5::Libkleo Qt::Test
 )
 
 ecm_add_test(

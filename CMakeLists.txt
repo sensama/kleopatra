@@ -77,21 +77,30 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(KDEClangFormat)
 
-# Find KF5 packages
-find_package(KF5WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5ConfigWidgets ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5CoreAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5Codecs ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5Config ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5I18n ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5IconThemes ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5ItemModels ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5XmlGui ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5WindowSystem ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5DocTools ${KF5_WANT_VERSION} CONFIG)
-find_package(KF5Crash ${KF5_WANT_VERSION} REQUIRED)
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(QT_REQUIRED_VERSION "6.4.0")
+    set(KF_MIN_VERSION "5.240.0")
+    set(KF_MAJOR_VERSION "6")
+else()
+    set(KF_MIN_VERSION "5.100.0")
+    set(KF_MAJOR_VERSION "5")
+endif()
 
-set_package_properties(KF5DocTools PROPERTIES
+# Find KF5 packages
+find_package(KF${KF_MAJOR_VERSION}WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}ConfigWidgets ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}CoreAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}Codecs ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}Config ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}I18n ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}IconThemes ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}ItemModels ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}XmlGui ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}WindowSystem ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(KF${KF_MAJOR_VERSION}DocTools ${KF5_WANT_VERSION} CONFIG)
+find_package(KF${KF_MAJOR_VERSION}Crash ${KF5_WANT_VERSION} REQUIRED)
+
+set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES
     DESCRIPTION "Documentation tools"
     PURPOSE "Required to generate Kleopatra documentation."
     TYPE OPTIONAL)
@@ -100,14 +109,14 @@ set_package_properties(KF5DocTools PROPERTIES
 if (WIN32)
   # Only a replacement available for Windows so this
   # is required on other platforms.
-  find_package(KF5DBusAddons ${KF5_WANT_VERSION} CONFIG)
+  find_package(KF${KF_MAJOR_VERSION}DBusAddons ${KF5_WANT_VERSION} CONFIG)
   set_package_properties(KF5DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
                          URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
 else()
-  find_package(KF5DBusAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-  set(_kleopatra_dbusaddons_libs KF5::DBusAddons)
+  find_package(KF${KF_MAJOR_VERSION}DBusAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
+  set(_kleopatra_dbusaddons_libs KF${KF_MAJOR_VERSION}::DBusAddons)
 endif()
 
 set(HAVE_QDBUS ${Qt${QT_MAJOR_VERSION}DBus_FOUND})
@@ -196,7 +205,7 @@ if (WIN32)
 # On Windows, we need to use stuff deprecated since Qt 5.11, e.g. from QDesktopWidget
 ecm_set_disabled_deprecation_versions(QT 5.10.0  KF 5.102.0)
 else ()
-ecm_set_disabled_deprecation_versions(QT 5.15.0  KF 5.102.0)
+ecm_set_disabled_deprecation_versions(QT 5.15.2  KF 5.102.0)
 endif ()
 
 if(CMAKE_COMPILER_IS_GNUCXX)

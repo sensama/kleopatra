@@ -59,10 +59,10 @@ set_property(TARGET kcm_kleopatra_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(kcm_kleopatra_static
   KF5::Libkleo
-  KF5::IconThemes
-  KF5::I18n
-  KF5::WidgetsAddons
-  KF5::ConfigWidgets
+  KF${KF_MAJOR_VERSION}::IconThemes
+  KF${KF_MAJOR_VERSION}::I18n
+  KF${KF_MAJOR_VERSION}::WidgetsAddons
+  KF${KF_MAJOR_VERSION}::ConfigWidgets
   ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
@@ -70,7 +70,7 @@ target_link_libraries(kcm_kleopatra_static
 
 if (NOT WIN32)
   add_library(kleopatra_config_gnupgsystem MODULE kcm_gnupgsystemconfigurationpage.cpp)
-  target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static KF5::CoreAddons)
+  target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static KF${KF_MAJOR_VERSION}::CoreAddons)
 
   install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/kleopatra)
 endif()

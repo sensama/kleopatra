@@ -580,6 +580,7 @@ target_link_libraries(kleopatra_bin
   KF${KF_MAJOR_VERSION}::CoreAddons
   KF${KF_MAJOR_VERSION}::ItemModels
   KF${KF_MAJOR_VERSION}::Crash
+  KF${KF_MAJOR_VERSION}::Codecs
   ${_kleopatra_mail_libs}
   Qt::Network
   Qt::PrintSupport # Printing secret keys

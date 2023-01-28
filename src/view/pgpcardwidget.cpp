@@ -60,10 +60,12 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 5, 0)
 static QDebug operator<<(QDebug s, const std::string &string)
 {
     return s << QString::fromStdString(string);
 }
+#endif
 
 namespace {
 class GenKeyThread: public QThread

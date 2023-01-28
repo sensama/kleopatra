@@ -19,10 +19,7 @@
 #include <memory>
 #include <vector>
 
-namespace GpgME
-{
-class VerificationResult;
-}
+#include <gpgme++/verificationresult.h>
 
 namespace Kleo
 {

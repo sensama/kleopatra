@@ -20,16 +20,14 @@
 #include <memory>
 #include <vector>
 
+#include <gpgme++/verificationresult.h>
+
 namespace KMime
 {
 namespace Types
 {
 class Mailbox;
 }
-}
-namespace GpgME
-{
-class VerificationResult;
 }
 
 namespace Kleo

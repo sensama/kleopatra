@@ -8,20 +8,20 @@
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2018, 2019, 2020, 2021.
 # Edwin Veber <edwin0307@gmail.com>, 2011.
-# Мария Шикунова <translation-team@basealt.ru>, 2021, 2022.
+# Мария Шикунова <translation-team@basealt.ru>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-04 00:46+0000\n"
-"PO-Revision-Date: 2022-08-09 08:53+0300\n"
+"PO-Revision-Date: 2023-02-01 17:40+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 22.08.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -262,34 +262,28 @@ msgid "Writing the certificate to the card succeeded."
 msgstr "Сертификат успешно сохранён на карте."
 
 #: src/commands/certifycertificatecommand.cpp:155
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Key Revoked"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Revoked"
 msgstr "Ключ отозван"
 
 #: src/commands/certifycertificatecommand.cpp:155
-#, fuzzy, kde-format
-#| msgid "key expired"
+#, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
-msgstr "просроченный ключ"
+msgstr "Ключ просрочен"
 
 #: src/commands/certifycertificatecommand.cpp:157
-#, fuzzy, kde-format
-#| msgid "The key has been revoked."
+#, kde-format
 msgctxt "@info"
 msgid "This key has been revoked. You cannot certify it."
-msgstr "Ключ отозван."
+msgstr "Этот ключ отозван. Его нельзя заверить."
 
 #: src/commands/certifycertificatecommand.cpp:158
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This subkey is required for encryption."
+#, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
-msgstr "Этот подключ требуется для шифрования."
+msgstr "Этот ключ просрочен. Его нельзя заверить."
 
 #: src/commands/certifycertificatecommand.cpp:179
 #, kde-kuit-format
@@ -312,9 +306,7 @@ msgid "Certification Not Possible"
 msgstr "Заверение невозможно"
 
 #: src/commands/certifycertificatecommand.cpp:182
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create"
+#, kde-format
 msgid "Create"
 msgstr "Создать"
 
@@ -1862,10 +1854,9 @@ msgstr ""
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
 #: src/commands/importcertificatescommand.cpp:589
-#, fuzzy, kde-format
-#| msgid ", "
+#, kde-format
 msgid " "
-msgstr ", "
+msgstr " "
 
 #: src/commands/importcertificatescommand.cpp:590
 #, kde-kuit-format
@@ -2442,9 +2433,7 @@ msgid "The existing key has the ID:"
 msgstr "ID существующего ключа:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Overwrite existing key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Overwrite Existing Key"
 msgstr "Замена существующего ключа"
@@ -2689,13 +2678,14 @@ msgid "X.509 certificates refreshed successfully."
 msgstr "Обновление сертификатов X.509 успешно завершено."
 
 #: src/commands/revokecertificationcommand.cpp:79
-#, fuzzy, kde-kuit-format
-#| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made "
 "with the key<nl/>%2.</para>"
-msgstr "<para>Будет отозван следующий ключ:<nl/>%1</para>"
+msgstr ""
+"<para>Будет отозвана сертификация идентификатора пользователя<nl/>%1<nl/>, "
+"выполненная с помощью ключа<nl/>%2.</para>"
 
 #: src/commands/revokecertificationcommand.cpp:88
 #: src/commands/revokecertificationcommand.cpp:106
@@ -2713,30 +2703,24 @@ msgstr "Отозвать подпись сертификата"
 #: src/commands/revokecertificationcommand.cpp:94
 #, kde-format
 msgid "User ID '%1' certified with key %2"
-msgstr ""
+msgstr "Идентификатор пользователя «%1» заверен ключом %2"
 
 #: src/commands/revokecertificationcommand.cpp:96
-#, fuzzy, kde-format
-#| msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
+#, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
-msgstr[0] "<para>Будет отозван следующий ключ:<nl/>%1</para>"
-msgstr[1] "<para>Будет отозван следующий ключ:<nl/>%1</para>"
-msgstr[2] "<para>Будет отозван следующий ключ:<nl/>%1</para>"
-msgstr[3] "<para>Будет отозван следующий ключ:<nl/>%1</para>"
+msgstr[0] "Будут отозваны следующие сертификации: %1"
+msgstr[1] "Будут отозваны следующие сертификации: %1"
+msgstr[2] "Будут отозваны следующие сертификации: %1"
+msgstr[3] "Будут отозвана следующая сертификация:"
 
 #: src/commands/revokecertificationcommand.cpp:107
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Revoke Certifications"
+#, kde-format
 msgid "Revoke Certifications"
-msgstr "Отзыв сертификаций"
+msgstr "Отозвать сертификации"
 
 #: src/commands/revokecertificationcommand.cpp:215
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>A new OpenPGP certificate was created successfully.</"
-#| "para><para>Fingerprint of the new certificate: %1</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The certification has been revoked successfully.</para><para>Do you "
@@ -2745,49 +2729,44 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
-"<para>Новый сертификат OpenPGP создан.</para><para>Отпечаток нового "
-"сертификата: %1</para>"
+"<para>%1 сертификация успешно отозвана.</para><para>Опубликовать информацию "
+"об отзыве?</para>"
 msgstr[1] ""
-"<para>Новый сертификат OpenPGP создан.</para><para>Отпечаток нового "
-"сертификата: %1</para>"
+"<para>%1 сертификации успешно отозваны.</para><para>Опубликовать информацию "
+"об отзыве?</para>"
 msgstr[2] ""
-"<para>Новый сертификат OpenPGP создан.</para><para>Отпечаток нового "
-"сертификата: %1</para>"
+"<para>%1 сертификаций успешно отозваны.</para><para>Опубликовать информацию "
+"об отзыве?</para>"
 msgstr[3] ""
-"<para>Новый сертификат OpenPGP создан.</para><para>Отпечаток нового "
-"сертификата: %1</para>"
+"<para>Сертификация успешно отозвана.</para><para>Опубликовать информацию об "
+"отзыве?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:220
-#, fuzzy, kde-format
-#| msgid "Publish revocations on keyserver"
+#, kde-format
 msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
-msgstr[0] "Опубликовать сведения об отзыве подписи на сервере ключей"
-msgstr[1] "Опубликовать сведения об отзыве подписи на сервере ключей"
-msgstr[2] "Опубликовать сведения об отзыве подписи на сервере ключей"
-msgstr[3] "Опубликовать сведения об отзыве подписи на сервере ключей"
+msgstr[0] "Опубликовать сведения об отзыве"
+msgstr[1] "Опубликовать сведения об отзыве"
+msgstr[2] "Опубликовать сведения об отзыве"
+msgstr[3] "Опубликовать сведения об отзыве"
 
 #: src/commands/revokecertificationcommand.cpp:228
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Confirm Revocation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
-msgstr "Подтверждение отзыва"
+msgstr "Подтверждение публикации"
 
 #: src/commands/revokecertificationcommand.cpp:255
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
-"<para>Не удалось создать новый сертификат OpenPGP.</para><para>Ошибка: "
-"<message>%1</message></para>"
+"<para>Не удалось выполнить отзыв сертификации идентификатора пользователя<nl/"
+">%1<nl/>, выполненной с помощью ключа<nl/>%2<nl/>:</para><para><message>%3</"
+"message></para>"
 
 #: src/commands/revokecertificationcommand.cpp:346
 #, kde-format
@@ -2804,10 +2783,9 @@ msgstr[2] "Невозможно отозвать сертификаты этих
 msgstr[3] "Невозможно отозвать сертификаты этого идентификатора пользователя."
 
 #: src/commands/revokecertificationcommand.cpp:354
-#, fuzzy, kde-format
-#| msgid "You cannot revoke this expired certification."
+#, kde-format
 msgid "You cannot revoke this certification."
-msgstr "Невозможно отозвать этот истёкший сертификат."
+msgstr "Невозможно отозвать этот сертификат."
 
 #: src/commands/revokekeycommand.cpp:109
 #, kde-format
@@ -2928,40 +2906,32 @@ msgid "PIV Card Application Administration Key set successfully."
 msgstr "Ключ администрирования карты PIV установлен."
 
 #: src/commands/setprimaryuseridcommand.cpp:89
-#, fuzzy, kde-format
-#| msgid "The backend does not support updating individual certificates."
+#, kde-format
 msgctxt "@info"
 msgid "The backend does not support this operation."
-msgstr "Модуль не поддерживает обновление отдельных сертификатов."
+msgstr "Модуль не поддерживает эту операцию."
 
 #: src/commands/setprimaryuseridcommand.cpp:131
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>"
-#| "%1</emphasis>.</para><para><message>%2</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while trying to flag the user ID<nl/><emphasis>%1</"
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
-"<para>При попытке отзыва идентификатора пользователя<nl/><emphasis>%1</"
-"emphasis> произошла ошибка.</para><para><message>%2</message></para>"
+"<para>При попытке отметить идентификатор пользователя<nl/><emphasis>%1</"
+"emphasis><nl/>как основной произошла ошибка.</para><para><message>%2</"
+"message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:140
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked "
-#| "successfully.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
 "<para>Идентификатор пользователя<nl/><emphasis>%1</emphasis><nl/>успешно "
-"отозван.</para>"
+"отмечен как основной.</para>"
 
 #: src/commands/signclipboardcommand.cpp:148
 #: src/commands/signclipboardcommand.cpp:162
@@ -3899,14 +3869,9 @@ msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Да, сохранить как <filename>%1</filename>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:242 src/utils/output.cpp:529
-#, fuzzy, kde-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-format
 msgid "The file <b>%1</b> already exists.\n"
-msgstr ""
-"Файл <b>%1</b> уже существует.\n"
-"Заменить его?"
+msgstr "Файл <b>%1</b> уже существует.\n"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:245 src/utils/output.cpp:532
 #, kde-format
@@ -5055,6 +5020,7 @@ msgstr ""
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
+"Некорректные параметры соответствия для подписывания и шифрования файлов."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:196
 #, kde-kuit-format
@@ -5255,24 +5221,19 @@ msgid "Output directory"
 msgstr "Каталог вывода"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:449
-#, fuzzy, kde-format
-#| msgid "Sign"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign"
-msgstr "для подписывания"
+msgstr "Подписать"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:452
-#, fuzzy, kde-format
-#| msgctxt "@title:group"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
-msgstr "Шифрование"
+msgstr "Зашифровать"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:455
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Подписать / зашифровать"
@@ -5809,18 +5770,18 @@ msgid "Add User ID"
 msgstr "Добавить идентификатор пользователя"
 
 #: src/dialogs/certificatedetailswidget.cpp:232
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Primary"
+#, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
-msgstr "Основной"
+msgstr "Отметить как основной"
 
 #: src/dialogs/certificatedetailswidget.cpp:233
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr ""
+"Отметить выбранный идентификатор пользователя как основной идентификатор "
+"пользователя этого ключа."
 
 #: src/dialogs/certificatedetailswidget.cpp:236
 #, kde-format
@@ -6025,7 +5986,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
-msgstr ""
+msgstr "Отметить как основной идентификатор пользователя"
 
 #: src/dialogs/certificatedetailswidget.cpp:841
 #, kde-format
@@ -6270,6 +6231,10 @@ msgid ""
 "the key you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
+"Проверьте отпечаток, отметьте идентификаторы пользователей, которые "
+"требуется заверить, и выберите ключ, с помощью которого это следует сделать."
+"<br><i>Примечание: ключ и его владельца явным образом определяет только "
+"отпечаток.</i>"
 
 #: src/dialogs/certifywidget.cpp:376
 #, kde-format
@@ -6298,10 +6263,9 @@ msgid "Advanced"
 msgstr "Расширенный"
 
 #: src/dialogs/certifywidget.cpp:406
-#, fuzzy, kde-format
-#| msgid "Hide advanced settings"
+#, kde-format
 msgid "Show advanced options"
-msgstr "Скрыть дополнительные параметры"
+msgstr "Показать дополнительные параметры"
 
 #: src/dialogs/certifywidget.cpp:412
 #, kde-format
@@ -6413,10 +6377,9 @@ msgid "Explain trusted introducer"
 msgstr "Пояснение доверенного представителя"
 
 #: src/dialogs/certifywidget.cpp:508
-#, fuzzy, kde-format
-#| msgid "Domain"
+#, kde-format
 msgid "Domain:"
-msgstr "Домен"
+msgstr "Домен:"
 
 #: src/dialogs/certifywidget.cpp:689
 #, kde-format
@@ -8650,6 +8613,12 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>Не удалось инициализировать модуль проводника Windows для Kleopatra.<br/"
+">Получено следующее сообщение об ошибке: <b>%1</b><br/>Вероятно, это "
+"означает наличие проблем с установленным пакетом. Попробуйте переустановить "
+"его или обратитесь за помощью к системному администратору.<br/>Можно "
+"продолжить использование программы Kleopatra, но в её работе могут "
+"возникнуть другие проблемы.</qt>"
 
 #: src/main.cpp:265
 #, kde-format
@@ -8848,7 +8817,7 @@ msgstr "Управление смарт-картами"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_howto_de.pdf"
-msgstr ""
+msgstr "smartcard_howto_de.pdf"
 
 #: src/mainwindow.cpp:636
 #, kde-format
@@ -9386,19 +9355,13 @@ msgid "%1?"
 msgstr "%1?"
 
 #: src/selftest/compliancecheck.cpp:45
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#| "RESTRICTED compliant or VS-NfD compliant"
-#| msgid ""
-#| "<para><application>GnuPG</application> is not configured for %1 "
-#| "communication.</para>"
+#, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
 "RESTRICTED compliant or VS-NfD compliant"
 msgid "<para><application>GnuPG</application> is not configured for %1.</para>"
 msgstr ""
-"<para>Система <application>GnuPG</application> не настроена для связи в "
+"<para>Система <application>GnuPG</application> не настроена для работы в "
 "соответствии со стандартом %1.</para>"
 
 #: src/selftest/compliancecheck.cpp:57
@@ -9777,77 +9740,70 @@ msgid "Authentication"
 msgstr "Аутентификация"
 
 #: src/smartcard/openpgpcard.cpp:179
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-256)"
-msgstr "ECDH (кривая P-256)"
+msgstr "ECC (Brainpool P-256)"
 
 #: src/smartcard/openpgpcard.cpp:180
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-384)"
-msgstr "ECDH (кривая P-384)"
+msgstr "ECC (Brainpool P-384)"
 
 #: src/smartcard/openpgpcard.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "ECC (Brainpool P-512)"
-msgstr ""
+msgstr "ECC (Brainpool P-512)"
 
 #: src/smartcard/openpgpcard.cpp:182 src/view/pgpcardwidget.cpp:411
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve25519)"
-msgstr "ECDH (кривая P-256)"
+msgstr "ECC (Curve25519)"
 
 #: src/smartcard/openpgpcard.cpp:183
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (Curve448)"
-msgstr "ECDH (кривая P-384)"
+msgstr "ECC (Curve448)"
 
 #: src/smartcard/openpgpcard.cpp:184
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-256)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-256)"
-msgstr "ECDH (кривая P-256)"
+msgstr "ECC (NIST P-256)"
 
 #: src/smartcard/openpgpcard.cpp:185
-#, fuzzy, kde-format
-#| msgid "ECDH (Curve P-384)"
+#, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-384)"
-msgstr "ECDH (кривая P-384)"
+msgstr "ECC (NIST P-384)"
 
 #: src/smartcard/openpgpcard.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "ECC (NIST P-521)"
-msgstr ""
+msgstr "ECC (NIST P-521)"
 
 #: src/smartcard/openpgpcard.cpp:187 src/view/pgpcardwidget.cpp:412
-#, fuzzy, kde-format
-#| msgid "RSA (2048 bits)"
+#, kde-format
 msgctxt "@info"
 msgid "RSA 2048"
-msgstr "RSA (2048 бит)"
+msgstr "RSA 2048"
 
 #: src/smartcard/openpgpcard.cpp:188 src/view/pgpcardwidget.cpp:413
 #, kde-format
 msgctxt "@info"
 msgid "RSA 3072"
-msgstr ""
+msgstr "RSA 3072"
 
 #: src/smartcard/openpgpcard.cpp:189 src/view/pgpcardwidget.cpp:417
 #, kde-format
 msgctxt "@info"
 msgid "RSA 4096"
-msgstr ""
+msgstr "RSA 4096"
 
 #: src/smartcard/pivcard.cpp:85
 #, kde-format
@@ -11124,10 +11080,10 @@ msgid "Show detailed information about this key"
 msgstr "Показать подробную информацию об этом ключе"
 
 #: src/view/openpgpkeycardwidget.cpp:55 src/view/openpgpkeycardwidget.cpp:172
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Generate Key"
-msgstr "Создание ключа"
+msgstr "Создать ключ"
 
 #: src/view/openpgpkeycardwidget.cpp:60 src/view/pivcardwidget.cpp:185
 #, kde-format
@@ -11142,12 +11098,10 @@ msgid "<em>No key</em>"
 msgstr "<em>Ключ отсутствует</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:173
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a key for this card slot"
-msgstr "Новый ключ карты создан."
+msgstr "Создать новый ключ для этого слота карты"
 
 #: src/view/openpgpkeycardwidget.cpp:184
 #, kde-format
@@ -11162,16 +11116,17 @@ msgid "<em>Invalid fingerprint</em>"
 msgstr "<em>Недействительный отпечаток ключа</em>"
 
 #: src/view/openpgpkeycardwidget.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Regenerate Key"
-msgstr "Создание ключа"
+msgstr "Повторно создать ключ"
 
 #: src/view/openpgpkeycardwidget.cpp:220
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Generate a new key for this card slot replacing the existing key"
 msgstr ""
+"Создать для этого слота карты новый ключ, который заменит существующий ключ"
 
 #: src/view/openpgpkeycardwidget.cpp:243
 #, kde-format
@@ -11221,10 +11176,9 @@ msgid "Decrypt / Verify Notepad"
 msgstr "Расшифровать и/или проверить текст"
 
 #: src/view/padwidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Imported:"
+#, kde-format
 msgid "Import Notepad"
-msgstr "Импортировано:"
+msgstr "Импорт текста"
 
 #: src/view/padwidget.cpp:86
 #, kde-format
@@ -11293,25 +11247,22 @@ msgstr ""
 "отлична от %1.</para>"
 
 #: src/view/padwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "Signing canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
-msgstr "Подписывание отменено."
+msgstr "Подписывание текста…"
 
 #: src/view/padwidget.cpp:407
-#, fuzzy, kde-format
-#| msgid "Encryption canceled."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
-msgstr "Шифрование отменено."
+msgstr "Шифрование текста…"
 
 #: src/view/padwidget.cpp:410
-#, fuzzy, kde-format
-#| msgid "Signing and encryption succeeded."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
-msgstr "Успешно зашифровано и подписано."
+msgstr "Подписывание и шифрование текста..."
 
 #: src/view/padwidget.cpp:456
 #, kde-format
@@ -11319,22 +11270,19 @@ msgid "Importing..."
 msgstr "Импорт…"
 
 #: src/view/padwidget.cpp:496
-#, fuzzy, kde-format
-#| msgid "Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
-msgstr "Блокнот"
+msgstr "Подписать текст"
 
 #: src/view/padwidget.cpp:499
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
-msgstr "Подписать и/или зашифровать текст"
+msgstr "Зашифровать текст"
 
 #: src/view/padwidget.cpp:503
-#, fuzzy, kde-format
-#| msgid "Sign / Encrypt Notepad"
+#, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "Подписать и/или зашифровать текст"
@@ -11963,17 +11911,19 @@ msgid ""
 "use <interface>New S/MIME Certification Request</interface> from the "
 "<interface>File</interface> menu instead."
 msgstr ""
+"Создать новую пару ключей OpenPGP.<nl/>Чтобы создать запрос сертификата S/"
+"MIME, воспользуйтесь пунктом <interface>Новый запрос сертификации S/MIME…</"
+"interface> меню <interface>Файл</interface>."
 
 #: src/view/welcomewidget.cpp:152
-#, fuzzy, kde-kuit-format
-#| msgid "To import from a public keyserver use \"Lookup on Server\" instead."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-"Для импорта из открытого сервера ключей используйте пункт меню «Поиск на "
-"сервере»."
+"Импортировать сертификат из файла.<nl/>Для импорта с открытого сервера "
+"ключей воспользуйтесь пунктом меню <interface>Поиск на сервере…</interface>."
 
 #~ msgid "Signing and encrypting files is not possible."
 #~ msgstr "Подписывание и шифрование файлов невозможны."

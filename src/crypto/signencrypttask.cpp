@@ -314,7 +314,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
 
 std::shared_ptr<const Task::Result> SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, input->label(), output->label(), auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, input ? input->label() : QString{}, output ? output->label() : QString{}, auditLog));
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
@@ -551,7 +551,7 @@ void SignEncryptTask::Private::slotResult(const SigningResult &result)
     const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
-    if (input->failed()) {
+    if (input && input->failed()) {
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape( input->errorString())),
                                       auditLog));
@@ -563,7 +563,9 @@ void SignEncryptTask::Private::slotResult(const SigningResult &result)
             kleo_assert(!result.isNull());
             output->finalize();
             outputCreated = true;
-            input->finalize();
+            if (input) {
+                input->finalize();
+            }
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
@@ -578,7 +580,7 @@ void SignEncryptTask::Private::slotResult(const SigningResult &sresult, const En
     const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
-    if (input->failed()) {
+    if (input && input->failed()) {
         output->cancel();
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape( input->errorString())),
@@ -591,7 +593,9 @@ void SignEncryptTask::Private::slotResult(const SigningResult &sresult, const En
             kleo_assert(!sresult.isNull() || !eresult.isNull());
             output->finalize();
             outputCreated = true;
-            input->finalize();
+            if (input) {
+                input->finalize();
+            }
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;
@@ -606,7 +610,7 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
     const auto *const job = qobject_cast<const QGpgME::Job *>(q->sender());
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
-    if (input->failed()) {
+    if (input && input->failed()) {
         output->cancel();
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape(input->errorString())),
@@ -619,7 +623,9 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
             kleo_assert(!result.isNull());
             output->finalize();
             outputCreated = true;
-            input->finalize();
+            if (input) {
+                input->finalize();
+            }
         } catch (const GpgME::Exception &e) {
             q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
             return;

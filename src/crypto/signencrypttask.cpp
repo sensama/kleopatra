@@ -25,6 +25,11 @@
 #include <QGpgME/SignJob>
 #include <QGpgME/SignEncryptJob>
 #include <QGpgME/EncryptJob>
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+#include <QGpgME/EncryptArchiveJob>
+#include <QGpgME/SignArchiveJob>
+#include <QGpgME/SignEncryptArchiveJob>
+#endif
 
 #include <gpgme++/signingresult.h>
 #include <gpgme++/encryptionresult.h>
@@ -273,9 +278,18 @@ public:
     explicit Private(SignEncryptTask *qq);
 
 private:
+    void startSignEncryptJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignJob> createSignJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::EncryptJob> createEncryptJob(GpgME::Protocol proto);
+
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+    void startSignEncryptArchiveJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::SignArchiveJob> createSignArchiveJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::SignEncryptArchiveJob> createSignEncryptArchiveJob(GpgME::Protocol proto);
+    std::unique_ptr<QGpgME::EncryptArchiveJob> createEncryptArchiveJob(GpgME::Protocol proto);
+#endif
+
     std::shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog);
 
 private:
@@ -296,6 +310,7 @@ private:
     bool detached : 1;
     bool symmetric: 1;
     bool clearsign: 1;
+    bool archive  : 1;
 
     QPointer<QGpgME::Job> job;
     std::shared_ptr<OverwritePolicy> m_overwritePolicy;
@@ -307,6 +322,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
     , encrypt{true}
     , detached{false}
     , clearsign{false}
+    , archive{false}
     , m_overwritePolicy{new OverwritePolicy{nullptr}}
 {
     q->setAsciiArmor(true);
@@ -408,6 +424,12 @@ void SignEncryptTask::setClearsign(bool clearsign)
     d->clearsign = clearsign;
 }
 
+void SignEncryptTask::setCreateArchive(bool archive)
+{
+    kleo_assert(!d->job);
+    d->archive = archive;
+}
+
 Protocol SignEncryptTask::protocol() const
 {
     if (d->sign && !d->signers.empty()) {
@@ -439,62 +461,87 @@ unsigned long long SignEncryptTask::inputSize() const
     return d->input ? d->input->size() : 0U;
 }
 
+static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
+{
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+    return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
+#else
+    return false;
+#endif
+}
+
 void SignEncryptTask::doStart()
 {
     kleo_assert(!d->job);
     if (d->sign) {
         kleo_assert(!d->signers.empty());
+        if (d->archive) {
+            kleo_assert(!d->detached && !d->clearsign);
+        }
     }
-
-    kleo_assert(d->input);
 
     if (!d->output) {
         d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
     }
 
-    if (d->encrypt || d->symmetric) {
+    const auto proto = protocol();
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+    if (d->archive && archiveJobsCanBeUsed(proto)) {
+        d->startSignEncryptArchiveJob(proto);
+    } else
+#endif
+    {
+        d->startSignEncryptJob(proto);
+    }
+}
+
+void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
+{
+    kleo_assert(input);
+
+    if (encrypt || symmetric) {
         Context::EncryptionFlags flags = Context::AlwaysTrust;
-        if (d->symmetric) {
+        if (symmetric) {
             flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
             qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";
         }
-        if (d->sign) {
-            std::unique_ptr<QGpgME::SignEncryptJob> job = d->createSignEncryptJob(protocol());
+        if (sign) {
+            std::unique_ptr<QGpgME::SignEncryptJob> job = createSignEncryptJob(proto);
             kleo_assert(job.get());
 #if QGPGME_SUPPORTS_SET_FILENAME
-            if (d->inputFileNames.size() == 1) {
-                job->setFileName(d->inputFileNames.front());
+            if (inputFileNames.size() == 1) {
+                job->setFileName(inputFileNames.front());
             }
 #endif
 
-            job->start(d->signers, d->recipients,
-                       d->input->ioDevice(), d->output->ioDevice(), flags);
+            job->start(signers, recipients,
+                       input->ioDevice(), output->ioDevice(), flags);
 
-            d->job = job.release();
+            this->job = job.release();
         } else {
-            std::unique_ptr<QGpgME::EncryptJob> job = d->createEncryptJob(protocol());
+            std::unique_ptr<QGpgME::EncryptJob> job = createEncryptJob(proto);
             kleo_assert(job.get());
 #if QGPGME_SUPPORTS_SET_FILENAME
-            if (d->inputFileNames.size() == 1) {
-                job->setFileName(d->inputFileNames.front());
+            if (inputFileNames.size() == 1) {
+                job->setFileName(inputFileNames.front());
             }
 #endif
 
-            job->start(d->recipients, d->input->ioDevice(), d->output->ioDevice(), flags);
+            job->start(recipients, input->ioDevice(), output->ioDevice(), flags);
 
-            d->job = job.release();
+            this->job = job.release();
         }
-    } else if (d->sign) {
-        std::unique_ptr<QGpgME::SignJob> job = d->createSignJob(protocol());
+    } else if (sign) {
+        std::unique_ptr<QGpgME::SignJob> job = createSignJob(proto);
         kleo_assert(job.get());
-        kleo_assert(! (d->detached && d->clearsign));
+        kleo_assert(! (detached && clearsign));
 
-        job->start(d->signers,
-                   d->input->ioDevice(), d->output->ioDevice(),
-                   d->detached ? GpgME::Detached : d->clearsign ?
+        job->start(signers,
+                   input->ioDevice(), output->ioDevice(),
+                   detached ? GpgME::Detached : clearsign ?
                               GpgME::Clearsigned : GpgME::NormalSignatureMode);
 
-        d->job = job.release();
+        this->job = job.release();
     } else {
         kleo_assert(!"Either 'sign' or 'encrypt' or 'symmetric' must be set!");
     }
@@ -545,6 +592,90 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
             q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;
 }
+
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
+{
+    kleo_assert(!input);
+
+    const auto baseDirectory = heuristicBaseDirectory(inputFileNames);
+    if (baseDirectory.isEmpty()) {
+        throw Kleo::Exception(GPG_ERR_CONFLICT, i18n("Cannot find common base directory for these files:\n%1", inputFileNames.join(QLatin1Char('\n'))));
+    }
+    qCDebug(KLEOPATRA_LOG) << "heuristicBaseDirectory(" << inputFileNames << ") ->" << baseDirectory;
+    const auto tempPaths = makeRelativeTo(baseDirectory, inputFileNames);
+    const auto relativePaths = std::vector<QString>{tempPaths.begin(), tempPaths.end()};
+    qCDebug(KLEOPATRA_LOG) << "relative paths:" << relativePaths;
+
+    if (encrypt || symmetric) {
+        Context::EncryptionFlags flags = Context::AlwaysTrust;
+        if (symmetric) {
+            flags = static_cast<Context::EncryptionFlags>(flags | Context::Symmetric);
+            qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";
+        }
+        if (sign) {
+            std::unique_ptr<QGpgME::SignEncryptArchiveJob> job = createSignEncryptArchiveJob(proto);
+            kleo_assert(job.get());
+            job->setBaseDirectory(baseDirectory);
+
+            job->start(signers, recipients, relativePaths, output->ioDevice(), flags);
+
+            this->job = job.release();
+        } else {
+            std::unique_ptr<QGpgME::EncryptArchiveJob> job = createEncryptArchiveJob(proto);
+            kleo_assert(job.get());
+            job->setBaseDirectory(baseDirectory);
+
+            job->start(recipients, relativePaths, output->ioDevice(), flags);
+
+            this->job = job.release();
+        }
+    } else if (sign) {
+        std::unique_ptr<QGpgME::SignArchiveJob> job = createSignArchiveJob(proto);
+        kleo_assert(job.get());
+        job->setBaseDirectory(baseDirectory);
+
+        job->start(signers, relativePaths, output->ioDevice());
+
+        this->job = job.release();
+    } else {
+        kleo_assert(!"Either 'sign' or 'encrypt' or 'symmetric' must be set!");
+    }
+}
+
+std::unique_ptr<QGpgME::SignArchiveJob> SignEncryptTask::Private::createSignArchiveJob(GpgME::Protocol proto)
+{
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+    kleo_assert(backend);
+    std::unique_ptr<QGpgME::SignArchiveJob> signJob(backend->signArchiveJob(q->asciiArmor()));
+    kleo_assert(signJob.get());
+    connect(signJob.get(), &QGpgME::SignArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(signJob.get(), &QGpgME::SignArchiveJob::result, q, [this](const GpgME::SigningResult &signResult) { slotResult(signResult); });
+    return signJob;
+}
+
+std::unique_ptr<QGpgME::SignEncryptArchiveJob> SignEncryptTask::Private::createSignEncryptArchiveJob(GpgME::Protocol proto)
+{
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+    kleo_assert(backend);
+    std::unique_ptr<QGpgME::SignEncryptArchiveJob> signEncryptJob(backend->signEncryptArchiveJob(q->asciiArmor()));
+    kleo_assert(signEncryptJob.get());
+    connect(signEncryptJob.get(), &QGpgME::SignEncryptArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(signEncryptJob.get(), &QGpgME::SignEncryptArchiveJob::result, q, [this](const GpgME::SigningResult &signResult, const GpgME::EncryptionResult &encryptResult) { slotResult(signResult, encryptResult); });
+    return signEncryptJob;
+}
+
+std::unique_ptr<QGpgME::EncryptArchiveJob> SignEncryptTask::Private::createEncryptArchiveJob(GpgME::Protocol proto)
+{
+    const QGpgME::Protocol *const backend = (proto == GpgME::OpenPGP) ? QGpgME::openpgp() : QGpgME::smime();
+    kleo_assert(backend);
+    std::unique_ptr<QGpgME::EncryptArchiveJob> encryptJob(backend->encryptArchiveJob(q->asciiArmor()));
+    kleo_assert(encryptJob.get());
+    connect(encryptJob.get(), &QGpgME::EncryptArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(encryptJob.get(), &QGpgME::EncryptArchiveJob::result, q, [this](const GpgME::EncryptionResult &encryptResult) { slotResult(encryptResult); });
+    return encryptJob;
+}
+#endif
 
 void SignEncryptTask::Private::slotResult(const SigningResult &result)
 {

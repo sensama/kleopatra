@@ -35,6 +35,10 @@
 #include <KLocalizedString>
 #include "kleopatra_debug.h"
 
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+#include <QGpgME/SignEncryptArchiveJob>
+#endif
+
 #include <QPointer>
 #include <QTimer>
 #include <QFileInfo>
@@ -376,6 +380,15 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
     return task;
 }
 
+static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
+{
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+    return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
+#else
+    return false;
+#endif
+}
+
 static std::shared_ptr<SignEncryptTask>
 createArchiveSignEncryptTaskForFiles(const QStringList &files,
                                      const std::shared_ptr<ArchiveDefinition> &ad, bool pgp, bool ascii,
@@ -383,6 +396,7 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files,
                                      const QString& outputName, bool symmetric)
 {
     const std::shared_ptr<SignEncryptTask> task(new SignEncryptTask);
+    task->setCreateArchive(true);
     task->setEncryptSymmetric(symmetric);
     Q_ASSERT(!signers.empty() || !recipients.empty() || symmetric);
     task->setAsciiArmor(ascii);
@@ -400,12 +414,14 @@ createArchiveSignEncryptTaskForFiles(const QStringList &files,
         task->setEncrypt(false);
     }
 
-    kleo_assert(ad);
-
     const Protocol proto = pgp ? OpenPGP : CMS;
 
     task->setInputFileNames(files);
-    task->setInput(ad->createInputFromPackCommand(proto, files));
+    if (!archiveJobsCanBeUsed(proto)) {
+        // use legacy archive creation
+        kleo_assert(ad);
+        task->setInput(ad->createInputFromPackCommand(proto, files));
+    }
 
     task->setOutputFileName(outputName);
 

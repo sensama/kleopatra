@@ -42,3 +42,6 @@
 
 /* Whether QGpgME supports deferred start of ImportJob */
 #cmakedefine01 QGPGME_SUPPORTS_DEFERRED_IMPORT_JOB
+
+/* Whether QGpgME supports the sign/encrypt/decrypt/verify archive jobs */
+#cmakedefine01 QGPGME_SUPPORTS_ARCHIVE_JOBS

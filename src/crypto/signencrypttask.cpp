@@ -302,19 +302,12 @@ private:
 };
 
 SignEncryptTask::Private::Private(SignEncryptTask *qq)
-    : q(qq),
-      input(),
-      output(),
-      inputFileNames(),
-      outputFileName(),
-      signers(),
-      recipients(),
-      sign(true),
-      encrypt(true),
-      detached(false),
-      clearsign(false),
-      job(nullptr),
-      m_overwritePolicy(new OverwritePolicy(nullptr))
+    : q{qq}
+    , sign{true}
+    , encrypt{true}
+    , detached{false}
+    , clearsign{false}
+    , m_overwritePolicy{new OverwritePolicy{nullptr}}
 {
     q->setAsciiArmor(true);
 }

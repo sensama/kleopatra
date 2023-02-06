@@ -962,7 +962,10 @@ class DecryptVerifyTask::Private
 {
     DecryptVerifyTask *const q;
 public:
-    explicit Private(DecryptVerifyTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol), m_ignoreMDCError(false)  {}
+    explicit Private(DecryptVerifyTask *qq)
+        : q{qq}
+    {
+    }
 
     void slotResult(const DecryptionResult &, const VerificationResult &, const QByteArray &);
 
@@ -978,9 +981,9 @@ public:
 
     std::shared_ptr<Input> m_input;
     std::shared_ptr<Output> m_output;
-    const QGpgME::Protocol *m_backend;
-    Protocol m_protocol;
-    bool m_ignoreMDCError;
+    const QGpgME::Protocol *m_backend = nullptr;
+    Protocol m_protocol = UnknownProtocol;
+    bool m_ignoreMDCError = false;
 };
 
 void DecryptVerifyTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
@@ -1148,7 +1151,10 @@ class DecryptTask::Private
 {
     DecryptTask *const q;
 public:
-    explicit Private(DecryptTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
+    explicit Private(DecryptTask *qq)
+        : q{qq}
+    {
+    }
 
     void slotResult(const DecryptionResult &, const QByteArray &);
 
@@ -1164,8 +1170,8 @@ public:
 
     std::shared_ptr<Input> m_input;
     std::shared_ptr<Output> m_output;
-    const QGpgME::Protocol *m_backend;
-    Protocol m_protocol;
+    const QGpgME::Protocol *m_backend = nullptr;
+    Protocol m_protocol = UnknownProtocol;
 };
 
 void DecryptTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
@@ -1305,7 +1311,10 @@ class VerifyOpaqueTask::Private
 {
     VerifyOpaqueTask *const q;
 public:
-    explicit Private(VerifyOpaqueTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol)  {}
+    explicit Private(VerifyOpaqueTask *qq)
+        : q{qq}
+    {
+    }
 
     void slotResult(const VerificationResult &, const QByteArray &);
 
@@ -1321,8 +1330,8 @@ public:
 
     std::shared_ptr<Input> m_input;
     std::shared_ptr<Output> m_output;
-    const QGpgME::Protocol *m_backend;
-    Protocol m_protocol;
+    const QGpgME::Protocol *m_backend = nullptr;
+    Protocol m_protocol = UnknownProtocol;
 };
 
 void VerifyOpaqueTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
@@ -1463,7 +1472,10 @@ class VerifyDetachedTask::Private
 {
     VerifyDetachedTask *const q;
 public:
-    explicit Private(VerifyDetachedTask *qq) : q(qq), m_backend(nullptr), m_protocol(UnknownProtocol) {}
+    explicit Private(VerifyDetachedTask *qq)
+        : q{qq}
+    {
+    }
 
     void slotResult(const VerificationResult &);
 
@@ -1478,8 +1490,8 @@ public:
     void emitResult(const std::shared_ptr<DecryptVerifyResult> &result);
 
     std::shared_ptr<Input> m_input, m_signedData;
-    const QGpgME::Protocol *m_backend;
-    Protocol m_protocol;
+    const QGpgME::Protocol *m_backend = nullptr;
+    Protocol m_protocol = UnknownProtocol;
 };
 
 void VerifyDetachedTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)

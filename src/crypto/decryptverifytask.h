@@ -184,7 +184,6 @@ public:
     ~DecryptVerifyTask() override;
 
     void setInput(const std::shared_ptr<Input> &input);
-    void setSignedData(const std::shared_ptr<Input> &signedData);
     void setOutput(const std::shared_ptr<Output> &output);
 
     void setProtocol(GpgME::Protocol prot);

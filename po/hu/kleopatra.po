@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-07 01:00+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -4624,7 +4624,7 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "Az aláírás hibás."
 
-#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:48
+#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
@@ -4747,9 +4747,9 @@ msgstr ""
 "már hitelesítve van."
 
 #: src/crypto/decryptverifytask.cpp:516 src/crypto/decryptverifytask.cpp:569
-#: src/crypto/signencrypttask.cpp:219 src/crypto/signencrypttask.cpp:236
-#: src/crypto/signencrypttask.cpp:563 src/crypto/signencrypttask.cpp:591
-#: src/crypto/signencrypttask.cpp:619
+#: src/crypto/signencrypttask.cpp:224 src/crypto/signencrypttask.cpp:241
+#: src/crypto/signencrypttask.cpp:687 src/crypto/signencrypttask.cpp:717
+#: src/crypto/signencrypttask.cpp:747
 #, kde-format
 msgid "Input error: %1"
 msgstr "Bemeneti hiba: %1"
@@ -4939,12 +4939,12 @@ msgstr "Nem egyértelmű hívás: EncryptEMailController::protocolAsString()"
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:339
+#: src/crypto/signencryptfilescontroller.cpp:343
 #, kde-format
 msgid "User cancel"
 msgstr "A felhasználó megszakította"
 
-#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:172
+#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:177
 #, kde-format
 msgid "Encryption canceled."
 msgstr "A titkosítás megszakadt."
@@ -4954,7 +4954,7 @@ msgstr "A titkosítás megszakadt."
 msgid "Encryption failed: %1"
 msgstr "A titkosítás nem sikerült: %1"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:179
+#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:184
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "A titkosítás sikerült."
@@ -5928,7 +5928,7 @@ msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "Nem egyértelmű hívás: NewSignEncryptEMailController::protocolAsString()"
 
-#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:155
+#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:160
 #, kde-format
 msgid "Signing canceled."
 msgstr "Az aláírás megszakadt."
@@ -5938,48 +5938,48 @@ msgstr "Az aláírás megszakadt."
 msgid "Signing failed: %1"
 msgstr "Az aláírás nem sikerült: %1"
 
-#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:161
+#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:166
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Az aláírás sikerült."
 
-#: src/crypto/signencryptfilescontroller.cpp:113
+#: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "Fájlok tömörítése és aláírása"
 
-#: src/crypto/signencryptfilescontroller.cpp:115
+#: src/crypto/signencryptfilescontroller.cpp:119
 #, kde-format
 msgid "Sign Files"
 msgstr "Fájlok aláírása"
 
-#: src/crypto/signencryptfilescontroller.cpp:121
+#: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "Fájlok tömörítése és titkosítása"
 
-#: src/crypto/signencryptfilescontroller.cpp:123
+#: src/crypto/signencryptfilescontroller.cpp:127
 #, kde-format
 msgid "Encrypt Files"
 msgstr "Fájlok titkosítása"
 
-#: src/crypto/signencryptfilescontroller.cpp:128
+#: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "Fájlok tömörítése és aláírása/titkosítása"
 
-#: src/crypto/signencryptfilescontroller.cpp:130
+#: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "Fájlok aláírása/titkosítása"
 
-#: src/crypto/signencryptfilescontroller.cpp:269
+#: src/crypto/signencryptfilescontroller.cpp:273
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archívum"
 
-#: src/crypto/signencryptfilescontroller.cpp:590
+#: src/crypto/signencryptfilescontroller.cpp:606
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5988,7 +5988,7 @@ msgstr ""
 "Nem várt kivétel történt itt: SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared. %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:594
+#: src/crypto/signencryptfilescontroller.cpp:610
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5997,51 +5997,60 @@ msgstr ""
 "Nem várt kivétel történt itt: SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:159
+#: src/crypto/signencrypttask.cpp:164
 #, kde-format
 msgid "Signing failed."
 msgstr "Az aláírás nem sikerült."
 
-#: src/crypto/signencrypttask.cpp:176
+#: src/crypto/signencrypttask.cpp:181
 #, kde-format
 msgid "Encryption failed."
 msgstr "A titkosítás nem sikerült."
 
-#: src/crypto/signencrypttask.cpp:204
+#: src/crypto/signencrypttask.cpp:209
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Az aláírás és a titkosítás sikerült."
 
-#: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
+#: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
 #, kde-format
 msgid "Output error: %1"
 msgstr "Kimeneti hiba: %1"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:250
 #, kde-format
 msgid " Encryption succeeded."
 msgstr " A titkosítás sikerült."
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>Nem sikerült az aláírás vagy titkosítás.</b>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: Nem sikerült az aláírás vagy titkosítás."
 
-#: src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:264
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:431
+#: src/crypto/signencrypttask.cpp:446
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Nem határozható meg a feladat protokollja"
+
+#: src/crypto/signencrypttask.cpp:603 src/utils/archivedefinition.cpp:350
+#, kde-format
+msgid ""
+"Cannot find common base directory for these files:\n"
+"%1"
+msgstr ""
+"Nem található közös alapkönyvtár ezekhez a fájlokhoz:\n"
+"%1"
 
 #: src/crypto/task.cpp:166
 #, kde-format
@@ -10849,15 +10858,6 @@ msgid "cannot use argument passing on standard input for unpack-command"
 msgstr ""
 "nem használható a szabványos bemeneten átadott argumentum a kibontás "
 "parancshoz"
-
-#: src/utils/archivedefinition.cpp:350
-#, kde-format
-msgid ""
-"Cannot find common base directory for these files:\n"
-"%1"
-msgstr ""
-"Nem található közös alapkönyvtár ezekhez a fájlokhoz:\n"
-"%1"
 
 #: src/utils/archivedefinition.cpp:407
 #, kde-format

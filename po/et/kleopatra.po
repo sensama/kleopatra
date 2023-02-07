@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-07 01:00+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -4505,7 +4505,7 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "Allkiri <b>ei ole</b> VS-NfD ühilduv."
 
-#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:48
+#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
@@ -4623,9 +4623,9 @@ msgstr ""
 "sertifitseerimiskeskus või sertifitseerimiskeskus tundmatu."
 
 #: src/crypto/decryptverifytask.cpp:516 src/crypto/decryptverifytask.cpp:569
-#: src/crypto/signencrypttask.cpp:219 src/crypto/signencrypttask.cpp:236
-#: src/crypto/signencrypttask.cpp:563 src/crypto/signencrypttask.cpp:591
-#: src/crypto/signencrypttask.cpp:619
+#: src/crypto/signencrypttask.cpp:224 src/crypto/signencrypttask.cpp:241
+#: src/crypto/signencrypttask.cpp:687 src/crypto/signencrypttask.cpp:717
+#: src/crypto/signencrypttask.cpp:747
 #, kde-format
 msgid "Input error: %1"
 msgstr "Sisendi viga: %1"
@@ -4819,12 +4819,12 @@ msgstr ""
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:339
+#: src/crypto/signencryptfilescontroller.cpp:343
 #, kde-format
 msgid "User cancel"
 msgstr "Kasutaja katkestamine"
 
-#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:172
+#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:177
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Krüptimine katkestati."
@@ -4834,7 +4834,7 @@ msgstr "Krüptimine katkestati."
 msgid "Encryption failed: %1"
 msgstr "Krüptimine nurjus: %1"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:179
+#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:184
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Krüptimine õnnestus."
@@ -5807,7 +5807,7 @@ msgstr ""
 "NewSignEncryptEMailController::protocolAsString() väljakutse on "
 "mitmetähenduslik."
 
-#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:155
+#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:160
 #, kde-format
 msgid "Signing canceled."
 msgstr "Allkirjastamine katkestati."
@@ -5817,48 +5817,48 @@ msgstr "Allkirjastamine katkestati."
 msgid "Signing failed: %1"
 msgstr "Allkirjastamine nurjus: %1"
 
-#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:161
+#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:166
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Allkirjastamine õnnestus."
 
-#: src/crypto/signencryptfilescontroller.cpp:113
+#: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "Arhiveeri ja allkirjasta failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:115
+#: src/crypto/signencryptfilescontroller.cpp:119
 #, kde-format
 msgid "Sign Files"
 msgstr "Failide allkirjastamine"
 
-#: src/crypto/signencryptfilescontroller.cpp:121
+#: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "Arhiveeri ja krüpti failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:123
+#: src/crypto/signencryptfilescontroller.cpp:127
 #, kde-format
 msgid "Encrypt Files"
 msgstr "Failide krüptimine"
 
-#: src/crypto/signencryptfilescontroller.cpp:128
+#: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "Arhiveeri ning allkirjasta ja krüpti failid"
 
-#: src/crypto/signencryptfilescontroller.cpp:130
+#: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "Failide allkirjastamine/krüptimine"
 
-#: src/crypto/signencryptfilescontroller.cpp:269
+#: src/crypto/signencryptfilescontroller.cpp:273
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "arhiiv"
 
-#: src/crypto/signencryptfilescontroller.cpp:590
+#: src/crypto/signencryptfilescontroller.cpp:606
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5867,7 +5867,7 @@ msgstr ""
 "Ilmnes ootamatu erind SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared puhul: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:594
+#: src/crypto/signencryptfilescontroller.cpp:610
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5876,51 +5876,60 @@ msgstr ""
 "Ilmnes ootamatu erind SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared puhul"
 
-#: src/crypto/signencrypttask.cpp:159
+#: src/crypto/signencrypttask.cpp:164
 #, kde-format
 msgid "Signing failed."
 msgstr "Allkirjastamine nurjus."
 
-#: src/crypto/signencrypttask.cpp:176
+#: src/crypto/signencrypttask.cpp:181
 #, kde-format
 msgid "Encryption failed."
 msgstr "Krüptimine nurjus."
 
-#: src/crypto/signencrypttask.cpp:204
+#: src/crypto/signencrypttask.cpp:209
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Allkirjastamine ja krüptimine õnnestus."
 
-#: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
+#: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
 #, kde-format
 msgid "Output error: %1"
 msgstr "Väljundi viga: %1"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:250
 #, kde-format
 msgid " Encryption succeeded."
 msgstr "Krüptimine õnnestus."
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>allkirjastamine/krüptimine katkestati.</b>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr "%1: allkirjastamine/krüptimine nurjus."
 
-#: src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:264
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:431
+#: src/crypto/signencrypttask.cpp:446
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ülesandeks ei õnnestu tuvastada protokolli"
+
+#: src/crypto/signencrypttask.cpp:603 src/utils/archivedefinition.cpp:350
+#, kde-format
+msgid ""
+"Cannot find common base directory for these files:\n"
+"%1"
+msgstr ""
+"Järgmiste failide ühist baaskataloogi ei leitud:\n"
+"%1"
 
 #: src/crypto/task.cpp:166
 #, kde-format
@@ -10679,15 +10688,6 @@ msgid "cannot use argument passing on standard input for unpack-command"
 msgstr ""
 "standardsisendile edastavat argumenti ei saa kasutada lahtipakkimiskäsu "
 "korral"
-
-#: src/utils/archivedefinition.cpp:350
-#, kde-format
-msgid ""
-"Cannot find common base directory for these files:\n"
-"%1"
-msgstr ""
-"Järgmiste failide ühist baaskataloogi ei leitud:\n"
-"%1"
 
 #: src/utils/archivedefinition.cpp:407
 #, kde-format

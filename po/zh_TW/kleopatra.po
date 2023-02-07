@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-07 01:00+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -4500,7 +4500,7 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "此簽章不正確。"
 
-#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:48
+#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
@@ -4614,9 +4614,9 @@ msgid ""
 msgstr "此憑證已經被確認過了。"
 
 #: src/crypto/decryptverifytask.cpp:516 src/crypto/decryptverifytask.cpp:569
-#: src/crypto/signencrypttask.cpp:219 src/crypto/signencrypttask.cpp:236
-#: src/crypto/signencrypttask.cpp:563 src/crypto/signencrypttask.cpp:591
-#: src/crypto/signencrypttask.cpp:619
+#: src/crypto/signencrypttask.cpp:224 src/crypto/signencrypttask.cpp:241
+#: src/crypto/signencrypttask.cpp:687 src/crypto/signencrypttask.cpp:717
+#: src/crypto/signencrypttask.cpp:747
 #, kde-format
 msgid "Input error: %1"
 msgstr "輸入錯誤：%1"
@@ -4798,12 +4798,12 @@ msgstr "對 EncryptEMailController::protocolAsString() 的呼叫不明確。"
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:339
+#: src/crypto/signencryptfilescontroller.cpp:343
 #, kde-format
 msgid "User cancel"
 msgstr "使用者取消"
 
-#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:172
+#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:177
 #, kde-format
 msgid "Encryption canceled."
 msgstr "加密已取消。"
@@ -4813,7 +4813,7 @@ msgstr "加密已取消。"
 msgid "Encryption failed: %1"
 msgstr "加密失敗：%1"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:179
+#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:184
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "加密成功。"
@@ -5781,7 +5781,7 @@ msgstr "返回"
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr "對 NewSignEncryptEMailController::::protocolAsString() 的呼叫不明確。"
 
-#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:155
+#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:160
 #, kde-format
 msgid "Signing canceled."
 msgstr "簽署已取消。"
@@ -5791,48 +5791,48 @@ msgstr "簽署已取消。"
 msgid "Signing failed: %1"
 msgstr "簽署失敗：%1"
 
-#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:161
+#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:166
 #, kde-format
 msgid "Signing succeeded."
 msgstr "簽署成功。"
 
-#: src/crypto/signencryptfilescontroller.cpp:113
+#: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "封存並簽署檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:115
+#: src/crypto/signencryptfilescontroller.cpp:119
 #, kde-format
 msgid "Sign Files"
 msgstr "簽署檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:121
+#: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "簽署並加密檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:123
+#: src/crypto/signencryptfilescontroller.cpp:127
 #, kde-format
 msgid "Encrypt Files"
 msgstr "加密檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:128
+#: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "封存並簽署與加密檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:130
+#: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "簽署/加密檔案"
 
-#: src/crypto/signencryptfilescontroller.cpp:269
+#: src/crypto/signencryptfilescontroller.cpp:273
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "封存"
 
-#: src/crypto/signencryptfilescontroller.cpp:590
+#: src/crypto/signencryptfilescontroller.cpp:606
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5841,7 +5841,7 @@ msgstr ""
 "遇到非預期的例外狀況，發生於 SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared：%1"
 
-#: src/crypto/signencryptfilescontroller.cpp:594
+#: src/crypto/signencryptfilescontroller.cpp:610
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5850,51 +5850,60 @@ msgstr ""
 "遇到未知的例外狀況，發生於 SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:159
+#: src/crypto/signencrypttask.cpp:164
 #, kde-format
 msgid "Signing failed."
 msgstr "簽署失敗。"
 
-#: src/crypto/signencrypttask.cpp:176
+#: src/crypto/signencrypttask.cpp:181
 #, kde-format
 msgid "Encryption failed."
 msgstr "加密失敗。"
 
-#: src/crypto/signencrypttask.cpp:204
+#: src/crypto/signencrypttask.cpp:209
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "簽署與加密成功"
 
-#: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
+#: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
 #, kde-format
 msgid "Output error: %1"
 msgstr "輸出錯誤：%1"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:250
 #, kde-format
 msgid " Encryption succeeded."
 msgstr "加密成功。"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1：<b>簽署/加密已取消。</b>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr "%1：簽署/加密失敗。"
 
-#: src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:264
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1：<b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:431
+#: src/crypto/signencrypttask.cpp:446
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "無法決定此工作使用的協定"
+
+#: src/crypto/signencrypttask.cpp:603 src/utils/archivedefinition.cpp:350
+#, kde-format
+msgid ""
+"Cannot find common base directory for these files:\n"
+"%1"
+msgstr ""
+"找不到以下檔案的共用基礎目錄：\n"
+"%1"
 
 #: src/crypto/task.cpp:166
 #, kde-format
@@ -10593,15 +10602,6 @@ msgstr "%1 是空的或找不到"
 #, kde-format
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr "無法使用標準輸入傳遞參數給解壓指令"
-
-#: src/utils/archivedefinition.cpp:350
-#, kde-format
-msgid ""
-"Cannot find common base directory for these files:\n"
-"%1"
-msgstr ""
-"找不到以下檔案的共用基礎目錄：\n"
-"%1"
 
 #: src/utils/archivedefinition.cpp:407
 #, kde-format

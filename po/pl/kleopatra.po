@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1643648 $
+# Version: $Revision: 1644041 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-01 00:57+0000\n"
+"POT-Creation-Date: 2023-02-07 01:00+0000\n"
 "PO-Revision-Date: 2023-01-21 10:52+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4330,7 +4330,7 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "Podpisem <b>nie</b> jest %1."
 
-#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:48
+#: src/crypto/decryptverifytask.cpp:297 src/crypto/signencrypttask.cpp:53
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
@@ -4451,9 +4451,9 @@ msgstr ""
 "certyfikujący lub urząd certyfikujący jest nieznany."
 
 #: src/crypto/decryptverifytask.cpp:516 src/crypto/decryptverifytask.cpp:569
-#: src/crypto/signencrypttask.cpp:219 src/crypto/signencrypttask.cpp:236
-#: src/crypto/signencrypttask.cpp:563 src/crypto/signencrypttask.cpp:591
-#: src/crypto/signencrypttask.cpp:619
+#: src/crypto/signencrypttask.cpp:224 src/crypto/signencrypttask.cpp:241
+#: src/crypto/signencrypttask.cpp:687 src/crypto/signencrypttask.cpp:717
+#: src/crypto/signencrypttask.cpp:747
 #, kde-format
 msgid "Input error: %1"
 msgstr "Błąd wejścia: %1"
@@ -4642,12 +4642,12 @@ msgstr ""
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:339
+#: src/crypto/signencryptfilescontroller.cpp:343
 #, kde-format
 msgid "User cancel"
 msgstr "Użytkownik porzucił"
 
-#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:172
+#: src/crypto/encryptemailtask.cpp:59 src/crypto/signencrypttask.cpp:177
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Porzucono szyfrowanie."
@@ -4657,7 +4657,7 @@ msgstr "Porzucono szyfrowanie."
 msgid "Encryption failed: %1"
 msgstr "Szyfrowanie zakończyło się niepowodzeniem: %1"
 
-#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:179
+#: src/crypto/encryptemailtask.cpp:66 src/crypto/signencrypttask.cpp:184
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Udane szyfrowanie."
@@ -5585,7 +5585,7 @@ msgstr ""
 "Wywołanie do NewSignEncryptEMailController::protocolAsString() jest "
 "niejednoznaczne."
 
-#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:155
+#: src/crypto/signemailtask.cpp:63 src/crypto/signencrypttask.cpp:160
 #, kde-format
 msgid "Signing canceled."
 msgstr "Porzucono podpisywanie."
@@ -5595,48 +5595,48 @@ msgstr "Porzucono podpisywanie."
 msgid "Signing failed: %1"
 msgstr "Podpisywanie zakończyło się niepowodzeniem: %1"
 
-#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:161
+#: src/crypto/signemailtask.cpp:70 src/crypto/signencrypttask.cpp:166
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Udane podpisywanie."
 
-#: src/crypto/signencryptfilescontroller.cpp:113
+#: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "Zarchiwizuj i podpisz pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:115
+#: src/crypto/signencryptfilescontroller.cpp:119
 #, kde-format
 msgid "Sign Files"
 msgstr "Podpisz pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:121
+#: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "Zarchiwizuj i zaszyfruj pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:123
+#: src/crypto/signencryptfilescontroller.cpp:127
 #, kde-format
 msgid "Encrypt Files"
 msgstr "Zaszyfruj pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:128
+#: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "Zarchiwizuj i podpisz/zaszyfruj pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:130
+#: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "Podpisz/zaszyfruj pliki"
 
-#: src/crypto/signencryptfilescontroller.cpp:269
+#: src/crypto/signencryptfilescontroller.cpp:273
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archiwum"
 
-#: src/crypto/signencryptfilescontroller.cpp:590
+#: src/crypto/signencryptfilescontroller.cpp:606
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5645,7 +5645,7 @@ msgstr ""
 "Wystąpił nieobsłużony wyjątek w SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:594
+#: src/crypto/signencryptfilescontroller.cpp:610
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5654,51 +5654,60 @@ msgstr ""
 "Wystąpił nieobsłużony wyjątek w in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:159
+#: src/crypto/signencrypttask.cpp:164
 #, kde-format
 msgid "Signing failed."
 msgstr "Nieudane podpisywanie."
 
-#: src/crypto/signencrypttask.cpp:176
+#: src/crypto/signencrypttask.cpp:181
 #, kde-format
 msgid "Encryption failed."
 msgstr "Nieudane szyfrowanie."
 
-#: src/crypto/signencrypttask.cpp:204
+#: src/crypto/signencrypttask.cpp:209
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Udane podpisywanie i szyfrowanie."
 
-#: src/crypto/signencrypttask.cpp:221 src/crypto/signencrypttask.cpp:238
+#: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
 #, kde-format
 msgid "Output error: %1"
 msgstr "Błąd wyjścia: %1"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:250
 #, kde-format
 msgid " Encryption succeeded."
 msgstr " Udane szyfrowanie."
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>Porzucono podpisywanie/szyfrowanie.</b>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:262
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: Podpisywanie/szyfrowanie zakończone niepowodzeniem."
 
-#: src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:264
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:431
+#: src/crypto/signencrypttask.cpp:446
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Nie można określić protokołu dla zadania"
+
+#: src/crypto/signencrypttask.cpp:603 src/utils/archivedefinition.cpp:350
+#, kde-format
+msgid ""
+"Cannot find common base directory for these files:\n"
+"%1"
+msgstr ""
+"Nie można znaleźć wspólnego katalogu podstawowego dla tych plików:\n"
+"%1"
 
 #: src/crypto/task.cpp:166
 #, kde-format
@@ -10351,15 +10360,6 @@ msgid "cannot use argument passing on standard input for unpack-command"
 msgstr ""
 "nie można użyć przekazywania argumentu na standardowym wejściu dla polecenia "
 "rozpakowania"
-
-#: src/utils/archivedefinition.cpp:350
-#, kde-format
-msgid ""
-"Cannot find common base directory for these files:\n"
-"%1"
-msgstr ""
-"Nie można znaleźć wspólnego katalogu podstawowego dla tych plików:\n"
-"%1"
 
 #: src/utils/archivedefinition.cpp:407
 #, kde-format

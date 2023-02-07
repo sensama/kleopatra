@@ -60,9 +60,6 @@ public:
     virtual QString inputLabel() const = 0;
     virtual QString outputLabel() const = 0;
 
-Q_SIGNALS:
-    void decryptVerifyResult(const std::shared_ptr<const Kleo::Crypto::DecryptVerifyResult> &);
-
 protected:
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);

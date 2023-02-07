@@ -989,7 +989,6 @@ public:
 void DecryptVerifyTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
-    Q_EMIT q->decryptVerifyResult(result);
 }
 
 void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const VerificationResult &vr, const QByteArray &plainText)
@@ -1177,7 +1176,6 @@ public:
 void DecryptTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
-    Q_EMIT q->decryptVerifyResult(result);
 }
 
 void DecryptTask::Private::slotResult(const DecryptionResult &result, const QByteArray &plainText)
@@ -1337,7 +1335,6 @@ public:
 void VerifyOpaqueTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
-    Q_EMIT q->decryptVerifyResult(result);
 }
 
 void VerifyOpaqueTask::Private::slotResult(const VerificationResult &result, const QByteArray &plainText)
@@ -1497,7 +1494,6 @@ public:
 void VerifyDetachedTask::Private::emitResult(const std::shared_ptr<DecryptVerifyResult> &result)
 {
     q->emitResult(result);
-    Q_EMIT q->decryptVerifyResult(result);
 }
 
 void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)

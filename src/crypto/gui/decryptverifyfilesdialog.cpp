@@ -66,7 +66,6 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     m_resultList->setTaskCollection(coll);
     connect(m_tasks.get(), &TaskCollection::progress, this, &DecryptVerifyFilesDialog::progress);
     connect(m_tasks.get(), &TaskCollection::done, this, &DecryptVerifyFilesDialog::allDone);
-    connect(m_tasks.get(), &TaskCollection::result, this, &DecryptVerifyFilesDialog::result);
     connect(m_tasks.get(), &TaskCollection::started, this, &DecryptVerifyFilesDialog::started);
 
     connect(m_buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);

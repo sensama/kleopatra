@@ -179,7 +179,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
                 // A directory. Assume that the input was an archive
                 // and avoid directory merges by trying to find a non
                 // existing directory.
-                auto candidate = fi.baseName();
+                auto candidate = fi.fileName();
                 if (candidate.startsWith(QLatin1Char('-'))) {
                     // Bug in GpgTar Extracts stdout passed archives to a dir named -
                     candidate = QFileInfo(m_passedFiles.first()).baseName();

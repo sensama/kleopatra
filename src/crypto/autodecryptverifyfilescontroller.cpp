@@ -36,7 +36,9 @@
 #include <KMessageBox>
 #include "kleopatra_debug.h"
 
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 #include <QGpgME/DecryptVerifyArchiveJob>
+#endif
 
 #include <QDir>
 #include <QFile>

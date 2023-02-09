@@ -36,6 +36,8 @@
 #include <KMessageBox>
 #include "kleopatra_debug.h"
 
+#include <QGpgME/DecryptVerifyArchiveJob>
+
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -304,6 +306,14 @@ QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerify
     return out;
 }
 
+static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
+{
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
+    return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();
+#else
+    return false;
+#endif
+}
 
 std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
@@ -445,8 +455,16 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
 
             const auto wd = QDir(m_workDir->path());
 
-            const auto output = ad ? ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd)
-                                   : Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
+            std::shared_ptr<Output> output;
+            if (ad) {
+                if ((ad->id() == QLatin1String{"tar"}) && archiveJobsCanBeUsed(cFile.protocol)) {
+                    // we don't need an output
+                } else {
+                    output = ad->createOutputFromUnpackCommand(cFile.protocol, cFile.fileName, wd);
+                }
+            } else {
+                output = Output::createFromFile(wd.absoluteFilePath(outputFileName(fi.fileName())), false);
+            }
 
             // If this might be opaque CMS signature, then try that. We already handled
             // detached CMS signature above
@@ -456,8 +474,14 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 qCDebug(KLEOPATRA_LOG) << "creating a VerifyOpaqueTask";
                 std::shared_ptr<VerifyOpaqueTask> t(new VerifyOpaqueTask);
                 t->setInput(input);
-                t->setOutput(output);
+                if (output) {
+                    t->setOutput(output);
+                }
                 t->setProtocol(cFile.protocol);
+                if (ad) {
+                    t->setExtractArchive(true);
+                    t->setOutputDirectory(m_workDir->path());
+                }
                 tasks.push_back(t);
             } else {
                 // Any message. That is not an opaque signature needs to be
@@ -466,8 +490,14 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 qCDebug(KLEOPATRA_LOG) << "creating a DecryptVerifyTask";
                 std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
                 t->setInput(input);
-                t->setOutput(output);
+                if (output) {
+                    t->setOutput(output);
+                }
                 t->setProtocol(cFile.protocol);
+                if (ad) {
+                    t->setExtractArchive(true);
+                    t->setOutputDirectory(m_workDir->path());
+                }
                 cFile.output = output;
                 tasks.push_back(t);
             }

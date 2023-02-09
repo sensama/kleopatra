@@ -401,7 +401,7 @@ createSignEncryptTaskForFileInfo(const QFileInfo &fi, bool ascii,
     return task;
 }
 
-static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
+static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 {
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();

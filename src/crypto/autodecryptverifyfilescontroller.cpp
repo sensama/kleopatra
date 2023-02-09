@@ -308,7 +308,7 @@ QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerify
     return out;
 }
 
-static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
+static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 {
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();

@@ -315,17 +315,38 @@ static QMap <int, QString> buildOutputNamesForDir(const QString &file, const QMa
     return ret;
 }
 
+// strips all trailing slashes from the filename, but keeps filename "/"
+static QString stripTrailingSlashes(const QString &fileName)
+{
+    if (fileName.size() < 2 || !fileName.endsWith(QLatin1Char('/'))) {
+        return fileName;
+    }
+    auto tmp = QStringView{fileName}.chopped(1);
+    while (tmp.size() > 1 && tmp.endsWith(QLatin1Char('/'))) {
+        tmp.chop(1);
+    }
+    return tmp.toString();
+}
+
+static QStringList stripTrailingSlashesForAll(const QStringList &fileNames)
+{
+    QStringList result;
+    result.reserve(fileNames.size());
+    std::transform(fileNames.begin(), fileNames.end(), std::back_inserter(result), &stripTrailingSlashes);
+    return result;
+}
+
 void SignEncryptFilesController::setFiles(const QStringList &files)
 {
     kleo_assert(!files.empty());
-    d->files = files;
+    d->files = stripTrailingSlashesForAll(files);
     bool archive = false;
 
-    if (files.size() > 1) {
+    if (d->files.size() > 1) {
         setOperationMode((operationMode() & ~ArchiveMask) | ArchiveAllowed);
         archive = true;
     }
-    for (const auto &file: files) {
+    for (const auto &file: d->files) {
         if (QFileInfo(file).isDir()) {
             setOperationMode((operationMode() & ~ArchiveMask) | ArchiveForced);
             archive = true;
@@ -334,7 +355,7 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
     }
     d->ensureWizardCreated();
     d->wizard->setSingleFile(!archive);
-    d->wizard->setOutputNames(buildOutputNames(files, archive));
+    d->wizard->setOutputNames(buildOutputNames(d->files, archive));
 }
 
 void SignEncryptFilesController::Private::slotWizardCanceled()

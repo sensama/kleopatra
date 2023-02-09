@@ -471,14 +471,12 @@ unsigned long long SignEncryptTask::inputSize() const
     return d->input ? d->input->size() : 0U;
 }
 
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
 {
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
-#else
-    return false;
-#endif
 }
+#endif
 
 void SignEncryptTask::doStart()
 {

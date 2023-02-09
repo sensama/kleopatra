@@ -1121,14 +1121,12 @@ void DecryptVerifyTask::setOutputDirectory(const QString &directory)
     d->m_outputDirectory = directory;
 }
 
+#if QGPGME_SUPPORTS_ARCHIVE_JOBS
 static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
 {
-#if QGPGME_SUPPORTS_ARCHIVE_JOBS
     return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();
-#else
-    return false;
-#endif
 }
+#endif
 
 void DecryptVerifyTask::doStart()
 {

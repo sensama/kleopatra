@@ -258,7 +258,7 @@ ecm_qt_install_logging_categories(
         )
 
 ki18n_install(po)
-if(KF5DocTools_FOUND)
+if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()

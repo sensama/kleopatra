@@ -36,7 +36,7 @@ class ResultPage::Private
 public:
     explicit Private(ResultPage *qq);
 
-    void progress(const QString &msg, int progress, int total);
+    void progress(int progress, int total);
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &result);
     void allDone();
@@ -67,9 +67,8 @@ ResultPage::Private::Private(ResultPage *qq) : q(qq)
     layout->addWidget(m_keepOpenCB);
 }
 
-void ResultPage::Private::progress(const QString &msg, int progress, int total)
+void ResultPage::Private::progress(int progress, int total)
 {
-    Q_UNUSED(msg)
     Q_ASSERT(progress >= 0);
     Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
@@ -139,8 +138,9 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
     d->m_tasks = coll;
     Q_ASSERT(d->m_tasks);
     d->m_resultList->setTaskCollection(coll);
-    connect(d->m_tasks.get(), SIGNAL(progress(QString,int,int)),
-            this, SLOT(progress(QString,int,int)));
+    connect(d->m_tasks.get(), &TaskCollection::progress, this, [this](int current, int total) {
+        d->progress(current, total);
+    });
     connect(d->m_tasks.get(), SIGNAL(done()),
             this, SLOT(allDone()));
     connect(d->m_tasks.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),

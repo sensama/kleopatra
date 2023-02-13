@@ -177,8 +177,9 @@ std::unique_ptr<QGpgME::EncryptJob> EncryptEMailTask::Private::createJob(GpgME::
     if (proto == CMS && !q->asciiArmor() && !output->binaryOpt()) {
         encryptJob->setOutputIsBase64Encoded(true);
     }
-    connect(encryptJob.get(), SIGNAL(progress(QString,int,int)),
-            q, SLOT(setProgress(QString,int,int)));
+    connect(encryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult,QByteArray)),
             q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;

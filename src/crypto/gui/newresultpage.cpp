@@ -40,7 +40,7 @@ class NewResultPage::Private
 public:
     explicit Private(NewResultPage *qq);
 
-    void progress(const QString &msg, int progress, int total);
+    void progress(int progress, int total);
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &result);
     void allDone();
@@ -73,9 +73,8 @@ NewResultPage::Private::Private(NewResultPage *qq) : q(qq), m_lastErrorItemIndex
     connect(&m_hideProgressTimer, &QTimer::timeout, m_progressBar, &QProgressBar::hide);
 }
 
-void NewResultPage::Private::progress(const QString &msg, int progress, int total)
+void NewResultPage::Private::progress(int progress, int total)
 {
-    Q_UNUSED(msg)
     Q_ASSERT(progress >= 0);
     Q_ASSERT(total >= 0);
     m_progressBar->setRange(0, total);
@@ -148,8 +147,9 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
     d->m_progressBar->show();
     d->m_collections.push_back(coll);
     d->m_resultList->addTaskCollection(coll);
-    connect(coll.get(), SIGNAL(progress(QString,int,int)),
-            this, SLOT(progress(QString,int,int)));
+    connect(coll.get(), &TaskCollection::progress, this, [this](int current, int total) {
+        d->progress(current, total);
+    });
     connect(coll.get(), SIGNAL(done()),
             this, SLOT(allDone()));
     connect(coll.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),

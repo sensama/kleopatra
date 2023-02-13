@@ -61,7 +61,7 @@ public Q_SLOTS:
     virtual void cancel() = 0;
 
 Q_SIGNALS:
-    void progress(const QString &what, int processed, int total, QPrivateSignal);
+    void progress(int processed, int total, QPrivateSignal);
     void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &, QPrivateSignal);
     void started(QPrivateSignal);
 
@@ -71,7 +71,7 @@ protected:
     void emitResult(const std::shared_ptr<const Task::Result> &result);
 
 protected Q_SLOTS:
-    void setProgress(const QString &msg, int processed, int total);
+    void setProgress(int processed, int total);
 
 private Q_SLOTS:
     void emitError(const GpgME::Error &error, const QString &details);

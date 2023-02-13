@@ -45,7 +45,7 @@ public:
     QString outputLocation() const;
 
 protected Q_SLOTS:
-    void progress(const QString &msg, int progress, int total);
+    void progress(int progress, int total);
     void started(const std::shared_ptr<Task> &result);
     void allDone();
     void btnClicked(QAbstractButton *btn);

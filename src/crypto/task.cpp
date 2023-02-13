@@ -76,7 +76,6 @@ public:
     explicit Private(Task *qq);
 
 private:
-    QString m_progressLabel;
     int m_progress;
     int m_totalProgress;
     bool m_asciiArmor;
@@ -89,7 +88,7 @@ static int nextTaskId = 0;
 }
 
 Task::Private::Private(Task *qq)
-    : q(qq), m_progressLabel(), m_progress(0), m_totalProgress(0), m_asciiArmor(false), m_id(nextTaskId++)
+    : q(qq), m_progress(0), m_totalProgress(0), m_asciiArmor(false), m_id(nextTaskId++)
 {
 
 }
@@ -139,17 +138,11 @@ QString Task::tag() const
     return QString();
 }
 
-QString Task::progressLabel() const
-{
-    return d->m_progressLabel;
-}
-
-void Task::setProgress(const QString &label, int processed, int total)
+void Task::setProgress(int processed, int total)
 {
     d->m_progress = processed;
     d->m_totalProgress = total;
-    d->m_progressLabel = label;
-    Q_EMIT progress(label, processed, total, QPrivateSignal());
+    Q_EMIT progress(processed, total, QPrivateSignal());
 }
 
 void Task::start()
@@ -176,7 +169,7 @@ void Task::emitError(const GpgME::Error &error, const QString &details)
 void Task::emitResult(const std::shared_ptr<const Task::Result> &r)
 {
     d->m_progress = d->m_totalProgress;
-    Q_EMIT progress(progressLabel(), currentProgress(), totalProgress(), QPrivateSignal());
+    Q_EMIT progress(currentProgress(), totalProgress(), QPrivateSignal());
     Q_EMIT result(r, QPrivateSignal());
 }
 

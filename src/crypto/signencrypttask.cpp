@@ -568,8 +568,9 @@ std::unique_ptr<QGpgME::SignJob> SignEncryptTask::Private::createSignJob(GpgME::
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signJob.get());
-    connect(signJob.get(), SIGNAL(progress(QString,int,int)),
-            q, SLOT(setProgress(QString,int,int)));
+    connect(signJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(signJob.get(), SIGNAL(result(GpgME::SigningResult,QByteArray)),
             q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;
@@ -581,8 +582,9 @@ std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptTask::Private::createSignEncr
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignEncryptJob> signEncryptJob(backend->signEncryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signEncryptJob.get());
-    connect(signEncryptJob.get(), SIGNAL(progress(QString,int,int)),
-            q, SLOT(setProgress(QString,int,int)));
+    connect(signEncryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(signEncryptJob.get(), SIGNAL(result(GpgME::SigningResult,GpgME::EncryptionResult,QByteArray)),
             q, SLOT(slotResult(GpgME::SigningResult,GpgME::EncryptionResult)));
     return signEncryptJob;
@@ -594,8 +596,9 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
     kleo_assert(backend);
     std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(encryptJob.get());
-    connect(encryptJob.get(), SIGNAL(progress(QString,int,int)),
-            q, SLOT(setProgress(QString,int,int)));
+    connect(encryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult,QByteArray)),
             q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;
@@ -658,7 +661,9 @@ std::unique_ptr<QGpgME::SignArchiveJob> SignEncryptTask::Private::createSignArch
     std::unique_ptr<QGpgME::SignArchiveJob> signJob(backend->signArchiveJob(q->asciiArmor()));
     auto job = signJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::SignArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(job, &QGpgME::SignArchiveJob::result, q, [this, job](const GpgME::SigningResult &signResult) {
         slotResult(job, signResult, EncryptionResult{});
     });
@@ -672,7 +677,9 @@ std::unique_ptr<QGpgME::SignEncryptArchiveJob> SignEncryptTask::Private::createS
     std::unique_ptr<QGpgME::SignEncryptArchiveJob> signEncryptJob(backend->signEncryptArchiveJob(q->asciiArmor()));
     auto job = signEncryptJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::SignEncryptArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(job, &QGpgME::SignEncryptArchiveJob::result, q, [this, job](const GpgME::SigningResult &signResult, const GpgME::EncryptionResult &encryptResult) {
         slotResult(job, signResult, encryptResult);
     });
@@ -686,7 +693,9 @@ std::unique_ptr<QGpgME::EncryptArchiveJob> SignEncryptTask::Private::createEncry
     std::unique_ptr<QGpgME::EncryptArchiveJob> encryptJob(backend->encryptArchiveJob(q->asciiArmor()));
     auto job = encryptJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::EncryptArchiveJob::progress, q, &SignEncryptTask::setProgress);
+    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        q->setProgress(processed, total);
+    });
     connect(job, &QGpgME::EncryptArchiveJob::result, q, [this, job](const GpgME::EncryptionResult &encryptResult) {
         slotResult(job, SigningResult{}, encryptResult);
     });

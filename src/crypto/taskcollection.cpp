@@ -34,7 +34,7 @@ class TaskCollection::Private
 public:
     explicit Private(TaskCollection *qq);
 
-    void taskProgress(const QString &, int, int);
+    void taskProgress();
     void taskResult(const std::shared_ptr<const Task::Result> &);
     void taskStarted();
     void calculateAndEmitProgress();
@@ -44,7 +44,6 @@ public:
     mutable quint64 m_progress;
     unsigned int m_nCompleted;
     unsigned int m_nErrors;
-    QString m_lastProgressMessage;
     bool m_errorOccurred;
     bool m_doneEmitted;
 };
@@ -76,9 +75,8 @@ bool TaskCollection::allTasksCompleted() const
     return d->m_nCompleted == d->m_tasks.size();
 }
 
-void TaskCollection::Private::taskProgress(const QString &msg, int, int)
+void TaskCollection::Private::taskProgress()
 {
-    m_lastProgressMessage = msg;
     calculateAndEmitProgress();
 }
 
@@ -91,7 +89,6 @@ void TaskCollection::Private::taskResult(const std::shared_ptr<const Task::Resul
         m_errorOccurred = true;
         ++m_nErrors;
     }
-    m_lastProgressMessage.clear();
     calculateAndEmitProgress();
     Q_EMIT q->result(result);
     if (!m_doneEmitted && q->allTasksCompleted()) {
@@ -127,9 +124,9 @@ void TaskCollection::Private::calculateAndEmitProgress()
         // As we can't know if it overflowed or what the total is we just knight
         // rider in that case
         if (m_doneEmitted) {
-            Q_EMIT q->progress(m_lastProgressMessage, 1, 1);
+            Q_EMIT q->progress(1, 1);
         } else {
-            Q_EMIT q->progress(m_lastProgressMessage, 0, 0);
+            Q_EMIT q->progress(0, 0);
         }
         return;
     }
@@ -158,16 +155,16 @@ void TaskCollection::Private::calculateAndEmitProgress()
         if (total == processed) {
             // This can happen when an output is finalizing, e.g. extracting an
             // archive.
-            Q_EMIT q->progress(i18n("Finalizing output..."), 0, 0);
+            Q_EMIT q->progress(0, 0);
         } else {
-            Q_EMIT q->progress(m_lastProgressMessage, scaled, 1000);
+            Q_EMIT q->progress(scaled, 1000);
         }
     } else {
         if (total < processed) {
             qCDebug(KLEOPATRA_LOG) << "Total progress is smaller then current progress.";
         }
         // Knight rider.
-        Q_EMIT q->progress(m_lastProgressMessage, 0, 0);
+        Q_EMIT q->progress(0, 0);
     }
 }
 
@@ -215,8 +212,9 @@ void TaskCollection::setTasks(const std::vector<std::shared_ptr<Task> > &tasks)
     for (const std::shared_ptr<Task> &i : tasks) {
         Q_ASSERT(i);
         d->m_tasks[i->id()] = i;
-        connect(i.get(), SIGNAL(progress(QString,int,int)),
-                this, SLOT(taskProgress(QString,int,int)));
+        connect(i.get(), &Task::progress, this, [this]() {
+            d->taskProgress();
+        });
         connect(i.get(), SIGNAL(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)),
                 this, SLOT(taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
         connect(i.get(), SIGNAL(started()),

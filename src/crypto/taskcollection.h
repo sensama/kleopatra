@@ -45,7 +45,7 @@ public:
     bool allTasksHaveErrors() const;
 
 Q_SIGNALS:
-    void progress(const QString &msg, int processed, int total);
+    void progress(int processed, int total);
     void result(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result);
     void started(const std::shared_ptr<Kleo::Crypto::Task> &task);
     void done();
@@ -53,7 +53,6 @@ Q_SIGNALS:
 private:
     class Private;
     kdtools::pimpl_ptr<Private> d;
-    Q_PRIVATE_SLOT(d, void taskProgress(QString, int, int))
     Q_PRIVATE_SLOT(d, void taskResult(std::shared_ptr<const Kleo::Crypto::Task::Result>))
     Q_PRIVATE_SLOT(d, void taskStarted())
 };

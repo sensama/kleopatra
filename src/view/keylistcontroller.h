@@ -86,7 +86,6 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void progress(int current, int total);
-    void message(const QString &msg, int timeout = 0);
 
     void commandsExecuting(bool);
 

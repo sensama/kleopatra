@@ -661,9 +661,7 @@ std::unique_ptr<QGpgME::SignArchiveJob> SignEncryptTask::Private::createSignArch
     std::unique_ptr<QGpgME::SignArchiveJob> signJob(backend->signArchiveJob(q->asciiArmor()));
     auto job = signJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
+    connect(job, &QGpgME::SignArchiveJob::dataProgress, q, &SignEncryptTask::setProgress);
     connect(job, &QGpgME::SignArchiveJob::result, q, [this, job](const GpgME::SigningResult &signResult) {
         slotResult(job, signResult, EncryptionResult{});
     });
@@ -677,9 +675,7 @@ std::unique_ptr<QGpgME::SignEncryptArchiveJob> SignEncryptTask::Private::createS
     std::unique_ptr<QGpgME::SignEncryptArchiveJob> signEncryptJob(backend->signEncryptArchiveJob(q->asciiArmor()));
     auto job = signEncryptJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
+    connect(job, &QGpgME::SignEncryptArchiveJob::dataProgress, q, &SignEncryptTask::setProgress);
     connect(job, &QGpgME::SignEncryptArchiveJob::result, q, [this, job](const GpgME::SigningResult &signResult, const GpgME::EncryptionResult &encryptResult) {
         slotResult(job, signResult, encryptResult);
     });
@@ -693,9 +689,7 @@ std::unique_ptr<QGpgME::EncryptArchiveJob> SignEncryptTask::Private::createEncry
     std::unique_ptr<QGpgME::EncryptArchiveJob> encryptJob(backend->encryptArchiveJob(q->asciiArmor()));
     auto job = encryptJob.get();
     kleo_assert(job);
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
+    connect(job, &QGpgME::EncryptArchiveJob::dataProgress, q, &SignEncryptTask::setProgress);
     connect(job, &QGpgME::EncryptArchiveJob::result, q, [this, job](const GpgME::EncryptionResult &encryptResult) {
         slotResult(job, SigningResult{}, encryptResult);
     });

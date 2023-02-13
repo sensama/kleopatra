@@ -1543,9 +1543,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
     connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const DecryptionResult &, const VerificationResult &verifyResult) {
         slotResult(verifyResult);
     });
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
-        q->setProgress(processed, total);
-    });
+    connect(job, &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
     const auto err = job->start(m_input->ioDevice());
     if (err) {

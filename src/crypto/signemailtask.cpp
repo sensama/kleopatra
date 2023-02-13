@@ -205,9 +205,13 @@ std::unique_ptr<QGpgME::SignJob> SignEMailTask::Private::createJob(GpgME::Protoc
     if (proto == CMS && !q->asciiArmor() && !output->binaryOpt()) {
         signJob->setOutputIsBase64Encoded(true);
     }
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(signJob.get(), &QGpgME::Job::jobProgress, q, &SignEMailTask::setProgress);
+#else
     connect(signJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
+#endif
     connect(signJob.get(), SIGNAL(result(GpgME::SigningResult,QByteArray)),
             q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;

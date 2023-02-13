@@ -105,7 +105,13 @@ void SetPrimaryUserIDCommand::Private::createJob()
         return;
     }
 
-    connect(j, &QGpgME::Job::progress, q, &Command::progress);
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(j, &QGpgME::Job::jobProgress, q, &Command::progress);
+#else
+    connect(j, &QGpgME::Job::progress, q, [this](const QString &, int current, int total) {
+        Q_EMIT q->progress(current, total);
+    });
+#endif
     connect(j, &QGpgME::SetPrimaryUserIDJob::result, q, [this](const GpgME::Error &err) {
         slotResult(err);
     });

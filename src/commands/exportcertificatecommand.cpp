@@ -258,8 +258,13 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
         exportResult(result, keyData);
     });
 
-    connect(job.get(), &Job::progress,
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(job.get(), &QGpgME::Job::jobProgress,
             q, &Command::progress);
+#else
+    connect(job.get(), &QGpgME::Job::progress,
+            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+#endif
 
     QStringList fingerprints;
     fingerprints.reserve(keys.size());

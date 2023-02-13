@@ -217,8 +217,13 @@ void ChangeOwnerTrustCommand::Private::createJob()
         return;
     }
 
-    connect(j, &Job::progress,
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(j, &QGpgME::Job::jobProgress,
             q, &Command::progress);
+#else
+    connect(j, &QGpgME::Job::progress,
+            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+#endif
     connect(j, &ChangeOwnerTrustJob::result, q, [this](const GpgME::Error &result) { slotResult(result); });
 
     job = j;

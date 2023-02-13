@@ -568,9 +568,13 @@ std::unique_ptr<QGpgME::SignJob> SignEncryptTask::Private::createSignJob(GpgME::
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignJob> signJob(backend->signJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signJob.get());
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(signJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
+#else
     connect(signJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
+#endif
     connect(signJob.get(), SIGNAL(result(GpgME::SigningResult,QByteArray)),
             q, SLOT(slotResult(GpgME::SigningResult)));
     return signJob;
@@ -582,9 +586,13 @@ std::unique_ptr<QGpgME::SignEncryptJob> SignEncryptTask::Private::createSignEncr
     kleo_assert(backend);
     std::unique_ptr<QGpgME::SignEncryptJob> signEncryptJob(backend->signEncryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(signEncryptJob.get());
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(signEncryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
+#else
     connect(signEncryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
+#endif
     connect(signEncryptJob.get(), SIGNAL(result(GpgME::SigningResult,GpgME::EncryptionResult,QByteArray)),
             q, SLOT(slotResult(GpgME::SigningResult,GpgME::EncryptionResult)));
     return signEncryptJob;
@@ -596,9 +604,13 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
     kleo_assert(backend);
     std::unique_ptr<QGpgME::EncryptJob> encryptJob(backend->encryptJob(q->asciiArmor(), /*textmode=*/false));
     kleo_assert(encryptJob.get());
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(encryptJob.get(), &QGpgME::Job::jobProgress, q, &SignEncryptTask::setProgress);
+#else
     connect(encryptJob.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
+#endif
     connect(encryptJob.get(), SIGNAL(result(GpgME::EncryptionResult,QByteArray)),
             q, SLOT(slotResult(GpgME::EncryptionResult)));
     return encryptJob;

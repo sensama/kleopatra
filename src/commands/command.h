@@ -107,7 +107,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void info(const QString &message, int timeout = 0);
-    void progress(const QString &message, int current, int total);
+    void progress(int current, int total);
     void finished();
     void canceled();
 

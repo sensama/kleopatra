@@ -45,3 +45,6 @@
 
 /* Whether QGpgME supports the sign/encrypt/decrypt/verify archive jobs */
 #cmakedefine01 QGPGME_SUPPORTS_ARCHIVE_JOBS
+
+/* Whether QGpgME::Job provides the new progress signals */
+#cmakedefine01 QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS

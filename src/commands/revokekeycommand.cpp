@@ -191,8 +191,13 @@ std::unique_ptr<QGpgME::RevokeKeyJob> RevokeKeyCommand::Private::startJob()
             q, [this](const GpgME::Error &err) {
                 onJobResult(err);
             });
-    connect(revokeJob.get(), &QGpgME::Job::progress,
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(revokeJob.get(), &QGpgME::Job::jobProgress,
             q, &Command::progress);
+#else
+    connect(revokeJob.get(), &QGpgME::Job::progress,
+            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+#endif
 
     const auto description = descriptionToLines(dialog->description());
     const GpgME::Error err = revokeJob->start(key, dialog->reason(), description);

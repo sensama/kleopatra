@@ -924,8 +924,13 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
     std::vector<QMetaObject::Connection> connections = {
         connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
-        connect(job.get(), &Job::progress,
-                q, &Command::progress)
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        connect(job.get(), &QGpgME::Job::jobProgress,
+                q, &Command::progress),
+#else
+        connect(job.get(), &QGpgME::Job::progress,
+                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
+#endif
     };
 
 #if QGPGME_SUPPORTS_IMPORT_WITH_FILTER
@@ -983,8 +988,13 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, c
 
     std::vector<QMetaObject::Connection> connections = {
         connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) { onImportResult(result); }),
-        connect(job.get(), &Job::progress,
-                q, &Command::progress)
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        connect(job.get(), &QGpgME::Job::jobProgress,
+                q, &Command::progress),
+#else
+        connect(job.get(), &QGpgME::Job::progress,
+                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
+#endif
     };
 
     const GpgME::Error err = job->start(keys);
@@ -1029,8 +1039,13 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol, [
         connect(job.get(), &AbstractImportJob::result, q, [this](const GpgME::ImportResult &result) {
             onImportResult(result);
         }),
-        connect(job.get(), &Job::progress,
-                q, &Command::progress)
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        connect(job.get(), &QGpgME::Job::jobProgress,
+                q, &Command::progress),
+#else
+        connect(job.get(), &QGpgME::Job::progress,
+                q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); }),
+#endif
     };
 
     const GpgME::Error err = job->start(keyIds);

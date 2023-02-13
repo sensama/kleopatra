@@ -145,8 +145,13 @@ std::unique_ptr<QGpgME::ReceiveKeysJob> RefreshCertificateCommand::Private::star
             q, [this](const GpgME::ImportResult &result) {
                 onOpenPGPJobResult(result);
             });
-    connect(refreshJob.get(), &QGpgME::Job::progress,
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(refreshJob.get(), &QGpgME::Job::jobProgress,
             q, &Command::progress);
+#else
+    connect(refreshJob.get(), &QGpgME::Job::progress,
+            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+#endif
 
     const GpgME::Error err = refreshJob->start({QString::fromLatin1(key.primaryFingerprint())});
     if (err) {
@@ -167,8 +172,13 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificateCommand::Private::star
             q, [this](const GpgME::Error &err) {
                 onSMIMEJobResult(err);
             });
-    connect(refreshJob.get(), &QGpgME::Job::progress,
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(refreshJob.get(), &QGpgME::Job::jobProgress,
             q, &Command::progress);
+#else
+    connect(refreshJob.get(), &QGpgME::Job::progress,
+            q, [this](const QString &, int current, int total) { Q_EMIT q->progress(current, total); });
+#endif
 
     const GpgME::Error err = refreshJob->start({key});
     if (err) {

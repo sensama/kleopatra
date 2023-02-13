@@ -132,10 +132,6 @@ public:
     void slotCommandFinished();
     void slotAddKey(const Key &key);
     void slotAboutToRemoveKey(const Key &key);
-    void slotProgress(int current, int total)
-    {
-        Q_EMIT q->progress(current, total);
-    }
     void slotActionTriggered(QAction *action);
     void slotCurrentViewChanged(QAbstractItemView *view)
     {
@@ -645,7 +641,7 @@ void KeyListController::Private::connectCommand(Command *cmd)
     connect(cmd, &QObject::destroyed, q, [this](QObject *obj) { slotDestroyed(obj); });
     connect(cmd, &Command::finished, q, [this] { slotCommandFinished(); });
     //connect( cmd, SIGNAL(canceled()), q, SLOT(slotCommandCanceled()) );
-    connect(cmd, &Command::progress, q, [this](const QString &, int current, int total) { slotProgress(current, total); });
+    connect(cmd, &Command::progress, q, &KeyListController::progress);
 }
 
 void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)

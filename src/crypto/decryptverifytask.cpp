@@ -1166,9 +1166,13 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
         QObject::connect(job, &QGpgME::DecryptVerifyJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult, const QByteArray &plainText) {
             slotResult(decryptResult, verifyResult, plainText);
         });
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        connect(job, &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+#else
         QObject::connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
+#endif
         ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
         job->start(m_input->ioDevice(), m_output->ioDevice());
     } catch (const GpgME::Exception &e) {
@@ -1190,9 +1194,13 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
         slotResult(decryptResult, verifyResult);
     });
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+    connect(job, &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+#else
     connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
+#endif
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
     const auto err = job->start(m_input->ioDevice());
     if (err) {
@@ -1216,9 +1224,13 @@ public:
     {
         q->connect(job, SIGNAL(result(GpgME::DecryptionResult,QByteArray)),
                    q, SLOT(slotResult(GpgME::DecryptionResult,QByteArray)));
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        q->connect(job, &QGpgME::Job::jobProgress, q, &DecryptTask::setProgress);
+#else
         q->connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
+#endif
     }
 
     std::shared_ptr<Input> m_input;
@@ -1520,9 +1532,13 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
         connect(job, &QGpgME::VerifyOpaqueJob::result, q, [this](const GpgME::VerificationResult &result, const QByteArray &plainText) {
             slotResult(result, plainText);
         });
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        connect(job, &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
+#else
         connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
+#endif
         ensureIOOpen(m_input->ioDevice().get(), m_output ? m_output->ioDevice().get() : nullptr);
         job->start(m_input->ioDevice(), m_output ? m_output->ioDevice() : std::shared_ptr<QIODevice>());
     } catch (const GpgME::Exception &e) {
@@ -1567,9 +1583,13 @@ public:
     {
         q->connect(job, SIGNAL(result(GpgME::VerificationResult)),
                    q, SLOT(slotResult(GpgME::VerificationResult)));
+#if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+        q->connect(job, &QGpgME::Job::jobProgress, q, &VerifyDetachedTask::setProgress);
+#else
         q->connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
+#endif
     }
 
     std::shared_ptr<Input> m_input, m_signedData;

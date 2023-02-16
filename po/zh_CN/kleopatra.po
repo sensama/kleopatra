@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-15 01:00+0000\n"
-"PO-Revision-Date: 2023-02-07 11:01\n"
+"POT-Creation-Date: 2023-02-16 01:00+0000\n"
+"PO-Revision-Date: 2023-02-15 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -619,12 +619,12 @@ msgstr "根级信任信息更新失败"
 #: src/commands/changeroottrustcommand.cpp:262
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
-msgstr "无法以读模式打开已有的文件“%1”：%2"
+msgstr "无法打开已有文件“%1”进行写入：%2"
 
 #: src/commands/changeroottrustcommand.cpp:291
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
-msgstr "无法以读写模式打开文件“%1”：%2"
+msgstr "无法打开文件“%1”进行读取和写入：%2"
 
 #: src/commands/changeroottrustcommand.cpp:295
 #, kde-format
@@ -1367,7 +1367,7 @@ msgstr "备份失败。也许您输入了一个错误的密码。"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "无法以写模式打开文件： <filename>%1</filename> 。"
+msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
 
 #: src/commands/exportsecretkeycommand.cpp:271
 #, kde-kuit-format
@@ -1636,7 +1636,7 @@ msgstr[0] "正在从%1个文件导入证书。"
 #: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
 msgid "Could not open file %1 for reading: %2"
-msgstr "无法以读模式打开文件 %1：%2"
+msgstr "无法打开文件 %1 进行读取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
 #: src/commands/importcertificatescommand.cpp:294 src/view/keytreeview.cpp:275
@@ -2008,7 +2008,7 @@ msgstr "CRL 导入完成"
 #: src/crypto/autodecryptverifyfilescontroller.cpp:333
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
-msgstr "无法打开并读取 <filename>%1</filename>。"
+msgstr "无法打开 <filename>%1</filename> 进行读取。"
 
 #: src/commands/importpaperkeycommand.cpp:137
 #, kde-format
@@ -2213,7 +2213,7 @@ msgstr "现有密钥的 key grip："
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
-msgstr "无法将密钥对复制到智能卡。嘤嘤嘤~"
+msgstr "复制密钥到智能卡失败。"
 
 #: src/commands/keytocardcommand.cpp:474
 #, kde-kuit-format
@@ -2222,8 +2222,8 @@ msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
-"<para>密钥已复制到卡片。</para><para>您想要删除此计算机上存储的密钥副本吗？"
-"（危！）</para>"
+"<para>密钥已复制到卡片。</para><para>您想要删除此计算机上存储的密钥副本吗？</"
+"para>"
 
 #: src/commands/keytocardcommand.cpp:477
 #, kde-format
@@ -2258,7 +2258,7 @@ msgstr "私钥备份文件"
 #: src/commands/keytocardcommand.cpp:579
 #, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "无法读取私钥文件： <filename>%1</filename> 。嘤嘤嘤~"
+msgstr "无法打开私钥文件 <filename>%1</filename> 进行读取。"
 
 #: src/commands/keytocardcommand.cpp:588
 #, kde-kuit-format
@@ -2268,7 +2268,7 @@ msgstr "私钥文件 <filename>%1</filename> 是空的。"
 #: src/commands/keytocardcommand.cpp:598
 #, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
-msgstr "无法写入文件<filename>%1</filename>。"
+msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
 
 #: src/commands/keytocardcommand.cpp:605
 #, kde-kuit-format
@@ -3219,7 +3219,7 @@ msgstr "基于输入检测自动开始解密或验证操作"
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
-msgstr "解密后解压文件"
+msgstr "解密后自动解压缩文件"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
@@ -3255,7 +3255,7 @@ msgstr "创建校验和文件时所用的校验和程序："
 #: src/conf/cryptooperationsconfigwidget.cpp:88
 #, kde-format
 msgid "Archive command to use when archiving files:"
-msgstr "归档文件时所用归档命令："
+msgstr "压缩文件时使用的压缩命令："
 
 #: src/conf/dirservconfigpage.cpp:125
 #, kde-format
@@ -4589,7 +4589,7 @@ msgstr "已签名数据(&S)："
 #: src/crypto/gui/decryptverifyoperationwidget.cpp:78
 #, kde-format
 msgid "&Input file is an archive; unpack with:"
-msgstr "输入文件是归档；使用解压缩工具(&I)："
+msgstr "输入文件是一个压缩包；使用解压缩工具(&I)："
 
 #: src/crypto/gui/encryptemailwizard.cpp:27
 #, kde-format
@@ -4890,12 +4890,12 @@ msgstr "分别加密或签名各个文件(&E)。"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
-msgstr "将每个文件分开，而不是为所有文件创建归档。"
+msgstr "单独保存每个文件，而不是创建包含所有文件的压缩包。"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:194
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
-msgstr "签名和加密文件的设置不合规  : ("
+msgstr "签名和加密文件的合规设置无效。"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:196
 #, kde-kuit-format
@@ -5352,7 +5352,7 @@ msgstr "签名成功。"
 #: src/crypto/signencryptfilescontroller.cpp:117
 #, kde-format
 msgid "Archive and Sign Files"
-msgstr "归档并签名文件"
+msgstr "压缩并签名文件"
 
 #: src/crypto/signencryptfilescontroller.cpp:119
 #, kde-format
@@ -5362,7 +5362,7 @@ msgstr "签名文件"
 #: src/crypto/signencryptfilescontroller.cpp:125
 #, kde-format
 msgid "Archive and Encrypt Files"
-msgstr "归档并加密文件"
+msgstr "压缩并加密文件"
 
 #: src/crypto/signencryptfilescontroller.cpp:127
 #, kde-format
@@ -5372,7 +5372,7 @@ msgstr "加密文件"
 #: src/crypto/signencryptfilescontroller.cpp:132
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
-msgstr "归档并签名/加密文件"
+msgstr "压缩并签名/加密文件"
 
 #: src/crypto/signencryptfilescontroller.cpp:134
 #, kde-format
@@ -5383,7 +5383,7 @@ msgstr "签名/加密文件"
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
-msgstr "归档"
+msgstr "archive"
 
 #: src/crypto/signencryptfilescontroller.cpp:627
 #, kde-format
@@ -5929,7 +5929,7 @@ msgstr "从外部来源更新密钥。"
 #: src/dialogs/certificatedetailswidget.cpp:1020
 #, kde-format
 msgid "Common Name"
-msgstr "通用名"
+msgstr "通用名称"
 
 #: src/dialogs/certificatedetailswidget.cpp:1021
 #, kde-format
@@ -7233,7 +7233,7 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Automatically extract archives after decryption."
-msgstr "解密后解压文件。"
+msgstr "解密后自动解压缩压缩包。"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:21
@@ -7241,13 +7241,13 @@ msgstr "解密后解压文件。"
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
-msgstr "如果设置此选项，那么解密后 Kleopatra 会自动提取文件归档。"
+msgstr "如果启用此选项，那么 Kleopatra 会在解密后自动解压缩文件压缩包。"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Use this command to create file archives."
-msgstr "使用此命令创建文件归档。"
+msgstr "使用此命令创建文件压缩包。"
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:26
@@ -7292,7 +7292,7 @@ msgstr "CN 占位符"
 msgid ""
 "This text will be used as placeholder text for the common name (CN) field of "
 "S/MIME certificates."
-msgstr "此文本将被用作 S/MIME 证书的俗名(CN)字段的占位符文本。"
+msgstr "此文本将被用作 S/MIME 证书的通用名称 (CN) 字段的占位符文本。"
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:14
@@ -7309,8 +7309,9 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
-"如果为 true，则 S/MIME 证书的俗名(CN)字段将被预先填写从系统中收集到的信息。\n"
-"         例如，来自桌面的电子邮件设置，或者在 Windows 上，来自活动目录。"
+"如果为 true，则 S/MIME 证书的通用名称 (CN) 字段将被预先填写从系统中收集到的信"
+"息。\n"
+"         例如，来自桌面系统的电子邮件设置，或者来自 Windows 的活动目录。"
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
@@ -8031,7 +8032,7 @@ msgstr "Kleopatra 错误"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "连接 Kleopatra 时出错：%1"
 
-#: src/main.cpp:121
+#: src/main.cpp:137
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8046,13 +8047,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> 将无法在此设置中运行。</"
 "para><para>请咨询您的管理员来帮助解决这个问题。</para>"
 
-#: src/main.cpp:125
+#: src/main.cpp:141
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME 版本太旧"
 
-#: src/main.cpp:146
+#: src/main.cpp:165
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8067,23 +8068,23 @@ msgstr ""
 "户身份管理，并以适当的权限复制 <filename>AppData\\Roaming\\gnupg</filename> "
 "目录。</para>"
 
-#: src/main.cpp:150
+#: src/main.cpp:169
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>您确定要继续吗？</para>"
 
-#: src/main.cpp:151
+#: src/main.cpp:170
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "作为管理员运行"
 
-#: src/main.cpp:234
+#: src/main.cpp:243
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 界面服务器错误"
 
-#: src/main.cpp:238
+#: src/main.cpp:247
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8097,7 +8098,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:267
+#: src/main.cpp:277
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"
@@ -9855,7 +9856,7 @@ msgstr "必需项目"
 #: src/utils/archivedefinition.cpp:85
 #, kde-format
 msgid "Error in archive definition %1: %2"
-msgstr "归档定义 %1 中出错：%2"
+msgstr "压缩定义 %1 中出错：%2"
 
 #: src/utils/archivedefinition.cpp:135
 #, kde-format
@@ -9916,17 +9917,17 @@ msgstr "OpenPGP 签名..."
 #: src/utils/input.cpp:220
 #, kde-format
 msgid "Could not open FD %1 for reading"
-msgstr "无法以读模式打开文件描述符 %1"
+msgstr "无法打开文件描述符 %1 进行读取"
 
 #: src/utils/input.cpp:250 src/utils/input.cpp:266
 #, kde-format
 msgid "Could not open file \"%1\" for reading"
-msgstr "无法以读模式打开文件“%1”"
+msgstr "无法打开文件“%1”进行读取"
 
 #: src/utils/input.cpp:263
 #, kde-format
 msgid "File \"%1\" is already open, but not for reading"
-msgstr "文件“%1”已经存在，但不可读取"
+msgstr "文件“%1”已经打开，但不可读取"
 
 #: src/utils/input.cpp:330 src/utils/output.cpp:654
 #, kde-format
@@ -9967,7 +9968,7 @@ msgstr ""
 #: src/utils/input.cpp:424
 #, kde-format
 msgid "Could not open clipboard for reading"
-msgstr "无法以读模式打开剪贴板"
+msgstr "无法打开剪贴板进行读取"
 
 #: src/utils/input.cpp:436
 #, kde-format
@@ -9992,7 +9993,7 @@ msgstr "没有输入设备"
 #: src/utils/log.cpp:140
 #, kde-format
 msgid "Log Error: Could not open log file \"%1\" for writing."
-msgstr "日志错误：无法以写模式打开日志文件“%1”。"
+msgstr "日志错误：无法打开日志文件“%1”进行写入。"
 
 #: src/utils/output.cpp:277
 #, kde-format
@@ -10002,7 +10003,7 @@ msgstr "没有输出设备"
 #: src/utils/output.cpp:492
 #, kde-format
 msgid "Could not open FD %1 for writing"
-msgstr "无法以写模式打开文件描述符 %1"
+msgstr "无法打开文件描述符 %1 进行写入"
 
 #: src/utils/output.cpp:518
 #, kde-format

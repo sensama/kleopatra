@@ -168,15 +168,15 @@ public:
     }
     void setUpSysTrayIcon()
     {
-        KDAB_SET_OBJECT_NAME(readerStatus);
 #ifndef QT_NO_SYSTEMTRAYICON
+        Q_ASSERT(readerStatus);
         sysTray = new SysTrayIcon();
-        sysTray->setFirstCardWithNullPin(readerStatus.firstCardWithNullPin());
-        sysTray->setAnyCardCanLearnKeys(readerStatus.anyCardCanLearnKeys());
+        sysTray->setFirstCardWithNullPin(readerStatus->firstCardWithNullPin());
+        sysTray->setAnyCardCanLearnKeys(readerStatus->anyCardCanLearnKeys());
 
-        connect(&readerStatus, &SmartCard::ReaderStatus::firstCardWithNullPinChanged,
+        connect(readerStatus.get(), &SmartCard::ReaderStatus::firstCardWithNullPinChanged,
                 sysTray, &SysTrayIcon::setFirstCardWithNullPin);
-        connect(&readerStatus, &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged,
+        connect(readerStatus.get(), &SmartCard::ReaderStatus::anyCardCanLearnKeysChanged,
                 sysTray, &SysTrayIcon::setAnyCardCanLearnKeys);
 #endif
     }
@@ -211,7 +211,7 @@ public:
     QPointer<FocusFrame> focusFrame;
     QPointer<ConfigureDialog> configureDialog;
     QPointer<MainWindow> mainWindow;
-    SmartCard::ReaderStatus readerStatus;
+    std::unique_ptr<SmartCard::ReaderStatus> readerStatus;
 #ifndef QT_NO_SYSTEMTRAYICON
     SysTrayIcon *sysTray;
 #endif
@@ -319,7 +319,8 @@ void KleopatraApplication::init()
      * connection is additionally done in case the gpg-agent
      * is killed while Kleopatra is running. */
     startGpgAgent();
-    connect(&d->readerStatus, &SmartCard::ReaderStatus::startOfGpgAgentRequested,
+    d->readerStatus.reset(new SmartCard::ReaderStatus);
+    connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested,
             this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
     d->setUpSysTrayIcon();
@@ -718,7 +719,8 @@ void KleopatraApplication::openOrRaiseConfigDialog()
 #ifndef QT_NO_SYSTEMTRAYICON
 void KleopatraApplication::startMonitoringSmartCard()
 {
-    d->readerStatus.startMonitoring();
+    Q_ASSERT(d->readerStatus);
+    d->readerStatus->startMonitoring();
 }
 #endif // QT_NO_SYSTEMTRAYICON
 

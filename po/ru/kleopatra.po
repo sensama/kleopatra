@@ -6,7 +6,7 @@
 # Alexander Potashev <aspotashev@gmail.com>, 2010, 2011, 2015, 2016, 2017, 2019.
 # Julia Dronova <juliette.tux@gmail.com>, 2012.
 # Alexander Lakhin <exclusion@gmail.com>, 2013.
-# Alexander Yavorsky <kekcuha@gmail.com>, 2018, 2019, 2020, 2021.
+# Alexander Yavorsky <kekcuha@gmail.com>, 2018, 2019, 2020, 2021, 2023.
 # Edwin Veber <edwin0307@gmail.com>, 2011.
 # Мария Шикунова <translation-team@basealt.ru>, 2021, 2022, 2023.
 msgid ""
@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-17 00:59+0000\n"
-"PO-Revision-Date: 2023-02-01 17:40+0300\n"
-"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
-"Language-Team: Basealt Translation Team\n"
+"PO-Revision-Date: 2023-02-19 14:06+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 21.08.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -348,29 +348,29 @@ msgid "End of validity period changed successfully."
 msgstr "Окончание срока действия успешно изменено."
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "(неизвестный сертификат)"
+msgstr "%1 — это ваш сертификат?"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:655
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "Сертификат карты"
+msgstr "Выбор собственного сертификата"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr ""
+msgstr "Да, мой"
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr ""
+msgstr "Нет, не мой"
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -393,16 +393,16 @@ msgid ""
 msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "Ошибка заверения"
+msgstr "Предоставление полномочий заверения"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr ""
+msgstr "Предоставить"
 
 #: src/commands/changeownertrustcommand.cpp:157
 #, fuzzy, kde-kuit-format
@@ -431,10 +431,10 @@ msgid "Revoke Certification Power"
 msgstr "Отозвать подпись сертификата"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "Отозвать ключ"
+msgstr "Отозвать"
 
 #: src/commands/changeownertrustcommand.cpp:238
 #, fuzzy, kde-kuit-format
@@ -1993,29 +1993,28 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:643
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<title>Завершён импорт закрытого ключа.</title><para>Отпечаток ключа:<nl/"
-"><numid>%1</numid></para><para>Заявляемые идентификаторы пользователя:<list>"
-"%2</list></para>Это ваш собственный ключ? (Установить абсолютный уровень "
-"доверия)"
+"<para>Завершён импорт сертификата, имеющего отпечаток</para><para><numid>%1</"
+"numid></para><para>и идентификаторы пользователя <list>%2</list></"
+"para><para>Является ли этот сертификат вашим собственным?</para>"
 
 #: src/commands/importcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr ""
+msgstr "Да, мой"
 
 #: src/commands/importcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr ""
+msgstr "Нет, не мой"
 
 #: src/commands/importcertificatescommand.cpp:881
 #, kde-format
@@ -2187,26 +2186,26 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "Не удалось найти карту с серийным номером %1"
 
 #: src/commands/keytocardcommand.cpp:186
-#, fuzzy, kde-kuit-format
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
-msgstr "Перенос ключей на карты этого типа не поддерживается."
+msgstr "Перенос ключей на карту <emphasis>%1</emphasis> не поддерживается."
 
 #: src/commands/keytocardcommand.cpp:213
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
-msgstr "Подпись"
+msgstr "Подписывание"
 
 #: src/commands/keytocardcommand.cpp:217
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "Шифрование"
 
 #: src/commands/keytocardcommand.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "Аутентификация"
@@ -2272,10 +2271,10 @@ msgid "Overwrite existing key"
 msgstr "Замена существующего ключа"
 
 #: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
-msgstr "Замена существующего ключа"
+msgstr "Заменить существующий ключ"
 
 #: src/commands/keytocardcommand.cpp:342
 #, kde-format
@@ -2324,25 +2323,25 @@ msgstr ""
 "об отзыве?</para>"
 
 #: src/commands/keytocardcommand.cpp:477
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr "Резервное копирование закрытого ключа"
+msgstr "Создать резервную копию и удалить ключ"
 
 #: src/commands/keytocardcommand.cpp:478
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "Выбор ключа"
+msgstr "Удалить ключ"
 
 #: src/commands/keytocardcommand.cpp:479
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "Отозвать ключ"
+msgstr "Оставить ключ"
 
 #: src/commands/keytocardcommand.cpp:525
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Резервное копирование закрытого ключа"
@@ -2382,10 +2381,10 @@ msgstr ""
 "Вы действительно хотите удалить %n сертификатов?"
 
 #: src/commands/keytocardcommand.cpp:623
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "Подтверждение отзыва"
+msgstr "Подтверждение удаления"
 
 #: src/commands/keytocardcommand.cpp:642
 #, fuzzy, kde-kuit-format

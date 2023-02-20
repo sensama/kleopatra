@@ -79,7 +79,9 @@
 #include <map>
 #if __has_include(<ranges>)
 #include <ranges>
+#if defined(__cpp_lib_ranges) && __cpp_lib_ranges >= 201911L
 #define USE_RANGES
+#endif
 #endif
 #include <set>
 

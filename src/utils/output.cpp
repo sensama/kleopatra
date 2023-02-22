@@ -16,11 +16,14 @@
 #include "kdpipeiodevice.h"
 #include "log.h"
 #include "cached.h"
+#include "overwritedialog.h"
 
 #include <Libkleo/KleoException>
 
+#include <KFileUtils>
 #include <KLocalizedString>
 #include <KMessageBox>
+
 #include "kleopatra_debug.h"
 
 #include <QFileInfo>
@@ -34,6 +37,7 @@
 #include <QDir>
 #include <QProcess>
 #include <QTimer>
+#include <QUrl>
 
 #ifdef Q_OS_WIN
 # include <windows.h>
@@ -393,10 +397,11 @@ public:
     }
 
 private:
-    bool obtainOverwritePermission();
+    // returns the file name to write to or an empty string if overwriting was declined
+    QString obtainOverwritePermission(const QString &fileName);
 
 private:
-    const QString m_fileName;
+    QString m_fileName;
     std::shared_ptr< TemporaryFile > m_tmpFile;
     const std::shared_ptr<OverwritePolicy> m_policy;
     std::weak_ptr<OutputInput> m_attachedInput;
@@ -495,9 +500,9 @@ PipeOutput::PipeOutput(assuan_fd_t fd)
 
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
 {
-    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(nullptr, forceOverwrite ? OverwritePolicy::Allow : OverwritePolicy::Deny)));
-
+    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(nullptr, forceOverwrite ? OverwritePolicy::Overwrite : OverwritePolicy::Skip)));
 }
+
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)
 {
     std::shared_ptr<FileOutput> fo(new FileOutput(fileName, policy));
@@ -518,23 +523,66 @@ FileOutput::FileOutput(const QString &fileName, const std::shared_ptr<OverwriteP
                         i18n("Could not create temporary file for output \"%1\"", fileName));
 }
 
-bool FileOutput::obtainOverwritePermission()
+static QString suggestFileName(const QString &fileName)
 {
-    if (m_policy->policy() != OverwritePolicy::Ask) {
-        return m_policy->policy() == OverwritePolicy::Allow;
+    const QFileInfo fileInfo{fileName};
+    const QString path = fileInfo.absolutePath();
+    const QString newFileName = KFileUtils::suggestName(QUrl::fromLocalFile(path), fileInfo.fileName());
+    return path + QLatin1Char{'/'} + newFileName;
+}
+
+QString FileOutput::obtainOverwritePermission(const QString &fileName)
+{
+    switch (m_policy->policy()) {
+    case OverwritePolicy::Ask:
+        break;
+    case OverwritePolicy::Overwrite:
+        return fileName;
+    case OverwritePolicy::Rename: {
+        return suggestFileName(fileName);
     }
-    const int sel = KMessageBox::questionTwoActionsCancel(m_policy->parentWidget(),
-                                                          i18n("The file <b>%1</b> already exists.\n"
-                                                               "Overwrite?",
-                                                               m_fileName),
-                                                          i18n("Overwrite Existing File?"),
-                                                          KStandardGuiItem::overwrite(),
-                                                          KGuiItem(i18n("Overwrite All")),
-                                                          KStandardGuiItem::cancel());
-    if (sel == KMessageBox::ButtonCode::SecondaryAction) { // Overwrite All
-        m_policy->setPolicy(OverwritePolicy::Allow);
+    case OverwritePolicy::Skip:
+        return {};
+    case OverwritePolicy::Cancel:
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Error: Called although user canceled operation";
+        return {};
     }
-    return sel == KMessageBox::ButtonCode::PrimaryAction || sel == KMessageBox::ButtonCode::SecondaryAction;
+
+    qCDebug(KLEOPATRA_LOG) << __func__ << "m_policy.use_count():" << m_policy.use_count();
+    OverwriteDialog::Options options = OverwriteDialog::AllowRename;
+    if (m_policy.use_count() > 1) {
+        options |= OverwriteDialog::MultipleItems | OverwriteDialog::AllowSkip;
+    }
+    OverwriteDialog dialog{m_policy->parentWidget(),
+                           i18nc("@title:window", "File Already Exists"),
+                           fileName,
+                           options};
+    const auto result = static_cast<OverwriteDialog::Result>(dialog.exec());
+    qCDebug(KLEOPATRA_LOG) << __func__ << "result:" << static_cast<int>(result);
+    switch (result) {
+    case OverwriteDialog::Cancel:
+        m_policy->setPolicy(OverwritePolicy::Cancel);
+        return {};
+    case OverwriteDialog::AutoSkip:
+        m_policy->setPolicy(OverwritePolicy::Skip);
+        [[fallthrough]];
+    case OverwriteDialog::Skip:
+        return {};
+    case OverwriteDialog::OverwriteAll:
+        m_policy->setPolicy(OverwritePolicy::Overwrite);
+        [[fallthrough]];
+    case OverwriteDialog::Overwrite:
+        return fileName;
+    case OverwriteDialog::Rename:
+        return dialog.newFileName();
+    case OverwriteDialog::AutoRename: {
+        m_policy->setPolicy(OverwritePolicy::Rename);
+        return suggestFileName(fileName);
+    }
+    default:
+        qCDebug(KLEOPATRA_LOG) << __func__ << "unexpected result:" << result;
+    };
+    return {};
 }
 
 void FileOutput::doFinalize()
@@ -583,7 +631,7 @@ void FileOutput::doFinalize()
                     QStringLiteral("Could not find temporary file \"%1\".").arg(tmpFileName));
         }
     }
-    qCDebug(KLEOPATRA_LOG) << this << " renaming " << tmpFileName << "->" << m_fileName;
+    qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;
 
     if (QFile::rename(tmpFileName, m_fileName)) {
         qCDebug(KLEOPATRA_LOG) << this << "succeeded";
@@ -596,17 +644,25 @@ void FileOutput::doFinalize()
 
     qCDebug(KLEOPATRA_LOG) << this << "failed";
 
-    if (!obtainOverwritePermission())
-        throw Exception(gpg_error(GPG_ERR_CANCELED),
-                        i18n("Overwriting declined"));
+    {
+        const auto newFileName = obtainOverwritePermission(m_fileName);
+        if (newFileName.isEmpty()) {
+            throw Exception(gpg_error(GPG_ERR_CANCELED),
+                            i18n("Overwriting declined"));
+        }
+        if (newFileName == m_fileName) {
+            qCDebug(KLEOPATRA_LOG) << this << "going to remove file for overwriting" << m_fileName;
+            if (!QFile::remove(m_fileName)) {
+                throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
+                                xi18nc("@info", "Could not remove file <filename>%1</filename> for overwriting.", m_fileName));
+            }
+            qCDebug(KLEOPATRA_LOG) << this << "removing file to overwrite succeeded";
+        } else {
+            m_fileName = newFileName;
+        }
+    }
 
-    qCDebug(KLEOPATRA_LOG) << this << "going to overwrite" << m_fileName;
-
-    if (!QFile::remove(m_fileName))
-        throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
-                        i18n("Could not remove file \"%1\" for overwriting.", m_fileName));
-
-    qCDebug(KLEOPATRA_LOG) << this << "succeeded, renaming " << tmpFileName << "->" << m_fileName;
+    qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;
 
     if (QFile::rename(tmpFileName, m_fileName)) {
         qCDebug(KLEOPATRA_LOG) << this << "succeeded";

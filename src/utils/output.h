@@ -29,9 +29,11 @@ class OverwritePolicy
 {
 public:
     enum Policy {
-        Allow,
-        Deny,
-        Ask
+        Ask,
+        Overwrite,
+        Rename,
+        Skip,
+        Cancel,
     };
 
     explicit OverwritePolicy(QWidget *parent, Policy initialPolicy = Ask);

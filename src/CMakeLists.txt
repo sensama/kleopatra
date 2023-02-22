@@ -444,6 +444,8 @@ set(_kleopatra_SRCS
   utils/multivalidator.h
   utils/output.cpp
   utils/output.h
+  utils/overwritedialog.cpp
+  utils/overwritedialog.h
   utils/path-helper.cpp
   utils/path-helper.h
   utils/scrollarea.cpp

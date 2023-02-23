@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1645056 $
+# Version: $Revision: 1645189 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-02-23 00:59+0000\n"
 "PO-Revision-Date: 2023-02-12 09:20+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1683,7 +1683,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Nie można wykryć rodzaju certyfikatu zawartości schowka."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:712
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Schowek"
@@ -3998,7 +3998,7 @@ msgstr "Nie, zapisz jako <filename>%1</filename>"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Tak, zapisz jako <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235 src/utils/output.cpp:527
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4007,12 +4007,12 @@ msgstr ""
 "Plik <b>%1</b> już istnieje.\n"
 "Czy go zastąpić?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Zastąpić plik?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240 src/utils/output.cpp:532
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
 msgid "Overwrite All"
 msgstr "Zastąp wszystkie"
@@ -4088,14 +4088,14 @@ msgid "Create Checksum Progress"
 msgstr "Postęp tworzenia sumy sprawdzającej"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Błąd podczas uruchamiania %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:687
+#: src/utils/output.cpp:743
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Nie udało się wykonanie %1: %2"
@@ -4452,7 +4452,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:734
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgid "Input error: %1"
 msgstr "Błąd wejścia: %1"
@@ -5705,7 +5705,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:626 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -10401,12 +10401,12 @@ msgstr "Nie można otworzyć pliku \"%1\" do odczytu"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Plik \"%1\" jest już otwarty, ale nie do odczytu"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:654
+#: src/utils/input.cpp:330 src/utils/output.cpp:710
 #, kde-format
 msgid "Command not specified"
 msgstr "Nie określono polecenia"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:660
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Nie można uruchomić procesu %1: %2"
@@ -10467,67 +10467,197 @@ msgstr "Brak urządzenia wejściowego"
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr "Błąd dziennika: nie można otworzyć pliku \"%1\" do zapisu"
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:281
 #, kde-format
 msgid "No output device"
 msgstr "Brak urządzenia wyjściowego"
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:497
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "Nie można otworzyć FD %1 do zapisu"
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:523
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Nie można utworzyć pliku tymczasowego dla wyjścia \"%1\""
 
-#: src/utils/output.cpp:601
+#: src/utils/output.cpp:557
+#, kde-format
+msgctxt "@title:window"
+msgid "File Already Exists"
+msgstr ""
+
+#: src/utils/output.cpp:651
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Odmowa zastąpienia"
 
-#: src/utils/output.cpp:607
-#, kde-format
-msgid "Could not remove file \"%1\" for overwriting."
-msgstr "Nie można usunąć pliku \"%1\"."
+#: src/utils/output.cpp:657
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
+msgctxt "@info"
+msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgstr "Nie można otworzyć pliku <filename>%1</filename> do zapisu."
 
-#: src/utils/output.cpp:626
+#: src/utils/output.cpp:682
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Nie można zmienić nazwy pliku \"%1\" na \"%2\""
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:727
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Wejście do %1 ..."
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:729
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Wejście do %1"
 
-#: src/utils/output.cpp:705
+#: src/utils/output.cpp:761
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Nie można zapisać do schowka"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:770
 #, kde-format
 msgid "Find buffer"
 msgstr "Pamięć podręczna znajdowania"
 
-#: src/utils/output.cpp:716
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Selection"
 msgstr "Zaznaczenie"
 
-#: src/utils/output.cpp:730
+#: src/utils/output.cpp:786
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Nie można znaleźć schowka"
+
+#: src/utils/overwritedialog.cpp:138
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> already exists. Please enter a different "
+"file name."
+msgstr ""
+"Plik o nazwie <filename>%1</filename> już istnieje. Czy na pewno chcesz go "
+"zastąpić?"
+
+#: src/utils/overwritedialog.cpp:185
+#, fuzzy, kde-kuit-format
+#| msgid "The file <b>%1</b> already exists.\n"
+msgctxt "@info"
+msgid "The file <filename>%1</filename> already exists."
+msgstr "Plik <b>%1</b> już istnieje.\n"
+
+#: src/utils/overwritedialog.cpp:190
+#, fuzzy, kde-format
+#| msgid "Real name:"
+msgctxt "@label"
+msgid "Rename:"
+msgstr "Prawdziwe imię i nazwisko:"
+
+#: src/utils/overwritedialog.cpp:199
+#, fuzzy, kde-format
+#| msgid "Test Name"
+msgctxt "@action:button"
+msgid "Suggest New Name"
+msgstr "Nazwa próby"
+
+#: src/utils/overwritedialog.cpp:200
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Suggest a file name that does not already exist."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:211
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename"
+msgstr "Zmień nazwę karty"
+
+#: src/utils/overwritedialog.cpp:212
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Save the file with the given name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename All"
+msgstr "Zmień nazwę karty"
+
+#: src/utils/overwritedialog.cpp:221
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Automatically save all files that would overwrite an already existing file "
+"with a different name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:227
+#, fuzzy, kde-format
+#| msgid "Skipped"
+msgctxt "@action:button"
+msgid "Skip"
+msgstr "Pominięto"
+
+#: src/utils/overwritedialog.cpp:229
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Do not write this file, skip to the next one instead."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:232
+#, kde-format
+msgctxt "@action:button"
+msgid "Skip All"
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:234
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Do not write this file and any other files that would overwrite an already "
+"existing file."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:238
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite"
+msgstr "Zastąp wszystkie"
+
+#: src/utils/overwritedialog.cpp:240
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file."
+msgstr "Zastąpić plik?"
+
+#: src/utils/overwritedialog.cpp:244
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite All"
+msgstr "Zastąp wszystkie"
+
+#: src/utils/overwritedialog.cpp:246
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file and any other files that already exist."
+msgstr ""
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -11809,6 +11939,9 @@ msgstr ""
 "publicznego serwera kluczy wybierz <interface>Wyszukaj na serwerze</"
 "interface>."
 
+#~ msgid "Could not remove file \"%1\" for overwriting."
+#~ msgstr "Nie można usunąć pliku \"%1\"."
+
 #~ msgid "Finalizing output..."
 #~ msgstr "Kończenie wyjścia..."
 
@@ -11958,9 +12091,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "Failed to delete the key: %1"
 #~ msgstr "Nie udało się usunięcie klucza: %1"
-
-#~ msgid "The file <b>%1</b> already exists.\n"
-#~ msgstr "Plik <b>%1</b> już istnieje.\n"
 
 #~ msgid ""
 #~ "<p>An error occurred while trying to change the certification trust for "

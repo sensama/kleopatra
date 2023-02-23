@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-02-23 00:59+0000\n"
 "PO-Revision-Date: 2023-02-15 11:04\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1607,7 +1607,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "无法确定剪贴板内容的证书类型。"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:712
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "剪贴板"
@@ -3805,7 +3805,7 @@ msgstr "否，另存为 <filename>%1</filename>"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "是，覆盖 <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235 src/utils/output.cpp:527
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -3814,12 +3814,12 @@ msgstr ""
 "文件 <b>%1</b> 已存在。\n"
 "覆盖吗？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "覆盖已有文件吗？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240 src/utils/output.cpp:532
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
 msgid "Overwrite All"
 msgstr "全部覆盖"
@@ -3892,14 +3892,14 @@ msgid "Create Checksum Progress"
 msgstr "创建校验和进程"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "运行 %1 时出错：%2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:687
+#: src/utils/output.cpp:743
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "执行 %1 失败：%2"
@@ -4240,7 +4240,7 @@ msgstr "无法认证此证书，因为它已被同一份证书认证过了。"
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:734
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgid "Input error: %1"
 msgstr "输入错误：%1"
@@ -5455,7 +5455,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:626 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -9929,12 +9929,12 @@ msgstr "无法打开文件“%1”进行读取"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "文件“%1”已经打开，但不可读取"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:654
+#: src/utils/input.cpp:330 src/utils/output.cpp:710
 #, kde-format
 msgid "Command not specified"
 msgstr "命令未指定"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:660
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "无法启动 %1 进程：%2"
@@ -9995,67 +9995,197 @@ msgstr "没有输入设备"
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr "日志错误：无法打开日志文件“%1”进行写入。"
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:281
 #, kde-format
 msgid "No output device"
 msgstr "没有输出设备"
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:497
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "无法打开文件描述符 %1 进行写入"
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:523
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "无法为输出“%1”创建临时文件"
 
-#: src/utils/output.cpp:601
+#: src/utils/output.cpp:557
+#, kde-format
+msgctxt "@title:window"
+msgid "File Already Exists"
+msgstr ""
+
+#: src/utils/output.cpp:651
 #, kde-format
 msgid "Overwriting declined"
 msgstr "覆盖被拒绝"
 
-#: src/utils/output.cpp:607
-#, kde-format
-msgid "Could not remove file \"%1\" for overwriting."
-msgstr "无法为覆盖而删除文件“%1”。"
+#: src/utils/output.cpp:657
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
+msgctxt "@info"
+msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
 
-#: src/utils/output.cpp:626
+#: src/utils/output.cpp:682
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "无法重命名文件“%1”为“%2”"
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:727
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "输入到 %1 ..."
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:729
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "输入到 %1"
 
-#: src/utils/output.cpp:705
+#: src/utils/output.cpp:761
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "无法向剪贴板写入"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:770
 #, kde-format
 msgid "Find buffer"
 msgstr "查找缓冲"
 
-#: src/utils/output.cpp:716
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Selection"
 msgstr "选择"
 
-#: src/utils/output.cpp:730
+#: src/utils/output.cpp:786
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "无法查找剪贴板"
+
+#: src/utils/overwritedialog.cpp:138
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> already exists. Please enter a different "
+"file name."
+msgstr "名为 <filename>%1</filename> 的文件已经存在。您确定要覆盖它吗？"
+
+#: src/utils/overwritedialog.cpp:185
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid "The file <filename>%1</filename> already exists."
+msgstr "名为 <filename>%1</filename> 的文件已经存在。您确定要覆盖它吗？"
+
+#: src/utils/overwritedialog.cpp:190
+#, fuzzy, kde-format
+#| msgid "Real name:"
+msgctxt "@label"
+msgid "Rename:"
+msgstr "真实姓名："
+
+#: src/utils/overwritedialog.cpp:199
+#, fuzzy, kde-format
+#| msgid "Test Name"
+msgctxt "@action:button"
+msgid "Suggest New Name"
+msgstr "测试项"
+
+#: src/utils/overwritedialog.cpp:200
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Suggest a file name that does not already exist."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:211
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename"
+msgstr "重命名标签"
+
+#: src/utils/overwritedialog.cpp:212
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Save the file with the given name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename All"
+msgstr "重命名标签"
+
+#: src/utils/overwritedialog.cpp:221
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Automatically save all files that would overwrite an already existing file "
+"with a different name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:227
+#, fuzzy, kde-format
+#| msgid "Skipped"
+msgctxt "@action:button"
+msgid "Skip"
+msgstr "跳过"
+
+#: src/utils/overwritedialog.cpp:229
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Do not write this file, skip to the next one instead."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:232
+#, kde-format
+msgctxt "@action:button"
+msgid "Skip All"
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:234
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Do not write this file and any other files that would overwrite an already "
+"existing file."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:238
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite"
+msgstr "全部覆盖"
+
+#: src/utils/overwritedialog.cpp:240
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file."
+msgstr "覆盖已有文件吗？"
+
+#: src/utils/overwritedialog.cpp:244
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite All"
+msgstr "全部覆盖"
+
+#: src/utils/overwritedialog.cpp:246
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file and any other files that already exist."
+msgstr ""
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -11296,6 +11426,9 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "Could not remove file \"%1\" for overwriting."
+#~ msgstr "无法为覆盖而删除文件“%1”。"
 
 #~ msgid "Finalizing output..."
 #~ msgstr "正在完成输出..."

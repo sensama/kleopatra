@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-02-23 00:59+0000\n"
 "PO-Revision-Date: 2020-01-12 11:14+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -1805,7 +1805,7 @@ msgstr ""
 "Non se puido determinar o tipo de certificado do contido do portapapeis."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:712
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Portapapeis"
@@ -4249,7 +4249,7 @@ msgstr "Non se puido eliminar <filename>%1</filename>."
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Non se puido eliminar <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235 src/utils/output.cpp:527
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4258,12 +4258,12 @@ msgstr ""
 "O ficheiro <b>%1</b> xa existe.\n"
 "Sobrescribir?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Sobrescribir o ficheiro existente?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240 src/utils/output.cpp:532
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
 msgid "Overwrite All"
 msgstr "Sobrescribir todo"
@@ -4341,14 +4341,14 @@ msgid "Create Checksum Progress"
 msgstr "Crear o progreso da suma de comprobación"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Erro ao executar %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:687
+#: src/utils/output.cpp:743
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Non se puido executar %1: %2"
@@ -4711,7 +4711,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:734
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgid "Input error: %1"
 msgstr "Produciuse un erro na entrada: %1"
@@ -6019,7 +6019,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:626 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -10855,12 +10855,12 @@ msgstr "Non se puido abrir o ficheiro «%1» para lectura"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "O ficheiro «%1» xa está aberto, pero non para ler"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:654
+#: src/utils/input.cpp:330 src/utils/output.cpp:710
 #, kde-format
 msgid "Command not specified"
 msgstr "Non se especificou ningunha orde"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:660
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Non se puido comezar o proceso %1: %2"
@@ -10923,67 +10923,199 @@ msgstr ""
 "Erro do rexistro: non se puido abrir o ficheiro de rexistro «%1» para "
 "escribir nel."
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:281
 #, kde-format
 msgid "No output device"
 msgstr "Non hai ningún dispositivo de saída"
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:497
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "Non se puido abrir FD %1 para escribir"
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:523
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Non se puido crear un ficheiro temporal para a saída «%1»"
 
-#: src/utils/output.cpp:601
+#: src/utils/output.cpp:557
+#, kde-format
+msgctxt "@title:window"
+msgid "File Already Exists"
+msgstr ""
+
+#: src/utils/output.cpp:651
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Rexeitouse sobrescribir"
 
-#: src/utils/output.cpp:607
-#, kde-format
-msgid "Could not remove file \"%1\" for overwriting."
-msgstr "Non se puido retirar o ficheiro «%1» para sobrescribilo."
+#: src/utils/output.cpp:657
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
+msgctxt "@info"
+msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgstr "Non se pode abrir <filename>%1</filename> para lectura."
 
-#: src/utils/output.cpp:626
+#: src/utils/output.cpp:682
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Non se puido renomear o ficheiro «%1» a «%2»"
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:727
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Entrada de %1…"
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:729
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Entrada de %1"
 
-#: src/utils/output.cpp:705
+#: src/utils/output.cpp:761
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Non se puido escribir no portapapeis"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:770
 #, kde-format
 msgid "Find buffer"
 msgstr "Atopar búfer"
 
-#: src/utils/output.cpp:716
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Selection"
 msgstr "Selección"
 
-#: src/utils/output.cpp:730
+#: src/utils/output.cpp:786
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Non se puido atopar o portapapeis"
+
+#: src/utils/overwritedialog.cpp:138
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file named \"%1\" already exists. Are you sure you want to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> already exists. Please enter a different "
+"file name."
+msgstr "Xa existe o ficheiro chamado «%1». Desexa realmente substituílo?"
+
+#: src/utils/overwritedialog.cpp:185
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <b>%1</b> already exists.\n"
+#| "Overwrite?"
+msgctxt "@info"
+msgid "The file <filename>%1</filename> already exists."
+msgstr ""
+"O ficheiro <b>%1</b> xa existe.\n"
+"Sobrescribir?"
+
+#: src/utils/overwritedialog.cpp:190
+#, fuzzy, kde-format
+#| msgid "Real name:"
+msgctxt "@label"
+msgid "Rename:"
+msgstr "Nome real:"
+
+#: src/utils/overwritedialog.cpp:199
+#, fuzzy, kde-format
+#| msgid "Test Name"
+msgctxt "@action:button"
+msgid "Suggest New Name"
+msgstr "Nome da proba"
+
+#: src/utils/overwritedialog.cpp:200
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Suggest a file name that does not already exist."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:211
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename"
+msgstr "Renomear o separador"
+
+#: src/utils/overwritedialog.cpp:212
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Save the file with the given name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename All"
+msgstr "Renomear o separador"
+
+#: src/utils/overwritedialog.cpp:221
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Automatically save all files that would overwrite an already existing file "
+"with a different name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:227
+#, fuzzy, kde-format
+#| msgid "Skipped"
+msgctxt "@action:button"
+msgid "Skip"
+msgstr "Saltado"
+
+#: src/utils/overwritedialog.cpp:229
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Do not write this file, skip to the next one instead."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:232
+#, kde-format
+msgctxt "@action:button"
+msgid "Skip All"
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:234
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Do not write this file and any other files that would overwrite an already "
+"existing file."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:238
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite"
+msgstr "Sobrescribir todo"
+
+#: src/utils/overwritedialog.cpp:240
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file."
+msgstr "Sobrescribir o ficheiro existente?"
+
+#: src/utils/overwritedialog.cpp:244
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite All"
+msgstr "Sobrescribir todo"
+
+#: src/utils/overwritedialog.cpp:246
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file and any other files that already exist."
+msgstr ""
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -12340,6 +12472,9 @@ msgstr ""
 "Para importar dun servidor de chaves público use «Buscar no servidor» no seu "
 "lugar."
 
+#~ msgid "Could not remove file \"%1\" for overwriting."
+#~ msgstr "Non se puido retirar o ficheiro «%1» para sobrescribilo."
+
 #, fuzzy
 #~| msgid "Initializing..."
 #~ msgid "Finalizing output..."
@@ -12498,15 +12633,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "Failed to delete the key: %1"
 #~ msgstr "Non se puido eliminar a chave: %1"
-
-#, fuzzy
-#~| msgid ""
-#~| "The file <b>%1</b> already exists.\n"
-#~| "Overwrite?"
-#~ msgid "The file <b>%1</b> already exists.\n"
-#~ msgstr ""
-#~ "O ficheiro <b>%1</b> xa existe.\n"
-#~ "Sobrescribir?"
 
 #~ msgid ""
 #~ "<p>An error occurred while trying to change the certification trust for "

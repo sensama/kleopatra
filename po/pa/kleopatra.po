@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-21 01:00+0000\n"
+"POT-Creation-Date: 2023-02-23 00:59+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -1648,7 +1648,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "ਕਲਿੱਪਬੋਰਡ ਸਮੱਗਰੀ ਵਿੱਚ ਸਰਟੀਫਿਕੇਟ ਕਿਸਮ ਜਾਣੀ ਨਹੀਂ ਜਾ ਸਕੀ।"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:712
+#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ"
@@ -3872,7 +3872,7 @@ msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ �
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235 src/utils/output.cpp:527
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -3881,12 +3881,12 @@ msgstr ""
 "ਫਾਇਲ <b>%1</b> ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\n"
 "ਉੱਤੇ ਲਿਖਣਾ ਹੈ?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238 src/utils/output.cpp:530
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "ਕੀ ਫਾਇਲ ਉੱਤੇ ਲਿਖਣਾ ਹੈ?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240 src/utils/output.cpp:532
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-format
 msgid "Overwrite All"
 msgstr "ਸਭ ਉੱਤੇ ਲਿਖੋ"
@@ -3958,14 +3958,14 @@ msgid "Create Checksum Progress"
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:684
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "%1 ਚਲਾਉਣ ਦੌਰਾਨ ਗਲਤੀ: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:687
+#: src/utils/output.cpp:743
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr ""
@@ -4327,7 +4327,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:734
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgid "Input error: %1"
 msgstr "ਇੰਪੁੱਟ ਗਲਤੀ: %1"
@@ -5590,7 +5590,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:626 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -10224,12 +10224,12 @@ msgstr ""
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "ਫਾਇਲ \"%1\" ਪਹਿਲਾਂ ਹੀ ਖੁੱਲ੍ਹੀ ਹੈ, ਪਰ ਪੜ੍ਹਨ ਲਈ ਨਹੀਂ"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:654
+#: src/utils/input.cpp:330 src/utils/output.cpp:710
 #, kde-format
 msgid "Command not specified"
 msgstr ""
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:660
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
 #, fuzzy, kde-format
 #| msgid "Could not start zip process"
 msgid "Could not start %1 process: %2"
@@ -10292,67 +10292,199 @@ msgstr "ਕੋਈ ਇੰਪੁੱਟ ਜੰਤਰ ਨਹੀਂ"
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""
 
-#: src/utils/output.cpp:277
+#: src/utils/output.cpp:281
 #, kde-format
 msgid "No output device"
 msgstr ""
 
-#: src/utils/output.cpp:492
+#: src/utils/output.cpp:497
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr ""
 
-#: src/utils/output.cpp:518
+#: src/utils/output.cpp:523
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "ਆਉਟਪੁੱਟ \"%1\" ਲਈ ਆਰਜ਼ੀ ਫਾਇਲ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ"
 
-#: src/utils/output.cpp:601
+#: src/utils/output.cpp:557
+#, kde-format
+msgctxt "@title:window"
+msgid "File Already Exists"
+msgstr ""
+
+#: src/utils/output.cpp:651
 #, kde-format
 msgid "Overwriting declined"
 msgstr "ਉੱਤੇ ਲਿਖਣ ਤੋਂ ਇਨਕਾਰ"
 
-#: src/utils/output.cpp:607
-#, kde-format
-msgid "Could not remove file \"%1\" for overwriting."
-msgstr ""
+#: src/utils/output.cpp:657
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file %1 for reading: %2"
+msgctxt "@info"
+msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgstr "%1 ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਖੋਲ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
 
-#: src/utils/output.cpp:626
+#: src/utils/output.cpp:682
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr ""
 
-#: src/utils/output.cpp:671
+#: src/utils/output.cpp:727
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr ""
 
-#: src/utils/output.cpp:673
+#: src/utils/output.cpp:729
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "%1 ਲਈ ਇੰਪੁੱਟ"
 
-#: src/utils/output.cpp:705
+#: src/utils/output.cpp:761
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ 'ਚ ਲਿਖਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
-#: src/utils/output.cpp:714
+#: src/utils/output.cpp:770
 #, kde-format
 msgid "Find buffer"
 msgstr "ਬਫ਼ਰ ਖੋਜ"
 
-#: src/utils/output.cpp:716
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Selection"
 msgstr "ਚੋਣ"
 
-#: src/utils/output.cpp:730
+#: src/utils/output.cpp:786
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "ਕਲਿੱਪਬੋਰਡ 'ਚ ਨਹੀਂ ਲੱਭਿਆ"
+
+#: src/utils/overwritedialog.cpp:138
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file named \"%1\" already exists. Are you sure you want to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> already exists. Please enter a different "
+"file name."
+msgstr "ਫਾਇਲ ਨਾਂ \"%1\" ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ। ਕੀ ਤੁਸੀਂ ਇਸ ਨੂੰ ਤਬਦੀਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
+
+#: src/utils/overwritedialog.cpp:185
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <b>%1</b> already exists.\n"
+#| "Overwrite?"
+msgctxt "@info"
+msgid "The file <filename>%1</filename> already exists."
+msgstr ""
+"ਫਾਇਲ <b>%1</b> ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\n"
+"ਉੱਤੇ ਲਿਖਣਾ ਹੈ?"
+
+#: src/utils/overwritedialog.cpp:190
+#, fuzzy, kde-format
+#| msgid "Real name:"
+msgctxt "@label"
+msgid "Rename:"
+msgstr "ਅਸਲੀ ਨਾਂ:"
+
+#: src/utils/overwritedialog.cpp:199
+#, fuzzy, kde-format
+#| msgid "Test Name"
+msgctxt "@action:button"
+msgid "Suggest New Name"
+msgstr "ਟੈਸਟ ਨਾਂ"
+
+#: src/utils/overwritedialog.cpp:200
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Suggest a file name that does not already exist."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:211
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename"
+msgstr "ਟੈਬ ਨਾਂ ਬਦਲੋ"
+
+#: src/utils/overwritedialog.cpp:212
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Save the file with the given name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:218
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
+msgctxt "@action:button"
+msgid "Rename All"
+msgstr "ਟੈਬ ਨਾਂ ਬਦਲੋ"
+
+#: src/utils/overwritedialog.cpp:221
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Automatically save all files that would overwrite an already existing file "
+"with a different name."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:227
+#, fuzzy, kde-format
+#| msgid "Skipped"
+msgctxt "@action:button"
+msgid "Skip"
+msgstr "ਛੱਡਿਆ ਜਾ ਰਿਹਾ ਹੈ।"
+
+#: src/utils/overwritedialog.cpp:229
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Do not write this file, skip to the next one instead."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:232
+#, kde-format
+msgctxt "@action:button"
+msgid "Skip All"
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:234
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Do not write this file and any other files that would overwrite an already "
+"existing file."
+msgstr ""
+
+#: src/utils/overwritedialog.cpp:238
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite"
+msgstr "ਸਭ ਉੱਤੇ ਲਿਖੋ"
+
+#: src/utils/overwritedialog.cpp:240
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file."
+msgstr "ਕੀ ਫਾਇਲ ਉੱਤੇ ਲਿਖਣਾ ਹੈ?"
+
+#: src/utils/overwritedialog.cpp:244
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
+msgctxt "@action:button"
+msgid "Overwrite All"
+msgstr "ਸਭ ਉੱਤੇ ਲਿਖੋ"
+
+#: src/utils/overwritedialog.cpp:246
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Overwrite the existing file and any other files that already exist."
+msgstr ""
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -11810,15 +11942,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "Failed to delete the key: %1"
 #~ msgstr "ਫਾਇਲ %1 ਸੰਭਾਲੀ ਨਹੀਂ ਜਾ ਸਕੀ: %2"
-
-#, fuzzy
-#~| msgid ""
-#~| "The file <b>%1</b> already exists.\n"
-#~| "Overwrite?"
-#~ msgid "The file <b>%1</b> already exists.\n"
-#~ msgstr ""
-#~ "ਫਾਇਲ <b>%1</b> ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।\n"
-#~ "ਉੱਤੇ ਲਿਖਣਾ ਹੈ?"
 
 #, fuzzy
 #~| msgid "Certificate Usage"

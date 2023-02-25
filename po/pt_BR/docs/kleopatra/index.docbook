@@ -202,9 +202,9 @@
 
 <abstract>
 <para
->&kleopatra; é uma ferramenta para gerenciar certificados <ulink url="http://en.wikipedia.org/wiki/X.509"
+>&kleopatra; é uma ferramenta para gerenciar certificados <ulink url="https://en.wikipedia.org/wiki/X.509"
 >&x509;</ulink
-> e <ulink url="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+> e <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
 >&openpgp;</ulink
 >. </para>
 </abstract>
@@ -238,13 +238,13 @@
 >Introdução</title>
 
 <para
->&kleopatra; é a ferramenta do &kde; para gerenciar certificados <ulink url="http://en.wikipedia.org/wiki/X.509"
+>&kleopatra; é a ferramenta do &kde; para gerenciar certificados <ulink url="https://en.wikipedia.org/wiki/X.509"
 >&x509;</ulink
-> e <ulink url="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+> e <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
 >&openpgp;</ulink
-> nos chaveiros do <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+> nos chaveiros do <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
 >&gpgsm;</ulink
-> e do <ulink url="http://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+> e do <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
 >&gpg;</ulink
 > e também para obter certificados de servidores &ldap; e de outros servidores.</para>
 
@@ -266,7 +266,7 @@
 >Este programa obteve o nome da Cleópatra, uma famosa faraó egípcia que viveu no tempo de Júlio César, com quem teve um filho, Pequeno César, não reconhecido como seu herdeiro.</para>
 
 <para
->O nome foi escolhido, uma vez que este programa tem origem nos <ulink url="http://www.gnupg.org/aegypten2/"
+>O nome foi escolhido, uma vez que este programa tem origem nos <ulink url="https://www.gnupg.org/aegypten2/"
 >Projetos &Auml;gypten</ulink
 > (&Auml;gypten significa Egito em alemão). &kleopatra; é a tradução em alemão de Cleópatra.</para
 ></note>
@@ -308,7 +308,7 @@
 > são usados nas mesmas circunstâncias, razão pela qual não será também feita nenhuma distinção entre elas neste manual, a não ser quando indicado explicitamente.</para>
 
 <para
->As &ca; deverão estar, por sua vez, assinadas por outras &ca;s para serem válidas. Obviamente isto terá de parar em algum ponto, como tal a &ca; do nível superior (a &ca; raiz) assina a sua chave com ela própria (isto é chamado de auto-assinatura). Os certificados raiz precisam, por isso, ser validados (normalmente chamada de confiança) manualmente, &eg; depois de comparar a impressão digital com a da página Web da &ca;. Isto é feito tipicamente pelo administrador do sistema ou pelo distribuidor de um produto que use os certificados, mas poderá ser feito pelo usuário com a interface da linha de comando do &gpgsm;.</para>
+>As &ca; deverão estar, por sua vez, assinadas por outras &ca;s para serem válidas. Obviamente isto terá de parar em algum ponto, como tal a &ca; do nível superior (a &ca; raiz) assina a sua chave com ela própria (isto é chamado de auto-assinatura). Os certificados raiz precisam, por isso, ser validados (normalmente chamada de confiança) manualmente, &eg; depois de comparar a impressão digital com o site da &ca;. Isto é feito tipicamente pelo administrador do sistema ou pelo distribuidor de um produto que use os certificados, mas poderá ser feito pelo usuário com a interface da linha de comando do &gpgsm;.</para>
 
 <para
 >Para ver quais os certificados são da raiz, você poderá mudar para o modo de listagem hierárquica de chaves com o <xref linkend="view-hierarchical-key-list"/>.</para>
@@ -364,7 +364,7 @@ selected.</para-->
 >Procurando e Importando Certificados</title>
 
 <para
->Na maior parte do tempo, você irá adquirir os certificados novos ao verificar as assinaturas nas mensagens de e-mail, uma vez que os certificados estão incorporados nas assinaturas criadas que as usam. Contudo, se você precisar de enviar uma mensagem para alguém com quem ainda nunca tenha tido contato, você precisa obter o certificado de um diretório &ldap; (ainda que o <ulink url="http://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>Na maior parte do tempo, você irá adquirir os certificados novos ao verificar as assinaturas nas mensagens de e-mail, uma vez que os certificados estão incorporados nas assinaturas criadas que as usam. Contudo, se você precisar de enviar uma mensagem para alguém com quem ainda nunca tenha tido contato, você precisa obter o certificado de um diretório &ldap; (ainda que o <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
 >&gpgsm;</ulink
 > possa fazer isto automaticamente), ou através de um arquivo. Você também necessita importar o seu próprio certificado depois de receber a resposta da &ca; ao seu pedido do certificado.</para>
 
@@ -417,7 +417,7 @@ not found in 4.2
 
 <para
 >O item do menu <xref linkend="file-new-key-pair"/> inicia o <guilabel
->Assistente de Criação do Certificado</guilabel
+>Assistente de criação do par de chaves</guilabel
 > que o guiará por um conjunto de passos para criar um pedido de certificado.</para>
 <para
 >Sempre que terminar um passo no assistente, clique em <guibutton
@@ -510,7 +510,7 @@ not found in 4.2
 >Revogando uma chave</title>
 
 <para
->Um par de chaves que expirou pode ser restaurado para um estado operacional caso você tenha acesso à chave privada e frase-senha. Para gerar com confiança uma chave inutilizável, você precisa revogá-la. A revogação é feita adicionando uma assinatura especial de revogação à chave.</para>
+>Um par de chaves que expirou pode ser restaurado para um estado operacional caso você tenha acesso à chave privada e senha. Para gerar com confiança uma chave inutilizável, você precisa revogá-la. A revogação é feita adicionando uma assinatura especial de revogação à chave.</para>
 
 <para
 >Esta assinatura de revogação é armazenada em um arquivo separado. Este arquivo pode depois ser importado para o chaveiro sendo então anexado à chave tornando-a inutilizável. Por favor, note que para importar esta assinatura à chave nenhuma senha é necessário. No entanto, você deve armazenar a assinatura de revogação em um local seguro, normalmente diferente do local do seu par de chaves. Uma boa dica é usar um local que possa ser desconectado de seu computador, copiando para um dispositivo de armazenamento externo como um pendrive USB ou imprimindo-a.</para>
@@ -739,7 +739,7 @@ as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
 >). Depois, clique no ícone da pasta à direita do campo <guilabel
 >Arquivo de destino</guilabel
 > e selecione a pasta e o nome do arquivo. Ao exportar as chaves privadas &smime;, você também poderá escolher a <guilabel
->Codificação da frase-senha</guilabel
+>Codificação da senha</guilabel
 >. Para mais detalhes, veja a discussão sobre a opção <option
 >--p12-charset&nbsp;<replaceable
 >codificação</replaceable
@@ -1175,9 +1175,9 @@ Verify Checksum Files...
             </note>
             <warning>
               <para
->Devido à ausência de suporte por parte da infraestrutura para esta função, o &kleopatra; tem que trabalhar diretamente na base de dados de confiança do &gpgsm; (<filename
+>Devido à ausência de suporte por parte da infraestrutura para esta função, o &kleopatra; tem que trabalhar diretamente no banco de dados de confiança do &gpgsm; (<filename
 >trustlist.txt</filename
->). Ao usar esta função, certifique-se de que não existem operações criptográficas em curso que possam interferir com o &kleopatra;, no que diz respeito a modificações a essa base de dados. </para>
+>). Ao usar esta função, certifique-se de que não existem operações criptográficas em curso que possam interferir com o &kleopatra;, no que diz respeito a modificações a esse banco de dados. </para>
             </warning>
             <para
 >Esta função só está disponível quando estiver selecionado um e só um certificado de raiz do &smime;, e caso esse certificado ainda não seja de confiança. </para>
@@ -1346,19 +1346,19 @@ uncommon).</para>
 ><guimenu
 >Certificados</guimenu
 ><guimenuitem
->Mudar a frase-senha...</guimenuitem
+>Mudar a senha...</guimenuitem
 > </menuchoice>
           </term>
           <listitem>
             <para>
               <action
->Permite modificar a frase-senha da sua chave privada.</action>
+>Permite modificar a senha da sua chave privada.</action>
             </para>
             <para
 >Esta função só está disponível se apenas um certificado estiver selecionado e a chave secreta do certificado estiver disponível. Ela precisa de uma infraestrutura muito recente, uma vez que foi modificada a implementação de uma chamada direta ao &gpg; e ao &gpgsm; para uma chamada baseada no &gpgme;. </para>
             <note>
               <para
->Por razões de segurança, tanto a frase-senha antiga como a nova serão pedidas pelo &pinentry;, num processo separado. Dependendo da plataforma em que você o está rodando, bem como da qualidade da implementação do &pinentry; nessa plataforma, poderá acontecer que a janela do &pinentry; apareça em segundo plano. Assim, se você selecionar esta função e não acontecer nada, verifique a barra de tarefas do sistema operacional para ver se existe alguma janela do &pinentry; aberta em segundo plano. </para>
+>Por razões de segurança, tanto a senha antiga como a nova serão pedidas pelo &pinentry;, num processo separado. Dependendo da plataforma em que você o está rodando, bem como da qualidade da implementação do &pinentry; nessa plataforma, poderá acontecer que a janela do &pinentry; apareça em segundo plano. Assim, se você selecionar esta função e não acontecer nada, verifique a barra de tarefas do sistema operacional para ver se existe alguma janela do &pinentry; aberta em segundo plano. </para>
             </note>
           </listitem>
         </varlistentry>
@@ -1690,7 +1690,7 @@ updated.</para>
 <para
 >O &kleopatra; tem um menu de <guimenu
 >Configurações</guimenu
-> padrão do &kde;, tal como se encontra descrito nos <ulink url="help:/fundamentals/ui.html#menus-settings"
+> padrão do &kde;, tal como se encontra descrito nos <ulink url="help:/fundamentals/menus.html#menus-settings"
 >Fundamentos do &kde;</ulink
 >, com um item adicional:</para>
 
@@ -1744,7 +1744,7 @@ updated.</para>
 <para
 >O &kleopatra; tem um menu de <guimenu
 >Ajuda</guimenu
-> padrão do &kde;, tal como se encontra descrito nos <ulink url="help:/fundamentals/ui.html#menus-help"
+> padrão do &kde;, tal como se encontra descrito nos <ulink url="help:/fundamentals/menus.html#menus-help"
 >Fundamentos do &kde;</ulink
 >.</para>
 
@@ -2110,7 +2110,7 @@ list.</para>
 >tempo-limite do LDAP (minutos:segundos)</guilabel
 >. </para>
       <para
->Se um dos servidores tiver uma base de dados grande, de modo que as pesquisas razoáveis do tipo <userinput
+>Se um dos servidores tiver um banco de dados grande, de modo que as pesquisas razoáveis do tipo <userinput
 >Sousa</userinput
 > atinjam o <guilabel
 >número máximo de itens devolvidos pela pesquisa</guilabel
@@ -2411,7 +2411,7 @@ list.</para>
         <para
 >Quando o <quote
 >Modo Rápido</quote
-> estiver ativo, não será apresentada nenhuma janela ao assinar (encriptar) as mensagens de e-mail, respectivamente, a menos que exista um conflito que necessite de uma resolução manual. </para>
+> estiver ativo, não será apresentada nenhuma janela ao assinar (criptografar) as mensagens de e-mail, respectivamente, a menos que exista um conflito que necessite de uma resolução manual. </para>
 
       </sect2>
 
@@ -2796,7 +2796,7 @@ list.</para>
 >A mais útil destas opções foi duplicada como páginas separadas na janela de configuração do &kleopatra;. Veja em <xref linkend="configuration-directory-services"/> e <xref linkend="configuration-smime-validation"/> as duas janelas em questão, que contêm as opções selecionadas nesta parte da janela. </para>
       </note>
       <para
->O conteúdo exato desta parte da janela depende da versão da infraestrutura do &gnupg; que tiver instalada e, potencialmente, a plataforma em que está rodando. Deste modo, só iremos discutir a disposição geral da janela, incluindo a associação das opções do &gpgconf; aos controles da &GUI; do &kleopatra;. </para>
+>O conteúdo exato desta parte da janela depende da versão da infraestrutura do &gnupg; que tiver instalada e, potencialmente, a plataforma em que está rodando. Deste modo, só iremos discutir o layout geral da janela, incluindo a associação das opções do &gpgconf; aos controles da &GUI; do &kleopatra;. </para>
       <para
 >O &gpgconf; devolve a informação de configuração dos vários componentes. Dentro de cada um dos componentes, as opções individuais estão organizadas em grupos. </para>
       <para
@@ -4002,8 +4002,7 @@ is-at-least-ownertrust=marginal
 > e André Marcelo Alvarenga <email
 >alvarenga@kde.org</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index;
 </book>

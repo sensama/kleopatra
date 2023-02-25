@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-13 11:53+0100\n"
+"PO-Revision-Date: 2023-02-24 18:00+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -10533,7 +10533,7 @@ msgstr "Не можа да се създаде временен файл за и
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
-msgstr ""
+msgstr "Файлът вече съществува"
 
 #: src/utils/output.cpp:651
 #, kde-format
@@ -10541,11 +10541,10 @@ msgid "Overwriting declined"
 msgstr "Презаписването отказа"
 
 #: src/utils/output.cpp:657
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr "Не може да се отвори файл <filename>%1</filename> за запис."
+msgstr "Не може да се отвори файл <filename>%1</filename> за презапис."
 
 #: src/utils/output.cpp:682
 #, kde-format
@@ -10585,64 +10584,54 @@ msgid "Could not find clipboard"
 msgstr "Не можа да се намери клипборда"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr "Вече има файл  <filename>%1</filename>. Искате ли да бъде презаписан?"
+msgstr "Вече има файл  <filename>%1</filename>. Моля, въведете друго име."
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr "Вече има файл  <filename>%1</filename>. Искате ли да бъде презаписан?"
+msgstr "Вече има файл  <filename>%1</filename>."
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "Истинско име:"
+msgstr "Преименуване:"
 
 #: src/utils/overwritedialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "Test Name"
+#, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "Име на теста"
+msgstr "Предложение за ново име"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "Предложете име на файл, което вече не съществува."
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "Преименуване на раздел"
+msgstr "Преименуване"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "Запазване на файл със зададеното име."
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "Преименуване на раздел"
+msgstr "Преименуване на всички"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10651,25 +10640,26 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Автоматично запазване на всички файлове, които биха презаписали вече "
+"съществуващ файл с различно име."
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "Пропуснат"
+msgstr "Пропускане"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Не записвайте този файл, а преминете към следващия."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Пропускане всички"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10678,24 +10668,23 @@ msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
 msgstr ""
+"Не записвайте този файл и други файлове, които биха презаписали вече "
+"съществуващ файл."
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "Презаписване на всички"
+msgstr "Презапис"
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "Презаписване на съществуващ файл?"
+msgstr "Презаписване на съществуващ файл."
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Презаписване на всички"
@@ -10705,6 +10694,7 @@ msgstr "Презаписване на всички"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
+"Презаписва съществуващия файл и всички други файлове, които вече съществуват."
 
 #: src/utils/path-helper.cpp:118
 #, kde-format

@@ -9,11 +9,6 @@
   <!ENTITY watchgnupg "<application
 >WatchGnuPG</application
 >">
-  <!ENTITY kwatchgnupg "<application
->KWatchGnuPG</application
->">
-  <!ENTITY kappname "&kwatchgnupg;">
-  <!ENTITY package "kdepim">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Brazilian-Portuguese "INCLUDE">
 ]>
@@ -96,9 +91,9 @@
 >&GPLNotice;</legalnotice>
 
 <date
->03/07/2013</date>
+>26/07/2016</date>
 <releaseinfo
->1.0 (&kde; 4.11)</releaseinfo>
+>1.0 (Applications 16.08)</releaseinfo>
 
 <abstract>
 <para
@@ -109,8 +104,6 @@
 <keywordset>
 <keyword
 >KDE</keyword>
-<keyword
->Kapp</keyword>
 <keyword
 >gpg</keyword>
 <keyword
@@ -129,7 +122,7 @@
 > 
 
 <para
->O &kwatchgnupg; é um visualizador simples de registros do &gnupg; para as versões 1.4 e 2.0 do &gnupg;. Funciona como uma interface gráfica para a ferramenta de linha de comando &watchgnupg;, que ouve em um soquete as linhas de registro dos aplicativos de infraestrutura do &gnupg;. Veja o <userinput
+>O &kwatchgnupg; é um visualizador simples de registros do &gnupg; para as versões 1.4, 2.0 e 2.1 do &gnupg;. Funciona como uma interface gráfica para a ferramenta de linha de comando &watchgnupg;, que ouve em um soquete as linhas de registro dos aplicativos de infraestrutura do &gnupg;. Veja o <userinput
 >info watchgnupg</userinput
 > para mais informações sobre o &watchgnupg;.</para>
 
@@ -144,13 +137,11 @@
 >kwatchgnupg</userinput
 >. </para>
 
-</chapter>
-
-<chapter id="mainfunc"
+<sect1 id="mainfunc"
 ><title
 >Funções Principais</title>
 
-<sect1 id="mainfunc.viewing"
+<sect2 id="mainfunc.viewing"
 ><title
 >Vendo o Registro</title>
 
@@ -167,9 +158,9 @@
 <para
 >Por padrão, o número de linhas de registro que é mantido no histórico está limitado a 10000 linhas. Você poderá configurar o tamanho do histórico na caixa de diálogo de configuração. </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="mainfunc.saving">
+<sect2 id="mainfunc.saving">
 <title
 >Salvando o Conteúdo da Janela de Registro para um Arquivo</title>
 
@@ -188,9 +179,9 @@
 <para
 >Em segundo lugar, você poderá selecionar as linhas que lhe interessam com uma seleção normal com o botão esquerdo do mouse; e colá-las em um processador de texto ou um agente de e-mail para o usuário, como se fosse outro texto qualquer. Você deverá, contudo, certificar-se que as linhas não estão quebradas, uma vez que isto reduz a legibilidade do registro. </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="mainfunc.clear"
+<sect2 id="mainfunc.clear"
 ><title
 >Limpando a Janela de Registro</title>
 
@@ -214,7 +205,7 @@
 
 <para
 >A limpeza do registro elimina todo o conteúdo da janela de registro. Se não tiver certeza se precisa ou não do conteúdo atual mais tarde, você deverá salvar para um arquivo (tal como descrito acima) antes da limpeza. </para>
-
+</sect2>
 </sect1>
 
 </chapter>
@@ -232,7 +223,11 @@
 ></menuchoice
 > ou o ícone da barra de ferramentas correspondente. O diálogo de configuração do &kwatchgnupg; está dividido em duas partes, sendo cada uma destas descrita abaixo. </para>
 
-<sect1 id="configure.watchgnupg"
+<sect1 id="configure.dialog"
+><title
+>Janela de configurações</title>
+
+<sect2 id="configure.watchgnupg"
 ><title
 >Configurações do &watchgnupg;</title>
 
@@ -264,9 +259,9 @@
 >log-file</varname
 > (arquivo de registro) definido. </para>
 
-</sect1>
+</sect2>
 
-<sect1 id="configure.logwindow"
+<sect2 id="configure.logwindow"
 ><title
 >Configurações da Janela de Registros</title>
 
@@ -277,6 +272,8 @@
 >Você poderá desativar o limite do tamanho do histórico clicando <guibutton
 >Configurar Ilimitado</guibutton
 >. Lembre-se, contudo, que o consumo de memória do &kwatchgnupg; irá crescer com o número de linhas que mostra atualmente. Se você usar um tamanho de histórico ilimitado, certifique-se então que só execute o &kwatchgnupg; para operações curtas, ou então vá limpando o histórico manualmente. </para>
+
+</sect2>
 
 </sect1>
 
@@ -317,8 +314,7 @@
 > e André Marcelo Alvarenga <email
 >alvarenga@kde.org</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index; 
 </book>

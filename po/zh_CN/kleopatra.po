@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-15 11:04\n"
+"PO-Revision-Date: 2023-02-24 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -3219,7 +3219,7 @@ msgstr "基于输入检测自动开始解密或验证操作"
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgid "Automatically extract file archives after decryption"
-msgstr "解密后自动解压缩文件"
+msgstr "解密后自动解压文件"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:68
@@ -4589,7 +4589,7 @@ msgstr "已签名数据(&S)："
 #: src/crypto/gui/decryptverifyoperationwidget.cpp:78
 #, kde-format
 msgid "&Input file is an archive; unpack with:"
-msgstr "输入文件是一个压缩包；使用解压缩工具(&I)："
+msgstr "输入文件是一个压缩包；使用此程序解压(&I)："
 
 #: src/crypto/gui/encryptemailwizard.cpp:27
 #, kde-format
@@ -7233,7 +7233,7 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Automatically extract archives after decryption."
-msgstr "解密后自动解压缩压缩包。"
+msgstr "解密后自动解压压缩包。"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:21
@@ -7241,7 +7241,7 @@ msgstr "解密后自动解压缩压缩包。"
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
 "after decryption."
-msgstr "如果启用此选项，那么 Kleopatra 会在解密后自动解压缩文件压缩包。"
+msgstr "如果启用此选项，那么 Kleopatra 会在解密后自动解压文件压缩包。"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:25
@@ -10022,11 +10022,10 @@ msgid "Overwriting declined"
 msgstr "覆盖被拒绝"
 
 #: src/utils/output.cpp:657
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
+msgstr ""
 
 #: src/utils/output.cpp:682
 #, kde-format
@@ -10066,38 +10065,30 @@ msgid "Could not find clipboard"
 msgstr "无法查找剪贴板"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr "名为 <filename>%1</filename> 的文件已经存在。您确定要覆盖它吗？"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr "名为 <filename>%1</filename> 的文件已经存在。您确定要覆盖它吗？"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "真实姓名："
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "Test Name"
+#, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "测试项"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
@@ -10106,11 +10097,10 @@ msgid "Suggest a file name that does not already exist."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "重命名标签"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
@@ -10119,11 +10109,10 @@ msgid "Save the file with the given name."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "重命名标签"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10134,11 +10123,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "跳过"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -10161,22 +10149,19 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "全部覆盖"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "覆盖已有文件吗？"
+msgstr ""
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "全部覆盖"
@@ -11426,9 +11411,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "无法为覆盖而删除文件“%1”。"
-
-#~ msgid "Finalizing output..."
-#~ msgstr "正在完成输出..."

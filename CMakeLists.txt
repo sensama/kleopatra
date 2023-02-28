@@ -110,7 +110,7 @@ if (WIN32)
   # Only a replacement available for Windows so this
   # is required on other platforms.
   find_package(KF${KF_MAJOR_VERSION}DBusAddons ${KF5_WANT_VERSION} CONFIG)
-  set_package_properties(KF5DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
+  set_package_properties(KF${KF_MAJOR_VERSION}DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
                          URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
@@ -152,12 +152,16 @@ if (QGpgme_VERSION VERSION_GREATER_EQUAL "1.19.0")
     set(QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS 1)
 endif()
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat)
+endif()
+
 # Kdepimlibs packages
-find_package(KF5Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
-find_package(KF5Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF5IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
-find_package(KF5MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
-find_package(KF5MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG)
+find_package(KPim${KF_MAJOR_VERSION}Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
+find_package(KPim${KF_MAJOR_VERSION}IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
+find_package(KPim${KF_MAJOR_VERSION}MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
+find_package(KPim${KF_MAJOR_VERSION}MailTransportAkonadi ${KMAILTRANSPORT_VERSION} CONFIG)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 

@@ -58,11 +58,11 @@ else()
   add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
 endif()
 
-if(KF5IdentityManagement_FOUND AND KF5MailTransport_FOUND AND KF5MailTransportAkonadi_FOUND)
+if(KF${KF_MAJOR_VERSION}IdentityManagement_FOUND AND KF${KF_MAJOR_VERSION}MailTransport_FOUND AND KF${KF_MAJOR_VERSION}MailTransportAkonadi_FOUND)
   set(_kleopatra_mail_libs
-      KF5::IdentityManagement # Export OpenPGP keys using WKS
-      KF5::MailTransport
-      KF5::MailTransportAkonadi
+      KPim${KF_MAJOR_VERSION}::IdentityManagement # Export OpenPGP keys using WKS
+      KPim${KF_MAJOR_VERSION}::MailTransport
+      KPim${KF_MAJOR_VERSION}::MailTransportAkonadi
   )
   add_definitions(-DMAILAKONADI_ENABLED)
 endif()
@@ -573,8 +573,8 @@ endif ()
 target_link_libraries(kleopatra_bin
   Gpgmepp
   ${_kleopatra_extra_libs}
-  KF5::Libkleo
-  KF5::Mime
+  KPim${KF_MAJOR_VERSION}::Libkleo
+  KPim${KF_MAJOR_VERSION}::Mime
   KF${KF_MAJOR_VERSION}::I18n
   KF${KF_MAJOR_VERSION}::XmlGui
   KF${KF_MAJOR_VERSION}::IconThemes
@@ -593,6 +593,7 @@ target_link_libraries(kleopatra_bin
 )
 
 if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kleopatra_bin Qt6::Core5Compat)
     target_link_libraries(kleopatra_bin QGpgmeQt6)
 else()
     target_link_libraries(kleopatra_bin QGpgme)

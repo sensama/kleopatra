@@ -22,7 +22,7 @@ add_test(NAME test_verify COMMAND test_verify)
 ecm_mark_as_test(test_verify)
 
 target_link_libraries(test_verify
-  KF5::Libkleo
+  KPim${KF_MAJOR_VERSION}::Libkleo
   Qt::Test
   KF${KF_MAJOR_VERSION}::CoreAddons
   KF${KF_MAJOR_VERSION}::I18n
@@ -52,7 +52,7 @@ endif()
     add_executable(test_uiserver ${test_uiserver_SRCS})
   endif()
 
-  target_link_libraries(test_uiserver KF${KF_MAJOR_VERSION}::I18n KF5::Libkleo LibAssuan::LibAssuan LibGpgError::LibGpgError)
+  target_link_libraries(test_uiserver KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::Libkleo LibAssuan::LibAssuan LibGpgError::LibGpgError)
 
   if (QT_MAJOR_VERSION STREQUAL "6")
       target_link_libraries(test_uiserver QGpgmeQt6)

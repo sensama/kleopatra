@@ -58,7 +58,7 @@ add_library(kcm_kleopatra_static STATIC ${kcm_kleopatra_PART_SRCS})
 set_property(TARGET kcm_kleopatra_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(kcm_kleopatra_static
-  KF5::Libkleo
+  KPim${KF_MAJOR_VERSION}::Libkleo
   KF${KF_MAJOR_VERSION}::IconThemes
   KF${KF_MAJOR_VERSION}::I18n
   KF${KF_MAJOR_VERSION}::WidgetsAddons

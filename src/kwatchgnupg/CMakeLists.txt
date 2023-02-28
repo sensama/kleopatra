@@ -46,7 +46,7 @@ target_link_libraries(kwatchgnupg
   KF${KF_MAJOR_VERSION}::Notifications
   KF${KF_MAJOR_VERSION}::TextWidgets
   KF${KF_MAJOR_VERSION}::IconThemes
-  KF5::Libkleo
+  KPim${KF_MAJOR_VERSION}::Libkleo
   KF${KF_MAJOR_VERSION}::Crash
 )
 

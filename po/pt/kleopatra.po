@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-15 13:05+0000\n"
+"PO-Revision-Date: 2023-03-06 15:44+0000\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -10631,12 +10631,12 @@ msgid "Overwriting declined"
 msgstr "A sobreposição foi recusada"
 
 #: src/utils/output.cpp:657
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr ""
-"Não é possível aceder ao ficheiro <filename>%1</filename> para escrita."
+"Não foi possível remover o ficheiro <filename>%1</filename> para o "
+"substituir."
 
 #: src/utils/output.cpp:682
 #, kde-format
@@ -10676,44 +10676,38 @@ msgid "Could not find clipboard"
 msgstr "Não foi possível procurar na área de transferência"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr "O ficheiro <filename>%1</filename> já existe. Deseja sobrepo-lo?"
+msgstr ""
+"O ficheiro <filename>%1</filename> já existe. Indique por favor um nome "
+"diferente."
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr "O ficheiro <filename>%1</filename> já existe. Deseja sobrepo-lo?"
+msgstr "O ficheiro <filename>%1</filename> já existe."
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "Nome verdadeiro:"
+msgstr "Mudar o nome:"
 
 #: src/utils/overwritedialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "Test Name"
+#, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "Nome do Teste"
+msgstr "Sugerir um Novo Nome"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "Sugerir um nome de ficheiro que ainda não exista."
 
 #: src/utils/overwritedialog.cpp:211
 #, kde-format
@@ -10725,14 +10719,13 @@ msgstr "Mudar o Nome"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "Gravar o ficheiro com o nome indicado."
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "Mudar o Nome da Página"
+msgstr "Mudar o Nome de Tudo"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10741,6 +10734,8 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Gravar automaticamente com um nome diferente todos os ficheiros que iriam "
+"sobrepor um ficheiro já existe."
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10752,13 +10747,13 @@ msgstr "Ignorar"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Não gravar este ficheiro; passa ao seguinte em alternativa."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Ignorar Tudo"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10767,6 +10762,8 @@ msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
 msgstr ""
+"Não gravar este ficheiro ou outro ficheiro que possa sobrepor um ficheiro já "
+"existente."
 
 #: src/utils/overwritedialog.cpp:238
 #, kde-format
@@ -10775,15 +10772,13 @@ msgid "Overwrite"
 msgstr "Sobrepor"
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "Sobrepor o Ficheiro Existente?"
+msgstr "Sobrepor o ficheiro existente."
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Sobrepor Tudo"
@@ -10793,6 +10788,7 @@ msgstr "Sobrepor Tudo"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
+"Substitui o ficheiro existe e quaisquer outros ficheiros que já existam."
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -12079,9 +12075,3 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
-
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "Não foi possível remover o ficheiro \"%1\" para o sobrepor."
-
-#~ msgid "Finalizing output..."
-#~ msgstr "A finalizar o resultado..."

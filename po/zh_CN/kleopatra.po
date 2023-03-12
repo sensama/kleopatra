@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-24 12:43\n"
+"PO-Revision-Date: 2023-03-11 04:54\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/kleopatra/kleopatra.pot\n"
-"X-Crowdin-File-ID: 3749\n"
+"X-Crowdin-File: /kf5-stable/messages/kleopatra/kleopatra.pot\n"
+"X-Crowdin-File-ID: 3044\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -324,29 +324,31 @@ msgid "End of validity period changed successfully."
 msgstr "有效期结束日期修改成功。"
 
 #: src/commands/changeownertrustcommand.cpp:103
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "(unknown certificate)"
 msgctxt "@info"
 msgid "Is '%1' your own certificate?"
-msgstr "“%1”是你自己的证书吗？"
+msgstr "(未知证书)"
 
 #: src/commands/changeownertrustcommand.cpp:104
 #: src/commands/importcertificatescommand.cpp:655
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Card Certificate"
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
-msgstr "标记自己的证书"
+msgstr "智能卡证书"
 
 #: src/commands/changeownertrustcommand.cpp:105
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, it's mine"
-msgstr "是的，这是我的"
+msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:106
 #, kde-format
 msgctxt "@action:button"
 msgid "No, it's not mine"
-msgstr "不，这不是我的"
+msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:134
 #, kde-kuit-format
@@ -357,9 +359,6 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
-"<para>你想要授予“%1”以%2模式为你标记证书的权限吗？</para><para><emphasis>这意"
-"味着此证书的所有者已经适当地检查了证书指纹并确认了其他人的身份。</emphasis></"
-"para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -370,99 +369,115 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
-"<para>你想要授予“%1”为你标记证书有效的权限吗？</para><para><emphasis>这意味着"
-"此证书的所有者已经适当地检查了证书指纹并确认了其他人的身份。</emphasis></"
-"para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Error"
 msgctxt "@title:window"
 msgid "Grant Certification Power"
-msgstr "授予认证权限"
+msgstr "认证错误"
 
 #: src/commands/changeownertrustcommand.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Grant Power"
-msgstr "授予权限"
+msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:157
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certificates or the certificate groups have been updated in the "
+#| "background.</para><para>Do you want to save your changes?</para>"
 msgctxt "@info %1: a certificate, %2: name of a compliance mode"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
-msgstr ""
-"<para>这个证书“%1”有权为你以%2模式标记其它证书。</para><para>你想要吊销这个权"
-"限吗？</para>"
+msgstr "<para>证书或证书组已被更新。</para><para>您想要保存您的更改吗？</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certificates or the certificate groups have been updated in the "
+#| "background.</para><para>Do you want to save your changes?</para>"
 msgctxt "@info %1: a certificate"
 msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
-msgstr ""
-"<para>这个证书“%1”有权为你标记其它证书为有效。</para><para>你想要吊销这个权限"
-"吗？</para>"
+msgstr "<para>证书或证书组已被更新。</para><para>您想要保存您的更改吗？</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revoke Certification"
 msgctxt "@title:window"
 msgid "Revoke Certification Power"
-msgstr "吊销认证权限"
+msgstr "吊销证书"
 
 #: src/commands/changeownertrustcommand.cpp:168
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Key"
 msgctxt "@action:button"
 msgid "Revoke Power"
-msgstr "吊销权限"
+msgstr "吊销密钥"
 
 #: src/commands/changeownertrustcommand.cpp:238
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while updating the certificate:</"
+#| "para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while marking certificate '%1' as your certificate.</"
 "para><para><message>%2</message></para>"
-msgstr ""
-"<para>将证书“%1”标记为您的证书时发生错误。</para><para><message>%2</"
-"message></para>"
+msgstr "<para>更新证书出错：</para><para><message>%1</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:245
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while updating the certificate:</"
+#| "para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while granting certification power to '%1'.</"
 "para><para><message>%2</message></para>"
-msgstr ""
-"<para>将认证权限授予“%1”时发生错误。</para><para><message>%2</message></para>"
+msgstr "<para>更新证书出错：</para><para><message>%1</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:252
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while updating the certificate:</"
+#| "para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
 "<para>An error occurred while revoking the certification power of '%1'.</"
 "para><para><message>%2</message></para>"
-msgstr ""
-"<para>吊销“%1”的认证权限时发生错误。</para><para><message>%2</message></para>"
+msgstr "<para>更新证书出错：</para><para><message>%1</message></para>"
 
 #: src/commands/changeownertrustcommand.cpp:268
 #, kde-format
 msgctxt "@info"
 msgid "Certificate '%1' was marked as your certificate."
-msgstr "证书“%1”被标记为你的证书。"
+msgstr ""
 
 #: src/commands/changeownertrustcommand.cpp:271
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification Trust Change Error"
 msgctxt "@info"
 msgid "Certification power was granted to '%1'."
-msgstr "“%1”被授予了认证权限。"
+msgstr "证书信任等级更改错误"
 
 #: src/commands/changeownertrustcommand.cpp:274
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "%1 is the name of the profile"
+#| msgid "The configuration profile \"%1\" was applied."
 msgctxt "@info"
 msgid "The certification power of '%1' was revoked."
-msgstr "“%1”的认证权已被撤销。"
+msgstr "配置文件“%1”已被应用。"
 
 #: src/commands/changepassphrasecommand.cpp:190
 #, kde-format
@@ -1831,9 +1846,12 @@ msgid "Confirming it on a trusted website."
 msgstr "在受信任的网站上确认它。"
 
 #: src/commands/importcertificatescommand.cpp:436
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "In order to mark the certificate as valid (green) it needs to be "
+#| "certified."
 msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr "该证书在被标记为有效证书之前需要被认证。"
+msgstr "为了标记作为有效的 (绿色) 的证书，它需要被认证。"
 
 #: src/commands/importcertificatescommand.cpp:437
 #, kde-format
@@ -1857,7 +1875,8 @@ msgid "You have imported a new certificate (public key)"
 msgstr "您已经导入一个新的证书 (公钥)"
 
 #: src/commands/importcertificatescommand.cpp:442
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certify"
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "认证"
@@ -1866,19 +1885,20 @@ msgstr "认证"
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr "%1 (使用 %2 导入)"
+msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:499
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr "审核日志为空。"
+msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:501
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Operation canceled."
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr "导入被取消"
+msgstr "操作中止。"
 
 #: src/commands/importcertificatescommand.cpp:522
 #, kde-format
@@ -1913,27 +1933,33 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:643
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<title>You have imported a Secret Key.</title><para>The key has the "
+#| "fingerprint:<nl/><numid>%1</numid></para><para>And claims the user IDs:"
+#| "<list>%2</list></para>Is this your own key? (Set trust level to ultimate)"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with fingerprint</para><para><numid>"
 "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this your "
 "own certificate?</para>"
 msgstr ""
-"<para>您导入的证书带以下指纹：</para><para><numid>%1</numid></para><para>和以"
-"下用户 ID：<list>%2</list></para><para>这是您自己的证书吗？</para>"
+"<title>您已导入一个私钥。</title><para>密钥指纹：<nl/><numid>%1</numid></"
+"para><para>用户标识：<list>%2</list></para>该密钥是否属于您？(设置信任级别为"
+"最高)"
 
 #: src/commands/importcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
-msgstr "是"
+msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:657
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
-msgstr "否"
+msgstr ""
 
 #: src/commands/importcertificatescommand.cpp:881
 #, kde-format
@@ -2093,26 +2119,30 @@ msgid "Failed to find the card with the serial number: %1"
 msgstr "未能找到此序列号的智能卡：%1"
 
 #: src/commands/keytocardcommand.cpp:186
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Sorry! Transferring keys to this card is not supported."
 msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
-msgstr "对不起！不支持写入卡片 <emphasis>%1</emphasis>"
+msgstr "抱歉！不支持向此卡片转移密钥。"
 
 #: src/commands/keytocardcommand.cpp:213
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Signature"
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "签名"
 
 #: src/commands/keytocardcommand.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encryption"
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "仅加密"
 
 #: src/commands/keytocardcommand.cpp:221
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Authentication"
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "验证"
@@ -2152,15 +2182,20 @@ msgid ""
 msgstr "不可能再解密过去使用已有密钥加密的通讯。"
 
 #: src/commands/keytocardcommand.cpp:271 src/commands/keytocardcommand.cpp:397
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<p>This card already contains a key in this slot. Continuing will "
+#| "<b>overwrite</b> that key.</p><p>If there is no backup the existing key "
+#| "will be irrecoverably lost.</p>"
 msgctxt "@info"
 msgid ""
 "<p>The card <em>%1</em> already contains a key in this slot. Continuing will "
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
-"<p>目标卡片(<em>%1</em>)已经被写入过一个密钥。继续操作将 <b>覆盖</b> 当前密"
-"钥。</p><p>该操作是不可恢复的！您确认要继续吗？</p>"
+"<p>该卡槽已包含一个密钥。继续操作将 <b>覆盖</b> 当前密钥。</p><p>如果当前密钥"
+"没有备份将不可恢复。</p>"
 
 #: src/commands/keytocardcommand.cpp:274
 #, kde-format
@@ -2175,10 +2210,12 @@ msgid "Overwrite existing key"
 msgstr "覆盖已有密钥"
 
 #: src/commands/keytocardcommand.cpp:279 src/commands/keytocardcommand.cpp:405
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Overwrite Existing Key"
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
-msgstr "是的，覆盖当前密钥"
+msgstr "覆盖当前密钥"
 
 #: src/commands/keytocardcommand.cpp:342
 #, kde-format
@@ -2210,88 +2247,114 @@ msgid "The existing key has the key grip:"
 msgstr "现有密钥的 key grip："
 
 #: src/commands/keytocardcommand.cpp:462
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Copying the key pair to the card failed: %1"
 msgctxt "@info"
 msgid "Copying the key to the card failed."
-msgstr "复制密钥到智能卡失败。"
+msgstr "无法将密钥对复制到智能卡：%1"
 
 #: src/commands/keytocardcommand.cpp:474
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification has been revoked successfully.</para><para>Do you "
+#| "want to publish the revocation?</para>"
+#| msgid_plural ""
+#| "<para>%1 certifications have been revoked successfully.</para><para>Do "
+#| "you want to publish the revocations?</para>"
 msgctxt "@info"
 msgid ""
 "<para>The key has been copied to the card.</para><para>Do you want to delete "
 "the copy of the key stored on this computer?</para>"
 msgstr ""
-"<para>密钥已复制到卡片。</para><para>您想要删除此计算机上存储的密钥副本吗？</"
-"para>"
+"<para>%1 证书已成功吊销。</para><para>您想要发布撤销到服务器吗？</para>"
 
 #: src/commands/keytocardcommand.cpp:477
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
-msgstr "备份和删除密钥"
+msgstr "备份私钥"
 
 #: src/commands/keytocardcommand.cpp:478
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Select Key"
 msgctxt "@action:button"
 msgid "Delete Key"
-msgstr "删除密钥"
+msgstr "选择密钥"
 
 #: src/commands/keytocardcommand.cpp:479
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Revoke Key"
 msgctxt "@action:button"
 msgid "Keep Key"
-msgstr "保留密钥"
+msgstr "吊销密钥"
 
 #: src/commands/keytocardcommand.cpp:525
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "备份私钥"
 
 #: src/commands/keytocardcommand.cpp:528
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Secret Key Backup"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr "私钥备份文件"
+msgstr "备份私钥"
 
 #: src/commands/keytocardcommand.cpp:579
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
-msgstr "无法打开私钥文件 <filename>%1</filename> 进行读取。"
+msgstr "无法打开 <filename>%1</filename> 进行读取。"
 
 #: src/commands/keytocardcommand.cpp:588
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr "私钥文件 <filename>%1</filename> 是空的。"
+msgstr "无法导出密钥到文件：<filename>%1</filename>。"
 
 #: src/commands/keytocardcommand.cpp:598
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
 
 #: src/commands/keytocardcommand.cpp:605
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
-msgstr "备份私钥到 <filename>%1</filename> 失败。"
+msgstr "无法导出密钥到文件：<filename>%1</filename>。"
 
 #: src/commands/keytocardcommand.cpp:622
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
-msgstr "您真的要删除本地密钥吗？"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp:623
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Confirm Revocation"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
-msgstr "确认删除"
+msgstr "确认吊销"
 
 #: src/commands/keytocardcommand.cpp:642
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
 "<para>Failed to delete the key:</para><para><message>%1</message></para>"
-msgstr "<para>密钥删除失败：</para><para><message>%1</message></para>"
+msgstr "<para>保存请求失败。</para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:645
 #, kde-format
@@ -2300,12 +2363,15 @@ msgid "Successfully copied the key to the card."
 msgstr "成功将密钥复制到智能卡。"
 
 #: src/commands/keytocardcommand.cpp:706
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
-msgstr "<para>复制密钥到卡片失败：</para><para><message>%1</message></para>"
+msgstr "<para>保存请求失败。</para><para><message>%1</message></para>"
 
 #: src/commands/learncardkeyscommand.cpp:57
 #, kde-format
@@ -4592,10 +4658,12 @@ msgid "&Input file is an archive; unpack with:"
 msgstr "输入文件是一个压缩包；使用此程序解压(&I)："
 
 #: src/crypto/gui/encryptemailwizard.cpp:27
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Encrypt"
 msgctxt "@title:window"
 msgid "Encrypt Text"
-msgstr "加密文本"
+msgstr "加密"
 
 #: src/crypto/gui/newresultpage.cpp:127 src/crypto/gui/resultpage.cpp:115
 #, kde-format
@@ -4732,10 +4800,11 @@ msgid ""
 msgstr "您需要选择一个 OpenPGP 签名证书或 S/MIME 签名证书来继续操作。"
 
 #: src/crypto/gui/signemailwizard.cpp:101
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Sign Files"
 msgctxt "@title:window"
 msgid "Sign Text"
-msgstr "签名文本"
+msgstr "签名文件"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -7470,20 +7539,20 @@ msgstr "创建校验和文件时所用的校验和程序"
 #: src/kcfg/settings.kcfg:73
 #, kde-format
 msgid "Show results after signing"
-msgstr "签名后显示结果"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:74
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
-msgstr "如果为 true，那么在成功签署剪贴板后会显示结果。"
+msgstr ""
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:78
 #, kde-format
 msgid "Show results after encryption"
-msgstr "加密后显示结果"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:79
@@ -7491,7 +7560,7 @@ msgstr "加密后显示结果"
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
 "clipboard."
-msgstr "如果为 true，那么在成功加密剪贴板后会显示结果。"
+msgstr ""
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:85
@@ -8289,9 +8358,10 @@ msgid "smartcard_howto_de.pdf"
 msgstr "smartcard_howto_en.pdf"
 
 #: src/mainwindow.cpp:631
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show appearance configuration"
 msgid "Group configuration"
-msgstr "群组配置"
+msgstr "显示外观配置"
 
 #: src/mainwindow.cpp:637
 #, kde-format
@@ -10022,10 +10092,11 @@ msgid "Overwriting declined"
 msgstr "覆盖被拒绝"
 
 #: src/utils/output.cpp:657
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open file <filename>%1</filename> for writing."
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr ""
+msgstr "无法打开文件 <filename>%1</filename> 进行写入。"
 
 #: src/utils/output.cpp:682
 #, kde-format
@@ -10065,30 +10136,36 @@ msgid "Could not find clipboard"
 msgstr "无法查找剪贴板"
 
 #: src/utils/overwritedialog.cpp:138
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr ""
+msgstr "名为 <filename>%1</filename> 的文件已经存在。您确定要覆盖它吗？"
 
 #: src/utils/overwritedialog.cpp:185
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "The file <b>%1</b> already exists.\n"
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr ""
+msgstr "文件 <b>%1</b> 已存在。\n"
 
 #: src/utils/overwritedialog.cpp:190
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Real name:"
 msgctxt "@label"
 msgid "Rename:"
-msgstr ""
+msgstr "真实姓名："
 
 #: src/utils/overwritedialog.cpp:199
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Test Name"
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr ""
+msgstr "测试项"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
@@ -10097,10 +10174,11 @@ msgid "Suggest a file name that does not already exist."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:211
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename"
-msgstr ""
+msgstr "重命名标签"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
@@ -10109,10 +10187,11 @@ msgid "Save the file with the given name."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:218
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Rename Tab"
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr ""
+msgstr "重命名标签"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10123,10 +10202,11 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Skipped"
 msgctxt "@action:button"
 msgid "Skip"
-msgstr ""
+msgstr "跳过"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -10149,19 +10229,22 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:238
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr ""
+msgstr "全部覆盖"
 
 #: src/utils/overwritedialog.cpp:240
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Overwrite Existing File?"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr ""
+msgstr "覆盖已有文件吗？"
 
 #: src/utils/overwritedialog.cpp:244
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Overwrite All"
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "全部覆盖"
@@ -10356,16 +10439,18 @@ msgid "Revoke the certification of the selected certificate"
 msgstr "撤销选定证书的认证"
 
 #: src/view/keylistcontroller.cpp:444
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Change Certification Trust..."
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
-msgstr "更改认证权限..."
+msgstr "更改证书信任级别..."
 
 #: src/view/keylistcontroller.cpp:445
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revoke the certification of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
-msgstr "授予或吊销所选证书的验证权限"
+msgstr "撤销选定证书的认证"
 
 #: src/view/keylistcontroller.cpp:449
 #, kde-format
@@ -11411,3 +11496,237 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid ""
+#~ "<p>An error occurred while trying to change the certification trust for "
+#~ "<b>%1</b>:</p><p>%2</p>"
+#~ msgstr "<p>尝试更改 <b>%1</b> 的证书信任等级时出错：</p><p>%2</p>"
+
+#~ msgid "Certification trust changed successfully."
+#~ msgstr "成功更改了证书的信任等级。"
+
+#~ msgid "Certification Trust Change Succeeded"
+#~ msgstr "成功更改了证书的信任等级"
+
+#~ msgctxt "@title:window"
+#~ msgid "Secret key imported"
+#~ msgstr "已导入私钥"
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Signature (%1)"
+#~ msgstr "签名（%1）"
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Encryption (%1)"
+#~ msgstr "加密（%1）"
+
+#~ msgctxt "Placeholder is the number of a slot on a smart card"
+#~ msgid "Authentication (%1)"
+#~ msgstr "认证（%1）"
+
+#~ msgctxt "@info"
+#~ msgid "Moving the key to the card failed: %1"
+#~ msgstr "移动密钥到智能卡失败：%1"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully copied the key pair to the card."
+#~ msgstr "已成功将密钥对复制到智能卡中。"
+
+#~ msgctxt "@info"
+#~ msgid "Failed to delete the key: %1"
+#~ msgstr "删除密钥失败：%1"
+
+#~ msgid "default"
+#~ msgstr "默认"
+
+#~ msgid ""
+#~ "This means that every configuration option of the GnuPG System will be "
+#~ "reset to its default."
+#~ msgstr "这意味着，GnuPG 系统的每个配置选项将重置为默认值。"
+
+#~ msgid "Apply profile"
+#~ msgstr "应用配置方案"
+
+#~ msgid "GnuPG Profile - Kleopatra"
+#~ msgstr "GnuPG 配置文件 - Kleopatra"
+
+#~ msgctxt "@title"
+#~ msgid "General Operations"
+#~ msgstr "常规操作"
+
+#~ msgid "Activate GnuPG Profile:"
+#~ msgstr "激活 GnuPG 配置："
+
+#~ msgid ""
+#~ "A profile consists of various settings that can apply to multiple "
+#~ "components of the GnuPG system."
+#~ msgstr "配置文件由多种设置组成，可以应用于 GnuPG 系统的多个组件。"
+
+#~ msgid "Apply"
+#~ msgstr "执行"
+
+#~ msgid "EMail Operations"
+#~ msgstr "邮件操作"
+
+#~ msgid ""
+#~ "Don't confirm signing certificate if there is only one valid certificate "
+#~ "for the identity"
+#~ msgstr "如果此身份只有一个有效证书，请不要确认签名证书"
+
+#~ msgid ""
+#~ "Don't confirm encryption certificates if there is exactly one valid "
+#~ "certificate for each recipient"
+#~ msgstr "如果每个收件人只有一个有效证书，请不要确认加密证书"
+
+#~ msgctxt "@title:window"
+#~ msgid "Encrypt Mail Message"
+#~ msgstr "解密邮件信息"
+
+#~ msgctxt "@title:window"
+#~ msgid "Sign Mail Message"
+#~ msgstr "签名邮件消息"
+
+#~ msgid "Finalizing output..."
+#~ msgstr "正在完成输出..."
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Trust Level of %1"
+#~ msgstr "更改 %1 的信任等级"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "How much do you trust certifications made by <b>%1</b> to correctly "
+#~ "verify authenticity of certificates?"
+#~ msgstr "您在多大程度上信任 <b>%1</b> 作出的用以验证证书真实性的证明？"
+
+#~ msgid "I do not know"
+#~ msgstr "我不知道"
+
+#~ msgid "<i>(unknown trust)</i>"
+#~ msgstr "<i>(信任等级未知)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you have no opinion about the "
+#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
+#~ "trust level are ignored when checking the validity of OpenPGP "
+#~ "certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">如果您对证书所有者的可信度没有任何意见，请选择此项。<br>"
+#~ "在检查 OpenPGP 证书有效性时，此信任级别的认证将被忽略。</font>"
+
+#~ msgid "I do NOT trust them"
+#~ msgstr "我不信任"
+
+#~ msgid "<i>(never trust)</i>"
+#~ msgstr "<i>(不信任)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
+#~ "certificate owner, e.g. because you have knowledge of him certifying "
+#~ "without checking or without the certificate owner's consent."
+#~ "<br>Certifications at this trust level are ignored when checking the "
+#~ "validity of OpenPGP certificates.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">如果您明确 <em>不</em> 信任证书所有者，请选择此项，例"
+#~ "如： 因为你知道他未经检查或未经证书所有者同意而进行认证。<br>在检查 "
+#~ "OpenPGP 证书的有效性时，此信任级别的认证将被忽略。</font>"
+
+#~ msgid "I believe checks are casual"
+#~ msgstr "我暂时相信"
+
+#~ msgid "<i>(marginal trust)</i>"
+#~ msgstr "<i>(勉强信任)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
+#~ "blindly, but not very accurately, either.<br>Certificates will only "
+#~ "become valid with multiple certifications (typically three) at this trust "
+#~ "level. This is usually a good choice.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">如果您信任证书不是盲目进行的，但也不是非常准确，请选择"
+#~ "它。<br>证书只有在这个信任级别上的多个证书 (通常是三个) 才会有效。这通常是"
+#~ "一个很好的选择。</font>"
+
+#~ msgid "I believe checks are very accurate"
+#~ msgstr "我完全相信"
+
+#~ msgid "<i>(full trust)</i>"
+#~ msgstr "<i>(完全信任)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
+#~ "accurately.<br>Certificates will become valid with just a single "
+#~ "certification at this trust level, so assign this much trust with care.</"
+#~ "font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">如果您非常信任证书，请选择此项。<br>在这个信任级别上。仅"
+#~ "需一个证书就会使得认证有效，所以请小心分配认证。</font>"
+
+#~ msgid "This is my certificate"
+#~ msgstr "这是我的证书"
+
+#~ msgid "<i>(ultimate trust)</i>"
+#~ msgstr "<i>(绝对信任)</i>"
+
+#~ msgid ""
+#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
+#~ "This is the default if the secret key is available, but if you imported "
+#~ "this certificate, you might need to adjust the trust level yourself."
+#~ "<br>Certificates will become valid with just a single certification at "
+#~ "this trust level.</font>"
+#~ msgstr ""
+#~ "<font size=\"-1\">仅在您的证书上选择此项。 如果私钥可用，这是默认值，但如"
+#~ "果您导入此证书，您可能需要自己调整信任等级。<br>在这个信任级别上，仅需一个"
+#~ "证书即可使认证有效。</font>"
+
+#~ msgid ""
+#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
+#~ "actually belongs to the person it claims it is from?"
+#~ msgstr "<b>第二步：</b>您用什么方式检查过此证书确实属于它所宣称的来源方？"
+
+#~ msgid "I have not checked at all"
+#~ msgstr "我还未检查过"
+
+#~ msgid "Describe semantics here..."
+#~ msgstr "在这里描述语义..."
+
+#~ msgid "I have checked casually"
+#~ msgstr "我已粗略检查过"
+
+#~ msgid ""
+#~ "Choose this if you know the person, and have asked them whether this was "
+#~ "their certificate, but you have not verified they are actually in "
+#~ "possession of the secret certificate."
+#~ msgstr ""
+#~ "如果您知道此人，并且向他们确认过这是他们的证书， 但你还没有验证他们实际上"
+#~ "拥有证书私钥，请选择此项。"
+
+#~ msgid "I have checked very thoroughly"
+#~ msgstr "我已彻底检查过"
+
+#~ msgid ""
+#~ "Choose this if you have, for instance, checked the ID card of the person, "
+#~ "and have verified that they are in possession of the secret key (e.g. by "
+#~ "sending them encrypted mail and asking for it to be decrypted)."
+#~ msgstr ""
+#~ "若你已检查了这个人的身份证，并且已经证实他们拥有这个私钥（例如通过发送加密"
+#~ "的邮件并要求它解密），选择此选项。"
+
+#~ msgid "Quick Sign EMail"
+#~ msgstr "快速签名邮件"
+
+#~ msgid ""
+#~ "Minimize the number of steps when signing emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr "对电子邮件签名时采取最简化的步骤，除非出现问题，否则使用默认设定。"
+
+#~ msgid "Quick Encrypt EMail"
+#~ msgstr "快速加密邮件"
+
+#~ msgid ""
+#~ "Minimize the number of steps when encrypting emails, use preset defaults "
+#~ "unless problems occur."
+#~ msgstr "对电子邮件加密时采取最简化的步骤，除非出现问题，否则使用默认设定。"
+
+#~ msgid "Could not remove file \"%1\" for overwriting."
+#~ msgstr "无法为覆盖而删除文件“%1”。"

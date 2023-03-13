@@ -89,7 +89,7 @@ public:
     std::shared_ptr<Task> m_runningTask;
     bool m_errorDetected = false;
     DecryptVerifyOperation m_operation = DecryptVerify;
-    DecryptVerifyFilesDialog *m_dialog = nullptr;
+    QPointer<DecryptVerifyFilesDialog> m_dialog;
     std::unique_ptr<QTemporaryDir> m_workDir;
 };
 
@@ -166,7 +166,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);
-    m_dialog = new DecryptVerifyFilesDialog(coll);
+    DecryptVerifyFilesDialog dialog{coll};
+    m_dialog = &dialog;
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
 
     QTimer::singleShot(0, q, SLOT(schedule()));
@@ -262,8 +263,6 @@ void AutoDecryptVerifyFilesController::Private::exec()
         }
     }
     q->emitDoneOrError();
-    delete m_dialog;
-    m_dialog = nullptr;
 }
 
 QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)

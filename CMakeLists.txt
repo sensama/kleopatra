@@ -97,6 +97,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
     I18n
     IconThemes
     ItemModels
+    KIO
     WidgetsAddons
     WindowSystem
     XmlGui

@@ -32,6 +32,7 @@
 
 #include <Libkleo/Classify>
 
+#include <KIO/CopyJob>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include "kleopatra_debug.h"
@@ -201,10 +202,16 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     suffix = QStringLiteral("_%1").arg(++i);
                 } while (i < 1000);
 
-                if (!moveDir(inpath, ofi.absoluteFilePath())) {
+                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(ofi.absoluteFilePath()));
+                qCDebug(KLEOPATRA_LOG) << "Moving" << job->srcUrls().front().toLocalFile() << "to" << job->destUrl().toLocalFile();
+                if (!job->exec()) {
+                    if (job->error() == KIO::ERR_USER_CANCELED) {
+                        break;
+                    }
                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                            xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.",
-                                  inpath, ofi.absoluteFilePath()));
+                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
+                                       "<para><message>%3</message></para>",
+                                       inpath, ofi.absoluteFilePath(), job->errorString()));
                 }
                 continue;
             }

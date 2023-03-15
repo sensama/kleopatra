@@ -580,6 +580,8 @@ target_link_libraries(kleopatra_bin
   KF${KF_MAJOR_VERSION}::I18n
   KF${KF_MAJOR_VERSION}::IconThemes
   KF${KF_MAJOR_VERSION}::ItemModels
+  KF${KF_MAJOR_VERSION}::KIOCore
+  KF${KF_MAJOR_VERSION}::KIOWidgets
   KF${KF_MAJOR_VERSION}::WindowSystem
   KF${KF_MAJOR_VERSION}::XmlGui
   Qt::Network

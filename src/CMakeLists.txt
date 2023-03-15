@@ -572,23 +572,23 @@ endif ()
 
 target_link_libraries(kleopatra_bin
   Gpgmepp
-  ${_kleopatra_extra_libs}
   KPim${KF_MAJOR_VERSION}::Libkleo
   KPim${KF_MAJOR_VERSION}::Mime
-  KF${KF_MAJOR_VERSION}::I18n
-  KF${KF_MAJOR_VERSION}::XmlGui
-  KF${KF_MAJOR_VERSION}::IconThemes
-  KF${KF_MAJOR_VERSION}::WindowSystem
-  KF${KF_MAJOR_VERSION}::CoreAddons
-  KF${KF_MAJOR_VERSION}::ItemModels
-  KF${KF_MAJOR_VERSION}::Crash
   KF${KF_MAJOR_VERSION}::Codecs
-  ${_kleopatra_mail_libs}
+  KF${KF_MAJOR_VERSION}::CoreAddons
+  KF${KF_MAJOR_VERSION}::Crash
+  KF${KF_MAJOR_VERSION}::I18n
+  KF${KF_MAJOR_VERSION}::IconThemes
+  KF${KF_MAJOR_VERSION}::ItemModels
+  KF${KF_MAJOR_VERSION}::WindowSystem
+  KF${KF_MAJOR_VERSION}::XmlGui
   Qt::Network
   Qt::PrintSupport # Printing secret keys
+  kleopatraclientcore
+  ${_kleopatra_extra_libs}
+  ${_kleopatra_mail_libs}
   ${_kleopatra_uiserver_extra_libs}
   ${_kleopatra_dbusaddons_libs}
-  kleopatraclientcore
   ${_kleopatra_platform_libs}
 )
 

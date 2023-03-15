@@ -87,18 +87,23 @@ else()
 endif()
 
 # Find KF5 packages
-find_package(KF${KF_MAJOR_VERSION}WidgetsAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}ConfigWidgets ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}CoreAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Codecs ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}Config ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}I18n ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}IconThemes ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}ItemModels ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}XmlGui ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}WindowSystem ${KF5_WANT_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}DocTools ${KF5_WANT_VERSION} CONFIG)
-find_package(KF${KF_MAJOR_VERSION}Crash ${KF5_WANT_VERSION} REQUIRED)
+find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
+    REQUIRED COMPONENTS
+    Codecs
+    Config
+    ConfigWidgets
+    CoreAddons
+    Crash
+    I18n
+    IconThemes
+    ItemModels
+    WidgetsAddons
+    WindowSystem
+    XmlGui
+
+    OPTIONAL_COMPONENTS
+    DocTools
+)
 
 set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES
     DESCRIPTION "Documentation tools"

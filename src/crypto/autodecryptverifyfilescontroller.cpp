@@ -33,6 +33,7 @@
 #include <Libkleo/Classify>
 
 #include <KIO/CopyJob>
+#include <KIO/Global>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include "kleopatra_debug.h"

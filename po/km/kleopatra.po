@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-23 00:59+0000\n"
+"POT-Creation-Date: 2023-03-16 01:01+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -2199,7 +2199,7 @@ msgid "Import CRL Finished"
 msgstr "បាន​បញ្ចប់​ការ​នាំចូល CRL"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:333
+#: src/crypto/autodecryptverifyfilescontroller.cpp:340
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4138,7 +4138,7 @@ msgstr ""
 "វាក្យសម្ពន្ធ​គឺ \"HOST\" ឬ \"HOST:PORT\" ។ ប្រសិន​បើ​ច្រក​ត្រូវ​បាន​លុប ច្រក ៣៨៩ (ច្រក LDAP "
 "ស្តង់ដារ) ត្រូវ​បាន​ប្រើ ។"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:153
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4146,19 +4146,21 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:205
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
+#: src/crypto/autodecryptverifyfilescontroller.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
 #| "Could not copy temporary file <filename>%1</filename> to file <filename>"
 #| "%2</filename>: <message>%3</message>"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:226
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4170,12 +4172,12 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:218
+#: src/crypto/autodecryptverifyfilescontroller.cpp:227
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:219
+#: src/crypto/autodecryptverifyfilescontroller.cpp:228
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4186,7 +4188,7 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:220
+#: src/crypto/autodecryptverifyfilescontroller.cpp:229
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4197,7 +4199,7 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4206,17 +4208,17 @@ msgstr ""
 "មាន​ឯកសារ <b>%1</b> រួចហើយ ។\n"
 "សរសេរ​ជាន់លើ​ឬ ?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "សរសេរ​ជាន់លើ​ឯកសារ​ដែល​មាន​ឬ ?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:249
 #, kde-format
 msgid "Overwrite All"
 msgstr "សរសេរ​ជាន់​លើ​ទាំងអស់"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:252
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4227,14 +4229,25 @@ msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:341
+#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:348
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:391
+#: src/crypto/autodecryptverifyfilescontroller.cpp:398
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -11027,16 +11040,6 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
-#: src/utils/path-helper.cpp:118
-#, kde-format
-msgid "Cannot remove directory %1"
-msgstr "មិន​អាច​យក​ថត​ %1 ចេញ​បាន​ឡើយ​"
-
-#: src/utils/path-helper.cpp:123
-#, kde-format
-msgid "Cannot remove file %1: %2"
-msgstr "មិន​អាច​យក​ឯកសារ​ %1 ៖ %2 ចេញ​បាន​ឡើយ​"
-
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12398,6 +12401,12 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Cannot remove directory %1"
+#~ msgstr "មិន​អាច​យក​ថត​ %1 ចេញ​បាន​ឡើយ​"
+
+#~ msgid "Cannot remove file %1: %2"
+#~ msgstr "មិន​អាច​យក​ឯកសារ​ %1 ៖ %2 ចេញ​បាន​ឡើយ​"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "មិន​អាច​យក​ឯកសារ \"%1\" ចេញ​សម្រាប់​​សរសេរ​ជាន់​លើ​ទេ ។"

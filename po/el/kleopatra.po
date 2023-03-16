@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-23 00:59+0000\n"
+"POT-Creation-Date: 2023-03-16 01:01+0000\n"
 "PO-Revision-Date: 2021-10-22 09:12+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -2206,7 +2206,7 @@ msgid "Import CRL Finished"
 msgstr "Ολοκλήρωση εισαγωγής CRL"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:333
+#: src/crypto/autodecryptverifyfilescontroller.cpp:340
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για ανάγνωση."
@@ -4159,7 +4159,7 @@ msgstr ""
 "Η σύνταξη είναι \"ΥΠΟΛΟΓΙΣΤΗΣ\" ή \"ΥΠΟΛΟΓΙΣΤΗΣ:ΘΥΡΑ\". Αν δεν οριστεί η "
 "ΘΥΡΑ, θα χρησιμοποιηθεί η 389 (η τυπική θύρα LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
+#: src/crypto/autodecryptverifyfilescontroller.cpp:153
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4171,14 +4171,17 @@ msgstr ""
 "με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
 "κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:205
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
-#, kde-kuit-format
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:226
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid ""
@@ -4186,24 +4189,24 @@ msgid ""
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:218
+#: src/crypto/autodecryptverifyfilescontroller.cpp:227
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:219
+#: src/crypto/autodecryptverifyfilescontroller.cpp:228
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:220
+#: src/crypto/autodecryptverifyfilescontroller.cpp:229
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:235
+#: src/crypto/autodecryptverifyfilescontroller.cpp:244
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4212,22 +4215,28 @@ msgstr ""
 "Το αρχείο <b>%1</b> υπάρχει ήδη.\n"
 "Να αντικατασταθεί;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:247
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Να αντικατασταθεί το υπάρχον αρχείο;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:249
 #, kde-format
 msgid "Overwrite All"
 msgstr "Αντικατάσταση όλων"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:252
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:341
+#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#, kde-kuit-format
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:348
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4236,7 +4245,7 @@ msgstr ""
 "Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
 "αποκρυπτογραφηθεί ή να επαληθευθεί."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:391
+#: src/crypto/autodecryptverifyfilescontroller.cpp:398
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgid "Select the file to verify with the signature <filename>%1</filename>"
@@ -11089,16 +11098,6 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
-#: src/utils/path-helper.cpp:118
-#, kde-format
-msgid "Cannot remove directory %1"
-msgstr "Αδυναμία αφαίρεσης του καταλόγου %1"
-
-#: src/utils/path-helper.cpp:123
-#, kde-format
-msgid "Cannot remove file %1: %2"
-msgstr "Αδυναμία αφαίρεσης του αρχείου %1: %2"
-
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12406,6 +12405,12 @@ msgid ""
 msgstr ""
 "Για να κάνετε εισαγωγή από έναν δημόσιο εξυπηρετητή κλειδιών χρησιμοποιήστε "
 "το «Αναζήτηση στον εξυπηρετητή»."
+
+#~ msgid "Cannot remove directory %1"
+#~ msgstr "Αδυναμία αφαίρεσης του καταλόγου %1"
+
+#~ msgid "Cannot remove file %1: %2"
+#~ msgstr "Αδυναμία αφαίρεσης του αρχείου %1: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "Αδυναμία αφαίρεσης του αρχείου \"%1\" για αντικατάσταση."

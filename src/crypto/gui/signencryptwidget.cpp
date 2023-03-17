@@ -26,6 +26,7 @@
 #include <QScrollArea>
 #include <QScrollBar>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
@@ -462,18 +463,16 @@ std::vector<Key> SignEncryptWidget::recipients() const
 
 bool SignEncryptWidget::isDeVsAndValid() const
 {
-    if (!signKey().isNull()
-        && (!signKey().isDeVs() || keyValidity(signKey()) < GpgME::UserID::Validity::Full)) {
+    if (!signKey().isNull() && !DeVSCompliance::keyIsCompliant(signKey())) {
         return false;
     }
 
-    if (!selfKey().isNull()
-        && (!selfKey().isDeVs() || keyValidity(selfKey()) < GpgME::UserID::Validity::Full)) {
+    if (!selfKey().isNull() && !DeVSCompliance::keyIsCompliant(selfKey())) {
         return false;
     }
 
     for (const auto &key: recipients()) {
-        if (!key.isDeVs() || keyValidity(key) < GpgME::UserID::Validity::Full) {
+        if (!DeVSCompliance::keyIsCompliant(key)) {
             return false;
         }
     }

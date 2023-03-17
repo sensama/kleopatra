@@ -129,7 +129,7 @@ void ChangeOwnerTrustCommand::doStart()
     }
 
     if (key.ownerTrust() < Key::OwnerTrust::Full) {
-        const auto text = (DeVSCompliance::isCompliant() && Formatting::isKeyDeVs(key))
+        const auto text = (DeVSCompliance::isCompliant() && DeVSCompliance::allSubkeysAreCompliant(key))
             ? xi18nc("@info %1: a certificate, %2: name of a compliance mode",
                      "<para>Do you want to grant '%1' the power to mark certificates as %2 for you?</para>"
                      "<para><emphasis>This means that the owner of this certificate properly checks fingerprints "
@@ -152,7 +152,7 @@ void ChangeOwnerTrustCommand::doStart()
             d->canceled();
         }
     } else {
-        const auto text = (DeVSCompliance::isCompliant() && Formatting::isKeyDeVs(key))
+        const auto text = (DeVSCompliance::isCompliant() && DeVSCompliance::allSubkeysAreCompliant(key))
             ? xi18nc("@info %1: a certificate, %2: name of a compliance mode",
                      "<para>The certificate '%1' is empowered to mark other certificates as %2 for you.</para>"
                      "<para>Do you want to revoke this power?</para>",

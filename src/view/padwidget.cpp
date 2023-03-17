@@ -398,6 +398,7 @@ public:
             return;
         }
 
+        mSigEncWidget->saveOwnKeys();
         doCryptoCommon();
         switch (mSigEncWidget->currentOp()) {
         case SignEncryptWidget::Sign:

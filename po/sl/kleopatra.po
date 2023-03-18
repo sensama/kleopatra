@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-16 01:01+0000\n"
+"POT-Creation-Date: 2023-03-18 00:59+0000\n"
 "PO-Revision-Date: 2023-03-16 13:15+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
-"%100<=4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
 
@@ -1689,8 +1689,8 @@ msgstr "Odložišče"
 
 #: src/commands/importcertificatefromdatacommand.cpp:74
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:333
-#: src/view/padwidget.cpp:334 src/view/padwidget.cpp:415
-#: src/view/padwidget.cpp:416
+#: src/view/padwidget.cpp:334 src/view/padwidget.cpp:416
+#: src/view/padwidget.cpp:417
 #, kde-format
 msgid "Notepad"
 msgstr "Beležnica"
@@ -5389,40 +5389,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu sta prikazana stanje in napredek šifrirnih opravil."
 
-#: src/crypto/gui/signencryptwidget.cpp:112
+#: src/crypto/gui/signencryptwidget.cpp:113
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Dokaži pristnost (podpiši)"
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:114
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpiši kot:"
 
-#: src/crypto/gui/signencryptwidget.cpp:132
+#: src/crypto/gui/signencryptwidget.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifriraj"
 
-#: src/crypto/gui/signencryptwidget.cpp:137
+#: src/crypto/gui/signencryptwidget.cpp:138
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifriraj zame:"
 
-#: src/crypto/gui/signencryptwidget.cpp:146
+#: src/crypto/gui/signencryptwidget.cpp:147
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifriraj za druge:"
 
-#: src/crypto/gui/signencryptwidget.cpp:181
+#: src/crypto/gui/signencryptwidget.cpp:182
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Šifriraj z geslom. Vsakdo z geslom bo lahko prebral podatke."
 
-#: src/crypto/gui/signencryptwidget.cpp:183
+#: src/crypto/gui/signencryptwidget.cpp:184
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5436,18 +5436,18 @@ msgstr ""
 "<b>manj varna</b> od šifriranja z javnimi ključi, celo če izberete zelo "
 "močno geslo."
 
-#: src/crypto/gui/signencryptwidget.cpp:273
+#: src/crypto/gui/signencryptwidget.cpp:274
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "prejemnikov ključ"
 
-#: src/crypto/gui/signencryptwidget.cpp:668
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
-#: src/crypto/gui/signencryptwidget.cpp:670
+#: src/crypto/gui/signencryptwidget.cpp:669
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"
@@ -11268,42 +11268,42 @@ msgstr ""
 "application>, ki jo uporablja <application>Kleopatra</application> ni %1.</"
 "para>"
 
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Podpisovanje beležnice..."
 
-#: src/view/padwidget.cpp:407
+#: src/view/padwidget.cpp:408
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Šifriranje beležnice..."
 
-#: src/view/padwidget.cpp:410
+#: src/view/padwidget.cpp:411
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Podpisovanje in šifriranje beležnice..."
 
-#: src/view/padwidget.cpp:456
+#: src/view/padwidget.cpp:457
 #, kde-format
 msgid "Importing..."
 msgstr "Uvozi..."
 
-#: src/view/padwidget.cpp:496
+#: src/view/padwidget.cpp:497
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Podpiši beležnico"
 
-#: src/view/padwidget.cpp:499
+#: src/view/padwidget.cpp:500
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Šifriraj beležnico"
 
-#: src/view/padwidget.cpp:503
+#: src/view/padwidget.cpp:504
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

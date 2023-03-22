@@ -139,9 +139,6 @@ private:
         } else {
             dialog->show();
         }
-#ifdef Q_OS_WIN
-        KWindowSystem::forceActiveWindow(dialog->winId());
-#endif
     }
     void message(const QString &msg)
     {

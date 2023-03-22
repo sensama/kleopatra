@@ -618,7 +618,6 @@ static void open_or_raise(QWidget *w)
 #ifdef Q_OS_WIN
     if (w->isMinimized()) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "unminimizing and raising window";
-        KWindowSystem::unminimizeWindow(w->winId());
         w->raise();
     } else if (w->isVisible()) {
         qCDebug(KLEOPATRA_LOG) << __func__ << "raising window";

@@ -45,8 +45,6 @@ Q_SIGNALS:
 
 private:
     void setupGui();
-    void setupProfileGui(QBoxLayout *layout);
-    void applyProfile(const QString &profile);
 
     void load(const Kleo::FileOperationsPreferences &filePrefs,
               const Kleo::Settings &settings);

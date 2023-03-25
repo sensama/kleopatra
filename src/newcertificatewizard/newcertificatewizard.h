@@ -47,7 +47,6 @@ protected:
     void showEvent(QShowEvent *event) override;
 
 private:
-    void resetProtocol();
     void restartAtEnterDetailsPage();
     QDir tmpDir() const;
 

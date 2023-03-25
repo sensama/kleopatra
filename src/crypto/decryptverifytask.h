@@ -232,9 +232,6 @@ public:
     QString fileName() const;
 
 private:
-    static QString keyToString(const GpgME::Key &key);
-
-private:
     DecryptVerifyResult();
     DecryptVerifyResult(const DecryptVerifyResult &);
     DecryptVerifyResult &operator=(const DecryptVerifyResult &other);

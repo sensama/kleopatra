@@ -47,6 +47,7 @@ target_link_libraries(kwatchgnupg
   KF${KF_MAJOR_VERSION}::TextWidgets
   KF${KF_MAJOR_VERSION}::IconThemes
   KPim${KF_MAJOR_VERSION}::Libkleo
+  KF${KF_MAJOR_VERSION}::CoreAddons
   KF${KF_MAJOR_VERSION}::Crash
 )
 

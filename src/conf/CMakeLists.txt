@@ -62,7 +62,7 @@ target_link_libraries(kcm_kleopatra_static
   KF${KF_MAJOR_VERSION}::IconThemes
   KF${KF_MAJOR_VERSION}::I18n
   KF${KF_MAJOR_VERSION}::WidgetsAddons
-  KF${KF_MAJOR_VERSION}::ConfigWidgets
+  KF${KF_MAJOR_VERSION}::KCMUtils
   ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}
   ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}

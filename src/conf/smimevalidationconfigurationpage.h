@@ -7,7 +7,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 #pragma once
-
+#include "kcmutils_version.h"
 #include <KCModule>
 namespace Kleo
 {
@@ -20,8 +20,11 @@ class SMimeValidationConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     explicit SMimeValidationConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
-
+#else
+    explicit SMimeValidationConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
+#endif
 public Q_SLOTS:
     void load() override;
     void save() override;

@@ -18,9 +18,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <config-kleopatra.h>
-
 #include "kleopageconfigdialog.h"
+#include "kcmutils_version.h"
+#include <config-kleopatra.h>
 
 #include <QDesktopServices>
 #include <QDialogButtonBox>
@@ -191,8 +191,11 @@ void KleoPageConfigDialog::slotHelpClicked()
 void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath, const QString &icon, KCModule *module)
 {
     mModules << module;
-
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     KPageWidgetItem *item = addPage(module, name);
+#else
+    KPageWidgetItem *item = addPage(module->widget(), name);
+#endif
     item->setIcon(QIcon::fromTheme(icon));
 
     connect(module, SIGNAL(changed(bool)), this, SLOT(moduleChanged(bool)));

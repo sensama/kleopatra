@@ -18,17 +18,30 @@
 
 using namespace Kleo::Config;
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+GnuPGSystemConfigurationPage::GnuPGSystemConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
+#else
+    auto lay = new QVBoxLayout(widget());
+#endif
     lay->setContentsMargins(0, 0, 0, 0);
 
     QGpgME::CryptoConfig *const config = QGpgME::cryptoConfig();
 
     mWidget = new CryptoConfigModule(config,
                                      CryptoConfigModule::TabbedLayout,
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
                                      this);
+#else
+                                     widget());
+#endif
     lay->addWidget(mWidget);
 
 

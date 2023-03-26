@@ -101,6 +101,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
     WidgetsAddons
     WindowSystem
     XmlGui
+    KCMUtils
 
     OPTIONAL_COMPONENTS
     DocTools

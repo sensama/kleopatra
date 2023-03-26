@@ -40,7 +40,11 @@ public:
 };
 
 SmartCardConfigurationPage::Private::Private(SmartCardConfigurationPage *qq)
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     : mReaderPort{new ReaderPortSelection{qq}}
+#else
+    : mReaderPort{new ReaderPortSelection{qq->widget()}}
+#endif
 {
 }
 
@@ -53,18 +57,31 @@ CryptoConfigEntry *SmartCardConfigurationPage::Private::readerPortConfigEntry(co
     return Kleo::getCryptoConfigEntry(config, "scdaemon", "reader-port");
 }
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 SmartCardConfigurationPage::SmartCardConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule{parent, args}
+#else
+SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
     , d{std::make_unique<Private>(this)}
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto mainLayout = new QVBoxLayout{this};
+#else
+    auto mainLayout = new QVBoxLayout{widget()};
+#endif
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
     {
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
         auto label = new QLabel{i18n("Smart card reader to use:"), this};
+#else
+        auto label = new QLabel{i18n("Smart card reader to use:"), widget()};
+#endif
         label->setBuddy(d->mReaderPort);
 
         l->addWidget(label);

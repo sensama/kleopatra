@@ -18,11 +18,21 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
 AppearanceConfigurationPage::AppearanceConfigurationPage(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
+#else
+AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KCModule(parent, data, args)
+#endif
 {
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     auto lay = new QVBoxLayout(this);
     mWidget = new AppearanceConfigWidget(this);
+#else
+    auto lay = new QVBoxLayout(widget());
+    mWidget = new AppearanceConfigWidget(widget());
+#endif
     lay->addWidget(mWidget);
 
     connect(mWidget, &AppearanceConfigWidget::changed, this, &Kleo::Config::AppearanceConfigurationPage::markAsChanged);

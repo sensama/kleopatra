@@ -197,8 +197,13 @@ void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath
     KPageWidgetItem *item = addPage(module->widget(), name);
 #endif
     item->setIcon(QIcon::fromTheme(icon));
-
+#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
     connect(module, SIGNAL(changed(bool)), this, SLOT(moduleChanged(bool)));
+#else
+    connect(module, &KCModule::needsSaveChanged, this, [this, module]() {
+        moduleChanged(module->needsSave());
+    });
+#endif
 
     mHelpUrls.insert(name, docPath);
 }

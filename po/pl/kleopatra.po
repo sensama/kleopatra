@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1645189 $
+# Version: $Revision: 1647983 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-12 09:20+0100\n"
+"PO-Revision-Date: 2023-03-25 10:01+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -10486,7 +10486,7 @@ msgstr "Nie można utworzyć pliku tymczasowego dla wyjścia \"%1\""
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
-msgstr ""
+msgstr "Plik już istnieje"
 
 #: src/utils/output.cpp:651
 #, kde-format
@@ -10494,11 +10494,10 @@ msgid "Overwriting declined"
 msgstr "Odmowa zastąpienia"
 
 #: src/utils/output.cpp:657
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr "Nie można otworzyć pliku <filename>%1</filename> do zapisu."
+msgstr "Nie można usunąć pliku <filename>%1</filename> do jego zastąpienia."
 
 #: src/utils/output.cpp:682
 #, kde-format
@@ -10538,64 +10537,54 @@ msgid "Could not find clipboard"
 msgstr "Nie można znaleźć schowka"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
-msgstr ""
-"Plik o nazwie <filename>%1</filename> już istnieje. Czy na pewno chcesz go "
-"zastąpić?"
+msgstr "Plik o nazwie <filename>%1</filename> już istnieje. Wpisz inną nazwę."
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid "The file <b>%1</b> already exists.\n"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr "Plik <b>%1</b> już istnieje.\n"
+msgstr "Plik o nazwie <filename>%1</filename> już istnieje."
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "Prawdziwe imię i nazwisko:"
+msgstr "Przemianuj:"
 
 #: src/utils/overwritedialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "Test Name"
+#, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "Nazwa próby"
+msgstr "Doradź nową nazwę"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "Podpowiedz nazwę, która jeszcze nie istnieje."
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "Zmień nazwę karty"
+msgstr "Przemianuj"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "Zapisz plik z daną nazwą."
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "Zmień nazwę karty"
+msgstr "Przemianuj wszystkie"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10604,25 +10593,26 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Sam zapisz wszystkie pliki, które zastąpiłyby już istniejący pliki pod "
+"innymi nazwami."
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "Pominięto"
+msgstr "Pomiń"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Nie zapisuj tego pliku i zamiast tego przejdź do kolejnego."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Pomiń wszystkie"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10631,24 +10621,23 @@ msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
 msgstr ""
+"Nie zapisuj tego pliku, ani żadnych innych plików, które zastąpiłyby już "
+"istniejący plik."
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "Zastąp wszystkie"
+msgstr "Zastąp"
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "Zastąpić plik?"
+msgstr "Zastąp istniejący plik."
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Zastąp wszystkie"
@@ -10657,7 +10646,7 @@ msgstr "Zastąp wszystkie"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "Zastąp istniejący plik i dowolne inne pliki, które już istnieją."
 
 #: src/utils/path-helper.cpp:118
 #, kde-format
@@ -10834,7 +10823,7 @@ msgstr "Certyfikuj..."
 #: src/view/keylistcontroller.cpp:432
 #, kde-format
 msgid "Certify the validity of the selected certificate"
-msgstr "Zcertyfikuj ważność wybranego certyfikatu"
+msgstr "Scertyfikuj ważność wybranego certyfikatu"
 
 #: src/view/keylistcontroller.cpp:436
 #, kde-format

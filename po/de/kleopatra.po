@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-23 00:48+0000\n"
+"POT-Creation-Date: 2023-03-27 00:50+0000\n"
 "PO-Revision-Date: 2022-12-21 12:51+0100\n"
 "Last-Translator: Andre Heinecke <aheinecke@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -3486,17 +3486,17 @@ msgstr "Zum Erstellen von Prüfsummen zu verwendendes Prüfsummen-Programm:"
 msgid "Archive command to use when archiving files:"
 msgstr "Zum Archivieren von Dateien zu verwendender Archiv-Befehl:"
 
-#: src/conf/dirservconfigpage.cpp:125
+#: src/conf/dirservconfigpage.cpp:133
 #, kde-format
 msgid "OpenPGP keyserver:"
 msgstr "OpenPGP-Schlüsselserver:"
 
-#: src/conf/dirservconfigpage.cpp:137
+#: src/conf/dirservconfigpage.cpp:146 src/conf/dirservconfigpage.cpp:148
 #, kde-format
 msgid "X.509 Directory Services"
 msgstr "X.509-Verzeichnisdienste"
 
-#: src/conf/dirservconfigpage.cpp:151
+#: src/conf/dirservconfigpage.cpp:168 src/conf/dirservconfigpage.cpp:171
 #, kde-format
 msgid ""
 "Configuration of directory services is not possible because the used gpgme "
@@ -3505,24 +3505,24 @@ msgstr ""
 "Die Einrichtung von Verzeichnisdiensten ist nicht möglich, weil die "
 "verwendeten gpgme-Bibliotheken zu alt sind."
 
-#: src/conf/dirservconfigpage.cpp:161
+#: src/conf/dirservconfigpage.cpp:188
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
 msgstr "LDAP-&Zeitüberschreitung (Minuten:Sekunden):"
 
-#: src/conf/dirservconfigpage.cpp:171
+#: src/conf/dirservconfigpage.cpp:202
 #, kde-format
 msgid "&Maximum number of items returned by query:"
 msgstr "&Maximale Anzahl Übereinstimmungen bei Anfragen:"
 
-#: src/conf/dirservconfigpage.cpp:187
+#: src/conf/dirservconfigpage.cpp:218
 #, kde-format
 msgctxt "@option:check"
 msgid "Retrieve missing certification keys when importing new keys"
 msgstr ""
 "Beim Importieren neuer Schlüssel fehlende Zertifizierungsschlüssel holen"
 
-#: src/conf/dirservconfigpage.cpp:190
+#: src/conf/dirservconfigpage.cpp:221
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3533,14 +3533,14 @@ msgstr ""
 "herunterzuladen, mit denen die Benutzerkennungen von neu importierten "
 "OpenPGP-Schlüsseln beglaubigt wurden."
 
-#: src/conf/dirservconfigpage.cpp:444
+#: src/conf/dirservconfigpage.cpp:476 src/conf/dirservconfigpage.cpp:480
 #, kde-format
 msgid "Backend error: gpgconf does not seem to know the entry for %1/%2"
 msgstr ""
 "Fehler im Hintergrundprogramm: In gpgconf wurde der Eintrag für %1/%2 nicht "
 "erkannt."
 
-#: src/conf/dirservconfigpage.cpp:450
+#: src/conf/dirservconfigpage.cpp:488 src/conf/dirservconfigpage.cpp:491
 #, kde-format
 msgid "Backend error: gpgconf has wrong type for %1/%2: %3 %4"
 msgstr ""
@@ -3684,12 +3684,12 @@ msgstr ""
 msgid "Apply Settings"
 msgstr "Einstellungen anwenden"
 
-#: src/conf/smartcardconfigpage.cpp:67
+#: src/conf/smartcardconfigpage.cpp:81 src/conf/smartcardconfigpage.cpp:83
 #, kde-format
 msgid "Smart card reader to use:"
 msgstr "Zu verwendender Smartcard-Leser:"
 
-#: src/conf/smartcardconfigpage.cpp:94
+#: src/conf/smartcardconfigpage.cpp:111
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
 msgstr "Kann nicht mit Kleopatra konfiguriert werden"

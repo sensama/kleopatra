@@ -18,8 +18,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "kleopageconfigdialog.h"
 #include <config-kleopatra.h>
+
+#include "kleopageconfigdialog.h"
 
 #include <kcmutils_version.h>
 

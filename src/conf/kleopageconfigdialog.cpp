@@ -19,8 +19,9 @@
 */
 
 #include "kleopageconfigdialog.h"
-#include "kcmutils_version.h"
 #include <config-kleopatra.h>
+
+#include <kcmutils_version.h>
 
 #include <QDesktopServices>
 #include <QDialogButtonBox>

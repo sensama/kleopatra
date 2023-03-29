@@ -1,0 +1,127 @@
+{
+    "app-id": "org.kde.kleopatra",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.15-22.08",
+    "sdk": "org.kde.Sdk",
+    "command": "kleopatra",
+    "rename-icon": "kleopatra",
+    "finish-args": [
+        "--share=ipc",
+        "--share=network",
+        "--socket=wayland",
+        "--socket=fallback-x11",
+        "--filesystem=~/.gnupg:create",
+        "--filesystem=xdg-run/gnupg:ro",
+        "--talk-name=org.kde.StatusNotifierWatcher"
+    ],
+    "modules": [
+        {
+            "name": "boost",
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap.sh --prefix=/app --with-libraries=system",
+                "./b2 -j $FLATPAK_BUILDER_N_JOBS install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2",
+                    "sha256": "71feeed900fbccca04a3b4f2f84a7c217186f28a940ed8b7ed4725986baf99fa",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 6845,
+                        "stable-only": true,
+                        "url-template": "https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_$patch.tar.bz2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "paperkey",
+            "buildsystem": "autotools",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.jabberwocky.com/software/paperkey/paperkey-1.6.tar.gz",
+                    "sha256": "a245fd13271a8d2afa03dde979af3a29eb3d4ebb1fbcad4a9b52cf67a27d05f7",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 8571,
+                        "stable-only": true,
+                        "url-template": "http://www.jabberwocky.com/software/paperkey/paperkey-$version.tar.gz"
+                    }
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "cp -p /usr/share/automake-*/config.{sub,guess} ."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "QGpgme",
+            "buildsystem": "autotools",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-1.18.0.tar.bz2",
+                    "sha256": "361d4eae47ce925dba0ea569af40e7b52c645c4ae2e65e5621bf1b6cdd8b0e9e",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 1239,
+                        "stable-only": true,
+                        "url-template": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$version.tar.bz2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "kpimtextedit",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kpimtextedit",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
+            "name": "libkleo",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/libkleo",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
+            "name": "kmime",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://invent.kde.org/pim/kmime",
+                    "branch": "master"
+                }
+            ]
+        },
+        {
+            "name": "kleopatra",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}

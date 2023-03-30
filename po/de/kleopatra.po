@@ -15,21 +15,21 @@
 # Heike Falk <hfalk@g10code.com>, 2019.
 # Alois Spitzbart <spitz234@hotmail.com>, 2021.
 # Frank Steinmetzger <dev@felsenfleischer.de>, 2022.
-# Eva Bolten <eva.bolten@gnupg.com>, 2022.
+# Eva Bolten <eva.bolten@gnupg.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2022-12-21 12:51+0100\n"
-"Last-Translator: Andre Heinecke <aheinecke@gnupg.com>\n"
+"PO-Revision-Date: 2023-03-22 15:52+0100\n"
+"Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -504,23 +504,23 @@ msgid ""
 "<p>An error occurred while trying to change the passphrase for <b>%1</b>:</"
 "p><p>%2</p>"
 msgstr ""
-"<p>Beim Versuch, die Passphrase für <b>%1</b> zu ändern, ist ein Fehler "
+"<p>Beim Versuch, das Passwort für <b>%1</b> zu ändern, ist ein Fehler "
 "aufgetreten:</p><p>%2</p>"
 
 #: src/commands/changepassphrasecommand.cpp:194
 #, kde-format
 msgid "Passphrase Change Error"
-msgstr "Fehler beim Ändern der Passphrase"
+msgstr "Fehler beim Ändern des Passwortes"
 
 #: src/commands/changepassphrasecommand.cpp:199
 #, kde-format
 msgid "Passphrase changed successfully."
-msgstr "Passphrase wurde erfolgreich geändert."
+msgstr "Passwort wurde erfolgreich geändert."
 
 #: src/commands/changepassphrasecommand.cpp:200
 #, kde-format
 msgid "Passphrase Change Succeeded"
-msgstr "Ändern der Passphrase erfolgreich"
+msgstr "Ändern der Passwortes erfolgreich"
 
 #: src/commands/changepincommand.cpp:121
 #: src/commands/createcsrforcardkeycommand.cpp:138
@@ -1449,8 +1449,8 @@ msgid ""
 "The result of the backup is empty. Maybe you entered an empty or a wrong "
 "passphrase."
 msgstr ""
-"Das Ergebnis der Sicherung ist leer. Vielleicht haben Sie eine falsche oder "
-"leer Passphrase eingegeben."
+"Das Ergebnis der Sicherung ist leer. Vielleicht haben Sie ein falsches oder "
+"leeres Passwort eingegeben."
 
 #: src/commands/exportsecretkeycommand.cpp:263
 #: src/commands/exportsecretsubkeycommand.cpp:243
@@ -1528,7 +1528,7 @@ msgstr "Geheimes Zertifikat erfolgreich exportiert."
 #, kde-format
 msgctxt "@info"
 msgid "Possibly bad passphrase given."
-msgstr "Möglicherweise falsche Passphrase."
+msgstr "Möglicherweise falsches Passwort."
 
 #: src/commands/exportsecretkeycommand_old.cpp:164
 #, kde-format
@@ -6155,7 +6155,7 @@ msgstr "Exportieren"
 #, kde-format
 msgctxt "@action:button"
 msgid "Change Passphrase"
-msgstr "Passphrase ändern"
+msgstr "Passwort ändern"
 
 #: src/dialogs/certificatedetailswidget.cpp:369
 #, kde-format
@@ -6949,7 +6949,7 @@ msgid ""
 "You will be asked for a passphrase to protect that file during key "
 "generation."
 msgstr ""
-"Sie werden während der Generierung nach einer Passphrase gefragt um diese "
+"Sie werden während der Generierung nach einem Passwort gefragt, um diese "
 "Datei zu schützen."
 
 #: src/dialogs/groupdetailsdialog.cpp:128
@@ -7073,7 +7073,7 @@ msgstr ""
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
-msgstr "Den generierten Schlüssel mit einer Passphrase schützen."
+msgstr "Den generierten Schlüssel mit einem Passwort schützen."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:86
 #: src/newcertificatewizard/enterdetailspage.cpp:143
@@ -7082,8 +7082,8 @@ msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
 "for the passphrase during key generation."
 msgstr ""
-"Verschlüsselt den geheimen Schlüssel mit einer nicht wiederherzustellenden "
-"Passphrase. Sie werden nach der Passphrase während der Schlüsselerstellung "
+"Verschlüsselt den geheimen Schlüssel mit einem nicht wiederherzustellenden "
+"Passwort. Sie werden während der Schlüsselerstellung nach dem Passwort "
 "gefragt."
 
 #: src/dialogs/newopenpgpcertificatedetailsdialog.cpp:91
@@ -11031,7 +11031,7 @@ msgstr ""
 #: src/view/keylistcontroller.cpp:449
 #, kde-format
 msgid "Change Passphrase..."
-msgstr "Passphrase ändern ..."
+msgstr "Passwort ändern ..."
 
 #: src/view/keylistcontroller.cpp:453
 #, kde-format

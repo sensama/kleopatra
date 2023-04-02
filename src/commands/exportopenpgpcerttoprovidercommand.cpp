@@ -16,7 +16,7 @@
 #include <KIdentityManagement/Identity>
 #include <KIdentityManagement/IdentityManager>
 #include <MailTransport/TransportManager>
-#include <MailTransportAkonadi/MessageQueueJob>
+#include <Akonadi/MessageQueueJob>
 #endif // MAILAKONADI_ENABLED
 
 #include <KLocalizedString>
@@ -137,12 +137,12 @@ void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error,
     msg->setContent(KMime::CRLFtoLF(returnedData));
     msg->parse();
 
-    MailTransport::MessageQueueJob *job = new MailTransport::MessageQueueJob(d->parentWidgetOrView());
+    Akonadi::MessageQueueJob *job = new Akonadi::MessageQueueJob(d->parentWidgetOrView());
     job->transportAttribute().setTransportId(transport->id());
     job->addressAttribute().setFrom(msg->from()->asUnicodeString());
     job->addressAttribute().setTo(msg->to()->displayNames());
     job->setMessage(KMime::Message::Ptr{msg});
-    connect(job, &MailTransport::MessageQueueJob::result, this, [this](const KJob *mailJob) {
+    connect(job, &Akonadi::MessageQueueJob::result, this, [this](const KJob *mailJob) {
             if (mailJob->error()) {
                 KMessageBox::error(d->parentWidgetOrView(),
                  xi18nc("@error",

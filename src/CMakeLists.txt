@@ -58,11 +58,11 @@ else()
   add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
 endif()
 
-if(KPim${KF_MAJOR_VERSION}IdentityManagement_FOUND AND KPim${KF_MAJOR_VERSION}MailTransport_FOUND AND KPim${KF_MAJOR_VERSION}MailTransportAkonadi_FOUND)
+if(KPim${KF_MAJOR_VERSION}IdentityManagement_FOUND AND KPim${KF_MAJOR_VERSION}MailTransport_FOUND AND KPim${KF_MAJOR_VERSION}AkonadiMime_FOUND)
   set(_kleopatra_mail_libs
       KPim${KF_MAJOR_VERSION}::IdentityManagement # Export OpenPGP keys using WKS
       KPim${KF_MAJOR_VERSION}::MailTransport
-      KPim${KF_MAJOR_VERSION}::MailTransportAkonadi
+      KPim${KF_MAJOR_VERSION}::AkonadiMime
   )
   add_definitions(-DMAILAKONADI_ENABLED)
 endif()

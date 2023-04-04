@@ -3,7 +3,7 @@
 # always install the media types
 install(FILES application-vnd-kde-kleopatra.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
 
-# require at least version 1.3 (same as for KF5)
+# require at least version 1.3 (same as for KF6)
 find_package(SharedMimeInfo 1.3)
 set_package_properties(SharedMimeInfo PROPERTIES
                        TYPE OPTIONAL

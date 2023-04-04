@@ -3,10 +3,10 @@
 
 include(ECMAddTests)
 
-find_package(Qt${QT_MAJOR_VERSION}Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+find_package(Qt6Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
 
 if(NOT TARGET Qt::Test)
-    message(STATUS "Qt${QT_MAJOR_VERSION}Test not found, autotests will not be built.")
+    message(STATUS "Qt6Test not found, autotests will not be built.")
     return()
 endif()
 
@@ -27,7 +27,7 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
     ${logging_category_srcs}
     TEST_NAME stripsuffixtest
-    LINK_LIBRARIES KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::Libkleo Qt::Test
+    LINK_LIBRARIES KF6::I18n KPim6::Libkleo Qt::Test
 )
 
 ecm_add_test(

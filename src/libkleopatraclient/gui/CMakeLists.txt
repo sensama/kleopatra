@@ -5,7 +5,7 @@ generate_export_header(kleopatraclientgui BASE_NAME kleopatraclientgui)
 
 target_link_libraries(kleopatraclientgui
   kleopatraclientcore
-  KF${KF_MAJOR_VERSION}::I18n
+  KF6::I18n
 )
 
 set_target_properties(kleopatraclientgui PROPERTIES

@@ -34,32 +34,30 @@ project(kleopatra VERSION ${kleopatra_version})
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF_MIN_VERSION "5.105.0")
+set(KF_MIN_VERSION "5.240.0")
 set(KIDENTITYMANAGEMENT_VERSION "5.23.40")
 set(KMAILTRANSPORT_VERSION "5.23.40")
 set(AKONADI_MIME_VERSION "5.23.41")
 set(KMIME_VERSION "5.23.40")
 set(LIBKLEO_VERSION "5.23.41")
-set(QT_REQUIRED_VERSION "5.15.2")
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_REQUIRED_VERSION "6.4.0")
-endif()
+set(QT_REQUIRED_VERSION "6.4.0")
+set(QT_REQUIRED_VERSION "6.4.0")
 set(GPGME_REQUIRED_VERSION "1.16.0")
 set(LIBASSUAN_REQUIRED_VERSION "2.4.2")
 set(GPG_ERROR_REQUIRED_VERSION "1.36")
 
 if (WIN32)
-  set(KF5_WANT_VERSION "5.70.0")
+  set(KF6_WANT_VERSION "5.70.0")
   set(KMIME_WANT_VERSION "5.12.0")
 else ()
-  set(KF5_WANT_VERSION ${KF_MIN_VERSION})
+  set(KF6_WANT_VERSION ${KF_MIN_VERSION})
   set(KMIME_WANT_VERSION ${KMIME_VERSION})
 endif ()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(ECM ${KF5_WANT_VERSION} CONFIG REQUIRED)
+find_package(ECM ${KF6_WANT_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
@@ -78,17 +76,8 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(KDEClangFormat)
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_REQUIRED_VERSION "6.4.0")
-    set(KF_MIN_VERSION "5.240.0")
-    set(KF_MAJOR_VERSION "6")
-else()
-    set(KF_MIN_VERSION "5.105.0")
-    set(KF_MAJOR_VERSION "5")
-endif()
-
-# Find KF5 packages
-find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
+# Find KF6 packages
+find_package(KF6 ${KF6_WANT_VERSION}
     REQUIRED COMPONENTS
     Codecs
     Config
@@ -108,7 +97,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}
     DocTools
 )
 
-set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES
+set_package_properties(KF6DocTools PROPERTIES
     DESCRIPTION "Documentation tools"
     PURPOSE "Required to generate Kleopatra documentation."
     TYPE OPTIONAL)
@@ -117,27 +106,23 @@ set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES
 if (WIN32)
   # Only a replacement available for Windows so this
   # is required on other platforms.
-  find_package(KF${KF_MAJOR_VERSION}DBusAddons ${KF5_WANT_VERSION} CONFIG)
-  set_package_properties(KF${KF_MAJOR_VERSION}DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
+  find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG)
+  set_package_properties(KF6DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
                          URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
 else()
-  find_package(KF${KF_MAJOR_VERSION}DBusAddons ${KF5_WANT_VERSION} CONFIG REQUIRED)
-  set(_kleopatra_dbusaddons_libs KF${KF_MAJOR_VERSION}::DBusAddons)
+  find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG REQUIRED)
+  set(_kleopatra_dbusaddons_libs KF6::DBusAddons)
 endif()
 
-set(HAVE_QDBUS ${Qt${QT_MAJOR_VERSION}DBus_FOUND})
+set(HAVE_QDBUS ${Qt6DBus_FOUND})
 
 find_package(Gpgmepp ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 if (Gpgmepp_VERSION VERSION_GREATER_EQUAL "1.19.0")
     set(GPGMEPP_SUPPORTS_SET_CURVE 1)
 endif()
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(QGpgmeQt6 ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
-else()
-    find_package(QGpgme ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
-endif()
+find_package(QGpgmeQt6 ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 if (QGpgme_VERSION VERSION_GREATER_EQUAL "1.17.0")
     set(QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY 1)
     set(QGPGME_CRYPTOCONFIGENTRY_HAS_DEFAULT_VALUE 1)
@@ -160,18 +145,16 @@ if (QGpgme_VERSION VERSION_GREATER_EQUAL "1.19.0")
     set(QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS 1)
 endif()
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(Qt6Core5Compat)
-endif()
+find_package(Qt6Core5Compat)
 
 # Kdepimlibs packages
-find_package(KPim${KF_MAJOR_VERSION}Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
-find_package(KPim${KF_MAJOR_VERSION}IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
-find_package(KPim${KF_MAJOR_VERSION}MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
-find_package(KPim${KF_MAJOR_VERSION}AkonadiMime ${AKONADI_MIME_VERSION} CONFIG)
+find_package(KPim6Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
+find_package(KPim6Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
+find_package(KPim6IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
+find_package(KPim6MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
+find_package(KPim6AkonadiMime ${AKONADI_MIME_VERSION} CONFIG)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
+find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
 
 find_package(LibAssuan ${LIBASSUAN_REQUIRED_VERSION} REQUIRED)
 set_package_properties(LibAssuan PROPERTIES
@@ -271,7 +254,7 @@ ecm_qt_install_logging_categories(
         )
 
 ki18n_install(po)
-if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
+if(KF6DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()

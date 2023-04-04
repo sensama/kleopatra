@@ -58,11 +58,11 @@ else()
   add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
 endif()
 
-if(KPim${KF_MAJOR_VERSION}IdentityManagement_FOUND AND KPim${KF_MAJOR_VERSION}MailTransport_FOUND AND KPim${KF_MAJOR_VERSION}AkonadiMime_FOUND)
+if(KPim6IdentityManagement_FOUND AND KPim6MailTransport_FOUND AND KPim6AkonadiMime_FOUND)
   set(_kleopatra_mail_libs
-      KPim${KF_MAJOR_VERSION}::IdentityManagement # Export OpenPGP keys using WKS
-      KPim${KF_MAJOR_VERSION}::MailTransport
-      KPim${KF_MAJOR_VERSION}::AkonadiMime
+      KPim6::IdentityManagement # Export OpenPGP keys using WKS
+      KPim6::MailTransport
+      KPim6::AkonadiMime
   )
   add_definitions(-DMAILAKONADI_ENABLED)
 endif()
@@ -572,18 +572,18 @@ endif ()
 
 target_link_libraries(kleopatra_bin
   Gpgmepp
-  KPim${KF_MAJOR_VERSION}::Libkleo
-  KPim${KF_MAJOR_VERSION}::Mime
-  KF${KF_MAJOR_VERSION}::Codecs
-  KF${KF_MAJOR_VERSION}::CoreAddons
-  KF${KF_MAJOR_VERSION}::Crash
-  KF${KF_MAJOR_VERSION}::I18n
-  KF${KF_MAJOR_VERSION}::IconThemes
-  KF${KF_MAJOR_VERSION}::ItemModels
-  KF${KF_MAJOR_VERSION}::KIOCore
-  KF${KF_MAJOR_VERSION}::KIOWidgets
-  KF${KF_MAJOR_VERSION}::WindowSystem
-  KF${KF_MAJOR_VERSION}::XmlGui
+  KPim6::Libkleo
+  KPim6::Mime
+  KF6::Codecs
+  KF6::CoreAddons
+  KF6::Crash
+  KF6::I18n
+  KF6::IconThemes
+  KF6::ItemModels
+  KF6::KIOCore
+  KF6::KIOWidgets
+  KF6::WindowSystem
+  KF6::XmlGui
   Qt::Network
   Qt::PrintSupport # Printing secret keys
   kleopatraclientcore

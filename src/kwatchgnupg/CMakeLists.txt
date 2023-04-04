@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 set(kwatchgnupg_version 1.0)
 
-find_package(KF${KF_MAJOR_VERSION}Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF${KF_MAJOR_VERSION}TextWidgets ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
+find_package(KF6TextWidgets ${KF_MIN_VERSION} CONFIG REQUIRED)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kwatchgnupg.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/version-kwatchgnupg.h)
 
@@ -41,14 +41,14 @@ endif()
 
 
 target_link_libraries(kwatchgnupg
-  KF${KF_MAJOR_VERSION}::DBusAddons
-  KF${KF_MAJOR_VERSION}::XmlGui
-  KF${KF_MAJOR_VERSION}::Notifications
-  KF${KF_MAJOR_VERSION}::TextWidgets
-  KF${KF_MAJOR_VERSION}::IconThemes
-  KPim${KF_MAJOR_VERSION}::Libkleo
-  KF${KF_MAJOR_VERSION}::CoreAddons
-  KF${KF_MAJOR_VERSION}::Crash
+  KF6::DBusAddons
+  KF6::XmlGui
+  KF6::Notifications
+  KF6::TextWidgets
+  KF6::IconThemes
+  KPim6::Libkleo
+  KF6::CoreAddons
+  KF6::Crash
 )
 
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

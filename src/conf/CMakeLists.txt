@@ -72,5 +72,5 @@ if (NOT WIN32)
   add_library(kleopatra_config_gnupgsystem MODULE kcm_gnupgsystemconfigurationpage.cpp)
   target_link_libraries(kleopatra_config_gnupgsystem kcm_kleopatra_static KF6::CoreAddons)
 
-  install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim${QT_MAJOR_VERSION}/kcms/kleopatra)
+  install(TARGETS kleopatra_config_gnupgsystem DESTINATION ${KDE_INSTALL_PLUGINDIR}/pim6/kcms/kleopatra)
 endif()

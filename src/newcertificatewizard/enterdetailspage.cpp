@@ -441,7 +441,7 @@ void EnterDetailsPage::updateForm()
 QString EnterDetailsPage::cmsDN() const
 {
     DN dn;
-    for (QVector<Line>::const_iterator it = lineList.begin(), end = lineList.end(); it != end; ++it) {
+    for (QList<Line>::const_iterator it = lineList.begin(), end = lineList.end(); it != end; ++it) {
         const QString text = it->edit->text().trimmed();
         if (text.isEmpty()) {
             continue;
@@ -474,7 +474,7 @@ static bool has_intermediate_input(const QLineEdit *le)
     return v && v->validate(text, pos) == QValidator::Intermediate;
 }
 
-static bool requirementsAreMet(const QVector<EnterDetailsPage::Line> &list, QString &error)
+static bool requirementsAreMet(const QList<EnterDetailsPage::Line> &list, QString &error)
 {
     bool allEmpty = true;
     for (const auto &line : list) {

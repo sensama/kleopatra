@@ -81,7 +81,7 @@ public:
      *
      * @returns null QString on success. Error message otherwise.
      */
-    static QVector<Command *>commandsForFiles(const QStringList &files);
+    static QList<Command *> commandsForFiles(const QStringList &files);
 
     /** Get a command for a query.
      *

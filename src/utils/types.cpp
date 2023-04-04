@@ -12,8 +12,8 @@
 #include "utils/types.h"
 #include "utils/gui-helper.h"
 
+#include <QList>
 #include <QWidget>
-#include <QVector>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -39,7 +39,7 @@ private:
 
 private:
     std::weak_ptr<const ExecutionContext> executionContext;
-    QVector<QWidget *> idApplied;
+    QList<QWidget *> idApplied;
 };
 
 void ExecutionContextUser::applyWindowID(QWidget *wid)

@@ -95,7 +95,7 @@ namespace
         return v && v->validate(text, pos) == QValidator::Intermediate;
     }
 
-    QString requirementsAreMet(const QVector<Line> &lines)
+    QString requirementsAreMet(const QList<Line> &lines)
     {
         for (const Line &line : lines) {
             const QLineEdit *le = line.edit;
@@ -139,7 +139,7 @@ class CertificateDetailsInputWidget::Private
 
     struct {
         QGridLayout *gridLayout;
-        QVector<Line> lines;
+        QList<Line> lines;
         QLineEdit *dn;
         QLabel *error;
     } ui;

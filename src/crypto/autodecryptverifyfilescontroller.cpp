@@ -76,7 +76,7 @@ public:
         int classification = 0;
         std::shared_ptr<Output> output;
     };
-    QVector<CryptoFile> classifyAndSortFiles(const QStringList &files);
+    QList<CryptoFile> classifyAndSortFiles(const QStringList &files);
 
     void reportError(int err, const QString &details)
     {
@@ -273,7 +273,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     q->emitDoneOrError();
 }
 
-QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
+QList<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
 {
     const auto isSignature = [](int classification) -> bool {
         return mayBeDetachedSignature(classification)
@@ -281,7 +281,7 @@ QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerify
                 || (classification & Class::TypeMask) == Class::ClearsignedMessage;
     };
 
-    QVector<CryptoFile> out;
+    QList<CryptoFile> out;
     for (const auto &file : files) {
         CryptoFile cFile;
         cFile.fileName = file;
@@ -327,7 +327,7 @@ static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
 std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
     // sort files so that we make sure we first decrypt and then verify
-    QVector<CryptoFile> cryptoFiles = classifyAndSortFiles(fileNames);
+    QList<CryptoFile> cryptoFiles = classifyAndSortFiles(fileNames);
 
     std::vector<std::shared_ptr<Task> > tasks;
     for (auto it = cryptoFiles.begin(), end = cryptoFiles.end(); it != end; ++it) {

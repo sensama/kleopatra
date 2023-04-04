@@ -249,10 +249,10 @@ void Command::applyWindowID(QWidget *w) const
 }
 
 // static
-QVector <Command *> Command::commandsForFiles(const QStringList &files)
+QList<Command *> Command::commandsForFiles(const QStringList &files)
 {
     QStringList importFiles, decryptFiles, encryptFiles, checksumFiles;
-    QVector <Command *> cmds;
+    QList<Command *> cmds;
     for (const QString &fileName : files) {
         const unsigned int classification = classify(fileName);
 

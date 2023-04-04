@@ -8,8 +8,8 @@
 */
 #pragma once
 
+#include <QList>
 #include <QWidget>
-#include <QVector>
 
 #include <Libkleo/KeyGroup>
 
@@ -137,10 +137,10 @@ private:
 private:
     KeySelectionCombo *mSigSelect = nullptr;
     KeySelectionCombo *mSelfSelect = nullptr;
-    QVector<CertificateLineEdit *> mRecpWidgets;
-    QVector<UnknownRecipientWidget *> mUnknownWidgets;
-    QVector<GpgME::Key> mAddedKeys;
-    QVector<KeyGroup> mAddedGroups;
+    QList<CertificateLineEdit *> mRecpWidgets;
+    QList<UnknownRecipientWidget *> mUnknownWidgets;
+    QList<GpgME::Key> mAddedKeys;
+    QList<KeyGroup> mAddedGroups;
     QVBoxLayout *mRecpLayout = nullptr;
     Operation mOp;
     AbstractKeyListModel *mModel = nullptr;

@@ -543,7 +543,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser,
                     errors << i18n("Cannot read \"%1\"", fileName);
                 }
             }
-            const QVector<Command *> allCmds = Command::commandsForFiles(files);
+            const QList<Command *> allCmds = Command::commandsForFiles(files);
             for (Command *cmd : allCmds) {
                 if (parentId) {
                     cmd->setParentWId(parentId);

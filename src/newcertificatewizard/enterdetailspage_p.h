@@ -57,7 +57,7 @@ private:
     struct UI;
     std::unique_ptr<UI> ui;
 
-    QVector<Line> lineList;
+    QList<Line> lineList;
     QList<QWidget *> dynamicWidgets;
     QMap<QString, QString> savedValues;
     AdvancedSettingsDialog *dialog;

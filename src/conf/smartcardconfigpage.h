@@ -23,11 +23,7 @@ class SmartCardConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    explicit SmartCardConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
-#else
     explicit SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
-#endif
     ~SmartCardConfigurationPage() override;
 
     void load() override;

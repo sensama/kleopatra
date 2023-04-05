@@ -76,11 +76,7 @@ static bool is(const QListWidgetItem *item, bool (QFont::*func)() const)
         return false;
     }
     const QVariant v = item->data(Qt::FontRole);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    if (!v.isValid() || v.type() != QVariant::Font) {
-#else
     if (!v.isValid() || v.userType() != QMetaType::QFont) {
-#endif
         return false;
     }
     return (v.value<QFont>().*func)();
@@ -105,11 +101,7 @@ static void set(QListWidgetItem *item, bool on, void (QFont::*func)(bool))
         return;
     }
     const QVariant v = item->data(Qt::FontRole);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QFont font = v.isValid() && v.type() == QVariant::Font ? v.value<QFont>() : tryToFindFontFor(item);
-#else
     QFont font = v.isValid() && v.userType() == QMetaType::QFont ? v.value<QFont>() : tryToFindFontFor(item);
-#endif
     (font.*func)(on);
     item->setData(Qt::FontRole, font);
 }
@@ -251,17 +243,9 @@ static void writeOrDelete(KConfigGroup &group, const char *key, const QVariant &
 static QVariant brush2color(const QVariant &v)
 {
     if (v.isValid()) {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        if (v.type() == QVariant::Color) {
-#else
         if (v.userType() == QMetaType::QColor) {
-#endif
             return v;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        } else if (v.type() == QVariant::Brush) {
-#else
         } else if (v.userType() == QMetaType::QBrush) {
-#endif
             return v.value<QBrush>().color();
         }
     }
@@ -638,11 +622,7 @@ void AppearanceConfigWidget::Private::slotFontClicked()
 
     bool ok = false;
     const QFont defaultFont = tryToFindFontFor(item);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    const QFont initial = v.isValid() && v.type() == QVariant::Font ? v.value<QFont>() : defaultFont;
-#else
     const QFont initial = v.isValid() && v.userType() == QMetaType::QFont ? v.value<QFont>() : defaultFont;
-#endif
     QFont f = QFontDialog::getFont(&ok, initial, q);
     if (!ok) {
         return;

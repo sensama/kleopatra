@@ -24,11 +24,7 @@ class AppearanceConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    explicit AppearanceConfigurationPage(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
-#else
     explicit AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
-#endif
 
 public Q_SLOTS:
     void load() override;

@@ -112,11 +112,7 @@ private:
 DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *q)
 {
     mConfig = QGpgME::cryptoConfig();
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    auto glay = new QGridLayout(q);
-#else
     auto glay = new QGridLayout(q->widget());
-#endif
     glay->setContentsMargins(0, 0, 0, 0);
 
     // OpenPGP keyserver
@@ -125,11 +121,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto l = new QHBoxLayout{};
         l->setContentsMargins(0, 0, 0, 0);
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-        mOpenPGPKeyserverEdit.createWidgets(q);
-#else
         mOpenPGPKeyserverEdit.createWidgets(q->widget());
-#endif
         mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
         l->addWidget(mOpenPGPKeyserverEdit.label());
         l->addWidget(mOpenPGPKeyserverEdit.widget());
@@ -142,19 +134,11 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
     // X.509 servers
     if (Settings{}.cmsEnabled()) {
         ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-        auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q};
-#else
         auto groupBox = new QGroupBox{i18n("X.509 Directory Services"), q->widget()};
-#endif
         auto groupBoxLayout = new QVBoxLayout{groupBox};
 
         if (gpgme_check_version("1.16.0")) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-            mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
-#else
             mDirectoryServices = new Kleo::DirectoryServicesWidget(q->widget());
-#endif
             if (QLayout *l = mDirectoryServices->layout()) {
                 l->setContentsMargins(0, 0, 0, 0);
             }
@@ -164,15 +148,9 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         } else {
             // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
             // disable the configuration to prevent the configuration from being corrupted
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-            groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
-                                                      "because the used gpgme libraries are too old."), q});
-#else
             groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
                                                       "because the used gpgme libraries are too old."),
                                                  q->widget()});
-
-#endif
         }
 
         glay->addWidget(groupBox, row, 0, 1, 3);
@@ -180,11 +158,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
     // LDAP timeout
     ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    mTimeout.createWidgets(q);
-#else
     mTimeout.createWidgets(q->widget());
-#endif
     mTimeout.label()->setText(i18n("LDAP &timeout (minutes:seconds):"));
     mTimeout.widget()->setDisplayFormat(QStringLiteral("mm:ss"));
     connect(mTimeout.widget(), &QTimeEdit::timeChanged,
@@ -194,20 +168,10 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
 
     // Max number of items returned by queries
     ++row;
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    mMaxItems.createWidgets(q);
-#else
     mMaxItems.createWidgets(q->widget());
-#endif
     mMaxItems.label()->setText(i18n("&Maximum number of items returned by query:"));
     mMaxItems.widget()->setMinimum(0);
-#if QT_DEPRECATED_SINCE(5, 14)
-    connect(mMaxItems.widget(), qOverload<int>(&QSpinBox::valueChanged),
-            q, &DirectoryServicesConfigurationPage::markAsChanged);
-#else
-    connect(mMaxItems.widget(), &QSpinBox::valueChanged,
-            q, &DirectoryServicesConfigurationPage::markAsChanged);
-#endif
+    connect(mMaxItems.widget(), &QSpinBox::valueChanged, q, &DirectoryServicesConfigurationPage::markAsChanged);
     glay->addWidget(mMaxItems.label(), row, 0);
     glay->addWidget(mMaxItems.widget(), row, 1);
 
@@ -472,41 +436,28 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
     CryptoConfigEntry *const entry = Kleo::getCryptoConfigEntry(mConfig, componentName, entryName);
     if (!entry) {
         if (showError == DoShowError) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-            KMessageBox::error(q, i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
-#else
             KMessageBox::error(
                 q->widget(),
                 i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1String(componentName), QLatin1String(entryName)));
-#endif
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList() != bool(multiplicity)) {
         if (showError == DoShowError) {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-            KMessageBox::error(q, i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4", QLatin1String(componentName), QLatin1String(entryName), entry->argType(), entry->isList()));
-#else
             KMessageBox::error(q->widget(),
                                i18n("Backend error: gpgconf has wrong type for %1/%2: %3 %4",
                                     QLatin1String(componentName),
                                     QLatin1String(entryName),
                                     entry->argType(),
                                     entry->isList()));
-#endif
         }
         return nullptr;
     }
     return entry;
 }
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QWidget *parent, const QVariantList &args)
-    : KCModule{parent, args}
-#else
 DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
     : KCModule(parent, data, args)
-#endif
     , d{new Private{this}}
 {
 }

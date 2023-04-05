@@ -147,11 +147,7 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
 
     if (*algo != Subkey::AlgoUnknown) {
         bool ok;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        *size = lowered.rightRef(lowered.size() - 3).toInt(&ok);
-#else
         *size = QStringView(lowered).right(lowered.size() - 3).toInt(&ok);
-#endif
         if (!ok) {
             qCWarning(KLEOPATRA_LOG) << "Could not extract size from: " << lowered;
             *size = 3072;

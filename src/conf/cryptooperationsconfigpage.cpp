@@ -18,21 +18,11 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QWidget *parent, const QVariantList &args)
-    : KCModule(parent, args)
-#else
 CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
     : KCModule(parent, data, args)
-#endif
 {
-#if KCMUTILS_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    auto lay = new QVBoxLayout(this);
-    mWidget = new CryptoOperationsConfigWidget(this);
-#else
     auto lay = new QVBoxLayout(widget());
     mWidget = new CryptoOperationsConfigWidget(widget());
-#endif
     lay->setContentsMargins(0, 0, 0, 0);
     lay->addWidget(mWidget);
     connect(mWidget, &CryptoOperationsConfigWidget::changed, this, &Kleo::Config::CryptoOperationsConfigurationPage::markAsChanged);

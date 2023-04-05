@@ -50,27 +50,15 @@ public:
     }
 
 protected:
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QVariant retrieveData(const QString &format, QVariant::Type type) const override
-#else
     QVariant retrieveData(const QString &format, QMetaType type) const override
-#endif
     {
         if (!m_source) {
             return QVariant();
         }
         // Doesn't work, is protected:
         // return m_source->retrieveData( format, type );
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        switch (type) {
-#else
         switch (type.id()) {
-#endif
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        case QVariant::String:
-#else
         case QMetaType::QString:
-#endif
             if (format == QLatin1String("text/plain")) {
                 return m_source->text();
             }
@@ -78,31 +66,18 @@ protected:
                 return m_source->html();
             }
             break;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        case QVariant::Color:
-#else
         case QMetaType::QColor:
-#endif
             if (format == QLatin1String("application/x-color")) {
                 return m_source->colorData();
             }
             break;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        case QVariant::Image:
-#else
         case QMetaType::QImage:
-#endif
             if (format == QLatin1String("application/x-qt-image")) {
                 return m_source->imageData();
             }
             break;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        case QVariant::List:
-        case QVariant::Url:
-#else
         case QMetaType::QVariantList:
         case QMetaType::QUrl:
-#endif
             if (format == QLatin1String("text/uri-list")) {
                 const QList<QUrl> urls = m_source->urls();
                 if (urls.size() == 1) {

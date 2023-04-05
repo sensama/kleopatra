@@ -18,10 +18,6 @@
 
 #include "accessibility/accessiblewidgetfactory.h"
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <Kdelibs4ConfigMigrator>
-#endif
-
 #include <commands/reloadkeyscommand.h>
 #include <commands/selftestcommand.h>
 
@@ -101,13 +97,6 @@ static void fillKeyCache(Kleo::UiServer *server)
 int main(int argc, char **argv)
 {
     startupTimer.start();
-
-    // Qt::AA_EnableHighDpiScaling must be set before QGuiApplication is constructed.
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#endif
-
     KleopatraApplication app(argc, argv);
 
     STARTUP_TIMING << "Application created";
@@ -185,13 +174,6 @@ int main(int argc, char **argv)
 
     parser.process(QApplication::arguments());
     aboutData.processCommandLine(&parser);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kleopatra"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kleopatrarc")
-                                         << QStringLiteral("libkleopatrarc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kleopatra.rc"));
-    migrate.migrate();
-#endif
     {
         const unsigned int threads = QThreadPool::globalInstance()->maxThreadCount();
         QThreadPool::globalInstance()->setMaxThreadCount(qMax(2U, threads));

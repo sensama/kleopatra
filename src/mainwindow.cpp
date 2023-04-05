@@ -786,11 +786,7 @@ void MainWindow::dropEvent(QDropEvent *e)
     }
 
     menu.addAction(i18n("Cancel"));
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    const QAction *const chosen = menu.exec(mapToGlobal(e->pos()));
-#else
     const QAction *const chosen = menu.exec(mapToGlobal(e->position().toPoint()));
-#endif
 
     if (!chosen) {
         return;

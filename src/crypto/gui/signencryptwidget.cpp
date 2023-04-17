@@ -28,6 +28,9 @@
 
 #include <Libkleo/Compliance>
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/ExpiryChecker>
+#include <Libkleo/ExpiryCheckerConfig>
+#include <Libkleo/ExpiryCheckerSettings>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeySelectionCombo>
@@ -39,6 +42,7 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <KMessageBox>
+#include <KMessageWidget>
 
 using namespace Kleo;
 using namespace Kleo::Dialogs;
@@ -103,6 +107,7 @@ public:
         : q{qq}
         , mModel{AbstractKeyListModel::createFlatKeyListModel(qq)}
         , mIsExclusive{sigEncExclusive}
+        , mExpiryChecker{new ExpiryChecker{ExpiryCheckerConfig{}.settings(), qq}}
     {
     }
 
@@ -112,10 +117,13 @@ public:
     CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
     void onProtocolChanged();
     void updateCheckBoxes();
+    void updateExpiryMessages(KMessageWidget *w, const GpgME::Key &key, ExpiryChecker::CheckFlags flags);
 
 public:
     KeySelectionCombo *mSigSelect = nullptr;
+    KMessageWidget *mSignKeyExpiryMessage = nullptr;
     KeySelectionCombo *mSelfSelect = nullptr;
+    KMessageWidget *mEncryptToSelfKeyExpiryMessage = nullptr;
     QVector<CertificateLineEdit *> mRecpWidgets;
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
     QVector<GpgME::Key> mAddedKeys;
@@ -129,6 +137,7 @@ public:
     QCheckBox *mEncSelfChk = nullptr;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
+    ExpiryChecker *mExpiryChecker;
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
@@ -145,45 +154,60 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
 
     /* The signature selection */
-    auto sigLay = new QHBoxLayout;
-    auto sigGrp = new QGroupBox(i18nc("@title:group", "Prove authenticity (sign)"));
-    d->mSigChk = new QCheckBox(i18n("Sign as:"));
+    {
+    auto sigGrp = new QGroupBox{i18nc("@title:group", "Prove authenticity (sign)"), this};
+    d->mSigChk = new QCheckBox{i18n("Sign as:"), this};
     d->mSigChk->setEnabled(haveSecretKeys);
     d->mSigChk->setChecked(haveSecretKeys);
 
-    d->mSigSelect = new KeySelectionCombo();
+    d->mSigSelect = new KeySelectionCombo{this};
     d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
-    sigLay->addWidget(d->mSigChk);
-    sigLay->addWidget(d->mSigSelect, 1);
-    sigGrp->setLayout(sigLay);
+    d->mSignKeyExpiryMessage = new KMessageWidget{this};
+
+    auto groupLayout = new QGridLayout{sigGrp};
+    groupLayout->setColumnStretch(1, 1);
+    groupLayout->addWidget(d->mSigChk, 0, 0);
+    groupLayout->addWidget(d->mSigSelect, 0, 1);
+    groupLayout->addWidget(d->mSignKeyExpiryMessage, 1, 1);
     lay->addWidget(sigGrp);
 
-    connect(d->mSigChk, &QCheckBox::toggled, d->mSigSelect, &QWidget::setEnabled);
-    connect(d->mSigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(d->mSigSelect, &KeySelectionCombo::currentKeyChanged,
-            this, &SignEncryptWidget::updateOp);
+    connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
+        d->mSigSelect->setEnabled(checked);
+        updateOp();
+        d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
+    });
+    connect(d->mSigSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
+        updateOp();
+        d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
+    });
+    }
 
     // Recipient selection
-    auto encBoxLay = new QVBoxLayout;
-    auto encBox = new QGroupBox(i18nc("@title:group", "Encrypt"));
-    encBox->setLayout(encBoxLay);
+    {
+    auto encBox = new QGroupBox{i18nc("@title:group", "Encrypt"), this};
+    auto encBoxLay = new QVBoxLayout{encBox};
     auto recipientGrid = new QGridLayout;
+    int row = 0;
 
     // Own key
-    d->mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
+    d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
     d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
     d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-    d->mSelfSelect = new KeySelectionCombo();
+    d->mSelfSelect = new KeySelectionCombo{this};
     d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
-    recipientGrid->addWidget(d->mEncSelfChk, 0, 0);
-    recipientGrid->addWidget(d->mSelfSelect, 0, 1);
+    d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
+    recipientGrid->addWidget(d->mEncSelfChk, row, 0);
+    recipientGrid->addWidget(d->mSelfSelect, row, 1);
+    row++;
+    recipientGrid->addWidget(d->mEncryptToSelfKeyExpiryMessage, row, 1);
 
     // Checkbox for other keys
-    d->mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
+    row++;
+    d->mEncOtherChk = new QCheckBox{i18n("Encrypt for others:"), this};
     d->mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
     d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
-    recipientGrid->addWidget(d->mEncOtherChk, 1, 0, Qt::AlignTop);
+    recipientGrid->addWidget(d->mEncOtherChk, row, 0, Qt::AlignTop);
     connect(d->mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
             for (CertificateLineEdit *edit : std::as_const(d->mRecpWidgets)) {
@@ -192,8 +216,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
         });
     d->mRecpLayout = new QVBoxLayout;
-    recipientGrid->addLayout(d->mRecpLayout, 1, 1);
-    recipientGrid->setRowStretch(2, 1);
+    recipientGrid->addLayout(d->mRecpLayout, row, 1);
+    recipientGrid->setRowStretch(row + 1, 1);
 
     // Scroll area for other keys
     auto recipientWidget = new QWidget;
@@ -224,11 +248,16 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     encBoxLay->addWidget(d->mSymmetric);
 
     // Connect it
-    connect(d->mEncSelfChk, &QCheckBox::toggled, d->mSelfSelect, &QWidget::setEnabled);
-    connect(d->mEncSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
+        d->mSelfSelect->setEnabled(checked);
+        updateOp();
+        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnKey);
+    });
+    connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
+        updateOp();
+        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnKey);
+    });
     connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged,
-            this, &SignEncryptWidget::updateOp);
 
     if (d->mIsExclusive) {
         connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
@@ -262,6 +291,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     d->mSigChk->setMinimumWidth(qMax(d->mEncOtherChk->width(), d->mEncSelfChk->width()));
 
     lay->addWidget(encBox);
+    }
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this]() { d->updateCheckBoxes(); });
@@ -518,6 +548,24 @@ bool SignEncryptWidget::isDeVsAndValid() const
     return true;
 }
 
+static QString expiryMessage(const ExpiryChecker::Expiration &expiration)
+{
+    switch (expiration.status) {
+    case ExpiryChecker::Expired:
+        return i18nc("@info", "This certificate is expired.");
+    case ExpiryChecker::ExpiresSoon: {
+        if (expiration.duration.count() == 0) {
+            return i18nc("@info", "This certificate expires today.");
+        } else {
+            return i18ncp("@info", "This certificate expires tomorrow.", "This certificate expires in %1 days.", expiration.duration.count());
+        }
+    }
+    case ExpiryChecker::NotNearExpiry:
+        ;
+    }
+    return {};
+}
+
 void SignEncryptWidget::updateOp()
 {
     const Key sigKey = signKey();
@@ -723,5 +771,16 @@ void SignEncryptWidget::Private::updateCheckBoxes()
         mEncSelfChk->setChecked(false);
         mEncOtherChk->setChecked(false);
         mSymmetric->setChecked(true);
+    }
+}
+
+void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::Key &key, ExpiryChecker::CheckFlags flags)
+{
+    if (key.isNull()) {
+        messageWidget->setVisible(false);
+    } else {
+        const auto result = mExpiryChecker->checkKey(key, flags);
+        messageWidget->setText(expiryMessage(result.expiration));
+        messageWidget->setVisible(result.expiration.status != ExpiryChecker::NotNearExpiry);
     }
 }

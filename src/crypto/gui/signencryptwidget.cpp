@@ -94,15 +94,51 @@ public:
 };
 }
 
+class SignEncryptWidget::Private
+{
+    SignEncryptWidget *const q;
+
+public:
+    explicit Private(SignEncryptWidget *qq, bool sigEncExclusive)
+        : q{qq}
+        , mModel{AbstractKeyListModel::createFlatKeyListModel(qq)}
+        , mIsExclusive{sigEncExclusive}
+    {
+    }
+
+    CertificateLineEdit* addRecipientWidget();
+    /* Inserts a new recipient widget after widget @p after or at the end
+     * if @p after is null. */
+    CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
+    void onProtocolChanged();
+    void updateCheckBoxes();
+
+public:
+    KeySelectionCombo *mSigSelect = nullptr;
+    KeySelectionCombo *mSelfSelect = nullptr;
+    QVector<CertificateLineEdit *> mRecpWidgets;
+    QVector<UnknownRecipientWidget *> mUnknownWidgets;
+    QVector<GpgME::Key> mAddedKeys;
+    QVector<KeyGroup> mAddedGroups;
+    QVBoxLayout *mRecpLayout = nullptr;
+    Operations mOp;
+    AbstractKeyListModel *mModel = nullptr;
+    QCheckBox *mSymmetric = nullptr;
+    QCheckBox *mSigChk = nullptr;
+    QCheckBox *mEncOtherChk = nullptr;
+    QCheckBox *mEncSelfChk = nullptr;
+    GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
+    const bool mIsExclusive;
+};
+
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
-    : QWidget(parent),
-      mModel(AbstractKeyListModel::createFlatKeyListModel(this)),
-      mIsExclusive(sigEncExclusive)
+    : QWidget{parent}
+    , d{new Private{this, sigEncExclusive}}
 {
     auto lay = new QVBoxLayout(this);
     lay->setContentsMargins(0, 0, 0, 0);
 
-    mModel->useKeyCache(true, KeyList::IncludeGroups);
+    d->mModel->useKeyCache(true, KeyList::IncludeGroups);
 
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
@@ -111,21 +147,21 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     /* The signature selection */
     auto sigLay = new QHBoxLayout;
     auto sigGrp = new QGroupBox(i18nc("@title:group", "Prove authenticity (sign)"));
-    mSigChk = new QCheckBox(i18n("Sign as:"));
-    mSigChk->setEnabled(haveSecretKeys);
-    mSigChk->setChecked(haveSecretKeys);
+    d->mSigChk = new QCheckBox(i18n("Sign as:"));
+    d->mSigChk->setEnabled(haveSecretKeys);
+    d->mSigChk->setChecked(haveSecretKeys);
 
-    mSigSelect = new KeySelectionCombo();
-    mSigSelect->setEnabled(mSigChk->isChecked());
+    d->mSigSelect = new KeySelectionCombo();
+    d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
-    sigLay->addWidget(mSigChk);
-    sigLay->addWidget(mSigSelect, 1);
+    sigLay->addWidget(d->mSigChk);
+    sigLay->addWidget(d->mSigSelect, 1);
     sigGrp->setLayout(sigLay);
     lay->addWidget(sigGrp);
 
-    connect(mSigChk, &QCheckBox::toggled, mSigSelect, &QWidget::setEnabled);
-    connect(mSigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSigSelect, &KeySelectionCombo::currentKeyChanged,
+    connect(d->mSigChk, &QCheckBox::toggled, d->mSigSelect, &QWidget::setEnabled);
+    connect(d->mSigChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(d->mSigSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
     // Recipient selection
@@ -135,28 +171,28 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     auto recipientGrid = new QGridLayout;
 
     // Own key
-    mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
-    mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
-    mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-    mSelfSelect = new KeySelectionCombo();
-    mSelfSelect->setEnabled(mEncSelfChk->isChecked());
-    recipientGrid->addWidget(mEncSelfChk, 0, 0);
-    recipientGrid->addWidget(mSelfSelect, 0, 1);
+    d->mEncSelfChk = new QCheckBox(i18n("Encrypt for me:"));
+    d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
+    d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+    d->mSelfSelect = new KeySelectionCombo();
+    d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
+    recipientGrid->addWidget(d->mEncSelfChk, 0, 0);
+    recipientGrid->addWidget(d->mSelfSelect, 0, 1);
 
     // Checkbox for other keys
-    mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
-    mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
-    mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
-    recipientGrid->addWidget(mEncOtherChk, 1, 0, Qt::AlignTop);
-    connect(mEncOtherChk, &QCheckBox::toggled, this,
+    d->mEncOtherChk = new QCheckBox(i18n("Encrypt for others:"));
+    d->mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
+    d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
+    recipientGrid->addWidget(d->mEncOtherChk, 1, 0, Qt::AlignTop);
+    connect(d->mEncOtherChk, &QCheckBox::toggled, this,
         [this](bool toggled) {
-            for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
+            for (CertificateLineEdit *edit : std::as_const(d->mRecpWidgets)) {
                 edit->setEnabled(toggled);
             }
             updateOp();
         });
-    mRecpLayout = new QVBoxLayout;
-    recipientGrid->addLayout(mRecpLayout, 1, 1);
+    d->mRecpLayout = new QVBoxLayout;
+    recipientGrid->addLayout(d->mRecpLayout, 1, 1);
     recipientGrid->setRowStretch(2, 1);
 
     // Scroll area for other keys
@@ -176,93 +212,95 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             bar->setValue(max);
         });
 
-    addRecipientWidget();
+    d->addRecipientWidget();
 
     // Checkbox for password
-    mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
-    mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
+    d->mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
+    d->mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                  "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                  "Anyone who has the password can read the data without any secret key. "
                                  "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
-    mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
-    encBoxLay->addWidget(mSymmetric);
+    d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
+    encBoxLay->addWidget(d->mSymmetric);
 
     // Connect it
-    connect(mEncSelfChk, &QCheckBox::toggled, mSelfSelect, &QWidget::setEnabled);
-    connect(mEncSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
-    connect(mSelfSelect, &KeySelectionCombo::currentKeyChanged,
+    connect(d->mEncSelfChk, &QCheckBox::toggled, d->mSelfSelect, &QWidget::setEnabled);
+    connect(d->mEncSelfChk, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+    connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged,
             this, &SignEncryptWidget::updateOp);
 
-    if (mIsExclusive) {
-        connect(mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
-            if (mCurrentProto != GpgME::CMS) {
+    if (d->mIsExclusive) {
+        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (d->mCurrentProto != GpgME::CMS) {
                 return;
             }
             if (value) {
-                mSigChk->setChecked(false);
+                d->mSigChk->setChecked(false);
             }
         });
-        connect(mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
-            if (mCurrentProto != GpgME::CMS) {
+        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (d->mCurrentProto != GpgME::CMS) {
                 return;
             }
             if (value) {
-                mSigChk->setChecked(false);
+                d->mSigChk->setChecked(false);
             }
         });
-        connect(mSigChk, &QCheckBox::toggled, this, [this](bool value) {
-            if (mCurrentProto != GpgME::CMS) {
+        connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool value) {
+            if (d->mCurrentProto != GpgME::CMS) {
                 return;
             }
             if (value) {
-                mEncSelfChk->setChecked(false);
-                mEncOtherChk->setChecked(false);
+                d->mEncSelfChk->setChecked(false);
+                d->mEncOtherChk->setChecked(false);
             }
         });
     }
 
-    // Ensure that the mSigChk is aligned togehter with the encryption check boxes.
-    mSigChk->setMinimumWidth(qMax(mEncOtherChk->width(), mEncSelfChk->width()));
+    // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
+    d->mSigChk->setMinimumWidth(qMax(d->mEncOtherChk->width(), d->mEncSelfChk->width()));
 
     lay->addWidget(encBox);
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            this, &SignEncryptWidget::updateCheckBoxes);
+            this, [this]() { d->updateCheckBoxes(); });
     connect(KleopatraApplication::instance(), &KleopatraApplication::configurationChanged,
-            this, &SignEncryptWidget::updateCheckBoxes);
+            this, [this]() { d->updateCheckBoxes(); });
 
     loadKeys();
-    onProtocolChanged();
+    d->onProtocolChanged();
     updateOp();
 }
 
+SignEncryptWidget::~SignEncryptWidget() = default;
+
 void SignEncryptWidget::setSignAsText(const QString &text)
 {
-    mSigChk->setText(text);
+    d->mSigChk->setText(text);
 }
 
 void SignEncryptWidget::setEncryptForMeText(const QString &text)
 {
-    mEncSelfChk->setText(text);
+    d->mEncSelfChk->setText(text);
 }
 
 void SignEncryptWidget::setEncryptForOthersText(const QString &text)
 {
-    mEncOtherChk->setText(text);
+    d->mEncOtherChk->setText(text);
 }
 
 void SignEncryptWidget::setEncryptWithPasswordText(const QString& text)
 {
-    mSymmetric->setText(text);
+    d->mSymmetric->setText(text);
 }
 
-CertificateLineEdit *SignEncryptWidget::addRecipientWidget()
+CertificateLineEdit *SignEncryptWidget::Private::addRecipientWidget()
 {
     return insertRecipientWidget(nullptr);
 }
 
-CertificateLineEdit *SignEncryptWidget::insertRecipientWidget(CertificateLineEdit *after)
+CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(CertificateLineEdit *after)
 {
     Q_ASSERT(!after || mRecpLayout->indexOf(after) != -1);
 
@@ -270,7 +308,7 @@ CertificateLineEdit *SignEncryptWidget::insertRecipientWidget(CertificateLineEdi
 
     auto certSel = new CertificateLineEdit(mModel,
                                            new EncryptCertificateFilter(mCurrentProto),
-                                           this);
+                                           q);
     certSel->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     certSel->setEnabled(mEncOtherChk->isChecked());
     mRecpWidgets.insert(index, certSel);
@@ -282,30 +320,30 @@ CertificateLineEdit *SignEncryptWidget::insertRecipientWidget(CertificateLineEdi
     mRecpLayout->insertWidget(index, certSel);
 
     connect(certSel, &CertificateLineEdit::keyChanged,
-            this, &SignEncryptWidget::recipientsChanged);
+            q, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::editingStarted,
-            this, &SignEncryptWidget::recipientsChanged);
+            q, &SignEncryptWidget::recipientsChanged);
     connect(certSel, &CertificateLineEdit::certificateSelectionRequested,
-            this, [this, certSel]() { certificateSelectionRequested(certSel); });
+            q, [this, certSel]() { q->certificateSelectionRequested(certSel); });
 
     return certSel;
 }
 
 void SignEncryptWidget::addRecipient(const Key &key)
 {
-    CertificateLineEdit *certSel = addRecipientWidget();
+    CertificateLineEdit *certSel = d->addRecipientWidget();
     if (!key.isNull()) {
         certSel->setKey(key);
-        mAddedKeys << key;
+        d->mAddedKeys << key;
     }
 }
 
 void SignEncryptWidget::addRecipient(const KeyGroup &group)
 {
-    CertificateLineEdit *certSel = addRecipientWidget();
+    CertificateLineEdit *certSel = d->addRecipientWidget();
     if (!group.isNull()) {
         certSel->setGroup(group);
-        mAddedGroups << group;
+        d->mAddedGroups << group;
     }
 }
 
@@ -316,7 +354,7 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
     dlg.setOptions(CertificateSelectionDialog::Options(
         CertificateSelectionDialog::MultiSelection |
         CertificateSelectionDialog::EncryptOnly |
-        CertificateSelectionDialog::optionsFromProtocol(mCurrentProto) |
+        CertificateSelectionDialog::optionsFromProtocol(d->mCurrentProto) |
         CertificateSelectionDialog::IncludeGroups));
 
     if (!certificateLineEdit->key().isNull()) {
@@ -341,7 +379,7 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
             if (!certWidget) {
                 certWidget = certificateLineEdit;
             } else {
-                certWidget = insertRecipientWidget(certWidget);
+                certWidget = d->insertRecipientWidget(certWidget);
             }
             certWidget->setKey(key);
         }
@@ -349,7 +387,7 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
             if (!certWidget) {
                 certWidget = certificateLineEdit;
             } else {
-                certWidget = insertRecipientWidget(certWidget);
+                certWidget = d->insertRecipientWidget(certWidget);
             }
             certWidget->setGroup(group);
         }
@@ -360,16 +398,16 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
 
 void SignEncryptWidget::clearAddedRecipients()
 {
-    for (auto w: std::as_const(mUnknownWidgets)) {
-        mRecpLayout->removeWidget(w);
+    for (auto w: std::as_const(d->mUnknownWidgets)) {
+        d->mRecpLayout->removeWidget(w);
         delete w;
     }
 
-    for (auto &key: std::as_const(mAddedKeys)) {
+    for (auto &key: std::as_const(d->mAddedKeys)) {
         removeRecipient(key);
     }
 
-    for (auto &group: std::as_const(mAddedGroups)) {
+    for (auto &group: std::as_const(d->mAddedGroups)) {
         removeRecipient(group);
     }
 }
@@ -377,18 +415,18 @@ void SignEncryptWidget::clearAddedRecipients()
 void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 {
     auto unknownWidget = new UnknownRecipientWidget(keyID);
-    mUnknownWidgets << unknownWidget;
+    d->mUnknownWidgets << unknownWidget;
 
-    if (mRecpLayout->count() > 0) {
-        auto lastWidget = mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
+    if (d->mRecpLayout->count() > 0) {
+        auto lastWidget = d->mRecpLayout->itemAt(d->mRecpLayout->count() - 1)->widget();
         setTabOrder(lastWidget, unknownWidget);
     }
-    mRecpLayout->addWidget(unknownWidget);
+    d->mRecpLayout->addWidget(unknownWidget);
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
             this, [this] () {
         // Check if any unknown recipient can now be found.
-        for (auto w: mUnknownWidgets) {
+        for (auto w: d->mUnknownWidgets) {
             auto key = KeyCache::instance()->findByKeyIDOrFingerprint(w->keyID().toLatin1().constData());
             if (key.isNull()) {
                 std::vector<std::string> subids;
@@ -402,8 +440,8 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
             }
             // Key is now available replace by line edit.
             qCDebug(KLEOPATRA_LOG) << "Removing widget for keyid: " << w->keyID();
-            mRecpLayout->removeWidget(w);
-            mUnknownWidgets.removeAll(w);
+            d->mRecpLayout->removeWidget(w);
+            d->mUnknownWidgets.removeAll(w);
             delete w;
             addRecipient(key);
         }
@@ -413,26 +451,26 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
 void SignEncryptWidget::recipientsChanged()
 {
     const bool hasEmptyRecpWidget =
-        std::any_of(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+        std::any_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
                     [](auto w) { return w->isEmpty(); });
     if (!hasEmptyRecpWidget) {
-        addRecipientWidget();
+        d->addRecipientWidget();
     }
     updateOp();
 }
 
 Key SignEncryptWidget::signKey() const
 {
-    if (mSigSelect->isEnabled()) {
-        return mSigSelect->currentKey();
+    if (d->mSigSelect->isEnabled()) {
+        return d->mSigSelect->currentKey();
     }
     return Key();
 }
 
 Key SignEncryptWidget::selfKey() const
 {
-    if (mSelfSelect->isEnabled()) {
-        return mSelfSelect->currentKey();
+    if (d->mSelfSelect->isEnabled()) {
+        return d->mSelfSelect->currentKey();
     }
     return Key();
 }
@@ -440,7 +478,7 @@ Key SignEncryptWidget::selfKey() const
 std::vector<Key> SignEncryptWidget::recipients() const
 {
     std::vector<Key> ret;
-    for (const CertificateLineEdit *w : std::as_const(mRecpWidgets)) {
+    for (const CertificateLineEdit *w : std::as_const(d->mRecpWidgets)) {
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
             break;
@@ -492,14 +530,14 @@ void SignEncryptWidget::updateOp()
     if (!recp.empty() || encryptSymmetric()) {
         op |= Encrypt;
     }
-    mOp = op;
-    Q_EMIT operationChanged(mOp);
+    d->mOp = op;
+    Q_EMIT operationChanged(d->mOp);
     Q_EMIT keysChanged();
 }
 
 SignEncryptWidget::Operations SignEncryptWidget::currentOp() const
 {
-    return mOp;
+    return d->mOp;
 }
 
 namespace
@@ -517,25 +555,25 @@ void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
         return;
     }
     const int emptyEdits =
-        std::count_if(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+        std::count_if(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
                       [](auto w) { return w->isEmpty(); });
     if (emptyEdits > 1) {
         if (recipientWidgetHasFocus(w)) {
-            const int index = mRecpLayout->indexOf(w);
-            const auto focusWidget = (index < mRecpLayout->count() - 1) ?
-                mRecpLayout->itemAt(index + 1)->widget() :
-                mRecpLayout->itemAt(mRecpLayout->count() - 2)->widget();
+            const int index = d->mRecpLayout->indexOf(w);
+            const auto focusWidget = (index < d->mRecpLayout->count() - 1) ?
+                d->mRecpLayout->itemAt(index + 1)->widget() :
+                d->mRecpLayout->itemAt(d->mRecpLayout->count() - 2)->widget();
             focusWidget->setFocus();
         }
-        mRecpLayout->removeWidget(w);
-        mRecpWidgets.removeAll(w);
+        d->mRecpLayout->removeWidget(w);
+        d->mRecpWidgets.removeAll(w);
         w->deleteLater();
     }
 }
 
 void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 {
-    for (CertificateLineEdit *edit: std::as_const(mRecpWidgets)) {
+    for (CertificateLineEdit *edit: std::as_const(d->mRecpWidgets)) {
         const auto editKey = edit->key();
         if (key.isNull() && editKey.isNull()) {
             recpRemovalRequested(edit);
@@ -552,7 +590,7 @@ void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 
 void SignEncryptWidget::removeRecipient(const KeyGroup &group)
 {
-    for (CertificateLineEdit *edit: std::as_const(mRecpWidgets)) {
+    for (CertificateLineEdit *edit: std::as_const(d->mRecpWidgets)) {
         const auto editGroup = edit->group();
         if (group.isNull() && editGroup.isNull()) {
             recpRemovalRequested(edit);
@@ -567,22 +605,22 @@ void SignEncryptWidget::removeRecipient(const KeyGroup &group)
 
 bool SignEncryptWidget::encryptSymmetric() const
 {
-    return mSymmetric->isChecked();
+    return d->mSymmetric->isChecked();
 }
 
 void SignEncryptWidget::loadKeys()
 {
     KConfigGroup keys(KSharedConfig::openConfig(), "SignEncryptKeys");
     auto cache = KeyCache::instance();
-    mSigSelect->setDefaultKey(keys.readEntry("SigningKey", QString()));
-    mSelfSelect->setDefaultKey(keys.readEntry("EncryptKey", QString()));
+    d->mSigSelect->setDefaultKey(keys.readEntry("SigningKey", QString()));
+    d->mSelfSelect->setDefaultKey(keys.readEntry("EncryptKey", QString()));
 }
 
 void SignEncryptWidget::saveOwnKeys() const
 {
     KConfigGroup keys(KSharedConfig::openConfig(), "SignEncryptKeys");
-    auto sigKey = mSigSelect->currentKey();
-    auto encKey = mSelfSelect->currentKey();
+    auto sigKey = d->mSigSelect->currentKey();
+    auto encKey = d->mSelfSelect->currentKey();
     if (!sigKey.isNull()) {
         keys.writeEntry("SigningKey", sigKey.primaryFingerprint());
     }
@@ -593,7 +631,7 @@ void SignEncryptWidget::saveOwnKeys() const
 
 void SignEncryptWidget::setSigningChecked(bool value)
 {
-    mSigChk->setChecked(value && !KeyCache::instance()->secretKeys().empty());
+    d->mSigChk->setChecked(value && !KeyCache::instance()->secretKeys().empty());
 }
 
 void SignEncryptWidget::setEncryptionChecked(bool checked)
@@ -602,26 +640,26 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
         const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
-        mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
-        mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
+        d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
+        d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
     } else {
-        mEncSelfChk->setChecked(false);
-        mEncOtherChk->setChecked(false);
-        mSymmetric->setChecked(false);
+        d->mEncSelfChk->setChecked(false);
+        d->mEncOtherChk->setChecked(false);
+        d->mSymmetric->setChecked(false);
     }
 }
 
 void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 {
-    if (mCurrentProto == proto) {
+    if (d->mCurrentProto == proto) {
         return;
     }
-    mCurrentProto = proto;
-    onProtocolChanged();
+    d->mCurrentProto = proto;
+    d->onProtocolChanged();
 }
 
-void Kleo::SignEncryptWidget::onProtocolChanged()
+void Kleo::SignEncryptWidget::Private::onProtocolChanged()
 {
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(mCurrentProto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(mCurrentProto)));
@@ -645,7 +683,7 @@ void Kleo::SignEncryptWidget::onProtocolChanged()
 bool SignEncryptWidget::isComplete() const
 {
     return currentOp() != NoOperation
-        && std::all_of(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+        && std::all_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
                         [](auto w) { return !w->isEnabled() || w->hasAcceptableInput(); });
 }
 
@@ -653,7 +691,7 @@ bool SignEncryptWidget::validate()
 {
     CertificateLineEdit *firstUnresolvedRecipient = nullptr;
     QStringList unresolvedRecipients;
-    for (const auto edit: std::as_const(mRecpWidgets)) {
+    for (const auto edit: std::as_const(d->mRecpWidgets)) {
         if (edit->isEnabled() && !edit->hasAcceptableInput()) {
             if (!firstUnresolvedRecipient) {
                 firstUnresolvedRecipient = edit;
@@ -673,7 +711,7 @@ bool SignEncryptWidget::validate()
     return unresolvedRecipients.isEmpty();
 }
 
-void SignEncryptWidget::updateCheckBoxes()
+void SignEncryptWidget::Private::updateCheckBoxes()
 {
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();

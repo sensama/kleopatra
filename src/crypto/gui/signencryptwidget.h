@@ -11,19 +11,19 @@
 #include <QWidget>
 #include <QVector>
 
-#include <Libkleo/KeyGroup>
+#include <gpgme++/global.h>
 
-#include <gpgme++/key.h>
+#include <memory>
 
-class QCheckBox;
-class QVBoxLayout;
+namespace GpgME
+{
+class Key;
+}
 
 namespace Kleo
 {
 class CertificateLineEdit;
-class KeySelectionCombo;
-class AbstractKeyListModel;
-class UnknownRecipientWidget;
+class KeyGroup;
 
 class SignEncryptWidget: public QWidget
 {
@@ -40,6 +40,8 @@ public:
     /** If cmsSigEncExclusive is true CMS operations can be
      * done only either as sign or as encrypt */
     explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
+
+    ~SignEncryptWidget() override;
 
     /** Overwrite default text with custom text, e.g. with a character marked
      *  as shortcut key. */
@@ -128,29 +130,8 @@ Q_SIGNALS:
     void keysChanged();
 
 private:
-    CertificateLineEdit* addRecipientWidget();
-    /** Inserts a new recipient widget after widget @p after or at the end
-     *  if @p after is null. */
-    CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
-    void onProtocolChanged();
-    void updateCheckBoxes();
-
-private:
-    KeySelectionCombo *mSigSelect = nullptr;
-    KeySelectionCombo *mSelfSelect = nullptr;
-    QVector<CertificateLineEdit *> mRecpWidgets;
-    QVector<UnknownRecipientWidget *> mUnknownWidgets;
-    QVector<GpgME::Key> mAddedKeys;
-    QVector<KeyGroup> mAddedGroups;
-    QVBoxLayout *mRecpLayout = nullptr;
-    Operations mOp;
-    AbstractKeyListModel *mModel = nullptr;
-    QCheckBox *mSymmetric = nullptr;
-    QCheckBox *mSigChk = nullptr;
-    QCheckBox *mEncOtherChk = nullptr;
-    QCheckBox *mEncSelfChk = nullptr;
-    GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
-    const bool mIsExclusive;
+    class Private;
+    const std::unique_ptr<Private> d;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SignEncryptWidget::Operations)

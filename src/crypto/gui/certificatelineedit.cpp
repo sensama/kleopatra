@@ -160,6 +160,7 @@ private:
 
 public:
     Status mStatus = Status::Empty;
+    bool mEditingInProgress = false;
     GpgME::Key mKey;
     KeyGroup mGroup;
 
@@ -181,7 +182,6 @@ private:
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
     std::shared_ptr<KeyFilter> mFilter;
-    bool mEditingInProgress = false;
     QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
     QPointer<QGpgME::Job> mLocateJob;
@@ -687,6 +687,11 @@ void CertificateLineEdit::setGroup(const KeyGroup &group)
 bool CertificateLineEdit::isEmpty() const
 {
     return d->mStatus == Private::Status::Empty;
+}
+
+bool CertificateLineEdit::isEditingInProgress() const
+{
+    return d->mEditingInProgress;
 }
 
 bool CertificateLineEdit::hasAcceptableInput() const

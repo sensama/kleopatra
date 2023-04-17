@@ -18,6 +18,7 @@
 #include "unknownrecipientwidget.h"
 
 #include "dialogs/certificateselectiondialog.h"
+#include "utils/gui-helper.h"
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -103,6 +104,11 @@ class SignEncryptWidget::Private
     SignEncryptWidget *const q;
 
 public:
+    struct RecipientWidgets {
+        CertificateLineEdit *edit;
+        KMessageWidget *expiryMessage;
+    };
+
     explicit Private(SignEncryptWidget *qq, bool sigEncExclusive)
         : q{qq}
         , mModel{AbstractKeyListModel::createFlatKeyListModel(qq)}
@@ -115,6 +121,7 @@ public:
     /* Inserts a new recipient widget after widget @p after or at the end
      * if @p after is null. */
     CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
+    void recpRemovalRequested(const RecipientWidgets &recipient);
     void onProtocolChanged();
     void updateCheckBoxes();
     void updateExpiryMessages(KMessageWidget *w, const GpgME::Key &key, ExpiryChecker::CheckFlags flags);
@@ -124,7 +131,7 @@ public:
     KMessageWidget *mSignKeyExpiryMessage = nullptr;
     KeySelectionCombo *mSelfSelect = nullptr;
     KMessageWidget *mEncryptToSelfKeyExpiryMessage = nullptr;
-    QVector<CertificateLineEdit *> mRecpWidgets;
+    std::vector<RecipientWidgets> mRecpWidgets;
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
     QVector<GpgME::Key> mAddedKeys;
     QVector<KeyGroup> mAddedGroups;
@@ -209,9 +216,10 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
     recipientGrid->addWidget(d->mEncOtherChk, row, 0, Qt::AlignTop);
     connect(d->mEncOtherChk, &QCheckBox::toggled, this,
-        [this](bool toggled) {
-            for (CertificateLineEdit *edit : std::as_const(d->mRecpWidgets)) {
-                edit->setEnabled(toggled);
+        [this](bool checked) {
+            for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
+                recipient.edit->setEnabled(checked);
+                d->updateExpiryMessages(recipient.expiryMessage, checked ? recipient.edit->key() : Key{}, ExpiryChecker::NoCheckFlags);
             }
             updateOp();
         });
@@ -334,29 +342,37 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
 {
     Q_ASSERT(!after || mRecpLayout->indexOf(after) != -1);
 
-    const auto index = after ? mRecpLayout->indexOf(after) + 1 : mRecpLayout->count();
+    const auto index = after ? mRecpLayout->indexOf(after) + 2 : mRecpLayout->count();
 
-    auto certSel = new CertificateLineEdit(mModel,
-                                           new EncryptCertificateFilter(mCurrentProto),
-                                           q);
-    certSel->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
-    certSel->setEnabled(mEncOtherChk->isChecked());
-    mRecpWidgets.insert(index, certSel);
+    const RecipientWidgets recipient{
+        new CertificateLineEdit{mModel, new EncryptCertificateFilter{mCurrentProto}, q},
+        new KMessageWidget{q}
+    };
+    recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
+    recipient.edit->setEnabled(mEncOtherChk->isChecked());
+    recipient.expiryMessage->setVisible(false);
+    if (static_cast<unsigned>(index / 2) < mRecpWidgets.size()) {
+        mRecpWidgets.insert(mRecpWidgets.begin() + index / 2, recipient);
+    } else {
+        mRecpWidgets.push_back(recipient);
+    }
 
     if (mRecpLayout->count() > 0) {
         auto prevWidget = after ? after : mRecpLayout->itemAt(mRecpLayout->count() - 1)->widget();
-        setTabOrder(prevWidget, certSel);
+        Kleo::forceSetTabOrder(prevWidget, recipient.edit);
+        Kleo::forceSetTabOrder(recipient.edit, recipient.expiryMessage);
     }
-    mRecpLayout->insertWidget(index, certSel);
+    mRecpLayout->insertWidget(index, recipient.edit);
+    mRecpLayout->insertWidget(index + 1, recipient.expiryMessage);
 
-    connect(certSel, &CertificateLineEdit::keyChanged,
+    connect(recipient.edit, &CertificateLineEdit::keyChanged,
             q, &SignEncryptWidget::recipientsChanged);
-    connect(certSel, &CertificateLineEdit::editingStarted,
+    connect(recipient.edit, &CertificateLineEdit::editingStarted,
             q, &SignEncryptWidget::recipientsChanged);
-    connect(certSel, &CertificateLineEdit::certificateSelectionRequested,
-            q, [this, certSel]() { q->certificateSelectionRequested(certSel); });
+    connect(recipient.edit, &CertificateLineEdit::certificateSelectionRequested,
+            q, [this, recipient]() { q->certificateSelectionRequested(recipient.edit); });
 
-    return certSel;
+    return recipient.edit;
 }
 
 void SignEncryptWidget::addRecipient(const Key &key)
@@ -482,11 +498,16 @@ void SignEncryptWidget::recipientsChanged()
 {
     const bool hasEmptyRecpWidget =
         std::any_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
-                    [](auto w) { return w->isEmpty(); });
+                    [](auto w) { return w.edit->isEmpty(); });
     if (!hasEmptyRecpWidget) {
         d->addRecipientWidget();
     }
     updateOp();
+    for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
+        if (!recipient.edit->isEditingInProgress()) {
+            d->updateExpiryMessages(recipient.expiryMessage, d->mEncOtherChk->isChecked() ? recipient.edit->key() : Key{}, ExpiryChecker::NoCheckFlags);
+        }
+    }
 }
 
 Key SignEncryptWidget::signKey() const
@@ -508,7 +529,8 @@ Key SignEncryptWidget::selfKey() const
 std::vector<Key> SignEncryptWidget::recipients() const
 {
     std::vector<Key> ret;
-    for (const CertificateLineEdit *w : std::as_const(d->mRecpWidgets)) {
+    for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
+        const auto *const w = recipient.edit;
         if (!w->isEnabled()) {
             // If one is disabled, all are disabled.
             break;
@@ -590,47 +612,52 @@ SignEncryptWidget::Operations SignEncryptWidget::currentOp() const
 
 namespace
 {
-bool recipientWidgetHasFocus(CertificateLineEdit *w)
+bool recipientWidgetHasFocus(QWidget *w)
 {
     // check if w (or its focus proxy) or a child widget of w has focus
     return w->hasFocus() || w->isAncestorOf(qApp->focusWidget());
 }
 }
 
-void SignEncryptWidget::recpRemovalRequested(CertificateLineEdit *w)
+void SignEncryptWidget::Private::recpRemovalRequested(const RecipientWidgets &recipient)
 {
-    if (!w) {
+    if (!recipient.edit) {
         return;
     }
     const int emptyEdits =
-        std::count_if(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
-                      [](auto w) { return w->isEmpty(); });
+        std::count_if(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets),
+                      [](const auto &r) { return r.edit->isEmpty(); });
     if (emptyEdits > 1) {
-        if (recipientWidgetHasFocus(w)) {
-            const int index = d->mRecpLayout->indexOf(w);
-            const auto focusWidget = (index < d->mRecpLayout->count() - 1) ?
-                d->mRecpLayout->itemAt(index + 1)->widget() :
-                d->mRecpLayout->itemAt(d->mRecpLayout->count() - 2)->widget();
+        if (recipientWidgetHasFocus(recipient.edit) || recipientWidgetHasFocus(recipient.expiryMessage)) {
+            const int index = mRecpLayout->indexOf(recipient.edit);
+            const auto focusWidget = (index < mRecpLayout->count() - 2) ?
+                mRecpLayout->itemAt(index + 2)->widget() :
+                mRecpLayout->itemAt(mRecpLayout->count() - 3)->widget();
             focusWidget->setFocus();
         }
-        d->mRecpLayout->removeWidget(w);
-        d->mRecpWidgets.removeAll(w);
-        w->deleteLater();
+        mRecpLayout->removeWidget(recipient.expiryMessage);
+        mRecpLayout->removeWidget(recipient.edit);
+        const auto it = std::find_if(std::begin(mRecpWidgets), std::end(mRecpWidgets), [recipient](const auto &r) {
+            return r.edit == recipient.edit;
+        });
+        mRecpWidgets.erase(it);
+        recipient.expiryMessage->deleteLater();
+        recipient.edit->deleteLater();
     }
 }
 
 void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 {
-    for (CertificateLineEdit *edit: std::as_const(d->mRecpWidgets)) {
-        const auto editKey = edit->key();
+    for (const auto &recipient: std::as_const(d->mRecpWidgets)) {
+        const auto editKey = recipient.edit->key();
         if (key.isNull() && editKey.isNull()) {
-            recpRemovalRequested(edit);
+            d->recpRemovalRequested(recipient);
             return;
         }
         if (editKey.primaryFingerprint() &&
             key.primaryFingerprint() &&
             !strcmp(editKey.primaryFingerprint(), key.primaryFingerprint())) {
-            recpRemovalRequested(edit);
+            d->recpRemovalRequested(recipient);
             return;
         }
     }
@@ -638,14 +665,14 @@ void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
 
 void SignEncryptWidget::removeRecipient(const KeyGroup &group)
 {
-    for (CertificateLineEdit *edit: std::as_const(d->mRecpWidgets)) {
-        const auto editGroup = edit->group();
+    for (const auto &recipient: std::as_const(d->mRecpWidgets)) {
+        const auto editGroup = recipient.edit->group();
         if (group.isNull() && editGroup.isNull()) {
-            recpRemovalRequested(edit);
+            d->recpRemovalRequested(recipient);
             return;
         }
         if (editGroup.name() == group.name()) {
-            recpRemovalRequested(edit);
+            d->recpRemovalRequested(recipient);
             return;
         }
     }
@@ -712,8 +739,8 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(mCurrentProto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(mCurrentProto)));
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(mCurrentProto));
-    for (CertificateLineEdit *edit : std::as_const(mRecpWidgets)) {
-        edit->setKeyFilter(encFilter);
+    for (const auto &recipient : std::as_const(mRecpWidgets)) {
+        recipient.edit->setKeyFilter(encFilter);
     }
 
     if (mIsExclusive) {
@@ -732,19 +759,19 @@ bool SignEncryptWidget::isComplete() const
 {
     return currentOp() != NoOperation
         && std::all_of(std::cbegin(d->mRecpWidgets), std::cend(d->mRecpWidgets),
-                        [](auto w) { return !w->isEnabled() || w->hasAcceptableInput(); });
+                        [](const auto &r) { return !r.edit->isEnabled() || r.edit->hasAcceptableInput(); });
 }
 
 bool SignEncryptWidget::validate()
 {
     CertificateLineEdit *firstUnresolvedRecipient = nullptr;
     QStringList unresolvedRecipients;
-    for (const auto edit: std::as_const(d->mRecpWidgets)) {
-        if (edit->isEnabled() && !edit->hasAcceptableInput()) {
+    for (const auto &recipient: std::as_const(d->mRecpWidgets)) {
+        if (recipient.edit->isEnabled() && !recipient.edit->hasAcceptableInput()) {
             if (!firstUnresolvedRecipient) {
-                firstUnresolvedRecipient = edit;
+                firstUnresolvedRecipient = recipient.edit;
             }
-            unresolvedRecipients.push_back(edit->text().toHtmlEscaped());
+            unresolvedRecipients.push_back(recipient.edit->text().toHtmlEscaped());
         }
     }
     if (!unresolvedRecipients.isEmpty()) {

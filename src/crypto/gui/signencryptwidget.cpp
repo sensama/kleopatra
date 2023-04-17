@@ -803,6 +803,7 @@ void SignEncryptWidget::Private::updateCheckBoxes()
 
 void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::Key &key, ExpiryChecker::CheckFlags flags)
 {
+    messageWidget->setCloseButtonVisible(false);
     if (key.isNull()) {
         messageWidget->setVisible(false);
     } else {

@@ -219,7 +219,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         [this](bool checked) {
             for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
                 recipient.edit->setEnabled(checked);
-                d->updateExpiryMessages(recipient.expiryMessage, checked ? recipient.edit->key() : Key{}, ExpiryChecker::NoCheckFlags);
+                d->updateExpiryMessages(recipient.expiryMessage, checked ? recipient.edit->key() : Key{}, ExpiryChecker::EncryptionKey);
             }
             updateOp();
         });
@@ -259,11 +259,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
         d->mSelfSelect->setEnabled(checked);
         updateOp();
-        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnKey);
+        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
     });
     connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
         updateOp();
-        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnKey);
+        d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
     });
     connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
 
@@ -505,7 +505,7 @@ void SignEncryptWidget::recipientsChanged()
     updateOp();
     for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
         if (!recipient.edit->isEditingInProgress()) {
-            d->updateExpiryMessages(recipient.expiryMessage, d->mEncOtherChk->isChecked() ? recipient.edit->key() : Key{}, ExpiryChecker::NoCheckFlags);
+            d->updateExpiryMessages(recipient.expiryMessage, d->mEncOtherChk->isChecked() ? recipient.edit->key() : Key{}, ExpiryChecker::EncryptionKey);
         }
     }
 }

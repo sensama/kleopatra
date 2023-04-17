@@ -30,11 +30,12 @@ class SignEncryptWidget: public QWidget
     Q_OBJECT
 public:
     enum Operation {
-        NoOperation,
-        Sign,
-        Encrypt,
-        SignAndEncrypt
+        NoOperation = 0x00,
+        Sign = 0x01,
+        Encrypt = 0x02,
+        SignAndEncrypt = Sign | Encrypt
     };
+    Q_DECLARE_FLAGS(Operations, Operation)
 
     /** If cmsSigEncExclusive is true CMS operations can be
      * done only either as sign or as encrypt */
@@ -60,7 +61,7 @@ public:
     GpgME::Key selfKey() const;
 
     /** Returns the operation based on the current selection. */
-    Operation currentOp() const;
+    Operations currentOp() const;
 
     /** Whether or not symmetric encryption should also be used. */
     bool encryptSymmetric() const;
@@ -121,7 +122,7 @@ Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation
      * with that selection. e.g. "Sign" or "Sign/Encrypt".
      * If no crypto operation is selected this returns a null string. */
-    void operationChanged(Operation op);
+    void operationChanged(Operations op);
 
     /* Emitted when the certificate selection might be changed. */
     void keysChanged();
@@ -142,7 +143,7 @@ private:
     QVector<GpgME::Key> mAddedKeys;
     QVector<KeyGroup> mAddedGroups;
     QVBoxLayout *mRecpLayout = nullptr;
-    Operation mOp;
+    Operations mOp;
     AbstractKeyListModel *mModel = nullptr;
     QCheckBox *mSymmetric = nullptr;
     QCheckBox *mSigChk = nullptr;
@@ -151,4 +152,7 @@ private:
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(SignEncryptWidget::Operations)
+
 } // namespace Kleo

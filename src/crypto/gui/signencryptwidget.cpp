@@ -485,20 +485,19 @@ void SignEncryptWidget::updateOp()
     const Key sigKey = signKey();
     const std::vector<Key> recp = recipients();
 
-    if (!sigKey.isNull() && (!recp.empty() || encryptSymmetric())) {
-        mOp = SignAndEncrypt;
-    } else if (!recp.empty() || encryptSymmetric()) {
-        mOp = Encrypt;
-    } else if (!sigKey.isNull()) {
-        mOp = Sign;
-    } else {
-        mOp = NoOperation;
+    Operations op = NoOperation;
+    if (!sigKey.isNull()) {
+        op |= Sign;
     }
+    if (!recp.empty() || encryptSymmetric()) {
+        op |= Encrypt;
+    }
+    mOp = op;
     Q_EMIT operationChanged(mOp);
     Q_EMIT keysChanged();
 }
 
-SignEncryptWidget::Operation SignEncryptWidget::currentOp() const
+SignEncryptWidget::Operations SignEncryptWidget::currentOp() const
 {
     return mOp;
 }

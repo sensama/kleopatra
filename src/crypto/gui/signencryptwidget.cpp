@@ -570,18 +570,30 @@ bool SignEncryptWidget::isDeVsAndValid() const
     return true;
 }
 
-static QString expiryMessage(const ExpiryChecker::Expiration &expiration)
+static QString expiryMessage(const ExpiryChecker::Result &result)
 {
-    switch (expiration.status) {
+    if (result.expiration.certificate.isNull()) {
+        return {};
+    }
+    switch (result.expiration.status) {
     case ExpiryChecker::Expired:
         return i18nc("@info", "This certificate is expired.");
     case ExpiryChecker::ExpiresSoon: {
-        if (expiration.duration.count() == 0) {
+        if (result.expiration.duration.count() == 0) {
             return i18nc("@info", "This certificate expires today.");
         } else {
-            return i18ncp("@info", "This certificate expires tomorrow.", "This certificate expires in %1 days.", expiration.duration.count());
+            return i18ncp("@info", "This certificate expires tomorrow.", "This certificate expires in %1 days.", result.expiration.duration.count());
         }
     }
+    case ExpiryChecker::NoSuitableSubkey:
+        if (result.checkFlags & ExpiryChecker::EncryptionKey) {
+            return i18nc("@info", "This certificate cannot be used for encryption.");
+        } else {
+            return i18nc("@info", "This certificate cannot be used for signing.");
+        }
+    case ExpiryChecker::InvalidKey:
+    case ExpiryChecker::InvalidCheckFlags:
+        break; // wrong usage of ExpiryChecker; can be ignored
     case ExpiryChecker::NotNearExpiry:
         ;
     }
@@ -808,7 +820,8 @@ void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWid
         messageWidget->setVisible(false);
     } else {
         const auto result = mExpiryChecker->checkKey(key, flags);
-        messageWidget->setText(expiryMessage(result.expiration));
-        messageWidget->setVisible(result.expiration.status != ExpiryChecker::NotNearExpiry);
+        const auto message = expiryMessage(result);
+        messageWidget->setText(message);
+        messageWidget->setVisible(!message.isEmpty());
     }
 }

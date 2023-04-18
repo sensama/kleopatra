@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -5544,45 +5544,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "सूचना"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgid "Sign as:"
 msgstr "साइनिङका लागि मात्र"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "गुप्तिकरणका लागि मात्र"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5592,20 +5592,43 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "वर्णन"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "CA प्रमाणपत्र मेट्दैछ"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "CA प्रमाणपत्र मेट्दैछ"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "Certificate Download Failed"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
+msgstr[1] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -13026,11 +13049,6 @@ msgstr ""
 #~ msgstr "खारेज गर्नुहोस्"
 
 #, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "certificate expired"
-#~ msgstr "CA प्रमाणपत्र मेट्दैछ"
-
-#, fuzzy
 #~| msgid "New signatures:"
 #~ msgid "Bad signature by unknown certificate %1: %2"
 #~ msgstr "नयाँ हस्ताक्षर:"
@@ -13054,11 +13072,6 @@ msgstr ""
 #~| msgid "Fetching certificate from server..."
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "सर्भरबाट प्रमाणपत्र तान्दैछ..."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 
 #, fuzzy
 #~| msgid "Fetching certificate from server..."

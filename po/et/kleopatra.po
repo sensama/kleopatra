@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -5587,43 +5587,43 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Siin näeb krüptotoimingute olekut ja edenemist."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Autentsuse tõendamine (allkiri)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Allkirjastaja:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Krüptimine"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Krüptimine endale:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Krüptimine teistele:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "Krüptimine parooliga. Andmeid saavad lugeda kõik, kellega parooli jagad."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, fuzzy, kde-format
 #| msgctxt "Tooltip information for symetric encryption"
 #| msgid ""
@@ -5643,21 +5643,44 @@ msgstr ""
 "<b>vähem turvaline</b> kui avalikku krüptovõtit isegi siis, kui valid välja "
 "väga tugeva parooli."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Saaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Allkirjastamise sertifikaat on aegunud"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "sertifikaat on aegunud"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "See sertifikaat on sinu võtmehoidjas uus."
+msgstr[1] "See sertifikaat on sinu võtmehoidjas uus."
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "'%1' võtit ei leitud"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid "Failed to find recipient"
 msgid "Failed to find some keys"
@@ -13888,9 +13911,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "hea"
 
-#~ msgid "certificate expired"
-#~ msgstr "sertifikaat on aegunud"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "halb"
@@ -13928,9 +13948,6 @@ msgstr ""
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Sertifikaadi import katkestati."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "See sertifikaat on sinu võtmehoidjas uus."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "Importimisel lisati sertifikaadile uued kasutaja ID-d."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2008-11-24 22:51+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -5503,44 +5503,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Maklumat Sijil"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgid "Sign as:"
 msgstr "Untuk &tandatangan sahaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Untuk &penyulitan sahaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "Gagal Menghapuskan Sijil"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "Gagal Menghapuskan Sijil"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5550,20 +5550,43 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Huraian"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Menghapuskan sijil PBP"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Menghapuskan sijil PBP"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "Certificate Download Failed"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Muat Turun Sijil Gagal"
+msgstr[1] "Muat Turun Sijil Gagal"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Tidak dapat menjana sijil: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Failed to find some keys"
@@ -12864,11 +12887,6 @@ msgstr ""
 #~ msgstr "Batalkan"
 
 #, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "certificate expired"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
 #~| msgid "Could not generate certificate: %1"
 #~ msgid "Bad signature by an unknown certificate: %1"
 #~ msgstr "Tidak dapat menjana sijil: %1"
@@ -12887,11 +12905,6 @@ msgstr ""
 #~| msgid "Fetching certificate from server..."
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Mengutip sijil dari pelayan..."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Muat Turun Sijil Gagal"
 
 #, fuzzy
 #~| msgid "Fetching certificate from server..."

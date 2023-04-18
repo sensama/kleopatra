@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2012-12-22 11:50+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -5162,42 +5162,42 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "String"
 msgid "Sign as:"
 msgstr "Șir"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "&Certificate"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5207,19 +5207,43 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "(unknown certificate)"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "(certificat necunoscut)"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Acest certificat a expirat."
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Acest certificat a expirat."
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Acest certificat a expirat."
+msgstr[1] "Acest certificat a expirat."
+msgstr[2] "Acest certificat a expirat."
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, kde-format
 msgid "Failed to find some keys"
 msgstr ""
@@ -11932,11 +11956,6 @@ msgstr ""
 #~ msgctxt "good/valid signature"
 #~ msgid "good"
 #~ msgstr "bună"
-
-#, fuzzy
-#~| msgid "This certificate has expired."
-#~ msgid "certificate expired"
-#~ msgstr "Acest certificat a expirat."
 
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"

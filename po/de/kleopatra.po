@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2023-03-22 15:52+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -5489,34 +5489,34 @@ msgstr ""
 "Hier wird der Status und der Fortschritt der Verschlüsselungs-Operationen "
 "angezeigt."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Authentizität sicherstellen (signieren)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Signieren als:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Für mich verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Für andere verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5524,7 +5524,7 @@ msgstr ""
 "Mit Passwort verschlüsseln. Jeder, dem Sie das Passwort mitteilen, kann die "
 "Daten lesen."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5538,18 +5538,41 @@ msgstr ""
 "entschlüsseln. Ein Passwort zu verwenden ist <b>weniger sicher</b> als "
 "öffentliche Schlüssel zu verwenden, selbst mit einem sehr starken Passwort."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Empfängerschlüssel"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Signaturzertifikat ist abgelaufen"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Zertifikat abgelaufen"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Dieses Zertifikat wurde Ihrem Schlüsselbund neu hinzugefügt."
+msgstr[1] "Dieses Zertifikat wurde Ihrem Schlüsselbund neu hinzugefügt."
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Für folgende Empfänger kann kein Schlüssel gefunden werden:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Schlüssel wurden nicht gefunden"
@@ -13669,9 +13692,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "gültig"
 
-#~ msgid "certificate expired"
-#~ msgstr "Zertifikat abgelaufen"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "ungültig"
@@ -13711,9 +13731,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Dieses Zertifikat wurde Ihrem Schlüsselbund als neu hinzugefügt. Es "
 #~ "enthält einen Geheimschlüssel."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Dieses Zertifikat wurde Ihrem Schlüsselbund neu hinzugefügt."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "Der Import hat diesem Zertifikat neue Benutzer-IDs hinzugefügt."

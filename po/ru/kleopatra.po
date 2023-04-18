@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2023-02-19 14:06+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -5396,34 +5396,34 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 "Здесь отображаются состояние и ход выполнения криптографических операций."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Доказательство подлинности (подпись)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Сертификат подписи:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Шифрование"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Зашифровать для себя:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Зашифровать для других:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5431,7 +5431,7 @@ msgstr ""
 "Зашифровать, используя пароль. Каждый, кто знает пароль, сможет прочитать "
 "данные."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5446,18 +5446,43 @@ msgstr ""
 "сложного, <b>менее безопасно</b>, чем использование шифрования на основе "
 "открытых ключей."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ получателя"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Сертификат, использованный для создания подписи, просрочен"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "сертификат просрочен"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Этот сертификат новый для данного хранилища ключей."
+msgstr[1] "Этот сертификат новый для данного хранилища ключей."
+msgstr[2] "Этот сертификат новый для данного хранилища ключей."
+msgstr[3] "Этот сертификат новый для данного хранилища ключей."
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не удалось найти ключ для следующих получателей:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Не удалось найти некоторые ключи"
@@ -13456,9 +13481,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "действительная"
 
-#~ msgid "certificate expired"
-#~ msgstr "сертификат просрочен"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "ошибочная"
@@ -13492,9 +13514,6 @@ msgstr ""
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Импорт этого сертификата был отменён."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Этот сертификат новый для данного хранилища ключей."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr ""

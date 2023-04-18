@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2004-04-20 13:24+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -5061,44 +5061,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Informacije o certifikatu"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Sign as:"
 msgstr "Poništeno."
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Brisanje Certifikata Neuspješno"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "Brisanje Certifikata Neuspješno"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "Brisanje Certifikata Neuspješno"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5108,19 +5108,41 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Opis"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Uklonite certifikat"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Uklonite certifikat"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "Certificate Download Failed"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Neuspješno Preuzimanje Certifikata"
+msgstr[1] "Neuspješno Preuzimanje Certifikata"
+msgstr[2] "Neuspješno Preuzimanje Certifikata"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, kde-format
 msgid "Failed to find some keys"
 msgstr ""
@@ -11896,21 +11918,12 @@ msgstr ""
 #~ msgstr "Ispravno"
 
 #, fuzzy
-#~ msgid "certificate expired"
-#~ msgstr "Uklonite certifikat"
-
-#, fuzzy
 #~ msgid "Good signature by an unknown certificate."
 #~ msgstr "Uklonite certifikat"
 
 #, fuzzy
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Certificate Manager"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Neuspješno Preuzimanje Certifikata"
 
 #, fuzzy
 #~ msgid ""

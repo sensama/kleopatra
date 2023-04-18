@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2002-10-29 15:17SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -5076,40 +5076,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Inkcukacha Yesiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 msgid "Sign as:"
 msgstr "&Yenza Isiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Ulwenziwo &Lwesiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 msgid "Encrypt for me:"
 msgstr "Ulwenziwo &Lwesiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 msgid "Encrypt for others:"
 msgstr "Ulwenziwo &Lwesiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5119,19 +5119,39 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Inkcazelo"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "&Yenza Isiqinisekiso"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "&Yenza Isiqinisekiso"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Umphathi Wesiqinisekiso"
+msgstr[1] "Umphathi Wesiqinisekiso"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ayikwazanga ukwenza isiqinisekiso"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 msgid "Failed to find some keys"
 msgstr "Ayikwazanga ukwenza isiqinisekiso"
@@ -11875,10 +11895,6 @@ msgstr ""
 #~ msgstr "Iyasebenza"
 
 #, fuzzy
-#~ msgid "certificate expired"
-#~ msgstr "&Yenza Isiqinisekiso"
-
-#, fuzzy
 #~ msgid "Bad signature by an unknown certificate: %1"
 #~ msgstr "Ayikwazanga ukwenza isiqinisekiso"
 
@@ -11893,10 +11909,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Khetha Isiqinisekiso Sefayile"
-
-#, fuzzy
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Umphathi Wesiqinisekiso"
 
 #, fuzzy
 #~ msgid ""

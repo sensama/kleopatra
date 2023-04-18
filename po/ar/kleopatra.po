@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2007-10-14 15:53+0000\n"
 "Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -5140,40 +5140,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "معلومات"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 msgid "Sign as:"
 msgstr "لـ"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "لـ"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 msgid "Encrypt for me:"
 msgstr "شهادة حذف فشل"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 msgid "Encrypt for others:"
 msgstr "شهادة حذف فشل"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5183,18 +5183,42 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "الوصف"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "جاري الحذف سلطة الشّهادات الشّهادات"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "جاري الحذف سلطة الشّهادات الشّهادات"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "شهادة نزّل فشل"
+msgstr[1] "شهادة نزّل فشل"
+msgstr[2] "شهادة نزّل فشل"
+msgstr[3] "شهادة نزّل فشل"
+msgstr[4] "شهادة نزّل فشل"
+msgstr[5] "شهادة نزّل فشل"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "يمكن أن ليس توليد شهادة 1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 msgid "Failed to find some keys"
 msgstr "فشل إلى نفِّذ n 1"
@@ -12105,10 +12129,6 @@ msgstr ""
 #~ msgstr "أبطِل"
 
 #, fuzzy
-#~ msgid "certificate expired"
-#~ msgstr "جاري الحذف سلطة الشّهادات الشّهادات"
-
-#, fuzzy
 #~ msgid "Bad signature by unknown certificate %1: %2"
 #~ msgstr "جديد:"
 
@@ -12127,10 +12147,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "الجلب شهادة من خادم."
-
-#, fuzzy
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "شهادة نزّل فشل"
 
 #, fuzzy
 #~ msgid ""

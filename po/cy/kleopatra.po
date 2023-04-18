@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -5186,44 +5186,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Gwybodaeth Dystysgrif"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Sign as:"
 msgstr "Wedi'i ddiddymu"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Gwall Rheolwr Tystysgrifau"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Encrypt for me:"
 msgstr "Gwall Rheolwr Tystysgrifau"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Encrypt for others:"
 msgstr "Gwall Rheolwr Tystysgrifau"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5233,20 +5233,43 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Disgrifiad"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "&Tystysgrifau"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "&Tystysgrifau"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Error"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Gwall Rheolwr Tystysgrifau"
+msgstr[1] "Gwall Rheolwr Tystysgrifau"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Methwyd creu tysysgrif : %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Failed to find some keys"
@@ -12223,11 +12246,6 @@ msgstr ""
 #~ msgstr "Ebost"
 
 #, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "certificate expired"
-#~ msgstr "&Tystysgrifau"
-
-#, fuzzy
 #~| msgid "Could not generate certificate: %1"
 #~ msgid "Bad signature by an unknown certificate: %1"
 #~ msgstr "Methwyd creu tysysgrif : %1"
@@ -12245,11 +12263,6 @@ msgstr ""
 #, fuzzy
 #~| msgid "Certificate Manager Error"
 #~ msgid "The import of this certificate was canceled."
-#~ msgstr "Gwall Rheolwr Tystysgrifau"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "This certificate is new to your keystore."
 #~ msgstr "Gwall Rheolwr Tystysgrifau"
 
 #, fuzzy

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -5635,45 +5635,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "ស្ថានភាព និង​វឌ្ឍនភាព​របស់​ការប្រតិបត្តិការ​សម្ងាត់​ត្រូវបាន​បង្ហាញ​នៅទីនេះ​ ។"
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Sign Files"
 msgid "Sign as:"
 msgstr "ចុះហត្ថលេខា​ឯកសារ"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "អ៊ីនគ្រិប"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for me:"
 msgstr "អ៊ិនគ្រីប​ឯកសារ"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for others:"
 msgstr "អ៊ិនគ្រីប​ឯកសារ"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5683,20 +5683,42 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "អ្នក​ទទួល"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "ការ​ចុះហត្ថលេខា​បាន​ផុត​កំណត់"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "វិញ្ញាបនបត្រ​ដែល​ផុត​កំណត់​"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "វិញ្ញាបនបត្រ​នេះ គឺ​ថ្មី​សម្រាប់ keystore របស់​អ្នក ។"
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "មិនអាច​ចង​រន្ធ ៖ %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"
@@ -13869,9 +13891,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "ល្អ"
 
-#~ msgid "certificate expired"
-#~ msgstr "វិញ្ញាបនបត្រ​ដែល​ផុត​កំណត់​"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "មិនល្អ"
@@ -13905,9 +13924,6 @@ msgstr ""
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "ការ​នាំចូល​វិញ្ញាបនបត្រ​នេះ ត្រូវបាន​បោះបង់ ។"
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "វិញ្ញាបនបត្រ​នេះ គឺ​ថ្មី​សម្រាប់ keystore របស់​អ្នក ។"
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "លេខ​សម្គាល់​អ្នកប្រើ​ថ្មី​ត្រូវបាន​បន្ថែម​ទៅ​វិញ្ញាបនបត្រ​នេះ​តាម​ការ​នាំចូល ។"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-18 00:48+0000\n"
 "PO-Revision-Date: 2021-10-22 09:12+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -5626,34 +5626,34 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 "Η κατάσταση και η πρόοδος των λειτουργιών κρυπτογραφίας εμφανίζονται εδώ."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Απόδειξη αυθεντικότητας (με υπογραφή)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Υπογραφή ως:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Κρυπτογράφηση"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Κρυπτογράφηση για μένα:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Κρυπτογράφηση για άλλους:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5661,7 +5661,7 @@ msgstr ""
 "Κρυπτογράφηση με κωδικό πρόσβασης. Όποιος μοιράζεται τον κωδικό με εσάς "
 "μπορεί να διαβάσει τα δεδομένα."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5676,19 +5676,42 @@ msgstr ""
 "ασφαλής</b> από την κρυπτογραφία δημόσιου κλειδιού. Ακόμη και αν επιλέξετε "
 "έναν πολύ ισχυρό κωδικό πρόσβασης."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Παραλήπτης"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:577
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Η υπογραφή πιστοποιητικού έληξε"
+
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "το πιστοποιητικό έληξε"
+
+#: src/crypto/gui/signencryptwidget.cpp:582
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Το πιστοποιητικό αυτό είναι νέο στο χώρο αποθήκευσης κλειδιών σας."
+msgstr[1] "Το πιστοποιητικό αυτό είναι νέο στο χώρο αποθήκευσης κλειδιών σας."
+
+#: src/crypto/gui/signencryptwidget.cpp:779
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Αδυναμία εύρεσης κλειδιού για τους ακόλουθους παραλήπτες:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:781
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Αποτυχία εύρεσης κάποιων κλειδιών"
@@ -13964,9 +13987,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "καλή"
 
-#~ msgid "certificate expired"
-#~ msgstr "το πιστοποιητικό έληξε"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "κακή"
@@ -14010,9 +14030,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Το πιστοποιητικό αυτό είναι νέο στο χώρο αποθήκευσης κλειδιών σας. Το "
 #~ "μυστικό κλειδί είναι διαθέσιμο."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Το πιστοποιητικό αυτό είναι νέο στο χώρο αποθήκευσης κλειδιών σας."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr ""

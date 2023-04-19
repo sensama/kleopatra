@@ -336,6 +336,7 @@ public:
     QCheckBox *tooltipOwnerCheckBox;
     QCheckBox *tooltipDetailsCheckBox;
     QCheckBox *useTagsCheckBox;
+    QCheckBox *showExpirationCheckBox;
 
     void setupUi(QWidget *parent)
     {
@@ -367,6 +368,11 @@ public:
 
         tooltipDetailsCheckBox = new QCheckBox{i18nc("@option:check", "Show technical details"), tab};
         tabLayout->addWidget(tooltipDetailsCheckBox);
+
+        tabLayout->addWidget(new KSeparator{tab});
+
+        showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
+        tabLayout->addWidget(showExpirationCheckBox);
 
         tabLayout->addStretch(1);
 
@@ -509,6 +515,9 @@ public:
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
+        connect(showExpirationCheckBox, &QCheckBox::toggled, q, [this]() {
+            Q_EMIT q->changed();
+        });
     }
 
 private:
@@ -594,14 +603,19 @@ void AppearanceConfigWidget::Private::slotDefaultClicked()
 
 void AppearanceConfigWidget::defaults()
 {
+    // use temporary KConfigSkeleton instances for (re)setting the values to the defaults;
+    // the setters respect the immutability of the individual settings, so that we don't have
+    // to check this ourselves
+
+    Settings settings;
+    settings.setShowExpiryNotifications(settings.findItem(QStringLiteral("ShowExpiryNotifications"))->getDefault().toBool());
+    d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
+
     // This simply means "default look for every category"
     for (int i = 0, end = d->categoriesLV->count(); i != end; ++i) {
         set_default_appearance(d->categoriesLV->item(i));
     }
 
-    // use a temporary TooltipPreferences instance for resetting the values to the defaults;
-    // the setters respect the immutability of the individual settings, so that we don't have
-    // to check this explicitly
     TooltipPreferences tooltipPrefs;
     tooltipPrefs.setShowValidity(tooltipPrefs.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
     d->tooltipValidityCheckBox->setChecked(tooltipPrefs.showValidity());
@@ -622,8 +636,11 @@ void AppearanceConfigWidget::defaults()
 
 void AppearanceConfigWidget::load()
 {
+    const Settings settings;
+    d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
+    d->showExpirationCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowExpiryNotifications")));
+
     if (d->dnOrderWidget) {
-        const Settings settings;
         d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
         d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
@@ -659,13 +676,13 @@ void AppearanceConfigWidget::load()
 
 void AppearanceConfigWidget::save()
 {
+    Settings settings;
+    settings.setShowExpiryNotifications(d->showExpirationCheckBox->isChecked());
     if (d->dnOrderWidget) {
-        Settings settings;
         settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
-        settings.save();
-
         DN::setAttributeOrder(settings.attributeOrder());
     }
+    settings.save();
 
     TooltipPreferences prefs;
     prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());

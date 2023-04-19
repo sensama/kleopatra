@@ -11,7 +11,6 @@
 #include <config-kleopatra.h>
 
 #include "appearanceconfigwidget.h"
-#include "ui_appearanceconfigwidget.h"
 
 #include "tagspreferences.h"
 #include "tooltippreferences.h"
@@ -23,20 +22,25 @@
 #include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/SystemInfo>
 
-#include <KIconDialog>
-#include <QIcon>
-
 #include <KConfig>
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KIconDialog>
+#include <KLocalizedString>
+#include <KMessageWidget>
 
-#include <QColor>
-#include <QFont>
-#include <QString>
-#include <QRegularExpression>
 #include <QApplication>
+#include <QCheckBox>
+#include <QColor>
 #include <QColorDialog>
+#include <QFont>
 #include <QFontDialog>
+#include <QGridLayout>
+#include <QIcon>
+#include <QLabel>
+#include <QListWidget>
+#include <QRegularExpression>
+#include <QString>
+#include <QVBoxLayout>
 
 #include <algorithm>
 
@@ -312,6 +316,182 @@ static void kiosk_enable(QWidget *w, const QListWidgetItem *item, int allowRole)
         w->setToolTip(QString());
     }
 }
+
+class Ui_AppearanceConfigWidget
+{
+public:
+    QVBoxLayout *verticalLayout_2;
+    QTabWidget *tabWidget;
+    QWidget *tab_2;
+    QGridLayout *gridLayout;
+    KMessageWidget *highContrastMsg;
+    QListWidget *categoriesLV;
+    QVBoxLayout *vboxLayout;
+    QPushButton *iconButton;
+    QPushButton *foregroundButton;
+    QPushButton *backgroundButton;
+    QPushButton *fontButton;
+    QCheckBox *italicCB;
+    QCheckBox *boldCB;
+    QCheckBox *strikeoutCB;
+    QSpacerItem *spacerItem;
+    QPushButton *defaultLookPB;
+    QWidget *tab;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QCheckBox *tooltipValidityCheckBox;
+    QCheckBox *tooltipOwnerCheckBox;
+    QCheckBox *tooltipDetailsCheckBox;
+    QSpacerItem *spacerItem1;
+    QWidget *tab_tags;
+    QVBoxLayout *verticalLayout_tags;
+    QCheckBox *useTagsCheckBox;
+    QSpacerItem *spacerItem2;
+
+    void setupUi(QWidget *AppearanceConfigWidget)
+    {
+        if (AppearanceConfigWidget->objectName().isEmpty())
+            AppearanceConfigWidget->setObjectName(QString::fromUtf8("AppearanceConfigWidget"));
+        verticalLayout_2 = new QVBoxLayout(AppearanceConfigWidget);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        tabWidget = new QTabWidget(AppearanceConfigWidget);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        gridLayout = new QGridLayout(tab_2);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        highContrastMsg = new KMessageWidget(tab_2);
+        highContrastMsg->setObjectName(QString::fromUtf8("highContrastMsg"));
+
+        gridLayout->addWidget(highContrastMsg, 0, 0, 1, 2);
+
+        categoriesLV = new QListWidget(tab_2);
+        categoriesLV->setObjectName(QString::fromUtf8("categoriesLV"));
+
+        gridLayout->addWidget(categoriesLV, 1, 0, 1, 1);
+
+        vboxLayout = new QVBoxLayout();
+        vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
+        iconButton = new QPushButton(tab_2);
+        iconButton->setText(i18nc("@action:button", "Set Icon..."));
+        iconButton->setObjectName(QString::fromUtf8("iconButton"));
+        iconButton->setEnabled(false);
+
+        vboxLayout->addWidget(iconButton);
+
+        foregroundButton = new QPushButton(tab_2);
+        foregroundButton->setText(i18nc("@action:button", "Set Text Color..."));
+        foregroundButton->setObjectName(QString::fromUtf8("foregroundButton"));
+        foregroundButton->setEnabled(false);
+
+        vboxLayout->addWidget(foregroundButton);
+
+        backgroundButton = new QPushButton(tab_2);
+        backgroundButton->setText(i18nc("@action:button", "Set Background Color..."));
+        backgroundButton->setObjectName(QString::fromUtf8("backgroundButton"));
+        backgroundButton->setEnabled(false);
+
+        vboxLayout->addWidget(backgroundButton);
+
+        fontButton = new QPushButton(tab_2);
+        fontButton->setText(i18nc("@action:button", "Set Font..."));
+        fontButton->setObjectName(QString::fromUtf8("fontButton"));
+        fontButton->setEnabled(false);
+
+        vboxLayout->addWidget(fontButton);
+
+        italicCB = new QCheckBox(tab_2);
+        italicCB->setText(i18nc("@option:check", "Italic"));
+        italicCB->setObjectName(QString::fromUtf8("italicCB"));
+        italicCB->setEnabled(false);
+
+        vboxLayout->addWidget(italicCB);
+
+        boldCB = new QCheckBox(tab_2);
+        boldCB->setText(i18nc("@option:check", "Bold"));
+        boldCB->setObjectName(QString::fromUtf8("boldCB"));
+        boldCB->setEnabled(false);
+
+        vboxLayout->addWidget(boldCB);
+
+        strikeoutCB = new QCheckBox(tab_2);
+        strikeoutCB->setText(i18nc("@option:check", "Strikeout"));
+        strikeoutCB->setObjectName(QString::fromUtf8("strikeoutCB"));
+        strikeoutCB->setEnabled(false);
+
+        vboxLayout->addWidget(strikeoutCB);
+
+        spacerItem = new QSpacerItem(20, 100, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        vboxLayout->addItem(spacerItem);
+
+        defaultLookPB = new QPushButton(tab_2);
+        defaultLookPB->setText(i18nc("@action:button", "Default Appearance"));
+        defaultLookPB->setObjectName(QString::fromUtf8("defaultLookPB"));
+        defaultLookPB->setEnabled(false);
+
+        vboxLayout->addWidget(defaultLookPB);
+
+
+        gridLayout->addLayout(vboxLayout, 1, 1, 1, 1);
+
+        tabWidget->addTab(tab_2, QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), i18nc("@title:tab", "Certificate Categories"));
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        verticalLayout = new QVBoxLayout(tab);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        label = new QLabel(tab);
+        label->setText(i18nc("@action:button", "Show the following information in certificate list tooltips:"));
+        label->setObjectName(QString::fromUtf8("label"));
+
+        verticalLayout->addWidget(label);
+
+        tooltipValidityCheckBox = new QCheckBox(tab);
+        tooltipValidityCheckBox->setText(i18nc("@option:check", "Show validity"));
+        tooltipValidityCheckBox->setObjectName(QString::fromUtf8("tooltipValidityCheckBox"));
+
+        verticalLayout->addWidget(tooltipValidityCheckBox);
+
+        tooltipOwnerCheckBox = new QCheckBox(tab);
+        tooltipOwnerCheckBox->setText(i18nc("@option:check", "Show owner information"));
+        tooltipOwnerCheckBox->setObjectName(QString::fromUtf8("tooltipOwnerCheckBox"));
+
+        verticalLayout->addWidget(tooltipOwnerCheckBox);
+
+        tooltipDetailsCheckBox = new QCheckBox(tab);
+        tooltipDetailsCheckBox->setText(i18nc("@option:check", "Show technical details"));
+        tooltipDetailsCheckBox->setObjectName(QString::fromUtf8("tooltipDetailsCheckBox"));
+
+        verticalLayout->addWidget(tooltipDetailsCheckBox);
+
+        spacerItem1 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(spacerItem1);
+
+        tabWidget->addTab(tab, QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab), i18nc("@title:tab", "Tooltips"));
+        tab_tags = new QWidget();
+        tab_tags->setObjectName(QString::fromUtf8("tab_tags"));
+        verticalLayout_tags = new QVBoxLayout(tab_tags);
+        verticalLayout_tags->setObjectName(QString::fromUtf8("verticalLayout_tags"));
+        useTagsCheckBox = new QCheckBox(tab_tags);
+        useTagsCheckBox->setText(i18nc("@option:check", "Use tags"));
+        useTagsCheckBox->setToolTip(i18nc("@option:check", "Enable display and usage of tags attached to keys."));
+        useTagsCheckBox->setObjectName(QString::fromUtf8("useTagsCheckBox"));
+
+        verticalLayout_tags->addWidget(useTagsCheckBox);
+
+        spacerItem2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_tags->addItem(spacerItem2);
+
+        tabWidget->addTab(tab_tags, QString());
+        tabWidget->setTabText(tabWidget->indexOf(tab_tags), i18nc("@title:tab", "Tags"));
+
+        verticalLayout_2->addWidget(tabWidget);
+    }
+};
 
 class AppearanceConfigWidget::Private : public Ui_AppearanceConfigWidget
 {

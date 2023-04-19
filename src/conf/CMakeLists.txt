@@ -42,7 +42,6 @@ set(kcm_kleopatra_PART_SRCS
 
 
 ki18n_wrap_ui(kcm_kleopatra_PART_SRCS
-  appearanceconfigwidget.ui
   smimevalidationconfigurationwidget.ui
 )
 

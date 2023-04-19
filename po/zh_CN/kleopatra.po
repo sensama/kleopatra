@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2023-04-16 12:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -5181,21 +5181,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "接收者密钥"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "签名密钥已过期"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "签名密钥已过期"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
@@ -5203,12 +5203,26 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "签名密钥已过期"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "无法在本地找到发行者证书。"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "无法在本地找到发行者证书。"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "找不到以下收件人的密钥："
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "无法找到一些密钥"

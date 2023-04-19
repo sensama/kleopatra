@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
-"PO-Revision-Date: 2023-03-16 07:20+0200\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
+"PO-Revision-Date: 2023-04-18 14:44+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -5498,37 +5498,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ отримувача"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "Строк дії сертифіката підпису збіг"
+msgstr "Строк дії цього сертифіката збіг."
 
-#: src/crypto/gui/signencryptwidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "Строк дії сертифіката підпису збіг"
+msgstr "Строк дії цього сертифіката завершується сьогодні."
 
-#: src/crypto/gui/signencryptwidget.cpp:582
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Строк дії сертифіката підпису збіг"
-msgstr[1] "Строк дії сертифіката підпису збіг"
-msgstr[2] "Строк дії сертифіката підпису збіг"
-msgstr[3] "Строк дії сертифіката підпису збіг"
+msgstr[0] "Строк дії цього сертифіката завершується за %1 день."
+msgstr[1] "Строк дії цього сертифіката завершується за %1 дні."
+msgstr[2] "Строк дії цього сертифіката завершується за %1 днів."
+msgstr[3] "Строк дії цього сертифіката завершується завтра."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Не вдалося знайти локальну копію сертифіката видавця."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Не вдалося знайти локальну копію сертифіката видавця."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не вдалося знайти ключ для таких отримувачів:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Не вдалося знайти деякі ключі"

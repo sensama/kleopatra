@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -5627,21 +5627,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "收件者"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "簽署用的憑證已過期"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "簽署用的憑證已過期"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -5649,13 +5649,27 @@ msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "簽署用的憑證已過期"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The certificate could not be certified. <b>Error</b>: %1"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "此憑證無法被確認。<b>錯誤：</b>%1"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The certificate could not be certified. <b>Error</b>: %1"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "此憑證無法被確認。<b>錯誤：</b>%1"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "無法結合 socket：%1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2020-09-08 18:56+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -5703,21 +5703,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Príjemca"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Podpisovanie certifikátu vypršalo"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "certifikát vypršal"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5727,13 +5727,27 @@ msgstr[0] "Tento certifikát je nový pre váš zásobník kľúčov."
 msgstr[1] "Tento certifikát je nový pre váš zásobník kľúčov."
 msgstr[2] "Tento certifikát je nový pre váš zásobník kľúčov."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Tento certifikát bol zakázaný miestne."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Tento certifikát bol zakázaný miestne."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nepodarilo sa pripojiť k soketu: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to send recipient %1: %2"
 msgid "Failed to find some keys"

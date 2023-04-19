@@ -10,18 +10,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
-"PO-Revision-Date: 2023-03-29 08:16+0200\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
+"PO-Revision-Date: 2023-04-18 20:39+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -5442,37 +5442,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "prejemnikov ključ"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "Potrdilo za podpis je poteklo"
+msgstr "To potrdilo je poteklo."
 
-#: src/crypto/gui/signencryptwidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "Potrdilo za podpis je poteklo"
+msgstr "To potrdilo bo poteklo danes."
 
-#: src/crypto/gui/signencryptwidget.cpp:582
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Potrdilo za podpis je poteklo"
-msgstr[1] "Potrdilo za podpis je poteklo"
-msgstr[2] "Potrdilo za podpis je poteklo"
-msgstr[3] "Potrdilo za podpis je poteklo"
+msgstr[0] "To potrdilo bo poteklo čez %1 dan."
+msgstr[1] "To potrdilo bo poteklo čez %1 dneva."
+msgstr[2] "To potrdilo bo poteklo čez %1 dni."
+msgstr[3] "To potrdilo bo poteklo čez %1 dni."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Potrdila izdajatelja lokalno ni bilo mogoče najti."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Potrdila izdajatelja lokalno ni bilo mogoče najti."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"

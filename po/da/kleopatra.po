@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -5740,21 +5740,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Modtager"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Signeringscertifikat er udløbet"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "certifikat udløbet"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5763,13 +5763,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Dette certifikat er nyt til dit nøglelager."
 msgstr[1] "Dette certifikat er nyt til dit nøglelager."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Dette certifikat blev deaktiveret lokalt."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Dette certifikat blev deaktiveret lokalt."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Kunne ikke binde til sokkel: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to send recipient %1: %2"
 msgid "Failed to find some keys"

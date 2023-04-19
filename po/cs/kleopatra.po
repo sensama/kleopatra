@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2023-03-16 16:34+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -5035,21 +5035,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Podepisující certifikát vypršel"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Podepisující certifikát vypršel"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
@@ -5059,12 +5059,26 @@ msgstr[0] "Podepisující certifikát vypršel"
 msgstr[1] "Podepisující certifikát vypršel"
 msgstr[2] "Podepisující certifikát vypršel"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "These are the certificates you have selected for deletion:"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Toto jsou certifikáty, které byly vybrány pro vymazání:"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Podepisující certifikát vypršel"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Nelze nalézt klíč pro následující příjemce:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Vyhledání některých klíčů selhalo"

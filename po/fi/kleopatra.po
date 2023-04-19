@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2023-03-14 22:00+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -5403,21 +5403,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "vastaanottajan avain"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Allekirjoittanut varmenne on vanhentunut"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "varmenne vanheni"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5426,12 +5426,26 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Varmennetta ei ollut aiemmin avainkokoelmassasi."
 msgstr[1] "Varmennetta ei ollut aiemmin avainkokoelmassasi."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Julkaisijan varmennetta ei löytynyt paikallisesti."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Julkaisijan varmennetta ei löytynyt paikallisesti."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Seuraaville vastaanottajille ei löytynyt avaimia:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Joitakin avaimia ei löytynyt"

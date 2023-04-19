@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -5599,21 +5599,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "वर्णन"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
@@ -5622,13 +5622,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 msgstr[1] "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "वितरक प्रमाणपत्र फेला परेन ( %1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"

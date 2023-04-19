@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -5772,21 +5772,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Címzett"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Az aláírási tanúsítvány lejárt"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "a tanúsítvány lejárt"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5795,13 +5795,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ez a tanúsítvány új a kulcstárolóban."
 msgstr[1] "Ez a tanúsítvány új a kulcstárolóban."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nem sikerült kapcsolódni ehhez az aljazathoz: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"

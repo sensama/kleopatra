@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2022-07-14 10:02-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -5612,21 +5612,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Destinatário"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "O certificado de assinatura está expirado"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "O certificado de assinatura está expirado"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
@@ -5635,14 +5635,28 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "O certificado de assinatura está expirado"
 msgstr[1] "O certificado de assinatura está expirado"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Certificado do emissor não encontrado (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Certificado do emissor não encontrado (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "Não foi possível encontrar uma chave para '%1'"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Falha ao encontrar algumas chaves"

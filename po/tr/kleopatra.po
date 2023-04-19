@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
-"PO-Revision-Date: 2023-04-02 17:26+0300\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
+"PO-Revision-Date: 2023-04-18 05:23+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -5409,35 +5409,46 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "alıcı anahtarı"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "İmzalama sertifikasının süresi dolmuş"
+msgstr "Bu sertifikanın süresi dolmuş."
 
-#: src/crypto/gui/signencryptwidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "İmzalama sertifikasının süresi dolmuş"
+msgstr "Bu sertifikanın süresi bugün doluyor."
 
-#: src/crypto/gui/signencryptwidget.cpp:582
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "İmzalama sertifikasının süresi dolmuş"
-msgstr[1] "İmzalama sertifikasının süresi dolmuş"
+msgstr[0] "Bu sertifikanın süresi yarın doluyor."
+msgstr[1] "Bu sertifikanın süresi %1 gün içinde doluyor."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Veren sertifikası yerel olarak bulunamadı."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Veren sertifikası yerel olarak bulunamadı."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Aşağıdaki alıcılar için bir anahtar bulunamadı:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Bazı anahtarlar bulunamadı"

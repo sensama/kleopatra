@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2019-10-18 17:53+0900\n"
 "Last-Translator: Tomohiro Hyakutake <tomhioo@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -5780,21 +5780,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "受信者"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -5803,13 +5803,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "署名用証明書が失効しています"
 msgstr[1] "署名用証明書が失効しています"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "発行者証明書が見つかりません (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "発行者証明書が見つかりません (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "ソケットにバインドできませんでした: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"

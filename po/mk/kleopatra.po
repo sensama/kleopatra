@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -5615,21 +5615,21 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Опис"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
+#: src/crypto/gui/signencryptwidget.cpp:580
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Бришење на CA-сертификати"
 
-#: src/crypto/gui/signencryptwidget.cpp:580
+#: src/crypto/gui/signencryptwidget.cpp:583
 #, fuzzy, kde-format
 #| msgid "Deleting CA Certificates"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Бришење на CA-сертификати"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:585
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
@@ -5639,13 +5639,27 @@ msgstr[0] "Симнувањето на сертификатот не успеа"
 msgstr[1] "Симнувањето на сертификатот не успеа"
 msgstr[2] "Симнувањето на сертификатот не успеа"
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Сертификатот на издавачот не може да виде пронајден ( %1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Сертификатот на издавачот не може да виде пронајден ( %1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Failed to find some keys"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-18 00:48+0000\n"
-"PO-Revision-Date: 2023-03-20 13:45+0000\n"
+"POT-Creation-Date: 2023-04-19 00:50+0000\n"
+"PO-Revision-Date: 2023-04-18 09:30+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -5526,35 +5526,46 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "chave do destinatário"
 
-#: src/crypto/gui/signencryptwidget.cpp:577
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "O certificado de assinatura expirou"
+msgstr "Este certificado expirou."
 
-#: src/crypto/gui/signencryptwidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "O certificado de assinatura expirou"
+msgstr "Este certificado expira hoje."
 
-#: src/crypto/gui/signencryptwidget.cpp:582
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "O certificado de assinatura expirou"
-msgstr[1] "O certificado de assinatura expirou"
+msgstr[0] "Este certificado expira amanhã."
+msgstr[1] "Este certificado expira daqui a %1 dias."
 
-#: src/crypto/gui/signencryptwidget.cpp:779
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "O certificado do emissor não foi encontrado a nível local."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "O certificado do emissor não foi encontrado a nível local."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Não foi possível encontrar uma chave para os seguintes destinatários:"
 
-#: src/crypto/gui/signencryptwidget.cpp:781
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Não foi possível encontrar algumas chaves"

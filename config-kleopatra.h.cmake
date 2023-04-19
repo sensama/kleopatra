@@ -48,3 +48,6 @@
 
 /* Whether QGpgME::Job provides the new progress signals */
 #cmakedefine01 QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
+
+/* Whether Key::canSign should be used instead of deprecated Key::canReallySign */
+#cmakedefine01 GPGMEPP_KEY_CANSIGN_IS_FIXED

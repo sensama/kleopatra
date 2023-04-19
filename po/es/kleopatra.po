@@ -17,14 +17,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-02-23 18:39+0100\n"
+"PO-Revision-Date: 2023-04-18 16:36+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 23.03.90\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -275,7 +275,7 @@ msgstr "La clave está revocada"
 #, kde-format
 msgctxt "@title:window"
 msgid "Key is Expired"
-msgstr "La clave ha expirado"
+msgstr "La clave ha caducado"
 
 #: src/commands/certifycertificatecommand.cpp:156
 #, kde-format
@@ -287,7 +287,7 @@ msgstr "Esta clave ha sido revocada. No puede certificarla."
 #, kde-format
 msgctxt "@info"
 msgid "This key has expired. You cannot certify it."
-msgstr "Esta clave ha expirado. No puede certificarla."
+msgstr "Esta clave ha caducado. No puede certificarla."
 
 #: src/commands/certifycertificatecommand.cpp:174
 #, kde-kuit-format
@@ -344,13 +344,13 @@ msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p>Ha ocurrido un error al tratar de cambiar el final del período de "
-"expiración de <b>%1</b>:</p> <p>%2</p>"
+"<p>Ha ocurrido un error al tratar de cambiar el fin del período de validez "
+"de <b>%1</b>:</p> <p>%2</p>"
 
 #: src/commands/changeexpirycommand.cpp:213
 #, kde-format
 msgid "End of validity period changed successfully."
-msgstr "Final del período expiración cambiado correctamente."
+msgstr "Fin del período validez cambiado correctamente."
 
 #: src/commands/changeownertrustcommand.cpp:103
 #, kde-kuit-format
@@ -4254,7 +4254,7 @@ msgstr "La firma de un certificado se ha revocado"
 #: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Signing certificate is expired"
-msgstr "El certificado de firma ha expirado"
+msgstr "El certificado de firma ha caducado"
 
 #: src/crypto/decryptverifytask.cpp:189
 #, kde-format
@@ -4264,7 +4264,7 @@ msgstr "El certificado no está disponible"
 #: src/crypto/decryptverifytask.cpp:191
 #, kde-format
 msgid "Signature expired"
-msgstr "La firma expiró"
+msgstr "La firma ha caducado"
 
 #: src/crypto/decryptverifytask.cpp:193
 #, kde-format
@@ -6458,7 +6458,7 @@ msgstr "Explicar las etiquetas"
 #: src/dialogs/certifywidget.cpp:453
 #, kde-format
 msgid "Expiration:"
-msgstr "Expiración:"
+msgstr "Caducidad:"
 
 #: src/dialogs/certifywidget.cpp:461
 #, kde-format
@@ -6486,7 +6486,7 @@ msgstr "Un año a partir de ahora"
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
-"Puede usar esto para definir una fecha de expiración para una certificación."
+"Puede usar esto para definir una fecha de caducidad para una certificación."
 
 #: src/dialogs/certifywidget.cpp:473
 #, kde-format
@@ -6495,14 +6495,14 @@ msgid ""
 "certification to a certain amount of time. Once the expiration date has "
 "passed, your certification is no longer valid."
 msgstr ""
-"Al definir una fecha de expiración puede limitar la validez de su "
+"Al definir una fecha de caducidad puede limitar la validez de su "
 "certificación a cierta cantidad de tiempo. Una vez que haya pasado la fecha "
-"de expiración, su certificación ya no será válida."
+"de caducidad, su certificación ya no será válida."
 
 #: src/dialogs/certifywidget.cpp:477
 #, kde-format
 msgid "Explain expiration"
-msgstr "Explicar la expiración"
+msgstr "Explique la caducidad"
 
 #: src/dialogs/certifywidget.cpp:490
 #, kde-format
@@ -7526,7 +7526,7 @@ msgstr ""
 #: src/dialogs/weboftrustwidget.cpp:219
 #, kde-format
 msgid "You cannot revoke this expired certification."
-msgstr "No puede revocar esta certificación expirada."
+msgstr "No puede revocar esta certificación caducada."
 
 #: src/dialogs/weboftrustwidget.cpp:222
 #, kde-format
@@ -7804,7 +7804,7 @@ msgid ""
 "clamped to the allowed minimum or maximum validity period) by default."
 msgstr ""
 "Esta propiedad indica cuántos días es válida una nueva clave OpenPGP de "
-"forma predeterminada; en otras palabras, tras cuántos días expirará la "
+"forma predeterminada; en otras palabras, tras cuántos días caducará la "
 "clave. Asigne el valor 0 para una validez ilimitada. Si no se define esta "
 "propiedad o si se le asigna a un valor negativo, las nuevas claves OpenPGP "
 "serán válidas durante dos años (posiblemente sujetos al período de validez "
@@ -7832,7 +7832,7 @@ msgid ""
 "earliest."
 msgstr ""
 "Esta propiedad indica cuántos días es válida como mínimo una nueva clave "
-"OpenPGP; en otras palabras, tras cuántos días expirará la nueva clave, como "
+"OpenPGP; en otras palabras, tras cuántos días caducará la nueva clave, como "
 "pronto."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -7858,7 +7858,7 @@ msgid ""
 "unlimited validity is allowed."
 msgstr ""
 "Esta propiedad indica cuántos días es válida una nueva clave OpenPGP como "
-"máximo; en otras palabras, tras cuántos días expirará la nueva clave, a más  "
+"máximo; en otras palabras, tras cuántos días caducará la nueva clave, a más  "
 "tardar. Si no se define esta propiedad, o si se le asigna a un valor "
 "negativo, se permite una validez ilimitada."
 
@@ -8183,8 +8183,8 @@ msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
 "certificate is expired or revoked."
 msgstr ""
-"Muestra la validez de los certificados en un consejo emergente, así como "
-"también si el certificado está vencido o revocado."
+"Muestra la validez de los certificados en una ayuda emergente, así como "
+"también si el certificado ha caducado o ha sido revocado."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:14
@@ -8215,8 +8215,8 @@ msgid ""
 "Show more certificate details, such as fingerprint, key length and "
 "expiration dates"
 msgstr ""
-"Mostrar más detalles de los certificados, como huella digital, tamaño de la "
-"clave y fechas de expiración"
+"Mostrar más detalles de los certificados, como la huella digital, el tamaño "
+"de la clave y las fechas de caducidad"
 
 #. i18n: ectx: Menu (file)
 #: src/kleopatra.rc:5 src/kwatchgnupg/kwatchgnupgui.rc:4

@@ -171,6 +171,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
     d->mSignKeyExpiryMessage = new KMessageWidget{this};
+    d->mSignKeyExpiryMessage->setVisible(false);
 
     auto groupLayout = new QGridLayout{sigGrp};
     groupLayout->setColumnStretch(1, 1);
@@ -204,6 +205,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     d->mSelfSelect = new KeySelectionCombo{this};
     d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
     d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
+    d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
     recipientGrid->addWidget(d->mEncSelfChk, row, 0);
     recipientGrid->addWidget(d->mSelfSelect, row, 1);
     row++;
@@ -816,7 +818,7 @@ void SignEncryptWidget::Private::updateCheckBoxes()
 void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::Key &key, ExpiryChecker::CheckFlags flags)
 {
     messageWidget->setCloseButtonVisible(false);
-    if (key.isNull()) {
+    if (!Settings{}.showExpiryNotifications() || key.isNull()) {
         messageWidget->setVisible(false);
     } else {
         const auto result = mExpiryChecker->checkKey(key, flags);

@@ -16,6 +16,8 @@
 
 #include "dialogs/pivcardapplicationadministrationkeyinputdialog.h"
 
+#include <Libkleo/Formatting>
+
 #include <KLocalizedString>
 
 #include <gpgme++/error.h>
@@ -137,7 +139,7 @@ void AuthenticatePIVCardApplicationCommand::Private::authenticate(const QByteArr
 void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err)
 {
     qCDebug(KLEOPATRA_LOG) << "AuthenticatePIVCardApplicationCommand::slotResult():"
-                           << err.asString() << "(" << err.code() << ")";
+                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err.isCanceled()) {
         canceled();
         return;
@@ -149,7 +151,7 @@ void AuthenticatePIVCardApplicationCommand::Private::slotResult(const Error &err
             return;
         }
 #endif
-        error(i18nc("@info", "Authenticating to the card failed: %1", QString::fromLatin1(err.asString())));
+        error(i18nc("@info", "Authenticating to the card failed: %1", Formatting::errorAsString(err)));
     }
     finished();
 }

@@ -438,7 +438,7 @@ public:
     }
 
 private Q_SLOTS:
-    void updateCommitButton(const SignEncryptWidget::Operation op)
+    void updateCommitButton(const SignEncryptWidget::Operations op)
     {
         if (mParent->currentPage() != this) {
             return;

@@ -6,7 +6,7 @@
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2005, 2007, 2008, 2009.
 # Frank Osterfeld <osterfeld@kde.org>, 2008.
 # Burkhard Lück <lueck@hube-lueck.de>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
-# Frederik Schwarzer <schwarzer@kde.org>, 2010, 2011, 2012, 2013, 2016, 2018, 2022.
+# Frederik Schwarzer <schwarzer@kde.org>, 2010, 2011, 2012, 2013, 2016, 2018, 2022, 2023.
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2010.
 # Björn Ricks <bjoern.ricks@intevation.de>, 2010, 2011.
 # Torbjörn Klatt <torbjoern@torbjoern-klatt.de>, 2011.
@@ -20,16 +20,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-03-22 15:52+0100\n"
-"Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-18 22:53+0200\n"
+"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1719,7 +1719,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Der Zertifikats-Typ in der Zwischenablage lässt sich nicht bestimmen."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Zwischenablage"
@@ -1947,13 +1947,9 @@ msgid "Confirming it on a trusted website."
 msgstr "Überprüfung anhand einer vertrauenswürdigen Webseite."
 
 #: src/commands/importcertificatescommand.cpp:436
-#, fuzzy, kde-format
-#| msgid ""
-#| "In order to mark the certificate as valid (green) it needs to be "
-#| "certified."
+#, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr ""
-"Um ein Zertifikat als gültig (grün) zu markieren muss es beglaubigt werden."
+msgstr "Um ein Zertifikat als gültig zu markieren muss es beglaubigt werden."
 
 #: src/commands/importcertificatescommand.cpp:437
 #, kde-format
@@ -4928,12 +4924,10 @@ msgid "&Input file is an archive; unpack with:"
 msgstr "&Eingabe-Datei ist ein Archiv; entpacken mit:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:27
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@title:window"
 msgid "Encrypt Text"
-msgstr "Verschlüsseln"
+msgstr "Text verschlüsseln"
 
 #: src/crypto/gui/newresultpage.cpp:127 src/crypto/gui/resultpage.cpp:115
 #, kde-format
@@ -5076,11 +5070,10 @@ msgstr ""
 "auswählen."
 
 #: src/crypto/gui/signemailwizard.cpp:101
-#, fuzzy, kde-format
-#| msgid "Sign Files"
+#, kde-format
 msgctxt "@title:window"
 msgid "Sign Text"
-msgstr "Dateien signieren"
+msgstr "Text signieren"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:72
 #, kde-format
@@ -5489,34 +5482,34 @@ msgstr ""
 "Hier wird der Status und der Fortschritt der Verschlüsselungs-Operationen "
 "angezeigt."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Authentizität sicherstellen (signieren)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Signieren als:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Für mich verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Für andere verschlüsseln:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5524,7 +5517,7 @@ msgstr ""
 "Mit Passwort verschlüsseln. Jeder, dem Sie das Passwort mitteilen, kann die "
 "Daten lesen."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5538,18 +5531,52 @@ msgstr ""
 "entschlüsseln. Ein Passwort zu verwenden ist <b>weniger sicher</b> als "
 "öffentliche Schlüssel zu verwenden, selbst mit einem sehr starken Passwort."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Empfängerschlüssel"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Dieses Zertifikat ist abgelaufen."
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Dieses Zertifikat läuft heute ab."
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Dieses Zertifikat läuft morgen ab."
+msgstr[1] "Dieses Zertifikat läuft in %1 Tagen ab."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Das Ausstellerzertifikat konnte lokal nicht gefunden werden."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Das Ausstellerzertifikat konnte lokal nicht gefunden werden."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Für folgende Empfänger kann kein Schlüssel gefunden werden:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Schlüssel wurden nicht gefunden"
@@ -5826,7 +5853,7 @@ msgstr "Für diese Operation kann kein Protokoll ermittelt werden"
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
-msgstr ""
+msgstr "%1, ..."
 
 #: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
 #, kde-format
@@ -8877,7 +8904,7 @@ msgstr "Hintergrundoperationen aktiv"
 msgid "Sign/Encrypt..."
 msgstr "Signieren/Verschlüsseln ..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10539,22 +10566,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Unbekannte Ausnahme in Gruppe %1 aufgetreten"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Zertifikatsimport"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Verschlüsseln ..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "Mit S/MIME signieren ..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Mit OpenPGP signieren ..."
@@ -10660,7 +10687,7 @@ msgstr "Temporäre Datei für Ausgabe „%1“ kann nicht erstellt werden"
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
-msgstr ""
+msgstr "Datei existiert bereits"
 
 #: src/utils/output.cpp:651
 #, kde-format
@@ -10725,29 +10752,22 @@ msgstr ""
 "überschreiben?"
 
 #: src/utils/overwritedialog.cpp:185
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <b>%1</b> already exists.\n"
-#| "Overwrite?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The file <filename>%1</filename> already exists."
-msgstr ""
-"Eine Datei namens <b>%1</b> existiert bereits.\n"
-"Soll sie überschrieben werden?"
+msgstr "Die Datei <filename>%1</filename> existiert bereits."
 
 #: src/utils/overwritedialog.cpp:190
-#, fuzzy, kde-format
-#| msgid "Real name:"
+#, kde-format
 msgctxt "@label"
 msgid "Rename:"
-msgstr "Wirklicher Name:"
+msgstr "Umbenennen:"
 
 #: src/utils/overwritedialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "Test Name"
+#, kde-format
 msgctxt "@action:button"
 msgid "Suggest New Name"
-msgstr "Name des Tests"
+msgstr "Neuen Namen vorschlagen"
 
 #: src/utils/overwritedialog.cpp:200
 #, kde-format
@@ -10756,24 +10776,22 @@ msgid "Suggest a file name that does not already exist."
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:211
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename"
-msgstr "Unterfenster umbenennen"
+msgstr "Umbenennen"
 
 #: src/utils/overwritedialog.cpp:212
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the file with the given name."
-msgstr ""
+msgstr "Die Datei unter dem angegebenen Namen speichern."
 
 #: src/utils/overwritedialog.cpp:218
-#, fuzzy, kde-format
-#| msgid "Rename Tab"
+#, kde-format
 msgctxt "@action:button"
 msgid "Rename All"
-msgstr "Unterfenster umbenennen"
+msgstr "Alle umbenennen"
 
 #: src/utils/overwritedialog.cpp:221
 #, kde-format
@@ -10784,11 +10802,10 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:227
-#, fuzzy, kde-format
-#| msgid "Skipped"
+#, kde-format
 msgctxt "@action:button"
 msgid "Skip"
-msgstr "Übersprungen"
+msgstr "Überspringen"
 
 #: src/utils/overwritedialog.cpp:229
 #, kde-format
@@ -10800,7 +10817,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Skip All"
-msgstr ""
+msgstr "Alle überspringen"
 
 #: src/utils/overwritedialog.cpp:234
 #, kde-format
@@ -10811,22 +10828,19 @@ msgid ""
 msgstr ""
 
 #: src/utils/overwritedialog.cpp:238
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite"
-msgstr "Alle überschreiben"
+msgstr "Überschreiben"
 
 #: src/utils/overwritedialog.cpp:240
-#, fuzzy, kde-format
-#| msgid "Overwrite Existing File?"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file."
-msgstr "Vorhandene Datei überschreiben?"
+msgstr "Vorhandene Datei überschreiben."
 
 #: src/utils/overwritedialog.cpp:244
-#, fuzzy, kde-format
-#| msgid "Overwrite All"
+#, kde-format
 msgctxt "@action:button"
 msgid "Overwrite All"
 msgstr "Alle überschreiben"
@@ -13669,9 +13683,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "gültig"
 
-#~ msgid "certificate expired"
-#~ msgstr "Zertifikat abgelaufen"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "ungültig"
@@ -13711,9 +13722,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Dieses Zertifikat wurde Ihrem Schlüsselbund als neu hinzugefügt. Es "
 #~ "enthält einen Geheimschlüssel."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Dieses Zertifikat wurde Ihrem Schlüsselbund neu hinzugefügt."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "Der Import hat diesem Zertifikat neue Benutzer-IDs hinzugefügt."

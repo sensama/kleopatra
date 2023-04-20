@@ -15,6 +15,7 @@
 
 #include <dialogs/deletecertificatesdialog.h>
 
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Predicates>
 
@@ -335,11 +336,11 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
     if (pgpError || cmsError) {
         QString pgpErrorString;
         if (pgpError) {
-            pgpErrorString = i18n("OpenPGP backend: %1", QString::fromLocal8Bit(pgpError.asString()));
+            pgpErrorString = i18n("OpenPGP backend: %1", Formatting::errorAsString(pgpError));
         }
         QString cmsErrorString;
         if (cmsError) {
-            cmsErrorString = i18n("CMS backend: %1", QString::fromLocal8Bit(cmsError.asString()));
+            cmsErrorString = i18n("CMS backend: %1", Formatting::errorAsString(cmsError));
         }
 
         const QString msg = i18n("<qt><p>An error occurred while trying to delete "

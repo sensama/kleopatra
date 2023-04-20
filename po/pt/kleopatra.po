@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-03-20 13:45+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-18 09:30+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -1734,7 +1734,7 @@ msgstr ""
 "Não foi possível determinar o tipo de certificado na área de transferência."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Área de Transferência"
@@ -5471,34 +5471,34 @@ msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 "O estado e o progresso das operações de encriptação é apresentado aqui."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Provar a autenticidade (assinar)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Assinar como:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Encriptar"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Encriptar para mim:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Encriptar para outros:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5506,7 +5506,7 @@ msgstr ""
 "Encriptar com uma senha. Todas as pessoas com quem partilhar a senha poderão "
 "ver os dados."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5520,18 +5520,52 @@ msgstr ""
 "chave privada. O uso de uma senha é <b>menos seguro</b> que a criptografia "
 "por chave pública, mesmo que use uma senha muito forte."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "chave do destinatário"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Este certificado expirou."
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Este certificado expira hoje."
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Este certificado expira amanhã."
+msgstr[1] "Este certificado expira daqui a %1 dias."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "O certificado do emissor não foi encontrado a nível local."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "O certificado do emissor não foi encontrado a nível local."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Não foi possível encontrar uma chave para os seguintes destinatários:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Não foi possível encontrar algumas chaves"
@@ -8845,7 +8879,7 @@ msgstr "Tarefas de Segundo Plano em Curso"
 msgid "Sign/Encrypt..."
 msgstr "Assinar/Encriptar..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10510,22 +10544,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Foi recebida uma excepção desconhecida no grupo %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Importação do Certificado"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Encriptar..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "Assinar por S/MIME..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Assinar por OpenPGP..."

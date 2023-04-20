@@ -160,6 +160,7 @@ private:
 
 public:
     Status mStatus = Status::Empty;
+    bool mEditingInProgress = false;
     GpgME::Key mKey;
     KeyGroup mGroup;
 
@@ -181,7 +182,6 @@ private:
     KeyListSortFilterProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
     std::shared_ptr<KeyFilter> mFilter;
-    bool mEditingInProgress = false;
     QAction *const mStatusAction;
     QAction *const mShowDetailsAction;
     QPointer<QGpgME::Job> mLocateJob;
@@ -390,7 +390,7 @@ void CertificateLineEdit::Private::checkLocate()
         onLocateJobResult(job, mailText, result, keys);
     });
     if (auto err = job->start({mailText}, /*secretOnly=*/false)) {
-        qCDebug(KLEOPATRA_LOG) << __func__ << "Error: Starting" << job << "for" << mailText << "failed with" << err.asString();
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Error: Starting" << job << "for" << mailText << "failed with" << Formatting::errorAsString(err);
     } else {
         mLocateJob = job;
         qCDebug(KLEOPATRA_LOG) << __func__ << "Started" << job << "for" << mailText;
@@ -404,7 +404,7 @@ void CertificateLineEdit::Private::onLocateJobResult(QGpgME::Job *job, const QSt
         qCDebug(KLEOPATRA_LOG) << __func__ << "Ignoring outdated finished" << job << "for" << email;
         return;
     }
-    qCDebug(KLEOPATRA_LOG) << __func__ << job << "for" << email << "finished with" << result.error().asString() << "and keys" << keys;
+    qCDebug(KLEOPATRA_LOG) << __func__ << job << "for" << email << "finished with" << Formatting::errorAsString(result.error()) << "and keys" << keys;
     mLocateJob.clear();
     if (!keys.empty() && !keys.front().isNull()) {
         KeyCache::mutableInstance()->insert(keys.front());
@@ -687,6 +687,11 @@ void CertificateLineEdit::setGroup(const KeyGroup &group)
 bool CertificateLineEdit::isEmpty() const
 {
     return d->mStatus == Private::Status::Empty;
+}
+
+bool CertificateLineEdit::isEditingInProgress() const
+{
+    return d->mEditingInProgress;
 }
 
 bool CertificateLineEdit::hasAcceptableInput() const

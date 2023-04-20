@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2023-03-17 21:28+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1680,7 +1680,7 @@ msgstr ""
 "Не можа да се определи вида на сертификата в съдържанието на клипборда."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Клипборд"
@@ -5393,34 +5393,34 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Тук е показано състоянието и напредъка на крипто операциите."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Докажете автентичността (знак)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Подписване като:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Шифроване"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Шифроване за мен:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Шифроване за други:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5428,7 +5428,7 @@ msgstr ""
 "Шифроване с парола. Всеки, с когото споделите паролата, може да прочете "
 "данните."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5442,18 +5442,55 @@ msgstr ""
 "на парола е <b> по-малко сигурно </b> от криптографията с публичен ключ. "
 "Дори и да изберете много силна парола."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ на получател"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Сертификатът за подпис е изтекъл"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Сертификатът за подпис е изтекъл"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Сертификатът за подпис е изтекъл"
+msgstr[1] "Сертификатът за подпис е изтекъл"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Сертификатът на издателя не е намерен локално."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Сертификатът на издателя не е намерен локално."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не можа да се намери ключ за следните получатели:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Неуспех при намирането на някои от ключовете"
@@ -8764,7 +8801,7 @@ msgstr "Текущи фонови задачи"
 msgid "Sign/Encrypt..."
 msgstr "Подпис/шифроване..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10420,22 +10457,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Уловено неизвестно изключение в група %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Импортиране на сертификат"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Шифроване..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Sign..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Sign..."

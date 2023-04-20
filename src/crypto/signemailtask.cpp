@@ -16,6 +16,7 @@
 #include <utils/kleo_assert.h>
 
 #include <Libkleo/AuditLogEntry>
+#include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
 
 #include <QGpgME/Protocol>
@@ -64,7 +65,7 @@ QString makeResultString(const SigningResult &res)
     }
 
     if (err) {
-        return i18n("Signing failed: %1", QString::fromLocal8Bit(err.asString()).toHtmlEscaped());
+        return i18n("Signing failed: %1", Formatting::errorAsString(err).toHtmlEscaped());
     }
 
     return i18n("Signing succeeded.");

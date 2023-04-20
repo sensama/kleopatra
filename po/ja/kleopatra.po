@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2019-10-18 17:53+0900\n"
 "Last-Translator: Tomohiro Hyakutake <tomhioo@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1811,7 +1811,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "クリップボードにある証明書の種類を判断できませんでした。"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "クリップボード"
@@ -5726,19 +5726,19 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "信頼性を証明 (署名)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "署名:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Encrypt"
@@ -5746,24 +5746,24 @@ msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "暗号化"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "自分自身のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "他の方のために暗号化:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "パスワードで暗号化 (パスワードを共有したすべての人がデータを読み取れます)"
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5773,20 +5773,57 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "受信者"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "署名用証明書が失効しています"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "署名用証明書が失効しています"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "署名用証明書が失効しています"
+msgstr[1] "署名用証明書が失効しています"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "発行者証明書が見つかりません (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "発行者証明書が見つかりません (%1)"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "ソケットにバインドできませんでした: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"
@@ -9117,7 +9154,7 @@ msgstr "進行中のバックグラウンドタスク"
 msgid "Sign/Encrypt..."
 msgstr "署名/暗号化..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10818,22 +10855,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "グループ %1 に未知の例外を検出"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "証明書のインポート"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "暗号化..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME 署名..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP 署名..."

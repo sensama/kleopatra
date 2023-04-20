@@ -235,7 +235,7 @@ void RevokeCertificationCommand::Private::slotResult(const Error &err)
                      "<para><message>%3</message></para>",
                      Formatting::prettyNameAndEMail(failedRevocation.userId),
                      Formatting::formatForComboBox(failedRevocation.certificationKey),
-                     QString::fromUtf8(err.asString())));
+                     Formatting::errorAsString(err)));
         finished();
         return;
     }

@@ -74,7 +74,11 @@ std::vector<Key> CertificateResolver::resolveSigner(const Mailbox &signer, Proto
     auto end = std::remove_if(result.begin(), result.end(),
                               [](const Key &key) { return key.hasSecret(); });
     end = std::remove_if(result.begin(), end,
+#if GPGMEPP_KEY_CANSIGN_IS_FIXED
+                         [](const Key &key) { return key.canSign(); });
+#else
                          [](const Key &key) { return key.canReallySign(); });
+#endif
     if (proto != UnknownProtocol)
         end = std::remove_if(result.begin(), end,
                              [proto](const Key &key) { return key.protocol() != proto; });

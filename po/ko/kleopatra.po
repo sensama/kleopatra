@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1659,7 +1659,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "클립보드 내용의 인증서 형식을 확인할 수 없습니다."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "클립보드"
@@ -5335,41 +5335,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "암호화 작업의 상태와 진행을 표시합니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "진위 검사(서명)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "다음으로 서명:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "암호화"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "내 자신에게 암호화:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "다른 사람에게 암호화:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "암호로 암호화합니다. 암호를 공유하는 모든 사람이 데이터를 읽을 수 있습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5383,18 +5383,54 @@ msgstr ""
 "고 하더라도 암호를 사용하는 것은 공개 키 암호화에 비해서 <b>안전하지 않습니다"
 "</b>."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "수신자 키"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "서명한 인증서가 만료됨"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "서명한 인증서가 만료됨"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "서명한 인증서가 만료됨"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "발급자 인증서를 로컬에서 찾을 수 없습니다."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "다음 받는 사람의 키를 찾을 수 없음:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "일부 키를 찾을 수 없음"
@@ -8598,7 +8634,7 @@ msgstr "백그라운드 작업 진행 중"
 msgid "Sign/Encrypt..."
 msgstr "서명/암호화..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10224,22 +10260,22 @@ msgstr "unpack 명령에 표준 입력으로 인자를 전달할 수 없음"
 msgid "Caught unknown exception in group %1"
 msgstr "그룹 %1에서 알 수 없는 예외 발생"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "인증서 가져오기"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "암호화..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME으로 서명..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP로 서명..."

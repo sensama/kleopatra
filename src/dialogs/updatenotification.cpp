@@ -134,7 +134,7 @@ void UpdateNotification::checkUpdate(QWidget *parent, bool force)
                                                   current.toUtf8().constData(),
                                                   &err);
     if (err) {
-        qCDebug(KLEOPATRA_LOG) << "update check failed: " << err.asString();
+        qCDebug(KLEOPATRA_LOG) << "update check failed: " << Formatting::errorAsString(err);
         return;
     }
 

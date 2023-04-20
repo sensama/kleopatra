@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-03-16 12:32+0100\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-19 10:46+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1691,7 +1691,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Kan het certificaattype van de inhoud van het klembord niet bepalen."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Klembord"
@@ -5428,34 +5428,34 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Status en voortgang van het versleutelingsproces wordt hier getoond."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Authenticiteit bewijzen (ondertekenen)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Ondertekenen als:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Versleutelen"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Voor mij versleutelen:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Voor anderen versleutelen:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5463,7 +5463,7 @@ msgstr ""
 "Met wachtwoord versleutelen. Iedereen waarmee u het wachtwoord deelt kan de "
 "gegevens lezen."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5478,18 +5478,50 @@ msgstr ""
 "veilig</b> dan versleuteling met een publieke sleutel. Zelfs als u een zeer "
 "sterk wachtwoord gebruikt."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "sleutel van ontvanger"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Dit certificaat is verlopen."
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Dit certificaat verloopt vandaag."
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Dit certificaat verloopt morgen."
+msgstr[1] "Dit certificaat verloopt over %1 dagen."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Dit certificaat kan niet gebruikt worden voor ondertekening."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Kon geen sleutel vinden voor de volgende ontvangers:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Vinden van sommige sleutels is mislukt"
@@ -8807,7 +8839,7 @@ msgstr "Actieve achtergrondtaken"
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10453,22 +10485,22 @@ msgstr "argument doorgeven op standaardinvoer voor uitpak-commando kan niet"
 msgid "Caught unknown exception in group %1"
 msgstr "Onbekende uitzondering gevangen in groep %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Certificaat importeren"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Versleutelen..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-ondertekenen..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-ondertekenen..."
@@ -13617,9 +13649,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "goed"
 
-#~ msgid "certificate expired"
-#~ msgstr "certificaat verlopen"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "ongeldig"
@@ -13663,9 +13692,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Dit certificaat is nieuw in uw sleutelopslag. De geheime sleutel is "
 #~ "beschikbaar."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Dit certificaat is nieuw in uw sleutelopslag."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr ""

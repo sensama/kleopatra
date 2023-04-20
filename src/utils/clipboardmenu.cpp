@@ -4,6 +4,8 @@
   SPDX-License-Identifier: GPL-2.0-only
 */
 
+#include <config-kleopatra.h>
+
 #include "clipboardmenu.h"
 
 #include "kdtoolsglobal.h"
@@ -125,7 +127,11 @@ bool hasSigningKeys(GpgME::Protocol protocol) {
     }
     return Kleo::any_of(KeyCache::instance()->keys(),
                         [protocol](const auto &k) {
+#if GPGMEPP_KEY_CANSIGN_IS_FIXED
+                            return k.hasSecret() && k.canSign() && (k.protocol() == protocol);
+#else
                             return k.hasSecret() && k.canReallySign() && (k.protocol() == protocol);
+#endif
                         });
 }
 

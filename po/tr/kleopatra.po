@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-04-02 17:26+0300\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-19 13:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1679,7 +1679,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Pano içeriğinin sertifika türü belirlenemedi."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Pano"
@@ -5355,41 +5355,41 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Şifreleme işleminin durumu ve ilerlemesi burada gösterilmektedir."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Doğruluğu (imza) kanıtla"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "İmzalayan:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Şifrele"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Benim için şifrele:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Başkası için şifrele:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 "Parola ile şifrele. Parolayı paylaştığınız herhangi biri veriyi okuyabilir."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5403,18 +5403,50 @@ msgstr ""
 "okuyabilir. Bir parola kullanmak, genel anahtar şifrelemeden <b>daha az "
 "güvenlidir.</b> Çok güçlü bir şifre seçseniz bile bu böyledir."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "alıcı anahtarı"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Bu sertifikanın süresi dolmuş."
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Bu sertifikanın süresi bugün doluyor."
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Bu sertifikanın süresi yarın doluyor."
+msgstr[1] "Bu sertifikanın süresi %1 gün içinde doluyor."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Sertifika şifreleme için kullanılamıyor."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Bu sertifika imzalama için kullanılamıyor."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Aşağıdaki alıcılar için bir anahtar bulunamadı:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Bazı anahtarlar bulunamadı"
@@ -8705,7 +8737,7 @@ msgstr "Süren Arka Plan Görevleri"
 msgid "Sign/Encrypt..."
 msgstr "İmzala/Şifrele..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10351,22 +10383,22 @@ msgstr "unpack-komutu için standart girdiden değişken geçimi kullanılamaz"
 msgid "Caught unknown exception in group %1"
 msgstr "%1 grubu içinde beklenmeyen bir istisna yakalandı"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Sertifika İçe Aktar"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Şifrele..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME İmzala..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP İmzala..."

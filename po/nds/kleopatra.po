@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -1827,7 +1827,7 @@ msgstr ""
 "Zertifikaattyp vun de Twischenaflaag ehr Inholt lett sik nich fastslaan."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Twischenaflaag"
@@ -5770,45 +5770,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "De Status un dat Vörankamen vun de Verslötelakschoon warrt hier wiest."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Identiteetprööv"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Sign Files"
 msgid "Sign as:"
 msgstr "Dateien ünnerschrieven"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Verslöteln"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for me:"
 msgstr "Dateien verslöteln"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for others:"
 msgstr "Dateien verslöteln"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5818,20 +5818,57 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Adressaat"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Ünnerschriftzertifikaat aflopen"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Zertifikaat aflopen"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Dit Zertifikaat is nieg binnen Dien Slötelbund."
+msgstr[1] "Dit Zertifikaat is nieg binnen Dien Slötelbund."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Dit Zertifikaat wöör lokaal utmaakt."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Dit Zertifikaat wöör lokaal utmaakt."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Tokoppeln na Socket nich mööglich: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"
@@ -9208,7 +9245,7 @@ msgstr "Lopen Achtergrund-Akschonen"
 msgid "Sign/Encrypt..."
 msgstr "Ünnerschrieven/verslöteln..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10945,22 +10982,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Nich begäng Utnahm binnen Koppel \"%1\" affungen"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Zertifikaat importeren"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Verslöteln..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Ünnerschrift..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Ünnerschrift..."
@@ -14125,9 +14162,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "gellt"
 
-#~ msgid "certificate expired"
-#~ msgstr "Zertifikaat aflopen"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "leeg"
@@ -14161,9 +14195,6 @@ msgstr ""
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Dat Importeren vun dit Zertifikaat wöör afbraken."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Dit Zertifikaat is nieg binnen Dien Slötelbund."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "Dat Importeren hett dit Zertifikaat nieg Bruker-IDs toföögt."

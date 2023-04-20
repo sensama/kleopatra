@@ -11,6 +11,7 @@
 
 #include "importpaperkeycommand.h"
 
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
 #include <gpgme++/key.h>
@@ -57,7 +58,7 @@ QStringList ImportPaperKeyCommand::arguments() const
 void ImportPaperKeyCommand::exportResult(const GpgME::Error &err, const QByteArray &data)
 {
     if (err) {
-        d->error(QString::fromUtf8(err.asString()), errorCaption());
+        d->error(Formatting::errorAsString(err), errorCaption());
         d->finished();
         return;
     }
@@ -128,7 +129,7 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     auto result = importjob->exec(data);
     delete importjob;
     if (result.error()) {
-        d->error(QString::fromUtf8(result.error().asString()), errorCaption());
+        d->error(Formatting::errorAsString(result.error()), errorCaption());
         Q_EMIT finished();
         return;
     }

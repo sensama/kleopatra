@@ -62,6 +62,9 @@ public:
     /** Check if the text is empty */
     bool isEmpty() const;
 
+    /** Returns true, if the user is editing the input. */
+    bool isEditingInProgress() const;
+
     /** Returns true if the field is empty or if a key or group is selected. */
     bool hasAcceptableInput() const;
 

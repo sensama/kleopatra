@@ -530,11 +530,11 @@ static QString make_error_message(const Error &err, const QString &id)
            ? i18n("<qt><p>An error occurred while trying "
                   "to import the certificate:</p>"
                   "<p><b>%1</b></p></qt>",
-                  QString::fromLocal8Bit(err.asString()))
+                  Formatting::errorAsString(err))
            : i18n("<qt><p>An error occurred while trying "
                   "to import the certificate %1:</p>"
                   "<p><b>%2</b></p></qt>",
-                  id, QString::fromLocal8Bit(err.asString()));
+                  id, Formatting::errorAsString(err));
 }
 
 void ImportCertificatesCommand::Private::showError(const ImportResultData &result)
@@ -580,7 +580,7 @@ void ImportCertificatesCommand::Private::onImportResult(const ImportResult &resu
 
 void ImportCertificatesCommand::Private::addImportResult(const ImportResultData &result, const ImportJobData &job)
 {
-    qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << result.result.error().asString();
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << result.id << "Result:" << Formatting::errorAsString(result.result.error());
     results.push_back(result);
 
     if (importFailed(result)) {

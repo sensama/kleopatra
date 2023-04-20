@@ -405,7 +405,7 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
     if (err.isCanceled()) {
         return i18n("<b>Verification canceled.</b>");
     } else if (err) {
-        return i18n("<b>Verification failed: %1.</b>", QString::fromLocal8Bit(err.asString()).toHtmlEscaped());
+        return i18n("<b>Verification failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
     }
 
     const std::vector<Signature> sigs = res.signatures();
@@ -453,7 +453,7 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
-        return i18n("<b>Decryption failed: %1.</b>", QString::fromLocal8Bit(err.asString()).toHtmlEscaped());
+        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
     }
     return i18n("<b>Decryption succeeded.</b>");
 }
@@ -477,7 +477,7 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
     if ((sig.summary() & Signature::Red)) {
         const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
         if (sig.summary() & Signature::SysError) {
-            return ret + QStringLiteral(" (%1)").arg(QString::fromLocal8Bit(sig.status().asString()));
+            return ret + QStringLiteral(" (%1)").arg(Formatting::errorAsString(sig.status()));
         }
         return ret;
     }
@@ -498,7 +498,7 @@ static QString formatSignature(const Signature &sig, const DecryptVerifyResult::
     // Catch all fall through
     const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
     if (sig.summary() & Signature::SysError) {
-        return ret + QStringLiteral(" (%1)").arg(QString::fromLocal8Bit(sig.status().asString()));
+        return ret + QStringLiteral(" (%1)").arg(Formatting::errorAsString(sig.status()));
     }
     return ret;
 }
@@ -1151,7 +1151,7 @@ static void setIgnoreMDCErrorFlag(QGpgME::Job *job, bool ignoreMDCError)
         } else {
             const auto err = ctx->setFlag("ignore-mdc-error", "1");
             if (err) {
-                qCWarning(KLEOPATRA_LOG) << "Failed to set ignore mdc errors" << err.asString();
+                qCWarning(KLEOPATRA_LOG) << "Failed to set ignore mdc errors" << Formatting::errorAsString(err);
             }
         }
     }

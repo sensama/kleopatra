@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2017-05-16 07:05-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: hebrew <kde-l10n-he@kde.org>\n"
@@ -1585,7 +1585,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr ""
@@ -5027,40 +5027,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "מידע לגבי התעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 msgid "Sign as:"
 msgstr "&צור תעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "&יצירת תעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 msgid "Encrypt for me:"
 msgstr "&יצירת תעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 msgid "Encrypt for others:"
 msgstr "&יצירת תעודה"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5070,18 +5070,50 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "תיאור"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "&צור תעודה"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "&צור תעודה"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "&צור תעודה"
+msgstr[1] "&צור תעודה"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "מידע לגבי התעודה"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "מידע לגבי התעודה"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "אין אפשרות ליצור את התעודה: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 msgid "Failed to find some keys"
 msgstr "אין אפשרות ליצור את התעודה: %1"
@@ -8157,7 +8189,7 @@ msgstr ""
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, fuzzy, kde-format
 msgid "Decrypt/Verify..."
@@ -9685,22 +9717,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 msgid "Certificate Import"
 msgstr "התעודה יובאה"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr ""

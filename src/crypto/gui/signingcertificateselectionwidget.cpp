@@ -99,7 +99,11 @@ std::vector<GpgME::Key> SigningCertificateSelectionWidget::Private::candidates(G
     end = std::remove_if(keys.begin(), end, [prot](const GpgME::Key &key) { return key.protocol() != prot; });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.hasSecret(); });
     Q_ASSERT(std::all_of(keys.begin(), end, [](const GpgME::Key &key) { return key.hasSecret(); }));
+#if GPGMEPP_KEY_CANSIGN_IS_FIXED
+    end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.canSign(); });
+#else
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return !key.canReallySign(); });
+#endif
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isExpired(); });
     end = std::remove_if(keys.begin(), end, [](const GpgME::Key &key) { return key.isRevoked(); });
     keys.erase(end, keys.end());

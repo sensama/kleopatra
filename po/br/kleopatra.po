@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: Breton <LL@li.org>\n"
@@ -1738,7 +1738,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "N'hellan ket krouiñ an testeni : %1"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr ""
@@ -5437,45 +5437,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Titouroù"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Sign as:"
 msgstr "Nullet."
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Sac'het eo lemel an testeni"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "Sac'het eo lemel an testeni"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "Sac'het eo lemel an testeni"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5485,20 +5485,57 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Deskrivadur"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Emaon o tistruj an testenioù"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Emaon o tistruj an testenioù"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "Certificate Download Failed"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Sac'het eo enkargañ an testeni"
+msgstr[1] "Sac'het eo enkargañ an testeni"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Lemel an testenioù"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Lemel an testenioù"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "N'hellan ket krouiñ an testeni : %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -8798,7 +8835,7 @@ msgstr ""
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
@@ -10400,23 +10437,23 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 #| msgid "Certificate Import Failed"
 msgid "Certificate Import"
 msgstr "Sac'het eo enporzh an testeni"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr ""
@@ -12778,11 +12815,6 @@ msgstr ""
 #~ msgstr "Lizher elektronek"
 
 #, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "certificate expired"
-#~ msgstr "Emaon o tistruj an testenioù"
-
-#, fuzzy
 #~| msgid "Could not generate certificate: %1"
 #~ msgid "Bad signature by an unknown certificate: %1"
 #~ msgstr "N'hellan ket krouiñ an testeni : %1"
@@ -12801,11 +12833,6 @@ msgstr ""
 #~| msgid "Fetching certificate from server..."
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Emaon o tegas an testeni eus ar servijer ..."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Sac'het eo enkargañ an testeni"
 
 #, fuzzy
 #~| msgid "Fetching certificate from server..."

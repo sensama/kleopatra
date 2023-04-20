@@ -569,7 +569,7 @@ void LookupCertificatesCommand::Private::showError(QWidget *parent, const KeyLis
     }
     KMessageBox::information(parent, i18nc("@info",
                                            "Failed to search on certificate server. The error returned was:\n%1",
-                                           QString::fromLocal8Bit(result.error().asString())));
+                                           Formatting::errorAsString(result.error())));
 }
 
 void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyListResult &result)

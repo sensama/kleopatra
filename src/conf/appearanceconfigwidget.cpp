@@ -11,7 +11,6 @@
 #include <config-kleopatra.h>
 
 #include "appearanceconfigwidget.h"
-#include "ui_appearanceconfigwidget.h"
 
 #include "tagspreferences.h"
 #include "tooltippreferences.h"
@@ -23,20 +22,26 @@
 #include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/SystemInfo>
 
-#include <KIconDialog>
-#include <QIcon>
-
 #include <KConfig>
-#include <KLocalizedString>
 #include <KConfigGroup>
+#include <KIconDialog>
+#include <KLocalizedString>
+#include <KMessageWidget>
+#include <KSeparator>
 
-#include <QColor>
-#include <QFont>
-#include <QString>
-#include <QRegularExpression>
 #include <QApplication>
+#include <QCheckBox>
+#include <QColor>
 #include <QColorDialog>
+#include <QFont>
 #include <QFontDialog>
+#include <QGridLayout>
+#include <QIcon>
+#include <QLabel>
+#include <QListWidget>
+#include <QRegularExpression>
+#include <QString>
+#include <QVBoxLayout>
 
 #include <algorithm>
 
@@ -297,6 +302,149 @@ static void kiosk_enable(QWidget *w, const QListWidgetItem *item, int allowRole)
     }
 }
 
+class Ui_AppearanceConfigWidget
+{
+public:
+    QTabWidget *tabWidget;
+    KMessageWidget *highContrastMsg;
+    QListWidget *categoriesLV;
+    QPushButton *iconButton;
+    QPushButton *foregroundButton;
+    QPushButton *backgroundButton;
+    QPushButton *fontButton;
+    QCheckBox *italicCB;
+    QCheckBox *boldCB;
+    QCheckBox *strikeoutCB;
+    QPushButton *defaultLookPB;
+    QCheckBox *tooltipValidityCheckBox;
+    QCheckBox *tooltipOwnerCheckBox;
+    QCheckBox *tooltipDetailsCheckBox;
+    QCheckBox *useTagsCheckBox;
+    QCheckBox *showExpirationCheckBox;
+
+    void setupUi(QWidget *parent)
+    {
+        if (parent->objectName().isEmpty())
+            parent->setObjectName(QString::fromUtf8("AppearanceConfigWidget"));
+        auto mainLayout = new QVBoxLayout{parent};
+        tabWidget = new QTabWidget(parent);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+
+        {
+        auto tab = new QWidget{parent};
+        auto tabLayout = new QVBoxLayout{tab};
+
+        useTagsCheckBox = new QCheckBox{i18nc("@option:check", "Show tags attached to certificates"), tab};
+        useTagsCheckBox->setToolTip(i18nc("@info:tooltip", "Enable display and usage of tags attached to certificates."));
+        tabLayout->addWidget(useTagsCheckBox);
+
+        tabLayout->addWidget(new KSeparator{tab});
+
+        auto label = new QLabel{tab};
+        label->setText(i18nc("@info", "Show the following information in certificate list tooltips:"));
+        tabLayout->addWidget(label);
+
+        tooltipValidityCheckBox = new QCheckBox{i18nc("@option:check", "Show validity"), tab};
+        tabLayout->addWidget(tooltipValidityCheckBox);
+
+        tooltipOwnerCheckBox = new QCheckBox{i18nc("@option:check", "Show owner information"), tab};
+        tabLayout->addWidget(tooltipOwnerCheckBox);
+
+        tooltipDetailsCheckBox = new QCheckBox{i18nc("@option:check", "Show technical details"), tab};
+        tabLayout->addWidget(tooltipDetailsCheckBox);
+
+        tabLayout->addWidget(new KSeparator{tab});
+
+        showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
+        tabLayout->addWidget(showExpirationCheckBox);
+
+        tabLayout->addStretch(1);
+
+        tabWidget->addTab(tab, i18nc("@title:tab", "General"));
+        }
+
+        auto tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        auto gridLayout = new QGridLayout(tab_2);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        highContrastMsg = new KMessageWidget(tab_2);
+        highContrastMsg->setObjectName(QString::fromUtf8("highContrastMsg"));
+
+        gridLayout->addWidget(highContrastMsg, 0, 0, 1, 2);
+
+        categoriesLV = new QListWidget(tab_2);
+        categoriesLV->setObjectName(QString::fromUtf8("categoriesLV"));
+
+        gridLayout->addWidget(categoriesLV, 1, 0, 1, 1);
+
+        auto vboxLayout = new QVBoxLayout();
+        vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
+        iconButton = new QPushButton(tab_2);
+        iconButton->setText(i18nc("@action:button", "Set Icon..."));
+        iconButton->setObjectName(QString::fromUtf8("iconButton"));
+        iconButton->setEnabled(false);
+
+        vboxLayout->addWidget(iconButton);
+
+        foregroundButton = new QPushButton(tab_2);
+        foregroundButton->setText(i18nc("@action:button", "Set Text Color..."));
+        foregroundButton->setObjectName(QString::fromUtf8("foregroundButton"));
+        foregroundButton->setEnabled(false);
+
+        vboxLayout->addWidget(foregroundButton);
+
+        backgroundButton = new QPushButton(tab_2);
+        backgroundButton->setText(i18nc("@action:button", "Set Background Color..."));
+        backgroundButton->setObjectName(QString::fromUtf8("backgroundButton"));
+        backgroundButton->setEnabled(false);
+
+        vboxLayout->addWidget(backgroundButton);
+
+        fontButton = new QPushButton(tab_2);
+        fontButton->setText(i18nc("@action:button", "Set Font..."));
+        fontButton->setObjectName(QString::fromUtf8("fontButton"));
+        fontButton->setEnabled(false);
+
+        vboxLayout->addWidget(fontButton);
+
+        italicCB = new QCheckBox(tab_2);
+        italicCB->setText(i18nc("@option:check", "Italic"));
+        italicCB->setObjectName(QString::fromUtf8("italicCB"));
+        italicCB->setEnabled(false);
+
+        vboxLayout->addWidget(italicCB);
+
+        boldCB = new QCheckBox(tab_2);
+        boldCB->setText(i18nc("@option:check", "Bold"));
+        boldCB->setObjectName(QString::fromUtf8("boldCB"));
+        boldCB->setEnabled(false);
+
+        vboxLayout->addWidget(boldCB);
+
+        strikeoutCB = new QCheckBox(tab_2);
+        strikeoutCB->setText(i18nc("@option:check", "Strikeout"));
+        strikeoutCB->setObjectName(QString::fromUtf8("strikeoutCB"));
+        strikeoutCB->setEnabled(false);
+
+        vboxLayout->addWidget(strikeoutCB);
+
+        vboxLayout->addStretch(1);
+
+        defaultLookPB = new QPushButton(tab_2);
+        defaultLookPB->setText(i18nc("@action:button", "Default Appearance"));
+        defaultLookPB->setObjectName(QString::fromUtf8("defaultLookPB"));
+        defaultLookPB->setEnabled(false);
+
+        vboxLayout->addWidget(defaultLookPB);
+
+        gridLayout->addLayout(vboxLayout, 1, 1, 1, 1);
+
+        tabWidget->addTab(tab_2, i18nc("@title:tab", "Certificate Categories"));
+
+        mainLayout->addWidget(tabWidget);
+    }
+};
+
 class AppearanceConfigWidget::Private : public Ui_AppearanceConfigWidget
 {
     friend class ::Kleo::Config::AppearanceConfigWidget;
@@ -351,6 +499,9 @@ public:
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
+        connect(showExpirationCheckBox, &QCheckBox::toggled, q, [this]() {
+            Q_EMIT q->changed();
+        });
     }
 
 private:
@@ -436,14 +587,19 @@ void AppearanceConfigWidget::Private::slotDefaultClicked()
 
 void AppearanceConfigWidget::defaults()
 {
+    // use temporary KConfigSkeleton instances for (re)setting the values to the defaults;
+    // the setters respect the immutability of the individual settings, so that we don't have
+    // to check this ourselves
+
+    Settings settings;
+    settings.setShowExpiryNotifications(settings.findItem(QStringLiteral("ShowExpiryNotifications"))->getDefault().toBool());
+    d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
+
     // This simply means "default look for every category"
     for (int i = 0, end = d->categoriesLV->count(); i != end; ++i) {
         set_default_appearance(d->categoriesLV->item(i));
     }
 
-    // use a temporary TooltipPreferences instance for resetting the values to the defaults;
-    // the setters respect the immutability of the individual settings, so that we don't have
-    // to check this explicitly
     TooltipPreferences tooltipPrefs;
     tooltipPrefs.setShowValidity(tooltipPrefs.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
     d->tooltipValidityCheckBox->setChecked(tooltipPrefs.showValidity());
@@ -464,8 +620,11 @@ void AppearanceConfigWidget::defaults()
 
 void AppearanceConfigWidget::load()
 {
+    const Settings settings;
+    d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
+    d->showExpirationCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowExpiryNotifications")));
+
     if (d->dnOrderWidget) {
-        const Settings settings;
         d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
         d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
@@ -501,13 +660,13 @@ void AppearanceConfigWidget::load()
 
 void AppearanceConfigWidget::save()
 {
+    Settings settings;
+    settings.setShowExpiryNotifications(d->showExpirationCheckBox->isChecked());
     if (d->dnOrderWidget) {
-        Settings settings;
         settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
-        settings.save();
-
         DN::setAttributeOrder(settings.attributeOrder());
     }
+    settings.save();
 
     TooltipPreferences prefs;
     prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());

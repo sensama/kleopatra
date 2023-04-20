@@ -639,7 +639,7 @@ void KeyToCardCommand::Private::startDeleteSecretKeyLocally()
 void KeyToCardCommand::Private::deleteSecretKeyLocallyFinished(const GpgME::Error &err)
 {
     if (err) {
-        error(xi18nc("@info", "<para>Failed to delete the key:</para><para><message>%1</message></para>", QString::fromUtf8(err.asString())));
+        error(xi18nc("@info", "<para>Failed to delete the key:</para><para><message>%1</message></para>", Formatting::errorAsString(err)));
     }
     ReaderStatus::mutableInstance()->updateStatus();
     success(i18nc("@info", "Successfully copied the key to the card."));
@@ -703,14 +703,14 @@ void KeyToCardCommand::Private::keyToCardDone(const GpgME::Error &err)
     }
     if (err) {
         error(xi18nc("@info",
-                     "<para>Copying the key to the card failed:</para><para><message>%1</message></para>", QString::fromUtf8(err.asString())));
+                     "<para>Copying the key to the card failed:</para><para><message>%1</message></para>", Formatting::errorAsString(err)));
     }
     finished();
 }
 
 void KeyToCardCommand::Private::keyToPIVCardDone(const GpgME::Error &err)
 {
-    qCDebug(KLEOPATRA_LOG) << q << __func__ << err.asString() << "(" << err.code() << ")";
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << Formatting::errorAsString(err) << "(" << err.code() << ")";
 #ifdef GPG_ERROR_HAS_NO_AUTH
     // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
     if (err.code() == GPG_ERR_NO_AUTH || err.code() == GPG_ERR_BAD_PIN) {

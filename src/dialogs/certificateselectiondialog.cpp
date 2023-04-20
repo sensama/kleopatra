@@ -425,7 +425,11 @@ void CertificateSelectionDialog::filterAllowedKeys(std::vector<Key> &keys, int o
 
     switch (options & AnyCertificate) {
     case SignOnly:
+#if GPGMEPP_KEY_CANSIGN_IS_FIXED
+        end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canSign(); });
+#else
         end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canReallySign(); });
+#endif
         break;
     case EncryptOnly:
         end = std::remove_if(keys.begin(), end, [](const Key &key) { return !key.canEncrypt(); });

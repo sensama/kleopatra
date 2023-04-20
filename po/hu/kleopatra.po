@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2014-09-10 14:40+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1813,7 +1813,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Nem sikerült meghatározni a vágólaptartalmak tanúsítványtípusát."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Vágólap"
@@ -5717,45 +5717,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "A titkosítási műveletek állapota és folyamata látható itt."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Felhasználóazonosítás"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Sign Files"
 msgid "Sign as:"
 msgstr "Fájlok aláírása"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Titkosítás"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for me:"
 msgstr "Fájl(ok) titkosítása"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for others:"
 msgstr "Fájl(ok) titkosítása"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5765,20 +5765,57 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Címzett"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Az aláírási tanúsítvány lejárt"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "a tanúsítvány lejárt"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Ez a tanúsítvány új a kulcstárolóban."
+msgstr[1] "Ez a tanúsítvány új a kulcstárolóban."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nem sikerült kapcsolódni ehhez az aljazathoz: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgid "Failed to find some keys"
@@ -9154,7 +9191,7 @@ msgstr "Futó háttérfolyamatok"
 msgid "Sign/Encrypt..."
 msgstr "Aláírás/titkosítás..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10876,22 +10913,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Ismeretlen kivétel elkapva a(z) %1 csoportban"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Tanúsítvány importálás"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Titkosítás…"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-aláírás…"
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-aláírás…"
@@ -14028,9 +14065,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "jó"
 
-#~ msgid "certificate expired"
-#~ msgstr "a tanúsítvány lejárt"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "rossz"
@@ -14064,9 +14098,6 @@ msgstr ""
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "A tanúsítvány importálása megszakadt."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Ez a tanúsítvány új a kulcstárolóban."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr ""

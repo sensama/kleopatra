@@ -166,7 +166,7 @@ void CertificateToPIVCardCommand::Private::startCertificateToPIVCard()
     Data data(&dp);
     const Error err = ctx->exportPublicKeys(certificate.primaryFingerprint(), data);
     if (err) {
-        error(i18nc("@info", "Exporting the certificate failed: %1", QString::fromUtf8(err.asString())));
+        error(i18nc("@info", "Exporting the certificate failed: %1", Formatting::errorAsString(err)));
         finished();
         return;
     }
@@ -231,7 +231,7 @@ CertificateToPIVCardCommand::~CertificateToPIVCardCommand()
 void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
 {
     qCDebug(KLEOPATRA_LOG) << "CertificateToPIVCardCommand::certificateToPIVCardDone():"
-                           << err.asString() << "(" << err.code() << ")";
+                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
 #ifdef GPG_ERROR_HAS_NO_AUTH
         // gpgme 1.13 reports "BAD PIN" instead of "NO AUTH"
@@ -241,7 +241,7 @@ void CertificateToPIVCardCommand::certificateToPIVCardDone(const Error &err)
         }
 #endif
 
-        d->error(i18nc("@info", "Writing the certificate to the card failed: %1", QString::fromUtf8(err.asString())));
+        d->error(i18nc("@info", "Writing the certificate to the card failed: %1", Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {
         d->success(i18nc("@info", "Writing the certificate to the card succeeded."));
         ReaderStatus::mutableInstance()->updateStatus();

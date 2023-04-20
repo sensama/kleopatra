@@ -17,6 +17,7 @@
 #include "utils/filedialog.h"
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyGroup>
 #include <Libkleo/KeyGroupImportExport>
 #include <Libkleo/KeyHelpers>
@@ -253,7 +254,7 @@ void ExportGroupsCommand::Private::showError(const GpgME::Error &err)
 {
     error(xi18n("<para>An error occurred during the export:</para>"
                 "<para><message>%1</message></para>",
-                QString::fromLocal8Bit(err.asString())),
+                Formatting::errorAsString(err)),
           i18nc("@title:window", "Export Failed"));
 }
 

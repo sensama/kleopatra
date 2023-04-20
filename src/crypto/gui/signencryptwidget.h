@@ -11,34 +11,37 @@
 #include <QList>
 #include <QWidget>
 
-#include <Libkleo/KeyGroup>
+#include <gpgme++/global.h>
 
-#include <gpgme++/key.h>
+#include <memory>
 
-class QCheckBox;
-class QVBoxLayout;
+namespace GpgME
+{
+class Key;
+}
 
 namespace Kleo
 {
 class CertificateLineEdit;
-class KeySelectionCombo;
-class AbstractKeyListModel;
-class UnknownRecipientWidget;
+class KeyGroup;
 
 class SignEncryptWidget: public QWidget
 {
     Q_OBJECT
 public:
     enum Operation {
-        NoOperation,
-        Sign,
-        Encrypt,
-        SignAndEncrypt
+        NoOperation = 0x00,
+        Sign = 0x01,
+        Encrypt = 0x02,
+        SignAndEncrypt = Sign | Encrypt
     };
+    Q_DECLARE_FLAGS(Operations, Operation)
 
     /** If cmsSigEncExclusive is true CMS operations can be
      * done only either as sign or as encrypt */
     explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
+
+    ~SignEncryptWidget() override;
 
     /** Overwrite default text with custom text, e.g. with a character marked
      *  as shortcut key. */
@@ -60,7 +63,7 @@ public:
     GpgME::Key selfKey() const;
 
     /** Returns the operation based on the current selection. */
-    Operation currentOp() const;
+    Operations currentOp() const;
 
     /** Whether or not symmetric encryption should also be used. */
     bool encryptSymmetric() const;
@@ -111,7 +114,6 @@ public:
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
-    void recpRemovalRequested(CertificateLineEdit *w);
     void certificateSelectionRequested(CertificateLineEdit *w);
 
 protected:
@@ -121,34 +123,16 @@ Q_SIGNALS:
     /* Emitted when the certificate selection changed the operation
      * with that selection. e.g. "Sign" or "Sign/Encrypt".
      * If no crypto operation is selected this returns a null string. */
-    void operationChanged(Operation op);
+    void operationChanged(Operations op);
 
     /* Emitted when the certificate selection might be changed. */
     void keysChanged();
 
 private:
-    CertificateLineEdit* addRecipientWidget();
-    /** Inserts a new recipient widget after widget @p after or at the end
-     *  if @p after is null. */
-    CertificateLineEdit* insertRecipientWidget(CertificateLineEdit *after);
-    void onProtocolChanged();
-    void updateCheckBoxes();
-
-private:
-    KeySelectionCombo *mSigSelect = nullptr;
-    KeySelectionCombo *mSelfSelect = nullptr;
-    QList<CertificateLineEdit *> mRecpWidgets;
-    QList<UnknownRecipientWidget *> mUnknownWidgets;
-    QList<GpgME::Key> mAddedKeys;
-    QList<KeyGroup> mAddedGroups;
-    QVBoxLayout *mRecpLayout = nullptr;
-    Operation mOp;
-    AbstractKeyListModel *mModel = nullptr;
-    QCheckBox *mSymmetric = nullptr;
-    QCheckBox *mSigChk = nullptr;
-    QCheckBox *mEncOtherChk = nullptr;
-    QCheckBox *mEncSelfChk = nullptr;
-    GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
-    const bool mIsExclusive;
+    class Private;
+    const std::unique_ptr<Private> d;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(SignEncryptWidget::Operations)
+
 } // namespace Kleo

@@ -16,6 +16,7 @@
 #include "deviceinfowatcher.h"
 
 #include <Libkleo/Assuan>
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
@@ -518,7 +519,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
 
     if (err.code()) {
         qCWarning(KLEOPATRA_LOG) << "Running SCD GETATTR NKS-VERSION failed:" << err;
-        ci->setErrorMsg(QStringLiteral ("NKS-VERSION failed: ") + QString::fromUtf8(err.asString()));
+        ci->setErrorMsg(QStringLiteral ("NKS-VERSION failed: ") + Formatting::errorAsString(err));
         return;
     }
 
@@ -535,7 +536,7 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
             scd_getattr_status(gpg_agent, "CHV-STATUS", err)).split(QLatin1Char(' '));
     if (err.code()) {
         qCDebug(KLEOPATRA_LOG) << "Running SCD GETATTR CHV-STATUS failed:" << err;
-        ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + QString::fromUtf8(err.asString()));
+        ci->setErrorMsg(QStringLiteral ("CHV-Status failed: ") + Formatting::errorAsString(err));
         return;
     }
 

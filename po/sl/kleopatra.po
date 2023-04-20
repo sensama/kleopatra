@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-03-29 08:16+0200\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-19 07:03+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
+"%100<=4 ? 2 : 3);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
 
@@ -1682,7 +1682,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Iz vsebine odložišča ni bilo mogoče ugotoviti vrste potrdila."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Odložišče"
@@ -5389,40 +5389,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu sta prikazana stanje in napredek šifrirnih opravil."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Dokaži pristnost (podpiši)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpiši kot:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifriraj"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifriraj zame:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifriraj za druge:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Šifriraj z geslom. Vsakdo z geslom bo lahko prebral podatke."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5436,18 +5436,52 @@ msgstr ""
 "<b>manj varna</b> od šifriranja z javnimi ključi, celo če izberete zelo "
 "močno geslo."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "prejemnikov ključ"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "To potrdilo je poteklo."
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "To potrdilo bo poteklo danes."
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "To potrdilo bo poteklo čez %1 dan."
+msgstr[1] "To potrdilo bo poteklo čez %1 dneva."
+msgstr[2] "To potrdilo bo poteklo čez %1 dni."
+msgstr[3] "To potrdilo bo poteklo čez %1 dni."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Tega potrdila ni mogoče uporabljati za šifriranje."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Tega potrdila ni mogoče uporabljati za podpisovanje."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"
@@ -8755,7 +8789,7 @@ msgstr "Tekoča opravila v ozadju"
 msgid "Sign/Encrypt..."
 msgstr "Podpiši/šifriraj..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10395,22 +10429,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Ujeta neznana izjema v skupini %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Uvoz potrdil"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Šifriraj ..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "Podpiši z S/MIME..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Podpiši z OpenPGP..."

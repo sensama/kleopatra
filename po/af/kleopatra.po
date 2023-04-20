@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpgpcertmanager VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2002-11-07 11:35+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -1545,7 +1545,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Kon nie genereer sertifikaat"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr ""
@@ -4987,40 +4987,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Sertifikaat Informasie"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 msgid "Sign as:"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Sertifikaat Genereering"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 msgid "Encrypt for me:"
 msgstr "Sertifikaat Genereering"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 msgid "Encrypt for others:"
 msgstr "Sertifikaat Genereering"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5030,19 +5030,51 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Beskrywing"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Kies Sertifikaat Lêer"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Kies Sertifikaat Lêer"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Kies Sertifikaat Lêer"
+msgstr[1] "Kies Sertifikaat Lêer"
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Genereer Sertifikaat"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Genereer Sertifikaat"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Kon nie genereer sertifikaat"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 msgid "Failed to find some keys"
 msgstr "Kon nie genereer sertifikaat"
@@ -8164,7 +8196,7 @@ msgstr ""
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, fuzzy, kde-format
 #| msgid "&Details"
@@ -9701,22 +9733,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 msgid "Certificate Import"
 msgstr "Sertifikaat Ingevoer"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr ""
@@ -11716,10 +11748,6 @@ msgstr ""
 #~ msgstr "Geldige"
 
 #, fuzzy
-#~ msgid "certificate expired"
-#~ msgstr "Kies Sertifikaat Lêer"
-
-#, fuzzy
 #~ msgid "Bad signature by an unknown certificate: %1"
 #~ msgstr "Kon nie genereer sertifikaat"
 
@@ -11733,10 +11761,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "The import of this certificate was canceled."
-#~ msgstr "Kies Sertifikaat Lêer"
-
-#, fuzzy
-#~ msgid "This certificate is new to your keystore."
 #~ msgstr "Kies Sertifikaat Lêer"
 
 #, fuzzy

@@ -231,7 +231,7 @@ void RevokeKeyCommand::Private::showError(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred during the revocation:</para>"
                  "<para><message>%1</message></para>",
-                 QString::fromLocal8Bit(err.asString())),
+                 Formatting::errorAsString(err)),
           i18nc("@title:window", "Revocation Failed"));
 }
 

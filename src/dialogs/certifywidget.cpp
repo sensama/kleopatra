@@ -703,7 +703,7 @@ public:
                 KMessageBox::error(q,
                                    i18n("<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>",
                                         Formatting::formatForComboBox(secKey()),
-                                        QString::fromLocal8Bit(err.asString())),
+                                        Formatting::errorAsString(err)),
                                    i18n("Certification Trust Change Failed"));
             }
             if (err || err.isCanceled()) {

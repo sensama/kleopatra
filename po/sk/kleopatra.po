@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2020-09-08 18:56+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
@@ -1788,7 +1788,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Nepodarilo sa určiť typ certifikátu z obsahu schránky."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Schránka"
@@ -5642,42 +5642,42 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Stav a priebeh šifrovacích operácií je zobrazený tu."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 #| msgid "Prove authenticity (sign)"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Skontrolovať autenticitu (podpis)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpísať ako:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifrovať"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifrovať pre mňa:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifrovať pre ostatných:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Šifrovať s heslom. Ktokoľvek, kto má heslo, vie čítať údaje."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, fuzzy, kde-format
 #| msgctxt "Tooltip information for symetric encryption"
 #| msgid ""
@@ -5696,20 +5696,58 @@ msgstr ""
 "má heslo, môže čítať údaje bez tajného kľúča. Použitie hesla je <b>menej "
 "bezpečné</b> ako použitie verejného kľúča. Aj keď zvolíte veľmi silné heslo."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Príjemca"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Podpisovanie certifikátu vypršalo"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "certifikát vypršal"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Tento certifikát je nový pre váš zásobník kľúčov."
+msgstr[1] "Tento certifikát je nový pre váš zásobník kľúčov."
+msgstr[2] "Tento certifikát je nový pre váš zásobník kľúčov."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Tento certifikát bol zakázaný miestne."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Tento certifikát bol zakázaný miestne."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nepodarilo sa pripojiť k soketu: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid "Failed to send recipient %1: %2"
 msgid "Failed to find some keys"
@@ -9075,7 +9113,7 @@ msgstr "Úlohy prebiehajúce na pozadí"
 msgid "Sign/Encrypt..."
 msgstr "Podpíš/zašifruj..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10776,22 +10814,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Zachytená neznáma výnimka v skupine %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Import certifikátu"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Šifrovať..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Podpis..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Podpis..."
@@ -13962,9 +14000,6 @@ msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\
 #~ msgid "good"
 #~ msgstr "dobrá"
 
-#~ msgid "certificate expired"
-#~ msgstr "certifikát vypršal"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "zlý"
@@ -13998,9 +14033,6 @@ msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\
 
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Import tohto certifikátu bol zrušený."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Tento certifikát je nový pre váš zásobník kľúčov."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr "Nové ID používateľov boli pridané k tomuto certifikátu pri importe."

@@ -13,6 +13,8 @@
 
 #include "implementation_p.h"
 
+#include <Libkleo/Formatting>
+
 #include <gpgme++/context.h>
 
 #include <QTextDocument> // for Qt::escape
@@ -67,7 +69,7 @@ public:
                                         "enough to support <application>gpg-agent</application>, "
                                         "but does not seem to do so in this installation.</para>"
                                         "<para>The error returned was: <message>%1</message>.</para>",
-                                        QString::fromLocal8Bit(error.asString()).toHtmlEscaped());
+                                        Formatting::errorAsString(error).toHtmlEscaped());
                 // PENDING(marc) proposed fix?
             } else {
 
@@ -81,7 +83,7 @@ public:
                                             "<para>Unexpected error while asking <application>gpg-agent</application> "
                                             "for its version.</para>"
                                             "<para>The error returned was: <message>%1</message>.</para>",
-                                            QString::fromLocal8Bit(error.asString()).toHtmlEscaped());
+                                            Formatting::errorAsString(error).toHtmlEscaped());
                     // PENDING(marc) proposed fix?
                 } else {
                     m_passed = true;

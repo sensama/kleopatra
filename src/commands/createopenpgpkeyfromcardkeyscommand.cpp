@@ -166,7 +166,7 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::slotResult(const Error &err)
     if (err.isCanceled()) {
         // do nothing
     } else if (err) {
-        error(i18nc("@info", "Creating an OpenPGP key from the card keys failed: %1", QString::fromUtf8(err.asString())));
+        error(i18nc("@info", "Creating an OpenPGP key from the card keys failed: %1", Formatting::errorAsString(err)));
     } else {
         success(i18nc("@info", "Successfully generated an OpenPGP key from the card keys."));
     }

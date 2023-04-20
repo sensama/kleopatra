@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1648215 $
+# Version: $Revision: 1649766 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
-"PO-Revision-Date: 2023-03-25 10:01+0100\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-15 11:28+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -1683,7 +1683,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Nie można wykryć rodzaju certyfikatu zawartości schowka."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Schowek"
@@ -3971,14 +3971,14 @@ msgstr ""
 "jako błąd (przejdź w menu do Pomoc->Zgłoś błąd)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:213
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 msgstr ""
-"Nie udało się przenieść <filename>%1</filename> do <filename>%2</filename>."
+"<para>Nie udało się przenieść <filename>%1</filename> do <filename>%2</"
+"filename>.</para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:226
 #, kde-kuit-format
@@ -5376,40 +5376,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu jest pokazany stan i postęp operacji kryptograficznych."
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Potwierdź autentyczność (podpisz)"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpisz jako:"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Szyfrowanie"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Zaszyfruj dla mnie:"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Zaszyfruj dla innych:"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Zaszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5423,18 +5423,56 @@ msgstr ""
 "<b>mniej bezpiecznym</b> niż kryptografia kluczem publicznym; nawet przy "
 "bardzo silnym haśle."
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "klucz odbiorcy"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Signing certificate is expired"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Certyfikat podpisujący wygasł"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "certificate expired"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "certyfikat wygasł"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "This certificate is new to your keystore."
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Ten certyfikat jest nowy w zbiorze kluczy."
+msgstr[1] "Ten certyfikat jest nowy w zbiorze kluczy."
+msgstr[2] "Ten certyfikat jest nowy w zbiorze kluczy."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Nie można znaleźć certyfikatu wystawcy miejscowo."
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "The issuer certificate could not be found locally."
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Nie można znaleźć certyfikatu wystawcy miejscowo."
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Nie można znaleźć żadnego klucza dla następujących odbiorców:"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Nie można było znaleźć pewnych kluczy"
@@ -8734,7 +8772,7 @@ msgstr "Zadania uruchomione w tle"
 msgid "Sign/Encrypt..."
 msgstr "Podpisz/zaszyfruj..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10375,22 +10413,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Przechwycono nieznany wyjątek w grupie %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Import certyfikatu"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Zaszyfruj..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "Podpisz S/MIME..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Podpisz OpenPGP..."
@@ -13451,9 +13489,6 @@ msgstr ""
 #~ msgid "good"
 #~ msgstr "dobry"
 
-#~ msgid "certificate expired"
-#~ msgstr "certyfikat wygasł"
-
 #~ msgctxt "fake/invalid signature"
 #~ msgid "bad"
 #~ msgstr "zły"
@@ -13492,9 +13527,6 @@ msgstr ""
 #~ "This certificate was new to your keystore. The secret key is available."
 #~ msgstr ""
 #~ "Ten certyfikat jest nowy w zbiorze kluczy. Dostępny jest klucz poufny."
-
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Ten certyfikat jest nowy w zbiorze kluczy."
 
 #~ msgid "New user-ids were added to this certificate by the import."
 #~ msgstr ""

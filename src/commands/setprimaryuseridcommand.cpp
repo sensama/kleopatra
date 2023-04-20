@@ -14,6 +14,8 @@
 
 #include "command_p.h"
 
+#include <Libkleo/Formatting>
+
 #include <KLocalizedString>
 
 #if QGPGME_SUPPORTS_SET_PRIMARY_UID
@@ -137,7 +139,7 @@ void SetPrimaryUserIDCommand::Private::showErrorDialog(const Error &err)
                  "<para>An error occurred while trying to flag the user ID<nl/><emphasis>%1</emphasis><nl/>as the primary user ID.</para>"
                  "<para><message>%2</message></para>",
                  QString::fromUtf8(userId.id()),
-                 QString::fromLocal8Bit(err.asString())));
+                 Formatting::errorAsString(err)));
 }
 
 void SetPrimaryUserIDCommand::Private::showSuccessDialog()

@@ -97,7 +97,7 @@ void KeyCreationPage::startJob()
             this, &KeyCreationPage::slotResult);
     if (const Error err = j->start(createGnupgKeyParms()))
         setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1",
-                                                QString::fromLocal8Bit(err.asString())));
+                                                Formatting::errorAsString(err)));
     else {
         job = j;
     }
@@ -196,7 +196,7 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
         setField(QStringLiteral("error"), result.error().isCanceled()
                     ? i18n("Operation canceled.")
                     : i18n("Could not create key pair: %1",
-                        QString::fromLocal8Bit(result.error().asString())));
+                        Formatting::errorAsString(result.error())));
         setField(QStringLiteral("url"), QString());
         setField(QStringLiteral("result"), QString());
     } else if (pgp()) {

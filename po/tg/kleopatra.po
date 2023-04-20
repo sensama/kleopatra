@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-28 00:48+0000\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
 "PO-Revision-Date: 2019-09-27 23:59+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -1800,7 +1800,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr ""
@@ -5557,44 +5557,44 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:113
+#: src/crypto/gui/signencryptwidget.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Маълумот оиди сертификат"
 
-#: src/crypto/gui/signencryptwidget.cpp:114
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgid "Sign as:"
 msgstr "Танҳо барои &имзоот"
 
-#: src/crypto/gui/signencryptwidget.cpp:133
+#: src/crypto/gui/signencryptwidget.cpp:195
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Танҳо барои &рамзгузорӣ"
 
-#: src/crypto/gui/signencryptwidget.cpp:138
+#: src/crypto/gui/signencryptwidget.cpp:201
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for me:"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
-#: src/crypto/gui/signencryptwidget.cpp:147
+#: src/crypto/gui/signencryptwidget.cpp:214
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Encrypt for others:"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
-#: src/crypto/gui/signencryptwidget.cpp:182
+#: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:184
+#: src/crypto/gui/signencryptwidget.cpp:252
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5604,20 +5604,57 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:274
+#: src/crypto/gui/signencryptwidget.cpp:351
 #, fuzzy, kde-format
 #| msgid "Description"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Тасвирот"
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:580
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate is expired."
+msgstr "Ҳузфи сертификатҳои CA"
+
+#: src/crypto/gui/signencryptwidget.cpp:583
+#, fuzzy, kde-format
+#| msgid "Deleting CA Certificates"
+msgctxt "@info"
+msgid "This certificate expires today."
+msgstr "Ҳузфи сертификатҳои CA"
+
+#: src/crypto/gui/signencryptwidget.cpp:585
+#, fuzzy, kde-format
+#| msgid "Certificate Download Failed"
+msgctxt "@info"
+msgid "This certificate expires tomorrow."
+msgid_plural "This certificate expires in %1 days."
+msgstr[0] "Наметавонам сертификатро пурбор кунам."
+msgstr[1] "Наметавонам сертификатро пурбор кунам."
+
+#: src/crypto/gui/signencryptwidget.cpp:590
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Соҳиби сертификати ( %1) ёфт нашуд"
+
+#: src/crypto/gui/signencryptwidget.cpp:592
+#, fuzzy, kde-format
+#| msgid "Issuer certificate not found ( %1)"
+msgctxt "@info"
+msgid "This certificate cannot be used for signing."
+msgstr "Соҳиби сертификати ( %1) ёфт нашуд"
+
+#: src/crypto/gui/signencryptwidget.cpp:791
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:793
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -8919,7 +8956,7 @@ msgstr ""
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
@@ -10513,24 +10550,24 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 #| msgid "Certificate Import Failed"
 msgid "Certificate Import"
 msgstr "Наметавонам сертификатро ворид кунам."
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "Encrypt..."
 msgstr "Танҳо барои &рамзгузорӣ"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr ""
@@ -12975,11 +13012,6 @@ msgstr ""
 #~ msgstr "Бекор кардан"
 
 #, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "certificate expired"
-#~ msgstr "Ҳузфи сертификатҳои CA"
-
-#, fuzzy
 #~| msgid "New signatures:"
 #~ msgid "Bad signature by unknown certificate %1: %2"
 #~ msgstr "Имзоҳои нав:"
@@ -13003,11 +13035,6 @@ msgstr ""
 #~| msgid "Fetching certificate from server..."
 #~ msgid "The import of this certificate was canceled."
 #~ msgstr "Қабул кардани сертификат аз коргузор..."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is new to your keystore."
-#~ msgstr "Наметавонам сертификатро пурбор кунам."
 
 #, fuzzy
 #~| msgid "Fetching certificate from server..."

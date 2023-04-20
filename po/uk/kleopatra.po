@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-19 00:50+0000\n"
-"PO-Revision-Date: 2023-04-18 14:44+0300\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-19 08:54+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -1694,7 +1694,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Не вдалося встановити тип сертифіката у вмісті буфера обміну даними."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Буфер"
@@ -5521,18 +5521,16 @@ msgstr[2] "Строк дії цього сертифіката завершує�
 msgstr[3] "Строк дії цього сертифіката завершується завтра."
 
 #: src/crypto/gui/signencryptwidget.cpp:590
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
-msgstr "Не вдалося знайти локальну копію сертифіката видавця."
+msgstr "Цим сертифікатом не можна скористатися для шифрування."
 
 #: src/crypto/gui/signencryptwidget.cpp:592
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
-msgstr "Не вдалося знайти локальну копію сертифіката видавця."
+msgstr "Цим сертифікатом не можна скористатися для підписування."
 
 #: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
@@ -8896,7 +8894,7 @@ msgstr "Виконуються фонові завдання"
 msgid "Sign/Encrypt..."
 msgstr "Підписати/зашифрувати…"
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10551,22 +10549,22 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Виявлено невідому помилку у групі %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Імпортувати сертифікат"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Зашифрувати…"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-Підпис…"
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-Підпис…"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-19 00:50+0000\n"
-"PO-Revision-Date: 2023-03-16 12:32+0100\n"
+"POT-Creation-Date: 2023-04-20 00:49+0000\n"
+"PO-Revision-Date: 2023-04-19 10:46+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -1691,7 +1691,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "Kan het certificaattype van de inhoud van het klembord niet bepalen."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:39 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
 #, kde-format
 msgid "Clipboard"
 msgstr "Klembord"
@@ -5485,41 +5485,36 @@ msgid "recipient key"
 msgstr "sleutel van ontvanger"
 
 #: src/crypto/gui/signencryptwidget.cpp:580
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "Ondertekeningscertificaat is verlopen"
+msgstr "Dit certificaat is verlopen."
 
 #: src/crypto/gui/signencryptwidget.cpp:583
-#, fuzzy, kde-format
-#| msgid "certificate expired"
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "certificaat verlopen"
+msgstr "Dit certificaat verloopt vandaag."
 
 #: src/crypto/gui/signencryptwidget.cpp:585
-#, fuzzy, kde-format
-#| msgid "This certificate is new to your keystore."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Dit certificaat is nieuw in uw sleutelopslag."
-msgstr[1] "Dit certificaat is nieuw in uw sleutelopslag."
+msgstr[0] "Dit certificaat verloopt morgen."
+msgstr[1] "Dit certificaat verloopt over %1 dagen."
 
 #: src/crypto/gui/signencryptwidget.cpp:590
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
-msgstr "Het certificaat van de uitgever is niet lokaal gevonden."
+msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
 
 #: src/crypto/gui/signencryptwidget.cpp:592
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
-msgstr "Het certificaat van de uitgever is niet lokaal gevonden."
+msgstr "Dit certificaat kan niet gebruikt worden voor ondertekening."
 
 #: src/crypto/gui/signencryptwidget.cpp:791
 #, kde-format
@@ -8844,7 +8839,7 @@ msgstr "Actieve achtergrondtaken"
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:47
+#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
@@ -10490,22 +10485,22 @@ msgstr "argument doorgeven op standaardinvoer voor uitpak-commando kan niet"
 msgid "Caught unknown exception in group %1"
 msgstr "Onbekende uitzondering gevangen in groep %1"
 
-#: src/utils/clipboardmenu.cpp:40
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgid "Certificate Import"
 msgstr "Certificaat importeren"
 
-#: src/utils/clipboardmenu.cpp:41
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgid "Encrypt..."
 msgstr "Versleutelen..."
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgid "S/MIME-Sign..."
 msgstr "S/MIME-ondertekenen..."
 
-#: src/utils/clipboardmenu.cpp:46
+#: src/utils/clipboardmenu.cpp:48
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP-ondertekenen..."

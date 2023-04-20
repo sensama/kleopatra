@@ -12,6 +12,8 @@
 
 #include "kleopatra_debug.h"
 
+#include <Libkleo/Formatting>
+
 #include <gpgme++/error.h>
 #include <gpgme++/context.h>
 #include <gpgme++/keylistresult.h>
@@ -35,7 +37,7 @@ static GpgME::Key lookup_key(GpgME::Context *ctx, const std::string &keyGrip)
     const std::string pattern = '&' + keyGrip;
     qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: pattern=" << pattern.c_str();
     if (const auto err = ctx->startKeyListing(pattern.c_str())) {
-        qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: startKeyListing failed:" << err.asString();
+        qCDebug(KLEOPATRA_LOG) << "parse_keypairinfo_and_lookup_key: startKeyListing failed:" << Formatting::errorAsString(err);
         return GpgME::Key();
     }
     GpgME::Error e;

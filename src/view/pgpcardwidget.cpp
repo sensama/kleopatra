@@ -360,7 +360,7 @@ void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backu
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Failed to generate new key: %1", QString::fromLatin1(err.asString())));
+                           "Failed to generate new key: %1", Formatting::errorAsString(err)));
         return;
     }
     if (err.isCanceled()) {
@@ -486,7 +486,7 @@ void PGPCardWidget::changeNameResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "Name change failed: %1", QString::fromLatin1(err.asString())));
+                           "Name change failed: %1", Formatting::errorAsString(err)));
         return;
     }
     if (!err.isCanceled()) {
@@ -533,7 +533,7 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
 {
     if (err) {
         KMessageBox::error(this, i18nc("@info",
-                           "URL change failed: %1", QString::fromLatin1(err.asString())));
+                           "URL change failed: %1", Formatting::errorAsString(err)));
         return;
     }
     if (!err.isCanceled()) {

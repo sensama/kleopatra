@@ -14,6 +14,7 @@
 #include "utils/keys.h"
 #include "utils/tags.h"
 
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/NavigatableTreeView>
 #include <Libkleo/UserIDListModel>
@@ -340,7 +341,7 @@ void WebOfTrustWidget::signatureListingDone(const GpgME::KeyListResult &result)
         KMessageBox::information(this, xi18nc("@info",
                                            "<para>An error occurred while loading the certifications: "
                                            "<message>%1</message></para>",
-                                           QString::fromLocal8Bit(result.error().asString())),
+                                           Formatting::errorAsString(result.error())),
                                  i18nc("@title", "Certifications Loading Failed"));
     }
     d->keyListJob = nullptr;

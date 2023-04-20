@@ -16,6 +16,8 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 
+#include <Libkleo/Formatting>
+
 #include <KLocalizedString>
 
 #include <gpgme++/error.h>
@@ -205,9 +207,9 @@ static QString successMessage(const std::string &keyRef, ChangePinCommand::Chang
 void ChangePinCommand::Private::slotResult(const GpgME::Error& err)
 {
     qCDebug(KLEOPATRA_LOG) << "ChangePinCommand::slotResult():"
-                           << err.asString() << "(" << err.code() << ")";
+                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
-        error(errorMessage(keyRef, mode, QString::fromLatin1(err.asString())));
+        error(errorMessage(keyRef, mode, Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {
         success(successMessage(keyRef, mode));
         ReaderStatus::mutableInstance()->updateStatus();

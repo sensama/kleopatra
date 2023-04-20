@@ -14,6 +14,7 @@
 
 #include "command_p.h"
 
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
 #include <KLocalizedString>
@@ -127,7 +128,7 @@ void RevokeUserIDCommand::Private::showErrorDialog(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</emphasis>.</para>"
                  "<para><message>%2</message></para>",
-                 QString::fromUtf8(userId.id()), QString::fromLocal8Bit(err.asString())),
+                 QString::fromUtf8(userId.id()), Formatting::errorAsString(err)),
           i18nc("@title:window", "Revocation Failed"));
 }
 

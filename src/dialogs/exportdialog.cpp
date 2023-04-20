@@ -120,7 +120,7 @@ void ExportWidget::exportResult(const GpgME::Error &err, const QByteArray &data)
 
     if (err) {
         /* Should not happen. But well,.. */
-        d->textEdit->setText(i18nc("%1 is error message", "Failed to export: '%1'", QString::fromLatin1(err.asString())));
+        d->textEdit->setText(i18nc("%1 is error message", "Failed to export: '%1'", Formatting::errorAsString(err)));
     }
 
     if (!d->flags) {

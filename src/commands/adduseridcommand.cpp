@@ -203,7 +203,7 @@ void AddUserIDCommand::Private::showErrorDialog(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred while trying to add the user ID: "
                  "<message>%1</message></para>",
-                 QString::fromLocal8Bit(err.asString())),
+                 Formatting::errorAsString(err)),
           i18nc("@title:window", "Add User ID Error"));
 }
 

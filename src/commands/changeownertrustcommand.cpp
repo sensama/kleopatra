@@ -238,21 +238,21 @@ void ChangeOwnerTrustCommand::Private::showErrorDialog(const Error &err)
                      "<para>An error occurred while marking certificate '%1' as your certificate.</para>"
                      "<para><message>%2</message></para>",
                      keyInfo,
-                     QString::fromUtf8(err.asString())));
+                     Formatting::errorAsString(err)));
         break;
     case Key::OwnerTrust::Full:
         error(xi18nc("@info",
                      "<para>An error occurred while granting certification power to '%1'.</para>"
                      "<para><message>%2</message></para>",
                      keyInfo,
-                     QString::fromUtf8(err.asString())));
+                     Formatting::errorAsString(err)));
         break;
     default:
         error(xi18nc("@info",
                      "<para>An error occurred while revoking the certification power of '%1'.</para>"
                      "<para><message>%2</message></para>",
                      keyInfo,
-                     QString::fromUtf8(err.asString())));
+                     Formatting::errorAsString(err)));
     }
 }
 

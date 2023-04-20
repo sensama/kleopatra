@@ -235,7 +235,7 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
         error(i18n("<p>An error occurred while trying to certify<br/><br/>"
                    "<b>%1</b>:</p><p>\t%2</p>",
               Formatting::formatForComboBox(target),
-              QString::fromUtf8(err.asString())),
+              Formatting::errorAsString(err)),
               i18n("Certification Error"));
     } else if (dialog && dialog->exportableCertificationSelected() && dialog->sendToServer()) {
         auto const cmd = new ExportOpenPGPCertsToServerCommand(target);

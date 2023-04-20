@@ -13,6 +13,7 @@
 #include "smartcard/readerstatus.h"
 #include "command_p.h"
 
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
 #include "kleopatra_debug.h"
@@ -65,7 +66,7 @@ ReloadKeysCommand::Private::~Private() {}
 void ReloadKeysCommand::Private::keyListingDone(const KeyListResult &result)
 {
     if (result.error()) { // ### Show error message here?
-        qCritical() << "Error occurred during key listing: " << result.error().asString();
+        qCritical() << "Error occurred during key listing: " << Formatting::errorAsString(result.error());
     }
     finished();
 }

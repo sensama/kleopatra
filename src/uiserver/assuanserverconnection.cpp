@@ -22,11 +22,12 @@
 
 #include <utils/input.h>
 #include <utils/output.h>
-#include <Libkleo/GnuPG>
 #include <utils/detail_p.h>
 #include <utils/log.h>
 #include <utils/kleo_assert.h>
 
+#include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/Hex>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/KleoException>
@@ -1226,11 +1227,11 @@ void AssuanCommand::done(const GpgME::Error &err, const QString &details)
 void AssuanCommand::done(const GpgME::Error &err)
 {
     if (!d->ctx) {
-        qCDebug(KLEOPATRA_LOG) << err.asString() << ": called with NULL ctx.";
+        qCDebug(KLEOPATRA_LOG) << Formatting::errorAsString(err) << ": called with NULL ctx.";
         return;
     }
     if (d->done) {
-        qCDebug(KLEOPATRA_LOG) << err.asString() << ": called twice!";
+        qCDebug(KLEOPATRA_LOG) << Formatting::errorAsString(err) << ": called twice!";
         return;
     }
 

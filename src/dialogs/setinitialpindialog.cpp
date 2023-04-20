@@ -13,10 +13,12 @@
 
 #include "ui_setinitialpindialog.h"
 
+#include <Libkleo/Formatting>
+
 #include <KIconLoader>
 #include <KLocalizedString>
-#include <QIcon>
 
+#include <QIcon>
 #include <QTextDocument> // for Qt::escape
 
 #include <gpgme++/error.h>
@@ -75,7 +77,7 @@ static QString format_error(const Error &err)
     if (err)
         return xi18nc("@info",
                       "There was an error setting the PIN: <message>%1</message>.",
-                      QString::fromLocal8Bit(err.asString()).toHtmlEscaped());
+                      Formatting::errorAsString(err).toHtmlEscaped());
     else {
         return i18nc("@info", "PIN set successfully.");
     }

@@ -19,6 +19,8 @@
 
 #include "dialogs/gencardkeydialog.h"
 
+#include <Libkleo/Formatting>
+
 #include <KLocalizedString>
 
 #include <gpgme++/error.h>
@@ -206,7 +208,7 @@ void PIVGenerateCardKeyCommand::Private::generateKey()
 void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
 {
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::slotResult():"
-                           << err.asString() << "(" << err.code() << ")";
+                           << Formatting::errorAsString(err) << "(" << err.code() << ")";
     if (err) {
 #ifdef GPG_ERROR_HAS_NO_AUTH
         if (err.code() == GPG_ERR_NO_AUTH) {
@@ -215,7 +217,7 @@ void PIVGenerateCardKeyCommand::Private::slotResult(const GpgME::Error& err)
         }
 #endif
 
-        error(i18nc("@info", "Generating key failed: %1", QString::fromLatin1(err.asString())));
+        error(i18nc("@info", "Generating key failed: %1", Formatting::errorAsString(err)));
     } else if (!err.isCanceled()) {
         success(i18nc("@info", "Key successfully generated."));
         ReaderStatus::mutableInstance()->updateStatus();

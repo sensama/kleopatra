@@ -13,6 +13,8 @@
 #include "refreshcertificatecommand.h"
 #include "command_p.h"
 
+#include <Libkleo/Formatting>
+
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -120,7 +122,7 @@ void RefreshCertificateCommand::Private::start()
     }
     job = refreshJob.release();
 #else
-    KMessageBox::error(parentWidgetOrView(), i18n("The backend does not support updating individual certificates."));
+    error(i18n("The backend does not support updating individual certificates."));
     finished();
 #endif
 }
@@ -276,7 +278,7 @@ void RefreshCertificateCommand::Private::showError(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred while updating the certificate:</para>"
                  "<para><message>%1</message></para>",
-                 QString::fromLocal8Bit(err.asString())),
+                 Formatting::errorAsString(err)),
           i18nc("@title:window", "Update Failed"));
 }
 

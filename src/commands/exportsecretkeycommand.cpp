@@ -284,7 +284,7 @@ void ExportSecretKeyCommand::Private::showError(const Error &err)
     error(xi18nc("@info",
                  "<para>An error occurred during the backup of the secret key:</para>"
                  "<para><message>%1</message></para>",
-                 QString::fromLocal8Bit(err.asString())),
+                 Formatting::errorAsString(err)),
           errorCaption());
 }
 

@@ -190,7 +190,7 @@ void ChangePassphraseCommand::Private::showErrorDialog(const Error &err)
     error(i18n("<p>An error occurred while trying to change "
                "the passphrase for <b>%1</b>:</p><p>%2</p>",
                Formatting::formatForComboBox(key),
-               QString::fromLocal8Bit(err.asString())),
+               Formatting::errorAsString(err)),
           i18n("Passphrase Change Error"));
 }
 

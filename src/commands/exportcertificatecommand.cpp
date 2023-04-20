@@ -292,7 +292,7 @@ void ExportCertificateCommand::Private::showError(const GpgME::Error &err)
     const QString msg = i18n("<qt><p>An error occurred while trying to export "
                              "the certificate:</p>"
                              "<p><b>%1</b></p></qt>",
-                             QString::fromLocal8Bit(err.asString()));
+                             Formatting::errorAsString(err));
     error(msg, i18n("Certificate Export Failed"));
 }
 

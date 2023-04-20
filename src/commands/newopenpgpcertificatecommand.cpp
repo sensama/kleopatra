@@ -146,7 +146,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
             Qt::QueuedConnection);
     });
     if (const Error err = keyGenJob->start(keyParameters.toString())) {
-        error(i18n("Could not start key pair creation: %1", QString::fromUtf8(err.asString())));
+        error(i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
         finished();
         return;
     } else {
@@ -206,7 +206,7 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
         text = xi18n(
             "<para>The creation of a new OpenPGP certificate failed.</para>"
             "<para>Error: <message>%1</message></para>",
-            QString::fromLocal8Bit(result.error().asString()));
+            Formatting::errorAsString(result.error()));
     } else {
         // no error and we have a fingerprint, but there was no corresponding key in the key ring
         text = xi18n(

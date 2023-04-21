@@ -113,7 +113,6 @@ public:
         : q{qq}
         , mModel{AbstractKeyListModel::createFlatKeyListModel(qq)}
         , mIsExclusive{sigEncExclusive}
-        , mExpiryChecker{new ExpiryChecker{ExpiryCheckerConfig{}.settings(), qq}}
     {
     }
 
@@ -124,7 +123,9 @@ public:
     void recpRemovalRequested(const RecipientWidgets &recipient);
     void onProtocolChanged();
     void updateCheckBoxes();
+    ExpiryChecker *expiryChecker();
     void updateExpiryMessages(KMessageWidget *w, const GpgME::Key &key, ExpiryChecker::CheckFlags flags);
+    void updateAllExpiryMessages();
 
 public:
     KeySelectionCombo *mSigSelect = nullptr;
@@ -144,7 +145,7 @@ public:
     QCheckBox *mEncSelfChk = nullptr;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
-    ExpiryChecker *mExpiryChecker;
+    std::unique_ptr<ExpiryChecker> mExpiryChecker;
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
@@ -303,10 +304,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     lay->addWidget(encBox);
     }
 
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged,
-            this, [this]() { d->updateCheckBoxes(); });
-    connect(KleopatraApplication::instance(), &KleopatraApplication::configurationChanged,
-            this, [this]() { d->updateCheckBoxes(); });
+    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
+        d->updateCheckBoxes();
+        d->updateAllExpiryMessages();
+    });
+    connect(KleopatraApplication::instance(), &KleopatraApplication::configurationChanged, this, [this]() {
+        d->updateCheckBoxes();
+        d->mExpiryChecker.reset();
+        d->updateAllExpiryMessages();
+    });
 
     loadKeys();
     d->onProtocolChanged();
@@ -815,15 +821,34 @@ void SignEncryptWidget::Private::updateCheckBoxes()
     }
 }
 
+ExpiryChecker *Kleo::SignEncryptWidget::Private::expiryChecker()
+{
+    if (!mExpiryChecker) {
+        mExpiryChecker.reset(new ExpiryChecker{ExpiryCheckerConfig{}.settings()});
+    }
+    return mExpiryChecker.get();
+}
+
 void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::Key &key, ExpiryChecker::CheckFlags flags)
 {
     messageWidget->setCloseButtonVisible(false);
     if (!Settings{}.showExpiryNotifications() || key.isNull()) {
         messageWidget->setVisible(false);
     } else {
-        const auto result = mExpiryChecker->checkKey(key, flags);
+        const auto result = expiryChecker()->checkKey(key, flags);
         const auto message = expiryMessage(result);
         messageWidget->setText(message);
         messageWidget->setVisible(!message.isEmpty());
+    }
+}
+
+void SignEncryptWidget::Private::updateAllExpiryMessages()
+{
+    updateExpiryMessages(mSignKeyExpiryMessage, q->signKey(), ExpiryChecker::OwnSigningKey);
+    updateExpiryMessages(mEncryptToSelfKeyExpiryMessage, q->selfKey(), ExpiryChecker::OwnEncryptionKey);
+    for (const auto &recipient : std::as_const(mRecpWidgets)) {
+        if (recipient.edit->isEnabled()) {
+            updateExpiryMessages(recipient.expiryMessage, recipient.edit->key(), ExpiryChecker::EncryptionKey);
+        }
     }
 }

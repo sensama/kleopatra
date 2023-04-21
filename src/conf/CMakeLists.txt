@@ -36,6 +36,8 @@ set(kcm_kleopatra_PART_SRCS
   gnupgsystemconfigurationpage.h
   labelledwidget.cpp labelledwidget.h
   labelledwidget.cpp labelledwidget.h
+  pluralhandlingspinbox.cpp
+  pluralhandlingspinbox.h
   ${kleopatra_BINARY_DIR}/src/kleopatra_debug.cpp
   ${_kcm_kleopatra_libkleopatraclient_extra_SRCS}
 )

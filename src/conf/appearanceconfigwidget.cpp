@@ -12,14 +12,16 @@
 
 #include "appearanceconfigwidget.h"
 
-#include "tagspreferences.h"
-#include "tooltippreferences.h"
+#include "pluralhandlingspinbox.h"
 
 #include <settings.h>
+#include <tagspreferences.h>
+#include <tooltippreferences.h>
 
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/Dn>
 #include <Libkleo/DNAttributeOrderConfigWidget>
+#include <Libkleo/ExpiryCheckerConfig>
 #include <Libkleo/SystemInfo>
 
 #include <KConfig>
@@ -321,6 +323,8 @@ public:
     QCheckBox *tooltipDetailsCheckBox;
     QCheckBox *useTagsCheckBox;
     QCheckBox *showExpirationCheckBox;
+    PluralHandlingSpinBox *ownCertificateThresholdSpinBox;
+    PluralHandlingSpinBox *otherCertificateThresholdSpinBox;
 
     void setupUi(QWidget *parent)
     {
@@ -357,6 +361,39 @@ public:
 
         showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
         tabLayout->addWidget(showExpirationCheckBox);
+
+        {
+        auto gridLayout = new QGridLayout;
+        const ExpiryCheckerConfig expiryConfig;
+        {
+        auto label = new QLabel{i18nc("@label:spinbox", "Threshold for own certificates:"), tab};
+        ownCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+        label->setBuddy(ownCertificateThresholdSpinBox);
+        const auto configItem = expiryConfig.ownKeyThresholdInDaysItem();
+        ownCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
+        ownCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
+        ownCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
+        ownCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+        ownCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advanced, if your own certificate is about to expire soon."));
+        gridLayout->addWidget(label, 0, 0);
+        gridLayout->addWidget(ownCertificateThresholdSpinBox, 0, 1);
+        }
+        {
+        auto label = new QLabel{i18nc("@label:spinbox", "Threshold for other certificates:"), tab};
+        otherCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+        label->setBuddy(otherCertificateThresholdSpinBox);
+        const auto configItem = expiryConfig.otherKeyThresholdInDaysItem();
+        otherCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
+        otherCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
+        otherCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
+        otherCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+        otherCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advanced, if another person's certificate is about to expire soon."));
+        gridLayout->addWidget(label, 1, 0);
+        gridLayout->addWidget(otherCertificateThresholdSpinBox, 1, 1);
+        }
+        gridLayout->setColumnStretch(2, 1);
+        tabLayout->addLayout(gridLayout);
+        }
 
         tabLayout->addStretch(1);
 
@@ -490,6 +527,9 @@ public:
 #else
         fontButton->hide();
 #endif
+        auto emitChanged = [this]() {
+            Q_EMIT q->changed();
+        };
         connect(categoriesLV, SIGNAL(itemSelectionChanged()), q, SLOT(slotSelectionChanged()));
         connect(defaultLookPB, SIGNAL(clicked()), q, SLOT(slotDefaultClicked()));
         connect(italicCB, SIGNAL(toggled(bool)), q, SLOT(slotItalicToggled(bool)));
@@ -499,9 +539,9 @@ public:
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
-        connect(showExpirationCheckBox, &QCheckBox::toggled, q, [this]() {
-            Q_EMIT q->changed();
-        });
+        connect(showExpirationCheckBox, &QCheckBox::toggled, q, emitChanged);
+        connect(ownCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
+        connect(otherCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
     }
 
 private:
@@ -595,6 +635,14 @@ void AppearanceConfigWidget::defaults()
     settings.setShowExpiryNotifications(settings.findItem(QStringLiteral("ShowExpiryNotifications"))->getDefault().toBool());
     d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
 
+    {
+        ExpiryCheckerConfig expiryConfig;
+        expiryConfig.setOwnKeyThresholdInDays(expiryConfig.ownKeyThresholdInDaysItem()->getDefault().toInt());
+        d->ownCertificateThresholdSpinBox->setValue(expiryConfig.ownKeyThresholdInDays());
+        expiryConfig.setOtherKeyThresholdInDays(expiryConfig.otherKeyThresholdInDaysItem()->getDefault().toInt());
+        d->otherCertificateThresholdSpinBox->setValue(expiryConfig.otherKeyThresholdInDays());
+    }
+
     // This simply means "default look for every category"
     for (int i = 0, end = d->categoriesLV->count(); i != end; ++i) {
         set_default_appearance(d->categoriesLV->item(i));
@@ -609,7 +657,6 @@ void AppearanceConfigWidget::defaults()
     d->tooltipDetailsCheckBox->setChecked(tooltipPrefs.showCertificateDetails());
 
     if (d->dnOrderWidget) {
-        const Settings settings;
         if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
             d->dnOrderWidget->setAttributeOrder(DN::defaultAttributeOrder());
         }
@@ -623,6 +670,14 @@ void AppearanceConfigWidget::load()
     const Settings settings;
     d->showExpirationCheckBox->setChecked(settings.showExpiryNotifications());
     d->showExpirationCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowExpiryNotifications")));
+
+    {
+        const ExpiryCheckerConfig expiryConfig;
+        d->ownCertificateThresholdSpinBox->setValue(expiryConfig.ownKeyThresholdInDays());
+        d->ownCertificateThresholdSpinBox->setEnabled(!expiryConfig.ownKeyThresholdInDaysItem()->isImmutable());
+        d->otherCertificateThresholdSpinBox->setValue(expiryConfig.otherKeyThresholdInDays());
+        d->otherCertificateThresholdSpinBox->setEnabled(!expiryConfig.otherKeyThresholdInDaysItem()->isImmutable());
+    }
 
     if (d->dnOrderWidget) {
         d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
@@ -667,6 +722,13 @@ void AppearanceConfigWidget::save()
         DN::setAttributeOrder(settings.attributeOrder());
     }
     settings.save();
+
+    {
+        ExpiryCheckerConfig expiryConfig;
+        expiryConfig.setOwnKeyThresholdInDays(d->ownCertificateThresholdSpinBox->value());
+        expiryConfig.setOtherKeyThresholdInDays(d->otherCertificateThresholdSpinBox->value());
+        expiryConfig.save();
+    }
 
     TooltipPreferences prefs;
     prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());

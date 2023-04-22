@@ -390,7 +390,7 @@ public:
         ownCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
         ownCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
         ownCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
-        ownCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advanced, if your own certificate is about to expire soon."));
+        ownCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if your own certificate is about to expire soon."));
         gridLayout->addWidget(label, 0, 0);
         gridLayout->addWidget(ownCertificateThresholdSpinBox, 0, 1);
         }
@@ -403,7 +403,7 @@ public:
         otherCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
         otherCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
         otherCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
-        otherCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advanced, if another person's certificate is about to expire soon."));
+        otherCertificateThresholdSpinBox->setToolTip(i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if another person's certificate is about to expire soon."));
         gridLayout->addWidget(label, 1, 0);
         gridLayout->addWidget(otherCertificateThresholdSpinBox, 1, 1);
         }

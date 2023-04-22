@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1649835 $
+# Version: $Revision: 1649909 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 #
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-21 00:49+0000\n"
+"POT-Creation-Date: 2023-04-22 00:52+0000\n"
 "PO-Revision-Date: 2023-04-15 11:28+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -3174,67 +3174,116 @@ msgstr "Wybierz jeden lub więcej plików do podpisu i/lub szyfrowania"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Wybierz katalog do podpisania i/lub zaszyfrowania"
 
-#: src/conf/appearanceconfigwidget.cpp:142
+#: src/conf/appearanceconfigwidget.cpp:144
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<bez nazwy>"
 
-#: src/conf/appearanceconfigwidget.cpp:314
+#: src/conf/appearanceconfigwidget.cpp:316
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Ten parametr został zablokowany przez administratora."
 
-#: src/conf/appearanceconfigwidget.cpp:353
+#: src/conf/appearanceconfigwidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Show not certified certificates"
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
 msgstr "Pokaż niescertyfikowane certyfikaty"
 
-#: src/conf/appearanceconfigwidget.cpp:354
+#: src/conf/appearanceconfigwidget.cpp:358
 #, fuzzy, kde-format
 #| msgid "Enable display and usage of tags attached to keys."
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr "Włącz wyświetlanie i użycie znaczników załączonych do kluczy."
 
-#: src/conf/appearanceconfigwidget.cpp:360
+#: src/conf/appearanceconfigwidget.cpp:364
 #, fuzzy, kde-format
 #| msgid "Show the following information in certificate list tooltips:"
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "Pokaż następujące dane w podpowiedziach list certyfikatów:"
 
-#: src/conf/appearanceconfigwidget.cpp:363
+#: src/conf/appearanceconfigwidget.cpp:367
 #, fuzzy, kde-format
 #| msgid "Show validity"
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Pokaż ważność"
 
-#: src/conf/appearanceconfigwidget.cpp:366
+#: src/conf/appearanceconfigwidget.cpp:370
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Pokaż szczegóły o właścicielu"
 
-#: src/conf/appearanceconfigwidget.cpp:369
+#: src/conf/appearanceconfigwidget.cpp:373
 #, fuzzy, kde-format
 #| msgid "Show technical details"
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Pokaż szczegóły techniczne"
 
-#: src/conf/appearanceconfigwidget.cpp:374
+#: src/conf/appearanceconfigwidget.cpp:378
 #, fuzzy, kde-format
 #| msgid "Show certificate owner information"
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "Pokaż dane o właścicielu certyfikatu"
 
-#: src/conf/appearanceconfigwidget.cpp:379
+#: src/conf/appearanceconfigwidget.cpp:385
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Is '%1' your own certificate?"
+msgctxt "@label:spinbox"
+msgid "Threshold for own certificates:"
+msgstr "Czy '%1' jest twoim własnym certyfikatem?"
+
+#: src/conf/appearanceconfigwidget.cpp:391
+#: src/conf/appearanceconfigwidget.cpp:404
+#, fuzzy, kde-format
+#| msgid "never"
+msgctxt "@item never show expiry notification"
+msgid "never"
+msgstr "nigdy"
+
+#: src/conf/appearanceconfigwidget.cpp:392
+#: src/conf/appearanceconfigwidget.cpp:405
+#, kde-format
+msgctxt "@item:valuesuffix"
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: src/conf/appearanceconfigwidget.cpp:393
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if your own "
+"certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:398
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@label:spinbox"
+msgid "Threshold for other certificates:"
+msgstr "Ufaj głównemu certyfikatowi"
+
+#: src/conf/appearanceconfigwidget.cpp:406
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if another "
+"person's certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:416
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Generate"
@@ -3242,77 +3291,77 @@ msgctxt "@title:tab"
 msgid "General"
 msgstr "Stwórz"
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:436
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "Ustaw &ikonę..."
 
-#: src/conf/appearanceconfigwidget.cpp:406
+#: src/conf/appearanceconfigwidget.cpp:443
 #, fuzzy, kde-format
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "Ustaw kolor &tekstu..."
 
-#: src/conf/appearanceconfigwidget.cpp:413
+#: src/conf/appearanceconfigwidget.cpp:450
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "Ustaw kolor tł&a..."
 
-#: src/conf/appearanceconfigwidget.cpp:420
+#: src/conf/appearanceconfigwidget.cpp:457
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "Ustaw &czcionkę..."
 
-#: src/conf/appearanceconfigwidget.cpp:427
+#: src/conf/appearanceconfigwidget.cpp:464
 #, fuzzy, kde-format
 #| msgid "Italic"
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Kursywa"
 
-#: src/conf/appearanceconfigwidget.cpp:434
+#: src/conf/appearanceconfigwidget.cpp:471
 #, fuzzy, kde-format
 #| msgid "Bold"
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Pogrubiona"
 
-#: src/conf/appearanceconfigwidget.cpp:441
+#: src/conf/appearanceconfigwidget.cpp:478
 #, fuzzy, kde-format
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Przekreślona"
 
-#: src/conf/appearanceconfigwidget.cpp:450
+#: src/conf/appearanceconfigwidget.cpp:487
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Domyślny wygląd"
 
-#: src/conf/appearanceconfigwidget.cpp:458
+#: src/conf/appearanceconfigwidget.cpp:495
 #, fuzzy, kde-format
 #| msgid "Certificate Categories"
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Kategorie certyfikatu"
 
-#: src/conf/appearanceconfigwidget.cpp:482
+#: src/conf/appearanceconfigwidget.cpp:519
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 "Podgląd barw został wyłączony, bo używany jest tryb wysokiego kontrastu."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:491 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Kolejność atrybutów-DN"
@@ -5391,40 +5440,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu jest pokazany stan i postęp operacji kryptograficznych."
 
-#: src/crypto/gui/signencryptwidget.cpp:165
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Potwierdź autentyczność (podpisz)"
 
-#: src/crypto/gui/signencryptwidget.cpp:166
+#: src/crypto/gui/signencryptwidget.cpp:167
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpisz jako:"
 
-#: src/crypto/gui/signencryptwidget.cpp:196
+#: src/crypto/gui/signencryptwidget.cpp:197
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Szyfrowanie"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Zaszyfruj dla mnie:"
 
-#: src/crypto/gui/signencryptwidget.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Zaszyfruj dla innych:"
 
-#: src/crypto/gui/signencryptwidget.cpp:252
+#: src/crypto/gui/signencryptwidget.cpp:253
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Zaszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
 
-#: src/crypto/gui/signencryptwidget.cpp:254
+#: src/crypto/gui/signencryptwidget.cpp:255
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5438,27 +5487,27 @@ msgstr ""
 "<b>mniej bezpiecznym</b> niż kryptografia kluczem publicznym; nawet przy "
 "bardzo silnym haśle."
 
-#: src/crypto/gui/signencryptwidget.cpp:353
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "klucz odbiorcy"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:588
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Certyfikat podpisujący wygasł"
 
-#: src/crypto/gui/signencryptwidget.cpp:585
+#: src/crypto/gui/signencryptwidget.cpp:591
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "certyfikat wygasł"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:593
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5468,26 +5517,26 @@ msgstr[0] "Ten certyfikat jest nowy w zbiorze kluczy."
 msgstr[1] "Ten certyfikat jest nowy w zbiorze kluczy."
 msgstr[2] "Ten certyfikat jest nowy w zbiorze kluczy."
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, fuzzy, kde-format
 #| msgid "The issuer certificate could not be found locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Nie można znaleźć certyfikatu wystawcy miejscowo."
 
-#: src/crypto/gui/signencryptwidget.cpp:594
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "The issuer certificate could not be found locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Nie można znaleźć certyfikatu wystawcy miejscowo."
 
-#: src/crypto/gui/signencryptwidget.cpp:793
+#: src/crypto/gui/signencryptwidget.cpp:799
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Nie można znaleźć żadnego klucza dla następujących odbiorców:"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Nie można było znaleźć pewnych kluczy"

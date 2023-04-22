@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-21 00:49+0000\n"
-"PO-Revision-Date: 2023-03-17 21:28+0100\n"
+"POT-Creation-Date: 2023-04-22 00:52+0000\n"
+"PO-Revision-Date: 2023-04-21 23:15+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -3177,140 +3177,170 @@ msgstr "Изберете един или повече файлове за под
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Изберете папка за подписване и/или шифроване"
 
-#: src/conf/appearanceconfigwidget.cpp:142
+#: src/conf/appearanceconfigwidget.cpp:144
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<неозаглавен>"
 
-#: src/conf/appearanceconfigwidget.cpp:314
+#: src/conf/appearanceconfigwidget.cpp:316
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Този параметър е заключен от системния администратор."
 
-#: src/conf/appearanceconfigwidget.cpp:353
-#, fuzzy, kde-format
-#| msgid "Show not certified certificates"
+#: src/conf/appearanceconfigwidget.cpp:357
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "Показване на несертифицирани сертификати"
+msgstr "Показване на тагове към сертификати"
 
-#: src/conf/appearanceconfigwidget.cpp:354
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#: src/conf/appearanceconfigwidget.cpp:358
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
-"Активиране на дисплея и използването на етикети, прикрепени към ключове."
+"Активиране на дисплея и използването на етикети, прикрепени към сертификати."
 
-#: src/conf/appearanceconfigwidget.cpp:360
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#: src/conf/appearanceconfigwidget.cpp:364
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 "Показване на следната информация в подсказките на списъка със сертификати:"
 
-#: src/conf/appearanceconfigwidget.cpp:363
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#: src/conf/appearanceconfigwidget.cpp:367
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Показване на валидност"
 
-#: src/conf/appearanceconfigwidget.cpp:366
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#: src/conf/appearanceconfigwidget.cpp:370
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Показване на информация за собственика"
 
-#: src/conf/appearanceconfigwidget.cpp:369
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#: src/conf/appearanceconfigwidget.cpp:373
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Показване на технически подробности"
 
-#: src/conf/appearanceconfigwidget.cpp:374
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#: src/conf/appearanceconfigwidget.cpp:378
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Показване на информация за собственика на сертификат"
+msgstr "Показване на информация за дата на изтичане на сертификата"
 
-#: src/conf/appearanceconfigwidget.cpp:379
+#: src/conf/appearanceconfigwidget.cpp:385
 #, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
-msgctxt "@title:tab"
-msgid "General"
-msgstr "Генериране"
+#| msgctxt "@info"
+#| msgid "Is '%1' your own certificate?"
+msgctxt "@label:spinbox"
+msgid "Threshold for own certificates:"
+msgstr "Вашият собствен сертификат ли е '%1'?"
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:391
+#: src/conf/appearanceconfigwidget.cpp:404
 #, fuzzy, kde-format
-#| msgid "Set &Icon..."
-msgctxt "@action:button"
-msgid "Set Icon..."
-msgstr "&Икона..."
+#| msgid "never"
+msgctxt "@item never show expiry notification"
+msgid "never"
+msgstr "никога"
+
+#: src/conf/appearanceconfigwidget.cpp:392
+#: src/conf/appearanceconfigwidget.cpp:405
+#, kde-format
+msgctxt "@item:valuesuffix"
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/conf/appearanceconfigwidget.cpp:393
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if your own "
+"certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:398
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@label:spinbox"
+msgid "Threshold for other certificates:"
+msgstr "Trust Root Certificate"
 
 #: src/conf/appearanceconfigwidget.cpp:406
-#, fuzzy, kde-format
-#| msgid "Set &Text Color..."
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if another "
+"person's certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:416
+#, kde-format
+msgctxt "@title:tab"
+msgid "General"
+msgstr "Общи"
+
+#: src/conf/appearanceconfigwidget.cpp:436
+#, kde-format
+msgctxt "@action:button"
+msgid "Set Icon..."
+msgstr "Икона..."
+
+#: src/conf/appearanceconfigwidget.cpp:443
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
-msgstr "Цвят на &текста..."
+msgstr "Цвят на текста..."
 
-#: src/conf/appearanceconfigwidget.cpp:413
-#, fuzzy, kde-format
-#| msgid "Set &Background Color..."
+#: src/conf/appearanceconfigwidget.cpp:450
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "Цвят на &фона..."
+msgstr "Цвят на фона..."
 
-#: src/conf/appearanceconfigwidget.cpp:420
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#: src/conf/appearanceconfigwidget.cpp:457
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "&Шрифт..."
 
-#: src/conf/appearanceconfigwidget.cpp:427
-#, fuzzy, kde-format
-#| msgid "Italic"
+#: src/conf/appearanceconfigwidget.cpp:464
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Курсив"
 
-#: src/conf/appearanceconfigwidget.cpp:434
-#, fuzzy, kde-format
-#| msgid "Bold"
+#: src/conf/appearanceconfigwidget.cpp:471
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Получер"
 
-#: src/conf/appearanceconfigwidget.cpp:441
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#: src/conf/appearanceconfigwidget.cpp:478
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Зачертан"
 
-#: src/conf/appearanceconfigwidget.cpp:450
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#: src/conf/appearanceconfigwidget.cpp:487
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Подразбиращ се външен вид"
 
-#: src/conf/appearanceconfigwidget.cpp:458
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#: src/conf/appearanceconfigwidget.cpp:495
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Категории на сертификатите"
 
-#: src/conf/appearanceconfigwidget.cpp:482
+#: src/conf/appearanceconfigwidget.cpp:519
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
@@ -3318,7 +3348,7 @@ msgstr ""
 "контраст."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:491 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-атрибут ред"
@@ -5408,34 +5438,34 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Тук е показано състоянието и напредъка на крипто операциите."
 
-#: src/crypto/gui/signencryptwidget.cpp:165
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Докажете автентичността (знак)"
 
-#: src/crypto/gui/signencryptwidget.cpp:166
+#: src/crypto/gui/signencryptwidget.cpp:167
 #, kde-format
 msgid "Sign as:"
 msgstr "Подписване като:"
 
-#: src/crypto/gui/signencryptwidget.cpp:196
+#: src/crypto/gui/signencryptwidget.cpp:197
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Шифроване"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Шифроване за мен:"
 
-#: src/crypto/gui/signencryptwidget.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Шифроване за други:"
 
-#: src/crypto/gui/signencryptwidget.cpp:252
+#: src/crypto/gui/signencryptwidget.cpp:253
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
@@ -5443,7 +5473,7 @@ msgstr ""
 "Шифроване с парола. Всеки, с когото споделите паролата, може да прочете "
 "данните."
 
-#: src/crypto/gui/signencryptwidget.cpp:254
+#: src/crypto/gui/signencryptwidget.cpp:255
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5457,55 +5487,50 @@ msgstr ""
 "на парола е <b> по-малко сигурно </b> от криптографията с публичен ключ. "
 "Дори и да изберете много силна парола."
 
-#: src/crypto/gui/signencryptwidget.cpp:353
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ на получател"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:588
+#, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
-msgstr "Сертификатът за подпис е изтекъл"
+msgstr "Сертификатът е изтекъл"
 
-#: src/crypto/gui/signencryptwidget.cpp:585
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:591
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "Сертификатът за подпис е изтекъл"
+msgstr "Сертификатът изтича днес"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
-#, fuzzy, kde-format
-#| msgid "Signing certificate is expired"
+#: src/crypto/gui/signencryptwidget.cpp:593
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Сертификатът за подпис е изтекъл"
-msgstr[1] "Сертификатът за подпис е изтекъл"
+msgstr[0] "Сертификатът изтича утре."
+msgstr[1] "Сертификатът изтича след %1 дни."
 
-#: src/crypto/gui/signencryptwidget.cpp:592
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#: src/crypto/gui/signencryptwidget.cpp:598
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
-msgstr "Сертификатът на издателя не е намерен локално."
+msgstr "Този сертификат не може да се използва за криптиране."
 
-#: src/crypto/gui/signencryptwidget.cpp:594
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#: src/crypto/gui/signencryptwidget.cpp:600
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
-msgstr "Сертификатът на издателя не е намерен локално."
+msgstr "Този сертификат не може да се използва за подписване."
 
-#: src/crypto/gui/signencryptwidget.cpp:793
+#: src/crypto/gui/signencryptwidget.cpp:799
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не можа да се намери ключ за следните получатели:"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Неуспех при намирането на някои от ключовете"
@@ -8097,10 +8122,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:155
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "(няма намерени съответстващи сертификати)"
+msgstr "Уведомяване за предстоящо изтичане на сертификата"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:157
@@ -8109,6 +8133,9 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Ако е разрешено, Kleopatra ще показва известия на определено място, когато "
+"използвате\n"
+"        сертификати, чийто срок на валидност скоро ще изтече."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:163

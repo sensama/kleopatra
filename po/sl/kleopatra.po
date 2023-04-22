@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-21 00:49+0000\n"
-"PO-Revision-Date: 2023-04-20 09:36+0200\n"
+"POT-Creation-Date: 2023-04-22 00:52+0000\n"
+"PO-Revision-Date: 2023-04-21 11:32+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -3185,145 +3185,177 @@ msgstr "Izberite vsaj eno datoteko za podpis in/ali šifriranje"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Izberite mapo za podpis in/ali šifriranje"
 
-#: src/conf/appearanceconfigwidget.cpp:142
+#: src/conf/appearanceconfigwidget.cpp:144
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<neimenovan>"
 
-#: src/conf/appearanceconfigwidget.cpp:314
+#: src/conf/appearanceconfigwidget.cpp:316
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Sistemski skrbnik je zaklenil ta parameter."
 
-#: src/conf/appearanceconfigwidget.cpp:353
-#, fuzzy, kde-format
-#| msgid "Show not certified certificates"
+#: src/conf/appearanceconfigwidget.cpp:357
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "Prikaži nepreverjena potrdila"
+msgstr "Prikaži oznake priložene k potrdilom"
 
-#: src/conf/appearanceconfigwidget.cpp:354
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#: src/conf/appearanceconfigwidget.cpp:358
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
-msgstr "Omogoči prikaz in rabo zavihkov, ki se nanašajo na ključe."
+msgstr "Omogoči prikaz in rabo zavihkov priloženih k potrdilom."
 
-#: src/conf/appearanceconfigwidget.cpp:360
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#: src/conf/appearanceconfigwidget.cpp:364
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "V orodnih namigih seznama potrdil pokaži naslednje podatke:"
 
-#: src/conf/appearanceconfigwidget.cpp:363
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#: src/conf/appearanceconfigwidget.cpp:367
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Pokaži veljavnost"
 
-#: src/conf/appearanceconfigwidget.cpp:366
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#: src/conf/appearanceconfigwidget.cpp:370
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Pokaži podatke o lastniku"
 
-#: src/conf/appearanceconfigwidget.cpp:369
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#: src/conf/appearanceconfigwidget.cpp:373
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Pokaži tehnične podrobnosti"
 
-#: src/conf/appearanceconfigwidget.cpp:374
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#: src/conf/appearanceconfigwidget.cpp:378
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Pokaži podatke o lastniku potrdila"
+msgstr "Pokaži bližnji potek portdila"
 
-#: src/conf/appearanceconfigwidget.cpp:379
+#: src/conf/appearanceconfigwidget.cpp:385
 #, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
-msgctxt "@title:tab"
-msgid "General"
-msgstr "Generiraj"
+#| msgctxt "@info"
+#| msgid "Is '%1' your own certificate?"
+msgctxt "@label:spinbox"
+msgid "Threshold for own certificates:"
+msgstr "Je '%1' vaše lastno potrdilo?"
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:391
+#: src/conf/appearanceconfigwidget.cpp:404
 #, fuzzy, kde-format
-#| msgid "Set &Icon..."
-msgctxt "@action:button"
-msgid "Set Icon..."
-msgstr "Nastavi &ikono..."
+#| msgid "never"
+msgctxt "@item never show expiry notification"
+msgid "never"
+msgstr "nikoli"
+
+#: src/conf/appearanceconfigwidget.cpp:392
+#: src/conf/appearanceconfigwidget.cpp:405
+#, kde-format
+msgctxt "@item:valuesuffix"
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: src/conf/appearanceconfigwidget.cpp:393
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if your own "
+"certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:398
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@label:spinbox"
+msgid "Threshold for other certificates:"
+msgstr "Zaupaj vrhovnemu potrdilu"
 
 #: src/conf/appearanceconfigwidget.cpp:406
-#, fuzzy, kde-format
-#| msgid "Set &Text Color..."
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if another "
+"person's certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:416
+#, kde-format
+msgctxt "@title:tab"
+msgid "General"
+msgstr "Splošno"
+
+#: src/conf/appearanceconfigwidget.cpp:436
+#, kde-format
+msgctxt "@action:button"
+msgid "Set Icon..."
+msgstr "Nastavi ikono..."
+
+#: src/conf/appearanceconfigwidget.cpp:443
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "Nastavi barvo besedila..."
 
-#: src/conf/appearanceconfigwidget.cpp:413
-#, fuzzy, kde-format
-#| msgid "Set &Background Color..."
+#: src/conf/appearanceconfigwidget.cpp:450
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "Nastavi &barvo ozadja..."
+msgstr "Nastavi barvo ozadja..."
 
-#: src/conf/appearanceconfigwidget.cpp:420
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#: src/conf/appearanceconfigwidget.cpp:457
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
-msgstr "Nastavi pisav&o..."
+msgstr "Nastavi pisavo..."
 
-#: src/conf/appearanceconfigwidget.cpp:427
-#, fuzzy, kde-format
-#| msgid "Italic"
+#: src/conf/appearanceconfigwidget.cpp:464
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Ležeče"
 
-#: src/conf/appearanceconfigwidget.cpp:434
-#, fuzzy, kde-format
-#| msgid "Bold"
+#: src/conf/appearanceconfigwidget.cpp:471
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Krepko"
 
-#: src/conf/appearanceconfigwidget.cpp:441
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#: src/conf/appearanceconfigwidget.cpp:478
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Prečrtano"
 
-#: src/conf/appearanceconfigwidget.cpp:450
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#: src/conf/appearanceconfigwidget.cpp:487
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
-msgstr "Privzet videz"
+msgstr "Privzeti videz"
 
-#: src/conf/appearanceconfigwidget.cpp:458
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#: src/conf/appearanceconfigwidget.cpp:495
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Kategorije potrdil"
 
-#: src/conf/appearanceconfigwidget.cpp:482
+#: src/conf/appearanceconfigwidget.cpp:519
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 "Predogled v barvah je onemogočen, ker je dejaven način visokega kontrasta."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:491 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Vrstni red atributov DN"
@@ -5404,40 +5436,40 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu sta prikazana stanje in napredek šifrirnih opravil."
 
-#: src/crypto/gui/signencryptwidget.cpp:165
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, kde-format
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "Dokaži pristnost (podpiši)"
 
-#: src/crypto/gui/signencryptwidget.cpp:166
+#: src/crypto/gui/signencryptwidget.cpp:167
 #, kde-format
 msgid "Sign as:"
 msgstr "Podpiši kot:"
 
-#: src/crypto/gui/signencryptwidget.cpp:196
+#: src/crypto/gui/signencryptwidget.cpp:197
 #, kde-format
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "Šifriraj"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Šifriraj zame:"
 
-#: src/crypto/gui/signencryptwidget.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, kde-format
 msgid "Encrypt for others:"
 msgstr "Šifriraj za druge:"
 
-#: src/crypto/gui/signencryptwidget.cpp:252
+#: src/crypto/gui/signencryptwidget.cpp:253
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr "Šifriraj z geslom. Vsakdo z geslom bo lahko prebral podatke."
 
-#: src/crypto/gui/signencryptwidget.cpp:254
+#: src/crypto/gui/signencryptwidget.cpp:255
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5451,25 +5483,25 @@ msgstr ""
 "<b>manj varna</b> od šifriranja z javnimi ključi, celo če izberete zelo "
 "močno geslo."
 
-#: src/crypto/gui/signencryptwidget.cpp:353
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "prejemnikov ključ"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:588
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "To potrdilo je poteklo."
 
-#: src/crypto/gui/signencryptwidget.cpp:585
+#: src/crypto/gui/signencryptwidget.cpp:591
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "To potrdilo bo poteklo danes."
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:593
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5479,24 +5511,24 @@ msgstr[1] "To potrdilo bo poteklo čez %1 dneva."
 msgstr[2] "To potrdilo bo poteklo čez %1 dni."
 msgstr[3] "To potrdilo bo poteklo čez %1 dni."
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tega potrdila ni mogoče uporabljati za šifriranje."
 
-#: src/crypto/gui/signencryptwidget.cpp:594
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Tega potrdila ni mogoče uporabljati za podpisovanje."
 
-#: src/crypto/gui/signencryptwidget.cpp:793
+#: src/crypto/gui/signencryptwidget.cpp:799
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ni bilo mogoče najti ključa za naslednje prejemnike:"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Ni bilo mogoče najti nekaterih ključev"
@@ -8088,10 +8120,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:155
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "(najdeno ni bilo nobeno ustrezno potrdilo)"
+msgstr "Opozori na bližajočo zapadlost potrdila"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:157
@@ -8100,6 +8131,8 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Če je omogočeno, bo Kleopatra prikazovala obvestila na mestih, kadar se\n"
+"        uporablja potrdila, da se bližajo zapadlosti."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:163

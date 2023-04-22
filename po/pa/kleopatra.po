@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-21 00:49+0000\n"
+"POT-Creation-Date: 2023-04-22 00:52+0000\n"
 "PO-Revision-Date: 2011-01-01 14:02+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -3091,141 +3091,188 @@ msgstr ""
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:142
+#: src/conf/appearanceconfigwidget.cpp:144
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<ਬਿਨ-ਨਾਂ>"
 
-#: src/conf/appearanceconfigwidget.cpp:314
+#: src/conf/appearanceconfigwidget.cpp:316
 #, kde-format
 msgid "This parameter has been locked down by the system administrator."
 msgstr "ਇਹ ਪੈਰਾਮੀਟਰ ਨੂੰ ਸਿਸਟਮ ਐਡਮਿਨਸਟੇਟਰ ਵਲੋਂ ਲਾਕ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
-#: src/conf/appearanceconfigwidget.cpp:353
+#: src/conf/appearanceconfigwidget.cpp:357
 #, fuzzy, kde-format
 #| msgid "Do not check certificate policies"
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
 msgstr "ਸਰਟੀਫਕੇਟ ਨੀਤੀ ਕਦੇਂ ਨਾ ਜਾਂਚੋਂ"
 
-#: src/conf/appearanceconfigwidget.cpp:354
+#: src/conf/appearanceconfigwidget.cpp:358
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:360
+#: src/conf/appearanceconfigwidget.cpp:364
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:363
+#: src/conf/appearanceconfigwidget.cpp:367
 #, fuzzy, kde-format
 #| msgid "Show validity"
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "ਵੈਧਤਾ ਵੇਖੋ"
 
-#: src/conf/appearanceconfigwidget.cpp:366
+#: src/conf/appearanceconfigwidget.cpp:370
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "ਮਾਲਕ ਜਾਣਕਾਰੀ ਵੇਖੋ"
 
-#: src/conf/appearanceconfigwidget.cpp:369
+#: src/conf/appearanceconfigwidget.cpp:373
 #, fuzzy, kde-format
 #| msgid "Show technical details"
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "ਤਕਨੀਕੀ ਵੇਰਵਾ ਵੇਖੋ"
 
-#: src/conf/appearanceconfigwidget.cpp:374
+#: src/conf/appearanceconfigwidget.cpp:378
 #, fuzzy, kde-format
 #| msgid "Show certificate owner information"
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਮਾਲਕ ਜਾਣਕਾਰੀ ਵੇਖੋ"
 
-#: src/conf/appearanceconfigwidget.cpp:379
+#: src/conf/appearanceconfigwidget.cpp:385
+#, fuzzy, kde-format
+#| msgid "(unknown certificate)"
+msgctxt "@label:spinbox"
+msgid "Threshold for own certificates:"
+msgstr "(ਅਣਜਾਣ ਸਰਟੀਫਿਕੇਟ)"
+
+#: src/conf/appearanceconfigwidget.cpp:391
+#: src/conf/appearanceconfigwidget.cpp:404
+#, fuzzy, kde-format
+#| msgid "Never"
+msgctxt "@item never show expiry notification"
+msgid "never"
+msgstr "ਕਦੇ ਨਹੀਂ"
+
+#: src/conf/appearanceconfigwidget.cpp:392
+#: src/conf/appearanceconfigwidget.cpp:405
+#, kde-format
+msgctxt "@item:valuesuffix"
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/conf/appearanceconfigwidget.cpp:393
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if your own "
+"certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:398
+#, fuzzy, kde-format
+#| msgid "Dump Certificate"
+msgctxt "@label:spinbox"
+msgid "Threshold for other certificates:"
+msgstr "ਸਰਟੀਫਿਕੇਟ ਡੰਪ"
+
+#: src/conf/appearanceconfigwidget.cpp:406
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Select the number of days you want to be warned in advanced, if another "
+"person's certificate is about to expire soon."
+msgstr ""
+
+#: src/conf/appearanceconfigwidget.cpp:416
 #, fuzzy, kde-format
 #| msgid "General"
 msgctxt "@title:tab"
 msgid "General"
 msgstr "ਆਮ"
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:436
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "ਆਈਕਾਨ ਦਿਓ(&I)..."
 
-#: src/conf/appearanceconfigwidget.cpp:406
+#: src/conf/appearanceconfigwidget.cpp:443
 #, fuzzy, kde-format
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "ਟੈਕਸਟ ਰੰਗ ਸੈੱਟ ਕਰੋ(&T)..."
 
-#: src/conf/appearanceconfigwidget.cpp:413
+#: src/conf/appearanceconfigwidget.cpp:450
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਦਿਓ(&B)..."
 
-#: src/conf/appearanceconfigwidget.cpp:420
+#: src/conf/appearanceconfigwidget.cpp:457
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "ਫੋਂਟ ਦਿਓ(&o)..."
 
-#: src/conf/appearanceconfigwidget.cpp:427
+#: src/conf/appearanceconfigwidget.cpp:464
 #, fuzzy, kde-format
 #| msgid "Italic"
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "ਤਿਰਛੇ"
 
-#: src/conf/appearanceconfigwidget.cpp:434
+#: src/conf/appearanceconfigwidget.cpp:471
 #, fuzzy, kde-format
 #| msgid "Bold"
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "ਗੂੜੇ"
 
-#: src/conf/appearanceconfigwidget.cpp:441
+#: src/conf/appearanceconfigwidget.cpp:478
 #, fuzzy, kde-format
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "ਵਿੰਨੋ"
 
-#: src/conf/appearanceconfigwidget.cpp:450
+#: src/conf/appearanceconfigwidget.cpp:487
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "ਮੂਲ ਦਿੱਖ"
 
-#: src/conf/appearanceconfigwidget.cpp:458
+#: src/conf/appearanceconfigwidget.cpp:495
 #, fuzzy, kde-format
 #| msgid "Certificate Categories"
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "ਸਰਟੀਫਿਕੇਟ ਕੈਟਾਗਰੀ"
 
-#: src/conf/appearanceconfigwidget.cpp:482
+#: src/conf/appearanceconfigwidget.cpp:519
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:491 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr ""
@@ -5265,45 +5312,45 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:165
+#: src/crypto/gui/signencryptwidget.cpp:166
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@title:group"
 msgid "Prove authenticity (sign)"
 msgstr "ਪਰਮਾਣਕਿਤਾ"
 
-#: src/crypto/gui/signencryptwidget.cpp:166
+#: src/crypto/gui/signencryptwidget.cpp:167
 #, fuzzy, kde-format
 #| msgid "Sign Files"
 msgid "Sign as:"
 msgstr "ਫਾਇਲਾਂ ਸਾਇਨ"
 
-#: src/crypto/gui/signencryptwidget.cpp:196
+#: src/crypto/gui/signencryptwidget.cpp:197
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@title:group"
 msgid "Encrypt"
 msgstr "ਇੰਕ੍ਰਿਪਟ"
 
-#: src/crypto/gui/signencryptwidget.cpp:202
+#: src/crypto/gui/signencryptwidget.cpp:203
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for me:"
 msgstr "ਫਾਇਲਾਂ ਇੰਕ੍ਰਿਪਟ"
 
-#: src/crypto/gui/signencryptwidget.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:217
 #, fuzzy, kde-format
 #| msgid "Encrypt file(s)"
 msgid "Encrypt for others:"
 msgstr "ਫਾਇਲਾਂ ਇੰਕ੍ਰਿਪਟ"
 
-#: src/crypto/gui/signencryptwidget.cpp:252
+#: src/crypto/gui/signencryptwidget.cpp:253
 #, kde-format
 msgid ""
 "Encrypt with password. Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:254
+#: src/crypto/gui/signencryptwidget.cpp:255
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5313,28 +5360,28 @@ msgid ""
 "Even if you pick a very strong password."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:353
+#: src/crypto/gui/signencryptwidget.cpp:359
 #, fuzzy, kde-format
 #| msgid "Recipient"
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ਪਰਾਪਤ ਕਰਤਾ"
 
-#: src/crypto/gui/signencryptwidget.cpp:582
+#: src/crypto/gui/signencryptwidget.cpp:588
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "ਸਾਈਨਿੰਗ ਸਰਟੀਫਿਕੇਟ ਦੀ ਮਿਆਦ ਪੁੱਗੀ"
 
-#: src/crypto/gui/signencryptwidget.cpp:585
+#: src/crypto/gui/signencryptwidget.cpp:591
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "ਸਰਟੀਫਿਕੇਟ ਮਿਆਦ ਪੁੱਗੀ"
 
-#: src/crypto/gui/signencryptwidget.cpp:587
+#: src/crypto/gui/signencryptwidget.cpp:593
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5343,27 +5390,27 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "ਇਹ ਸਰਟੀਫਿਕੇਟ ਤੁਹਾਡੇ ਕੁੰਜੀ-ਸਟੋਰ ਲਈ ਨਵਾਂ ਹੈ।"
 msgstr[1] "ਇਹ ਸਰਟੀਫਿਕੇਟ ਤੁਹਾਡੇ ਕੁੰਜੀ-ਸਟੋਰ ਲਈ ਨਵਾਂ ਹੈ।"
 
-#: src/crypto/gui/signencryptwidget.cpp:592
+#: src/crypto/gui/signencryptwidget.cpp:598
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਲੋਕਲੀ ਆਯੋਗ ਬਣਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
-#: src/crypto/gui/signencryptwidget.cpp:594
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "ਇਹ ਸਰਟੀਫਿਕੇਟ ਲੋਕਲੀ ਆਯੋਗ ਬਣਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
-#: src/crypto/gui/signencryptwidget.cpp:793
+#: src/crypto/gui/signencryptwidget.cpp:799
 #, fuzzy, kde-format
 #| msgid "Could not create socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "ਸਾਕਟ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ ਹੈ: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:795
+#: src/crypto/gui/signencryptwidget.cpp:801
 #, fuzzy, kde-format
 #| msgid "Could not start zip process"
 msgid "Failed to find some keys"

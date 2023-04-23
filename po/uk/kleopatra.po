@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-22 00:52+0000\n"
-"PO-Revision-Date: 2023-04-21 12:19+0300\n"
+"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"PO-Revision-Date: 2023-04-22 08:37+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -3266,17 +3266,14 @@ msgid "Show upcoming certificate expiration"
 msgstr "Попереджати про завершення строку дії сертифікатів"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "Чи є «%1» вашим власним сертифікатом?"
+msgstr "Порогове значення для власних сертифікатів:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "ніколи"
@@ -3287,33 +3284,44 @@ msgstr "ніколи"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] " день"
+msgstr[1] " дні"
+msgstr[2] " днів"
+msgstr[3] " день"
 
 #: src/conf/appearanceconfigwidget.cpp:393
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if your own "
+#| "certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if your own "
+"Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Виберіть кількість днів для випереджального попередження щодо того, що строк "
+"дії вашого сертифіката невдовзі буде вичерпано."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Встановити надійність кореневого сертифіката"
+msgstr "Порогове значення для інших сертифікатів:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if another "
+#| "person's certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if another "
+"Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Виберіть кількість днів для випереджального попередження щодо того, що строк "
+"дії сертифіката іншої особи невдовзі буде вичерпано."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format

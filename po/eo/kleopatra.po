@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-22 00:52+0000\n"
-"PO-Revision-Date: 2023-04-22 01:00+0100\n"
+"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"PO-Revision-Date: 2023-04-22 17:33+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -1513,7 +1513,9 @@ msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
 msgstr[0] ""
+"Skribado de subŝlosilo al dosiero <filename>%2</filename> malsukcesis."
 msgstr[1] ""
+"Skribado de subŝlosiloj al dosiero <filename>%2</filename> malsukcesis."
 
 #: src/commands/exportsecretsubkeycommand.cpp:261
 #, kde-format
@@ -1713,8 +1715,8 @@ msgstr "Alportante Ŝlosilojn"
 #, kde-format
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Prenante 1 ŝlosilon... (tio povas daŭri iom)"
+msgstr[1] "Prenante %1 ŝlosilojn... (tio povas daŭri iom)"
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
@@ -1994,8 +1996,8 @@ msgstr "Ne, Ĝi Ne estas Mia"
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Prenante 1 subskribantoŝlosilon... (tio povas daŭri iom)"
+msgstr[1] "Prenante %1 subskribantoŝlosilojn... (tio povas daŭri iom)"
 
 #: src/commands/importcertificatescommand.cpp:916
 #: src/commands/importcertificatescommand.cpp:980
@@ -2461,15 +2463,15 @@ msgstr "Nevalida Servila Respondo"
 msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unu atestilo sen nomo kaj e-poŝtadreso estis ignorita."
+msgstr[1] "%1 atestiloj sen nomo kaj e-poŝtadreso estis ignoritaj."
 
 #: src/commands/lookupcertificatescommand.cpp:531
 #: src/commands/lookupcertificatescommand.cpp:537
 #, kde-format
 msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
 msgid "%1 Certificate Server"
-msgstr "%1 Atestilo"
+msgstr "%1 Atestila servilo"
 
 #: src/commands/lookupcertificatescommand.cpp:571
 #, kde-format
@@ -2677,8 +2679,8 @@ msgstr "Novaj subskriboj: %1"
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Plue, unu nova ŝlosilo estis ricevita."
+msgstr[1] "Plue, %1 novaj ŝlosiloj estis ricevitaj."
 
 #: src/commands/refreshcertificatecommand.cpp:256
 #, kde-format
@@ -2898,8 +2900,8 @@ msgstr "Uzanto ID '%1' atestita per ŝlosilo %2"
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vi estas nuligonta la sekvan ateston:"
+msgstr[1] "Vi estas nuligonta la sekvajn %1 atestojn:"
 
 #: src/commands/revokecertificationcommand.cpp:98
 #, kde-format
@@ -2951,8 +2953,8 @@ msgstr "Vi ne povas revoki iujn ajn atestojn pri ĉi tiu ŝlosilo."
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vi ne povas nuligi iajn atestilojn de ĉi tiu uzant-ID."
+msgstr[1] "Vi ne povas nuligi iajn atestilojn de ĉi tiuj uzant-ID-oj."
 
 #: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
@@ -3181,17 +3183,14 @@ msgid "Show upcoming certificate expiration"
 msgstr "Montri venontan eksvalidiĝon de atestilo"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "Ĉu '%1' estas via propra atestilo?"
+msgstr "Sojlo por propraj atestiloj:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "neniam"
@@ -3202,31 +3201,42 @@ msgstr "neniam"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " tago"
+msgstr[1] " tagoj"
 
 #: src/conf/appearanceconfigwidget.cpp:393
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if your own "
+#| "certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if your own "
+"Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Elektu la nombron de tagoj vi volas esti avertata anticipe se via propra "
+"atestilo estos baldaŭ eksvalidiĝanta."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Fida Radika Atestilo"
+msgstr "Sojlo por aliaj atestiloj:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if another "
+#| "person's certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if another "
+"Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Elektu la nombron de tagoj vi volas esti avertata anticipe se atestilo de "
+"alia persono estas baldaŭ eksvalidiĝonta."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format
@@ -4371,15 +4381,15 @@ msgstr "<b>Neniu subskriboj trovitaj.</b>"
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Nenvalida signaturo.</b>"
+msgstr[1] "%1 nenvalidaj signaturoj.</b>"
 
 #: src/crypto/decryptverifytask.cpp:423
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Ne eblis kontroli la datenojn.</b>"
+msgstr[1] "<b>Ne eblis kontroli %1 signaturojn.</b>"
 
 #: src/crypto/decryptverifytask.cpp:429
 #, kde-format
@@ -4404,8 +4414,8 @@ msgstr "atestilo"
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>Valida signaturo.</b>"
+msgstr[1] "<b>%1 validaj signaturoj.</b>"
 
 #: src/crypto/decryptverifytask.cpp:436
 #, kde-format
@@ -4487,8 +4497,8 @@ msgstr ""
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unu nekonata ricevanto."
+msgstr[1] "%1 nekonataj ricevantoj."
 
 #: src/crypto/decryptverifytask.cpp:547
 #, kde-format

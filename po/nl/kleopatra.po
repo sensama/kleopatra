@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-22 00:52+0000\n"
-"PO-Revision-Date: 2023-04-21 12:03+0200\n"
+"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"PO-Revision-Date: 2023-04-22 10:50+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -3242,17 +3242,14 @@ msgid "Show upcoming certificate expiration"
 msgstr "Aankomend verloop van certificaat tonen"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "Is '%1' uw eigen  certificaat)"
+msgstr "Drempel voor eigen certificaten:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "nooit"
@@ -3263,31 +3260,42 @@ msgstr "nooit"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " dag"
+msgstr[1] " dagen"
 
 #: src/conf/appearanceconfigwidget.cpp:393
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if your own "
+#| "certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if your own "
+"Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Het aantal dagen selecteren waarna u van te voren gewaarschuwd wilt worden, "
+"als uw eigen certificaat op het punt staat te verlopen."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Hoofdcertificaat vertrouwen"
+msgstr "Drempel voor andere certificaten:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Select the number of days you want to be warned in advanced, if another "
+#| "person's certificate is about to expire soon."
 msgctxt "@info:tooltip"
 msgid ""
-"Select the number of days you want to be warned in advanced, if another "
+"Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Het aantal dagen selecteren waarna u van te voren gewaarschuwd wilt worden, "
+"als het certificaat van een ander persoon op het punt staat te verlopen."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format

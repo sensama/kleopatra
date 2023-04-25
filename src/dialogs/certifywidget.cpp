@@ -15,6 +15,8 @@
 #include <utils/keys.h>
 #include "view/infofield.h"
 
+#include <settings.h>
+
 #include "kleopatra_debug.h"
 
 #include <KLocalizedString>
@@ -553,6 +555,15 @@ public:
 
     void loadConfig()
     {
+        const Settings settings;
+        mExpirationCheckBox->setChecked(settings.certificationValidityInDays() > 0);
+        if (settings.certificationValidityInDays() > 0) {
+            const QDate expirationDate = QDate::currentDate().addDays(settings.certificationValidityInDays());
+            mExpirationDateEdit->setDate(expirationDate > mExpirationDateEdit->maximumDate() //
+                                         ? mExpirationDateEdit->maximumDate() //
+                                         : expirationDate);
+        }
+
         const KConfigGroup conf(KSharedConfig::openConfig(), "CertifySettings");
         mSecKeySelect->setDefaultKey(conf.readEntry("LastKey", QString()));
         mExportCB->setChecked(conf.readEntry("ExportCheckState", false));

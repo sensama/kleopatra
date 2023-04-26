@@ -594,12 +594,8 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_platform_libs}
 )
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kleopatra_bin Qt6::Core5Compat)
-    target_link_libraries(kleopatra_bin QGpgmeQt6)
-else()
-    target_link_libraries(kleopatra_bin QGpgme)
-endif()
+target_link_libraries(kleopatra_bin Qt6::Core5Compat)
+target_link_libraries(kleopatra_bin QGpgmeQt6)
 
 install(TARGETS kleopatra_bin ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 

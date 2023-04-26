@@ -29,12 +29,7 @@ target_link_libraries(test_verify
   Qt::Widgets
 )
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(test_verify QGpgmeQt6)
-else()
-    target_link_libraries(test_verify QGpgme)
-endif()
-
+target_link_libraries(test_verify QGpgmeQt6)
 
 ########### next target ###############
 
@@ -54,9 +49,5 @@ endif()
 
   target_link_libraries(test_uiserver KF6::I18n KPim6::Libkleo LibAssuan::LibAssuan LibGpgError::LibGpgError)
 
-  if (QT_MAJOR_VERSION STREQUAL "6")
-      target_link_libraries(test_uiserver QGpgmeQt6)
-  else()
-      target_link_libraries(test_uiserver QGpgme)
-  endif()
+  target_link_libraries(test_uiserver QGpgmeQt6)
 

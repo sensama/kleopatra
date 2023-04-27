@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-26 00:50+0000\n"
-"PO-Revision-Date: 2023-04-23 09:20+0100\n"
+"PO-Revision-Date: 2023-04-26 20:04+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -4374,7 +4374,7 @@ msgstr "<b>Neniu subskriboj trovitaj.</b>"
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>Nenvalida signaturo.</b>"
-msgstr[1] "%1 nenvalidaj signaturoj.</b>"
+msgstr[1] "<b>%1 nenvalidaj signaturoj.</b>"
 
 #: src/crypto/decryptverifytask.cpp:423
 #, kde-format
@@ -7839,33 +7839,27 @@ msgstr "Se vera, kaŝas la altnivelajn agordojn en la nova atestilo."
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgid "Default certification validity"
-msgstr "Montri validecon de atestilo"
+msgstr "Defaŭlta valideco de atestilo"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
-msgstr ""
-"Specifas la defaŭltan validecperiodon de novaj OpenPGP-ŝlosiloj en tagoj."
+msgstr "Specifas la defaŭltan validecon de atestiloj en tagoj."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Ĉi tiu agordo specifas kiom da tagoj validas nova OpenPGP-ŝlosilo almenaŭ, "
-"aŭ, alivorte, post kiom da tagoj la nova ŝlosilo eksvalidiĝos plej frue."
+"Ĉi tiu agordo specifas kiom da tagoj validas atestilo defaŭlte, aŭ, "
+"alivorte, post kiom da tagoj la nova atestilo eksvalidiĝos. Metu tion ĉi al "
+"0 por senlima valideco de atestiloj."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75

@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-26 00:50+0000\n"
-"PO-Revision-Date: 2023-04-20 19:48+0200\n"
+"PO-Revision-Date: 2023-04-26 19:46+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3276,8 +3276,7 @@ msgid "Show owner information"
 msgstr "Eigentümerinformationen anzeigen"
 
 #: src/conf/appearanceconfigwidget.cpp:373
-#, fuzzy, kde-format
-#| msgid "Show technical details"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Technische Details anzeigen"
@@ -3299,8 +3298,7 @@ msgstr "Ist '%1' Ihr eigenes Zertifikat?"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "Niemals"
@@ -3311,8 +3309,8 @@ msgstr "Niemals"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " Tag"
+msgstr[1] " Tage"
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -3338,72 +3336,61 @@ msgid ""
 msgstr ""
 
 #: src/conf/appearanceconfigwidget.cpp:416
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Generieren"
+msgstr "Allgemein"
 
 #: src/conf/appearanceconfigwidget.cpp:436
-#, fuzzy, kde-format
-#| msgid "Set &Icon..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
-msgstr "&Symbol einstellen ..."
+msgstr "Symbol festlegen ..."
 
 #: src/conf/appearanceconfigwidget.cpp:443
-#, fuzzy, kde-format
-#| msgid "Set &Text Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
-msgstr "&Textfarbe einstellen ..."
+msgstr "Textfarbe einstellen ..."
 
 #: src/conf/appearanceconfigwidget.cpp:450
-#, fuzzy, kde-format
-#| msgid "Set &Background Color..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
-msgstr "&Hintergrundfarbe einstellen ..."
+msgstr "Hintergrundfarbe einstellen ..."
 
 #: src/conf/appearanceconfigwidget.cpp:457
-#, fuzzy, kde-format
-#| msgid "Set F&ont..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
-msgstr "&Schriftart einstellen ..."
+msgstr "Schriftart einstellen ..."
 
 #: src/conf/appearanceconfigwidget.cpp:464
-#, fuzzy, kde-format
-#| msgid "Italic"
+#, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Kursiv"
 
 #: src/conf/appearanceconfigwidget.cpp:471
-#, fuzzy, kde-format
-#| msgid "Bold"
+#, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Fett"
 
 #: src/conf/appearanceconfigwidget.cpp:478
-#, fuzzy, kde-format
-#| msgid "Strikeout"
+#, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Durchgestrichen"
 
 #: src/conf/appearanceconfigwidget.cpp:487
-#, fuzzy, kde-format
-#| msgid "Default Appearance"
+#, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Voreingestelltes Erscheinungsbild"
 
 #: src/conf/appearanceconfigwidget.cpp:495
-#, fuzzy, kde-format
-#| msgid "Certificate Categories"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Zertifikats-Kategorien"
@@ -10818,11 +10805,10 @@ msgid "Overwriting declined"
 msgstr "Überschreiben abgelehnt"
 
 #: src/utils/output.cpp:657
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgstr "Datei <filename>%1</filename> lässt sich nicht zum Schreiben öffnen."
+msgstr "Datei <filename>%1</filename> kann nicht überschrieben werden."
 
 #: src/utils/output.cpp:682
 #, kde-format

@@ -15,6 +15,7 @@
 
 #include "deviceinfowatcher.h"
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Assuan>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
@@ -163,7 +164,12 @@ static const std::string getAttribute(std::shared_ptr<Context> &gpgAgent, const 
     return result;
 }
 
-static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, Error &err)
+enum GetCardsAndAppsOptions {
+    WithReportedAppOrder,
+    WithStableAppOrder,
+};
+
+static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, GetCardsAndAppsOptions options, Error &err)
 {
     std::vector<CardApp> result;
     if (gpgHasMultiCardMultiAppSupport()) {
@@ -178,8 +184,10 @@ static std::vector<CardApp> getCardsAndApps(std::shared_ptr<Context> &gpgAgent, 
                 if (serialNumberAndApps.size() >= 2) {
                     const auto serialNumber = serialNumberAndApps[0];
                     auto apps = serialNumberAndApps.mid(1);
-                    // sort the apps to get a stable order independently of the currently selected application
-                    std::sort(apps.begin(), apps.end());
+                    if (options == WithStableAppOrder) {
+                        // sort the apps to get a stable order independently of the currently selected application
+                        std::sort(apps.begin(), apps.end());
+                    }
                     for (const auto &app: apps) {
                         qCDebug(KLEOPATRA_LOG) << "getCardsAndApps(): Found card" << serialNumber << "with app" << app;
                         result.push_back({ serialNumber.toStdString(), app.toStdString() });
@@ -239,6 +247,42 @@ static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::stri
     qCWarning(KLEOPATRA_LOG) << "switchApp():" << command << "returned" << statusLines
             << "(expected:" << "SERIALNO " + serialNumber + ' ' + appName + "..." << ")";
     return std::string();
+}
+
+static std::vector<std::string> getCardApps(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
+                                            Error &err)
+{
+    const auto cardApps = getCardsAndApps(gpgAgent, WithReportedAppOrder, err);
+    if (err) {
+        return {};
+    }
+    std::vector<std::string> apps;
+    kdtools::transform_if(cardApps.begin(),
+                          cardApps.end(),
+                          std::back_inserter(apps),
+                          [](const auto &cardApp) {
+                              return cardApp.appName;
+                          },
+                          [serialNumber](const auto &cardApp) {
+                              return cardApp.serialNumber == serialNumber;
+                          });
+    qCDebug(KLEOPATRA_LOG) << __func__ << "apps:" << apps;
+    return apps;
+}
+
+static void switchCardBackToOpenPGPApp(std::shared_ptr<Context> &gpgAgent, const std::string &serialNumber,
+                                       Error &err)
+{
+    if (!gpgHasMultiCardMultiAppSupport()) {
+        return;
+    }
+    const auto apps = getCardApps(gpgAgent, serialNumber, err);
+    if (err || apps.empty() || apps[0] == OpenPGPCard::AppName) {
+        return;
+    }
+    if (Kleo::contains(apps, OpenPGPCard::AppName)) {
+        switchApp(gpgAgent, serialNumber, OpenPGPCard::AppName, err);
+    }
 }
 
 static const char * get_openpgp_card_manufacturer_from_serial_number(const std::string &serialno)
@@ -623,23 +667,24 @@ static std::shared_ptr<Card> get_card_status(const std::string &serialNumber, co
     if (appName == NetKeyCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found Netkey card" << ci->serialNumber().c_str() << "end";
         handle_netkey_card(ci, gpg_agent);
-        return ci;
     } else if (appName == OpenPGPCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found OpenPGP card" << ci->serialNumber().c_str() << "end";
         ci->setAuthenticationKeyRef(OpenPGPCard::pgpAuthKeyRef());
         handle_openpgp_card(ci, gpg_agent);
-        return ci;
     } else if (appName == PIVCard::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found PIV card" << ci->serialNumber().c_str() << "end";
         handle_piv_card(ci, gpg_agent);
-        return ci;
     } else if (appName == P15Card::AppName) {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: found P15 card" << ci->serialNumber().c_str() << "end";
         handle_p15_card(ci, gpg_agent);
-        return ci;
     } else {
         qCDebug(KLEOPATRA_LOG) << "get_card_status: unhandled application:" << appName;
-        return ci;
+    }
+
+    if (gpgHasMultiCardMultiAppSupport() && appName != OpenPGPCard::AppName) {
+        // switch the card app back to OpenPGP; errors are ignored
+        GpgME::Error dummy;
+        switchCardBackToOpenPGPApp(gpg_agent, serialNumber, dummy);
     }
 
     return ci;
@@ -676,7 +721,7 @@ static std::vector<std::shared_ptr<Card> > update_cardinfo(std::shared_ptr<Conte
     }
 
     Error err;
-    const std::vector<CardApp> cardApps = getCardsAndApps(gpgAgent, err);
+    const std::vector<CardApp> cardApps = getCardsAndApps(gpgAgent, WithStableAppOrder, err);
     if (err) {
         if (isCardNotPresentError(err)) {
             qCDebug(KLEOPATRA_LOG) << "update_cardinfo: No card present";

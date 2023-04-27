@@ -36,6 +36,10 @@ protected:
     }
 
 private:
+    void doFinish() override;
+
+private:
     std::string serialNumber_;
+    bool autoResetCardToOpenPGP = true;
 };
 

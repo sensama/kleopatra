@@ -1218,4 +1218,19 @@ Error ReaderStatus::switchCardAndApp(const std::string &serialNumber, const std:
     return err;
 }
 
+// static
+Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
+{
+    Error err;
+    if (gpgHasMultiCardMultiAppSupport()) {
+        std::unique_ptr<Context> c = Context::createForEngine(AssuanEngine, &err);
+        if (err.code() == GPG_ERR_NOT_SUPPORTED) {
+            return err;
+        }
+        auto assuanContext = std::shared_ptr<Context>(c.release());
+        ::switchCardBackToOpenPGPApp(assuanContext, serialNumber, err);
+    }
+    return err;
+}
+
 #include "readerstatus.moc"

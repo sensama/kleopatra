@@ -11,6 +11,8 @@
 #include "cardcommand.h"
 #include "cardcommand_p.h"
 
+#include <smartcard/readerstatus.h>
+
 #include <QWidget>
 
 using namespace Kleo;
@@ -37,6 +39,13 @@ CardCommand::Private::~Private()
 {
 }
 
+void CardCommand::Private::doFinish()
+{
+    if (autoResetCardToOpenPGP) {
+        SmartCard::ReaderStatus::switchCardBackToOpenPGPApp(serialNumber());
+    }
+}
+
 CardCommand::CardCommand(const std::string &serialNumber, QWidget *parent)
     : Command(new Private(this, serialNumber, parent))
 {
@@ -49,6 +58,16 @@ CardCommand::CardCommand(Private *pp)
 
 CardCommand::~CardCommand()
 {
+}
+
+void CardCommand::setAutoResetCardToOpenPGP(bool autoReset)
+{
+    d->autoResetCardToOpenPGP = autoReset;
+}
+
+bool CardCommand::autoResetCardToOpenPGP() const
+{
+    return d->autoResetCardToOpenPGP;
 }
 
 #undef q_func

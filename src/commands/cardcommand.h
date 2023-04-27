@@ -22,6 +22,9 @@ public:
     explicit CardCommand(const std::string &serialNumber, QWidget *parent);
     ~CardCommand() override;
 
+    void setAutoResetCardToOpenPGP(bool autoReset);
+    bool autoResetCardToOpenPGP() const;
+
 protected:
     class Private;
     inline Private *d_func();

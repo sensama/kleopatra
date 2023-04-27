@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"POT-Creation-Date: 2023-04-26 00:50+0000\n"
 "PO-Revision-Date: 2023-03-17 20:30+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -3444,7 +3444,7 @@ msgstr ""
 "L'aperçu des couleurs est désactivé car le mode de fort contraste est actif."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Ordre d'attributs DN"
@@ -6131,7 +6131,7 @@ msgid "User IDs:"
 msgstr "Identifiants d'utilisateur :"
 
 #: src/dialogs/certificatedetailswidget.cpp:215
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:403
 #, kde-format
 msgid "User IDs"
 msgstr "Identifiants utilisateur"
@@ -6210,7 +6210,7 @@ msgid "Change Validity"
 msgstr "Modifier la validité"
 
 #: src/dialogs/certificatedetailswidget.cpp:300
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Empreinte :"
@@ -6598,7 +6598,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certifier le certificat : %1"
 
-#: src/dialogs/certifywidget.cpp:355
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6609,18 +6609,18 @@ msgstr ""
 "d'utilisateurs que vous voulez certifier et sélectionner la clé avec "
 "laquelle vous voulez certifier les identifiants d'utilisateurs."
 
-#: src/dialogs/certifywidget.cpp:376
+#: src/dialogs/certifywidget.cpp:378
 #, kde-format
 msgid "Certify with:"
 msgstr "Certifier avec :"
 
-#: src/dialogs/certifywidget.cpp:388
+#: src/dialogs/certifywidget.cpp:390
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Définir le niveau de confiance du propriétaire"
 
-#: src/dialogs/certifywidget.cpp:390
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6631,39 +6631,39 @@ msgstr ""
 "sélectionnée à « Confiance ultime ». C'est ce que vous voulez généralement "
 "faire pour vos propres clés."
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Show advanced options"
 msgstr "Afficher les options avancées"
 
-#: src/dialogs/certifywidget.cpp:412
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certifier pour une visibilité par tous (exportable)"
 
-#: src/dialogs/certifywidget.cpp:419
+#: src/dialogs/certifywidget.cpp:421
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publier ensuite sur le serveur de clés."
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:433
 #, kde-format
 msgid "Tags:"
 msgstr "Étiquettes :"
 
-#: src/dialogs/certifywidget.cpp:435
+#: src/dialogs/certifywidget.cpp:437
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr ""
 "Vous pouvez utiliser ce champ pour ajouter des informations supplémentaires "
 "lors d'une certification."
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:439
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6673,46 +6673,46 @@ msgstr ""
 "certification totale sont affichées dans la liste de clés et peuvent être "
 "recherchées."
 
-#: src/dialogs/certifywidget.cpp:440
+#: src/dialogs/certifywidget.cpp:442
 #, kde-format
 msgid "Explain tags"
 msgstr "Expliquer les étiquettes"
 
-#: src/dialogs/certifywidget.cpp:453
+#: src/dialogs/certifywidget.cpp:455
 #, kde-format
 msgid "Expiration:"
 msgstr "Expiration :"
 
-#: src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "La certification doit être valable au moins jusqu'à demain."
 
-#: src/dialogs/certifywidget.cpp:462
+#: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The latest allowed certification date is %1."
 msgstr "La dernière date de certification autorisée est %1."
 
-#: src/dialogs/certifywidget.cpp:465
+#: src/dialogs/certifywidget.cpp:467
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "Deux années à partir de maintenant"
 
-#: src/dialogs/certifywidget.cpp:466
+#: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "Une année à partir de maintenant"
 
-#: src/dialogs/certifywidget.cpp:471
+#: src/dialogs/certifywidget.cpp:473
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Vous pouvez l'utiliser pour définir une date d'expiration pour une "
 "certification."
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:475
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6723,24 +6723,24 @@ msgstr ""
 "votre certification à une certaine durée. Une fois la date d'expiration "
 "dépassée, votre certification n'est plus valable."
 
-#: src/dialogs/certifywidget.cpp:477
+#: src/dialogs/certifywidget.cpp:479
 #, kde-format
 msgid "Explain expiration"
 msgstr "Expliquer l'expiration"
 
-#: src/dialogs/certifywidget.cpp:490
+#: src/dialogs/certifywidget.cpp:492
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Certifier comme introducteur de confiance"
 
-#: src/dialogs/certifywidget.cpp:491
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Vous pouvez utiliser ceci pour certifier un introducteur de confiance pour "
 "ce domaine."
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:495
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6752,22 +6752,22 @@ msgstr ""
 "traités comme certifiés, c'est-à-dire qu'un introducteur de confiance agit "
 "comme une sorte d'autorité de certification intermédiaire pour un domaine."
 
-#: src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Expliquer l'introducteur de confiance"
 
-#: src/dialogs/certifywidget.cpp:508
+#: src/dialogs/certifywidget.cpp:510
 #, kde-format
 msgid "Domain:"
 msgstr "Domaine :"
 
-#: src/dialogs/certifywidget.cpp:689
+#: src/dialogs/certifywidget.cpp:700
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Est-ce votre propre clé ?"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:715
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6775,12 +6775,12 @@ msgstr ""
 "<p>Impossible de modifier le niveau de confiance de la certification pour la "
 "clé <b>%1</b> :</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:707
+#: src/dialogs/certifywidget.cpp:718
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Impossible de changer le niveau de confiance de la certification"
 
-#: src/dialogs/certifywidget.cpp:714
+#: src/dialogs/certifywidget.cpp:725
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr ""
@@ -8123,8 +8123,40 @@ msgstr ""
 "Si cette option est positionnée à « Vrai », masque le bouton de "
 "configuration avancée dans l'assistant pour de nouveaux certificats."
 
-#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
+#, fuzzy, kde-format
+#| msgid "Default certificate"
+msgid "Default certification validity"
+msgstr "Certificat par défaut"
+
+#. i18n: ectx: tooltip, entry, group (Certification)
+#: src/kcfg/settings.kcfg:68
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid "Specifies the default validity of certifications in days."
+msgstr ""
+"Spécifie la période de validité par défaut en jours des nouvelles clés "
+"« OpenPGP »."
+
+#. i18n: ectx: whatsthis, entry, group (Certification)
+#: src/kcfg/settings.kcfg:69
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at least, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "earliest."
+msgid ""
+"This setting specifies how many days a certification is valid by default, "
+"or, in other words, after how many days a new certification will expire. Set "
+"this to 0 for unlimited validity of certifications."
+msgstr ""
+"Ce paramètre spécifie le nombre minimal de jours de validité d'une nouvelle "
+"clé « OpenPGP », ou, en d'autres termes, le nombre minimal de jours après "
+"lequel la clé expirera."
+
+#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#: src/kcfg/settings.kcfg:75
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr ""
@@ -8132,13 +8164,13 @@ msgstr ""
 "somme de contrôle"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:73
+#: src/kcfg/settings.kcfg:81
 #, kde-format
 msgid "Show results after signing"
 msgstr "Afficher les résultats après signature"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:82
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
@@ -8147,13 +8179,13 @@ msgstr ""
 "réussie du presse-papier."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Afficher les résultats après chiffrement"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -8163,19 +8195,19 @@ msgstr ""
 "chiffrement réussi du presse-papier."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:93
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "Activer « S / MIME »"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:94
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Active la prise en charge pour « S / MIME »"
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:95
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -8185,19 +8217,19 @@ msgstr ""
 "de Kleopatra n'offrira aucune fonctionnalité liée à « S/MIME » (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Permettre la création de certificats « S/MIME »."
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:100
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Permet la création de demandes de signature de certificats « S/MIME »."
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -8207,13 +8239,13 @@ msgstr ""
 "création de demandes de signature de certificats « S/MIME »."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Permettre la signature avec des certificats « S / MIME »"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:98
+#: src/kcfg/settings.kcfg:106
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
@@ -8221,7 +8253,7 @@ msgstr ""
 "MIME »."
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:99
+#: src/kcfg/settings.kcfg:107
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -8232,62 +8264,62 @@ msgstr ""
 "MIME »."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Afficher la configuration pour l'apparence"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Afficher la configuration pour les opérations de cryptographie"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Afficher la configuration pour les services de dossiers"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Afficher la configuration pour le système « GnuPG »"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:129
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Afficher la configuration pour des cartes de mémoire"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:125
+#: src/kcfg/settings.kcfg:133
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Afficher la configuration pour la validation « S / MIME »"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:132
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
 "Spécifie l'ordre d'affichage des attributs « DN » des certificats « X.509 »."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Enable Groups"
 msgstr "Activer les groupes"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:147
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Activer l'utilisation des groupes de touches."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
@@ -8295,13 +8327,13 @@ msgstr ""
 "destinataires."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:146
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Retrouver les clés du signataire après l'importation"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8317,14 +8349,14 @@ msgstr ""
 "confiance."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:163
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Notify about upcoming certificate expiration"
 msgstr "(aucun certificat correspondant trouvé)"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8332,13 +8364,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Schémas d'URL à bloquer"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:173
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8351,14 +8383,14 @@ msgstr ""
 "applications externes pour certaines URL."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr ""
 "Toujours rechercher un certificat d'une carte mémoire sur un serveur de clés"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8368,7 +8400,7 @@ msgstr ""
 "serveur de clés configuré."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8382,7 +8414,7 @@ msgstr ""
 "ne faire cela que pour les serveurs de clés « LDAP »."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:178
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr ""
@@ -8390,7 +8422,7 @@ msgstr ""
 "« PKCS #15 »"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
@@ -8398,7 +8430,7 @@ msgstr ""
 "mémoire « PKCS #15 »"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8411,7 +8443,7 @@ msgstr ""
 "carte mémoire durant l'exécution de la commande."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Désactiver les paramètres de profil"
@@ -13419,9 +13451,6 @@ msgstr ""
 
 #~ msgid "Selected secret key:"
 #~ msgstr "Clé privée sélectionnée :"
-
-#~ msgid "Default certificate"
-#~ msgstr "Certificat par défaut"
 
 #~ msgid "No statement made"
 #~ msgstr "Aucune déclaration effectuée"

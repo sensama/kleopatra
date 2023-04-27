@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"POT-Creation-Date: 2023-04-26 00:50+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -3314,7 +3314,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "ハイコントラスト・モードが有効なので色のプレビューは禁止されています。"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 属性の順番"
@@ -5921,7 +5921,7 @@ msgid "User IDs:"
 msgstr "ユーザ ID:"
 
 #: src/dialogs/certificatedetailswidget.cpp:215
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:403
 #, kde-format
 msgid "User IDs"
 msgstr "ユーザ ID"
@@ -5999,7 +5999,7 @@ msgid "Change Validity"
 msgstr "有効期間の変更"
 
 #: src/dialogs/certificatedetailswidget.cpp:300
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "Fingerprint:"
 msgstr "フィンガープリント:"
@@ -6384,7 +6384,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "証明書を保証: %1"
 
-#: src/dialogs/certifywidget.cpp:355
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6396,18 +6396,18 @@ msgstr ""
 "リントだけです。</i>"
 
 # 証明書に署名
-#: src/dialogs/certifywidget.cpp:376
+#: src/dialogs/certifywidget.cpp:378
 #, kde-format
 msgid "Certify with:"
 msgstr "以下で保証:"
 
-#: src/dialogs/certifywidget.cpp:388
+#: src/dialogs/certifywidget.cpp:390
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "信頼レベルを設定..."
 
-#: src/dialogs/certifywidget.cpp:390
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6417,37 +6417,37 @@ msgstr ""
 "選択された保証鍵に究極の信頼の信用レベルを設定します。あなた自身の鍵に通常は"
 "設定するものです。"
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Advanced"
 msgstr "高度"
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Show advanced options"
 msgstr "高度なオプションを表示"
 
-#: src/dialogs/certifywidget.cpp:412
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "みんなが見れるように保証する (エクスポータブル)"
 
-#: src/dialogs/certifywidget.cpp:419
+#: src/dialogs/certifywidget.cpp:421
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "その後、鍵サーバへ公開する"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:433
 #, kde-format
 msgid "Tags:"
 msgstr "タグ:"
 
-#: src/dialogs/certifywidget.cpp:435
+#: src/dialogs/certifywidget.cpp:437
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "保証に追加の情報を加えるのにこれが使えます。"
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:439
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6455,44 +6455,44 @@ msgid ""
 msgstr ""
 "完全な保証の信頼につけられたタグは鍵リストで見ることができ、検索できます。"
 
-#: src/dialogs/certifywidget.cpp:440
+#: src/dialogs/certifywidget.cpp:442
 #, kde-format
 msgid "Explain tags"
 msgstr "タグの説明"
 
-#: src/dialogs/certifywidget.cpp:453
+#: src/dialogs/certifywidget.cpp:455
 #, kde-format
 msgid "Expiration:"
 msgstr "失効:"
 
-#: src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "保証が有効なのは少なくとも明日までです。"
 
-#: src/dialogs/certifywidget.cpp:462
+#: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The latest allowed certification date is %1."
 msgstr "もっとも近い保証の日付は %1 です。"
 
-#: src/dialogs/certifywidget.cpp:465
+#: src/dialogs/certifywidget.cpp:467
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "今から 2 年間"
 
-#: src/dialogs/certifywidget.cpp:466
+#: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "今から 1 年間"
 
-#: src/dialogs/certifywidget.cpp:471
+#: src/dialogs/certifywidget.cpp:473
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "保証の失効の日を設定するのに使えます。"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:475
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6502,22 +6502,22 @@ msgstr ""
 "失効の日を設定することにより、あなたの保証の有効性を特定の時間に制限すること"
 "ができます。失効日が過ぎた場合、あなたの保証は有効では無くなります。"
 
-#: src/dialogs/certifywidget.cpp:477
+#: src/dialogs/certifywidget.cpp:479
 #, kde-format
 msgid "Explain expiration"
 msgstr "失効を説明する"
 
-#: src/dialogs/certifywidget.cpp:490
+#: src/dialogs/certifywidget.cpp:492
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "信頼できる紹介者として保証する"
 
-#: src/dialogs/certifywidget.cpp:491
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "あるドメインに対して信頼できる紹介者を保証するためにこれが使えます。"
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:495
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6528,33 +6528,33 @@ msgstr ""
 "すべての証明書は保証されたこととなります。すなわち、信頼できる紹介者は、ある"
 "ドメインに関して、ある種の中間CA のように振る舞うことになります。"
 
-#: src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "信頼できる紹介者を説明する"
 
-#: src/dialogs/certifywidget.cpp:508
+#: src/dialogs/certifywidget.cpp:510
 #, kde-format
 msgid "Domain:"
 msgstr "ドメイン:"
 
-#: src/dialogs/certifywidget.cpp:689
+#: src/dialogs/certifywidget.cpp:700
 #, kde-format
 msgid "Is this your own key?"
 msgstr "これはあなた自身の鍵ですか?"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:715
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>鍵 <b>%1</b> の保証の信頼を変更に失敗しました:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:707
+#: src/dialogs/certifywidget.cpp:718
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "保証の信頼の変更に失敗"
 
-#: src/dialogs/certifywidget.cpp:714
+#: src/dialogs/certifywidget.cpp:725
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "所有者信頼度 の設定に成功しました。"
@@ -7835,33 +7835,62 @@ msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
 msgstr "true の場合、新しい証明書ウィザードで高度な設定ボタンを隠す"
 
-#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
+#, fuzzy, kde-format
+#| msgid "Show certificate validity"
+msgid "Default certification validity"
+msgstr "証明書の有効性を表示する"
+
+#. i18n: ectx: tooltip, entry, group (Certification)
+#: src/kcfg/settings.kcfg:68
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid "Specifies the default validity of certifications in days."
+msgstr "OpenPGP 鍵のデフォルトの有効期間を日数で指定する。"
+
+#. i18n: ectx: whatsthis, entry, group (Certification)
+#: src/kcfg/settings.kcfg:69
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at least, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "earliest."
+msgid ""
+"This setting specifies how many days a certification is valid by default, "
+"or, in other words, after how many days a new certification will expire. Set "
+"this to 0 for unlimited validity of certifications."
+msgstr ""
+"この設定では、新しい OpenPGP 鍵が有効となる最小の日数、または、別の言葉で言え"
+"ば、何日で新しい鍵がもっとも早くに失効するかを指定します。"
+
+#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#: src/kcfg/settings.kcfg:75
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "チェックサムファイルを作成する時に使うチェックサムプログラム"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:73
+#: src/kcfg/settings.kcfg:81
 #, kde-format
 msgid "Show results after signing"
 msgstr "署名の後、結果を表示する"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:82
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr "真の場合、クリップボードの署名の成功の後、結果を表示する。"
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Show results after encryption"
 msgstr "暗号化の後、結果を表示する"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -7869,19 +7898,19 @@ msgid ""
 msgstr "真の場合、クリップボードの暗号化の成功の後、結果を表示する。"
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:93
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "S/MIME を有効にする"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:94
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "S/MIME (CMS) サポートを有効にする。"
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:95
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -7891,19 +7920,19 @@ msgstr ""
 "ん。"
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "S/MIME 証明書の作成を許可する"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:100
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "S/MIME 証明書署名要求を作成を許可する。"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -7912,19 +7941,19 @@ msgstr ""
 "もし false なら、Kleopatra は S/MIME 証明書署名要求の作成を提供しません。"
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "S/MIME 証明書による署名を許可する"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:98
+#: src/kcfg/settings.kcfg:106
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr "S/MIME 証明書によるテクストあるいはファイルの署名を許可する。"
 
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:99
+#: src/kcfg/settings.kcfg:107
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -7934,73 +7963,73 @@ msgstr ""
 "ん。"
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "外観の設定を表示"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Crypto 操作の設定を表示"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "ディレクトリサーバの設定を表示"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "GnuPG のシステム設定を表示"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:129
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "スマートカード設定を表示"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:125
+#: src/kcfg/settings.kcfg:133
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "S/MIME 検証の設定を表示"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:132
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "X.509 証明書の DN 属性の表示順を指定する。"
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Enable Groups"
 msgstr "グループを可能とする"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:147
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "鍵のグループの使用を可能とする"
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "受信者のリストを作成するために鍵のグループの用途を有効にする。"
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:146
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "インポートの後に署名者の鍵を取得する"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8013,14 +8042,14 @@ msgstr ""
 "紹介者といっしょに使うと有用です。"
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:163
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Notify about upcoming certificate expiration"
 msgstr "(対応する証明書がありません)"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8028,13 +8057,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "URL schemes to block"
 msgstr "ブロックする URL スキーム"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:173
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8046,13 +8075,13 @@ msgstr ""
 "るのに使われます。"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "常にスマートカードの証明書を鍵サーバで検索する"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8060,7 +8089,7 @@ msgid ""
 msgstr "スマートカードの鍵に対応する証明書の設定された鍵サーバでの検索。"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8072,19 +8101,19 @@ msgstr ""
 "を検索する。デフォルトの動作は LDAP 鍵サーバに対してだけ検索する、です。"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:178
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "S/MIME 証明書を PKCS#15 スマートカードからロードしようとする"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "自動的に S/MIME 証明書を PKCS#15 (CardOS) スマートカードからロードする"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8096,7 +8125,7 @@ msgstr ""
 "がかかることがあり、スマートカードをブロックします。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Disable profile settings"
 msgstr "プロファイル設定を禁止"

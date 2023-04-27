@@ -64,6 +64,7 @@ public:
     void finished()
     {
         Q_EMIT q->finished();
+        doFinish();
         if (autoDelete) {
             q->deleteLater();
         }
@@ -105,6 +106,11 @@ public:
     void applyWindowID(QWidget *w) const
     {
         q->applyWindowID(w);
+    }
+
+private:
+    virtual void doFinish()
+    {
     }
 
 private:

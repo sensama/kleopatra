@@ -65,6 +65,7 @@ public:
     static std::string switchApp(std::shared_ptr<GpgME::Context> &ctx, const std::string &serialNumber,
                                  const std::string &appName, GpgME::Error &err);
     static GpgME::Error switchCardAndApp(const std::string &serialNumber, const std::string &appName);
+    static GpgME::Error switchCardBackToOpenPGPApp(const std::string &serialNumber);
 
 public Q_SLOTS:
     void updateStatus();

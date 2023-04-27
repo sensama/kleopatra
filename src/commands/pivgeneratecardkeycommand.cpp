@@ -158,6 +158,7 @@ void PIVGenerateCardKeyCommand::Private::authenticate()
     qCDebug(KLEOPATRA_LOG) << "PIVGenerateCardKeyCommand::authenticate()";
 
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
+    cmd->setAutoResetCardToOpenPGP(false);
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });
     connect(cmd, &AuthenticatePIVCardApplicationCommand::canceled,

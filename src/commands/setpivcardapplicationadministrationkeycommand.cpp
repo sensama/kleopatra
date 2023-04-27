@@ -117,6 +117,7 @@ void SetPIVCardApplicationAdministrationKeyCommand::Private::authenticate()
     qCDebug(KLEOPATRA_LOG) << "SetPIVCardApplicationAdministrationKeyCommand::authenticate()";
 
     auto cmd = new AuthenticatePIVCardApplicationCommand(serialNumber(), parentWidgetOrView());
+    cmd->setAutoResetCardToOpenPGP(false);
     cmd->setPrompt(i18n("Please enter the old PIV Card Application Administration Key in hex-encoded form."));
     connect(cmd, &AuthenticatePIVCardApplicationCommand::finished,
             q, [this]() { authenticationFinished(); });

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-23 00:50+0000\n"
+"POT-Creation-Date: 2023-04-26 00:50+0000\n"
 "PO-Revision-Date: 2023-03-14 22:00+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -3324,7 +3324,7 @@ msgstr ""
 "Väriesikatselu ei ole käytössä, koska suurkontrastinen tila on aktiivinen."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:131
+#: src/conf/appearanceconfigwidget.cpp:528 src/kcfg/settings.kcfg:139
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-määritteiden järjestys"
@@ -5954,7 +5954,7 @@ msgid "User IDs:"
 msgstr "Käyttäjätunnisteet:"
 
 #: src/dialogs/certificatedetailswidget.cpp:215
-#: src/dialogs/certifywidget.cpp:401
+#: src/dialogs/certifywidget.cpp:403
 #, kde-format
 msgid "User IDs"
 msgstr "Käyttäjätunnisteet"
@@ -6031,7 +6031,7 @@ msgid "Change Validity"
 msgstr "Muuta kelpoisuutta"
 
 #: src/dialogs/certificatedetailswidget.cpp:300
-#: src/dialogs/certifywidget.cpp:371
+#: src/dialogs/certifywidget.cpp:373
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Sormenjälki:"
@@ -6416,7 +6416,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Varmenna varmenne: %1"
 
-#: src/dialogs/certifywidget.cpp:355
+#: src/dialogs/certifywidget.cpp:357
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6427,18 +6427,18 @@ msgstr ""
 "valitse avain, jolla haluat käyttäjätunnukset varmentaa.<br><i>Huom! Vain "
 "sormenjälki yksilöi varmasti avaimen omistajineen.</i>"
 
-#: src/dialogs/certifywidget.cpp:376
+#: src/dialogs/certifywidget.cpp:378
 #, kde-format
 msgid "Certify with:"
 msgstr "Varmenna avaimella:"
 
-#: src/dialogs/certifywidget.cpp:388
+#: src/dialogs/certifywidget.cpp:390
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Aseta omistajan luottamus"
 
-#: src/dialogs/certifywidget.cpp:390
+#: src/dialogs/certifywidget.cpp:392
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6448,37 +6448,37 @@ msgstr ""
 "Napsauta asettaaksesi valitun varmenneavaimen luottamus äärimmäiseksi. Näin "
 "tehdään tavallisesti omille avaimille."
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
-#: src/dialogs/certifywidget.cpp:406
+#: src/dialogs/certifywidget.cpp:408
 #, kde-format
 msgid "Show advanced options"
 msgstr "Näytä lisäasetukset"
 
-#: src/dialogs/certifywidget.cpp:412
+#: src/dialogs/certifywidget.cpp:414
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Varmenna kaikkien nähtäväksi (vietävissä)"
 
-#: src/dialogs/certifywidget.cpp:419
+#: src/dialogs/certifywidget.cpp:421
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Julkaise tuonnempana avainpalvelimeen"
 
-#: src/dialogs/certifywidget.cpp:431
+#: src/dialogs/certifywidget.cpp:433
 #, kde-format
 msgid "Tags:"
 msgstr "Tunnisteet:"
 
-#: src/dialogs/certifywidget.cpp:435
+#: src/dialogs/certifywidget.cpp:437
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Tätä voi käyttää lisättäessä varmenteeseen lisätietoa."
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:439
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6487,44 +6487,44 @@ msgstr ""
 "Tunnisteet, joiden antajalla on täyden luottamuksen varmenne, näytetään "
 "avainluettelossa ja niitä voi etsiä."
 
-#: src/dialogs/certifywidget.cpp:440
+#: src/dialogs/certifywidget.cpp:442
 #, kde-format
 msgid "Explain tags"
 msgstr "Selitä luokitukset"
 
-#: src/dialogs/certifywidget.cpp:453
+#: src/dialogs/certifywidget.cpp:455
 #, kde-format
 msgid "Expiration:"
 msgstr "Vanhenee:"
 
-#: src/dialogs/certifywidget.cpp:461
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "Varmenteen tulee olla voimassa vähintään huomiseen."
 
-#: src/dialogs/certifywidget.cpp:462
+#: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The latest allowed certification date is %1."
 msgstr "Viimeisin sallittu varmennuspäivä on %1."
 
-#: src/dialogs/certifywidget.cpp:465
+#: src/dialogs/certifywidget.cpp:467
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "Kaksi vuotta tästä"
 
-#: src/dialogs/certifywidget.cpp:466
+#: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "Vuosi tästä"
 
-#: src/dialogs/certifywidget.cpp:471
+#: src/dialogs/certifywidget.cpp:473
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Tätä voi käyttää asettamaan varmenteelle vanhenemispäivän."
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:475
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6534,22 +6534,22 @@ msgstr ""
 "Vanhenemispäivän asettamalla voi rajata varmenteen kelpoisuuden tietylle "
 "ajanjaksolle. Kun vanhenemispäivä on ohi, varmenne ei enää kelpaa."
 
-#: src/dialogs/certifywidget.cpp:477
+#: src/dialogs/certifywidget.cpp:479
 #, kde-format
 msgid "Explain expiration"
 msgstr "Selitä vanheneminen"
 
-#: src/dialogs/certifywidget.cpp:490
+#: src/dialogs/certifywidget.cpp:492
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Varmenna luotettuna esittelijänä"
 
-#: src/dialogs/certifywidget.cpp:491
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Tällä voi varmentaa luotetun esittelijän koko toimialueelle."
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:495
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6560,22 +6560,22 @@ msgstr ""
 "varmentamalta toimialueelta, pidetään varmennettuina, ts. luotettu "
 "esittelijä toimii toimialueelle eräänlaisena välillisenä CA:na."
 
-#: src/dialogs/certifywidget.cpp:498
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Selitä luotettu esittelijä"
 
-#: src/dialogs/certifywidget.cpp:508
+#: src/dialogs/certifywidget.cpp:510
 #, kde-format
 msgid "Domain:"
 msgstr "Toimialue:"
 
-#: src/dialogs/certifywidget.cpp:689
+#: src/dialogs/certifywidget.cpp:700
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Onko tämä oma avaimesi?"
 
-#: src/dialogs/certifywidget.cpp:704
+#: src/dialogs/certifywidget.cpp:715
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
@@ -6583,12 +6583,12 @@ msgstr ""
 "<p>Avaimen <b>%1</b> varmenneluottamuksen muuttaminen epäonnistui:</p><p>%2</"
 "p>"
 
-#: src/dialogs/certifywidget.cpp:707
+#: src/dialogs/certifywidget.cpp:718
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Varmenteen luottamuksen asettaminen epäonnistui"
 
-#: src/dialogs/certifywidget.cpp:714
+#: src/dialogs/certifywidget.cpp:725
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Omistajan luottamuksen asettaminen onnistui."
@@ -7873,20 +7873,49 @@ msgstr ""
 "Jos valittu, opastetusta uuden varmenteen luomistoiminnosta piilotetaan "
 "lisäasetuspainike."
 
-#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
+#, fuzzy, kde-format
+#| msgid "Default certificate"
+msgid "Default certification validity"
+msgstr "Oletusvarmenne"
+
+#. i18n: ectx: tooltip, entry, group (Certification)
+#: src/kcfg/settings.kcfg:68
+#, fuzzy, kde-format
+#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+msgid "Specifies the default validity of certifications in days."
+msgstr "Asettaa päivinä OpenPGP-avainten kelvollisuuden oletusajan."
+
+#. i18n: ectx: whatsthis, entry, group (Certification)
+#: src/kcfg/settings.kcfg:69
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid at least, "
+#| "or, in other words, after how many days the new key will expire at the "
+#| "earliest."
+msgid ""
+"This setting specifies how many days a certification is valid by default, "
+"or, in other words, after how many days a new certification will expire. Set "
+"this to 0 for unlimited validity of certifications."
+msgstr ""
+"Tämä asetus määrittää, montako päivää uusi OpenPGP-avain vähintään kelpaa "
+"eli monessako päivässä se aikaisintaan vanhenee."
+
+#. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
+#: src/kcfg/settings.kcfg:75
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr "Tarkistussummatiedostoja luotaessa käytettävä ohjelma"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:73
+#: src/kcfg/settings.kcfg:81
 #, kde-format
 msgid "Show results after signing"
 msgstr "Näytä allekirjoittamisen jälkeen tulokset"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:82
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
@@ -7895,13 +7924,13 @@ msgstr ""
 "jälkeen."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "Show results after encryption"
 msgstr "Näytä salauksen jälkeen tulokset"
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:87
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -7910,20 +7939,20 @@ msgstr ""
 "Jos asetettu, tulokset näytetään leikepöydän onnistuneen salauksen jälkeen."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:93
 #, kde-format
 msgid "Enable S/MIME"
 msgstr "Ota S/MIME käyttöön"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:86
+#: src/kcfg/settings.kcfg:94
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr "Ottaa S/MIME-tuen (CMS) käyttöön."
 
 # Lähtötekstissä hankala kaksoiskielto.
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:87
+#: src/kcfg/settings.kcfg:95
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -7932,20 +7961,20 @@ msgstr ""
 "Jos valittu, Kleopatran pääkäyttöliittymä tarjoaa S/MIME-toimintoja (CMS)."
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:99
 #, kde-format
 msgid "Allow S/MIME certificate creation"
 msgstr "Salli S/MIME-varmenteiden luominen"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:100
 #, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Mahdollistaa S/MIME-varmenneallekirjoituspyyntöjen luomisen."
 
 # Kaksinkertainen kielto tekee tästä käyttäjälle hankalan!
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:101
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -7955,13 +7984,13 @@ msgstr ""
 "luomista."
 
 #. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:97
+#: src/kcfg/settings.kcfg:105
 #, kde-format
 msgid "Allow signing with S/MIME certificates"
 msgstr "Salli allekirjoittaminen S/MIME-varmenteilla"
 
 #. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:98
+#: src/kcfg/settings.kcfg:106
 #, kde-format
 msgid "Allows signing of text or files with S/MIME certificates."
 msgstr ""
@@ -7969,7 +7998,7 @@ msgstr ""
 
 # Lähtötekstissä hankala kaksoiskielto.
 #. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:99
+#: src/kcfg/settings.kcfg:107
 #, kde-format
 msgid ""
 "If false, then Kleopatra will not offer functionality for creating "
@@ -7979,73 +8008,73 @@ msgstr ""
 "varmenteilla."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Näytä ulkoasuasetukset"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:109
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Näytä salaustoimenpiteiden asetukset"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:113
+#: src/kcfg/settings.kcfg:121
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Näytä hakemistopalvelujen asetukset"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Näytä GnuPG-järjestelmäasetukset"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:121
+#: src/kcfg/settings.kcfg:129
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Näytä älykorttiasetukset"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:125
+#: src/kcfg/settings.kcfg:133
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Näytä S/MIME-todennusasetukset"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:132
+#: src/kcfg/settings.kcfg:140
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "Asettaa X.509-varmenteiden DN-määritteiden näyttöjärjestyksen."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:146
 #, kde-format
 msgid "Enable Groups"
 msgstr "Käytä ryhmiä"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:139
+#: src/kcfg/settings.kcfg:147
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Salli avainryhmien käyttö."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "Salli avainryhmien käyttö vastaanottajaluettelojen luomiseksi."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:146
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Nouda allekirjoittaja-avaimet tuonnin jälkeen"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:157
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8059,14 +8088,14 @@ msgstr ""
 "         Tästä on hyötyä yhdessä luotettujen esittelijöiden kanssa."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:163
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Notify about upcoming certificate expiration"
 msgstr "(sopivia varmenteita ei löytynyt)"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:157
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8074,13 +8103,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Estettävät verkko-osoitehahmot"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:173
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8092,13 +8121,13 @@ msgstr ""
 "ulkoisiin sovelluksiin."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Etsi älykorttivarmenteita aina avainpalvelimesta"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:172
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8107,7 +8136,7 @@ msgstr ""
 "Etsii asetetusta avainpalvelimesta älykorttiavaimeen kuuluvia varmenteita."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:174
+#: src/kcfg/settings.kcfg:182
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8120,19 +8149,19 @@ msgstr ""
 "avainpalvelimissa."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:178
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Yritä ladata S/MIME-varmenteet PKCS#15-älykorteilta"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:179
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "Lataa S/MIME-varmenteet PKCS#15 (CardOS) -älykorteilta automaattisesti"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8144,7 +8173,7 @@ msgstr ""
 "estää älykortin käytön komennon suorituksen ajan."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Poista profiiliasetukset käytöstä"
@@ -13026,9 +13055,6 @@ msgstr ""
 
 #~ msgid "Selected secret key:"
 #~ msgstr "Valittu salainen avain:"
-
-#~ msgid "Default certificate"
-#~ msgstr "Oletusvarmenne"
 
 # *** TARKISTA: statement = ? Tämä on PIM-tiedostoissa ainoa esiintymä
 #~ msgid "No statement made"

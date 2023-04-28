@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-26 00:50+0000\n"
+"POT-Creation-Date: 2023-04-28 00:50+0000\n"
 "PO-Revision-Date: 2019-09-27 23:59+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -190,8 +190,8 @@ msgstr "A.k.a."
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
 #: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:123
-#: src/commands/pivgeneratecardkeycommand.cpp:189
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:189
+#: src/commands/pivgeneratecardkeycommand.cpp:190
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:190
 #, kde-format
 msgid "Failed to find the PIV card with the serial number: %1"
 msgstr ""
@@ -250,14 +250,14 @@ msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Содироти сертификат..."
 
-#: src/commands/certificatetopivcardcommand.cpp:244
+#: src/commands/certificatetopivcardcommand.cpp:245
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Воридоти сертификатҳо..."
 
-#: src/commands/certificatetopivcardcommand.cpp:246
+#: src/commands/certificatetopivcardcommand.cpp:247
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
@@ -803,7 +803,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "Кеши CRL бомуваффақият пок карда шуд."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
+#: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:477
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -2342,8 +2342,8 @@ msgstr "Интихоби файли CRL"
 msgid "Please select the card the key should be written to:"
 msgstr "Оё ҳақиқатан мехоҳед ин %1 сертификатро ҳузф кунед?"
 
-#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
-#: src/commands/keytocardcommand.cpp:615
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:455
+#: src/commands/keytocardcommand.cpp:616
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr ""
@@ -2473,14 +2473,14 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:462
+#: src/commands/keytocardcommand.cpp:463
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "Воридоти сертификатҳо..."
 
-#: src/commands/keytocardcommand.cpp:474
+#: src/commands/keytocardcommand.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2488,79 +2488,79 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:477
+#: src/commands/keytocardcommand.cpp:478
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "Содироти калиди баста..."
 
-#: src/commands/keytocardcommand.cpp:478
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "Интихоби файли CRL"
 
-#: src/commands/keytocardcommand.cpp:479
+#: src/commands/keytocardcommand.cpp:480
 #, fuzzy, kde-format
 #| msgid "Revoke"
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "Бекор кардан"
 
-#: src/commands/keytocardcommand.cpp:525
+#: src/commands/keytocardcommand.cpp:526
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Содироти калиди баста..."
 
-#: src/commands/keytocardcommand.cpp:528
+#: src/commands/keytocardcommand.cpp:529
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Содироти калиди басташуда"
 
-#: src/commands/keytocardcommand.cpp:579
+#: src/commands/keytocardcommand.cpp:580
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
-#: src/commands/keytocardcommand.cpp:588
+#: src/commands/keytocardcommand.cpp:589
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
-#: src/commands/keytocardcommand.cpp:598
+#: src/commands/keytocardcommand.cpp:599
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
-#: src/commands/keytocardcommand.cpp:605
+#: src/commands/keytocardcommand.cpp:606
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "Наметавонам сертификаи зеринро эҷод кунам: %1"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:623
 #, fuzzy, kde-kuit-format
 #| msgid "Do you really want to delete this certificate?"
 #| msgid_plural "Do you really want to delete these %1 certificates?"
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr "Оё ҳақиқатан мехоҳед ин %1 сертификатро ҳузф кунед?"
 
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:624
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Маълумот оиди сертификат"
 
-#: src/commands/keytocardcommand.cpp:642
+#: src/commands/keytocardcommand.cpp:643
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2572,13 +2572,13 @@ msgstr ""
 "<qt><p>Ҳангоми сайъи ҳузфи сертификат, хатогӣ рӯй дод:</p><p><b>%1</b></p></"
 "qt>"
 
-#: src/commands/keytocardcommand.cpp:645
+#: src/commands/keytocardcommand.cpp:646
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:706
+#: src/commands/keytocardcommand.cpp:707
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2791,7 +2791,7 @@ msgid "Error"
 msgstr "Хатои Kleopatra"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:103
-#: src/commands/pivgeneratecardkeycommand.cpp:220
+#: src/commands/pivgeneratecardkeycommand.cpp:221
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
@@ -2799,7 +2799,7 @@ msgid "Generating key failed: %1"
 msgstr "Наметавонам сертификатро ҳузф кунам"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:105
-#: src/commands/pivgeneratecardkeycommand.cpp:222
+#: src/commands/pivgeneratecardkeycommand.cpp:223
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgctxt "@info"
@@ -3278,38 +3278,38 @@ msgstr "Сатри ибтидоии дархост"
 msgid "Failed to find the NetKey card with the serial number: %1"
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:120
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:121
 #, kde-format
 msgid ""
 "Please enter the old PIV Card Application Administration Key in hex-encoded "
 "form."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:161
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:162
 #, kde-format
 msgid ""
 "Please enter the new PIV Card Application Administration Key in hex-encoded "
 "form. The key needs to consist of 24 bytes, i.e. 48 hex-characters."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:163
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:164
 #, kde-format
 msgid "Please enter the new PIV Card Application Administration Key again."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:180
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "The two keys you have entered do not match. Please retry."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:211
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "Setting the PIV Card Application Administration Key failed: %1"
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:213
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:214
 #, kde-format
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."

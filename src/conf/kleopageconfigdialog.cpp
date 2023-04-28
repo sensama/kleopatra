@@ -22,7 +22,6 @@
 
 #include "kleopageconfigdialog.h"
 
-#include <kcmutils_version.h>
 
 #include <QDesktopServices>
 #include <QDialogButtonBox>

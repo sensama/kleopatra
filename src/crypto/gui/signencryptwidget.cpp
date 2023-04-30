@@ -133,9 +133,9 @@ public:
     KeySelectionCombo *mSelfSelect = nullptr;
     KMessageWidget *mEncryptToSelfKeyExpiryMessage = nullptr;
     std::vector<RecipientWidgets> mRecpWidgets;
-    QVector<UnknownRecipientWidget *> mUnknownWidgets;
-    QVector<GpgME::Key> mAddedKeys;
-    QVector<KeyGroup> mAddedGroups;
+    QList<UnknownRecipientWidget *> mUnknownWidgets;
+    QList<GpgME::Key> mAddedKeys;
+    QList<KeyGroup> mAddedGroups;
     QVBoxLayout *mRecpLayout = nullptr;
     Operations mOp;
     AbstractKeyListModel *mModel = nullptr;

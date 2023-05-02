@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-26 00:50+0000\n"
+"POT-Creation-Date: 2023-04-29 00:51+0000\n"
 "PO-Revision-Date: 2023-04-26 07:58+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && n"
-"%100<=4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
 
@@ -183,8 +183,8 @@ msgstr "Dodajanje uporabnikovega določilnika uspelo"
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
 #: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:123
-#: src/commands/pivgeneratecardkeycommand.cpp:189
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:189
+#: src/commands/pivgeneratecardkeycommand.cpp:190
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:190
 #, kde-format
 msgid "Failed to find the PIV card with the serial number: %1"
 msgstr "Kartice PIV s serijsko številko ni bilo mogoče najti: %1"
@@ -246,13 +246,13 @@ msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "Izvoz potrdila ni uspel: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:244
+#: src/commands/certificatetopivcardcommand.cpp:245
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "Zapisovanje potrdila na kartico ni uspelo: %1"
 
-#: src/commands/certificatetopivcardcommand.cpp:246
+#: src/commands/certificatetopivcardcommand.cpp:247
 #, kde-format
 msgctxt "@info"
 msgid "Writing the certificate to the card succeeded."
@@ -352,7 +352,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Je '%1' vaše lastno potrdilo?"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:655
+#: src/commands/importcertificatescommand.cpp:662
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -744,7 +744,7 @@ msgid "CRL cache cleared successfully."
 msgstr ""
 "Predpomnilnik seznama preklicanih potrdil (CRL) je bil uspešno počiščen."
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
+#: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:477
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -1670,8 +1670,8 @@ msgstr "Vsebina odložišča ni videti kot potrdilo."
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:918
-#: src/commands/importcertificatescommand.cpp:982
+#: src/commands/importcertificatescommand.cpp:926
+#: src/commands/importcertificatescommand.cpp:990
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Uvoz potrdil ni uspel"
@@ -1696,7 +1696,7 @@ msgid "Notepad"
 msgstr "Beležnica"
 
 #: src/commands/importcertificatefromfilecommand.cpp:126
-#: src/commands/importcertificatescommand.cpp:192
+#: src/commands/importcertificatescommand.cpp:193
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -1717,7 +1717,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Datoteke %1 ni bilo mogoče odpreti za branje: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:294 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:295 src/view/keytreeview.cpp:275
 #, kde-format
 msgid "Certificates"
 msgstr "Potrdila"
@@ -1758,218 +1758,218 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Potrdilo o kartici"
 
-#: src/commands/importcertificatescommand.cpp:193
+#: src/commands/importcertificatescommand.cpp:194
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Uvažanje potrdil ... (lahko traja dalj časa)"
 
-#: src/commands/importcertificatescommand.cpp:249
+#: src/commands/importcertificatescommand.cpp:250
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "Uvožena potrdila iz %1"
 
-#: src/commands/importcertificatescommand.cpp:253
+#: src/commands/importcertificatescommand.cpp:254
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "Uvožena potrdila iz teh virov:<br/>%1"
 
-#: src/commands/importcertificatescommand.cpp:263
+#: src/commands/importcertificatescommand.cpp:264
 #, kde-format
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "Uvožena potrdila"
 
-#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:280
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:280
+#: src/commands/importcertificatescommand.cpp:281
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:281
+#: src/commands/importcertificatescommand.cpp:282
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:295
-#: src/commands/importcertificatescommand.cpp:349
+#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Total number processed:"
 msgstr "Skupno število obdelanih:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Imported:"
 msgstr "Uvoženih:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "New signatures:"
 msgstr "Novih podpisov:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:304
 #, kde-format
 msgid "New user IDs:"
 msgstr "Novih uporabnikovih določilnikov:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:307
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Potrdil brez uporabnikovi določilnikov:"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "New subkeys:"
 msgstr "Novih podključev:"
 
-#: src/commands/importcertificatescommand.cpp:312
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Na novo preklicanih:"
 
-#: src/commands/importcertificatescommand.cpp:315
+#: src/commands/importcertificatescommand.cpp:316
 #, kde-format
 msgid "Not imported:"
 msgstr "Ne-uvoženih:"
 
-#: src/commands/importcertificatescommand.cpp:318
+#: src/commands/importcertificatescommand.cpp:319
 #, kde-format
 msgid "Unchanged:"
 msgstr "Nespremenjenih:"
 
-#: src/commands/importcertificatescommand.cpp:321
+#: src/commands/importcertificatescommand.cpp:322
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Obdelanih tajnih ključev:"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:325
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Uvoženih tajnih ključev:"
 
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:329
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Tajnih ključe, ki <em>niso bili</em> uvoženi:"
 
-#: src/commands/importcertificatescommand.cpp:331
+#: src/commands/importcertificatescommand.cpp:332
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Nespremenjenih tajnih ključev:"
 
-#: src/commands/importcertificatescommand.cpp:334
+#: src/commands/importcertificatescommand.cpp:335
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Preskočenih ključev PGP-2:"
 
-#: src/commands/importcertificatescommand.cpp:348
+#: src/commands/importcertificatescommand.cpp:349
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Potrdila grup"
 
-#: src/commands/importcertificatescommand.cpp:351
+#: src/commands/importcertificatescommand.cpp:352
 #, kde-format
 msgid "New groups:"
 msgstr "Nove grupe:"
 
-#: src/commands/importcertificatescommand.cpp:353
+#: src/commands/importcertificatescommand.cpp:354
 #, kde-format
 msgid "Updated groups:"
 msgstr "Posodobljene grupe:"
 
-#: src/commands/importcertificatescommand.cpp:370
+#: src/commands/importcertificatescommand.cpp:371
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Brez uvozov (kar se ne bi smelo zgoditi, prosim poročajte nam o morebitni "
 "napaki)."
 
-#: src/commands/importcertificatescommand.cpp:373
+#: src/commands/importcertificatescommand.cpp:374
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Podrobni rezultati uvoza %1:"
 
-#: src/commands/importcertificatescommand.cpp:374
+#: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Podrobni rezultati uvoza:"
 
-#: src/commands/importcertificatescommand.cpp:431
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Telefonski klic za osebo."
 
-#: src/commands/importcertificatescommand.cpp:432
+#: src/commands/importcertificatescommand.cpp:433
 #, kde-format
 msgid "Using a business card."
 msgstr "Uporablja poslovno vizitko."
 
-#: src/commands/importcertificatescommand.cpp:433
+#: src/commands/importcertificatescommand.cpp:434
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Potrjeno na zaupanja vrednem spletišču."
 
-#: src/commands/importcertificatescommand.cpp:436
+#: src/commands/importcertificatescommand.cpp:437
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "Da bi potrdilo označili kot veljavno, ga je treba potrditi."
 
-#: src/commands/importcertificatescommand.cpp:437
+#: src/commands/importcertificatescommand.cpp:438
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Potrjevanje pomeni, da preverite prstni odtis."
 
-#: src/commands/importcertificatescommand.cpp:438
+#: src/commands/importcertificatescommand.cpp:439
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Nekaj predlogov za to so:"
 
-#: src/commands/importcertificatescommand.cpp:440
+#: src/commands/importcertificatescommand.cpp:441
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Ali želite začeti ta postopek zdaj?"
 
-#: src/commands/importcertificatescommand.cpp:441
+#: src/commands/importcertificatescommand.cpp:442
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "Uvozili ste novo potrdilo (javni ključ)"
 
-#: src/commands/importcertificatescommand.cpp:442
+#: src/commands/importcertificatescommand.cpp:443
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Potrdi"
 
-#: src/commands/importcertificatescommand.cpp:495
+#: src/commands/importcertificatescommand.cpp:496
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (uvoženo z %2)"
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:500
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Dnevnik presoje varnosti je prazen."
 
-#: src/commands/importcertificatescommand.cpp:501
+#: src/commands/importcertificatescommand.cpp:502
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Uvoz je bil preklican."
 
-#: src/commands/importcertificatescommand.cpp:522
+#: src/commands/importcertificatescommand.cpp:523
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "Rezultati uvoza potrdil"
 
-#: src/commands/importcertificatescommand.cpp:530
+#: src/commands/importcertificatescommand.cpp:531
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -1978,7 +1978,7 @@ msgstr ""
 "<qt><p>Med poskusom uvoza potrdila je prišlo do napake:</p><p><b>%1</b></p></"
 "qt>"
 
-#: src/commands/importcertificatescommand.cpp:534
+#: src/commands/importcertificatescommand.cpp:535
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -1989,18 +1989,18 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgid " "
 msgstr " "
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:643
+#: src/commands/importcertificatescommand.cpp:650
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2012,19 +2012,19 @@ msgstr ""
 "para><para>in uporabnikovim določilnikom<list>%2</list></para><para>Ali je "
 "to vaše lastno potrdilo?</para>"
 
-#: src/commands/importcertificatescommand.cpp:656
+#: src/commands/importcertificatescommand.cpp:663
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "Da, to je moje"
 
-#: src/commands/importcertificatescommand.cpp:657
+#: src/commands/importcertificatescommand.cpp:664
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "Ne, to ni moje"
 
-#: src/commands/importcertificatescommand.cpp:881
+#: src/commands/importcertificatescommand.cpp:889
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2033,8 +2033,8 @@ msgstr[1] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[2] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 msgstr[3] "Pridobivanje %1 ključev … (lahko traja nekaj časa)"
 
-#: src/commands/importcertificatescommand.cpp:916
-#: src/commands/importcertificatescommand.cpp:980
+#: src/commands/importcertificatescommand.cpp:924
+#: src/commands/importcertificatescommand.cpp:988
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2183,8 +2183,8 @@ msgstr "Izberi kartico"
 msgid "Please select the card the key should be written to:"
 msgstr "Izberite kartico, kamor naj bo zapisan ključ:"
 
-#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
-#: src/commands/keytocardcommand.cpp:615
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:455
+#: src/commands/keytocardcommand.cpp:616
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "Ni bilo mogoče najti kartice s serijsko številko: %1"
@@ -2312,13 +2312,13 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Obstoječi ključ ima oprijem ključa:"
 
-#: src/commands/keytocardcommand.cpp:462
+#: src/commands/keytocardcommand.cpp:463
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "Kopiranje ključa na kartico ni uspelo."
 
-#: src/commands/keytocardcommand.cpp:474
+#: src/commands/keytocardcommand.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2328,70 +2328,70 @@ msgstr ""
 "<para>Ključ je bil prekopiran na kartico.</para><para>Ali želite zbrisati "
 "kopijo ključa shranjeno na računalniku?</para>"
 
-#: src/commands/keytocardcommand.cpp:477
+#: src/commands/keytocardcommand.cpp:478
 #, kde-format
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "Ustvari varnostno kopijo in zbriši ključ"
 
-#: src/commands/keytocardcommand.cpp:478
+#: src/commands/keytocardcommand.cpp:479
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "Zbriši ključ"
 
-#: src/commands/keytocardcommand.cpp:479
+#: src/commands/keytocardcommand.cpp:480
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "Ohrani ključ"
 
-#: src/commands/keytocardcommand.cpp:525
+#: src/commands/keytocardcommand.cpp:526
 #, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "Varnostno kopiraj tajni ključ"
 
-#: src/commands/keytocardcommand.cpp:528
+#: src/commands/keytocardcommand.cpp:529
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "Datoteke varnostne kopija tajnega ključa"
 
-#: src/commands/keytocardcommand.cpp:579
+#: src/commands/keytocardcommand.cpp:580
 #, kde-kuit-format
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "Datoteke <filename>%1</filename> ni mogoče odpreti za branje."
 
-#: src/commands/keytocardcommand.cpp:588
+#: src/commands/keytocardcommand.cpp:589
 #, kde-kuit-format
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Datoteka zasebnega ključa <filename>%1</filename> je prazna."
 
-#: src/commands/keytocardcommand.cpp:598
+#: src/commands/keytocardcommand.cpp:599
 #, kde-kuit-format
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Mi mogoče odpreti datoteke <filename>%1</filename> za pisanje."
 
-#: src/commands/keytocardcommand.cpp:605
+#: src/commands/keytocardcommand.cpp:606
 #, kde-kuit-format
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 "Pisanje varnostne kopije tajnega ključa na datoteko <filename>%1</filename> "
 "ni uspelo."
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:623
 #, kde-kuit-format
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr "Ali zares želite zbrisati lokalno kopijo tajnega ključa?"
 
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:624
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Potrdite brisanje"
 
-#: src/commands/keytocardcommand.cpp:642
+#: src/commands/keytocardcommand.cpp:643
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2399,13 +2399,13 @@ msgid ""
 msgstr ""
 "<para>Brisanje ključa ni uspelo.</para><para><message>%1</message></para>"
 
-#: src/commands/keytocardcommand.cpp:645
+#: src/commands/keytocardcommand.cpp:646
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr "Ključ je uspešno prekopiran na kartico."
 
-#: src/commands/keytocardcommand.cpp:706
+#: src/commands/keytocardcommand.cpp:707
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2620,14 +2620,14 @@ msgid "Error"
 msgstr "Napaka"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:103
-#: src/commands/pivgeneratecardkeycommand.cpp:220
+#: src/commands/pivgeneratecardkeycommand.cpp:221
 #, kde-format
 msgctxt "@info"
 msgid "Generating key failed: %1"
 msgstr "Generiranje ključa ni uspelo: %1"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:105
-#: src/commands/pivgeneratecardkeycommand.cpp:222
+#: src/commands/pivgeneratecardkeycommand.cpp:223
 #, kde-format
 msgctxt "@info"
 msgid "Key successfully generated."
@@ -3094,7 +3094,7 @@ msgstr "Nastavi začetni PIN"
 msgid "Failed to find the NetKey card with the serial number: %1"
 msgstr "Ni bilo mogoče najti kartice NetKey s serijsko številko: %1"
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:120
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:121
 #, kde-format
 msgid ""
 "Please enter the old PIV Card Application Administration Key in hex-encoded "
@@ -3103,7 +3103,7 @@ msgstr ""
 "Vnesite stari ključ za upravljanje aplikacij kartice PIV v šestnajstiški "
 "kodirani obliki."
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:161
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:162
 #, kde-format
 msgid ""
 "Please enter the new PIV Card Application Administration Key in hex-encoded "
@@ -3113,24 +3113,24 @@ msgstr ""
 "kodirani obliki. Ključ mora biti sestavljen iz 24 bajtov, to je 48 "
 "šestnajstiških znakov."
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:163
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:164
 #, kde-format
 msgid "Please enter the new PIV Card Application Administration Key again."
 msgstr "Ponovno vnesite nov ključ za upravljanje aplikacije PIV kartice."
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:180
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "The two keys you have entered do not match. Please retry."
 msgstr "Ključa, ki ste ju vnesli, se ne ujemata. Ponovite prosim."
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:211
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "Setting the PIV Card Application Administration Key failed: %1"
 msgstr "Nastavitev ključa za upravljanje aplikacije PIV kartice ni uspela: %1"
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:213
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:214
 #, kde-format
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."

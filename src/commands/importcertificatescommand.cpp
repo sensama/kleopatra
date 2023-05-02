@@ -62,6 +62,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <unordered_set>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -597,6 +598,7 @@ void ImportCertificatesCommand::Private::addImportResult(const ImportResultData 
 
 static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
 {
+    std::unordered_set<std::string> askedAboutFingerprints;
     for (const auto &r: results) {
         if (r.protocol != GpgME::Protocol::OpenPGP) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping non-OpenPGP import";
@@ -611,6 +613,11 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
             const char *fpr = import.fingerprint();
             if (!fpr) {
                 qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping import without fingerprint";
+                continue;
+            }
+            if (Kleo::contains(askedAboutFingerprints, fpr)) {
+                // imports of secret keys can result in multiple Imports for the same key
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping import for already handled fingerprint";
                 continue;
             }
 
@@ -655,6 +662,7 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
                                                           i18nc("@title:window", "Mark Own Certificate"),
                                                           KGuiItem{i18nc("@action:button", "Yes, It's Mine")},
                                                           KGuiItem{i18nc("@action:button", "No, It's Not Mine")});
+            askedAboutFingerprints.insert(fpr);
 
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
                 //To use the ChangeOwnerTrustJob over

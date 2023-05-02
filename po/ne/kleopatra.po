@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-26 00:50+0000\n"
+"POT-Creation-Date: 2023-04-29 00:51+0000\n"
 "PO-Revision-Date: 2007-09-09 17:32+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -189,8 +189,8 @@ msgstr "A.k.a."
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
 #: src/commands/keytocardcommand.cpp:359
 #: src/commands/pivgeneratecardkeycommand.cpp:123
-#: src/commands/pivgeneratecardkeycommand.cpp:189
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:189
+#: src/commands/pivgeneratecardkeycommand.cpp:190
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:190
 #, kde-format
 msgid "Failed to find the PIV card with the serial number: %1"
 msgstr ""
@@ -249,14 +249,14 @@ msgctxt "@info"
 msgid "Exporting the certificate failed: %1"
 msgstr "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/commands/certificatetopivcardcommand.cpp:244
+#: src/commands/certificatetopivcardcommand.cpp:245
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
 msgid "Writing the certificate to the card failed: %1"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/certificatetopivcardcommand.cpp:246
+#: src/commands/certificatetopivcardcommand.cpp:247
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
@@ -367,7 +367,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "CA प्रमाणपत्र मेट्दैछ"
 
 #: src/commands/changeownertrustcommand.cpp:104
-#: src/commands/importcertificatescommand.cpp:655
+#: src/commands/importcertificatescommand.cpp:662
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@title:window"
@@ -795,7 +795,7 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL क्यास सफलतापूर्वक खाली गरियो ।"
 
-#: src/commands/command_p.h:89 src/commands/keytocardcommand.cpp:476
+#: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:477
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -1774,8 +1774,8 @@ msgstr ""
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
 #: src/commands/importcertificatefromfilecommand.cpp:136
-#: src/commands/importcertificatescommand.cpp:918
-#: src/commands/importcertificatescommand.cpp:982
+#: src/commands/importcertificatescommand.cpp:926
+#: src/commands/importcertificatescommand.cpp:990
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "प्रमाणपत्र आयात गर्न असफल भयो"
@@ -1801,7 +1801,7 @@ msgid "Notepad"
 msgstr ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:126
-#: src/commands/importcertificatescommand.cpp:192
+#: src/commands/importcertificatescommand.cpp:193
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@title:window"
@@ -1823,7 +1823,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
 #: src/commands/importcertificatefromfilecommand.cpp:157
-#: src/commands/importcertificatescommand.cpp:294 src/view/keytreeview.cpp:275
+#: src/commands/importcertificatescommand.cpp:295 src/view/keytreeview.cpp:275
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Certificates"
@@ -1866,231 +1866,231 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "प्रमाणपत्र"
 
-#: src/commands/importcertificatescommand.cpp:193
+#: src/commands/importcertificatescommand.cpp:194
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Importing certificates... (this can take a while)"
 msgstr "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/commands/importcertificatescommand.cpp:249
+#: src/commands/importcertificatescommand.cpp:250
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Imported Certificates from %1"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/importcertificatescommand.cpp:253
+#: src/commands/importcertificatescommand.cpp:254
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info:tooltip"
 msgid "Imported certificates from these sources:<br/>%1"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/importcertificatescommand.cpp:263
+#: src/commands/importcertificatescommand.cpp:264
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@title:tab"
 msgid "Imported Certificates"
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:280
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:280
+#: src/commands/importcertificatescommand.cpp:281
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:281
+#: src/commands/importcertificatescommand.cpp:282
 #, fuzzy, kde-format
 #| msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:295
-#: src/commands/importcertificatescommand.cpp:349
+#: src/commands/importcertificatescommand.cpp:296
+#: src/commands/importcertificatescommand.cpp:350
 #, kde-format
 msgid "Total number processed:"
 msgstr "प्रक्रिया गरिएका कूल सङ्ख्या:"
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:298
 #, kde-format
 msgid "Imported:"
 msgstr "आयातित:"
 
-#: src/commands/importcertificatescommand.cpp:300
+#: src/commands/importcertificatescommand.cpp:301
 #, kde-format
 msgid "New signatures:"
 msgstr "नयाँ हस्ताक्षर:"
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:304
 #, kde-format
 msgid "New user IDs:"
 msgstr "नयाँ प्रयोगकर्ता आईडी:"
 
-#: src/commands/importcertificatescommand.cpp:306
+#: src/commands/importcertificatescommand.cpp:307
 #, fuzzy, kde-format
 #| msgid "Keys without user IDs:"
 msgid "Certificates without user IDs:"
 msgstr "प्रयोगकर्ता आईडी बाहेकका कुञ्जी:"
 
-#: src/commands/importcertificatescommand.cpp:309
+#: src/commands/importcertificatescommand.cpp:310
 #, kde-format
 msgid "New subkeys:"
 msgstr "नयाँ सहायक कुञ्जी:"
 
-#: src/commands/importcertificatescommand.cpp:312
+#: src/commands/importcertificatescommand.cpp:313
 #, kde-format
 msgid "Newly revoked:"
 msgstr "हालै खारेज गरिएका:"
 
-#: src/commands/importcertificatescommand.cpp:315
+#: src/commands/importcertificatescommand.cpp:316
 #, kde-format
 msgid "Not imported:"
 msgstr "आयात नगरिएका:"
 
-#: src/commands/importcertificatescommand.cpp:318
+#: src/commands/importcertificatescommand.cpp:319
 #, kde-format
 msgid "Unchanged:"
 msgstr "अपरिवर्तित:"
 
-#: src/commands/importcertificatescommand.cpp:321
+#: src/commands/importcertificatescommand.cpp:322
 #, fuzzy, kde-format
 #| msgid "Secret keys processed:"
 msgid "Secret keys processed:"
 msgstr "प्रक्रिया गरिएका गोप्य कुञ्जी:"
 
-#: src/commands/importcertificatescommand.cpp:324
+#: src/commands/importcertificatescommand.cpp:325
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgid "Secret keys imported:"
 msgstr "आयात गरिएका गोप्य कुञ्जी:"
 
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:329
 #, fuzzy, kde-format
 #| msgid "Secret keys <em>not</em> imported:"
 msgid "Secret keys <em>not</em> imported:"
 msgstr "गोप्य कुञ्जी आयात गरिएको <em>छैन</em>:"
 
-#: src/commands/importcertificatescommand.cpp:331
+#: src/commands/importcertificatescommand.cpp:332
 #, fuzzy, kde-format
 #| msgid "Secret keys unchanged:"
 msgid "Secret keys unchanged:"
 msgstr "अपरिवर्तित गोप्य कुञ्जी:"
 
-#: src/commands/importcertificatescommand.cpp:334
+#: src/commands/importcertificatescommand.cpp:335
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:348
+#: src/commands/importcertificatescommand.cpp:349
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certificate Groups"
 msgstr "प्रमाणपत्र उपयोग"
 
-#: src/commands/importcertificatescommand.cpp:351
+#: src/commands/importcertificatescommand.cpp:352
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "New groups:"
 msgstr "नयाँ हस्ताक्षर:"
 
-#: src/commands/importcertificatescommand.cpp:353
+#: src/commands/importcertificatescommand.cpp:354
 #, kde-format
 msgid "Updated groups:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:370
+#: src/commands/importcertificatescommand.cpp:371
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:373
+#: src/commands/importcertificatescommand.cpp:374
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:374
+#: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgid "Detailed results of import:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:431
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid "A phone call to the person."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:432
+#: src/commands/importcertificatescommand.cpp:433
 #, kde-format
 msgid "Using a business card."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:433
+#: src/commands/importcertificatescommand.cpp:434
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:436
+#: src/commands/importcertificatescommand.cpp:437
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "प्रमाणपत्र"
 
-#: src/commands/importcertificatescommand.cpp:437
+#: src/commands/importcertificatescommand.cpp:438
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:438
+#: src/commands/importcertificatescommand.cpp:439
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:440
+#: src/commands/importcertificatescommand.cpp:441
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:441
+#: src/commands/importcertificatescommand.cpp:442
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:442
+#: src/commands/importcertificatescommand.cpp:443
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "प्रमाणपत्र उपयोग"
 
-#: src/commands/importcertificatescommand.cpp:495
+#: src/commands/importcertificatescommand.cpp:496
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:499
+#: src/commands/importcertificatescommand.cpp:500
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:501
+#: src/commands/importcertificatescommand.cpp:502
 #, fuzzy, kde-format
 #| msgid "Certificate Download Failed"
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "प्रमाणपत्र डाउनलोड गर्न असफल भयो"
 
-#: src/commands/importcertificatescommand.cpp:522
+#: src/commands/importcertificatescommand.cpp:523
 #, kde-format
 msgid "Certificate Import Result"
 msgstr "प्रमाणपत्र आयात परिणाम"
 
-#: src/commands/importcertificatescommand.cpp:530
+#: src/commands/importcertificatescommand.cpp:531
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to import the certificate %1:</"
@@ -2102,7 +2102,7 @@ msgstr ""
 "<qt><p>प्रमाणपत्र %1 आयात गर्ने प्रयास गर्दा एउटा त्रुटि उत्पन्न भयो:</p><p><b>%2</b></"
 "p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:534
+#: src/commands/importcertificatescommand.cpp:535
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2113,18 +2113,18 @@ msgstr ""
 
 #. i18n(" ") as initializer because initializing with empty string leads to
 #. (I18N_EMPTY_MESSAGE)
-#: src/commands/importcertificatescommand.cpp:638
+#: src/commands/importcertificatescommand.cpp:645
 #, kde-format
 msgid " "
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:639
+#: src/commands/importcertificatescommand.cpp:646
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:643
+#: src/commands/importcertificatescommand.cpp:650
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2133,19 +2133,19 @@ msgid ""
 "own certificate?</para>"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:656
+#: src/commands/importcertificatescommand.cpp:663
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:657
+#: src/commands/importcertificatescommand.cpp:664
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:881
+#: src/commands/importcertificatescommand.cpp:889
 #, fuzzy, kde-format
 #| msgid "Exporting certificate..."
 msgid "Fetching 1 signer key... (this can take a while)"
@@ -2153,8 +2153,8 @@ msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "प्रमाणपत्र निर्यात गर्दैछ..."
 msgstr[1] "प्रमाणपत्र निर्यात गर्दैछ..."
 
-#: src/commands/importcertificatescommand.cpp:916
-#: src/commands/importcertificatescommand.cpp:980
+#: src/commands/importcertificatescommand.cpp:924
+#: src/commands/importcertificatescommand.cpp:988
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -2327,8 +2327,8 @@ msgstr "CRL फाइल चयन गर्नुहोस्"
 msgid "Please select the card the key should be written to:"
 msgstr "तपाईँ यो प्रमाणपत्र वास्तवमै मेट्न चाहनुहुन्छ ?"
 
-#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:454
-#: src/commands/keytocardcommand.cpp:615
+#: src/commands/keytocardcommand.cpp:176 src/commands/keytocardcommand.cpp:455
+#: src/commands/keytocardcommand.cpp:616
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr ""
@@ -2459,14 +2459,14 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:462
+#: src/commands/keytocardcommand.cpp:463
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "प्रमाणपत्र आयात गर्नुहोस्..."
 
-#: src/commands/keytocardcommand.cpp:474
+#: src/commands/keytocardcommand.cpp:475
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2474,80 +2474,80 @@ msgid ""
 "the copy of the key stored on this computer?</para>"
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:477
+#: src/commands/keytocardcommand.cpp:478
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@action:button"
 msgid "Create Backup and Delete Key"
 msgstr "गोप्य कुञ्जी निर्यात गर्नुहोस्..."
 
-#: src/commands/keytocardcommand.cpp:478
+#: src/commands/keytocardcommand.cpp:479
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@action:button"
 msgid "Delete Key"
 msgstr "CRL फाइल चयन गर्नुहोस्"
 
-#: src/commands/keytocardcommand.cpp:479
+#: src/commands/keytocardcommand.cpp:480
 #, fuzzy, kde-format
 #| msgid "Revoke"
 msgctxt "@action:button"
 msgid "Keep Key"
 msgstr "खारेज गर्नुहोस्"
 
-#: src/commands/keytocardcommand.cpp:525
+#: src/commands/keytocardcommand.cpp:526
 #, fuzzy, kde-format
 #| msgid "Export Secret Key..."
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "गोप्य कुञ्जी निर्यात गर्नुहोस्..."
 
-#: src/commands/keytocardcommand.cpp:528
+#: src/commands/keytocardcommand.cpp:529
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "गोप्य कुञ्जी निर्यात"
 
-#: src/commands/keytocardcommand.cpp:579
+#: src/commands/keytocardcommand.cpp:580
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/commands/keytocardcommand.cpp:588
+#: src/commands/keytocardcommand.cpp:589
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/commands/keytocardcommand.cpp:598
+#: src/commands/keytocardcommand.cpp:599
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/commands/keytocardcommand.cpp:605
+#: src/commands/keytocardcommand.cpp:606
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr "प्रमाणपत्र उत्पन्न गर्न सकेन: %1"
 
-#: src/commands/keytocardcommand.cpp:622
+#: src/commands/keytocardcommand.cpp:623
 #, fuzzy, kde-kuit-format
 #| msgid "Do you really want to delete this certificate?"
 #| msgid_plural "Do you really want to delete these %1 certificates?"
 msgid "Do you really want to delete the local copy of the secret key?"
 msgstr "तपाईँ यो प्रमाणपत्र वास्तवमै मेट्न चाहनुहुन्छ ?"
 
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:624
 #, fuzzy, kde-format
 #| msgid "Information"
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "सूचना"
 
-#: src/commands/keytocardcommand.cpp:642
+#: src/commands/keytocardcommand.cpp:643
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2558,13 +2558,13 @@ msgid ""
 msgstr ""
 "<qt><p>प्रमाणपत्र मेट्ने प्रयास गर्दा एउटा त्रुटि उत्पन्न भयो:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/keytocardcommand.cpp:645
+#: src/commands/keytocardcommand.cpp:646
 #, kde-format
 msgctxt "@info"
 msgid "Successfully copied the key to the card."
 msgstr ""
 
-#: src/commands/keytocardcommand.cpp:706
+#: src/commands/keytocardcommand.cpp:707
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -2776,7 +2776,7 @@ msgid "Error"
 msgstr "Kleopatra त्रुटि"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:103
-#: src/commands/pivgeneratecardkeycommand.cpp:220
+#: src/commands/pivgeneratecardkeycommand.cpp:221
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
@@ -2784,7 +2784,7 @@ msgid "Generating key failed: %1"
 msgstr "प्रमाणपत्र मेट्न असफल भयो"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:105
-#: src/commands/pivgeneratecardkeycommand.cpp:222
+#: src/commands/pivgeneratecardkeycommand.cpp:223
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgctxt "@info"
@@ -3261,38 +3261,38 @@ msgstr "फन्ट सेट गर्नुहोस्..."
 msgid "Failed to find the NetKey card with the serial number: %1"
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:120
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:121
 #, kde-format
 msgid ""
 "Please enter the old PIV Card Application Administration Key in hex-encoded "
 "form."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:161
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:162
 #, kde-format
 msgid ""
 "Please enter the new PIV Card Application Administration Key in hex-encoded "
 "form. The key needs to consist of 24 bytes, i.e. 48 hex-characters."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:163
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:164
 #, kde-format
 msgid "Please enter the new PIV Card Application Administration Key again."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:180
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:181
 #, kde-format
 msgctxt "@info"
 msgid "The two keys you have entered do not match. Please retry."
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:211
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "Setting the PIV Card Application Administration Key failed: %1"
 msgstr ""
 
-#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:213
+#: src/commands/setpivcardapplicationadministrationkeycommand.cpp:214
 #, kde-format
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."

@@ -38,26 +38,32 @@ using namespace QGpgME;
 namespace
 {
 #if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
+bool subkeyHasSameExpirationAsPrimaryKey(const Subkey &subkey)
+{
+    // we allow for a difference in expiration of up to 10 seconds
+    static const auto maxExpirationDifference = 10;
+
+    Q_ASSERT(!subkey.isNull());
+    const auto key = subkey.parent();
+    const auto primaryKey = key.subkey(0);
+    const auto primaryExpiration = quint32(primaryKey.expirationTime());
+    const auto subkeyExpiration = quint32(subkey.expirationTime());
+    if (primaryExpiration != 0 && subkeyExpiration != 0) {
+        return (primaryExpiration == subkeyExpiration) //
+            || ((primaryExpiration > subkeyExpiration) && (primaryExpiration - subkeyExpiration <= maxExpirationDifference)) //
+            || ((primaryExpiration < subkeyExpiration) && (subkeyExpiration - primaryExpiration <= maxExpirationDifference));
+    }
+    return primaryKey.neverExpires() && subkey.neverExpires();
+}
+
 bool allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(const Key &key)
 {
     Q_ASSERT(!key.isNull() && key.numSubkeys() > 0);
     const auto subkeys = key.subkeys();
-    const auto primaryKey = subkeys[0];
-    if (primaryKey.neverExpires()) {
-        return std::all_of(std::begin(subkeys), std::end(subkeys), [] (const auto &subkey) {
-            // revoked subkeys are ignored by gpg --quick-set-expire when updating the expiration of all subkeys
-            return subkey.isRevoked() || subkey.neverExpires();
-        });
-    }
-
-    const auto primaryExpiration = quint32(primaryKey.expirationTime());
-    const auto range = std::make_pair(primaryExpiration > 10 ? primaryExpiration - 10 : 0,
-                                      primaryExpiration < std::numeric_limits<quint32>::max() - 10 ? primaryExpiration + 10 : std::numeric_limits<quint32>::max());
-    return std::all_of(std::begin(subkeys), std::end(subkeys), [range](const auto &subkey) {
+    return std::all_of(std::begin(subkeys), std::end(subkeys), [](const auto &subkey) {
         // revoked subkeys are ignored by gpg --quick-set-expire when updating the expiration of all subkeys;
         // check if expiration of subkey is (more or less) the same as the expiration of the primary key
-        return subkey.isRevoked() ||
-            (range.first <= quint32(subkey.expirationTime()) && quint32(subkey.expirationTime()) <= range.second);
+        return subkey.isRevoked() || subkeyHasSameExpirationAsPrimaryKey(subkey);
     });
 }
 #endif
@@ -124,18 +130,36 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
     createJob();
     Q_ASSERT(job);
 
+    std::vector<Subkey> subkeysToUpdate;
+    if (!subkey.isNull()) {
+        // change expiration of a single subkey
+        if (subkey.keyID() != key.keyID()) { // ignore the primary subkey
+            subkeysToUpdate.push_back(subkey);
+        }
+    } else {
 #if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
-    if (subkey.isNull() && dialog->updateExpirationOfAllSubkeys()) {
-        job->setOptions(ChangeExpiryJob::UpdateAllSubkeys);
-    }
+        // change expiration of the (primary) key and, optionally, of some subkeys
+        job->setOptions(ChangeExpiryJob::UpdatePrimaryKey);
+        if (dialog->updateExpirationOfAllSubkeys() && key.numSubkeys() > 1) {
+            // explicitly list the subkeys for which the expiration should be changed
+            // together with the expiration of the (primary) key, so that already expired
+            // subkeys are also updated
+            const auto subkeys = key.subkeys();
+            std::copy_if(std::next(subkeys.begin()), subkeys.end(), std::back_inserter(subkeysToUpdate), [](const auto &subkey) {
+                // skip revoked subkeys which would anyway be ignored by gpg;
+                // also skip subkeys without explicit expiration because they inherit the primary key's expiration;
+                // include all subkeys that are not yet expired or that expired around the same time as the primary key
+                return !subkey.isRevoked() //
+                    && !subkey.neverExpires() //
+                    && (!subkey.isExpired() || subkeyHasSameExpirationAsPrimaryKey(subkey));
+            });
+        }
+#else
+        // nothing to do
 #endif
-
-    std::vector<Subkey> subkeys;
-    if (!subkey.isNull() && subkey.keyID() != key.keyID()) { // ignore the primary subkey
-        subkeys.push_back(subkey);
     }
 
-    if (const Error err = job->start(key, expiry, subkeys)) {
+    if (const Error err = job->start(key, expiry, subkeysToUpdate)) {
         showErrorDialog(err);
         finished();
     }

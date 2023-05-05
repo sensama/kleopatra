@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-29 00:51+0000\n"
-"PO-Revision-Date: 2023-04-21 23:15+0200\n"
+"POT-Creation-Date: 2023-05-05 00:48+0000\n"
+"PO-Revision-Date: 2023-05-02 23:48+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -328,7 +328,7 @@ msgstr "Сертифицирането е успешно."
 msgid "Certification Succeeded"
 msgstr "Сертифицирането е успешно"
 
-#: src/commands/changeexpirycommand.cpp:205
+#: src/commands/changeexpirycommand.cpp:229
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -337,7 +337,7 @@ msgstr ""
 "<p> Възникна грешка при опит за промяна на срока на валидност за <b> %1 </"
 "b>: </p> <p> %2 </p>"
 
-#: src/commands/changeexpirycommand.cpp:213
+#: src/commands/changeexpirycommand.cpp:237
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Срокът на валидност е променен успешно."
@@ -3233,17 +3233,14 @@ msgid "Show upcoming certificate expiration"
 msgstr "Показване на информация за дата на изтичане на сертификата"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "Вашият собствен сертификат ли е '%1'?"
+msgstr "Праг за собствените сертификати:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
-#, fuzzy, kde-format
-#| msgid "never"
+#, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "никога"
@@ -3254,8 +3251,8 @@ msgstr "никога"
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ден"
+msgstr[1] " дни"
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -3264,13 +3261,14 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Изберете броя на дните, с които искате да бъдете предупредени предварително "
+"преди изтичането на сертификат ви."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Trust Root Certificate"
+msgstr "Праг за други сертификати:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
 #, kde-format
@@ -3279,6 +3277,8 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Изберете броя на дните, с които искате да бъдете предупредени предварително "
+"преди изтичането на сертификат на други лица."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format
@@ -7935,33 +7935,27 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Show certificate validity"
+#, kde-format
 msgid "Default certification validity"
-msgstr "Показване на валидност на сертификата"
+msgstr "Валидност на сертифицирането по подразбиране"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
-msgstr ""
-"Указва стандартния период на валидност на новите ключове OpenPGP в дни."
+msgstr "Указва стандартния период на валидност на сертификата в дни."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Тази настройка определя колко дни най-малко е валиден нов OpenPGP ключ, или, "
-"с други думи, след колко дни най-рано новият ключ ще изтече."
+"Тази настройка определя колко дни е валиден даден сертификат по "
+"подразбиране, или, с други думи, след колко дни ще изтече валидността на нов "
+"сертификат. Задайте 0 за неограничена валидност на сертификатите."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75

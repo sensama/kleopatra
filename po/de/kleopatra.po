@@ -21,15 +21,15 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-23 00:59+0000\n"
-"PO-Revision-Date: 2023-04-26 19:46+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2023-05-02 17:09+0200\n"
+"Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.07.70\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -7967,6 +7967,8 @@ msgstr "Ergebnis nach Signierung anzeigen"
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr ""
+"Wenn wahr werden die Ergebnisse angezeigt, nachdem die Zwischenablage "
+"erfolgreich signiert wurde."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:78
@@ -7981,6 +7983,8 @@ msgid ""
 "If true, then the results are shown after successfully encrypting the "
 "clipboard."
 msgstr ""
+"Wenn wahr werden die Ergebnisse angezeigt, nachdem die Zwischenablage "
+"erfolgreich verschlüsselt wurde."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:85
@@ -10693,17 +10697,14 @@ msgid "Could not find clipboard"
 msgstr "Zwischenablage kann nicht gefunden werden"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
 msgstr ""
-"Es existiert bereits eine Datei namens „%1“. Möchten Sie sie wirklich "
-"überschreiben?"
+"Die Datei <filename>%1</filename> existiert bereits. Bitte einen anderen "
+"Dateinamen angeben."
 
 #: src/utils/overwritedialog.cpp:185
 #, kde-kuit-format
@@ -10727,7 +10728,7 @@ msgstr "Neuen Namen vorschlagen"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "Schlage einen Dateinamen vor, der noch nicht existiert."
 
 #: src/utils/overwritedialog.cpp:211
 #, kde-format
@@ -10754,6 +10755,8 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Speichere automatisch alle Dateien, die eine bereits bestehende Datei "
+"überschreiben würden, mit einem anderen Namen."
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10765,7 +10768,7 @@ msgstr "Überspringen"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Diese Datei nicht speichern, springe statt dessen zur Nächsten."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
@@ -10780,6 +10783,8 @@ msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
 msgstr ""
+"Speichere weder diese Datei noch Folgende, die eine existierende Datei "
+"überschreiben würden."
 
 #: src/utils/overwritedialog.cpp:238
 #, kde-format
@@ -10803,7 +10808,7 @@ msgstr "Alle überschreiben"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "Überschreibe diese Datei und alle Folgenden, die bereits existieren."
 
 #: src/utils/path-helper.cpp:118
 #, kde-format

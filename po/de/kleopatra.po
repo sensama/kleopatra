@@ -21,15 +21,15 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-05 00:48+0000\n"
-"PO-Revision-Date: 2023-04-26 19:46+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2023-05-02 17:09+0200\n"
+"Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.07.70\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3241,36 +3241,32 @@ msgstr ""
 "Das Verändern dieser Einstellung ist vom Systemverwalter verhindert worden."
 
 #: src/conf/appearanceconfigwidget.cpp:357
-#, fuzzy, kde-format
-#| msgid "Show not certified certificates"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show tags attached to certificates"
-msgstr "Unbeglaubigte Zertifikate anzeigen"
+msgstr "Tags von Zertifikaten anzeigen"
 
 #: src/conf/appearanceconfigwidget.cpp:358
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
-msgstr "Anzeige und Verwendung von Tags aktivieren."
+msgstr ""
+"Anzeige und Verwendung von mit Zertifikaten verbundenen Tags aktivieren."
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr "Folgende Informationen in den Kurzinfos der Zertifikatsliste anzeigen:"
 
 #: src/conf/appearanceconfigwidget.cpp:367
-#, fuzzy, kde-format
-#| msgid "Show validity"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Gültigkeit anzeigen"
 
 #: src/conf/appearanceconfigwidget.cpp:370
-#, fuzzy, kde-format
-#| msgid "Show owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Eigentümerinformationen anzeigen"
@@ -3282,19 +3278,16 @@ msgid "Show technical details"
 msgstr "Technische Details anzeigen"
 
 #: src/conf/appearanceconfigwidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Informationen über Zertifikatseigentümer anzeigen"
+msgstr "Bevorstehende Zertifikatsabläufe anzeigen"
 
 #: src/conf/appearanceconfigwidget.cpp:385
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Is '%1' your own certificate?"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr "Ist '%1' Ihr eigenes Zertifikat?"
+msgstr "Schwellenwert für eigene Zertifikate:"
 
 #: src/conf/appearanceconfigwidget.cpp:391
 #: src/conf/appearanceconfigwidget.cpp:404
@@ -3319,13 +3312,14 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Wähle die Anzahl der Tage aus, die im Voraus gewarnt werden soll, wenn das "
+"eigene Zertifikat in Kürze abläuft."
 
 #: src/conf/appearanceconfigwidget.cpp:398
-#, fuzzy, kde-format
-#| msgid "Trust Root Certificate"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr "Wurzelzertifikat vertrauen"
+msgstr "Schwellenwert für andere Zertifikate:"
 
 #: src/conf/appearanceconfigwidget.cpp:406
 #, kde-format
@@ -3334,6 +3328,8 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Wähle die Anzahl der Tage aus, die im Voraus gewarnt werden soll, wenn das "
+"Zertifikat einer anderen Person in Kürze abläuft."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format
@@ -4093,15 +4089,14 @@ msgstr ""
 "berichten Sie bitte einen Fehler (Siehe Hilfe->Fehlerbericht erstellen)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:213
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 msgstr ""
-"Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
-"verschoben werden."
+"<para>Die Datei <filename>%1</filename> kann nicht nach <filename>%2</"
+"filename> verschoben werden.</para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:226
 #, kde-kuit-format
@@ -8048,34 +8043,28 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Default certificate"
+#, kde-format
 msgid "Default certification validity"
-msgstr "Standard-Zertifikat"
+msgstr "Standard Beglaubigungsgültigkeit"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr ""
-"Gibt die standardmäßige Gültigkeitsdauer neuer OpenPGP-Schlüssel in Tagen an."
+"Gibt die standardmäßige Gültigkeitsdauer von Beglaubigungen in Tagen an."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Diese Einstellung bestimmt, für wie viele Tage ein neuer OpenPGP-Schlüssel "
-"mindestens gültig ist, bzw. nach wie vielen Tagen er frühestens ablaufen "
-"wird."
+"Diese Einstellung bestimmt, für wie viele Tage eine Beglaubigung "
+"standardmäßig gültig ist, bzw. nach wie vielen Tagen eine neue Beglaubigung "
+"ablaufen wird. Auf 0 setzen für unendlich lange gültige Beglaubigungen."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8095,6 +8084,8 @@ msgstr "Ergebnis nach Signierung anzeigen"
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr ""
+"Wenn wahr werden die Ergebnisse angezeigt, nachdem die Zwischenablage "
+"erfolgreich signiert wurde."
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
 #: src/kcfg/settings.kcfg:86
@@ -8109,6 +8100,8 @@ msgid ""
 "If true, then the results are shown after successfully encrypting the "
 "clipboard."
 msgstr ""
+"Wenn wahr werden die Ergebnisse angezeigt, nachdem die Zwischenablage "
+"erfolgreich verschlüsselt wurde."
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
 #: src/kcfg/settings.kcfg:93
@@ -8262,10 +8255,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:163
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "(keine passenden Zertifikate gefunden)"
+msgstr "Melde anstehende Abläufe von Zertifikaten"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:165
@@ -8274,6 +8266,8 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Falls aktiviert wird Kleopatra eine Benachrichtigung anzeigen, wenn "
+"Zertifikate benutzt werden, die bald ablaufen werden."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:171
@@ -10848,17 +10842,14 @@ msgid "Could not find clipboard"
 msgstr "Zwischenablage kann nicht gefunden werden"
 
 #: src/utils/overwritedialog.cpp:138
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Please enter a different "
 "file name."
 msgstr ""
-"Es existiert bereits eine Datei namens „%1“. Möchten Sie sie wirklich "
-"überschreiben?"
+"Die Datei <filename>%1</filename> existiert bereits. Bitte einen anderen "
+"Dateinamen angeben."
 
 #: src/utils/overwritedialog.cpp:185
 #, kde-kuit-format
@@ -10882,7 +10873,7 @@ msgstr "Neuen Namen vorschlagen"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Suggest a file name that does not already exist."
-msgstr ""
+msgstr "Schlage einen Dateinamen vor, der noch nicht existiert."
 
 #: src/utils/overwritedialog.cpp:211
 #, kde-format
@@ -10909,6 +10900,8 @@ msgid ""
 "Automatically save all files that would overwrite an already existing file "
 "with a different name."
 msgstr ""
+"Speichere automatisch alle Dateien, die eine bereits bestehende Datei "
+"überschreiben würden, mit einem anderen Namen."
 
 #: src/utils/overwritedialog.cpp:227
 #, kde-format
@@ -10920,7 +10913,7 @@ msgstr "Überspringen"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Do not write this file, skip to the next one instead."
-msgstr ""
+msgstr "Diese Datei nicht speichern, springe statt dessen zur Nächsten."
 
 #: src/utils/overwritedialog.cpp:232
 #, kde-format
@@ -10935,6 +10928,8 @@ msgid ""
 "Do not write this file and any other files that would overwrite an already "
 "existing file."
 msgstr ""
+"Speichere weder diese Datei noch Folgende, die eine existierende Datei "
+"überschreiben würden."
 
 #: src/utils/overwritedialog.cpp:238
 #, kde-format
@@ -10958,7 +10953,7 @@ msgstr "Alle überschreiben"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
-msgstr ""
+msgstr "Überschreibe diese Datei und alle Folgenden, die bereits existieren."
 
 #: src/view/formtextinput.cpp:28
 #, kde-format

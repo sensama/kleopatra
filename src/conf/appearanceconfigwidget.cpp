@@ -540,8 +540,8 @@ public:
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
         connect(showExpirationCheckBox, &QCheckBox::toggled, q, emitChanged);
-        connect(ownCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
-        connect(otherCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
+        connect(ownCertificateThresholdSpinBox, qOverload<int>(&QSpinBox::valueChanged), q, emitChanged);
+        connect(otherCertificateThresholdSpinBox, qOverload<int>(&QSpinBox::valueChanged), q, emitChanged);
     }
 
 private:

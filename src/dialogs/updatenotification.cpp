@@ -12,6 +12,7 @@
 
 #include <Libkleo/Compat>
 #include <Libkleo/GnuPG>
+#include <Libkleo/Formatting>
 
 #include "kleopatra_debug.h"
 

@@ -354,6 +354,9 @@ void CertificateLineEdit::Private::editChanged()
     if (editingStarted) {
         Q_EMIT q->editingStarted();
     }
+    if (q->isEmpty()) {
+        Q_EMIT q->cleared();
+    }
 }
 
 void CertificateLineEdit::Private::editFinished()

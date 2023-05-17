@@ -285,6 +285,8 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
                 } else {
                     qCDebug(KLEOPATRA_LOG) << "Activated item is neither key nor group";
                 }
+                // queue the call of editFinished() to ensure that QLineEdit finished its own work
+                QMetaObject::invokeMethod(q, [this]() { editFinished(); }, Qt::QueuedConnection);
             });
     updateKey(CursorPositioning::Default);
 }
@@ -353,6 +355,9 @@ void CertificateLineEdit::Private::editChanged()
     updateKey(CursorPositioning::Default);
     if (editingStarted) {
         Q_EMIT q->editingStarted();
+    }
+    if (q->isEmpty()) {
+        Q_EMIT q->cleared();
     }
 }
 

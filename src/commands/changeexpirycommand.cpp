@@ -121,7 +121,7 @@ void ChangeExpiryCommand::Private::slotDialogAccepted()
 {
     Q_ASSERT(dialog);
 
-    static const QTime END_OF_DAY{23, 59, 59};
+    static const QTime END_OF_DAY{23, 59, 00};
 
     const QDateTime expiry{dialog->dateOfExpiry(), END_OF_DAY};
 

@@ -377,6 +377,8 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
             q, &SignEncryptWidget::recipientsChanged);
     connect(recipient.edit, &CertificateLineEdit::editingStarted,
             q, &SignEncryptWidget::recipientsChanged);
+    connect(recipient.edit, &CertificateLineEdit::cleared,
+            q, &SignEncryptWidget::recipientsChanged);
     connect(recipient.edit, &CertificateLineEdit::certificateSelectionRequested,
             q, [this, recipient]() { q->certificateSelectionRequested(recipient.edit); });
 
@@ -512,7 +514,7 @@ void SignEncryptWidget::recipientsChanged()
     }
     updateOp();
     for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
-        if (!recipient.edit->isEditingInProgress()) {
+        if (!recipient.edit->isEditingInProgress() || recipient.edit->isEmpty()) {
             d->updateExpiryMessages(recipient.expiryMessage, d->mEncOtherChk->isChecked() ? recipient.edit->key() : Key{}, ExpiryChecker::EncryptionKey);
         }
     }

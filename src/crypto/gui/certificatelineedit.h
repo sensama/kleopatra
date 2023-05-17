@@ -86,6 +86,9 @@ Q_SIGNALS:
     /** Emitted when the entry is no longer empty. */
     void editingStarted();
 
+    /** Emitted when the input is cleared (i.e. becomes empty). */
+    void cleared();
+
     /** Emitted when the certificate selection dialog is requested. */
     void certificateSelectionRequested();
 

@@ -80,7 +80,6 @@ find_package(KF6 ${KF6_WANT_VERSION}
     REQUIRED COMPONENTS
     Codecs
     Config
-    ConfigWidgets
     CoreAddons
     Crash
     I18n

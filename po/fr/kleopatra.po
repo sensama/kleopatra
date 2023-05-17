@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-09 00:49+0000\n"
-"PO-Revision-Date: 2023-05-13 19:25+0200\n"
+"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"PO-Revision-Date: 2023-05-15 13:06+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -3273,12 +3273,12 @@ msgid "Show tags attached to certificates"
 msgstr "Afficher les étiquettes associées aux certificats"
 
 #: src/conf/appearanceconfigwidget.cpp:358
-#, fuzzy, kde-format
-#| msgid "Enable display and usage of tags attached to keys."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Enable display and usage of tags attached to certificates."
 msgstr ""
-"Activer l'affichage et l'utilisation des étiquettes associées à des clés."
+"Activer l'affichage et l'utilisation des étiquettes associées aux "
+"certificats."
 
 #: src/conf/appearanceconfigwidget.cpp:364
 #, fuzzy, kde-format
@@ -4843,17 +4843,17 @@ msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Afficher les détails"
 
-#: src/crypto/gui/certificatelineedit.cpp:500
+#: src/crypto/gui/certificatelineedit.cpp:505
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Aucun certificat ou groupe correspondant n'a été trouvé."
 
-#: src/crypto/gui/certificatelineedit.cpp:502
+#: src/crypto/gui/certificatelineedit.cpp:507
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Plusieurs certificats ou groupes correspondants ont été trouvés."
 
-#: src/crypto/gui/certificatelineedit.cpp:572 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:577 src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -5615,19 +5615,19 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Clé du destinataire"
 
-#: src/crypto/gui/signencryptwidget.cpp:588
+#: src/crypto/gui/signencryptwidget.cpp:590
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Le certificat a expiré"
 
-#: src/crypto/gui/signencryptwidget.cpp:591
+#: src/crypto/gui/signencryptwidget.cpp:593
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Certificat de signature expire aujourd’hui."
 
-#: src/crypto/gui/signencryptwidget.cpp:593
+#: src/crypto/gui/signencryptwidget.cpp:595
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -5636,26 +5636,26 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ce certificat est nouveau dans votre gestionnaire de clés."
 msgstr[1] "Ce certificat est nouveau dans votre gestionnaire de clés."
 
-#: src/crypto/gui/signencryptwidget.cpp:598
+#: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
 #| msgid "The issuer certificate could not be found locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Le certificat de l'émetteur n'a pas pu être trouvé localement."
 
-#: src/crypto/gui/signencryptwidget.cpp:600
+#: src/crypto/gui/signencryptwidget.cpp:602
 #, fuzzy, kde-format
 #| msgid "The issuer certificate could not be found locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Le certificat de l'émetteur n'a pas pu être trouvé localement."
 
-#: src/crypto/gui/signencryptwidget.cpp:799
+#: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Impossible de trouver une clé pour les destinataires suivants :"
 
-#: src/crypto/gui/signencryptwidget.cpp:801
+#: src/crypto/gui/signencryptwidget.cpp:803
 #, kde-format
 msgid "Failed to find some keys"
 msgstr "Impossible de trouver certaines clés"
@@ -8340,6 +8340,9 @@ msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
 "        certificates that are about to expire soon."
 msgstr ""
+"Si cette option est activée, Kleopatra affichera les notifications à un "
+"emplacement donné lors de l’utilisation de \n"
+"        certificats dont l'expiration est proche."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
 #: src/kcfg/settings.kcfg:171

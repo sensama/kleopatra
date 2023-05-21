@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-17 00:48+0000\n"
-"PO-Revision-Date: 2023-05-15 13:06+0200\n"
+"PO-Revision-Date: 2023-05-19 09:43+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -3281,8 +3281,7 @@ msgstr ""
 "certificats."
 
 #: src/conf/appearanceconfigwidget.cpp:364
-#, fuzzy, kde-format
-#| msgid "Show the following information in certificate list tooltips:"
+#, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
@@ -3308,11 +3307,10 @@ msgid "Show technical details"
 msgstr "Afficher les détails techniques"
 
 #: src/conf/appearanceconfigwidget.cpp:378
-#, fuzzy, kde-format
-#| msgid "Show certificate owner information"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Afficher les Informations sur le propriétaire du certificat"
+msgstr "Afficher l’expiration prochaine du certificat"
 
 #: src/conf/appearanceconfigwidget.cpp:385
 #, kde-format
@@ -5628,27 +5626,24 @@ msgid "This certificate expires today."
 msgstr "Certificat de signature expire aujourd’hui."
 
 #: src/crypto/gui/signencryptwidget.cpp:595
-#, fuzzy, kde-format
-#| msgid "This certificate is new to your keystore."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
-msgstr[0] "Ce certificat est nouveau dans votre gestionnaire de clés."
-msgstr[1] "Ce certificat est nouveau dans votre gestionnaire de clés."
+msgstr[0] "Ce certificat expire demain."
+msgstr[1] "Ce certificat expire dans %1 jours."
 
 #: src/crypto/gui/signencryptwidget.cpp:600
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
-msgstr "Le certificat de l'émetteur n'a pas pu être trouvé localement."
+msgstr "Ce certificat ne peut être utilisé pour le chiffrement."
 
 #: src/crypto/gui/signencryptwidget.cpp:602
-#, fuzzy, kde-format
-#| msgid "The issuer certificate could not be found locally."
+#, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
-msgstr "Le certificat de l'émetteur n'a pas pu être trouvé localement."
+msgstr "Ce certificat ne peut être utilisé pour la signature."
 
 #: src/crypto/gui/signencryptwidget.cpp:801
 #, kde-format
@@ -8110,28 +8105,23 @@ msgstr "Validité par défaut de certification"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr ""
-"Spécifie la période de validité par défaut en jours des nouvelles clés "
-"« OpenPGP »."
+"Spécifie la période de validité par défaut en jours des certifications."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Ce paramètre spécifie le nombre minimal de jours de validité d'une nouvelle "
-"clé « OpenPGP », ou, en d'autres termes, le nombre minimal de jours après "
-"lequel la clé expirera."
+"Ce paramètre spécifie le nombre de jours de validité par défaut d'une "
+"certification. En d'autres termes, il indique le nombre de jours après "
+"lesquels une nouvelle certification expire. Une valeur de 0 signifie une "
+"validité illimitée des certifications."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8328,10 +8318,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:163
-#, fuzzy, kde-format
-#| msgid "(no matching certificates found)"
+#, kde-format
 msgid "Notify about upcoming certificate expiration"
-msgstr "(aucun certificat correspondant trouvé)"
+msgstr "Signaler l'expiration prochaine de certificats."
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:165

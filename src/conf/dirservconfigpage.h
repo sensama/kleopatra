@@ -24,7 +24,6 @@ public:
     explicit DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
     ~DirectoryServicesConfigurationPage() override;
 
-public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

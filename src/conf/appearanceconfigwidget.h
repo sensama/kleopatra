@@ -26,7 +26,6 @@ public:
     explicit AppearanceConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~AppearanceConfigWidget() override;
 
-public Q_SLOTS:
     void load();
     void save();
     void defaults();

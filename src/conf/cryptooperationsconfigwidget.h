@@ -35,7 +35,6 @@ public:
     explicit CryptoOperationsConfigWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~CryptoOperationsConfigWidget() override;
 
-public Q_SLOTS:
     void load();
     void save();
     void defaults();

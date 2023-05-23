@@ -25,7 +25,6 @@ class AppearanceConfigurationPage : public KCModule
 public:
     explicit AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
 
-public Q_SLOTS:
     void load() override;
     void save() override;
     void defaults() override;

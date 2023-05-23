@@ -26,7 +26,7 @@ public Q_SLOTS:
     void defaults() override;
 
 private:
-    SMimeValidationConfigurationWidget *mWidget;
+    SMimeValidationConfigurationWidget *mWidget = nullptr;
 };
 
 }

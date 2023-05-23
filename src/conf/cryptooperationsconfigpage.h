@@ -31,7 +31,7 @@ public Q_SLOTS:
     void defaults() override;
 
 private:
-    CryptoOperationsConfigWidget *mWidget;
+    CryptoOperationsConfigWidget *mWidget = nullptr;
 };
 
 }

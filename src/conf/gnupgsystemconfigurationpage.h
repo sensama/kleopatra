@@ -31,7 +31,7 @@ public Q_SLOTS:
     void defaults() override;
 
 private:
-    Kleo::CryptoConfigModule *mWidget;
+    Kleo::CryptoConfigModule *mWidget = nullptr;
 };
 
 }

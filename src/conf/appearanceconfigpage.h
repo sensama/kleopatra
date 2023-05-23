@@ -31,7 +31,7 @@ public Q_SLOTS:
     void defaults() override;
 
 private:
-    AppearanceConfigWidget *mWidget;
+    AppearanceConfigWidget *mWidget = nullptr;
 };
 
 }

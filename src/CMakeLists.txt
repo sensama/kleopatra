@@ -20,7 +20,7 @@ if(WIN32)
       utils/gnupg-registry.c
       utils/userinfo_win.cpp
       utils/windowsprocessdevice.cpp utils/windowsprocessdevice.h
-      versioninfo.rc
+      versioninfo.rc kleopatra.w32-manifest
   )
 else()
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_unix.cpp)
@@ -522,6 +522,8 @@ set(_kleopatra_SRCS
 if(WIN32)
   configure_file (versioninfo.rc.in versioninfo.rc)
   set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/versioninfo.rc ${_kleopatra_SRCS})
+  configure_file (kleopatra.w32-manifest.in kleopatra.w32-manifest)
+  set(_kleopatra_SRCS ${CMAKE_CURRENT_BINARY_DIR}/kleopatra.w32-manifest ${_kleopatra_SRCS})
 endif()
 
 set (_kleopatra_SRCS conf/kleopageconfigdialog.cpp conf/kleopageconfigdialog.h ${_kleopatra_SRCS})

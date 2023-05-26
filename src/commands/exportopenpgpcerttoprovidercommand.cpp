@@ -13,8 +13,8 @@
 #include "command_p.h"
 
 #ifdef MAILAKONADI_ENABLED
-#include <KIdentityManagement/Identity>
-#include <KIdentityManagement/IdentityManager>
+#include <KIdentityManagementCore/Identity>
+#include <KIdentityManagementCore/IdentityManager>
 #include <MailTransport/TransportManager>
 #include <Akonadi/MessageQueueJob>
 #endif // MAILAKONADI_ENABLED
@@ -37,9 +37,9 @@ using namespace QGpgME;
 #ifdef MAILAKONADI_ENABLED
 static const QString identityTransportForAddress(const QString &senderAddress)
 {
-    static const KIdentityManagement::IdentityManager *idManager = new KIdentityManagement::IdentityManager{true};
+    static const KIdentityManagementCore::IdentityManager *idManager = new KIdentityManagementCore::IdentityManager{true};
 
-    const KIdentityManagement::Identity identity = idManager->identityForAddress(senderAddress);
+    const KIdentityManagementCore::Identity identity = idManager->identityForAddress(senderAddress);
     if (identity.isNull()) {
         return idManager->defaultIdentity().transport();
     } else {

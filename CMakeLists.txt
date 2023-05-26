@@ -151,7 +151,7 @@ find_package(Qt6Core5Compat)
 # Kdepimlibs packages
 find_package(KPim6Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KPim6Mime ${KMIME_WANT_VERSION} CONFIG REQUIRED)
-find_package(KPim6IdentityManagement ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
+find_package(KPim6IdentityManagementCore ${KIDENTITYMANAGEMENT_VERSION} CONFIG)
 find_package(KPim6MailTransport ${KMAILTRANSPORT_VERSION} CONFIG)
 find_package(KPim6AkonadiMime ${AKONADI_MIME_VERSION} CONFIG)
 

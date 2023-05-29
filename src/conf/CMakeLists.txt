@@ -62,6 +62,7 @@ target_link_libraries(kcm_kleopatra_static
   KPim6::Libkleo
   KF6::I18n
   KF6::IconThemes
+  KF6::IconWidgets
   KF6::KCMUtils
   KF6::WidgetsAddons
   ${_kcm_kleopatra_extra_libs}

@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <QtGlobal>
+
 class QString;
 #include <QStringList>
 class QDir;
@@ -21,8 +23,9 @@ QStringList makeRelativeTo(const QDir &dir, const QStringList &files);
 QStringList makeRelativeTo(const QString &dir, const QStringList &files);
 QString stripSuffix(const QString &fileName);
 
+#ifdef Q_OS_WIN
 void recursivelyRemovePath(const QString &path);
 bool recursivelyCopy(const QString &src, const QString &dest);
 bool moveDir(const QString &src, const QString &dest);
+#endif
 }
-

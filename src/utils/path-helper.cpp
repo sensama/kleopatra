@@ -103,6 +103,7 @@ QString Kleo::stripSuffix(const QString &fileName)
     return fi.dir().filePath(fi.completeBaseName());
 }
 
+#ifdef Q_OS_WIN
 void Kleo::recursivelyRemovePath(const QString &path)
 {
     const QFileInfo fi(path);
@@ -176,3 +177,4 @@ bool Kleo::moveDir(const QString &src, const QString &dest)
 
     return true;
 }
+#endif

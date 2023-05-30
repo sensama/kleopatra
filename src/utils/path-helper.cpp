@@ -102,3 +102,77 @@ QString Kleo::stripSuffix(const QString &fileName)
     const QFileInfo fi(fileName);
     return fi.dir().filePath(fi.completeBaseName());
 }
+
+void Kleo::recursivelyRemovePath(const QString &path)
+{
+    const QFileInfo fi(path);
+    if (fi.isDir()) {
+        QDir dir(path);
+        const auto dirs{dir.entryList(QDir::AllEntries | QDir::NoDotAndDotDot)};
+        for (const QString &fname : dirs) {
+            recursivelyRemovePath(dir.filePath(fname));
+        }
+        const QString dirName = fi.fileName();
+        dir.cdUp();
+        if (!dir.rmdir(dirName)) {
+            throw Exception(GPG_ERR_EPERM, i18n("Cannot remove directory %1", path));
+        }
+    } else {
+        QFile file(path);
+        if (!file.remove()) {
+            throw Exception(GPG_ERR_EPERM, i18n("Cannot remove file %1: %2", path, file.errorString()));
+        }
+    }
+}
+
+bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
+{
+    QDir srcDir(src);
+
+    if(!srcDir.exists()) {
+        return false;
+    }
+
+    QDir destDir(dest);
+    if(!destDir.exists() && !destDir.mkdir(dest)) {
+        return false;
+    }
+
+    for(const auto &file: srcDir.entryList(QDir::Files)) {
+        const QString srcName = src + QLatin1Char('/') + file;
+        const QString destName = dest + QLatin1Char('/') + file;
+        if(!QFile::copy(srcName, destName)) {
+            return false;
+        }
+    }
+
+    for (const auto &dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
+        const QString srcName = src + QLatin1Char('/') + dir;
+        const QString destName = dest + QLatin1Char('/') + dir;
+        if (!recursivelyCopy(srcName, destName)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Kleo::moveDir(const QString &src, const QString &dest)
+{
+    // Need an existing path to query the device
+    const QString parentDest = QFileInfo(dest).dir().absolutePath();
+    const auto srcDevice = QStorageInfo(src).device();
+    if (!srcDevice.isEmpty() && srcDevice == QStorageInfo(parentDest).device() &&
+        QFile::rename(src, dest)) {
+        qCDebug(KLEOPATRA_LOG) << "Renamed" << src << "to" << dest;
+        return true;
+    }
+    // first copy
+    if (!recursivelyCopy(src, dest)) {
+        return false;
+    }
+    // Then delete original
+    recursivelyRemovePath(src);
+
+    return true;
+}

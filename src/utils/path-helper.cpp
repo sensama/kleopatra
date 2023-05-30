@@ -109,7 +109,7 @@ void Kleo::recursivelyRemovePath(const QString &path)
     const QFileInfo fi(path);
     if (fi.isDir()) {
         QDir dir(path);
-        const auto dirs{dir.entryList(QDir::AllEntries | QDir::NoDotAndDotDot)};
+        const auto dirs{dir.entryList(QDir::AllEntries | QDir::NoDotAndDotDot | QDir::Hidden)};
         for (const QString &fname : dirs) {
             recursivelyRemovePath(dir.filePath(fname));
         }
@@ -139,7 +139,7 @@ bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
         return false;
     }
 
-    for(const auto &file: srcDir.entryList(QDir::Files)) {
+    for(const auto &file: srcDir.entryList(QDir::Files | QDir::Hidden)) {
         const QString srcName = src + QLatin1Char('/') + file;
         const QString destName = dest + QLatin1Char('/') + file;
         if(!QFile::copy(srcName, destName)) {
@@ -147,7 +147,7 @@ bool Kleo::recursivelyCopy(const QString &src,const QString &dest)
         }
     }
 
-    for (const auto &dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot)) {
+    for (const auto &dir: srcDir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot | QDir::Hidden)) {
         const QString srcName = src + QLatin1Char('/') + dir;
         const QString destName = dest + QLatin1Char('/') + dir;
         if (!recursivelyCopy(srcName, destName)) {

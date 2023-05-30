@@ -32,8 +32,10 @@
 
 #include <Libkleo/Classify>
 
+#ifndef Q_OS_WIN
 #include <KIO/CopyJob>
 #include <KIO/Global>
+#endif
 #include <KLocalizedString>
 #include <KMessageBox>
 #include "kleopatra_debug.h"
@@ -203,7 +205,9 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     suffix = QStringLiteral("_%1").arg(++i);
                 } while (i < 1000);
 
-                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(ofi.absoluteFilePath()));
+                const auto destPath = ofi.absoluteFilePath();
+#ifndef Q_OS_WIN
+                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(destPath));
                 qCDebug(KLEOPATRA_LOG) << "Moving" << job->srcUrls().front().toLocalFile() << "to" << job->destUrl().toLocalFile();
                 if (!job->exec()) {
                     if (job->error() == KIO::ERR_USER_CANCELED) {
@@ -212,8 +216,16 @@ void AutoDecryptVerifyFilesController::Private::exec()
                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
                                 xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
                                        "<para><message>%3</message></para>",
-                                       inpath, ofi.absoluteFilePath(), job->errorString()));
+                                       inpath, destPath, job->errorString()));
                 }
+#else
+                // On Windows, KIO::move does not work for folders when crossing partition boundaries
+                if (!moveDir(inpath, destPath)) {
+                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                                 xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>",
+                                        inpath, destPath));
+                }
+#endif
                 continue;
             }
 

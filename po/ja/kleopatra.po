@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 "X-Generator: Lokalize 19.08.2\n"
@@ -1118,7 +1118,6 @@ msgctxt "@title:window"
 msgid "Export Certificate Group"
 msgid_plural "Export Certificate Groups"
 msgstr[0] "証明書グループをエクスポート"
-msgstr[1] "証明書グループをエクスポート"
 
 #: src/commands/exportgroupscommand.cpp:69
 #, kde-format
@@ -1507,7 +1506,6 @@ msgctxt "@title:window"
 msgid "Export Subkey"
 msgid_plural "Export Subkeys"
 msgstr[0] "副鍵をエクスポート"
-msgstr[1] "副鍵をエクスポート"
 
 #: src/commands/exportsecretsubkeycommand.cpp:217
 #, kde-format
@@ -1527,7 +1525,6 @@ msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
 msgstr[0] "ファイル <filename>%2</filename> に副鍵を書き込めませんでした。"
-msgstr[1] "ファイル <filename>%2</filename> に副鍵を書き込めませんでした。"
 
 #: src/commands/exportsecretsubkeycommand.cpp:261
 #, kde-format
@@ -1535,7 +1532,6 @@ msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "%1 件の副鍵をエクスポートできました。"
-msgstr[1] "%1 件の副鍵をエクスポートできました。"
 
 #: src/commands/exportsecretsubkeycommand.cpp:271
 #, kde-kuit-format
@@ -1693,7 +1689,6 @@ msgstr "証明書をインポート"
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "%1 件のファイルから証明書をインポート..."
-msgstr[1] "%1 件のファイルから証明書をインポート..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:136
 #, kde-format
@@ -1727,7 +1722,6 @@ msgstr "鍵を取ってくる"
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
 msgstr[0] "鍵 (%1 件)を取ってきます... (しばらく時間がかかる場合があります)"
-msgstr[1] "鍵 (%1 件)を取ってきます... (しばらく時間がかかる場合があります)"
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
@@ -2013,7 +2007,6 @@ msgstr "いいえ、わたしのではありません"
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "署名者の鍵 %1件を取り込み... (時間がかかる場合があります)"
-msgstr[1] "署名者の鍵 %1件を取り込み... (時間がかかる場合があります)"
 
 #: src/commands/importcertificatescommand.cpp:924
 #: src/commands/importcertificatescommand.cpp:988
@@ -2083,7 +2076,7 @@ msgid "Import CRL Finished"
 msgstr "CRL のインポート完了"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "ファイル <filename>%1</filename> を読み取りのために開けません。"
@@ -2470,7 +2463,6 @@ msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] "名前とメールアドレスのない %1 件の証明書が無視されました。"
-msgstr[1] "名前とメールアドレスのない %1 件の証明書が無視されました。"
 
 #: src/commands/lookupcertificatescommand.cpp:531
 #: src/commands/lookupcertificatescommand.cpp:537
@@ -2684,7 +2676,6 @@ msgstr "新しい署名: %1"
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "加えて、%1 件の新しい鍵が取得されました。"
-msgstr[1] "加えて、%1 件の新しい鍵が取得されました。"
 
 #: src/commands/refreshcertificatecommand.cpp:256
 #, kde-format
@@ -2905,7 +2896,6 @@ msgstr "ユーザ ID '%1' は鍵 %2 で保証されています"
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] "以下の %1 件の保証を取り消そうとしています:"
-msgstr[1] "以下の %1 件の保証を取り消そうとしています:"
 
 #: src/commands/revokecertificationcommand.cpp:98
 #, kde-format
@@ -2923,8 +2913,6 @@ msgid_plural ""
 "want to publish the revocations?</para>"
 msgstr[0] ""
 "<para>%1 件の保証が取消できました。</para><para>取消を公開しますか?</para>"
-msgstr[1] ""
-"<para>%1 件の保証が取消できました。</para><para>取消を公開しますか?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:207
 #, kde-format
@@ -2932,7 +2920,6 @@ msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "取消の公開"
-msgstr[1] "取消の公開"
 
 #: src/commands/revokecertificationcommand.cpp:211
 #, kde-format
@@ -2960,7 +2947,6 @@ msgstr "あなたはこの鍵のどの保証も取消できません。"
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "あなたはこのユーザ ID のどの保証も取消できません。"
-msgstr[1] "あなたはこのユーザ ID のどの保証も取消できません。"
 
 #: src/commands/revokecertificationcommand.cpp:339
 #, kde-format
@@ -3212,7 +3198,6 @@ msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -3969,7 +3954,7 @@ msgstr ""
 "形式は \"HOST\" または \"HOST:PORT\" です。PORT が省略された場合、標準的な "
 "LDAP ポートである 389 が使われます。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3981,7 +3966,7 @@ msgstr ""
 "イルに暗号化されたもしくは署名のデータがある場合には、バグ報告をお願いします"
 "(Help->Report Bug をごらんください)。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3991,28 +3976,39 @@ msgstr ""
 "<para>ファイル <filename>%1</filename> を <filename>%2</filename> に移動でき"
 "ませんでした。</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
+"でした。"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "ファイルは元のファイル名 <filename>%1</filename> に保存しますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "元のファイル名を使いますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "いいえ、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "はい、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4021,29 +4017,29 @@ msgstr ""
 "ファイル <b>%1</b> は既に存在します。\n"
 "上書きしますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "既存のファイルを上書きしますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "すべて上書き"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> を削除できませんでした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4051,7 +4047,7 @@ msgid ""
 msgstr ""
 "ファイル <filename>%1</filename> は証明書を含み、復号や検証ができません。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4374,14 +4370,12 @@ msgstr "署名が見つかりませんでした。"
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "無効な署名です (%1 件)。"
-msgstr[1] "無効な署名です (%1 件)。"
 
 #: src/crypto/decryptverifytask.cpp:423
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>%1 件の署名が検証できませんでした。</b>"
-msgstr[1] "<b>%1 件の署名が検証できませんでした。</b>"
 
 #: src/crypto/decryptverifytask.cpp:429
 #, kde-format
@@ -4408,7 +4402,6 @@ msgstr "証明書"
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>有効な署名です (%1 件)。</b>"
-msgstr[1] "<b>有効な署名です (%1 件)。</b>"
 
 # dummy markup
 #: src/crypto/decryptverifytask.cpp:436
@@ -4493,21 +4486,18 @@ msgstr ""
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "不明な受信者 %1 人。"
-msgstr[1] "不明な受信者 %1 人。"
 
 #: src/crypto/decryptverifytask.cpp:547
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "受信者:"
-msgstr[1] "受信者:"
 
 #: src/crypto/decryptverifytask.cpp:558
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "不明な受信者 %1 人"
-msgstr[1] "不明な受信者 %1 人"
 
 #: src/crypto/decryptverifytask.cpp:584
 #, kde-format
@@ -5453,7 +5443,6 @@ msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "署名用証明書が失効しています"
-msgstr[1] "署名用証明書が失効しています"
 
 #: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
@@ -5602,7 +5591,6 @@ msgstr "エラーはありませんでした"
 msgid "One error occurred"
 msgid_plural "%1 errors occurred"
 msgstr[0] "エラーが %1 件ありました"
-msgstr[1] "エラーが %1 件ありました"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:255
 #, kde-format
@@ -6165,7 +6153,6 @@ msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "ユーザ IDを保証する..."
-msgstr[1] "ユーザ IDを保証する..."
 
 #: src/dialogs/certificatedetailswidget.cpp:844
 #, kde-format
@@ -6179,7 +6166,6 @@ msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "保証を取消..."
-msgstr[1] "保証を取消..."
 
 #: src/dialogs/certificatedetailswidget.cpp:856
 #, kde-format
@@ -6614,10 +6600,6 @@ msgstr[0] ""
 "削除しようとしている証明書はすべて、あなた自身の証明書です。あなた自身の証明"
 "書には、それを用いて暗号化した通信を復号するために必要な秘密鍵の要素が含まれ"
 "ているので、削除すべきではありません。"
-msgstr[1] ""
-"削除しようとしている証明書はすべて、あなた自身の証明書です。あなた自身の証明"
-"書には、それを用いて暗号化した通信を復号するために必要な秘密鍵の要素が含まれ"
-"ているので、削除すべきではありません。"
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6630,10 +6612,6 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
-"削除しようとしている証明書に、あなた自身の証明書があります。あなた自身の証明"
-"書には、それを用いて暗号化した通信を復号するために必要な秘密鍵の要素が含まれ"
-"ているので、削除すべきではありません。"
-msgstr[1] ""
 "削除しようとしている証明書に、あなた自身の証明書があります。あなた自身の証明"
 "書には、それを用いて暗号化した通信を復号するために必要な秘密鍵の要素が含まれ"
 "ているので、削除すべきではありません。"
@@ -6728,28 +6706,24 @@ msgstr "グループを編集"
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] "%1 日間有効"
-msgstr[1] "%1 日間有効"
 
 #: src/dialogs/expirydialog.cpp:71
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] "%1 週間有効"
-msgstr[1] "%1 週間有効"
 
 #: src/dialogs/expirydialog.cpp:73
 #, kde-format
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
 msgstr[0] "%1 ヶ月間有効"
-msgstr[1] "%1 ヶ月間有効"
 
 #: src/dialogs/expirydialog.cpp:75
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] "%1 年間有効"
-msgstr[1] "%1 年間有効"
 
 #: src/dialogs/expirydialog.cpp:161
 #, kde-format
@@ -8478,7 +8452,7 @@ msgstr "Kleopatra エラー"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatra に接続する際にエラーがありました: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8494,13 +8468,13 @@ msgstr ""
 "機能しません。</para><para>管理者に助けを請い、この問題を解決してください。</"
 "para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME が古すぎ"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8515,23 +8489,23 @@ msgstr ""
 "管理するには、通常のユーザとして鍵を権利し、<filename>AppData\\Roaming"
 "\\gnupg</filename>ディレクトリを適切な許可で、コピーしてください。</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>本当に続行しますか?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "管理者として実行"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI サーバのエラー"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8549,7 +8523,7 @@ msgstr ""
 "ストールするかサポートのために管理者に連絡ください。<br/>Kleopatra を使いつづ"
 "けることを試せますが、他の問題もあるでしょう。</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "無効な引数: %1"
@@ -8966,7 +8940,6 @@ msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (%1 ビット)"
-msgstr[1] "%2 (%1 ビット)"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:819
 #, kde-format
@@ -8974,7 +8947,6 @@ msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 ビット"
-msgstr[1] "%1 ビット"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:985
 #, kde-format
@@ -10685,6 +10657,18 @@ msgstr "すべて上書き"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr "すでにあるファイルはすべて上書きする。"
+
+#: src/utils/path-helper.cpp:119
+#, fuzzy, kde-format
+#| msgid "Could not create GnuPG home directory %1: %2"
+msgid "Cannot remove directory %1"
+msgstr "GnuPG のホームディレクトリ %1 を作成できませんでした: %2"
+
+#: src/utils/path-helper.cpp:124
+#, fuzzy, kde-format
+#| msgid "Could not write output file %1: %2"
+msgid "Cannot remove file %1: %2"
+msgstr "出力をファイル %1 に書き出せませんでした: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format

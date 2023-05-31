@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -2180,7 +2180,7 @@ msgid "Import CRL Finished"
 msgstr "匯入廢棄憑證清單已完成"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4152,7 +4152,7 @@ msgstr ""
 "\"主機\" 或 \"主機：連接埠\"。若是未指定連接埠，則預設使用 389（標準 LDAP 連"
 "接埠）。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4160,7 +4160,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4174,7 +4174,21 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
+"<message>%3</message>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4186,12 +4200,12 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4202,7 +4216,7 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4213,7 +4227,7 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4222,17 +4236,17 @@ msgstr ""
 "檔案 <b>%1</b> 已存在。\n"
 "要覆寫它嗎？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "要覆寫檔案嗎？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "全部覆寫"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4243,7 +4257,7 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4254,14 +4268,14 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -8811,7 +8825,7 @@ msgstr "Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8826,13 +8840,13 @@ msgstr ""
 "<para><application>Kleopatra</application> 在此設定下將無法運作。</para> "
 "<para>請詢問您的系統管理員以解決此問題。</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME 太舊了"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8843,23 +8857,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 使用者介面伺服器錯誤"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8873,7 +8887,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, fuzzy, kde-format
 #| msgid "invalid mode: \"%1\""
 msgid "Invalid arguments: %1"
@@ -11067,6 +11081,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "無法移除目錄 %1"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "無法移除檔案 %1：%2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12419,12 +12443,6 @@ msgstr ""
 
 #~ msgid "Tooltips"
 #~ msgstr "工具提示"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "無法移除目錄 %1"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "無法移除檔案 %1：%2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "無法移除檔案 %1 以覆寫。"

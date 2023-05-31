@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-04-26 15:14+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -2112,7 +2112,7 @@ msgid "Import CRL Finished"
 msgstr "Імпорт CRL завершено"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Не вдалося відкрити <filename>%1</filename> для читання."
@@ -4054,7 +4054,7 @@ msgstr ""
 "Синтаксис адреси такий: «ВУЗОЛ» або «ВУЗОЛ:ПОРТ». Якщо ПОРТ не вказано, буде "
 "використано порт 389 (стандартний порт LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4067,7 +4067,7 @@ msgstr ""
 "повідомте розробникам цієї програми про ваду (див. пункт меню Довідка → "
 "Надіслати звіт про помилку)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4077,28 +4077,38 @@ msgstr ""
 "<para>Не вдалося пересунути <filename>%1</filename> до <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"Не вдалося пересунути <filename>%1</filename> до <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Чи слід зберегти файл із початковою назвою — <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Скористатися початковою назвою файла?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ні, зберегти як <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Так, зберегти як <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4107,28 +4117,28 @@ msgstr ""
 "Файл з назвою <b>%1</b> вже існує.\n"
 "Перезаписати його?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Перезаписати наявний файл?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Перезаписати все"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Не вдалося вилучити <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Не вдалося пересунути <filename>%1</filename> до <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4137,7 +4147,7 @@ msgstr ""
 "Якщо файл <filename>%1</filename> містить сертифікати і не може бути "
 "розшифрований або перевірений."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -8696,7 +8706,7 @@ msgstr "Помилка Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Під час спроби встановити з'єднання із Kleopatra сталася помилка: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8712,13 +8722,13 @@ msgstr ""
 "працювати за цих параметрів.</para><para>Будь ласка, попросіть про допомогу "
 "в усуванні цієї проблеми у адміністратора вашої системи.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "Застара GpgME"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8735,23 +8745,23 @@ msgstr ""
 "скопіюйте каталог <filename>AppData\\Roaming\\gnupg</filename> із належними "
 "правами доступу.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Ви справді хочете продовжити виконання дії?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Працюємо від імені адміністратора"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Помилка сервера інтерфейсу користувача GPG"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8771,7 +8781,7 @@ msgstr ""
 "продовжувати користуватися Kleopatra, але у роботі програми можуть виникати "
 "інші проблеми.</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Некоректні аргументи: %1"
@@ -10937,6 +10947,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr "Перезаписати наявний файл і усі файли, які вже існують."
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "Не вдалося вилучити каталог %1"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "Не вдалося вилучити файл %1: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12213,12 +12233,6 @@ msgstr ""
 
 #~ msgid "Tooltips"
 #~ msgstr "Підказки"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "Не вдалося вилучити каталог %1"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "Не вдалося вилучити файл %1: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "Не вдалося вилучити файл «%1» з метою перезапису."

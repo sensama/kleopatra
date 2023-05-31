@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -2260,7 +2260,7 @@ msgid "Import CRL Finished"
 msgstr "Uvoz CRL Završen"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4303,7 +4303,7 @@ msgstr ""
 "Sintaksa je \"Host\" ili \"Host: Port\". Ako port je izostavljen, porz 389 "
 "(standardni LDAP port) se koristi."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4311,7 +4311,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4325,7 +4325,21 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
+"<filename>%2</filename>: <message>%3</message>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4337,12 +4351,12 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4353,7 +4367,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4364,7 +4378,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4373,17 +4387,17 @@ msgstr ""
 "Datoteka <b>%1</b> već postoji.\n"
 "Prebrisati?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Pisati preko postojeće datoteke?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Pisati preko svega"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4394,7 +4408,7 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4405,14 +4419,14 @@ msgstr ""
 "Ne mogu kreirati privremenu datoteku <filename>%1</filename> u datoteku "
 "<filename>%2</filename>: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -9061,7 +9075,7 @@ msgstr "Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9077,13 +9091,13 @@ msgstr ""
 "ovim postavkama.</para><para>Molim vas pitajte administratora za pomoć u "
 "rješavanju ovog problema.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME prestar"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9094,23 +9108,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI Server Greška"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9124,7 +9138,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, fuzzy, kde-format
 #| msgid "invalid mode: \"%1\""
 msgid "Invalid arguments: %1"
@@ -11374,6 +11388,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "Nije u mogućnosti da pomjeri direktorij %1"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "Ne mogu ukloniti datoteku %1: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12733,12 +12757,6 @@ msgstr ""
 
 #~ msgid "Tooltips"
 #~ msgstr "Savjeti"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "Nije u mogućnosti da pomjeri direktorij %1"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "Ne mogu ukloniti datoteku %1: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "Nije u mogućnosti da pomjeri datoteku \"%1\" za pisanje preko."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-05-22 14:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2005,7 +2005,7 @@ msgid "Import CRL Finished"
 msgstr "CRL 导入完成"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "无法打开 <filename>%1</filename> 进行读取。"
@@ -3807,7 +3807,7 @@ msgstr ""
 "务器。\n"
 "语法为：“主机名”或“主机名:端口”。如果省略端口，则默认采用标准 LDAP 端口 389。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3818,7 +3818,7 @@ msgstr ""
 "些文件。<nl/>如果它们包含已签名或加密的数据，请报告错误（见帮助 -> 报告错"
 "误）。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3826,28 +3826,37 @@ msgid ""
 "para><para><message>%3</message></para>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr "无法移动 <filename>%1</filename> 到 <filename>%2</filename>。"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "文件是否要以原始文件名 <filename>%1</filename> 保存？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "是否使用原始文件名？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "否，另存为 <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "是，覆盖 <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -3856,34 +3865,34 @@ msgstr ""
 "文件 <b>%1</b> 已存在。\n"
 "覆盖吗？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "覆盖已有文件吗？"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "全部覆盖"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "无法删除 <filename>%1</filename>。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "无法移动 <filename>%1</filename> 到 <filename>%2</filename>。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr "文件 <filename>%1</filename> 包含证书，无法被解密或验证。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "选择要使用签名 <filename>%1</filename>进行验证的文件"
@@ -8162,7 +8171,7 @@ msgstr "Kleopatra 错误"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "连接 Kleopatra 时出错：%1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8177,13 +8186,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> 将无法在此设置中运行。</"
 "para><para>请咨询您的管理员来帮助解决这个问题。</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME 版本太旧"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8198,23 +8207,23 @@ msgstr ""
 "户身份管理，并以适当的权限复制 <filename>AppData\\Roaming\\gnupg</filename> "
 "目录。</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>您确定要继续吗？</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "作为管理员运行"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG 界面服务器错误"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8228,7 +8237,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "无效的参数：%1"
@@ -10301,6 +10310,18 @@ msgstr "全部覆盖"
 msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
+
+#: src/utils/path-helper.cpp:119
+#, fuzzy, kde-format
+#| msgid "Could not create GnuPG home directory %1: %2"
+msgid "Cannot remove directory %1"
+msgstr "无法创建 GnuPG 主目录 %1：%2"
+
+#: src/utils/path-helper.cpp:124
+#, fuzzy, kde-format
+#| msgid "Could not write output file %1: %2"
+msgid "Cannot remove file %1: %2"
+msgstr "无法写入输出文件 %1：%2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format

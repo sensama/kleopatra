@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-05-05 21:14+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -2073,7 +2073,7 @@ msgid "Import CRL Finished"
 msgstr "CRL-tuonti valmis"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Tiedostoa <filename>%1</filename> ei voi avata luettavaksi."
@@ -3961,7 +3961,7 @@ msgstr ""
 "Syntaksi on ”KONE” tai ”KONE:PORTTI”. Jos PORTTIa ei anneta, käytetään "
 "porttia 389 (standardi LDAP-portti)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3973,7 +3973,7 @@ msgstr ""
 "sisältävät allekirjoitettua tai salattua tietoa, ilmoita ohjelmavirheestä "
 "(katso Ohje | Ilmoita ohjelmavirheestä)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3983,29 +3983,40 @@ msgstr ""
 "<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
 "filename> epäonnistui.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
+"epäonnistui."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 "Tallennetaanko tiedosto alkuperäisellä nimellä <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Käytetäänkö alkuperäistä tiedostonimeä?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ei, tallenna nimellä <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Kyllä, tallenna nimellä <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4014,29 +4025,29 @@ msgstr ""
 "Tiedosto <b>%1</b> on jo olemassa.\n"
 "Korvataanko se?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Korvataanko olemassa oleva tiedosto?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Korvaa kaikki"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
 "epäonnistui."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4045,7 +4056,7 @@ msgstr ""
 "Tiedosto <filename>%1</filename> sisältää varmenteita eikä sitä voi todentaa "
 "tai sen salausta purkaa."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -8508,7 +8519,7 @@ msgstr "Kleopatra-virhe"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatraan yhdistettäessä sattui virhe: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8524,13 +8535,13 @@ msgstr ""
 "asetuksilla.</para><para>Pyydä järjestelmän ylläpitäjää ratkaisemaan tilanne."
 "</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME liian vanha"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8545,23 +8556,23 @@ msgstr ""
 "toisten käyttäjien avaimia tavallisena käyttäjänä ja kopioi <filename>AppData"
 "\\Roaming\\gnupg</filename>-kansio oikein käyttöoikeuksin.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Haluatko varmasti jatkaa?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Suoritetaan pääkäyttäjänä"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG:n UI-palvelimen virhe"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8579,7 +8590,7 @@ msgstr ""
 "asentaa ohjelma uudelleen tai pyydä tukea ylläpidosta.<br/>Kleopatran "
 "käyttöä voi yrittää jatkaa, mutta ongelmia voi ilmetä lisää.</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Virheellisiä parametreja: ”%1”"
@@ -10736,6 +10747,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr "Korvaa kaikki jo olemassa olevat tiedostot."
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "Ei voi poistaa kansiota %1"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "Ei voi poistaa tiedostoa %1: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11999,12 +12020,6 @@ msgstr ""
 
 #~ msgid "Tooltips"
 #~ msgstr "Työkaluvihjeet"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "Ei voi poistaa kansiota %1"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "Ei voi poistaa tiedostoa %1: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "Tiedostoa ”%1” ei voitu poistaa sen korvaamiseksi."

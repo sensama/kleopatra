@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-05-29 12:38+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -2088,7 +2088,7 @@ msgid "Import CRL Finished"
 msgstr "CRL İçe Aktarma Tamamlandı"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename>, okuma için açılamadı."
@@ -3990,7 +3990,7 @@ msgstr ""
 "Söz dizimi \"HOST\" veya \"HOST:PORT\" şeklindedir. PORT kısmı yazılmazsa "
 "standart LDAP kapısı olan 389 kullanılır."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4002,7 +4002,7 @@ msgstr ""
 "veya şifrelenmiş veri içeriyorsa lütfen hata bildirimi yapın (bkz. Yardım -> "
 "Hata Bildir...)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4012,28 +4012,39 @@ msgstr ""
 "<para><filename>%1</filename> dosyasını <filename>%2</filename> konumuna "
 "taşıma başarısız oldu.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<filename>%1</filename> dosyasını <filename>%2</filename> konumuna taşıma "
+"başarısız oldu."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Dosya, özgün dosya adı <filename>%1</filename> ile mi kaydedilsin?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Özgün Dosya Adını Kullan?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Hayır, <filename>%1</filename> Olarak Kaydet"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Evet, <filename>%1</filename> Olarak Kaydet"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4042,29 +4053,29 @@ msgstr ""
 "<b>%1</b> dosyası halihazırda var.\n"
 "Üzerine yazılsın mı?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Var Olan Dosyanın Üzerine Yaz?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Tümünün Üzerine Yaz"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> dosyasını silme başarısız oldu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> dosyasını <filename>%2</filename> konumuna taşıma "
 "başarısız oldu."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4073,7 +4084,7 @@ msgstr ""
 "<filename>%1</filename> dosyası sertifikalar içeriyor ve şifresi çözülemez "
 "veya doğrulanamaz."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "<filename>%1</filename> imzasıyla doğrulanacak dosyayı seç"
@@ -8543,7 +8554,7 @@ msgstr "Kleopatra Hatası"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatra'ya bağlanırken hata oluştu: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8558,13 +8569,13 @@ msgstr ""
 "para><para><application>Kleopatra</application> bu ayarlarla çalışmayacaktır."
 "</para><para>Bu sorunu çözmek için lütfen sistem yöneticinize danışın.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME Çok Eski"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8580,23 +8591,23 @@ msgstr ""
 "yönetin ve <filename>AppData\\Roaming\\gnupg</filename> dizinini düzgün "
 "izinlerle kopyalayın.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Sürdürmek istediğinize emin misiniz?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Yönetici Olarak Çalıştırma"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG Arayüz Sunucusu Hatası"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8615,7 +8626,7 @@ msgstr ""
 "<br/>Kleopatra'yı kullanmayı sürdürmeyi deneyebilirsiniz; ancak büyük "
 "olasılıkla başka sorunlarla karşılaşacaksınız.</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Geçersiz argümanlar: %1"
@@ -10771,6 +10782,18 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 "Var olan dosyanın ve halihazırda var olan diğer dosyaların üzerine yazın."
+
+#: src/utils/path-helper.cpp:119
+#, fuzzy, kde-format
+#| msgid "Could not create GnuPG home directory %1: %2"
+msgid "Cannot remove directory %1"
+msgstr "GnuPG ana dizini %1 oluşturulamadı: %2"
+
+#: src/utils/path-helper.cpp:124
+#, fuzzy, kde-format
+#| msgid "Could not write output file %1: %2"
+msgid "Cannot remove file %1: %2"
+msgstr "Çıktı dosyasına yazılamadı %1: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format

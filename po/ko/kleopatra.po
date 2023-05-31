@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2022-08-09 14:34+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2072,7 +2072,7 @@ msgid "Import CRL Finished"
 msgstr "CRL 가져오기 완료됨"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename>에서 읽으려고 열 수 없습니다."
@@ -3988,7 +3988,7 @@ msgstr ""
 "문법은 \"호스트\" 및 \"호스트:포트\"이며, 포트가 없는 경우에는 표준 LDAP 포"
 "트 389번을 사용합니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4000,7 +4000,7 @@ msgstr ""
 "나 암호화된 데이터가 포함되어 있으면 버그를 보고해 주십시오(도움말->버그 보"
 "고 참조)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4011,29 +4011,40 @@ msgstr ""
 "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
 "다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
+"다."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 "파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "원래 파일 이름을 사용하시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "아니요, <filename>%1</filename>(으)로 저장"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "예, <filename>%1</filename>(으)로 저장"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4042,29 +4053,29 @@ msgstr ""
 "<b>%1</b> 파일이 이미 존재합니다.\n"
 "덮어쓰시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "존재하는 파일을 덮어쓰시겠습니까?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "모두 덮어쓰기"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename>을(를) 삭제할 수 없습니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
 "다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4073,7 +4084,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 인증서가 포함되어 있으며 복호화하거나 검증할 "
 "수 없습니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "<filename>%1</filename> 서명을 사용하여 검증할 파일을 선택하십시오"
@@ -8466,7 +8477,7 @@ msgstr "Kleopatra 오류"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Kleopatra에 연결하는 중 오류 발생: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8481,13 +8492,13 @@ msgstr ""
 "para><para><application>Kleopatra</application>는 이 설정을 지원하지 않습니"
 "다.</para><para>이 문제를 해결하려면 시스템 관리자에게 연락하십시오.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME가 너무 오래됨"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8502,23 +8513,23 @@ msgstr ""
 "의 키를 관리하려면 일반 사용자로 실행한 다음 올바른 권한으로 "
 "<filename>AppData\\Roaming\\gnupg</filename> 디렉터리에 복사하십시오.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>계속 진행하시겠습니까?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "관리자 권한으로 실행"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI 서버 오류"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8532,7 +8543,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "잘못된 인자: %1"
@@ -10677,6 +10688,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "%1 디렉터리를 삭제할 수 없음"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "%1 파일을 삭제할 수 없음: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -11939,12 +11960,6 @@ msgstr "공개 키 서버에서 가져오려면 \"서버에서 찾아보기\"를
 
 #~ msgid "Tooltips"
 #~ msgstr "풍선 도움말"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "%1 디렉터리를 삭제할 수 없음"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "%1 파일을 삭제할 수 없음: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "\"%1\"에 덮어 쓰려고 삭제할 수 없습니다."

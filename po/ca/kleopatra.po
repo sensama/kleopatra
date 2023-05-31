@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2023-04-26 12:35+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -2102,7 +2102,7 @@ msgid "Import CRL Finished"
 msgstr "La importació de la CRL ha acabat"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "No s'ha pogut obrir el fitxer <filename>%1</filename> per a lectura."
@@ -4029,7 +4029,7 @@ msgstr ""
 "La sintaxi és «màquina» o «màquina:port». Si s'omet el port, s'usarà el port "
 "389 (que és l'estàndard LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4041,7 +4041,7 @@ msgstr ""
 "dades encriptades o signades, informeu d'algun error (vegeu «Ajuda -> "
 "Informa d'un error»)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4051,7 +4051,16 @@ msgstr ""
 "<para>Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>.</"
 "para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr "Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4059,22 +4068,22 @@ msgstr ""
 "El fitxer s'ha de desar amb el nom del fitxer original <filename>%1</"
 "filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Empra el nom de fitxer original?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "No, desa com a <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Sí, desa com a <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4083,27 +4092,27 @@ msgstr ""
 "El fitxer <b>%1</b> ja existeix.\n"
 "El sobreescric?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Sobreescriure el fitxer existent?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Sobreescriure-ho tot"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Ha fallat en suprimir <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr "Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4112,7 +4121,7 @@ msgstr ""
 "El fitxer <filename>%1</filename> conté els certificats i no es pot "
 "desencriptar o verificar."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -8630,7 +8639,7 @@ msgstr "Error del Kleopatra"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "S'ha produït un error en connectar amb el Kleopatra: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8646,13 +8655,13 @@ msgstr ""
 "application> no funcionarà en aquest arranjament.</para><para>Demaneu ajuda "
 "a l'administrador per a solucionar aquest problema.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME massa antiga"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8668,23 +8677,23 @@ msgstr ""
 "les com un usuari normal i copieu el directori <filename>AppData\\Roaming"
 "\\gnupg</filename> amb els permisos adequats.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Segur que voleu continuar?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Funcionant com a administrador"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Error del servidor IU del GPG"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8703,7 +8712,7 @@ msgstr ""
 "amb el vostre administrador per obtenir ajuda.<br/>Podeu intentar usant el "
 "Kleopatra però podrien haver-hi altres problemes.</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Arguments no vàlids: %1"
@@ -10885,6 +10894,18 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 "Sobreescriu el fitxer existent i qualsevol altre fitxer que ja existeixi."
+
+#: src/utils/path-helper.cpp:119
+#, fuzzy, kde-format
+#| msgid "Could not create GnuPG home directory %1: %2"
+msgid "Cannot remove directory %1"
+msgstr "No s'ha pogut crear el directori d'usuari del GnuPG %1: %2"
+
+#: src/utils/path-helper.cpp:124
+#, fuzzy, kde-format
+#| msgid "Could not write output file %1: %2"
+msgid "Cannot remove file %1: %2"
+msgstr "No s'ha pogut escriure al fitxer de sortida %1: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format

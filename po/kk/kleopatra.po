@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-05-31 00:49+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -2225,7 +2225,7 @@ msgid "Import CRL Finished"
 msgstr "CRL импорттауы аяқталды"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4247,7 +4247,7 @@ msgstr ""
 "Жазбасының түрі \"HOST\" немесе \"HOST:PORT\". Егер PORT болмаса, онда 389 "
 "деген стандартты LDAP портын қолданады"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4255,7 +4255,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4269,7 +4269,21 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
+"көшірмелеу болмайды: <message>%3</message>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4281,12 +4295,12 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4297,7 +4311,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4308,7 +4322,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4317,17 +4331,17 @@ msgstr ""
 "<b>%1</b> деген файл бар екен.\n"
 "Үстінен жаза берейік пе?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Бар файл үстінен жаза берейік пе?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Бүкілін үстінен жазу"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4338,7 +4352,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4349,14 +4363,14 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -8949,7 +8963,7 @@ msgstr "Kleopatra қатесі"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8964,13 +8978,13 @@ msgstr ""
 "para><para>Бұндайда <application>Kleopatra</application> істей алмайды.</"
 "para><para>Әкімшіңізден шешімін сұраңыз.</para> "
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME тым ескі"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8981,23 +8995,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG интерфейс серверінің қатесі"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9011,7 +9025,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, fuzzy, kde-format
 #| msgid "invalid mode: \"%1\""
 msgid "Invalid arguments: %1"
@@ -11261,6 +11275,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:119
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "%1 каталогы өшірілмейді"
+
+#: src/utils/path-helper.cpp:124
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "%1 файлы өшірілмейді: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12614,12 +12638,6 @@ msgstr ""
 
 #~ msgid "Tooltips"
 #~ msgstr "Ишарада көрсетілетіні"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "%1 каталогы өшірілмейді"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "%1 файлы өшірілмейді: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "\"%1\"файлы үстінен жазуға берілмеді"

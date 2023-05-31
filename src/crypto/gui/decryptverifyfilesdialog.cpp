@@ -191,7 +191,7 @@ void DecryptVerifyFilesDialog::checkAccept() {
     const auto outLoc = outputLocation();
     if (outLoc.isEmpty()) {
         KMessageBox::information(this, i18n("Please select an output folder."),
-                                 i18n("No output folder."));
+                                 i18nc("@title:window", "No Output Folder"));
         return;
     }
     const QFileInfo fi(outLoc);
@@ -200,17 +200,17 @@ void DecryptVerifyFilesDialog::checkAccept() {
         qCDebug(KLEOPATRA_LOG) << "Output dir does not exist. Trying to create.";
         const QDir dir(outLoc);
         if (!dir.mkdir(outLoc)) {
-            KMessageBox::information(this, i18n("Please select a different output folder."),
-                                     i18n("Failed to create output folder."));
+            KMessageBox::information(this, xi18nc("@info", "<para>Failed to create output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>", outLoc),
+                                     i18nc("@title:window", "Unusable Output Folder"));
         } else {
             accept();
         }
     } else if (!fi.isDir()) {
         KMessageBox::information(this, i18n("Please select a different output folder."),
-                                 i18n("Invalid output folder."));
+                                 i18nc("@title:window", "Invalid Output Folder"));
     } else if (!Kleo::isWritable(fi)) {
-        KMessageBox::information(this, i18n("Please select a different output folder."),
-                                 i18n("Invalid output folder."));
+        KMessageBox::information(this, xi18nc("@info", "<para>Cannot write in the output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>", outLoc),
+                                 i18nc("@title:window", "Unusable Output Folder"));
     } else {
         accept();
     }

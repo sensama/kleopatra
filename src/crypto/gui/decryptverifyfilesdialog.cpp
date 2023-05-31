@@ -16,6 +16,7 @@
 #include "crypto/decryptverifytask.h"
 #include "crypto/gui/resultpage.h"
 #include "crypto/gui/resultlistwidget.h"
+#include "utils/path-helper.h"
 
 #include <Libkleo/FileNameRequester>
 
@@ -195,26 +196,24 @@ void DecryptVerifyFilesDialog::checkAccept() {
     }
     const QFileInfo fi(outLoc);
 
-    if (fi.exists() && fi.isDir() && fi.isWritable()) {
-        accept();
-        return;
-    }
-
     if (!fi.exists()) {
         qCDebug(KLEOPATRA_LOG) << "Output dir does not exist. Trying to create.";
         const QDir dir(outLoc);
         if (!dir.mkdir(outLoc)) {
             KMessageBox::information(this, i18n("Please select a different output folder."),
                                      i18n("Failed to create output folder."));
-            return;
         } else {
             accept();
-            return;
         }
+    } else if (!fi.isDir()) {
+        KMessageBox::information(this, i18n("Please select a different output folder."),
+                                 i18n("Invalid output folder."));
+    } else if (!Kleo::isWritable(fi)) {
+        KMessageBox::information(this, i18n("Please select a different output folder."),
+                                 i18n("Invalid output folder."));
+    } else {
+        accept();
     }
-
-    KMessageBox::information(this, i18n("Please select a different output folder."),
-                             i18n("Invalid output folder."));
 }
 
 void DecryptVerifyFilesDialog::readConfig()

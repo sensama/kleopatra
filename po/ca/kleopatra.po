@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-31 00:49+0000\n"
-"PO-Revision-Date: 2023-04-26 12:35+0200\n"
+"POT-Creation-Date: 2023-06-01 00:48+0000\n"
+"PO-Revision-Date: 2023-05-31 10:13+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -4052,13 +4052,14 @@ msgstr ""
 "para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
-msgstr "Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>."
+msgstr ""
+"<para>Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>.</"
+"para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
@@ -4289,7 +4290,7 @@ msgid "No usable inputs found"
 msgstr "No s'ha trobat cap entrada útil"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4808,31 +4809,31 @@ msgstr "(escolliu abans entre OpenPGP i S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr "Carpeta de s&ortida:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Verificació dels fitxers"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Han finalitzat totes les operacions."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr "Han finalitzat totes les operacions."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, kde-format
@@ -4840,38 +4841,66 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operació %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Seleccioneu una carpeta de sortida."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
-#, kde-format
-msgid "No output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
+#, fuzzy, kde-format
+#| msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr "Sense carpeta de sortida."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para><para><message>%3</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"<para>Ha fallat en moure <filename>%1</filename> a <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr "Carpeta de sortida no vàlida."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Seleccioneu una carpeta de sortida diferent."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, kde-format
-msgid "Failed to create output folder."
-msgstr "Ha fallat en crear la carpeta de sortida."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
-#, kde-format
-msgid "Invalid output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
 msgstr "Carpeta de sortida no vàlida."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -10895,17 +10924,15 @@ msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 "Sobreescriu el fitxer existent i qualsevol altre fitxer que ja existeixi."
 
-#: src/utils/path-helper.cpp:119
-#, fuzzy, kde-format
-#| msgid "Could not create GnuPG home directory %1: %2"
+#: src/utils/path-helper.cpp:158
+#, kde-format
 msgid "Cannot remove directory %1"
-msgstr "No s'ha pogut crear el directori d'usuari del GnuPG %1: %2"
+msgstr "No s'ha pogut eliminar el directori %1"
 
-#: src/utils/path-helper.cpp:124
-#, fuzzy, kde-format
-#| msgid "Could not write output file %1: %2"
+#: src/utils/path-helper.cpp:163
+#, kde-format
 msgid "Cannot remove file %1: %2"
-msgstr "No s'ha pogut escriure al fitxer de sortida %1: %2"
+msgstr "No s'ha pogut eliminar el fitxer %1: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format
@@ -12182,3 +12209,6 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgid "Failed to create output folder."
+#~ msgstr "Ha fallat en crear la carpeta de sortida."

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-31 00:49+0000\n"
+"POT-Creation-Date: 2023-06-01 00:48+0000\n"
 "PO-Revision-Date: 2023-04-30 15:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -4294,7 +4294,7 @@ msgid "No usable inputs found"
 msgstr "Не найдено подходящего источника"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4817,31 +4817,31 @@ msgstr "(сначала выберите OpenPGP или S/MIME)"
 msgid "..."
 msgstr "…"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr "&Папка для вывода:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Проверка файлов"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: все задания выполнены."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr "Все задания выполнены."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, kde-format
@@ -4849,38 +4849,62 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Задание %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Выберите папку для сохранения результатов."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
-#, kde-format
-msgid "No output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
+#, fuzzy, kde-format
+#| msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr "Отсутствует папка для сохранения результатов."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr "Неверная папка для сохранения результатов."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Выберите другую папку для сохранения результатов."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, kde-format
-msgid "Failed to create output folder."
-msgstr "Не удалось создать папку для сохранения результатов."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
-#, kde-format
-msgid "Invalid output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
 msgstr "Неверная папка для сохранения результатов."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -10894,12 +10918,12 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr "Заменить существующий файл и остальные существующие файлы."
 
-#: src/utils/path-helper.cpp:119
+#: src/utils/path-helper.cpp:158
 #, kde-format
 msgid "Cannot remove directory %1"
 msgstr "Ошибка удаления каталога «%1»"
 
-#: src/utils/path-helper.cpp:124
+#: src/utils/path-helper.cpp:163
 #, kde-format
 msgid "Cannot remove file %1: %2"
 msgstr "Ошибка удаления файла «%1»: %2"
@@ -12174,6 +12198,9 @@ msgid ""
 msgstr ""
 "Импортировать сертификат из файла.<nl/>Для импорта с открытого сервера "
 "ключей воспользуйтесь пунктом меню <interface>Поиск на сервере…</interface>."
+
+#~ msgid "Failed to create output folder."
+#~ msgstr "Не удалось создать папку для сохранения результатов."
 
 #~ msgid "Tooltips"
 #~ msgstr "Всплывающая подсказка"

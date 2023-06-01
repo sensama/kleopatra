@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-31 00:49+0000\n"
-"PO-Revision-Date: 2023-05-17 11:58+0100\n"
+"POT-Creation-Date: 2023-06-01 00:48+0000\n"
+"PO-Revision-Date: 2023-05-31 22:39+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -3985,13 +3985,14 @@ msgstr ""
 "para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
-msgstr "Malsukcesis movi <filename>%1</filename> al <filename>%2</filename>."
+msgstr ""
+"<para>Malsukcesis movi <filename>%1</filename> al <filename>%2</filename>.</"
+"para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
@@ -4219,7 +4220,7 @@ msgid "No usable inputs found"
 msgstr "Neniuj uzeblaj enigaĵoj trovitaj"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4737,31 +4738,31 @@ msgstr "(bonvolu elekti inter OpenPGP kaj S/MIME unue)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr "&Eliga dosierujo:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Kontroli dosierojn"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Ĉiuj operacioj finiĝis."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr "Ĉiuj operacioj finiĝis."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, kde-format
@@ -4769,38 +4770,66 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operacio %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Bonvolu elekti eligdosierujon."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
-#, kde-format
-msgid "No output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
+#, fuzzy, kde-format
+#| msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr "Neniu eligo dosierujo."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para><para><message>%3</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"<para>Malsukcesis movi <filename>%1</filename> al <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr "Nevalida eliga dosierujo."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Bonvolu elekti alian eligdosierujon."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, kde-format
-msgid "Failed to create output folder."
-msgstr "Malsukcesis krei eligdosierujon."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
-#, kde-format
-msgid "Invalid output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
 msgstr "Nevalida eliga dosierujo."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -6622,7 +6651,13 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"La atestilo forigenda estas via propra. Ĝi enhavas privatan "
+"ŝlosilmaterialon, kio estas bezonata por malĉifri pasintan komunikon "
+"ĉifritan al la atestilo, kaj tial ne estu forigata."
 msgstr[1] ""
+"Ĉiuj la atestiloj forigendaj estas viaj propraj. Ili enhavas privatan ŝlosil-"
+"materialon, kio estas bezonata por malĉifri pasintan komunikon ĉifritan al "
+"la atestilo, kaj tial ne estu forigataj."
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6635,7 +6670,13 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+"Unu el la atestiloj forigendaj estas via propra. Ĝi enhavas privatan ŝlosil-"
+"materialon, kio estas bezonata por malĉifri pasintan komunikon ĉifritan al "
+"la atestilo kaj tial ne estu forigata."
 msgstr[1] ""
+"Iuj el la atestiloj forigendaj estas viaj propraj. Ili enhavas privatan "
+"ŝlosilmaterialon, kio estas bezonata por malĉifri pasintan komunikon "
+"ĉifritan al la atestilo kaj tial ne estu forigataj."
 
 #: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:403
 #, kde-format
@@ -10726,17 +10767,15 @@ msgstr ""
 "Anstataŭigu la ekzistantan dosieron kaj ajnajn aliajn dosierojn kiuj jam "
 "ekzistas."
 
-#: src/utils/path-helper.cpp:119
-#, fuzzy, kde-format
-#| msgid "Could not create GnuPG home directory %1: %2"
+#: src/utils/path-helper.cpp:158
+#, kde-format
 msgid "Cannot remove directory %1"
-msgstr "Ne eblis krei GnuPG-hejma dosierujo %1: %2"
+msgstr "Ne eblas forigi dosierujon %1"
 
-#: src/utils/path-helper.cpp:124
-#, fuzzy, kde-format
-#| msgid "Could not write output file %1: %2"
+#: src/utils/path-helper.cpp:163
+#, kde-format
 msgid "Cannot remove file %1: %2"
-msgstr "Ne eblis skribi eligdosieron %1: %2"
+msgstr "Ne eblas forigi dosieron %1: %2"
 
 #: src/view/formtextinput.cpp:28
 #, kde-format
@@ -12002,3 +12041,6 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
+
+#~ msgid "Failed to create output folder."
+#~ msgstr "Malsukcesis krei eligdosierujon."

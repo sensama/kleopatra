@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-06-02 00:48+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -2225,7 +2225,7 @@ msgid "Import CRL Finished"
 msgstr "CRL импорттауы аяқталды"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4247,7 +4247,7 @@ msgstr ""
 "Жазбасының түрі \"HOST\" немесе \"HOST:PORT\". Егер PORT болмаса, онда 389 "
 "деген стандартты LDAP портын қолданады"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4255,7 +4255,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4269,7 +4269,21 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
+"көшірмелеу болмайды: <message>%3</message>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4281,12 +4295,12 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4297,7 +4311,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4308,7 +4322,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4317,17 +4331,17 @@ msgstr ""
 "<b>%1</b> деген файл бар екен.\n"
 "Үстінен жаза берейік пе?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Бар файл үстінен жаза берейік пе?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Бүкілін үстінен жазу"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4338,7 +4352,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4349,14 +4363,14 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4527,7 +4541,7 @@ msgid "No usable inputs found"
 msgstr "Кірісте жарамды түк те жоқ"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
@@ -4996,38 +5010,38 @@ msgstr "Шифрлау жаңылысы: %1"
 msgid "Encryption succeeded."
 msgstr "Шифрлау сәтті өтті."
 
-#: src/crypto/gui/certificatelineedit.cpp:200
+#: src/crypto/gui/certificatelineedit.cpp:270
 #, kde-format
 msgid "Please enter a name or email address..."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:213
-#: src/crypto/gui/certificatelineedit.cpp:214
+#: src/crypto/gui/certificatelineedit.cpp:285
+#: src/crypto/gui/certificatelineedit.cpp:286
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Show certificate list"
 msgstr "Куәліктің жарамдылығы көрсетілсін"
 
-#: src/crypto/gui/certificatelineedit.cpp:233
+#: src/crypto/gui/certificatelineedit.cpp:305
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Егжей-тегжейлерін көрсету"
 
-#: src/crypto/gui/certificatelineedit.cpp:505
+#: src/crypto/gui/certificatelineedit.cpp:577
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "No matching certificates or groups found"
 msgstr "(сәйкесті куәлік табылған жоқ)"
 
-#: src/crypto/gui/certificatelineedit.cpp:507
+#: src/crypto/gui/certificatelineedit.cpp:579
 #, fuzzy, kde-format
 #| msgid "(no matching certificates found)"
 msgid "Multiple matching certificates or groups found"
 msgstr "(сәйкесті куәлік табылған жоқ)"
 
-#: src/crypto/gui/certificatelineedit.cpp:577 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:649 src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
 msgctxt "@info"
@@ -5055,32 +5069,32 @@ msgstr "(алдымен OpenPGP не S/MIME біреуін таңдаңыз)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr "Ш&ығыс қапшығы:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Файлдардың шифрын шешу/тексеру"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Бүкіл әрекеттер бітті."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr "Бүкіл әрекеттер бітті."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, kde-format
@@ -5088,46 +5102,70 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "%1-әрекет: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Please select export options for %1:"
 msgid "Please select an output folder."
 msgstr "%1 үшін экспорттау параметрлерін таңдаңыз:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
-msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr "Ш&ығыс қапшығы:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
+"көшірмелеу болмайды: <message>%3</message>"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, fuzzy, kde-format
+#| msgid "&Output folder:"
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr "Ш&ығыс қапшығы:"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Please select export options for %1:"
 msgid "Please select a different output folder."
 msgstr "%1 үшін экспорттау параметрлерін таңдаңыз:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "You have to enter an output filename."
-msgid "Failed to create output folder."
-msgstr "Шығыс файл атауын келтіруіңіз керек."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
 #, fuzzy, kde-format
 #| msgid "&Output folder:"
-msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
 msgstr "Ш&ығыс қапшығы:"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -8949,7 +8987,7 @@ msgstr "Kleopatra қатесі"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8964,13 +9002,13 @@ msgstr ""
 "para><para>Бұндайда <application>Kleopatra</application> істей алмайды.</"
 "para><para>Әкімшіңізден шешімін сұраңыз.</para> "
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME тым ескі"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8981,23 +9019,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG интерфейс серверінің қатесі"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9011,7 +9049,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, fuzzy, kde-format
 #| msgid "invalid mode: \"%1\""
 msgid "Invalid arguments: %1"
@@ -11261,6 +11299,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:158
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "%1 каталогы өшірілмейді"
+
+#: src/utils/path-helper.cpp:163
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "%1 файлы өшірілмейді: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12612,14 +12660,14 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "You have to enter an output filename."
+#~ msgid "Failed to create output folder."
+#~ msgstr "Шығыс файл атауын келтіруіңіз керек."
+
 #~ msgid "Tooltips"
 #~ msgstr "Ишарада көрсетілетіні"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "%1 каталогы өшірілмейді"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "%1 файлы өшірілмейді: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr "\"%1\"файлы үстінен жазуға берілмеді"

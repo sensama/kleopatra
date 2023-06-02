@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-06-02 00:48+0000\n"
 "PO-Revision-Date: 2023-05-02 17:09+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2138,7 +2138,7 @@ msgid "Import CRL Finished"
 msgstr "Sperrlisten-Import abgeschlossen"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename> lässt sich nicht zum Lesen öffnen."
@@ -4076,7 +4076,7 @@ msgstr ""
 "Die Syntax ist „SERVER“ oder „SERVER:PORT“. Wenn PORT nicht angegeben ist, "
 "wird Port 389 (Standard für LDAP) verwendet."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4088,7 +4088,7 @@ msgstr ""
 "wollen.<nl/>Wenn Sie signierte oder verschlüsselte Daten enthalten, "
 "berichten Sie bitte einen Fehler (Siehe Hilfe->Fehlerbericht erstellen)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4098,7 +4098,18 @@ msgstr ""
 "<para>Die Datei <filename>%1</filename> kann nicht nach <filename>%2</"
 "filename> verschoben werden.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
+"verschoben werden."
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4106,22 +4117,22 @@ msgstr ""
 "Soll die Datei mit dem ursprünglichen Dateinamen <filename>%1</filename> "
 "abgespeichert werden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Ursprünglichen Dateinamen verwenden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nein, als <filename>%1</filename> abspeichern."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ja, als <filename>%1</filename> abspeichern."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4130,29 +4141,29 @@ msgstr ""
 "Eine Datei namens <b>%1</b> existiert bereits.\n"
 "Soll sie überschrieben werden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Vorhandene Datei überschreiben?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, kde-format
 msgid "Overwrite All"
 msgstr "Alle überschreiben"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Die Datei <filename>%1</filename> kann nicht gelöscht werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
 "verschoben werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4161,7 +4172,7 @@ msgstr ""
 "Die Datei <filename>%1</filename> enthält Zertifikate und kann nicht "
 "entschlüsselt oder verifiziert werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4332,7 +4343,7 @@ msgid "No usable inputs found"
 msgstr "Keine brauchbaren Eingaben gefunden"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
@@ -4805,34 +4816,34 @@ msgstr "Verschlüsseln fehlgeschlagen: %1"
 msgid "Encryption succeeded."
 msgstr "Verschlüsseln abgeschlossen."
 
-#: src/crypto/gui/certificatelineedit.cpp:200
+#: src/crypto/gui/certificatelineedit.cpp:270
 #, kde-format
 msgid "Please enter a name or email address..."
 msgstr "Bitte geben Sie einen Namen oder eine E-Mail-Adresse ein..."
 
-#: src/crypto/gui/certificatelineedit.cpp:213
-#: src/crypto/gui/certificatelineedit.cpp:214
+#: src/crypto/gui/certificatelineedit.cpp:285
+#: src/crypto/gui/certificatelineedit.cpp:286
 #, kde-format
 msgid "Show certificate list"
 msgstr "Zertifikatsliste anzeigen"
 
-#: src/crypto/gui/certificatelineedit.cpp:233
+#: src/crypto/gui/certificatelineedit.cpp:305
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Details anzeigen"
 
-#: src/crypto/gui/certificatelineedit.cpp:505
+#: src/crypto/gui/certificatelineedit.cpp:577
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Keine passenden Zertifikate oder Gruppen gefunden"
 
-#: src/crypto/gui/certificatelineedit.cpp:507
+#: src/crypto/gui/certificatelineedit.cpp:579
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Mehrere passende Zertifikate oder Gruppen gefunden"
 
-#: src/crypto/gui/certificatelineedit.cpp:577 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:649 src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -4859,31 +4870,31 @@ msgstr "(bitte wählen Sie zuerst zwischen OpenPGP und S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr "&Ausgabe-Ordner:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Dateien überprüfen"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Alle Operationen abgeschlossen."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr "Alle Operationen abgeschlossen."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, kde-format
@@ -4891,38 +4902,66 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operation %1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, kde-format
 msgid "Please select an output folder."
 msgstr "Bitte wählen Sie einen Ausgabe-Ordner."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
-#, kde-format
-msgid "No output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
+#, fuzzy, kde-format
+#| msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr "Kein Ausgabe-Ordner."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para><para><message>%3</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"<para>Die Datei <filename>%1</filename> kann nicht nach <filename>%2</"
+"filename> verschoben werden.</para><para><message>%3</message></para>"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr "Ungültiger Ausgabe-Ordner."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
 msgid "Please select a different output folder."
 msgstr "Bitte wählen Sie einen anderen Ausgabe-Ordner."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, kde-format
-msgid "Failed to create output folder."
-msgstr "Fehler beim Erstellen des Ausgabe-Ordners."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
-#, kde-format
-msgid "Invalid output folder."
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
+#, fuzzy, kde-format
+#| msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
 msgstr "Ungültiger Ausgabe-Ordner."
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -8704,7 +8743,7 @@ msgstr "Kleopatra-Fehler"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr "Beim Verbinden zu Kleopatra ist ein Fehler aufgetreten: %1"
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8720,13 +8759,13 @@ msgstr ""
 "nicht funktionieren.</para><para>Bitten Sie Ihren Systemverwalter, das "
 "Problem zu beheben.</para>"
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME ist zu alt"
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8743,23 +8782,23 @@ msgstr ""
 "den Ordner <filename>AppData\\Roaming\\gnupg</filename> mit den korrekten "
 "Dateirechten.</para>"
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Möchten Sie wirklich fortfahren?</para>"
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Als Administrator ausgeführt"
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Fehler im GPG-Benutzerschnittstellen-Server"
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8779,7 +8818,7 @@ msgstr ""
 "Administrator .<br/>Sie können versuchen, Kleopatra weiter zu verwenden, "
 "aber es könnten andere Probleme geben.</qt>"
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Ungültige Argumente: „%1“"
@@ -10955,6 +10994,16 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr "Überschreibe diese Datei und alle Folgenden, die bereits existieren."
 
+#: src/utils/path-helper.cpp:158
+#, kde-format
+msgid "Cannot remove directory %1"
+msgstr "Der Ordner %1 kann nicht entfernt werden"
+
+#: src/utils/path-helper.cpp:163
+#, kde-format
+msgid "Cannot remove file %1: %2"
+msgstr "Die Datei %1 kann nicht entfernt werden: %2"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12238,14 +12287,11 @@ msgstr ""
 "Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
 "verwenden Sie stattdessen „Auf Server suchen“."
 
+#~ msgid "Failed to create output folder."
+#~ msgstr "Fehler beim Erstellen des Ausgabe-Ordners."
+
 #~ msgid "Tooltips"
 #~ msgstr "Kurzinfos"
-
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "Der Ordner %1 kann nicht entfernt werden"
-
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "Die Datei %1 kann nicht entfernt werden: %2"
 
 #~ msgid "Could not remove file \"%1\" for overwriting."
 #~ msgstr ""

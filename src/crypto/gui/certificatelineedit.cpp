@@ -100,6 +100,76 @@ public:
             return KeyListSortFilterProxyModel::data(index(idx.row(), KeyList::Summary), role);
         }
     }
+
+private:
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override
+    {
+        const auto leftKey = sourceModel()->data(left, KeyList::KeyRole).value<GpgME::Key>();
+        const auto leftGroup = leftKey.isNull() ? sourceModel()->data(left, KeyList::GroupRole).value<KeyGroup>() : KeyGroup{};
+        const auto rightKey = sourceModel()->data(right, KeyList::KeyRole).value<GpgME::Key>();
+        const auto rightGroup = rightKey.isNull() ? sourceModel()->data(right, KeyList::GroupRole).value<KeyGroup>() : KeyGroup{};
+
+        // shouldn't happen, but still put null entries at the end
+        if (leftKey.isNull() && leftGroup.isNull()) {
+            return false;
+        }
+        if (rightKey.isNull() && rightGroup.isNull()) {
+            return true;
+        }
+
+        // first sort by the displayed name and/or email address
+        const auto leftNameAndOrEmail = leftGroup.isNull() ? Formatting::nameAndEmailForSummaryLine(leftKey) : leftGroup.name();
+        const auto rightNameAndOrEmail = rightGroup.isNull() ? Formatting::nameAndEmailForSummaryLine(rightKey) : rightGroup.name();
+        const int cmp = QString::localeAwareCompare(leftNameAndOrEmail, rightNameAndOrEmail);
+        if (cmp) {
+            return cmp < 0;
+        }
+        // then sort groups before certificates
+        if (!leftGroup.isNull() && !rightKey.isNull()) {
+            return true; // left is group, right is certificate
+        }
+        if (!leftKey.isNull() && !rightGroup.isNull()) {
+            return false; // left is certificate, right is group
+        }
+
+        // if both are groups (with identical names) sort them by their ID
+        if (!leftGroup.isNull() && !rightGroup.isNull()) {
+            return leftGroup.id() < rightGroup.id();
+        }
+
+        // sort certificates with same name/email by validity and creation time
+        const auto lUid = leftKey.userID(0);
+        const auto rUid = rightKey.userID(0);
+        if (lUid.validity() != rUid.validity()) {
+            return lUid.validity() > rUid.validity();
+        }
+
+        /* Both have the same validity, check which one is newer. */
+        time_t leftTime = 0;
+        for (const GpgME::Subkey &s : leftKey.subkeys()) {
+            if (s.isBad()) {
+                continue;
+            }
+            if (s.creationTime() > leftTime) {
+                leftTime = s.creationTime();
+            }
+        }
+        time_t rightTime = 0;
+        for (const GpgME::Subkey &s : rightKey.subkeys()) {
+            if (s.isBad()) {
+                continue;
+            }
+            if (s.creationTime() > rightTime) {
+                rightTime = s.creationTime();
+            }
+        }
+        if (rightTime != leftTime) {
+            return leftTime > rightTime;
+        }
+
+        // as final resort we compare the fingerprints
+        return strcmp(leftKey.primaryFingerprint(), rightKey.primaryFingerprint()) < 0;
+    }
 };
 
 auto createSeparatorAction(QObject *parent)
@@ -179,7 +249,7 @@ public:
 private:
     QString mAccessibleName;
     KeyListSortFilterProxyModel *const mFilterModel;
-    KeyListSortFilterProxyModel *const mCompleterFilterModel;
+    CompletionProxyModel *const mCompleterFilterModel;
     QCompleter *mCompleter = nullptr;
     std::shared_ptr<KeyFilter> mFilter;
     QAction *const mStatusAction;
@@ -204,6 +274,8 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
 
     mCompleterFilterModel->setKeyFilter(mFilter);
     mCompleterFilterModel->setSourceModel(model);
+    // initialize dynamic sorting
+    mCompleterFilterModel->sort(0);
     mCompleter->setModel(mCompleterFilterModel);
     mCompleter->setFilterMode(Qt::MatchContains);
     mCompleter->setCaseSensitivity(Qt::CaseInsensitive);

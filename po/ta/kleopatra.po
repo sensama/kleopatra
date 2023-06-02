@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-17 00:48+0000\n"
+"POT-Creation-Date: 2023-06-02 00:48+0000\n"
 "PO-Revision-Date: 2005-03-16 02:05-0800\n"
 "Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
 "Language-Team:  <ta@li.org>\n"
@@ -2227,7 +2227,7 @@ msgid "Import CRL Finished"
 msgstr "CRLs...ஐ இறக்குமதி செய்.."
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:340
+#: src/crypto/autodecryptverifyfilescontroller.cpp:352
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4137,7 +4137,7 @@ msgid ""
 "(standard LDAP port) is used."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#: src/crypto/autodecryptverifyfilescontroller.cpp:155
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4145,7 +4145,7 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:213
+#: src/crypto/autodecryptverifyfilescontroller.cpp:217
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -4157,66 +4157,78 @@ msgid ""
 msgstr ""
 "<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:226
+#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:227
+#: src/crypto/autodecryptverifyfilescontroller.cpp:239
 #, kde-format
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:228
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:229
+#: src/crypto/autodecryptverifyfilescontroller.cpp:241
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
 "Overwrite?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:259
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgid "Overwrite Existing File?"
 msgstr "கோப்பினை மேல் எழுத வேண்டுமா?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:249
+#: src/crypto/autodecryptverifyfilescontroller.cpp:261
 #, fuzzy, kde-format
 #| msgid "Overwrite File?"
 msgid "Overwrite All"
 msgstr "கோப்பினை மேல் எழுத வேண்டுமா?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:273
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:268
+#: src/crypto/autodecryptverifyfilescontroller.cpp:280
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:348
+#: src/crypto/autodecryptverifyfilescontroller.cpp:360
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:398
+#: src/crypto/autodecryptverifyfilescontroller.cpp:410
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
@@ -4387,7 +4399,7 @@ msgid "No usable inputs found"
 msgstr ""
 
 #: src/crypto/decryptverifyfilescontroller.cpp:219
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:84
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
@@ -4846,38 +4858,38 @@ msgstr ""
 msgid "Encryption succeeded."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:200
+#: src/crypto/gui/certificatelineedit.cpp:270
 #, kde-format
 msgid "Please enter a name or email address..."
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:213
-#: src/crypto/gui/certificatelineedit.cpp:214
+#: src/crypto/gui/certificatelineedit.cpp:285
+#: src/crypto/gui/certificatelineedit.cpp:286
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgid "Show certificate list"
 msgstr "சான்றிதழை அழிக்க முடியவில்லை."
 
-#: src/crypto/gui/certificatelineedit.cpp:233
+#: src/crypto/gui/certificatelineedit.cpp:305
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "&விவரங்கள்"
 
-#: src/crypto/gui/certificatelineedit.cpp:505
+#: src/crypto/gui/certificatelineedit.cpp:577
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "No matching certificates or groups found"
 msgstr "கொணர்ந்தச் சான்றிதழ் சங்கிலி"
 
-#: src/crypto/gui/certificatelineedit.cpp:507
+#: src/crypto/gui/certificatelineedit.cpp:579
 #, fuzzy, kde-format
 #| msgid "Fetching Certificate Chain"
 msgid "Multiple matching certificates or groups found"
 msgstr "கொணர்ந்தச் சான்றிதழ் சங்கிலி"
 
-#: src/crypto/gui/certificatelineedit.cpp:577 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:649 src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgctxt "@info"
@@ -4908,32 +4920,32 @@ msgstr ""
 msgid "..."
 msgstr "ஏ.கே.ஏ"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:49
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:50
 #: src/crypto/gui/decryptverifyfileswizard.cpp:210
 #, kde-format
 msgid "&Output folder:"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:92
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "விசைகள் அழிக்கப்படுகின்றன..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:115
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:116
 #: src/crypto/gui/newresultpage.cpp:96 src/crypto/gui/resultpage.cpp:88
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:117
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:118
 #: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:90
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:139
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:140
 #: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultlistwidget.cpp:195
 #: src/crypto/gui/resultpage.cpp:107
 #, fuzzy, kde-format
@@ -4942,7 +4954,7 @@ msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "செயலை நிறுத்து"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:141
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:142
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:109
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
@@ -4951,35 +4963,53 @@ msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr " %1 (%2):"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:192
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
 #, fuzzy, kde-format
 msgid "Please select an output folder."
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:193
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:194
 #, kde-format
-msgid "No output folder."
+msgctxt "@title:window"
+msgid "No Output Folder"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:207
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:216
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to create output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
+msgstr ""
+"<qt><p>சான்றிதழ்களை அழிக்க முயலும்போது பிழை ஏற்பட்டுள்ளது:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:204
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:213
+#, kde-format
+msgctxt "@title:window"
+msgid "Unusable Output Folder"
+msgstr ""
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, fuzzy, kde-format
 msgid "Please select a different output folder."
 msgstr "இந்த சான்றிதழை அழிக்க வேண்டுமா?"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:208
-#, fuzzy, kde-format
-#| msgid ""
-#| "Failed to execute gpgsm:\n"
-#| "%1"
-msgid "Failed to create output folder."
-msgstr ""
-"ஜிபிஜிஎசெமை செயலாக்க முடியவில்லை\n"
-"%1"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:217
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:210
 #, kde-format
-msgid "Invalid output folder."
+msgctxt "@title:window"
+msgid "Invalid Output Folder"
+msgstr ""
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:212
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Cannot write in the output folder <filename>%1</filename>.</"
+"para><para>Please select a different output folder.</para>"
 msgstr ""
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
@@ -8736,7 +8766,7 @@ msgstr "கிளியோபட்ரா பிழை"
 msgid "There was an error while connecting to Kleopatra: %1"
 msgstr ""
 
-#: src/main.cpp:138
+#: src/main.cpp:141
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8747,13 +8777,13 @@ msgid ""
 "administrator for help in resolving this issue.</para>"
 msgstr ""
 
-#: src/main.cpp:142
+#: src/main.cpp:145
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr ""
 
-#: src/main.cpp:166
+#: src/main.cpp:169
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8764,23 +8794,23 @@ msgid ""
 "permissions.</para>"
 msgstr ""
 
-#: src/main.cpp:170
+#: src/main.cpp:173
 #, kde-kuit-format
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
-#: src/main.cpp:171
+#: src/main.cpp:174
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr ""
 
-#: src/main.cpp:244
+#: src/main.cpp:247
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr ""
 
-#: src/main.cpp:248
+#: src/main.cpp:251
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -8794,7 +8824,7 @@ msgid ""
 "other problems.</qt>"
 msgstr ""
 
-#: src/main.cpp:278
+#: src/main.cpp:281
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr ""
@@ -10920,6 +10950,18 @@ msgctxt "@info:tooltip"
 msgid "Overwrite the existing file and any other files that already exist."
 msgstr ""
 
+#: src/utils/path-helper.cpp:158
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgid "Cannot remove directory %1"
+msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
+
+#: src/utils/path-helper.cpp:163
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgid "Cannot remove file %1: %2"
+msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
+
 #: src/view/formtextinput.cpp:28
 #, kde-format
 msgid "Error: Enter a value."
@@ -12257,14 +12299,13 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Cannot remove directory %1"
-#~ msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Cannot remove file %1: %2"
-#~ msgstr "%1 சான்றிதழை உருவாக்க முடியவில்லை"
+#~| msgid ""
+#~| "Failed to execute gpgsm:\n"
+#~| "%1"
+#~ msgid "Failed to create output folder."
+#~ msgstr ""
+#~ "ஜிபிஜிஎசெமை செயலாக்க முடியவில்லை\n"
+#~ "%1"
 
 #, fuzzy
 #~| msgid "Could not generate certificate: %1"

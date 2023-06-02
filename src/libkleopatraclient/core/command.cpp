@@ -34,7 +34,7 @@
 
 #include <assuan.h>
 #include <gpg-error.h>
-#include <gpgme++/global.h>
+#include <gpgme++/error.h>
 
 #include <algorithm>
 #include <string>
@@ -660,7 +660,7 @@ void Command::Private::run()
 
     err = my_assuan_transact(ctx, in.command.constData(), &command_data_cb, &out.data, &command_inquire_cb, &id);
     if (err) {
-        if (gpg_err_code(err) == GPG_ERR_CANCELED) {
+        if (GpgME::Error{err}.isCanceled()) {
             out.canceled = true;
         } else {
             out.errorString = i18n("Command (%1) failed: %2", QString::fromLatin1(in.command.constData()), to_error_string(err));

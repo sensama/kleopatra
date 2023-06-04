@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-02 00:48+0000\n"
-"PO-Revision-Date: 2023-05-23 19:05+0200\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"PO-Revision-Date: 2023-06-02 06:12+0200\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3310,7 +3310,7 @@ msgstr "Afficher les détails techniques"
 #, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr "Afficher l’expiration prochaine du certificat"
+msgstr "Afficher l'expiration prochaine du certificat"
 
 #: src/conf/appearanceconfigwidget.cpp:385
 #, kde-format
@@ -3342,7 +3342,7 @@ msgid ""
 "certificate is about to expire soon."
 msgstr ""
 "Sélectionnez le nombre de jours avant lesquels vous souhaitez être averti à "
-"l’avance, si votre propre certificat est sur le point d’expirer."
+"l'avance, si votre propre certificat est sur le point d'expirer."
 
 #: src/conf/appearanceconfigwidget.cpp:398
 #, kde-format
@@ -3358,7 +3358,7 @@ msgid ""
 "person's certificate is about to expire soon."
 msgstr ""
 "Sélectionner le nombre de jours avant lesquels vous souhaitez être averti à "
-"l’avance, si le certificat d’une autre personne est sur le point d’expirer."
+"l'avance, si le certificat d'une autre personne est sur le point d'expirer."
 
 #: src/conf/appearanceconfigwidget.cpp:416
 #, kde-format
@@ -4128,14 +4128,14 @@ msgstr ""
 "filename>.</para> <para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
 msgstr ""
-"Impossible de déplacer <filename>%1</filename> vers <filename>%2</filename>."
+"<para>Impossible de déplacer <filename>%1</filename> vers <filename>%2</"
+"filename>.</para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
@@ -4937,33 +4937,27 @@ msgid "Please select an output folder."
 msgstr "Veuillez sélectionner un dossier de destination."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:194
-#, fuzzy, kde-format
-#| msgid "No output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
-msgstr "Aucun dossier de destination."
+msgstr "Aucun dossier de sortie."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:203
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-#| "para><para><message>%3</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
-"<para>Impossible de déplacer <filename>%1</filename> vers <filename>%2</"
-"filename>.</para> <para><message>%3</message></para>"
+"<para>Impossible de créer le dossier de sortie <filename>%1</filename>.</"
+"para> <para>Veuillez sélectionner un dossier de sortie différent.</para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:204
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:213
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
-msgstr "Dossier de destination non valable."
+msgstr "Dossier de sortie non utilisable."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
@@ -4971,11 +4965,10 @@ msgid "Please select a different output folder."
 msgstr "Veuillez sélectionner un dossier de destination différent."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:210
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
-msgstr "Dossier de destination non valable."
+msgstr "Dossier de sortie non valable."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, kde-kuit-format
@@ -4984,6 +4977,9 @@ msgid ""
 "<para>Cannot write in the output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>Impossible d'écrire dans le dossier de sortie <filename>%1</filename>."
+"</para> <para>Veuillez sélectionner un dossier de destination différent.</"
+"para>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -5665,7 +5661,7 @@ msgstr "Le certificat a expiré"
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
-msgstr "Certificat de signature expire aujourd’hui."
+msgstr "Certificat de signature expire aujourd'hui."
 
 #: src/crypto/gui/signencryptwidget.cpp:595
 #, kde-format
@@ -8372,7 +8368,7 @@ msgid ""
 "        certificates that are about to expire soon."
 msgstr ""
 "Si cette option est activée, Kleopatra affichera les notifications à un "
-"emplacement donné lors de l’utilisation de \n"
+"emplacement donné lors de l'utilisation de \n"
 "        certificats dont l'expiration est proche."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)

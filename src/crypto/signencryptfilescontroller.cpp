@@ -360,7 +360,8 @@ void SignEncryptFilesController::setFiles(const QStringList &files)
 
 void SignEncryptFilesController::Private::slotWizardCanceled()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
+    q->cancel();
     reportError(gpg_error(GPG_ERR_CANCELED), i18n("User cancel"));
 }
 
@@ -689,7 +690,7 @@ void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_
 
 void SignEncryptFilesController::cancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     try {
         if (d->wizard) {
             d->wizard->close();

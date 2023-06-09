@@ -317,6 +317,7 @@ private:
     bool archive  : 1;
 
     QPointer<QGpgME::Job> job;
+    QString labelText;
     std::shared_ptr<OverwritePolicy> m_overwritePolicy;
 };
 
@@ -452,7 +453,9 @@ Protocol SignEncryptTask::protocol() const
 
 QString SignEncryptTask::label() const
 {
-    if (d->input) {
+    if (!d->labelText.isEmpty()) {
+        return d->labelText;
+    } else if (d->input) {
         return d->input->label();
     } else if (!d->inputFileNames.empty()) {
         const auto firstFile = QFileInfo{d->inputFileNames.front()}.fileName();
@@ -640,6 +643,7 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             qCDebug(KLEOPATRA_LOG) << "Adding symmetric flag";
         }
         if (sign) {
+            labelText = i18nc("@info", "Creating signed and encrypted archive ...");
             std::unique_ptr<QGpgME::SignEncryptArchiveJob> job = createSignEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
@@ -648,6 +652,7 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
 
             this->job = job.release();
         } else {
+            labelText = i18nc("@info", "Creating encrypted archive ...");
             std::unique_ptr<QGpgME::EncryptArchiveJob> job = createEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
@@ -657,6 +662,7 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             this->job = job.release();
         }
     } else if (sign) {
+        labelText = i18nc("@info", "Creating signed archive ...");
         std::unique_ptr<QGpgME::SignArchiveJob> job = createSignArchiveJob(proto);
         kleo_assert(job.get());
         job->setBaseDirectory(baseDirectory);

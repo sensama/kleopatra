@@ -64,7 +64,6 @@ class AutoDecryptVerifyFilesController::Private
 public:
     explicit Private(AutoDecryptVerifyFilesController *qq);
 
-    void slotDialogCanceled();
     void schedule();
 
     QString getEmbeddedFileName(const QString &fileName) const;
@@ -100,11 +99,6 @@ public:
 AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq) : q(qq)
 {
     qRegisterMetaType<VerificationResult>();
-}
-
-void AutoDecryptVerifyFilesController::Private::slotDialogCanceled()
-{
-    qCDebug(KLEOPATRA_LOG);
 }
 
 void AutoDecryptVerifyFilesController::Private::schedule()

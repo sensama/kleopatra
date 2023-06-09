@@ -559,6 +559,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
 
 void SignEncryptTask::cancel()
 {
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     if (d->job) {
         d->job->slotCancel();
     }

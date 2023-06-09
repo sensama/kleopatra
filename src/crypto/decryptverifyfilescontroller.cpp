@@ -169,6 +169,8 @@ void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 
 void DecryptVerifyFilesController::Private::slotWizardCanceled()
 {
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
+    q->cancel();
     q->emitDoneOrError();
 }
 
@@ -428,7 +430,7 @@ void DecryptVerifyFilesController::Private::cancelAllTasks()
 
 void DecryptVerifyFilesController::cancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     try {
         d->m_errorDetected = true;
         if (d->m_wizard) {

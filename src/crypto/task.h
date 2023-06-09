@@ -49,7 +49,6 @@ public:
 
     virtual QString tag() const;
 
-    QString progressLabel() const;
     int currentProgress() const;
     int totalProgress() const;
 

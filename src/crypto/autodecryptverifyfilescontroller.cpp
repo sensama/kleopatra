@@ -175,7 +175,10 @@ void AutoDecryptVerifyFilesController::Private::exec()
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
 
     QTimer::singleShot(0, q, SLOT(schedule()));
-    if (m_dialog->exec() == QDialog::Accepted && m_workDir) {
+    const auto result = m_dialog->exec();
+    if (result == QDialog::Rejected) {
+        q->cancel();
+    } else if (result == QDialog::Accepted && m_workDir) {
         // Without workdir there is nothing to move.
         const QDir workdir(m_workDir->path());
         const QDir outDir(m_dialog->outputLocation());
@@ -578,7 +581,7 @@ void AutoDecryptVerifyFilesController::Private::cancelAllTasks()
 
 void AutoDecryptVerifyFilesController::cancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     try {
         d->m_errorDetected = true;
         if (d->m_dialog) {

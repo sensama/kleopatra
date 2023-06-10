@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-02 00:48+0000\n"
+"POT-Creation-Date: 2023-06-10 00:49+0000\n"
 "PO-Revision-Date: 2023-04-27 01:04+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -2100,7 +2100,7 @@ msgid "Import CRL Finished"
 msgstr "Importazione CRL completata"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:352
+#: src/crypto/autodecryptverifyfilescontroller.cpp:349
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Impossibile aprire il file <filename>%1</filename> in lettura."
@@ -4027,7 +4027,7 @@ msgstr ""
 "La sintassi è «HOST» o «HOST:PORTA». Se PORTA viene omesso, viene usata la "
 "porta 389 (la porta standard LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:155
+#: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4039,7 +4039,7 @@ msgstr ""
 "effettivamente dati firmati o cifrati segnala l'errore (vedi Aiuto->Segnala "
 "l'errore)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4049,7 +4049,7 @@ msgstr ""
 "<para>Spostamento di <filename>%1</filename> in <filename>%2</filename> non "
 "riuscito.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4060,7 +4060,7 @@ msgstr ""
 "Spostamento del file <filename>%1</filename> in <filename>%2</filename> non "
 "riuscito."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4068,22 +4068,22 @@ msgstr ""
 "Il file deve essere salvato con il nome file originale <filename>%1</"
 "filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:236
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Vuoi utilizzare il nome file originale?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:237
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "No, salva come <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:241
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Sì, salva come <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:256
+#: src/crypto/autodecryptverifyfilescontroller.cpp:253
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4092,29 +4092,29 @@ msgstr ""
 "Il file <b>%1</b> esiste già. \n"
 "Sovrascrivere?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Sovrascrivo il file esistente?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:258
 #, kde-format
 msgid "Overwrite All"
 msgstr "Sovrascrivi tutti"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:273
+#: src/crypto/autodecryptverifyfilescontroller.cpp:270
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Eliminazione del file <filename>%1</filename> non riuscita."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:280
+#: src/crypto/autodecryptverifyfilescontroller.cpp:277
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Spostamento del file <filename>%1</filename> in <filename>%2</filename> non "
 "riuscito."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:360
+#: src/crypto/autodecryptverifyfilescontroller.cpp:357
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4123,7 +4123,7 @@ msgstr ""
 "Il file <filename>%1</filename> contiene dei certificati e non può essere "
 "decifrato o verificato."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:410
+#: src/crypto/autodecryptverifyfilescontroller.cpp:407
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Seleziona il file da verificare con la firma <filename>%1</filename>"
@@ -4287,7 +4287,7 @@ msgstr "Impossibile determinare se i dati in ingresso sono OpenPGP o CMS"
 msgid "No usable inputs found"
 msgstr "Nessun ingresso utilizzabile trovato"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:219
+#: src/crypto/decryptverifyfilescontroller.cpp:221
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
@@ -4541,7 +4541,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:743
 #, kde-format
 msgid "Input error: %1"
 msgstr "Errore in ingresso: %1"
@@ -4725,7 +4725,7 @@ msgstr "La chiamata a EncryptEMailController::protocolAsString() è ambigua."
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:364
+#: src/crypto/signencryptfilescontroller.cpp:365
 #, kde-format
 msgid "User cancel"
 msgstr "Annullamento dell'utente"
@@ -5786,7 +5786,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archivio"
 
-#: src/crypto/signencryptfilescontroller.cpp:627
+#: src/crypto/signencryptfilescontroller.cpp:628
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5795,7 +5795,7 @@ msgstr ""
 "Ricevuta un'eccezione inaspettata in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:631
+#: src/crypto/signencryptfilescontroller.cpp:632
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5845,18 +5845,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:450
+#: src/crypto/signencrypttask.cpp:451
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Impossibile determinare il protocollo del compito"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:462
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5864,6 +5864,30 @@ msgid ""
 msgstr ""
 "Non trovo la cartella di base per i seguenti file:\n"
 "%1"
+
+#: src/crypto/signencrypttask.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@info"
+msgid "Creating signed and encrypted archive ..."
+msgstr "File firmato e cifrato con OpenPGP"
+
+#: src/crypto/signencrypttask.cpp:655
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating encrypted archive ..."
+msgstr "Creazione coppia di chiavi..."
+
+#: src/crypto/signencrypttask.cpp:665
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating signed archive ..."
+msgstr "Creazione coppia di chiavi..."
 
 #: src/crypto/task.cpp:159
 #, kde-format

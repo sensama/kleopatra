@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-02 00:48+0000\n"
+"POT-Creation-Date: 2023-06-10 00:49+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2076,7 +2076,7 @@ msgid "Import CRL Finished"
 msgstr "CRL のインポート完了"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:352
+#: src/crypto/autodecryptverifyfilescontroller.cpp:349
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "ファイル <filename>%1</filename> を読み取りのために開けません。"
@@ -3954,7 +3954,7 @@ msgstr ""
 "形式は \"HOST\" または \"HOST:PORT\" です。PORT が省略された場合、標準的な "
 "LDAP ポートである 389 が使われます。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:155
+#: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -3966,7 +3966,7 @@ msgstr ""
 "イルに暗号化されたもしくは署名のデータがある場合には、バグ報告をお願いします"
 "(Help->Report Bug をごらんください)。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3976,7 +3976,7 @@ msgstr ""
 "<para>ファイル <filename>%1</filename> を <filename>%2</filename> に移動でき"
 "ませんでした。</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -3987,28 +3987,28 @@ msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "ファイルは元のファイル名 <filename>%1</filename> に保存しますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:236
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "元のファイル名を使いますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:237
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "いいえ、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:241
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "はい、ファイル <filename>%1</filename> として保存します"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:256
+#: src/crypto/autodecryptverifyfilescontroller.cpp:253
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4017,29 +4017,29 @@ msgstr ""
 "ファイル <b>%1</b> は既に存在します。\n"
 "上書きしますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "既存のファイルを上書きしますか?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:258
 #, kde-format
 msgid "Overwrite All"
 msgstr "すべて上書き"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:273
+#: src/crypto/autodecryptverifyfilescontroller.cpp:270
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "<filename>%1</filename> を削除できませんでした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:280
+#: src/crypto/autodecryptverifyfilescontroller.cpp:277
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "ファイル <filename>%1</filename> を <filename>%2</filename> に移動できません"
 "でした。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:360
+#: src/crypto/autodecryptverifyfilescontroller.cpp:357
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4047,7 +4047,7 @@ msgid ""
 msgstr ""
 "ファイル <filename>%1</filename> は証明書を含み、復号や検証ができません。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:410
+#: src/crypto/autodecryptverifyfilescontroller.cpp:407
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4210,7 +4210,7 @@ msgstr "入力データが OpenPGP か CMS か判断できません"
 msgid "No usable inputs found"
 msgstr "使用できる入力が見つかりませんでした"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:219
+#: src/crypto/decryptverifyfilescontroller.cpp:221
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
@@ -4462,7 +4462,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:743
 #, kde-format
 msgid "Input error: %1"
 msgstr "入力エラー: %1"
@@ -4642,7 +4642,7 @@ msgstr "EncryptEMailController::protocolAsString() へのコールがあいま�
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:364
+#: src/crypto/signencryptfilescontroller.cpp:365
 #, kde-format
 msgid "User cancel"
 msgstr "ユーザによるキャンセル"
@@ -5699,7 +5699,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "アーカイブ"
 
-#: src/crypto/signencryptfilescontroller.cpp:627
+#: src/crypto/signencryptfilescontroller.cpp:628
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5708,7 +5708,7 @@ msgstr ""
 "SignEncryptFilesController::Private::slotWizardOperationPrepared に予期しない"
 "例外を検出: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:631
+#: src/crypto/signencryptfilescontroller.cpp:632
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5758,18 +5758,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: %2"
 
-#: src/crypto/signencrypttask.cpp:450
+#: src/crypto/signencrypttask.cpp:451
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "タスクに使用するプロトコルを判断できません"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:462
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5777,6 +5777,30 @@ msgid ""
 msgstr ""
 "このファイルに共通なベースのディレクトリが見つかりません:\n"
 "%1"
+
+#: src/crypto/signencrypttask.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@info"
+msgid "Creating signed and encrypted archive ..."
+msgstr "OpenPGP 署名/暗号化のファイル"
+
+#: src/crypto/signencrypttask.cpp:655
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating encrypted archive ..."
+msgstr "鍵ペアを作成中..."
+
+#: src/crypto/signencrypttask.cpp:665
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating signed archive ..."
+msgstr "鍵ペアを作成中..."
 
 #: src/crypto/task.cpp:159
 #, kde-format

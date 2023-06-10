@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-02 00:48+0000\n"
+"POT-Creation-Date: 2023-06-10 00:49+0000\n"
 "PO-Revision-Date: 2023-05-02 17:09+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -2138,7 +2138,7 @@ msgid "Import CRL Finished"
 msgstr "Sperrlisten-Import abgeschlossen"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:352
+#: src/crypto/autodecryptverifyfilescontroller.cpp:349
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename> lässt sich nicht zum Lesen öffnen."
@@ -4076,7 +4076,7 @@ msgstr ""
 "Die Syntax ist „SERVER“ oder „SERVER:PORT“. Wenn PORT nicht angegeben ist, "
 "wird Port 389 (Standard für LDAP) verwendet."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:155
+#: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4088,7 +4088,7 @@ msgstr ""
 "wollen.<nl/>Wenn Sie signierte oder verschlüsselte Daten enthalten, "
 "berichten Sie bitte einen Fehler (Siehe Hilfe->Fehlerbericht erstellen)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4098,7 +4098,7 @@ msgstr ""
 "<para>Die Datei <filename>%1</filename> kann nicht nach <filename>%2</"
 "filename> verschoben werden.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4109,7 +4109,7 @@ msgstr ""
 "Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
 "verschoben werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4117,22 +4117,22 @@ msgstr ""
 "Soll die Datei mit dem ursprünglichen Dateinamen <filename>%1</filename> "
 "abgespeichert werden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:236
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Ursprünglichen Dateinamen verwenden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:237
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nein, als <filename>%1</filename> abspeichern."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:241
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ja, als <filename>%1</filename> abspeichern."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:256
+#: src/crypto/autodecryptverifyfilescontroller.cpp:253
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4141,29 +4141,29 @@ msgstr ""
 "Eine Datei namens <b>%1</b> existiert bereits.\n"
 "Soll sie überschrieben werden?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Vorhandene Datei überschreiben?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:258
 #, kde-format
 msgid "Overwrite All"
 msgstr "Alle überschreiben"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:273
+#: src/crypto/autodecryptverifyfilescontroller.cpp:270
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Die Datei <filename>%1</filename> kann nicht gelöscht werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:280
+#: src/crypto/autodecryptverifyfilescontroller.cpp:277
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
 "verschoben werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:360
+#: src/crypto/autodecryptverifyfilescontroller.cpp:357
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4172,7 +4172,7 @@ msgstr ""
 "Die Datei <filename>%1</filename> enthält Zertifikate und kann nicht "
 "entschlüsselt oder verifiziert werden."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:410
+#: src/crypto/autodecryptverifyfilescontroller.cpp:407
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4342,7 +4342,7 @@ msgstr ""
 msgid "No usable inputs found"
 msgstr "Keine brauchbaren Eingaben gefunden"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:219
+#: src/crypto/decryptverifyfilescontroller.cpp:221
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
@@ -4609,7 +4609,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:743
 #, kde-format
 msgid "Input error: %1"
 msgstr "Eingabefehler: %1"
@@ -4796,7 +4796,7 @@ msgstr ""
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:364
+#: src/crypto/signencryptfilescontroller.cpp:365
 #, kde-format
 msgid "User cancel"
 msgstr "Abbruch durch Benutzer"
@@ -5867,7 +5867,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "Archiv"
 
-#: src/crypto/signencryptfilescontroller.cpp:627
+#: src/crypto/signencryptfilescontroller.cpp:628
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5876,7 +5876,7 @@ msgstr ""
 "Unerwartete Ausnahme in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared aufgetreten: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:631
+#: src/crypto/signencryptfilescontroller.cpp:632
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5926,18 +5926,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:450
+#: src/crypto/signencrypttask.cpp:451
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Für diese Operation kann kein Protokoll ermittelt werden"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:462
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5946,6 +5946,30 @@ msgstr ""
 "Es kann kein gemeinsamer Basisordner für die folgenden Dateien gefunden "
 "werden:\n"
 "%1"
+
+#: src/crypto/signencrypttask.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@info"
+msgid "Creating signed and encrypted archive ..."
+msgstr "Mit OpenPGP signierte und verschlüsselte Datei"
+
+#: src/crypto/signencrypttask.cpp:655
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating encrypted archive ..."
+msgstr "Schlüsselpaar wird erstellt ..."
+
+#: src/crypto/signencrypttask.cpp:665
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating signed archive ..."
+msgstr "Schlüsselpaar wird erstellt ..."
 
 #: src/crypto/task.cpp:159
 #, kde-format

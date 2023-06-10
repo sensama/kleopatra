@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-02 00:48+0000\n"
+"POT-Creation-Date: 2023-06-10 00:49+0000\n"
 "PO-Revision-Date: 2023-04-30 15:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -2101,7 +2101,7 @@ msgid "Import CRL Finished"
 msgstr "Импорт списка отозванных сертификатов (CRL) завершён"
 
 #: src/commands/importpaperkeycommand.cpp:87
-#: src/crypto/autodecryptverifyfilescontroller.cpp:352
+#: src/crypto/autodecryptverifyfilescontroller.cpp:349
 #, kde-kuit-format
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Не удалось открыть для чтения файл <filename>%1</filename>."
@@ -4035,7 +4035,7 @@ msgstr ""
 "Указать адрес сервера можно в виде «адрес_сервера» или «адрес_сервера:порт». "
 "Если порт не указан, будет использован стандартный порт LDAP — 389."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:155
+#: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4047,7 +4047,7 @@ msgstr ""
 "подписанные или зашифрованные данные, сообщите об ошибке, используя меню "
 "«Помощь» -> «Сообщить об ошибке»."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:217
+#: src/crypto/autodecryptverifyfilescontroller.cpp:214
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4057,7 +4057,7 @@ msgid ""
 msgstr ""
 "Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:225
+#: src/crypto/autodecryptverifyfilescontroller.cpp:222
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info"
@@ -4067,28 +4067,28 @@ msgid ""
 msgstr ""
 "Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:238
+#: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Сохранить файл с исходным названием <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
+#: src/crypto/autodecryptverifyfilescontroller.cpp:236
 #, kde-format
 msgid "Use Original File Name?"
 msgstr "Использовать исходное название файла?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#: src/crypto/autodecryptverifyfilescontroller.cpp:237
 #, kde-kuit-format
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Нет, сохранить как <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:241
+#: src/crypto/autodecryptverifyfilescontroller.cpp:238
 #, kde-kuit-format
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Да, сохранить как <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:256
+#: src/crypto/autodecryptverifyfilescontroller.cpp:253
 #, kde-format
 msgid ""
 "The file <b>%1</b> already exists.\n"
@@ -4097,28 +4097,28 @@ msgstr ""
 "Файл <b>%1</b> уже существует.\n"
 "Заменить его?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:259
+#: src/crypto/autodecryptverifyfilescontroller.cpp:256
 #, kde-format
 msgid "Overwrite Existing File?"
 msgstr "Заменить существующий файл?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:261
+#: src/crypto/autodecryptverifyfilescontroller.cpp:258
 #, kde-format
 msgid "Overwrite All"
 msgstr "Заменить все"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:273
+#: src/crypto/autodecryptverifyfilescontroller.cpp:270
 #, kde-kuit-format
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Не удалось удалить <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:280
+#: src/crypto/autodecryptverifyfilescontroller.cpp:277
 #, kde-kuit-format
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Не удалось переместить <filename>%1</filename> в <filename>%2</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:360
+#: src/crypto/autodecryptverifyfilescontroller.cpp:357
 #, kde-kuit-format
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4127,7 +4127,7 @@ msgstr ""
 "Файл <filename>%1</filename> содержит сертификаты и не может быть "
 "расшифрован или проверен."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:410
+#: src/crypto/autodecryptverifyfilescontroller.cpp:407
 #, kde-kuit-format
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Выберите файл для проверки с помощью подписи <filename>%1</filename>"
@@ -4293,7 +4293,7 @@ msgstr "Не удалось определить тип входных данн�
 msgid "No usable inputs found"
 msgstr "Не найдено подходящего источника"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:219
+#: src/crypto/decryptverifyfilescontroller.cpp:221
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:85
 #, kde-format
 msgctxt "@title:window"
@@ -4552,7 +4552,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:743
 #, kde-format
 msgid "Input error: %1"
 msgstr "Ошибка ввода: %1"
@@ -4743,7 +4743,7 @@ msgstr "Неоднозначный вызов EncryptEMailController::protocolAs
 #: src/crypto/encryptemailcontroller.cpp:139
 #: src/crypto/newsignencryptemailcontroller.cpp:241
 #: src/crypto/signemailcontroller.cpp:159
-#: src/crypto/signencryptfilescontroller.cpp:364
+#: src/crypto/signencryptfilescontroller.cpp:365
 #, kde-format
 msgid "User cancel"
 msgstr "Отменено пользователем"
@@ -5809,7 +5809,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "архив"
 
-#: src/crypto/signencryptfilescontroller.cpp:627
+#: src/crypto/signencryptfilescontroller.cpp:628
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5818,7 +5818,7 @@ msgstr ""
 "Произошёл сбой в SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:631
+#: src/crypto/signencryptfilescontroller.cpp:632
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5868,18 +5868,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:450
+#: src/crypto/signencrypttask.cpp:451
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Невозможно определить протокол для задачи"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:462
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, …"
 
-#: src/crypto/signencrypttask.cpp:628 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5887,6 +5887,30 @@ msgid ""
 msgstr ""
 "Не удалось найти общий базовый каталог для этих файлов:\n"
 "%1"
+
+#: src/crypto/signencrypttask.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@info"
+msgid "Creating signed and encrypted archive ..."
+msgstr "Подписанный и зашифрованный OpenPGP файл"
+
+#: src/crypto/signencrypttask.cpp:655
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating encrypted archive ..."
+msgstr "Создание пары ключей"
+
+#: src/crypto/signencrypttask.cpp:665
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Creating Key Pair..."
+msgctxt "@info"
+msgid "Creating signed archive ..."
+msgstr "Создание пары ключей"
 
 #: src/crypto/task.cpp:159
 #, kde-format

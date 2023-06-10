@@ -53,8 +53,8 @@ CryptoConfigEntry *SmartCardConfigurationPage::Private::readerPortConfigEntry(co
     return Kleo::getCryptoConfigEntry(config, "scdaemon", "reader-port");
 }
 
-SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+SmartCardConfigurationPage::SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , d{std::make_unique<Private>(this)}
 {
     auto mainLayout = new QVBoxLayout{widget()};

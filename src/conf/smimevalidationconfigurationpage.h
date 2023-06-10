@@ -19,7 +19,7 @@ class SMimeValidationConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit SMimeValidationConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
+    explicit SMimeValidationConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
 
     void load() override;
     void save() override;

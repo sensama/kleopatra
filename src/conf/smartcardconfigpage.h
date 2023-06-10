@@ -22,7 +22,7 @@ class SmartCardConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
+    explicit SmartCardConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
     ~SmartCardConfigurationPage() override;
 
     void load() override;

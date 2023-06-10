@@ -18,8 +18,8 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
-AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+AppearanceConfigurationPage::AppearanceConfigurationPage(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     mWidget = new AppearanceConfigWidget(widget());

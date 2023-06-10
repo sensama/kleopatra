@@ -23,7 +23,7 @@ class CryptoOperationsConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
+    explicit CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
 
     void load() override;
     void save() override;

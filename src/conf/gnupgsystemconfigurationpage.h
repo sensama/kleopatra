@@ -22,7 +22,7 @@ class GnuPGSystemConfigurationPage : public KCModule
 {
     Q_OBJECT
 public:
-    explicit GnuPGSystemConfigurationPage(QObject *parent, const KPluginMetaData &data = {}, const QVariantList &args = QVariantList());
+    explicit GnuPGSystemConfigurationPage(QObject *parent, const KPluginMetaData &data = {});
     ~GnuPGSystemConfigurationPage() override;
 
     void load() override;

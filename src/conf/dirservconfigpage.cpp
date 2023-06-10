@@ -456,8 +456,8 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
     return entry;
 }
 
-DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+DirectoryServicesConfigurationPage::DirectoryServicesConfigurationPage(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , d{new Private{this}}
 {
 }

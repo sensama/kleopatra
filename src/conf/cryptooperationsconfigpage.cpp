@@ -18,8 +18,8 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
-CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+CryptoOperationsConfigurationPage::CryptoOperationsConfigurationPage(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     auto lay = new QVBoxLayout(widget());
     mWidget = new CryptoOperationsConfigWidget(widget());

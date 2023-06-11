@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-31 03:42+0000\n"
-"PO-Revision-Date: 2023-05-29 12:38+0300\n"
+"PO-Revision-Date: 2023-06-10 11:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -852,7 +852,7 @@ msgstr "Kart anahtarlarından bir OpenPGP anahtarı başarıyla üretildi."
 #: src/commands/decryptverifyclipboardcommand.cpp:141
 #, kde-format
 msgid "The clipboard does not appear to contain a signature or encrypted text."
-msgstr "Pano bir imza veya şifrelenmiş metin içeriyor gibi görünmüyor."
+msgstr "Pano bir imza veya şifreli metin içeriyor gibi görünmüyor."
 
 #: src/commands/decryptverifyclipboardcommand.cpp:143
 #: src/commands/decryptverifyclipboardcommand.cpp:157
@@ -3334,8 +3334,8 @@ msgid ""
 "Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
 "gpg\""
 msgstr ""
-"OpenPGP şifrelenmiş dosyalarını \".gpg\" uzantısı yerine \".pgp\" "
-"uzantılarıyla oluştur"
+"OpenPGP şifreli dosyalarını \".gpg\" uzantısı yerine \".pgp\" uzantılarıyla "
+"oluştur"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:62
@@ -3952,10 +3952,10 @@ msgid ""
 "manually select what to do with the files now.<nl/>If they contain signed or "
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
-"Bir veya daha fazla dosya içinde şifrelenmiş veya imzalanmış veri bulamadı."
-"<nl/> Şu anda dosyalarla ne yapılacağını elle seçebilirsiniz.<nl/> İmzalı "
-"veya şifrelenmiş veri içeriyorsa lütfen hata bildirimi yapın (bkz. Yardım -> "
-"Hata Bildir...)."
+"Bir veya daha fazla dosya içinde şifreli veya imzalı veri bulunamadı.<nl/> "
+"Şu anda dosyalarla ne yapılacağını elle seçebilirsiniz.<nl/> İmzalı veya "
+"şifreli veri içeriyorsa lütfen hata bildirimi yapın (bkz. Yardım -> Hata "
+"Bildir...)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:205
 #: src/crypto/autodecryptverifyfilescontroller.cpp:259
@@ -4144,12 +4144,12 @@ msgstr "En azından bir girdi verilmelidir"
 #: src/crypto/decryptverifyemailcontroller.cpp:261
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
-msgstr "Bilgilendirici olan gönderici/imzalanan veri miktarı eşleşmiyor"
+msgstr "Bilgilendirici olan gönderici/imzalı veri sayısı eşleşmiyor"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:266
 #, kde-format
 msgid "Signature/signed data count mismatch"
-msgstr "İmza/imzalanan veri miktarı eşleşmiyor"
+msgstr "İmza/imzalı veri miktarı eşleşmiyor"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
@@ -4164,7 +4164,7 @@ msgstr "Girdi/Çıktı sayıları birbirini tutmuyor"
 #: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
-msgstr "Aynı anda çıktı ve imzalanmış veri kullanılamıyor"
+msgstr "Aynı anda çıktı ve imzalı veri kullanılamıyor"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:285
 #, kde-format
@@ -4573,8 +4573,8 @@ msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
-"Bunun S/MIME ile mi OpenPGP ile mi şifrelendiği belirlenemedi, şifrelenmiş "
-"metin olmayabilir mi?"
+"Bunun S/MIME ile mi OpenPGP ile mi şifrelendiği belirlenemedi, şifreli metin "
+"olmayabilir mi?"
 
 #: src/crypto/decryptverifytask.cpp:1469 src/crypto/decryptverifytask.cpp:1656
 #, kde-format
@@ -4866,7 +4866,7 @@ msgid ""
 "will not be able to decrypt the encrypted data again."
 msgstr ""
 "<b>Uyarı:</b> Seçili sertifikaların hiçbiri sizin değil gibi duruyor. "
-"Şifrelenmiş veriyi tekrar çözemeyeceksiniz."
+"Şifreli veriyi yeniden çözemeyeceksiniz."
 
 #: src/crypto/gui/resolverecipientspage.cpp:545
 #, kde-format
@@ -5241,13 +5241,13 @@ msgstr "OpenPGP İmzaları (*.asc *.sig)"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
-msgstr "Bu, OpenPGP ile imzalanmış ve şifrelenmiş dosyanın dosya adı."
+msgstr "Bu, OpenPGP ile imzalı ve şifreli dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:365
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
-msgstr "OpenPGP ile imzalanmış ve şifrelenmiş dosya"
+msgstr "OpenPGP ile imzalı ve şifreli dosya"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:366
 #: src/crypto/gui/signencryptfileswizard.cpp:374
@@ -5267,25 +5267,25 @@ msgstr "OpenPGP Dosyaları (*.asc)"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
-msgstr "Bu, OpenPGP ile imzalanmış dosyanın dosya adı."
+msgstr "Bu, OpenPGP ile imzalı dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:373
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
-msgstr "OpenPGP ile şifrelenmiş dosya"
+msgstr "OpenPGP ile şifreli dosya"
 
 #: src/crypto/gui/signencryptfileswizard.cpp:380
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
-msgstr "Bu, S/MIME ile şifrelenmiş dosyanın dosya adı."
+msgstr "Bu, S/MIME ile şifreli dosyanın dosya adı."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:381
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
-msgstr "S/MIME ile şifrelenmiş dosya."
+msgstr "S/MIME ile şifreli dosya."
 
 #: src/crypto/gui/signencryptfileswizard.cpp:382
 #, kde-format
@@ -6550,12 +6550,12 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
-"Silinecek sertifika size ait. Bu sertifika ile şifrelenmiş eski iletişimleri "
-"deşiflemek için gerekli özel anahtarı barındırdığından silinmemelidir."
+"Silinecek sertifika size ait. Bu sertifika ile şifreli eski iletişimlerin "
+"şifresini çözmek için gerekli özel anahtarı barındırdığından silinmemelidir."
 msgstr[1] ""
-"Silinecek tüm sertifikalar size ait. Bu sertifikalar ile şifrelenmiş eski "
-"iletişimleri deşiflemek için gerekli özel anahtarları barındırdığından "
-"silinmemelidirler."
+"Silinecek tüm sertifikalar size ait. Bu sertifikalar ile şifreli eski "
+"iletişimlerin şifresini çözmek için gerekli özel anahtarları "
+"barındırdığından silinmemelidirler."
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6568,8 +6568,8 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
-"Silinecek sertifikalardan biri size ait. Bu sertifika ile şifrelenmiş eski "
-"iletişimleri deşifrelemek için gerekli özel anahtarı barındırdığından "
+"Silinecek sertifikalardan biri size ait. Bu sertifika ile şifreli eski "
+"iletişimlerin şifresini çözmek için gerekli özel anahtarı barındırdığından "
 "silinmemelidir."
 msgstr[1] ""
 "Silinecek sertifikalardan bazıları size ait. Bu sertifikalar ile şifrelenmiş "
@@ -7570,7 +7570,7 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
-"Şifreli veya imzalanmış dosyaları base64 kodlu metin olarak kodlamak için bu "
+"Şifreli veya imzalı dosyaları base64 kodlu metin olarak kodlamak için bu "
 "seçeneği ayarlayın. Böylece bir düzenleyici ile açılabilir veya bir posta "
 "gövdesi halinde gönderilebilirler. Bu, dosya boyutunu üçte biri oranında "
 "artıracaktır."

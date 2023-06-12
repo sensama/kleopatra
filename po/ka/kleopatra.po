@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-10 00:49+0000\n"
-"PO-Revision-Date: 2023-06-02 05:51+0200\n"
+"PO-Revision-Date: 2023-06-11 06:11+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -94,7 +94,7 @@ msgstr "Karl-Heinz Zimmer"
 
 #: src/aboutdata.cpp:52
 msgid "DN display ordering support, infrastructure"
-msgstr ""
+msgstr "DN-ის ჩვენების დალაგების მხარდაჭერა, ინფრასტრუქტურა"
 
 #: src/aboutdata.cpp:54
 msgid "Laurent Montel"
@@ -291,7 +291,7 @@ msgstr "შექმნა"
 msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
-msgstr ""
+msgstr "<p>შეცდომა <br/><br/><b>%1</b>-ის სერტიფიცირებისას:</p><p>\t%2</p>"
 
 #: src/commands/certifycertificatecommand.cpp:239
 #, kde-format
@@ -591,6 +591,8 @@ msgid ""
 "Failed to update the trust database:\n"
 "%1"
 msgstr ""
+"ნდობის ბაზის განახლების შეცდომა:\n"
+"%1"
 
 #: src/commands/changeroottrustcommand.cpp:78
 #, kde-format
@@ -1049,7 +1051,7 @@ msgstr "სერტიფიკატის ჯგუფები (*%1)"
 #: src/commands/exportgroupscommand.cpp:163
 #, kde-kuit-format
 msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr ""
+msgstr "არსებული ფაილის <filename>%1</filename> თავზე გადაწერის შეცდომა."
 
 #: src/commands/exportgroupscommand.cpp:164
 #: src/commands/exportgroupscommand.cpp:190
@@ -1299,7 +1301,7 @@ msgstr "ფაილის <filename>%1</filename> ჩასაწერად �
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
-msgstr ""
+msgstr "გასაღების ფაილში <filename>%1</filename> ჩაწერის შეცდომა."
 
 #: src/commands/exportsecretkeycommand.cpp:277
 #, kde-format
@@ -1396,8 +1398,8 @@ msgstr "გატანის შედეგი ცარიელია."
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ქვეგასაღების ფაილში <filename>%2</filename> ჩაწერის შეცდომა."
+msgstr[1] "ქვეგასაღებების ფაილში <filename>%2</filename> ჩაწერის შეცდომა."
 
 #: src/commands/exportsecretsubkeycommand.cpp:261
 #, kde-format
@@ -1759,7 +1761,7 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp:438
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
-msgstr ""
+msgstr "სერტიფიცირება ნიშნავს, რომ ანაბეჭდს თქვენ ამოწმებთ."
 
 #: src/commands/importcertificatescommand.cpp:439
 #, kde-format
@@ -5376,28 +5378,22 @@ msgid ""
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp:646
-#, fuzzy, kde-format
-#| msgctxt "Lineedit accessible name"
-#| msgid "OpenPGP signed and encrypted file"
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
-msgstr "OpenPGP ხელმოწერილი და დაშიფრული ფაილი"
+msgstr "ხელმოწერილი და დაშიფრული არქივის შექმნა ..."
 
 #: src/crypto/signencrypttask.cpp:655
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
-msgstr "გასაღების წყვილის შექმნა..."
+msgstr "დაშიფრული არქივის შექმნა ..."
 
 #: src/crypto/signencrypttask.cpp:665
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
-msgstr "გასაღების წყვილის შექმნა..."
+msgstr "ხელმოწერილი არქივის შექმნა ..."
 
 #: src/crypto/task.cpp:159
 #, kde-format

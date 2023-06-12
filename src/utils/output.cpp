@@ -605,7 +605,8 @@ void FileOutput::doFinalize()
         m_tmpFile->close();
     }
 
-    QString tmpFileName = remover.file = m_tmpFile->oldFileName();
+    QString tmpFileName = m_tmpFile->oldFileName();
+    remover.file = tmpFileName;
 
     m_tmpFile->setAutoRemove(false);
     QPointer<QObject> guard = m_tmpFile.get();
@@ -613,7 +614,6 @@ void FileOutput::doFinalize()
     kleo_assert(!guard);   // if this triggers, we need to audit for holder of std::shared_ptr<QIODevice>s.
 
     const QFileInfo fi(tmpFileName);
-    bool qtbug83365_workaround = false;
     if (!fi.exists()) {
         /* QT Bug 83365 since qt 5.13 causes the filename of temporary files
          * in UNC path name directories (unmounted samba shares) to start with
@@ -623,7 +623,7 @@ void FileOutput::doFinalize()
         qCDebug(KLEOPATRA_LOG) << "failure to find " << tmpFileName;
         if (tmpFileName.startsWith(QLatin1String("UNC"))) {
             tmpFileName.replace(0, strlen("UNC"), QLatin1Char('/'));
-            qtbug83365_workaround = true;
+            remover.file = tmpFileName;
         }
         const QFileInfo fi2(tmpFileName);
         if (!fi2.exists()) {
@@ -669,9 +669,6 @@ void FileOutput::doFinalize()
 
         if (!m_attachedInput.expired()) {
             m_attachedInput.lock()->outputFinalized();
-        }
-        if (qtbug83365_workaround) {
-            QFile::remove(tmpFileName);
         }
         return;
     }

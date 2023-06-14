@@ -280,6 +280,9 @@ public:
     explicit Private(SignEncryptTask *qq);
 
 private:
+    QString inputLabel() const;
+    QString outputLabel() const;
+
     void startSignEncryptJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignJob> createSignJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
@@ -335,7 +338,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
 
 std::shared_ptr<const Task::Result> SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, q->label(), output ? output->label() : QString{}, auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, inputLabel(), outputLabel(), auditLog));
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
@@ -455,13 +458,8 @@ QString SignEncryptTask::label() const
 {
     if (!d->labelText.isEmpty()) {
         return d->labelText;
-    } else if (d->input) {
-        return d->input->label();
-    } else if (!d->inputFileNames.empty()) {
-        const auto firstFile = QFileInfo{d->inputFileNames.front()}.fileName();
-        return d->inputFileNames.size() == 1 ? firstFile : i18nc("<name of first file>, ...", "%1, ...", firstFile);
     }
-    return {};
+    return d->inputLabel();
 }
 
 QString SignEncryptTask::tag() const
@@ -506,6 +504,23 @@ void SignEncryptTask::doStart()
     {
         d->startSignEncryptJob(proto);
     }
+}
+
+QString SignEncryptTask::Private::inputLabel() const
+{
+    if (input) {
+        return input->label();
+    }
+    if (!inputFileNames.empty()) {
+        const auto firstFile = QFileInfo{inputFileNames.front()}.fileName();
+        return inputFileNames.size() == 1 ? firstFile : i18nc("<name of first file>, ...", "%1, ...", firstFile);
+    }
+    return {};
+}
+
+QString SignEncryptTask::Private::outputLabel() const
+{
+    return output ? output->label() : QFileInfo{outputFileName}.fileName();
 }
 
 void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
@@ -759,8 +774,8 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         }
     }
 
-    const LabelAndError inputInfo{q->label(), input ? input->errorString() : QString{}};
-    const LabelAndError outputInfo{output->label(), output->errorString()};
+    const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
+    const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
     q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog)));
 }
 

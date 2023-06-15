@@ -49,6 +49,7 @@ public:
     void setInput(const std::shared_ptr<Input> &input);
     void setOutput(const std::shared_ptr<Output> &output);
     void setOutputFileName(const QString &fileName);
+    QString outputFileName() const;
     void setSigners(const std::vector<GpgME::Key> &signers);
     void setRecipients(const std::vector<GpgME::Key> &recipients);
 

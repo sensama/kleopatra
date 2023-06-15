@@ -536,6 +536,39 @@ createArchiveSignEncryptTasksForFiles(const QStringList &files, const std::share
     return result;
 }
 
+namespace
+{
+static auto resolveFileNameConflicts(const std::vector<std::shared_ptr<SignEncryptTask>> &tasks, QWidget *parent)
+{
+    std::vector<std::shared_ptr<SignEncryptTask>> resolvedTasks;
+
+    OverwritePolicy overwritePolicy{parent, tasks.size() > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{}};
+    for (auto &task : tasks) {
+        // by default, do not overwrite existing files
+        task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Skip));
+        const auto outputFileName = task->outputFileName();
+        if (QFile::exists(outputFileName)) {
+            const auto newFileName = overwritePolicy.obtainOverwritePermission(outputFileName);
+            if (newFileName.isEmpty()) {
+                if (overwritePolicy.policy() == OverwritePolicy::Cancel) {
+                    resolvedTasks.clear();
+                    break;
+                }
+                // else Skip -> do not add task to the final task list
+                continue;
+            } else if (newFileName != outputFileName) {
+                task->setOutputFileName(newFileName);
+            } else {
+                task->setOverwritePolicy(std::make_shared<OverwritePolicy>(OverwritePolicy::Overwrite));
+            }
+        }
+        resolvedTasks.push_back(task);
+    }
+
+    return resolvedTasks;
+}
+}
+
 void SignEncryptFilesController::Private::slotWizardOperationPrepared()
 {
 
@@ -584,7 +617,6 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
                     cmsSigners,
                     wizard->outputNames(),
                     wizard->encryptSymmetric());
-
         } else {
             for (const QString &file : std::as_const(files)) {
                 const std::vector< std::shared_ptr<SignEncryptTask> > created =
@@ -599,9 +631,10 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        const std::shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
-        for (const std::shared_ptr<SignEncryptTask> &i : tasks) {
-            i->setOverwritePolicy(overwritePolicy);
+        tasks = resolveFileNameConflicts(tasks, wizard);
+        if (tasks.empty()) {
+            q->cancel();
+            return;
         }
 
         kleo_assert(runnable.empty());

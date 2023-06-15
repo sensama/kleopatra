@@ -36,13 +36,20 @@ public:
         Cancel,
     };
 
-    explicit OverwritePolicy(QWidget *parent, Policy initialPolicy = Ask);
+    enum Options {
+        MultipleFiles = 1,
+    };
+
+    explicit OverwritePolicy(Policy initialPolicy);
+    /// creates an interactive policy, i.e. with initial policy set to Ask
+    OverwritePolicy(QWidget *parent, Options options);
     ~OverwritePolicy();
 
     Policy policy() const;
     void setPolicy(Policy);
 
-    QWidget *parentWidget() const;
+    /// returns the file name to write to or an empty string if overwriting was declined
+    QString obtainOverwritePermission(const QString &fileName);
 
 private:
     class Private;

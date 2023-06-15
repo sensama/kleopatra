@@ -150,7 +150,7 @@ DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq)
 void DecryptVerifyFilesController::Private::slotWizardOperationPrepared()
 {
     ensureWizardCreated();
-    std::vector<std::shared_ptr<Task> > tasks = buildTasks(m_filesAfterPreparation, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(m_wizard)));
+    std::vector<std::shared_ptr<Task> > tasks = buildTasks(m_filesAfterPreparation, std::make_shared<OverwritePolicy>(m_wizard, OverwritePolicy::MultipleFiles));
     if (tasks.empty()) {
         reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), i18n("No usable inputs found"));
     }

@@ -331,7 +331,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
     , detached{false}
     , clearsign{false}
     , archive{false}
-    , m_overwritePolicy{new OverwritePolicy{nullptr}}
+    , m_overwritePolicy{new OverwritePolicy{OverwritePolicy::Ask}}
 {
     q->setAsciiArmor(true);
 }
@@ -492,8 +492,6 @@ void SignEncryptTask::doStart()
     if (!d->output) {
         d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
     }
-    // release grab on policy, so that output can infer multiple outputs from use count > 1
-    d->m_overwritePolicy.reset();
 
     const auto proto = protocol();
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS

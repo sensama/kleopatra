@@ -54,16 +54,29 @@ static const int PROCESS_TERMINATE_TIMEOUT   = 5 * 1000; // 5s
 class OverwritePolicy::Private
 {
 public:
-    Private(QWidget *p, OverwritePolicy::Policy pol) : policy(pol), widget(p) {}
+    Private(QWidget *p, OverwritePolicy::Options options_, OverwritePolicy::Policy pol)
+        : policy(pol)
+        , parentWidget(p)
+        , options{options_}
+    {
+    }
+
     OverwritePolicy::Policy policy;
-    QWidget *widget;
+    QWidget *parentWidget;
+    OverwritePolicy::Options options;
 };
 
-OverwritePolicy::OverwritePolicy(QWidget *parent, Policy initialPolicy) : d(new Private(parent, initialPolicy))
+OverwritePolicy::OverwritePolicy(Policy initialPolicy)
+    : d{new Private{nullptr, {}, initialPolicy}}
 {
 }
 
-OverwritePolicy::~OverwritePolicy() {}
+OverwritePolicy::OverwritePolicy(QWidget *parent, OverwritePolicy::Options options)
+    : d{new Private{parent, options, Ask}}
+{
+}
+
+OverwritePolicy::~OverwritePolicy() = default;
 
 OverwritePolicy::Policy OverwritePolicy::policy() const
 {
@@ -73,11 +86,6 @@ OverwritePolicy::Policy OverwritePolicy::policy() const
 void OverwritePolicy::setPolicy(Policy policy)
 {
     d->policy = policy;
-}
-
-QWidget *OverwritePolicy::parentWidget() const
-{
-    return d->widget;
 }
 
 namespace
@@ -397,10 +405,6 @@ public:
     }
 
 private:
-    // returns the file name to write to or an empty string if overwriting was declined
-    QString obtainOverwritePermission(const QString &fileName);
-
-private:
     QString m_fileName;
     std::shared_ptr< TemporaryFile > m_tmpFile;
     const std::shared_ptr<OverwritePolicy> m_policy;
@@ -500,7 +504,7 @@ PipeOutput::PipeOutput(assuan_fd_t fd)
 
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, bool forceOverwrite)
 {
-    return createFromFile(fileName, std::shared_ptr<OverwritePolicy>(new OverwritePolicy(nullptr, forceOverwrite ? OverwritePolicy::Overwrite : OverwritePolicy::Skip)));
+    return createFromFile(fileName, std::make_shared<OverwritePolicy>(forceOverwrite ? OverwritePolicy::Overwrite : OverwritePolicy::Skip));
 }
 
 std::shared_ptr<Output> Output::createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy)
@@ -531,9 +535,9 @@ static QString suggestFileName(const QString &fileName)
     return path + QLatin1Char{'/'} + newFileName;
 }
 
-QString FileOutput::obtainOverwritePermission(const QString &fileName)
+QString OverwritePolicy::obtainOverwritePermission(const QString &fileName)
 {
-    switch (m_policy->policy()) {
+    switch (d->policy) {
     case OverwritePolicy::Ask:
         break;
     case OverwritePolicy::Overwrite:
@@ -548,12 +552,11 @@ QString FileOutput::obtainOverwritePermission(const QString &fileName)
         return {};
     }
 
-    qCDebug(KLEOPATRA_LOG) << __func__ << "m_policy.use_count():" << m_policy.use_count();
     OverwriteDialog::Options options = OverwriteDialog::AllowRename;
-    if (m_policy.use_count() > 1) {
+    if (d->options & MultipleFiles) {
         options |= OverwriteDialog::MultipleItems | OverwriteDialog::AllowSkip;
     }
-    OverwriteDialog dialog{m_policy->parentWidget(),
+    OverwriteDialog dialog{d->parentWidget,
                            i18nc("@title:window", "File Already Exists"),
                            fileName,
                            options};
@@ -561,22 +564,22 @@ QString FileOutput::obtainOverwritePermission(const QString &fileName)
     qCDebug(KLEOPATRA_LOG) << __func__ << "result:" << static_cast<int>(result);
     switch (result) {
     case OverwriteDialog::Cancel:
-        m_policy->setPolicy(OverwritePolicy::Cancel);
+        d->policy = OverwritePolicy::Cancel;
         return {};
     case OverwriteDialog::AutoSkip:
-        m_policy->setPolicy(OverwritePolicy::Skip);
+        d->policy = OverwritePolicy::Skip;
         [[fallthrough]];
     case OverwriteDialog::Skip:
         return {};
     case OverwriteDialog::OverwriteAll:
-        m_policy->setPolicy(OverwritePolicy::Overwrite);
+        d->policy = OverwritePolicy::Overwrite;
         [[fallthrough]];
     case OverwriteDialog::Overwrite:
         return fileName;
     case OverwriteDialog::Rename:
         return dialog.newFileName();
     case OverwriteDialog::AutoRename: {
-        m_policy->setPolicy(OverwritePolicy::Rename);
+        d->policy = OverwritePolicy::Rename;
         return suggestFileName(fileName);
     }
     default:
@@ -645,7 +648,7 @@ void FileOutput::doFinalize()
     qCDebug(KLEOPATRA_LOG) << this << "failed";
 
     {
-        const auto newFileName = obtainOverwritePermission(m_fileName);
+        const auto newFileName = m_policy->obtainOverwritePermission(m_fileName);
         if (newFileName.isEmpty()) {
             throw Exception(gpg_error(GPG_ERR_CANCELED),
                             i18n("Overwriting declined"));

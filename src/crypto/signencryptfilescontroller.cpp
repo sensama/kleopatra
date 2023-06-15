@@ -599,7 +599,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
             }
         }
 
-        const std::shared_ptr<OverwritePolicy> overwritePolicy(new OverwritePolicy(wizard));
+        const auto overwritePolicy = std::make_shared<OverwritePolicy>(wizard, tasks.size() > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{});
         for (const std::shared_ptr<SignEncryptTask> &i : tasks) {
             i->setOverwritePolicy(overwritePolicy);
         }

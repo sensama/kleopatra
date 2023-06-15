@@ -384,6 +384,11 @@ void SignEncryptTask::setOutputFileName(const QString &fileName)
     d->outputFileName = fileName;
 }
 
+QString SignEncryptTask::outputFileName() const
+{
+    return d->outputFileName;
+}
+
 void SignEncryptTask::setSigners(const std::vector<Key> &signers)
 {
     kleo_assert(!d->job);

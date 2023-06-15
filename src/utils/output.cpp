@@ -634,10 +634,10 @@ void FileOutput::doFinalize()
                     QStringLiteral("Could not find temporary file \"%1\".").arg(tmpFileName));
         }
     }
-    qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;
 
+    qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;
     if (QFile::rename(tmpFileName, m_fileName)) {
-        qCDebug(KLEOPATRA_LOG) << this << "succeeded";
+        qCDebug(KLEOPATRA_LOG) << this << "renaming succeeded";
 
         if (!m_attachedInput.expired()) {
             m_attachedInput.lock()->outputFinalized();
@@ -645,9 +645,9 @@ void FileOutput::doFinalize()
         return;
     }
 
-    qCDebug(KLEOPATRA_LOG) << this << "failed";
+    qCDebug(KLEOPATRA_LOG) << this << "renaming failed";
 
-    {
+    if (QFile::exists(m_fileName)) {
         const auto newFileName = m_policy->obtainOverwritePermission(m_fileName);
         if (newFileName.isEmpty()) {
             throw Exception(gpg_error(GPG_ERR_CANCELED),
@@ -666,9 +666,8 @@ void FileOutput::doFinalize()
     }
 
     qCDebug(KLEOPATRA_LOG) << this << "renaming" << tmpFileName << "->" << m_fileName;
-
     if (QFile::rename(tmpFileName, m_fileName)) {
-        qCDebug(KLEOPATRA_LOG) << this << "succeeded";
+        qCDebug(KLEOPATRA_LOG) << this << "renaming succeeded";
 
         if (!m_attachedInput.expired()) {
             m_attachedInput.lock()->outputFinalized();
@@ -676,7 +675,7 @@ void FileOutput::doFinalize()
         return;
     }
 
-    qCDebug(KLEOPATRA_LOG) << this << "failed";
+    qCDebug(KLEOPATRA_LOG) << this << "renaming failed";
 
     throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO),
                     i18n(R"(Could not rename file "%1" to "%2")",

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-10 00:49+0000\n"
+"POT-Creation-Date: 2023-06-16 00:47+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -1778,7 +1778,7 @@ msgid "Could not determine certificate type of clipboard contents."
 msgstr "មិន​អាច​កំណត់​ប្រភេទ​វិញ្ញាបនបត្រ​​នៃ​មាតិកា​ក្តារតម្បៀតខ្ទាស់បាន​ឡើយ​​​ ។"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:767
 #, kde-format
 msgid "Clipboard"
 msgstr "ក្ដារ​តម្បៀត​ខ្ទាស់​"
@@ -4383,14 +4383,14 @@ msgid "Create Checksum Progress"
 msgstr "បង្កើត​វឌ្ឍនភាព​របស់​ឆេកសាំ​"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:739
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "កំហុស​ខណៈ​ពេល​កំពុង​ដំណើរការ​​ %1 ៖ %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:742
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
@@ -4756,7 +4756,7 @@ msgstr "វិញ្ញាបនបត្រ​គឺ​មិនត្រូវ
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:743
+#: src/crypto/signencrypttask.cpp:761
 #, kde-format
 msgid "Input error: %1"
 msgstr "កំហុស​ព័ត៌មាន​បញ្ចូល​​ ៖​ %1​"
@@ -6045,7 +6045,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "ប័ណ្ណសារ​"
 
-#: src/crypto/signencryptfilescontroller.cpp:628
+#: src/crypto/signencryptfilescontroller.cpp:661
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6054,7 +6054,7 @@ msgstr ""
 "បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹងទុក​នៅ​ក្នុង SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared ៖ %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:632
+#: src/crypto/signencryptfilescontroller.cpp:665
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -6104,18 +6104,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1 ៖ <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:451
+#: src/crypto/signencrypttask.cpp:459
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "មិន​អាច​កំណត់​ពិធីការ​សម្រាប់​ភារកិច្ច"
 
-#: src/crypto/signencrypttask.cpp:462
+#: src/crypto/signencrypttask.cpp:519
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:650 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6124,14 +6124,14 @@ msgstr ""
 "មិន​​អាច​ស្វែងរក​ថត​គោល​ទូទៅ ​សម្រាប់​ឯកសារ​ទាំងនេះ​បាន​ទេ​ ៖​\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:646
+#: src/crypto/signencrypttask.cpp:664
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
-#: src/crypto/signencrypttask.cpp:655
+#: src/crypto/signencrypttask.cpp:673
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6139,7 +6139,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "កំពុង​បង្កើត​សោ..."
 
-#: src/crypto/signencrypttask.cpp:665
+#: src/crypto/signencrypttask.cpp:683
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -10993,12 +10993,12 @@ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" �
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "ឯកសារ \"%1\" គឺ​បើក​រួចហើយ ប៉ុន្តែ​មិនមែន​សម្រាប់​អាន​ទេ"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:710
+#: src/utils/input.cpp:330 src/utils/output.cpp:709
 #, kde-format
 msgid "Command not specified"
 msgstr "ពាក្យ​បញ្ជា​ដែល​មិន​បាន​បញ្ជាក់​"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:715
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "មិន​អាច​ចាប់ផ្ដើម​​ %1 ដំណើរ​ការ ៖​ %2 បាន​ឡើយ​"
@@ -11057,72 +11057,72 @@ msgstr "គ្មាន​ឧបករណ៍​បញ្ចូល​"
 msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr "កំណត់ហេតុ​កំហុស ៖ មិនអាច​បើក​សរសេរឯកសារ​កំណត់ហេតុ \"%1\" បានទេ ។"
 
-#: src/utils/output.cpp:281
+#: src/utils/output.cpp:289
 #, kde-format
 msgid "No output device"
 msgstr "គ្មាន​ឧបករណ៍​ទិន្នផល​​"
 
-#: src/utils/output.cpp:497
+#: src/utils/output.cpp:501
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "មិនអាច​បើក​ FD %1 ដើម្បី​សរសេរ​បាន​ទេ"
 
-#: src/utils/output.cpp:523
+#: src/utils/output.cpp:527
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "មិនអាច​បង្កើត​ឯកសារ​បណ្ដោះអាសន្ន​សម្រាប់​លទ្ធផល \"%1\""
 
-#: src/utils/output.cpp:557
+#: src/utils/output.cpp:560
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr ""
 
-#: src/utils/output.cpp:651
+#: src/utils/output.cpp:654
 #, kde-format
 msgid "Overwriting declined"
 msgstr "បាន​បដិសេធ​ការ​សរសេរ​ជាន់​លើ"
 
-#: src/utils/output.cpp:657
+#: src/utils/output.cpp:660
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" បានទេ"
 
-#: src/utils/output.cpp:682
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "មិន​អាច​ប្ដូរ​ឈ្មោះ​ឯកសារ \"%1\" ទៅ \"%2\" បានទេ"
 
-#: src/utils/output.cpp:727
+#: src/utils/output.cpp:726
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "បញ្ចូល​ទៅកាន់​ %1 ..."
 
-#: src/utils/output.cpp:729
+#: src/utils/output.cpp:728
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "បញ្ចូល​ទៅកាន់​​ %1"
 
-#: src/utils/output.cpp:761
+#: src/utils/output.cpp:760
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "មិន​អាច​សរសេរ​ទៅកាន់​ក្ដារ​តម្បៀត​ខ្ទាស់​បានទេ"
 
-#: src/utils/output.cpp:770
+#: src/utils/output.cpp:769
 #, kde-format
 msgid "Find buffer"
 msgstr "រក​សតិ​បណ្ដោះ​អាសន្ន"
 
-#: src/utils/output.cpp:772
+#: src/utils/output.cpp:771
 #, kde-format
 msgid "Selection"
 msgstr "ជម្រើស"
 
-#: src/utils/output.cpp:786
+#: src/utils/output.cpp:785
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "មិន​អាច​រក​ក្ដារ​តម្បៀត​ខ្ទាស់​បានទេ"

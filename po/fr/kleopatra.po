@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-10 00:49+0000\n"
+"POT-Creation-Date: 2023-06-16 00:47+0000\n"
 "PO-Revision-Date: 2023-06-02 06:12+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -1734,7 +1734,7 @@ msgstr ""
 "papiers."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:768
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:767
 #, kde-format
 msgid "Clipboard"
 msgstr "Presse-papiers"
@@ -4257,14 +4257,14 @@ msgid "Create Checksum Progress"
 msgstr "État de la création des sommes de contrôle"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:740
+#: src/crypto/verifychecksumscontroller.cpp:485 src/utils/output.cpp:739
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Erreur lors de l'exécution de « %1 » : %2"
 
 #: src/crypto/createchecksumscontroller.cpp:501
 #: src/crypto/verifychecksumscontroller.cpp:488 src/utils/input.cpp:385
-#: src/utils/output.cpp:743
+#: src/utils/output.cpp:742
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Impossible d'exécuter « %1 » : %2"
@@ -4633,7 +4633,7 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:743
+#: src/crypto/signencrypttask.cpp:761
 #, kde-format
 msgid "Input error: %1"
 msgstr "Erreur d'entrée : %1"
@@ -5899,7 +5899,7 @@ msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archive"
 
-#: src/crypto/signencryptfilescontroller.cpp:628
+#: src/crypto/signencryptfilescontroller.cpp:661
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -5908,7 +5908,7 @@ msgstr ""
 "Réception d'une exception inattendue dans SignEncryptFilesController::"
 "Private::slotWizardOperationPrepared : %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:632
+#: src/crypto/signencryptfilescontroller.cpp:665
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -5960,18 +5960,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1 : <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:451
+#: src/crypto/signencrypttask.cpp:459
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Impossible de déterminer le protocole pour la tâche"
 
-#: src/crypto/signencrypttask.cpp:462
+#: src/crypto/signencrypttask.cpp:519
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:632 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:650 src/utils/archivedefinition.cpp:350
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5981,7 +5981,7 @@ msgstr ""
 "%1"
 
 # unreviewed-context
-#: src/crypto/signencrypttask.cpp:646
+#: src/crypto/signencrypttask.cpp:664
 #, fuzzy, kde-format
 #| msgctxt "Lineedit accessible name"
 #| msgid "OpenPGP signed and encrypted file"
@@ -5989,7 +5989,7 @@ msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Fichier signé et chiffré « OpenPGP »"
 
-#: src/crypto/signencrypttask.cpp:655
+#: src/crypto/signencrypttask.cpp:673
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -5997,7 +5997,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Création de la paire de clés..."
 
-#: src/crypto/signencrypttask.cpp:665
+#: src/crypto/signencrypttask.cpp:683
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -10856,12 +10856,12 @@ msgstr "Impossible d'ouvrir le fichier « %1 » en lecture"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Le fichier « %1 » est déjà ouvert, mais pas en lecture"
 
-#: src/utils/input.cpp:330 src/utils/output.cpp:710
+#: src/utils/input.cpp:330 src/utils/output.cpp:709
 #, kde-format
 msgid "Command not specified"
 msgstr "Commande non définie"
 
-#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:716
+#: src/utils/input.cpp:338 src/utils/input.cpp:343 src/utils/output.cpp:715
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Impossible de démarrer le processus « %1 » : %2"
@@ -10923,71 +10923,71 @@ msgid "Log Error: Could not open log file \"%1\" for writing."
 msgstr ""
 "Erreur de journalisation : impossible d'ouvrir le journal « %1 » en écriture."
 
-#: src/utils/output.cpp:281
+#: src/utils/output.cpp:289
 #, kde-format
 msgid "No output device"
 msgstr "Aucun périphérique de destination"
 
-#: src/utils/output.cpp:497
+#: src/utils/output.cpp:501
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "Impossible d'ouvrir FD %1 en écriture"
 
-#: src/utils/output.cpp:523
+#: src/utils/output.cpp:527
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "Impossible de créer un fichier temporaire pour la sortie de « %1 »"
 
-#: src/utils/output.cpp:557
+#: src/utils/output.cpp:560
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "Le fichier existe déjà."
 
-#: src/utils/output.cpp:651
+#: src/utils/output.cpp:654
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Écrasement annulé"
 
-#: src/utils/output.cpp:657
+#: src/utils/output.cpp:660
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
 msgstr "Impossible de supprimer le <filename>%1</filename> par écrasement."
 
-#: src/utils/output.cpp:682
+#: src/utils/output.cpp:681
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Impossible de renommer le fichier « %1 » en « %2 »"
 
-#: src/utils/output.cpp:727
+#: src/utils/output.cpp:726
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file1 ...\""
 msgid "Input to %1 ..."
 msgstr "Entrée vers « %1 »..."
 
-#: src/utils/output.cpp:729
+#: src/utils/output.cpp:728
 #, kde-format
 msgctxt "e.g. \"Input to tar xf - file\""
 msgid "Input to %1"
 msgstr "Entrée vers « %1 »"
 
-#: src/utils/output.cpp:761
+#: src/utils/output.cpp:760
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Impossible d'écrire dans le presse-papiers"
 
-#: src/utils/output.cpp:770
+#: src/utils/output.cpp:769
 #, kde-format
 msgid "Find buffer"
 msgstr "Tampon de recherche"
 
-#: src/utils/output.cpp:772
+#: src/utils/output.cpp:771
 #, kde-format
 msgid "Selection"
 msgstr "Sélection"
 
-#: src/utils/output.cpp:786
+#: src/utils/output.cpp:785
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Impossible de trouver le presse-papiers"

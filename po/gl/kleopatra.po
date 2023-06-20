@@ -102,7 +102,7 @@ msgstr "Karl-Heinz Zimmer"
 
 #: src/aboutdata.cpp:52
 msgid "DN display ordering support, infrastructure"
-msgstr "Funcionalidade de ordenamento ao mostrar os DN, infraestrutura."
+msgstr "Funcionalidade de ordenamento ao amosar os DN, infraestrutura."
 
 #: src/aboutdata.cpp:54
 msgid "Laurent Montel"
@@ -728,7 +728,7 @@ msgstr "Non se pode abrir o ficheiro «%1» para lectura e escritura: %2"
 #: src/commands/changeroottrustcommand.cpp:295
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
-msgstr "Non se poden estabelecer permisos restritivos sobre o ficheiro %1: %2"
+msgstr "Non se poden definir permisos restritivos sobre o ficheiro %1: %2"
 
 #: src/commands/changeroottrustcommand.cpp:359
 #, kde-format
@@ -1089,7 +1089,7 @@ msgstr ""
 #: src/commands/dumpcrlcachecommand.cpp:118
 #, kde-format
 msgid "Show Entries"
-msgstr "Mostrar as entradas"
+msgstr "Amosar as entradas"
 
 #: src/commands/dumpcrlcachecommand.cpp:193
 #, kde-format
@@ -1293,10 +1293,10 @@ msgid ""
 "to export to?</para>"
 msgstr ""
 "<para>Non se configuraron servizos de directorio OpenPGP.</para><para>Dado "
-"que non hai ningún configurado, <application>Kleopatra</application> "
-"empregará <resource>keys.gnupg.net</resource> como servidor para exportalos."
-"</para><para>Pode configurar os servidores de directorio OpenPGP no diálogo "
-"de configuración de <application>Kleopatra</application>. </para><para>Quere "
+"que non hai ningún configurado, <application>Kleopatra</application> usará "
+"<resource>keys.gnupg.net</resource> como servidor para exportalos.</"
+"para><para>Pode configurar os servidores de directorio OpenPGP no diálogo de "
+"configuración de <application>Kleopatra</application>. </para><para>Quere "
 "continuar con <resource>keys.gnupg.net</resource> como servidor ao que "
 "exportar?</para>"
 
@@ -2267,7 +2267,7 @@ msgid ""
 "installed.</para>"
 msgstr ""
 "<para><application>Kleopatra</application> usa <application>PaperKey</"
-"application> para importar a súa copia de seguranza de texto.</"
+"application> para importar a súa copia de seguridade de texto.</"
 "para><para>Asegúrese de que está instalado.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:164
@@ -2278,7 +2278,7 @@ msgstr "Seleccionar o ficheiro de entrada"
 #: src/commands/importpaperkeycommand.cpp:166
 #, kde-format
 msgid "Paper backup"
-msgstr "Copia de seguranza en papel"
+msgstr "Copia de seguridade en papel"
 
 #: src/commands/importpaperkeycommand.cpp:197
 #, kde-format
@@ -2624,7 +2624,7 @@ msgstr "Cargando os certificados… (pode levar un anaco)"
 #: src/commands/learncardkeyscommand.cpp:99
 #, kde-format
 msgid "Show Details"
-msgstr "Mostrar os detalles"
+msgstr "Amosar os detalles"
 
 #: src/commands/lookupcertificatescommand.cpp:436
 #, kde-kuit-format
@@ -2817,7 +2817,7 @@ msgid ""
 "be irrecoverably lost.</p>"
 msgstr ""
 "<p>Esta tarxeta xa contén unha chave nesta rañura. Continuar "
-"<b>sobrescribirá</b> esa chave.</p><p>Se non hai copia de seguranza a chave "
+"<b>sobrescribirá</b> esa chave.</p><p>Se non hai copia de seguridade a chave "
 "existente perderase sen posibilidade de recuperala.</p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:177
@@ -2958,7 +2958,7 @@ msgstr ""
 "non todos os certificados levan o nome do seu servidor de certificados "
 "preferido (poucos o fan), precísase dun servidor de reserva.</"
 "para><para>Dado que non hai ningún configurado, <application>Kleopatra</"
-"application> empregará <resource>keys.gnupg.net</resource> como reserva.</"
+"application> usará <resource>keys.gnupg.net</resource> como reserva.</"
 "para><para>Pode configurar os servidores de directorio OpenPGP no diálogo de "
 "configuración de Kleopatra.</para><para>Quere continuar con <resource>keys."
 "gnupg.net</resource> como servidor de reserva?</para>"
@@ -3655,9 +3655,9 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
-"Estabeleza esta opción para codificar ficheiros cifrados ou asinados como "
-"texto codificado en base64. Así poden abrirse nun editor ou enviarse no "
-"corpo dunha mensaxe de correo. Isto aumentará o tamaño do ficheiro nun terzo."
+"Defina esta opción para codificar ficheiros cifrados ou asinados como texto "
+"codificado en base64. Así poden abrirse nun editor ou enviarse no corpo "
+"dunha mensaxe de correo. Isto aumentará o tamaño do ficheiro nun terzo."
 
 #. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:66
@@ -3686,8 +3686,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
-msgstr ""
-"Estabeleza esta opción para evitar usar o cartafol temporal do usuario."
+msgstr "Defina esta opción para evitar usar o cartafol temporal do usuario."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/conf/cryptooperationsconfigwidget.cpp:70
@@ -4056,9 +4055,9 @@ msgid ""
 "certificate policy is allowed. If this option is selected, policies are not "
 "checked."
 msgstr ""
-"De maneira predeterminada, GnuPG emprega o ficheiro ~/.gnupg/policies.txt "
-"para comprobar se se permite unha política de certificados. Se se selecciona "
-"esta opción non se comproban as políticas."
+"De maneira predeterminada, GnuPG usa o ficheiro ~/.gnupg/policies.txt para "
+"comprobar se se permite unha política de certificados. Se se selecciona esta "
+"opción non se comproban as políticas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:134
@@ -4073,7 +4072,7 @@ msgid ""
 "If this option is checked, Certificate Revocation Lists are never used to "
 "validate S/MIME certificates."
 msgstr ""
-"Se se marca esta opción, nunca se empregan as Listas de Revogación de "
+"Se se marca esta opción, nunca se usan as Listas de Revogación de "
 "Certificados para validar certificados S/MIME."
 
 #. i18n: ectx: property (text), widget (QCheckBox, neverConsultCB)
@@ -4098,7 +4097,7 @@ msgstr ""
 "considera ou non que este certificado raíz é de confianza. Hai que confiar "
 "nun certificado raíz antes de que se poida confiar nos certificados que "
 "aquel certifica, pero permitir certificados raíz de pouca confianza no "
-"almacén de certificados socavará a seguranza do sistema."
+"almacén de certificados socavará a seguridade do sistema."
 
 #. i18n: ectx: property (text), widget (QCheckBox, allowMarkTrustedCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:154
@@ -4153,9 +4152,9 @@ msgid ""
 msgstr ""
 "Ao buscar pola localización dunha CRL, o certificado que vai probarse "
 "normalmente contén o que se chaman entradas «Punto de distribución "
-"CRL» (DP), que son URLs que describen como se accede á CRL. Emprégase a "
-"primeira entrada DP que se atope. Con esta opción ignóranse todas as "
-"entradas que empreguen o esquema HTTP ao buscar un DP axeitado."
+"CRL» (DP), que son URLs que describen como se accede á CRL. Úsase a primeira "
+"entrada DP que se atope. Con esta opción ignóranse todas as entradas que "
+"empreguen o esquema HTTP ao buscar un DP axeitado."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreHTTPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:191
@@ -4179,13 +4178,13 @@ msgstr ""
 #: src/conf/smimevalidationconfigurationwidget.ui:201
 #, kde-format
 msgid "Use system HTTP proxy:"
-msgstr "Empregar proxy HTTP do sistema:"
+msgstr "Usar proxy HTTP do sistema:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, useCustomHTTPProxyRB)
 #: src/conf/smimevalidationconfigurationwidget.ui:218
 #, kde-format
 msgid "Use this proxy for HTTP requests: "
-msgstr "Empregar este proxy para as solicitudes HTTP: "
+msgstr "Usar este proxy para as solicitudes HTTP: "
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, customHTTPProxy)
 #: src/conf/smimevalidationconfigurationwidget.ui:225
@@ -4232,9 +4231,9 @@ msgid ""
 msgstr ""
 "Ao buscar pola localización dunha CRL, o certificado que vai probarse "
 "normalmente contén o que se chaman entradas «Punto de distribución "
-"CRL» (DP), que son URL que describen como se accede ás CRL. Emprégase a "
-"primeira entrada DP que se atope. Con esta opción ignóranse todas as "
-"entradas que empreguen o esquema LDAP ao buscar un DP axeitado."
+"CRL» (DP), que son URL que describen como se accede ás CRL. Úsase a primeira "
+"entrada DP que se atope. Con esta opción ignóranse todas as entradas que "
+"empreguen o esquema LDAP ao buscar un DP axeitado."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:265
@@ -4265,8 +4264,8 @@ msgstr ""
 "servidor e porto especificados nun URL de LDAP e tamén se utilizará se se "
 "omitiron o servidor e o porto do URL. Empregaranse outros servidores LDAP só "
 "se falla a conexión co «proxy».\n"
-"A sintaxe é «SERVIDOR» OU «SERVIDOR:PORTO». Se se omitir o porto, emprégase "
-"o porto 389 (porto LDAP estándar)."
+"A sintaxe é «SERVIDOR» OU «SERVIDOR:PORTO». Se se omitir o porto, úsase o "
+"porto 389 (porto LDAP estándar)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:149
 #, kde-kuit-format
@@ -4509,7 +4508,7 @@ msgstr "O número de Entrada/Saída non coincide"
 #: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
-msgstr "Non se pode empregar simultaneamente datos de saída e asinados"
+msgstr "Non se pode usar simultaneamente datos de saída e asinados"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:285
 #, kde-format
@@ -5309,7 +5308,7 @@ msgstr "Análise"
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
-msgstr "Mostrar o rexistro de auditoría"
+msgstr "Amosar o rexistro de auditoría"
 
 #: src/crypto/gui/resultpage.cpp:65
 #, kde-format
@@ -5408,7 +5407,7 @@ msgstr "Verifique que se escolleu o certificado correcto para o remitente:"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:363
 #, kde-format
 msgid "Show all recipients"
-msgstr "Mostrar todos os destinatarios"
+msgstr "Amosar todos os destinatarios"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:366
 #, kde-format
@@ -5423,7 +5422,7 @@ msgstr "Seleccionar o certificado de cifrado"
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:368
 #, kde-format
 msgid "Only show this dialog in case of conflicts (experimental)"
-msgstr "Mostrar este diálogo só no caso de conflitos (experimental)"
+msgstr "Amosar este diálogo só no caso de conflitos (experimental)"
 
 #: src/crypto/gui/signencryptemailconflictdialog.cpp:389
 #, kde-format
@@ -5888,7 +5887,7 @@ msgstr "Non se puido enviar o destinatario %1: %2"
 #, kde-format
 msgctxt "%1=protocol (S/Mime, OpenPGP), %2=certificate"
 msgid "Sign using %1: %2"
-msgstr "Asinar empregando %1: %2"
+msgstr "Asinar usando %1: %2"
 
 #: src/crypto/gui/signerresolvepage.cpp:62
 #, kde-format
@@ -6018,7 +6017,7 @@ msgstr "Evolución:"
 #, kde-format
 msgctxt "Show Errors"
 msgid "Show"
-msgstr "Mostrar"
+msgstr "Amosar"
 
 #: src/crypto/gui/wizard.cpp:76
 #, kde-format
@@ -7358,12 +7357,12 @@ msgstr ""
 #: src/dialogs/gencardkeydialog.cpp:78
 #, kde-format
 msgid "Backup encryption key"
-msgstr "Facer unha copia de seguranza da chave de cifraxe"
+msgstr "Facer unha copia de seguridade da chave de cifraxe"
 
 #: src/dialogs/gencardkeydialog.cpp:79
 #, kde-format
 msgid "Backup the encryption key in a file."
-msgstr "Facer unha copia de seguranza da chave de cifraxe nun ficheiro."
+msgstr "Facer unha copia de seguridade da chave de cifraxe nun ficheiro."
 
 #: src/dialogs/gencardkeydialog.cpp:80
 #, kde-format
@@ -7736,19 +7735,19 @@ msgstr ""
 "<li>Un certificado especial para crear <em>sinaturas cualificadas</em> de "
 "acordo coa Signaturgesetz alemá</li>\n"
 "</ol>\n"
-"Hai que estabelecer os PIN iniciais para poder usalos.</p>"
+"Hai que definir os PIN iniciais para poder usalos.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, nksLB)
 #: src/dialogs/setinitialpindialog.ui:27
 #, kde-format
 msgid "Step 1: Set the initial PIN for the first certificate (\"NKS\"):"
-msgstr "Paso 1: Estabelecer o PIN inicial do primeiro certificado («NKS»):"
+msgstr "Paso 1: Definir o PIN inicial do primeiro certificado («NKS»):"
 
 #. i18n: ectx: property (text), widget (QPushButton, nksPB)
 #: src/dialogs/setinitialpindialog.ui:34
 #, kde-format
 msgid "Set Initial PIN (NKS)"
-msgstr "Estabelecer o PIN inicial (NKS)"
+msgstr "Definir o PIN inicial (NKS)"
 
 #. i18n: ectx: property (text), widget (QLabel, sigGLB)
 #: src/dialogs/setinitialpindialog.ui:71
@@ -7757,14 +7756,14 @@ msgid ""
 "Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
 "\"):"
 msgstr ""
-"Paso 2: Estabelecer o PIN inicial do certificado de sinatura cualificado "
+"Paso 2: Definir o PIN inicial do certificado de sinatura cualificado "
 "(«SigG»):"
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
 #: src/dialogs/setinitialpindialog.ui:81
 #, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
-msgstr "(opcional) Estabelecer o PIN inicial (SigG)"
+msgstr "(opcional) Definir o PIN inicial (SigG)"
 
 #: src/dialogs/subkeyswidget.cpp:85
 #, fuzzy, kde-format
@@ -7979,7 +7978,7 @@ msgstr "Actualización dispoñíbel"
 #: src/dialogs/updatenotification.cpp:204
 #, kde-format
 msgid "Show this notification for future updates."
-msgstr "Mostrar esta notificación para actualizacións futuras."
+msgstr "Amosar esta notificación para actualizacións futuras."
 
 #: src/dialogs/updatenotification.cpp:211
 #, kde-format
@@ -8123,7 +8122,7 @@ msgstr ""
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
 msgstr ""
-"Empregar pgp como extensión predeterminada dos ficheiros xerados por OpenPGP"
+"Usar pgp como extensión predeterminada dos ficheiros xerados por OpenPGP"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:11
@@ -8164,7 +8163,7 @@ msgstr ""
 #: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Use this command to create file archives."
-msgstr "Empregue esta orde para crear arquivos de ficheiros."
+msgstr "Use esta orde para crear arquivos de ficheiros."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:26
@@ -8184,16 +8183,15 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
-"Estabeleza esta opción para codificar ficheiros cifrados ou asinados como "
-"texto codificado en base64. Así poden abrirse nun editor ou enviarse no "
-"corpo dunha mensaxe de correo. Isto aumentará o tamaño do ficheiro nun terzo."
+"Defina esta opción para codificar ficheiros cifrados ou asinados como texto "
+"codificado en base64. Así poden abrirse nun editor ou enviarse no corpo "
+"dunha mensaxe de correo. Isto aumentará o tamaño do ficheiro nun terzo."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
-msgstr ""
-"Estabeleza esta opción para evitar usar o cartafol temporal do usuario."
+msgstr "Defina esta opción para evitar usar o cartafol temporal do usuario."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
 #: src/kcfg/fileoperationspreferences.kcfg:41
@@ -8703,7 +8701,7 @@ msgstr ""
 #: src/kcfg/tooltippreferences.kcfg:9
 #, kde-format
 msgid "Show certificate validity"
-msgstr "Mostrar a validez dos certificados"
+msgstr "Amosar a validez dos certificados"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:10
@@ -8712,14 +8710,14 @@ msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
 "certificate is expired or revoked."
 msgstr ""
-"Mostrar a información sobre a validez dos certificados nas mensaxes, como "
+"Amosar a información sobre a validez dos certificados nas mensaxes, como "
 "cando caduca ou se revoga o certificado."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:14
 #, kde-format
 msgid "Show certificate owner information"
-msgstr "Mostrar información sobre o propietario do certificado"
+msgstr "Amosar información sobre o propietario do certificado"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:15
@@ -8728,14 +8726,14 @@ msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
 "subject and issuers."
 msgstr ""
-"Mostrar información sobre o propietario dos certificados en mensaxes, como "
+"Amosar información sobre o propietario dos certificados en mensaxes, como "
 "identificadores do usuario, asunto e expendedores."
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:19
 #, kde-format
 msgid "Show certificate details"
-msgstr "Mostrar os detalles do certificado"
+msgstr "Amosar os detalles do certificado"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
 #: src/kcfg/tooltippreferences.kcfg:20
@@ -8744,7 +8742,7 @@ msgid ""
 "Show more certificate details, such as fingerprint, key length and "
 "expiration dates"
 msgstr ""
-"Mostrar máis detalles dos certificados, como pegada, lonxitude da chave e "
+"Amosar máis detalles dos certificados, como pegada, lonxitude da chave e "
 "datas de caducidade"
 
 #. i18n: ectx: Menu (file)
@@ -8799,12 +8797,12 @@ msgstr "Barra de ferramentas principal"
 #: src/kleopatra_options.h:20
 #, kde-format
 msgid "Use OpenPGP for the following operation"
-msgstr "Empregar OpenPGP para a seguinte operación"
+msgstr "Usar OpenPGP para a seguinte operación"
 
 #: src/kleopatra_options.h:21
 #, kde-format
 msgid "Use CMS (X.509, S/MIME) for the following operation"
-msgstr "Empregar CMS (X.509, S/MIME) para a seguinte operación"
+msgstr "Usar CMS (X.509, S/MIME) para a seguinte operación"
 
 #: src/kleopatra_options.h:22
 #, kde-format
@@ -9220,7 +9218,7 @@ msgstr "&Configurar %1…"
 #: src/mainwindow.cpp:579
 #, kde-format
 msgid "Set Focus to Quick Search"
-msgstr "Estabelecer o foco na Busca rápida"
+msgstr "Definir o foco na Busca rápida"
 
 #: src/mainwindow.cpp:590
 #, kde-format
@@ -9702,7 +9700,7 @@ msgstr "Enviar a solicitude de certificado por correo electrónico…"
 #: src/newcertificatewizard/resultpage.cpp:116
 #, kde-format
 msgid "Make a Backup Of Your Key Pair..."
-msgstr "Facer unha copia de seguranza da parella de chaves…"
+msgstr "Facer unha copia de seguridade da parella de chaves…"
 
 #: src/newcertificatewizard/resultpage.cpp:119
 #, kde-format
@@ -10188,7 +10186,7 @@ msgstr ""
 "resource>) engadida, ben por unha versión anterior de <application>Gpg4win</"
 "application>, ben por aplicacións como <application>WinPT</application> ou "
 "<application>EnigMail</application>.</para><para>Manter a entrada podería "
-"conducir a que se empregue unha infraestrutura de GnuPG antiga.</para>"
+"conducir a que se use unha infraestrutura de GnuPG antiga.</para>"
 
 #: src/selftest/registrycheck.cpp:59
 #, kde-kuit-format
@@ -10601,12 +10599,12 @@ msgstr "Ha de haber polo menos un FILE presente"
 #: src/uiserver/decryptverifycommandemailbase.cpp:126
 #, kde-format
 msgid "Cannot use non-info SENDER"
-msgstr "Non se pode empregar un SENDER non informativo"
+msgstr "Non se pode usar un SENDER non informativo"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:130
 #, kde-format
 msgid "Cannot use non-info RECIPIENT"
-msgstr "Non se pode empregar un RECIPIENT non informativo"
+msgstr "Non se pode usar un RECIPIENT non informativo"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:145
 #, kde-format
@@ -10642,7 +10640,7 @@ msgstr "O número de INPUT/OUTPUT non coincide"
 #: src/uiserver/decryptverifycommandemailbase.cpp:172
 #, kde-format
 msgid "Cannot use OUTPUT and MESSAGE simultaneously"
-msgstr "Non se pode empregar OUTPUT e MESSAGE simultaneamente"
+msgstr "Non se pode usar OUTPUT e MESSAGE simultaneamente"
 
 #: src/uiserver/decryptverifycommandemailbase.cpp:180
 #, kde-format
@@ -10657,12 +10655,12 @@ msgstr "Non hai infraestrutura compatíbel con S/MIME"
 #: src/uiserver/decryptverifycommandfilesbase.cpp:133
 #, kde-format
 msgid "Cannot use SENDER"
-msgstr "Non se pode empregar SENDER"
+msgstr "Non se pode usar SENDER"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:137
 #, kde-format
 msgid "Cannot use RECIPIENT"
-msgstr "Non se pode empregar RECIPIENT"
+msgstr "Non se pode usar RECIPIENT"
 
 #: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
@@ -10682,7 +10680,7 @@ msgstr "OUTPUT presente"
 #: src/uiserver/decryptverifycommandfilesbase.cpp:158
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
-msgstr "DECRYPT/VERIFY_FILES non pode empregar directorios como entrada"
+msgstr "DECRYPT/VERIFY_FILES non pode usar directorios como entrada"
 
 #: src/uiserver/echocommand.cpp:132 src/uiserver/signcommand.cpp:207
 #, kde-format
@@ -11002,7 +11000,7 @@ msgstr "Hai un erro na definición do arquivo %1: %2"
 #: src/utils/archivedefinition.cpp:135
 #, kde-format
 msgid "Cannot use both %f and | in '%1'"
-msgstr "Non se pode empregar %f e | xuntos en «%1»"
+msgstr "Non se pode usar %f e | xuntos en «%1»"
 
 #: src/utils/archivedefinition.cpp:147
 #, kde-format
@@ -11705,7 +11703,7 @@ msgstr "Tarxeta NetKey v%1"
 #, kde-format
 msgctxt "SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
-msgstr "Estabelecer o PIN de SigG"
+msgstr "Definir o PIN de SigG"
 
 #: src/view/netkeywidget.cpp:242
 #, kde-format
@@ -11744,13 +11742,13 @@ msgstr "O NullPIN aínda está activo nesta tarxeta."
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
 msgid "You need to set a PIN before you can use the certificates."
-msgstr "Ten que estabelecer un PIN para poder usar os certificados."
+msgstr "Ten que definir un PIN para poder usar os certificados."
 
 #: src/view/nullpinwidget.cpp:41
 #, kde-format
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Set NKS PIN"
-msgstr "Estabelecer o PIN de NKS"
+msgstr "Definir o PIN de NKS"
 
 #: src/view/nullpinwidget.cpp:69
 #, kde-format
@@ -12160,19 +12158,19 @@ msgstr "Non se puido xerar a nova chave: %1"
 #: src/view/pgpcardwidget.cpp:372
 #, kde-format
 msgid "Save backup of encryption key"
-msgstr "Gardar unha copia de seguranza da chave de cifraxe"
+msgstr "Gardar unha copia de seguridade da chave de cifraxe"
 
 #: src/view/pgpcardwidget.cpp:374
 #, kde-format
 msgid "Backup Key"
-msgstr "Facer unha copia de seguranza da chave"
+msgstr "Facer unha copia de seguridade da chave"
 
 #: src/view/pgpcardwidget.cpp:377
 #, kde-format
 msgctxt "@info"
 msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr ""
-"Non se puido mover a copia de seguranza. A copia de seguranza da chave "
+"Non se puido mover a copia de seguridade. A copia de seguridade da chave "
 "continúa almacenada dentro de: %1"
 
 #: src/view/pgpcardwidget.cpp:384

@@ -983,6 +983,7 @@ public:
     Protocol m_protocol = UnknownProtocol;
     bool m_ignoreMDCError = false;
     bool m_extractArchive = false;
+    QString m_inputFilePath;
     QString m_outputDirectory;
 };
 
@@ -1116,6 +1117,11 @@ void DecryptVerifyTask::setExtractArchive(bool extract)
     d->m_extractArchive = extract;
 }
 
+void DecryptVerifyTask::setInputFile(const QString &path)
+{
+    d->m_inputFilePath = path;
+}
+
 void DecryptVerifyTask::setOutputDirectory(const QString &directory)
 {
     d->m_outputDirectory = directory;
@@ -1201,8 +1207,13 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
         q->setProgress(processed, total);
     });
 #endif
+#if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
+    job->setInputFile(m_inputFilePath);
+    const auto err = job->startIt();
+#else
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
     const auto err = job->start(m_input->ioDevice());
+#endif
     if (err) {
         q->emitResult(q->fromDecryptVerifyResult(err, {}, {}));
     }
@@ -1387,6 +1398,7 @@ public:
     const QGpgME::Protocol *m_backend = nullptr;
     Protocol m_protocol = UnknownProtocol;
     bool m_extractArchive = false;
+    QString m_inputFilePath;
     QString m_outputDirectory;
 };
 
@@ -1501,6 +1513,11 @@ void VerifyOpaqueTask::setExtractArchive(bool extract)
     d->m_extractArchive = extract;
 }
 
+void VerifyOpaqueTask::setInputFile(const QString &path)
+{
+    d->m_inputFilePath = path;
+}
+
 void VerifyOpaqueTask::setOutputDirectory(const QString &directory)
 {
     d->m_outputDirectory = directory;
@@ -1560,8 +1577,13 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
         slotResult(verifyResult);
     });
     connect(job, &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
+#if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
+    job->setInputFile(m_inputFilePath);
+    const auto err = job->startIt();
+#else
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
     const auto err = job->start(m_input->ioDevice());
+#endif
     if (err) {
         q->emitResult(q->fromVerifyOpaqueResult(err, {}, {}));
     }

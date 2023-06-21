@@ -498,6 +498,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 t->setProtocol(cFile.protocol);
                 if (ad) {
                     t->setExtractArchive(true);
+                    t->setInputFile(cFile.fileName);
                     t->setOutputDirectory(m_workDir->path());
                 }
                 tasks.push_back(t);
@@ -514,6 +515,7 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 t->setProtocol(cFile.protocol);
                 if (ad) {
                     t->setExtractArchive(true);
+                    t->setInputFile(cFile.fileName);
                     t->setOutputDirectory(m_workDir->path());
                 }
                 cFile.output = output;

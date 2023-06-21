@@ -158,6 +158,7 @@ public:
     GpgME::Protocol protocol() const override;
 
     void setExtractArchive(bool extract);
+    void setInputFile(const QString &path);
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;
@@ -195,6 +196,7 @@ public:
 
     void setIgnoreMDCError(bool value);
     void setExtractArchive(bool extract);
+    void setInputFile(const QString &path);
     void setOutputDirectory(const QString &directory);
 
     QString inputLabel() const override;

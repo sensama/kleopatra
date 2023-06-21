@@ -146,3 +146,5 @@ void SigningCertificateSelectionWidget::setAllowedProtocols(bool pgp, bool cms)
     d->ui.cmsCombo->setVisible(cms);
 }
 
+
+#include "moc_signingcertificateselectionwidget.cpp"

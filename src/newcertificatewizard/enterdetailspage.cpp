@@ -532,3 +532,5 @@ void EnterDetailsPage::slotUpdateResultLabel()
 {
     ui->resultLE->setText(pgp() ? pgpUserID() : cmsDN());
 }
+
+#include "moc_enterdetailspage_p.cpp"

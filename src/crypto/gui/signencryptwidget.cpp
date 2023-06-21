@@ -854,3 +854,5 @@ void SignEncryptWidget::Private::updateAllExpiryMessages()
         }
     }
 }
+
+#include "moc_signencryptwidget.cpp"

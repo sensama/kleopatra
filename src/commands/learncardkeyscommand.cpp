@@ -109,3 +109,5 @@ void LearnCardKeysCommand::doStart()
         });
     dlg->show();
 }
+
+#include "moc_learncardkeyscommand.cpp"

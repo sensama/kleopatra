@@ -169,3 +169,5 @@ QString ExportOpenPGPCertToProviderCommand::senderAddress() const
         return QString::fromUtf8(uid.addrSpec().data());
     }
 }
+
+#include "moc_exportopenpgpcerttoprovidercommand.cpp"

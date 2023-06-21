@@ -548,3 +548,5 @@ void PadWidget::focusFirstChild(Qt::FocusReason reason)
 {
     d->mEdit->setFocus(reason);
 }
+
+#include "moc_padwidget.cpp"

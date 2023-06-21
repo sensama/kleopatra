@@ -110,3 +110,5 @@ void SessionDataHandler::slotCollectGarbage()
         QMetaObject::invokeMethod(&timer, "stop", Qt::QueuedConnection);
     }
 }
+
+#include "moc_sessiondata.cpp"

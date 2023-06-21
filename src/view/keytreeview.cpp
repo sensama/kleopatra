@@ -716,3 +716,5 @@ void KeyTreeView::resizeColumns()
         m_view->resizeColumnToContents(i);
     }
 }
+
+#include "moc_keytreeview.cpp"

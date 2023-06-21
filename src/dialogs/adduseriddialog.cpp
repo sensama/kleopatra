@@ -187,3 +187,5 @@ QString AddUserIDDialog::userID() const
 {
     return d->ui.nameAndEmail->userID();
 }
+
+#include "moc_adduseriddialog.cpp"

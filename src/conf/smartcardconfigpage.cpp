@@ -114,3 +114,5 @@ void SmartCardConfigurationPage::defaults()
         d->mReaderPort->setValue({});
     }
 }
+
+#include "moc_smartcardconfigpage.cpp"

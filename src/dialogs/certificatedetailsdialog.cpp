@@ -80,3 +80,5 @@ GpgME::Key CertificateDetailsDialog::key() const
 {
     return findChild<CertificateDetailsWidget*>()->key();
 }
+
+#include "moc_certificatedetailsdialog.cpp"

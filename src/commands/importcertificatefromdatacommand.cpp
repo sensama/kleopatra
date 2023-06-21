@@ -76,3 +76,5 @@ void ImportCertificateFromDataCommand::doStart()
 
 #undef d
 #undef q
+
+#include "moc_importcertificatefromdatacommand.cpp"

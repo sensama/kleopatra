@@ -215,3 +215,5 @@ void WelcomeWidget::focusFirstChild(Qt::FocusReason reason)
 }
 
 #include "welcomewidget.moc"
+
+#include "moc_welcomewidget.cpp"

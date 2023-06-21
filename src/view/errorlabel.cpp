@@ -27,3 +27,5 @@ ErrorLabel::ErrorLabel(QWidget *parent)
 }
 
 ErrorLabel::~ErrorLabel() = default;
+
+#include "moc_errorlabel.cpp"

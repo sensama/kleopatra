@@ -149,3 +149,5 @@ bool HtmlLabel::focusNextPrevChild(bool next)
     }
     return result;
 }
+
+#include "moc_htmllabel.cpp"

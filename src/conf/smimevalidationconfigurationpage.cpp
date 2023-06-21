@@ -42,3 +42,5 @@ void SMimeValidationConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
+
+#include "moc_smimevalidationconfigurationpage.cpp"

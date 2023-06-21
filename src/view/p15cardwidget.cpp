@@ -193,3 +193,5 @@ void P15CardWidget::setCard(const P15Card *card)
     }
     qCDebug(KLEOPATRA_LOG) << "All certificates from card cached - Not learning.";
 }
+
+#include "moc_p15cardwidget.cpp"

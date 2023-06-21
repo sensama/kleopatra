@@ -261,3 +261,5 @@ void NewOpenPGPCertificateCommand::doCancel()
 
 #undef d
 #undef q
+
+#include "moc_newopenpgpcertificatecommand.cpp"

@@ -63,3 +63,5 @@ void SigningCertificateSelectionDialog::setAllowedProtocols(const std::set<GpgME
     widget->setAllowedProtocols(allowedProtocols);
 }
 
+
+#include "moc_signingcertificateselectiondialog.cpp"

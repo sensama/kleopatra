@@ -102,3 +102,5 @@ QByteArray PIVCardApplicationAdministrationKeyInputDialog::adminKey() const
 {
     return QByteArray::fromHex(d->mHexEncodedAdminKeyEdit->text().toUtf8());
 }
+
+#include "moc_pivcardapplicationadministrationkeyinputdialog.cpp"

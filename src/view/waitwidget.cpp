@@ -45,3 +45,5 @@ void WaitWidget::setText(const QString &text)
 WaitWidget::~WaitWidget()
 {
 }
+
+#include "moc_waitwidget.cpp"

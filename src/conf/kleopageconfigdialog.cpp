@@ -243,3 +243,5 @@ void KleoPageConfigDialog::clientChanged()
         applyButton->setEnabled(change);
     }
 }
+
+#include "moc_kleopageconfigdialog.cpp"

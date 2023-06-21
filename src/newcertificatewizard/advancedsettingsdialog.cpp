@@ -1082,3 +1082,5 @@ void AdvancedSettingsDialog::showEvent(QShowEvent *event)
     }
     QDialog::showEvent(event);
 }
+
+#include "moc_advancedsettingsdialog_p.cpp"

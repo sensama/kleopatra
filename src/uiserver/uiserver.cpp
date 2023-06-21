@@ -281,3 +281,5 @@ void UiServer::Private::makeListeningSocket()
 }
 
 #include "moc_uiserver_p.cpp"
+
+#include "moc_uiserver.cpp"

@@ -106,3 +106,5 @@ QDir NewCertificateWizard::tmpDir() const
 {
     return QDir(d->tmp.path());
 }
+
+#include "moc_newcertificatewizard.cpp"

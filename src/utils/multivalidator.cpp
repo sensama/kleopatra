@@ -65,3 +65,5 @@ QValidator::State MultiValidator::validate(QString &str, int &pos) const
 
     return Intermediate;
 }
+
+#include "moc_multivalidator.cpp"

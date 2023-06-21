@@ -42,3 +42,5 @@ EncryptEMailWizard::~EncryptEMailWizard()
     settings.setShowResultsAfterEncryptingClipboard(keepResultPageOpenWhenDone());
     settings.save();
 }
+
+#include "moc_encryptemailwizard.cpp"

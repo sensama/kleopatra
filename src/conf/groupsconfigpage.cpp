@@ -138,3 +138,5 @@ void GroupsConfigPage::save()
     // reload after saving to ensure that the groups reflect the saved groups (e.g. in case of immutable entries)
     load();
 }
+
+#include "moc_groupsconfigpage.cpp"

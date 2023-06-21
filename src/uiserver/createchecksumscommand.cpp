@@ -83,3 +83,5 @@ void CreateChecksumsCommand::doCanceled()
     }
 }
 
+
+#include "moc_createchecksumscommand.cpp"

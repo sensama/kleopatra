@@ -59,3 +59,5 @@ UnknownRecipientWidget::UnknownRecipientWidget(const char *keyid,
 QString UnknownRecipientWidget::keyID() const {
     return mKeyID;
 }
+
+#include "moc_unknownrecipientwidget.cpp"

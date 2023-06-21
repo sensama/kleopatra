@@ -112,3 +112,5 @@ QString CreateCSRForCardKeyDialog::dn() const
 {
     return d->ui.detailsWidget->dn();
 }
+
+#include "moc_createcsrforcardkeydialog.cpp"

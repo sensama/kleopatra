@@ -1234,3 +1234,5 @@ Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
 }
 
 #include "readerstatus.moc"
+
+#include "moc_readerstatus.cpp"

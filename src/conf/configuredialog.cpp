@@ -96,3 +96,5 @@ void ConfigureDialog::hideEvent(QHideEvent *e)
 ConfigureDialog::~ConfigureDialog()
 {
 }
+
+#include "moc_configuredialog.cpp"

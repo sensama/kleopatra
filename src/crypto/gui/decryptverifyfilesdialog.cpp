@@ -239,3 +239,5 @@ void DecryptVerifyFilesDialog::writeConfig()
     KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
     cfgGroup.sync();
 }
+
+#include "moc_decryptverifyfilesdialog.cpp"

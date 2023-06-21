@@ -187,3 +187,5 @@ void SetPrimaryUserIDCommand::doCancel()
 
 #undef d
 #undef q
+
+#include "moc_setprimaryuseridcommand.cpp"

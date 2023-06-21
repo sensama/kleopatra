@@ -72,3 +72,5 @@ bool CardCommand::autoResetCardToOpenPGP() const
 
 #undef q_func
 #undef d_func
+
+#include "moc_cardcommand.cpp"

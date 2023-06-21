@@ -188,3 +188,5 @@ void EchoCommand::slotOutputBytesWritten()
     }
 }
 
+
+#include "moc_echocommand.cpp"

@@ -578,3 +578,5 @@ void PGPCardWidget::generateKey(const std::string &keyref)
 }
 
 #include "pgpcardwidget.moc"
+
+#include "moc_pgpcardwidget.cpp"

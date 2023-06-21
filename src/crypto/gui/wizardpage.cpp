@@ -125,3 +125,5 @@ WizardPage::~WizardPage() {}
 
 void WizardPage::onNext() {}
 
+
+#include "moc_wizardpage.cpp"

@@ -61,3 +61,5 @@ void GnuPGSystemConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
+
+#include "moc_gnupgsystemconfigurationpage.cpp"

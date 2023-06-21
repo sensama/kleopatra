@@ -226,3 +226,5 @@ QString Task::Result::icon() const
 }
 
 #include "moc_task_p.cpp"
+
+#include "moc_task.cpp"

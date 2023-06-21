@@ -199,3 +199,5 @@ void KWatchGnuPGConfig::slotSave()
     accept();
 }
 
+
+#include "moc_kwatchgnupgconfig.cpp"

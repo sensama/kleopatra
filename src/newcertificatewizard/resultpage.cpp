@@ -374,3 +374,5 @@ void ResultPage::toggleSignEncryptAndRestart()
     setField(QStringLiteral("encryptionAllowed"), !encr);
     restartAtEnterDetailsPage();
 }
+
+#include "moc_resultpage_p.cpp"

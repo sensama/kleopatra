@@ -169,3 +169,5 @@ void ExportSecretKeyCommand::postSuccessHook(QWidget *)
 }
 
 }
+
+#include "moc_exportsecretkeycommand_old.cpp"

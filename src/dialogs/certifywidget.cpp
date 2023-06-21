@@ -835,3 +835,5 @@ bool CertifyWidget::isValid() const
 
 // For UserID model
 #include "certifywidget.moc"
+
+#include "moc_certifywidget.cpp"

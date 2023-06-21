@@ -309,3 +309,5 @@ QString OverwriteDialog::newFileName() const
     }
     return {};
 }
+
+#include "moc_overwritedialog.cpp"

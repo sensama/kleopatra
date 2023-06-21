@@ -347,3 +347,5 @@ QString CertificateDetailsInputWidget::dn() const
 {
     return d->ui.dn->text();
 }
+
+#include "moc_certificatedetailsinputwidget.cpp"

@@ -1502,3 +1502,5 @@ WId AssuanCommand::parentWId() const
 }
 
 #include "assuanserverconnection.moc"
+
+#include "moc_assuanserverconnection.cpp"

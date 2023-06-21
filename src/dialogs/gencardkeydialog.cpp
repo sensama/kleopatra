@@ -170,3 +170,5 @@ GenCardKeyDialog::KeyParams GenCardKeyDialog::getKeyParams() const
 {
     return d->params;
 }
+
+#include "moc_gencardkeydialog.cpp"

@@ -249,3 +249,5 @@ QString NameAndEmailWidget::userID() const
 {
     return buildUserId(name(), email());
 }
+
+#include "moc_nameandemailwidget.cpp"

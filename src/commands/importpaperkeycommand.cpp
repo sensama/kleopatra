@@ -219,3 +219,5 @@ QString ImportPaperKeyCommand::successMessage(const QStringList &) const
 {
     return QString();
 }
+
+#include "moc_importpaperkeycommand.cpp"

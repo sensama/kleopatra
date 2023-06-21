@@ -43,3 +43,5 @@ void CryptoOperationsConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
+
+#include "moc_cryptooperationsconfigpage.cpp"

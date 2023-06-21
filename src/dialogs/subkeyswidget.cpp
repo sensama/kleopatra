@@ -324,3 +324,5 @@ GpgME::Key SubKeysDialog::key() const
     Q_ASSERT(w);
     return w->key();
 }
+
+#include "moc_subkeyswidget.cpp"

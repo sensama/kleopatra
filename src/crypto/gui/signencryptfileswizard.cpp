@@ -695,3 +695,5 @@ void SignEncryptFilesWizard::writeConfig()
 
 
 #include "signencryptfileswizard.moc"
+
+#include "moc_signencryptfileswizard.cpp"

@@ -458,3 +458,5 @@ QString WindowsProcessDevice::errorString()
 }
 
 #endif
+
+#include "moc_windowsprocessdevice.cpp"

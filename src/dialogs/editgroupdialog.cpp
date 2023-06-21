@@ -404,3 +404,5 @@ void EditGroupDialog::showEvent(QShowEvent *event)
     // prevent accidental closing of dialog when pressing Enter while a search field has focus
     Kleo::unsetDefaultButtons(d->ui.buttonBox);
 }
+
+#include "moc_editgroupdialog.cpp"

@@ -100,3 +100,5 @@ void NullPinWidget::setNKSVisible(bool val)
 {
     mNKSBtn->setVisible(val);
 }
+
+#include "moc_nullpinwidget.cpp"

@@ -20,3 +20,5 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(QObject *p)
 
 DecryptVerifyFilesCommand::~DecryptVerifyFilesCommand() {}
 
+
+#include "moc_decryptverifyfilescommand.cpp"

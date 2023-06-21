@@ -49,3 +49,5 @@ void UrlLabel::focusInEvent(QFocusEvent *event)
         }, Qt::QueuedConnection);
     }
 }
+
+#include "moc_urllabel.cpp"

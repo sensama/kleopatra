@@ -264,3 +264,5 @@ void OperationsWidget::ensureIndexAvailable(unsigned int idx)
 }
 
 #include "decryptverifyfileswizard.moc"
+
+#include "moc_decryptverifyfileswizard.cpp"

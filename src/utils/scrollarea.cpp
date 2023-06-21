@@ -99,3 +99,5 @@ bool ScrollArea::eventFilter(QObject *obj, QEvent *ev)
     }
     return QScrollArea::eventFilter(obj, ev);
 }
+
+#include "moc_scrollarea.cpp"

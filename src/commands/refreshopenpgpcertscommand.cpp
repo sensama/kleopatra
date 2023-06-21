@@ -110,3 +110,5 @@ QString RefreshOpenPGPCertsCommand::successMessage(const QStringList &) const
     // ### --check-trustdb
 }
 
+
+#include "moc_refreshopenpgpcertscommand.cpp"

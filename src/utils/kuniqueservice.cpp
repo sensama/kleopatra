@@ -19,3 +19,5 @@
 #else
 # error "Uniqueservice is only implemented for DBus and Windows."
 #endif
+
+#include "moc_kuniqueservice.cpp"

@@ -418,3 +418,5 @@ std::vector<KeyGroup> GroupsConfigWidget::groups() const
 }
 
 #include "groupsconfigwidget.moc"
+
+#include "moc_groupsconfigwidget.cpp"

@@ -388,3 +388,5 @@ void PIVCardWidget::setAdminKey()
             });
     cmd->start();
 }
+
+#include "moc_pivcardwidget.cpp"

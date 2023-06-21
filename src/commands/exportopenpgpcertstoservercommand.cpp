@@ -121,3 +121,5 @@ QString ExportOpenPGPCertsToServerCommand::successMessage(const QStringList &) c
     return i18nc("@info", "OpenPGP certificates exported successfully.");
 }
 
+
+#include "moc_exportopenpgpcertstoservercommand.cpp"

@@ -346,3 +346,5 @@ void WebOfTrustWidget::signatureListingDone(const GpgME::KeyListResult &result)
     }
     d->keyListJob = nullptr;
 }
+
+#include "moc_weboftrustwidget.cpp"

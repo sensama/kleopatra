@@ -112,3 +112,5 @@ GpgME::Key TrustChainDialog::key() const
     return w->key();
 }
 
+
+#include "moc_trustchainwidget.cpp"

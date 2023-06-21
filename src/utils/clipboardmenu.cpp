@@ -148,3 +148,5 @@ void ClipboardMenu::slotEnableDisableActions()
     }
     mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }
+
+#include "moc_clipboardmenu.cpp"

@@ -124,3 +124,5 @@ SignEMailWizard::~SignEMailWizard()
     settings.setShowResultsAfterSigningClipboard(keepResultPageOpenWhenDone());
     settings.save();
 }
+
+#include "moc_signemailwizard.cpp"

@@ -115,3 +115,5 @@ void NewCertificateSigningRequestCommand::doCancel()
 
 #undef d
 #undef q
+
+#include "moc_newcertificatesigningrequestcommand.cpp"

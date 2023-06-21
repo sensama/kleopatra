@@ -213,3 +213,5 @@ void CryptoOperationsConfigWidget::save()
     }
     filePrefs.save();
 }
+
+#include "moc_cryptooperationsconfigwidget.cpp"

@@ -240,3 +240,5 @@ void SmartCardWidget::reload()
 }
 
 #include "smartcardwidget.moc"
+
+#include "moc_smartcardwidget.cpp"

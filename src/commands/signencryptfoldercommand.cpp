@@ -40,3 +40,5 @@ QStringList SignEncryptFolderCommand::selectFiles() const
     }
     return QStringList() << dir;
 }
+
+#include "moc_signencryptfoldercommand.cpp"

@@ -161,3 +161,5 @@ void CertifyCertificateDialog::keyPressEvent(QKeyEvent *e)
 
     QDialog::keyPressEvent(e);
 }
+
+#include "moc_certifycertificatedialog.cpp"

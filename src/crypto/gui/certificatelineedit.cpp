@@ -796,3 +796,5 @@ void CertificateLineEdit::setAccessibleNameOfLineEdit(const QString &name)
 }
 
 #include "certificatelineedit.moc"
+
+#include "moc_certificatelineedit.cpp"

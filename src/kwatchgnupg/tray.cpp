@@ -42,3 +42,5 @@ void KWatchGnuPGTray::setAttention(bool att)
     }
 }
 
+
+#include "moc_tray.cpp"

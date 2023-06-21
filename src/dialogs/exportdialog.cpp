@@ -216,3 +216,5 @@ GpgME::Key ExportDialog::key() const
     return mWidget->key();
 }
 
+
+#include "moc_exportdialog.cpp"

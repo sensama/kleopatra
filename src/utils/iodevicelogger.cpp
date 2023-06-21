@@ -165,3 +165,5 @@ qint64 IODeviceLogger::readLineData(char *data, qint64 maxSize)
     return num;
 }
 
+
+#include "moc_iodevicelogger.cpp"

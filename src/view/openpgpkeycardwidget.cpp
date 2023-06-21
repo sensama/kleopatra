@@ -265,3 +265,5 @@ void OpenPGPKeyCardWidget::update(const Card *card)
 {
     d->update(card);
 }
+
+#include "moc_openpgpkeycardwidget.cpp"

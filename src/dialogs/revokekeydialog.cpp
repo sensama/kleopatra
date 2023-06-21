@@ -293,3 +293,5 @@ QString RevokeKeyDialog::description() const
 }
 
 #include "revokekeydialog.moc"
+
+#include "moc_revokekeydialog.cpp"

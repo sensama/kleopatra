@@ -478,3 +478,5 @@ void DirectoryServicesConfigurationPage::defaults()
 {
     d->defaults();
 }
+
+#include "moc_dirservconfigpage.cpp"

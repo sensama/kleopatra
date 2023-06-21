@@ -126,3 +126,5 @@ QString ExportPaperKeyCommand::errorExitMessage(const QStringList &args) const
                   "<para>The output from <command>%1</command> was: <message>%2</message></para>",
                   args[0], errorString());
 }
+
+#include "moc_exportpaperkeycommand.cpp"

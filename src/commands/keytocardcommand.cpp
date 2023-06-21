@@ -735,3 +735,5 @@ void KeyToCardCommand::doCancel()
 
 #undef q_func
 #undef d_func
+
+#include "moc_keytocardcommand.cpp"

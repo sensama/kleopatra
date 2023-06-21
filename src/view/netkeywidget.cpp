@@ -336,3 +336,5 @@ void NetKeyWidget::createCSR()
             });
     cmd->start();
 }
+
+#include "moc_netkeywidget.cpp"

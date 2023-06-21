@@ -200,3 +200,5 @@ void DragQueen::mouseMoveEvent(QMouseEvent *e)
 }
 
 #include "dragqueen.moc"
+
+#include "moc_dragqueen.cpp"

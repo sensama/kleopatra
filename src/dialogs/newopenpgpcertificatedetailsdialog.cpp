@@ -327,3 +327,5 @@ bool NewOpenPGPCertificateDetailsDialog::protectKeyWithPassword() const
 {
     return d->ui.withPassCheckBox->isChecked();
 }
+
+#include "moc_newopenpgpcertificatedetailsdialog.cpp"

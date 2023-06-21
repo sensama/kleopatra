@@ -150,3 +150,7 @@ void DeviceInfoWatcher::start()
 {
     d->start();
 }
+
+#include "moc_deviceinfowatcher_p.cpp"
+
+#include "moc_deviceinfowatcher.cpp"

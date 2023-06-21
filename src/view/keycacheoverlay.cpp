@@ -93,3 +93,5 @@ void KeyCacheOverlay::hideOverlay()
    mBaseWidget->removeEventFilter(this);
    deleteLater();
 }
+
+#include "moc_keycacheoverlay.cpp"

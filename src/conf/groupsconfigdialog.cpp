@@ -165,3 +165,5 @@ bool GroupsConfigDialog::hasChanged()
 {
     return d->configPage->hasChanged();
 }
+
+#include "moc_groupsconfigdialog.cpp"

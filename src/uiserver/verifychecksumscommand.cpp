@@ -84,3 +84,5 @@ void VerifyChecksumsCommand::doCanceled()
 }
 
 #endif // QT_NO_DIRMODEL
+
+#include "moc_verifychecksumscommand.cpp"

@@ -77,3 +77,5 @@ void Controller::emitDoneOrError()
     }
 }
 
+
+#include "moc_controller.cpp"

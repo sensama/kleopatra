@@ -154,3 +154,5 @@ void GroupDetailsDialog::setGroup(const KeyGroup &group)
     const KeyGroup::Keys &keys = group.keys();
     d->ui.treeView->setKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
 }
+
+#include "moc_groupdetailsdialog.cpp"

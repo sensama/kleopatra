@@ -307,3 +307,5 @@ Command *Command::commandForQuery(const QString &query)
         return new DetailsCommand(key);
     }
 }
+
+#include "moc_command.cpp"

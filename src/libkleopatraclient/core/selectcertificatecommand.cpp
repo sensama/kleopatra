@@ -133,3 +133,5 @@ QString SelectCertificateCommand::selectedCertificate() const
     return sl.empty() ? QString() : sl.front();
 }
 
+
+#include "moc_selectcertificatecommand.cpp"

@@ -827,3 +827,5 @@ void KleopatraApplication::startGpgAgent()
 }
 
 #include "kleopatraapplication.moc"
+
+#include "moc_kleopatraapplication.cpp"

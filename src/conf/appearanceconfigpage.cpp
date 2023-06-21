@@ -43,3 +43,5 @@ void AppearanceConfigurationPage::defaults()
 {
     mWidget->defaults();
 }
+
+#include "moc_appearanceconfigpage.cpp"

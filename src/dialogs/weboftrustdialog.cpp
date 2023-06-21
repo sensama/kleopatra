@@ -121,3 +121,5 @@ void WebOfTrustDialog::fetchMissingKeys()
     });
     cmd->start();
 }
+
+#include "moc_weboftrustdialog.cpp"

@@ -9,3 +9,5 @@
 */
 
 #include "wizardpage_p.h"
+
+#include "moc_wizardpage_p.cpp"

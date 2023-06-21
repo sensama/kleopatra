@@ -251,3 +251,5 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
         QMetaObject::invokeMethod(wizard(), "next", Qt::QueuedConnection);
     }
 }
+
+#include "moc_keycreationpage_p.cpp"

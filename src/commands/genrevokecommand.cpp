@@ -197,3 +197,5 @@ QString GenRevokeCommand::errorExitMessage(const QStringList &) const
     qCDebug(KLEOPATRA_LOG) << "Error exit of GenRevokeCommand";
     return QString();
 }
+
+#include "moc_genrevokecommand.cpp"

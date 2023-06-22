@@ -828,6 +828,17 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         if (output) {
             output->cancel();
         }
+        if (!outputFileName.isEmpty() && eresult.error().code() != GPG_ERR_EEXIST) {
+            // ensure that the output file is removed if the task was canceled or an error occurred;
+            // unless a "file exists" error occurred because this means that the file with the name
+            // of outputFileName wasn't created as result of this task
+            if (QFile::exists(outputFileName)) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "after error or cancel";
+                if (!QFile::remove(outputFileName)) {
+                    qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "failed";
+                }
+            }
+        }
     } else {
         try {
             kleo_assert(!sresult.isNull() || !eresult.isNull());

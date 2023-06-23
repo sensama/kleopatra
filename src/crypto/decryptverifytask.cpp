@@ -47,11 +47,15 @@
 #include <gpg-error.h>
 
 #include "kleopatra_debug.h"
-#include <KLocalizedString>
-#include <QLocale>
 
+#include <KFileUtils>
+#include <KLocalizedString>
+
+#include <QLocale>
 #include <QByteArray>
 #include <QDateTime>
+#include <QDir>
+#include <QFileInfo>
 #include <QIODevice>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
@@ -341,6 +345,21 @@ static void updateKeys(const VerificationResult &result) {
         // Update key information
         sig.key(true, true);
     }
+}
+
+static QString ensureUniqueDirectory(const QString &path)
+{
+    // make sure that we don't use an existing directory
+    QString uniquePath = path;
+    const QFileInfo outputInfo{path};
+    if (outputInfo.exists()) {
+        const auto uniqueName = KFileUtils::suggestName(QUrl::fromLocalFile(outputInfo.absolutePath()), outputInfo.fileName());
+        uniquePath = outputInfo.dir().filePath(uniqueName);
+    }
+    if (!QDir{}.mkpath(uniquePath)) {
+        return {};
+    }
+    return uniquePath;
 }
 
 }
@@ -1196,7 +1215,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     auto *const job = m_backend->decryptVerifyArchiveJob();
     kleo_assert(job);
     setIgnoreMDCErrorFlag(job, m_ignoreMDCError);
-    job->setOutputDirectory(m_outputDirectory);
     connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
         slotResult(decryptResult, verifyResult);
     });
@@ -1208,10 +1226,19 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     });
 #endif
 #if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
+    // make sure that we don't use an existing output directory
+    const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
+    if (outputDirectory.isEmpty()) {
+        q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_GENERAL), {}, {}));
+        return;
+    }
+    m_outputDirectory = outputDirectory;
     job->setInputFile(m_inputFilePath);
+    job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
 #else
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
+    job->setOutputDirectory(m_outputDirectory);
     const auto err = job->start(m_input->ioDevice());
 #endif
     if (err) {
@@ -1572,16 +1599,24 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
 {
     auto *const job = m_backend->decryptVerifyArchiveJob();
     kleo_assert(job);
-    job->setOutputDirectory(m_outputDirectory);
     connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const DecryptionResult &, const VerificationResult &verifyResult) {
         slotResult(verifyResult);
     });
     connect(job, &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
 #if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
+    // make sure that we don't use an existing output directory
+    const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
+    if (outputDirectory.isEmpty()) {
+        q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_GENERAL), {}, {}));
+        return;
+    }
+    m_outputDirectory = outputDirectory;
     job->setInputFile(m_inputFilePath);
+    job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
 #else
     ensureIOOpen(m_input->ioDevice().get(), nullptr);
+    job->setOutputDirectory(m_outputDirectory);
     const auto err = job->start(m_input->ioDevice());
 #endif
     if (err) {

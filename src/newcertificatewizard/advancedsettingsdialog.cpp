@@ -18,6 +18,7 @@
 #include "listwidget.h"
 
 #include "utils/gui-helper.h"
+#include "utils/keys.h"
 #include "utils/scrollarea.h"
 
 #include <settings.h>
@@ -179,26 +180,6 @@ static void parseAlgoString(const QString &algoString, int *size, Subkey::Pubkey
     }
 
     qCWarning(KLEOPATRA_LOG) << "Failed to parse default_pubkey_algo:" << algoString;
-}
-
-enum class OnUnlimitedValidity {
-    ReturnInvalidDate,
-    ReturnInternalDefault
-};
-
-QDate defaultExpirationDate(OnUnlimitedValidity onUnlimitedValidity)
-{
-    QDate expirationDate{};
-
-    const auto settings = Kleo::Settings{};
-    const auto defaultExpirationInDays = settings.validityPeriodInDays();
-    if (defaultExpirationInDays > 0) {
-        expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
-    } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == OnUnlimitedValidity::ReturnInternalDefault) {
-        expirationDate = QDate::currentDate().addYears(2);
-    }
-
-    return expirationDate;
 }
 
 }
@@ -473,7 +454,7 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
             this, [this](bool checked) {
                 ui->expiryDE->setEnabled(checked);
                 if (checked && !ui->expiryDE->isValid()) {
-                    setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
+                    setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
                 }
             });
 
@@ -950,9 +931,9 @@ void AdvancedSettingsDialog::loadDefaultExpiration()
     }
 
     if (unlimitedValidityIsAllowed()) {
-        setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInvalidDate));
+        setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::NoExpiration));
     } else {
-        setExpiryDate(defaultExpirationDate(OnUnlimitedValidity::ReturnInternalDefault));
+        setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
     }
 }
 

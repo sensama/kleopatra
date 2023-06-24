@@ -15,6 +15,7 @@
 #include "command_p.h"
 
 #include "dialogs/expirydialog.h"
+#include "utils/keys.h"
 
 #include <Libkleo/Formatting>
 
@@ -291,8 +292,9 @@ void ChangeExpiryCommand::doStart()
     d->ensureDialogCreated(mode);
     Q_ASSERT(d->dialog);
     const Subkey subkey = !d->subkey.isNull() ? d->subkey : d->key.subkey(0);
-    d->dialog->setDateOfExpiry(subkey.neverExpires() ? QDate() :
-                               QDateTime::fromSecsSinceEpoch(quint32(subkey.expirationTime())).date());
+    d->dialog->setDateOfExpiry((subkey.neverExpires() //
+                                ? QDate{} //
+                                : defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration)));
 #if QGPGME_SUPPORTS_CHANGING_EXPIRATION_OF_COMPLETE_KEY
     if (mode == ExpiryDialog::Mode::UpdateCertificateWithSubkeys) {
         d->dialog->setUpdateExpirationOfAllSubkeys(allNotRevokedSubkeysHaveSameExpirationAsPrimaryKey(d->key));

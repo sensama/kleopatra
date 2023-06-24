@@ -51,3 +51,9 @@
 
 /* Whether Key::canSign should be used instead of deprecated Key::canReallySign */
 #cmakedefine01 GPGMEPP_KEY_CANSIGN_IS_FIXED
+
+/* Whether the archive jobs allow setting an output filename instead of passing an output IO device */
+#cmakedefine01 QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+
+/* Whether the archive jobs allow setting an input filename instead of passing an input IO device */
+#cmakedefine01 QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME

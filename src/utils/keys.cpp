@@ -11,10 +11,12 @@
 #include "keys.h"
 
 #include <kleopatra_debug.h>
+#include <settings.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/KeyCache>
 
+#include <QDate>
 
 // needed for GPGME_VERSION_NUMBER
 #include <gpgme.h>
@@ -159,4 +161,19 @@ bool Kleo::userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
     return (qstrcmp(lhs.parent().primaryFingerprint(), rhs.parent().primaryFingerprint()) == 0
             && qstrcmp(lhs.id(), rhs.id()) == 0
             && creationDate(lhs) == creationDate(rhs));
+}
+
+QDate Kleo::defaultExpirationDate(Kleo::ExpirationOnUnlimitedValidity onUnlimitedValidity)
+{
+    QDate expirationDate;
+
+    const auto settings = Kleo::Settings{};
+    const auto defaultExpirationInDays = settings.validityPeriodInDays();
+    if (defaultExpirationInDays > 0) {
+        expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
+    } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == ExpirationOnUnlimitedValidity::InternalDefaultExpiration) {
+        expirationDate = QDate::currentDate().addYears(2);
+    }
+
+    return expirationDate;
 }

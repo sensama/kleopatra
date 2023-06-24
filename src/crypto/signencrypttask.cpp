@@ -283,6 +283,8 @@ private:
     QString inputLabel() const;
     QString outputLabel() const;
 
+    bool removeExistingOutputFile();
+
     void startSignEncryptJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignJob> createSignJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::SignEncryptJob> createSignEncryptJob(GpgME::Protocol proto);
@@ -494,10 +496,6 @@ void SignEncryptTask::doStart()
         }
     }
 
-    if (!d->output) {
-        d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
-    }
-
     const auto proto = protocol();
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
     if (d->archive && archiveJobsCanBeUsed(proto)) {
@@ -505,6 +503,9 @@ void SignEncryptTask::doStart()
     } else
 #endif
     {
+        if (!d->output) {
+            d->output = Output::createFromFile(d->outputFileName, d->m_overwritePolicy);
+        }
         d->startSignEncryptJob(proto);
     }
 }
@@ -524,6 +525,31 @@ QString SignEncryptTask::Private::inputLabel() const
 QString SignEncryptTask::Private::outputLabel() const
 {
     return output ? output->label() : QFileInfo{outputFileName}.fileName();
+}
+
+bool SignEncryptTask::Private::removeExistingOutputFile()
+{
+    if (QFile::exists(outputFileName)) {
+        bool fileRemoved = false;
+        // we should already have asked the user for overwrite permission
+        if (m_overwritePolicy && (m_overwritePolicy->policy() == OverwritePolicy::Overwrite)) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "going to remove file for overwriting" << outputFileName;
+            fileRemoved = QFile::remove(outputFileName);
+            if (!fileRemoved) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "removing file to overwrite failed";
+            }
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "we have no permission to overwrite" << outputFileName;
+        }
+        if (!fileRemoved) {
+            QMetaObject::invokeMethod(q, [this]() {
+                slotResult(nullptr, SigningResult{}, EncryptionResult{Error::fromCode(GPG_ERR_EEXIST)});
+            }, Qt::QueuedConnection);
+            return false;
+        }
+    }
+
+    return true;
 }
 
 void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
@@ -644,6 +670,11 @@ std::unique_ptr<QGpgME::EncryptJob> SignEncryptTask::Private::createEncryptJob(G
 void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
 {
     kleo_assert(!input);
+    kleo_assert(!output);
+
+#if ! QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+    output = Output::createFromFile(outputFileName, m_overwritePolicy);
+#endif
 
     const auto baseDirectory = heuristicBaseDirectory(inputFileNames);
     if (baseDirectory.isEmpty()) {
@@ -665,8 +696,19 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::SignEncryptArchiveJob> job = createSignEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
-
+#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+            job->setSigners(signers);
+            job->setRecipients(recipients);
+            job->setInputPaths(relativePaths);
+            job->setOutputFile(outputFileName);
+            job->setEncryptionFlags(flags);
+            if (!removeExistingOutputFile()) {
+                return;
+            }
+            job->startIt();
+#else
             job->start(signers, recipients, relativePaths, output->ioDevice(), flags);
+#endif
 
             this->job = job.release();
         } else {
@@ -674,8 +716,18 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
             std::unique_ptr<QGpgME::EncryptArchiveJob> job = createEncryptArchiveJob(proto);
             kleo_assert(job.get());
             job->setBaseDirectory(baseDirectory);
-
+#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+            job->setRecipients(recipients);
+            job->setInputPaths(relativePaths);
+            job->setOutputFile(outputFileName);
+            job->setEncryptionFlags(flags);
+            if (!removeExistingOutputFile()) {
+                return;
+            }
+            job->startIt();
+#else
             job->start(recipients, relativePaths, output->ioDevice(), flags);
+#endif
 
             this->job = job.release();
         }
@@ -684,8 +736,17 @@ void SignEncryptTask::Private::startSignEncryptArchiveJob(GpgME::Protocol proto)
         std::unique_ptr<QGpgME::SignArchiveJob> job = createSignArchiveJob(proto);
         kleo_assert(job.get());
         job->setBaseDirectory(baseDirectory);
-
+#if QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
+        job->setSigners(signers);
+        job->setInputPaths(relativePaths);
+        job->setOutputFile(outputFileName);
+        if (!removeExistingOutputFile()) {
+            return;
+        }
+        job->startIt();
+#else
         job->start(signers, relativePaths, output->ioDevice());
+#endif
 
         this->job = job.release();
     } else {
@@ -756,17 +817,34 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
     bool outputCreated = false;
     if (input && input->failed()) {
-        output->cancel();
+        if (output) {
+            output->cancel();
+        }
         q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO),
                                       i18n("Input error: %1", escape( input->errorString())),
                                       auditLog));
         return;
     } else if (sresult.error().code() || eresult.error().code()) {
-        output->cancel();
+        if (output) {
+            output->cancel();
+        }
+        if (!outputFileName.isEmpty() && eresult.error().code() != GPG_ERR_EEXIST) {
+            // ensure that the output file is removed if the task was canceled or an error occurred;
+            // unless a "file exists" error occurred because this means that the file with the name
+            // of outputFileName wasn't created as result of this task
+            if (QFile::exists(outputFileName)) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "after error or cancel";
+                if (!QFile::remove(outputFileName)) {
+                    qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "failed";
+                }
+            }
+        }
     } else {
         try {
             kleo_assert(!sresult.isNull() || !eresult.isNull());
-            output->finalize();
+            if (output) {
+                output->finalize();
+            }
             outputCreated = true;
             if (input) {
                 input->finalize();

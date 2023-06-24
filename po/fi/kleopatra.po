@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-16 00:47+0000\n"
+"POT-Creation-Date: 2023-06-24 00:51+0000\n"
 "PO-Revision-Date: 2023-05-05 21:14+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -329,7 +329,7 @@ msgstr "Varmentaminen onnistui."
 msgid "Certification Succeeded"
 msgstr "Varmentaminen onnistui"
 
-#: src/commands/changeexpirycommand.cpp:229
+#: src/commands/changeexpirycommand.cpp:230
 #, kde-format
 msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
@@ -338,7 +338,7 @@ msgstr ""
 "<p>Yritettäessä muuttaa kohteen <b>%1</b> kelpoisuusajan loppua sattui virhe:"
 "</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:237
+#: src/commands/changeexpirycommand.cpp:238
 #, kde-format
 msgid "End of validity period changed successfully."
 msgstr "Kelpoisuusajan lopun muuttaminen onnistui."
@@ -4232,62 +4232,62 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Pura tai todenna tiedostoja"
 
-#: src/crypto/decryptverifytask.cpp:181
+#: src/crypto/decryptverifytask.cpp:185
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "Virhe: Allekirjoitusta ei todennettu"
 
-#: src/crypto/decryptverifytask.cpp:183
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Good signature"
 msgstr "Hyvä allekirjoitus"
 
-#: src/crypto/decryptverifytask.cpp:185
+#: src/crypto/decryptverifytask.cpp:189
 #, kde-format
 msgid "Signing certificate was revoked"
 msgstr "Varmenteen allekirjoitus peruttiin"
 
-#: src/crypto/decryptverifytask.cpp:187
+#: src/crypto/decryptverifytask.cpp:191
 #, kde-format
 msgid "Signing certificate is expired"
 msgstr "Allekirjoittanut varmenne on vanhentunut"
 
-#: src/crypto/decryptverifytask.cpp:189
+#: src/crypto/decryptverifytask.cpp:193
 #, kde-format
 msgid "Certificate is not available"
 msgstr "Varmenne ei ole saatavilla"
 
-#: src/crypto/decryptverifytask.cpp:191
+#: src/crypto/decryptverifytask.cpp:195
 #, kde-format
 msgid "Signature expired"
 msgstr "Allekirjoitus on vanhentunut"
 
-#: src/crypto/decryptverifytask.cpp:193
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "CRL missing"
 msgstr "CRL puuttuu"
 
-#: src/crypto/decryptverifytask.cpp:195
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL too old"
 msgstr "CRL on liian vanha"
 
-#: src/crypto/decryptverifytask.cpp:197
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "Bad policy"
 msgstr "Kelvoton käytänne"
 
-#: src/crypto/decryptverifytask.cpp:199
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "System error"
 msgstr "Järjestelmävirhe"
 
-#: src/crypto/decryptverifytask.cpp:201
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "Bad signature"
 msgstr "Kelvoton allekirjoitus"
 
-#: src/crypto/decryptverifytask.cpp:212
+#: src/crypto/decryptverifytask.cpp:216
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
@@ -4296,13 +4296,13 @@ msgstr ""
 "Allekirjoitus on kelvollinen mutta varmenteen kelvollisuuteen luotetaan vain "
 "ehdollisesti."
 
-#: src/crypto/decryptverifytask.cpp:214
+#: src/crypto/decryptverifytask.cpp:218
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 "Allekirjoitus on kelvollinen ja varmenteen kelvollisuuteen luotetaan täysin."
 
-#: src/crypto/decryptverifytask.cpp:216
+#: src/crypto/decryptverifytask.cpp:220
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
@@ -4310,7 +4310,7 @@ msgstr ""
 "Allekirjoitus on kelvollinen ja varmenteen kelvollisuuteen luotetaan "
 "rajattomasti."
 
-#: src/crypto/decryptverifytask.cpp:218
+#: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
@@ -4319,40 +4319,40 @@ msgstr ""
 "Allekirjoitus on kelvollinen mutta varmenteen kelvollisuuteen <em>ei "
 "luoteta</em>."
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:224
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr ""
 "Allekirjoitus on kelvollinen mutta varmenteen kelvollisuutta ei tunneta."
 
-#: src/crypto/decryptverifytask.cpp:223
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr ""
 "Allekirjoitus on kelvollinen mutta varmenteen kelvollisuus on tuntematon."
 
-#: src/crypto/decryptverifytask.cpp:235 src/crypto/decryptverifytask.cpp:250
+#: src/crypto/decryptverifytask.cpp:239 src/crypto/decryptverifytask.cpp:254
 #, kde-format
 msgid "Unknown certificate"
 msgstr "Tuntematon varmenne"
 
-#: src/crypto/decryptverifytask.cpp:270
+#: src/crypto/decryptverifytask.cpp:274
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "Allekirjoitus on luotu %1"
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:277
 #, kde-format
 msgid "With unavailable certificate:"
 msgstr "Varmenteella, joka ei ole saatavilla:"
 
-#: src/crypto/decryptverifytask.cpp:275
+#: src/crypto/decryptverifytask.cpp:279
 #, kde-format
 msgid "With certificate:"
 msgstr "Varmenteella:"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:286
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4360,7 +4360,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "Allekirjoitus on %1"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:288
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4368,49 +4368,49 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "Allekirjoitus <b>ei ole</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:300 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:304 src/crypto/signencrypttask.cpp:54
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:406
+#: src/crypto/decryptverifytask.cpp:425
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>Todennus peruttiin.</b>"
 
-#: src/crypto/decryptverifytask.cpp:408
+#: src/crypto/decryptverifytask.cpp:427
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>Todennus epäonnistui: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:414
+#: src/crypto/decryptverifytask.cpp:433
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>Allekirjoituksia ei löytynyt.</b>"
 
-#: src/crypto/decryptverifytask.cpp:419
+#: src/crypto/decryptverifytask.cpp:438
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>Virheellinen allekirjoitus.</b>"
 msgstr[1] "<b>%1 virheellistä allekirjoitusta.</b>"
 
-#: src/crypto/decryptverifytask.cpp:423
+#: src/crypto/decryptverifytask.cpp:442
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>Tietoja ei voitu todentaa.</b>"
 msgstr[1] "<b>%1 allekirjoitusta ei voitu todentaa.</b>"
 
-#: src/crypto/decryptverifytask.cpp:429
+#: src/crypto/decryptverifytask.cpp:448
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>Kelvollinen allekirjoitus: %1.</b>"
 
 # *** TARKISTA: Mitä %1 on?
 # – %1 on viestin ”certificate” käännös.
-#: src/crypto/decryptverifytask.cpp:431
+#: src/crypto/decryptverifytask.cpp:450
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4419,19 +4419,19 @@ msgstr ""
 "<br/><b>Varoitus:</b> Lähettäjän osoitetta ei tallenneta allekirjoittaessa "
 "käytettävään kohteeseen %1."
 
-#: src/crypto/decryptverifytask.cpp:432
+#: src/crypto/decryptverifytask.cpp:451
 #, kde-format
 msgid "certificate"
 msgstr "varmenne"
 
-#: src/crypto/decryptverifytask.cpp:434
+#: src/crypto/decryptverifytask.cpp:453
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>Kelvollinen allekirjoitus.</b>"
 msgstr[1] "<b>%1 kelvollista allekirjoitusta.</b>"
 
-#: src/crypto/decryptverifytask.cpp:436
+#: src/crypto/decryptverifytask.cpp:455
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4440,44 +4440,44 @@ msgstr ""
 "<br/><b>Varoitus:</b> Lähettäjän osoitetta ei tallenneta allekirjoitettaessa "
 "käytettäviin varmenteisiin."
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>Purkaminen peruttiin.</b>"
 
-#: src/crypto/decryptverifytask.cpp:451
+#: src/crypto/decryptverifytask.cpp:470
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Ei eheyssuojaa (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:451 src/crypto/decryptverifytask.cpp:454
-#: src/crypto/decryptverifytask.cpp:456
+#: src/crypto/decryptverifytask.cpp:470 src/crypto/decryptverifytask.cpp:473
+#: src/crypto/decryptverifytask.cpp:475
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>Purkaminen epäonnistui: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:458
+#: src/crypto/decryptverifytask.cpp:477
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>Purkaminen onnistui.</b>"
 
-#: src/crypto/decryptverifytask.cpp:478 src/crypto/decryptverifytask.cpp:499
+#: src/crypto/decryptverifytask.cpp:497 src/crypto/decryptverifytask.cpp:518
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "Allekirjoitus on virheellinen: %1"
 
-#: src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:506
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr "Voit etsiä varmennetta avainpalvelimelta tai tuoda sen tiedostona."
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:513
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 "Käytettyä avainta ei ole varmentanut sinä tai kukaan luottamasi henkilö."
 
-#: src/crypto/decryptverifytask.cpp:495
+#: src/crypto/decryptverifytask.cpp:514
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4486,20 +4486,20 @@ msgstr ""
 "Käytettyä varmennetta ei ole varmentanut luotettava varmenneauktoriteetti "
 "tai varmenneauktoriteetti on tuntematon."
 
-#: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
+#: src/crypto/decryptverifytask.cpp:538 src/crypto/decryptverifytask.cpp:591
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:761
+#: src/crypto/signencrypttask.cpp:824
 #, kde-format
 msgid "Input error: %1"
 msgstr "Syötevirhe: %1"
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
@@ -4507,28 +4507,28 @@ msgstr ""
 "<p>Lähettäjän osoitetta %1 ei ole tallennettu varmenteeseen. Tallennettu: "
 "%2</p>"
 
-#: src/crypto/decryptverifytask.cpp:543
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "Yksi tuntematon vastaanottaja."
 msgstr[1] "%1 tuntematonta vastaanottajaa."
 
-#: src/crypto/decryptverifytask.cpp:547
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Vastaanottaja:"
 msgstr[1] "Vastaanottajat:"
 
-#: src/crypto/decryptverifytask.cpp:558
+#: src/crypto/decryptverifytask.cpp:577
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "Yksi tuntematon vastaanottaja"
 msgstr[1] "%1 tuntematonta vastaanottajaa"
 
-#: src/crypto/decryptverifytask.cpp:584
+#: src/crypto/decryptverifytask.cpp:603
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4536,7 +4536,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Purkaminen on %1."
 
-#: src/crypto/decryptverifytask.cpp:586
+#: src/crypto/decryptverifytask.cpp:605
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4544,12 +4544,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Purkaminen <b>ei ole</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:596
+#: src/crypto/decryptverifytask.cpp:615
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Upotettu tiedostonimi: ”%1”"
 
-#: src/crypto/decryptverifytask.cpp:603
+#: src/crypto/decryptverifytask.cpp:622
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4558,7 +4558,7 @@ msgstr ""
 "<b>Huomaa:</b> Et voi olla varma viestin salaajasta, koska viestiä ei ole "
 "allekirjoitettu."
 
-#: src/crypto/decryptverifytask.cpp:609
+#: src/crypto/decryptverifytask.cpp:628
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4571,7 +4571,7 @@ msgstr ""
 "<b>Vihje:</b> Jos tiedosto on salattu ennen vuotta 2003, tiedosto on "
 "todennäköisesti käypä. Tuolloin eheyssuoja ei vielä ollut laajalti käytössä."
 
-#: src/crypto/decryptverifytask.cpp:613
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4584,31 +4584,31 @@ msgstr ""
 "pakotettuasi salauksen purkamisen.Jos luotat siihen, ettei tiedostoa ole "
 "käsitelty, se tulisi salata uudelleen pakotettuasi salauksen purkamisen."
 
-#: src/crypto/decryptverifytask.cpp:882
+#: src/crypto/decryptverifytask.cpp:901
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1181
-#: src/crypto/decryptverifytask.cpp:1260 src/crypto/decryptverifytask.cpp:1363
-#: src/crypto/decryptverifytask.cpp:1413 src/crypto/decryptverifytask.cpp:1547
-#: src/crypto/decryptverifytask.cpp:1615 src/crypto/decryptverifytask.cpp:1720
+#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1206
+#: src/crypto/decryptverifytask.cpp:1298 src/crypto/decryptverifytask.cpp:1401
+#: src/crypto/decryptverifytask.cpp:1452 src/crypto/decryptverifytask.cpp:1591
+#: src/crypto/decryptverifytask.cpp:1672 src/crypto/decryptverifytask.cpp:1777
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Kohdattiin poikkeus: %1"
 
-#: src/crypto/decryptverifytask.cpp:1012 src/crypto/decryptverifytask.cpp:1183
-#: src/crypto/decryptverifytask.cpp:1263 src/crypto/decryptverifytask.cpp:1365
-#: src/crypto/decryptverifytask.cpp:1416 src/crypto/decryptverifytask.cpp:1549
-#: src/crypto/decryptverifytask.cpp:1617 src/crypto/decryptverifytask.cpp:1722
+#: src/crypto/decryptverifytask.cpp:1032 src/crypto/decryptverifytask.cpp:1208
+#: src/crypto/decryptverifytask.cpp:1301 src/crypto/decryptverifytask.cpp:1403
+#: src/crypto/decryptverifytask.cpp:1455 src/crypto/decryptverifytask.cpp:1593
+#: src/crypto/decryptverifytask.cpp:1674 src/crypto/decryptverifytask.cpp:1779
 #: src/uiserver/assuanserverconnection.cpp:1368
 #: src/uiserver/assuanserverconnection.cpp:1419
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Kohdattiin tuntematon poikkeus"
 
-#: src/crypto/decryptverifytask.cpp:1064
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4617,12 +4617,12 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-allekirjoitettu tai -"
 "salattu – onkokaan tämä allekirjoitus tai salattu viesti?"
 
-#: src/crypto/decryptverifytask.cpp:1071 src/crypto/decryptverifytask.cpp:1322
+#: src/crypto/decryptverifytask.cpp:1091 src/crypto/decryptverifytask.cpp:1360
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Puretaan salausta: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1315
+#: src/crypto/decryptverifytask.cpp:1353
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4631,7 +4631,7 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-salattu – onkokaan tämä "
 "salattu viesti?"
 
-#: src/crypto/decryptverifytask.cpp:1469 src/crypto/decryptverifytask.cpp:1656
+#: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1713
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4640,12 +4640,12 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-allekirjoitus – onkokaan "
 "tämä allekirjoitus?"
 
-#: src/crypto/decryptverifytask.cpp:1476
+#: src/crypto/decryptverifytask.cpp:1515
 #, kde-format
 msgid "Verifying: %1..."
 msgstr "Todennetaan: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1671
+#: src/crypto/decryptverifytask.cpp:1728
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4655,12 +4655,12 @@ msgstr ""
 "Todennetaan <filename>%1</filename> allekirjoituksella <filename>%2</"
 "filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1676
+#: src/crypto/decryptverifytask.cpp:1733
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr "Todennetaan allekirjoitusta: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1684
+#: src/crypto/decryptverifytask.cpp:1741
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5790,18 +5790,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:461
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ei voida määrittää tehtävän yhteyskäytäntöä"
 
-#: src/crypto/signencrypttask.cpp:519
+#: src/crypto/signencrypttask.cpp:520
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, …"
 
-#: src/crypto/signencrypttask.cpp:650 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:681 src/utils/archivedefinition.cpp:361
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -5810,7 +5810,7 @@ msgstr ""
 "Ei löytynyt yhteistä peruskansiota näille tiedostoille:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:664
+#: src/crypto/signencrypttask.cpp:695
 #, fuzzy, kde-format
 #| msgctxt "Lineedit accessible name"
 #| msgid "OpenPGP signed and encrypted file"
@@ -5818,7 +5818,7 @@ msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "OpenPGP-allekirjoitettu ja -salattu tiedosto"
 
-#: src/crypto/signencrypttask.cpp:673
+#: src/crypto/signencrypttask.cpp:715
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -5826,7 +5826,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Luodaan avainparia…"
 
-#: src/crypto/signencrypttask.cpp:683
+#: src/crypto/signencrypttask.cpp:735
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6052,7 +6052,7 @@ msgid "Valid from:"
 msgstr "Voimassa alkaen:"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:204
+#: src/dialogs/expirydialog.cpp:205
 #, kde-format
 msgid "Valid until:"
 msgstr "Vanhenemisaika:"
@@ -6797,86 +6797,86 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Muokkaa ryhmää"
 
-#: src/dialogs/expirydialog.cpp:69
+#: src/dialogs/expirydialog.cpp:70
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] "Kelvollinen %1 päivän"
 msgstr[1] "Kelvollinen %1 päivää"
 
-#: src/dialogs/expirydialog.cpp:71
+#: src/dialogs/expirydialog.cpp:72
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] "Kelvollinen %1 viikon"
 msgstr[1] "Kelvollinen %1 viikkoa"
 
-#: src/dialogs/expirydialog.cpp:73
+#: src/dialogs/expirydialog.cpp:74
 #, kde-format
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
 msgstr[0] "Kelvollinen %1 kuukauden"
 msgstr[1] "Kelvollinen %1 kuukautta"
 
-#: src/dialogs/expirydialog.cpp:75
+#: src/dialogs/expirydialog.cpp:76
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] "Kelvollinen %1 vuoden"
 msgstr[1] "Kelvollinen %1 vuotta"
 
-#: src/dialogs/expirydialog.cpp:161
+#: src/dialogs/expirydialog.cpp:162
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Valitse mihin asti aliavaimen tulisi kelvata:"
 
-#: src/dialogs/expirydialog.cpp:162
+#: src/dialogs/expirydialog.cpp:163
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Valitse mihin asti varmenteen tulisi kelvata:"
 
-#: src/dialogs/expirydialog.cpp:166
+#: src/dialogs/expirydialog.cpp:167
 #, kde-format
 msgid "Unlimited validity"
 msgstr "Rajaton kelpoisuusaika"
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:175
 #, kde-format
 msgid "Valid for:"
 msgstr "Kelpoisuus päättyy:"
 
-#: src/dialogs/expirydialog.cpp:187
+#: src/dialogs/expirydialog.cpp:188
 #, kde-format
 msgid "Days"
 msgstr "päivää"
 
-#: src/dialogs/expirydialog.cpp:188
+#: src/dialogs/expirydialog.cpp:189
 #, kde-format
 msgid "Weeks"
 msgstr "viikkoa"
 
-#: src/dialogs/expirydialog.cpp:189
+#: src/dialogs/expirydialog.cpp:190
 #, kde-format
 msgid "Months"
 msgstr "kuukautta"
 
-#: src/dialogs/expirydialog.cpp:190
+#: src/dialogs/expirydialog.cpp:191
 #, kde-format
 msgid "Years"
 msgstr "vuotta"
 
-#: src/dialogs/expirydialog.cpp:220
+#: src/dialogs/expirydialog.cpp:221
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "Päivitä aliavaintenkin kelpoisuusaika"
 
-#: src/dialogs/expirydialog.cpp:276
+#: src/dialogs/expirydialog.cpp:277
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Kelpaa %1 asti"
 
-#: src/dialogs/expirydialog.cpp:312
+#: src/dialogs/expirydialog.cpp:313
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -8883,178 +8883,178 @@ msgstr "Tuo varmenteita"
 msgid "Import CRLs"
 msgstr "Tuo CRL:iä"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:244
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Lisäasetukset"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:260
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Avainmateriaali"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:264
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
 #, kde-format
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
 #, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
 #, kde-format
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
 #, kde-format
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:312
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "Salaukseen vaaditaan tämä aliavain."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:303
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
 #, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
 #, kde-format
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Varmenteen käyttö"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Allekirjoittaminen"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:333
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Varmentaminen"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Salaus"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:341
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "Todennus"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:348
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Vanhenemisaika:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:362
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Tekniset tiedot"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:376
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "Lisäkäyttäjätunnisteet"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:384
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "Sähköpostiosoitteet"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS-nimet"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:400
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URIt"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:410
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:980
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:961
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Henkilökohtaiset tiedot"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:452
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:433
 #, kde-format
 msgid "new email"
 msgstr "uusi sähköposti"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:453
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:434
 #, kde-format
 msgid "new dns name"
 msgstr "uusi DNS-nimi"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:454
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:435
 #, kde-format
 msgid "new uri"
 msgstr "uusi URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:506
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:487
 #, kde-format
 msgid "The validity period cannot be changed."
 msgstr "Kelvollisuusaikaa ei voi muuttaa."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:508
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:489
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
 msgstr "Kelvollisuusajan on päätyttävä tänäisen ja %1 välillä."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:511
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
 msgstr "Kelvollisuusajan on päätyttävä välillä %1–%2."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:516
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
 msgid "The validity period must end after today."
 msgstr "Kelvollisuusajan on päätyttävä tänäisen jälkeen."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:518
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:499
 #, kde-format
 msgctxt "... after <a date>."
 msgid "The validity period must end after %1."
 msgstr "Kelvollisuusajan on päätyttävä %1 jälkeen."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:818
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:799
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9062,7 +9062,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 bitti)"
 msgstr[1] "%2 (%1 bittiä)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:819
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:800
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9070,7 +9070,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1 bitti"
 msgstr[1] "%1 bittiä"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:985
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:966
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
@@ -10510,7 +10510,7 @@ msgstr "”%1” on tyhjä tai sitä ei löydy"
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr "vakiosyötevirrassa ei voi välittää parametreja purkukomennolle"
 
-#: src/utils/archivedefinition.cpp:407
+#: src/utils/archivedefinition.cpp:418
 #, kde-format
 msgid "Caught unknown exception in group %1"
 msgstr "Kohdattiin tuntematon poikkeus ryhmässä %1"

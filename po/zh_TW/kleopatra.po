@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-16 00:47+0000\n"
+"POT-Creation-Date: 2023-06-24 00:51+0000\n"
 "PO-Revision-Date: 2019-05-14 22:35+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -349,7 +349,7 @@ msgstr "憑證已成功確認。"
 msgid "Certification Succeeded"
 msgstr "確認已取消。"
 
-#: src/commands/changeexpirycommand.cpp:229
+#: src/commands/changeexpirycommand.cpp:230
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the expiry date for <b>%1</b>:"
@@ -359,7 +359,7 @@ msgid ""
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr "<p>試著改變 <b>%1</b> 的到期日時發生錯誤：</p> <p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:237
+#: src/commands/changeexpirycommand.cpp:238
 #, fuzzy, kde-format
 #| msgid "Expiry date changed successfully."
 msgid "End of validity period changed successfully."
@@ -4452,124 +4452,124 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "解密/檢查檔案"
 
-#: src/crypto/decryptverifytask.cpp:181
+#: src/crypto/decryptverifytask.cpp:185
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "錯誤：簽名檔未檢查"
 
-#: src/crypto/decryptverifytask.cpp:183
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Good signature"
 msgstr "正確簽章"
 
-#: src/crypto/decryptverifytask.cpp:185
+#: src/crypto/decryptverifytask.cpp:189
 #, fuzzy, kde-format
 #| msgid "Signing certificate revoked"
 msgid "Signing certificate was revoked"
 msgstr "簽署用的憑證已被撤銷"
 
-#: src/crypto/decryptverifytask.cpp:187
+#: src/crypto/decryptverifytask.cpp:191
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgid "Signing certificate is expired"
 msgstr "簽署用的憑證已過期"
 
-#: src/crypto/decryptverifytask.cpp:189
+#: src/crypto/decryptverifytask.cpp:193
 #, fuzzy, kde-format
 #| msgid "Certificate Export Failed"
 msgid "Certificate is not available"
 msgstr "匯出憑證失敗"
 
-#: src/crypto/decryptverifytask.cpp:191
+#: src/crypto/decryptverifytask.cpp:195
 #, kde-format
 msgid "Signature expired"
 msgstr "簽章過期"
 
-#: src/crypto/decryptverifytask.cpp:193
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "CRL missing"
 msgstr "遺失憑證撤銷清單"
 
-#: src/crypto/decryptverifytask.cpp:195
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL too old"
 msgstr "憑證撤銷清單太舊了"
 
-#: src/crypto/decryptverifytask.cpp:197
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "Bad policy"
 msgstr "錯誤的政策"
 
-#: src/crypto/decryptverifytask.cpp:199
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "System error"
 msgstr "系統錯誤"
 
-#: src/crypto/decryptverifytask.cpp:201
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "Bad signature"
 msgstr "不正確的簽章"
 
-#: src/crypto/decryptverifytask.cpp:212
+#: src/crypto/decryptverifytask.cpp:216
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
 "marginal."
 msgstr "簽章合法，但是憑證並非可信任。"
 
-#: src/crypto/decryptverifytask.cpp:214
+#: src/crypto/decryptverifytask.cpp:218
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr "簽章合法，並且憑證可信任。"
 
-#: src/crypto/decryptverifytask.cpp:216
+#: src/crypto/decryptverifytask.cpp:220
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 msgstr "簽章合法，並且憑證可完全信任。"
 
-#: src/crypto/decryptverifytask.cpp:218
+#: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
 "em>."
 msgstr "簽章合法，但是憑證不可信任。"
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:224
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr "簽章合法，但是憑證信任度未知。"
 
-#: src/crypto/decryptverifytask.cpp:223
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr "簽章合法，但是憑證信任度未定義。"
 
-#: src/crypto/decryptverifytask.cpp:235 src/crypto/decryptverifytask.cpp:250
+#: src/crypto/decryptverifytask.cpp:239 src/crypto/decryptverifytask.cpp:254
 #, kde-format
 msgid "Unknown certificate"
 msgstr "未知的憑證"
 
-#: src/crypto/decryptverifytask.cpp:270
+#: src/crypto/decryptverifytask.cpp:274
 #, fuzzy, kde-format
 #| msgid "Signature expired"
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "簽章過期"
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:277
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "With unavailable certificate:"
 msgstr "預設憑證"
 
-#: src/crypto/decryptverifytask.cpp:275
+#: src/crypto/decryptverifytask.cpp:279
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "With certificate:"
 msgstr "憑證"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:286
 #, fuzzy, kde-format
 #| msgid "The signature is invalid: %1"
 msgctxt ""
@@ -4578,7 +4578,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "此簽章不正確：%1"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:288
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4587,110 +4587,110 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "此簽章不正確。"
 
-#: src/crypto/decryptverifytask.cpp:300 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:304 src/crypto/signencrypttask.cpp:54
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:406
+#: src/crypto/decryptverifytask.cpp:425
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>確認已取消。</b>"
 
-#: src/crypto/decryptverifytask.cpp:408
+#: src/crypto/decryptverifytask.cpp:427
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>確認失敗：%1</b>"
 
-#: src/crypto/decryptverifytask.cpp:414
+#: src/crypto/decryptverifytask.cpp:433
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>找不到簽章</b>"
 
-#: src/crypto/decryptverifytask.cpp:419
+#: src/crypto/decryptverifytask.cpp:438
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>%1 個不合法的簽章</b>"
 
-#: src/crypto/decryptverifytask.cpp:423
+#: src/crypto/decryptverifytask.cpp:442
 #, fuzzy, kde-format
 #| msgid "The certificate could not be certified. <b>Error</b>: %1"
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "此憑證無法被確認。<b>錯誤：</b>%1"
 
-#: src/crypto/decryptverifytask.cpp:429
+#: src/crypto/decryptverifytask.cpp:448
 #, fuzzy, kde-format
 #| msgid "<b>Valid signature.</b>"
 #| msgid_plural "<b>%1 valid signatures.</b>"
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>%1 個合法的簽章。</b>"
 
-#: src/crypto/decryptverifytask.cpp:431
+#: src/crypto/decryptverifytask.cpp:450
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
 "for signing."
 msgstr "<br /><b>警告：</b>寄件者電子郵件地址並未儲存在 %1 中以用於簽署。"
 
-#: src/crypto/decryptverifytask.cpp:432
+#: src/crypto/decryptverifytask.cpp:451
 #, kde-format
 msgid "certificate"
 msgstr "憑證"
 
-#: src/crypto/decryptverifytask.cpp:434
+#: src/crypto/decryptverifytask.cpp:453
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>%1 個合法的簽章。</b>"
 
-#: src/crypto/decryptverifytask.cpp:436
+#: src/crypto/decryptverifytask.cpp:455
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
 "certificates used for signing."
 msgstr "<br /><b>警告：</b>寄件者的電子郵件地址並未儲存在憑證中以用於簽署。"
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>解密已取消。</b>"
 
-#: src/crypto/decryptverifytask.cpp:451
+#: src/crypto/decryptverifytask.cpp:470
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:451 src/crypto/decryptverifytask.cpp:454
-#: src/crypto/decryptverifytask.cpp:456
+#: src/crypto/decryptverifytask.cpp:470 src/crypto/decryptverifytask.cpp:473
+#: src/crypto/decryptverifytask.cpp:475
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>解密失敗：%1</b>"
 
-#: src/crypto/decryptverifytask.cpp:458
+#: src/crypto/decryptverifytask.cpp:477
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>解密成功。</b>"
 
-#: src/crypto/decryptverifytask.cpp:478 src/crypto/decryptverifytask.cpp:499
+#: src/crypto/decryptverifytask.cpp:497 src/crypto/decryptverifytask.cpp:518
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "此簽章不正確：%1"
 
-#: src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:506
 #, fuzzy, kde-format
 #| msgid "Search for Certificate by fingerprint"
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr "依指紋搜尋憑證"
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:513
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:495
+#: src/crypto/decryptverifytask.cpp:514
 #, fuzzy, kde-format
 #| msgid ""
 #| "The certificate was not certified because it was already certified by the "
@@ -4700,44 +4700,44 @@ msgid ""
 "or the Certificate Authority is unknown."
 msgstr "此憑證已經被確認過了。"
 
-#: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
+#: src/crypto/decryptverifytask.cpp:538 src/crypto/decryptverifytask.cpp:591
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
-#: src/crypto/signencrypttask.cpp:761
+#: src/crypto/signencrypttask.cpp:824
 #, kde-format
 msgid "Input error: %1"
 msgstr "輸入錯誤：%1"
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
 msgstr "<p>寄件者的電子郵件地址 %1 並未儲存在憑證中。儲存的為：%2</p>"
 
-#: src/crypto/decryptverifytask.cpp:543
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "%1 個未知的收件者。"
 
-#: src/crypto/decryptverifytask.cpp:547
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "收件者："
 
-#: src/crypto/decryptverifytask.cpp:558
+#: src/crypto/decryptverifytask.cpp:577
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "%1 個未知的收件者"
 
-#: src/crypto/decryptverifytask.cpp:584
+#: src/crypto/decryptverifytask.cpp:603
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4746,7 +4746,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "此簽章不正確。"
 
-#: src/crypto/decryptverifytask.cpp:586
+#: src/crypto/decryptverifytask.cpp:605
 #, fuzzy, kde-format
 #| msgid "The signature is bad."
 msgctxt ""
@@ -4755,19 +4755,19 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "此簽章不正確。"
 
-#: src/crypto/decryptverifytask.cpp:596
+#: src/crypto/decryptverifytask.cpp:615
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:603
+#: src/crypto/decryptverifytask.cpp:622
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:609
+#: src/crypto/decryptverifytask.cpp:628
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4776,7 +4776,7 @@ msgid ""
 "was not widely used."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:613
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4786,31 +4786,31 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:882
+#: src/crypto/decryptverifytask.cpp:901
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1：%2"
 
-#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1181
-#: src/crypto/decryptverifytask.cpp:1260 src/crypto/decryptverifytask.cpp:1363
-#: src/crypto/decryptverifytask.cpp:1413 src/crypto/decryptverifytask.cpp:1547
-#: src/crypto/decryptverifytask.cpp:1615 src/crypto/decryptverifytask.cpp:1720
+#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1206
+#: src/crypto/decryptverifytask.cpp:1298 src/crypto/decryptverifytask.cpp:1401
+#: src/crypto/decryptverifytask.cpp:1452 src/crypto/decryptverifytask.cpp:1591
+#: src/crypto/decryptverifytask.cpp:1672 src/crypto/decryptverifytask.cpp:1777
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "補捉到例外狀況：%1"
 
-#: src/crypto/decryptverifytask.cpp:1012 src/crypto/decryptverifytask.cpp:1183
-#: src/crypto/decryptverifytask.cpp:1263 src/crypto/decryptverifytask.cpp:1365
-#: src/crypto/decryptverifytask.cpp:1416 src/crypto/decryptverifytask.cpp:1549
-#: src/crypto/decryptverifytask.cpp:1617 src/crypto/decryptverifytask.cpp:1722
+#: src/crypto/decryptverifytask.cpp:1032 src/crypto/decryptverifytask.cpp:1208
+#: src/crypto/decryptverifytask.cpp:1301 src/crypto/decryptverifytask.cpp:1403
+#: src/crypto/decryptverifytask.cpp:1455 src/crypto/decryptverifytask.cpp:1593
+#: src/crypto/decryptverifytask.cpp:1674 src/crypto/decryptverifytask.cpp:1779
 #: src/uiserver/assuanserverconnection.cpp:1368
 #: src/uiserver/assuanserverconnection.cpp:1419
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "遇到未知的例外狀況"
 
-#: src/crypto/decryptverifytask.cpp:1064
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4819,31 +4819,31 @@ msgstr ""
 "無法決定這是 S/MIME 還是 OpenGPG 的簽章或加密文字。也許它不是簽章也不是加密文"
 "字？"
 
-#: src/crypto/decryptverifytask.cpp:1071 src/crypto/decryptverifytask.cpp:1322
+#: src/crypto/decryptverifytask.cpp:1091 src/crypto/decryptverifytask.cpp:1360
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "解密中：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1315
+#: src/crypto/decryptverifytask.cpp:1353
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 加密。也許它根本不是加密文字？"
 
-#: src/crypto/decryptverifytask.cpp:1469 src/crypto/decryptverifytask.cpp:1656
+#: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1713
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 簽署。也許它根本不是簽章？"
 
-#: src/crypto/decryptverifytask.cpp:1476
+#: src/crypto/decryptverifytask.cpp:1515
 #, kde-format
 msgid "Verifying: %1..."
 msgstr "檢查中：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1671
+#: src/crypto/decryptverifytask.cpp:1728
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -4857,12 +4857,12 @@ msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
 
-#: src/crypto/decryptverifytask.cpp:1676
+#: src/crypto/decryptverifytask.cpp:1733
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr "檢查簽章中：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1684
+#: src/crypto/decryptverifytask.cpp:1741
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6037,18 +6037,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1：<b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:459
+#: src/crypto/signencrypttask.cpp:461
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "無法決定此工作使用的協定"
 
-#: src/crypto/signencrypttask.cpp:519
+#: src/crypto/signencrypttask.cpp:520
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:650 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:681 src/utils/archivedefinition.cpp:361
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6057,14 +6057,14 @@ msgstr ""
 "找不到以下檔案的共用基礎目錄：\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:664
+#: src/crypto/signencrypttask.cpp:695
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "簽署/加密檔案"
 
-#: src/crypto/signencrypttask.cpp:673
+#: src/crypto/signencrypttask.cpp:715
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6072,7 +6072,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "建立金鑰中..."
 
-#: src/crypto/signencrypttask.cpp:683
+#: src/crypto/signencrypttask.cpp:735
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6308,7 +6308,7 @@ msgid "Valid from:"
 msgstr "合法起始時間"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:204
+#: src/dialogs/expirydialog.cpp:205
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
@@ -7099,88 +7099,88 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:69
+#: src/dialogs/expirydialog.cpp:70
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] ""
 
-#: src/dialogs/expirydialog.cpp:71
+#: src/dialogs/expirydialog.cpp:72
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] ""
 
-#: src/dialogs/expirydialog.cpp:73
+#: src/dialogs/expirydialog.cpp:74
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
 msgstr[0] "合法起始時間"
 
-#: src/dialogs/expirydialog.cpp:75
+#: src/dialogs/expirydialog.cpp:76
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] ""
 
-#: src/dialogs/expirydialog.cpp:161
+#: src/dialogs/expirydialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "請從以下的憑證中選擇一個："
 
-#: src/dialogs/expirydialog.cpp:162
+#: src/dialogs/expirydialog.cpp:163
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "請從以下的憑證中選擇一個："
 
-#: src/dialogs/expirydialog.cpp:166
+#: src/dialogs/expirydialog.cpp:167
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "顯示憑證合法性"
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:175
 #, fuzzy, kde-format
 #| msgid "Valid From"
 msgid "Valid for:"
 msgstr "合法起始時間"
 
-#: src/dialogs/expirydialog.cpp:187
+#: src/dialogs/expirydialog.cpp:188
 #, kde-format
 msgid "Days"
 msgstr "天內"
 
-#: src/dialogs/expirydialog.cpp:188
+#: src/dialogs/expirydialog.cpp:189
 #, kde-format
 msgid "Weeks"
 msgstr "週內"
 
-#: src/dialogs/expirydialog.cpp:189
+#: src/dialogs/expirydialog.cpp:190
 #, kde-format
 msgid "Months"
 msgstr "月內"
 
-#: src/dialogs/expirydialog.cpp:190
+#: src/dialogs/expirydialog.cpp:191
 #, kde-format
 msgid "Years"
 msgstr "年內"
 
-#: src/dialogs/expirydialog.cpp:220
+#: src/dialogs/expirydialog.cpp:221
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:276
+#: src/dialogs/expirydialog.cpp:277
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "合法結束時間："
 
-#: src/dialogs/expirydialog.cpp:312
+#: src/dialogs/expirydialog.cpp:313
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -9183,209 +9183,209 @@ msgstr "匯入憑證"
 msgid "Import CRLs"
 msgstr "匯入廢棄憑證清單"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:244
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "進階設定"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:260
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "金鑰型式"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:264
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
 #, fuzzy, kde-format
 #| msgid "RSA"
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
 #, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
 #, fuzzy, kde-format
 #| msgid "DSA"
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
 #, fuzzy, kde-format
 #| msgid "+ Elgamal"
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:312
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:303
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
 #, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
 #, kde-format
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "憑證使用"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "簽署"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:333
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "憑證"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "加密"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:341
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "認證"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:348
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "合法結束時間："
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:362
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "技術詳情"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:376
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
 #, fuzzy, kde-format
 #| msgid "Additional User-IDs"
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "額外的使用者代碼"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:384
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "電子郵件地址"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS 名稱"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:400
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "網址"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:410
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:980
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:961
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "個人資料"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:452
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:433
 #, kde-format
 msgid "new email"
 msgstr "新郵件"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:453
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:434
 #, kde-format
 msgid "new dns name"
 msgstr "新 dns 名稱"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:454
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:435
 #, kde-format
 msgid "new uri"
 msgstr "新網址"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:506
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:487
 #, kde-format
 msgid "The validity period cannot be changed."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:508
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:489
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:511
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:516
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
 msgid "The validity period must end after today."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:518
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:499
 #, kde-format
 msgctxt "... after <a date>."
 msgid "The validity period must end after %1."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:818
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:799
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2（%1 位元）"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:819
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:800
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 位元"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:985
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:966
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Adding more than one User ID is not yet implemented."
@@ -10826,7 +10826,7 @@ msgstr "%1 是空的或找不到"
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr "無法使用標準輸入傳遞參數給解壓指令"
 
-#: src/utils/archivedefinition.cpp:407
+#: src/utils/archivedefinition.cpp:418
 #, kde-format
 msgid "Caught unknown exception in group %1"
 msgstr "在群組 %1 遇到未知的例外狀況"

@@ -325,6 +325,17 @@ ArchiveDefinition::ArchiveDefinition(const QString &id, const QString &label)
 
 ArchiveDefinition::~ArchiveDefinition() {}
 
+QString ArchiveDefinition::stripExtension(GpgME::Protocol p, const QString &filePath) const
+{
+    checkProtocol(p);
+    for (const auto &ext : std::as_const(m_extensions[p])) {
+        if (filePath.endsWith(QLatin1Char('.') + ext)) {
+            return filePath.chopped(ext.size() + 1);
+        }
+    }
+    return filePath;
+}
+
 static QByteArray make_input(const QStringList &files, char sep)
 {
     QByteArray result;

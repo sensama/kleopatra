@@ -59,6 +59,8 @@ public:
         return m_extensions[p];
     }
 
+    QString stripExtension(GpgME::Protocol p, const QString &filePath) const;
+
     std::shared_ptr<Input> createInputFromPackCommand(GpgME::Protocol p, const QStringList &files) const;
     ArgumentPassingMethod packCommandArgumentPassingMethod(GpgME::Protocol p) const
     {

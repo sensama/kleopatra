@@ -15,6 +15,7 @@
 
 #include "utils/gui-helper.h"
 #include "utils/qt-cxx20-compat.h"
+#include "utils/keys.h"
 
 #include <Libkleo/Formatting>
 
@@ -270,7 +271,7 @@ void ExpiryDialog::Private::slotInAmountChanged()
 
 void ExpiryDialog::Private::slotOnDateChanged()
 {
-    if (ui.onRB->isChecked()) {
+    if (!ui.inRB->isChecked()) {
         ui.inSB->setValue(inAmountByDate(ui.onCB->date()));
     }
     ui.onRB->setAccessibleName(i18nc("Valid until DATE", "Valid until %1", Formatting::accessibleDate(ui.onCB->date())));
@@ -319,11 +320,14 @@ void ExpiryDialog::setDateOfExpiry(const QDate &date)
     const QDate current = QDate::currentDate();
     if (date.isValid()) {
         d->ui.onRB->setChecked(true);
-        d->ui.onCB->setDate(qMax(date, current));
+        if (date <= current) {
+            d->ui.onCB->setDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
+        } else {
+            d->ui.onCB->setDate(date);
+        }
     } else {
         d->ui.neverRB->setChecked(true);
-        d->ui.onCB->setDate(current);
-        d->ui.inSB->setValue(0);
+        d->ui.onCB->setDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
     }
 }
 

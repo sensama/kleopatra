@@ -498,7 +498,14 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 t->setProtocol(cFile.protocol);
                 if (ad) {
                     t->setExtractArchive(true);
-                    t->setOutputDirectory(m_workDir->path());
+                    t->setInputFile(cFile.fileName);
+                    if (output) {
+                        t->setOutputDirectory(m_workDir->path());
+                    } else {
+                        // make gpgtar extract to a subfolder of the work directory based on the input file name
+                        const auto baseFileName = QFileInfo{ad->stripExtension(cFile.protocol, cFile.baseName)}.fileName();
+                        t->setOutputDirectory(QDir{m_workDir->path()}.filePath(baseFileName));
+                    }
                 }
                 tasks.push_back(t);
             } else {
@@ -514,7 +521,14 @@ std::vector< std::shared_ptr<Task> > AutoDecryptVerifyFilesController::Private::
                 t->setProtocol(cFile.protocol);
                 if (ad) {
                     t->setExtractArchive(true);
-                    t->setOutputDirectory(m_workDir->path());
+                    t->setInputFile(cFile.fileName);
+                    if (output) {
+                        t->setOutputDirectory(m_workDir->path());
+                    } else {
+                        // make gpgtar extract to a subfolder of the work directory based on the input file name
+                        const auto baseFileName = QFileInfo{ad->stripExtension(cFile.protocol, cFile.baseName)}.fileName();
+                        t->setOutputDirectory(QDir{m_workDir->path()}.filePath(baseFileName));
+                    }
                 }
                 cFile.output = output;
                 tasks.push_back(t);

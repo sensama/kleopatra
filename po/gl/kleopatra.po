@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-22 00:49+0000\n"
+"POT-Creation-Date: 2023-06-24 00:51+0000\n"
 "PO-Revision-Date: 2020-01-12 11:14+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -357,7 +357,7 @@ msgstr "Certificación sen problemas."
 msgid "Certification Succeeded"
 msgstr "Cancelouse a operación."
 
-#: src/commands/changeexpirycommand.cpp:229
+#: src/commands/changeexpirycommand.cpp:230
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the expiry date for <b>%1</b>:"
@@ -369,7 +369,7 @@ msgstr ""
 "<p>Produciuse un erro ao intentar cambiar a data de caducidade de <b>%1</b>:"
 "</p><p>%2</p>"
 
-#: src/commands/changeexpirycommand.cpp:237
+#: src/commands/changeexpirycommand.cpp:238
 #, fuzzy, kde-format
 #| msgid "Expiry date changed successfully."
 msgid "End of validity period changed successfully."
@@ -4170,7 +4170,7 @@ msgid ""
 "(which comes from the environment variable http_proxy) will be used for any "
 "HTTP request."
 msgstr ""
-"Se se selecciona esta opción, empregarase o valor do proxy HTTP que se "
+"Se se selecciona esta opción, empregarase o valor do mandatario HTTP que se "
 "mostra á dereita (que ven da variábel de contorno http_proxy) para todas as "
 "solicitudes HTTP."
 
@@ -4196,7 +4196,7 @@ msgid ""
 "myproxy.nowhere.com:3128.</p>"
 msgstr ""
 "<p>Se non se configura ningún proxy do sistema ou se se precisa utilizar un "
-"proxy distinto para GpgSM, pódese inserir aquí o lugar onde está.</"
+"mandatario distinto para GpgSM, pódese inserir aquí o lugar onde está.</"
 "p><p>Utilizarase para todas as solicitudes HTTP relacionadas con S/MIME.</"
 "p><p> A sintaxe é servidor:porto; por exemplo omeuproxy.ningures.gal:3128.</"
 "p>"
@@ -4262,8 +4262,8 @@ msgstr ""
 "Se se inserir aquí un servidor LDAP, todas as solicitudes LDAP irán primeiro "
 "a ese servidor. Máis exactamente, esta configuración omite calquera parte de "
 "servidor e porto especificados nun URL de LDAP e tamén se utilizará se se "
-"omitiron o servidor e o porto do URL. Empregaranse outros servidores LDAP só "
-"se falla a conexión co «proxy».\n"
+"omitiron o servidor e o porto do URL. Usaranse outros servidores LDAP só se "
+"falla a conexión co «proxy».\n"
 "A sintaxe é «SERVIDOR» OU «SERVIDOR:PORTO». Se se omitir o porto, úsase o "
 "porto 389 (porto LDAP estándar)."
 
@@ -4532,62 +4532,62 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Descifrar ou verificar ficheiros"
 
-#: src/crypto/decryptverifytask.cpp:181
+#: src/crypto/decryptverifytask.cpp:185
 #, kde-format
 msgid "Error: Signature not verified"
 msgstr "Erro: A sinatura non está verificada"
 
-#: src/crypto/decryptverifytask.cpp:183
+#: src/crypto/decryptverifytask.cpp:187
 #, kde-format
 msgid "Good signature"
 msgstr "Sinatura boa"
 
-#: src/crypto/decryptverifytask.cpp:185
+#: src/crypto/decryptverifytask.cpp:189
 #, kde-format
 msgid "Signing certificate was revoked"
 msgstr "Revogouse o certificado de sinatura"
 
-#: src/crypto/decryptverifytask.cpp:187
+#: src/crypto/decryptverifytask.cpp:191
 #, kde-format
 msgid "Signing certificate is expired"
 msgstr "O certificado de sinatura caducou"
 
-#: src/crypto/decryptverifytask.cpp:189
+#: src/crypto/decryptverifytask.cpp:193
 #, kde-format
 msgid "Certificate is not available"
 msgstr "O certificado non está dispoñíbel"
 
-#: src/crypto/decryptverifytask.cpp:191
+#: src/crypto/decryptverifytask.cpp:195
 #, kde-format
 msgid "Signature expired"
 msgstr "A sinatura caducou"
 
-#: src/crypto/decryptverifytask.cpp:193
+#: src/crypto/decryptverifytask.cpp:197
 #, kde-format
 msgid "CRL missing"
 msgstr "Falta a CRL"
 
-#: src/crypto/decryptverifytask.cpp:195
+#: src/crypto/decryptverifytask.cpp:199
 #, kde-format
 msgid "CRL too old"
 msgstr "A CRL é demasiado vella"
 
-#: src/crypto/decryptverifytask.cpp:197
+#: src/crypto/decryptverifytask.cpp:201
 #, kde-format
 msgid "Bad policy"
 msgstr "Política mala"
 
-#: src/crypto/decryptverifytask.cpp:199
+#: src/crypto/decryptverifytask.cpp:203
 #, kde-format
 msgid "System error"
 msgstr "Erro do sistema"
 
-#: src/crypto/decryptverifytask.cpp:201
+#: src/crypto/decryptverifytask.cpp:205
 #, kde-format
 msgid "Bad signature"
 msgstr "Sinatura incorrecta"
 
-#: src/crypto/decryptverifytask.cpp:212
+#: src/crypto/decryptverifytask.cpp:216
 #, kde-format
 msgid ""
 "The signature is valid but the trust in the certificate's validity is only "
@@ -4596,20 +4596,20 @@ msgstr ""
 "A sinatura é correcta pero a confianza na validez do certificado é só "
 "marxinal."
 
-#: src/crypto/decryptverifytask.cpp:214
+#: src/crypto/decryptverifytask.cpp:218
 #, kde-format
 msgid "The signature is valid and the certificate's validity is fully trusted."
 msgstr ""
 "A sinatura é correcta e a confianza na validez do certificado é completa."
 
-#: src/crypto/decryptverifytask.cpp:216
+#: src/crypto/decryptverifytask.cpp:220
 #, kde-format
 msgid ""
 "The signature is valid and the certificate's validity is ultimately trusted."
 msgstr ""
 "A sinatura é correcta e a confianza na validez do certificado é definitiva."
 
-#: src/crypto/decryptverifytask.cpp:218
+#: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgid ""
 "The signature is valid but the certificate's validity is <em>not trusted</"
@@ -4617,38 +4617,38 @@ msgid ""
 msgstr ""
 "A sinatura é correcta pero <em>non se confía</em> na validez do certificado."
 
-#: src/crypto/decryptverifytask.cpp:220
+#: src/crypto/decryptverifytask.cpp:224
 #, kde-format
 msgid "The signature is valid but the certificate's validity is unknown."
 msgstr "A sinatura é correcta pero descoñécese a validez do certificado."
 
-#: src/crypto/decryptverifytask.cpp:223
+#: src/crypto/decryptverifytask.cpp:227
 #, kde-format
 msgid "The signature is valid but the certificate's validity is undefined."
 msgstr "A sinatura é correcta pero a validez do certificado non está definida."
 
-#: src/crypto/decryptverifytask.cpp:235 src/crypto/decryptverifytask.cpp:250
+#: src/crypto/decryptverifytask.cpp:239 src/crypto/decryptverifytask.cpp:254
 #, kde-format
 msgid "Unknown certificate"
 msgstr "O certificado é descoñecido"
 
-#: src/crypto/decryptverifytask.cpp:270
+#: src/crypto/decryptverifytask.cpp:274
 #, kde-format
 msgctxt "1 is a date"
 msgid "Signature created on %1"
 msgstr "A sinatura creouse o %1"
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:277
 #, kde-format
 msgid "With unavailable certificate:"
 msgstr "Co certificado non dispoñíbel:"
 
-#: src/crypto/decryptverifytask.cpp:275
+#: src/crypto/decryptverifytask.cpp:279
 #, kde-format
 msgid "With certificate:"
 msgstr "Co certificado:"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:286
 #, fuzzy, kde-format
 #| msgid "The signature is invalid: %1"
 msgctxt ""
@@ -4657,7 +4657,7 @@ msgctxt ""
 msgid "The signature is %1"
 msgstr "A sinatura é incorrecta: %1"
 
-#: src/crypto/decryptverifytask.cpp:284
+#: src/crypto/decryptverifytask.cpp:288
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "VS-NfD-conforming is a German standard for restricted documents for which "
@@ -4670,47 +4670,47 @@ msgctxt ""
 msgid "The signature <b>is not</b> %1."
 msgstr "A sinatura <b>non</b> cumpre con VS-NfD."
 
-#: src/crypto/decryptverifytask.cpp:300 src/crypto/signencrypttask.cpp:54
+#: src/crypto/decryptverifytask.cpp:304 src/crypto/signencrypttask.cpp:54
 #, kde-format
 msgctxt "Input file --> Output file (rarr is arrow"
 msgid "%1 &rarr; %2"
 msgstr "%1 &rarr; %2"
 
-#: src/crypto/decryptverifytask.cpp:406
+#: src/crypto/decryptverifytask.cpp:425
 #, kde-format
 msgid "<b>Verification canceled.</b>"
 msgstr "<b>Cancelouse a verificación.</b>"
 
-#: src/crypto/decryptverifytask.cpp:408
+#: src/crypto/decryptverifytask.cpp:427
 #, kde-format
 msgid "<b>Verification failed: %1.</b>"
 msgstr "<b>Fallou a verificación: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:414
+#: src/crypto/decryptverifytask.cpp:433
 #, kde-format
 msgid "<b>No signatures found.</b>"
 msgstr "<b>Non se atoparon sinaturas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:419
+#: src/crypto/decryptverifytask.cpp:438
 #, kde-format
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] "<b>A sinatura é incorrecta</b>"
 msgstr[1] "<b>Hai %1 sinaturas que son incorrectas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:423
+#: src/crypto/decryptverifytask.cpp:442
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] "<b>Non se puideron verificar os datos.</b>"
 msgstr[1] "<b>Non se puideron verificar %1 sinaturas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:429
+#: src/crypto/decryptverifytask.cpp:448
 #, kde-format
 msgid "<b>Valid signature by %1</b>"
 msgstr "<b>Sinatura correcta de %1</b>"
 
-#: src/crypto/decryptverifytask.cpp:431
+#: src/crypto/decryptverifytask.cpp:450
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
@@ -4719,19 +4719,19 @@ msgstr ""
 "<br/><b>Advertencia:</b> O enderezo do remitente do correo non está na %1 "
 "empregada para asinar."
 
-#: src/crypto/decryptverifytask.cpp:432
+#: src/crypto/decryptverifytask.cpp:451
 #, kde-format
 msgid "certificate"
 msgstr "certificado"
 
-#: src/crypto/decryptverifytask.cpp:434
+#: src/crypto/decryptverifytask.cpp:453
 #, kde-format
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] "<b>Sinatura correcta.</b>"
 msgstr[1] "<b>%1 sinaturas correctas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:436
+#: src/crypto/decryptverifytask.cpp:455
 #, kde-format
 msgid ""
 "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4740,44 +4740,44 @@ msgstr ""
 "<br/><b>Advertencia:</b> O enderezo de correo do remitente non está "
 "almacenado nos certificados empregados para asinar."
 
-#: src/crypto/decryptverifytask.cpp:448
+#: src/crypto/decryptverifytask.cpp:467
 #, kde-format
 msgid "<b>Decryption canceled.</b>"
 msgstr "<b>Cancelouse o descifrado.</b>"
 
-#: src/crypto/decryptverifytask.cpp:451
+#: src/crypto/decryptverifytask.cpp:470
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Sen protección da integridade (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:451 src/crypto/decryptverifytask.cpp:454
-#: src/crypto/decryptverifytask.cpp:456
+#: src/crypto/decryptverifytask.cpp:470 src/crypto/decryptverifytask.cpp:473
+#: src/crypto/decryptverifytask.cpp:475
 #, kde-format
 msgid "<b>Decryption failed: %1.</b>"
 msgstr "<b>Fallou o descifrado: %1.</b>"
 
-#: src/crypto/decryptverifytask.cpp:458
+#: src/crypto/decryptverifytask.cpp:477
 #, kde-format
 msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>Completouse o descifrado.</b>"
 
-#: src/crypto/decryptverifytask.cpp:478 src/crypto/decryptverifytask.cpp:499
+#: src/crypto/decryptverifytask.cpp:497 src/crypto/decryptverifytask.cpp:518
 #, kde-format
 msgid "The signature is invalid: %1"
 msgstr "A sinatura é incorrecta: %1"
 
-#: src/crypto/decryptverifytask.cpp:487
+#: src/crypto/decryptverifytask.cpp:506
 #, kde-format
 msgid "You can search the certificate on a keyserver or import it from a file."
 msgstr ""
 "Pode buscar o certificado nun servidor de chaves ou importalo dun ficheiro."
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:513
 #, kde-format
 msgid "The used key is not certified by you or any trusted person."
 msgstr "Nin vostede nin ningunha persoa de confianza certificou a chave usada."
 
-#: src/crypto/decryptverifytask.cpp:495
+#: src/crypto/decryptverifytask.cpp:514
 #, kde-format
 msgid ""
 "The used certificate is not certified by a trustworthy Certificate Authority "
@@ -4786,20 +4786,20 @@ msgstr ""
 "A autoridade de certificación que certifica o certificado usado non é de "
 "confianza ou non se coñece."
 
-#: src/crypto/decryptverifytask.cpp:519 src/crypto/decryptverifytask.cpp:572
+#: src/crypto/decryptverifytask.cpp:538 src/crypto/decryptverifytask.cpp:591
 #: src/crypto/signencrypttask.cpp:226 src/crypto/signencrypttask.cpp:243
 #: src/crypto/signencrypttask.cpp:824
 #, kde-format
 msgid "Input error: %1"
 msgstr "Produciuse un erro na entrada: %1"
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:530
+#: src/crypto/decryptverifytask.cpp:549
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
@@ -4807,28 +4807,28 @@ msgstr ""
 "<p>O enderezo do remitente %1 non está almacenado no certificado. "
 "Almacenado: %2</p>"
 
-#: src/crypto/decryptverifytask.cpp:543
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] "Un destinatario descoñecido."
 msgstr[1] "%1 destinatarios descoñecidos."
 
-#: src/crypto/decryptverifytask.cpp:547
+#: src/crypto/decryptverifytask.cpp:566
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Destinatario:"
 msgstr[1] "Destinatarios:"
 
-#: src/crypto/decryptverifytask.cpp:558
+#: src/crypto/decryptverifytask.cpp:577
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "Un destinatario descoñecido"
 msgstr[1] "%1 destinatarios descoñecidos"
 
-#: src/crypto/decryptverifytask.cpp:584
+#: src/crypto/decryptverifytask.cpp:603
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "VS-NfD-conforming is a German standard for restricted documents for which "
@@ -4841,7 +4841,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "A descifraxe cumpre con VS-NfD."
 
-#: src/crypto/decryptverifytask.cpp:586
+#: src/crypto/decryptverifytask.cpp:605
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "VS-NfD-conforming is a German standard for restricted documents for which "
@@ -4854,12 +4854,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "A descifraxe non</b> cumpre con VS-NfD."
 
-#: src/crypto/decryptverifytask.cpp:596
+#: src/crypto/decryptverifytask.cpp:615
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Nome de ficheiro incrustado: «%1»"
 
-#: src/crypto/decryptverifytask.cpp:603
+#: src/crypto/decryptverifytask.cpp:622
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4868,7 +4868,7 @@ msgstr ""
 "<b>Nota:</b> Non pode estar seguro de quen cifrou a mensaxe porque non está "
 "asinada."
 
-#: src/crypto/decryptverifytask.cpp:609
+#: src/crypto/decryptverifytask.cpp:628
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4880,7 +4880,7 @@ msgstr ""
 "que sexa ilexítimo. O motivo é que por aquel entón a protección da "
 "integridade apenas se usaba."
 
-#: src/crypto/decryptverifytask.cpp:613
+#: src/crypto/decryptverifytask.cpp:632
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4892,31 +4892,31 @@ msgstr ""
 "Se está seguro de que o ficheiro non o manipularon, debería cifralo de novo "
 "tras forzar o descifrado."
 
-#: src/crypto/decryptverifytask.cpp:882
+#: src/crypto/decryptverifytask.cpp:901
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:1010 src/crypto/decryptverifytask.cpp:1187
-#: src/crypto/decryptverifytask.cpp:1271 src/crypto/decryptverifytask.cpp:1374
-#: src/crypto/decryptverifytask.cpp:1425 src/crypto/decryptverifytask.cpp:1564
-#: src/crypto/decryptverifytask.cpp:1637 src/crypto/decryptverifytask.cpp:1742
+#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1206
+#: src/crypto/decryptverifytask.cpp:1298 src/crypto/decryptverifytask.cpp:1401
+#: src/crypto/decryptverifytask.cpp:1452 src/crypto/decryptverifytask.cpp:1591
+#: src/crypto/decryptverifytask.cpp:1672 src/crypto/decryptverifytask.cpp:1777
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Recolleuse unha excepción: %1"
 
-#: src/crypto/decryptverifytask.cpp:1013 src/crypto/decryptverifytask.cpp:1189
-#: src/crypto/decryptverifytask.cpp:1274 src/crypto/decryptverifytask.cpp:1376
-#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1566
-#: src/crypto/decryptverifytask.cpp:1639 src/crypto/decryptverifytask.cpp:1744
+#: src/crypto/decryptverifytask.cpp:1032 src/crypto/decryptverifytask.cpp:1208
+#: src/crypto/decryptverifytask.cpp:1301 src/crypto/decryptverifytask.cpp:1403
+#: src/crypto/decryptverifytask.cpp:1455 src/crypto/decryptverifytask.cpp:1593
+#: src/crypto/decryptverifytask.cpp:1674 src/crypto/decryptverifytask.cpp:1779
 #: src/uiserver/assuanserverconnection.cpp:1368
 #: src/uiserver/assuanserverconnection.cpp:1419
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Recolleuse unha excepción descoñecida"
 
-#: src/crypto/decryptverifytask.cpp:1065
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4925,12 +4925,12 @@ msgstr ""
 "Non se puido determinar se esta é unha sinatura/cifrado S/MIME ou OpenPGP - "
 "pode non ser un cifrado ou unha sinatura?"
 
-#: src/crypto/decryptverifytask.cpp:1072 src/crypto/decryptverifytask.cpp:1333
+#: src/crypto/decryptverifytask.cpp:1091 src/crypto/decryptverifytask.cpp:1360
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Está a descifrar: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1326
+#: src/crypto/decryptverifytask.cpp:1353
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -4939,7 +4939,7 @@ msgstr ""
 "Non se puido determinar se se cifrou con S/MIME ou con OpenPGP. É posíbel "
 "que non estea cifrado?"
 
-#: src/crypto/decryptverifytask.cpp:1481 src/crypto/decryptverifytask.cpp:1678
+#: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1713
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -4948,12 +4948,12 @@ msgstr ""
 "Non se puido determinar se se trata dunha sinatura S/MIME ou OpenPGP - "
 "podería ser que non se trate dunha sinatura?"
 
-#: src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1515
 #, kde-format
 msgid "Verifying: %1..."
 msgstr "Verificando: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1693
+#: src/crypto/decryptverifytask.cpp:1728
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4961,12 +4961,12 @@ msgctxt ""
 msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verificando: <filename>%1</filename> con <filename>%2</filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1698
+#: src/crypto/decryptverifytask.cpp:1733
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr "Verificando a sinatura: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1706
+#: src/crypto/decryptverifytask.cpp:1741
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6156,7 +6156,7 @@ msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:681 src/utils/archivedefinition.cpp:350
+#: src/crypto/signencrypttask.cpp:681 src/utils/archivedefinition.cpp:361
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6421,7 +6421,7 @@ msgid "Valid from:"
 msgstr "Válido desde:"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:204
+#: src/dialogs/expirydialog.cpp:205
 #, kde-format
 msgid "Valid until:"
 msgstr "Correcto ata:"
@@ -7225,21 +7225,21 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:69
+#: src/dialogs/expirydialog.cpp:70
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:71
+#: src/dialogs/expirydialog.cpp:72
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:73
+#: src/dialogs/expirydialog.cpp:74
 #, fuzzy, kde-format
 #| msgid "Valid from:"
 msgid "Valid for %1 month"
@@ -7247,70 +7247,70 @@ msgid_plural "Valid for %1 months"
 msgstr[0] "Válido desde:"
 msgstr[1] "Válido desde:"
 
-#: src/dialogs/expirydialog.cpp:75
+#: src/dialogs/expirydialog.cpp:76
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:161
+#: src/dialogs/expirydialog.cpp:162
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Seleccione un dos certificados seguintes:"
 
-#: src/dialogs/expirydialog.cpp:162
+#: src/dialogs/expirydialog.cpp:163
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Seleccione un dos certificados seguintes:"
 
-#: src/dialogs/expirydialog.cpp:166
+#: src/dialogs/expirydialog.cpp:167
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "Mostrar a validez dos certificados"
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:175
 #, fuzzy, kde-format
 #| msgid "Valid from:"
 msgid "Valid for:"
 msgstr "Válido desde:"
 
-#: src/dialogs/expirydialog.cpp:187
+#: src/dialogs/expirydialog.cpp:188
 #, kde-format
 msgid "Days"
 msgstr "Días"
 
-#: src/dialogs/expirydialog.cpp:188
+#: src/dialogs/expirydialog.cpp:189
 #, kde-format
 msgid "Weeks"
 msgstr "Semanas"
 
-#: src/dialogs/expirydialog.cpp:189
+#: src/dialogs/expirydialog.cpp:190
 #, kde-format
 msgid "Months"
 msgstr "Meses"
 
-#: src/dialogs/expirydialog.cpp:190
+#: src/dialogs/expirydialog.cpp:191
 #, kde-format
 msgid "Years"
 msgstr "Anos"
 
-#: src/dialogs/expirydialog.cpp:220
+#: src/dialogs/expirydialog.cpp:221
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:276
+#: src/dialogs/expirydialog.cpp:277
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Correcto ata:"
 
-#: src/dialogs/expirydialog.cpp:312
+#: src/dialogs/expirydialog.cpp:313
 #, fuzzy, kde-format
 #| msgid "Change cardholder"
 msgctxt "@title:window"
@@ -9340,200 +9340,200 @@ msgstr "Importar certificados"
 msgid "Import CRLs"
 msgstr "Importar CRL"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:244
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Configuración avanzada"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:260
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Material clave"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:264
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
 #, fuzzy, kde-format
 #| msgid "RSA"
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
 #, fuzzy, kde-format
 #| msgid "+ RSA"
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
 #, fuzzy, kde-format
 #| msgid "DSA"
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
 #, fuzzy, kde-format
 #| msgid "+ Elgamal"
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:312
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "A chave privada necesítase para descifrar ou asinar."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:303
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
 #, fuzzy, kde-format
 #| msgid "ECDSA"
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
 #, fuzzy, kde-format
 #| msgid "+ ECDH"
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:325
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Uso do certificado"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Sinatura"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:333
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Certificación"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:337
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Cifrado"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:341
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "Autenticación"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:348
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Correcto ata:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:362
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Detalles técnicos"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:376
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
 #, fuzzy, kde-format
 #| msgid "Additional User-IDs"
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "Identificadores de usuario adicionais"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:384
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "Enderezos de correo electrónico"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "Nomes de DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:400
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:410
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:980
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:961
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Datos persoais"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:452
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:433
 #, kde-format
 msgid "new email"
 msgstr "correo novo"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:453
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:434
 #, kde-format
 msgid "new dns name"
 msgstr "nome dns novo"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:454
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:435
 #, kde-format
 msgid "new uri"
 msgstr "uri novo"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:506
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:487
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "The validity period cannot be changed."
 msgstr "Non é posíbel comprobar a validez desta sinatura."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:508
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:489
 #, kde-format
 msgctxt "... between today and <another date>."
 msgid "The validity period must end between today and %1."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:511
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:492
 #, kde-format
 msgctxt "... between <a date> and <another date>."
 msgid "The validity period must end between %1 and %2."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:516
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:497
 #, kde-format
 msgid "The validity period must end after today."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:518
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:499
 #, kde-format
 msgctxt "... after <a date>."
 msgid "The validity period must end after %1."
 msgstr ""
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:818
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:799
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9541,7 +9541,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 bit)"
 msgstr[1] "%2 (%1 bits)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:819
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:800
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9549,7 +9549,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1 bit"
 msgstr[1] "%1 bits"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:985
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:966
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Adding more than one User ID is not yet implemented."
@@ -11028,7 +11028,7 @@ msgstr "«%1» está baleira ou non se atopou"
 msgid "cannot use argument passing on standard input for unpack-command"
 msgstr "Non se poden pasar argumentos na entrada estándar para a orde unpack"
 
-#: src/utils/archivedefinition.cpp:407
+#: src/utils/archivedefinition.cpp:418
 #, kde-format
 msgid "Caught unknown exception in group %1"
 msgstr "Recolleuse unha excepción descoñecida no grupo %1"
@@ -12227,7 +12227,7 @@ msgstr "O tamaño do nome non pode superar os 38 caracteres."
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
-msgstr "O cambio de nome fallou: %1"
+msgstr "O renomeamento fallou: %1"
 
 #: src/view/pgpcardwidget.cpp:494
 #, kde-format

@@ -964,11 +964,20 @@ class AbstractDecryptVerifyTask::Private
 {
 public:
     Mailbox informativeSender;
+    QPointer<QGpgME::Job> job;
 };
 
 AbstractDecryptVerifyTask::AbstractDecryptVerifyTask(QObject *parent) : Task(parent), d(new Private) {}
 
 AbstractDecryptVerifyTask::~AbstractDecryptVerifyTask() {}
+
+void AbstractDecryptVerifyTask::cancel()
+{
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
+    if (d->job) {
+        d->job->slotCancel();
+    }
+}
 
 Mailbox AbstractDecryptVerifyTask::informativeSender() const
 {
@@ -978,6 +987,16 @@ Mailbox AbstractDecryptVerifyTask::informativeSender() const
 void AbstractDecryptVerifyTask::setInformativeSender(const Mailbox &sender)
 {
     d->informativeSender = sender;
+}
+
+QGpgME::Job *AbstractDecryptVerifyTask::job() const
+{
+    return d->job;
+}
+
+void AbstractDecryptVerifyTask::setJob(QGpgME::Job *job)
+{
+    d->job = job;
 }
 
 class DecryptVerifyTask::Private
@@ -1111,11 +1130,6 @@ Protocol DecryptVerifyTask::protocol() const
     return d->m_protocol;
 }
 
-void DecryptVerifyTask::cancel()
-{
-
-}
-
 static void ensureIOOpen(QIODevice *input, QIODevice *output)
 {
     if (input && !input->isOpen()) {
@@ -1185,21 +1199,22 @@ static void setIgnoreMDCErrorFlag(QGpgME::Job *job, bool ignoreMDCError)
 void DecryptVerifyTask::Private::startDecryptVerifyJob()
 {
     try {
-        QGpgME::DecryptVerifyJob *const job = m_backend->decryptVerifyJob();
+        std::unique_ptr<QGpgME::DecryptVerifyJob> job{m_backend->decryptVerifyJob()};
         kleo_assert(job);
-        setIgnoreMDCErrorFlag(job, m_ignoreMDCError);
-        QObject::connect(job, &QGpgME::DecryptVerifyJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult, const QByteArray &plainText) {
+        setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
+        QObject::connect(job.get(), &QGpgME::DecryptVerifyJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult, const QByteArray &plainText) {
             slotResult(decryptResult, verifyResult, plainText);
         });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-        connect(job, &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+        connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
 #else
-        QObject::connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        QObject::connect(job.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
 #endif
         ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
         job->start(m_input->ioDevice(), m_output->ioDevice());
+        q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
@@ -1212,16 +1227,16 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
 void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
 {
-    auto *const job = m_backend->decryptVerifyArchiveJob();
+    std::unique_ptr<QGpgME::DecryptVerifyArchiveJob> job{m_backend->decryptVerifyArchiveJob()};
     kleo_assert(job);
-    setIgnoreMDCErrorFlag(job, m_ignoreMDCError);
-    connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
+    setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
+    connect(job.get(), &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const GpgME::DecryptionResult &decryptResult, const GpgME::VerificationResult &verifyResult) {
         slotResult(decryptResult, verifyResult);
     });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-    connect(job, &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+    connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
 #else
-    connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+    connect(job.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
         q->setProgress(processed, total);
     });
 #endif
@@ -1241,6 +1256,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->start(m_input->ioDevice());
 #endif
+    q->setJob(job.release());
     if (err) {
         q->emitResult(q->fromDecryptVerifyResult(err, {}, {}));
     }
@@ -1380,21 +1396,17 @@ Protocol DecryptTask::protocol() const
     return d->m_protocol;
 }
 
-void DecryptTask::cancel()
-{
-
-}
-
 void DecryptTask::doStart()
 {
     kleo_assert(d->m_backend);
 
     try {
-        QGpgME::DecryptJob *const job = d->m_backend->decryptJob();
+        std::unique_ptr<QGpgME::DecryptJob> job{d->m_backend->decryptJob()};
         kleo_assert(job);
-        d->registerJob(job);
+        d->registerJob(job.get());
         ensureIOOpen(d->m_input->ioDevice().get(), d->m_output->ioDevice().get());
         job->start(d->m_input->ioDevice(), d->m_output->ioDevice());
+        setJob(job.release());
     } catch (const GpgME::Exception &e) {
         emitResult(fromDecryptResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
@@ -1550,11 +1562,6 @@ void VerifyOpaqueTask::setOutputDirectory(const QString &directory)
     d->m_outputDirectory = directory;
 }
 
-void VerifyOpaqueTask::cancel()
-{
-
-}
-
 void VerifyOpaqueTask::doStart()
 {
     kleo_assert(d->m_backend);
@@ -1571,20 +1578,21 @@ void VerifyOpaqueTask::doStart()
 void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
 {
     try {
-        QGpgME::VerifyOpaqueJob *const job = m_backend->verifyOpaqueJob();
+        std::unique_ptr<QGpgME::VerifyOpaqueJob> job{m_backend->verifyOpaqueJob()};
         kleo_assert(job);
-        connect(job, &QGpgME::VerifyOpaqueJob::result, q, [this](const GpgME::VerificationResult &result, const QByteArray &plainText) {
+        connect(job.get(), &QGpgME::VerifyOpaqueJob::result, q, [this](const GpgME::VerificationResult &result, const QByteArray &plainText) {
             slotResult(result, plainText);
         });
 #if QGPGME_JOB_HAS_NEW_PROGRESS_SIGNALS
-        connect(job, &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
+        connect(job.get(), &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
 #else
-        connect(job, &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
+        connect(job.get(), &QGpgME::Job::progress, q, [this](const QString &, int processed, int total) {
             q->setProgress(processed, total);
         });
 #endif
         ensureIOOpen(m_input->ioDevice().get(), m_output ? m_output->ioDevice().get() : nullptr);
         job->start(m_input->ioDevice(), m_output ? m_output->ioDevice() : std::shared_ptr<QIODevice>());
+        q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {
@@ -1597,12 +1605,12 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
 #if QGPGME_SUPPORTS_ARCHIVE_JOBS
 void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
 {
-    auto *const job = m_backend->decryptVerifyArchiveJob();
+    std::unique_ptr<QGpgME::DecryptVerifyArchiveJob> job{m_backend->decryptVerifyArchiveJob()};
     kleo_assert(job);
-    connect(job, &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const DecryptionResult &, const VerificationResult &verifyResult) {
+    connect(job.get(), &QGpgME::DecryptVerifyArchiveJob::result, q, [this](const DecryptionResult &, const VerificationResult &verifyResult) {
         slotResult(verifyResult);
     });
-    connect(job, &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
+    connect(job.get(), &QGpgME::DecryptVerifyArchiveJob::dataProgress, q, &VerifyOpaqueTask::setProgress);
 #if QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
     // make sure that we don't use an existing output directory
     const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
@@ -1619,6 +1627,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->start(m_input->ioDevice());
 #endif
+    q->setJob(job.release());
     if (err) {
         q->emitResult(q->fromVerifyOpaqueResult(err, {}, {}));
     }
@@ -1756,21 +1765,17 @@ Protocol VerifyDetachedTask::protocol() const
     return d->m_protocol;
 }
 
-void VerifyDetachedTask::cancel()
-{
-
-}
-
 void VerifyDetachedTask::doStart()
 {
     kleo_assert(d->m_backend);
     try {
-        QGpgME::VerifyDetachedJob *const job = d->m_backend->verifyDetachedJob();
+        std::unique_ptr<QGpgME::VerifyDetachedJob> job{d->m_backend->verifyDetachedJob()};
         kleo_assert(job);
-        d->registerJob(job);
+        d->registerJob(job.get());
         ensureIOOpen(d->m_input->ioDevice().get(), nullptr);
         ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
         job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
+        setJob(job.release());
     } catch (const GpgME::Exception &e) {
         emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
     } catch (const std::exception &e) {

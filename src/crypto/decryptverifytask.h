@@ -32,6 +32,11 @@ class Key;
 class Signature;
 }
 
+namespace QGpgME
+{
+class Job;
+}
+
 namespace Kleo
 {
 class Input;
@@ -60,6 +65,9 @@ public:
     virtual QString inputLabel() const = 0;
     virtual QString outputLabel() const = 0;
 
+public Q_SLOTS:
+    void cancel() override;
+
 protected:
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::DecryptionResult &dr, const QByteArray &plaintext, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromDecryptResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
@@ -69,6 +77,11 @@ protected:
     std::shared_ptr<DecryptVerifyResult> fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::VerificationResult &vr, const AuditLogEntry &auditLog);
     std::shared_ptr<DecryptVerifyResult> fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog);
+
+public:
+    // public to allow access from the Private classes of the concrete tasks
+    QGpgME::Job *job() const;
+    void setJob(QGpgME::Job *job);
 
 private:
     class Private;
@@ -94,9 +107,6 @@ public:
 
     QString inputLabel() const override;
     QString outputLabel() const override;
-
-public Q_SLOTS:
-    void cancel() override;
 
 private:
     void doStart() override;
@@ -127,9 +137,6 @@ public:
 
     QString inputLabel() const override;
     QString outputLabel() const override;
-
-public Q_SLOTS:
-    void cancel() override;
 
 private:
     void doStart() override;
@@ -163,9 +170,6 @@ public:
 
     QString inputLabel() const override;
     QString outputLabel() const override;
-
-public Q_SLOTS:
-    void cancel() override;
 
 private:
     void doStart() override;
@@ -201,9 +205,6 @@ public:
 
     QString inputLabel() const override;
     QString outputLabel() const override;
-
-public Q_SLOTS:
-    void cancel() override;
 
 private:
     void doStart() override;

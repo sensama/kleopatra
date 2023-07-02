@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-24 00:51+0000\n"
+"POT-Creation-Date: 2023-06-29 00:48+0000\n"
 "PO-Revision-Date: 2004-12-08 06:54+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -3218,7 +3218,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:633
+#: src/conf/groupsconfigdialog.cpp:110
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -3747,7 +3747,7 @@ msgid ""
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:788
+#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:805
 #, kde-format
 msgid "Cancel"
 msgstr ""
@@ -4206,56 +4206,56 @@ msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1206
-#: src/crypto/decryptverifytask.cpp:1298 src/crypto/decryptverifytask.cpp:1401
-#: src/crypto/decryptverifytask.cpp:1452 src/crypto/decryptverifytask.cpp:1591
-#: src/crypto/decryptverifytask.cpp:1672 src/crypto/decryptverifytask.cpp:1777
+#: src/crypto/decryptverifytask.cpp:1048 src/crypto/decryptverifytask.cpp:1221
+#: src/crypto/decryptverifytask.cpp:1314 src/crypto/decryptverifytask.cpp:1413
+#: src/crypto/decryptverifytask.cpp:1464 src/crypto/decryptverifytask.cpp:1599
+#: src/crypto/decryptverifytask.cpp:1681 src/crypto/decryptverifytask.cpp:1782
 #, kde-format
 msgid "Caught exception: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1032 src/crypto/decryptverifytask.cpp:1208
-#: src/crypto/decryptverifytask.cpp:1301 src/crypto/decryptverifytask.cpp:1403
-#: src/crypto/decryptverifytask.cpp:1455 src/crypto/decryptverifytask.cpp:1593
-#: src/crypto/decryptverifytask.cpp:1674 src/crypto/decryptverifytask.cpp:1779
+#: src/crypto/decryptverifytask.cpp:1051 src/crypto/decryptverifytask.cpp:1223
+#: src/crypto/decryptverifytask.cpp:1317 src/crypto/decryptverifytask.cpp:1415
+#: src/crypto/decryptverifytask.cpp:1467 src/crypto/decryptverifytask.cpp:1601
+#: src/crypto/decryptverifytask.cpp:1683 src/crypto/decryptverifytask.cpp:1784
 #: src/uiserver/assuanserverconnection.cpp:1368
 #: src/uiserver/assuanserverconnection.cpp:1419
 #, kde-format
 msgid "Caught unknown exception"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1084
+#: src/crypto/decryptverifytask.cpp:1103
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1091 src/crypto/decryptverifytask.cpp:1360
+#: src/crypto/decryptverifytask.cpp:1110 src/crypto/decryptverifytask.cpp:1376
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1353
+#: src/crypto/decryptverifytask.cpp:1369
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1508 src/crypto/decryptverifytask.cpp:1713
+#: src/crypto/decryptverifytask.cpp:1520 src/crypto/decryptverifytask.cpp:1722
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1515
+#: src/crypto/decryptverifytask.cpp:1527
 #, kde-format
 msgid "Verifying: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1728
+#: src/crypto/decryptverifytask.cpp:1737
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4263,12 +4263,12 @@ msgctxt ""
 msgid "Verifying: <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1733
+#: src/crypto/decryptverifytask.cpp:1742
 #, kde-format
 msgid "Verifying signature: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1741
+#: src/crypto/decryptverifytask.cpp:1750
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -7692,7 +7692,7 @@ msgstr ""
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:121
+#: src/kleopatra.rc:44 src/kleopatra.rc:128
 #, kde-format
 msgid "&Certificates"
 msgstr ""
@@ -7721,8 +7721,14 @@ msgstr ""
 msgid "&Help"
 msgstr ""
 
+#. i18n: ectx: Menu (help_more)
+#: src/kleopatra.rc:98
+#, kde-format
+msgid "&More documentation"
+msgstr ""
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:106 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr ""
@@ -8133,103 +8139,135 @@ msgstr ""
 
 #: src/mainwindow.cpp:601
 #, kde-format
-msgid "Password-based encryption"
+msgid "&Quickguide"
 msgstr ""
 
 #: src/mainwindow.cpp:603
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_symmetric_encryption_gnupg_en.pdf"
+msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:607
 #, kde-format
-msgid "Quickguide"
+msgid "&Password-based encryption"
 msgstr ""
 
 #: src/mainwindow.cpp:609
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_sign_encrypt_gnupg_en.pdf"
+msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:613
 #, kde-format
-msgid "SecOps VSA-10573"
+msgid "&Group configuration"
 msgstr ""
 
 #: src/mainwindow.cpp:615
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
+msgid "groupfeature_gnupgvsd_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:620
+#, kde-format
+msgid "&Mail encryption in Outlook"
+msgstr ""
+
+#: src/mainwindow.cpp:622
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages. "
+"Only shown on Windows."
+msgid "gpgol_outlook_addin_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:628
+#, kde-format
+msgid "&Certification Management"
+msgstr ""
+
+#: src/mainwindow.cpp:630
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "certification_management_gnupgvsd_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:634
+#, kde-format
+msgid "&Smartcard setup"
+msgstr ""
+
+#: src/mainwindow.cpp:636
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "smartcard_setup_gnupgvsd_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:640
+#, kde-format
+msgid "GnuPG Command&line"
+msgstr ""
+
+#: src/mainwindow.cpp:646
+#, kde-format
+msgid "SecOps VSA-10573"
+msgstr ""
+
+#: src/mainwindow.cpp:648
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:619
+#: src/mainwindow.cpp:652
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:654
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:625 src/view/smartcardwidget.cpp:119
-#, kde-format
-msgid "Smartcard Management"
-msgstr ""
-
-#: src/mainwindow.cpp:627
-#, kde-format
-msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "smartcard_howto_de.pdf"
-msgstr ""
-
-#: src/mainwindow.cpp:631
-#, kde-format
-msgid "Group configuration"
-msgstr ""
-
-#: src/mainwindow.cpp:637
-#, kde-format
-msgid "GnuPG Manual"
-msgstr ""
-
-#: src/mainwindow.cpp:661
+#: src/mainwindow.cpp:678
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:664
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
 
-#: src/mainwindow.cpp:772 src/view/keylistcontroller.cpp:392
+#: src/mainwindow.cpp:789 src/view/keylistcontroller.cpp:392
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:790 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr ""
 
-#: src/mainwindow.cpp:778
+#: src/mainwindow.cpp:795
 #, kde-format
 msgid "Import Certificates"
 msgstr ""
 
-#: src/mainwindow.cpp:779
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "Import CRLs"
 msgstr ""
@@ -11077,6 +11115,11 @@ msgstr ""
 #: src/view/smartcardwidget.cpp:61
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
+msgstr ""
+
+#: src/view/smartcardwidget.cpp:119
+#, kde-format
+msgid "Smartcard Management"
 msgstr ""
 
 #: src/view/smartcardwidget.cpp:161

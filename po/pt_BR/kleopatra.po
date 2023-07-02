@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-27 00:49+0000\n"
+"POT-Creation-Date: 2023-06-29 00:48+0000\n"
 "PO-Revision-Date: 2023-06-07 13:30-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -3676,7 +3676,7 @@ msgstr "Grupos"
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:633
+#: src/conf/groupsconfigdialog.cpp:110
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4291,7 +4291,7 @@ msgstr ""
 "mas não uma mistura de ambos."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:788
+#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:805
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
@@ -8610,7 +8610,7 @@ msgstr "E&xibir"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:121
+#: src/kleopatra.rc:44 src/kleopatra.rc:128
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certificados"
@@ -8639,8 +8639,14 @@ msgstr "&Janela"
 msgid "&Help"
 msgstr "Aj&uda"
 
+#. i18n: ectx: Menu (help_more)
+#: src/kleopatra.rc:98
+#, kde-format
+msgid "&More documentation"
+msgstr ""
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:106 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra de ferramentas principal"
@@ -9076,78 +9082,118 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:601
-#, fuzzy, kde-format
-#| msgid "Force decryption"
-msgid "Password-based encryption"
-msgstr "Forçar descriptografia"
+#, kde-format
+msgid "&Quickguide"
+msgstr ""
 
 #: src/mainwindow.cpp:603
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_symmetric_encryption_gnupg_en.pdf"
+msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
 #: src/mainwindow.cpp:607
-#, kde-format
-msgid "Quickguide"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Force decryption"
+msgid "&Password-based encryption"
+msgstr "Forçar descriptografia"
 
 #: src/mainwindow.cpp:609
+#, fuzzy, kde-format
+#| msgid "Use symmetric encryption only."
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "symmetric_encryption_gnupgvsd_en.pdf"
+msgstr "Usar apenas criptografia simétrica."
+
+#: src/mainwindow.cpp:613
+#, fuzzy, kde-format
+#| msgid "Show owner information"
+msgid "&Group configuration"
+msgstr "Mostrar informações do proprietário"
+
+#: src/mainwindow.cpp:615
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "Only available in German and English. Leave to English for other "
+#| "languages."
+#| msgid "handout_group-feature_gnupg_en.pdf"
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "groupfeature_gnupgvsd_en.pdf"
+msgstr "handout_group-feature_gnupg_en.pdf"
+
+#: src/mainwindow.cpp:620
+#, kde-format
+msgid "&Mail encryption in Outlook"
+msgstr ""
+
+#: src/mainwindow.cpp:622
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages. "
+"Only shown on Windows."
+msgid "gpgol_outlook_addin_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:628
+#, fuzzy, kde-format
+#| msgid "Certification key:"
+msgid "&Certification Management"
+msgstr "Chave de certificação:"
+
+#: src/mainwindow.cpp:630
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_sign_encrypt_gnupg_en.pdf"
+msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:613
+#: src/mainwindow.cpp:634
+#, fuzzy, kde-format
+#| msgctxt "@action show smartcard management view"
+#| msgid "Smartcards"
+msgid "&Smartcard setup"
+msgstr "Cartões com chip"
+
+#: src/mainwindow.cpp:636
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "smartcard_setup_gnupgvsd_en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:640
+#, kde-format
+msgid "GnuPG Command&line"
+msgstr ""
+
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr ""
 
-#: src/mainwindow.cpp:615
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:619
+#: src/mainwindow.cpp:652
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr ""
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:654
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:625 src/view/smartcardwidget.cpp:119
-#, kde-format
-msgid "Smartcard Management"
-msgstr "Gerenciamento de cartões com chip"
-
-#: src/mainwindow.cpp:627
-#, kde-format
-msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "smartcard_howto_de.pdf"
-msgstr ""
-
-#: src/mainwindow.cpp:631
-#, fuzzy, kde-format
-#| msgid "Show owner information"
-msgid "Group configuration"
-msgstr "Mostrar informações do proprietário"
-
-#: src/mainwindow.cpp:637
-#, kde-format
-msgid "GnuPG Manual"
-msgstr ""
-
-#: src/mainwindow.cpp:661
+#: src/mainwindow.cpp:678
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9156,28 +9202,28 @@ msgstr ""
 "Ainda existe alguma operação em andamento no segundo plano. Ela será "
 "encerrada quando esta janela for fechada. Prosseguir?"
 
-#: src/mainwindow.cpp:664
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tarefas em andamento no segundo plano"
 
-#: src/mainwindow.cpp:772 src/view/keylistcontroller.cpp:392
+#: src/mainwindow.cpp:789 src/view/keylistcontroller.cpp:392
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Assinar/criptografar..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:790 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Descriptografar/verificar..."
 
-#: src/mainwindow.cpp:778
+#: src/mainwindow.cpp:795
 #, kde-format
 msgid "Import Certificates"
 msgstr "Importar certificados"
 
-#: src/mainwindow.cpp:779
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "Import CRLs"
 msgstr "Importar CRLs"
@@ -12308,6 +12354,11 @@ msgstr "Insira um cartão com chip compatível."
 msgid "Kleopatra currently supports the following card types:"
 msgstr "O Kleopatra atualmente suporta os seguintes tipos de cartões:"
 
+#: src/view/smartcardwidget.cpp:119
+#, kde-format
+msgid "Smartcard Management"
+msgstr "Gerenciamento de cartões com chip"
+
 #: src/view/smartcardwidget.cpp:161
 #, kde-format
 msgctxt ""
@@ -12836,9 +12887,6 @@ msgstr ""
 #~ msgctxt "@title:window arg is name, email of certificate holder"
 #~ msgid "Revoke Certification: %1"
 #~ msgstr "Revogar certificação: %1"
-
-#~ msgid "Certification key:"
-#~ msgstr "Chave de certificação:"
 
 #~ msgid "The key whose certifications shall be revoke"
 #~ msgstr "A chave cujas certificações devem ser revogadas"

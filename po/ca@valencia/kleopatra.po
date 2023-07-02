@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-27 00:49+0000\n"
-"PO-Revision-Date: 2023-06-10 09:47+0200\n"
+"POT-Creation-Date: 2023-06-29 00:48+0000\n"
+"PO-Revision-Date: 2023-06-29 09:31+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -3567,7 +3567,7 @@ msgstr "Grups"
 msgid "Help"
 msgstr "Ajuda"
 
-#: src/conf/groupsconfigdialog.cpp:110 src/mainwindow.cpp:633
+#: src/conf/groupsconfigdialog.cpp:110
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -4157,7 +4157,7 @@ msgstr "No hi ha hagut cap error."
 #, kde-format
 msgctxt "@info"
 msgid "The following errors were encountered:"
-msgstr "S'han detectat els següents errors:"
+msgstr "S'han detectat els errors següents:"
 
 #: src/crypto/createchecksumscontroller.cpp:267
 #, kde-format
@@ -4170,7 +4170,7 @@ msgstr ""
 "d'ambdós."
 
 #: src/crypto/createchecksumscontroller.cpp:293
-#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:788
+#: src/dialogs/updatenotification.cpp:75 src/mainwindow.cpp:805
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -5699,7 +5699,7 @@ msgstr "Les dades s'han encriptat a esta clau / certificat."
 #: src/crypto/gui/verifychecksumsdialog.cpp:219
 #, kde-format
 msgid "The following errors and warnings were recorded:"
-msgstr "S'han enregistrat els següents errors i avisos:"
+msgstr "S'han enregistrat els errors i avisos següents:"
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:220
 #, kde-format
@@ -8432,7 +8432,7 @@ msgstr "Vi&sualitza"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:121
+#: src/kleopatra.rc:44 src/kleopatra.rc:128
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certificats"
@@ -8461,8 +8461,14 @@ msgstr "&Finestra"
 msgid "&Help"
 msgstr "&Ajuda"
 
+#. i18n: ectx: Menu (help_more)
+#: src/kleopatra.rc:98
+#, kde-format
+msgid "&More documentation"
+msgstr "&Més documentació"
+
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:106 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra d'eines principal"
@@ -8904,75 +8910,107 @@ msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:601
 #, kde-format
-msgid "Password-based encryption"
-msgstr "Encriptació basat en la contrasenya"
+msgid "&Quickguide"
+msgstr "&Guia ràpida"
 
 #: src/mainwindow.cpp:603
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_symmetric_encryption_gnupg_en.pdf"
-msgstr "handout_symmetric_encryption_gnupg_en.pdf"
+msgid "encrypt_and_sign_gnupgvsd_en.pdf"
+msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:607
 #, kde-format
-msgid "Quickguide"
-msgstr "Guia ràpida"
+msgid "&Password-based encryption"
+msgstr "Encriptació basat en contra&senyes"
 
 #: src/mainwindow.cpp:609
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
-msgid "handout_sign_encrypt_gnupg_en.pdf"
-msgstr "handout_sign_encrypt_gnupg_en.pdf"
+msgid "symmetric_encryption_gnupgvsd_en.pdf"
+msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:613
+#, kde-format
+msgid "&Group configuration"
+msgstr "Configureu els &grups"
+
+#: src/mainwindow.cpp:615
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "groupfeature_gnupgvsd_en.pdf"
+msgstr "groupfeature_gnupgvsd_en.pdf"
+
+#: src/mainwindow.cpp:620
+#, kde-format
+msgid "&Mail encryption in Outlook"
+msgstr "Encriptació del &correu a Outlook"
+
+#: src/mainwindow.cpp:622
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages. "
+"Only shown on Windows."
+msgid "gpgol_outlook_addin_en.pdf"
+msgstr "gpgol_outlook_addin_en.pdf"
+
+#: src/mainwindow.cpp:628
+#, kde-format
+msgid "&Certification Management"
+msgstr "&Gestió de certificats"
+
+#: src/mainwindow.cpp:630
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "certification_management_gnupgvsd_en.pdf"
+msgstr "certification_management_gnupgvsd_en.pdf"
+
+#: src/mainwindow.cpp:634
+#, kde-format
+msgid "&Smartcard setup"
+msgstr "Configuració de &targetes intel·ligents"
+
+#: src/mainwindow.cpp:636
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "smartcard_setup_gnupgvsd_en.pdf"
+msgstr "smartcard_setup_gnupgvsd_en.pdf"
+
+#: src/mainwindow.cpp:640
+#, kde-format
+msgid "GnuPG Command&line"
+msgstr "&Línia d'ordres de GnuPG"
+
+#: src/mainwindow.cpp:646
 #, kde-format
 msgid "SecOps VSA-10573"
 msgstr "SecOps VSA-10573"
 
-#: src/mainwindow.cpp:615
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10573-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:619
+#: src/mainwindow.cpp:652
 #, kde-format
 msgid "SecOps VSA-10584"
 msgstr "SecOps VSA-10584"
 
-#: src/mainwindow.cpp:621
+#: src/mainwindow.cpp:654
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
 msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:625 src/view/smartcardwidget.cpp:119
-#, kde-format
-msgid "Smartcard Management"
-msgstr "Gestió de targetes intel·ligents"
-
-#: src/mainwindow.cpp:627
-#, kde-format
-msgctxt ""
-"Only available in German and English. Leave to English for other languages."
-msgid "smartcard_howto_de.pdf"
-msgstr "smartcard_howto_en.pdf"
-
-#: src/mainwindow.cpp:631
-#, kde-format
-msgid "Group configuration"
-msgstr "Configureu els grups"
-
-#: src/mainwindow.cpp:637
-#, kde-format
-msgid "GnuPG Manual"
-msgstr "Manual de GnuPG"
-
-#: src/mainwindow.cpp:661
+#: src/mainwindow.cpp:678
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -8981,28 +9019,28 @@ msgstr ""
 "Encara hi ha algunes operacions en curs en segon pla. Es finalitzaran en "
 "tancar la finestra. Voleu continuar?"
 
-#: src/mainwindow.cpp:664
+#: src/mainwindow.cpp:681
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tasques en curs en segon pla"
 
-#: src/mainwindow.cpp:772 src/view/keylistcontroller.cpp:392
+#: src/mainwindow.cpp:789 src/view/keylistcontroller.cpp:392
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signa/encripta..."
 
-#: src/mainwindow.cpp:773 src/utils/clipboardmenu.cpp:49
+#: src/mainwindow.cpp:790 src/utils/clipboardmenu.cpp:49
 #: src/view/keylistcontroller.cpp:388
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Desencriptació/verificació..."
 
-#: src/mainwindow.cpp:778
+#: src/mainwindow.cpp:795
 #, kde-format
 msgid "Import Certificates"
 msgstr "Importació de certificats"
 
-#: src/mainwindow.cpp:779
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "Import CRLs"
 msgstr "Importeu les CRL"
@@ -12046,6 +12084,11 @@ msgstr "Inseriu una targeta intel·ligent compatible."
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Actualment Kleopatra admet els següents tipus de targetes:"
+
+#: src/view/smartcardwidget.cpp:119
+#, kde-format
+msgid "Smartcard Management"
+msgstr "Gestió de targetes intel·ligents"
 
 #: src/view/smartcardwidget.cpp:161
 #, kde-format

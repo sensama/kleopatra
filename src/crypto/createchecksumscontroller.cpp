@@ -487,7 +487,7 @@ static QString process(const Dir &dir, bool *fatal)
     p.setStandardOutputFile(out.fileName());
     const QString program = dir.checksumDefinition->createCommand();
     dir.checksumDefinition->startCreateCommand(&p, dir.inputFiles);
-    p.waitForFinished();
+    p.waitForFinished(-1);
     qCDebug(KLEOPATRA_LOG) << "[" << &p << "] Exit code " << p.exitCode();
 
     if (p.exitStatus() != QProcess::NormalExit || p.exitCode() != 0) {

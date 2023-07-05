@@ -232,6 +232,7 @@ void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, con
     }
 
     if (err.isCanceled()) {
+        finished();
         return;
     }
 

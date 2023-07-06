@@ -172,7 +172,7 @@ QDate Kleo::defaultExpirationDate(Kleo::ExpirationOnUnlimitedValidity onUnlimite
     if (defaultExpirationInDays > 0) {
         expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
     } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == ExpirationOnUnlimitedValidity::InternalDefaultExpiration) {
-        expirationDate = QDate::currentDate().addYears(2);
+        expirationDate = QDate::currentDate().addYears(3);
     }
 
     return expirationDate;

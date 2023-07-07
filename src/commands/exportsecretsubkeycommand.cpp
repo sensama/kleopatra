@@ -231,6 +231,11 @@ void ExportSecretSubkeyCommand::Private::onExportJobResult(const Error &err, con
         return;
     }
 
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+
     if (keyData.isEmpty()) {
         error(i18nc("@info", "The result of the export is empty."),
               i18nc("@title:window", "Export Failed"));

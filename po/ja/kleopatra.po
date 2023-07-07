@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-29 00:48+0000\n"
+"POT-Creation-Date: 2023-07-07 00:51+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1135,10 +1135,10 @@ msgstr "ファイル <filename>%1</filename> を上書きできませんでし�
 #: src/commands/exportgroupscommand.cpp:239
 #: src/commands/exportgroupscommand.cpp:247
 #: src/commands/exportgroupscommand.cpp:258
-#: src/commands/exportsecretsubkeycommand.cpp:236
-#: src/commands/exportsecretsubkeycommand.cpp:244
-#: src/commands/exportsecretsubkeycommand.cpp:255
-#: src/commands/exportsecretsubkeycommand.cpp:274
+#: src/commands/exportsecretsubkeycommand.cpp:241
+#: src/commands/exportsecretsubkeycommand.cpp:249
+#: src/commands/exportsecretsubkeycommand.cpp:260
+#: src/commands/exportsecretsubkeycommand.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Failed"
@@ -1384,7 +1384,7 @@ msgstr "すべてのファイル"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
-#: src/commands/exportsecretsubkeycommand.cpp:264
+#: src/commands/exportsecretsubkeycommand.cpp:269
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup"
@@ -1413,7 +1413,7 @@ msgstr ""
 "しれません。"
 
 #: src/commands/exportsecretkeycommand.cpp:263
-#: src/commands/exportsecretsubkeycommand.cpp:243
+#: src/commands/exportsecretsubkeycommand.cpp:248
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1513,27 +1513,27 @@ msgctxt "@info:status"
 msgid "Exporting subkeys..."
 msgstr "副鍵をエクスポート..."
 
-#: src/commands/exportsecretsubkeycommand.cpp:235
+#: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
 msgstr "エクスポートの結果は空です。"
 
-#: src/commands/exportsecretsubkeycommand.cpp:252
+#: src/commands/exportsecretsubkeycommand.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
 msgstr[0] "ファイル <filename>%2</filename> に副鍵を書き込めませんでした。"
 
-#: src/commands/exportsecretsubkeycommand.cpp:261
+#: src/commands/exportsecretsubkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "%1 件の副鍵をエクスポートできました。"
 
-#: src/commands/exportsecretsubkeycommand.cpp:271
+#: src/commands/exportsecretsubkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7787,13 +7787,21 @@ msgstr "OpenPGP 鍵のデフォルトの有効期間を日数で指定する。"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for two "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
 "for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for two years (possibly "
-"clamped to the allowed minimum or maximum validity period) by default."
+"negative value, then new OpenPGP keys will be valid for three years "
+"(possibly clamped to the allowed minimum or maximum validity period) by "
+"default."
 msgstr ""
 "この設定では、新しい OpenPGP 鍵が有効となるデフォルトの日数、または、別の言葉"
 "で言えば、何日で新しい鍵が失効するかを指定します。この設定が指定されない場"

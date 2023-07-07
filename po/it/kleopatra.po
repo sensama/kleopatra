@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-29 00:48+0000\n"
+"POT-Creation-Date: 2023-07-07 00:51+0000\n"
 "PO-Revision-Date: 2023-06-29 10:31+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -1144,10 +1144,10 @@ msgstr "Impossibile sovrascrivere <filename>%1</filename>."
 #: src/commands/exportgroupscommand.cpp:239
 #: src/commands/exportgroupscommand.cpp:247
 #: src/commands/exportgroupscommand.cpp:258
-#: src/commands/exportsecretsubkeycommand.cpp:236
-#: src/commands/exportsecretsubkeycommand.cpp:244
-#: src/commands/exportsecretsubkeycommand.cpp:255
-#: src/commands/exportsecretsubkeycommand.cpp:274
+#: src/commands/exportsecretsubkeycommand.cpp:241
+#: src/commands/exportsecretsubkeycommand.cpp:249
+#: src/commands/exportsecretsubkeycommand.cpp:260
+#: src/commands/exportsecretsubkeycommand.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Failed"
@@ -1396,7 +1396,7 @@ msgstr "Tutti i file"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
-#: src/commands/exportsecretsubkeycommand.cpp:264
+#: src/commands/exportsecretsubkeycommand.cpp:269
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup"
@@ -1425,7 +1425,7 @@ msgstr ""
 "segreta vuota o errata."
 
 #: src/commands/exportsecretkeycommand.cpp:263
-#: src/commands/exportsecretsubkeycommand.cpp:243
+#: src/commands/exportsecretsubkeycommand.cpp:248
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1527,13 +1527,13 @@ msgctxt "@info:status"
 msgid "Exporting subkeys..."
 msgstr "Esportazione sottochiavi..."
 
-#: src/commands/exportsecretsubkeycommand.cpp:235
+#: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
 msgstr "Il risultato dell'esportazione è vuoto."
 
-#: src/commands/exportsecretsubkeycommand.cpp:252
+#: src/commands/exportsecretsubkeycommand.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
@@ -1543,7 +1543,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Scrittura sottochiavi nel file <filename>%2</filename> non riuscita."
 
-#: src/commands/exportsecretsubkeycommand.cpp:261
+#: src/commands/exportsecretsubkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The subkey was exported successfully."
@@ -1551,7 +1551,7 @@ msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "La sottochiave è stata esportata correttamente."
 msgstr[1] "%1 sottochiavi sono state esportate correttamente."
 
-#: src/commands/exportsecretsubkeycommand.cpp:271
+#: src/commands/exportsecretsubkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7916,13 +7916,21 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for two "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
 "for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for two years (possibly "
-"clamped to the allowed minimum or maximum validity period) by default."
+"negative value, then new OpenPGP keys will be valid for three years "
+"(possibly clamped to the allowed minimum or maximum validity period) by "
+"default."
 msgstr ""
 "Questa impostazione specifica per quanti giorni una nuova chiave OpenPGP è "
 "valida per impostazione predefinita o, in altre parole, dopo quanti giorni "

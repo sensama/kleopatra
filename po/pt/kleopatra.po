@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-29 00:48+0000\n"
-"PO-Revision-Date: 2023-06-10 10:18+0100\n"
+"POT-Creation-Date: 2023-07-07 00:51+0000\n"
+"PO-Revision-Date: 2023-07-02 02:23+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -62,6 +62,11 @@ msgstr ""
 "X-POFile-SpellExtra: learn handoutsymmetricencryptiongnupgen\n"
 "X-POFile-SpellExtra: handoutsignencryptgnupgen SecOps VSA BSI ENGsecops\n"
 "X-POFile-SpellExtra: Explorer smartcardhowtoen ECC Brainpool NIST secp\n"
+"X-POFile-SpellExtra: encryptandsigngnupgvsden\n"
+"X-POFile-SpellExtra: symmetricencryptiongnupgvsden groupfeaturegnupgvsden\n"
+"X-POFile-SpellExtra: Encritação gpgoloutlookaddinen\n"
+"X-POFile-SpellExtra: certificationmanagementgnupgvsden\n"
+"X-POFile-SpellExtra: smartcardsetupgnupgvsden\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1191,10 +1196,10 @@ msgstr "Não é possível substituir o <filename>%1</filename> existente."
 #: src/commands/exportgroupscommand.cpp:239
 #: src/commands/exportgroupscommand.cpp:247
 #: src/commands/exportgroupscommand.cpp:258
-#: src/commands/exportsecretsubkeycommand.cpp:236
-#: src/commands/exportsecretsubkeycommand.cpp:244
-#: src/commands/exportsecretsubkeycommand.cpp:255
-#: src/commands/exportsecretsubkeycommand.cpp:274
+#: src/commands/exportsecretsubkeycommand.cpp:241
+#: src/commands/exportsecretsubkeycommand.cpp:249
+#: src/commands/exportsecretsubkeycommand.cpp:260
+#: src/commands/exportsecretsubkeycommand.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Failed"
@@ -1445,7 +1450,7 @@ msgstr "Todos os Ficheiros"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
-#: src/commands/exportsecretsubkeycommand.cpp:264
+#: src/commands/exportsecretsubkeycommand.cpp:269
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup"
@@ -1474,7 +1479,7 @@ msgstr ""
 "senha vazia ou inválida."
 
 #: src/commands/exportsecretkeycommand.cpp:263
-#: src/commands/exportsecretsubkeycommand.cpp:243
+#: src/commands/exportsecretsubkeycommand.cpp:248
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1576,13 +1581,13 @@ msgctxt "@info:status"
 msgid "Exporting subkeys..."
 msgstr "A exportar as sub-chaves..."
 
-#: src/commands/exportsecretsubkeycommand.cpp:235
+#: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
 msgstr "O resultado da exportação está em branco."
 
-#: src/commands/exportsecretsubkeycommand.cpp:252
+#: src/commands/exportsecretsubkeycommand.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
@@ -1592,7 +1597,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Não foi possível gravar as sub-chaves no ficheiro <filename>%2</filename>."
 
-#: src/commands/exportsecretsubkeycommand.cpp:261
+#: src/commands/exportsecretsubkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The subkey was exported successfully."
@@ -1600,7 +1605,7 @@ msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "A sub-chave foi exportada com sucesso."
 msgstr[1] "As %1 sub-chaves foram exportadas com sucesso."
 
-#: src/commands/exportsecretsubkeycommand.cpp:271
+#: src/commands/exportsecretsubkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7983,13 +7988,21 @@ msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for two "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
 "for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for two years (possibly "
-"clamped to the allowed minimum or maximum validity period) by default."
+"negative value, then new OpenPGP keys will be valid for three years "
+"(possibly clamped to the allowed minimum or maximum validity period) by "
+"default."
 msgstr ""
 "Esta configuração define quantos dias uma chave nova de OpenPGP será válida "
 "por omissão ou, por outras palavras, ao fim de quantos dias irá expirar essa "
@@ -8506,7 +8519,7 @@ msgstr "A&juda"
 #: src/kleopatra.rc:98
 #, kde-format
 msgid "&More documentation"
-msgstr ""
+msgstr "&Mais documentação"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8950,60 +8963,45 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:601
-#, fuzzy, kde-format
-#| msgid "Quickguide"
+#, kde-format
 msgid "&Quickguide"
-msgstr "Guia Rápido"
+msgstr "&Guia Rápido"
 
 #: src/mainwindow.cpp:603
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_sign_encrypt_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
-msgstr "handout_sign_encrypt_gnupg_en.pdf"
+msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:607
-#, fuzzy, kde-format
-#| msgid "Password-based encryption"
+#, kde-format
 msgid "&Password-based encryption"
-msgstr "Encriptação baseada em senhas"
+msgstr "Encri&ptação baseada em senhas"
 
 #: src/mainwindow.cpp:609
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_symmetric_encryption_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
-msgstr "handout_symmetric_encryption_gnupg_en.pdf"
+msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:613
-#, fuzzy, kde-format
-#| msgid "Group configuration"
+#, kde-format
 msgid "&Group configuration"
-msgstr "Configuração do grupo"
+msgstr "Configuração do &grupo"
 
 #: src/mainwindow.cpp:615
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_group-feature_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
-msgstr "handout_group-feature_gnupg_en.pdf"
+msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:620
 #, kde-format
 msgid "&Mail encryption in Outlook"
-msgstr ""
+msgstr "Encritação do E-&mail no Outlook"
 
 #: src/mainwindow.cpp:622
 #, kde-format
@@ -9011,45 +9009,36 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
 "Only shown on Windows."
 msgid "gpgol_outlook_addin_en.pdf"
-msgstr ""
+msgstr "gpgol_outlook_addin_en.pdf"
 
 #: src/mainwindow.cpp:628
-#, fuzzy, kde-format
-#| msgctxt "@option:check"
-#| msgid "Certification"
+#, kde-format
 msgid "&Certification Management"
-msgstr "Certificação"
+msgstr "Gestão da &Certificação"
 
 #: src/mainwindow.cpp:630
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:634
-#, fuzzy, kde-format
-#| msgctxt "@action show smartcard management view"
-#| msgid "Smartcards"
+#, kde-format
 msgid "&Smartcard setup"
-msgstr "'Smartcards'"
+msgstr "Configuração do '&Smartcard'"
 
 #: src/mainwindow.cpp:636
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "smartcard_howto_de.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
-msgstr "smartcard_howto_en.pdf"
+msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:640
-#, fuzzy, kde-format
-#| msgid "GnuPG Manual"
+#, kde-format
 msgid "GnuPG Command&line"
-msgstr "Manual do GnuPG"
+msgstr "Linha de Comandos do GnuPG"
 
 #: src/mainwindow.cpp:646
 #, kde-format

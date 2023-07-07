@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-29 00:48+0000\n"
+"POT-Creation-Date: 2023-07-07 00:51+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1187,6 +1187,7 @@ msgctxt "@title:window"
 msgid "Export Certificate Group"
 msgid_plural "Export Certificate Groups"
 msgstr[0] "صادرات گواهی‌نامه‌ها..."
+msgstr[1] ""
 
 #: src/commands/exportgroupscommand.cpp:69
 #, fuzzy, kde-format
@@ -1206,10 +1207,10 @@ msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 #: src/commands/exportgroupscommand.cpp:239
 #: src/commands/exportgroupscommand.cpp:247
 #: src/commands/exportgroupscommand.cpp:258
-#: src/commands/exportsecretsubkeycommand.cpp:236
-#: src/commands/exportsecretsubkeycommand.cpp:244
-#: src/commands/exportsecretsubkeycommand.cpp:255
-#: src/commands/exportsecretsubkeycommand.cpp:274
+#: src/commands/exportsecretsubkeycommand.cpp:241
+#: src/commands/exportsecretsubkeycommand.cpp:249
+#: src/commands/exportsecretsubkeycommand.cpp:260
+#: src/commands/exportsecretsubkeycommand.cpp:279
 #, fuzzy, kde-format
 #| msgid "Certificate Export Failed"
 msgctxt "@title:window"
@@ -1464,7 +1465,7 @@ msgstr "خرابی در حذف گواهی‌نامه‌ها"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
-#: src/commands/exportsecretsubkeycommand.cpp:264
+#: src/commands/exportsecretsubkeycommand.cpp:269
 #, fuzzy, kde-format
 #| msgid "Secret Key Export"
 msgctxt "@title:window"
@@ -1494,7 +1495,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/exportsecretkeycommand.cpp:263
-#: src/commands/exportsecretsubkeycommand.cpp:243
+#: src/commands/exportsecretsubkeycommand.cpp:248
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
@@ -1606,6 +1607,7 @@ msgctxt "@title:window"
 msgid "Export Subkey"
 msgid_plural "Export Subkeys"
 msgstr[0] "صادرات کلید سری..."
+msgstr[1] ""
 
 #: src/commands/exportsecretsubkeycommand.cpp:217
 #, fuzzy, kde-format
@@ -1614,29 +1616,31 @@ msgctxt "@info:status"
 msgid "Exporting subkeys..."
 msgstr "فقط برای &رمزبندی‌"
 
-#: src/commands/exportsecretsubkeycommand.cpp:235
+#: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
 msgstr ""
 
-#: src/commands/exportsecretsubkeycommand.cpp:252
+#: src/commands/exportsecretsubkeycommand.cpp:257
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
 msgstr[0] "گواهی‌نامه را نتوانست تولید کند: %1"
+msgstr[1] ""
 
-#: src/commands/exportsecretsubkeycommand.cpp:261
+#: src/commands/exportsecretsubkeycommand.cpp:266
 #, fuzzy, kde-format
 #| msgid "CRL cache cleared successfully."
 msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "نهانگاه CRL با موفقیت پاک شد."
+msgstr[1] ""
 
-#: src/commands/exportsecretsubkeycommand.cpp:271
+#: src/commands/exportsecretsubkeycommand.cpp:276
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -1804,6 +1808,7 @@ msgstr "واردات گواهی‌نامه‌ها..."
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "واردات گواهی‌نامه‌ها..."
+msgstr[1] ""
 
 #: src/commands/importcertificatefromfilecommand.cpp:136
 #, fuzzy, kde-format
@@ -1842,6 +1847,7 @@ msgstr "تولید کلید"
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
 msgstr[0] "صادرات گواهی‌نامه‌..."
+msgstr[1] ""
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
@@ -2138,6 +2144,7 @@ msgstr ""
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "صادرات گواهی‌نامه‌..."
+msgstr[1] ""
 
 #: src/commands/importcertificatescommand.cpp:924
 #: src/commands/importcertificatescommand.cpp:988
@@ -2634,6 +2641,7 @@ msgctxt "@info"
 msgid "One certificate without name and email address was ignored."
 msgid_plural "%1 certificates without name and email address were ignored."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/commands/lookupcertificatescommand.cpp:531
 #: src/commands/lookupcertificatescommand.cpp:537
@@ -2858,6 +2866,7 @@ msgstr "امضاهای جدید:"
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/commands/refreshcertificatecommand.cpp:256
 #, fuzzy, kde-format
@@ -3090,6 +3099,7 @@ msgstr ""
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/commands/revokecertificationcommand.cpp:98
 #, fuzzy, kde-format
@@ -3107,6 +3117,7 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/commands/revokecertificationcommand.cpp:207
 #, fuzzy, kde-format
@@ -3115,6 +3126,7 @@ msgctxt "@action:button"
 msgid "Publish Revocation"
 msgid_plural "Publish Revocations"
 msgstr[0] "خطای مدیر گواهی‌نامه"
+msgstr[1] ""
 
 #: src/commands/revokecertificationcommand.cpp:211
 #, fuzzy, kde-format
@@ -3147,6 +3159,7 @@ msgstr "حذف گواهی‌نامه‌های CA"
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
 msgstr[0] "حذف گواهی‌نامه‌های CA"
+msgstr[1] ""
 
 #: src/commands/revokecertificationcommand.cpp:339
 #, fuzzy, kde-format
@@ -3411,6 +3424,7 @@ msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
@@ -4568,12 +4582,14 @@ msgstr ""
 msgid "<b>Invalid signature.</b>"
 msgid_plural "<b>%1 invalid signatures.</b>"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:442
 #, kde-format
 msgid "<b>The data could not be verified.</b>"
 msgid_plural "<b>%1 signatures could not be verified.</b>"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:448
 #, kde-format
@@ -4598,6 +4614,7 @@ msgstr "&گواهی‌نامه‌ها‌"
 msgid "<b>Valid signature.</b>"
 msgid_plural "<b>%1 valid signatures.</b>"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:455
 #, kde-format
@@ -4678,6 +4695,7 @@ msgstr ""
 msgid "One unknown recipient."
 msgid_plural "%1 unknown recipients."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:566
 #, fuzzy, kde-format
@@ -4685,12 +4703,14 @@ msgstr[0] ""
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "توصیف"
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:577
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/decryptverifytask.cpp:603
 #, fuzzy, kde-format
@@ -5678,6 +5698,7 @@ msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "خرابی در بارگیری گواهی‌نامه"
+msgstr[1] ""
 
 #: src/crypto/gui/signencryptwidget.cpp:600
 #, fuzzy, kde-format
@@ -5844,6 +5865,7 @@ msgstr ""
 msgid "One error occurred"
 msgid_plural "%1 errors occurred"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/crypto/gui/verifychecksumsdialog.cpp:255
 #, kde-format
@@ -6454,6 +6476,7 @@ msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "شناسه‌های کاربر جدید:"
+msgstr[1] ""
 
 #: src/dialogs/certificatedetailswidget.cpp:844
 #, fuzzy, kde-format
@@ -6469,6 +6492,7 @@ msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "ذخیره گواهی‌نامه"
+msgstr[1] ""
 
 #: src/dialogs/certificatedetailswidget.cpp:856
 #, fuzzy, kde-format
@@ -6910,6 +6934,7 @@ msgid_plural ""
 "material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:207
 #, kde-format
@@ -6922,6 +6947,7 @@ msgid_plural ""
 "key material, which is needed to decrypt past communication encrypted to the "
 "certificate, and should therefore not be deleted."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/deletecertificatesdialog.cpp:222 src/view/pgpcardwidget.cpp:403
 #, fuzzy, kde-format
@@ -7021,12 +7047,14 @@ msgstr ""
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/expirydialog.cpp:72
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/expirydialog.cpp:74
 #, fuzzy, kde-format
@@ -7034,12 +7062,14 @@ msgstr[0] ""
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
 msgstr[0] "معتبر"
+msgstr[1] ""
 
 #: src/dialogs/expirydialog.cpp:76
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/dialogs/expirydialog.cpp:162
 #, fuzzy, kde-format
@@ -8064,8 +8094,9 @@ msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
 "for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for two years (possibly "
-"clamped to the allowed minimum or maximum validity period) by default."
+"negative value, then new OpenPGP keys will be valid for three years "
+"(possibly clamped to the allowed minimum or maximum validity period) by "
+"default."
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -9329,6 +9360,7 @@ msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
 msgid_plural "%2 (%1 bits)"
 msgstr[0] "%1 بیت"
+msgstr[1] ""
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:800
 #, fuzzy, kde-format
@@ -9338,6 +9370,7 @@ msgctxt "%1: key size in bits"
 msgid "1 bit"
 msgid_plural "%1 bits"
 msgstr[0] "%1 بیت"
+msgstr[1] ""
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:966
 #, kde-format

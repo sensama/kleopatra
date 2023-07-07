@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-29 00:48+0000\n"
+"POT-Creation-Date: 2023-07-07 00:51+0000\n"
 "PO-Revision-Date: 2023-06-29 08:52+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -1144,10 +1144,10 @@ msgstr "Не вдалося перезаписати наявний <filename>%1
 #: src/commands/exportgroupscommand.cpp:239
 #: src/commands/exportgroupscommand.cpp:247
 #: src/commands/exportgroupscommand.cpp:258
-#: src/commands/exportsecretsubkeycommand.cpp:236
-#: src/commands/exportsecretsubkeycommand.cpp:244
-#: src/commands/exportsecretsubkeycommand.cpp:255
-#: src/commands/exportsecretsubkeycommand.cpp:274
+#: src/commands/exportsecretsubkeycommand.cpp:241
+#: src/commands/exportsecretsubkeycommand.cpp:249
+#: src/commands/exportsecretsubkeycommand.cpp:260
+#: src/commands/exportsecretsubkeycommand.cpp:279
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Failed"
@@ -1400,7 +1400,7 @@ msgstr "усі файли"
 
 #: src/commands/exportsecretkeycommand.cpp:105
 #: src/commands/exportsecretkeycommand.cpp:278
-#: src/commands/exportsecretsubkeycommand.cpp:264
+#: src/commands/exportsecretsubkeycommand.cpp:269
 #, kde-format
 msgctxt "@title:window"
 msgid "Secret Key Backup"
@@ -1429,7 +1429,7 @@ msgstr ""
 "помилковий пароль."
 
 #: src/commands/exportsecretkeycommand.cpp:263
-#: src/commands/exportsecretsubkeycommand.cpp:243
+#: src/commands/exportsecretsubkeycommand.cpp:248
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1533,13 +1533,13 @@ msgctxt "@info:status"
 msgid "Exporting subkeys..."
 msgstr "Експортування підлеглих ключів…"
 
-#: src/commands/exportsecretsubkeycommand.cpp:235
+#: src/commands/exportsecretsubkeycommand.cpp:240
 #, kde-format
 msgctxt "@info"
 msgid "The result of the export is empty."
 msgstr "Результат експортування є порожнім."
 
-#: src/commands/exportsecretsubkeycommand.cpp:252
+#: src/commands/exportsecretsubkeycommand.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
@@ -1549,7 +1549,7 @@ msgstr[1] "Не вдалося записати підключі до файла
 msgstr[2] "Не вдалося записати підключі до файла <filename>%2</filename>."
 msgstr[3] "Не вдалося записати підключ до файла <filename>%2</filename>."
 
-#: src/commands/exportsecretsubkeycommand.cpp:261
+#: src/commands/exportsecretsubkeycommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "The subkey was exported successfully."
@@ -1559,7 +1559,7 @@ msgstr[1] "Успішно експортовано %1 підключі."
 msgstr[2] "Успішно експортовано %1 підключів."
 msgstr[3] "Успішно експортовано один підключ."
 
-#: src/commands/exportsecretsubkeycommand.cpp:271
+#: src/commands/exportsecretsubkeycommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8003,13 +8003,21 @@ msgstr "Вказує типовий період чинності нових к�
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies how many days a new OpenPGP key is valid by "
+#| "default, or, in other words, after how many days the key will expire. Set "
+#| "this to 0 for unlimited validity. If this setting is not set or if it is "
+#| "set to a negative value, then new OpenPGP keys will be valid for two "
+#| "years (possibly clamped to the allowed minimum or maximum validity "
+#| "period) by default."
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
 "for unlimited validity. If this setting is not set or if it is set to a "
-"negative value, then new OpenPGP keys will be valid for two years (possibly "
-"clamped to the allowed minimum or maximum validity period) by default."
+"negative value, then new OpenPGP keys will be valid for three years "
+"(possibly clamped to the allowed minimum or maximum validity period) by "
+"default."
 msgstr ""
 "Цей параметр визначає типовий строк дії нового ключа OpenPGP. Іншими "
 "словами, він визначає скільки днів ключ буде чинним. Якщо встановити "

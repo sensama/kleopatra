@@ -5,6 +5,26 @@
   SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 -->
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.kde.kleopatra.pgp-encrypted-tar">
+    <comment>Encrypted tar archive</comment>
+    <comment xml:lang="ca">Arxiu Tar encriptat</comment>
+    <comment xml:lang="nl">Versleuteld tar-archief</comment>
+    <comment xml:lang="sl">Šifriran arhiv tar</comment>
+    <comment xml:lang="tr">Şifrelenmiş tar arşivi</comment>
+    <comment xml:lang="uk">Зашифрований архів tar</comment>
+    <sub-class-of type="application/pgp-encrypted"/>
+    <glob pattern="*.tar.gpg"/>
+  </mime-type>
+  <mime-type type="application/vnd.kde.kleopatra.pgp-signed-tar">
+    <comment>Signed tar archive</comment>
+    <comment xml:lang="ca">Arxiu Tar signat</comment>
+    <comment xml:lang="nl">Ondertekend tar-archief</comment>
+    <comment xml:lang="sl">Podpisan arhiv tar</comment>
+    <comment xml:lang="tr">İmzalanmış tar arşivi</comment>
+    <comment xml:lang="uk">Підписаний архів tar</comment>
+    <sub-class-of type="application/pgp-signature"/>
+    <glob pattern="*.tar.sig"/>
+  </mime-type>
   <mime-type type="application/vnd.kde.kleopatra.keygroup">
     <comment>Kleopatra certificate group</comment>
     <comment xml:lang="bg">Групи сертификати на Kleopatra</comment>

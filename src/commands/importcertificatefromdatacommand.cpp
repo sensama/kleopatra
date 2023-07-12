@@ -71,7 +71,9 @@ ImportCertificateFromDataCommand::~ImportCertificateFromDataCommand() {}
 
 void ImportCertificateFromDataCommand::doStart()
 {
+    d->setWaitForMoreJobs(true);
     d->startImport(d->mProto, d->mData, d->mId.isEmpty() ? i18n("Notepad") : d->mId);
+    d->setWaitForMoreJobs(false);
 }
 
 #undef d

@@ -219,6 +219,11 @@ bool Task::Result::hasError() const
     return error().code() != 0;
 }
 
+Task::Result::ContentType Task::Result::viewableContentType() const
+{
+    return Task::Result::ContentType::None;
+}
+
 static QString image(const char *img)
 {
     // ### escape?

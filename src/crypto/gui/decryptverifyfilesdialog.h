@@ -50,6 +50,7 @@ protected Q_SLOTS:
     void allDone();
     void btnClicked(QAbstractButton *btn);
     void checkAccept();
+    void showContent(const std::shared_ptr<const Task::Result> &result);
 
 protected:
     void readConfig();

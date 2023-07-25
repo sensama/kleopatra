@@ -57,6 +57,7 @@
 #include <QFileInfo>
 #include <QIODevice>
 #include <QLocale>
+#include <QMimeDatabase>
 #include <QStringList>
 #include <QTextDocument> // Qt::escape
 
@@ -364,6 +365,12 @@ static QString ensureUniqueDirectory(const QString &path)
         return {};
     }
     return uniquePath;
+}
+
+static bool mimeTypeInherits(const QMimeType &mimeType, const QString &mimeTypeName)
+{
+    // inherits is expensive on an invalid mimeType
+    return mimeType.isValid() && mimeType.inherits(mimeTypeName);
 }
 
 }
@@ -898,6 +905,29 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
     : Task::Result()
     , d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
 {
+}
+
+Task::Result::ContentType DecryptVerifyResult::viewableContentType() const
+{
+    if (decryptionResult().isMime()) {
+        return Task::Result::ContentType::Mime;
+    }
+
+    if (fileName().endsWith(QStringLiteral("openpgp-encrypted-message"))) {
+        return Task::Result::ContentType::Mime;
+    }
+
+    QMimeDatabase mimeDatabase;
+    const auto mimeType = mimeDatabase.mimeTypeForFile(fileName());
+    if (mimeTypeInherits(mimeType, QStringLiteral("message/rfc822"))) {
+        return Task::Result::ContentType::Mime;
+    }
+
+    if (mimeTypeInherits(mimeType, QStringLiteral("application/mbox"))) {
+        return Task::Result::ContentType::Mbox;
+    }
+
+    return Task::Result::ContentType::None;
 }
 
 QString DecryptVerifyResult::overview() const

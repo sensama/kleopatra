@@ -39,6 +39,7 @@ public:
     bool hasErrorResult() const;
 
     void showCloseButton(bool show);
+    void setShowButton(const QString &text, bool show);
 
 public Q_SLOTS:
     void showAuditLog();
@@ -46,6 +47,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void linkActivated(const QString &link);
     void closeButtonClicked();
+    void showButtonClicked();
 
 private:
     class Private;

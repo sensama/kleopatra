@@ -330,6 +330,8 @@ set(_kleopatra_SRCS
   dialogs/groupdetailsdialog.h
   dialogs/lookupcertificatesdialog.cpp
   dialogs/lookupcertificatesdialog.h
+  dialogs/messageviewerdialog.cpp
+  dialogs/messageviewerdialog.h
   dialogs/nameandemailwidget.cpp
   dialogs/nameandemailwidget.h
   dialogs/newopenpgpcertificatedetailsdialog.cpp
@@ -578,6 +580,7 @@ target_link_libraries(kleopatra_bin
   Gpgmepp
   KPim${KF_MAJOR_VERSION}::Libkleo
   KPim${KF_MAJOR_VERSION}::Mime
+  KPim${KF_MAJOR_VERSION}::MimeTreeParserWidgets
   KF${KF_MAJOR_VERSION}::Codecs
   KF${KF_MAJOR_VERSION}::CoreAddons
   KF${KF_MAJOR_VERSION}::Crash
@@ -612,6 +615,7 @@ install(
   DESTINATION ${KDE_INSTALL_APPDIR}
 )
 install(FILES data/org.kde.kleopatra.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES data/kleopatra-mime.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
 install(
   PROGRAMS data/kleopatra_signencryptfiles.desktop
         data/kleopatra_signencryptfolders.desktop

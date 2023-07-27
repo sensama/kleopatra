@@ -51,6 +51,27 @@ Kleo::DateRange Kleo::expirationDateRange()
     return range;
 }
 
+QDate Kleo::defaultExpirationDate(Kleo::ExpirationOnUnlimitedValidity onUnlimitedValidity)
+{
+    QDate expirationDate;
+
+    const auto settings = Kleo::Settings{};
+    const auto defaultExpirationInDays = settings.validityPeriodInDays();
+    if (defaultExpirationInDays > 0) {
+        expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
+    } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == ExpirationOnUnlimitedValidity::InternalDefaultExpiration) {
+        expirationDate = QDate::currentDate().addYears(3);
+    }
+
+    const auto allowedRange = expirationDateRange();
+    expirationDate = std::max(expirationDate, allowedRange.minimum);
+    if (allowedRange.maximum.isValid()) {
+        expirationDate = std::min(expirationDate, allowedRange.maximum);
+    }
+
+    return expirationDate;
+}
+
 static QString dateToString(const QDate &date, QWidget *widget)
 {
     // workaround for QLocale using "yy" way too often for years

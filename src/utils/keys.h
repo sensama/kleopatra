@@ -121,16 +121,4 @@ inline auto userIDBelongsToKey(const GpgME::Key &key)
  */
 bool userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs);
 
-enum class ExpirationOnUnlimitedValidity {
-    NoExpiration,
-    InternalDefaultExpiration,
-};
-
-/**
- * Returns a useful value for the default expiration date based on the current
- * date and the configured default validity. If the configured validity is
- * unlimited, then the return value depends on \p onUnlimitedValidity.
- */
-QDate defaultExpirationDate(ExpirationOnUnlimitedValidity onUnlimitedValidity);
-
 }

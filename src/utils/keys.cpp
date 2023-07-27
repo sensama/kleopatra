@@ -162,18 +162,3 @@ bool Kleo::userIDsAreEqual(const GpgME::UserID &lhs, const GpgME::UserID &rhs)
             && qstrcmp(lhs.id(), rhs.id()) == 0
             && creationDate(lhs) == creationDate(rhs));
 }
-
-QDate Kleo::defaultExpirationDate(Kleo::ExpirationOnUnlimitedValidity onUnlimitedValidity)
-{
-    QDate expirationDate;
-
-    const auto settings = Kleo::Settings{};
-    const auto defaultExpirationInDays = settings.validityPeriodInDays();
-    if (defaultExpirationInDays > 0) {
-        expirationDate = QDate::currentDate().addDays(defaultExpirationInDays);
-    } else if (defaultExpirationInDays < 0 || onUnlimitedValidity == ExpirationOnUnlimitedValidity::InternalDefaultExpiration) {
-        expirationDate = QDate::currentDate().addYears(3);
-    }
-
-    return expirationDate;
-}

@@ -57,6 +57,22 @@ namespace Kleo
      */
     DateRange expirationDateRange();
 
+    enum class ExpirationOnUnlimitedValidity {
+        NoExpiration,
+        InternalDefaultExpiration,
+    };
+
+    /**
+     * Returns a useful value for the default expiration date based on the current
+     * date and the configured default validity. If the configured validity is
+     * unlimited, then the return value depends on \p onUnlimitedValidity.
+     *
+     * The returned value is always in the allowed range for the expiration date.
+     *
+     * \sa expirationDateRange
+     */
+    QDate defaultExpirationDate(ExpirationOnUnlimitedValidity onUnlimitedValidity);
+
     /**
      * Configures the date combo box \p dateCB for choosing an expiration date.
      *

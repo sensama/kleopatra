@@ -19,7 +19,6 @@
 
 #include "utils/expiration.h"
 #include "utils/gui-helper.h"
-#include "utils/keys.h"
 #include "utils/scrollarea.h"
 
 #include <settings.h>

@@ -15,7 +15,7 @@
 #include "command_p.h"
 
 #include "dialogs/expirydialog.h"
-#include "utils/keys.h"
+#include "utils/expiration.h"
 
 #include <Libkleo/Formatting>
 

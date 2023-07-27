@@ -108,6 +108,10 @@ public:
         , inUnit{Days}
         , ui{mode, q}
     {
+        ui.neverRB->setEnabled(unlimitedValidityAllowed());
+        ui.inRB->setEnabled(!fixedExpirationDate());
+        ui.onRB->setEnabled(!fixedExpirationDate());
+
 #if QT_DEPRECATED_SINCE(5, 14)
         connect(ui.inSB, qOverload<int>(&QSpinBox::valueChanged),
                 q, [this] () { slotInAmountChanged(); });
@@ -129,6 +133,8 @@ private:
     void slotOnDateChanged();
 
 private:
+    bool unlimitedValidityAllowed() const;
+    bool fixedExpirationDate() const;
     QDate inDate() const;
     int inAmountByDate(const QDate &date) const;
     void setInitialFocus();
@@ -208,7 +214,7 @@ private:
                 hboxLayout->addWidget(onRB);
 
                 onCB = new KDateComboBox{mainWidget};
-                onCB->setMinimumDate(QDate::currentDate().addDays(1));
+                setUpExpirationDateComboBox(onCB);
 
                 hboxLayout->addWidget(onCB);
 
@@ -277,6 +283,16 @@ void ExpiryDialog::Private::slotOnDateChanged()
     ui.onRB->setAccessibleName(i18nc("Valid until DATE", "Valid until %1", Formatting::accessibleDate(ui.onCB->date())));
 }
 
+bool Kleo::Dialogs::ExpiryDialog::Private::unlimitedValidityAllowed() const
+{
+    return !ui.onCB->maximumDate().isValid();
+}
+
+bool Kleo::Dialogs::ExpiryDialog::Private::fixedExpirationDate() const
+{
+    return ui.onCB->minimumDate() == ui.onCB->maximumDate();
+}
+
 QDate ExpiryDialog::Private::inDate() const
 {
     return date_by_amount_and_unit(ui.inSB->value(), ui.inCB->currentIndex());
@@ -326,7 +342,11 @@ void ExpiryDialog::setDateOfExpiry(const QDate &date)
             d->ui.onCB->setDate(date);
         }
     } else {
-        d->ui.neverRB->setChecked(true);
+        if (d->unlimitedValidityAllowed()) {
+            d->ui.neverRB->setChecked(true);
+        } else {
+            d->ui.onRB->setChecked(true);
+        }
         d->ui.onCB->setDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
     }
 }

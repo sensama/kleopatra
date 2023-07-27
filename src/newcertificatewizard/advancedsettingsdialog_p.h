@@ -43,10 +43,6 @@ public:
     explicit AdvancedSettingsDialog(QWidget *parent = nullptr);
     ~AdvancedSettingsDialog() override;
 
-    QString dateToString(const QDate &date) const;
-
-    QString validityPeriodHint(const QDate &minDate, const QDate &maxDate) const;
-
     bool unlimitedValidityIsAllowed() const;
 
     void setProtocol(GpgME::Protocol proto);

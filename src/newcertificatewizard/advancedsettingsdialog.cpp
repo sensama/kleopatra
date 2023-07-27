@@ -17,6 +17,7 @@
 #include "keyalgo_p.h"
 #include "listwidget.h"
 
+#include "utils/expiration.h"
 #include "utils/gui-helper.h"
 #include "utils/keys.h"
 #include "utils/scrollarea.h"
@@ -408,28 +409,13 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
 {
     qRegisterMetaType<Subkey::PubkeyAlgo>("Subkey::PubkeyAlgo");
 
-    const auto settings = Kleo::Settings{};
-    {
-        const auto minimumExpiry = std::max(0, settings.validityPeriodInDaysMin());
-        ui->expiryDE->setMinimumDate(QDate::currentDate().addDays(minimumExpiry));
-    }
-    {
-        const auto maximumExpiry = settings.validityPeriodInDaysMax();
-        if (maximumExpiry >= 0) {
-            ui->expiryDE->setMaximumDate(std::max(ui->expiryDE->minimumDate(), QDate::currentDate().addDays(maximumExpiry)));
-        }
-    }
+    Kleo::setUpExpirationDateComboBox(ui->expiryDE);
     if (unlimitedValidityIsAllowed()) {
         ui->expiryDE->setEnabled(ui->expiryCB->isChecked());
     } else {
         ui->expiryCB->setEnabled(false);
         ui->expiryCB->setChecked(true);
-        if (ui->expiryDE->maximumDate() == ui->expiryDE->minimumDate()) {
-            // validity period is a fixed number of days
-            ui->expiryDE->setEnabled(false);
-        }
     }
-    ui->expiryDE->setToolTip(validityPeriodHint(ui->expiryDE->minimumDate(), ui->expiryDE->maximumDate()));
     ui->emailLW->setDefaultValue(i18n("new email"));
     ui->dnsLW->setDefaultValue(i18n("new dns name"));
     ui->uriLW->setDefaultValue(i18n("new uri"));
@@ -467,39 +453,6 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
 }
 
 AdvancedSettingsDialog::~AdvancedSettingsDialog() = default;
-
-QString AdvancedSettingsDialog::dateToString(const QDate &date) const
-{
-    // workaround for QLocale using "yy" way too often for years
-    // stolen from KDateComboBox
-    const auto dateFormat = (locale().dateFormat(QLocale::ShortFormat) //
-                                    .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
-                                    .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
-    return locale().toString(date, dateFormat);
-}
-
-QString AdvancedSettingsDialog::validityPeriodHint(const QDate &minDate, const QDate &maxDate) const
-{
-    // Note: minDate is always valid
-    const auto today = QDate::currentDate();
-    if (maxDate.isValid()) {
-        if (maxDate == minDate) {
-            return i18n("The validity period cannot be changed.");
-        } else if (minDate == today) {
-            return i18nc("... between today and <another date>.", "The validity period must end between today and %1.",
-                            dateToString(maxDate));
-        } else {
-            return i18nc("... between <a date> and <another date>.", "The validity period must end between %1 and %2.",
-                            dateToString(minDate), dateToString(maxDate));
-        }
-    } else {
-        if (minDate == today) {
-            return i18n("The validity period must end after today.");
-        } else {
-            return i18nc("... after <a date>.", "The validity period must end after %1.", dateToString(minDate));
-        }
-    }
-}
 
 bool AdvancedSettingsDialog::unlimitedValidityIsAllowed() const
 {

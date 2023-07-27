@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-11 00:48+0000\n"
-"PO-Revision-Date: 2023-05-05 21:14+0300\n"
+"PO-Revision-Date: 2023-07-24 21:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-12-01 22:24:58+0000\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3984,15 +3984,14 @@ msgstr ""
 "filename> epäonnistui.</para><para><message>%3</message></para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:222
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
 "para>"
 msgstr ""
-"Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
-"epäonnistui."
+"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
+"filename> epäonnistui.</para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:235
 #, kde-kuit-format
@@ -4796,33 +4795,27 @@ msgid "Please select an output folder."
 msgstr "Valitse tuloskansio."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:194
-#, fuzzy, kde-format
-#| msgid "No output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "No Output Folder"
-msgstr "Ei tuloskansiota."
+msgstr "Ei tuloskansiota"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:203
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-#| "para><para><message>%3</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
-"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
-"filename> epäonnistui.</para><para><message>%3</message></para>"
+"<para>Tuloskansion <filename>%1</filename> luominen epäonnistui.</"
+"para><para>Valitse toinen tuloskansio.</para>"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:204
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:213
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Unusable Output Folder"
-msgstr "Kelvoton tuloskansio."
+msgstr "Kelvoton tuloskansio"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:209
 #, kde-format
@@ -4830,11 +4823,10 @@ msgid "Please select a different output folder."
 msgstr "Valitse toinen tuloskansio."
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:210
-#, fuzzy, kde-format
-#| msgid "Invalid output folder."
+#, kde-format
 msgctxt "@title:window"
 msgid "Invalid Output Folder"
-msgstr "Kelvoton tuloskansio."
+msgstr "Kelvoton tuloskansio"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:212
 #, kde-kuit-format
@@ -4843,6 +4835,8 @@ msgid ""
 "<para>Cannot write in the output folder <filename>%1</filename>.</"
 "para><para>Please select a different output folder.</para>"
 msgstr ""
+"<para>Tuloskansioon <filename>%1</filename> ei voi kirjoittaa.</"
+"para><para>Valitse toinen tuloskansio.</para>"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:199
 #, kde-format
@@ -5811,28 +5805,22 @@ msgstr ""
 "%1"
 
 #: src/crypto/signencrypttask.cpp:695
-#, fuzzy, kde-format
-#| msgctxt "Lineedit accessible name"
-#| msgid "OpenPGP signed and encrypted file"
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
-msgstr "OpenPGP-allekirjoitettu ja -salattu tiedosto"
+msgstr "Luodaan allekirjoitettua ja salattua arkistoa…"
 
 #: src/crypto/signencrypttask.cpp:715
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
-msgstr "Luodaan avainparia…"
+msgstr "Luodaan salattua arkistoa…"
 
 #: src/crypto/signencrypttask.cpp:735
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Creating Key Pair..."
+#, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
-msgstr "Luodaan avainparia…"
+msgstr "Luodaan allekirjoitettua arkistoa…"
 
 #: src/crypto/task.cpp:159
 #, kde-format
@@ -7834,14 +7822,7 @@ msgstr "Asettaa päivinä OpenPGP-avainten kelvollisuuden oletusajan."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid by "
-#| "default, or, in other words, after how many days the key will expire. Set "
-#| "this to 0 for unlimited validity. If this setting is not set or if it is "
-#| "set to a negative value, then new OpenPGP keys will be valid for two "
-#| "years (possibly clamped to the allowed minimum or maximum validity "
-#| "period) by default."
+#, kde-format
 msgid ""
 "This setting specifies how many days a new OpenPGP key is valid by default, "
 "or, in other words, after how many days the key will expire. Set this to 0 "
@@ -7853,7 +7834,7 @@ msgstr ""
 "Tämä asetus määrittää, montako päivää uusi OpenPGP-avain oletusarvoisesti "
 "kelpaa eli monessako päivässä se vanhenee. Poista vanheneminen asettamalla "
 "arvoksi 0. Ellei asetusta ole tai se on negatiivinen, uudet OpenPGP-avaimet "
-"kelpaavat oletusarvoisesti kaksi vuotta (mitä voi rajoittaa sallittu "
+"kelpaavat oletusarvoisesti kolme vuotta (mitä voi rajoittaa sallittu "
 "vähimmäis- tai enimmäiskelvollisuusaika)."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
@@ -7922,32 +7903,26 @@ msgstr ""
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:67
-#, fuzzy, kde-format
-#| msgid "Default certificate"
+#, kde-format
 msgid "Default certification validity"
-msgstr "Oletusvarmenne"
+msgstr "Varmenteen oletuskelpoisuusaika"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
 #: src/kcfg/settings.kcfg:68
-#, fuzzy, kde-format
-#| msgid "Specifies the default validity period of new OpenPGP keys in days."
+#, kde-format
 msgid "Specifies the default validity of certifications in days."
-msgstr "Asettaa päivinä OpenPGP-avainten kelvollisuuden oletusajan."
+msgstr "Asettaa oletuskelvollisuusajan päivinä."
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
 #: src/kcfg/settings.kcfg:69
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies how many days a new OpenPGP key is valid at least, "
-#| "or, in other words, after how many days the new key will expire at the "
-#| "earliest."
+#, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
 "or, in other words, after how many days a new certification will expire. Set "
 "this to 0 for unlimited validity of certifications."
 msgstr ""
-"Tämä asetus määrittää, montako päivää uusi OpenPGP-avain vähintään kelpaa "
-"eli monessako päivässä se aikaisintaan vanhenee."
+"Tämä asetus määrittää, montako päivää varmenne kelpaa eli monenko päivän "
+"kuluttua se vanhenee. Aseta arvoksi 0, niin varmenteet eivät vanhene."
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
 #: src/kcfg/settings.kcfg:75
@@ -8355,7 +8330,7 @@ msgstr "&Ohje"
 #: src/kleopatra.rc:98
 #, kde-format
 msgid "&More documentation"
-msgstr ""
+msgstr "Lisä&ohjeita…"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: src/kleopatra.rc:113 src/kwatchgnupg/kwatchgnupgui.rc:13
@@ -8793,60 +8768,45 @@ msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
 #: src/mainwindow.cpp:601
-#, fuzzy, kde-format
-#| msgid "Quickguide"
+#, kde-format
 msgid "&Quickguide"
-msgstr "Pikaopas"
+msgstr "&Pikaopas"
 
 #: src/mainwindow.cpp:603
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_sign_encrypt_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
-msgstr "handout_sign_encrypt_gnupg_en.pdf"
+msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:607
-#, fuzzy, kde-format
-#| msgid "Password-based encryption"
+#, kde-format
 msgid "&Password-based encryption"
-msgstr "Salasanapohjainen salaus"
+msgstr "&Salasanapohjainen salaus"
 
 #: src/mainwindow.cpp:609
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_symmetric_encryption_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
-msgstr "handout_symmetric_encryption_gnupg_en.pdf"
+msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:613
-#, fuzzy, kde-format
-#| msgid "Group configuration"
+#, kde-format
 msgid "&Group configuration"
-msgstr "Ryhmäasetukset"
+msgstr "&Ryhmäasetukset"
 
 #: src/mainwindow.cpp:615
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "handout_group-feature_gnupg_en.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
-msgstr "handout_group-feature_gnupg_en.pdf"
+msgstr "groupfeature_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:620
 #, kde-format
 msgid "&Mail encryption in Outlook"
-msgstr ""
+msgstr "P&ostin salaus Outlookissa"
 
 #: src/mainwindow.cpp:622
 #, kde-format
@@ -8854,44 +8814,36 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
 "Only shown on Windows."
 msgid "gpgol_outlook_addin_en.pdf"
-msgstr ""
+msgstr "gpgol_outlook_addin_en.pdf"
 
 #: src/mainwindow.cpp:628
-#, fuzzy, kde-format
-#| msgid "Certification canceled."
+#, kde-format
 msgid "&Certification Management"
-msgstr "Varmentaminen peruttiin."
+msgstr "Varmenteiden hallinta"
 
 #: src/mainwindow.cpp:630
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
-msgstr ""
+msgstr "certification_management_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:634
-#, fuzzy, kde-format
-#| msgctxt "@action show smartcard management view"
-#| msgid "Smartcards"
+#, kde-format
 msgid "&Smartcard setup"
-msgstr "Älykortit"
+msgstr "&Älykortin asetus"
 
 #: src/mainwindow.cpp:636
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "Only available in German and English. Leave to English for other "
-#| "languages."
-#| msgid "smartcard_howto_de.pdf"
+#, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
-msgstr "smartcard_howto_de.pdf"
+msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
 #: src/mainwindow.cpp:640
-#, fuzzy, kde-format
-#| msgid "GnuPG Manual"
+#, kde-format
 msgid "GnuPG Command&line"
-msgstr "GnuPG-opas"
+msgstr "&GnuPG-komentorivi"
 
 #: src/mainwindow.cpp:646
 #, kde-format

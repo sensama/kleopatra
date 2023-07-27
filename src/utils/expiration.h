@@ -22,6 +22,12 @@ namespace Kleo
     };
 
     /**
+     * Returns a date a bit before the technically possible latest expiration
+     * date (~2106-02-07) that is safe to use as latest expiration date.
+     */
+    QDate maximumAllowedDate();
+
+    /**
      * Returns the earliest allowed expiration date.
      *
      * This is either tomorrow or the configured number of days after today
@@ -35,7 +41,8 @@ namespace Kleo
      * Returns the latest allowed expiration date.
      *
      * If unlimited validity is allowed, then an invalid date is returned.
-     * Otherwise, the configured number of days after today is returned.
+     * Otherwise, either the configured number of days after today or
+     * the maximum allowed date, whichever is earlier, is returned.
      * Additionally, the returned date is never earlier than the minimum
      * expiration date.
      *

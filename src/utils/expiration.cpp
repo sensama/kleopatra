@@ -17,6 +17,12 @@
 #include <KDateComboBox>
 #include <KLocalizedString>
 
+QDate Kleo::maximumAllowedDate()
+{
+    static const QDate maxAllowedDate{2106, 2, 5};
+    return maxAllowedDate;
+}
+
 QDate Kleo::minimumExpirationDate()
 {
     return expirationDateRange().minimum;
@@ -35,11 +41,11 @@ Kleo::DateRange Kleo::expirationDateRange()
     const auto today = QDate::currentDate();
 
     const auto minimumExpiry = std::max(1, settings.validityPeriodInDaysMin());
-    range.minimum = today.addDays(minimumExpiry);
+    range.minimum = std::min(today.addDays(minimumExpiry), maximumAllowedDate());
 
     const auto maximumExpiry = settings.validityPeriodInDaysMax();
     if (maximumExpiry >= 0) {
-        range.maximum = std::max(today.addDays(maximumExpiry), range.minimum);
+        range.maximum = std::min(std::max(today.addDays(maximumExpiry), range.minimum), maximumAllowedDate());
     }
 
     return range;

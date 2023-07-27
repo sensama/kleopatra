@@ -74,6 +74,19 @@ namespace Kleo
     QDate defaultExpirationDate(ExpirationOnUnlimitedValidity onUnlimitedValidity);
 
     /**
+     * Returns true, if \p date is a valid expiration date.
+     */
+    bool isValidExpirationDate(const QDate &date);
+
+    /**
+     * Returns a hint which dates are valid expiration dates for the date
+     * combo box \p dateCB.
+     * The hint can be used as tool tip or as error message when the user
+     * entered an invalid date.
+     */
+    QString validityPeriodHint();
+
+    /**
      * Configures the date combo box \p dateCB for choosing an expiration date.
      *
      * Sets the allowed date range and a tooltip. And disables the combo box

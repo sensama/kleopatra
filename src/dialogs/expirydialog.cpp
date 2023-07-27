@@ -21,6 +21,7 @@
 
 #include <KDateComboBox>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KStandardGuiItem>
 
 #include <QCheckBox>
@@ -367,6 +368,17 @@ void ExpiryDialog::setUpdateExpirationOfAllSubkeys(bool update)
 bool ExpiryDialog::updateExpirationOfAllSubkeys() const
 {
     return d->ui.updateSubkeysCheckBox->isChecked();
+}
+
+void ExpiryDialog::accept()
+{
+    const auto date = dateOfExpiry();
+    if (!Kleo::isValidExpirationDate(date)) {
+        KMessageBox::error(this, i18nc("@info", "Error: %1", Kleo::validityPeriodHint()));
+        return;
+    }
+
+    QDialog::accept();
 }
 
 void ExpiryDialog::showEvent(QShowEvent *event)

@@ -72,6 +72,17 @@ QDate Kleo::defaultExpirationDate(Kleo::ExpirationOnUnlimitedValidity onUnlimite
     return expirationDate;
 }
 
+bool Kleo::isValidExpirationDate(const QDate &date)
+{
+    const auto allowedRange = expirationDateRange();
+    if (date.isValid()) {
+        return (date >= allowedRange.minimum //
+                && (!allowedRange.maximum.isValid() || date <= allowedRange.maximum));
+    } else {
+        return !allowedRange.maximum.isValid();
+    }
+}
+
 static QString dateToString(const QDate &date, QWidget *widget)
 {
     // workaround for QLocale using "yy" way too often for years
@@ -90,12 +101,18 @@ static QString validityPeriodHint(const Kleo::DateRange &dateRange, QWidget *wid
         if (dateRange.maximum == dateRange.minimum) {
             return i18nc("@info", "The validity period cannot be changed.");
         } else {
-            return i18nc("@info ... between <a date> and <another date>.", "The validity period must end between %1 and %2.",
+            return i18nc("@info ... between <a date> and <another date>.", "Enter a date between %1 and %2.",
                          dateToString(dateRange.minimum, widget), dateToString(dateRange.maximum, widget));
         }
     } else {
-        return i18nc("@info ... after <a date>.", "The validity period must end after %1.", dateToString(dateRange.minimum, widget));
+        return i18nc("@info ... between <a date> and <another date>.", "Enter a date between %1 and %2.",
+                     dateToString(dateRange.minimum, widget), dateToString(Kleo::maximumAllowedDate(), widget));
     }
+}
+
+QString Kleo::validityPeriodHint()
+{
+    return ::validityPeriodHint(expirationDateRange(), nullptr);
 }
 
 void Kleo::setUpExpirationDateComboBox(KDateComboBox *dateCB)

@@ -43,6 +43,8 @@ public:
     void setUpdateExpirationOfAllSubkeys(bool update);
     bool updateExpirationOfAllSubkeys() const;
 
+    void accept() override;
+
 protected:
     void showEvent(QShowEvent *event) override;
 

@@ -77,7 +77,8 @@ bool Kleo::isValidExpirationDate(const QDate &date)
     const auto allowedRange = expirationDateRange();
     if (date.isValid()) {
         return (date >= allowedRange.minimum //
-                && (!allowedRange.maximum.isValid() || date <= allowedRange.maximum));
+                && ((allowedRange.maximum.isValid() && date <= allowedRange.maximum)
+                    || (!allowedRange.maximum.isValid() && date <= maximumAllowedDate())));
     } else {
         return !allowedRange.maximum.isValid();
     }

@@ -468,7 +468,7 @@ public:
                 {today.addYears(2), i18nc("Date for expiration of certification", "Two years from now")},
                 {today.addYears(1), i18nc("Date for expiration of certification", "One year from now")}
             });
-            mExpirationDateEdit->setDate(today.addYears(2));
+            mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 
             auto infoBtn = createInfoButton(i18n("You can use this to set an expiration date for a certification.") +

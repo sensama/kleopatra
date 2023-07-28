@@ -456,18 +456,7 @@ public:
             mExpirationCheckBox->setText(i18n("Expiration:"));
 
             mExpirationDateEdit = new KDateComboBox{q};
-            mExpirationDateEdit->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
-                                            KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
-            const auto maxAllowedDate = Kleo::maximumAllowedDate();
-            const QDate today = QDate::currentDate();
-            mExpirationDateEdit->setDateRange(today.addDays(1), maxAllowedDate,
-                                              i18n("The certification must be valid at least until tomorrow."),
-                                              i18n("The latest allowed certification date is %1.",
-                                                   formatDate(maxAllowedDate, QLocale::ShortFormat)));
-            mExpirationDateEdit->setDateMap({
-                {today.addYears(2), i18nc("Date for expiration of certification", "Two years from now")},
-                {today.addYears(1), i18nc("Date for expiration of certification", "One year from now")}
-            });
+            Kleo::setUpExpirationDateComboBox(mExpirationDateEdit, {QDate::currentDate().addDays(1), QDate{}});
             mExpirationDateEdit->setDate(Kleo::defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
             mExpirationDateEdit->setEnabled(mExpirationCheckBox->isChecked());
 

@@ -89,8 +89,12 @@ namespace Kleo
     /**
      * Configures the date combo box \p dateCB for choosing an expiration date.
      *
-     * Sets the allowed date range and a tooltip. And disables the combo box
-     * if a fixed validity period is configured.
+     * Sets the allowed date range to the \p dateRange, or to the configured
+     * validity period range if the minimum date is invalid. If the maximum
+     * date is invalid, then the maximumAllowedDate is set as maximum.
+     * Also sets a tooltip and a few fixed values to choose from, enables
+     * warnings on invalid or not allowed dates, and disables the combo box if
+     * the date range spans a single day.
      */
-    void setUpExpirationDateComboBox(KDateComboBox *dateCB);
+    void setUpExpirationDateComboBox(KDateComboBox *dateCB, const Kleo::DateRange &dateRange = Kleo::DateRange{});
 }

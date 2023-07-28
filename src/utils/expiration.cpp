@@ -100,7 +100,7 @@ static QString validityPeriodHint(const Kleo::DateRange &dateRange, QWidget *wid
     // the minimum date is always valid
     if (dateRange.maximum.isValid()) {
         if (dateRange.maximum == dateRange.minimum) {
-            return i18nc("@info", "The validity period cannot be changed.");
+            return i18nc("@info", "The date cannot be changed.");
         } else {
             return i18nc("@info ... between <a date> and <another date>.", "Enter a date between %1 and %2.",
                          dateToString(dateRange.minimum, widget), dateToString(dateRange.maximum, widget));
@@ -116,14 +116,23 @@ QString Kleo::validityPeriodHint()
     return ::validityPeriodHint(expirationDateRange(), nullptr);
 }
 
-void Kleo::setUpExpirationDateComboBox(KDateComboBox *dateCB)
+void Kleo::setUpExpirationDateComboBox(KDateComboBox *dateCB, const Kleo::DateRange &range)
 {
-    const auto dateRange = expirationDateRange();
-    dateCB->setMinimumDate(dateRange.minimum);
-    dateCB->setMaximumDate(dateRange.maximum);
+    const auto dateRange = range.minimum.isValid() ? range : expirationDateRange();
+    // enable warning on invalid or not allowed dates
+    dateCB->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
+                       KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
+    const auto hintAndErrorMessage = validityPeriodHint(dateRange, dateCB);
+    dateCB->setDateRange(dateRange.minimum, dateRange.maximum.isValid() ? dateRange.maximum : maximumAllowedDate(), hintAndErrorMessage, hintAndErrorMessage);
     if (dateRange.minimum == dateRange.maximum) {
-        // validity period is a fixed number of days
+        // only one date is allowed, so that changing it no sense
         dateCB->setEnabled(false);
     }
-    dateCB->setToolTip(validityPeriodHint(dateRange, dateCB));
+    dateCB->setToolTip(hintAndErrorMessage);
+    const QDate today = QDate::currentDate();
+    dateCB->setDateMap({
+        {today.addYears(3), i18nc("@item:inlistbox", "Three years from now")},
+        {today.addYears(2), i18nc("@item:inlistbox", "Two years from now")},
+        {today.addYears(1), i18nc("@item:inlistbox", "One year from now")},
+    });
 }

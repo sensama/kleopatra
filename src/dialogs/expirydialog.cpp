@@ -244,7 +244,7 @@ private:
             okButton->setDefault(true);
             okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
             KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
-            qq->connect(buttonBox, &QDialogButtonBox::accepted, qq, &QDialog::accept);
+            qq->connect(buttonBox, &QDialogButtonBox::accepted, qq, &ExpiryDialog::accept);
             qq->connect(buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
 
             mainLayout->addWidget(buttonBox);

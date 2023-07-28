@@ -455,7 +455,7 @@ AdvancedSettingsDialog::~AdvancedSettingsDialog() = default;
 
 bool AdvancedSettingsDialog::unlimitedValidityIsAllowed() const
 {
-    return !ui->expiryDE->maximumDate().isValid();
+    return !Kleo::maximumExpirationDate().isValid();
 }
 
 void AdvancedSettingsDialog::setProtocol(GpgME::Protocol proto)

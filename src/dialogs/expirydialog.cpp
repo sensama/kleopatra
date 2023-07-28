@@ -146,7 +146,7 @@ void ExpiryDialog::Private::slotOnDateChanged()
 
 bool Kleo::Dialogs::ExpiryDialog::Private::unlimitedValidityAllowed() const
 {
-    return !ui.onCB->maximumDate().isValid();
+    return !Kleo::maximumExpirationDate().isValid();
 }
 
 bool Kleo::Dialogs::ExpiryDialog::Private::fixedExpirationDate() const

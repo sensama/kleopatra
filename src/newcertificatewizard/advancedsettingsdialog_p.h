@@ -112,6 +112,7 @@ private:
     void setInitialFocus();
 
 protected:
+    void accept() override;
     void showEvent(QShowEvent *event) override;
 
 private:

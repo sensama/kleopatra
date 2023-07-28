@@ -29,6 +29,7 @@
 
 #include <KDateComboBox>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
@@ -447,7 +448,7 @@ AdvancedSettingsDialog::AdvancedSettingsDialog(QWidget *parent)
                 }
             });
 
-    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &AdvancedSettingsDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
@@ -665,9 +666,10 @@ void AdvancedSettingsDialog::setExpiryDate(QDate date)
         ui->expiryCB->setChecked(ui->expiryDE->isValid());
     }
 }
+
 QDate AdvancedSettingsDialog::expiryDate() const
 {
-    return ui->expiryCB->isChecked() ? forceDateIntoAllowedRange(ui->expiryDE->date()) : QDate();
+    return ui->expiryCB->isChecked() ? ui->expiryDE->date() : QDate{};
 }
 
 void AdvancedSettingsDialog::slotKeyMaterialSelectionChanged()
@@ -1009,6 +1011,16 @@ void AdvancedSettingsDialog::setInitialFocus()
     }
     // finally, focus the OK button
     ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
+}
+
+void AdvancedSettingsDialog::accept()
+{
+    if (!Kleo::isValidExpirationDate(expiryDate())) {
+        KMessageBox::error(this, i18nc("@info", "Error: %1", Kleo::validityPeriodHint()));
+        return;
+    }
+
+    QDialog::accept();
 }
 
 void AdvancedSettingsDialog::showEvent(QShowEvent *event)

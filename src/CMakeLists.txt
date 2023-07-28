@@ -419,6 +419,8 @@ set(_kleopatra_SRCS
   utils/email.h
   utils/emptypassphraseprovider.cpp
   utils/emptypassphraseprovider.h
+  utils/expiration.cpp
+  utils/expiration.h
   utils/filedialog.cpp
   utils/filedialog.h
   utils/gui-helper.cpp

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-11 00:48+0000\n"
+"POT-Creation-Date: 2023-07-28 00:49+0000\n"
 "PO-Revision-Date: 2023-07-05 18:09-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -4913,7 +4913,8 @@ msgstr "Nenhum certificado ou grupos correspondentes encontrado"
 msgid "Multiple matching certificates or groups found"
 msgstr "(nenhum certificado correspondentes encontrado)"
 
-#: src/crypto/gui/certificatelineedit.cpp:649 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:377
+#: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
 msgctxt "@info"
@@ -6223,7 +6224,7 @@ msgid "User IDs:"
 msgstr "Adicionar ID do usuário..."
 
 #: src/dialogs/certificatedetailswidget.cpp:215
-#: src/dialogs/certifywidget.cpp:403
+#: src/dialogs/certifywidget.cpp:404
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "User IDs"
@@ -6291,7 +6292,7 @@ msgid "Valid from:"
 msgstr "Válido de:"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:205
+#: src/dialogs/expirydialog.cpp:212
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
@@ -6312,7 +6313,7 @@ msgid "Change Validity"
 msgstr "Alterar chave do administrador"
 
 #: src/dialogs/certificatedetailswidget.cpp:300
-#: src/dialogs/certifywidget.cpp:373
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Impressão digital:"
@@ -6732,7 +6733,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Certificar o certificado: %1"
 
-#: src/dialogs/certifywidget.cpp:357
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6740,18 +6741,18 @@ msgid ""
 "fingerprint clearly identifies the key and its owner.</i>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:378
+#: src/dialogs/certifywidget.cpp:379
 #, kde-format
 msgid "Certify with:"
 msgstr "Certificar com:"
 
-#: src/dialogs/certifywidget.cpp:390
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:392
+#: src/dialogs/certifywidget.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6759,38 +6760,38 @@ msgid ""
 "trust. This is what you usually want to do for your own keys."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:408
+#: src/dialogs/certifywidget.cpp:409
 #, kde-format
 msgid "Advanced"
 msgstr "Avançado"
 
-#: src/dialogs/certifywidget.cpp:408
+#: src/dialogs/certifywidget.cpp:409
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgid "Show advanced options"
 msgstr "Configurações avançadas"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Certificar para todos verem (exportável)"
 
-#: src/dialogs/certifywidget.cpp:421
+#: src/dialogs/certifywidget.cpp:422
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Publicar no servidor de chaves posteriormente"
 
-#: src/dialogs/certifywidget.cpp:433
+#: src/dialogs/certifywidget.cpp:434
 #, kde-format
 msgid "Tags:"
 msgstr "Etiquetas:"
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:438
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "Você pode usar isto para adicionar informações a um certificado."
 
-#: src/dialogs/certifywidget.cpp:439
+#: src/dialogs/certifywidget.cpp:440
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6799,46 +6800,46 @@ msgstr ""
 "As etiquetas criadas por qualquer um com certificado de confiança completo "
 "são exibidas na lista de chaves e podem ser pesquisadas."
 
-#: src/dialogs/certifywidget.cpp:442
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Explain tags"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:456
 #, kde-format
 msgid "Expiration:"
 msgstr "Expira em:"
 
-#: src/dialogs/certifywidget.cpp:463
+#: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "O certificado deve ser válido pelo menos até amanhã."
 
-#: src/dialogs/certifywidget.cpp:464
+#: src/dialogs/certifywidget.cpp:465
 #, fuzzy, kde-format
 #| msgid "There are unknown certificates on this card."
 msgid "The latest allowed certification date is %1."
 msgstr "Existem certificados desconhecidos neste cartão."
 
-#: src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "Dois anos a partir de hoje"
 
-#: src/dialogs/certifywidget.cpp:468
+#: src/dialogs/certifywidget.cpp:469
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "Um ano a partir de hoje"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:474
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 "Você pode usar isto para definir uma data de expiração para um certificado."
 
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:476
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6846,23 +6847,23 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:479
+#: src/dialogs/certifywidget.cpp:480
 #, fuzzy, kde-format
 #| msgid "Change Expiry Date..."
 msgid "Explain expiration"
 msgstr "Alterar data de expiração..."
 
-#: src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:494
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:496
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6870,23 +6871,23 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:500
+#: src/dialogs/certifywidget.cpp:501
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:510
+#: src/dialogs/certifywidget.cpp:511
 #, fuzzy, kde-format
 #| msgid "Domain"
 msgid "Domain:"
 msgstr "Domínio"
 
-#: src/dialogs/certifywidget.cpp:700
+#: src/dialogs/certifywidget.cpp:701
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:715
+#: src/dialogs/certifywidget.cpp:716
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the certification trust for "
@@ -6897,13 +6898,13 @@ msgstr ""
 "<p>Ocorreu um erro ao tentar alterar a confiança na certificação de <b>%1</"
 "b>:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:718
+#: src/dialogs/certifywidget.cpp:719
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Succeeded"
 msgid "Certification Trust Change Failed"
 msgstr "Sucesso na alteração da confiança na certificação"
 
-#: src/dialogs/certifywidget.cpp:725
+#: src/dialogs/certifywidget.cpp:726
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -7088,21 +7089,21 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Editar grupo"
 
-#: src/dialogs/expirydialog.cpp:70
+#: src/dialogs/expirydialog.cpp:71
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:72
+#: src/dialogs/expirydialog.cpp:73
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:74
+#: src/dialogs/expirydialog.cpp:75
 #, fuzzy, kde-format
 #| msgid "Valid from:"
 msgid "Valid for %1 month"
@@ -7110,70 +7111,70 @@ msgid_plural "Valid for %1 months"
 msgstr[0] "Válido de:"
 msgstr[1] "Válido de:"
 
-#: src/dialogs/expirydialog.cpp:76
+#: src/dialogs/expirydialog.cpp:77
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/dialogs/expirydialog.cpp:162
+#: src/dialogs/expirydialog.cpp:169
 #, fuzzy, kde-format
 #| msgid "Please select the card the key should be written to:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Selecione o cartão que a chave deve ser gravada:"
 
-#: src/dialogs/expirydialog.cpp:163
+#: src/dialogs/expirydialog.cpp:170
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Selecione um dos seguintes certificados:"
 
-#: src/dialogs/expirydialog.cpp:167
+#: src/dialogs/expirydialog.cpp:174
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "Mostrar validade do certificado"
 
-#: src/dialogs/expirydialog.cpp:175
+#: src/dialogs/expirydialog.cpp:182
 #, fuzzy, kde-format
 #| msgid "Valid from:"
 msgid "Valid for:"
 msgstr "Válido de:"
 
-#: src/dialogs/expirydialog.cpp:188
+#: src/dialogs/expirydialog.cpp:195
 #, kde-format
 msgid "Days"
 msgstr "Dias"
 
-#: src/dialogs/expirydialog.cpp:189
+#: src/dialogs/expirydialog.cpp:196
 #, kde-format
 msgid "Weeks"
 msgstr "Semanas"
 
-#: src/dialogs/expirydialog.cpp:190
+#: src/dialogs/expirydialog.cpp:197
 #, kde-format
 msgid "Months"
 msgstr "Meses"
 
-#: src/dialogs/expirydialog.cpp:191
+#: src/dialogs/expirydialog.cpp:198
 #, kde-format
 msgid "Years"
 msgstr "Anos"
 
-#: src/dialogs/expirydialog.cpp:221
+#: src/dialogs/expirydialog.cpp:228
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:277
+#: src/dialogs/expirydialog.cpp:284
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Válido até:"
 
-#: src/dialogs/expirydialog.cpp:313
+#: src/dialogs/expirydialog.cpp:330
 #, fuzzy, kde-format
 #| msgid "Change cardholder"
 msgctxt "@title:window"
@@ -9371,57 +9372,29 @@ msgid "URIs"
 msgstr "URIs"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:961
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:913
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Detalhes pessoais"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:433
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
 #, kde-format
 msgid "new email"
 msgstr "novo e-mail"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:434
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
 #, kde-format
 msgid "new dns name"
 msgstr "nome do novo DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:435
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
 #, kde-format
 msgid "new uri"
 msgstr "nova uri"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:487
-#, kde-format
-msgid "The validity period cannot be changed."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:489
-#, kde-format
-msgctxt "... between today and <another date>."
-msgid "The validity period must end between today and %1."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:492
-#, kde-format
-msgctxt "... between <a date> and <another date>."
-msgid "The validity period must end between %1 and %2."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:497
-#, kde-format
-msgid "The validity period must end after today."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:499
-#, kde-format
-msgctxt "... after <a date>."
-msgid "The validity period must end after %1."
-msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:799
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:751
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9429,7 +9402,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 bit)"
 msgstr[1] "%2 (%1 bits)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:800
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:752
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9437,7 +9410,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1 bit"
 msgstr[1] "%1 bits"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:966
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:918
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Adding more than one User ID is not yet implemented."
@@ -10953,6 +10926,19 @@ msgstr "Assinatura S/MIME..."
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Assinatura OpenPGP..."
+
+#: src/utils/expiration.cpp:102
+#, fuzzy, kde-format
+#| msgid "Expiry date changed successfully."
+msgctxt "@info"
+msgid "The validity period cannot be changed."
+msgstr "Sucesso na alteração da data de validade."
+
+#: src/utils/expiration.cpp:104 src/utils/expiration.cpp:108
+#, kde-format
+msgctxt "@info ... between <a date> and <another date>."
+msgid "Enter a date between %1 and %2."
+msgstr ""
 
 #: src/utils/input.cpp:220
 #, kde-format

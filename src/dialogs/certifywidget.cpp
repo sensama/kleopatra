@@ -12,6 +12,7 @@
 #include "certifywidget.h"
 
 #include <utils/accessibility.h>
+#include <utils/expiration.h>
 #include <utils/keys.h>
 #include "view/infofield.h"
 
@@ -457,7 +458,7 @@ public:
             mExpirationDateEdit = new KDateComboBox{q};
             mExpirationDateEdit->setOptions(KDateComboBox::EditDate | KDateComboBox::SelectDate | KDateComboBox::DatePicker |
                                             KDateComboBox::DateKeywords | KDateComboBox::WarnOnInvalid);
-            static const QDate maxAllowedDate{2106, 2, 5};
+            const auto maxAllowedDate = Kleo::maximumAllowedDate();
             const QDate today = QDate::currentDate();
             mExpirationDateEdit->setDateRange(today.addDays(1), maxAllowedDate,
                                               i18n("The certification must be valid at least until tomorrow."),

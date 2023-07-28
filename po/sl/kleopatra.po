@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-11 00:48+0000\n"
+"POT-Creation-Date: 2023-07-28 00:49+0000\n"
 "PO-Revision-Date: 2023-07-07 06:32+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -4767,7 +4767,8 @@ msgstr "Nobene ustreznega potrdila ali grupe ni bilo najdene"
 msgid "Multiple matching certificates or groups found"
 msgstr "Najdenih več ustreznih potrdil ali grup"
 
-#: src/crypto/gui/certificatelineedit.cpp:649 src/view/formtextinput.cpp:120
+#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:377
+#: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6029,7 +6030,7 @@ msgid "User IDs:"
 msgstr "Uporabniški določilnik:"
 
 #: src/dialogs/certificatedetailswidget.cpp:215
-#: src/dialogs/certifywidget.cpp:403
+#: src/dialogs/certifywidget.cpp:404
 #, kde-format
 msgid "User IDs"
 msgstr "Uporabniški določilnik"
@@ -6089,7 +6090,7 @@ msgid "Valid from:"
 msgstr "Veljaven od:"
 
 #: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:205
+#: src/dialogs/expirydialog.cpp:212
 #, kde-format
 msgid "Valid until:"
 msgstr "Veljaven do:"
@@ -6107,7 +6108,7 @@ msgid "Change Validity"
 msgstr "Spremeni veljavnost"
 
 #: src/dialogs/certificatedetailswidget.cpp:300
-#: src/dialogs/certifywidget.cpp:373
+#: src/dialogs/certifywidget.cpp:374
 #, kde-format
 msgid "Fingerprint:"
 msgstr "Prstni odtis:"
@@ -6498,7 +6499,7 @@ msgctxt "@title:window arg is name, email of certificate holder"
 msgid "Certify Certificate: %1"
 msgstr "Potrdi potrdilo: %1"
 
-#: src/dialogs/certifywidget.cpp:357
+#: src/dialogs/certifywidget.cpp:358
 #, kde-format
 msgid ""
 "Verify the fingerprint, mark the user IDs you want to certify, and select "
@@ -6510,18 +6511,18 @@ msgstr ""
 "določilnike.<br><i>Opomba: Samo prstni odtis jasno identificira ključ in "
 "njegovega lastnika.</i>"
 
-#: src/dialogs/certifywidget.cpp:378
+#: src/dialogs/certifywidget.cpp:379
 #, kde-format
 msgid "Certify with:"
 msgstr "Potrdi z:"
 
-#: src/dialogs/certifywidget.cpp:390
+#: src/dialogs/certifywidget.cpp:391
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
 msgstr "Nastavi zaupanje lastnika"
 
-#: src/dialogs/certifywidget.cpp:392
+#: src/dialogs/certifywidget.cpp:393
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -6531,37 +6532,37 @@ msgstr ""
 "Kliknite, da nastavite raven zaupanja izbranega certifikacijskega ključa na "
 "brezpogojno zaupanje. To običajno želite narediti za lastne ključe."
 
-#: src/dialogs/certifywidget.cpp:408
+#: src/dialogs/certifywidget.cpp:409
 #, kde-format
 msgid "Advanced"
 msgstr "Napredno"
 
-#: src/dialogs/certifywidget.cpp:408
+#: src/dialogs/certifywidget.cpp:409
 #, kde-format
 msgid "Show advanced options"
 msgstr "Prikaži napredne možnosti"
 
-#: src/dialogs/certifywidget.cpp:414
+#: src/dialogs/certifywidget.cpp:415
 #, kde-format
 msgid "Certify for everyone to see (exportable)"
 msgstr "Potrdi tako, da je vidno vsem (je moč izvoziti)"
 
-#: src/dialogs/certifywidget.cpp:421
+#: src/dialogs/certifywidget.cpp:422
 #, kde-format
 msgid "Publish on keyserver afterwards"
 msgstr "Objavi potem na strežniku ključev"
 
-#: src/dialogs/certifywidget.cpp:433
+#: src/dialogs/certifywidget.cpp:434
 #, kde-format
 msgid "Tags:"
 msgstr "Značke:"
 
-#: src/dialogs/certifywidget.cpp:437
+#: src/dialogs/certifywidget.cpp:438
 #, kde-format
 msgid "You can use this to add additional info to a certification."
 msgstr "To lahko uporabite za dodajanje dodatnih informacij potrjevanju."
 
-#: src/dialogs/certifywidget.cpp:439
+#: src/dialogs/certifywidget.cpp:440
 #, kde-format
 msgid ""
 "Tags created by anyone with full certification trust are shown in the "
@@ -6570,44 +6571,44 @@ msgstr ""
 "Oznake, ki jih je ustvaril vsak, ki ima popolno zaupanje v certifikat, so "
 "prikazane v seznamu ključev in jih je mogoče preiskovati."
 
-#: src/dialogs/certifywidget.cpp:442
+#: src/dialogs/certifywidget.cpp:443
 #, kde-format
 msgid "Explain tags"
 msgstr "Razloži ključnike"
 
-#: src/dialogs/certifywidget.cpp:455
+#: src/dialogs/certifywidget.cpp:456
 #, kde-format
 msgid "Expiration:"
 msgstr "Pretečeni rok:"
 
-#: src/dialogs/certifywidget.cpp:463
+#: src/dialogs/certifywidget.cpp:464
 #, kde-format
 msgid "The certification must be valid at least until tomorrow."
 msgstr "Potrdilo mora biti veljavno še vsaj do jutri."
 
-#: src/dialogs/certifywidget.cpp:464
+#: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgid "The latest allowed certification date is %1."
 msgstr "Najkasnejši dovoljen datum pooblastila je %1."
 
-#: src/dialogs/certifywidget.cpp:467
+#: src/dialogs/certifywidget.cpp:468
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "Two years from now"
 msgstr "Dve leti od zdaj"
 
-#: src/dialogs/certifywidget.cpp:468
+#: src/dialogs/certifywidget.cpp:469
 #, kde-format
 msgctxt "Date for expiration of certification"
 msgid "One year from now"
 msgstr "Eno leto od zdaj"
 
-#: src/dialogs/certifywidget.cpp:473
+#: src/dialogs/certifywidget.cpp:474
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Lahko uporabite to nastavitev datuma poteka potrdila."
 
-#: src/dialogs/certifywidget.cpp:475
+#: src/dialogs/certifywidget.cpp:476
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6617,23 +6618,23 @@ msgstr ""
 "Z nastavitvijo datuma poteka omejite veljavnost vašega potrdila na določen "
 "čas. Ko je datum poteka preteče, vaše potrdilo ni več veljavno."
 
-#: src/dialogs/certifywidget.cpp:479
+#: src/dialogs/certifywidget.cpp:480
 #, kde-format
 msgid "Explain expiration"
 msgstr "Razloži potek"
 
-#: src/dialogs/certifywidget.cpp:492
+#: src/dialogs/certifywidget.cpp:493
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Potrdi kot zaupanja vreden uvajalec"
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:494
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 "Lahko uporabite to za potrjevanje zaupanja vrednega uvajalca za domeno."
 
-#: src/dialogs/certifywidget.cpp:495
+#: src/dialogs/certifywidget.cpp:496
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6644,33 +6645,33 @@ msgstr ""
 "zaupanja vrednega uvajalca, smatramo kot potrjena, kar pomeni, da zaupanja "
 "vreden uvajalec deluje kot nekakšen vmesni potrjevalni agent za domeno."
 
-#: src/dialogs/certifywidget.cpp:500
+#: src/dialogs/certifywidget.cpp:501
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Razloži zaupanja vrednega uvajalca"
 
-#: src/dialogs/certifywidget.cpp:510
+#: src/dialogs/certifywidget.cpp:511
 #, kde-format
 msgid "Domain:"
 msgstr "Domena:"
 
-#: src/dialogs/certifywidget.cpp:700
+#: src/dialogs/certifywidget.cpp:701
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Ali je to vaš lastni ključ?"
 
-#: src/dialogs/certifywidget.cpp:715
+#: src/dialogs/certifywidget.cpp:716
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr "<p>Sprememba zaupanja v ključ za <b>%1</b> ni uspela:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:718
+#: src/dialogs/certifywidget.cpp:719
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Sprememba zaupanja v potrdilo ni uspela"
 
-#: src/dialogs/certifywidget.cpp:725
+#: src/dialogs/certifywidget.cpp:726
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Zaupanje lastnika je bilo uspešno nastavljeno."
@@ -6856,7 +6857,7 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Uredi grupo"
 
-#: src/dialogs/expirydialog.cpp:70
+#: src/dialogs/expirydialog.cpp:71
 #, kde-format
 msgid "Valid for %1 day"
 msgid_plural "Valid for %1 days"
@@ -6865,7 +6866,7 @@ msgstr[1] "Veljaven za %1 dni"
 msgstr[2] "Veljaven za %1 dni"
 msgstr[3] "Veljaven za %1 dni"
 
-#: src/dialogs/expirydialog.cpp:72
+#: src/dialogs/expirydialog.cpp:73
 #, kde-format
 msgid "Valid for %1 week"
 msgid_plural "Valid for %1 weeks"
@@ -6874,7 +6875,7 @@ msgstr[1] "Veljaven za %1 tedna"
 msgstr[2] "Veljaven za %1 tedne"
 msgstr[3] "Veljaven za %1 tednov"
 
-#: src/dialogs/expirydialog.cpp:74
+#: src/dialogs/expirydialog.cpp:75
 #, kde-format
 msgid "Valid for %1 month"
 msgid_plural "Valid for %1 months"
@@ -6883,7 +6884,7 @@ msgstr[1] "Veljaven za %1 meseca"
 msgstr[2] "Veljaven za %1 mesece"
 msgstr[3] "Veljaven za %1 mesecev"
 
-#: src/dialogs/expirydialog.cpp:76
+#: src/dialogs/expirydialog.cpp:77
 #, kde-format
 msgid "Valid for %1 year"
 msgid_plural "Valid for %1 years"
@@ -6892,58 +6893,58 @@ msgstr[1] "Veljaven za %1 leti"
 msgstr[2] "Veljaven za %1 leta"
 msgstr[3] "Veljaven za %1 let"
 
-#: src/dialogs/expirydialog.cpp:162
+#: src/dialogs/expirydialog.cpp:169
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Izberite do kdaj naj bo veljaven podključ:"
 
-#: src/dialogs/expirydialog.cpp:163
+#: src/dialogs/expirydialog.cpp:170
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Izberite do kdaj naj bo veljavno potrdilo:"
 
-#: src/dialogs/expirydialog.cpp:167
+#: src/dialogs/expirydialog.cpp:174
 #, kde-format
 msgid "Unlimited validity"
 msgstr "Neomejena veljavnost"
 
-#: src/dialogs/expirydialog.cpp:175
+#: src/dialogs/expirydialog.cpp:182
 #, kde-format
 msgid "Valid for:"
 msgstr "Veljaven od:"
 
-#: src/dialogs/expirydialog.cpp:188
+#: src/dialogs/expirydialog.cpp:195
 #, kde-format
 msgid "Days"
 msgstr "Dnevi"
 
-#: src/dialogs/expirydialog.cpp:189
+#: src/dialogs/expirydialog.cpp:196
 #, kde-format
 msgid "Weeks"
 msgstr "Tedni"
 
-#: src/dialogs/expirydialog.cpp:190
+#: src/dialogs/expirydialog.cpp:197
 #, kde-format
 msgid "Months"
 msgstr "Meseci"
 
-#: src/dialogs/expirydialog.cpp:191
+#: src/dialogs/expirydialog.cpp:198
 #, kde-format
 msgid "Years"
 msgstr "Leta"
 
-#: src/dialogs/expirydialog.cpp:221
+#: src/dialogs/expirydialog.cpp:228
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "Posodobi tudi obdobje veljavnost podključev"
 
-#: src/dialogs/expirydialog.cpp:277
+#: src/dialogs/expirydialog.cpp:284
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Veljaven do %1"
 
-#: src/dialogs/expirydialog.cpp:313
+#: src/dialogs/expirydialog.cpp:330
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -9121,56 +9122,28 @@ msgid "URIs"
 msgstr "URI-ji"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:961
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:913
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Podrobnosti o osebi"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:433
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
 #, kde-format
 msgid "new email"
 msgstr "nova e-pošta"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:434
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
 #, kde-format
 msgid "new dns name"
 msgstr "novo ime DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:435
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
 #, kde-format
 msgid "new uri"
 msgstr "nov uri"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:487
-#, kde-format
-msgid "The validity period cannot be changed."
-msgstr "Čas veljavnosti ne more biti spremenjen."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:489
-#, kde-format
-msgctxt "... between today and <another date>."
-msgid "The validity period must end between today and %1."
-msgstr "Obdobje veljavnosti se mora končati med danes in %1."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:492
-#, kde-format
-msgctxt "... between <a date> and <another date>."
-msgid "The validity period must end between %1 and %2."
-msgstr "Obdobje veljavnosti se mora končati med %1 in %2."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:497
-#, kde-format
-msgid "The validity period must end after today."
-msgstr "Obdobje veljavnosti se mora končati do konca dneva."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:499
-#, kde-format
-msgctxt "... after <a date>."
-msgid "The validity period must end after %1."
-msgstr "Obdobje veljavnosti se mora končati po %1."
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:799
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:751
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9180,7 +9153,7 @@ msgstr[1] "%2 (%1 bita)"
 msgstr[2] "%2 (%1 biti)"
 msgstr[3] "%2 (%1 bitov)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:800
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:752
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9190,7 +9163,7 @@ msgstr[1] "%1 bita"
 msgstr[2] "%1 biti"
 msgstr[3] "%1 bitov"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:966
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:918
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
@@ -10642,6 +10615,21 @@ msgstr "Podpiši z S/MIME..."
 #, kde-format
 msgid "OpenPGP-Sign..."
 msgstr "Podpiši z OpenPGP..."
+
+#: src/utils/expiration.cpp:102
+#, fuzzy, kde-format
+#| msgid "The validity period cannot be changed."
+msgctxt "@info"
+msgid "The validity period cannot be changed."
+msgstr "Čas veljavnosti ne more biti spremenjen."
+
+#: src/utils/expiration.cpp:104 src/utils/expiration.cpp:108
+#, fuzzy, kde-format
+#| msgctxt "... between <a date> and <another date>."
+#| msgid "The validity period must end between %1 and %2."
+msgctxt "@info ... between <a date> and <another date>."
+msgid "Enter a date between %1 and %2."
+msgstr "Obdobje veljavnosti se mora končati med %1 in %2."
 
 #: src/utils/input.cpp:220
 #, kde-format
@@ -12188,6 +12176,17 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgctxt "... between today and <another date>."
+#~ msgid "The validity period must end between today and %1."
+#~ msgstr "Obdobje veljavnosti se mora končati med danes in %1."
+
+#~ msgid "The validity period must end after today."
+#~ msgstr "Obdobje veljavnosti se mora končati do konca dneva."
+
+#~ msgctxt "... after <a date>."
+#~ msgid "The validity period must end after %1."
+#~ msgstr "Obdobje veljavnosti se mora končati po %1."
 
 #~ msgid "Failed to create output folder."
 #~ msgstr "Izhodne mape ni bilo mogoče ustvariti."

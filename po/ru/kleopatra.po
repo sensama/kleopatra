@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-28 00:49+0000\n"
+"POT-Creation-Date: 2023-07-29 00:46+0000\n"
 "PO-Revision-Date: 2023-04-30 15:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -4790,7 +4790,8 @@ msgstr "Не найдены соответствующие сертификат�
 msgid "Multiple matching certificates or groups found"
 msgstr "Найдено несколько соответствующих сертификатов или групп"
 
-#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:377
+#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:215
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:1019
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -6136,8 +6137,7 @@ msgstr "Уровень доверия:"
 msgid "Valid from:"
 msgstr "Действителен с:"
 
-#: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:290 src/dialogs/expirydialog.cpp:97
 #, kde-format
 msgid "Valid until:"
 msgstr "Срок действия:"
@@ -6629,34 +6629,12 @@ msgstr "Пояснение меток"
 msgid "Expiration:"
 msgstr "Срок действия:"
 
-#: src/dialogs/certifywidget.cpp:464
-#, kde-format
-msgid "The certification must be valid at least until tomorrow."
-msgstr "Подпись сертификата должна действовать как минимум до следующего дня."
-
-#: src/dialogs/certifywidget.cpp:465
-#, kde-format
-msgid "The latest allowed certification date is %1."
-msgstr "Самая поздняя возможная дата действия подписи сертификата: %1."
-
-#: src/dialogs/certifywidget.cpp:468
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "Two years from now"
-msgstr "Через два года"
-
-#: src/dialogs/certifywidget.cpp:469
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "One year from now"
-msgstr "Через год"
-
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Здесь возможно установить дату истечения срока действия сертификата."
 
-#: src/dialogs/certifywidget.cpp:476
+#: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6667,22 +6645,22 @@ msgstr ""
 "сертификатов определённым количеством времени. По истечении срока действия "
 "сертификат будет недействительным."
 
-#: src/dialogs/certifywidget.cpp:480
+#: src/dialogs/certifywidget.cpp:469
 #, kde-format
 msgid "Explain expiration"
 msgstr "Пояснение срока действия"
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:482
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr "Подтвердить как доверенного представителя"
 
-#: src/dialogs/certifywidget.cpp:494
+#: src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr "Подтвердить доверенного представителя для домена."
 
-#: src/dialogs/certifywidget.cpp:496
+#: src/dialogs/certifywidget.cpp:485
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6694,34 +6672,34 @@ msgstr ""
 "сертифицированные, то есть доверенный представитель действует как "
 "промежуточный центр сертификации для домена. "
 
-#: src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:490
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr "Пояснение доверенного представителя"
 
-#: src/dialogs/certifywidget.cpp:511
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Domain:"
 msgstr "Домен:"
 
-#: src/dialogs/certifywidget.cpp:701
+#: src/dialogs/certifywidget.cpp:690
 #, kde-format
 msgid "Is this your own key?"
 msgstr "Это ваш собственный ключ?"
 
-#: src/dialogs/certifywidget.cpp:716
+#: src/dialogs/certifywidget.cpp:705
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 "<p>Не удалось изменить уровень доверия к ключу <b>«%1»</b>:</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:719
+#: src/dialogs/certifywidget.cpp:708
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr "Ошибка при изменении уровня доверия"
 
-#: src/dialogs/certifywidget.cpp:726
+#: src/dialogs/certifywidget.cpp:715
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr "Уровень доверия владельцу установлен."
@@ -6906,94 +6884,33 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "Изменение группы"
 
-#: src/dialogs/expirydialog.cpp:71
-#, kde-format
-msgid "Valid for %1 day"
-msgid_plural "Valid for %1 days"
-msgstr[0] "Срок действия: %1 день"
-msgstr[1] "Срок действия: %1 дня"
-msgstr[2] "Срок действия: %1 дней"
-msgstr[3] "Срок действия: %1 день"
-
-#: src/dialogs/expirydialog.cpp:73
-#, kde-format
-msgid "Valid for %1 week"
-msgid_plural "Valid for %1 weeks"
-msgstr[0] "Срок действия: %1 неделя"
-msgstr[1] "Срок действия: %1 недели"
-msgstr[2] "Срок действия: %1 недель"
-msgstr[3] "Срок действия: %1 неделя"
-
-#: src/dialogs/expirydialog.cpp:75
-#, kde-format
-msgid "Valid for %1 month"
-msgid_plural "Valid for %1 months"
-msgstr[0] "Срок действия: %1 месяц"
-msgstr[1] "Срок действия: %1 месяца"
-msgstr[2] "Срок действия: %1 месяцев"
-msgstr[3] "Срок действия: %1 месяц"
-
-#: src/dialogs/expirydialog.cpp:77
-#, kde-format
-msgid "Valid for %1 year"
-msgid_plural "Valid for %1 years"
-msgstr[0] "Срок действия: %1 год"
-msgstr[1] "Срок действия: %1 года"
-msgstr[2] "Срок действия: %1 лет"
-msgstr[3] "Срок действия: %1 год"
-
-#: src/dialogs/expirydialog.cpp:169
+#: src/dialogs/expirydialog.cpp:84
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr "Выберите срок действия подключа:"
 
-#: src/dialogs/expirydialog.cpp:170
+#: src/dialogs/expirydialog.cpp:85
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr "Выберите срок действия сертификата:"
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:89
 #, kde-format
 msgid "Unlimited validity"
 msgstr "Неограниченный срок действия"
 
-#: src/dialogs/expirydialog.cpp:182
-#, kde-format
-msgid "Valid for:"
-msgstr "Срок действия:"
-
-#: src/dialogs/expirydialog.cpp:195
-#, kde-format
-msgid "Days"
-msgstr "дней"
-
-#: src/dialogs/expirydialog.cpp:196
-#, kde-format
-msgid "Weeks"
-msgstr "недель"
-
-#: src/dialogs/expirydialog.cpp:197
-#, kde-format
-msgid "Months"
-msgstr "месяцев"
-
-#: src/dialogs/expirydialog.cpp:198
-#, kde-format
-msgid "Years"
-msgstr "лет"
-
-#: src/dialogs/expirydialog.cpp:228
+#: src/dialogs/expirydialog.cpp:113
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr "Также обновить период действия подключей"
 
-#: src/dialogs/expirydialog.cpp:284
+#: src/dialogs/expirydialog.cpp:144
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Действует до %1"
 
-#: src/dialogs/expirydialog.cpp:330
+#: src/dialogs/expirydialog.cpp:171
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -9108,150 +9025,150 @@ msgstr "Импорт сертификатов"
 msgid "Import CRLs"
 msgstr "Импорт списка отозванных сертификатов (CRL)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:226
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Дополнительные параметры"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Материал ключа"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:246
 #, kde-format
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:258
 #, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:267
 #, kde-format
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
 #, kde-format
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ ElGamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "Этот подключ требуется для шифрования."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
 #, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, kde-format
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:307
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Использование сертификата"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Создание подписи"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:315
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Сертификация"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:319
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Шифрование"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:323
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "Аутентификация"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:330
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Срок действия:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:344
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Технические сведения"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:358
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "Дополнительные идентификаторы пользователей"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:366
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "Адреса эл. почты"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:374
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "Имена DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:382
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-адреса"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:913
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:915
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Личные данные"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
 #, kde-format
 msgid "new email"
 msgstr "новое письмо"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
 #, kde-format
 msgid "new dns name"
 msgstr "новое имя DNS"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:421
 #, kde-format
 msgid "new uri"
 msgstr "новый адрес URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:751
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:753
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9261,7 +9178,7 @@ msgstr[1] "%2 (%1 бита):"
 msgstr[2] "%2 (%1 бит):"
 msgstr[3] "%2 (1 бит):"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:752
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:754
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9271,7 +9188,7 @@ msgstr[1] "%1 бита"
 msgstr[2] "%1 бит"
 msgstr[3] "1 бит"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:918
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:920
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
@@ -10720,20 +10637,44 @@ msgstr "Подписать S/MIME…"
 msgid "OpenPGP-Sign..."
 msgstr "Подписать OpenPGP…"
 
-#: src/utils/expiration.cpp:102
+#: src/utils/expiration.cpp:103
 #, fuzzy, kde-format
 #| msgid "The validity period cannot be changed."
 msgctxt "@info"
-msgid "The validity period cannot be changed."
+msgid "The date cannot be changed."
 msgstr "Период действия нельзя изменить."
 
-#: src/utils/expiration.cpp:104 src/utils/expiration.cpp:108
+#: src/utils/expiration.cpp:105 src/utils/expiration.cpp:109
 #, fuzzy, kde-format
 #| msgctxt "... between <a date> and <another date>."
 #| msgid "The validity period must end between %1 and %2."
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
 msgstr "Период действия должен заканчиваться в диапазоне от %1 до %2."
+
+#: src/utils/expiration.cpp:134
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "Two years from now"
+msgctxt "@item:inlistbox"
+msgid "Three years from now"
+msgstr "Через два года"
+
+#: src/utils/expiration.cpp:135
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "Two years from now"
+msgctxt "@item:inlistbox"
+msgid "Two years from now"
+msgstr "Через два года"
+
+#: src/utils/expiration.cpp:136
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "One year from now"
+msgctxt "@item:inlistbox"
+msgid "One year from now"
+msgstr "Через год"
 
 #: src/utils/input.cpp:220
 #, kde-format
@@ -12283,6 +12224,56 @@ msgid ""
 msgstr ""
 "Импортировать сертификат из файла.<nl/>Для импорта с открытого сервера "
 "ключей воспользуйтесь пунктом меню <interface>Поиск на сервере…</interface>."
+
+#~ msgid "The certification must be valid at least until tomorrow."
+#~ msgstr ""
+#~ "Подпись сертификата должна действовать как минимум до следующего дня."
+
+#~ msgid "The latest allowed certification date is %1."
+#~ msgstr "Самая поздняя возможная дата действия подписи сертификата: %1."
+
+#~ msgid "Valid for %1 day"
+#~ msgid_plural "Valid for %1 days"
+#~ msgstr[0] "Срок действия: %1 день"
+#~ msgstr[1] "Срок действия: %1 дня"
+#~ msgstr[2] "Срок действия: %1 дней"
+#~ msgstr[3] "Срок действия: %1 день"
+
+#~ msgid "Valid for %1 week"
+#~ msgid_plural "Valid for %1 weeks"
+#~ msgstr[0] "Срок действия: %1 неделя"
+#~ msgstr[1] "Срок действия: %1 недели"
+#~ msgstr[2] "Срок действия: %1 недель"
+#~ msgstr[3] "Срок действия: %1 неделя"
+
+#~ msgid "Valid for %1 month"
+#~ msgid_plural "Valid for %1 months"
+#~ msgstr[0] "Срок действия: %1 месяц"
+#~ msgstr[1] "Срок действия: %1 месяца"
+#~ msgstr[2] "Срок действия: %1 месяцев"
+#~ msgstr[3] "Срок действия: %1 месяц"
+
+#~ msgid "Valid for %1 year"
+#~ msgid_plural "Valid for %1 years"
+#~ msgstr[0] "Срок действия: %1 год"
+#~ msgstr[1] "Срок действия: %1 года"
+#~ msgstr[2] "Срок действия: %1 лет"
+#~ msgstr[3] "Срок действия: %1 год"
+
+#~ msgid "Valid for:"
+#~ msgstr "Срок действия:"
+
+#~ msgid "Days"
+#~ msgstr "дней"
+
+#~ msgid "Weeks"
+#~ msgstr "недель"
+
+#~ msgid "Months"
+#~ msgstr "месяцев"
+
+#~ msgid "Years"
+#~ msgstr "лет"
 
 #~ msgctxt "... between today and <another date>."
 #~ msgid "The validity period must end between today and %1."

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-28 00:49+0000\n"
+"POT-Creation-Date: 2023-07-29 00:46+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -4950,7 +4950,8 @@ msgstr "(sobivaid sertifikaate ei leitud)"
 msgid "Multiple matching certificates or groups found"
 msgstr "(sobivaid sertifikaate ei leitud)"
 
-#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:377
+#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:215
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:1019
 #: src/view/formtextinput.cpp:120
 #, fuzzy, kde-format
 #| msgid "Error"
@@ -6333,8 +6334,7 @@ msgstr "Usaldustase"
 msgid "Valid from:"
 msgstr "Kehtiv alates:"
 
-#: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:290 src/dialogs/expirydialog.cpp:97
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgid "Valid until:"
@@ -6862,36 +6862,13 @@ msgstr ""
 msgid "Expiration:"
 msgstr "Valik:"
 
-#: src/dialogs/certifywidget.cpp:464
-#, kde-format
-msgid "The certification must be valid at least until tomorrow."
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:465
-#, fuzzy, kde-format
-#| msgid "There are unknown certificates on this card."
-msgid "The latest allowed certification date is %1."
-msgstr "Kaardil leidub tundmatuid sertifikaate."
-
-#: src/dialogs/certifywidget.cpp:468
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "Two years from now"
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:469
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "One year from now"
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:463
 #, fuzzy, kde-format
 #| msgid "You can use this to add additional info to a certification."
 msgid "You can use this to set an expiration date for a certification."
 msgstr "Selle abil võib lisada sertifikaati täiendavat teavet."
 
-#: src/dialogs/certifywidget.cpp:476
+#: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6899,23 +6876,23 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:480
+#: src/dialogs/certifywidget.cpp:469
 #, fuzzy, kde-format
 #| msgid "Change Expiry Date..."
 msgid "Explain expiration"
 msgstr "Muuda aegumise kuupäeva..."
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:482
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:494
+#: src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:496
+#: src/dialogs/certifywidget.cpp:485
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6923,23 +6900,23 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:490
 #, fuzzy, kde-format
 #| msgid "Trusted issuer?"
 msgid "Explain trusted introducer"
 msgstr "Kas väljaandja on usaldusväärne?"
 
-#: src/dialogs/certifywidget.cpp:511
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Domain:"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:701
+#: src/dialogs/certifywidget.cpp:690
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:716
+#: src/dialogs/certifywidget.cpp:705
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>An error occurred while trying to change the certification trust for "
@@ -6950,13 +6927,13 @@ msgstr ""
 "<p>Tekkis tõrge, kui püüti muuta <b>%1</b> sertifitseerimise usaldusväärsust:"
 "</p><p>%2</p>"
 
-#: src/dialogs/certifywidget.cpp:719
+#: src/dialogs/certifywidget.cpp:708
 #, fuzzy, kde-format
 #| msgid "Certification Trust Change Succeeded"
 msgid "Certification Trust Change Failed"
 msgstr "Sertifitseerimise usaldusväärsuse muutmine õnnestus"
 
-#: src/dialogs/certifywidget.cpp:726
+#: src/dialogs/certifywidget.cpp:715
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "PIN set successfully."
@@ -7137,92 +7114,37 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:71
-#, kde-format
-msgid "Valid for %1 day"
-msgid_plural "Valid for %1 days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/dialogs/expirydialog.cpp:73
-#, kde-format
-msgid "Valid for %1 week"
-msgid_plural "Valid for %1 weeks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/dialogs/expirydialog.cpp:75
-#, fuzzy, kde-format
-#| msgid "Valid from:"
-msgid "Valid for %1 month"
-msgid_plural "Valid for %1 months"
-msgstr[0] "Kehtiv alates:"
-msgstr[1] "Kehtiv alates:"
-
-#: src/dialogs/expirydialog.cpp:77
-#, kde-format
-msgid "Valid for %1 year"
-msgid_plural "Valid for %1 years"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/dialogs/expirydialog.cpp:169
+#: src/dialogs/expirydialog.cpp:84
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the subkey should be valid:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/expirydialog.cpp:170
+#: src/dialogs/expirydialog.cpp:85
 #, fuzzy, kde-format
 #| msgid "Please select one of the following certificates:"
 msgid "Please select until when the certificate should be valid:"
 msgstr "Palun vali üks järgmistest sertifikaatidest:"
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:89
 #, fuzzy, kde-format
 #| msgid "Show certificate validity"
 msgid "Unlimited validity"
 msgstr "Sertifikaadi kehtivuse näitamine"
 
-#: src/dialogs/expirydialog.cpp:182
-#, fuzzy, kde-format
-#| msgid "Valid from:"
-msgid "Valid for:"
-msgstr "Kehtiv alates:"
-
-#: src/dialogs/expirydialog.cpp:195
-#, kde-format
-msgid "Days"
-msgstr "päeva pärast"
-
-#: src/dialogs/expirydialog.cpp:196
-#, kde-format
-msgid "Weeks"
-msgstr "nädala pärast"
-
-#: src/dialogs/expirydialog.cpp:197
-#, kde-format
-msgid "Months"
-msgstr "kuu pärast"
-
-#: src/dialogs/expirydialog.cpp:198
-#, kde-format
-msgid "Years"
-msgstr "aasta pärast"
-
-#: src/dialogs/expirydialog.cpp:228
+#: src/dialogs/expirydialog.cpp:113
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:284
+#: src/dialogs/expirydialog.cpp:144
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "Kehtiv kuni:"
 
-#: src/dialogs/expirydialog.cpp:330
+#: src/dialogs/expirydialog.cpp:171
 #, fuzzy, kde-format
 #| msgid "Change cardholder"
 msgctxt "@title:window"
@@ -9276,171 +9198,171 @@ msgstr "Impordi sertifikaadid"
 msgid "Import CRLs"
 msgstr "Impordi CRL-id"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:226
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Muud seadistused"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "Võtme olemus"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:246
 #, fuzzy, kde-format
 #| msgid "RSA"
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:258
 #, fuzzy, kde-format
 #| msgid "+ RSA"
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:267
 #, fuzzy, kde-format
 #| msgid "DSA"
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
 #, fuzzy, kde-format
 #| msgid "+ Elgamal"
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
 #, fuzzy, kde-format
 #| msgid "The private key is needed to decrypt or sign."
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "Privaatvõtit on tarvis lahtikrüptimiseks või allkirjastamiseks."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
 #, fuzzy, kde-format
 #| msgid "ECDSA"
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, fuzzy, kde-format
 #| msgid "+ ECDH"
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:307
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Sertifikaadi kasutamine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Allkirjastamine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:315
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "Sertifitseerimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:319
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "Krüptimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:323
 #, fuzzy, kde-format
 #| msgid "Authentication"
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "Autentimine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:330
 #, fuzzy, kde-format
 #| msgid "Valid until:"
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "Kehtiv kuni:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:344
 #, fuzzy, kde-format
 #| msgid "Technical Details"
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "Tehnilised üksikasjad"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:358
 #, fuzzy, kde-format
 #| msgid "Additional User-IDs"
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "Täiendavad kasutaja ID-d"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:366
 #, fuzzy, kde-format
 #| msgid "EMail Addresses"
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "E-posti aadressid"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:374
 #, fuzzy, kde-format
 #| msgid "DNS Names"
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS-i nimed"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:382
 #, fuzzy, kde-format
 #| msgid "URIs"
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-d"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:913
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:915
 #, fuzzy, kde-format
 #| msgid "Personal Details"
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "Isiklikud üksikasjad"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
 #, kde-format
 msgid "new email"
 msgstr "uus e-post"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
 #, kde-format
 msgid "new dns name"
 msgstr "uus DNS nimi"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:421
 #, kde-format
 msgid "new uri"
 msgstr "uus URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:751
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:753
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -9448,7 +9370,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1-bitine)"
 msgstr[1] "%2 (%1-bitine)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:752
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:754
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -9456,7 +9378,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1-bitine"
 msgstr[1] "%1-bitine"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:918
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:920
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Adding more than one User ID is not yet implemented."
@@ -10946,17 +10868,35 @@ msgstr "S/MIME allkiri..."
 msgid "OpenPGP-Sign..."
 msgstr "OpenPGP allkiri..."
 
-#: src/utils/expiration.cpp:102
+#: src/utils/expiration.cpp:103
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info"
-msgid "The validity period cannot be changed."
+msgid "The date cannot be changed."
 msgstr "Selle allkirja usaldusväärsust ei saa kontrollida."
 
-#: src/utils/expiration.cpp:104 src/utils/expiration.cpp:108
+#: src/utils/expiration.cpp:105 src/utils/expiration.cpp:109
 #, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
+msgstr ""
+
+#: src/utils/expiration.cpp:134
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "Three years from now"
+msgstr ""
+
+#: src/utils/expiration.cpp:135
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "Two years from now"
+msgstr ""
+
+#: src/utils/expiration.cpp:136
+#, kde-format
+msgctxt "@item:inlistbox"
+msgid "One year from now"
 msgstr ""
 
 #: src/utils/input.cpp:220
@@ -12577,6 +12517,35 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
+
+#, fuzzy
+#~| msgid "There are unknown certificates on this card."
+#~ msgid "The latest allowed certification date is %1."
+#~ msgstr "Kaardil leidub tundmatuid sertifikaate."
+
+#, fuzzy
+#~| msgid "Valid from:"
+#~ msgid "Valid for %1 month"
+#~ msgid_plural "Valid for %1 months"
+#~ msgstr[0] "Kehtiv alates:"
+#~ msgstr[1] "Kehtiv alates:"
+
+#, fuzzy
+#~| msgid "Valid from:"
+#~ msgid "Valid for:"
+#~ msgstr "Kehtiv alates:"
+
+#~ msgid "Days"
+#~ msgstr "päeva pärast"
+
+#~ msgid "Weeks"
+#~ msgstr "nädala pärast"
+
+#~ msgid "Months"
+#~ msgstr "kuu pärast"
+
+#~ msgid "Years"
+#~ msgstr "aasta pärast"
 
 #~ msgid "Failed to create output folder."
 #~ msgstr "Väljundkataloogi loomine nurjus."

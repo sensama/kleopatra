@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-28 00:49+0000\n"
+"POT-Creation-Date: 2023-07-29 00:46+0000\n"
 "PO-Revision-Date: 2023-06-30 06:21+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -4343,7 +4343,8 @@ msgstr ""
 msgid "Multiple matching certificates or groups found"
 msgstr ""
 
-#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:377
+#: src/crypto/gui/certificatelineedit.cpp:649 src/dialogs/expirydialog.cpp:215
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:1019
 #: src/view/formtextinput.cpp:120
 #, kde-format
 msgctxt "@info"
@@ -5605,8 +5606,7 @@ msgstr "ნდობის დონე:"
 msgid "Valid from:"
 msgstr "ძალაშია:"
 
-#: src/dialogs/certificatedetailswidget.cpp:290
-#: src/dialogs/expirydialog.cpp:212
+#: src/dialogs/certificatedetailswidget.cpp:290 src/dialogs/expirydialog.cpp:97
 #, kde-format
 msgid "Valid until:"
 msgstr "ვადა:"
@@ -6078,34 +6078,12 @@ msgstr "ჭდეების ახსნა"
 msgid "Expiration:"
 msgstr "ვადა:"
 
-#: src/dialogs/certifywidget.cpp:464
-#, kde-format
-msgid "The certification must be valid at least until tomorrow."
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:465
-#, kde-format
-msgid "The latest allowed certification date is %1."
-msgstr ""
-
-#: src/dialogs/certifywidget.cpp:468
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "Two years from now"
-msgstr "ორი წლის შემდეგ"
-
-#: src/dialogs/certifywidget.cpp:469
-#, kde-format
-msgctxt "Date for expiration of certification"
-msgid "One year from now"
-msgstr "ერთი წლის შემდეგ"
-
-#: src/dialogs/certifywidget.cpp:474
+#: src/dialogs/certifywidget.cpp:463
 #, kde-format
 msgid "You can use this to set an expiration date for a certification."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:476
+#: src/dialogs/certifywidget.cpp:465
 #, kde-format
 msgid ""
 "By setting an expiration date, you can limit the validity of your "
@@ -6113,22 +6091,22 @@ msgid ""
 "passed, your certification is no longer valid."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:480
+#: src/dialogs/certifywidget.cpp:469
 #, kde-format
 msgid "Explain expiration"
 msgstr "ვადის ამოწურვის ახსნა"
 
-#: src/dialogs/certifywidget.cpp:493
+#: src/dialogs/certifywidget.cpp:482
 #, kde-format
 msgid "Certify as trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:494
+#: src/dialogs/certifywidget.cpp:483
 #, kde-format
 msgid "You can use this to certify a trusted introducer for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:496
+#: src/dialogs/certifywidget.cpp:485
 #, kde-format
 msgid ""
 "All certificates with email addresses belonging to the domain that have been "
@@ -6136,33 +6114,33 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:501
+#: src/dialogs/certifywidget.cpp:490
 #, kde-format
 msgid "Explain trusted introducer"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:511
+#: src/dialogs/certifywidget.cpp:500
 #, kde-format
 msgid "Domain:"
 msgstr "დომენი:"
 
-#: src/dialogs/certifywidget.cpp:701
+#: src/dialogs/certifywidget.cpp:690
 #, kde-format
 msgid "Is this your own key?"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:716
+#: src/dialogs/certifywidget.cpp:705
 #, kde-format
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:719
+#: src/dialogs/certifywidget.cpp:708
 #, kde-format
 msgid "Certification Trust Change Failed"
 msgstr ""
 
-#: src/dialogs/certifywidget.cpp:726
+#: src/dialogs/certifywidget.cpp:715
 #, kde-format
 msgid "Owner trust set successfully."
 msgstr ""
@@ -6310,86 +6288,33 @@ msgctxt "@title:window"
 msgid "Edit Group"
 msgstr "ჯგუფის ჩასწორება"
 
-#: src/dialogs/expirydialog.cpp:71
-#, kde-format
-msgid "Valid for %1 day"
-msgid_plural "Valid for %1 days"
-msgstr[0] "სწორია %1 დღით"
-msgstr[1] "სწორია %1 დღით"
-
-#: src/dialogs/expirydialog.cpp:73
-#, kde-format
-msgid "Valid for %1 week"
-msgid_plural "Valid for %1 weeks"
-msgstr[0] "სწორია %1 კვირით"
-msgstr[1] "სწორია %1 კვირით"
-
-#: src/dialogs/expirydialog.cpp:75
-#, kde-format
-msgid "Valid for %1 month"
-msgid_plural "Valid for %1 months"
-msgstr[0] "სწორია %1 თვით"
-msgstr[1] "სწორია %1 თვით"
-
-#: src/dialogs/expirydialog.cpp:77
-#, kde-format
-msgid "Valid for %1 year"
-msgid_plural "Valid for %1 years"
-msgstr[0] "სწორია %1 წლით"
-msgstr[1] "სწორია %1 წლით"
-
-#: src/dialogs/expirydialog.cpp:169
+#: src/dialogs/expirydialog.cpp:84
 #, kde-format
 msgid "Please select until when the subkey should be valid:"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:170
+#: src/dialogs/expirydialog.cpp:85
 #, kde-format
 msgid "Please select until when the certificate should be valid:"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:174
+#: src/dialogs/expirydialog.cpp:89
 #, kde-format
 msgid "Unlimited validity"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:182
-#, kde-format
-msgid "Valid for:"
-msgstr ""
-
-#: src/dialogs/expirydialog.cpp:195
-#, kde-format
-msgid "Days"
-msgstr "დღე"
-
-#: src/dialogs/expirydialog.cpp:196
-#, kde-format
-msgid "Weeks"
-msgstr "კვირა"
-
-#: src/dialogs/expirydialog.cpp:197
-#, kde-format
-msgid "Months"
-msgstr "თვე"
-
-#: src/dialogs/expirydialog.cpp:198
-#, kde-format
-msgid "Years"
-msgstr "წელი"
-
-#: src/dialogs/expirydialog.cpp:228
+#: src/dialogs/expirydialog.cpp:113
 #, kde-format
 msgid "Also update the validity period of the subkeys"
 msgstr ""
 
-#: src/dialogs/expirydialog.cpp:284
+#: src/dialogs/expirydialog.cpp:144
 #, kde-format
 msgctxt "Valid until DATE"
 msgid "Valid until %1"
 msgstr "მოქმედია %1-მდე"
 
-#: src/dialogs/expirydialog.cpp:330
+#: src/dialogs/expirydialog.cpp:171
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Validity Period"
@@ -8291,150 +8216,150 @@ msgstr "სერტიფიკატების შემოტანა"
 msgid "Import CRLs"
 msgstr "CRL-ების შემოტანა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:225
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:226
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "დამატებითი პარამეტრები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
 msgstr "გასაღების მასალა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:245
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:246
 #, kde-format
 msgctxt "@option:radio"
 msgid "RSA"
 msgstr "RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:257
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:258
 #, kde-format
 msgctxt "@option:check"
 msgid "+ RSA"
 msgstr "+ RSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:266
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:267
 #, kde-format
 msgctxt "@option:radio"
 msgid "DSA"
 msgstr "DSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:274
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
 #, kde-format
 msgctxt "@option:check"
 msgid "+ Elgamal"
 msgstr "+ Elgamal"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:275
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:276
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:294
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This subkey is required for encryption."
 msgstr "დაშიფვრისთვის ეს ქვეგასაღები აუცილებელია."
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:284
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:285
 #, kde-format
 msgctxt "@option:radio"
 msgid "ECDSA"
 msgstr "ECDSA"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:292
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:293
 #, kde-format
 msgctxt "@option:check"
 msgid "+ ECDH"
 msgstr "+ ECDH"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:306
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:307
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "სერტიფიკატის გამოყენება"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:310
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:311
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "ხელმოწერა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:314
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:315
 #, kde-format
 msgctxt "@option:check"
 msgid "Certification"
 msgstr "სერტიფიკაცია"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:318
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:319
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
 msgstr "დაშიფვრა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:322
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:323
 #, kde-format
 msgctxt "@option:check"
 msgid "Authentication"
 msgstr "ავთენტიკაცია"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:329
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:330
 #, kde-format
 msgctxt "@option:check"
 msgid "Valid until:"
 msgstr "ვადა:"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:343
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:344
 #, kde-format
 msgctxt "@title:tab"
 msgid "Technical Details"
 msgstr "ტექნიკური დეტალები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:357
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:358
 #, kde-format
 msgctxt "@title:group"
 msgid "Additional User IDs"
 msgstr "დამატებითი მომხმარებლის ID-ები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:365
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:366
 #, kde-format
 msgctxt "@title:group"
 msgid "EMail Addresses"
 msgstr "ელფოსტის მისამართები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:373
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:374
 #, kde-format
 msgctxt "@title:group"
 msgid "DNS Names"
 msgstr "DNS სახელები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:381
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:382
 #, kde-format
 msgctxt "@title:group"
 msgid "URIs"
 msgstr "URI-ები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:391
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:913
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:392
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:915
 #, kde-format
 msgctxt "@title:tab"
 msgid "Personal Details"
 msgstr "პირადი დეტალები"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:418
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
 #, kde-format
 msgid "new email"
 msgstr "ახალი ელფოსტა"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:419
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
 #, kde-format
 msgid "new dns name"
 msgstr "ახალი DNS სახელი"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:420
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:421
 #, kde-format
 msgid "new uri"
 msgstr "ახალი URI"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:751
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:753
 #, kde-format
 msgctxt "%2: some admin-supplied text, %1: key size in bits"
 msgid "%2 (1 bit)"
@@ -8442,7 +8367,7 @@ msgid_plural "%2 (%1 bits)"
 msgstr[0] "%2 (1 ბიტიანი)"
 msgstr[1] "%2 (%1 ბიტიანი)"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:752
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:754
 #, kde-format
 msgctxt "%1: key size in bits"
 msgid "1 bit"
@@ -8450,7 +8375,7 @@ msgid_plural "%1 bits"
 msgstr[0] "1 ბიტი"
 msgstr[1] "%1 ბიტი"
 
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:918
+#: src/newcertificatewizard/advancedsettingsdialog.cpp:920
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Adding more than one user ID is not yet implemented."
@@ -9791,18 +9716,42 @@ msgstr ""
 msgid "OpenPGP-Sign..."
 msgstr ""
 
-#: src/utils/expiration.cpp:102
+#: src/utils/expiration.cpp:103
 #, fuzzy, kde-format
 #| msgid "The validity period cannot be changed."
 msgctxt "@info"
-msgid "The validity period cannot be changed."
+msgid "The date cannot be changed."
 msgstr "ვარგისობის პერიოდს ვერ შეცვლით."
 
-#: src/utils/expiration.cpp:104 src/utils/expiration.cpp:108
+#: src/utils/expiration.cpp:105 src/utils/expiration.cpp:109
 #, kde-format
 msgctxt "@info ... between <a date> and <another date>."
 msgid "Enter a date between %1 and %2."
 msgstr ""
+
+#: src/utils/expiration.cpp:134
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "Two years from now"
+msgctxt "@item:inlistbox"
+msgid "Three years from now"
+msgstr "ორი წლის შემდეგ"
+
+#: src/utils/expiration.cpp:135
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "Two years from now"
+msgctxt "@item:inlistbox"
+msgid "Two years from now"
+msgstr "ორი წლის შემდეგ"
+
+#: src/utils/expiration.cpp:136
+#, fuzzy, kde-format
+#| msgctxt "Date for expiration of certification"
+#| msgid "One year from now"
+msgctxt "@item:inlistbox"
+msgid "One year from now"
+msgstr "ერთი წლის შემდეგ"
 
 #: src/utils/input.cpp:220
 #, kde-format
@@ -11300,6 +11249,38 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Valid for %1 day"
+#~ msgid_plural "Valid for %1 days"
+#~ msgstr[0] "სწორია %1 დღით"
+#~ msgstr[1] "სწორია %1 დღით"
+
+#~ msgid "Valid for %1 week"
+#~ msgid_plural "Valid for %1 weeks"
+#~ msgstr[0] "სწორია %1 კვირით"
+#~ msgstr[1] "სწორია %1 კვირით"
+
+#~ msgid "Valid for %1 month"
+#~ msgid_plural "Valid for %1 months"
+#~ msgstr[0] "სწორია %1 თვით"
+#~ msgstr[1] "სწორია %1 თვით"
+
+#~ msgid "Valid for %1 year"
+#~ msgid_plural "Valid for %1 years"
+#~ msgstr[0] "სწორია %1 წლით"
+#~ msgstr[1] "სწორია %1 წლით"
+
+#~ msgid "Days"
+#~ msgstr "დღე"
+
+#~ msgid "Weeks"
+#~ msgstr "კვირა"
+
+#~ msgid "Months"
+#~ msgstr "თვე"
+
+#~ msgid "Years"
+#~ msgstr "წელი"
 
 #~ msgctxt "... after <a date>."
 #~ msgid "The validity period must end after %1."
